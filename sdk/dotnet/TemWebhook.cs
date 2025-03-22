@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.TemWebhook("main", new()
+    ///     var main = new Scaleway.Tem.Webhook("main", new()
     ///     {
     ///         DomainId = "your-domain-id",
     ///         EventTypes = new[]
@@ -53,37 +53,37 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var config = new Config();
     ///     var domainName = config.Require("domainName");
-    ///     var sns = new Scaleway.MnqSns("sns");
+    ///     var sns = new Scaleway.Mnq.Sns("sns");
     /// 
-    ///     var snsCredentials = new Scaleway.MnqSnsCredentials("sns_credentials", new()
+    ///     var snsCredentials = new Scaleway.Mnq.SnsCredentials("sns_credentials", new()
     ///     {
-    ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
     ///         },
     ///     });
     /// 
-    ///     var snsTopic = new Scaleway.MnqSnsTopic("sns_topic", new()
+    ///     var snsTopic = new Scaleway.Mnq.SnsTopic("sns_topic", new()
     ///     {
     ///         Name = "test-mnq-sns-topic-basic",
     ///         AccessKey = snsCredentials.AccessKey,
     ///         SecretKey = snsCredentials.SecretKey,
     ///     });
     /// 
-    ///     var cr01 = new Scaleway.TemDomain("cr01", new()
+    ///     var cr01 = new Scaleway.Tem.Domain("cr01", new()
     ///     {
     ///         Name = domainName,
     ///         AcceptTos = true,
     ///     });
     /// 
-    ///     var spf = new Scaleway.DomainRecord("spf", new()
+    ///     var spf = new Scaleway.Domain.Record("spf", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "TXT",
     ///         Data = cr01.SpfConfig.Apply(spfConfig =&gt; $"v=spf1 {spfConfig} -all"),
     ///     });
     /// 
-    ///     var dkim = new Scaleway.DomainRecord("dkim", new()
+    ///     var dkim = new Scaleway.Domain.Record("dkim", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Name = cr01.ProjectId.Apply(projectId =&gt; $"{projectId}._domainkey"),
@@ -91,14 +91,14 @@ namespace Pulumiverse.Scaleway
     ///         Data = cr01.DkimConfig,
     ///     });
     /// 
-    ///     var mx = new Scaleway.DomainRecord("mx", new()
+    ///     var mx = new Scaleway.Domain.Record("mx", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "MX",
     ///         Data = ".",
     ///     });
     /// 
-    ///     var dmarc = new Scaleway.DomainRecord("dmarc", new()
+    ///     var dmarc = new Scaleway.Domain.Record("dmarc", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Name = cr01.DmarcName,
@@ -106,14 +106,14 @@ namespace Pulumiverse.Scaleway
     ///         Data = cr01.DmarcConfig,
     ///     });
     /// 
-    ///     var valid = new Scaleway.TemDomainValidation("valid", new()
+    ///     var valid = new Scaleway.Tem.DomainValidation("valid", new()
     ///     {
     ///         DomainId = cr01.Id,
     ///         Region = cr01.Region,
     ///         Timeout = 3600,
     ///     });
     /// 
-    ///     var webhook = new Scaleway.TemWebhook("webhook", new()
+    ///     var webhook = new Scaleway.Tem.Webhook("webhook", new()
     ///     {
     ///         Name = "example-webhook",
     ///         DomainId = cr01.Id,
@@ -145,6 +145,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/temWebhook:TemWebhook main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook")]
     [ScalewayResourceType("scaleway:index/temWebhook:TemWebhook")]
     public partial class TemWebhook : global::Pulumi.CustomResource
     {

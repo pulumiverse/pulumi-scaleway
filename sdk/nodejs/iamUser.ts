@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const basic = new scaleway.IamUser("basic", {email: "test@test.com"});
+ * const basic = new scaleway.iam.User("basic", {email: "test@test.com"});
  * ```
  *
  * ## Import
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User
  */
 export class IamUser extends pulumi.CustomResource {
     /**
@@ -40,6 +42,7 @@ export class IamUser extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamUserState, opts?: pulumi.CustomResourceOptions): IamUser {
+        pulumi.log.warn("IamUser is deprecated: scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User")
         return new IamUser(name, <any>state, { ...opts, id: id });
     }
 
@@ -109,8 +112,11 @@ export class IamUser extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User */
     constructor(name: string, args: IamUserArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User */
     constructor(name: string, argsOrState?: IamUserArgs | IamUserState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamUser is deprecated: scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

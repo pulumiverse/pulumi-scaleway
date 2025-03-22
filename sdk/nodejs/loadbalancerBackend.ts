@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const backend01 = new scaleway.LoadbalancerBackend("backend01", {
+ * const backend01 = new scaleway.loadbalancers.Backend("backend01", {
  *     lbId: lb01.id,
  *     name: "backend01",
  *     forwardProtocol: "http",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const backend01 = new scaleway.LoadbalancerBackend("backend01", {
+ * const backend01 = new scaleway.loadbalancers.Backend("backend01", {
  *     lbId: lb01.id,
  *     name: "backend01",
  *     forwardProtocol: "http",
@@ -53,6 +53,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend
  */
 export class LoadbalancerBackend extends pulumi.CustomResource {
     /**
@@ -65,6 +67,7 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerBackendState, opts?: pulumi.CustomResourceOptions): LoadbalancerBackend {
+        pulumi.log.warn("LoadbalancerBackend is deprecated: scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend")
         return new LoadbalancerBackend(name, <any>state, { ...opts, id: id });
     }
 
@@ -205,8 +208,11 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend */
     constructor(name: string, args: LoadbalancerBackendArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend */
     constructor(name: string, argsOrState?: LoadbalancerBackendArgs | LoadbalancerBackendState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("LoadbalancerBackend is deprecated: scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

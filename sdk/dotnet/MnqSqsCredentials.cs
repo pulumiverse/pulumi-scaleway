@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqSqs("main");
+    ///     var main = new Scaleway.Mnq.Sqs("main");
     /// 
-    ///     var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials("main", new()
+    ///     var mainSqsCredentials = new Scaleway.Mnq.SqsCredentials("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "sqs-credentials",
-    ///         Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SqsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = false,
     ///             CanReceive = true,
@@ -54,6 +54,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials")]
     [ScalewayResourceType("scaleway:index/mnqSqsCredentials:MnqSqsCredentials")]
     public partial class MnqSqsCredentials : global::Pulumi.CustomResource
     {

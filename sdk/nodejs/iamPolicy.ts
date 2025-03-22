@@ -20,11 +20,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const _default = scaleway.getAccountProject({
+ * const _default = scaleway.account.getProject({
  *     name: "default",
  * });
- * const app = new scaleway.IamApplication("app", {name: "my app"});
- * const objectReadOnly = new scaleway.IamPolicy("object_read_only", {
+ * const app = new scaleway.iam.Application("app", {name: "my app"});
+ * const objectReadOnly = new scaleway.iam.Policy("object_read_only", {
  *     name: "my policy",
  *     description: "gives app readonly access to object storage in project",
  *     applicationId: app.id,
@@ -41,8 +41,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const app = new scaleway.IamApplication("app", {name: "my app"});
- * const objectReadOnly = new scaleway.IamPolicy("object_read_only", {
+ * const app = new scaleway.iam.Application("app", {name: "my app"});
+ * const objectReadOnly = new scaleway.iam.Policy("object_read_only", {
  *     name: "my policy",
  *     description: "gives app readonly access to object storage in project",
  *     applicationId: app.id,
@@ -66,7 +66,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IamPolicy("main", {
+ * const main = new scaleway.iam.Policy("main", {
  *     name: "tf_tests_policy_condition",
  *     noPrincipal: true,
  *     rules: [{
@@ -86,6 +86,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy
  */
 export class IamPolicy extends pulumi.CustomResource {
     /**
@@ -98,6 +100,7 @@ export class IamPolicy extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamPolicyState, opts?: pulumi.CustomResourceOptions): IamPolicy {
+        pulumi.log.warn("IamPolicy is deprecated: scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy")
         return new IamPolicy(name, <any>state, { ...opts, id: id });
     }
 
@@ -173,8 +176,11 @@ export class IamPolicy extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy */
     constructor(name: string, args: IamPolicyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy */
     constructor(name: string, argsOrState?: IamPolicyArgs | IamPolicyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamPolicy is deprecated: scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -126,7 +126,12 @@ class _InstanceIpReverseDnsState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns""", DeprecationWarning)
+
+
 class InstanceIpReverseDns(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -146,15 +151,15 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("server_ip")
-        tf_a = scaleway.DomainRecord("tf_A",
+        server_ip = scaleway.instance.Ip("server_ip")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="scaleway.com",
             name="www",
             type="A",
             data=server_ip.address,
             ttl=3600,
             priority=1)
-        reverse = scaleway.InstanceIpReverseDns("reverse",
+        reverse = scaleway.instance.IpReverseDns("reverse",
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
@@ -192,15 +197,15 @@ class InstanceIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("server_ip")
-        tf_a = scaleway.DomainRecord("tf_A",
+        server_ip = scaleway.instance.Ip("server_ip")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="scaleway.com",
             name="www",
             type="A",
             data=server_ip.address,
             ttl=3600,
             priority=1)
-        reverse = scaleway.InstanceIpReverseDns("reverse",
+        reverse = scaleway.instance.IpReverseDns("reverse",
             ip_id=server_ip.id,
             reverse="www.scaleway.com")
         ```
@@ -234,6 +239,7 @@ class InstanceIpReverseDns(pulumi.CustomResource):
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceIpReverseDns is deprecated: scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

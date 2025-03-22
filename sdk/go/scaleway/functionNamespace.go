@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionNamespace` resource allows you to
+// The `functions.Namespace` resource allows you to
 // for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//			_, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
 //				Name:        pulumi.String("main-function-namespace"),
 //				Description: pulumi.String("Main function namespace"),
 //			})
@@ -52,6 +52,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace
 type FunctionNamespace struct {
 	pulumi.CustomResourceState
 

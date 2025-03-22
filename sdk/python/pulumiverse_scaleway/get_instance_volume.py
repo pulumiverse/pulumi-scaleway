@@ -21,6 +21,8 @@ __all__ = [
     'get_instance_volume_output',
 ]
 
+warnings.warn("""scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceVolumeResult:
     """
@@ -167,6 +169,7 @@ def get_instance_volume(name: Optional[str] = None,
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.
     """
+    pulumi.log.warn("""get_instance_volume is deprecated: scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -204,6 +207,7 @@ def get_instance_volume_output(name: Optional[pulumi.Input[Optional[str]]] = Non
            Only one of `name` and `volume_id` should be specified.
     :param str zone: `zone`) The zone in which the volume exists.
     """
+    pulumi.log.warn("""get_instance_volume is deprecated: scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

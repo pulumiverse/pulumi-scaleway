@@ -16,6 +16,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit
  */
 export class Cockpit extends pulumi.CustomResource {
     /**
@@ -28,6 +30,7 @@ export class Cockpit extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CockpitState, opts?: pulumi.CustomResourceOptions): Cockpit {
+        pulumi.log.warn("Cockpit is deprecated: scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit")
         return new Cockpit(name, <any>state, { ...opts, id: id });
     }
 
@@ -70,7 +73,7 @@ export class Cockpit extends pulumi.CustomResource {
     /**
      * [DEPRECATED] Push_url
      *
-     * @deprecated Please use `scaleway.CockpitSource` instead
+     * @deprecated Please use `scaleway.observability.Source` instead
      */
     public /*out*/ readonly pushUrls!: pulumi.Output<outputs.CockpitPushUrl[]>;
 
@@ -81,8 +84,11 @@ export class Cockpit extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit */
     constructor(name: string, args?: CockpitArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit */
     constructor(name: string, argsOrState?: CockpitArgs | CockpitState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Cockpit is deprecated: scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -134,7 +140,7 @@ export interface CockpitState {
     /**
      * [DEPRECATED] Push_url
      *
-     * @deprecated Please use `scaleway.CockpitSource` instead
+     * @deprecated Please use `scaleway.observability.Source` instead
      */
     pushUrls?: pulumi.Input<pulumi.Input<inputs.CockpitPushUrl>[]>;
 }

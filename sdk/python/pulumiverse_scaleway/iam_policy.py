@@ -377,7 +377,12 @@ class _IamPolicyState:
         pulumi.set(self, "user_id", value)
 
 
+warnings.warn("""scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy""", DeprecationWarning)
+
+
 class IamPolicy(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -406,9 +411,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        default = scaleway.get_account_project(name="default")
-        app = scaleway.IamApplication("app", name="my app")
-        object_read_only = scaleway.IamPolicy("object_read_only",
+        default = scaleway.account.get_project(name="default")
+        app = scaleway.iam.Application("app", name="my app")
+        object_read_only = scaleway.iam.Policy("object_read_only",
             name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
@@ -424,8 +429,8 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app", name="my app")
-        object_read_only = scaleway.IamPolicy("object_read_only",
+        app = scaleway.iam.Application("app", name="my app")
+        object_read_only = scaleway.iam.Policy("object_read_only",
             name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
@@ -448,7 +453,7 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamPolicy("main",
+        main = scaleway.iam.Policy("main",
             name="tf_tests_policy_condition",
             no_principal=True,
             rules=[{
@@ -502,9 +507,9 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        default = scaleway.get_account_project(name="default")
-        app = scaleway.IamApplication("app", name="my app")
-        object_read_only = scaleway.IamPolicy("object_read_only",
+        default = scaleway.account.get_project(name="default")
+        app = scaleway.iam.Application("app", name="my app")
+        object_read_only = scaleway.iam.Policy("object_read_only",
             name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
@@ -520,8 +525,8 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app", name="my app")
-        object_read_only = scaleway.IamPolicy("object_read_only",
+        app = scaleway.iam.Application("app", name="my app")
+        object_read_only = scaleway.iam.Policy("object_read_only",
             name="my policy",
             description="gives app readonly access to object storage in project",
             application_id=app.id,
@@ -544,7 +549,7 @@ class IamPolicy(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamPolicy("main",
+        main = scaleway.iam.Policy("main",
             name="tf_tests_policy_condition",
             no_principal=True,
             rules=[{
@@ -589,6 +594,7 @@ class IamPolicy(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamPolicy is deprecated: scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

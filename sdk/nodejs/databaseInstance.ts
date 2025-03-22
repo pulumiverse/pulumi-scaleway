@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb-sbs",
  *     nodeType: "db-play2-pico",
  *     engine: "PostgreSQL-15",
@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "db-dev-s",
  *     disableBackup: true,
@@ -77,7 +77,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -100,10 +100,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {ipv4Subnet: {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {ipv4Subnet: {
  *     subnet: "172.16.20.0/22",
  * }});
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-15",
  *     privateNetwork: {
@@ -119,8 +119,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const main = new scaleway.DatabaseInstance("main", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const main = new scaleway.databases.Instance("main", {
  *     loadBalancers: [{}],
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -137,7 +137,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-15",
  * });
@@ -160,6 +160,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance
  */
 export class DatabaseInstance extends pulumi.CustomResource {
     /**
@@ -172,6 +174,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseInstanceState, opts?: pulumi.CustomResourceOptions): DatabaseInstance {
+        pulumi.log.warn("DatabaseInstance is deprecated: scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance")
         return new DatabaseInstance(name, <any>state, { ...opts, id: id });
     }
 
@@ -325,8 +328,11 @@ export class DatabaseInstance extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance */
     constructor(name: string, args: DatabaseInstanceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance */
     constructor(name: string, argsOrState?: DatabaseInstanceArgs | DatabaseInstanceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabaseInstance is deprecated: scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

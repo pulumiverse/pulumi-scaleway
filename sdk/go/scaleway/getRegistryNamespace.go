@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a registry namespace.
+//
+// Deprecated: scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace
 func LookupRegistryNamespace(ctx *pulumi.Context, args *LookupRegistryNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupRegistryNamespaceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRegistryNamespaceResult

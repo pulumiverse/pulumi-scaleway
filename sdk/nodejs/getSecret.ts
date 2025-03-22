@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+ * The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
  *
  * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
@@ -27,21 +27,23 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a secret
- * const main = new scaleway.Secret("main", {
+ * const main = new scaleway.secrets.Secret("main", {
  *     name: "foo",
  *     description: "barr",
  * });
  * // Get the secret information specified by the secret ID
- * const mySecret = scaleway.getSecret({
+ * const mySecret = scaleway.secrets.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get the secret information specified by the secret name
- * const byName = scaleway.getSecret({
+ * const byName = scaleway.secrets.getSecret({
  *     name: "your_secret_name",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret */
 export function getSecret(args?: GetSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretResult> {
+    pulumi.log.warn("getSecret is deprecated: scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecret:getSecret", {
@@ -113,7 +115,7 @@ export interface GetSecretResult {
     readonly versionCount: number;
 }
 /**
- * The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+ * The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
  *
  * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
@@ -133,21 +135,23 @@ export interface GetSecretResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a secret
- * const main = new scaleway.Secret("main", {
+ * const main = new scaleway.secrets.Secret("main", {
  *     name: "foo",
  *     description: "barr",
  * });
  * // Get the secret information specified by the secret ID
- * const mySecret = scaleway.getSecret({
+ * const mySecret = scaleway.secrets.getSecret({
  *     secretId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get the secret information specified by the secret name
- * const byName = scaleway.getSecret({
+ * const byName = scaleway.secrets.getSecret({
  *     name: "your_secret_name",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret */
 export function getSecretOutput(args?: GetSecretOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretResult> {
+    pulumi.log.warn("getSecret is deprecated: scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getSecret:getSecret", {

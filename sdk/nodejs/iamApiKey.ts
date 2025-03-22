@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ciCd = new scaleway.IamApplication("ci_cd", {name: "My application"});
- * const main = new scaleway.IamApiKey("main", {
+ * const ciCd = new scaleway.iam.Application("ci_cd", {name: "My application"});
+ * const main = new scaleway.iam.ApiKey("main", {
  *     applicationId: mainScalewayIamApplication.id,
  *     description: "a description",
  * });
@@ -28,8 +28,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IamUser("main", {email: "test@test.com"});
- * const mainIamApiKey = new scaleway.IamApiKey("main", {
+ * const main = new scaleway.iam.User("main", {email: "test@test.com"});
+ * const mainApiKey = new scaleway.iam.ApiKey("main", {
  *     userId: main.id,
  *     description: "a description",
  * });
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * import * as time from "@pulumi/time";
  *
  * const rotateAfterAYear = new time.index.Rotating("rotate_after_a_year", {rotationYears: 1});
- * const main = new scaleway.IamApiKey("main", {
+ * const main = new scaleway.iam.ApiKey("main", {
  *     applicationId: mainScalewayIamApplication.id,
  *     expiresAt: rotateAfterAYear.rotationRfc3339,
  * });
@@ -58,6 +58,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey
  */
 export class IamApiKey extends pulumi.CustomResource {
     /**
@@ -70,6 +72,7 @@ export class IamApiKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamApiKeyState, opts?: pulumi.CustomResourceOptions): IamApiKey {
+        pulumi.log.warn("IamApiKey is deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey")
         return new IamApiKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -141,8 +144,11 @@ export class IamApiKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey */
     constructor(name: string, args?: IamApiKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey */
     constructor(name: string, argsOrState?: IamApiKeyArgs | IamApiKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamApiKey is deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

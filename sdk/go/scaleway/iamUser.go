@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamUser(ctx, "basic", &scaleway.IamUserArgs{
+//			_, err := iam.NewUser(ctx, "basic", &iam.UserArgs{
 //				Email: pulumi.String("test@test.com"),
 //			})
 //			if err != nil {
@@ -52,6 +52,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User
 type IamUser struct {
 	pulumi.CustomResourceState
 

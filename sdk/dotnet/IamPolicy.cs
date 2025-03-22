@@ -28,28 +28,28 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
-    ///     var app = new Scaleway.IamApplication("app", new()
+    ///     var app = new Scaleway.Iam.Application("app", new()
     ///     {
     ///         Name = "my app",
     ///     });
     /// 
-    ///     var objectReadOnly = new Scaleway.IamPolicy("object_read_only", new()
+    ///     var objectReadOnly = new Scaleway.Iam.Policy("object_read_only", new()
     ///     {
     ///         Name = "my policy",
     ///         Description = "gives app readonly access to object storage in project",
     ///         ApplicationId = app.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
     ///             {
     ///                 ProjectIds = new[]
     ///                 {
-    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                     @default.Apply(@default =&gt; @default.Apply(getProjectResult =&gt; getProjectResult.Id)),
     ///                 },
     ///                 PermissionSetNames = new[]
     ///                 {
@@ -72,19 +72,19 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var app = new Scaleway.IamApplication("app", new()
+    ///     var app = new Scaleway.Iam.Application("app", new()
     ///     {
     ///         Name = "my app",
     ///     });
     /// 
-    ///     var objectReadOnly = new Scaleway.IamPolicy("object_read_only", new()
+    ///     var objectReadOnly = new Scaleway.Iam.Policy("object_read_only", new()
     ///     {
     ///         Name = "my policy",
     ///         Description = "gives app readonly access to object storage in project",
     ///         ApplicationId = app.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
     ///             {
     ///                 OrganizationId = app.OrganizationId,
     ///                 PermissionSetNames = new[]
@@ -115,13 +115,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IamPolicy("main", new()
+    ///     var main = new Scaleway.Iam.Policy("main", new()
     ///     {
     ///         Name = "tf_tests_policy_condition",
     ///         NoPrincipal = true,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
     ///             {
     ///                 OrganizationId = "%s",
     ///                 PermissionSetNames = new[]
@@ -146,6 +146,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy")]
     [ScalewayResourceType("scaleway:index/iamPolicy:IamPolicy")]
     public partial class IamPolicy : global::Pulumi.CustomResource
     {

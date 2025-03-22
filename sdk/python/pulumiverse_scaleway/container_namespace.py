@@ -352,7 +352,12 @@ class _ContainerNamespaceState:
         pulumi.set(self, "tags", value)
 
 
+warnings.warn("""scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace""", DeprecationWarning)
+
+
 class ContainerNamespace(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -367,7 +372,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The `ContainerNamespace` resource allows you to
+        The `containers.Namespace` resource allows you to
         for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
@@ -378,7 +383,7 @@ class ContainerNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="main-container-namespace",
             description="Main container namespace")
         ```
@@ -413,7 +418,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  args: Optional[ContainerNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ContainerNamespace` resource allows you to
+        The `containers.Namespace` resource allows you to
         for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
@@ -424,7 +429,7 @@ class ContainerNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="main-container-namespace",
             description="Main container namespace")
         ```
@@ -463,6 +468,7 @@ class ContainerNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerNamespace is deprecated: scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

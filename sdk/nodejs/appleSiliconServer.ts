@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const server = new scaleway.AppleSiliconServer("server", {
+ * const server = new scaleway.applesilicon.Server("server", {
  *     name: "test-m1",
  *     type: "M1-M",
  * });
@@ -33,6 +33,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server
  */
 export class AppleSiliconServer extends pulumi.CustomResource {
     /**
@@ -45,6 +47,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AppleSiliconServerState, opts?: pulumi.CustomResourceOptions): AppleSiliconServer {
+        pulumi.log.warn("AppleSiliconServer is deprecated: scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server")
         return new AppleSiliconServer(name, <any>state, { ...opts, id: id });
     }
 
@@ -130,8 +133,11 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server */
     constructor(name: string, args: AppleSiliconServerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server */
     constructor(name: string, argsOrState?: AppleSiliconServerArgs | AppleSiliconServerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AppleSiliconServer is deprecated: scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

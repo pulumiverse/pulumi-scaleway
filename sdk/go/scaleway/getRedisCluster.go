@@ -14,6 +14,8 @@ import (
 // Gets information about a Redis™ cluster.
 //
 // For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
+//
+// Deprecated: scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster
 func LookupRedisCluster(ctx *pulumi.Context, args *LookupRedisClusterArgs, opts ...pulumi.InvokeOption) (*LookupRedisClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRedisClusterResult

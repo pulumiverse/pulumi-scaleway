@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup")]
     [ScalewayResourceType("scaleway:index/instanceSecurityGroup:InstanceSecurityGroup")]
     public partial class InstanceSecurityGroup : global::Pulumi.CustomResource
     {

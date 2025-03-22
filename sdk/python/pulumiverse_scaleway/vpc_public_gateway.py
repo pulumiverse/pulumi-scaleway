@@ -447,7 +447,12 @@ class _VpcPublicGatewayState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway""", DeprecationWarning)
+
+
 class VpcPublicGateway(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -476,7 +481,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGateway("main",
+        main = scaleway.network.PublicGateway("main",
             name="public_gateway_demo",
             type="VPC-GW-S",
             tags=[
@@ -527,7 +532,7 @@ class VpcPublicGateway(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGateway("main",
+        main = scaleway.network.PublicGateway("main",
             name="public_gateway_demo",
             type="VPC-GW-S",
             tags=[
@@ -573,6 +578,7 @@ class VpcPublicGateway(pulumi.CustomResource):
                  upstream_dns_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPublicGateway is deprecated: scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

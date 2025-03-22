@@ -21,6 +21,8 @@ __all__ = [
     'get_registry_image_output',
 ]
 
+warnings.warn("""scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage""", DeprecationWarning)
+
 @pulumi.output_type
 class GetRegistryImageResult:
     """
@@ -174,6 +176,7 @@ def get_registry_image(image_id: Optional[str] = None,
     :param str region: `region`) The region in which the image exists.
     :param Sequence[str] tags: The tags associated with the registry image
     """
+    pulumi.log.warn("""get_registry_image is deprecated: scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage""")
     __args__ = dict()
     __args__['imageId'] = image_id
     __args__['name'] = name
@@ -216,6 +219,7 @@ def get_registry_image_output(image_id: Optional[pulumi.Input[Optional[str]]] = 
     :param str region: `region`) The region in which the image exists.
     :param Sequence[str] tags: The tags associated with the registry image
     """
+    pulumi.log.warn("""get_registry_image is deprecated: scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage""")
     __args__ = dict()
     __args__['imageId'] = image_id
     __args__['name'] = name

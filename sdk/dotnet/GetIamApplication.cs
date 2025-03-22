@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication")]
     public static class GetIamApplication
     {
         /// <summary>
@@ -26,13 +27,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by application ID
-        ///     var findById = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         ApplicationId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -57,13 +58,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by application ID
-        ///     var findById = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         ApplicationId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -88,13 +89,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by application ID
-        ///     var findById = Scaleway.GetIamApplication.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetApplication.Invoke(new()
         ///     {
         ///         ApplicationId = "11111111-1111-1111-1111-111111111111",
         ///     });

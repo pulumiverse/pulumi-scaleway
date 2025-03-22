@@ -21,6 +21,8 @@ __all__ = [
     'get_instance_private_nic_output',
 ]
 
+warnings.warn("""scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstancePrivateNicResult:
     """
@@ -136,11 +138,11 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_nic_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_nic_id = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         private_nic_id="11111111-1111-1111-1111-111111111111")
-    by_pn_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_pn_id = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         private_network_id="11111111-1111-1111-1111-111111111111")
-    by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_tags = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```
 
@@ -154,6 +156,7 @@ def get_instance_private_nic(private_network_id: Optional[str] = None,
            As datasource only returns one private NIC, the search with given tags must return only one result
     :param str zone: `zone`) The zone in which the private nic exists.
     """
+    pulumi.log.warn("""get_instance_private_nic is deprecated: scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic""")
     __args__ = dict()
     __args__['privateNetworkId'] = private_network_id
     __args__['privateNicId'] = private_nic_id
@@ -188,11 +191,11 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_nic_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_nic_id = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         private_nic_id="11111111-1111-1111-1111-111111111111")
-    by_pn_id = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_pn_id = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         private_network_id="11111111-1111-1111-1111-111111111111")
-    by_tags = scaleway.get_instance_private_nic(server_id="11111111-1111-1111-1111-111111111111",
+    by_tags = scaleway.instance.get_private_nic(server_id="11111111-1111-1111-1111-111111111111",
         tags=["mytag"])
     ```
 
@@ -206,6 +209,7 @@ def get_instance_private_nic_output(private_network_id: Optional[pulumi.Input[Op
            As datasource only returns one private NIC, the search with given tags must return only one result
     :param str zone: `zone`) The zone in which the private nic exists.
     """
+    pulumi.log.warn("""get_instance_private_nic is deprecated: scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic""")
     __args__ = dict()
     __args__['privateNetworkId'] = private_network_id
     __args__['privateNicId'] = private_nic_id

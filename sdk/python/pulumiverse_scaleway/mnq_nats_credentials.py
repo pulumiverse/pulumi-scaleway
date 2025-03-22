@@ -147,7 +147,12 @@ class _MnqNatsCredentialsState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials""", DeprecationWarning)
+
+
 class MnqNatsCredentials(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -169,8 +174,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqNatsAccount("main", name="nats-account")
-        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("main", account_id=main.id)
+        main = scaleway.mnq.NatsAccount("main", name="nats-account")
+        main_nats_credentials = scaleway.mnq.NatsCredentials("main", account_id=main.id)
         ```
 
         ## Import
@@ -209,8 +214,8 @@ class MnqNatsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqNatsAccount("main", name="nats-account")
-        main_mnq_nats_credentials = scaleway.MnqNatsCredentials("main", account_id=main.id)
+        main = scaleway.mnq.NatsAccount("main", name="nats-account")
+        main_nats_credentials = scaleway.mnq.NatsCredentials("main", account_id=main.id)
         ```
 
         ## Import
@@ -242,6 +247,7 @@ class MnqNatsCredentials(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqNatsCredentials is deprecated: scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

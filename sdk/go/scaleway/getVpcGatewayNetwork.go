@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//			main, err := network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
 //				GatewayId:        pulumi.Any(pg01.Id),
 //				PrivateNetworkId: pulumi.Any(pn01.Id),
 //				DhcpId:           pulumi.Any(dhcp01.Id),
@@ -37,10 +37,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcGatewayNetworkOutput(ctx, scaleway.GetVpcGatewayNetworkOutputArgs{
+//			_ = network.LookupGatewayNetworkOutput(ctx, network.GetGatewayNetworkOutputArgs{
 //				GatewayNetworkId: main.ID(),
 //			}, nil)
-//			_, err = scaleway.LookupVpcGatewayNetwork(ctx, &scaleway.LookupVpcGatewayNetworkArgs{
+//			_, err = network.LookupGatewayNetwork(ctx, &network.LookupGatewayNetworkArgs{
 //				GatewayId:        pulumi.StringRef(pg01.Id),
 //				PrivateNetworkId: pulumi.StringRef(pn01.Id),
 //			}, nil)
@@ -52,6 +52,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork
 func LookupVpcGatewayNetwork(ctx *pulumi.Context, args *LookupVpcGatewayNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcGatewayNetworkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcGatewayNetworkResult

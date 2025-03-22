@@ -26,12 +26,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var deployment = new Scaleway.InferenceDeployment("deployment", new()
+    ///     var deployment = new Scaleway.Inference.Deployment("deployment", new()
     ///     {
     ///         Name = "tf-inference-deployment",
     ///         NodeType = "L4",
     ///         ModelName = "meta/llama-3.1-8b-instruct:fp8",
-    ///         PublicEndpoint = new Scaleway.Inputs.InferenceDeploymentPublicEndpointArgs
+    ///         PublicEndpoint = new Scaleway.Inference.Inputs.DeploymentPublicEndpointArgs
     ///         {
     ///             IsEnabled = true,
     ///         },
@@ -51,6 +51,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/inferenceDeployment:InferenceDeployment deployment fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment")]
     [ScalewayResourceType("scaleway:index/inferenceDeployment:InferenceDeployment")]
     public partial class InferenceDeployment : global::Pulumi.CustomResource
     {

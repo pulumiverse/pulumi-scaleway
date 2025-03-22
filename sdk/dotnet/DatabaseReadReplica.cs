@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new Scaleway.DatabaseInstance("instance", new()
+    ///     var instance = new Scaleway.Databases.Instance("instance", new()
     ///     {
     ///         Name = "test-rdb-rr-update",
     ///         NodeType = "db-dev-s",
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var replica = new Scaleway.DatabaseReadReplica("replica", new()
+    ///     var replica = new Scaleway.Databases.ReadReplica("replica", new()
     ///     {
     ///         InstanceId = instance.Id,
     ///         DirectAccess = null,
@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new Scaleway.DatabaseInstance("instance", new()
+    ///     var instance = new Scaleway.Databases.Instance("instance", new()
     ///     {
     ///         Name = "rdb_instance",
     ///         NodeType = "db-dev-s",
@@ -73,12 +73,12 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var replica = new Scaleway.DatabaseReadReplica("replica", new()
+    ///     var replica = new Scaleway.Databases.ReadReplica("replica", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseReadReplicaPrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Databases.Inputs.ReadReplicaPrivateNetworkArgs
     ///         {
     ///             PrivateNetworkId = pn.Id,
     ///             ServiceIp = "192.168.1.254/24",
@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var instance = new Scaleway.DatabaseInstance("instance", new()
+    ///     var instance = new Scaleway.Databases.Instance("instance", new()
     ///     {
     ///         Name = "rdb_instance",
     ///         NodeType = "db-dev-s",
@@ -109,12 +109,12 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var replica = new Scaleway.DatabaseReadReplica("replica", new()
+    ///     var replica = new Scaleway.Databases.ReadReplica("replica", new()
     ///     {
     ///         InstanceId = instance.Id,
-    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseReadReplicaPrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Databases.Inputs.ReadReplicaPrivateNetworkArgs
     ///         {
     ///             PrivateNetworkId = pn.Id,
     ///             EnableIpam = true,
@@ -134,6 +134,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica")]
     [ScalewayResourceType("scaleway:index/databaseReadReplica:DatabaseReadReplica")]
     public partial class DatabaseReadReplica : global::Pulumi.CustomResource
     {

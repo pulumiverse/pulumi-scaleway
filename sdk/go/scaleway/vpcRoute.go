@@ -25,21 +25,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("tf-vpc-vpn"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("tf-pn-vpn"),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
 //				VpcId: vpc01.ID(),
@@ -47,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			server01, err := scaleway.NewInstanceServer(ctx, "server01", &scaleway.InstanceServerArgs{
+//			server01, err := instance.NewServer(ctx, "server01", &instance.ServerArgs{
 //				Name:  pulumi.String("tf-server-vpn"),
 //				Type:  pulumi.String("PLAY2-MICRO"),
 //				Image: pulumi.String("openvpn"),
@@ -55,14 +56,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pnic01, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
 //				PrivateNetworkId: pn01.ID(),
 //				ServerId:         server01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcRoute(ctx, "rt01", &scaleway.VpcRouteArgs{
+//			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
 //				VpcId:       vpc01.ID(),
 //				Description: pulumi.String("tf-route-vpn"),
 //				Tags: pulumi.StringArray{
@@ -90,6 +91,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route
 type VpcRoute struct {
 	pulumi.CustomResourceState
 

@@ -256,7 +256,12 @@ class _InstancePlacementGroupState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup""", DeprecationWarning)
+
+
 class InstancePlacementGroup(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -277,7 +282,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        availability_group = scaleway.InstancePlacementGroup("availability_group")
+        availability_group = scaleway.instance.PlacementGroup("availability_group")
         ```
 
         ## Import
@@ -314,7 +319,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        availability_group = scaleway.InstancePlacementGroup("availability_group")
+        availability_group = scaleway.instance.PlacementGroup("availability_group")
         ```
 
         ## Import
@@ -349,6 +354,7 @@ class InstancePlacementGroup(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstancePlacementGroup is deprecated: scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverVolume = new Scaleway.InstanceVolume("server_volume", new()
+    ///     var serverVolume = new Scaleway.Instance.Volume("server_volume", new()
     ///     {
     ///         Type = "l_ssd",
     ///         Name = "some-volume-name",
@@ -44,6 +44,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume")]
     [ScalewayResourceType("scaleway:index/instanceVolume:InstanceVolume")]
     public partial class InstanceVolume : global::Pulumi.CustomResource
     {

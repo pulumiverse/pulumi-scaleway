@@ -21,6 +21,8 @@ __all__ = [
     'get_lb_route_output',
 ]
 
+warnings.warn("""scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbRouteResult:
     """
@@ -126,30 +128,31 @@ def get_lb_route(route_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    ip01 = scaleway.LoadbalancerIp("ip01")
-    lb01 = scaleway.Loadbalancer("lb01",
+    ip01 = scaleway.loadbalancers.Ip("ip01")
+    lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
         ip_id=ip01.id,
         name="test-lb",
         type="lb-s")
-    bkd01 = scaleway.LoadbalancerBackend("bkd01",
+    bkd01 = scaleway.loadbalancers.Backend("bkd01",
         lb_id=lb01.id,
         forward_protocol="tcp",
         forward_port=80,
         proxy_protocol="none")
-    frt01 = scaleway.LoadbalancerFrontend("frt01",
+    frt01 = scaleway.loadbalancers.Frontend("frt01",
         lb_id=lb01.id,
         backend_id=bkd01.id,
         inbound_port=80)
-    rt01 = scaleway.LoadbalancerRoute("rt01",
+    rt01 = scaleway.loadbalancers.Route("rt01",
         frontend_id=frt01.id,
         backend_id=bkd01.id,
         match_sni="sni.scaleway.com")
-    by_id = scaleway.get_lb_route_output(route_id=rt01.id)
+    by_id = scaleway.loadbalancers.get_route_output(route_id=rt01.id)
     ```
 
 
     :param str route_id: The route ID.
     """
+    pulumi.log.warn("""get_lb_route is deprecated: scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute""")
     __args__ = dict()
     __args__['routeId'] = route_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -178,30 +181,31 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    ip01 = scaleway.LoadbalancerIp("ip01")
-    lb01 = scaleway.Loadbalancer("lb01",
+    ip01 = scaleway.loadbalancers.Ip("ip01")
+    lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
         ip_id=ip01.id,
         name="test-lb",
         type="lb-s")
-    bkd01 = scaleway.LoadbalancerBackend("bkd01",
+    bkd01 = scaleway.loadbalancers.Backend("bkd01",
         lb_id=lb01.id,
         forward_protocol="tcp",
         forward_port=80,
         proxy_protocol="none")
-    frt01 = scaleway.LoadbalancerFrontend("frt01",
+    frt01 = scaleway.loadbalancers.Frontend("frt01",
         lb_id=lb01.id,
         backend_id=bkd01.id,
         inbound_port=80)
-    rt01 = scaleway.LoadbalancerRoute("rt01",
+    rt01 = scaleway.loadbalancers.Route("rt01",
         frontend_id=frt01.id,
         backend_id=bkd01.id,
         match_sni="sni.scaleway.com")
-    by_id = scaleway.get_lb_route_output(route_id=rt01.id)
+    by_id = scaleway.loadbalancers.get_route_output(route_id=rt01.id)
     ```
 
 
     :param str route_id: The route ID.
     """
+    pulumi.log.warn("""get_lb_route is deprecated: scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute""")
     __args__ = dict()
     __args__['routeId'] = route_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

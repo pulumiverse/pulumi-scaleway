@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork")]
     public static class GetVpcPrivateNetwork
     {
         /// <summary>
@@ -26,20 +27,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var myName = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myName = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by name and VPC ID
-        ///     var myNameAndVpcId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myNameAndVpcId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by IP ID
-        ///     var myId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -64,20 +65,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var myName = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myName = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by name and VPC ID
-        ///     var myNameAndVpcId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myNameAndVpcId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by IP ID
-        ///     var myId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -102,20 +103,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var myName = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myName = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by name and VPC ID
-        ///     var myNameAndVpcId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myNameAndVpcId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by IP ID
-        ///     var myId = Scaleway.GetVpcPrivateNetwork.Invoke(new()
+        ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });

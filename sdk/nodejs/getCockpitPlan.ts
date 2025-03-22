@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
+ * The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
  *
  * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
  *
@@ -20,13 +20,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const premium = scaleway.getCockpitPlan({
+ * const premium = scaleway.observability.getPlan({
  *     name: "premium",
  * });
- * const main = new scaleway.Cockpit("main", {plan: premium.then(premium => premium.id)});
+ * const main = new scaleway.observability.Cockpit("main", {plan: premium.then(premium => premium.id)});
  * ```
  */
+/** @deprecated scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan */
 export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitPlanResult> {
+    pulumi.log.warn("getCockpitPlan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpitPlan:getCockpitPlan", {
         "name": args.name,
@@ -54,7 +56,7 @@ export interface GetCockpitPlanResult {
     readonly name: string;
 }
 /**
- * The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
+ * The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
  *
  * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
  *
@@ -69,13 +71,15 @@ export interface GetCockpitPlanResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const premium = scaleway.getCockpitPlan({
+ * const premium = scaleway.observability.getPlan({
  *     name: "premium",
  * });
- * const main = new scaleway.Cockpit("main", {plan: premium.then(premium => premium.id)});
+ * const main = new scaleway.observability.Cockpit("main", {plan: premium.then(premium => premium.id)});
  * ```
  */
+/** @deprecated scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan */
 export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitPlanResult> {
+    pulumi.log.warn("getCockpitPlan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getCockpitPlan:getCockpitPlan", {
         "name": args.name,

@@ -22,6 +22,8 @@ __all__ = [
     'get_domain_record_output',
 ]
 
+warnings.warn("""scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDomainRecordResult:
     """
@@ -211,7 +213,7 @@ def get_domain_record(data: Optional[str] = None,
                       type: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDomainRecordResult:
     """
-    The `DomainRecord` data source is used to get information about an existing domain record.
+    The `domain.Record` data source is used to get information about an existing domain record.
 
     Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
@@ -227,12 +229,12 @@ def get_domain_record(data: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Query record by DNS zone, record name, type and content
-    by_content = scaleway.get_domain_record(dns_zone="domain.tld",
+    by_content = scaleway.domain.get_record(dns_zone="domain.tld",
         name="www",
         type="A",
         data="1.2.3.4")
     # Query record by DNS zone and record ID
-    by_id = scaleway.get_domain_record(dns_zone="domain.tld",
+    by_id = scaleway.domain.get_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -244,6 +246,7 @@ def get_domain_record(data: Optional[str] = None,
     :param str record_id: The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
     :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
     """
+    pulumi.log.warn("""get_domain_record is deprecated: scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord""")
     __args__ = dict()
     __args__['data'] = data
     __args__['dnsZone'] = dns_zone
@@ -279,7 +282,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
                              type: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDomainRecordResult]:
     """
-    The `DomainRecord` data source is used to get information about an existing domain record.
+    The `domain.Record` data source is used to get information about an existing domain record.
 
     Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
@@ -295,12 +298,12 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Query record by DNS zone, record name, type and content
-    by_content = scaleway.get_domain_record(dns_zone="domain.tld",
+    by_content = scaleway.domain.get_record(dns_zone="domain.tld",
         name="www",
         type="A",
         data="1.2.3.4")
     # Query record by DNS zone and record ID
-    by_id = scaleway.get_domain_record(dns_zone="domain.tld",
+    by_id = scaleway.domain.get_record(dns_zone="domain.tld",
         record_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -312,6 +315,7 @@ def get_domain_record_output(data: Optional[pulumi.Input[Optional[str]]] = None,
     :param str record_id: The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
     :param str type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
     """
+    pulumi.log.warn("""get_domain_record is deprecated: scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord""")
     __args__ = dict()
     __args__['data'] = data
     __args__['dnsZone'] = dns_zone

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege")]
     public static class GetDatabasePrivilege
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     var main = Scaleway.Databases.GetPrivilege.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-111111111111",
         ///         UserName = "my-user",
@@ -53,7 +54,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     var main = Scaleway.Databases.GetPrivilege.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-111111111111",
         ///         UserName = "my-user",
@@ -80,7 +81,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-        ///     var main = Scaleway.GetDatabasePrivilege.Invoke(new()
+        ///     var main = Scaleway.Databases.GetPrivilege.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-111111111111",
         ///         UserName = "my-user",

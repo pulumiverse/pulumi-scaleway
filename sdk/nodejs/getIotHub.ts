@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about an IOT Hub.
  */
+/** @deprecated scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub */
 export function getIotHub(args?: GetIotHubArgs, opts?: pulumi.InvokeOptions): Promise<GetIotHubResult> {
+    pulumi.log.warn("getIotHub is deprecated: scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotHub:getIotHub", {
@@ -74,7 +76,9 @@ export interface GetIotHubResult {
 /**
  * Gets information about an IOT Hub.
  */
+/** @deprecated scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub */
 export function getIotHubOutput(args?: GetIotHubOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIotHubResult> {
+    pulumi.log.warn("getIotHub is deprecated: scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIotHub:getIotHub", {

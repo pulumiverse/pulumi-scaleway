@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice")]
     public static class GetIotDevice
     {
         /// <summary>

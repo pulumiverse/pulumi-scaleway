@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork")]
     public static class GetVpcGatewayNetwork
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+        ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -35,12 +36,12 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byId = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayNetworkId = main.Id,
         ///     });
         /// 
-        ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byGatewayAndPn = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -66,7 +67,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+        ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -75,12 +76,12 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byId = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayNetworkId = main.Id,
         ///     });
         /// 
-        ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byGatewayAndPn = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -106,7 +107,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+        ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -115,12 +116,12 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var byId = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byId = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayNetworkId = main.Id,
         ///     });
         /// 
-        ///     var byGatewayAndPn = Scaleway.GetVpcGatewayNetwork.Invoke(new()
+        ///     var byGatewayAndPn = Scaleway.Network.GetGatewayNetwork.Invoke(new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,

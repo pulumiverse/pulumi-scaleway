@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an instance volume.
+//
+// Deprecated: scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume
 func LookupInstanceVolume(ctx *pulumi.Context, args *LookupInstanceVolumeArgs, opts ...pulumi.InvokeOption) (*LookupInstanceVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceVolumeResult

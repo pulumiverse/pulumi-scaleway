@@ -129,7 +129,12 @@ class _InstanceSecurityGroupRulesState:
         pulumi.set(self, "security_group_id", value)
 
 
+warnings.warn("""scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules""", DeprecationWarning)
+
+
 class InstanceSecurityGroupRules(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -141,9 +146,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         """
         Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
 
-        This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+        This resource can be used to externalize rules from a `instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
 
-        > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+        > **Warning:** In order to guaranty rules order in a given security group only one instance.SecurityGroupRules is allowed per security group.
 
         ## Example Usage
 
@@ -153,8 +158,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
-        sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
+        sg01 = scaleway.instance.SecurityGroup("sg01", external_rules=True)
+        sgrs01 = scaleway.instance.SecurityGroupRules("sgrs01",
             security_group_id=sg01.id,
             inbound_rules=[{
                 "action": "accept",
@@ -173,7 +178,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSecurityGroup("main",
+        main = scaleway.instance.SecurityGroup("main",
             description="test",
             name="terraform test",
             inbound_default_policy="drop",
@@ -183,7 +188,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             "4.5.6.7",
             "7.8.9.10",
         ]
-        main_instance_security_group_rules = scaleway.InstanceSecurityGroupRules("main",
+        main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
                 "ip": entry["value"],
@@ -199,7 +204,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSecurityGroup("main",
+        main = scaleway.instance.SecurityGroup("main",
             description="test",
             name="terraform test",
             inbound_default_policy="drop",
@@ -218,7 +223,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "port": "81",
             },
         ]
-        main_instance_security_group_rules = scaleway.InstanceSecurityGroupRules("main",
+        main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
                 "ip": entry["value"]["ip"],
@@ -252,9 +257,9 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         """
         Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
 
-        This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+        This resource can be used to externalize rules from a `instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
 
-        > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+        > **Warning:** In order to guaranty rules order in a given security group only one instance.SecurityGroupRules is allowed per security group.
 
         ## Example Usage
 
@@ -264,8 +269,8 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        sg01 = scaleway.InstanceSecurityGroup("sg01", external_rules=True)
-        sgrs01 = scaleway.InstanceSecurityGroupRules("sgrs01",
+        sg01 = scaleway.instance.SecurityGroup("sg01", external_rules=True)
+        sgrs01 = scaleway.instance.SecurityGroupRules("sgrs01",
             security_group_id=sg01.id,
             inbound_rules=[{
                 "action": "accept",
@@ -284,7 +289,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSecurityGroup("main",
+        main = scaleway.instance.SecurityGroup("main",
             description="test",
             name="terraform test",
             inbound_default_policy="drop",
@@ -294,7 +299,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             "4.5.6.7",
             "7.8.9.10",
         ]
-        main_instance_security_group_rules = scaleway.InstanceSecurityGroupRules("main",
+        main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
                 "ip": entry["value"],
@@ -310,7 +315,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSecurityGroup("main",
+        main = scaleway.instance.SecurityGroup("main",
             description="test",
             name="terraform test",
             inbound_default_policy="drop",
@@ -329,7 +334,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                 "port": "81",
             },
         ]
-        main_instance_security_group_rules = scaleway.InstanceSecurityGroupRules("main",
+        main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
                 "ip": entry["value"]["ip"],
@@ -367,6 +372,7 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
                  outbound_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceSecurityGroupRulesOutboundRuleArgs', 'InstanceSecurityGroupRulesOutboundRuleArgsDict']]]]] = None,
                  security_group_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceSecurityGroupRules is deprecated: scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -287,7 +287,12 @@ class _CockpitSourceState:
         pulumi.set(self, "url", value)
 
 
+warnings.warn("""scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source""", DeprecationWarning)
+
+
 class CockpitSource(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -299,7 +304,7 @@ class CockpitSource(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+        The `observability.Source` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -313,8 +318,8 @@ class CockpitSource(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="test project data source")
-        main = scaleway.CockpitSource("main",
+        project = scaleway.account.Project("project", name="test project data source")
+        main = scaleway.observability.Source("main",
             project_id=project.id,
             name="my-data-source",
             type="metrics",
@@ -346,7 +351,7 @@ class CockpitSource(pulumi.CustomResource):
                  args: CockpitSourceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+        The `observability.Source` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -360,8 +365,8 @@ class CockpitSource(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="test project data source")
-        main = scaleway.CockpitSource("main",
+        project = scaleway.account.Project("project", name="test project data source")
+        main = scaleway.observability.Source("main",
             project_id=project.id,
             name="my-data-source",
             type="metrics",
@@ -399,6 +404,7 @@ class CockpitSource(pulumi.CustomResource):
                  retention_days: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CockpitSource is deprecated: scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

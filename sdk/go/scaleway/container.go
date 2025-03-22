@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+// The `containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
@@ -28,20 +28,20 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
 //				Name:        pulumi.String("my-ns-test"),
 //				Description: pulumi.String("test container"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("my-container-02"),
 //				Description: pulumi.String("environment variables test"),
 //				NamespaceId: main.ID(),
@@ -129,19 +129,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//			_, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("my-container-02"),
 //				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
-//				HealthChecks: scaleway.ContainerHealthCheckArray{
-//					&scaleway.ContainerHealthCheckArgs{
-//						Https: scaleway.ContainerHealthCheckHttpArray{
-//							&scaleway.ContainerHealthCheckHttpArgs{
+//				HealthChecks: containers.ContainerHealthCheckArray{
+//					&containers.ContainerHealthCheckArgs{
+//						Https: containers.ContainerHealthCheckHttpArray{
+//							&containers.ContainerHealthCheckHttpArgs{
 //								Path: pulumi.String("/ping"),
 //							},
 //						},
@@ -177,17 +177,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//			_, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("my-container-02"),
 //				NamespaceId: pulumi.Any(mainScalewayContainerNamespace.Id),
-//				ScalingOptions: scaleway.ContainerScalingOptionArray{
-//					&scaleway.ContainerScalingOptionArgs{
+//				ScalingOptions: containers.ContainerScalingOptionArray{
+//					&containers.ContainerScalingOptionArgs{
 //						ConcurrentRequestsThreshold: pulumi.Int(15),
 //					},
 //				},
@@ -213,6 +213,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container
 type Container struct {
 	pulumi.CustomResourceState
 

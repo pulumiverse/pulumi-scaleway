@@ -23,6 +23,8 @@ __all__ = [
     'get_ipam_ip_output',
 ]
 
+warnings.warn("""scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIpamIpResult:
     """
@@ -199,7 +201,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by ipam ip id
-    by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.ipam.get_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
     ```
 
     ### Instance Private Network IP
@@ -212,14 +214,14 @@ def get_ipam_ip(attached: Optional[bool] = None,
     import pulumiverse_scaleway as scaleway
 
     # Connect your instance to a private network using a private nic.
-    nic = scaleway.InstancePrivateNic("nic",
+    nic = scaleway.instance.PrivateNic("nic",
         server_id=server["id"],
         private_network_id=pn["id"])
     # Find server private IPv4 using private-nic mac address
-    by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
+    by_mac = scaleway.ipam.get_ip_output(mac_address=nic.mac_address,
         type="ipv4")
     # Find server private IPv4 using private-nic id
-    by_id = scaleway.get_ipam_ip_output(resource={
+    by_id = scaleway.ipam.get_ip_output(resource={
             "id": nic.id,
             "type": "instance_private_nic",
         },
@@ -234,8 +236,8 @@ def get_ipam_ip(attached: Optional[bool] = None,
     import pulumiverse_scaleway as scaleway
 
     # Find the private IPv4 using resource name
-    pn = scaleway.VpcPrivateNetwork("pn")
-    main = scaleway.DatabaseInstance("main",
+    pn = scaleway.network.PrivateNetwork("pn")
+    main = scaleway.databases.Instance("main",
         name="test-rdb",
         node_type="DB-DEV-S",
         engine="PostgreSQL-15",
@@ -246,7 +248,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
         private_network={
             "pn_id": pn.id,
         })
-    by_name = scaleway.get_ipam_ip_output(resource={
+    by_name = scaleway.ipam.get_ip_output(resource={
             "name": main.name,
             "type": "rdb_instance",
         },
@@ -267,6 +269,7 @@ def get_ipam_ip(attached: Optional[bool] = None,
     :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
+    pulumi.log.warn("""get_ipam_ip is deprecated: scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp""")
     __args__ = dict()
     __args__['attached'] = attached
     __args__['ipamIpId'] = ipam_ip_id
@@ -321,7 +324,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by ipam ip id
-    by_id = scaleway.get_ipam_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.ipam.get_ip(ipam_ip_id="11111111-1111-1111-1111-111111111111")
     ```
 
     ### Instance Private Network IP
@@ -334,14 +337,14 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumiverse_scaleway as scaleway
 
     # Connect your instance to a private network using a private nic.
-    nic = scaleway.InstancePrivateNic("nic",
+    nic = scaleway.instance.PrivateNic("nic",
         server_id=server["id"],
         private_network_id=pn["id"])
     # Find server private IPv4 using private-nic mac address
-    by_mac = scaleway.get_ipam_ip_output(mac_address=nic.mac_address,
+    by_mac = scaleway.ipam.get_ip_output(mac_address=nic.mac_address,
         type="ipv4")
     # Find server private IPv4 using private-nic id
-    by_id = scaleway.get_ipam_ip_output(resource={
+    by_id = scaleway.ipam.get_ip_output(resource={
             "id": nic.id,
             "type": "instance_private_nic",
         },
@@ -356,8 +359,8 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumiverse_scaleway as scaleway
 
     # Find the private IPv4 using resource name
-    pn = scaleway.VpcPrivateNetwork("pn")
-    main = scaleway.DatabaseInstance("main",
+    pn = scaleway.network.PrivateNetwork("pn")
+    main = scaleway.databases.Instance("main",
         name="test-rdb",
         node_type="DB-DEV-S",
         engine="PostgreSQL-15",
@@ -368,7 +371,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         private_network={
             "pn_id": pn.id,
         })
-    by_name = scaleway.get_ipam_ip_output(resource={
+    by_name = scaleway.ipam.get_ip_output(resource={
             "name": main.name,
             "type": "rdb_instance",
         },
@@ -389,6 +392,7 @@ def get_ipam_ip_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str type: The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
+    pulumi.log.warn("""get_ipam_ip is deprecated: scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp""")
     __args__ = dict()
     __args__['attached'] = attached
     __args__['ipamIpId'] = ipam_ip_id

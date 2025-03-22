@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byTag = scaleway.getIpamIps({
+ * const byTag = scaleway.ipam.getIps({
  *     tags: ["tag"],
  * });
  * ```
@@ -31,14 +31,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const redis01 = new scaleway.RedisCluster("redis01", {
+ * const redis01 = new scaleway.redis.Cluster("redis01", {
  *     name: "my_redis_cluster",
  *     version: "7.0.5",
  *     nodeType: "RED1-XS",
@@ -49,7 +49,7 @@ import * as utilities from "./utilities";
  *         id: pn01.id,
  *     }],
  * });
- * const byTypeAndResource = scaleway.getIpamIpsOutput({
+ * const byTypeAndResource = scaleway.ipam.getIpsOutput({
  *     type: "ipv4",
  *     resource: {
  *         id: redis01.id,
@@ -58,7 +58,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
+/** @deprecated scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps */
 export function getIpamIps(args?: GetIpamIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpsResult> {
+    pulumi.log.warn("getIpamIps is deprecated: scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIpamIps:getIpamIps", {
@@ -170,7 +172,7 @@ export interface GetIpamIpsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byTag = scaleway.getIpamIps({
+ * const byTag = scaleway.ipam.getIps({
  *     tags: ["tag"],
  * });
  * ```
@@ -182,14 +184,14 @@ export interface GetIpamIpsResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const redis01 = new scaleway.RedisCluster("redis01", {
+ * const redis01 = new scaleway.redis.Cluster("redis01", {
  *     name: "my_redis_cluster",
  *     version: "7.0.5",
  *     nodeType: "RED1-XS",
@@ -200,7 +202,7 @@ export interface GetIpamIpsResult {
  *         id: pn01.id,
  *     }],
  * });
- * const byTypeAndResource = scaleway.getIpamIpsOutput({
+ * const byTypeAndResource = scaleway.ipam.getIpsOutput({
  *     type: "ipv4",
  *     resource: {
  *         id: redis01.id,
@@ -209,7 +211,9 @@ export interface GetIpamIpsResult {
  * });
  * ```
  */
+/** @deprecated scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps */
 export function getIpamIpsOutput(args?: GetIpamIpsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpamIpsResult> {
+    pulumi.log.warn("getIpamIps is deprecated: scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIpamIps:getIpamIps", {

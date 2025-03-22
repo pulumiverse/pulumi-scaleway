@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+ * The `scaleway.observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -26,8 +26,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {name: "my-project"});
- * const main = new scaleway.CockpitToken("main", {
+ * const project = new scaleway.account.Project("project", {name: "my-project"});
+ * const main = new scaleway.observability.Token("main", {
  *     projectId: project.id,
  *     name: "my-awesome-token",
  * });
@@ -37,9 +37,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {name: "my-project"});
+ * const project = new scaleway.account.Project("project", {name: "my-project"});
  * // Create a token that can read metrics and logs but not write
- * const main = new scaleway.CockpitToken("main", {
+ * const main = new scaleway.observability.Token("main", {
  *     projectId: project.id,
  *     name: "my-awesome-token",
  *     scopes: {
@@ -60,6 +60,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token
  */
 export class CockpitToken extends pulumi.CustomResource {
     /**
@@ -72,6 +74,7 @@ export class CockpitToken extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CockpitTokenState, opts?: pulumi.CustomResourceOptions): CockpitToken {
+        pulumi.log.warn("CockpitToken is deprecated: scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token")
         return new CockpitToken(name, <any>state, { ...opts, id: id });
     }
 
@@ -125,8 +128,11 @@ export class CockpitToken extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token */
     constructor(name: string, args?: CockpitTokenArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token */
     constructor(name: string, argsOrState?: CockpitTokenArgs | CockpitTokenState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CockpitToken is deprecated: scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

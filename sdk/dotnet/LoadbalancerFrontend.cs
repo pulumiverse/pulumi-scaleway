@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var frontend01 = new Scaleway.LoadbalancerFrontend("frontend01", new()
+    ///     var frontend01 = new Scaleway.Loadbalancers.Frontend("frontend01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         BackendId = backend01.Id,
@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var frontend01 = new Scaleway.LoadbalancerFrontend("frontend01", new()
+    ///     var frontend01 = new Scaleway.Loadbalancers.Frontend("frontend01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         BackendId = backend01.Id,
@@ -56,14 +56,14 @@ namespace Pulumiverse.Scaleway
     ///         InboundPort = 80,
     ///         Acls = new[]
     ///         {
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
     ///                 Name = "blacklist wellknwon IPs",
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "allow",
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     IpSubnets = new[]
     ///                     {
@@ -73,13 +73,13 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "deny",
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     IpSubnets = new[]
     ///                     {
@@ -92,13 +92,13 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "allow",
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     HttpFilter = "path_begin",
     ///                     HttpFilterValues = new[]
@@ -108,13 +108,13 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "allow",
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     HttpFilter = "path_begin",
     ///                     HttpFilterValues = new[]
@@ -124,27 +124,27 @@ namespace Pulumiverse.Scaleway
     ///                     Invert = true,
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "allow",
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     HttpFilter = "http_header_match",
     ///                     HttpFilterValues = "foo",
     ///                     HttpFilterOption = "bar",
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.LoadbalancerFrontendAclArgs
+    ///             new Scaleway.Loadbalancers.Inputs.FrontendAclArgs
     ///             {
-    ///                 Action = new Scaleway.Inputs.LoadbalancerFrontendAclActionArgs
+    ///                 Action = new Scaleway.Loadbalancers.Inputs.FrontendAclActionArgs
     ///                 {
     ///                     Type = "redirect",
     ///                     Redirects = new[]
     ///                     {
-    ///                         new Scaleway.Inputs.LoadbalancerFrontendAclActionRedirectArgs
+    ///                         new Scaleway.Loadbalancers.Inputs.FrontendAclActionRedirectArgs
     ///                         {
     ///                             Type = "location",
     ///                             Target = "https://example.com",
@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway
     ///                         },
     ///                     },
     ///                 },
-    ///                 Match = new Scaleway.Inputs.LoadbalancerFrontendAclMatchArgs
+    ///                 Match = new Scaleway.Loadbalancers.Inputs.FrontendAclMatchArgs
     ///                 {
     ///                     IpSubnets = new[]
     ///                     {
@@ -182,6 +182,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend")]
     [ScalewayResourceType("scaleway:index/loadbalancerFrontend:LoadbalancerFrontend")]
     public partial class LoadbalancerFrontend : global::Pulumi.CustomResource
     {

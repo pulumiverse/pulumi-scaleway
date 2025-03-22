@@ -255,7 +255,12 @@ class _LoadbalancerAclState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl""", DeprecationWarning)
+
+
 class LoadbalancerAcl(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -280,7 +285,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        acl01 = scaleway.LoadbalancerAcl("acl01",
+        acl01 = scaleway.loadbalancers.Acl("acl01",
             frontend_id=frt01["id"],
             name="acl01",
             description="Exclude well-known IPs",
@@ -335,7 +340,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        acl01 = scaleway.LoadbalancerAcl("acl01",
+        acl01 = scaleway.loadbalancers.Acl("acl01",
             frontend_id=frt01["id"],
             name="acl01",
             description="Exclude well-known IPs",
@@ -384,6 +389,7 @@ class LoadbalancerAcl(pulumi.CustomResource):
                  match: Optional[pulumi.Input[Union['LoadbalancerAclMatchArgs', 'LoadbalancerAclMatchArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""LoadbalancerAcl is deprecated: scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

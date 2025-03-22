@@ -240,7 +240,12 @@ class _InstanceIpState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip""", DeprecationWarning)
+
+
 class InstanceIp(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -259,7 +264,7 @@ class InstanceIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("server_ip")
+        server_ip = scaleway.instance.Ip("server_ip")
         ```
 
         ## Import
@@ -294,7 +299,7 @@ class InstanceIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_ip = scaleway.InstanceIp("server_ip")
+        server_ip = scaleway.instance.Ip("server_ip")
         ```
 
         ## Import
@@ -327,6 +332,7 @@ class InstanceIp(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceIp is deprecated: scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMongoDbInstance(ctx, "main", &scaleway.MongoDbInstanceArgs{
+//			_, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-basic1"),
 //				Version:        pulumi.String("7.0.12"),
 //				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
@@ -57,20 +57,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			_, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("my_private_network"),
 //				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMongoDbInstance(ctx, "main", &scaleway.MongoDbInstanceArgs{
+//			_, err = mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-basic1"),
 //				Version:        pulumi.String("7.0.12"),
 //				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
@@ -78,7 +79,7 @@ import (
 //				UserName:       pulumi.String("my_initial_user"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				VolumeSizeInGb: pulumi.Int(5),
-//				PrivateNetwork: &scaleway.MongoDbInstancePrivateNetworkArgs{
+//				PrivateNetwork: &mongodb.InstancePrivateNetworkArgs{
 //					PnId: pulumi.Any(pn02.Id),
 //				},
 //			})
@@ -99,13 +100,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMongoDbInstance(ctx, "restored_instance", &scaleway.MongoDbInstanceArgs{
+//			_, err := mongodb.NewInstance(ctx, "restored_instance", &mongodb.InstanceArgs{
 //				SnapshotId: pulumi.Any(pn.IdscalewayMongodbSnapshot.MainSnapshot.Id),
 //				Name:       pulumi.String("restored-mongodb-from-snapshot"),
 //				NodeType:   pulumi.String("MGDB-PLAY2-NANO"),
@@ -129,6 +130,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance
 type MongoDbInstance struct {
 	pulumi.CustomResourceState
 

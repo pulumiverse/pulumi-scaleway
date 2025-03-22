@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceVolume(ctx, "server_volume", &scaleway.InstanceVolumeArgs{
+//			_, err := instance.NewVolume(ctx, "server_volume", &instance.VolumeArgs{
 //				Type:     pulumi.String("l_ssd"),
 //				Name:     pulumi.String("some-volume-name"),
 //				SizeInGb: pulumi.Int(20),
@@ -52,6 +52,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume
 type InstanceVolume struct {
 	pulumi.CustomResourceState
 

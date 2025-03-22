@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about multiple VPC routes.
+//
+// Deprecated: scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes
 func GetVpcRoutes(ctx *pulumi.Context, args *GetVpcRoutesArgs, opts ...pulumi.InvokeOption) (*GetVpcRoutesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcRoutesResult

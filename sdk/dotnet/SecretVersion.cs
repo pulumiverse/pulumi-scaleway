@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+    /// The `scaleway.secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
     /// 
     /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
     /// 
@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Secret("main", new()
+    ///     var main = new Scaleway.Secrets.Secret("main", new()
     ///     {
     ///         Name = "foo",
     ///         Description = "barr",
@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var v1 = new Scaleway.SecretVersion("v1", new()
+    ///     var v1 = new Scaleway.Secrets.Version("v1", new()
     ///     {
     ///         Description = "version1",
     ///         SecretId = main.Id,
@@ -65,6 +65,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version")]
     [ScalewayResourceType("scaleway:index/secretVersion:SecretVersion")]
     public partial class SecretVersion : global::Pulumi.CustomResource
     {

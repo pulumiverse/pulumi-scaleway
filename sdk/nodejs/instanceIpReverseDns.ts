@@ -15,8 +15,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverIp = new scaleway.InstanceIp("server_ip", {});
- * const tfA = new scaleway.DomainRecord("tf_A", {
+ * const serverIp = new scaleway.instance.Ip("server_ip", {});
+ * const tfA = new scaleway.domain.Record("tf_A", {
  *     dnsZone: "scaleway.com",
  *     name: "www",
  *     type: "A",
@@ -24,7 +24,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  *     priority: 1,
  * });
- * const reverse = new scaleway.InstanceIpReverseDns("reverse", {
+ * const reverse = new scaleway.instance.IpReverseDns("reverse", {
  *     ipId: serverIp.id,
  *     reverse: "www.scaleway.com",
  * });
@@ -39,6 +39,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns
  */
 export class InstanceIpReverseDns extends pulumi.CustomResource {
     /**
@@ -51,6 +53,7 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIpReverseDnsState, opts?: pulumi.CustomResourceOptions): InstanceIpReverseDns {
+        pulumi.log.warn("InstanceIpReverseDns is deprecated: scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns")
         return new InstanceIpReverseDns(name, <any>state, { ...opts, id: id });
     }
 
@@ -88,8 +91,11 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns */
     constructor(name: string, args: InstanceIpReverseDnsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns */
     constructor(name: string, argsOrState?: InstanceIpReverseDnsArgs | InstanceIpReverseDnsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceIpReverseDns is deprecated: scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret")]
     public static class GetSecret
     {
         /// <summary>
-        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+        /// The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -37,20 +38,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret ID
-        ///     var mySecret = Scaleway.GetSecret.Invoke(new()
+        ///     var mySecret = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret name
-        ///     var byName = Scaleway.GetSecret.Invoke(new()
+        ///     var byName = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
         ///     });
@@ -62,7 +63,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretResult>("scaleway:index/getSecret:getSecret", args ?? new GetSecretArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+        /// The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -86,20 +87,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret ID
-        ///     var mySecret = Scaleway.GetSecret.Invoke(new()
+        ///     var mySecret = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret name
-        ///     var byName = Scaleway.GetSecret.Invoke(new()
+        ///     var byName = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
         ///     });
@@ -111,7 +112,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretResult>("scaleway:index/getSecret:getSecret", args ?? new GetSecretInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+        /// The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -135,20 +136,20 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "foo",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret ID
-        ///     var mySecret = Scaleway.GetSecret.Invoke(new()
+        ///     var mySecret = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         SecretId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get the secret information specified by the secret name
-        ///     var byName = Scaleway.GetSecret.Invoke(new()
+        ///     var byName = Scaleway.Secrets.GetSecret.Invoke(new()
         ///     {
         ///         Name = "your_secret_name",
         ///     });

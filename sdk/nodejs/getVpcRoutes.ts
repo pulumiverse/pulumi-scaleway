@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple VPC routes.
  */
+/** @deprecated scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes */
 export function getVpcRoutes(args?: GetVpcRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcRoutesResult> {
+    pulumi.log.warn("getVpcRoutes is deprecated: scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcRoutes:getVpcRoutes", {
@@ -80,7 +82,9 @@ export interface GetVpcRoutesResult {
 /**
  * Gets information about multiple VPC routes.
  */
+/** @deprecated scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes */
 export function getVpcRoutesOutput(args?: GetVpcRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcRoutesResult> {
+    pulumi.log.warn("getVpcRoutes is deprecated: scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcRoutes:getVpcRoutes", {

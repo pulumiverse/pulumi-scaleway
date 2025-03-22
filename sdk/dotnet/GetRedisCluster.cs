@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster")]
     public static class GetRedisCluster
     {
         /// <summary>

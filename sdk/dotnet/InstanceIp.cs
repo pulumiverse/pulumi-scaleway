@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverIp = new Scaleway.InstanceIp("server_ip");
+    ///     var serverIp = new Scaleway.Instance.Ip("server_ip");
     /// 
     /// });
     /// ```
@@ -38,6 +38,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip")]
     [ScalewayResourceType("scaleway:index/instanceIp:InstanceIp")]
     public partial class InstanceIp : global::Pulumi.CustomResource
     {

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+ * The `scaleway.block.Volume` resource is used to create and manage Scaleway Block Storage volumes.
  *
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const blockVolume = new scaleway.BlockVolume("block_volume", {
+ * const blockVolume = new scaleway.block.Volume("block_volume", {
  *     iops: 5000,
  *     name: "some-volume-name",
  *     sizeInGb: 20,
@@ -32,16 +32,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const base = new scaleway.BlockVolume("base", {
+ * const base = new scaleway.block.Volume("base", {
  *     name: "block-volume-base",
  *     iops: 5000,
  *     sizeInGb: 20,
  * });
- * const main = new scaleway.BlockSnapshot("main", {
+ * const main = new scaleway.block.Snapshot("main", {
  *     name: "block-volume-from-snapshot",
  *     volumeId: base.id,
  * });
- * const mainBlockVolume = new scaleway.BlockVolume("main", {
+ * const mainVolume = new scaleway.block.Volume("main", {
  *     name: "block-volume-from-snapshot",
  *     iops: 5000,
  *     snapshotId: main.id,
@@ -57,6 +57,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/blockVolume:BlockVolume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume
  */
 export class BlockVolume extends pulumi.CustomResource {
     /**
@@ -69,6 +71,7 @@ export class BlockVolume extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BlockVolumeState, opts?: pulumi.CustomResourceOptions): BlockVolume {
+        pulumi.log.warn("BlockVolume is deprecated: scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume")
         return new BlockVolume(name, <any>state, { ...opts, id: id });
     }
 
@@ -126,8 +129,11 @@ export class BlockVolume extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume */
     constructor(name: string, args: BlockVolumeArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume */
     constructor(name: string, argsOrState?: BlockVolumeArgs | BlockVolumeState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("BlockVolume is deprecated: scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

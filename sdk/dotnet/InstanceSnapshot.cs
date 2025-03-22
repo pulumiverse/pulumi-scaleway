@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.InstanceSnapshot("main", new()
+    ///     var main = new Scaleway.Instance.Snapshot("main", new()
     ///     {
     ///         Name = "some-snapshot-name",
     ///         VolumeId = "11111111-1111-1111-1111-111111111111",
@@ -44,17 +44,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.InstanceVolume("main", new()
+    ///     var main = new Scaleway.Instance.Volume("main", new()
     ///     {
     ///         Type = "l_ssd",
     ///         SizeInGb = 10,
     ///     });
     /// 
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("main", new()
+    ///     var mainServer = new Scaleway.Instance.Server("main", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             SizeInGb = 10,
     ///             VolumeType = "l_ssd",
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainInstanceSnapshot = new Scaleway.InstanceSnapshot("main", new()
+    ///     var mainSnapshot = new Scaleway.Instance.Snapshot("main", new()
     ///     {
     ///         VolumeId = main.Id,
     ///         Type = "unified",
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         DependsOn =
     ///         {
-    ///             mainInstanceServer,
+    ///             mainServer,
     ///         },
     ///     });
     /// 
@@ -90,22 +90,22 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     var bucket = new Scaleway.Object.Bucket("bucket", new()
     ///     {
     ///         Name = "snapshot-qcow-import",
     ///     });
     /// 
-    ///     var qcow = new Scaleway.ObjectItem("qcow", new()
+    ///     var qcow = new Scaleway.Object.Item("qcow", new()
     ///     {
     ///         Bucket = bucket.Name,
     ///         Key = "server.qcow2",
     ///         File = "myqcow.qcow2",
     ///     });
     /// 
-    ///     var snapshot = new Scaleway.InstanceSnapshot("snapshot", new()
+    ///     var snapshot = new Scaleway.Instance.Snapshot("snapshot", new()
     ///     {
     ///         Type = "unified",
-    ///         Import = new Scaleway.Inputs.InstanceSnapshotImportArgs
+    ///         Import = new Scaleway.Instance.Inputs.SnapshotImportArgs
     ///         {
     ///             Bucket = qcow.Bucket,
     ///             Key = qcow.Key,
@@ -125,6 +125,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot")]
     [ScalewayResourceType("scaleway:index/instanceSnapshot:InstanceSnapshot")]
     public partial class InstanceSnapshot : global::Pulumi.CustomResource
     {

@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about your Consumptions.
  */
+/** @deprecated scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions */
 export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
+    pulumi.log.warn("getBillingConsumptions is deprecated: scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBillingConsumptions:getBillingConsumptions", {
@@ -52,7 +54,9 @@ export interface GetBillingConsumptionsResult {
 /**
  * Gets information about your Consumptions.
  */
+/** @deprecated scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions */
 export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBillingConsumptionsResult> {
+    pulumi.log.warn("getBillingConsumptions is deprecated: scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBillingConsumptions:getBillingConsumptions", {

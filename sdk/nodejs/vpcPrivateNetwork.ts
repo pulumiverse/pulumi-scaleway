@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
+ * const pnPriv = new scaleway.network.PrivateNetwork("pn_priv", {
  *     name: "subnet_demo",
  *     tags: [
  *         "demo",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pnPriv = new scaleway.VpcPrivateNetwork("pn_priv", {
+ * const pnPriv = new scaleway.network.PrivateNetwork("pn_priv", {
  *     name: "subnet_demo",
  *     tags: [
  *         "demo",
@@ -62,6 +62,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork
  */
 export class VpcPrivateNetwork extends pulumi.CustomResource {
     /**
@@ -74,6 +76,7 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPrivateNetworkState, opts?: pulumi.CustomResourceOptions): VpcPrivateNetwork {
+        pulumi.log.warn("VpcPrivateNetwork is deprecated: scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork")
         return new VpcPrivateNetwork(name, <any>state, { ...opts, id: id });
     }
 
@@ -151,8 +154,11 @@ export class VpcPrivateNetwork extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork */
     constructor(name: string, args?: VpcPrivateNetworkArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork */
     constructor(name: string, argsOrState?: VpcPrivateNetworkArgs | VpcPrivateNetworkState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPrivateNetwork is deprecated: scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -6,6 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
+/**
+ * @deprecated scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate
+ */
 export class LoadbalancerCertificate extends pulumi.CustomResource {
     /**
      * Get an existing LoadbalancerCertificate resource's state with the given name, ID, and optional extra
@@ -17,6 +20,7 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerCertificateState, opts?: pulumi.CustomResourceOptions): LoadbalancerCertificate {
+        pulumi.log.warn("LoadbalancerCertificate is deprecated: scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate")
         return new LoadbalancerCertificate(name, <any>state, { ...opts, id: id });
     }
 
@@ -82,8 +86,11 @@ export class LoadbalancerCertificate extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate */
     constructor(name: string, args: LoadbalancerCertificateArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate */
     constructor(name: string, argsOrState?: LoadbalancerCertificateArgs | LoadbalancerCertificateState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("LoadbalancerCertificate is deprecated: scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

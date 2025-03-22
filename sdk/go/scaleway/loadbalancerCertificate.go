@@ -12,6 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Deprecated: scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate
 type LoadbalancerCertificate struct {
 	pulumi.CustomResourceState
 

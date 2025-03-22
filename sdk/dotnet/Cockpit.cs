@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit")]
     [ScalewayResourceType("scaleway:index/cockpit:Cockpit")]
     public partial class Cockpit : global::Pulumi.CustomResource
     {
@@ -158,7 +159,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// [DEPRECATED] Push_url
         /// </summary>
-        [Obsolete(@"Please use `scaleway.CockpitSource` instead")]
+        [Obsolete(@"Please use `scaleway.observability.Source` instead")]
         public InputList<Inputs.CockpitPushUrlGetArgs> PushUrls
         {
             get => _pushUrls ?? (_pushUrls = new InputList<Inputs.CockpitPushUrlGetArgs>());

@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a specific tag of a Container Registry image.
+//
+// Deprecated: scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag
 func GetRegistryImageTag(ctx *pulumi.Context, args *GetRegistryImageTagArgs, opts ...pulumi.InvokeOption) (*GetRegistryImageTagResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRegistryImageTagResult

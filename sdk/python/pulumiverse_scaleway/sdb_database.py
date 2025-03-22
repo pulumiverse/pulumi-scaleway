@@ -216,7 +216,12 @@ class _SdbDatabaseState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase""", DeprecationWarning)
+
+
 class SdbDatabase(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -228,7 +233,7 @@ class SdbDatabase(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+        The `databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
 
         Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 
@@ -240,7 +245,7 @@ class SdbDatabase(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        database = scaleway.SdbDatabase("database",
+        database = scaleway.databases.ServerlessDatabase("database",
             name="my-database",
             min_cpu=0,
             max_cpu=8)
@@ -273,7 +278,7 @@ class SdbDatabase(pulumi.CustomResource):
                  args: Optional[SdbDatabaseArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+        The `databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
 
         Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 
@@ -285,7 +290,7 @@ class SdbDatabase(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        database = scaleway.SdbDatabase("database",
+        database = scaleway.databases.ServerlessDatabase("database",
             name="my-database",
             min_cpu=0,
             max_cpu=8)
@@ -322,6 +327,7 @@ class SdbDatabase(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""SdbDatabase is deprecated: scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -287,7 +287,12 @@ class _BlockVolumeState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume""", DeprecationWarning)
+
+
 class BlockVolume(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -302,7 +307,7 @@ class BlockVolume(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+        The `block.Volume` resource is used to create and manage Scaleway Block Storage volumes.
 
         Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -316,7 +321,7 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("block_volume",
+        block_volume = scaleway.block.Volume("block_volume",
             iops=5000,
             name="some-volume-name",
             size_in_gb=20)
@@ -328,14 +333,14 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        base = scaleway.BlockVolume("base",
+        base = scaleway.block.Volume("base",
             name="block-volume-base",
             iops=5000,
             size_in_gb=20)
-        main = scaleway.BlockSnapshot("main",
+        main = scaleway.block.Snapshot("main",
             name="block-volume-from-snapshot",
             volume_id=base.id)
-        main_block_volume = scaleway.BlockVolume("main",
+        main_volume = scaleway.block.Volume("main",
             name="block-volume-from-snapshot",
             iops=5000,
             snapshot_id=main.id)
@@ -369,7 +374,7 @@ class BlockVolume(pulumi.CustomResource):
                  args: BlockVolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+        The `block.Volume` resource is used to create and manage Scaleway Block Storage volumes.
 
         Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -383,7 +388,7 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("block_volume",
+        block_volume = scaleway.block.Volume("block_volume",
             iops=5000,
             name="some-volume-name",
             size_in_gb=20)
@@ -395,14 +400,14 @@ class BlockVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        base = scaleway.BlockVolume("base",
+        base = scaleway.block.Volume("base",
             name="block-volume-base",
             iops=5000,
             size_in_gb=20)
-        main = scaleway.BlockSnapshot("main",
+        main = scaleway.block.Snapshot("main",
             name="block-volume-from-snapshot",
             volume_id=base.id)
-        main_block_volume = scaleway.BlockVolume("main",
+        main_volume = scaleway.block.Volume("main",
             name="block-volume-from-snapshot",
             iops=5000,
             snapshot_id=main.id)
@@ -442,6 +447,7 @@ class BlockVolume(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""BlockVolume is deprecated: scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

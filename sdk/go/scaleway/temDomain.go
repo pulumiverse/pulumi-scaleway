@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//			_, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
 //				AcceptTos: pulumi.Bool(true),
 //				Name:      pulumi.String("example.com"),
 //			})
@@ -55,7 +55,8 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
@@ -63,14 +64,14 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
-//			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//			main, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
 //				Name:      pulumi.String(domainName),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "spf", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("TXT"),
 //				Data: main.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
@@ -80,7 +81,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "dkim", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Name: main.ProjectId.ApplyT(func(projectId string) (string, error) {
 //					return fmt.Sprintf("%v._domainkey", projectId), nil
@@ -91,7 +92,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "mx", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("MX"),
 //				Data:    pulumi.String("."),
@@ -99,7 +100,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "dmarc", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "dmarc", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Name:    main.DmarcName,
 //				Type:    pulumi.String("TXT"),
@@ -123,7 +124,7 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
@@ -131,7 +132,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
-//			_, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//			_, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
 //				Name:       pulumi.String(domainName),
 //				AcceptTos:  pulumi.Bool(true),
 //				Autoconfig: pulumi.Bool(true),
@@ -154,6 +155,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain
 type TemDomain struct {
 	pulumi.CustomResourceState
 

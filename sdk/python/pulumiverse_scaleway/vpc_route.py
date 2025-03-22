@@ -287,7 +287,12 @@ class _VpcRouteState:
         pulumi.set(self, "vpc_id", value)
 
 
+warnings.warn("""scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route""", DeprecationWarning)
+
+
 class VpcRoute(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -312,21 +317,21 @@ class VpcRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="tf-vpc-vpn")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-vpn")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="tf-pn-vpn",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        server01 = scaleway.InstanceServer("server01",
+        server01 = scaleway.instance.Server("server01",
             name="tf-server-vpn",
             type="PLAY2-MICRO",
             image="openvpn")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             private_network_id=pn01.id,
             server_id=server01.id)
-        rt01 = scaleway.VpcRoute("rt01",
+        rt01 = scaleway.network.Route("rt01",
             vpc_id=vpc01.id,
             description="tf-route-vpn",
             tags=[
@@ -375,21 +380,21 @@ class VpcRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="tf-vpc-vpn")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-vpn")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="tf-pn-vpn",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        server01 = scaleway.InstanceServer("server01",
+        server01 = scaleway.instance.Server("server01",
             name="tf-server-vpn",
             type="PLAY2-MICRO",
             image="openvpn")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             private_network_id=pn01.id,
             server_id=server01.id)
-        rt01 = scaleway.VpcRoute("rt01",
+        rt01 = scaleway.network.Route("rt01",
             vpc_id=vpc01.id,
             description="tf-route-vpn",
             tags=[
@@ -433,6 +438,7 @@ class VpcRoute(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcRoute is deprecated: scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

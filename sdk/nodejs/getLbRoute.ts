@@ -16,34 +16,36 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "tcp",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ * const rt01 = new scaleway.loadbalancers.Route("rt01", {
  *     frontendId: frt01.id,
  *     backendId: bkd01.id,
  *     matchSni: "sni.scaleway.com",
  * });
- * const byID = scaleway.getLbRouteOutput({
+ * const byID = scaleway.loadbalancers.getRouteOutput({
  *     routeId: rt01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute */
 export function getLbRoute(args: GetLbRouteArgs, opts?: pulumi.InvokeOptions): Promise<GetLbRouteResult> {
+    pulumi.log.warn("getLbRoute is deprecated: scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbRoute:getLbRoute", {
         "routeId": args.routeId,
@@ -88,34 +90,36 @@ export interface GetLbRouteResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "tcp",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ * const rt01 = new scaleway.loadbalancers.Route("rt01", {
  *     frontendId: frt01.id,
  *     backendId: bkd01.id,
  *     matchSni: "sni.scaleway.com",
  * });
- * const byID = scaleway.getLbRouteOutput({
+ * const byID = scaleway.loadbalancers.getRouteOutput({
  *     routeId: rt01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute */
 export function getLbRouteOutput(args: GetLbRouteOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbRouteResult> {
+    pulumi.log.warn("getLbRoute is deprecated: scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbRoute:getLbRoute", {
         "routeId": args.routeId,

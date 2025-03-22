@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const basic = new scaleway.IamGroup("basic", {
+ * const basic = new scaleway.iam.Group("basic", {
  *     name: "iam_group_basic",
  *     description: "basic description",
  *     applicationIds: [],
@@ -30,8 +30,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const app = new scaleway.IamApplication("app", {});
- * const withApp = new scaleway.IamGroup("with_app", {
+ * const app = new scaleway.iam.Application("app", {});
+ * const withApp = new scaleway.iam.Group("with_app", {
  *     name: "iam_group_with_app",
  *     applicationIds: [app.id],
  *     userIds: [],
@@ -47,6 +47,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group
  */
 export class IamGroup extends pulumi.CustomResource {
     /**
@@ -59,6 +61,7 @@ export class IamGroup extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamGroupState, opts?: pulumi.CustomResourceOptions): IamGroup {
+        pulumi.log.warn("IamGroup is deprecated: scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group")
         return new IamGroup(name, <any>state, { ...opts, id: id });
     }
 
@@ -120,8 +123,11 @@ export class IamGroup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group */
     constructor(name: string, args?: IamGroupArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group */
     constructor(name: string, argsOrState?: IamGroupArgs | IamGroupState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamGroup is deprecated: scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

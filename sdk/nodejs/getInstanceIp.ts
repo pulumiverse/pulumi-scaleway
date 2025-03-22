@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about an instance IP.
  */
+/** @deprecated scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp */
 export function getInstanceIp(args?: GetInstanceIpArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceIpResult> {
+    pulumi.log.warn("getInstanceIp is deprecated: scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceIp:getInstanceIp", {
@@ -68,7 +70,9 @@ export interface GetInstanceIpResult {
 /**
  * Gets information about an instance IP.
  */
+/** @deprecated scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp */
 export function getInstanceIpOutput(args?: GetInstanceIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceIpResult> {
+    pulumi.log.warn("getInstanceIp is deprecated: scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceIp:getInstanceIp", {

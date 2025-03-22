@@ -17,38 +17,40 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Find ips that share the same tags
- * const fipsByTags = scaleway.getFlexibleIps({
+ * const fipsByTags = scaleway.elasticmetal.getIps({
  *     tags: ["a tag"],
  * });
  * // Find ips that share the same Server ID
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     name: "EM-B112X-SSD",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     name: "MyServer",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });
- * const first = new scaleway.FlexibleIp("first", {
+ * const first = new scaleway.elasticmetal.Ip("first", {
  *     serverId: base.id,
  *     tags: [
  *         "foo",
  *         "first",
  *     ],
  * });
- * const second = new scaleway.FlexibleIp("second", {
+ * const second = new scaleway.elasticmetal.Ip("second", {
  *     serverId: base.id,
  *     tags: [
  *         "foo",
  *         "second",
  *     ],
  * });
- * const fipsByServerId = scaleway.getFlexibleIpsOutput({
+ * const fipsByServerId = scaleway.elasticmetal.getIpsOutput({
  *     serverIds: [base.id],
  * });
  * ```
  */
+/** @deprecated scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps */
 export function getFlexibleIps(args?: GetFlexibleIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexibleIpsResult> {
+    pulumi.log.warn("getFlexibleIps is deprecated: scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFlexibleIps:getFlexibleIps", {
@@ -122,38 +124,40 @@ export interface GetFlexibleIpsResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Find ips that share the same tags
- * const fipsByTags = scaleway.getFlexibleIps({
+ * const fipsByTags = scaleway.elasticmetal.getIps({
  *     tags: ["a tag"],
  * });
  * // Find ips that share the same Server ID
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     name: "EM-B112X-SSD",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     name: "MyServer",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });
- * const first = new scaleway.FlexibleIp("first", {
+ * const first = new scaleway.elasticmetal.Ip("first", {
  *     serverId: base.id,
  *     tags: [
  *         "foo",
  *         "first",
  *     ],
  * });
- * const second = new scaleway.FlexibleIp("second", {
+ * const second = new scaleway.elasticmetal.Ip("second", {
  *     serverId: base.id,
  *     tags: [
  *         "foo",
  *         "second",
  *     ],
  * });
- * const fipsByServerId = scaleway.getFlexibleIpsOutput({
+ * const fipsByServerId = scaleway.elasticmetal.getIpsOutput({
  *     serverIds: [base.id],
  * });
  * ```
  */
+/** @deprecated scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps */
 export function getFlexibleIpsOutput(args?: GetFlexibleIpsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFlexibleIpsResult> {
+    pulumi.log.warn("getFlexibleIps is deprecated: scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFlexibleIps:getFlexibleIps", {

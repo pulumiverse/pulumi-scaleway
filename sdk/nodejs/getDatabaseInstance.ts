@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
+/** @deprecated scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance */
 export function getDatabaseInstance(args?: GetDatabaseInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstanceResult> {
+    pulumi.log.warn("getDatabaseInstance is deprecated: scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseInstance:getDatabaseInstance", {
@@ -88,7 +90,9 @@ export interface GetDatabaseInstanceResult {
  *
  * For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
  */
+/** @deprecated scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance */
 export function getDatabaseInstanceOutput(args?: GetDatabaseInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseInstanceResult> {
+    pulumi.log.warn("getDatabaseInstance is deprecated: scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseInstance:getDatabaseInstance", {

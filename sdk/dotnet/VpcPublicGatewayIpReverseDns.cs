@@ -24,9 +24,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.VpcPublicGatewayIp("main");
+    ///     var main = new Scaleway.Network.PublicGatewayIp("main");
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
+    ///     var tfA = new Scaleway.Domain.Record("tf_A", new()
     ///     {
     ///         DnsZone = "example.com",
     ///         Name = "tf",
@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway
     ///         Priority = 1,
     ///     });
     /// 
-    ///     var mainVpcPublicGatewayIpReverseDns = new Scaleway.VpcPublicGatewayIpReverseDns("main", new()
+    ///     var mainPublicGatewayIpReverseDns = new Scaleway.Network.PublicGatewayIpReverseDns("main", new()
     ///     {
     ///         GatewayIpId = main.Id,
     ///         Reverse = "tf.example.com",
@@ -55,6 +55,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns")]
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns")]
     public partial class VpcPublicGatewayIpReverseDns : global::Pulumi.CustomResource
     {

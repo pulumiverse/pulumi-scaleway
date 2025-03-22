@@ -209,7 +209,12 @@ class _ContainerCronState:
         pulumi.set(self, "status", value)
 
 
+warnings.warn("""scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron""", DeprecationWarning)
+
+
 class ContainerCron(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -221,7 +226,7 @@ class ContainerCron(pulumi.CustomResource):
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
@@ -234,11 +239,11 @@ class ContainerCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main")
-        main_container = scaleway.Container("main",
+        main = scaleway.containers.Namespace("main")
+        main_container = scaleway.containers.Container("main",
             name="my-container-with-cron-tf",
             namespace_id=main.id)
-        main_container_cron = scaleway.ContainerCron("main",
+        main_cron = scaleway.containers.Cron("main",
             container_id=main_container.id,
             name="my-cron-name",
             schedule="5 4 1 * *",
@@ -280,7 +285,7 @@ class ContainerCron(pulumi.CustomResource):
                  args: ContainerCronArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
@@ -293,11 +298,11 @@ class ContainerCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main")
-        main_container = scaleway.Container("main",
+        main = scaleway.containers.Namespace("main")
+        main_container = scaleway.containers.Container("main",
             name="my-container-with-cron-tf",
             namespace_id=main.id)
-        main_container_cron = scaleway.ContainerCron("main",
+        main_cron = scaleway.containers.Cron("main",
             container_id=main_container.id,
             name="my-cron-name",
             schedule="5 4 1 * *",
@@ -344,6 +349,7 @@ class ContainerCron(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerCron is deprecated: scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

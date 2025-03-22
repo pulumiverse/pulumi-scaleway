@@ -206,7 +206,12 @@ class _DatabaseUserState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User""", DeprecationWarning)
+
+
 class DatabaseUser(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -230,7 +235,7 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_random as random
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -241,7 +246,7 @@ class DatabaseUser(pulumi.CustomResource):
         db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DatabaseUser("db_admin",
+        db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
             password=db_password.result,
@@ -289,7 +294,7 @@ class DatabaseUser(pulumi.CustomResource):
         import pulumi_random as random
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -300,7 +305,7 @@ class DatabaseUser(pulumi.CustomResource):
         db_password = random.RandomPassword("db_password",
             length=16,
             special=True)
-        db_admin = scaleway.DatabaseUser("db_admin",
+        db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
             password=db_password.result,
@@ -338,6 +343,7 @@ class DatabaseUser(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabaseUser is deprecated: scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

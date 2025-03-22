@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Security Group.
+//
+// Deprecated: scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup
 func LookupInstanceSecurityGroup(ctx *pulumi.Context, args *LookupInstanceSecurityGroupArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSecurityGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSecurityGroupResult

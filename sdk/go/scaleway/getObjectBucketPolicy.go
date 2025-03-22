@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+// The `object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 //
 // Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
 //
@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupObjectBucketPolicy(ctx, &scaleway.LookupObjectBucketPolicyArgs{
+//			_, err := object.LookupBucketPolicy(ctx, &object.LookupBucketPolicyArgs{
 //				Bucket: "bucket.test.com",
 //			}, nil)
 //			if err != nil {
@@ -42,6 +42,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy
 func LookupObjectBucketPolicy(ctx *pulumi.Context, args *LookupObjectBucketPolicyArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketPolicyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketPolicyResult

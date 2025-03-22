@@ -14,12 +14,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get api key infos by id (access_key)
- * const main = scaleway.getIamApiKey({
+ * const main = scaleway.iam.getApiKey({
  *     accessKey: "SCWABCDEFGHIJKLMNOPQ",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey */
 export function getIamApiKey(args: GetIamApiKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamApiKeyResult> {
+    pulumi.log.warn("getIamApiKey is deprecated: scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamApiKey:getIamApiKey", {
         "accessKey": args.accessKey,
@@ -65,12 +67,14 @@ export interface GetIamApiKeyResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get api key infos by id (access_key)
- * const main = scaleway.getIamApiKey({
+ * const main = scaleway.iam.getApiKey({
  *     accessKey: "SCWABCDEFGHIJKLMNOPQ",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey */
 export function getIamApiKeyOutput(args: GetIamApiKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamApiKeyResult> {
+    pulumi.log.warn("getIamApiKey is deprecated: scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamApiKey:getIamApiKey", {
         "accessKey": args.accessKey,

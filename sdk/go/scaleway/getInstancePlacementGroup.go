@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Security Group.
+//
+// Deprecated: scaleway.index/getinstanceplacementgroup.getInstancePlacementGroup has been deprecated in favor of scaleway.instance/getplacementgroup.getPlacementGroup
 func LookupInstancePlacementGroup(ctx *pulumi.Context, args *LookupInstancePlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupInstancePlacementGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePlacementGroupResult

@@ -25,6 +25,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns
 type IpamIpReverseDns struct {
 	pulumi.CustomResourceState
 

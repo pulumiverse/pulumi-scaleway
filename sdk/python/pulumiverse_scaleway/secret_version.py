@@ -222,7 +222,12 @@ class _SecretVersionState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version""", DeprecationWarning)
+
+
 class SecretVersion(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -233,7 +238,7 @@ class SecretVersion(pulumi.CustomResource):
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
 
         Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -250,14 +255,14 @@ class SecretVersion(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Secret("main",
+        main = scaleway.secrets.Secret("main",
             name="foo",
             description="barr",
             tags=[
                 "foo",
                 "terraform",
             ])
-        v1 = scaleway.SecretVersion("v1",
+        v1 = scaleway.secrets.Version("v1",
             description="version1",
             secret_id=main.id,
             data="my_new_secret")
@@ -289,7 +294,7 @@ class SecretVersion(pulumi.CustomResource):
                  args: SecretVersionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
 
         Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -306,14 +311,14 @@ class SecretVersion(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Secret("main",
+        main = scaleway.secrets.Secret("main",
             name="foo",
             description="barr",
             tags=[
                 "foo",
                 "terraform",
             ])
-        v1 = scaleway.SecretVersion("v1",
+        v1 = scaleway.secrets.Version("v1",
             description="version1",
             secret_id=main.id,
             data="my_new_secret")
@@ -351,6 +356,7 @@ class SecretVersion(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  secret_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""SecretVersion is deprecated: scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

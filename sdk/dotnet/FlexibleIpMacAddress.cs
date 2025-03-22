@@ -26,9 +26,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FlexibleIp("main");
+    ///     var main = new Scaleway.Elasticmetal.Ip("main");
     /// 
-    ///     var mainFlexibleIpMacAddress = new Scaleway.FlexibleIpMacAddress("main", new()
+    ///     var mainIpMacAddress = new Scaleway.Elasticmetal.IpMacAddress("main", new()
     ///     {
     ///         FlexibleIpId = main.Id,
     ///         Type = "kvm",
@@ -48,34 +48,34 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
     ///     {
     ///         Name = "EM-B112X-SSD",
     ///     });
     /// 
-    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     var @base = new Scaleway.Elasticmetal.Server("base", new()
     ///     {
     ///         Name = "TestAccScalewayBaremetalServer_WithoutInstallConfig",
-    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
     ///         InstallConfigAfterward = true,
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.FlexibleIp("ip01", new()
+    ///     var ip01 = new Scaleway.Elasticmetal.Ip("ip01", new()
     ///     {
     ///         ServerId = @base.Id,
     ///     });
     /// 
-    ///     var ip02 = new Scaleway.FlexibleIp("ip02", new()
+    ///     var ip02 = new Scaleway.Elasticmetal.Ip("ip02", new()
     ///     {
     ///         ServerId = @base.Id,
     ///     });
     /// 
-    ///     var ip03 = new Scaleway.FlexibleIp("ip03", new()
+    ///     var ip03 = new Scaleway.Elasticmetal.Ip("ip03", new()
     ///     {
     ///         ServerId = @base.Id,
     ///     });
     /// 
-    ///     var main = new Scaleway.FlexibleIpMacAddress("main", new()
+    ///     var main = new Scaleway.Elasticmetal.IpMacAddress("main", new()
     ///     {
     ///         FlexibleIpId = ip01.Id,
     ///         Type = "kvm",
@@ -99,6 +99,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress")]
     [ScalewayResourceType("scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress")]
     public partial class FlexibleIpMacAddress : global::Pulumi.CustomResource
     {

@@ -393,7 +393,12 @@ class _IotDeviceState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device""", DeprecationWarning)
+
+
 class IotDevice(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -416,10 +421,10 @@ class IotDevice(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
-        main_iot_device = scaleway.IotDevice("main",
+        main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot")
         ```
@@ -431,11 +436,11 @@ class IotDevice(pulumi.CustomResource):
         import pulumi_local as local
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
         device_cert = local.get_file(filename="device-certificate.pem")
-        main_iot_device = scaleway.IotDevice("main",
+        main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot",
             certificate={
@@ -485,10 +490,10 @@ class IotDevice(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
-        main_iot_device = scaleway.IotDevice("main",
+        main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot")
         ```
@@ -500,11 +505,11 @@ class IotDevice(pulumi.CustomResource):
         import pulumi_local as local
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
         device_cert = local.get_file(filename="device-certificate.pem")
-        main_iot_device = scaleway.IotDevice("main",
+        main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot",
             certificate={
@@ -546,6 +551,7 @@ class IotDevice(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IotDevice is deprecated: scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

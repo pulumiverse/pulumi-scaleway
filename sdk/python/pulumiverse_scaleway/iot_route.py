@@ -272,7 +272,12 @@ class _IotRouteState:
         pulumi.set(self, "topic", value)
 
 
+warnings.warn("""scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route""", DeprecationWarning)
+
+
 class IotRoute(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -294,18 +299,18 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        iot = scaleway.DatabaseInstance("iot",
+        iot = scaleway.databases.Instance("iot",
             name="iot",
             node_type="db-dev-s",
             engine="PostgreSQL-12",
             user_name="root",
             password="T3stP4ssw0rdD0N0tUs3!")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="default",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             database={
                 "query": \"\"\"INSERT INTO measurements(
@@ -336,19 +341,19 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main_object_bucket = scaleway.ObjectBucket("main",
+        main_bucket = scaleway.object.Bucket("main",
             region="fr-par",
             name="my_awesome-bucket")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             s3={
-                "bucket_region": main_object_bucket.region,
-                "bucket_name": main_object_bucket.name,
+                "bucket_region": main_bucket.region,
+                "bucket_name": main_bucket.name,
                 "object_prefix": "foo",
                 "strategy": "per_topic",
             })
@@ -360,12 +365,12 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             rest={
                 "verb": "get",
@@ -411,18 +416,18 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        iot = scaleway.DatabaseInstance("iot",
+        iot = scaleway.databases.Instance("iot",
             name="iot",
             node_type="db-dev-s",
             engine="PostgreSQL-12",
             user_name="root",
             password="T3stP4ssw0rdD0N0tUs3!")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="default",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             database={
                 "query": \"\"\"INSERT INTO measurements(
@@ -453,19 +458,19 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main_object_bucket = scaleway.ObjectBucket("main",
+        main_bucket = scaleway.object.Bucket("main",
             region="fr-par",
             name="my_awesome-bucket")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             s3={
-                "bucket_region": main_object_bucket.region,
-                "bucket_name": main_object_bucket.name,
+                "bucket_region": main_bucket.region,
+                "bucket_name": main_bucket.name,
                 "object_prefix": "foo",
                 "strategy": "per_topic",
             })
@@ -477,12 +482,12 @@ class IotRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main = scaleway.IotRoute("main",
+        main = scaleway.iot.Route("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             topic="#",
             rest={
                 "verb": "get",
@@ -526,6 +531,7 @@ class IotRoute(pulumi.CustomResource):
                  s3: Optional[pulumi.Input[Union['IotRouteS3Args', 'IotRouteS3ArgsDict']]] = None,
                  topic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IotRoute is deprecated: scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

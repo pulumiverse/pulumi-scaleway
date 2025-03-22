@@ -21,6 +21,8 @@ __all__ = [
     'get_iam_application_output',
 ]
 
+warnings.warn("""scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIamApplicationResult:
     """
@@ -135,9 +137,9 @@ def get_iam_application(application_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    find_by_name = scaleway.get_iam_application(name="foobar")
+    find_by_name = scaleway.iam.get_application(name="foobar")
     # Get info by application ID
-    find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.iam.get_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -148,6 +150,7 @@ def get_iam_application(application_id: Optional[str] = None,
     :param str organization_id: `organization_id`) The ID of the
            Organization the application is associated with.
     """
+    pulumi.log.warn("""get_iam_application is deprecated: scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication""")
     __args__ = dict()
     __args__['applicationId'] = application_id
     __args__['name'] = name
@@ -179,9 +182,9 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    find_by_name = scaleway.get_iam_application(name="foobar")
+    find_by_name = scaleway.iam.get_application(name="foobar")
     # Get info by application ID
-    find_by_id = scaleway.get_iam_application(application_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.iam.get_application(application_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -192,6 +195,7 @@ def get_iam_application_output(application_id: Optional[pulumi.Input[Optional[st
     :param str organization_id: `organization_id`) The ID of the
            Organization the application is associated with.
     """
+    pulumi.log.warn("""get_iam_application is deprecated: scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication""")
     __args__ = dict()
     __args__['applicationId'] = application_id
     __args__['name'] = name

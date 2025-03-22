@@ -21,6 +21,8 @@ __all__ = [
     'get_container_namespace_output',
 ]
 
+warnings.warn("""scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace""", DeprecationWarning)
+
 @pulumi.output_type
 class GetContainerNamespaceResult:
     """
@@ -178,7 +180,7 @@ def get_container_namespace(name: Optional[str] = None,
                             region: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerNamespaceResult:
     """
-    The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+    The `containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -194,9 +196,9 @@ def get_container_namespace(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by namespace name
-    by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    by_name = scaleway.containers.get_namespace(name="my-namespace-name")
     # Get info by namespace ID
-    by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.containers.get_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -205,6 +207,7 @@ def get_container_namespace(name: Optional[str] = None,
     :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_container_namespace is deprecated: scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
@@ -233,7 +236,7 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
                                    region: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerNamespaceResult]:
     """
-    The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+    The `containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -249,9 +252,9 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi_scaleway as scaleway
 
     # Get info by namespace name
-    by_name = scaleway.get_container_namespace(name="my-namespace-name")
+    by_name = scaleway.containers.get_namespace(name="my-namespace-name")
     # Get info by namespace ID
-    by_id = scaleway.get_container_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.containers.get_namespace(namespace_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -260,6 +263,7 @@ def get_container_namespace_output(name: Optional[pulumi.Input[Optional[str]]] =
     :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_container_namespace is deprecated: scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id

@@ -12,11 +12,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
+// The `account.SshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 //
-// !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+// !> **Important:**  The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
 //
 // ## Example Usage
 //
@@ -26,13 +26,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewAccountSshKey(ctx, "main", &scaleway.AccountSshKeyArgs{
+//			_, err := account.NewSshKey(ctx, "main", &account.SshKeyArgs{
 //				Name:      pulumi.String("main"),
 //				PublicKey: pulumi.String("<YOUR-PUBLIC-SSH-KEY>"),
 //			})
@@ -54,6 +54,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey
 type AccountSshKey struct {
 	pulumi.CustomResourceState
 

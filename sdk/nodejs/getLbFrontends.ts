@@ -18,17 +18,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find frontends that share the same LB ID
- * const byLBID = scaleway.getLbFrontends({
+ * const byLBID = scaleway.loadbalancers.getFrontends({
  *     lbId: lb01.id,
  * });
  * // Find frontends by LB ID and name
- * const byLBIDAndName = scaleway.getLbFrontends({
+ * const byLBIDAndName = scaleway.loadbalancers.getFrontends({
  *     lbId: lb01.id,
  *     name: "tf-frontend-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbfrontends.getLbFrontends has been deprecated in favor of scaleway.loadbalancers/getfrontends.getFrontends */
 export function getLbFrontends(args: GetLbFrontendsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbFrontendsResult> {
+    pulumi.log.warn("getLbFrontends is deprecated: scaleway.index/getlbfrontends.getLbFrontends has been deprecated in favor of scaleway.loadbalancers/getfrontends.getFrontends")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbFrontends:getLbFrontends", {
         "lbId": args.lbId,
@@ -87,17 +89,19 @@ export interface GetLbFrontendsResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find frontends that share the same LB ID
- * const byLBID = scaleway.getLbFrontends({
+ * const byLBID = scaleway.loadbalancers.getFrontends({
  *     lbId: lb01.id,
  * });
  * // Find frontends by LB ID and name
- * const byLBIDAndName = scaleway.getLbFrontends({
+ * const byLBIDAndName = scaleway.loadbalancers.getFrontends({
  *     lbId: lb01.id,
  *     name: "tf-frontend-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbfrontends.getLbFrontends has been deprecated in favor of scaleway.loadbalancers/getfrontends.getFrontends */
 export function getLbFrontendsOutput(args: GetLbFrontendsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbFrontendsResult> {
+    pulumi.log.warn("getLbFrontends is deprecated: scaleway.index/getlbfrontends.getLbFrontends has been deprecated in favor of scaleway.loadbalancers/getfrontends.getFrontends")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbFrontends:getLbFrontends", {
         "lbId": args.lbId,

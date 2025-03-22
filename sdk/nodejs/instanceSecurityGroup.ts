@@ -16,6 +16,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup
  */
 export class InstanceSecurityGroup extends pulumi.CustomResource {
     /**
@@ -28,6 +30,7 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceSecurityGroupState, opts?: pulumi.CustomResourceOptions): InstanceSecurityGroup {
+        pulumi.log.warn("InstanceSecurityGroup is deprecated: scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup")
         return new InstanceSecurityGroup(name, <any>state, { ...opts, id: id });
     }
 
@@ -106,8 +109,11 @@ export class InstanceSecurityGroup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup */
     constructor(name: string, args?: InstanceSecurityGroupArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup */
     constructor(name: string, argsOrState?: InstanceSecurityGroupArgs | InstanceSecurityGroupState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceSecurityGroup is deprecated: scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

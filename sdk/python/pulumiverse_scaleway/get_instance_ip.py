@@ -21,6 +21,8 @@ __all__ = [
     'get_instance_ip_output',
 ]
 
+warnings.warn("""scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceIpResult:
     """
@@ -157,6 +159,7 @@ def get_instance_ip(address: Optional[str] = None,
     :param str id: The ID of the IP address to retrieve
            Only one of `address` and `id` should be specified.
     """
+    pulumi.log.warn("""get_instance_ip is deprecated: scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp""")
     __args__ = dict()
     __args__['address'] = address
     __args__['id'] = id
@@ -186,6 +189,7 @@ def get_instance_ip_output(address: Optional[pulumi.Input[Optional[str]]] = None
     :param str id: The ID of the IP address to retrieve
            Only one of `address` and `id` should be specified.
     """
+    pulumi.log.warn("""get_instance_ip is deprecated: scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp""")
     __args__ = dict()
     __args__['address'] = address
     __args__['id'] = id

@@ -462,7 +462,12 @@ class _MnqSqsQueueState:
         pulumi.set(self, "visibility_timeout_seconds", value)
 
 
+warnings.warn("""scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue""", DeprecationWarning)
+
+
 class MnqSqsQueue(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -494,8 +499,8 @@ class MnqSqsQueue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+        main = scaleway.mnq.Sqs("main")
+        main_sqs_credentials = scaleway.mnq.SqsCredentials("main",
             project_id=main.project_id,
             name="sqs-credentials",
             permissions={
@@ -503,12 +508,12 @@ class MnqSqsQueue(pulumi.CustomResource):
                 "can_receive": False,
                 "can_publish": False,
             })
-        main_mnq_sqs_queue = scaleway.MnqSqsQueue("main",
+        main_sqs_queue = scaleway.mnq.SqsQueue("main",
             project_id=main.project_id,
             name="my-queue",
             sqs_endpoint=main.endpoint,
-            access_key=main_mnq_sqs_credentials.access_key,
-            secret_key=main_mnq_sqs_credentials.secret_key)
+            access_key=main_sqs_credentials.access_key,
+            secret_key=main_sqs_credentials.secret_key)
         ```
 
         :param str resource_name: The name of the resource.
@@ -546,8 +551,8 @@ class MnqSqsQueue(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+        main = scaleway.mnq.Sqs("main")
+        main_sqs_credentials = scaleway.mnq.SqsCredentials("main",
             project_id=main.project_id,
             name="sqs-credentials",
             permissions={
@@ -555,12 +560,12 @@ class MnqSqsQueue(pulumi.CustomResource):
                 "can_receive": False,
                 "can_publish": False,
             })
-        main_mnq_sqs_queue = scaleway.MnqSqsQueue("main",
+        main_sqs_queue = scaleway.mnq.SqsQueue("main",
             project_id=main.project_id,
             name="my-queue",
             sqs_endpoint=main.endpoint,
-            access_key=main_mnq_sqs_credentials.access_key,
-            secret_key=main_mnq_sqs_credentials.secret_key)
+            access_key=main_sqs_credentials.access_key,
+            secret_key=main_sqs_credentials.secret_key)
         ```
 
         :param str resource_name: The name of the resource.
@@ -592,6 +597,7 @@ class MnqSqsQueue(pulumi.CustomResource):
                  sqs_endpoint: Optional[pulumi.Input[str]] = None,
                  visibility_timeout_seconds: Optional[pulumi.Input[int]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSqsQueue is deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

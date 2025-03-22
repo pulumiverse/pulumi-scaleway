@@ -19,14 +19,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {sources: [{
+ * const ip01 = new scaleway.ipam.Ip("ip01", {sources: [{
  *     privateNetworkId: pn01.id,
  * }]});
  * ```
@@ -37,14 +37,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.32.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
@@ -58,14 +58,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv6Subnets: [{
  *         subnet: "fd46:78ab:30b8:177c::/64",
  *     }],
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     isIpv6: true,
  *     sources: [{
  *         privateNetworkId: pn01.id,
@@ -79,14 +79,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.32.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
@@ -106,6 +106,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip
  */
 export class IpamIp extends pulumi.CustomResource {
     /**
@@ -118,6 +120,7 @@ export class IpamIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IpamIpState, opts?: pulumi.CustomResourceOptions): IpamIp {
+        pulumi.log.warn("IpamIp is deprecated: scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip")
         return new IpamIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -191,8 +194,11 @@ export class IpamIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip */
     constructor(name: string, args: IpamIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip */
     constructor(name: string, argsOrState?: IpamIpArgs | IpamIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IpamIp is deprecated: scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Find ips that share the same tags
-//			_, err := scaleway.GetFlexibleIps(ctx, &scaleway.GetFlexibleIpsArgs{
+//			_, err := elasticmetal.GetIps(ctx, &elasticmetal.GetIpsArgs{
 //				Tags: []string{
 //					"a tag",
 //				},
@@ -37,13 +37,13 @@ import (
 //				return err
 //			}
 //			// Find ips that share the same Server ID
-//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
 //				Name: pulumi.StringRef("EM-B112X-SSD"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("MyServer"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
@@ -51,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIp(ctx, "first", &scaleway.FlexibleIpArgs{
+//			_, err = elasticmetal.NewIp(ctx, "first", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
@@ -61,7 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIp(ctx, "second", &scaleway.FlexibleIpArgs{
+//			_, err = elasticmetal.NewIp(ctx, "second", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("foo"),
@@ -71,7 +71,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetFlexibleIpsOutput(ctx, scaleway.GetFlexibleIpsOutputArgs{
+//			_ = elasticmetal.GetIpsOutput(ctx, elasticmetal.GetIpsOutputArgs{
 //				ServerIds: pulumi.StringArray{
 //					base.ID(),
 //				},
@@ -81,6 +81,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps
 func GetFlexibleIps(ctx *pulumi.Context, args *GetFlexibleIpsArgs, opts ...pulumi.InvokeOption) (*GetFlexibleIpsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFlexibleIpsResult

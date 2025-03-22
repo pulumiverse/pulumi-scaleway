@@ -23,17 +23,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewLoadbalancerIp(ctx, "main", nil)
+//			main, err := loadbalancers.NewIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainLoadbalancer, err := scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//			mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
 //				IpId: main.ID(),
 //				Name: pulumi.String("data-test-lb-backend"),
 //				Type: pulumi.String("LB-S"),
@@ -41,8 +41,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainLoadbalancerBackend, err := scaleway.NewLoadbalancerBackend(ctx, "main", &scaleway.LoadbalancerBackendArgs{
-//				LbId:            mainLoadbalancer.ID(),
+//			mainBackend, err := loadbalancers.NewBackend(ctx, "main", &loadbalancers.BackendArgs{
+//				LbId:            mainLoadBalancer.ID(),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
@@ -50,18 +50,20 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetLbBackendOutput(ctx, scaleway.GetLbBackendOutputArgs{
-//				BackendId: mainLoadbalancerBackend.ID(),
+//			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
+//				BackendId: mainBackend.ID(),
 //			}, nil)
-//			_ = scaleway.GetLbBackendOutput(ctx, scaleway.GetLbBackendOutputArgs{
-//				Name: mainLoadbalancerBackend.Name,
-//				LbId: mainLoadbalancer.ID(),
+//			_ = loadbalancers.LookupBackendOutput(ctx, loadbalancers.GetBackendOutputArgs{
+//				Name: mainBackend.Name,
+//				LbId: mainLoadBalancer.ID(),
 //			}, nil)
 //			return nil
 //		})
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend
 func GetLbBackend(ctx *pulumi.Context, args *GetLbBackendArgs, opts ...pulumi.InvokeOption) (*GetLbBackendResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbBackendResult

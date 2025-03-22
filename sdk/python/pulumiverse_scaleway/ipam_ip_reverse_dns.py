@@ -157,7 +157,12 @@ class _IpamIpReverseDnsState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns""", DeprecationWarning)
+
+
 class IpamIpReverseDns(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -230,6 +235,7 @@ class IpamIpReverseDns(pulumi.CustomResource):
                  ipam_ip_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IpamIpReverseDns is deprecated: scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

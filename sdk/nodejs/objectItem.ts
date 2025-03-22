@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+ * The `scaleway.object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
  *
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
+ *
+ * @deprecated scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item
  */
 export class ObjectItem extends pulumi.CustomResource {
     /**
@@ -40,6 +42,7 @@ export class ObjectItem extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectItemState, opts?: pulumi.CustomResourceOptions): ObjectItem {
+        pulumi.log.warn("ObjectItem is deprecated: scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item")
         return new ObjectItem(name, <any>state, { ...opts, id: id });
     }
 
@@ -119,8 +122,11 @@ export class ObjectItem extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item */
     constructor(name: string, args: ObjectItemArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item */
     constructor(name: string, argsOrState?: ObjectItemArgs | ObjectItemState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectItem is deprecated: scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

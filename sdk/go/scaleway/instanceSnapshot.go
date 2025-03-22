@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceSnapshot(ctx, "main", &scaleway.InstanceSnapshotArgs{
+//			_, err := instance.NewSnapshot(ctx, "main", &instance.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
 //				VolumeId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
@@ -50,23 +50,23 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewInstanceVolume(ctx, "main", &scaleway.InstanceVolumeArgs{
+//			main, err := instance.NewVolume(ctx, "main", &instance.VolumeArgs{
 //				Type:     pulumi.String("l_ssd"),
 //				SizeInGb: pulumi.Int(10),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "main", &scaleway.InstanceServerArgs{
+//			mainServer, err := instance.NewServer(ctx, "main", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					SizeInGb:   pulumi.Int(10),
 //					VolumeType: pulumi.String("l_ssd"),
 //				},
@@ -77,11 +77,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceSnapshot(ctx, "main", &scaleway.InstanceSnapshotArgs{
+//			_, err = instance.NewSnapshot(ctx, "main", &instance.SnapshotArgs{
 //				VolumeId: main.ID(),
 //				Type:     pulumi.String("unified"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainInstanceServer,
+//				mainServer,
 //			}))
 //			if err != nil {
 //				return err
@@ -100,19 +100,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
 //				Name: pulumi.String("snapshot-qcow-import"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			qcow, err := scaleway.NewObjectItem(ctx, "qcow", &scaleway.ObjectItemArgs{
+//			qcow, err := object.NewItem(ctx, "qcow", &object.ItemArgs{
 //				Bucket: bucket.Name,
 //				Key:    pulumi.String("server.qcow2"),
 //				File:   pulumi.String("myqcow.qcow2"),
@@ -120,9 +121,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceSnapshot(ctx, "snapshot", &scaleway.InstanceSnapshotArgs{
+//			_, err = instance.NewSnapshot(ctx, "snapshot", &instance.SnapshotArgs{
 //				Type: pulumi.String("unified"),
-//				Import: &scaleway.InstanceSnapshotImportArgs{
+//				Import: &instance.SnapshotImportArgs{
 //					Bucket: qcow.Bucket,
 //					Key:    qcow.Key,
 //				},
@@ -145,6 +146,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot
 type InstanceSnapshot struct {
 	pulumi.CustomResourceState
 

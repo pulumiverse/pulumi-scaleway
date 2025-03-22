@@ -26,19 +26,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewLoadbalancerIp(ctx, "main", &scaleway.LoadbalancerIpArgs{
+//			main, err := loadbalancers.NewIp(ctx, "main", &loadbalancers.IpArgs{
 //				Zone: pulumi.String("fr-par-1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
+//			_, err = loadbalancers.NewLoadBalancer(ctx, "base", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
 //					main.ID(),
 //				},
@@ -62,13 +62,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancer(ctx, "base", &scaleway.LoadbalancerArgs{
+//			_, err := loadbalancers.NewLoadBalancer(ctx, "base", &loadbalancers.LoadBalancerArgs{
 //				Name:             pulumi.String("private-lb"),
 //				Type:             pulumi.String("LB-S"),
 //				AssignFlexibleIp: pulumi.Bool(false),
@@ -90,23 +90,23 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			v4, err := scaleway.NewLoadbalancerIp(ctx, "v4", nil)
+//			v4, err := loadbalancers.NewIp(ctx, "v4", nil)
 //			if err != nil {
 //				return err
 //			}
-//			v6, err := scaleway.NewLoadbalancerIp(ctx, "v6", &scaleway.LoadbalancerIpArgs{
+//			v6, err := loadbalancers.NewIp(ctx, "v6", &loadbalancers.IpArgs{
 //				IsIpv6: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "main", &scaleway.LoadbalancerArgs{
+//			_, err = loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
 //					v4.ID(),
 //					v6.ID(),
@@ -131,31 +131,33 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			ip01, err := ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Address: pulumi.String("172.16.32.7"),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -163,18 +165,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			v4, err := scaleway.NewLoadbalancerIp(ctx, "v4", nil)
+//			v4, err := loadbalancers.NewIp(ctx, "v4", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
+//			_, err = loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
 //				IpIds: pulumi.StringArray{
 //					v4.ID(),
 //				},
 //				Name: pulumi.String("my-lb"),
 //				Type: pulumi.String("LB-S"),
-//				PrivateNetworks: scaleway.LoadbalancerPrivateNetworkArray{
-//					&scaleway.LoadbalancerPrivateNetworkArgs{
+//				PrivateNetworks: loadbalancers.LoadBalancerPrivateNetworkArray{
+//					&loadbalancers.LoadBalancerPrivateNetworkArgs{
 //						PrivateNetworkId: pn01.ID(),
 //						IpamIds:          ip01.ID(),
 //					},
@@ -207,6 +209,8 @@ import (
 // ```
 //
 // Be aware that you will also need to import the `scaleway_lb_ip` resource.
+//
+// Deprecated: scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer
 type Loadbalancer struct {
 	pulumi.CustomResourceState
 
@@ -226,7 +230,7 @@ type Loadbalancer struct {
 	IpId pulumi.StringOutput `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	//
-	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+	// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
@@ -303,7 +307,7 @@ type loadbalancerState struct {
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	//
-	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+	// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 	IpIds []string `pulumi:"ipIds"`
 	// The Load Balancer public IPv6 address.
 	Ipv6Address *string `pulumi:"ipv6Address"`
@@ -348,7 +352,7 @@ type LoadbalancerState struct {
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
 	//
-	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+	// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 	IpIds pulumi.StringArrayInput
 	// The Load Balancer public IPv6 address.
 	Ipv6Address pulumi.StringPtrInput
@@ -395,7 +399,7 @@ type loadbalancerArgs struct {
 	IpId *string `pulumi:"ipId"`
 	// The List of IP IDs to attach to the Load Balancer.
 	//
-	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+	// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 	IpIds []string `pulumi:"ipIds"`
 	// The name of the Load Balancer.
 	Name *string `pulumi:"name"`
@@ -433,7 +437,7 @@ type LoadbalancerArgs struct {
 	IpId pulumi.StringPtrInput
 	// The List of IP IDs to attach to the Load Balancer.
 	//
-	// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+	// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 	IpIds pulumi.StringArrayInput
 	// The name of the Load Balancer.
 	Name pulumi.StringPtrInput
@@ -573,7 +577,7 @@ func (o LoadbalancerOutput) IpId() pulumi.StringOutput {
 
 // The List of IP IDs to attach to the Load Balancer.
 //
-// > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+// > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
 func (o LoadbalancerOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Loadbalancer) pulumi.StringArrayOutput { return v.IpIds }).(pulumi.StringArrayOutput)
 }

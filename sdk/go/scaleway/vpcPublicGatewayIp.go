@@ -22,19 +22,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", &scaleway.VpcPublicGatewayIpArgs{
+//			main, err := network.NewPublicGatewayIp(ctx, "main", &network.PublicGatewayIpArgs{
 //				Reverse: pulumi.String("tf.example.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "tf_A", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "tf_A", &domain.RecordArgs{
 //				DnsZone:  pulumi.String("example.com"),
 //				Name:     pulumi.String("tf"),
 //				Type:     pulumi.String("A"),
@@ -60,6 +61,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp
 type VpcPublicGatewayIp struct {
 	pulumi.CustomResourceState
 

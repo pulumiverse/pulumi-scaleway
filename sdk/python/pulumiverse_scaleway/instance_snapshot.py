@@ -318,7 +318,12 @@ class _InstanceSnapshotState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot""", DeprecationWarning)
+
+
 class InstanceSnapshot(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -342,7 +347,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSnapshot("main",
+        main = scaleway.instance.Snapshot("main",
             name="some-snapshot-name",
             volume_id="11111111-1111-1111-1111-111111111111")
         ```
@@ -353,10 +358,10 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceVolume("main",
+        main = scaleway.instance.Volume("main",
             type="l_ssd",
             size_in_gb=10)
-        main_instance_server = scaleway.InstanceServer("main",
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             root_volume={
@@ -364,10 +369,10 @@ class InstanceSnapshot(pulumi.CustomResource):
                 "volume_type": "l_ssd",
             },
             additional_volume_ids=[main.id])
-        main_instance_snapshot = scaleway.InstanceSnapshot("main",
+        main_snapshot = scaleway.instance.Snapshot("main",
             volume_id=main.id,
             type="unified",
-            opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
+            opts = pulumi.ResourceOptions(depends_on=[main_server]))
         ```
 
         ### Example importing a local qcow2 file
@@ -376,12 +381,12 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        bucket = scaleway.ObjectBucket("bucket", name="snapshot-qcow-import")
-        qcow = scaleway.ObjectItem("qcow",
+        bucket = scaleway.object.Bucket("bucket", name="snapshot-qcow-import")
+        qcow = scaleway.object.Item("qcow",
             bucket=bucket.name,
             key="server.qcow2",
             file="myqcow.qcow2")
-        snapshot = scaleway.InstanceSnapshot("snapshot",
+        snapshot = scaleway.instance.Snapshot("snapshot",
             type="unified",
             import_={
                 "bucket": qcow.bucket,
@@ -429,7 +434,7 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceSnapshot("main",
+        main = scaleway.instance.Snapshot("main",
             name="some-snapshot-name",
             volume_id="11111111-1111-1111-1111-111111111111")
         ```
@@ -440,10 +445,10 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.InstanceVolume("main",
+        main = scaleway.instance.Volume("main",
             type="l_ssd",
             size_in_gb=10)
-        main_instance_server = scaleway.InstanceServer("main",
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             root_volume={
@@ -451,10 +456,10 @@ class InstanceSnapshot(pulumi.CustomResource):
                 "volume_type": "l_ssd",
             },
             additional_volume_ids=[main.id])
-        main_instance_snapshot = scaleway.InstanceSnapshot("main",
+        main_snapshot = scaleway.instance.Snapshot("main",
             volume_id=main.id,
             type="unified",
-            opts = pulumi.ResourceOptions(depends_on=[main_instance_server]))
+            opts = pulumi.ResourceOptions(depends_on=[main_server]))
         ```
 
         ### Example importing a local qcow2 file
@@ -463,12 +468,12 @@ class InstanceSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        bucket = scaleway.ObjectBucket("bucket", name="snapshot-qcow-import")
-        qcow = scaleway.ObjectItem("qcow",
+        bucket = scaleway.object.Bucket("bucket", name="snapshot-qcow-import")
+        qcow = scaleway.object.Item("qcow",
             bucket=bucket.name,
             key="server.qcow2",
             file="myqcow.qcow2")
-        snapshot = scaleway.InstanceSnapshot("snapshot",
+        snapshot = scaleway.instance.Snapshot("snapshot",
             type="unified",
             import_={
                 "bucket": qcow.bucket,
@@ -509,6 +514,7 @@ class InstanceSnapshot(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceSnapshot is deprecated: scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -232,7 +232,12 @@ class _RegistryNamespaceState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/registrynamespace.RegistryNamespace has been deprecated in favor of scaleway.registry/namespace.Namespace""", DeprecationWarning)
+
+
 class RegistryNamespace(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/registrynamespace.RegistryNamespace has been deprecated in favor of scaleway.registry/namespace.Namespace""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -255,7 +260,7 @@ class RegistryNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RegistryNamespace("main",
+        main = scaleway.registry.Namespace("main",
             name="main-cr",
             description="Main container registry",
             is_public=False)
@@ -299,7 +304,7 @@ class RegistryNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RegistryNamespace("main",
+        main = scaleway.registry.Namespace("main",
             name="main-cr",
             description="Main container registry",
             is_public=False)
@@ -336,6 +341,7 @@ class RegistryNamespace(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""RegistryNamespace is deprecated: scaleway.index/registrynamespace.RegistryNamespace has been deprecated in favor of scaleway.registry/namespace.Namespace""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

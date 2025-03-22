@@ -288,7 +288,12 @@ class _IamGroupState:
         pulumi.set(self, "user_ids", value)
 
 
+warnings.warn("""scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group""", DeprecationWarning)
+
+
 class IamGroup(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -313,7 +318,7 @@ class IamGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.IamGroup("basic",
+        basic = scaleway.iam.Group("basic",
             name="iam_group_basic",
             description="basic description",
             application_ids=[],
@@ -326,8 +331,8 @@ class IamGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app")
-        with_app = scaleway.IamGroup("with_app",
+        app = scaleway.iam.Application("app")
+        with_app = scaleway.iam.Group("with_app",
             name="iam_group_with_app",
             application_ids=[app.id],
             user_ids=[])
@@ -371,7 +376,7 @@ class IamGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.IamGroup("basic",
+        basic = scaleway.iam.Group("basic",
             name="iam_group_basic",
             description="basic description",
             application_ids=[],
@@ -384,8 +389,8 @@ class IamGroup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.IamApplication("app")
-        with_app = scaleway.IamGroup("with_app",
+        app = scaleway.iam.Application("app")
+        with_app = scaleway.iam.Group("with_app",
             name="iam_group_with_app",
             application_ids=[app.id],
             user_ids=[])
@@ -424,6 +429,7 @@ class IamGroup(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamGroup is deprecated: scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

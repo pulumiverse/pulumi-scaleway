@@ -21,12 +21,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
+    ///     var someBucket = new Scaleway.Object.Bucket("some_bucket", new()
     ///     {
     ///         Name = "unique-name",
     ///     });
     /// 
-    ///     var main = new Scaleway.ObjectBucketAcl("main", new()
+    ///     var main = new Scaleway.Object.BucketAcl("main", new()
     ///     {
     ///         Bucket = mainScalewayObjectBucket.Id,
     ///         Acl = "private",
@@ -47,30 +47,30 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ObjectBucket("main", new()
+    ///     var main = new Scaleway.Object.Bucket("main", new()
     ///     {
     ///         Name = "your-bucket",
     ///     });
     /// 
-    ///     var mainObjectBucketAcl = new Scaleway.ObjectBucketAcl("main", new()
+    ///     var mainBucketAcl = new Scaleway.Object.BucketAcl("main", new()
     ///     {
     ///         Bucket = main.Id,
-    ///         AccessControlPolicy = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyArgs
+    ///         AccessControlPolicy = new Scaleway.Object.Inputs.BucketAclAccessControlPolicyArgs
     ///         {
     ///             Grants = new[]
     ///             {
-    ///                 new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyGrantArgs
+    ///                 new Scaleway.Object.Inputs.BucketAclAccessControlPolicyGrantArgs
     ///                 {
-    ///                     Grantee = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyGrantGranteeArgs
+    ///                     Grantee = new Scaleway.Object.Inputs.BucketAclAccessControlPolicyGrantGranteeArgs
     ///                     {
     ///                         Id = "&lt;project-id&gt;:&lt;project-id&gt;",
     ///                         Type = "CanonicalUser",
     ///                     },
     ///                     Permission = "FULL_CONTROL",
     ///                 },
-    ///                 new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyGrantArgs
+    ///                 new Scaleway.Object.Inputs.BucketAclAccessControlPolicyGrantArgs
     ///                 {
-    ///                     Grantee = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyGrantGranteeArgs
+    ///                     Grantee = new Scaleway.Object.Inputs.BucketAclAccessControlPolicyGrantGranteeArgs
     ///                     {
     ///                         Id = "&lt;project-id&gt;",
     ///                         Type = "CanonicalUser",
@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
     ///                     Permission = "WRITE",
     ///                 },
     ///             },
-    ///             Owner = new Scaleway.Inputs.ObjectBucketAclAccessControlPolicyOwnerArgs
+    ///             Owner = new Scaleway.Object.Inputs.BucketAclAccessControlPolicyOwnerArgs
     ///             {
     ///                 Id = "&lt;project-id&gt;",
     ///             },
@@ -148,6 +148,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl")]
     [ScalewayResourceType("scaleway:index/objectBucketAcl:ObjectBucketAcl")]
     public partial class ObjectBucketAcl : global::Pulumi.CustomResource
     {

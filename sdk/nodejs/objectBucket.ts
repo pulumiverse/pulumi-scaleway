@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+ * The `scaleway.object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information on Object Storage buckets.
  *
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("some_bucket", {
+ * const someBucket = new scaleway.object.Bucket("some_bucket", {
  *     name: "some-unique-name",
  *     tags: {
  *         key: "value",
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("some_bucket", {
+ * const someBucket = new scaleway.object.Bucket("some_bucket", {
  *     name: "some-unique-name",
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "mybuckectid",
  *     region: "fr-par",
  *     lifecycleRules: [
@@ -117,6 +117,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket
  */
 export class ObjectBucket extends pulumi.CustomResource {
     /**
@@ -129,6 +131,7 @@ export class ObjectBucket extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectBucketState, opts?: pulumi.CustomResourceOptions): ObjectBucket {
+        pulumi.log.warn("ObjectBucket is deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket")
         return new ObjectBucket(name, <any>state, { ...opts, id: id });
     }
 
@@ -149,9 +152,9 @@ export class ObjectBucket extends pulumi.CustomResource {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
     public readonly acl!: pulumi.Output<string | undefined>;
     /**
@@ -206,8 +209,11 @@ export class ObjectBucket extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket */
     constructor(name: string, args?: ObjectBucketArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket */
     constructor(name: string, argsOrState?: ObjectBucketArgs | ObjectBucketState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectBucket is deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -251,9 +257,9 @@ export interface ObjectBucketState {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -309,9 +315,9 @@ export interface ObjectBucketArgs {
     /**
      * (Deprecated) The canned ACL you want to apply to the bucket.
      *
-     * > **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+     * > **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
      *
-     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.ObjectBucketAcl instead.
+     * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
     acl?: pulumi.Input<string>;
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;

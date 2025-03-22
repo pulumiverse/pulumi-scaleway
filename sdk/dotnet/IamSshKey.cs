@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IamSshKey("main", new()
+    ///     var main = new Scaleway.Iam.SshKey("main", new()
     ///     {
     ///         Name = "main",
     ///         PublicKey = "&lt;YOUR-PUBLIC-SSH-KEY&gt;",
@@ -43,6 +43,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamSshKey:IamSshKey main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey")]
     [ScalewayResourceType("scaleway:index/iamSshKey:IamSshKey")]
     public partial class IamSshKey : global::Pulumi.CustomResource
     {

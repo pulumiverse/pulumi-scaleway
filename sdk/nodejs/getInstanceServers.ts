@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  */
+/** @deprecated scaleway.index/getinstanceservers.getInstanceServers has been deprecated in favor of scaleway.instance/getservers.getServers */
 export function getInstanceServers(args?: GetInstanceServersArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceServersResult> {
+    pulumi.log.warn("getInstanceServers is deprecated: scaleway.index/getinstanceservers.getInstanceServers has been deprecated in favor of scaleway.instance/getservers.getServers")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceServers:getInstanceServers", {
@@ -82,7 +84,9 @@ export interface GetInstanceServersResult {
  *
  * ## Examples
  */
+/** @deprecated scaleway.index/getinstanceservers.getInstanceServers has been deprecated in favor of scaleway.instance/getservers.getServers */
 export function getInstanceServersOutput(args?: GetInstanceServersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceServersResult> {
+    pulumi.log.warn("getInstanceServers is deprecated: scaleway.index/getinstanceservers.getInstanceServers has been deprecated in favor of scaleway.instance/getservers.getServers")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceServers:getInstanceServers", {

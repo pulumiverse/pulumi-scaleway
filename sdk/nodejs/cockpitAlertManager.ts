@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+ * The `scaleway.observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -25,8 +25,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {name: "tf_test_project"});
- * const alertManager = new scaleway.CockpitAlertManager("alert_manager", {
+ * const project = new scaleway.account.Project("project", {name: "tf_test_project"});
+ * const alertManager = new scaleway.observability.AlertManager("alert_manager", {
  *     projectId: project.id,
  *     enableManagedAlerts: true,
  *     contactPoints: [
@@ -49,6 +49,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager
  */
 export class CockpitAlertManager extends pulumi.CustomResource {
     /**
@@ -61,6 +63,7 @@ export class CockpitAlertManager extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CockpitAlertManagerState, opts?: pulumi.CustomResourceOptions): CockpitAlertManager {
+        pulumi.log.warn("CockpitAlertManager is deprecated: scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager")
         return new CockpitAlertManager(name, <any>state, { ...opts, id: id });
     }
 
@@ -106,8 +109,11 @@ export class CockpitAlertManager extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager */
     constructor(name: string, args?: CockpitAlertManagerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager */
     constructor(name: string, argsOrState?: CockpitAlertManagerArgs | CockpitAlertManagerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CockpitAlertManager is deprecated: scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

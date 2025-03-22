@@ -22,6 +22,8 @@ __all__ = [
     'get_web_host_offer_output',
 ]
 
+warnings.warn("""scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetWebHostOfferResult:
     """
@@ -153,10 +155,10 @@ def get_web_host_offer(control_panel: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by offer name
-    by_name = scaleway.get_web_host_offer(name="performance",
+    by_name = scaleway.hosting.get_offer(name="performance",
         control_panel="Cpanel")
     # Get info by offer id
-    by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
+    by_id = scaleway.hosting.get_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 
@@ -165,6 +167,7 @@ def get_web_host_offer(control_panel: Optional[str] = None,
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param str region: `region`) The region in which offer exists.
     """
+    pulumi.log.warn("""get_web_host_offer is deprecated: scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer""")
     __args__ = dict()
     __args__['controlPanel'] = control_panel
     __args__['name'] = name
@@ -198,10 +201,10 @@ def get_web_host_offer_output(control_panel: Optional[pulumi.Input[Optional[str]
     import pulumi_scaleway as scaleway
 
     # Get info by offer name
-    by_name = scaleway.get_web_host_offer(name="performance",
+    by_name = scaleway.hosting.get_offer(name="performance",
         control_panel="Cpanel")
     # Get info by offer id
-    by_id = scaleway.get_web_host_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
+    by_id = scaleway.hosting.get_offer(offer_id="de2426b4-a9e9-11ec-b909-0242ac120002")
     ```
 
 
@@ -210,6 +213,7 @@ def get_web_host_offer_output(control_panel: Optional[pulumi.Input[Optional[str]
     :param str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param str region: `region`) The region in which offer exists.
     """
+    pulumi.log.warn("""get_web_host_offer is deprecated: scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer""")
     __args__ = dict()
     __args__['controlPanel'] = control_panel
     __args__['name'] = name

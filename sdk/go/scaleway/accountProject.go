@@ -20,6 +20,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project
 type AccountProject struct {
 	pulumi.CustomResourceState
 

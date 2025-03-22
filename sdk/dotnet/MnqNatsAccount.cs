@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqNatsAccount("main", new()
+    ///     var main = new Scaleway.Mnq.NatsAccount("main", new()
     ///     {
     ///         Name = "nats-account",
     ///     });
@@ -46,6 +46,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount")]
     [ScalewayResourceType("scaleway:index/mnqNatsAccount:MnqNatsAccount")]
     public partial class MnqNatsAccount : global::Pulumi.CustomResource
     {

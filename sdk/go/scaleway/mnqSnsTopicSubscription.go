@@ -26,20 +26,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// For default project in default region
-//			main, err := scaleway.NewMnqSns(ctx, "main", nil)
+//			main, err := mnq.NewSns(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainMnqSnsCredentials, err := scaleway.NewMnqSnsCredentials(ctx, "main", &scaleway.MnqSnsCredentialsArgs{
+//			mainSnsCredentials, err := mnq.NewSnsCredentials(ctx, "main", &mnq.SnsCredentialsArgs{
 //				ProjectId: main.ProjectId,
-//				Permissions: &scaleway.MnqSnsCredentialsPermissionsArgs{
+//				Permissions: &mnq.SnsCredentialsPermissionsArgs{
 //					CanManage:  pulumi.Bool(true),
 //					CanPublish: pulumi.Bool(true),
 //					CanReceive: pulumi.Bool(true),
@@ -48,19 +48,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			topic, err := scaleway.NewMnqSnsTopic(ctx, "topic", &scaleway.MnqSnsTopicArgs{
+//			topic, err := mnq.NewSnsTopic(ctx, "topic", &mnq.SnsTopicArgs{
 //				ProjectId: main.ProjectId,
 //				Name:      pulumi.String("my-topic"),
-//				AccessKey: mainMnqSnsCredentials.AccessKey,
-//				SecretKey: mainMnqSnsCredentials.SecretKey,
+//				AccessKey: mainSnsCredentials.AccessKey,
+//				SecretKey: mainSnsCredentials.SecretKey,
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSnsTopicSubscription(ctx, "main", &scaleway.MnqSnsTopicSubscriptionArgs{
+//			_, err = mnq.NewSnsTopicSubscription(ctx, "main", &mnq.SnsTopicSubscriptionArgs{
 //				ProjectId: main.ProjectId,
-//				AccessKey: mainMnqSnsCredentials.AccessKey,
-//				SecretKey: mainMnqSnsCredentials.SecretKey,
+//				AccessKey: mainSnsCredentials.AccessKey,
+//				SecretKey: mainSnsCredentials.SecretKey,
 //				TopicId:   topic.ID(),
 //				Protocol:  pulumi.String("http"),
 //				Endpoint:  pulumi.String("http://example.com"),
@@ -83,6 +83,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription
 type MnqSnsTopicSubscription struct {
 	pulumi.CustomResourceState
 

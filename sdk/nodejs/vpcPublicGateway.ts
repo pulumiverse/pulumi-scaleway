@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGateway("main", {
+ * const main = new scaleway.network.PublicGateway("main", {
  *     name: "public_gateway_demo",
  *     type: "VPC-GW-S",
  *     tags: [
@@ -35,6 +35,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway
  */
 export class VpcPublicGateway extends pulumi.CustomResource {
     /**
@@ -47,6 +49,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayState, opts?: pulumi.CustomResourceOptions): VpcPublicGateway {
+        pulumi.log.warn("VpcPublicGateway is deprecated: scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway")
         return new VpcPublicGateway(name, <any>state, { ...opts, id: id });
     }
 
@@ -132,8 +135,11 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway */
     constructor(name: string, args: VpcPublicGatewayArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway */
     constructor(name: string, argsOrState?: VpcPublicGatewayArgs | VpcPublicGatewayState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPublicGateway is deprecated: scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

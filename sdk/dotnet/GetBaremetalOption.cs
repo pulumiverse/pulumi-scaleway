@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption")]
     public static class GetBaremetalOption
     {
         /// <summary>
@@ -27,13 +28,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by option name
-        ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
         ///     });
         /// 
         ///     // Get info by option id
-        ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",
         ///     });
@@ -59,13 +60,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by option name
-        ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
         ///     });
         /// 
         ///     // Get info by option id
-        ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",
         ///     });
@@ -91,13 +92,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by option name
-        ///     var byName = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         Name = "Remote Access",
         ///     });
         /// 
         ///     // Get info by option id
-        ///     var byId = Scaleway.GetBaremetalOption.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOption.Invoke(new()
         ///     {
         ///         OptionId = "931df052-d713-4674-8b58-96a63244c8e2",
         ///     });

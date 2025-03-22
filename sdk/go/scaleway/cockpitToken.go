@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+// The `observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 //
 // Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
@@ -32,19 +32,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
 //				Name: pulumi.String("my-project"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
+//			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
 //				ProjectId: project.ID(),
 //				Name:      pulumi.String("my-awesome-token"),
 //			})
@@ -63,23 +64,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
 //				Name: pulumi.String("my-project"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Create a token that can read metrics and logs but not write
-//			_, err = scaleway.NewCockpitToken(ctx, "main", &scaleway.CockpitTokenArgs{
+//			_, err = observability.NewToken(ctx, "main", &observability.TokenArgs{
 //				ProjectId: project.ID(),
 //				Name:      pulumi.String("my-awesome-token"),
-//				Scopes: &scaleway.CockpitTokenScopesArgs{
+//				Scopes: &observability.TokenScopesArgs{
 //					QueryMetrics: pulumi.Bool(true),
 //					WriteMetrics: pulumi.Bool(false),
 //					QueryLogs:    pulumi.Bool(true),
@@ -104,6 +106,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token
 type CockpitToken struct {
 	pulumi.CustomResourceState
 

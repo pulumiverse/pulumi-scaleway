@@ -354,7 +354,12 @@ class _MnqSnsTopicState:
         pulumi.set(self, "sns_endpoint", value)
 
 
+warnings.warn("""scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic""", DeprecationWarning)
+
+
 class MnqSnsTopic(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -382,17 +387,17 @@ class MnqSnsTopic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSns("main")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+        main = scaleway.mnq.Sns("main")
+        main_sns_credentials = scaleway.mnq.SnsCredentials("main",
             project_id=main.project_id,
             permissions={
                 "can_manage": True,
             })
-        topic = scaleway.MnqSnsTopic("topic",
+        topic = scaleway.mnq.SnsTopic("topic",
             project_id=main.project_id,
             name="my-topic",
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key)
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key)
         ```
 
         ## Import
@@ -437,17 +442,17 @@ class MnqSnsTopic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSns("main")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+        main = scaleway.mnq.Sns("main")
+        main_sns_credentials = scaleway.mnq.SnsCredentials("main",
             project_id=main.project_id,
             permissions={
                 "can_manage": True,
             })
-        topic = scaleway.MnqSnsTopic("topic",
+        topic = scaleway.mnq.SnsTopic("topic",
             project_id=main.project_id,
             name="my-topic",
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key)
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key)
         ```
 
         ## Import
@@ -485,6 +490,7 @@ class MnqSnsTopic(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  sns_endpoint: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSnsTopic is deprecated: scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

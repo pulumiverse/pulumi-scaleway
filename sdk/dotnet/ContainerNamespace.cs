@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ContainerNamespace` resource allows you to
+    /// The `scaleway.containers.Namespace` resource allows you to
     /// for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerNamespace("main", new()
+    ///     var main = new Scaleway.Containers.Namespace("main", new()
     ///     {
     ///         Name = "main-container-namespace",
     ///         Description = "Main container namespace",
@@ -45,6 +45,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace")]
     [ScalewayResourceType("scaleway:index/containerNamespace:ContainerNamespace")]
     public partial class ContainerNamespace : global::Pulumi.CustomResource
     {

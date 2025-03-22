@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool")]
     [ScalewayResourceType("scaleway:index/kubernetesNodePool:KubernetesNodePool")]
     public partial class KubernetesNodePool : global::Pulumi.CustomResource
     {

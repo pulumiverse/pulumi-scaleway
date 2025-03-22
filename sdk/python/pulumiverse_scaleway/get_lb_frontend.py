@@ -22,6 +22,8 @@ __all__ = [
     'get_lb_frontend_output',
 ]
 
+warnings.warn("""scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbFrontendResult:
     """
@@ -165,22 +167,22 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    ip01 = scaleway.LoadbalancerIp("ip01")
-    lb01 = scaleway.Loadbalancer("lb01",
+    ip01 = scaleway.loadbalancers.Ip("ip01")
+    lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
         ip_id=ip01.id,
         name="test-lb",
         type="lb-s")
-    bkd01 = scaleway.LoadbalancerBackend("bkd01",
+    bkd01 = scaleway.loadbalancers.Backend("bkd01",
         lb_id=lb01.id,
         forward_protocol="tcp",
         forward_port=80,
         proxy_protocol="none")
-    frt01 = scaleway.LoadbalancerFrontend("frt01",
+    frt01 = scaleway.loadbalancers.Frontend("frt01",
         lb_id=lb01.id,
         backend_id=bkd01.id,
         inbound_port=80)
-    by_id = scaleway.get_lb_frontend_output(frontend_id=frt01.id)
-    by_name = scaleway.get_lb_frontend_output(name=frt01.name,
+    by_id = scaleway.loadbalancers.get_frontend_output(frontend_id=frt01.id)
+    by_name = scaleway.loadbalancers.get_frontend_output(name=frt01.name,
         lb_id=lb01.id)
     ```
 
@@ -191,6 +193,7 @@ def get_lb_frontend(frontend_id: Optional[str] = None,
     :param str name: The name of the frontend.
            - When using the `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_lb_frontend is deprecated: scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['lbId'] = lb_id
@@ -227,22 +230,22 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    ip01 = scaleway.LoadbalancerIp("ip01")
-    lb01 = scaleway.Loadbalancer("lb01",
+    ip01 = scaleway.loadbalancers.Ip("ip01")
+    lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
         ip_id=ip01.id,
         name="test-lb",
         type="lb-s")
-    bkd01 = scaleway.LoadbalancerBackend("bkd01",
+    bkd01 = scaleway.loadbalancers.Backend("bkd01",
         lb_id=lb01.id,
         forward_protocol="tcp",
         forward_port=80,
         proxy_protocol="none")
-    frt01 = scaleway.LoadbalancerFrontend("frt01",
+    frt01 = scaleway.loadbalancers.Frontend("frt01",
         lb_id=lb01.id,
         backend_id=bkd01.id,
         inbound_port=80)
-    by_id = scaleway.get_lb_frontend_output(frontend_id=frt01.id)
-    by_name = scaleway.get_lb_frontend_output(name=frt01.name,
+    by_id = scaleway.loadbalancers.get_frontend_output(frontend_id=frt01.id)
+    by_name = scaleway.loadbalancers.get_frontend_output(name=frt01.name,
         lb_id=lb01.id)
     ```
 
@@ -253,6 +256,7 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = 
     :param str name: The name of the frontend.
            - When using the `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_lb_frontend is deprecated: scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['lbId'] = lb_id

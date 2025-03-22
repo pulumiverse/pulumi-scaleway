@@ -23,21 +23,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Find backends that share the same LB ID
-//			_, err := scaleway.GetLbBackends(ctx, &scaleway.GetLbBackendsArgs{
+//			_, err := loadbalancers.GetBackends(ctx, &loadbalancers.GetBackendsArgs{
 //				LbId: lb01.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Find backends by LB ID and name
-//			_, err = scaleway.GetLbBackends(ctx, &scaleway.GetLbBackendsArgs{
+//			_, err = loadbalancers.GetBackends(ctx, &loadbalancers.GetBackendsArgs{
 //				LbId: lb01.Id,
 //				Name: pulumi.StringRef("tf-backend-datasource"),
 //			}, nil)
@@ -49,6 +49,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getlbbackends.getLbBackends has been deprecated in favor of scaleway.loadbalancers/getbackends.getBackends
 func GetLbBackends(ctx *pulumi.Context, args *GetLbBackendsArgs, opts ...pulumi.InvokeOption) (*GetLbBackendsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbBackendsResult

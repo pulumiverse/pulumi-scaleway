@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//			_, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
 //				ServerId:         pulumi.String("fr-par-1/11111111-1111-1111-1111-111111111111"),
 //				PrivateNetworkId: pulumi.String("fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"),
 //			})
@@ -52,20 +52,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name:   pulumi.String("private_network_instance"),
 //				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			base, err := scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
+//			base, err := instance.NewServer(ctx, "base", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				Zone:  pn01.Zone,
@@ -73,7 +74,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
 //				ServerId:         base.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				Zone:             pn01.Zone,
@@ -95,21 +96,23 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("vpc_instance"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("private_network_instance"),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
 //				VpcId: vpc01.ID(),
@@ -117,10 +120,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			ip01, err := ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Address: pulumi.String("172.16.64.7"),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -128,14 +131,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			server01, err := scaleway.NewInstanceServer(ctx, "server01", &scaleway.InstanceServerArgs{
+//			server01, err := instance.NewServer(ctx, "server01", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_focal"),
 //				Type:  pulumi.String("PLAY2-MICRO"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//			_, err = instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
 //				PrivateNetworkId: pn01.ID(),
 //				ServerId:         server01.ID(),
 //				IpamIpIds: pulumi.StringArray{
@@ -160,6 +163,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
 // ```
+//
+// Deprecated: scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic
 type InstancePrivateNic struct {
 	pulumi.CustomResourceState
 

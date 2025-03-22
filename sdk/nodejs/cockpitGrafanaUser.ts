@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+ * The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {name: "test project grafana user"});
- * const main = new scaleway.CockpitGrafanaUser("main", {
+ * const project = new scaleway.account.Project("project", {name: "test project grafana user"});
+ * const main = new scaleway.observability.GrafanaUser("main", {
  *     projectId: project.id,
  *     login: "my-awesome-user",
  *     role: "editor",
@@ -36,6 +36,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
  * ```
+ *
+ * @deprecated scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser
  */
 export class CockpitGrafanaUser extends pulumi.CustomResource {
     /**
@@ -48,6 +50,7 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CockpitGrafanaUserState, opts?: pulumi.CustomResourceOptions): CockpitGrafanaUser {
+        pulumi.log.warn("CockpitGrafanaUser is deprecated: scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser")
         return new CockpitGrafanaUser(name, <any>state, { ...opts, id: id });
     }
 
@@ -93,8 +96,11 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser */
     constructor(name: string, args: CockpitGrafanaUserArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser */
     constructor(name: string, argsOrState?: CockpitGrafanaUserArgs | CockpitGrafanaUserState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CockpitGrafanaUser is deprecated: scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

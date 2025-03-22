@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret")]
     [ScalewayResourceType("scaleway:index/secret:Secret")]
     public partial class Secret : global::Pulumi.CustomResource
     {

@@ -21,6 +21,8 @@ __all__ = [
     'get_database_backup_output',
 ]
 
+warnings.warn("""scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDatabaseBackupResult:
     """
@@ -163,10 +165,10 @@ def get_database_backup(backup_id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    find_by_name = scaleway.get_database_backup(name="mybackup")
-    find_by_name_and_instance = scaleway.get_database_backup(name="mybackup",
+    find_by_name = scaleway.databases.get_database_backup(name="mybackup")
+    find_by_name_and_instance = scaleway.databases.get_database_backup(name="mybackup",
         instance_id="11111111-1111-1111-1111-111111111111")
-    find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.databases.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -178,6 +180,7 @@ def get_database_backup(backup_id: Optional[str] = None,
     :param str project_id: The ID of the project the Database Backup is associated with.
     :param str region: `region`) The region in which the Database Backup is associated with.
     """
+    pulumi.log.warn("""get_database_backup is deprecated: scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup""")
     __args__ = dict()
     __args__['backupId'] = backup_id
     __args__['instanceId'] = instance_id
@@ -215,10 +218,10 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     import pulumi
     import pulumi_scaleway as scaleway
 
-    find_by_name = scaleway.get_database_backup(name="mybackup")
-    find_by_name_and_instance = scaleway.get_database_backup(name="mybackup",
+    find_by_name = scaleway.databases.get_database_backup(name="mybackup")
+    find_by_name_and_instance = scaleway.databases.get_database_backup(name="mybackup",
         instance_id="11111111-1111-1111-1111-111111111111")
-    find_by_id = scaleway.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.databases.get_database_backup(backup_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -230,6 +233,7 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[str]]] 
     :param str project_id: The ID of the project the Database Backup is associated with.
     :param str region: `region`) The region in which the Database Backup is associated with.
     """
+    pulumi.log.warn("""get_database_backup is deprecated: scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup""")
     __args__ = dict()
     __args__['backupId'] = backup_id
     __args__['instanceId'] = instance_id

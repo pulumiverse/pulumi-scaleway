@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:             pulumi.String("test-rdb"),
 //				NodeType:         pulumi.String("DB-DEV-S"),
 //				Engine:           pulumi.String("PostgreSQL-15"),
@@ -58,13 +58,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:           pulumi.String("test-rdb-sbs"),
 //				NodeType:       pulumi.String("db-play2-pico"),
 //				Engine:         pulumi.String("PostgreSQL-15"),
@@ -92,13 +92,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				DisableBackup: pulumi.Bool(true),
@@ -129,13 +129,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:                    pulumi.String("test-rdb"),
 //				NodeType:                pulumi.String("DB-DEV-S"),
 //				Engine:                  pulumi.String("PostgreSQL-15"),
@@ -167,24 +167,25 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", &scaleway.VpcPrivateNetworkArgs{
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.20.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err = databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				NodeType: pulumi.String("db-dev-s"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
-//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
+//				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
 //					PnId:  pn.ID(),
 //					IpNet: pulumi.String("172.16.20.4/22"),
 //				},
@@ -206,23 +207,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
-//				LoadBalancers: scaleway.DatabaseInstanceLoadBalancerArray{
-//					&scaleway.DatabaseInstanceLoadBalancerArgs{},
+//			_, err = databases.NewInstance(ctx, "main", &databases.InstanceArgs{
+//				LoadBalancers: databases.InstanceLoadBalancerArray{
+//					&databases.InstanceLoadBalancerArgs{},
 //				},
 //				NodeType: pulumi.String("DB-DEV-S"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
-//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
+//				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
 //					PnId:       pn.ID(),
 //					EnableIpam: pulumi.Bool(true),
 //				},
@@ -244,13 +246,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				NodeType: pulumi.String("db-dev-s"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
 //			})
@@ -280,6 +282,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance
 type DatabaseInstance struct {
 	pulumi.CustomResourceState
 

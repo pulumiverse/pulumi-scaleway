@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMongoDbSnapshot(ctx, "main", &scaleway.MongoDbSnapshotArgs{
+//			_, err := mongodb.NewSnapshot(ctx, "main", &mongodb.SnapshotArgs{
 //				InstanceId: pulumi.Any(mainScalewayMongodbInstance.Id),
 //				Name:       pulumi.String("name-snapshot"),
 //				ExpiresAt:  pulumi.String("2024-12-31T23:59:59Z"),
@@ -52,6 +52,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot
 type MongoDbSnapshot struct {
 	pulumi.CustomResourceState
 

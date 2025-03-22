@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp")]
     public static class GetFlexibleIp
     {
         /// <summary>

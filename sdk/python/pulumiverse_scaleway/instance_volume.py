@@ -319,7 +319,12 @@ class _InstanceVolumeState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume""", DeprecationWarning)
+
+
 class InstanceVolume(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -343,7 +348,7 @@ class InstanceVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_volume = scaleway.InstanceVolume("server_volume",
+        server_volume = scaleway.instance.Volume("server_volume",
             type="l_ssd",
             name="some-volume-name",
             size_in_gb=20)
@@ -386,7 +391,7 @@ class InstanceVolume(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server_volume = scaleway.InstanceVolume("server_volume",
+        server_volume = scaleway.instance.Volume("server_volume",
             type="l_ssd",
             name="some-volume-name",
             size_in_gb=20)
@@ -426,6 +431,7 @@ class InstanceVolume(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceVolume is deprecated: scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

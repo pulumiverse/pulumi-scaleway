@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+// The `containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 //
@@ -26,16 +26,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
+//			_, err := containers.NewTrigger(ctx, "main", &containers.TriggerArgs{
 //				ContainerId: pulumi.Any(mainScalewayContainer.Id),
 //				Name:        pulumi.String("my-trigger"),
-//				Sqs: &scaleway.ContainerTriggerSqsArgs{
+//				Sqs: &containers.TriggerSqsArgs{
 //					ProjectId: pulumi.Any(mainScalewayMnqSqs.ProjectId),
 //					Queue:     pulumi.String("MyQueue"),
 //					Region:    pulumi.Any(mainScalewayMnqSqs.Region),
@@ -58,16 +58,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewContainerTrigger(ctx, "main", &scaleway.ContainerTriggerArgs{
+//			_, err := containers.NewTrigger(ctx, "main", &containers.TriggerArgs{
 //				ContainerId: pulumi.Any(mainScalewayContainer.Id),
 //				Name:        pulumi.String("my-trigger"),
-//				Nats: &scaleway.ContainerTriggerNatsArgs{
+//				Nats: &containers.TriggerNatsArgs{
 //					AccountId: pulumi.Any(mainScalewayMnqNatsAccount.Id),
 //					Subject:   pulumi.String("MySubject"),
 //					Region:    pulumi.Any(mainScalewayMnqNatsAccount.Region),
@@ -91,6 +91,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger
 type ContainerTrigger struct {
 	pulumi.CustomResourceState
 

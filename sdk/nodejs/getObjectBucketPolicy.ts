@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+ * The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
  *
  * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
  *
@@ -17,12 +17,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = scaleway.getObjectBucketPolicy({
+ * const main = scaleway.object.getBucketPolicy({
  *     bucket: "bucket.test.com",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy */
 export function getObjectBucketPolicy(args: GetObjectBucketPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketPolicyResult> {
+    pulumi.log.warn("getObjectBucketPolicy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", {
         "bucket": args.bucket,
@@ -63,7 +65,7 @@ export interface GetObjectBucketPolicyResult {
     readonly region?: string;
 }
 /**
- * The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+ * The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
  *
  * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
  *
@@ -75,12 +77,14 @@ export interface GetObjectBucketPolicyResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const main = scaleway.getObjectBucketPolicy({
+ * const main = scaleway.object.getBucketPolicy({
  *     bucket: "bucket.test.com",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy */
 export function getObjectBucketPolicyOutput(args: GetObjectBucketPolicyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectBucketPolicyResult> {
+    pulumi.log.warn("getObjectBucketPolicy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", {
         "bucket": args.bucket,

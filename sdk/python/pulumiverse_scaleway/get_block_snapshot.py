@@ -21,6 +21,8 @@ __all__ = [
     'get_block_snapshot_output',
 ]
 
+warnings.warn("""scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBlockSnapshotResult:
     """
@@ -110,7 +112,7 @@ def get_block_snapshot(name: Optional[str] = None,
                        zone: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockSnapshotResult:
     """
-    The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+    The `block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 
     Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -121,6 +123,7 @@ def get_block_snapshot(name: Optional[str] = None,
     :param str volume_id: The unique identifier of the volume from which the snapshot was created.
     :param str zone: ) The zone in which the snapshot exists.
     """
+    pulumi.log.warn("""get_block_snapshot is deprecated: scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -145,7 +148,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
                               zone: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlockSnapshotResult]:
     """
-    The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+    The `block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 
     Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -156,6 +159,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
     :param str volume_id: The unique identifier of the volume from which the snapshot was created.
     :param str zone: ) The zone in which the snapshot exists.
     """
+    pulumi.log.warn("""get_block_snapshot is deprecated: scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

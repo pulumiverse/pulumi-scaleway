@@ -225,7 +225,12 @@ class _ObjectBucketAclState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl""", DeprecationWarning)
+
+
 class ObjectBucketAcl(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -244,8 +249,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket", name="unique-name")
-        main = scaleway.ObjectBucketAcl("main",
+        some_bucket = scaleway.object.Bucket("some_bucket", name="unique-name")
+        main = scaleway.object.BucketAcl("main",
             bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
@@ -258,8 +263,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main", name="your-bucket")
-        main_object_bucket_acl = scaleway.ObjectBucketAcl("main",
+        main = scaleway.object.Bucket("main", name="your-bucket")
+        main_bucket_acl = scaleway.object.BucketAcl("main",
             bucket=main.id,
             access_control_policy={
                 "grants": [
@@ -366,8 +371,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket", name="unique-name")
-        main = scaleway.ObjectBucketAcl("main",
+        some_bucket = scaleway.object.Bucket("some_bucket", name="unique-name")
+        main = scaleway.object.BucketAcl("main",
             bucket=main_scaleway_object_bucket["id"],
             acl="private")
         ```
@@ -380,8 +385,8 @@ class ObjectBucketAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main", name="your-bucket")
-        main_object_bucket_acl = scaleway.ObjectBucketAcl("main",
+        main = scaleway.object.Bucket("main", name="your-bucket")
+        main_bucket_acl = scaleway.object.BucketAcl("main",
             bucket=main.id,
             access_control_policy={
                 "grants": [
@@ -488,6 +493,7 @@ class ObjectBucketAcl(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ObjectBucketAcl is deprecated: scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

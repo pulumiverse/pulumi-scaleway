@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IamSshKey("main", {
+ * const main = new scaleway.iam.SshKey("main", {
  *     name: "main",
  *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
  * });
@@ -29,6 +29,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamSshKey:IamSshKey main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey
  */
 export class IamSshKey extends pulumi.CustomResource {
     /**
@@ -41,6 +43,7 @@ export class IamSshKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamSshKeyState, opts?: pulumi.CustomResourceOptions): IamSshKey {
+        pulumi.log.warn("IamSshKey is deprecated: scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey")
         return new IamSshKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -99,8 +102,11 @@ export class IamSshKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey */
     constructor(name: string, args: IamSshKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey */
     constructor(name: string, argsOrState?: IamSshKeyArgs | IamSshKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamSshKey is deprecated: scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

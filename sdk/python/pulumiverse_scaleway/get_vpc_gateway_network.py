@@ -22,6 +22,8 @@ __all__ = [
     'get_vpc_gateway_network_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcGatewayNetworkResult:
     """
@@ -192,20 +194,21 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcGatewayNetwork("main",
+    main = scaleway.network.GatewayNetwork("main",
         gateway_id=pg01["id"],
         private_network_id=pn01["id"],
         dhcp_id=dhcp01["id"],
         cleanup_dhcp=True,
         enable_masquerade=True)
-    by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=pg01["id"],
+    by_id = scaleway.network.get_gateway_network_output(gateway_network_id=main.id)
+    by_gateway_and_pn = scaleway.network.get_gateway_network(gateway_id=pg01["id"],
         private_network_id=pn01["id"])
     ```
 
 
     :param str gateway_network_id: ID of the GatewayNetwork.
     """
+    pulumi.log.warn("""get_vpc_gateway_network is deprecated: scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork""")
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
     __args__['enableMasquerade'] = enable_masquerade
@@ -247,20 +250,21 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcGatewayNetwork("main",
+    main = scaleway.network.GatewayNetwork("main",
         gateway_id=pg01["id"],
         private_network_id=pn01["id"],
         dhcp_id=dhcp01["id"],
         cleanup_dhcp=True,
         enable_masquerade=True)
-    by_id = scaleway.get_vpc_gateway_network_output(gateway_network_id=main.id)
-    by_gateway_and_pn = scaleway.get_vpc_gateway_network(gateway_id=pg01["id"],
+    by_id = scaleway.network.get_gateway_network_output(gateway_network_id=main.id)
+    by_gateway_and_pn = scaleway.network.get_gateway_network(gateway_id=pg01["id"],
         private_network_id=pn01["id"])
     ```
 
 
     :param str gateway_network_id: ID of the GatewayNetwork.
     """
+    pulumi.log.warn("""get_vpc_gateway_network is deprecated: scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork""")
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
     __args__['enableMasquerade'] = enable_masquerade

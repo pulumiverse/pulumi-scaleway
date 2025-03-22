@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a registry namespace.
  */
+/** @deprecated scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace */
 export function getRegistryNamespace(args?: GetRegistryNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryNamespaceResult> {
+    pulumi.log.warn("getRegistryNamespace is deprecated: scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryNamespace:getRegistryNamespace", {
@@ -71,7 +73,9 @@ export interface GetRegistryNamespaceResult {
 /**
  * Gets information about a registry namespace.
  */
+/** @deprecated scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace */
 export function getRegistryNamespaceOutput(args?: GetRegistryNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryNamespaceResult> {
+    pulumi.log.warn("getRegistryNamespace is deprecated: scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryNamespace:getRegistryNamespace", {

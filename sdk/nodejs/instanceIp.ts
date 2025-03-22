@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverIp = new scaleway.InstanceIp("server_ip", {});
+ * const serverIp = new scaleway.instance.Ip("server_ip", {});
  * ```
  *
  * ## Import
@@ -25,6 +25,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip
  */
 export class InstanceIp extends pulumi.CustomResource {
     /**
@@ -37,6 +39,7 @@ export class InstanceIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceIpState, opts?: pulumi.CustomResourceOptions): InstanceIp {
+        pulumi.log.warn("InstanceIp is deprecated: scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip")
         return new InstanceIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -98,8 +101,11 @@ export class InstanceIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip */
     constructor(name: string, args?: InstanceIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip */
     constructor(name: string, argsOrState?: InstanceIpArgs | InstanceIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceIp is deprecated: scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

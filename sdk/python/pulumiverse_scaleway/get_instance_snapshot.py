@@ -22,6 +22,8 @@ __all__ = [
     'get_instance_snapshot_output',
 ]
 
+warnings.warn("""scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceSnapshotResult:
     """
@@ -164,9 +166,9 @@ def get_instance_snapshot(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by snapshot name
-    by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
+    by_name = scaleway.instance.get_snapshot(name="my-snapshot-name")
     # Get info by snapshot ID
-    by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.instance.get_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -177,6 +179,7 @@ def get_instance_snapshot(name: Optional[str] = None,
            Only one of `name` and `snapshot_id` should be specified.
     :param str zone: `zone`) The zone in which the snapshot exists.
     """
+    pulumi.log.warn("""get_instance_snapshot is deprecated: scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -213,9 +216,9 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi_scaleway as scaleway
 
     # Get info by snapshot name
-    by_name = scaleway.get_instance_snapshot(name="my-snapshot-name")
+    by_name = scaleway.instance.get_snapshot(name="my-snapshot-name")
     # Get info by snapshot ID
-    by_id = scaleway.get_instance_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.instance.get_snapshot(snapshot_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -226,6 +229,7 @@ def get_instance_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = N
            Only one of `name` and `snapshot_id` should be specified.
     :param str zone: `zone`) The zone in which the snapshot exists.
     """
+    pulumi.log.warn("""get_instance_snapshot is deprecated: scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

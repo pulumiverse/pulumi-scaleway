@@ -22,6 +22,8 @@ __all__ = [
     'get_billing_invoices_output',
 ]
 
+warnings.warn("""scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBillingInvoicesResult:
     """
@@ -113,6 +115,7 @@ def get_billing_invoices(invoice_type: Optional[str] = None,
     :param str started_after: Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).
     :param str started_before: Invoices with a start date that precedes `started_before` are listed (RFC 3339 format).
     """
+    pulumi.log.warn("""get_billing_invoices is deprecated: scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices""")
     __args__ = dict()
     __args__['invoiceType'] = invoice_type
     __args__['startedAfter'] = started_after
@@ -139,6 +142,7 @@ def get_billing_invoices_output(invoice_type: Optional[pulumi.Input[Optional[str
     :param str started_after: Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).
     :param str started_before: Invoices with a start date that precedes `started_before` are listed (RFC 3339 format).
     """
+    pulumi.log.warn("""get_billing_invoices is deprecated: scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices""")
     __args__ = dict()
     __args__['invoiceType'] = invoice_type
     __args__['startedAfter'] = started_after

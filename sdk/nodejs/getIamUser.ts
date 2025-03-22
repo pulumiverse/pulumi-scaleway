@@ -15,16 +15,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by user id
- * const findById = scaleway.getIamUser({
+ * const findById = scaleway.iam.getUser({
  *     userId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get info by email address
- * const findByEmail = scaleway.getIamUser({
+ * const findByEmail = scaleway.iam.getUser({
  *     email: "foo@bar.com",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser */
 export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): Promise<GetIamUserResult> {
+    pulumi.log.warn("getIamUser is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamUser:getIamUser", {
@@ -87,16 +89,18 @@ export interface GetIamUserResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by user id
- * const findById = scaleway.getIamUser({
+ * const findById = scaleway.iam.getUser({
  *     userId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get info by email address
- * const findByEmail = scaleway.getIamUser({
+ * const findByEmail = scaleway.iam.getUser({
  *     email: "foo@bar.com",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser */
 export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamUserResult> {
+    pulumi.log.warn("getIamUser is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamUser:getIamUser", {

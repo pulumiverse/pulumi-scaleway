@@ -22,6 +22,8 @@ __all__ = [
     'get_lb_routes_output',
 ]
 
+warnings.warn("""scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbRoutesResult:
     """
@@ -114,9 +116,9 @@ def get_lb_routes(frontend_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Find routes that share the same frontend ID
-    by_frontend_id = scaleway.get_lb_routes(frontend_id=frt01["id"])
+    by_frontend_id = scaleway.loadbalancers.get_routes(frontend_id=frt01["id"])
     # Find routes by frontend ID and zone
-    my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
+    my_key = scaleway.loadbalancers.get_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```
 
@@ -124,6 +126,7 @@ def get_lb_routes(frontend_id: Optional[str] = None,
     :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
     :param str zone: `zone`) The zone in which the routes exist.
     """
+    pulumi.log.warn("""get_lb_routes is deprecated: scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['projectId'] = project_id
@@ -154,9 +157,9 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi_scaleway as scaleway
 
     # Find routes that share the same frontend ID
-    by_frontend_id = scaleway.get_lb_routes(frontend_id=frt01["id"])
+    by_frontend_id = scaleway.loadbalancers.get_routes(frontend_id=frt01["id"])
     # Find routes by frontend ID and zone
-    my_key = scaleway.get_lb_routes(frontend_id="11111111-1111-1111-1111-111111111111",
+    my_key = scaleway.loadbalancers.get_routes(frontend_id="11111111-1111-1111-1111-111111111111",
         zone="fr-par-2")
     ```
 
@@ -164,6 +167,7 @@ def get_lb_routes_output(frontend_id: Optional[pulumi.Input[Optional[str]]] = No
     :param str frontend_id: The frontend ID (the origin of the redirection), to filter for. Routes with a matching frontend ID are listed.
     :param str zone: `zone`) The zone in which the routes exist.
     """
+    pulumi.log.warn("""get_lb_routes is deprecated: scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['projectId'] = project_id

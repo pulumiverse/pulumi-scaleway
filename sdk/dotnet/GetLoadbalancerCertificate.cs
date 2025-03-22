@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate")]
     public static class GetLoadbalancerCertificate
     {
         /// <summary>

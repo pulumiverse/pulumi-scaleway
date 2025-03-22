@@ -21,6 +21,8 @@ __all__ = [
     'get_k8s_version_output',
 ]
 
+warnings.warn("""scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion""", DeprecationWarning)
+
 @pulumi.output_type
 class GetK8sVersionResult:
     """
@@ -120,7 +122,7 @@ def get_k8s_version(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    latest = scaleway.get_k8s_version(name="latest")
+    latest = scaleway.kubernetes.get_version(name="latest")
     ```
 
     ### Use a specific version
@@ -129,13 +131,14 @@ def get_k8s_version(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_name = scaleway.get_k8s_version(name="1.26.0")
+    by_name = scaleway.kubernetes.get_version(name="1.26.0")
     ```
 
 
     :param str name: The name of the Kubernetes version.
     :param str region: `region`) The region in which the version exists.
     """
+    pulumi.log.warn("""get_k8s_version is deprecated: scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion""")
     __args__ = dict()
     __args__['name'] = name
     __args__['region'] = region
@@ -166,7 +169,7 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    latest = scaleway.get_k8s_version(name="latest")
+    latest = scaleway.kubernetes.get_version(name="latest")
     ```
 
     ### Use a specific version
@@ -175,13 +178,14 @@ def get_k8s_version_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_name = scaleway.get_k8s_version(name="1.26.0")
+    by_name = scaleway.kubernetes.get_version(name="1.26.0")
     ```
 
 
     :param str name: The name of the Kubernetes version.
     :param str region: `region`) The region in which the version exists.
     """
+    pulumi.log.warn("""get_k8s_version is deprecated: scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion""")
     __args__ = dict()
     __args__['name'] = name
     __args__['region'] = region

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+    /// The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
     /// 
     /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
@@ -29,12 +29,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "test project grafana user",
     ///     });
     /// 
-    ///     var main = new Scaleway.CockpitGrafanaUser("main", new()
+    ///     var main = new Scaleway.Observability.GrafanaUser("main", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Login = "my-awesome-user",
@@ -54,6 +54,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser")]
     [ScalewayResourceType("scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser")]
     public partial class CockpitGrafanaUser : global::Pulumi.CustomResource
     {

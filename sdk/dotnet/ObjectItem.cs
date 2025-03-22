@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+    /// The `scaleway.object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
     /// 
@@ -35,6 +35,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item")]
     [ScalewayResourceType("scaleway:index/objectItem:ObjectItem")]
     public partial class ObjectItem : global::Pulumi.CustomResource
     {

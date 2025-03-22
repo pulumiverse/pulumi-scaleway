@@ -23,19 +23,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamApplication(ctx, "ci_cd", &scaleway.IamApplicationArgs{
+//			_, err := iam.NewApplication(ctx, "ci_cd", &iam.ApplicationArgs{
 //				Name: pulumi.String("My application"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
+//			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
 //				ApplicationId: pulumi.Any(mainScalewayIamApplication.Id),
 //				Description:   pulumi.String("a description"),
 //			})
@@ -56,19 +56,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewIamUser(ctx, "main", &scaleway.IamUserArgs{
+//			main, err := iam.NewUser(ctx, "main", &iam.UserArgs{
 //				Email: pulumi.String("test@test.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
+//			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
 //				UserId:      main.ID(),
 //				Description: pulumi.String("a description"),
 //			})
@@ -90,7 +90,7 @@ import (
 //
 //	"github.com/pulumi/pulumi-time/sdk/go/time"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
@@ -102,7 +102,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamApiKey(ctx, "main", &scaleway.IamApiKeyArgs{
+//			_, err = iam.NewApiKey(ctx, "main", &iam.ApiKeyArgs{
 //				ApplicationId: pulumi.Any(mainScalewayIamApplication.Id),
 //				ExpiresAt:     rotateAfterAYear.RotationRfc3339,
 //			})
@@ -124,6 +124,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey
 type IamApiKey struct {
 	pulumi.CustomResourceState
 

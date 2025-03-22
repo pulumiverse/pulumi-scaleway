@@ -21,6 +21,8 @@ __all__ = [
     'get_vpc_public_gateway_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcpublicgateway.getVpcPublicGateway has been deprecated in favor of scaleway.network/getpublicgateway.getPublicGateway""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcPublicGatewayResult:
     """
@@ -208,13 +210,13 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main",
+    main = scaleway.network.PublicGateway("main",
         name="demo",
         type="VPC-GW-S",
         zone="nl-ams-1")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+    pg_test_by_name = scaleway.network.get_public_gateway_output(name=main.name,
         zone="nl-ams-1")
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    pg_test_by_id = scaleway.network.get_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
@@ -222,6 +224,7 @@ def get_vpc_public_gateway(name: Optional[str] = None,
     :param str project_id: The ID of the Project the Public Gateway is associated with.
     :param str zone: `zone`) The Public Gateway's zone.
     """
+    pulumi.log.warn("""get_vpc_public_gateway is deprecated: scaleway.index/getvpcpublicgateway.getVpcPublicGateway has been deprecated in favor of scaleway.network/getpublicgateway.getPublicGateway""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -263,13 +266,13 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGateway("main",
+    main = scaleway.network.PublicGateway("main",
         name="demo",
         type="VPC-GW-S",
         zone="nl-ams-1")
-    pg_test_by_name = scaleway.get_vpc_public_gateway_output(name=main.name,
+    pg_test_by_name = scaleway.network.get_public_gateway_output(name=main.name,
         zone="nl-ams-1")
-    pg_test_by_id = scaleway.get_vpc_public_gateway_output(public_gateway_id=main.id)
+    pg_test_by_id = scaleway.network.get_public_gateway_output(public_gateway_id=main.id)
     ```
 
 
@@ -277,6 +280,7 @@ def get_vpc_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = 
     :param str project_id: The ID of the Project the Public Gateway is associated with.
     :param str zone: `zone`) The Public Gateway's zone.
     """
+    pulumi.log.warn("""get_vpc_public_gateway is deprecated: scaleway.index/getvpcpublicgateway.getVpcPublicGateway has been deprecated in favor of scaleway.network/getpublicgateway.getPublicGateway""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

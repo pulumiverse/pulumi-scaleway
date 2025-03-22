@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+ * The `scaleway.domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
  *
  * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
  *
@@ -25,21 +25,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const www = new scaleway.DomainRecord("www", {
+ * const www = new scaleway.domain.Record("www", {
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.4",
  *     ttl: 3600,
  * });
- * const www2 = new scaleway.DomainRecord("www2", {
+ * const www2 = new scaleway.domain.Record("www2", {
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.5",
  *     ttl: 3600,
  * });
- * const mx = new scaleway.DomainRecord("mx", {
+ * const mx = new scaleway.domain.Record("mx", {
  *     dnsZone: "domain.tld",
  *     name: "",
  *     type: "MX",
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  *     priority: 10,
  * });
- * const mx2 = new scaleway.DomainRecord("mx2", {
+ * const mx2 = new scaleway.domain.Record("mx2", {
  *     dnsZone: "domain.tld",
  *     name: "",
  *     type: "MX",
@@ -73,7 +73,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const geoIp = new scaleway.DomainRecord("geo_ip", {
+ * const geoIp = new scaleway.domain.Record("geo_ip", {
  *     dnsZone: "domain.tld",
  *     name: "images",
  *     type: "A",
@@ -93,7 +93,7 @@ import * as utilities from "./utilities";
  *         ],
  *     },
  * });
- * const httpService = new scaleway.DomainRecord("http_service", {
+ * const httpService = new scaleway.domain.Record("http_service", {
  *     dnsZone: "domain.tld",
  *     name: "app",
  *     type: "A",
@@ -110,7 +110,7 @@ import * as utilities from "./utilities";
  *         strategy: "hashed",
  *     },
  * });
- * const view = new scaleway.DomainRecord("view", {
+ * const view = new scaleway.domain.Record("view", {
  *     dnsZone: "domain.tld",
  *     name: "db",
  *     type: "A",
@@ -127,7 +127,7 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  * });
- * const weighted = new scaleway.DomainRecord("weighted", {
+ * const weighted = new scaleway.domain.Record("weighted", {
  *     dnsZone: "domain.tld",
  *     name: "web",
  *     type: "A",
@@ -162,8 +162,8 @@ import * as utilities from "./utilities";
  * const projectId = config.require("projectId");
  * // The DNS Zone used for testing records.
  * const dnsZone = config.require("dnsZone");
- * const publicIp = new scaleway.InstanceIp("public_ip", {projectId: projectId});
- * const web = new scaleway.InstanceServer("web", {
+ * const publicIp = new scaleway.instance.Ip("public_ip", {projectId: projectId});
+ * const web = new scaleway.instance.Server("web", {
  *     projectId: projectId,
  *     type: "DEV1-S",
  *     image: "ubuntu_jammy",
@@ -176,21 +176,21 @@ import * as utilities from "./utilities";
  *         sizeInGb: 20,
  *     },
  * });
- * const webA = new scaleway.DomainRecord("web_A", {
+ * const webA = new scaleway.domain.Record("web_A", {
  *     dnsZone: dnsZone,
  *     name: "web",
  *     type: "A",
  *     data: web.publicIp,
  *     ttl: 3600,
  * });
- * const webCname = new scaleway.DomainRecord("web_cname", {
+ * const webCname = new scaleway.domain.Record("web_cname", {
  *     dnsZone: dnsZone,
  *     name: "www",
  *     type: "CNAME",
  *     data: `web.${dnsZone}.`,
  *     ttl: 3600,
  * });
- * const webAlias = new scaleway.DomainRecord("web_alias", {
+ * const webAlias = new scaleway.domain.Record("web_alias", {
  *     dnsZone: dnsZone,
  *     name: "",
  *     type: "ALIAS",
@@ -201,7 +201,7 @@ import * as utilities from "./utilities";
  *
  * ## Multiple records
  *
- * Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.DomainRecord`  resource with the same `name`, and the records will be added.
+ * Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.domain.Record`  resource with the same `name`, and the records will be added.
  *
  * Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
  *
@@ -214,6 +214,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record
  */
 export class DomainRecord extends pulumi.CustomResource {
     /**
@@ -226,6 +228,7 @@ export class DomainRecord extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DomainRecordState, opts?: pulumi.CustomResourceOptions): DomainRecord {
+        pulumi.log.warn("DomainRecord is deprecated: scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record")
         return new DomainRecord(name, <any>state, { ...opts, id: id });
     }
 
@@ -307,8 +310,11 @@ export class DomainRecord extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record */
     constructor(name: string, args: DomainRecordArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record */
     constructor(name: string, argsOrState?: DomainRecordArgs | DomainRecordState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DomainRecord is deprecated: scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

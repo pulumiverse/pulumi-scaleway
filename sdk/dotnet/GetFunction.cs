@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction")]
     public static class GetFunction
     {
         /// <summary>
-        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+        /// The `scaleway.functions.Function` data source is used to retrieve information about a Serverless Function.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// 
@@ -23,7 +24,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+        /// The `scaleway.functions.Function` data source is used to retrieve information about a Serverless Function.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// 
@@ -33,7 +34,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("scaleway:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+        /// The `scaleway.functions.Function` data source is used to retrieve information about a Serverless Function.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// 

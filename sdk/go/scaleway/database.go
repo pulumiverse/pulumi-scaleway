@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//			_, err = databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
 //				InstanceId: main.ID(),
 //				Name:       pulumi.String("my-new-database"),
 //			})
@@ -65,6 +65,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
 // ```
+//
+// Deprecated: scaleway.index/database.Database has been deprecated in favor of scaleway.databases/database.Database
 type Database struct {
 	pulumi.CustomResourceState
 

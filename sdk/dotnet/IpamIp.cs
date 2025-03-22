@@ -27,25 +27,25 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.32.0/22",
     ///         },
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
@@ -65,26 +65,26 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.32.0/22",
     ///         },
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Address = "172.16.32.7",
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
@@ -104,29 +104,29 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         VpcId = vpc01.Id,
     ///         Ipv6Subnets = new[]
     ///         {
-    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
+    ///             new Scaleway.Network.Inputs.PrivateNetworkIpv6SubnetArgs
     ///             {
     ///                 Subnet = "fd46:78ab:30b8:177c::/64",
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         IsIpv6 = true,
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
@@ -146,33 +146,33 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.32.0/22",
     ///         },
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Address = "172.16.32.7",
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
     ///         },
     ///         CustomResources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpCustomResourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpCustomResourceArgs
     ///             {
     ///                 MacAddress = "bc:24:11:74:d0:6a",
     ///             },
@@ -192,6 +192,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip")]
     [ScalewayResourceType("scaleway:index/ipamIp:IpamIp")]
     public partial class IpamIp : global::Pulumi.CustomResource
     {

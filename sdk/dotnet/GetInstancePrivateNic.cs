@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic")]
     public static class GetInstancePrivateNic
     {
         /// <summary>
@@ -25,19 +26,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byNicId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byPnId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byTags = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         Tags = new[]
@@ -65,19 +66,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byNicId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byPnId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byTags = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         Tags = new[]
@@ -105,19 +106,19 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byNicId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byNicId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNicId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byPnId = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byPnId = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var byTags = Scaleway.GetInstancePrivateNic.Invoke(new()
+        ///     var byTags = Scaleway.Instance.GetPrivateNic.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///         Tags = new[]

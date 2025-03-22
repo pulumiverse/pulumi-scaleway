@@ -12,6 +12,8 @@ import (
 )
 
 // Use this data source to get SSH key information based on its ID or name.
+//
+// Deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey
 func LookupIamSshKey(ctx *pulumi.Context, args *LookupIamSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupIamSshKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamSshKeyResult

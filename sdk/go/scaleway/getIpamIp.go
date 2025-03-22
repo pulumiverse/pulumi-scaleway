@@ -25,14 +25,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by ipam ip id
-//			_, err := scaleway.LookupIpamIp(ctx, &scaleway.LookupIpamIpArgs{
+//			_, err := ipam.LookupIp(ctx, &ipam.LookupIpArgs{
 //				IpamIpId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -54,14 +54,15 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Connect your instance to a private network using a private nic.
-//			nic, err := scaleway.NewInstancePrivateNic(ctx, "nic", &scaleway.InstancePrivateNicArgs{
+//			nic, err := instance.NewPrivateNic(ctx, "nic", &instance.PrivateNicArgs{
 //				ServerId:         pulumi.Any(server.Id),
 //				PrivateNetworkId: pulumi.Any(pn.Id),
 //			})
@@ -69,13 +70,13 @@ import (
 //				return err
 //			}
 //			// Find server private IPv4 using private-nic mac address
-//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
+//			_ = ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
 //				MacAddress: nic.MacAddress,
 //				Type:       pulumi.String("ipv4"),
 //			}, nil)
 //			// Find server private IPv4 using private-nic id
-//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
-//				Resource: &scaleway.GetIpamIpResourceArgs{
+//			_ = ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
+//				Resource: &ipam.GetIpResourceArgs{
 //					Id:   nic.ID(),
 //					Type: pulumi.String("instance_private_nic"),
 //				},
@@ -95,18 +96,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Find the private IPv4 using resource name
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
@@ -114,15 +117,15 @@ import (
 //				DisableBackup: pulumi.Bool(true),
 //				UserName:      pulumi.String("my_initial_user"),
 //				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				PrivateNetwork: &scaleway.DatabaseInstancePrivateNetworkArgs{
+//				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
 //					PnId: pn.ID(),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupIpamIpOutput(ctx, scaleway.GetIpamIpOutputArgs{
-//				Resource: &scaleway.GetIpamIpResourceArgs{
+//			_ = ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
+//				Resource: &ipam.GetIpResourceArgs{
 //					Name: main.Name,
 //					Type: pulumi.String("rdb_instance"),
 //				},
@@ -133,6 +136,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp
 func LookupIpamIp(ctx *pulumi.Context, args *LookupIpamIpArgs, opts ...pulumi.InvokeOption) (*LookupIpamIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIpamIpResult

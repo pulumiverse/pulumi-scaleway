@@ -14,6 +14,8 @@ import (
 // Gets information about an Database Instance.
 //
 // For further information refer the Managed Databases for PostgreSQL and MySQL [API documentation](https://developers.scaleway.com/en/products/rdb/api/#database-instance)
+//
+// Deprecated: scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance
 func LookupDatabaseInstance(ctx *pulumi.Context, args *LookupDatabaseInstanceArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseInstanceResult

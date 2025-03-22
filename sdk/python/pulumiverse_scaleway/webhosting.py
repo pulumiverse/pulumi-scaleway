@@ -467,7 +467,12 @@ class _WebhostingState:
         pulumi.set(self, "username", value)
 
 
+warnings.warn("""scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting""", DeprecationWarning)
+
+
 class Webhosting(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -491,9 +496,9 @@ class Webhosting(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite",
+        by_name = scaleway.hosting.get_offer(name="lite",
             control_panel="Cpanel")
-        main = scaleway.Webhosting("main",
+        main = scaleway.hosting.Hosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
             domain="yourdomain.com",
@@ -541,9 +546,9 @@ class Webhosting(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        by_name = scaleway.get_web_host_offer(name="lite",
+        by_name = scaleway.hosting.get_offer(name="lite",
             control_panel="Cpanel")
-        main = scaleway.Webhosting("main",
+        main = scaleway.hosting.Hosting("main",
             offer_id=by_name.offer_id,
             email="your@email.com",
             domain="yourdomain.com",
@@ -587,6 +592,7 @@ class Webhosting(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""Webhosting is deprecated: scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

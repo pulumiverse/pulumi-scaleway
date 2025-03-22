@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.LoadbalancerIp("main", {zone: "fr-par-1"});
- * const base = new scaleway.Loadbalancer("base", {
+ * const main = new scaleway.loadbalancers.Ip("main", {zone: "fr-par-1"});
+ * const base = new scaleway.loadbalancers.LoadBalancer("base", {
  *     ipIds: [main.id],
  *     zone: main.zone,
  *     type: "LB-S",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const base = new scaleway.Loadbalancer("base", {
+ * const base = new scaleway.loadbalancers.LoadBalancer("base", {
  *     name: "private-lb",
  *     type: "LB-S",
  *     assignFlexibleIp: false,
@@ -46,9 +46,9 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const v4 = new scaleway.LoadbalancerIp("v4", {});
- * const v6 = new scaleway.LoadbalancerIp("v6", {isIpv6: true});
- * const main = new scaleway.Loadbalancer("main", {
+ * const v4 = new scaleway.loadbalancers.Ip("v4", {});
+ * const v6 = new scaleway.loadbalancers.Ip("v6", {isIpv6: true});
+ * const main = new scaleway.loadbalancers.LoadBalancer("main", {
  *     ipIds: [
  *         v4.id,
  *         v6.id,
@@ -64,21 +64,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     vpcId: vpc01.id,
  *     ipv4Subnet: {
  *         subnet: "172.16.32.0/22",
  *     },
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.32.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],
  * });
- * const v4 = new scaleway.LoadbalancerIp("v4", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const v4 = new scaleway.loadbalancers.Ip("v4", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipIds: [v4.id],
  *     name: "my-lb",
  *     type: "LB-S",
@@ -107,6 +107,8 @@ import * as utilities from "./utilities";
  * ```
  *
  * Be aware that you will also need to import the `scaleway_lb_ip` resource.
+ *
+ * @deprecated scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer
  */
 export class Loadbalancer extends pulumi.CustomResource {
     /**
@@ -119,6 +121,7 @@ export class Loadbalancer extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerState, opts?: pulumi.CustomResourceOptions): Loadbalancer {
+        pulumi.log.warn("Loadbalancer is deprecated: scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer")
         return new Loadbalancer(name, <any>state, { ...opts, id: id });
     }
 
@@ -163,7 +166,7 @@ export class Loadbalancer extends pulumi.CustomResource {
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
-     * > **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+     * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
     public readonly ipIds!: pulumi.Output<string[]>;
     /**
@@ -220,8 +223,11 @@ export class Loadbalancer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer */
     constructor(name: string, args: LoadbalancerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer */
     constructor(name: string, argsOrState?: LoadbalancerArgs | LoadbalancerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Loadbalancer is deprecated: scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -302,7 +308,7 @@ export interface LoadbalancerState {
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
-     * > **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+     * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -380,7 +386,7 @@ export interface LoadbalancerArgs {
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
-     * > **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+     * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**

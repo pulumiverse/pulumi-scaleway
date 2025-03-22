@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+ * The `scaleway.observability.Source` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -19,12 +19,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const example = scaleway.getCockpitSource({
+ * const example = scaleway.observability.getSource({
  *     id: "fr-par/11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource */
 export function getCockpitSource(args?: GetCockpitSourceArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitSourceResult> {
+    pulumi.log.warn("getCockpitSource is deprecated: scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpitSource:getCockpitSource", {
@@ -100,7 +102,7 @@ export interface GetCockpitSourceResult {
     readonly url: string;
 }
 /**
- * The `scaleway.CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+ * The `scaleway.observability.Source` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -114,12 +116,14 @@ export interface GetCockpitSourceResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const example = scaleway.getCockpitSource({
+ * const example = scaleway.observability.getSource({
  *     id: "fr-par/11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource */
 export function getCockpitSourceOutput(args?: GetCockpitSourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitSourceResult> {
+    pulumi.log.warn("getCockpitSource is deprecated: scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getCockpitSource:getCockpitSource", {

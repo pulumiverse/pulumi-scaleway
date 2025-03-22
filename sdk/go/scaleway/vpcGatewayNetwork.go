@@ -27,21 +27,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("pn_test_network"),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
 //				VpcId: vpc01.ID(),
@@ -49,19 +49,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
 //				GatewayId:        pg01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				EnableMasquerade: pulumi.Bool(true),
-//				IpamConfigs: scaleway.VpcGatewayNetworkIpamConfigArray{
-//					&scaleway.VpcGatewayNetworkIpamConfigArgs{
+//				IpamConfigs: network.GatewayNetworkIpamConfigArray{
+//					&network.GatewayNetworkIpamConfigArgs{
 //						PushDefaultRoute: pulumi.Bool(true),
 //					},
 //				},
@@ -83,21 +83,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("pn_test_network"),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.64.0/22"),
 //				},
 //				VpcId: vpc01.ID(),
@@ -105,10 +106,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ip01, err := scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			ip01, err := ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Address: pulumi.String("172.16.64.7"),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -116,19 +117,19 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
 //				GatewayId:        pg01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				EnableMasquerade: pulumi.Bool(true),
-//				IpamConfigs: scaleway.VpcGatewayNetworkIpamConfigArray{
-//					&scaleway.VpcGatewayNetworkIpamConfigArgs{
+//				IpamConfigs: network.GatewayNetworkIpamConfigArray{
+//					&network.GatewayNetworkIpamConfigArgs{
 //						PushDefaultRoute: pulumi.Bool(true),
 //						IpamIpId:         ip01.ID(),
 //					},
@@ -151,30 +152,30 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("pn_test_network"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			gw01, err := scaleway.NewVpcPublicGatewayIp(ctx, "gw01", nil)
+//			gw01, err := network.NewPublicGatewayIp(ctx, "gw01", nil)
 //			if err != nil {
 //				return err
 //			}
-//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
+//			dhcp01, err := network.NewPublicGatewayDhcp(ctx, "dhcp01", &network.PublicGatewayDhcpArgs{
 //				Subnet:           pulumi.String("192.168.1.0/24"),
 //				PushDefaultRoute: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				IpId: gw01.ID(),
@@ -182,7 +183,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
 //				GatewayId:        pg01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				DhcpId:           dhcp01.ID(),
@@ -206,26 +207,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("pn_test_network"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
+//			_, err = network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
 //				GatewayId:        pg01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				EnableDhcp:       pulumi.Bool(false),
@@ -250,6 +251,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork
 type VpcGatewayNetwork struct {
 	pulumi.CustomResourceState
 

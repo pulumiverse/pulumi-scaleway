@@ -22,20 +22,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			mainHub, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			iot, err := scaleway.NewDatabaseInstance(ctx, "iot", &scaleway.DatabaseInstanceArgs{
+//			iot, err := databases.NewInstance(ctx, "iot", &databases.InstanceArgs{
 //				Name:     pulumi.String("iot"),
 //				NodeType: pulumi.String("db-dev-s"),
 //				Engine:   pulumi.String("PostgreSQL-12"),
@@ -45,11 +46,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("default"),
-//				HubId: mainIotHub.ID(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
-//				Database: &scaleway.IotRouteDatabaseArgs{
+//				Database: &iot.RouteDatabaseArgs{
 //					Query: pulumi.String(`INSERT INTO measurements(
 //		push_time,
 //		report_time,
@@ -92,33 +93,34 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			mainHub, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainObjectBucket, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			mainBucket, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Region: pulumi.String("fr-par"),
 //				Name:   pulumi.String("my_awesome-bucket"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainIotHub.ID(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
-//				S3: &scaleway.IotRouteS3Args{
-//					BucketRegion: mainObjectBucket.Region,
-//					BucketName:   mainObjectBucket.Name,
+//				S3: &iot.RouteS3Args{
+//					BucketRegion: mainBucket.Region,
+//					BucketName:   mainBucket.Name,
 //					ObjectPrefix: pulumi.String("foo"),
 //					Strategy:     pulumi.String("per_topic"),
 //				},
@@ -140,24 +142,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			mainHub, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotRoute(ctx, "main", &scaleway.IotRouteArgs{
+//			_, err = iot.NewRoute(ctx, "main", &iot.RouteArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainIotHub.ID(),
+//				HubId: mainHub.ID(),
 //				Topic: pulumi.String("#"),
-//				Rest: &scaleway.IotRouteRestArgs{
+//				Rest: &iot.RouteRestArgs{
 //					Verb: pulumi.String("get"),
 //					Uri:  pulumi.String("http://scaleway.com"),
 //					Headers: pulumi.StringMap{
@@ -183,6 +185,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route
 type IotRoute struct {
 	pulumi.CustomResourceState
 

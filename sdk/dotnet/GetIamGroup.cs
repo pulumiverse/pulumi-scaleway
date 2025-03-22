@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup")]
     public static class GetIamGroup
     {
         /// <summary>
@@ -28,13 +29,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by group ID
-        ///     var findById = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         GroupId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -61,13 +62,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by group ID
-        ///     var findById = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         GroupId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -94,13 +95,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by name
-        ///     var findByName = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findByName = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///     });
         /// 
         ///     // Get info by group ID
-        ///     var findById = Scaleway.GetIamGroup.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetGroup.Invoke(new()
         ///     {
         ///         GroupId = "11111111-1111-1111-1111-111111111111",
         ///     });

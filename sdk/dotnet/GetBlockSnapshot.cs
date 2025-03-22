@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot")]
     public static class GetBlockSnapshot
     {
         /// <summary>
-        /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+        /// The `scaleway.block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
         /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
@@ -21,7 +22,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+        /// The `scaleway.block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
         /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetBlockSnapshotResult>("scaleway:index/getBlockSnapshot:getBlockSnapshot", args ?? new GetBlockSnapshotInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+        /// The `scaleway.block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
         /// 
         /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
         /// </summary>

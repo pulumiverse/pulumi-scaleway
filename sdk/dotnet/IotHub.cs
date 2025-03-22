@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IotHub("main", new()
+    ///     var main = new Scaleway.Iot.Hub("main", new()
     ///     {
     ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
@@ -42,6 +42,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub")]
     [ScalewayResourceType("scaleway:index/iotHub:IotHub")]
     public partial class IotHub : global::Pulumi.CustomResource
     {

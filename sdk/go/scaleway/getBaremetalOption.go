@@ -22,21 +22,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by option name
-//			_, err := scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
+//			_, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
 //				Name: pulumi.StringRef("Remote Access"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by option id
-//			_, err = scaleway.GetBaremetalOption(ctx, &scaleway.GetBaremetalOptionArgs{
+//			_, err = elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
 //				OptionId: pulumi.StringRef("931df052-d713-4674-8b58-96a63244c8e2"),
 //			}, nil)
 //			if err != nil {
@@ -47,6 +47,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption
 func GetBaremetalOption(ctx *pulumi.Context, args *GetBaremetalOptionArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOptionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOptionResult

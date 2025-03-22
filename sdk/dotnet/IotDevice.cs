@@ -23,13 +23,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IotHub("main", new()
+    ///     var main = new Scaleway.Iot.Hub("main", new()
     ///     {
     ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var mainIotDevice = new Scaleway.IotDevice("main", new()
+    ///     var mainDevice = new Scaleway.Iot.Device("main", new()
     ///     {
     ///         HubId = main.Id,
     ///         Name = "test-iot",
@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IotHub("main", new()
+    ///     var main = new Scaleway.Iot.Hub("main", new()
     ///     {
     ///         Name = "test-iot",
     ///         ProductPlan = "plan_shared",
@@ -60,11 +60,11 @@ namespace Pulumiverse.Scaleway
     ///         Filename = "device-certificate.pem",
     ///     });
     /// 
-    ///     var mainIotDevice = new Scaleway.IotDevice("main", new()
+    ///     var mainDevice = new Scaleway.Iot.Device("main", new()
     ///     {
     ///         HubId = main.Id,
     ///         Name = "test-iot",
-    ///         Certificate = new Scaleway.Inputs.IotDeviceCertificateArgs
+    ///         Certificate = new Scaleway.Iot.Inputs.DeviceCertificateArgs
     ///         {
     ///             Crt = deviceCert.Apply(getFileResult =&gt; getFileResult.Content),
     ///         },
@@ -83,6 +83,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device")]
     [ScalewayResourceType("scaleway:index/iotDevice:IotDevice")]
     public partial class IotDevice : global::Pulumi.CustomResource
     {

@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about an IOT Device.
  */
+/** @deprecated scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice */
 export function getIotDevice(args?: GetIotDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotDeviceResult> {
+    pulumi.log.warn("getIotDevice is deprecated: scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIotDevice:getIotDevice", {
@@ -70,7 +72,9 @@ export interface GetIotDeviceResult {
 /**
  * Gets information about an IOT Device.
  */
+/** @deprecated scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice */
 export function getIotDeviceOutput(args?: GetIotDeviceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIotDeviceResult> {
+    pulumi.log.warn("getIotDevice is deprecated: scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIotDevice:getIotDevice", {

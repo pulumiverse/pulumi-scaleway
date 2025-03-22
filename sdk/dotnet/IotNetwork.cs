@@ -21,16 +21,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainIotHub = new Scaleway.IotHub("main", new()
+    ///     var mainHub = new Scaleway.Iot.Hub("main", new()
     ///     {
     ///         Name = "main",
     ///         ProductPlan = "plan_shared",
     ///     });
     /// 
-    ///     var main = new Scaleway.IotNetwork("main", new()
+    ///     var main = new Scaleway.Iot.Network("main", new()
     ///     {
     ///         Name = "main",
-    ///         HubId = mainIotHub.Id,
+    ///         HubId = mainHub.Id,
     ///         Type = "sigfox",
     ///     });
     /// 
@@ -47,6 +47,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network")]
     [ScalewayResourceType("scaleway:index/iotNetwork:IotNetwork")]
     public partial class IotNetwork : global::Pulumi.CustomResource
     {

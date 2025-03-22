@@ -21,6 +21,8 @@ __all__ = [
     'get_function_namespace_output',
 ]
 
+warnings.warn("""scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace""", DeprecationWarning)
+
 @pulumi.output_type
 class GetFunctionNamespaceResult:
     """
@@ -169,7 +171,7 @@ def get_function_namespace(name: Optional[str] = None,
                            region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionNamespaceResult:
     """
-    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+    The `functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
 
     Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
@@ -179,6 +181,7 @@ def get_function_namespace(name: Optional[str] = None,
     :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_function_namespace is deprecated: scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
@@ -206,7 +209,7 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFunctionNamespaceResult]:
     """
-    The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+    The `functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
 
     Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
@@ -216,6 +219,7 @@ def get_function_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
     :param str project_id: `project_id`) The unique identifier of the project with which the namespace is associated.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_function_namespace is deprecated: scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id

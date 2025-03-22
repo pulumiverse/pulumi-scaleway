@@ -178,7 +178,12 @@ class _CockpitAlertManagerState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager""", DeprecationWarning)
+
+
 class CockpitAlertManager(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -189,7 +194,7 @@ class CockpitAlertManager(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+        The `observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -207,8 +212,8 @@ class CockpitAlertManager(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="tf_test_project")
-        alert_manager = scaleway.CockpitAlertManager("alert_manager",
+        project = scaleway.account.Project("project", name="tf_test_project")
+        alert_manager = scaleway.observability.AlertManager("alert_manager",
             project_id=project.id,
             enable_managed_alerts=True,
             contact_points=[
@@ -245,7 +250,7 @@ class CockpitAlertManager(pulumi.CustomResource):
                  args: Optional[CockpitAlertManagerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+        The `observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -263,8 +268,8 @@ class CockpitAlertManager(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="tf_test_project")
-        alert_manager = scaleway.CockpitAlertManager("alert_manager",
+        project = scaleway.account.Project("project", name="tf_test_project")
+        alert_manager = scaleway.observability.AlertManager("alert_manager",
             project_id=project.id,
             enable_managed_alerts=True,
             contact_points=[
@@ -307,6 +312,7 @@ class CockpitAlertManager(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CockpitAlertManager is deprecated: scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

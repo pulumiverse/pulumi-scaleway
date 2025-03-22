@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+// The `functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 //
@@ -26,16 +26,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFunctionTrigger(ctx, "main", &scaleway.FunctionTriggerArgs{
+//			_, err := functions.NewTrigger(ctx, "main", &functions.TriggerArgs{
 //				FunctionId: pulumi.Any(mainScalewayFunction.Id),
 //				Name:       pulumi.String("my-trigger"),
-//				Sqs: &scaleway.FunctionTriggerSqsArgs{
+//				Sqs: &functions.TriggerSqsArgs{
 //					ProjectId: pulumi.Any(mainScalewayMnqSqs.ProjectId),
 //					Queue:     pulumi.String("MyQueue"),
 //					Region:    pulumi.Any(mainScalewayMnqSqs.Region),
@@ -58,16 +58,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFunctionTrigger(ctx, "main", &scaleway.FunctionTriggerArgs{
+//			_, err := functions.NewTrigger(ctx, "main", &functions.TriggerArgs{
 //				FunctionId: pulumi.Any(mainScalewayFunction.Id),
 //				Name:       pulumi.String("my-trigger"),
-//				Nats: &scaleway.FunctionTriggerNatsArgs{
+//				Nats: &functions.TriggerNatsArgs{
 //					AccountId: pulumi.Any(mainScalewayMnqNatsAccount.Id),
 //					Subject:   pulumi.String("MySubject"),
 //					Region:    pulumi.Any(mainScalewayMnqNatsAccount.Region),
@@ -91,6 +91,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger
 type FunctionTrigger struct {
 	pulumi.CustomResourceState
 

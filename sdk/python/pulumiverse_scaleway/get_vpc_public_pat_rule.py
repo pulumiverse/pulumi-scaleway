@@ -21,6 +21,8 @@ __all__ = [
     'get_vpc_public_pat_rule_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcPublicPatRuleResult:
     """
@@ -168,7 +170,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    sg01 = scaleway.InstanceSecurityGroup("sg01",
+    sg01 = scaleway.instance.SecurityGroup("sg01",
         inbound_default_policy="drop",
         outbound_default_policy="accept",
         inbound_rules=[{
@@ -176,38 +178,38 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
             "port": 22,
             "protocol": "TCP",
         }])
-    srv01 = scaleway.InstanceServer("srv01",
+    srv01 = scaleway.instance.Server("srv01",
         name="my-server",
         type="PLAY2-NANO",
         image="ubuntu_jammy",
         security_group_id=sg01.id)
-    pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
-    pnic01 = scaleway.InstancePrivateNic("pnic01",
+    pn01 = scaleway.network.PrivateNetwork("pn01", name="my-pn")
+    pnic01 = scaleway.instance.PrivateNic("pnic01",
         server_id=srv01.id,
         private_network_id=pn01.id)
-    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
-    ip01 = scaleway.VpcPublicGatewayIp("ip01")
-    pg01 = scaleway.VpcPublicGateway("pg01",
+    dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+    ip01 = scaleway.network.PublicGatewayIp("ip01")
+    pg01 = scaleway.network.PublicGateway("pg01",
         name="my-pg",
         type="VPC-GW-S",
         ip_id=ip01.id)
-    gn01 = scaleway.VpcGatewayNetwork("gn01",
+    gn01 = scaleway.network.GatewayNetwork("gn01",
         gateway_id=pg01.id,
         private_network_id=pn01.id,
         dhcp_id=dhcp01.id,
         cleanup_dhcp=True,
         enable_masquerade=True)
-    rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+    rsv01 = scaleway.network.PublicGatewayDhcpReservation("rsv01",
         gateway_network_id=gn01.id,
         mac_address=pnic01.mac_address,
         ip_address="192.168.0.7")
-    pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+    pat01 = scaleway.network.PublicGatewayPatRule("pat01",
         gateway_id=pg01.id,
         private_ip=rsv01.ip_address,
         private_port=22,
         public_port=2202,
         protocol="tcp")
-    main = scaleway.get_vpc_public_pat_rule_output(pat_rule_id=pat01.id)
+    main = scaleway.network.get_public_gateway_pat_rule_output(pat_rule_id=pat01.id)
     ```
 
 
@@ -215,6 +217,7 @@ def get_vpc_public_pat_rule(pat_rule_id: Optional[str] = None,
     :param str zone: `zone`) The zone in which
            the rule exists.
     """
+    pulumi.log.warn("""get_vpc_public_pat_rule is deprecated: scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule""")
     __args__ = dict()
     __args__['patRuleId'] = pat_rule_id
     __args__['zone'] = zone
@@ -247,7 +250,7 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    sg01 = scaleway.InstanceSecurityGroup("sg01",
+    sg01 = scaleway.instance.SecurityGroup("sg01",
         inbound_default_policy="drop",
         outbound_default_policy="accept",
         inbound_rules=[{
@@ -255,38 +258,38 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
             "port": 22,
             "protocol": "TCP",
         }])
-    srv01 = scaleway.InstanceServer("srv01",
+    srv01 = scaleway.instance.Server("srv01",
         name="my-server",
         type="PLAY2-NANO",
         image="ubuntu_jammy",
         security_group_id=sg01.id)
-    pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
-    pnic01 = scaleway.InstancePrivateNic("pnic01",
+    pn01 = scaleway.network.PrivateNetwork("pn01", name="my-pn")
+    pnic01 = scaleway.instance.PrivateNic("pnic01",
         server_id=srv01.id,
         private_network_id=pn01.id)
-    dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
-    ip01 = scaleway.VpcPublicGatewayIp("ip01")
-    pg01 = scaleway.VpcPublicGateway("pg01",
+    dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+    ip01 = scaleway.network.PublicGatewayIp("ip01")
+    pg01 = scaleway.network.PublicGateway("pg01",
         name="my-pg",
         type="VPC-GW-S",
         ip_id=ip01.id)
-    gn01 = scaleway.VpcGatewayNetwork("gn01",
+    gn01 = scaleway.network.GatewayNetwork("gn01",
         gateway_id=pg01.id,
         private_network_id=pn01.id,
         dhcp_id=dhcp01.id,
         cleanup_dhcp=True,
         enable_masquerade=True)
-    rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+    rsv01 = scaleway.network.PublicGatewayDhcpReservation("rsv01",
         gateway_network_id=gn01.id,
         mac_address=pnic01.mac_address,
         ip_address="192.168.0.7")
-    pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+    pat01 = scaleway.network.PublicGatewayPatRule("pat01",
         gateway_id=pg01.id,
         private_ip=rsv01.ip_address,
         private_port=22,
         public_port=2202,
         protocol="tcp")
-    main = scaleway.get_vpc_public_pat_rule_output(pat_rule_id=pat01.id)
+    main = scaleway.network.get_public_gateway_pat_rule_output(pat_rule_id=pat01.id)
     ```
 
 
@@ -294,6 +297,7 @@ def get_vpc_public_pat_rule_output(pat_rule_id: Optional[pulumi.Input[str]] = No
     :param str zone: `zone`) The zone in which
            the rule exists.
     """
+    pulumi.log.warn("""get_vpc_public_pat_rule is deprecated: scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule""")
     __args__ = dict()
     __args__['patRuleId'] = pat_rule_id
     __args__['zone'] = zone

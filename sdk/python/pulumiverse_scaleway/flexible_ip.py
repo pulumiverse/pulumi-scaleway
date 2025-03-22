@@ -336,7 +336,12 @@ class _FlexibleIpState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip""", DeprecationWarning)
+
+
 class FlexibleIp(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -361,7 +366,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
+        main = scaleway.elasticmetal.Ip("main", reverse="my-reverse.com")
         ```
 
         ### With zone
@@ -370,7 +375,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", zone="fr-par-2")
+        main = scaleway.elasticmetal.Ip("main", zone="fr-par-2")
         ```
 
         ### With IPv6
@@ -379,7 +384,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", is_ipv6=True)
+        main = scaleway.elasticmetal.Ip("main", is_ipv6=True)
         ```
 
         ### With baremetal server
@@ -389,20 +394,20 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.AccountSshKey("main",
+        main = scaleway.account.SshKey("main",
             name="main",
             public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
-        by_id = scaleway.get_baremetal_os(zone="fr-par-2",
+        by_id = scaleway.elasticmetal.get_os(zone="fr-par-2",
             name="Ubuntu",
             version="20.04 LTS (Focal Fossa)")
-        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
             name="EM-A210R-HDD")
-        base = scaleway.BaremetalServer("base",
+        base = scaleway.elasticmetal.Server("base",
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=by_id.os_id,
             ssh_key_ids=main.id)
-        main_flexible_ip = scaleway.FlexibleIp("main",
+        main_ip = scaleway.elasticmetal.Ip("main",
             server_id=base.id,
             zone="fr-par-2")
         ```
@@ -445,7 +450,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", reverse="my-reverse.com")
+        main = scaleway.elasticmetal.Ip("main", reverse="my-reverse.com")
         ```
 
         ### With zone
@@ -454,7 +459,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", zone="fr-par-2")
+        main = scaleway.elasticmetal.Ip("main", zone="fr-par-2")
         ```
 
         ### With IPv6
@@ -463,7 +468,7 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main", is_ipv6=True)
+        main = scaleway.elasticmetal.Ip("main", is_ipv6=True)
         ```
 
         ### With baremetal server
@@ -473,20 +478,20 @@ class FlexibleIp(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.AccountSshKey("main",
+        main = scaleway.account.SshKey("main",
             name="main",
             public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com")
-        by_id = scaleway.get_baremetal_os(zone="fr-par-2",
+        by_id = scaleway.elasticmetal.get_os(zone="fr-par-2",
             name="Ubuntu",
             version="20.04 LTS (Focal Fossa)")
-        my_offer = scaleway.get_baremetal_offer(zone="fr-par-2",
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
             name="EM-A210R-HDD")
-        base = scaleway.BaremetalServer("base",
+        base = scaleway.elasticmetal.Server("base",
             zone="fr-par-2",
             offer=my_offer.offer_id,
             os=by_id.os_id,
             ssh_key_ids=main.id)
-        main_flexible_ip = scaleway.FlexibleIp("main",
+        main_ip = scaleway.elasticmetal.Ip("main",
             server_id=base.id,
             zone="fr-par-2")
         ```
@@ -524,6 +529,7 @@ class FlexibleIp(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FlexibleIp is deprecated: scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

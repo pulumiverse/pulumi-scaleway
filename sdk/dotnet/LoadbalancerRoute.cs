@@ -27,16 +27,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+    ///     var ip01 = new Scaleway.Loadbalancers.Ip("ip01");
     /// 
-    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+    ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
     ///     {
     ///         IpId = ip01.Id,
     ///         Name = "test-lb",
     ///         Type = "lb-s",
     ///     });
     /// 
-    ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+    ///     var bkd01 = new Scaleway.Loadbalancers.Backend("bkd01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         ForwardProtocol = "tcp",
@@ -44,14 +44,14 @@ namespace Pulumiverse.Scaleway
     ///         ProxyProtocol = "none",
     ///     });
     /// 
-    ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+    ///     var frt01 = new Scaleway.Loadbalancers.Frontend("frt01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         BackendId = bkd01.Id,
     ///         InboundPort = 80,
     ///     });
     /// 
-    ///     var rt01 = new Scaleway.LoadbalancerRoute("rt01", new()
+    ///     var rt01 = new Scaleway.Loadbalancers.Route("rt01", new()
     ///     {
     ///         FrontendId = frt01.Id,
     ///         BackendId = bkd01.Id,
@@ -71,16 +71,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+    ///     var ip01 = new Scaleway.Loadbalancers.Ip("ip01");
     /// 
-    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+    ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
     ///     {
     ///         IpId = ip01.Id,
     ///         Name = "test-lb",
     ///         Type = "lb-s",
     ///     });
     /// 
-    ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+    ///     var bkd01 = new Scaleway.Loadbalancers.Backend("bkd01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         ForwardProtocol = "http",
@@ -88,14 +88,14 @@ namespace Pulumiverse.Scaleway
     ///         ProxyProtocol = "none",
     ///     });
     /// 
-    ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+    ///     var frt01 = new Scaleway.Loadbalancers.Frontend("frt01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         BackendId = bkd01.Id,
     ///         InboundPort = 80,
     ///     });
     /// 
-    ///     var rt01 = new Scaleway.LoadbalancerRoute("rt01", new()
+    ///     var rt01 = new Scaleway.Loadbalancers.Route("rt01", new()
     ///     {
     ///         FrontendId = frt01.Id,
     ///         BackendId = bkd01.Id,
@@ -115,6 +115,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route")]
     [ScalewayResourceType("scaleway:index/loadbalancerRoute:LoadbalancerRoute")]
     public partial class LoadbalancerRoute : global::Pulumi.CustomResource
     {

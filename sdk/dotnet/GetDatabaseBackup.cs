@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup")]
     public static class GetDatabaseBackup
     {
         /// <summary>
@@ -25,18 +26,18 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var findByName = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByName = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///     });
         /// 
-        ///     var findByNameAndInstance = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByNameAndInstance = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var findById = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findById = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         BackupId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -60,18 +61,18 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var findByName = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByName = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///     });
         /// 
-        ///     var findByNameAndInstance = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByNameAndInstance = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var findById = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findById = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         BackupId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -95,18 +96,18 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var findByName = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByName = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///     });
         /// 
-        ///     var findByNameAndInstance = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findByNameAndInstance = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         Name = "mybackup",
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     var findById = Scaleway.GetDatabaseBackup.Invoke(new()
+        ///     var findById = Scaleway.Databases.GetDatabaseBackup.Invoke(new()
         ///     {
         ///         BackupId = "11111111-1111-1111-1111-111111111111",
         ///     });

@@ -11,13 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// > **Important:**  The data source `Cockpit` has been deprecated and will no longer be supported. Instead, use resource `Cockpit`.
+// > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 //
 // > **Note:**
 // As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
 // If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
 //
-// The `Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
+// The `observability.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
 //
 // Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
@@ -34,14 +34,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get the default Project's Cockpit
-//			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{}, nil)
+//			_, err := observability.GetInstance(ctx, &observability.GetInstanceArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
@@ -57,14 +57,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get a specific Project's Cockpit
-//			_, err := scaleway.LookupCockpit(ctx, &scaleway.LookupCockpitArgs{
+//			_, err := observability.GetInstance(ctx, &observability.GetInstanceArgs{
 //				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -75,6 +75,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance
 func LookupCockpit(ctx *pulumi.Context, args *LookupCockpitArgs, opts ...pulumi.InvokeOption) (*LookupCockpitResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCockpitResult

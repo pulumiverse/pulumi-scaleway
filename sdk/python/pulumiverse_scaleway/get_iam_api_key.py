@@ -21,6 +21,8 @@ __all__ = [
     'get_iam_api_key_output',
 ]
 
+warnings.warn("""scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIamApiKeyResult:
     """
@@ -151,12 +153,13 @@ def get_iam_api_key(access_key: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get api key infos by id (access_key)
-    main = scaleway.get_iam_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
+    main = scaleway.iam.get_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
     ```
 
 
     :param str access_key: The access key of the IAM API key which is also the ID of the API key.
     """
+    pulumi.log.warn("""get_iam_api_key is deprecated: scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey""")
     __args__ = dict()
     __args__['accessKey'] = access_key
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -186,12 +189,13 @@ def get_iam_api_key_output(access_key: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
 
     # Get api key infos by id (access_key)
-    main = scaleway.get_iam_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
+    main = scaleway.iam.get_api_key(access_key="SCWABCDEFGHIJKLMNOPQ")
     ```
 
 
     :param str access_key: The access key of the IAM API key which is also the ID of the API key.
     """
+    pulumi.log.warn("""get_iam_api_key is deprecated: scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey""")
     __args__ = dict()
     __args__['accessKey'] = access_key
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

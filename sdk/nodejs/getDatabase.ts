@@ -14,13 +14,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
- * const myDb = scaleway.getDatabase({
+ * const myDb = scaleway.databases.getDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase */
 export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
+    pulumi.log.warn("getDatabase is deprecated: scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabase:getDatabase", {
         "instanceId": args.instanceId,
@@ -78,13 +80,15 @@ export interface GetDatabaseResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
- * const myDb = scaleway.getDatabase({
+ * const myDb = scaleway.databases.getDatabase({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  *     name: "foobar",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase */
 export function getDatabaseOutput(args: GetDatabaseOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseResult> {
+    pulumi.log.warn("getDatabase is deprecated: scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabase:getDatabase", {
         "instanceId": args.instanceId,

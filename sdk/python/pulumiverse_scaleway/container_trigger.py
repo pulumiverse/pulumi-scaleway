@@ -225,7 +225,12 @@ class _ContainerTriggerState:
         pulumi.set(self, "sqs", value)
 
 
+warnings.warn("""scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger""", DeprecationWarning)
+
+
 class ContainerTrigger(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -238,7 +243,7 @@ class ContainerTrigger(pulumi.CustomResource):
                  sqs: Optional[pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
                  __props__=None):
         """
-        The `ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
@@ -250,7 +255,7 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerTrigger("main",
+        main = scaleway.containers.Trigger("main",
             container_id=main_scaleway_container["id"],
             name="my-trigger",
             sqs={
@@ -266,7 +271,7 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerTrigger("main",
+        main = scaleway.containers.Trigger("main",
             container_id=main_scaleway_container["id"],
             name="my-trigger",
             nats={
@@ -302,7 +307,7 @@ class ContainerTrigger(pulumi.CustomResource):
                  args: ContainerTriggerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
 
@@ -314,7 +319,7 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerTrigger("main",
+        main = scaleway.containers.Trigger("main",
             container_id=main_scaleway_container["id"],
             name="my-trigger",
             sqs={
@@ -330,7 +335,7 @@ class ContainerTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerTrigger("main",
+        main = scaleway.containers.Trigger("main",
             container_id=main_scaleway_container["id"],
             name="my-trigger",
             nats={
@@ -372,6 +377,7 @@ class ContainerTrigger(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input[Union['ContainerTriggerSqsArgs', 'ContainerTriggerSqsArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerTrigger is deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

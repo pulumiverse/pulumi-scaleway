@@ -21,6 +21,8 @@ __all__ = [
     'get_domain_zone_output',
 ]
 
+warnings.warn("""scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDomainZoneResult:
     """
@@ -157,6 +159,7 @@ def get_domain_zone(domain: Optional[str] = None,
     :param str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
     :param str subdomain: The subdomain (or zone name) within the primary domain. This is a mandatory field.
     """
+    pulumi.log.warn("""get_domain_zone is deprecated: scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['subdomain'] = subdomain
@@ -183,6 +186,7 @@ def get_domain_zone_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     :param str domain: The primary domain name where the DNS zone is located. This is a mandatory field.
     :param str subdomain: The subdomain (or zone name) within the primary domain. This is a mandatory field.
     """
+    pulumi.log.warn("""get_domain_zone is deprecated: scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['subdomain'] = subdomain

@@ -21,6 +21,8 @@ __all__ = [
     'get_vpc_public_gateway_ip_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcPublicGatewayIpResult:
     """
@@ -144,10 +146,11 @@ def get_vpc_public_gateway_ip(ip_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    main = scaleway.network.PublicGatewayIp("main")
+    ip_by_id = scaleway.network.get_public_gateway_ip_output(ip_id=main.id)
     ```
     """
+    pulumi.log.warn("""get_vpc_public_gateway_ip is deprecated: scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp""")
     __args__ = dict()
     __args__['ipId'] = ip_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -178,10 +181,11 @@ def get_vpc_public_gateway_ip_output(ip_id: Optional[pulumi.Input[Optional[str]]
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayIp("main")
-    ip_by_id = scaleway.get_vpc_public_gateway_ip_output(ip_id=main.id)
+    main = scaleway.network.PublicGatewayIp("main")
+    ip_by_id = scaleway.network.get_public_gateway_ip_output(ip_id=main.id)
     ```
     """
+    pulumi.log.warn("""get_vpc_public_gateway_ip is deprecated: scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp""")
     __args__ = dict()
     __args__['ipId'] = ip_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

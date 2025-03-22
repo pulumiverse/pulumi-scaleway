@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
+//			_, err := redis.NewCluster(ctx, "main", &redis.ClusterArgs{
 //				Name:     pulumi.String("test_redis_basic"),
 //				Version:  pulumi.String("6.2.7"),
 //				NodeType: pulumi.String("RED1-MICRO"),
@@ -43,8 +43,8 @@ import (
 //				},
 //				ClusterSize: pulumi.Int(1),
 //				TlsEnabled:  pulumi.Bool(true),
-//				Acls: scaleway.RedisClusterAclArray{
-//					&scaleway.RedisClusterAclArgs{
+//				Acls: redis.ClusterAclArray{
+//					&redis.ClusterAclArgs{
 //						Ip:          pulumi.String("0.0.0.0/0"),
 //						Description: pulumi.String("Allow all"),
 //					},
@@ -67,13 +67,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
+//			_, err := redis.NewCluster(ctx, "main", &redis.ClusterArgs{
 //				Name:     pulumi.String("test_redis_basic"),
 //				Version:  pulumi.String("6.2.7"),
 //				NodeType: pulumi.String("RED1-MICRO"),
@@ -101,27 +101,28 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", &scaleway.VpcPrivateNetworkArgs{
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("private-network"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewRedisCluster(ctx, "main", &scaleway.RedisClusterArgs{
+//			_, err = redis.NewCluster(ctx, "main", &redis.ClusterArgs{
 //				Name:        pulumi.String("test_redis_endpoints"),
 //				Version:     pulumi.String("6.2.7"),
 //				NodeType:    pulumi.String("RED1-MICRO"),
 //				UserName:    pulumi.String("my_initial_user"),
 //				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
 //				ClusterSize: pulumi.Int(1),
-//				PrivateNetworks: scaleway.RedisClusterPrivateNetworkArray{
-//					&scaleway.RedisClusterPrivateNetworkArgs{
+//				PrivateNetworks: redis.ClusterPrivateNetworkArray{
+//					&redis.ClusterPrivateNetworkArgs{
 //						Id: pn.ID(),
 //						ServiceIps: pulumi.StringArray{
 //							pulumi.String("10.12.1.1/20"),
@@ -149,6 +150,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster
 type RedisCluster struct {
 	pulumi.CustomResourceState
 

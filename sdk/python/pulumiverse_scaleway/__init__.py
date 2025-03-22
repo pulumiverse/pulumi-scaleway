@@ -203,14 +203,407 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import pulumiverse_scaleway.account as __account
+    account = __account
+    import pulumiverse_scaleway.applesilicon as __applesilicon
+    applesilicon = __applesilicon
+    import pulumiverse_scaleway.billing as __billing
+    billing = __billing
+    import pulumiverse_scaleway.block as __block
+    block = __block
     import pulumiverse_scaleway.config as __config
     config = __config
+    import pulumiverse_scaleway.containers as __containers
+    containers = __containers
+    import pulumiverse_scaleway.databases as __databases
+    databases = __databases
+    import pulumiverse_scaleway.domain as __domain
+    domain = __domain
+    import pulumiverse_scaleway.elasticmetal as __elasticmetal
+    elasticmetal = __elasticmetal
+    import pulumiverse_scaleway.functions as __functions
+    functions = __functions
+    import pulumiverse_scaleway.hosting as __hosting
+    hosting = __hosting
+    import pulumiverse_scaleway.iam as __iam
+    iam = __iam
+    import pulumiverse_scaleway.inference as __inference
+    inference = __inference
+    import pulumiverse_scaleway.instance as __instance
+    instance = __instance
+    import pulumiverse_scaleway.iot as __iot
+    iot = __iot
+    import pulumiverse_scaleway.ipam as __ipam
+    ipam = __ipam
+    import pulumiverse_scaleway.job as __job
+    job = __job
+    import pulumiverse_scaleway.kubernetes as __kubernetes
+    kubernetes = __kubernetes
+    import pulumiverse_scaleway.loadbalancers as __loadbalancers
+    loadbalancers = __loadbalancers
+    import pulumiverse_scaleway.mnq as __mnq
+    mnq = __mnq
+    import pulumiverse_scaleway.mongodb as __mongodb
+    mongodb = __mongodb
+    import pulumiverse_scaleway.network as __network
+    network = __network
+    import pulumiverse_scaleway.object as __object
+    object = __object
+    import pulumiverse_scaleway.observability as __observability
+    observability = __observability
+    import pulumiverse_scaleway.redis as __redis
+    redis = __redis
+    import pulumiverse_scaleway.registry as __registry
+    registry = __registry
+    import pulumiverse_scaleway.secrets as __secrets
+    secrets = __secrets
+    import pulumiverse_scaleway.tem as __tem
+    tem = __tem
 else:
+    account = _utilities.lazy_import('pulumiverse_scaleway.account')
+    applesilicon = _utilities.lazy_import('pulumiverse_scaleway.applesilicon')
+    billing = _utilities.lazy_import('pulumiverse_scaleway.billing')
+    block = _utilities.lazy_import('pulumiverse_scaleway.block')
     config = _utilities.lazy_import('pulumiverse_scaleway.config')
+    containers = _utilities.lazy_import('pulumiverse_scaleway.containers')
+    databases = _utilities.lazy_import('pulumiverse_scaleway.databases')
+    domain = _utilities.lazy_import('pulumiverse_scaleway.domain')
+    elasticmetal = _utilities.lazy_import('pulumiverse_scaleway.elasticmetal')
+    functions = _utilities.lazy_import('pulumiverse_scaleway.functions')
+    hosting = _utilities.lazy_import('pulumiverse_scaleway.hosting')
+    iam = _utilities.lazy_import('pulumiverse_scaleway.iam')
+    inference = _utilities.lazy_import('pulumiverse_scaleway.inference')
+    instance = _utilities.lazy_import('pulumiverse_scaleway.instance')
+    iot = _utilities.lazy_import('pulumiverse_scaleway.iot')
+    ipam = _utilities.lazy_import('pulumiverse_scaleway.ipam')
+    job = _utilities.lazy_import('pulumiverse_scaleway.job')
+    kubernetes = _utilities.lazy_import('pulumiverse_scaleway.kubernetes')
+    loadbalancers = _utilities.lazy_import('pulumiverse_scaleway.loadbalancers')
+    mnq = _utilities.lazy_import('pulumiverse_scaleway.mnq')
+    mongodb = _utilities.lazy_import('pulumiverse_scaleway.mongodb')
+    network = _utilities.lazy_import('pulumiverse_scaleway.network')
+    object = _utilities.lazy_import('pulumiverse_scaleway.object')
+    observability = _utilities.lazy_import('pulumiverse_scaleway.observability')
+    redis = _utilities.lazy_import('pulumiverse_scaleway.redis')
+    registry = _utilities.lazy_import('pulumiverse_scaleway.registry')
+    secrets = _utilities.lazy_import('pulumiverse_scaleway.secrets')
+    tem = _utilities.lazy_import('pulumiverse_scaleway.tem')
 
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "scaleway",
+  "mod": "account/project",
+  "fqn": "pulumiverse_scaleway.account",
+  "classes": {
+   "scaleway:account/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "account/sshKey",
+  "fqn": "pulumiverse_scaleway.account",
+  "classes": {
+   "scaleway:account/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "applesilicon/server",
+  "fqn": "pulumiverse_scaleway.applesilicon",
+  "classes": {
+   "scaleway:applesilicon/server:Server": "Server"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "block/snapshot",
+  "fqn": "pulumiverse_scaleway.block",
+  "classes": {
+   "scaleway:block/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "block/volume",
+  "fqn": "pulumiverse_scaleway.block",
+  "classes": {
+   "scaleway:block/volume:Volume": "Volume"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/container",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/container:Container": "Container"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/cron",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/cron:Cron": "Cron"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/domain",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/namespace",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/namespace:Namespace": "Namespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/token",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "containers/trigger",
+  "fqn": "pulumiverse_scaleway.containers",
+  "classes": {
+   "scaleway:containers/trigger:Trigger": "Trigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/acl",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/database",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/databaseBackup",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/databaseBackup:DatabaseBackup": "DatabaseBackup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/instance",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/privilege",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/privilege:Privilege": "Privilege"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/readReplica",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/readReplica:ReadReplica": "ReadReplica"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/serverlessDatabase",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/serverlessDatabase:ServerlessDatabase": "ServerlessDatabase"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/snapshot",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "databases/user",
+  "fqn": "pulumiverse_scaleway.databases",
+  "classes": {
+   "scaleway:databases/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "domain/record",
+  "fqn": "pulumiverse_scaleway.domain",
+  "classes": {
+   "scaleway:domain/record:Record": "Record"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "domain/zone",
+  "fqn": "pulumiverse_scaleway.domain",
+  "classes": {
+   "scaleway:domain/zone:Zone": "Zone"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "elasticmetal/ip",
+  "fqn": "pulumiverse_scaleway.elasticmetal",
+  "classes": {
+   "scaleway:elasticmetal/ip:Ip": "Ip"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "elasticmetal/ipMacAddress",
+  "fqn": "pulumiverse_scaleway.elasticmetal",
+  "classes": {
+   "scaleway:elasticmetal/ipMacAddress:IpMacAddress": "IpMacAddress"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "elasticmetal/server",
+  "fqn": "pulumiverse_scaleway.elasticmetal",
+  "classes": {
+   "scaleway:elasticmetal/server:Server": "Server"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/cron",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/cron:Cron": "Cron"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/domain",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/function",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/function:Function": "Function"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/namespace",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/namespace:Namespace": "Namespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/token",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "functions/trigger",
+  "fqn": "pulumiverse_scaleway.functions",
+  "classes": {
+   "scaleway:functions/trigger:Trigger": "Trigger"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "hosting/hosting",
+  "fqn": "pulumiverse_scaleway.hosting",
+  "classes": {
+   "scaleway:hosting/hosting:Hosting": "Hosting"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/apiKey",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/apiKey:ApiKey": "ApiKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/application",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/application:Application": "Application"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/group",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/group:Group": "Group"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/groupMembership",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/groupMembership:GroupMembership": "GroupMembership"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/policy",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/sshKey",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/user",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/user:User": "User"
+  }
+ },
  {
   "pkg": "scaleway",
   "mod": "index/accountProject",
@@ -1057,6 +1450,542 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/webhosting:Webhosting": "Webhosting"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "inference/deployment",
+  "fqn": "pulumiverse_scaleway.inference",
+  "classes": {
+   "scaleway:inference/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/image",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/image:Image": "Image"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/ip",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/ip:Ip": "Ip"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/ipReverseDns",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/ipReverseDns:IpReverseDns": "IpReverseDns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/placementGroup",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/placementGroup:PlacementGroup": "PlacementGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/privateNic",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/privateNic:PrivateNic": "PrivateNic"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/securityGroup",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/securityGroup:SecurityGroup": "SecurityGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/securityGroupRules",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/securityGroupRules:SecurityGroupRules": "SecurityGroupRules"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/server",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/server:Server": "Server"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/snapshot",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/userData",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/userData:UserData": "UserData"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "instance/volume",
+  "fqn": "pulumiverse_scaleway.instance",
+  "classes": {
+   "scaleway:instance/volume:Volume": "Volume"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iot/device",
+  "fqn": "pulumiverse_scaleway.iot",
+  "classes": {
+   "scaleway:iot/device:Device": "Device"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iot/hub",
+  "fqn": "pulumiverse_scaleway.iot",
+  "classes": {
+   "scaleway:iot/hub:Hub": "Hub"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iot/network",
+  "fqn": "pulumiverse_scaleway.iot",
+  "classes": {
+   "scaleway:iot/network:Network": "Network"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iot/route",
+  "fqn": "pulumiverse_scaleway.iot",
+  "classes": {
+   "scaleway:iot/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "ipam/ip",
+  "fqn": "pulumiverse_scaleway.ipam",
+  "classes": {
+   "scaleway:ipam/ip:Ip": "Ip"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "ipam/ipReverseDns",
+  "fqn": "pulumiverse_scaleway.ipam",
+  "classes": {
+   "scaleway:ipam/ipReverseDns:IpReverseDns": "IpReverseDns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "job/definition",
+  "fqn": "pulumiverse_scaleway.job",
+  "classes": {
+   "scaleway:job/definition:Definition": "Definition"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "kubernetes/cluster",
+  "fqn": "pulumiverse_scaleway.kubernetes",
+  "classes": {
+   "scaleway:kubernetes/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "kubernetes/pool",
+  "fqn": "pulumiverse_scaleway.kubernetes",
+  "classes": {
+   "scaleway:kubernetes/pool:Pool": "Pool"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/acl",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/backend",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/backend:Backend": "Backend"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/certificate",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/certificate:Certificate": "Certificate"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/frontend",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/frontend:Frontend": "Frontend"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/ip",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/ip:Ip": "Ip"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/loadBalancer",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/loadBalancer:LoadBalancer": "LoadBalancer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "loadbalancers/route",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/natsAccount",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/natsAccount:NatsAccount": "NatsAccount"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/natsCredentials",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/natsCredentials:NatsCredentials": "NatsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/sns",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/sns:Sns": "Sns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/snsCredentials",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/snsCredentials:SnsCredentials": "SnsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/snsTopic",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/snsTopic:SnsTopic": "SnsTopic"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/snsTopicSubscription",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/snsTopicSubscription:SnsTopicSubscription": "SnsTopicSubscription"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/sqs",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/sqs:Sqs": "Sqs"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/sqsCredentials",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/sqsCredentials:SqsCredentials": "SqsCredentials"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mnq/sqsQueue",
+  "fqn": "pulumiverse_scaleway.mnq",
+  "classes": {
+   "scaleway:mnq/sqsQueue:SqsQueue": "SqsQueue"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mongodb/instance",
+  "fqn": "pulumiverse_scaleway.mongodb",
+  "classes": {
+   "scaleway:mongodb/instance:Instance": "Instance"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "mongodb/snapshot",
+  "fqn": "pulumiverse_scaleway.mongodb",
+  "classes": {
+   "scaleway:mongodb/snapshot:Snapshot": "Snapshot"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/gatewayNetwork",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/gatewayNetwork:GatewayNetwork": "GatewayNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/privateNetwork",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/privateNetwork:PrivateNetwork": "PrivateNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGateway",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGateway:PublicGateway": "PublicGateway"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGatewayDhcp",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGatewayDhcp:PublicGatewayDhcp": "PublicGatewayDhcp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGatewayDhcpReservation",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGatewayDhcpReservation:PublicGatewayDhcpReservation": "PublicGatewayDhcpReservation"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGatewayIp",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGatewayIp:PublicGatewayIp": "PublicGatewayIp"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGatewayIpReverseDns",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGatewayIpReverseDns:PublicGatewayIpReverseDns": "PublicGatewayIpReverseDns"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/publicGatewayPatRule",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/publicGatewayPatRule:PublicGatewayPatRule": "PublicGatewayPatRule"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/route",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/route:Route": "Route"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "network/vpc",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/vpc:Vpc": "Vpc"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/bucket",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucket:Bucket": "Bucket"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/bucketAcl",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucketAcl:BucketAcl": "BucketAcl"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/bucketLockConfiguration",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucketLockConfiguration:BucketLockConfiguration": "BucketLockConfiguration"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/bucketPolicy",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucketPolicy:BucketPolicy": "BucketPolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/bucketWebsiteConfiguration",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration": "BucketWebsiteConfiguration"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "object/item",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/item:Item": "Item"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/alertManager",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/alertManager:AlertManager": "AlertManager"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/cockpit",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/cockpit:Cockpit": "Cockpit"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/grafanaUser",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/grafanaUser:GrafanaUser": "GrafanaUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/source",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/source:Source": "Source"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/token",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "redis/cluster",
+  "fqn": "pulumiverse_scaleway.redis",
+  "classes": {
+   "scaleway:redis/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "registry/namespace",
+  "fqn": "pulumiverse_scaleway.registry",
+  "classes": {
+   "scaleway:registry/namespace:Namespace": "Namespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "secrets/secret",
+  "fqn": "pulumiverse_scaleway.secrets",
+  "classes": {
+   "scaleway:secrets/secret:Secret": "Secret"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "secrets/version",
+  "fqn": "pulumiverse_scaleway.secrets",
+  "classes": {
+   "scaleway:secrets/version:Version": "Version"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "tem/domain",
+  "fqn": "pulumiverse_scaleway.tem",
+  "classes": {
+   "scaleway:tem/domain:Domain": "Domain"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "tem/domainValidation",
+  "fqn": "pulumiverse_scaleway.tem",
+  "classes": {
+   "scaleway:tem/domainValidation:DomainValidation": "DomainValidation"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "tem/webhook",
+  "fqn": "pulumiverse_scaleway.tem",
+  "classes": {
+   "scaleway:tem/webhook:Webhook": "Webhook"
   }
  }
 ]

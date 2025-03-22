@@ -27,13 +27,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMnqSqs(ctx, "main", nil)
+//			_, err := mnq.NewSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
@@ -51,19 +51,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			project, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqs(ctx, "for_project", &scaleway.MnqSqsArgs{
+//			_, err = mnq.NewSqs(ctx, "for_project", &mnq.SqsArgs{
 //				ProjectId: pulumi.String(project.Id),
 //			})
 //			if err != nil {
@@ -84,6 +85,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs
 type MnqSqs struct {
 	pulumi.CustomResourceState
 

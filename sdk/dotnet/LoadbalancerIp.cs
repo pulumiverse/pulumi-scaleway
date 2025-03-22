@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ip = new Scaleway.LoadbalancerIp("ip", new()
+    ///     var ip = new Scaleway.Loadbalancers.Ip("ip", new()
     ///     {
     ///         Reverse = "my-reverse.com",
     ///     });
@@ -45,7 +45,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ipv6 = new Scaleway.LoadbalancerIp("ipv6", new()
+    ///     var ipv6 = new Scaleway.Loadbalancers.Ip("ipv6", new()
     ///     {
     ///         IsIpv6 = true,
     ///     });
@@ -63,6 +63,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip")]
     [ScalewayResourceType("scaleway:index/loadbalancerIp:LoadbalancerIp")]
     public partial class LoadbalancerIp : global::Pulumi.CustomResource
     {

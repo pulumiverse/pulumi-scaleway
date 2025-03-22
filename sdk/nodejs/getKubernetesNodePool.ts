@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Kubernetes Cluster's Pool.
  */
+/** @deprecated scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool */
 export function getKubernetesNodePool(args?: GetKubernetesNodePoolArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesNodePoolResult> {
+    pulumi.log.warn("getKubernetesNodePool is deprecated: scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {
@@ -130,7 +132,9 @@ export interface GetKubernetesNodePoolResult {
 /**
  * Gets information about a Kubernetes Cluster's Pool.
  */
+/** @deprecated scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool */
 export function getKubernetesNodePoolOutput(args?: GetKubernetesNodePoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesNodePoolResult> {
+    pulumi.log.warn("getKubernetesNodePool is deprecated: scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getKubernetesNodePool:getKubernetesNodePool", {

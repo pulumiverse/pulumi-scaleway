@@ -22,6 +22,8 @@ __all__ = [
     'get_redis_cluster_output',
 ]
 
+warnings.warn("""scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster""", DeprecationWarning)
+
 @pulumi.output_type
 class GetRedisClusterResult:
     """
@@ -272,6 +274,7 @@ def get_redis_cluster(cluster_id: Optional[str] = None,
     :param str project_id: The ID of the project the Redis cluster is associated with.
     :param str zone: `region`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_redis_cluster is deprecated: scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name
@@ -318,6 +321,7 @@ def get_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] =
     :param str project_id: The ID of the project the Redis cluster is associated with.
     :param str zone: `region`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_redis_cluster is deprecated: scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name

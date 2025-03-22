@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/serverless-containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
     /// 
@@ -29,9 +29,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var app = new Scaleway.Container("app");
+    ///     var app = new Scaleway.Containers.Container("app");
     /// 
-    ///     var appContainerDomain = new Scaleway.ContainerDomain("app", new()
+    ///     var appDomain = new Scaleway.Containers.Domain("app", new()
     ///     {
     ///         ContainerId = app.Id,
     ///         Hostname = "container.domain.tld",
@@ -50,13 +50,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerNamespace("main", new()
+    ///     var main = new Scaleway.Containers.Namespace("main", new()
     ///     {
     ///         Name = "my-ns-test",
     ///         Description = "test container",
     ///     });
     /// 
-    ///     var app = new Scaleway.Container("app", new()
+    ///     var app = new Scaleway.Containers.Container("app", new()
     ///     {
     ///         Name = "app",
     ///         NamespaceId = main.Id,
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
     ///         Deploy = true,
     ///     });
     /// 
-    ///     var appDomainRecord = new Scaleway.DomainRecord("app", new()
+    ///     var appRecord = new Scaleway.Domain.Record("app", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "subdomain",
@@ -82,10 +82,10 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var appContainerDomain = new Scaleway.ContainerDomain("app", new()
+    ///     var appDomain = new Scaleway.Containers.Domain("app", new()
     ///     {
     ///         ContainerId = app.Id,
-    ///         Hostname = Output.Tuple(appDomainRecord.Name, appDomainRecord.DnsZone).Apply(values =&gt;
+    ///         Hostname = Output.Tuple(appRecord.Name, appRecord.DnsZone).Apply(values =&gt;
     ///         {
     ///             var name = values.Item1;
     ///             var dnsZone = values.Item2;
@@ -106,6 +106,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain")]
     [ScalewayResourceType("scaleway:index/containerDomain:ContainerDomain")]
     public partial class ContainerDomain : global::Pulumi.CustomResource
     {

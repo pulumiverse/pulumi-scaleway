@@ -16,14 +16,16 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // For default project
- * const main = scaleway.getMnqSqs({});
+ * const main = scaleway.mnq.getSqs({});
  * // For specific project
- * const forProject = scaleway.getMnqSqs({
+ * const forProject = scaleway.mnq.getSqs({
  *     projectId: mainScalewayAccountProject.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs */
 export function getMnqSqs(args?: GetMnqSqsArgs, opts?: pulumi.InvokeOptions): Promise<GetMnqSqsResult> {
+    pulumi.log.warn("getMnqSqs is deprecated: scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMnqSqs:getMnqSqs", {
@@ -73,14 +75,16 @@ export interface GetMnqSqsResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // For default project
- * const main = scaleway.getMnqSqs({});
+ * const main = scaleway.mnq.getSqs({});
  * // For specific project
- * const forProject = scaleway.getMnqSqs({
+ * const forProject = scaleway.mnq.getSqs({
  *     projectId: mainScalewayAccountProject.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs */
 export function getMnqSqsOutput(args?: GetMnqSqsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMnqSqsResult> {
+    pulumi.log.warn("getMnqSqs is deprecated: scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMnqSqs:getMnqSqs", {

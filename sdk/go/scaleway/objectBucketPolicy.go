@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+// The `object.BucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
 //
@@ -29,31 +29,33 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Project ID
-//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// IAM configuration
-//			user, err := scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
+//			user, err := iam.LookupUser(ctx, &iam.LookupUserArgs{
 //				Email: pulumi.StringRef("user@scaleway.com"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "policy", &scaleway.IamPolicyArgs{
+//			_, err = iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
 //				Name:   pulumi.String("object-storage-policy"),
 //				UserId: pulumi.String(user.Id),
-//				Rules: scaleway.IamPolicyRuleArray{
-//					&scaleway.IamPolicyRuleArgs{
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
 //							pulumi.String(_default.Id),
 //						},
@@ -67,13 +69,13 @@ import (
 //				return err
 //			}
 //			// Object storage configuration
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
 //				Name: pulumi.String("some-unique-name"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
 //				Bucket: bucket.Name,
 //				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
 //					bucketName := _args[0].(string)
@@ -127,31 +129,33 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Project ID
-//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// IAM configuration
-//			reading_app, err := scaleway.NewIamApplication(ctx, "reading-app", &scaleway.IamApplicationArgs{
+//			reading_app, err := iam.NewApplication(ctx, "reading-app", &iam.ApplicationArgs{
 //				Name: pulumi.String("reading-app"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "policy", &scaleway.IamPolicyArgs{
+//			_, err = iam.NewPolicy(ctx, "policy", &iam.PolicyArgs{
 //				Name:          pulumi.String("object-storage-policy"),
 //				ApplicationId: reading_app.ID(),
-//				Rules: scaleway.IamPolicyRuleArray{
-//					&scaleway.IamPolicyRuleArgs{
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
 //							pulumi.String(_default.Id),
 //						},
@@ -165,13 +169,13 @@ import (
 //				return err
 //			}
 //			// Object storage configuration
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
 //				Name: pulumi.String("some-unique-name"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
 //				Bucket: bucket.ID(),
 //				Policy: pulumi.All(reading_app.ID(), bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
 //					id := _args[0].(string)
@@ -222,25 +226,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			reading_app, err := scaleway.LookupIamApplication(ctx, &scaleway.LookupIamApplicationArgs{
+//			reading_app, err := iam.LookupApplication(ctx, &iam.LookupApplicationArgs{
 //				Name: pulumi.StringRef("reading-app"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamApiKey(ctx, "reading-api-key", &scaleway.IamApiKeyArgs{
+//			_, err = iam.NewApiKey(ctx, "reading-api-key", &iam.ApiKeyArgs{
 //				ApplicationId: pulumi.String(reading_app.Id),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
+//			_, err = object.LookupBucket(ctx, &object.LookupBucketArgs{
 //				Name: pulumi.StringRef("some-unique-name"),
 //			}, nil)
 //			if err != nil {
@@ -263,21 +268,22 @@ import (
 //
 //	"github.com/pulumi/pulumi-aws/sdk/v6/go/aws/iam"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Scaleway project ID
-//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Object storage configuration
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
 //				Name: pulumi.String("some-unique-name"),
 //			})
 //			if err != nil {
@@ -310,7 +316,7 @@ import (
 //					},
 //				},
 //			}, nil)
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
 //				Bucket: bucket.ID(),
 //				Policy: pulumi.String(policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
 //					return &policy.Json, nil
@@ -336,28 +342,29 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Project ID
-//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Object storage configuration
-//			bucket, err := scaleway.NewObjectBucket(ctx, "bucket", &scaleway.ObjectBucketArgs{
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
 //				Name:   pulumi.String("mia-cross-crash-tests"),
 //				Region: pulumi.String("fr-par"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "policy", &scaleway.ObjectBucketPolicyArgs{
+//			_, err = object.NewBucketPolicy(ctx, "policy", &object.BucketPolicyArgs{
 //				Bucket: bucket.Name,
 //				Policy: pulumi.All(bucket.Name, bucket.Name).ApplyT(func(_args []interface{}) (string, error) {
 //					bucketName := _args[0].(string)
@@ -419,6 +426,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 // ```
+//
+// Deprecated: scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy
 type ObjectBucketPolicy struct {
 	pulumi.CustomResourceState
 

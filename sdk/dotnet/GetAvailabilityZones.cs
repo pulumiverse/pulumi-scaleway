@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones")]
     public static class GetAvailabilityZones
     {
         /// <summary>
-        /// The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+        /// The `scaleway.account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
         /// 
         /// For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
         /// you can choose the location that better fits your need (country, latency, etc.).
@@ -33,7 +34,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by Region key
-        ///     var main = Scaleway.GetAvailabilityZones.Invoke(new()
+        ///     var main = Scaleway.Account.GetAvailabilityZones.Invoke(new()
         ///     {
         ///         Region = "nl-ams",
         ///     });
@@ -45,7 +46,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAvailabilityZonesResult>("scaleway:index/getAvailabilityZones:getAvailabilityZones", args ?? new GetAvailabilityZonesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+        /// The `scaleway.account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
         /// 
         /// For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
         /// you can choose the location that better fits your need (country, latency, etc.).
@@ -65,7 +66,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by Region key
-        ///     var main = Scaleway.GetAvailabilityZones.Invoke(new()
+        ///     var main = Scaleway.Account.GetAvailabilityZones.Invoke(new()
         ///     {
         ///         Region = "nl-ams",
         ///     });
@@ -77,7 +78,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetAvailabilityZonesResult>("scaleway:index/getAvailabilityZones:getAvailabilityZones", args ?? new GetAvailabilityZonesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+        /// The `scaleway.account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
         /// 
         /// For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
         /// you can choose the location that better fits your need (country, latency, etc.).
@@ -97,7 +98,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by Region key
-        ///     var main = Scaleway.GetAvailabilityZones.Invoke(new()
+        ///     var main = Scaleway.Account.GetAvailabilityZones.Invoke(new()
         ///     {
         ///         Region = "nl-ams",
         ///     });

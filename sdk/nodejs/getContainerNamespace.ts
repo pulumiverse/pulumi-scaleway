@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+ * The `scaleway.containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
@@ -21,16 +21,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by namespace name
- * const byName = scaleway.getContainerNamespace({
+ * const byName = scaleway.containers.getNamespace({
  *     name: "my-namespace-name",
  * });
  * // Get info by namespace ID
- * const byId = scaleway.getContainerNamespace({
+ * const byId = scaleway.containers.getNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace */
 export function getContainerNamespace(args?: GetContainerNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerNamespaceResult> {
+    pulumi.log.warn("getContainerNamespace is deprecated: scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getContainerNamespace:getContainerNamespace", {
@@ -100,7 +102,7 @@ export interface GetContainerNamespaceResult {
     readonly tags: string[];
 }
 /**
- * The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+ * The `scaleway.containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
@@ -116,16 +118,18 @@ export interface GetContainerNamespaceResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by namespace name
- * const byName = scaleway.getContainerNamespace({
+ * const byName = scaleway.containers.getNamespace({
  *     name: "my-namespace-name",
  * });
  * // Get info by namespace ID
- * const byId = scaleway.getContainerNamespace({
+ * const byId = scaleway.containers.getNamespace({
  *     namespaceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace */
 export function getContainerNamespaceOutput(args?: GetContainerNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContainerNamespaceResult> {
+    pulumi.log.warn("getContainerNamespace is deprecated: scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getContainerNamespace:getContainerNamespace", {

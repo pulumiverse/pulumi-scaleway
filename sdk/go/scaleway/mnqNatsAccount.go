@@ -26,13 +26,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewMnqNatsAccount(ctx, "main", &scaleway.MnqNatsAccountArgs{
+//			_, err := mnq.NewNatsAccount(ctx, "main", &mnq.NatsAccountArgs{
 //				Name: pulumi.String("nats-account"),
 //			})
 //			if err != nil {
@@ -53,6 +53,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount
 type MnqNatsAccount struct {
 	pulumi.CustomResourceState
 

@@ -22,6 +22,8 @@ __all__ = [
     'get_loadbalancer_output',
 ]
 
+warnings.warn("""scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLoadbalancerResult:
     """
@@ -242,9 +244,9 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    by_name = scaleway.get_loadbalancer(name="foobar")
+    by_name = scaleway.loadbalancers.get_load_balancer(name="foobar")
     # Get info by ID
-    by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.loadbalancers.get_load_balancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -252,6 +254,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
     :param str project_id: The ID of the Project the Load Balancer is associated with.
     :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
+    pulumi.log.warn("""get_loadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer""")
     __args__ = dict()
     __args__['lbId'] = lb_id
     __args__['name'] = name
@@ -299,9 +302,9 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    by_name = scaleway.get_loadbalancer(name="foobar")
+    by_name = scaleway.loadbalancers.get_load_balancer(name="foobar")
     # Get info by ID
-    by_id = scaleway.get_loadbalancer(lb_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.loadbalancers.get_load_balancer(lb_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -309,6 +312,7 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: The ID of the Project the Load Balancer is associated with.
     :param str zone: (Defaults to provider `zone`) The zone in which the Load Balancer exists.
     """
+    pulumi.log.warn("""get_loadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer""")
     __args__ = dict()
     __args__['lbId'] = lb_id
     __args__['name'] = name

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ * The `scaleway.functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
  * Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
  *
@@ -15,20 +15,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionNamespace("main", {name: "test-function-token-ns"});
- * const mainFunction = new scaleway.Function("main", {
+ * const main = new scaleway.functions.Namespace("main", {name: "test-function-token-ns"});
+ * const mainFunction = new scaleway.functions.Function("main", {
  *     namespaceId: main.id,
  *     runtime: "go118",
  *     handler: "Handle",
  *     privacy: "private",
  * });
  * // Namespace Token
- * const namespace = new scaleway.FunctionToken("namespace", {
+ * const namespace = new scaleway.functions.Token("namespace", {
  *     namespaceId: main.id,
  *     expiresAt: "2022-10-18T11:35:15+02:00",
  * });
  * // Function Token
- * const _function = new scaleway.FunctionToken("function", {functionId: mainFunction.id});
+ * const _function = new scaleway.functions.Token("function", {functionId: mainFunction.id});
  * ```
  *
  * ## Import
@@ -40,6 +40,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token
  */
 export class FunctionToken extends pulumi.CustomResource {
     /**
@@ -52,6 +54,7 @@ export class FunctionToken extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionTokenState, opts?: pulumi.CustomResourceOptions): FunctionToken {
+        pulumi.log.warn("FunctionToken is deprecated: scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token")
         return new FunctionToken(name, <any>state, { ...opts, id: id });
     }
 
@@ -96,7 +99,7 @@ export class FunctionToken extends pulumi.CustomResource {
     /**
      * The token.
      */
-    public /*out*/ readonly token!: pulumi.Output<string>;
+    public /*out*/ readonly value!: pulumi.Output<string>;
 
     /**
      * Create a FunctionToken resource with the given unique name, arguments, and options.
@@ -105,8 +108,11 @@ export class FunctionToken extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token */
     constructor(name: string, args?: FunctionTokenArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token */
     constructor(name: string, argsOrState?: FunctionTokenArgs | FunctionTokenState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FunctionToken is deprecated: scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -116,7 +122,7 @@ export class FunctionToken extends pulumi.CustomResource {
             resourceInputs["functionId"] = state ? state.functionId : undefined;
             resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as FunctionTokenArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -124,10 +130,10 @@ export class FunctionToken extends pulumi.CustomResource {
             resourceInputs["functionId"] = args ? args.functionId : undefined;
             resourceInputs["namespaceId"] = args ? args.namespaceId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["token"] = undefined /*out*/;
+            resourceInputs["value"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["value"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(FunctionToken.__pulumiType, name, resourceInputs, opts);
     }
@@ -164,7 +170,7 @@ export interface FunctionTokenState {
     /**
      * The token.
      */
-    token?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 /**

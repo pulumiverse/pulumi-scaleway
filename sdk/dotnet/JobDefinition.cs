@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.JobDefinition("main", new()
+    ///     var main = new Scaleway.Job.Definition("main", new()
     ///     {
     ///         Name = "testjob",
     ///         CpuLimit = 140,
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "foo", "bar" },
     ///         },
-    ///         Cron = new Scaleway.Inputs.JobDefinitionCronArgs
+    ///         Cron = new Scaleway.Job.Inputs.DefinitionCronArgs
     ///         {
     ///             Schedule = "5 4 1 * *",
     ///             Timezone = "Europe/Paris",
@@ -57,6 +57,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition")]
     [ScalewayResourceType("scaleway:index/jobDefinition:JobDefinition")]
     public partial class JobDefinition : global::Pulumi.CustomResource
     {

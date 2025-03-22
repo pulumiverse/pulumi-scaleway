@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIp("main", {reverse: "tf.example.com"});
- * const tfA = new scaleway.DomainRecord("tf_A", {
+ * const main = new scaleway.network.PublicGatewayIp("main", {reverse: "tf.example.com"});
+ * const tfA = new scaleway.domain.Record("tf_A", {
  *     dnsZone: "example.com",
  *     name: "tf",
  *     type: "A",
@@ -34,6 +34,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp
  */
 export class VpcPublicGatewayIp extends pulumi.CustomResource {
     /**
@@ -46,6 +48,7 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayIpState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayIp {
+        pulumi.log.warn("VpcPublicGatewayIp is deprecated: scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp")
         return new VpcPublicGatewayIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -103,8 +106,11 @@ export class VpcPublicGatewayIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp */
     constructor(name: string, args?: VpcPublicGatewayIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp */
     constructor(name: string, argsOrState?: VpcPublicGatewayIpArgs | VpcPublicGatewayIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPublicGatewayIp is deprecated: scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

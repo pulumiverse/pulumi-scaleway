@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy")]
     public static class GetObjectBucketPolicy
     {
         /// <summary>
-        /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+        /// The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Scaleway.GetObjectBucketPolicy.Invoke(new()
+        ///     var main = Scaleway.Object.GetBucketPolicy.Invoke(new()
         ///     {
         ///         Bucket = "bucket.test.com",
         ///     });
@@ -41,7 +42,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketPolicyResult>("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args ?? new GetObjectBucketPolicyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+        /// The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
@@ -57,7 +58,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Scaleway.GetObjectBucketPolicy.Invoke(new()
+        ///     var main = Scaleway.Object.GetBucketPolicy.Invoke(new()
         ///     {
         ///         Bucket = "bucket.test.com",
         ///     });
@@ -69,7 +70,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketPolicyResult>("scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy", args ?? new GetObjectBucketPolicyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+        /// The `scaleway.object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
         /// 
@@ -85,7 +86,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = Scaleway.GetObjectBucketPolicy.Invoke(new()
+        ///     var main = Scaleway.Object.GetBucketPolicy.Invoke(new()
         ///     {
         ///         Bucket = "bucket.test.com",
         ///     });

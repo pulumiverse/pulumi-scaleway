@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+// The `secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
 //
 // Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
@@ -34,14 +34,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a secret named fooii
-//			main, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//			main, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
 //				Name:        pulumi.String("fooii"),
 //				Description: pulumi.String("barr"),
 //			})
@@ -49,7 +49,7 @@ import (
 //				return err
 //			}
 //			// Create a version of fooii containing data
-//			_, err = scaleway.NewSecretVersion(ctx, "main", &scaleway.SecretVersionArgs{
+//			_, err = secrets.NewVersion(ctx, "main", &secrets.VersionArgs{
 //				Description: pulumi.String("your description"),
 //				SecretId:    main.ID(),
 //				Data:        pulumi.String("your_secret"),
@@ -58,19 +58,19 @@ import (
 //				return err
 //			}
 //			// Retrieve the secret version specified by the secret ID and the desired version
-//			dataBySecretId := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
+//			dataBySecretId := secrets.LookupVersionOutput(ctx, secrets.GetVersionOutputArgs{
 //				SecretId: main.ID(),
 //				Revision: pulumi.String("1"),
 //			}, nil)
 //			// Retrieve the secret version specified by the secret name and the desired version
-//			dataBySecretName := scaleway.LookupSecretVersionOutput(ctx, scaleway.GetSecretVersionOutputArgs{
+//			dataBySecretName := secrets.LookupVersionOutput(ctx, secrets.GetVersionOutputArgs{
 //				SecretName: main.Name,
 //				Revision:   pulumi.String("1"),
 //			}, nil)
-//			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.ApplyT(func(dataBySecretName scaleway.GetSecretVersionResult) (*string, error) {
+//			ctx.Export("scalewaySecretAccessPayload", dataBySecretName.ApplyT(func(dataBySecretName secrets.GetVersionResult) (*string, error) {
 //				return &dataBySecretName.Data, nil
 //			}).(pulumi.StringPtrOutput))
-//			ctx.Export("scalewaySecretAccessPayloadById", dataBySecretId.ApplyT(func(dataBySecretId scaleway.GetSecretVersionResult) (*string, error) {
+//			ctx.Export("scalewaySecretAccessPayloadById", dataBySecretId.ApplyT(func(dataBySecretId secrets.GetVersionResult) (*string, error) {
 //				return &dataBySecretId.Data, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
@@ -87,6 +87,8 @@ import (
 // see Sensitive Data in State.
 //
 // > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
+//
+// Deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion
 func LookupSecretVersion(ctx *pulumi.Context, args *LookupSecretVersionArgs, opts ...pulumi.InvokeOption) (*LookupSecretVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretVersionResult

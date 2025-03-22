@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.TemDomain("main", {
+ * const main = new scaleway.tem.Domain("main", {
  *     acceptTos: true,
  *     name: "example.com",
  * });
@@ -32,27 +32,27 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const domainName = config.require("domainName");
- * const main = new scaleway.TemDomain("main", {
+ * const main = new scaleway.tem.Domain("main", {
  *     name: domainName,
  *     acceptTos: true,
  * });
- * const spf = new scaleway.DomainRecord("spf", {
+ * const spf = new scaleway.domain.Record("spf", {
  *     dnsZone: domainName,
  *     type: "TXT",
  *     data: pulumi.interpolate`v=spf1 ${main.spfConfig} -all`,
  * });
- * const dkim = new scaleway.DomainRecord("dkim", {
+ * const dkim = new scaleway.domain.Record("dkim", {
  *     dnsZone: domainName,
  *     name: pulumi.interpolate`${main.projectId}._domainkey`,
  *     type: "TXT",
  *     data: main.dkimConfig,
  * });
- * const mx = new scaleway.DomainRecord("mx", {
+ * const mx = new scaleway.domain.Record("mx", {
  *     dnsZone: domainName,
  *     type: "MX",
  *     data: ".",
  * });
- * const dmarc = new scaleway.DomainRecord("dmarc", {
+ * const dmarc = new scaleway.domain.Record("dmarc", {
  *     dnsZone: domainName,
  *     name: main.dmarcName,
  *     type: "TXT",
@@ -68,7 +68,7 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const domainName = config.require("domainName");
- * const main = new scaleway.TemDomain("main", {
+ * const main = new scaleway.tem.Domain("main", {
  *     name: domainName,
  *     acceptTos: true,
  *     autoconfig: true,
@@ -84,6 +84,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain
  */
 export class TemDomain extends pulumi.CustomResource {
     /**
@@ -96,6 +98,7 @@ export class TemDomain extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TemDomainState, opts?: pulumi.CustomResourceOptions): TemDomain {
+        pulumi.log.warn("TemDomain is deprecated: scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain")
         return new TemDomain(name, <any>state, { ...opts, id: id });
     }
 
@@ -221,8 +224,11 @@ export class TemDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain */
     constructor(name: string, args: TemDomainArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain */
     constructor(name: string, argsOrState?: TemDomainArgs | TemDomainState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("TemDomain is deprecated: scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

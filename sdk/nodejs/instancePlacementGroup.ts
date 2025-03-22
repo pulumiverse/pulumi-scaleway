@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const availabilityGroup = new scaleway.InstancePlacementGroup("availability_group", {});
+ * const availabilityGroup = new scaleway.instance.PlacementGroup("availability_group", {});
  * ```
  *
  * ## Import
@@ -25,6 +25,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup
  */
 export class InstancePlacementGroup extends pulumi.CustomResource {
     /**
@@ -37,6 +39,7 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstancePlacementGroupState, opts?: pulumi.CustomResourceOptions): InstancePlacementGroup {
+        pulumi.log.warn("InstancePlacementGroup is deprecated: scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup")
         return new InstancePlacementGroup(name, <any>state, { ...opts, id: id });
     }
 
@@ -94,8 +97,11 @@ export class InstancePlacementGroup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup */
     constructor(name: string, args?: InstancePlacementGroupArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup */
     constructor(name: string, argsOrState?: InstancePlacementGroupArgs | InstancePlacementGroupState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstancePlacementGroup is deprecated: scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

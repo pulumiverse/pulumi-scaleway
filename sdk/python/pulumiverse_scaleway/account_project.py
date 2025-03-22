@@ -160,7 +160,12 @@ class _AccountProjectState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project""", DeprecationWarning)
+
+
 class AccountProject(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -222,6 +227,7 @@ class AccountProject(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""AccountProject is deprecated: scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

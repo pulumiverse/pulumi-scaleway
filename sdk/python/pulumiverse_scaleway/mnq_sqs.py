@@ -116,7 +116,12 @@ class _MnqSqsState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs""", DeprecationWarning)
+
+
 class MnqSqs(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -139,7 +144,7 @@ class MnqSqs(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
+        main = scaleway.mnq.Sqs("main")
         ```
 
         Activate SQS for a specific project
@@ -149,8 +154,8 @@ class MnqSqs(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.get_account_project(name="default")
-        for_project = scaleway.MnqSqs("for_project", project_id=project.id)
+        project = scaleway.account.get_project(name="default")
+        for_project = scaleway.mnq.Sqs("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -190,7 +195,7 @@ class MnqSqs(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
+        main = scaleway.mnq.Sqs("main")
         ```
 
         Activate SQS for a specific project
@@ -200,8 +205,8 @@ class MnqSqs(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.get_account_project(name="default")
-        for_project = scaleway.MnqSqs("for_project", project_id=project.id)
+        project = scaleway.account.get_project(name="default")
+        for_project = scaleway.mnq.Sqs("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -232,6 +237,7 @@ class MnqSqs(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSqs is deprecated: scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

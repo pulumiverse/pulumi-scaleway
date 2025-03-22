@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule")]
     public static class GetVpcPublicPatRule
     {
         /// <summary>
@@ -27,13 +28,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     var sg01 = new Scaleway.Instance.SecurityGroup("sg01", new()
         ///     {
         ///         InboundDefaultPolicy = "drop",
         ///         OutboundDefaultPolicy = "accept",
         ///         InboundRules = new[]
         ///         {
-        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
         ///             {
         ///                 Action = "accept",
         ///                 Port = 22,
@@ -42,7 +43,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     var srv01 = new Scaleway.Instance.Server("srv01", new()
         ///     {
         ///         Name = "my-server",
         ///         Type = "PLAY2-NANO",
@@ -50,32 +51,32 @@ namespace Pulumiverse.Scaleway
         ///         SecurityGroupId = sg01.Id,
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         Name = "my-pn",
         ///     });
         /// 
-        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
         ///     {
         ///         ServerId = srv01.Id,
         ///         PrivateNetworkId = pn01.Id,
         ///     });
         /// 
-        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     var dhcp01 = new Scaleway.Network.PublicGatewayDhcp("dhcp01", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        ///     var ip01 = new Scaleway.Network.PublicGatewayIp("ip01");
         /// 
-        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
         ///     {
         ///         Name = "my-pg",
         ///         Type = "VPC-GW-S",
         ///         IpId = ip01.Id,
         ///     });
         /// 
-        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     var gn01 = new Scaleway.Network.GatewayNetwork("gn01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -84,14 +85,14 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     var rsv01 = new Scaleway.Network.PublicGatewayDhcpReservation("rsv01", new()
         ///     {
         ///         GatewayNetworkId = gn01.Id,
         ///         MacAddress = pnic01.MacAddress,
         ///         IpAddress = "192.168.0.7",
         ///     });
         /// 
-        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     var pat01 = new Scaleway.Network.PublicGatewayPatRule("pat01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateIp = rsv01.IpAddress,
@@ -100,7 +101,7 @@ namespace Pulumiverse.Scaleway
         ///         Protocol = "tcp",
         ///     });
         /// 
-        ///     var main = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     var main = Scaleway.Network.GetPublicGatewayPatRule.Invoke(new()
         ///     {
         ///         PatRuleId = pat01.Id,
         ///     });
@@ -126,13 +127,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     var sg01 = new Scaleway.Instance.SecurityGroup("sg01", new()
         ///     {
         ///         InboundDefaultPolicy = "drop",
         ///         OutboundDefaultPolicy = "accept",
         ///         InboundRules = new[]
         ///         {
-        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
         ///             {
         ///                 Action = "accept",
         ///                 Port = 22,
@@ -141,7 +142,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     var srv01 = new Scaleway.Instance.Server("srv01", new()
         ///     {
         ///         Name = "my-server",
         ///         Type = "PLAY2-NANO",
@@ -149,32 +150,32 @@ namespace Pulumiverse.Scaleway
         ///         SecurityGroupId = sg01.Id,
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         Name = "my-pn",
         ///     });
         /// 
-        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
         ///     {
         ///         ServerId = srv01.Id,
         ///         PrivateNetworkId = pn01.Id,
         ///     });
         /// 
-        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     var dhcp01 = new Scaleway.Network.PublicGatewayDhcp("dhcp01", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        ///     var ip01 = new Scaleway.Network.PublicGatewayIp("ip01");
         /// 
-        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
         ///     {
         ///         Name = "my-pg",
         ///         Type = "VPC-GW-S",
         ///         IpId = ip01.Id,
         ///     });
         /// 
-        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     var gn01 = new Scaleway.Network.GatewayNetwork("gn01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -183,14 +184,14 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     var rsv01 = new Scaleway.Network.PublicGatewayDhcpReservation("rsv01", new()
         ///     {
         ///         GatewayNetworkId = gn01.Id,
         ///         MacAddress = pnic01.MacAddress,
         ///         IpAddress = "192.168.0.7",
         ///     });
         /// 
-        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     var pat01 = new Scaleway.Network.PublicGatewayPatRule("pat01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateIp = rsv01.IpAddress,
@@ -199,7 +200,7 @@ namespace Pulumiverse.Scaleway
         ///         Protocol = "tcp",
         ///     });
         /// 
-        ///     var main = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     var main = Scaleway.Network.GetPublicGatewayPatRule.Invoke(new()
         ///     {
         ///         PatRuleId = pat01.Id,
         ///     });
@@ -225,13 +226,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+        ///     var sg01 = new Scaleway.Instance.SecurityGroup("sg01", new()
         ///     {
         ///         InboundDefaultPolicy = "drop",
         ///         OutboundDefaultPolicy = "accept",
         ///         InboundRules = new[]
         ///         {
-        ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+        ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
         ///             {
         ///                 Action = "accept",
         ///                 Port = 22,
@@ -240,7 +241,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var srv01 = new Scaleway.InstanceServer("srv01", new()
+        ///     var srv01 = new Scaleway.Instance.Server("srv01", new()
         ///     {
         ///         Name = "my-server",
         ///         Type = "PLAY2-NANO",
@@ -248,32 +249,32 @@ namespace Pulumiverse.Scaleway
         ///         SecurityGroupId = sg01.Id,
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         Name = "my-pn",
         ///     });
         /// 
-        ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+        ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
         ///     {
         ///         ServerId = srv01.Id,
         ///         PrivateNetworkId = pn01.Id,
         ///     });
         /// 
-        ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+        ///     var dhcp01 = new Scaleway.Network.PublicGatewayDhcp("dhcp01", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var ip01 = new Scaleway.VpcPublicGatewayIp("ip01");
+        ///     var ip01 = new Scaleway.Network.PublicGatewayIp("ip01");
         /// 
-        ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+        ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
         ///     {
         ///         Name = "my-pg",
         ///         Type = "VPC-GW-S",
         ///         IpId = ip01.Id,
         ///     });
         /// 
-        ///     var gn01 = new Scaleway.VpcGatewayNetwork("gn01", new()
+        ///     var gn01 = new Scaleway.Network.GatewayNetwork("gn01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateNetworkId = pn01.Id,
@@ -282,14 +283,14 @@ namespace Pulumiverse.Scaleway
         ///         EnableMasquerade = true,
         ///     });
         /// 
-        ///     var rsv01 = new Scaleway.VpcPublicGatewayDhcpReservation("rsv01", new()
+        ///     var rsv01 = new Scaleway.Network.PublicGatewayDhcpReservation("rsv01", new()
         ///     {
         ///         GatewayNetworkId = gn01.Id,
         ///         MacAddress = pnic01.MacAddress,
         ///         IpAddress = "192.168.0.7",
         ///     });
         /// 
-        ///     var pat01 = new Scaleway.VpcPublicGatewayPatRule("pat01", new()
+        ///     var pat01 = new Scaleway.Network.PublicGatewayPatRule("pat01", new()
         ///     {
         ///         GatewayId = pg01.Id,
         ///         PrivateIp = rsv01.IpAddress,
@@ -298,7 +299,7 @@ namespace Pulumiverse.Scaleway
         ///         Protocol = "tcp",
         ///     });
         /// 
-        ///     var main = Scaleway.GetVpcPublicPatRule.Invoke(new()
+        ///     var main = Scaleway.Network.GetPublicGatewayPatRule.Invoke(new()
         ///     {
         ///         PatRuleId = pat01.Id,
         ///     });

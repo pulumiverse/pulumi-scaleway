@@ -24,14 +24,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by os name and version
-//			_, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//			_, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
 //			}, nil)
@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			// Get info by os id
-//			_, err = scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//			_, err = elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
 //				OsId: pulumi.StringRef("03b7f4ba-a6a1-4305-984e-b54fafbf1681"),
 //			}, nil)
 //			if err != nil {
@@ -50,6 +50,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs
 func GetBaremetalOs(ctx *pulumi.Context, args *GetBaremetalOsArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOsResult

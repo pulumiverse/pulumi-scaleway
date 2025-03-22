@@ -25,26 +25,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			group, err := scaleway.NewIamGroup(ctx, "group", &scaleway.IamGroupArgs{
+//			group, err := iam.NewGroup(ctx, "group", &iam.GroupArgs{
 //				Name:               pulumi.String("my_group"),
 //				ExternalMembership: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//			app, err := iam.NewApplication(ctx, "app", &iam.ApplicationArgs{
 //				Name: pulumi.String("my_app"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamGroupMembership(ctx, "member", &scaleway.IamGroupMembershipArgs{
+//			_, err = iam.NewGroupMembership(ctx, "member", &iam.GroupMembershipArgs{
 //				GroupId:       group.ID(),
 //				ApplicationId: app.ID(),
 //			})
@@ -70,6 +70,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership
 type IamGroupMembership struct {
 	pulumi.CustomResourceState
 

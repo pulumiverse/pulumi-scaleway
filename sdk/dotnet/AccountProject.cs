@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project")]
     [ScalewayResourceType("scaleway:index/accountProject:AccountProject")]
     public partial class AccountProject : global::Pulumi.CustomResource
     {

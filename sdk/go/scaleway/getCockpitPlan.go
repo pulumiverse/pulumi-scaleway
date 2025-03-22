@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
+// The `observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
 //
 // Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
 //
@@ -27,19 +27,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			premium, err := scaleway.GetCockpitPlan(ctx, &scaleway.GetCockpitPlanArgs{
+//			premium, err := observability.GetPlan(ctx, &observability.GetPlanArgs{
 //				Name: "premium",
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewCockpit(ctx, "main", &scaleway.CockpitArgs{
+//			_, err = observability.NewCockpit(ctx, "main", &observability.CockpitArgs{
 //				Plan: pulumi.String(premium.Id),
 //			})
 //			if err != nil {
@@ -50,6 +50,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan
 func GetCockpitPlan(ctx *pulumi.Context, args *GetCockpitPlanArgs, opts ...pulumi.InvokeOption) (*GetCockpitPlanResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCockpitPlanResult

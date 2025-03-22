@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqSns("main");
+    ///     var main = new Scaleway.Mnq.Sns("main");
     /// 
-    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("main", new()
+    ///     var mainSnsCredentials = new Scaleway.Mnq.SnsCredentials("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "sns-credentials",
-    ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = false,
     ///             CanReceive = true,
@@ -54,6 +54,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqSnsCredentials:MnqSnsCredentials main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsnscredentials.MnqSnsCredentials has been deprecated in favor of scaleway.mnq/snscredentials.SnsCredentials")]
     [ScalewayResourceType("scaleway:index/mnqSnsCredentials:MnqSnsCredentials")]
     public partial class MnqSnsCredentials : global::Pulumi.CustomResource
     {

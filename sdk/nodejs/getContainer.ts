@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
+ * The `scaleway.containers.Container` data source is used to retrieve information about a Serverless Container.
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
@@ -25,18 +25,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {});
- * const mainContainer = new scaleway.Container("main", {
+ * const main = new scaleway.containers.Namespace("main", {});
+ * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "test-container-data",
  *     namespaceId: main.id,
  * });
  * // Get info by container name
- * const byName = scaleway.getContainerOutput({
+ * const byName = scaleway.containers.getContainerOutput({
  *     namespaceId: main.id,
  *     name: mainContainer.name,
  * });
  * // Get info by container ID
- * const byId = scaleway.getContainerOutput({
+ * const byId = scaleway.containers.getContainerOutput({
  *     namespaceId: main.id,
  *     containerId: mainContainer.id,
  * });
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  *
  * ## Arguments reference
  *
- * This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+ * This section lists the arguments that you can provide to the `scaleway.containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
  *
  * - `name` - (Required) The unique name of the container.
  *
@@ -54,7 +54,9 @@ import * as utilities from "./utilities";
  *
  * > **Important** Updating the `name` argument will recreate the container.
  */
+/** @deprecated scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer */
 export function getContainer(args: GetContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerResult> {
+    pulumi.log.warn("getContainer is deprecated: scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getContainer:getContainer", {
         "containerId": args.containerId,
@@ -184,7 +186,7 @@ export interface GetContainerResult {
     readonly timeout: number;
 }
 /**
- * The `scaleway.Container` data source is used to retrieve information about a Serverless Container.
+ * The `scaleway.containers.Container` data source is used to retrieve information about a Serverless Container.
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
@@ -202,18 +204,18 @@ export interface GetContainerResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {});
- * const mainContainer = new scaleway.Container("main", {
+ * const main = new scaleway.containers.Namespace("main", {});
+ * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "test-container-data",
  *     namespaceId: main.id,
  * });
  * // Get info by container name
- * const byName = scaleway.getContainerOutput({
+ * const byName = scaleway.containers.getContainerOutput({
  *     namespaceId: main.id,
  *     name: mainContainer.name,
  * });
  * // Get info by container ID
- * const byId = scaleway.getContainerOutput({
+ * const byId = scaleway.containers.getContainerOutput({
  *     namespaceId: main.id,
  *     containerId: mainContainer.id,
  * });
@@ -221,7 +223,7 @@ export interface GetContainerResult {
  *
  * ## Arguments reference
  *
- * This section lists the arguments that you can provide to the `scaleway.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+ * This section lists the arguments that you can provide to the `scaleway.containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
  *
  * - `name` - (Required) The unique name of the container.
  *
@@ -231,7 +233,9 @@ export interface GetContainerResult {
  *
  * > **Important** Updating the `name` argument will recreate the container.
  */
+/** @deprecated scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer */
 export function getContainerOutput(args: GetContainerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetContainerResult> {
+    pulumi.log.warn("getContainer is deprecated: scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getContainer:getContainer", {
         "containerId": args.containerId,

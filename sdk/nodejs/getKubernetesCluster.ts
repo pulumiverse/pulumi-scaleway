@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Kubernetes Cluster.
  */
+/** @deprecated scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster */
 export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
+    pulumi.log.warn("getKubernetesCluster is deprecated: scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKubernetesCluster:getKubernetesCluster", {
@@ -132,7 +134,9 @@ export interface GetKubernetesClusterResult {
 /**
  * Gets information about a Kubernetes Cluster.
  */
+/** @deprecated scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesClusterResult> {
+    pulumi.log.warn("getKubernetesCluster is deprecated: scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getKubernetesCluster:getKubernetesCluster", {

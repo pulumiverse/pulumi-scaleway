@@ -255,7 +255,12 @@ class _RdbSnapshotState:
         pulumi.set(self, "volume_type", value)
 
 
+warnings.warn("""scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot""", DeprecationWarning)
+
+
 class RdbSnapshot(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -278,7 +283,7 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb-instance",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
@@ -293,7 +298,7 @@ class RdbSnapshot(pulumi.CustomResource):
             ],
             volume_type="bssd",
             volume_size_in_gb=10)
-        test = scaleway.RdbSnapshot("test",
+        test = scaleway.databases.Snapshot("test",
             name="initial-snapshot",
             instance_id=main.id,
             opts = pulumi.ResourceOptions(depends_on=[main]))
@@ -305,7 +310,7 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        snapshot_with_expiration = scaleway.RdbSnapshot("snapshot_with_expiration",
+        snapshot_with_expiration = scaleway.databases.Snapshot("snapshot_with_expiration",
             name="snapshot-with-expiration",
             instance_id=main["id"],
             expires_at="2025-01-31T00:00:00Z")
@@ -317,11 +322,11 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        snapshot_a = scaleway.RdbSnapshot("snapshot_a",
+        snapshot_a = scaleway.databases.Snapshot("snapshot_a",
             name="snapshot_a",
             instance_id=main["id"],
             opts = pulumi.ResourceOptions(depends_on=[main]))
-        snapshot_b = scaleway.RdbSnapshot("snapshot_b",
+        snapshot_b = scaleway.databases.Snapshot("snapshot_b",
             name="snapshot_b",
             instance_id=main["id"],
             expires_at="2025-02-07T00:00:00Z",
@@ -368,7 +373,7 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb-instance",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
@@ -383,7 +388,7 @@ class RdbSnapshot(pulumi.CustomResource):
             ],
             volume_type="bssd",
             volume_size_in_gb=10)
-        test = scaleway.RdbSnapshot("test",
+        test = scaleway.databases.Snapshot("test",
             name="initial-snapshot",
             instance_id=main.id,
             opts = pulumi.ResourceOptions(depends_on=[main]))
@@ -395,7 +400,7 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        snapshot_with_expiration = scaleway.RdbSnapshot("snapshot_with_expiration",
+        snapshot_with_expiration = scaleway.databases.Snapshot("snapshot_with_expiration",
             name="snapshot-with-expiration",
             instance_id=main["id"],
             expires_at="2025-01-31T00:00:00Z")
@@ -407,11 +412,11 @@ class RdbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        snapshot_a = scaleway.RdbSnapshot("snapshot_a",
+        snapshot_a = scaleway.databases.Snapshot("snapshot_a",
             name="snapshot_a",
             instance_id=main["id"],
             opts = pulumi.ResourceOptions(depends_on=[main]))
-        snapshot_b = scaleway.RdbSnapshot("snapshot_b",
+        snapshot_b = scaleway.databases.Snapshot("snapshot_b",
             name="snapshot_b",
             instance_id=main["id"],
             expires_at="2025-02-07T00:00:00Z",
@@ -452,6 +457,7 @@ class RdbSnapshot(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""RdbSnapshot is deprecated: scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

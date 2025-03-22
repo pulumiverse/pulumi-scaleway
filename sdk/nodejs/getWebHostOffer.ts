@@ -16,17 +16,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by offer name
- * const byName = scaleway.getWebHostOffer({
+ * const byName = scaleway.hosting.getOffer({
  *     name: "performance",
  *     controlPanel: "Cpanel",
  * });
  * // Get info by offer id
- * const byId = scaleway.getWebHostOffer({
+ * const byId = scaleway.hosting.getOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer */
 export function getWebHostOffer(args?: GetWebHostOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetWebHostOfferResult> {
+    pulumi.log.warn("getWebHostOffer is deprecated: scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getWebHostOffer:getWebHostOffer", {
@@ -103,17 +105,19 @@ export interface GetWebHostOfferResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by offer name
- * const byName = scaleway.getWebHostOffer({
+ * const byName = scaleway.hosting.getOffer({
  *     name: "performance",
  *     controlPanel: "Cpanel",
  * });
  * // Get info by offer id
- * const byId = scaleway.getWebHostOffer({
+ * const byId = scaleway.hosting.getOffer({
  *     offerId: "de2426b4-a9e9-11ec-b909-0242ac120002",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer */
 export function getWebHostOfferOutput(args?: GetWebHostOfferOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebHostOfferResult> {
+    pulumi.log.warn("getWebHostOffer is deprecated: scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getWebHostOffer:getWebHostOffer", {

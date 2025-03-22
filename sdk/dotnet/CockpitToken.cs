@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+    /// The `scaleway.observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
     /// 
     /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
@@ -34,12 +34,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "my-project",
     ///     });
     /// 
-    ///     var main = new Scaleway.CockpitToken("main", new()
+    ///     var main = new Scaleway.Observability.Token("main", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Name = "my-awesome-token",
@@ -56,17 +56,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "my-project",
     ///     });
     /// 
     ///     // Create a token that can read metrics and logs but not write
-    ///     var main = new Scaleway.CockpitToken("main", new()
+    ///     var main = new Scaleway.Observability.Token("main", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Name = "my-awesome-token",
-    ///         Scopes = new Scaleway.Inputs.CockpitTokenScopesArgs
+    ///         Scopes = new Scaleway.Observability.Inputs.TokenScopesArgs
     ///         {
     ///             QueryMetrics = true,
     ///             WriteMetrics = false,
@@ -88,6 +88,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/cockpitToken:CockpitToken main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token")]
     [ScalewayResourceType("scaleway:index/cockpitToken:CockpitToken")]
     public partial class CockpitToken : global::Pulumi.CustomResource
     {

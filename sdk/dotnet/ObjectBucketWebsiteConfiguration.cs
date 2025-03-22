@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+    /// The `scaleway.object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
     /// 
@@ -25,16 +25,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ObjectBucket("main", new()
+    ///     var main = new Scaleway.Object.Bucket("main", new()
     ///     {
     ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///     });
     /// 
-    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("main", new()
+    ///     var mainBucketWebsiteConfiguration = new Scaleway.Object.BucketWebsiteConfiguration("main", new()
     ///     {
     ///         Bucket = main.Id,
-    ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
+    ///         IndexDocument = new Scaleway.Object.Inputs.BucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
     ///         },
@@ -54,13 +54,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ObjectBucket("main", new()
+    ///     var main = new Scaleway.Object.Bucket("main", new()
     ///     {
     ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///     });
     /// 
-    ///     var mainObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("main", new()
+    ///     var mainBucketPolicy = new Scaleway.Object.BucketPolicy("main", new()
     ///     {
     ///         Bucket = main.Id,
     ///         Policy = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
@@ -87,10 +87,10 @@ namespace Pulumiverse.Scaleway
     ///         }),
     ///     });
     /// 
-    ///     var mainObjectBucketWebsiteConfiguration = new Scaleway.ObjectBucketWebsiteConfiguration("main", new()
+    ///     var mainBucketWebsiteConfiguration = new Scaleway.Object.BucketWebsiteConfiguration("main", new()
     ///     {
     ///         Bucket = main.Id,
-    ///         IndexDocument = new Scaleway.Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs
+    ///         IndexDocument = new Scaleway.Object.Inputs.BucketWebsiteConfigurationIndexDocumentArgs
     ///         {
     ///             Suffix = "index.html",
     ///         },
@@ -119,6 +119,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration")]
     [ScalewayResourceType("scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration")]
     public partial class ObjectBucketWebsiteConfiguration : global::Pulumi.CustomResource
     {

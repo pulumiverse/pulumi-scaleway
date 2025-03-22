@@ -14,16 +14,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const findByName = scaleway.getIamApplication({
+ * const findByName = scaleway.iam.getApplication({
  *     name: "foobar",
  * });
  * // Get info by application ID
- * const findById = scaleway.getIamApplication({
+ * const findById = scaleway.iam.getApplication({
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication */
 export function getIamApplication(args?: GetIamApplicationArgs, opts?: pulumi.InvokeOptions): Promise<GetIamApplicationResult> {
+    pulumi.log.warn("getIamApplication is deprecated: scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamApplication:getIamApplication", {
@@ -81,16 +83,18 @@ export interface GetIamApplicationResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const findByName = scaleway.getIamApplication({
+ * const findByName = scaleway.iam.getApplication({
  *     name: "foobar",
  * });
  * // Get info by application ID
- * const findById = scaleway.getIamApplication({
+ * const findById = scaleway.iam.getApplication({
  *     applicationId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication */
 export function getIamApplicationOutput(args?: GetIamApplicationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamApplicationResult> {
+    pulumi.log.warn("getIamApplication is deprecated: scaleway.index/getiamapplication.getIamApplication has been deprecated in favor of scaleway.iam/getapplication.getApplication")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamApplication:getIamApplication", {

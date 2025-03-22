@@ -21,6 +21,8 @@ __all__ = [
     'get_loadbalancer_ip_output',
 ]
 
+warnings.warn("""scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLoadbalancerIpResult:
     """
@@ -169,6 +171,7 @@ def get_loadbalancer_ip(ip_address: Optional[str] = None,
     :param str project_id: The ID of the Project the Load Balancer IP is associated with.
     :param str zone: `zone`) The zone in which the IP was reserved.
     """
+    pulumi.log.warn("""get_loadbalancer_ip is deprecated: scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp""")
     __args__ = dict()
     __args__['ipAddress'] = ip_address
     __args__['ipId'] = ip_id
@@ -207,6 +210,7 @@ def get_loadbalancer_ip_output(ip_address: Optional[pulumi.Input[Optional[str]]]
     :param str project_id: The ID of the Project the Load Balancer IP is associated with.
     :param str zone: `zone`) The zone in which the IP was reserved.
     """
+    pulumi.log.warn("""get_loadbalancer_ip is deprecated: scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp""")
     __args__ = dict()
     __args__['ipAddress'] = ip_address
     __args__['ipId'] = ip_id

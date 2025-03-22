@@ -42,27 +42,27 @@ namespace Pulumiverse.Scaleway
     /// " },
     ///         { "foo", "bar" },
     ///     };
-    ///     var mainInstanceServer = new Scaleway.InstanceServer("main", new()
+    ///     var mainServer = new Scaleway.Instance.Server("main", new()
     ///     {
     ///         Image = "ubuntu_focal",
     ///         Type = "DEV1-S",
     ///     });
     /// 
     ///     // User data with a single value
-    ///     var main = new Scaleway.InstanceUserData("main", new()
+    ///     var main = new Scaleway.Instance.UserData("main", new()
     ///     {
-    ///         ServerId = mainInstanceServer.Id,
+    ///         ServerId = mainServer.Id,
     ///         Key = "foo",
     ///         Value = "bar",
     ///     });
     /// 
     ///     // User Data with many keys.
-    ///     var data = new List&lt;Scaleway.InstanceUserData&gt;();
+    ///     var data = new List&lt;Scaleway.Instance.UserData&gt;();
     ///     foreach (var range in userData.Select(pair =&gt; new { pair.Key, pair.Value }))
     ///     {
-    ///         data.Add(new Scaleway.InstanceUserData($"data-{range.Key}", new()
+    ///         data.Add(new Scaleway.Instance.UserData($"data-{range.Key}", new()
     ///         {
-    ///             ServerId = mainInstanceServer.Id,
+    ///             ServerId = mainServer.Id,
     ///             Key = range.Key,
     ///             Value = range.Value,
     ///         }));
@@ -80,6 +80,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData")]
     [ScalewayResourceType("scaleway:index/instanceUserData:InstanceUserData")]
     public partial class InstanceUserData : global::Pulumi.CustomResource
     {

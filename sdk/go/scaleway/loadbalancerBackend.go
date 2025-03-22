@@ -26,13 +26,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancerBackend(ctx, "backend01", &scaleway.LoadbalancerBackendArgs{
+//			_, err := loadbalancers.NewBackend(ctx, "backend01", &loadbalancers.BackendArgs{
 //				LbId:            pulumi.Any(lb01.Id),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
@@ -55,18 +55,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancerBackend(ctx, "backend01", &scaleway.LoadbalancerBackendArgs{
+//			_, err := loadbalancers.NewBackend(ctx, "backend01", &loadbalancers.BackendArgs{
 //				LbId:            pulumi.Any(lb01.Id),
 //				Name:            pulumi.String("backend01"),
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
-//				HealthCheckHttp: &scaleway.LoadbalancerBackendHealthCheckHttpArgs{
+//				HealthCheckHttp: &loadbalancers.BackendHealthCheckHttpArgs{
 //					Uri: pulumi.String("www.test.com/health"),
 //				},
 //			})
@@ -88,6 +88,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend
 type LoadbalancerBackend struct {
 	pulumi.CustomResourceState
 

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `DomainRecord` data source is used to get information about an existing domain record.
+// The `domain.Record` data source is used to get information about an existing domain record.
 //
 // Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 //
@@ -28,14 +28,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Query record by DNS zone, record name, type and content
-//			_, err := scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
+//			_, err := domain.LookupRecord(ctx, &domain.LookupRecordArgs{
 //				DnsZone: pulumi.StringRef("domain.tld"),
 //				Name:    pulumi.StringRef("www"),
 //				Type:    pulumi.StringRef("A"),
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			// Query record by DNS zone and record ID
-//			_, err = scaleway.LookupDomainRecord(ctx, &scaleway.LookupDomainRecordArgs{
+//			_, err = domain.LookupRecord(ctx, &domain.LookupRecordArgs{
 //				DnsZone:  pulumi.StringRef("domain.tld"),
 //				RecordId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -57,6 +57,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord
 func LookupDomainRecord(ctx *pulumi.Context, args *LookupDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDomainRecordResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDomainRecordResult

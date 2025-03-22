@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a transactional email domain.
  */
+/** @deprecated scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain */
 export function getTemDomain(args?: GetTemDomainArgs, opts?: pulumi.InvokeOptions): Promise<GetTemDomainResult> {
+    pulumi.log.warn("getTemDomain is deprecated: scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getTemDomain:getTemDomain", {
@@ -81,7 +83,9 @@ export interface GetTemDomainResult {
 /**
  * Gets information about a transactional email domain.
  */
+/** @deprecated scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain */
 export function getTemDomainOutput(args?: GetTemDomainOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetTemDomainResult> {
+    pulumi.log.warn("getTemDomain is deprecated: scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getTemDomain:getTemDomain", {

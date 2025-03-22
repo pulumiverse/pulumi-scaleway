@@ -15,7 +15,9 @@ import * as utilities from "./utilities";
  *
  * ## Examples
  */
+/** @deprecated scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate */
 export function getLoadbalancerCertificate(args?: GetLoadbalancerCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerCertificateResult> {
+    pulumi.log.warn("getLoadbalancerCertificate is deprecated: scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", {
@@ -74,7 +76,9 @@ export interface GetLoadbalancerCertificateResult {
  *
  * ## Examples
  */
+/** @deprecated scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate */
 export function getLoadbalancerCertificateOutput(args?: GetLoadbalancerCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerCertificateResult> {
+    pulumi.log.warn("getLoadbalancerCertificate is deprecated: scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate", {

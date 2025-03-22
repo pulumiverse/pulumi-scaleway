@@ -22,6 +22,8 @@ __all__ = [
     'get_vpc_routes_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcRoutesResult:
     """
@@ -145,6 +147,7 @@ def get_vpc_routes(is_ipv6: Optional[bool] = None,
     :param Sequence[str] tags: List of tags to filter for. routes with these exact tags are listed.
     :param str vpc_id: The VPC ID to filter for. routes with a similar VPC ID are listed.
     """
+    pulumi.log.warn("""get_vpc_routes is deprecated: scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes""")
     __args__ = dict()
     __args__['isIpv6'] = is_ipv6
     __args__['nexthopPrivateNetworkId'] = nexthop_private_network_id
@@ -186,6 +189,7 @@ def get_vpc_routes_output(is_ipv6: Optional[pulumi.Input[Optional[bool]]] = None
     :param Sequence[str] tags: List of tags to filter for. routes with these exact tags are listed.
     :param str vpc_id: The VPC ID to filter for. routes with a similar VPC ID are listed.
     """
+    pulumi.log.warn("""get_vpc_routes is deprecated: scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes""")
     __args__ = dict()
     __args__['isIpv6'] = is_ipv6
     __args__['nexthopPrivateNetworkId'] = nexthop_private_network_id

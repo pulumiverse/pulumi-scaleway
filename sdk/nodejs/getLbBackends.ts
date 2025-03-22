@@ -18,17 +18,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find backends that share the same LB ID
- * const byLBID = scaleway.getLbBackends({
+ * const byLBID = scaleway.loadbalancers.getBackends({
  *     lbId: lb01.id,
  * });
  * // Find backends by LB ID and name
- * const byLBIDAndName = scaleway.getLbBackends({
+ * const byLBIDAndName = scaleway.loadbalancers.getBackends({
  *     lbId: lb01.id,
  *     name: "tf-backend-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbbackends.getLbBackends has been deprecated in favor of scaleway.loadbalancers/getbackends.getBackends */
 export function getLbBackends(args: GetLbBackendsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbBackendsResult> {
+    pulumi.log.warn("getLbBackends is deprecated: scaleway.index/getlbbackends.getLbBackends has been deprecated in favor of scaleway.loadbalancers/getbackends.getBackends")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbBackends:getLbBackends", {
         "lbId": args.lbId,
@@ -87,17 +89,19 @@ export interface GetLbBackendsResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find backends that share the same LB ID
- * const byLBID = scaleway.getLbBackends({
+ * const byLBID = scaleway.loadbalancers.getBackends({
  *     lbId: lb01.id,
  * });
  * // Find backends by LB ID and name
- * const byLBIDAndName = scaleway.getLbBackends({
+ * const byLBIDAndName = scaleway.loadbalancers.getBackends({
  *     lbId: lb01.id,
  *     name: "tf-backend-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbbackends.getLbBackends has been deprecated in favor of scaleway.loadbalancers/getbackends.getBackends */
 export function getLbBackendsOutput(args: GetLbBackendsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbBackendsResult> {
+    pulumi.log.warn("getLbBackends is deprecated: scaleway.index/getlbbackends.getLbBackends has been deprecated in favor of scaleway.loadbalancers/getbackends.getBackends")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbBackends:getLbBackends", {
         "lbId": args.lbId,

@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
+/** @deprecated scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp */
 export function getLoadbalancerIp(args?: GetLoadbalancerIpArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerIpResult> {
+    pulumi.log.warn("getLoadbalancerIp is deprecated: scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {
@@ -80,7 +82,9 @@ export interface GetLoadbalancerIpResult {
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
+/** @deprecated scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp */
 export function getLoadbalancerIpOutput(args?: GetLoadbalancerIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerIpResult> {
+    pulumi.log.warn("getLoadbalancerIp is deprecated: scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancerIp:getLoadbalancerIp", {

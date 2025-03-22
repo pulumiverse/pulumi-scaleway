@@ -21,19 +21,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "main", &scaleway.VpcPublicGatewayDhcpArgs{
+//			main, err := network.NewPublicGatewayDhcp(ctx, "main", &network.PublicGatewayDhcpArgs{
 //				Subnet: pulumi.String("192.168.0.0/24"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayDhcpOutput(ctx, scaleway.GetVpcPublicGatewayDhcpOutputArgs{
+//			_ = network.LookupPublicGatewayDhcpOutput(ctx, network.GetPublicGatewayDhcpOutputArgs{
 //				DhcpId: main.ID(),
 //			}, nil)
 //			return nil
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp
 func LookupVpcPublicGatewayDhcp(ctx *pulumi.Context, args *LookupVpcPublicGatewayDhcpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayDhcpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayDhcpResult

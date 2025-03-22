@@ -136,7 +136,12 @@ class _DatabaseAclState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl""", DeprecationWarning)
+
+
 class DatabaseAcl(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -157,7 +162,7 @@ class DatabaseAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -165,7 +170,7 @@ class DatabaseAcl(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database_acl = scaleway.DatabaseAcl("main",
+        main_acl = scaleway.databases.Acl("main",
             instance_id=main.id,
             acl_rules=[{
                 "ip": "1.2.3.4/32",
@@ -209,7 +214,7 @@ class DatabaseAcl(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -217,7 +222,7 @@ class DatabaseAcl(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database_acl = scaleway.DatabaseAcl("main",
+        main_acl = scaleway.databases.Acl("main",
             instance_id=main.id,
             acl_rules=[{
                 "ip": "1.2.3.4/32",
@@ -254,6 +259,7 @@ class DatabaseAcl(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabaseAcl is deprecated: scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

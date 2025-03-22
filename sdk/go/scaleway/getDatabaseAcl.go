@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
-//			_, err := scaleway.LookupDatabaseAcl(ctx, &scaleway.LookupDatabaseAclArgs{
+//			_, err := databases.LookupAcl(ctx, &databases.LookupAclArgs{
 //				InstanceId: "11111111-1111-1111-1111-111111111111",
 //			}, nil)
 //			if err != nil {
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl
 func LookupDatabaseAcl(ctx *pulumi.Context, args *LookupDatabaseAclArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseAclResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseAclResult

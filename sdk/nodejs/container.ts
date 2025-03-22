@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
  *
@@ -19,11 +19,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {
+ * const main = new scaleway.containers.Namespace("main", {
  *     name: "my-ns-test",
  *     description: "test container",
  * });
- * const mainContainer = new scaleway.Container("main", {
+ * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "my-container-02",
  *     description: "environment variables test",
  *     namespaceId: main.id,
@@ -100,7 +100,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.Container("main", {
+ * const main = new scaleway.containers.Container("main", {
  *     name: "my-container-02",
  *     namespaceId: mainScalewayContainerNamespace.id,
  *     healthChecks: [{
@@ -129,7 +129,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.Container("main", {
+ * const main = new scaleway.containers.Container("main", {
  *     name: "my-container-02",
  *     namespaceId: mainScalewayContainerNamespace.id,
  *     scalingOptions: [{
@@ -150,6 +150,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container
  */
 export class Container extends pulumi.CustomResource {
     /**
@@ -162,6 +164,7 @@ export class Container extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerState, opts?: pulumi.CustomResourceOptions): Container {
+        pulumi.log.warn("Container is deprecated: scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container")
         return new Container(name, <any>state, { ...opts, id: id });
     }
 
@@ -301,8 +304,11 @@ export class Container extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container */
     constructor(name: string, args: ContainerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container */
     constructor(name: string, argsOrState?: ContainerArgs | ContainerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Container is deprecated: scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

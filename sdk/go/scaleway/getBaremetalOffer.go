@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
+//
+// Deprecated: scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer
 func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ...pulumi.InvokeOption) (*GetBaremetalOfferResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBaremetalOfferResult

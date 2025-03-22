@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot")]
     public static class GetInstanceSnapshot
     {
         /// <summary>
@@ -26,13 +27,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by snapshot name
-        ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byName = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         Name = "my-snapshot-name",
         ///     });
         /// 
         ///     // Get info by snapshot ID
-        ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byId = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -57,13 +58,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by snapshot name
-        ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byName = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         Name = "my-snapshot-name",
         ///     });
         /// 
         ///     // Get info by snapshot ID
-        ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byId = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -88,13 +89,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by snapshot name
-        ///     var byName = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byName = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         Name = "my-snapshot-name",
         ///     });
         /// 
         ///     // Get info by snapshot ID
-        ///     var byId = Scaleway.GetInstanceSnapshot.Invoke(new()
+        ///     var byId = Scaleway.Instance.GetSnapshot.Invoke(new()
         ///     {
         ///         SnapshotId = "11111111-1111-1111-1111-111111111111",
         ///     });

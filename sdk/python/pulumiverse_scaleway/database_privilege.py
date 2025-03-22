@@ -188,7 +188,12 @@ class _DatabasePrivilegeState:
         pulumi.set(self, "user_name", value)
 
 
+warnings.warn("""scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege""", DeprecationWarning)
+
+
 class DatabasePrivilege(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -209,7 +214,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-11",
@@ -217,17 +222,17 @@ class DatabasePrivilege(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="database")
-        main_database_user = scaleway.DatabaseUser("main",
+        main_user = scaleway.databases.User("main",
             instance_id=main.id,
             name="my-db-user",
             password="thiZ_is_v&ry_s3cret",
             is_admin=False)
-        main_database_privilege = scaleway.DatabasePrivilege("main",
+        main_privilege = scaleway.databases.Privilege("main",
             instance_id=main.id,
-            user_name=main_database_user.name,
+            user_name=main_user.name,
             database_name=main_database.name,
             permission="all")
         ```
@@ -266,7 +271,7 @@ class DatabasePrivilege(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-11",
@@ -274,17 +279,17 @@ class DatabasePrivilege(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="database")
-        main_database_user = scaleway.DatabaseUser("main",
+        main_user = scaleway.databases.User("main",
             instance_id=main.id,
             name="my-db-user",
             password="thiZ_is_v&ry_s3cret",
             is_admin=False)
-        main_database_privilege = scaleway.DatabasePrivilege("main",
+        main_privilege = scaleway.databases.Privilege("main",
             instance_id=main.id,
-            user_name=main_database_user.name,
+            user_name=main_user.name,
             database_name=main_database.name,
             permission="all")
         ```
@@ -320,6 +325,7 @@ class DatabasePrivilege(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabasePrivilege is deprecated: scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

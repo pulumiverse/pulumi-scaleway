@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
  *
@@ -15,15 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {name: "test-container-token-ns"});
- * const mainContainer = new scaleway.Container("main", {namespaceId: main.id});
+ * const main = new scaleway.containers.Namespace("main", {name: "test-container-token-ns"});
+ * const mainContainer = new scaleway.containers.Container("main", {namespaceId: main.id});
  * // Namespace Token
- * const namespace = new scaleway.ContainerToken("namespace", {
+ * const namespace = new scaleway.containers.Token("namespace", {
  *     namespaceId: main.id,
  *     expiresAt: "2022-10-18T11:35:15+02:00",
  * });
  * // Container Token
- * const container = new scaleway.ContainerToken("container", {containerId: mainContainer.id});
+ * const container = new scaleway.containers.Token("container", {containerId: mainContainer.id});
  * ```
  *
  * ## Import
@@ -35,6 +35,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token
  */
 export class ContainerToken extends pulumi.CustomResource {
     /**
@@ -47,6 +49,7 @@ export class ContainerToken extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerTokenState, opts?: pulumi.CustomResourceOptions): ContainerToken {
+        pulumi.log.warn("ContainerToken is deprecated: scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token")
         return new ContainerToken(name, <any>state, { ...opts, id: id });
     }
 
@@ -91,7 +94,7 @@ export class ContainerToken extends pulumi.CustomResource {
     /**
      * The token.
      */
-    public /*out*/ readonly token!: pulumi.Output<string>;
+    public /*out*/ readonly value!: pulumi.Output<string>;
 
     /**
      * Create a ContainerToken resource with the given unique name, arguments, and options.
@@ -100,8 +103,11 @@ export class ContainerToken extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token */
     constructor(name: string, args?: ContainerTokenArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token */
     constructor(name: string, argsOrState?: ContainerTokenArgs | ContainerTokenState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ContainerToken is deprecated: scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -111,7 +117,7 @@ export class ContainerToken extends pulumi.CustomResource {
             resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
             resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["token"] = state ? state.token : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as ContainerTokenArgs | undefined;
             resourceInputs["containerId"] = args ? args.containerId : undefined;
@@ -119,10 +125,10 @@ export class ContainerToken extends pulumi.CustomResource {
             resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
             resourceInputs["namespaceId"] = args ? args.namespaceId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["token"] = undefined /*out*/;
+            resourceInputs["value"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["token"] };
+        const secretOpts = { additionalSecretOutputs: ["value"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(ContainerToken.__pulumiType, name, resourceInputs, opts);
     }
@@ -159,7 +165,7 @@ export interface ContainerTokenState {
     /**
      * The token.
      */
-    token?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
 }
 
 /**

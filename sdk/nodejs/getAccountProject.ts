@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+ * The `scaleway.account.Project` data source is used to retrieve information about a Scaleway project.
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
+/** @deprecated scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject */
 export function getAccountProject(args?: GetAccountProjectArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountProjectResult> {
+    pulumi.log.warn("getAccountProject is deprecated: scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAccountProject:getAccountProject", {
@@ -57,11 +59,13 @@ export interface GetAccountProjectResult {
     readonly updatedAt: string;
 }
 /**
- * The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+ * The `scaleway.account.Project` data source is used to retrieve information about a Scaleway project.
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  */
+/** @deprecated scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject */
 export function getAccountProjectOutput(args?: GetAccountProjectOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountProjectResult> {
+    pulumi.log.warn("getAccountProject is deprecated: scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAccountProject:getAccountProject", {

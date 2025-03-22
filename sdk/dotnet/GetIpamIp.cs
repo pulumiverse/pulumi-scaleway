@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp")]
     public static class GetIpamIp
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by ipam ip id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         IpamIpId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -52,23 +53,23 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Connect your instance to a private network using a private nic.
-        ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
+        ///     var nic = new Scaleway.Instance.PrivateNic("nic", new()
         ///     {
         ///         ServerId = server.Id,
         ///         PrivateNetworkId = pn.Id,
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic mac address
-        ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byMac = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         MacAddress = nic.MacAddress,
         ///         Type = "ipv4",
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Id = nic.Id,
         ///             Type = "instance_private_nic",
@@ -91,9 +92,9 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find the private IPv4 using resource name
-        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
         /// 
-        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     var main = new Scaleway.Databases.Instance("main", new()
         ///     {
         ///         Name = "test-rdb",
         ///         NodeType = "DB-DEV-S",
@@ -102,15 +103,15 @@ namespace Pulumiverse.Scaleway
         ///         DisableBackup = true,
         ///         UserName = "my_initial_user",
         ///         Password = "thiZ_is_v&amp;ry_s3cret",
-        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
         ///         {
         ///             PnId = pn.Id,
         ///         },
         ///     });
         /// 
-        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byName = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Name = main.Name,
         ///             Type = "rdb_instance",
@@ -142,7 +143,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by ipam ip id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         IpamIpId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -164,23 +165,23 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Connect your instance to a private network using a private nic.
-        ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
+        ///     var nic = new Scaleway.Instance.PrivateNic("nic", new()
         ///     {
         ///         ServerId = server.Id,
         ///         PrivateNetworkId = pn.Id,
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic mac address
-        ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byMac = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         MacAddress = nic.MacAddress,
         ///         Type = "ipv4",
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Id = nic.Id,
         ///             Type = "instance_private_nic",
@@ -203,9 +204,9 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find the private IPv4 using resource name
-        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
         /// 
-        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     var main = new Scaleway.Databases.Instance("main", new()
         ///     {
         ///         Name = "test-rdb",
         ///         NodeType = "DB-DEV-S",
@@ -214,15 +215,15 @@ namespace Pulumiverse.Scaleway
         ///         DisableBackup = true,
         ///         UserName = "my_initial_user",
         ///         Password = "thiZ_is_v&amp;ry_s3cret",
-        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
         ///         {
         ///             PnId = pn.Id,
         ///         },
         ///     });
         /// 
-        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byName = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Name = main.Name,
         ///             Type = "rdb_instance",
@@ -254,7 +255,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by ipam ip id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         IpamIpId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -276,23 +277,23 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Connect your instance to a private network using a private nic.
-        ///     var nic = new Scaleway.InstancePrivateNic("nic", new()
+        ///     var nic = new Scaleway.Instance.PrivateNic("nic", new()
         ///     {
         ///         ServerId = server.Id,
         ///         PrivateNetworkId = pn.Id,
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic mac address
-        ///     var byMac = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byMac = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
         ///         MacAddress = nic.MacAddress,
         ///         Type = "ipv4",
         ///     });
         /// 
         ///     // Find server private IPv4 using private-nic id
-        ///     var byId = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byId = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Id = nic.Id,
         ///             Type = "instance_private_nic",
@@ -315,9 +316,9 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find the private IPv4 using resource name
-        ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+        ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
         /// 
-        ///     var main = new Scaleway.DatabaseInstance("main", new()
+        ///     var main = new Scaleway.Databases.Instance("main", new()
         ///     {
         ///         Name = "test-rdb",
         ///         NodeType = "DB-DEV-S",
@@ -326,15 +327,15 @@ namespace Pulumiverse.Scaleway
         ///         DisableBackup = true,
         ///         UserName = "my_initial_user",
         ///         Password = "thiZ_is_v&amp;ry_s3cret",
-        ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+        ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
         ///         {
         ///             PnId = pn.Id,
         ///         },
         ///     });
         /// 
-        ///     var byName = Scaleway.GetIpamIp.Invoke(new()
+        ///     var byName = Scaleway.Ipam.GetIp.Invoke(new()
         ///     {
-        ///         Resource = new Scaleway.Inputs.GetIpamIpResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
         ///         {
         ///             Name = main.Name,
         ///             Type = "rdb_instance",

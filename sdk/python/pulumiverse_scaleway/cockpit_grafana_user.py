@@ -158,7 +158,12 @@ class _CockpitGrafanaUserState:
         pulumi.set(self, "role", value)
 
 
+warnings.warn("""scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser""", DeprecationWarning)
+
+
 class CockpitGrafanaUser(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -168,7 +173,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+        The `observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -182,8 +187,8 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="test project grafana user")
-        main = scaleway.CockpitGrafanaUser("main",
+        project = scaleway.account.Project("project", name="test project grafana user")
+        main = scaleway.observability.GrafanaUser("main",
             project_id=project.id,
             login="my-awesome-user",
             role="editor")
@@ -212,7 +217,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
                  args: CockpitGrafanaUserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+        The `observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -226,8 +231,8 @@ class CockpitGrafanaUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="test project grafana user")
-        main = scaleway.CockpitGrafanaUser("main",
+        project = scaleway.account.Project("project", name="test project grafana user")
+        main = scaleway.observability.GrafanaUser("main",
             project_id=project.id,
             login="my-awesome-user",
             role="editor")
@@ -262,6 +267,7 @@ class CockpitGrafanaUser(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""CockpitGrafanaUser is deprecated: scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

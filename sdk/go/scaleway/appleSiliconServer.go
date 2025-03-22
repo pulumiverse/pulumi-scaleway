@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewAppleSiliconServer(ctx, "server", &scaleway.AppleSiliconServerArgs{
+//			_, err := applesilicon.NewServer(ctx, "server", &applesilicon.ServerArgs{
 //				Name: pulumi.String("test-m1"),
 //				Type: pulumi.String("M1-M"),
 //			})
@@ -53,6 +53,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server
 type AppleSiliconServer struct {
 	pulumi.CustomResourceState
 

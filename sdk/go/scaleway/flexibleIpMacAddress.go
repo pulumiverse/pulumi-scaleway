@@ -25,17 +25,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewFlexibleIp(ctx, "main", nil)
+//			main, err := elasticmetal.NewIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIpMacAddress(ctx, "main", &scaleway.FlexibleIpMacAddressArgs{
+//			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
 //				FlexibleIpId: main.ID(),
 //				Type:         pulumi.String("kvm"),
 //			})
@@ -56,19 +56,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
 //				Name: pulumi.StringRef("EM-B112X-SSD"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("TestAccScalewayBaremetalServer_WithoutInstallConfig"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
@@ -76,25 +76,25 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			ip01, err := scaleway.NewFlexibleIp(ctx, "ip01", &scaleway.FlexibleIpArgs{
+//			ip01, err := elasticmetal.NewIp(ctx, "ip01", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ip02, err := scaleway.NewFlexibleIp(ctx, "ip02", &scaleway.FlexibleIpArgs{
+//			ip02, err := elasticmetal.NewIp(ctx, "ip02", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ip03, err := scaleway.NewFlexibleIp(ctx, "ip03", &scaleway.FlexibleIpArgs{
+//			ip03, err := elasticmetal.NewIp(ctx, "ip03", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIpMacAddress(ctx, "main", &scaleway.FlexibleIpMacAddressArgs{
+//			_, err = elasticmetal.NewIpMacAddress(ctx, "main", &elasticmetal.IpMacAddressArgs{
 //				FlexibleIpId: ip01.ID(),
 //				Type:         pulumi.String("kvm"),
 //				FlexibleIpIdsToDuplicates: pulumi.StringArray{
@@ -120,6 +120,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress
 type FlexibleIpMacAddress struct {
 	pulumi.CustomResourceState
 

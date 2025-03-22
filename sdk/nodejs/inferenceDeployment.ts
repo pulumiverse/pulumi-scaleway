@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const deployment = new scaleway.InferenceDeployment("deployment", {
+ * const deployment = new scaleway.inference.Deployment("deployment", {
  *     name: "tf-inference-deployment",
  *     nodeType: "L4",
  *     modelName: "meta/llama-3.1-8b-instruct:fp8",
@@ -38,6 +38,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/inferenceDeployment:InferenceDeployment deployment fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment
  */
 export class InferenceDeployment extends pulumi.CustomResource {
     /**
@@ -50,6 +52,7 @@ export class InferenceDeployment extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InferenceDeploymentState, opts?: pulumi.CustomResourceOptions): InferenceDeployment {
+        pulumi.log.warn("InferenceDeployment is deprecated: scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment")
         return new InferenceDeployment(name, <any>state, { ...opts, id: id });
     }
 
@@ -139,8 +142,11 @@ export class InferenceDeployment extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment */
     constructor(name: string, args: InferenceDeploymentArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment */
     constructor(name: string, argsOrState?: InferenceDeploymentArgs | InferenceDeploymentState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InferenceDeployment is deprecated: scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

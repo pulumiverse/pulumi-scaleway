@@ -21,6 +21,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
 // ```
+//
+// Deprecated: scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone
 type DomainZone struct {
 	pulumi.CustomResourceState
 

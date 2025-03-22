@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+// The `object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 //
@@ -35,6 +35,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectItem:ObjectItem some_object fr-par/some-bucket/some-file@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 // ```
+//
+// Deprecated: scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item
 type ObjectItem struct {
 	pulumi.CustomResourceState
 

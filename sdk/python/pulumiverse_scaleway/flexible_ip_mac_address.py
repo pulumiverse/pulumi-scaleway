@@ -226,7 +226,12 @@ class _FlexibleIpMacAddressState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress""", DeprecationWarning)
+
+
 class FlexibleIpMacAddress(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -248,8 +253,8 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main")
-        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("main",
+        main = scaleway.elasticmetal.Ip("main")
+        main_ip_mac_address = scaleway.elasticmetal.IpMacAddress("main",
             flexible_ip_id=main.id,
             type="kvm")
         ```
@@ -261,15 +266,15 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
-        base = scaleway.BaremetalServer("base",
+        my_offer = scaleway.elasticmetal.get_offer(name="EM-B112X-SSD")
+        base = scaleway.elasticmetal.Server("base",
             name="TestAccScalewayBaremetalServer_WithoutInstallConfig",
             offer=my_offer.offer_id,
             install_config_afterward=True)
-        ip01 = scaleway.FlexibleIp("ip01", server_id=base.id)
-        ip02 = scaleway.FlexibleIp("ip02", server_id=base.id)
-        ip03 = scaleway.FlexibleIp("ip03", server_id=base.id)
-        main = scaleway.FlexibleIpMacAddress("main",
+        ip01 = scaleway.elasticmetal.Ip("ip01", server_id=base.id)
+        ip02 = scaleway.elasticmetal.Ip("ip02", server_id=base.id)
+        ip03 = scaleway.elasticmetal.Ip("ip03", server_id=base.id)
+        main = scaleway.elasticmetal.IpMacAddress("main",
             flexible_ip_id=ip01.id,
             type="kvm",
             flexible_ip_ids_to_duplicates=[
@@ -314,8 +319,8 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FlexibleIp("main")
-        main_flexible_ip_mac_address = scaleway.FlexibleIpMacAddress("main",
+        main = scaleway.elasticmetal.Ip("main")
+        main_ip_mac_address = scaleway.elasticmetal.IpMacAddress("main",
             flexible_ip_id=main.id,
             type="kvm")
         ```
@@ -327,15 +332,15 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
-        base = scaleway.BaremetalServer("base",
+        my_offer = scaleway.elasticmetal.get_offer(name="EM-B112X-SSD")
+        base = scaleway.elasticmetal.Server("base",
             name="TestAccScalewayBaremetalServer_WithoutInstallConfig",
             offer=my_offer.offer_id,
             install_config_afterward=True)
-        ip01 = scaleway.FlexibleIp("ip01", server_id=base.id)
-        ip02 = scaleway.FlexibleIp("ip02", server_id=base.id)
-        ip03 = scaleway.FlexibleIp("ip03", server_id=base.id)
-        main = scaleway.FlexibleIpMacAddress("main",
+        ip01 = scaleway.elasticmetal.Ip("ip01", server_id=base.id)
+        ip02 = scaleway.elasticmetal.Ip("ip02", server_id=base.id)
+        ip03 = scaleway.elasticmetal.Ip("ip03", server_id=base.id)
+        main = scaleway.elasticmetal.IpMacAddress("main",
             flexible_ip_id=ip01.id,
             type="kvm",
             flexible_ip_ids_to_duplicates=[
@@ -374,6 +379,7 @@ class FlexibleIpMacAddress(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FlexibleIpMacAddress is deprecated: scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

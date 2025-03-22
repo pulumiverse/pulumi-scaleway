@@ -225,7 +225,12 @@ class _FunctionTriggerState:
         pulumi.set(self, "sqs", value)
 
 
+warnings.warn("""scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger""", DeprecationWarning)
+
+
 class FunctionTrigger(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -238,7 +243,7 @@ class FunctionTrigger(pulumi.CustomResource):
                  sqs: Optional[pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None,
                  __props__=None):
         """
-        The `FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
@@ -250,7 +255,7 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionTrigger("main",
+        main = scaleway.functions.Trigger("main",
             function_id=main_scaleway_function["id"],
             name="my-trigger",
             sqs={
@@ -266,7 +271,7 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionTrigger("main",
+        main = scaleway.functions.Trigger("main",
             function_id=main_scaleway_function["id"],
             name="my-trigger",
             nats={
@@ -302,7 +307,7 @@ class FunctionTrigger(pulumi.CustomResource):
                  args: FunctionTriggerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
@@ -314,7 +319,7 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionTrigger("main",
+        main = scaleway.functions.Trigger("main",
             function_id=main_scaleway_function["id"],
             name="my-trigger",
             sqs={
@@ -330,7 +335,7 @@ class FunctionTrigger(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionTrigger("main",
+        main = scaleway.functions.Trigger("main",
             function_id=main_scaleway_function["id"],
             name="my-trigger",
             nats={
@@ -372,6 +377,7 @@ class FunctionTrigger(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  sqs: Optional[pulumi.Input[Union['FunctionTriggerSqsArgs', 'FunctionTriggerSqsArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""FunctionTrigger is deprecated: scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

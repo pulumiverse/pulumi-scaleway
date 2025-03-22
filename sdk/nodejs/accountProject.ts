@@ -14,6 +14,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/accountProject:AccountProject project 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project
  */
 export class AccountProject extends pulumi.CustomResource {
     /**
@@ -26,6 +28,7 @@ export class AccountProject extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountProjectState, opts?: pulumi.CustomResourceOptions): AccountProject {
+        pulumi.log.warn("AccountProject is deprecated: scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project")
         return new AccountProject(name, <any>state, { ...opts, id: id });
     }
 
@@ -71,8 +74,11 @@ export class AccountProject extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project */
     constructor(name: string, args?: AccountProjectArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project */
     constructor(name: string, argsOrState?: AccountProjectArgs | AccountProjectState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AccountProject is deprecated: scaleway.index/accountproject.AccountProject has been deprecated in favor of scaleway.account/project.Project")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

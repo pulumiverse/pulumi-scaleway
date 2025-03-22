@@ -21,6 +21,8 @@ __all__ = [
     'get_vpc_public_gateway_dhcp_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcPublicGatewayDhcpResult:
     """
@@ -232,10 +234,11 @@ def get_vpc_public_gateway_dhcp(dhcp_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
+    main = scaleway.network.PublicGatewayDhcp("main", subnet="192.168.0.0/24")
+    dhcp_by_id = scaleway.network.get_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
+    pulumi.log.warn("""get_vpc_public_gateway_dhcp is deprecated: scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp""")
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -274,10 +277,11 @@ def get_vpc_public_gateway_dhcp_output(dhcp_id: Optional[pulumi.Input[str]] = No
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.0.0/24")
-    dhcp_by_id = scaleway.get_vpc_public_gateway_dhcp_output(dhcp_id=main.id)
+    main = scaleway.network.PublicGatewayDhcp("main", subnet="192.168.0.0/24")
+    dhcp_by_id = scaleway.network.get_public_gateway_dhcp_output(dhcp_id=main.id)
     ```
     """
+    pulumi.log.warn("""get_vpc_public_gateway_dhcp is deprecated: scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp""")
     __args__ = dict()
     __args__['dhcpId'] = dhcp_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

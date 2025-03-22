@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup")]
     public static class GetInstanceSecurityGroup
     {
         /// <summary>

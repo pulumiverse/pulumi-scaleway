@@ -18,33 +18,35 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "tcp",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const byID = scaleway.getLbFrontendOutput({
+ * const byID = scaleway.loadbalancers.getFrontendOutput({
  *     frontendId: frt01.id,
  * });
- * const byName = scaleway.getLbFrontendOutput({
+ * const byName = scaleway.loadbalancers.getFrontendOutput({
  *     name: frt01.name,
  *     lbId: lb01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend */
 export function getLbFrontend(args?: GetLbFrontendArgs, opts?: pulumi.InvokeOptions): Promise<GetLbFrontendResult> {
+    pulumi.log.warn("getLbFrontend is deprecated: scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbFrontend:getLbFrontend", {
@@ -106,33 +108,35 @@ export interface GetLbFrontendResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "tcp",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const byID = scaleway.getLbFrontendOutput({
+ * const byID = scaleway.loadbalancers.getFrontendOutput({
  *     frontendId: frt01.id,
  * });
- * const byName = scaleway.getLbFrontendOutput({
+ * const byName = scaleway.loadbalancers.getFrontendOutput({
  *     name: frt01.name,
  *     lbId: lb01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend */
 export function getLbFrontendOutput(args?: GetLbFrontendOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbFrontendResult> {
+    pulumi.log.warn("getLbFrontend is deprecated: scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbFrontend:getLbFrontend", {

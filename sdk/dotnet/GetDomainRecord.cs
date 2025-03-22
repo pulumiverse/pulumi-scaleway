@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord")]
     public static class GetDomainRecord
     {
         /// <summary>
-        /// The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+        /// The `scaleway.domain.Record` data source is used to get information about an existing domain record.
         /// 
         /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
         /// 
@@ -34,7 +35,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Query record by DNS zone, record name, type and content
-        ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byContent = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         Name = "www",
@@ -43,7 +44,7 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Query record by DNS zone and record ID
-        ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byId = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         RecordId = "11111111-1111-1111-1111-111111111111",
@@ -56,7 +57,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDomainRecordResult>("scaleway:index/getDomainRecord:getDomainRecord", args ?? new GetDomainRecordArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+        /// The `scaleway.domain.Record` data source is used to get information about an existing domain record.
         /// 
         /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
         /// 
@@ -77,7 +78,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Query record by DNS zone, record name, type and content
-        ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byContent = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         Name = "www",
@@ -86,7 +87,7 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Query record by DNS zone and record ID
-        ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byId = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         RecordId = "11111111-1111-1111-1111-111111111111",
@@ -99,7 +100,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetDomainRecordResult>("scaleway:index/getDomainRecord:getDomainRecord", args ?? new GetDomainRecordInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+        /// The `scaleway.domain.Record` data source is used to get information about an existing domain record.
         /// 
         /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
         /// 
@@ -120,7 +121,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Query record by DNS zone, record name, type and content
-        ///     var byContent = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byContent = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         Name = "www",
@@ -129,7 +130,7 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Query record by DNS zone and record ID
-        ///     var byId = Scaleway.GetDomainRecord.Invoke(new()
+        ///     var byId = Scaleway.Domain.GetRecord.Invoke(new()
         ///     {
         ///         DnsZone = "domain.tld",
         ///         RecordId = "11111111-1111-1111-1111-111111111111",

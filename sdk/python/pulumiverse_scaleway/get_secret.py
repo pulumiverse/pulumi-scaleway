@@ -22,6 +22,8 @@ __all__ = [
     'get_secret_output',
 ]
 
+warnings.warn("""scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret""", DeprecationWarning)
+
 @pulumi.output_type
 class GetSecretResult:
     """
@@ -193,7 +195,7 @@ def get_secret(name: Optional[str] = None,
                secret_id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretResult:
     """
-    The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+    The `secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 
     Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -213,13 +215,13 @@ def get_secret(name: Optional[str] = None,
     import pulumiverse_scaleway as scaleway
 
     # Create a secret
-    main = scaleway.Secret("main",
+    main = scaleway.secrets.Secret("main",
         name="foo",
         description="barr")
     # Get the secret information specified by the secret ID
-    my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
+    my_secret = scaleway.secrets.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
     # Get the secret information specified by the secret name
-    by_name = scaleway.get_secret(name="your_secret_name")
+    by_name = scaleway.secrets.get_secret(name="your_secret_name")
     ```
 
 
@@ -234,6 +236,7 @@ def get_secret(name: Optional[str] = None,
     :param str secret_id: The ID of the secret.
            Only one of `name` and `secret_id` should be specified.
     """
+    pulumi.log.warn("""get_secret is deprecated: scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret""")
     __args__ = dict()
     __args__['name'] = name
     __args__['organizationId'] = organization_id
@@ -269,7 +272,7 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                       secret_id: Optional[pulumi.Input[Optional[str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretResult]:
     """
-    The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+    The `secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 
     Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -289,13 +292,13 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumiverse_scaleway as scaleway
 
     # Create a secret
-    main = scaleway.Secret("main",
+    main = scaleway.secrets.Secret("main",
         name="foo",
         description="barr")
     # Get the secret information specified by the secret ID
-    my_secret = scaleway.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
+    my_secret = scaleway.secrets.get_secret(secret_id="11111111-1111-1111-1111-111111111111")
     # Get the secret information specified by the secret name
-    by_name = scaleway.get_secret(name="your_secret_name")
+    by_name = scaleway.secrets.get_secret(name="your_secret_name")
     ```
 
 
@@ -310,6 +313,7 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str secret_id: The ID of the secret.
            Only one of `name` and `secret_id` should be specified.
     """
+    pulumi.log.warn("""get_secret is deprecated: scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret""")
     __args__ = dict()
     __args__['name'] = name
     __args__['organizationId'] = organization_id

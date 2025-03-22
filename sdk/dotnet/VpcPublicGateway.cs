@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.VpcPublicGateway("main", new()
+    ///     var main = new Scaleway.Network.PublicGateway("main", new()
     ///     {
     ///         Name = "public_gateway_demo",
     ///         Type = "VPC-GW-S",
@@ -50,6 +50,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcPublicGateway:VpcPublicGateway main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcpublicgateway.VpcPublicGateway has been deprecated in favor of scaleway.network/publicgateway.PublicGateway")]
     [ScalewayResourceType("scaleway:index/vpcPublicGateway:VpcPublicGateway")]
     public partial class VpcPublicGateway : global::Pulumi.CustomResource
     {

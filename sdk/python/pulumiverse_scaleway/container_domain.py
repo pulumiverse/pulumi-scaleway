@@ -142,7 +142,12 @@ class _ContainerDomainState:
         pulumi.set(self, "url", value)
 
 
+warnings.warn("""scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain""", DeprecationWarning)
+
+
 class ContainerDomain(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -152,7 +157,7 @@ class ContainerDomain(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/serverless-containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 
@@ -166,8 +171,8 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.Container("app")
-        app_container_domain = scaleway.ContainerDomain("app",
+        app = scaleway.containers.Container("app")
+        app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
             hostname="container.domain.tld")
         ```
@@ -178,10 +183,10 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="my-ns-test",
             description="test container")
-        app = scaleway.Container("app",
+        app = scaleway.containers.Container("app",
             name="app",
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
@@ -195,17 +200,17 @@ class ContainerDomain(pulumi.CustomResource):
             privacy="public",
             protocol="http1",
             deploy=True)
-        app_domain_record = scaleway.DomainRecord("app",
+        app_record = scaleway.domain.Record("app",
             dns_zone="domain.tld",
             name="subdomain",
             type="CNAME",
             data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
             ttl=3600)
-        app_container_domain = scaleway.ContainerDomain("app",
+        app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
             hostname=pulumi.Output.all(
-                name=app_domain_record.name,
-                dns_zone=app_domain_record.dns_zone
+                name=app_record.name,
+                dns_zone=app_record.dns_zone
         ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
         )
         ```
@@ -233,7 +238,7 @@ class ContainerDomain(pulumi.CustomResource):
                  args: ContainerDomainArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/serverless-containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 
@@ -247,8 +252,8 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        app = scaleway.Container("app")
-        app_container_domain = scaleway.ContainerDomain("app",
+        app = scaleway.containers.Container("app")
+        app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
             hostname="container.domain.tld")
         ```
@@ -259,10 +264,10 @@ class ContainerDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="my-ns-test",
             description="test container")
-        app = scaleway.Container("app",
+        app = scaleway.containers.Container("app",
             name="app",
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/nginx:alpine"),
@@ -276,17 +281,17 @@ class ContainerDomain(pulumi.CustomResource):
             privacy="public",
             protocol="http1",
             deploy=True)
-        app_domain_record = scaleway.DomainRecord("app",
+        app_record = scaleway.domain.Record("app",
             dns_zone="domain.tld",
             name="subdomain",
             type="CNAME",
             data=app.domain_name.apply(lambda domain_name: f"{domain_name}."),
             ttl=3600)
-        app_container_domain = scaleway.ContainerDomain("app",
+        app_domain = scaleway.containers.Domain("app",
             container_id=app.id,
             hostname=pulumi.Output.all(
-                name=app_domain_record.name,
-                dns_zone=app_domain_record.dns_zone
+                name=app_record.name,
+                dns_zone=app_record.dns_zone
         ).apply(lambda resolved_outputs: f"{resolved_outputs['name']}.{resolved_outputs['dns_zone']}")
         )
         ```
@@ -320,6 +325,7 @@ class ContainerDomain(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerDomain is deprecated: scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -14,6 +14,8 @@ import (
 // Gets information about a MongoDB® Instance.
 //
 // For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
+//
+// Deprecated: scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance
 func LookupMongoDbInstance(ctx *pulumi.Context, args *LookupMongoDbInstanceArgs, opts ...pulumi.InvokeOption) (*LookupMongoDbInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMongoDbInstanceResult

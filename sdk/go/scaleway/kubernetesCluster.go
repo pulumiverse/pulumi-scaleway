@@ -24,17 +24,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("cilium"),
@@ -44,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -67,13 +68,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Type:                      pulumi.String("multicloud"),
 //				Version:                   pulumi.String("1.29.1"),
@@ -83,7 +84,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("external"),
@@ -109,17 +110,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:        pulumi.String("tf-cluster"),
 //				Description: pulumi.String("cluster made in terraform"),
 //				Version:     pulumi.String("1.29.1"),
@@ -129,7 +131,7 @@ import (
 //				},
 //				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
-//				AutoscalerConfig: &scaleway.KubernetesClusterAutoscalerConfigArgs{
+//				AutoscalerConfig: &kubernetes.ClusterAutoscalerConfigArgs{
 //					DisableScaleDown:             pulumi.Bool(false),
 //					ScaleDownDelayAfterAdd:       pulumi.String("5m"),
 //					Estimator:                    pulumi.String("binpacking"),
@@ -142,7 +144,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId:   cluster.ID(),
 //				Name:        pulumi.String("tf-pool"),
 //				NodeType:    pulumi.String("DEV1-M"),
@@ -170,17 +172,18 @@ import (
 //
 //	"github.com/pulumi/pulumi-null/sdk/go/null"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("cilium"),
@@ -190,7 +193,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pool, err := scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -201,13 +204,13 @@ import (
 //			}
 //			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
 //				Triggers: pulumi.StringMap{
-//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Host, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
@@ -236,17 +239,19 @@ import (
 //	"github.com/pulumi/pulumi-helm/sdk/go/helm"
 //	"github.com/pulumi/pulumi-null/sdk/go/null"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			cluster, err := scaleway.NewKubernetesCluster(ctx, "cluster", &scaleway.KubernetesClusterArgs{
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Version:                   pulumi.String("1.29.1"),
 //				Cni:                       pulumi.String("cilium"),
@@ -256,7 +261,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pool, err := scaleway.NewKubernetesNodePool(ctx, "pool", &scaleway.KubernetesNodePoolArgs{
+//			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
 //				ClusterId: cluster.ID(),
 //				Name:      pulumi.String("tf-pool"),
 //				NodeType:  pulumi.String("DEV1-M"),
@@ -267,13 +272,13 @@ import (
 //			}
 //			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
 //				Triggers: pulumi.StringMap{
-//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Host, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []scaleway.KubernetesClusterKubeconfig) (*string, error) {
+//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
@@ -283,7 +288,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			nginxIp, err := scaleway.NewLoadbalancerIp(ctx, "nginx_ip", &scaleway.LoadbalancerIpArgs{
+//			nginxIp, err := loadbalancers.NewIp(ctx, "nginx_ip", &loadbalancers.IpArgs{
 //				Zone:      pulumi.String("fr-par-1"),
 //				ProjectId: cluster.ProjectId,
 //			})
@@ -336,6 +341,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
 

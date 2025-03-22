@@ -23,19 +23,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// For default project
-//			_, err := scaleway.LookupMnqSqs(ctx, &scaleway.LookupMnqSqsArgs{}, nil)
+//			_, err := mnq.LookupSqs(ctx, &mnq.LookupSqsArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// For specific project
-//			_, err = scaleway.LookupMnqSqs(ctx, &scaleway.LookupMnqSqsArgs{
+//			_, err = mnq.LookupSqs(ctx, &mnq.LookupSqsArgs{
 //				ProjectId: pulumi.StringRef(mainScalewayAccountProject.Id),
 //			}, nil)
 //			if err != nil {
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs
 func LookupMnqSqs(ctx *pulumi.Context, args *LookupMnqSqsArgs, opts ...pulumi.InvokeOption) (*LookupMnqSqsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMnqSqsResult

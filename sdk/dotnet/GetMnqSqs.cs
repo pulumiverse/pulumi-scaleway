@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs")]
     public static class GetMnqSqs
     {
         /// <summary>
@@ -28,10 +29,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSqs.Invoke();
+        ///     var main = Scaleway.Mnq.GetSqs.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSqs.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
@@ -58,10 +59,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSqs.Invoke();
+        ///     var main = Scaleway.Mnq.GetSqs.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSqs.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
@@ -88,10 +89,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSqs.Invoke();
+        ///     var main = Scaleway.Mnq.GetSqs.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSqs.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSqs.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });

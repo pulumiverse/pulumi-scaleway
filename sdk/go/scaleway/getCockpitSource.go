@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+// The `observability.Source` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 //
 // Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
@@ -27,13 +27,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupCockpitSource(ctx, &scaleway.LookupCockpitSourceArgs{
+//			_, err := observability.LookupSource(ctx, &observability.LookupSourceArgs{
 //				Id: pulumi.StringRef("fr-par/11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -44,6 +44,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource
 func LookupCockpitSource(ctx *pulumi.Context, args *LookupCockpitSourceArgs, opts ...pulumi.InvokeOption) (*LookupCockpitSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCockpitSourceResult

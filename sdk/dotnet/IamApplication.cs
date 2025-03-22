@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IamApplication("main", new()
+    ///     var main = new Scaleway.Iam.Application("main", new()
     ///     {
     ///         Name = "My application",
     ///         Description = "a description",
@@ -42,6 +42,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application")]
     [ScalewayResourceType("scaleway:index/iamApplication:IamApplication")]
     public partial class IamApplication : global::Pulumi.CustomResource
     {

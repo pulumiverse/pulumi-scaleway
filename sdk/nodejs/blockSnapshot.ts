@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+ * The `scaleway.block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
  *
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  *
@@ -19,12 +19,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const blockVolume = new scaleway.BlockVolume("block_volume", {
+ * const blockVolume = new scaleway.block.Volume("block_volume", {
  *     iops: 5000,
  *     name: "some-volume-name",
  *     sizeInGb: 20,
  * });
- * const blockSnapshot = new scaleway.BlockSnapshot("block_snapshot", {
+ * const blockSnapshot = new scaleway.block.Snapshot("block_snapshot", {
  *     name: "some-snapshot-name",
  *     volumeId: blockVolume.id,
  * });
@@ -39,6 +39,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot
  */
 export class BlockSnapshot extends pulumi.CustomResource {
     /**
@@ -51,6 +53,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BlockSnapshotState, opts?: pulumi.CustomResourceOptions): BlockSnapshot {
+        pulumi.log.warn("BlockSnapshot is deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot")
         return new BlockSnapshot(name, <any>state, { ...opts, id: id });
     }
 
@@ -96,8 +99,11 @@ export class BlockSnapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot */
     constructor(name: string, args: BlockSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot */
     constructor(name: string, argsOrState?: BlockSnapshotArgs | BlockSnapshotState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("BlockSnapshot is deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

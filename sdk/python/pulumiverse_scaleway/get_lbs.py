@@ -22,6 +22,8 @@ __all__ = [
     'get_lbs_output',
 ]
 
+warnings.warn("""scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbsResult:
     """
@@ -138,6 +140,7 @@ def get_lbs(name: Optional[str] = None,
     :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
     :param str zone: `zone`) The zone in which the Load Balancers exist.
     """
+    pulumi.log.warn("""get_lbs is deprecated: scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -170,6 +173,7 @@ def get_lbs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param Sequence[str] tags: List of tags to filter for. Load Balancers with these exact tags are listed.
     :param str zone: `zone`) The zone in which the Load Balancers exist.
     """
+    pulumi.log.warn("""get_lbs is deprecated: scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

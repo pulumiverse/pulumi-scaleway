@@ -27,17 +27,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var acl01 = new Scaleway.LoadbalancerAcl("acl01", new()
+    ///     var acl01 = new Scaleway.Loadbalancers.Acl("acl01", new()
     ///     {
     ///         FrontendId = frt01.Id,
     ///         Name = "acl01",
     ///         Description = "Exclude well-known IPs",
     ///         Index = 0,
-    ///         Action = new Scaleway.Inputs.LoadbalancerAclActionArgs
+    ///         Action = new Scaleway.Loadbalancers.Inputs.AclActionArgs
     ///         {
     ///             Type = "allow",
     ///         },
-    ///         Match = new Scaleway.Inputs.LoadbalancerAclMatchArgs
+    ///         Match = new Scaleway.Loadbalancers.Inputs.AclMatchArgs
     ///         {
     ///             IpSubnets = new[]
     ///             {
@@ -61,6 +61,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/loadbalancerAcl:LoadbalancerAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl")]
     [ScalewayResourceType("scaleway:index/loadbalancerAcl:LoadbalancerAcl")]
     public partial class LoadbalancerAcl : global::Pulumi.CustomResource
     {

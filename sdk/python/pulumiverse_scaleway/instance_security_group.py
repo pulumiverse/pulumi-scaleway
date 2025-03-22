@@ -438,7 +438,12 @@ class _InstanceSecurityGroupState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup""", DeprecationWarning)
+
+
 class InstanceSecurityGroup(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -528,6 +533,7 @@ class InstanceSecurityGroup(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceSecurityGroup is deprecated: scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about multiple Virtual Private Clouds.
+//
+// Deprecated: scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs
 func GetVpcs(ctx *pulumi.Context, args *GetVpcsArgs, opts ...pulumi.InvokeOption) (*GetVpcsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpcsResult

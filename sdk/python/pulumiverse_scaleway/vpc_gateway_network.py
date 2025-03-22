@@ -384,7 +384,12 @@ class _VpcGatewayNetworkState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork""", DeprecationWarning)
+
+
 class VpcGatewayNetwork(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -413,17 +418,17 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
@@ -438,22 +443,22 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.64.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
@@ -469,16 +474,16 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
-        gw01 = scaleway.VpcPublicGatewayIp("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
+        gw01 = scaleway.network.PublicGatewayIp("gw01")
+        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01",
             subnet="192.168.1.0/24",
             push_default_route=True)
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S",
             ip_id=gw01.id)
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
@@ -492,11 +497,11 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_dhcp=False,
@@ -546,17 +551,17 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
@@ -571,22 +576,22 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="pn_test_network",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.64.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_masquerade=True,
@@ -602,16 +607,16 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
-        gw01 = scaleway.VpcPublicGatewayIp("gw01")
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
+        gw01 = scaleway.network.PublicGatewayIp("gw01")
+        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01",
             subnet="192.168.1.0/24",
             push_default_route=True)
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S",
             ip_id=gw01.id)
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
@@ -625,11 +630,11 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="pn_test_network")
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="foobar",
             type="VPC-GW-S")
-        main = scaleway.VpcGatewayNetwork("main",
+        main = scaleway.network.GatewayNetwork("main",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             enable_dhcp=False,
@@ -672,6 +677,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcGatewayNetwork is deprecated: scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

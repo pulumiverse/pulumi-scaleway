@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
  *
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerTrigger("main", {
+ * const main = new scaleway.containers.Trigger("main", {
  *     containerId: mainScalewayContainer.id,
  *     name: "my-trigger",
  *     sqs: {
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerTrigger("main", {
+ * const main = new scaleway.containers.Trigger("main", {
  *     containerId: mainScalewayContainer.id,
  *     name: "my-trigger",
  *     nats: {
@@ -56,6 +56,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger
  */
 export class ContainerTrigger extends pulumi.CustomResource {
     /**
@@ -68,6 +70,7 @@ export class ContainerTrigger extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerTriggerState, opts?: pulumi.CustomResourceOptions): ContainerTrigger {
+        pulumi.log.warn("ContainerTrigger is deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger")
         return new ContainerTrigger(name, <any>state, { ...opts, id: id });
     }
 
@@ -117,8 +120,11 @@ export class ContainerTrigger extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger */
     constructor(name: string, args: ContainerTriggerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger */
     constructor(name: string, argsOrState?: ContainerTriggerArgs | ContainerTriggerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ContainerTrigger is deprecated: scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

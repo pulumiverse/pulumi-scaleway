@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function")]
     [ScalewayResourceType("scaleway:index/function:Function")]
     public partial class Function : global::Pulumi.CustomResource
     {

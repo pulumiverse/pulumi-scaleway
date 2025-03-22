@@ -17,15 +17,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const cluster = new scaleway.KubernetesCluster("cluster", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     version: "1.29.1",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  * });
- * const pool = new scaleway.KubernetesNodePool("pool", {
+ * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
@@ -39,14 +39,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const cluster = new scaleway.KubernetesCluster("cluster", {
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     type: "multicloud",
  *     version: "1.29.1",
  *     cni: "kilo",
  *     deleteAdditionalResources: false,
  * });
- * const pool = new scaleway.KubernetesNodePool("pool", {
+ * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
  *     name: "tf-pool",
  *     nodeType: "external",
@@ -63,8 +63,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const cluster = new scaleway.KubernetesCluster("cluster", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     description: "cluster made in terraform",
  *     version: "1.29.1",
@@ -82,7 +82,7 @@ import * as utilities from "./utilities";
  *         expendablePodsPriorityCutoff: -5,
  *     },
  * });
- * const pool = new scaleway.KubernetesNodePool("pool", {
+ * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
@@ -101,15 +101,15 @@ import * as utilities from "./utilities";
  * import * as _null from "@pulumi/null";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const cluster = new scaleway.KubernetesCluster("cluster", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     version: "1.29.1",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
  * });
- * const pool = new scaleway.KubernetesNodePool("pool", {
+ * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
@@ -135,15 +135,15 @@ import * as utilities from "./utilities";
  * import * as helm from "@pulumi/helm";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const cluster = new scaleway.KubernetesCluster("cluster", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     version: "1.29.1",
  *     cni: "cilium",
  *     deleteAdditionalResources: false,
  *     privateNetworkId: pn.id,
  * });
- * const pool = new scaleway.KubernetesNodePool("pool", {
+ * const pool = new scaleway.kubernetes.Pool("pool", {
  *     clusterId: cluster.id,
  *     name: "tf-pool",
  *     nodeType: "DEV1-M",
@@ -156,7 +156,7 @@ import * as utilities from "./utilities";
  * }}, {
  *     dependsOn: [pool],
  * });
- * const nginxIp = new scaleway.LoadbalancerIp("nginx_ip", {
+ * const nginxIp = new scaleway.loadbalancers.Ip("nginx_ip", {
  *     zone: "fr-par-1",
  *     projectId: cluster.projectId,
  * });
@@ -199,6 +199,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster
  */
 export class KubernetesCluster extends pulumi.CustomResource {
     /**
@@ -211,6 +213,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KubernetesClusterState, opts?: pulumi.CustomResourceOptions): KubernetesCluster {
+        pulumi.log.warn("KubernetesCluster is deprecated: scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster")
         return new KubernetesCluster(name, <any>state, { ...opts, id: id });
     }
 
@@ -346,8 +349,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster */
     constructor(name: string, args: KubernetesClusterArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster */
     constructor(name: string, argsOrState?: KubernetesClusterArgs | KubernetesClusterState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("KubernetesCluster is deprecated: scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

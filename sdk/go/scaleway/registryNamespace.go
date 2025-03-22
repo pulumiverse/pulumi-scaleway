@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/registry"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRegistryNamespace(ctx, "main", &scaleway.RegistryNamespaceArgs{
+//			_, err := registry.NewNamespace(ctx, "main", &registry.NamespaceArgs{
 //				Name:        pulumi.String("main-cr"),
 //				Description: pulumi.String("Main container registry"),
 //				IsPublic:    pulumi.Bool(false),
@@ -53,6 +53,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/registrynamespace.RegistryNamespace has been deprecated in favor of scaleway.registry/namespace.Namespace
 type RegistryNamespace struct {
 	pulumi.CustomResourceState
 

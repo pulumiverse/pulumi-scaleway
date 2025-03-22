@@ -5,10 +5,12 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+ * The `scaleway.block.Volume` data source is used to retrieve information about a Block Storage volume.
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
+/** @deprecated scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume */
 export function getBlockVolume(args?: GetBlockVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockVolumeResult> {
+    pulumi.log.warn("getBlockVolume is deprecated: scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBlockVolume:getBlockVolume", {
@@ -60,10 +62,12 @@ export interface GetBlockVolumeResult {
     readonly zone?: string;
 }
 /**
- * The `scaleway.BlockVolume` data source is used to retrieve information about a Block Storage volume.
+ * The `scaleway.block.Volume` data source is used to retrieve information about a Block Storage volume.
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
+/** @deprecated scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume */
 export function getBlockVolumeOutput(args?: GetBlockVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBlockVolumeResult> {
+    pulumi.log.warn("getBlockVolume is deprecated: scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBlockVolume:getBlockVolume", {

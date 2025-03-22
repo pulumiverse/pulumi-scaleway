@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IotHub("main", {
+ * const main = new scaleway.iot.Hub("main", {
  *     name: "test-iot",
  *     productPlan: "plan_shared",
  * });
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub
  */
 export class IotHub extends pulumi.CustomResource {
     /**
@@ -40,6 +42,7 @@ export class IotHub extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotHubState, opts?: pulumi.CustomResourceOptions): IotHub {
+        pulumi.log.warn("IotHub is deprecated: scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub")
         return new IotHub(name, <any>state, { ...opts, id: id });
     }
 
@@ -145,8 +148,11 @@ export class IotHub extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub */
     constructor(name: string, args: IotHubArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub */
     constructor(name: string, argsOrState?: IotHubArgs | IotHubState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IotHub is deprecated: scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

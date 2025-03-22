@@ -983,7 +983,12 @@ class _LoadbalancerBackendState:
         pulumi.set(self, "timeout_tunnel", value)
 
 
+warnings.warn("""scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend""", DeprecationWarning)
+
+
 class LoadbalancerBackend(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -1032,7 +1037,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        backend01 = scaleway.LoadbalancerBackend("backend01",
+        backend01 = scaleway.loadbalancers.Backend("backend01",
             lb_id=lb01["id"],
             name="backend01",
             forward_protocol="http",
@@ -1045,7 +1050,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        backend01 = scaleway.LoadbalancerBackend("backend01",
+        backend01 = scaleway.loadbalancers.Backend("backend01",
             lb_id=lb01["id"],
             name="backend01",
             forward_protocol="http",
@@ -1116,7 +1121,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        backend01 = scaleway.LoadbalancerBackend("backend01",
+        backend01 = scaleway.loadbalancers.Backend("backend01",
             lb_id=lb01["id"],
             name="backend01",
             forward_protocol="http",
@@ -1129,7 +1134,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        backend01 = scaleway.LoadbalancerBackend("backend01",
+        backend01 = scaleway.loadbalancers.Backend("backend01",
             lb_id=lb01["id"],
             name="backend01",
             forward_protocol="http",
@@ -1195,6 +1200,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
                  timeout_server: Optional[pulumi.Input[str]] = None,
                  timeout_tunnel: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""LoadbalancerBackend is deprecated: scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

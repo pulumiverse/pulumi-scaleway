@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqSqs("main");
+    ///     var main = new Scaleway.Mnq.Sqs("main");
     /// 
-    ///     var mainMnqSqsCredentials = new Scaleway.MnqSqsCredentials("main", new()
+    ///     var mainSqsCredentials = new Scaleway.Mnq.SqsCredentials("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "sqs-credentials",
-    ///         Permissions = new Scaleway.Inputs.MnqSqsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SqsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
     ///             CanReceive = false,
@@ -41,18 +41,19 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainMnqSqsQueue = new Scaleway.MnqSqsQueue("main", new()
+    ///     var mainSqsQueue = new Scaleway.Mnq.SqsQueue("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "my-queue",
     ///         SqsEndpoint = main.Endpoint,
-    ///         AccessKey = mainMnqSqsCredentials.AccessKey,
-    ///         SecretKey = mainMnqSqsCredentials.SecretKey,
+    ///         AccessKey = mainSqsCredentials.AccessKey,
+    ///         SecretKey = mainSqsCredentials.SecretKey,
     ///     });
     /// 
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue")]
     [ScalewayResourceType("scaleway:index/mnqSqsQueue:MnqSqsQueue")]
     public partial class MnqSqsQueue : global::Pulumi.CustomResource
     {

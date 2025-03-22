@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// The `scaleway.functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
     /// Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
     /// 
@@ -27,11 +27,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FunctionTrigger("main", new()
+    ///     var main = new Scaleway.Functions.Trigger("main", new()
     ///     {
     ///         FunctionId = mainScalewayFunction.Id,
     ///         Name = "my-trigger",
-    ///         Sqs = new Scaleway.Inputs.FunctionTriggerSqsArgs
+    ///         Sqs = new Scaleway.Functions.Inputs.TriggerSqsArgs
     ///         {
     ///             ProjectId = mainScalewayMnqSqs.ProjectId,
     ///             Queue = "MyQueue",
@@ -52,11 +52,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FunctionTrigger("main", new()
+    ///     var main = new Scaleway.Functions.Trigger("main", new()
     ///     {
     ///         FunctionId = mainScalewayFunction.Id,
     ///         Name = "my-trigger",
-    ///         Nats = new Scaleway.Inputs.FunctionTriggerNatsArgs
+    ///         Nats = new Scaleway.Functions.Inputs.TriggerNatsArgs
     ///         {
     ///             AccountId = mainScalewayMnqNatsAccount.Id,
     ///             Subject = "MySubject",
@@ -77,6 +77,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger")]
     [ScalewayResourceType("scaleway:index/functionTrigger:FunctionTrigger")]
     public partial class FunctionTrigger : global::Pulumi.CustomResource
     {

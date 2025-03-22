@@ -464,7 +464,12 @@ class _InferenceDeploymentState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment""", DeprecationWarning)
+
+
 class InferenceDeployment(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -493,7 +498,7 @@ class InferenceDeployment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        deployment = scaleway.InferenceDeployment("deployment",
+        deployment = scaleway.inference.Deployment("deployment",
             name="tf-inference-deployment",
             node_type="L4",
             model_name="meta/llama-3.1-8b-instruct:fp8",
@@ -545,7 +550,7 @@ class InferenceDeployment(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        deployment = scaleway.InferenceDeployment("deployment",
+        deployment = scaleway.inference.Deployment("deployment",
             name="tf-inference-deployment",
             node_type="L4",
             model_name="meta/llama-3.1-8b-instruct:fp8",
@@ -592,6 +597,7 @@ class InferenceDeployment(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""InferenceDeployment is deprecated: scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

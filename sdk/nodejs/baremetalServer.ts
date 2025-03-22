@@ -18,14 +18,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getIamSshKey({
+ * const main = scaleway.iam.getSshKey({
  *     name: "main",
  * });
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-2",
  *     name: "EM-I220E-NVME",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
@@ -40,27 +40,27 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getIamSshKey({
+ * const main = scaleway.iam.getSshKey({
  *     name: "main",
  * });
- * const myOs = scaleway.getBaremetalOs({
+ * const myOs = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-2",
  *     name: "Ubuntu",
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-2",
  *     name: "EM-B112X-SSD",
  * });
- * const privateNetwork = scaleway.getBaremetalOption({
+ * const privateNetwork = scaleway.elasticmetal.getOption({
  *     zone: "fr-par-2",
  *     name: "Private Network",
  * });
- * const remoteAccess = scaleway.getBaremetalOption({
+ * const remoteAccess = scaleway.elasticmetal.getOption({
  *     zone: "fr-par-2",
  *     name: "Remote Access",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
@@ -83,27 +83,27 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = scaleway.getIamSshKey({
+ * const main = scaleway.iam.getSshKey({
  *     name: "main",
  * });
- * const myOs = scaleway.getBaremetalOs({
+ * const myOs = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-2",
  *     name: "Ubuntu",
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-2",
  *     name: "EM-B112X-SSD",
  * });
- * const privateNetwork = scaleway.getBaremetalOption({
+ * const privateNetwork = scaleway.elasticmetal.getOption({
  *     zone: "fr-par-2",
  *     name: "Private Network",
  * });
- * const pn = new scaleway.VpcPrivateNetwork("pn", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {
  *     region: "fr-par",
  *     name: "baremetal_private_network",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
@@ -124,37 +124,37 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "vpc_baremetal"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "vpc_baremetal"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "private_network_baremetal",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.64.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],
  * });
- * const myKey = scaleway.getIamSshKey({
+ * const myKey = scaleway.iam.getSshKey({
  *     name: "main",
  * });
- * const myOs = scaleway.getBaremetalOs({
+ * const myOs = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-1",
  *     name: "Ubuntu",
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-1",
  *     name: "EM-A115X-SSD",
  * });
- * const privateNetwork = scaleway.getBaremetalOption({
+ * const privateNetwork = scaleway.elasticmetal.getOption({
  *     zone: "fr-par-1",
  *     name: "Private Network",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: myOs.then(myOs => myOs.osId),
@@ -176,11 +176,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-2",
  *     name: "EM-B112X-SSD",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
@@ -196,18 +196,18 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const configCustomPartitioning = config.get("configCustomPartitioning") || "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}";
- * const myOs = scaleway.getBaremetalOs({
+ * const myOs = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-1",
  *     name: "Ubuntu",
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
- * const main = new scaleway.IamSshKey("main", {name: "main"});
- * const myOffer = scaleway.getBaremetalOffer({
+ * const main = new scaleway.iam.SshKey("main", {name: "main"});
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-1",
  *     name: "EM-B220E-NVME",
  *     subscriptionPeriod: "hourly",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     name: "%s",
  *     zone: "fr-par-1",
  *     description: "test a description",
@@ -232,6 +232,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/baremetalServer:BaremetalServer web fr-par-2/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server
  */
 export class BaremetalServer extends pulumi.CustomResource {
     /**
@@ -244,6 +246,7 @@ export class BaremetalServer extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: BaremetalServerState, opts?: pulumi.CustomResourceOptions): BaremetalServer {
+        pulumi.log.warn("BaremetalServer is deprecated: scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server")
         return new BaremetalServer(name, <any>state, { ...opts, id: id });
     }
 
@@ -380,8 +383,11 @@ export class BaremetalServer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server */
     constructor(name: string, args: BaremetalServerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server */
     constructor(name: string, argsOrState?: BaremetalServerArgs | BaremetalServerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("BaremetalServer is deprecated: scaleway.index/baremetalserver.BaremetalServer has been deprecated in favor of scaleway.elasticmetal/server.Server")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

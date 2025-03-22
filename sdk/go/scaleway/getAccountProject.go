@@ -11,9 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `AccountProject` data source is used to retrieve information about a Scaleway project.
+// The `account.Project` data source is used to retrieve information about a Scaleway project.
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
+//
+// Deprecated: scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject
 func LookupAccountProject(ctx *pulumi.Context, args *LookupAccountProjectArgs, opts ...pulumi.InvokeOption) (*LookupAccountProjectResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountProjectResult

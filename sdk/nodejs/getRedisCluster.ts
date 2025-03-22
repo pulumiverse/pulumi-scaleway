@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
  */
+/** @deprecated scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster */
 export function getRedisCluster(args?: GetRedisClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisClusterResult> {
+    pulumi.log.warn("getRedisCluster is deprecated: scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRedisCluster:getRedisCluster", {
@@ -120,7 +122,9 @@ export interface GetRedisClusterResult {
  *
  * For further information refer to the Managed Database for Redis™ [API documentation](https://developers.scaleway.com/en/products/redis/api/v1alpha1/#clusters-a85816).
  */
+/** @deprecated scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster */
 export function getRedisClusterOutput(args?: GetRedisClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRedisClusterResult> {
+    pulumi.log.warn("getRedisCluster is deprecated: scaleway.index/getrediscluster.getRedisCluster has been deprecated in favor of scaleway.redis/getcluster.getCluster")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRedisCluster:getRedisCluster", {

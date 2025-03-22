@@ -369,7 +369,12 @@ class _MnqSnsTopicSubscriptionState:
         pulumi.set(self, "topic_id", value)
 
 
+warnings.warn("""scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription""", DeprecationWarning)
+
+
 class MnqSnsTopicSubscription(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -399,23 +404,23 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         # For default project in default region
-        main = scaleway.MnqSns("main")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+        main = scaleway.mnq.Sns("main")
+        main_sns_credentials = scaleway.mnq.SnsCredentials("main",
             project_id=main.project_id,
             permissions={
                 "can_manage": True,
                 "can_publish": True,
                 "can_receive": True,
             })
-        topic = scaleway.MnqSnsTopic("topic",
+        topic = scaleway.mnq.SnsTopic("topic",
             project_id=main.project_id,
             name="my-topic",
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key)
-        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("main",
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key)
+        main_sns_topic_subscription = scaleway.mnq.SnsTopicSubscription("main",
             project_id=main.project_id,
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key,
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key,
             topic_id=topic.id,
             protocol="http",
             endpoint="http://example.com")
@@ -465,23 +470,23 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         # For default project in default region
-        main = scaleway.MnqSns("main")
-        main_mnq_sns_credentials = scaleway.MnqSnsCredentials("main",
+        main = scaleway.mnq.Sns("main")
+        main_sns_credentials = scaleway.mnq.SnsCredentials("main",
             project_id=main.project_id,
             permissions={
                 "can_manage": True,
                 "can_publish": True,
                 "can_receive": True,
             })
-        topic = scaleway.MnqSnsTopic("topic",
+        topic = scaleway.mnq.SnsTopic("topic",
             project_id=main.project_id,
             name="my-topic",
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key)
-        main_mnq_sns_topic_subscription = scaleway.MnqSnsTopicSubscription("main",
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key)
+        main_sns_topic_subscription = scaleway.mnq.SnsTopicSubscription("main",
             project_id=main.project_id,
-            access_key=main_mnq_sns_credentials.access_key,
-            secret_key=main_mnq_sns_credentials.secret_key,
+            access_key=main_sns_credentials.access_key,
+            secret_key=main_sns_credentials.secret_key,
             topic_id=topic.id,
             protocol="http",
             endpoint="http://example.com")
@@ -523,6 +528,7 @@ class MnqSnsTopicSubscription(pulumi.CustomResource):
                  topic_arn: Optional[pulumi.Input[str]] = None,
                  topic_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSnsTopicSubscription is deprecated: scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

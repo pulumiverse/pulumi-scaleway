@@ -22,6 +22,8 @@ __all__ = [
     'get_object_bucket_output',
 ]
 
+warnings.warn("""scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket""", DeprecationWarning)
+
 @pulumi.output_type
 class GetObjectBucketResult:
     """
@@ -166,7 +168,7 @@ def get_object_bucket(name: Optional[str] = None,
                       region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketResult:
     """
-    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+    The `object.Bucket` data source is used to retrieve information about an Object Storage bucket.
 
     Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
 
@@ -182,12 +184,12 @@ def get_object_bucket(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ObjectBucket("main",
+    main = scaleway.object.Bucket("main",
         name="bucket.test.com",
         tags={
             "foo": "bar",
         })
-    selected = scaleway.get_object_bucket_output(name=main.id)
+    selected = scaleway.object.get_bucket_output(name=main.id)
     ```
 
     ## Retrieve a bucket from a specific project
@@ -196,7 +198,7 @@ def get_object_bucket(name: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    selected = scaleway.get_object_bucket(name="bucket.test.com",
+    selected = scaleway.object.get_bucket(name="bucket.test.com",
         project_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -204,6 +206,7 @@ def get_object_bucket(name: Optional[str] = None,
     :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
+    pulumi.log.warn("""get_object_bucket is deprecated: scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -230,7 +233,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectBucketResult]:
     """
-    The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+    The `object.Bucket` data source is used to retrieve information about an Object Storage bucket.
 
     Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
 
@@ -246,12 +249,12 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ObjectBucket("main",
+    main = scaleway.object.Bucket("main",
         name="bucket.test.com",
         tags={
             "foo": "bar",
         })
-    selected = scaleway.get_object_bucket_output(name=main.id)
+    selected = scaleway.object.get_bucket_output(name=main.id)
     ```
 
     ## Retrieve a bucket from a specific project
@@ -260,7 +263,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    selected = scaleway.get_object_bucket(name="bucket.test.com",
+    selected = scaleway.object.get_bucket(name="bucket.test.com",
         project_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -268,6 +271,7 @@ def get_object_bucket_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: `project_id`) The ID of the project with which the bucket is associated.
     :param str region: `region`) The region in which the bucket exists.
     """
+    pulumi.log.warn("""get_object_bucket is deprecated: scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

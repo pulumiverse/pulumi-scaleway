@@ -14,13 +14,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
- * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({
+ * const main = new scaleway.network.PublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
+ * const dhcpById = scaleway.network.getPublicGatewayDhcpOutput({
  *     dhcpId: main.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp */
 export function getVpcPublicGatewayDhcp(args: GetVpcPublicGatewayDhcpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayDhcpResult> {
+    pulumi.log.warn("getVpcPublicGatewayDhcp is deprecated: scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,
@@ -72,13 +74,15 @@ export interface GetVpcPublicGatewayDhcpResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
- * const dhcpById = scaleway.getVpcPublicGatewayDhcpOutput({
+ * const main = new scaleway.network.PublicGatewayDhcp("main", {subnet: "192.168.0.0/24"});
+ * const dhcpById = scaleway.network.getPublicGatewayDhcpOutput({
  *     dhcpId: main.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp */
 export function getVpcPublicGatewayDhcpOutput(args: GetVpcPublicGatewayDhcpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicGatewayDhcpResult> {
+    pulumi.log.warn("getVpcPublicGatewayDhcp is deprecated: scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp", {
         "dhcpId": args.dhcpId,

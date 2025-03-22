@@ -15,16 +15,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by option name
- * const byName = scaleway.getBaremetalOption({
+ * const byName = scaleway.elasticmetal.getOption({
  *     name: "Remote Access",
  * });
  * // Get info by option id
- * const byId = scaleway.getBaremetalOption({
+ * const byId = scaleway.elasticmetal.getOption({
  *     optionId: "931df052-d713-4674-8b58-96a63244c8e2",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption */
 export function getBaremetalOption(args?: GetBaremetalOptionArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOptionResult> {
+    pulumi.log.warn("getBaremetalOption is deprecated: scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOption:getBaremetalOption", {
@@ -82,16 +84,18 @@ export interface GetBaremetalOptionResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by option name
- * const byName = scaleway.getBaremetalOption({
+ * const byName = scaleway.elasticmetal.getOption({
  *     name: "Remote Access",
  * });
  * // Get info by option id
- * const byId = scaleway.getBaremetalOption({
+ * const byId = scaleway.elasticmetal.getOption({
  *     optionId: "931df052-d713-4674-8b58-96a63244c8e2",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption */
 export function getBaremetalOptionOutput(args?: GetBaremetalOptionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOptionResult> {
+    pulumi.log.warn("getBaremetalOption is deprecated: scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOption:getBaremetalOption", {

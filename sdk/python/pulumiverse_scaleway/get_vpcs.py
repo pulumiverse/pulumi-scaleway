@@ -22,6 +22,8 @@ __all__ = [
     'get_vpcs_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcsResult:
     """
@@ -127,6 +129,7 @@ def get_vpcs(name: Optional[str] = None,
     :param str region: `region`). The region in which the VPCs exist.
     :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
     """
+    pulumi.log.warn("""get_vpcs is deprecated: scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -157,6 +160,7 @@ def get_vpcs_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str region: `region`). The region in which the VPCs exist.
     :param Sequence[str] tags: List of tags to filter for. VPCs with these exact tags are listed.
     """
+    pulumi.log.warn("""get_vpcs is deprecated: scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

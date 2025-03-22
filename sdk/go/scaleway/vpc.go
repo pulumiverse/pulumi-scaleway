@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			_, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my-vpc"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
@@ -54,13 +54,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			_, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my-vpc"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
@@ -87,6 +87,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc
 type Vpc struct {
 	pulumi.CustomResourceState
 

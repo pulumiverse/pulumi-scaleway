@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Kubernetes Cluster's Pool.
+//
+// Deprecated: scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool
 func LookupKubernetesNodePool(ctx *pulumi.Context, args *LookupKubernetesNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodePoolResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesNodePoolResult

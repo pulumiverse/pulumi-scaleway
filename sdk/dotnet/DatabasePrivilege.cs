@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "rdb",
     ///         NodeType = "DB-DEV-S",
@@ -35,13 +35,13 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabase = new Scaleway.Database("main", new()
+    ///     var mainDatabase = new Scaleway.Databases.Database("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         Name = "database",
     ///     });
     /// 
-    ///     var mainDatabaseUser = new Scaleway.DatabaseUser("main", new()
+    ///     var mainUser = new Scaleway.Databases.User("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         Name = "my-db-user",
@@ -49,10 +49,10 @@ namespace Pulumiverse.Scaleway
     ///         IsAdmin = false,
     ///     });
     /// 
-    ///     var mainDatabasePrivilege = new Scaleway.DatabasePrivilege("main", new()
+    ///     var mainPrivilege = new Scaleway.Databases.Privilege("main", new()
     ///     {
     ///         InstanceId = main.Id,
-    ///         UserName = mainDatabaseUser.Name,
+    ///         UserName = mainUser.Name,
     ///         DatabaseName = mainDatabase.Name,
     ///         Permission = "all",
     ///     });
@@ -70,6 +70,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege")]
     [ScalewayResourceType("scaleway:index/databasePrivilege:DatabasePrivilege")]
     public partial class DatabasePrivilege : global::Pulumi.CustomResource
     {

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+    /// The `scaleway.observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
     /// 
     /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
@@ -33,22 +33,22 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "tf_test_project",
     ///     });
     /// 
-    ///     var alertManager = new Scaleway.CockpitAlertManager("alert_manager", new()
+    ///     var alertManager = new Scaleway.Observability.AlertManager("alert_manager", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         EnableManagedAlerts = true,
     ///         ContactPoints = new[]
     ///         {
-    ///             new Scaleway.Inputs.CockpitAlertManagerContactPointArgs
+    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
     ///             {
     ///                 Email = "alert1@example.com",
     ///             },
-    ///             new Scaleway.Inputs.CockpitAlertManagerContactPointArgs
+    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
     ///             {
     ///                 Email = "alert2@example.com",
     ///             },
@@ -68,6 +68,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager")]
     [ScalewayResourceType("scaleway:index/cockpitAlertManager:CockpitAlertManager")]
     public partial class CockpitAlertManager : global::Pulumi.CustomResource
     {

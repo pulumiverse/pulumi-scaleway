@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+    /// The `scaleway.databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
     /// 
     /// Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
     /// 
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var database = new Scaleway.SdbDatabase("database", new()
+    ///     var database = new Scaleway.Databases.ServerlessDatabase("database", new()
     ///     {
     ///         Name = "my-database",
     ///         MinCpu = 0,
@@ -47,6 +47,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase")]
     [ScalewayResourceType("scaleway:index/sdbDatabase:SdbDatabase")]
     public partial class SdbDatabase : global::Pulumi.CustomResource
     {

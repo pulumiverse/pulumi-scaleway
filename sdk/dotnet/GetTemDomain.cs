@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain")]
     public static class GetTemDomain
     {
         /// <summary>

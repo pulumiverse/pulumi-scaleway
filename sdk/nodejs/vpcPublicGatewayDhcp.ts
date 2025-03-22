@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
+ * const main = new scaleway.network.PublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
  * ```
  *
  * ## Import
@@ -26,6 +26,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp
  */
 export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     /**
@@ -38,6 +40,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayDhcpState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayDhcp {
+        pulumi.log.warn("VpcPublicGatewayDhcp is deprecated: scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp")
         return new VpcPublicGatewayDhcp(name, <any>state, { ...opts, id: id });
     }
 
@@ -98,7 +101,7 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
-     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
     public readonly pushDefaultRoute!: pulumi.Output<boolean>;
     /**
@@ -137,8 +140,11 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp */
     constructor(name: string, args: VpcPublicGatewayDhcpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp */
     constructor(name: string, argsOrState?: VpcPublicGatewayDhcpArgs | VpcPublicGatewayDhcpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPublicGatewayDhcp is deprecated: scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -237,7 +243,7 @@ export interface VpcPublicGatewayDhcpState {
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
-     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**
@@ -309,7 +315,7 @@ export interface VpcPublicGatewayDhcpArgs {
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
-     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+     * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
     /**

@@ -22,20 +22,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewTemDomain(ctx, "main", &scaleway.TemDomainArgs{
+//			main, err := tem.NewDomain(ctx, "main", &tem.DomainArgs{
 //				AcceptTos: pulumi.Bool(true),
 //				Name:      pulumi.String("example.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewTemDomainValidation(ctx, "example", &scaleway.TemDomainValidationArgs{
+//			_, err = tem.NewDomainValidation(ctx, "example", &tem.DomainValidationArgs{
 //				DomainId: main.ID(),
 //				Region:   pulumi.String("fr-par"),
 //				Timeout:  pulumi.Int(300),
@@ -48,6 +48,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation
 type TemDomainValidation struct {
 	pulumi.CustomResourceState
 

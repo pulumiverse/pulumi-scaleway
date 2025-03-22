@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MongoDbSnapshot("main", {
+ * const main = new scaleway.mongodb.Snapshot("main", {
  *     instanceId: mainScalewayMongodbInstance.id,
  *     name: "name-snapshot",
  *     expiresAt: "2024-12-31T23:59:59Z",
@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot
  */
 export class MongoDbSnapshot extends pulumi.CustomResource {
     /**
@@ -42,6 +44,7 @@ export class MongoDbSnapshot extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MongoDbSnapshotState, opts?: pulumi.CustomResourceOptions): MongoDbSnapshot {
+        pulumi.log.warn("MongoDbSnapshot is deprecated: scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot")
         return new MongoDbSnapshot(name, <any>state, { ...opts, id: id });
     }
 
@@ -109,8 +112,11 @@ export class MongoDbSnapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot */
     constructor(name: string, args: MongoDbSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot */
     constructor(name: string, argsOrState?: MongoDbSnapshotArgs | MongoDbSnapshotState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MongoDbSnapshot is deprecated: scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

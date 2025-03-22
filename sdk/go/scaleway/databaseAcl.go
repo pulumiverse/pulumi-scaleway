@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
@@ -43,10 +43,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseAcl(ctx, "main", &scaleway.DatabaseAclArgs{
+//			_, err = databases.NewAcl(ctx, "main", &databases.AclArgs{
 //				InstanceId: main.ID(),
-//				AclRules: scaleway.DatabaseAclAclRuleArray{
-//					&scaleway.DatabaseAclAclRuleArgs{
+//				AclRules: databases.AclAclRuleArray{
+//					&databases.AclAclRuleArgs{
 //						Ip:          pulumi.String("1.2.3.4/32"),
 //						Description: pulumi.String("foo"),
 //					},
@@ -70,6 +70,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl
 type DatabaseAcl struct {
 	pulumi.CustomResourceState
 

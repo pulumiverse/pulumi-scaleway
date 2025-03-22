@@ -17,17 +17,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by os name and version
- * const byName = scaleway.getBaremetalOs({
+ * const byName = scaleway.elasticmetal.getOs({
  *     name: "Ubuntu",
  *     version: "20.04 LTS (Focal Fossa)",
  * });
  * // Get info by os id
- * const byId = scaleway.getBaremetalOs({
+ * const byId = scaleway.elasticmetal.getOs({
  *     osId: "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs */
 export function getBaremetalOs(args?: GetBaremetalOsArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOsResult> {
+    pulumi.log.warn("getBaremetalOs is deprecated: scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOs:getBaremetalOs", {
@@ -86,17 +88,19 @@ export interface GetBaremetalOsResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by os name and version
- * const byName = scaleway.getBaremetalOs({
+ * const byName = scaleway.elasticmetal.getOs({
  *     name: "Ubuntu",
  *     version: "20.04 LTS (Focal Fossa)",
  * });
  * // Get info by os id
- * const byId = scaleway.getBaremetalOs({
+ * const byId = scaleway.elasticmetal.getOs({
  *     osId: "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs */
 export function getBaremetalOsOutput(args?: GetBaremetalOsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOsResult> {
+    pulumi.log.warn("getBaremetalOs is deprecated: scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOs:getBaremetalOs", {

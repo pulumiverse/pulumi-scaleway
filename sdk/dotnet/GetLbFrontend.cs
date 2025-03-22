@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getlbfrontend.getLbFrontend has been deprecated in favor of scaleway.loadbalancers/getfrontend.getFrontend")]
     public static class GetLbFrontend
     {
         /// <summary>
@@ -28,16 +29,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+        ///     var ip01 = new Scaleway.Loadbalancers.Ip("ip01");
         /// 
-        ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+        ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
         ///     {
         ///         IpId = ip01.Id,
         ///         Name = "test-lb",
         ///         Type = "lb-s",
         ///     });
         /// 
-        ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+        ///     var bkd01 = new Scaleway.Loadbalancers.Backend("bkd01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         ForwardProtocol = "tcp",
@@ -45,19 +46,19 @@ namespace Pulumiverse.Scaleway
         ///         ProxyProtocol = "none",
         ///     });
         /// 
-        ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+        ///     var frt01 = new Scaleway.Loadbalancers.Frontend("frt01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         BackendId = bkd01.Id,
         ///         InboundPort = 80,
         ///     });
         /// 
-        ///     var byID = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byID = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
-        ///     var byName = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byName = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         Name = frt01.Name,
         ///         LbId = lb01.Id,
@@ -85,16 +86,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+        ///     var ip01 = new Scaleway.Loadbalancers.Ip("ip01");
         /// 
-        ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+        ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
         ///     {
         ///         IpId = ip01.Id,
         ///         Name = "test-lb",
         ///         Type = "lb-s",
         ///     });
         /// 
-        ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+        ///     var bkd01 = new Scaleway.Loadbalancers.Backend("bkd01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         ForwardProtocol = "tcp",
@@ -102,19 +103,19 @@ namespace Pulumiverse.Scaleway
         ///         ProxyProtocol = "none",
         ///     });
         /// 
-        ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+        ///     var frt01 = new Scaleway.Loadbalancers.Frontend("frt01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         BackendId = bkd01.Id,
         ///         InboundPort = 80,
         ///     });
         /// 
-        ///     var byID = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byID = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
-        ///     var byName = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byName = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         Name = frt01.Name,
         ///         LbId = lb01.Id,
@@ -142,16 +143,16 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var ip01 = new Scaleway.LoadbalancerIp("ip01");
+        ///     var ip01 = new Scaleway.Loadbalancers.Ip("ip01");
         /// 
-        ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+        ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
         ///     {
         ///         IpId = ip01.Id,
         ///         Name = "test-lb",
         ///         Type = "lb-s",
         ///     });
         /// 
-        ///     var bkd01 = new Scaleway.LoadbalancerBackend("bkd01", new()
+        ///     var bkd01 = new Scaleway.Loadbalancers.Backend("bkd01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         ForwardProtocol = "tcp",
@@ -159,19 +160,19 @@ namespace Pulumiverse.Scaleway
         ///         ProxyProtocol = "none",
         ///     });
         /// 
-        ///     var frt01 = new Scaleway.LoadbalancerFrontend("frt01", new()
+        ///     var frt01 = new Scaleway.Loadbalancers.Frontend("frt01", new()
         ///     {
         ///         LbId = lb01.Id,
         ///         BackendId = bkd01.Id,
         ///         InboundPort = 80,
         ///     });
         /// 
-        ///     var byID = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byID = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
-        ///     var byName = Scaleway.GetLbFrontend.Invoke(new()
+        ///     var byName = Scaleway.Loadbalancers.GetFrontend.Invoke(new()
         ///     {
         ///         Name = frt01.Name,
         ///         LbId = lb01.Id,

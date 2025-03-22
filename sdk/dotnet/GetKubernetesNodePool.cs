@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool")]
     public static class GetKubernetesNodePool
     {
         /// <summary>

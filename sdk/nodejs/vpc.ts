@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {
  *     name: "my-vpc",
  *     tags: [
  *         "demo",
@@ -31,7 +31,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {
  *     name: "my-vpc",
  *     tags: [
  *         "demo",
@@ -51,6 +51,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc
  */
 export class Vpc extends pulumi.CustomResource {
     /**
@@ -63,6 +65,7 @@ export class Vpc extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcState, opts?: pulumi.CustomResourceOptions): Vpc {
+        pulumi.log.warn("Vpc is deprecated: scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc")
         return new Vpc(name, <any>state, { ...opts, id: id });
     }
 
@@ -124,8 +127,11 @@ export class Vpc extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc */
     constructor(name: string, args?: VpcArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc */
     constructor(name: string, argsOrState?: VpcArgs | VpcState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Vpc is deprecated: scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

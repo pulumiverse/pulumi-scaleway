@@ -238,7 +238,12 @@ class _IotNetworkState:
         pulumi.set(self, "type", value)
 
 
+warnings.warn("""scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network""", DeprecationWarning)
+
+
 class IotNetwork(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -256,12 +261,12 @@ class IotNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main = scaleway.IotNetwork("main",
+        main = scaleway.iot.Network("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             type="sigfox")
         ```
 
@@ -296,12 +301,12 @@ class IotNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_iot_hub = scaleway.IotHub("main",
+        main_hub = scaleway.iot.Hub("main",
             name="main",
             product_plan="plan_shared")
-        main = scaleway.IotNetwork("main",
+        main = scaleway.iot.Network("main",
             name="main",
-            hub_id=main_iot_hub.id,
+            hub_id=main_hub.id,
             type="sigfox")
         ```
 
@@ -336,6 +341,7 @@ class IotNetwork(pulumi.CustomResource):
                  topic_prefix: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IotNetwork is deprecated: scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

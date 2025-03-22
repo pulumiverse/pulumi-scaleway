@@ -177,7 +177,12 @@ class _InstanceUserDataState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData""", DeprecationWarning)
+
+
 class InstanceUserData(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -216,19 +221,19 @@ class InstanceUserData(pulumi.CustomResource):
         \"\"\",
                 "foo": "bar",
             }
-        main_instance_server = scaleway.InstanceServer("main",
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_focal",
             type="DEV1-S")
         # User data with a single value
-        main = scaleway.InstanceUserData("main",
-            server_id=main_instance_server.id,
+        main = scaleway.instance.UserData("main",
+            server_id=main_server.id,
             key="foo",
             value="bar")
         # User Data with many keys.
         data = []
         for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
-            data.append(scaleway.InstanceUserData(f"data-{range['key']}",
-                server_id=main_instance_server.id,
+            data.append(scaleway.instance.UserData(f"data-{range['key']}",
+                server_id=main_server.id,
                 key=range["key"],
                 value=range["value"]))
         ```
@@ -290,19 +295,19 @@ class InstanceUserData(pulumi.CustomResource):
         \"\"\",
                 "foo": "bar",
             }
-        main_instance_server = scaleway.InstanceServer("main",
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_focal",
             type="DEV1-S")
         # User data with a single value
-        main = scaleway.InstanceUserData("main",
-            server_id=main_instance_server.id,
+        main = scaleway.instance.UserData("main",
+            server_id=main_server.id,
             key="foo",
             value="bar")
         # User Data with many keys.
         data = []
         for range in [{"key": k, "value": v} for [k, v] in enumerate(user_data)]:
-            data.append(scaleway.InstanceUserData(f"data-{range['key']}",
-                server_id=main_instance_server.id,
+            data.append(scaleway.instance.UserData(f"data-{range['key']}",
+                server_id=main_server.id,
                 key=range["key"],
                 value=range["value"]))
         ```
@@ -337,6 +342,7 @@ class InstanceUserData(pulumi.CustomResource):
                  value: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceUserData is deprecated: scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

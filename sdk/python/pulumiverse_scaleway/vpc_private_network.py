@@ -386,7 +386,12 @@ class _VpcPrivateNetworkState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork""", DeprecationWarning)
+
+
 class VpcPrivateNetwork(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -413,7 +418,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+        pn_priv = scaleway.network.PrivateNetwork("pn_priv",
             name="subnet_demo",
             tags=[
                 "demo",
@@ -427,7 +432,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+        pn_priv = scaleway.network.PrivateNetwork("pn_priv",
             name="subnet_demo",
             tags=[
                 "demo",
@@ -486,7 +491,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+        pn_priv = scaleway.network.PrivateNetwork("pn_priv",
             name="subnet_demo",
             tags=[
                 "demo",
@@ -500,7 +505,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn_priv = scaleway.VpcPrivateNetwork("pn_priv",
+        pn_priv = scaleway.network.PrivateNetwork("pn_priv",
             name="subnet_demo",
             tags=[
                 "demo",
@@ -554,6 +559,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPrivateNetwork is deprecated: scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

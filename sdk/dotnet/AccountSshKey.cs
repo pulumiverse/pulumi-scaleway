@@ -11,11 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
+    /// The `scaleway.account.SshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
     /// 
     /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
     /// 
-    /// !&gt; **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
+    /// !&gt; **Important:**  The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
     /// 
     /// ## Example Usage
     /// 
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.AccountSshKey("main", new()
+    ///     var main = new Scaleway.Account.SshKey("main", new()
     ///     {
     ///         Name = "main",
     ///         PublicKey = "&lt;YOUR-PUBLIC-SSH-KEY&gt;",
@@ -46,6 +46,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey")]
     [ScalewayResourceType("scaleway:index/accountSshKey:AccountSshKey")]
     public partial class AccountSshKey : global::Pulumi.CustomResource
     {

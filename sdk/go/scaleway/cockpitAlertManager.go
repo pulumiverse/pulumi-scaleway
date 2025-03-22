@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `CockpitAlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
+// The `observability.AlertManager` resource allows you to enable and manage the Scaleway Cockpit [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager).
 //
 // Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
@@ -31,26 +31,27 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
 //				Name: pulumi.String("tf_test_project"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewCockpitAlertManager(ctx, "alert_manager", &scaleway.CockpitAlertManagerArgs{
+//			_, err = observability.NewAlertManager(ctx, "alert_manager", &observability.AlertManagerArgs{
 //				ProjectId:           project.ID(),
 //				EnableManagedAlerts: pulumi.Bool(true),
-//				ContactPoints: scaleway.CockpitAlertManagerContactPointArray{
-//					&scaleway.CockpitAlertManagerContactPointArgs{
+//				ContactPoints: observability.AlertManagerContactPointArray{
+//					&observability.AlertManagerContactPointArgs{
 //						Email: pulumi.String("alert1@example.com"),
 //					},
-//					&scaleway.CockpitAlertManagerContactPointArgs{
+//					&observability.AlertManagerContactPointArgs{
 //						Email: pulumi.String("alert2@example.com"),
 //					},
 //				},
@@ -73,6 +74,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/cockpitAlertManager:CockpitAlertManager main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/cockpitalertmanager.CockpitAlertManager has been deprecated in favor of scaleway.observability/alertmanager.AlertManager
 type CockpitAlertManager struct {
 	pulumi.CustomResourceState
 

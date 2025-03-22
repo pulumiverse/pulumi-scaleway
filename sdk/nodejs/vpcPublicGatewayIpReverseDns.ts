@@ -14,8 +14,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIp("main", {});
- * const tfA = new scaleway.DomainRecord("tf_A", {
+ * const main = new scaleway.network.PublicGatewayIp("main", {});
+ * const tfA = new scaleway.domain.Record("tf_A", {
  *     dnsZone: "example.com",
  *     name: "tf",
  *     type: "A",
@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  *     ttl: 3600,
  *     priority: 1,
  * });
- * const mainVpcPublicGatewayIpReverseDns = new scaleway.VpcPublicGatewayIpReverseDns("main", {
+ * const mainPublicGatewayIpReverseDns = new scaleway.network.PublicGatewayIpReverseDns("main", {
  *     gatewayIpId: main.id,
  *     reverse: "tf.example.com",
  * });
@@ -38,6 +38,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns
  */
 export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
     /**
@@ -50,6 +52,7 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayIpReverseDnsState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayIpReverseDns {
+        pulumi.log.warn("VpcPublicGatewayIpReverseDns is deprecated: scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns")
         return new VpcPublicGatewayIpReverseDns(name, <any>state, { ...opts, id: id });
     }
 
@@ -87,8 +90,11 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns */
     constructor(name: string, args: VpcPublicGatewayIpReverseDnsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns */
     constructor(name: string, argsOrState?: VpcPublicGatewayIpReverseDnsArgs | VpcPublicGatewayIpReverseDnsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPublicGatewayIpReverseDns is deprecated: scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

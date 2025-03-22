@@ -223,7 +223,12 @@ class _AccountSshKeyState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey""", DeprecationWarning)
+
+
 class AccountSshKey(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -234,11 +239,11 @@ class AccountSshKey(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
+        The `account.SshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 
         Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
-        !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+        !> **Important:**  The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
 
         ## Example Usage
 
@@ -246,7 +251,7 @@ class AccountSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.AccountSshKey("main",
+        main = scaleway.account.SshKey("main",
             name="main",
             public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
@@ -275,11 +280,11 @@ class AccountSshKey(pulumi.CustomResource):
                  args: AccountSshKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
+        The `account.SshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
 
         Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
-        !> **Important:**  The resource `AccountSshKey` has been deprecated and will no longer be supported. Instead, use `IamSshKey`.
+        !> **Important:**  The resource `account.SshKey` has been deprecated and will no longer be supported. Instead, use `iam.SshKey`.
 
         ## Example Usage
 
@@ -287,7 +292,7 @@ class AccountSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.AccountSshKey("main",
+        main = scaleway.account.SshKey("main",
             name="main",
             public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
@@ -322,6 +327,7 @@ class AccountSshKey(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""AccountSshKey is deprecated: scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

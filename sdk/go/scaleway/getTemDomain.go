@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a transactional email domain.
+//
+// Deprecated: scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain
 func LookupTemDomain(ctx *pulumi.Context, args *LookupTemDomainArgs, opts ...pulumi.InvokeOption) (*LookupTemDomainResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupTemDomainResult

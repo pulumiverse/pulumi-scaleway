@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getlbfrontends.getLbFrontends has been deprecated in favor of scaleway.loadbalancers/getfrontends.getFrontends")]
     public static class GetLbFrontends
     {
         /// <summary>
@@ -28,13 +29,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find frontends that share the same LB ID
-        ///     var byLBID = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBID = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///     });
         /// 
         ///     // Find frontends by LB ID and name
-        ///     var byLBIDAndName = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBIDAndName = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///         Name = "tf-frontend-datasource",
@@ -62,13 +63,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find frontends that share the same LB ID
-        ///     var byLBID = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBID = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///     });
         /// 
         ///     // Find frontends by LB ID and name
-        ///     var byLBIDAndName = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBIDAndName = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///         Name = "tf-frontend-datasource",
@@ -96,13 +97,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find frontends that share the same LB ID
-        ///     var byLBID = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBID = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///     });
         /// 
         ///     // Find frontends by LB ID and name
-        ///     var byLBIDAndName = Scaleway.GetLbFrontends.Invoke(new()
+        ///     var byLBIDAndName = Scaleway.Loadbalancers.GetFrontends.Invoke(new()
         ///     {
         ///         LbId = lb01.Id,
         ///         Name = "tf-frontend-datasource",

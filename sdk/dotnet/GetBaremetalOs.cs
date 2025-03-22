@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getbaremetalos.getBaremetalOs has been deprecated in favor of scaleway.elasticmetal/getos.getOs")]
     public static class GetBaremetalOs
     {
         /// <summary>
@@ -29,14 +30,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by os name and version
-        ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         Name = "Ubuntu",
         ///         Version = "20.04 LTS (Focal Fossa)",
         ///     });
         /// 
         ///     // Get info by os id
-        ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
         ///     });
@@ -64,14 +65,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by os name and version
-        ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         Name = "Ubuntu",
         ///         Version = "20.04 LTS (Focal Fossa)",
         ///     });
         /// 
         ///     // Get info by os id
-        ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
         ///     });
@@ -99,14 +100,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by os name and version
-        ///     var byName = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         Name = "Ubuntu",
         ///         Version = "20.04 LTS (Focal Fossa)",
         ///     });
         /// 
         ///     // Get info by os id
-        ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetOs.Invoke(new()
         ///     {
         ///         OsId = "03b7f4ba-a6a1-4305-984e-b54fafbf1681",
         ///     });

@@ -807,7 +807,12 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool""", DeprecationWarning)
+
+
 class KubernetesNodePool(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -935,6 +940,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  wait_for_pool_ready: Optional[pulumi.Input[bool]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""KubernetesNodePool is deprecated: scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub")]
     public static class GetIotHub
     {
         /// <summary>

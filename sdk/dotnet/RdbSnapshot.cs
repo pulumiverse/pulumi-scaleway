@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb-instance",
     ///         NodeType = "db-dev-s",
@@ -46,7 +46,7 @@ namespace Pulumiverse.Scaleway
     ///         VolumeSizeInGb = 10,
     ///     });
     /// 
-    ///     var test = new Scaleway.RdbSnapshot("test", new()
+    ///     var test = new Scaleway.Databases.Snapshot("test", new()
     ///     {
     ///         Name = "initial-snapshot",
     ///         InstanceId = main.Id,
@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var snapshotWithExpiration = new Scaleway.RdbSnapshot("snapshot_with_expiration", new()
+    ///     var snapshotWithExpiration = new Scaleway.Databases.Snapshot("snapshot_with_expiration", new()
     ///     {
     ///         Name = "snapshot-with-expiration",
     ///         InstanceId = main.Id,
@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var snapshotA = new Scaleway.RdbSnapshot("snapshot_a", new()
+    ///     var snapshotA = new Scaleway.Databases.Snapshot("snapshot_a", new()
     ///     {
     ///         Name = "snapshot_a",
     ///         InstanceId = main.Id,
@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var snapshotB = new Scaleway.RdbSnapshot("snapshot_b", new()
+    ///     var snapshotB = new Scaleway.Databases.Snapshot("snapshot_b", new()
     ///     {
     ///         Name = "snapshot_b",
     ///         InstanceId = main.Id,
@@ -133,6 +133,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// RDB Snapshots can be imported using the `{region}/{snapshot_id}` format.
     /// </summary>
+    [Obsolete(@"scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot")]
     [ScalewayResourceType("scaleway:index/rdbSnapshot:RdbSnapshot")]
     public partial class RdbSnapshot : global::Pulumi.CustomResource
     {

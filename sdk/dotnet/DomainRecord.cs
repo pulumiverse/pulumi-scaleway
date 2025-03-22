@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+    /// The `scaleway.domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
     /// 
     /// Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
     /// 
@@ -33,7 +33,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var www = new Scaleway.DomainRecord("www", new()
+    ///     var www = new Scaleway.Domain.Record("www", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "www",
@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var www2 = new Scaleway.DomainRecord("www2", new()
+    ///     var www2 = new Scaleway.Domain.Record("www2", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "www",
@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var mx = new Scaleway.DomainRecord("mx", new()
+    ///     var mx = new Scaleway.Domain.Record("mx", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "",
@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway
     ///         Priority = 10,
     ///     });
     /// 
-    ///     var mx2 = new Scaleway.DomainRecord("mx2", new()
+    ///     var mx2 = new Scaleway.Domain.Record("mx2", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "",
@@ -94,18 +94,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var geoIp = new Scaleway.DomainRecord("geo_ip", new()
+    ///     var geoIp = new Scaleway.Domain.Record("geo_ip", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "images",
     ///         Type = "A",
     ///         Data = "1.2.3.4",
     ///         Ttl = 3600,
-    ///         GeoIp = new Scaleway.Inputs.DomainRecordGeoIpArgs
+    ///         GeoIp = new Scaleway.Domain.Inputs.RecordGeoIpArgs
     ///         {
     ///             Matches = new[]
     ///             {
-    ///                 new Scaleway.Inputs.DomainRecordGeoIpMatchArgs
+    ///                 new Scaleway.Domain.Inputs.RecordGeoIpMatchArgs
     ///                 {
     ///                     Continents = new[]
     ///                     {
@@ -117,7 +117,7 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                     Data = "1.2.3.5",
     ///                 },
-    ///                 new Scaleway.Inputs.DomainRecordGeoIpMatchArgs
+    ///                 new Scaleway.Domain.Inputs.RecordGeoIpMatchArgs
     ///                 {
     ///                     Continents = new[]
     ///                     {
@@ -129,14 +129,14 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var httpService = new Scaleway.DomainRecord("http_service", new()
+    ///     var httpService = new Scaleway.Domain.Record("http_service", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "app",
     ///         Type = "A",
     ///         Data = "1.2.3.4",
     ///         Ttl = 3600,
-    ///         HttpService = new Scaleway.Inputs.DomainRecordHttpServiceArgs
+    ///         HttpService = new Scaleway.Domain.Inputs.RecordHttpServiceArgs
     ///         {
     ///             Ips = new[]
     ///             {
@@ -150,7 +150,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var view = new Scaleway.DomainRecord("view", new()
+    ///     var view = new Scaleway.Domain.Record("view", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "db",
@@ -159,12 +159,12 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///         Views = new[]
     ///         {
-    ///             new Scaleway.Inputs.DomainRecordViewArgs
+    ///             new Scaleway.Domain.Inputs.RecordViewArgs
     ///             {
     ///                 Subnet = "100.0.0.0/16",
     ///                 Data = "1.2.3.5",
     ///             },
-    ///             new Scaleway.Inputs.DomainRecordViewArgs
+    ///             new Scaleway.Domain.Inputs.RecordViewArgs
     ///             {
     ///                 Subnet = "100.1.0.0/16",
     ///                 Data = "1.2.3.6",
@@ -172,7 +172,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var weighted = new Scaleway.DomainRecord("weighted", new()
+    ///     var weighted = new Scaleway.Domain.Record("weighted", new()
     ///     {
     ///         DnsZone = "domain.tld",
     ///         Name = "web",
@@ -181,12 +181,12 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///         Weighteds = new[]
     ///         {
-    ///             new Scaleway.Inputs.DomainRecordWeightedArgs
+    ///             new Scaleway.Domain.Inputs.RecordWeightedArgs
     ///             {
     ///                 Ip = "1.2.3.5",
     ///                 Weight = 1,
     ///             },
-    ///             new Scaleway.Inputs.DomainRecordWeightedArgs
+    ///             new Scaleway.Domain.Inputs.RecordWeightedArgs
     ///             {
     ///                 Ip = "1.2.3.6",
     ///                 Weight = 2,
@@ -217,12 +217,12 @@ namespace Pulumiverse.Scaleway
     ///     var projectId = config.Require("projectId");
     ///     // The DNS Zone used for testing records.
     ///     var dnsZone = config.Require("dnsZone");
-    ///     var publicIp = new Scaleway.InstanceIp("public_ip", new()
+    ///     var publicIp = new Scaleway.Instance.Ip("public_ip", new()
     ///     {
     ///         ProjectId = projectId,
     ///     });
     /// 
-    ///     var web = new Scaleway.InstanceServer("web", new()
+    ///     var web = new Scaleway.Instance.Server("web", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Type = "DEV1-S",
@@ -233,13 +233,13 @@ namespace Pulumiverse.Scaleway
     ///             "web",
     ///         },
     ///         IpId = publicIp.Id,
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             SizeInGb = 20,
     ///         },
     ///     });
     /// 
-    ///     var webA = new Scaleway.DomainRecord("web_A", new()
+    ///     var webA = new Scaleway.Domain.Record("web_A", new()
     ///     {
     ///         DnsZone = dnsZone,
     ///         Name = "web",
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var webCname = new Scaleway.DomainRecord("web_cname", new()
+    ///     var webCname = new Scaleway.Domain.Record("web_cname", new()
     ///     {
     ///         DnsZone = dnsZone,
     ///         Name = "www",
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway
     ///         Ttl = 3600,
     ///     });
     /// 
-    ///     var webAlias = new Scaleway.DomainRecord("web_alias", new()
+    ///     var webAlias = new Scaleway.Domain.Record("web_alias", new()
     ///     {
     ///         DnsZone = dnsZone,
     ///         Name = "",
@@ -271,7 +271,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Multiple records
     /// 
-    /// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.DomainRecord`  resource with the same `name`, and the records will be added.
+    /// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.domain.Record`  resource with the same `name`, and the records will be added.
     /// 
     /// Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
     /// 
@@ -285,6 +285,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record")]
     [ScalewayResourceType("scaleway:index/domainRecord:DomainRecord")]
     public partial class DomainRecord : global::Pulumi.CustomResource
     {

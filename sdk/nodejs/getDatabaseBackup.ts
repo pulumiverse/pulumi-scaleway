@@ -13,19 +13,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const findByName = scaleway.getDatabaseBackup({
+ * const findByName = scaleway.databases.getDatabaseBackup({
  *     name: "mybackup",
  * });
- * const findByNameAndInstance = scaleway.getDatabaseBackup({
+ * const findByNameAndInstance = scaleway.databases.getDatabaseBackup({
  *     name: "mybackup",
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
- * const findById = scaleway.getDatabaseBackup({
+ * const findById = scaleway.databases.getDatabaseBackup({
  *     backupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup */
 export function getDatabaseBackup(args?: GetDatabaseBackupArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseBackupResult> {
+    pulumi.log.warn("getDatabaseBackup is deprecated: scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseBackup:getDatabaseBackup", {
@@ -94,19 +96,21 @@ export interface GetDatabaseBackupResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const findByName = scaleway.getDatabaseBackup({
+ * const findByName = scaleway.databases.getDatabaseBackup({
  *     name: "mybackup",
  * });
- * const findByNameAndInstance = scaleway.getDatabaseBackup({
+ * const findByNameAndInstance = scaleway.databases.getDatabaseBackup({
  *     name: "mybackup",
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
- * const findById = scaleway.getDatabaseBackup({
+ * const findById = scaleway.databases.getDatabaseBackup({
  *     backupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup */
 export function getDatabaseBackupOutput(args?: GetDatabaseBackupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseBackupResult> {
+    pulumi.log.warn("getDatabaseBackup is deprecated: scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseBackup:getDatabaseBackup", {

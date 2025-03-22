@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+// The `containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
 //
 // Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
@@ -28,21 +28,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by namespace name
-//			_, err := scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
+//			_, err := containers.LookupNamespace(ctx, &containers.LookupNamespaceArgs{
 //				Name: pulumi.StringRef("my-namespace-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by namespace ID
-//			_, err = scaleway.LookupContainerNamespace(ctx, &scaleway.LookupContainerNamespaceArgs{
+//			_, err = containers.LookupNamespace(ctx, &containers.LookupNamespaceArgs{
 //				NamespaceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -53,6 +53,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace
 func LookupContainerNamespace(ctx *pulumi.Context, args *LookupContainerNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupContainerNamespaceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerNamespaceResult

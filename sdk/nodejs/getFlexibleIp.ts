@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Flexible IP.
  */
+/** @deprecated scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp */
 export function getFlexibleIp(args?: GetFlexibleIpArgs, opts?: pulumi.InvokeOptions): Promise<GetFlexibleIpResult> {
+    pulumi.log.warn("getFlexibleIp is deprecated: scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFlexibleIp:getFlexibleIp", {
@@ -70,7 +72,9 @@ export interface GetFlexibleIpResult {
 /**
  * Gets information about a Flexible IP.
  */
+/** @deprecated scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp */
 export function getFlexibleIpOutput(args?: GetFlexibleIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFlexibleIpResult> {
+    pulumi.log.warn("getFlexibleIp is deprecated: scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFlexibleIp:getFlexibleIp", {

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const latest = scaleway.getK8sVersion({
+ * const latest = scaleway.kubernetes.getVersion({
  *     name: "latest",
  * });
  * ```
@@ -29,12 +29,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byName = scaleway.getK8sVersion({
+ * const byName = scaleway.kubernetes.getVersion({
  *     name: "1.26.0",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion */
 export function getK8sVersion(args: GetK8sVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetK8sVersionResult> {
+    pulumi.log.warn("getK8sVersion is deprecated: scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getK8sVersion:getK8sVersion", {
         "name": args.name,
@@ -93,7 +95,7 @@ export interface GetK8sVersionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const latest = scaleway.getK8sVersion({
+ * const latest = scaleway.kubernetes.getVersion({
  *     name: "latest",
  * });
  * ```
@@ -104,12 +106,14 @@ export interface GetK8sVersionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byName = scaleway.getK8sVersion({
+ * const byName = scaleway.kubernetes.getVersion({
  *     name: "1.26.0",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion */
 export function getK8sVersionOutput(args: GetK8sVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetK8sVersionResult> {
+    pulumi.log.warn("getK8sVersion is deprecated: scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getK8sVersion:getK8sVersion", {
         "name": args.name,

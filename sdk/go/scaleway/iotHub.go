@@ -22,13 +22,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			_, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
@@ -50,6 +50,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iotHub:IotHub hub01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub
 type IotHub struct {
 	pulumi.CustomResourceState
 

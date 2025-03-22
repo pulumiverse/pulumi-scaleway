@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var availabilityGroup = new Scaleway.InstancePlacementGroup("availability_group");
+    ///     var availabilityGroup = new Scaleway.Instance.PlacementGroup("availability_group");
     /// 
     /// });
     /// ```
@@ -38,6 +38,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup")]
     [ScalewayResourceType("scaleway:index/instancePlacementGroup:InstancePlacementGroup")]
     public partial class InstancePlacementGroup : global::Pulumi.CustomResource
     {

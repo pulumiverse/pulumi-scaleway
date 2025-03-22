@@ -312,7 +312,12 @@ class _FunctionNamespaceState:
         pulumi.set(self, "tags", value)
 
 
+warnings.warn("""scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace""", DeprecationWarning)
+
+
 class FunctionNamespace(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -326,7 +331,7 @@ class FunctionNamespace(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        The `FunctionNamespace` resource allows you to
+        The `functions.Namespace` resource allows you to
         for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
@@ -337,7 +342,7 @@ class FunctionNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main",
+        main = scaleway.functions.Namespace("main",
             name="main-function-namespace",
             description="Main function namespace")
         ```
@@ -371,7 +376,7 @@ class FunctionNamespace(pulumi.CustomResource):
                  args: Optional[FunctionNamespaceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `FunctionNamespace` resource allows you to
+        The `functions.Namespace` resource allows you to
         for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
@@ -382,7 +387,7 @@ class FunctionNamespace(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main",
+        main = scaleway.functions.Namespace("main",
             name="main-function-namespace",
             description="Main function namespace")
         ```
@@ -420,6 +425,7 @@ class FunctionNamespace(pulumi.CustomResource):
                  secret_environment_variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""FunctionNamespace is deprecated: scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

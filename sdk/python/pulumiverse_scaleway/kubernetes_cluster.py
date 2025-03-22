@@ -727,7 +727,12 @@ class _KubernetesClusterState:
         pulumi.set(self, "wildcard_dns", value)
 
 
+warnings.warn("""scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster""", DeprecationWarning)
+
+
 class KubernetesCluster(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -760,14 +765,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -780,13 +785,13 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        cluster = scaleway.KubernetesCluster("cluster",
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
             version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="external",
@@ -802,8 +807,8 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
             version="1.29.1",
@@ -820,7 +825,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "balance_similar_node_groups": True,
                 "expendable_pods_priority_cutoff": -5,
             })
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -838,14 +843,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -869,14 +874,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             delete_additional_resources=False,
             private_network_id=pn.id)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -887,7 +892,7 @@ class KubernetesCluster(pulumi.CustomResource):
             "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
-        nginx_ip = scaleway.LoadbalancerIp("nginx_ip",
+        nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
         nginx_ingress = helm.index.Release("nginx_ingress",
@@ -979,14 +984,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -999,13 +1004,13 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        cluster = scaleway.KubernetesCluster("cluster",
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
             version="1.29.1",
             cni="kilo",
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="external",
@@ -1021,8 +1026,8 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
             version="1.29.1",
@@ -1039,7 +1044,7 @@ class KubernetesCluster(pulumi.CustomResource):
                 "balance_similar_node_groups": True,
                 "expendable_pods_priority_cutoff": -5,
             })
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -1057,14 +1062,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -1088,14 +1093,14 @@ class KubernetesCluster(pulumi.CustomResource):
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        cluster = scaleway.KubernetesCluster("cluster",
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             version="1.29.1",
             cni="cilium",
             delete_additional_resources=False,
             private_network_id=pn.id)
-        pool = scaleway.KubernetesNodePool("pool",
+        pool = scaleway.kubernetes.Pool("pool",
             cluster_id=cluster.id,
             name="tf-pool",
             node_type="DEV1-M",
@@ -1106,7 +1111,7 @@ class KubernetesCluster(pulumi.CustomResource):
             "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
-        nginx_ip = scaleway.LoadbalancerIp("nginx_ip",
+        nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
             zone="fr-par-1",
             project_id=cluster.project_id)
         nginx_ingress = helm.index.Release("nginx_ingress",
@@ -1180,6 +1185,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""KubernetesCluster is deprecated: scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

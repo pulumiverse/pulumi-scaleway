@@ -20,19 +20,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//			_, err := object.NewBucket(ctx, "some_bucket", &object.BucketArgs{
 //				Name: pulumi.String("unique-name"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
+//			_, err = object.NewBucketAcl(ctx, "main", &object.BucketAclArgs{
 //				Bucket: pulumi.Any(mainScalewayObjectBucket.Id),
 //				Acl:    pulumi.String("private"),
 //			})
@@ -55,38 +55,38 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name: pulumi.String("your-bucket"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketAcl(ctx, "main", &scaleway.ObjectBucketAclArgs{
+//			_, err = object.NewBucketAcl(ctx, "main", &object.BucketAclArgs{
 //				Bucket: main.ID(),
-//				AccessControlPolicy: &scaleway.ObjectBucketAclAccessControlPolicyArgs{
-//					Grants: scaleway.ObjectBucketAclAccessControlPolicyGrantArray{
-//						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
-//							Grantee: &scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
+//				AccessControlPolicy: &object.BucketAclAccessControlPolicyArgs{
+//					Grants: object.BucketAclAccessControlPolicyGrantArray{
+//						&object.BucketAclAccessControlPolicyGrantArgs{
+//							Grantee: &object.BucketAclAccessControlPolicyGrantGranteeArgs{
 //								Id:   pulumi.String("<project-id>:<project-id>"),
 //								Type: pulumi.String("CanonicalUser"),
 //							},
 //							Permission: pulumi.String("FULL_CONTROL"),
 //						},
-//						&scaleway.ObjectBucketAclAccessControlPolicyGrantArgs{
-//							Grantee: &scaleway.ObjectBucketAclAccessControlPolicyGrantGranteeArgs{
+//						&object.BucketAclAccessControlPolicyGrantArgs{
+//							Grantee: &object.BucketAclAccessControlPolicyGrantGranteeArgs{
 //								Id:   pulumi.String("<project-id>"),
 //								Type: pulumi.String("CanonicalUser"),
 //							},
 //							Permission: pulumi.String("WRITE"),
 //						},
 //					},
-//					Owner: &scaleway.ObjectBucketAclAccessControlPolicyOwnerArgs{
+//					Owner: &object.BucketAclAccessControlPolicyOwnerArgs{
 //						Id: pulumi.String("<project-id>"),
 //					},
 //				},
@@ -159,6 +159,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 // ```
+//
+// Deprecated: scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl
 type ObjectBucketAcl struct {
 	pulumi.CustomResourceState
 

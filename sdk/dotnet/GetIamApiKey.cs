@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey")]
     public static class GetIamApiKey
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get api key infos by id (access_key)
-        ///     var main = Scaleway.GetIamApiKey.Invoke(new()
+        ///     var main = Scaleway.Iam.GetApiKey.Invoke(new()
         ///     {
         ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",
         ///     });
@@ -51,7 +52,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get api key infos by id (access_key)
-        ///     var main = Scaleway.GetIamApiKey.Invoke(new()
+        ///     var main = Scaleway.Iam.GetApiKey.Invoke(new()
         ///     {
         ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",
         ///     });
@@ -76,7 +77,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get api key infos by id (access_key)
-        ///     var main = Scaleway.GetIamApiKey.Invoke(new()
+        ///     var main = Scaleway.Iam.GetApiKey.Invoke(new()
         ///     {
         ///         AccessKey = "SCWABCDEFGHIJKLMNOPQ",
         ///     });

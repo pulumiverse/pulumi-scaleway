@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn_priv", &scaleway.VpcPrivateNetworkArgs{
+//			_, err := network.NewPrivateNetwork(ctx, "pn_priv", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("subnet_demo"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
@@ -54,26 +54,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewVpcPrivateNetwork(ctx, "pn_priv", &scaleway.VpcPrivateNetworkArgs{
+//			_, err := network.NewPrivateNetwork(ctx, "pn_priv", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("subnet_demo"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("demo"),
 //					pulumi.String("terraform"),
 //				},
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("192.168.0.0/24"),
 //				},
-//				Ipv6Subnets: scaleway.VpcPrivateNetworkIpv6SubnetArray{
-//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
+//				Ipv6Subnets: network.PrivateNetworkIpv6SubnetArray{
+//					&network.PrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
 //					},
-//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
+//					&network.PrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:c7df::/64"),
 //					},
 //				},
@@ -96,6 +96,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork
 type VpcPrivateNetwork struct {
 	pulumi.CustomResourceState
 

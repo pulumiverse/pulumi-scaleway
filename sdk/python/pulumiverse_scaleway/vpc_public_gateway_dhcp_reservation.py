@@ -221,7 +221,12 @@ class _VpcPublicGatewayDhcpReservationState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation""", DeprecationWarning)
+
+
 class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -248,33 +253,33 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPrivateNetwork("main", name="your_private_network")
-        main_instance_server = scaleway.InstanceServer("main",
+        main = scaleway.network.PrivateNetwork("main", name="your_private_network")
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[{
                 "pn_id": main.id,
             }])
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("main")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("main",
+        main_public_gateway_ip = scaleway.network.PublicGatewayIp("main")
+        main_public_gateway_dhcp = scaleway.network.PublicGatewayDhcp("main", subnet="192.168.1.0/24")
+        main_public_gateway = scaleway.network.PublicGateway("main",
             name="foobar",
             type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("main",
-            gateway_id=main_vpc_public_gateway.id,
+            ip_id=main_public_gateway_ip.id)
+        main_gateway_network = scaleway.network.GatewayNetwork("main",
+            gateway_id=main_public_gateway.id,
             private_network_id=main.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
+            dhcp_id=main_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
             opts = pulumi.ResourceOptions(depends_on=[
-                    main_vpc_public_gateway_ip,
+                    main_public_gateway_ip,
                     main,
                 ]))
-        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("main",
-            gateway_network_id=main_vpc_gateway_network.id,
-            mac_address=main_instance_server.private_networks[0].mac_address,
+        main_public_gateway_dhcp_reservation = scaleway.network.PublicGatewayDhcpReservation("main",
+            gateway_network_id=main_gateway_network.id,
+            mac_address=main_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
 
@@ -318,33 +323,33 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPrivateNetwork("main", name="your_private_network")
-        main_instance_server = scaleway.InstanceServer("main",
+        main = scaleway.network.PrivateNetwork("main", name="your_private_network")
+        main_server = scaleway.instance.Server("main",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone="fr-par-1",
             private_networks=[{
                 "pn_id": main.id,
             }])
-        main_vpc_public_gateway_ip = scaleway.VpcPublicGatewayIp("main")
-        main_vpc_public_gateway_dhcp = scaleway.VpcPublicGatewayDhcp("main", subnet="192.168.1.0/24")
-        main_vpc_public_gateway = scaleway.VpcPublicGateway("main",
+        main_public_gateway_ip = scaleway.network.PublicGatewayIp("main")
+        main_public_gateway_dhcp = scaleway.network.PublicGatewayDhcp("main", subnet="192.168.1.0/24")
+        main_public_gateway = scaleway.network.PublicGateway("main",
             name="foobar",
             type="VPC-GW-S",
-            ip_id=main_vpc_public_gateway_ip.id)
-        main_vpc_gateway_network = scaleway.VpcGatewayNetwork("main",
-            gateway_id=main_vpc_public_gateway.id,
+            ip_id=main_public_gateway_ip.id)
+        main_gateway_network = scaleway.network.GatewayNetwork("main",
+            gateway_id=main_public_gateway.id,
             private_network_id=main.id,
-            dhcp_id=main_vpc_public_gateway_dhcp.id,
+            dhcp_id=main_public_gateway_dhcp.id,
             cleanup_dhcp=True,
             enable_masquerade=True,
             opts = pulumi.ResourceOptions(depends_on=[
-                    main_vpc_public_gateway_ip,
+                    main_public_gateway_ip,
                     main,
                 ]))
-        main_vpc_public_gateway_dhcp_reservation = scaleway.VpcPublicGatewayDhcpReservation("main",
-            gateway_network_id=main_vpc_gateway_network.id,
-            mac_address=main_instance_server.private_networks[0].mac_address,
+        main_public_gateway_dhcp_reservation = scaleway.network.PublicGatewayDhcpReservation("main",
+            gateway_network_id=main_gateway_network.id,
+            mac_address=main_server.private_networks[0].mac_address,
             ip_address="192.168.1.1")
         ```
 
@@ -378,6 +383,7 @@ class VpcPublicGatewayDhcpReservation(pulumi.CustomResource):
                  mac_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPublicGatewayDhcpReservation is deprecated: scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

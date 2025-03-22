@@ -31,21 +31,21 @@ import * as utilities from "./utilities";
  * `,
  *     foo: "bar",
  * };
- * const mainInstanceServer = new scaleway.InstanceServer("main", {
+ * const mainServer = new scaleway.instance.Server("main", {
  *     image: "ubuntu_focal",
  *     type: "DEV1-S",
  * });
  * // User data with a single value
- * const main = new scaleway.InstanceUserData("main", {
- *     serverId: mainInstanceServer.id,
+ * const main = new scaleway.instance.UserData("main", {
+ *     serverId: mainServer.id,
  *     key: "foo",
  *     value: "bar",
  * });
  * // User Data with many keys.
- * const data: scaleway.InstanceUserData[] = [];
+ * const data: scaleway.instance.UserData[] = [];
  * for (const range of Object.entries(userData).map(([k, v]) => ({key: k, value: v}))) {
- *     data.push(new scaleway.InstanceUserData(`data-${range.key}`, {
- *         serverId: mainInstanceServer.id,
+ *     data.push(new scaleway.instance.UserData(`data-${range.key}`, {
+ *         serverId: mainServer.id,
  *         key: range.key,
  *         value: range.value,
  *     }));
@@ -61,6 +61,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceUserData:InstanceUserData main fr-par-1/cloud-init/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData
  */
 export class InstanceUserData extends pulumi.CustomResource {
     /**
@@ -73,6 +75,7 @@ export class InstanceUserData extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceUserDataState, opts?: pulumi.CustomResourceOptions): InstanceUserData {
+        pulumi.log.warn("InstanceUserData is deprecated: scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData")
         return new InstanceUserData(name, <any>state, { ...opts, id: id });
     }
 
@@ -119,8 +122,11 @@ export class InstanceUserData extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData */
     constructor(name: string, args: InstanceUserDataArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData */
     constructor(name: string, argsOrState?: InstanceUserDataArgs | InstanceUserDataState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceUserData is deprecated: scaleway.index/instanceuserdata.InstanceUserData has been deprecated in favor of scaleway.instance/userdata.UserData")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

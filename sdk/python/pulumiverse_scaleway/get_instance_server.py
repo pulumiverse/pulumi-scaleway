@@ -22,6 +22,8 @@ __all__ = [
     'get_instance_server_output',
 ]
 
+warnings.warn("""scaleway.index/getinstanceserver.getInstanceServer has been deprecated in favor of scaleway.instance/getserver.getServer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceServerResult:
     """
@@ -393,6 +395,7 @@ def get_instance_server(name: Optional[str] = None,
     :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
     :param str zone: `zone`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_instance_server is deprecated: scaleway.index/getinstanceserver.getInstanceServer has been deprecated in favor of scaleway.instance/getserver.getServer""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -447,6 +450,7 @@ def get_instance_server_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     :param str server_id: The server id. Only one of `name` and `server_id` should be specified.
     :param str zone: `zone`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_instance_server is deprecated: scaleway.index/getinstanceserver.getInstanceServer has been deprecated in favor of scaleway.instance/getserver.getServer""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

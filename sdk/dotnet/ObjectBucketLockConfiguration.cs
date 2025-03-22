@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+    /// The `scaleway.object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/) for more information on object lock.
     /// 
@@ -29,19 +29,19 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ObjectBucket("main", new()
+    ///     var main = new Scaleway.Object.Bucket("main", new()
     ///     {
     ///         Name = "MyBucket",
     ///         Acl = "public-read",
     ///         ObjectLockEnabled = true,
     ///     });
     /// 
-    ///     var mainObjectBucketLockConfiguration = new Scaleway.ObjectBucketLockConfiguration("main", new()
+    ///     var mainBucketLockConfiguration = new Scaleway.Object.BucketLockConfiguration("main", new()
     ///     {
     ///         Bucket = main.Name,
-    ///         Rule = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleArgs
+    ///         Rule = new Scaleway.Object.Inputs.BucketLockConfigurationRuleArgs
     ///         {
-    ///             DefaultRetention = new Scaleway.Inputs.ObjectBucketLockConfigurationRuleDefaultRetentionArgs
+    ///             DefaultRetention = new Scaleway.Object.Inputs.BucketLockConfigurationRuleDefaultRetentionArgs
     ///             {
     ///                 Mode = "GOVERNANCE",
     ///                 Days = 1,
@@ -76,6 +76,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration")]
     [ScalewayResourceType("scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration")]
     public partial class ObjectBucketLockConfiguration : global::Pulumi.CustomResource
     {

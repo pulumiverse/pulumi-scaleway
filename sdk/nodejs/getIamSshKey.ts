@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Use this data source to get SSH key information based on its ID or name.
  */
+/** @deprecated scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey */
 export function getIamSshKey(args?: GetIamSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamSshKeyResult> {
+    pulumi.log.warn("getIamSshKey is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamSshKey:getIamSshKey", {
@@ -74,7 +76,9 @@ export interface GetIamSshKeyResult {
 /**
  * Use this data source to get SSH key information based on its ID or name.
  */
+/** @deprecated scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey */
 export function getIamSshKeyOutput(args?: GetIamSshKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamSshKeyResult> {
+    pulumi.log.warn("getIamSshKey is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamSshKey:getIamSshKey", {

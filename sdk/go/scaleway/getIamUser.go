@@ -22,21 +22,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by user id
-//			_, err := scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
+//			_, err := iam.LookupUser(ctx, &iam.LookupUserArgs{
 //				UserId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by email address
-//			_, err = scaleway.LookupIamUser(ctx, &scaleway.LookupIamUserArgs{
+//			_, err = iam.LookupUser(ctx, &iam.LookupUserArgs{
 //				Email: pulumi.StringRef("foo@bar.com"),
 //			}, nil)
 //			if err != nil {
@@ -47,6 +47,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser
 func LookupIamUser(ctx *pulumi.Context, args *LookupIamUserArgs, opts ...pulumi.InvokeOption) (*LookupIamUserResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamUserResult

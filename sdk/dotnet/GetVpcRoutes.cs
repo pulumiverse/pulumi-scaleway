@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcroutes.getVpcRoutes has been deprecated in favor of scaleway.network/getroutes.getRoutes")]
     public static class GetVpcRoutes
     {
         /// <summary>

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion")]
     public static class GetK8sVersion
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
         ///     });
@@ -48,7 +49,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byName = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",
         ///     });
@@ -77,7 +78,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
         ///     });
@@ -95,7 +96,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byName = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",
         ///     });
@@ -124,7 +125,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var latest = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
         ///     });
@@ -142,7 +143,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byName = Scaleway.GetK8sVersion.Invoke(new()
+        ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",
         ///     });

@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MongoDbInstance("main", new()
+    ///     var main = new Scaleway.Mongodb.Instance("main", new()
     ///     {
     ///         Name = "test-mongodb-basic1",
     ///         Version = "7.0.12",
@@ -50,13 +50,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "my_private_network",
     ///         Region = "fr-par",
     ///     });
     /// 
-    ///     var main = new Scaleway.MongoDbInstance("main", new()
+    ///     var main = new Scaleway.Mongodb.Instance("main", new()
     ///     {
     ///         Name = "test-mongodb-basic1",
     ///         Version = "7.0.12",
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway
     ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         VolumeSizeInGb = 5,
-    ///         PrivateNetwork = new Scaleway.Inputs.MongoDbInstancePrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Mongodb.Inputs.InstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn02.Id,
     ///         },
@@ -84,7 +84,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var restoredInstance = new Scaleway.MongoDbInstance("restored_instance", new()
+    ///     var restoredInstance = new Scaleway.Mongodb.Instance("restored_instance", new()
     ///     {
     ///         SnapshotId = pn.IdscalewayMongodbSnapshot.MainSnapshot.Id,
     ///         Name = "restored-mongodb-from-snapshot",
@@ -105,6 +105,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance")]
     [ScalewayResourceType("scaleway:index/mongoDbInstance:MongoDbInstance")]
     public partial class MongoDbInstance : global::Pulumi.CustomResource
     {

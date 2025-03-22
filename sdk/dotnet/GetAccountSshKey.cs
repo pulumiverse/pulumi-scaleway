@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey")]
     public static class GetAccountSshKey
     {
         /// <summary>
-        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// The `scaleway.account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
         /// </summary>
@@ -21,7 +22,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// The `scaleway.account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
         /// </summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountSshKeyResult>("scaleway:index/getAccountSshKey:getAccountSshKey", args ?? new GetAccountSshKeyInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+        /// The `scaleway.account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
         /// </summary>

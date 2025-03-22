@@ -28,12 +28,12 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // For default project in default region
-    ///     var main = new Scaleway.MnqSns("main");
+    ///     var main = new Scaleway.Mnq.Sns("main");
     /// 
-    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("main", new()
+    ///     var mainSnsCredentials = new Scaleway.Mnq.SnsCredentials("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
-    ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
     ///             CanPublish = true,
@@ -41,19 +41,19 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var topic = new Scaleway.MnqSnsTopic("topic", new()
+    ///     var topic = new Scaleway.Mnq.SnsTopic("topic", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "my-topic",
-    ///         AccessKey = mainMnqSnsCredentials.AccessKey,
-    ///         SecretKey = mainMnqSnsCredentials.SecretKey,
+    ///         AccessKey = mainSnsCredentials.AccessKey,
+    ///         SecretKey = mainSnsCredentials.SecretKey,
     ///     });
     /// 
-    ///     var mainMnqSnsTopicSubscription = new Scaleway.MnqSnsTopicSubscription("main", new()
+    ///     var mainSnsTopicSubscription = new Scaleway.Mnq.SnsTopicSubscription("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
-    ///         AccessKey = mainMnqSnsCredentials.AccessKey,
-    ///         SecretKey = mainMnqSnsCredentials.SecretKey,
+    ///         AccessKey = mainSnsCredentials.AccessKey,
+    ///         SecretKey = mainSnsCredentials.SecretKey,
     ///         TopicId = topic.Id,
     ///         Protocol = "http",
     ///         Endpoint = "http://example.com",
@@ -72,6 +72,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription")]
     [ScalewayResourceType("scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription")]
     public partial class MnqSnsTopicSubscription : global::Pulumi.CustomResource
     {

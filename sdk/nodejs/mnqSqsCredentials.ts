@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqSqs("main", {});
- * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("main", {
+ * const main = new scaleway.mnq.Sqs("main", {});
+ * const mainSqsCredentials = new scaleway.mnq.SqsCredentials("main", {
  *     projectId: main.projectId,
  *     name: "sqs-credentials",
  *     permissions: {
@@ -40,6 +40,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials
  */
 export class MnqSqsCredentials extends pulumi.CustomResource {
     /**
@@ -52,6 +54,7 @@ export class MnqSqsCredentials extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqSqsCredentialsState, opts?: pulumi.CustomResourceOptions): MnqSqsCredentials {
+        pulumi.log.warn("MnqSqsCredentials is deprecated: scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials")
         return new MnqSqsCredentials(name, <any>state, { ...opts, id: id });
     }
 
@@ -101,8 +104,11 @@ export class MnqSqsCredentials extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials */
     constructor(name: string, args?: MnqSqsCredentialsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials */
     constructor(name: string, argsOrState?: MnqSqsCredentialsArgs | MnqSqsCredentialsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqSqsCredentials is deprecated: scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

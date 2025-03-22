@@ -21,6 +21,8 @@ __all__ = [
     'get_function_output',
 ]
 
+warnings.warn("""scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction""", DeprecationWarning)
+
 @pulumi.output_type
 class GetFunctionResult:
     """
@@ -263,7 +265,7 @@ def get_function(function_id: Optional[str] = None,
                  region: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
-    The `Function` data source is used to retrieve information about a Serverless Function.
+    The `functions.Function` data source is used to retrieve information about a Serverless Function.
 
     Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
@@ -276,6 +278,7 @@ def get_function(function_id: Optional[str] = None,
     :param str project_id: The unique identifier of the project with which the function is associated.
     :param str region: `region`) The region in which the container exists.
     """
+    pulumi.log.warn("""get_function is deprecated: scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction""")
     __args__ = dict()
     __args__['functionId'] = function_id
     __args__['name'] = name
@@ -317,7 +320,7 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
                         region: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFunctionResult]:
     """
-    The `Function` data source is used to retrieve information about a Serverless Function.
+    The `functions.Function` data source is used to retrieve information about a Serverless Function.
 
     Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 
@@ -330,6 +333,7 @@ def get_function_output(function_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str project_id: The unique identifier of the project with which the function is associated.
     :param str region: `region`) The region in which the container exists.
     """
+    pulumi.log.warn("""get_function is deprecated: scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction""")
     __args__ = dict()
     __args__['functionId'] = function_id
     __args__['name'] = name

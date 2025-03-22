@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+    /// The `scaleway.object.BucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
     /// 
@@ -30,28 +30,28 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Project ID
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
     ///     // IAM configuration
-    ///     var user = Scaleway.GetIamUser.Invoke(new()
+    ///     var user = Scaleway.Iam.GetUser.Invoke(new()
     ///     {
     ///         Email = "user@scaleway.com",
     ///     });
     /// 
-    ///     var policy = new Scaleway.IamPolicy("policy", new()
+    ///     var policy = new Scaleway.Iam.Policy("policy", new()
     ///     {
     ///         Name = "object-storage-policy",
-    ///         UserId = user.Apply(getIamUserResult =&gt; getIamUserResult.Id),
+    ///         UserId = user.Apply(getUserResult =&gt; getUserResult.Id),
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
     ///             {
     ///                 ProjectIds = new[]
     ///                 {
-    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                     @default.Apply(@default =&gt; @default.Apply(getProjectResult =&gt; getProjectResult.Id)),
     ///                 },
     ///                 PermissionSetNames = new[]
     ///                 {
@@ -62,12 +62,12 @@ namespace Pulumiverse.Scaleway
     ///     });
     /// 
     ///     // Object storage configuration
-    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     var bucket = new Scaleway.Object.Bucket("bucket", new()
     ///     {
     ///         Name = "some-unique-name",
     ///     });
     /// 
-    ///     var policyObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("policy", new()
+    ///     var policyBucketPolicy = new Scaleway.Object.BucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
     ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
@@ -85,7 +85,7 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
     ///                     {
-    ///                         ["SCW"] = $"user_id:{user.Apply(getIamUserResult =&gt; getIamUserResult.Id)}",
+    ///                         ["SCW"] = $"user_id:{user.Apply(getUserResult =&gt; getUserResult.Id)}",
     ///                     },
     ///                     ["Resource"] = new[]
     ///                     {
@@ -115,28 +115,28 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Project ID
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
     ///     // IAM configuration
-    ///     var reading_app = new Scaleway.IamApplication("reading-app", new()
+    ///     var reading_app = new Scaleway.Iam.Application("reading-app", new()
     ///     {
     ///         Name = "reading-app",
     ///     });
     /// 
-    ///     var policy = new Scaleway.IamPolicy("policy", new()
+    ///     var policy = new Scaleway.Iam.Policy("policy", new()
     ///     {
     ///         Name = "object-storage-policy",
     ///         ApplicationId = reading_app.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.IamPolicyRuleArgs
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
     ///             {
     ///                 ProjectIds = new[]
     ///                 {
-    ///                     @default.Apply(@default =&gt; @default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)),
+    ///                     @default.Apply(@default =&gt; @default.Apply(getProjectResult =&gt; getProjectResult.Id)),
     ///                 },
     ///                 PermissionSetNames = new[]
     ///                 {
@@ -147,12 +147,12 @@ namespace Pulumiverse.Scaleway
     ///     });
     /// 
     ///     // Object storage configuration
-    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     var bucket = new Scaleway.Object.Bucket("bucket", new()
     ///     {
     ///         Name = "some-unique-name",
     ///     });
     /// 
-    ///     var policyObjectBucketPolicy = new Scaleway.ObjectBucketPolicy("policy", new()
+    ///     var policyBucketPolicy = new Scaleway.Object.BucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Id,
     ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
@@ -197,17 +197,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var reading_app = Scaleway.GetIamApplication.Invoke(new()
+    ///     var reading_app = Scaleway.Iam.GetApplication.Invoke(new()
     ///     {
     ///         Name = "reading-app",
     ///     });
     /// 
-    ///     var reading_api_key = new Scaleway.IamApiKey("reading-api-key", new()
+    ///     var reading_api_key = new Scaleway.Iam.ApiKey("reading-api-key", new()
     ///     {
-    ///         ApplicationId = reading_app.Apply(reading_app =&gt; reading_app.Apply(getIamApplicationResult =&gt; getIamApplicationResult.Id)),
+    ///         ApplicationId = reading_app.Apply(reading_app =&gt; reading_app.Apply(getApplicationResult =&gt; getApplicationResult.Id)),
     ///     });
     /// 
-    ///     var bucket = Scaleway.GetObjectBucket.Invoke(new()
+    ///     var bucket = Scaleway.Object.GetBucket.Invoke(new()
     ///     {
     ///         Name = "some-unique-name",
     ///     });
@@ -228,13 +228,13 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Scaleway project ID
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
     ///     // Object storage configuration
-    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     var bucket = new Scaleway.Object.Bucket("bucket", new()
     ///     {
     ///         Name = "some-unique-name",
     ///     });
@@ -256,7 +256,7 @@ namespace Pulumiverse.Scaleway
     ///                         Type = "SCW",
     ///                         Identifiers = new[]
     ///                         {
-    ///                             $"project_id:{@default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)}",
+    ///                             $"project_id:{@default.Apply(getProjectResult =&gt; getProjectResult.Id)}",
     ///                         },
     ///                     },
     ///                 },
@@ -273,7 +273,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var main = new Scaleway.ObjectBucketPolicy("main", new()
+    ///     var main = new Scaleway.Object.BucketPolicy("main", new()
     ///     {
     ///         Bucket = bucket.Id,
     ///         Policy = policy.Apply(getPolicyDocumentResult =&gt; getPolicyDocumentResult.Json),
@@ -295,19 +295,19 @@ namespace Pulumiverse.Scaleway
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Project ID
-    ///     var @default = Scaleway.GetAccountProject.Invoke(new()
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
     ///     // Object storage configuration
-    ///     var bucket = new Scaleway.ObjectBucket("bucket", new()
+    ///     var bucket = new Scaleway.Object.Bucket("bucket", new()
     ///     {
     ///         Name = "mia-cross-crash-tests",
     ///         Region = "fr-par",
     ///     });
     /// 
-    ///     var policy = new Scaleway.ObjectBucketPolicy("policy", new()
+    ///     var policy = new Scaleway.Object.BucketPolicy("policy", new()
     ///     {
     ///         Bucket = bucket.Name,
     ///         Policy = Output.JsonSerialize(Output.Create(new Dictionary&lt;string, object?&gt;
@@ -325,7 +325,7 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                     ["Principal"] = new Dictionary&lt;string, object?&gt;
     ///                     {
-    ///                         ["SCW"] = @default.Apply(@default =&gt; $"project_id:{@default.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id)}"),
+    ///                         ["SCW"] = @default.Apply(@default =&gt; $"project_id:{@default.Apply(getProjectResult =&gt; getProjectResult.Id)}"),
     ///                     },
     ///                     ["Resource"] = new[]
     ///                     {
@@ -362,6 +362,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy")]
     [ScalewayResourceType("scaleway:index/objectBucketPolicy:ObjectBucketPolicy")]
     public partial class ObjectBucketPolicy : global::Pulumi.CustomResource
     {

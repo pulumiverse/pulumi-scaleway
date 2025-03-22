@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backend01 = new Scaleway.LoadbalancerBackend("backend01", new()
+    ///     var backend01 = new Scaleway.Loadbalancers.Backend("backend01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         Name = "backend01",
@@ -48,13 +48,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backend01 = new Scaleway.LoadbalancerBackend("backend01", new()
+    ///     var backend01 = new Scaleway.Loadbalancers.Backend("backend01", new()
     ///     {
     ///         LbId = lb01.Id,
     ///         Name = "backend01",
     ///         ForwardProtocol = "http",
     ///         ForwardPort = 80,
-    ///         HealthCheckHttp = new Scaleway.Inputs.LoadbalancerBackendHealthCheckHttpArgs
+    ///         HealthCheckHttp = new Scaleway.Loadbalancers.Inputs.BackendHealthCheckHttpArgs
     ///         {
     ///             Uri = "www.test.com/health",
     ///         },
@@ -73,6 +73,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/loadbalancerBackend:LoadbalancerBackend backend01 fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalancerbackend.LoadbalancerBackend has been deprecated in favor of scaleway.loadbalancers/backend.Backend")]
     [ScalewayResourceType("scaleway:index/loadbalancerBackend:LoadbalancerBackend")]
     public partial class LoadbalancerBackend : global::Pulumi.CustomResource
     {

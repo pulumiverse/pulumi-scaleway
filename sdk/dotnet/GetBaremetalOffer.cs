@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer")]
     public static class GetBaremetalOffer
     {
         /// <summary>

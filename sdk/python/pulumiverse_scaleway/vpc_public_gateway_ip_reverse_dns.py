@@ -126,7 +126,12 @@ class _VpcPublicGatewayIpReverseDnsState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns""", DeprecationWarning)
+
+
 class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -145,15 +150,15 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIp("main")
-        tf_a = scaleway.DomainRecord("tf_A",
+        main = scaleway.network.PublicGatewayIp("main")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="example.com",
             name="tf",
             type="A",
             data=main.address,
             ttl=3600,
             priority=1)
-        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("main",
+        main_public_gateway_ip_reverse_dns = scaleway.network.PublicGatewayIpReverseDns("main",
             gateway_ip_id=main.id,
             reverse="tf.example.com")
         ```
@@ -190,15 +195,15 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIp("main")
-        tf_a = scaleway.DomainRecord("tf_A",
+        main = scaleway.network.PublicGatewayIp("main")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="example.com",
             name="tf",
             type="A",
             data=main.address,
             ttl=3600,
             priority=1)
-        main_vpc_public_gateway_ip_reverse_dns = scaleway.VpcPublicGatewayIpReverseDns("main",
+        main_public_gateway_ip_reverse_dns = scaleway.network.PublicGatewayIpReverseDns("main",
             gateway_ip_id=main.id,
             reverse="tf.example.com")
         ```
@@ -232,6 +237,7 @@ class VpcPublicGatewayIpReverseDns(pulumi.CustomResource):
                  reverse: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPublicGatewayIpReverseDns is deprecated: scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

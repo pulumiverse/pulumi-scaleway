@@ -238,7 +238,12 @@ class _InstancePrivateNicState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic""", DeprecationWarning)
+
+
 class InstancePrivateNic(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -262,7 +267,7 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111",
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
         ```
@@ -273,14 +278,14 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="private_network_instance",
             region="fr-par")
-        base = scaleway.InstanceServer("base",
+        base = scaleway.instance.Server("base",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone=pn01.zone)
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id=base.id,
             private_network_id=pn01.id,
             zone=pn01.zone)
@@ -292,22 +297,22 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="vpc_instance")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_instance")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="private_network_instance",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.64.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        server01 = scaleway.InstanceServer("server01",
+        server01 = scaleway.instance.Server("server01",
             image="ubuntu_focal",
             type="PLAY2-MICRO")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             private_network_id=pn01.id,
             server_id=server01.id,
             ipam_ip_ids=[ip01.id])
@@ -350,7 +355,7 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id="fr-par-1/11111111-1111-1111-1111-111111111111",
             private_network_id="fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa")
         ```
@@ -361,14 +366,14 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="private_network_instance",
             region="fr-par")
-        base = scaleway.InstanceServer("base",
+        base = scaleway.instance.Server("base",
             image="ubuntu_jammy",
             type="DEV1-S",
             zone=pn01.zone)
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id=base.id,
             private_network_id=pn01.id,
             zone=pn01.zone)
@@ -380,22 +385,22 @@ class InstancePrivateNic(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="vpc_instance")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_instance")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="private_network_instance",
             ipv4_subnet={
                 "subnet": "172.16.64.0/22",
             },
             vpc_id=vpc01.id)
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.64.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        server01 = scaleway.InstanceServer("server01",
+        server01 = scaleway.instance.Server("server01",
             image="ubuntu_focal",
             type="PLAY2-MICRO")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             private_network_id=pn01.id,
             server_id=server01.id,
             ipam_ip_ids=[ip01.id])
@@ -433,6 +438,7 @@ class InstancePrivateNic(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstancePrivateNic is deprecated: scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

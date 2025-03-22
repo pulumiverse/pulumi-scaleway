@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace")]
     public static class GetFunctionNamespace
     {
         /// <summary>
-        /// The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+        /// The `scaleway.functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// </summary>
@@ -21,7 +22,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+        /// The `scaleway.functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// </summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetFunctionNamespaceResult>("scaleway:index/getFunctionNamespace:getFunctionNamespace", args ?? new GetFunctionNamespaceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+        /// The `scaleway.functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
         /// 
         /// Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
         /// </summary>

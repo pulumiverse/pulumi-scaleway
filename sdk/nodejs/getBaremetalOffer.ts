@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
  */
+/** @deprecated scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer */
 export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalOfferResult> {
+    pulumi.log.warn("getBaremetalOffer is deprecated: scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalOffer:getBaremetalOffer", {
@@ -88,7 +90,9 @@ export interface GetBaremetalOfferResult {
 /**
  * Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
  */
+/** @deprecated scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer */
 export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalOfferResult> {
+    pulumi.log.warn("getBaremetalOffer is deprecated: scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalOffer:getBaremetalOffer", {

@@ -23,20 +23,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/hosting"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			byName, err := scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
+//			byName, err := hosting.GetOffer(ctx, &hosting.GetOfferArgs{
 //				Name:         pulumi.StringRef("lite"),
 //				ControlPanel: pulumi.StringRef("Cpanel"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewWebhosting(ctx, "main", &scaleway.WebhostingArgs{
+//			_, err = hosting.NewHosting(ctx, "main", &hosting.HostingArgs{
 //				OfferId: pulumi.String(byName.OfferId),
 //				Email:   pulumi.String("your@email.com"),
 //				Domain:  pulumi.String("yourdomain.com"),
@@ -64,6 +64,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting
 type Webhosting struct {
 	pulumi.CustomResourceState
 

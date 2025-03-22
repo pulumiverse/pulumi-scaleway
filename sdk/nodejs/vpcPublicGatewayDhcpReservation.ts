@@ -21,8 +21,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPrivateNetwork("main", {name: "your_private_network"});
- * const mainInstanceServer = new scaleway.InstanceServer("main", {
+ * const main = new scaleway.network.PrivateNetwork("main", {name: "your_private_network"});
+ * const mainServer = new scaleway.instance.Server("main", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     zone: "fr-par-1",
@@ -30,28 +30,28 @@ import * as utilities from "./utilities";
  *         pnId: main.id,
  *     }],
  * });
- * const mainVpcPublicGatewayIp = new scaleway.VpcPublicGatewayIp("main", {});
- * const mainVpcPublicGatewayDhcp = new scaleway.VpcPublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
- * const mainVpcPublicGateway = new scaleway.VpcPublicGateway("main", {
+ * const mainPublicGatewayIp = new scaleway.network.PublicGatewayIp("main", {});
+ * const mainPublicGatewayDhcp = new scaleway.network.PublicGatewayDhcp("main", {subnet: "192.168.1.0/24"});
+ * const mainPublicGateway = new scaleway.network.PublicGateway("main", {
  *     name: "foobar",
  *     type: "VPC-GW-S",
- *     ipId: mainVpcPublicGatewayIp.id,
+ *     ipId: mainPublicGatewayIp.id,
  * });
- * const mainVpcGatewayNetwork = new scaleway.VpcGatewayNetwork("main", {
- *     gatewayId: mainVpcPublicGateway.id,
+ * const mainGatewayNetwork = new scaleway.network.GatewayNetwork("main", {
+ *     gatewayId: mainPublicGateway.id,
  *     privateNetworkId: main.id,
- *     dhcpId: mainVpcPublicGatewayDhcp.id,
+ *     dhcpId: mainPublicGatewayDhcp.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * }, {
  *     dependsOn: [
- *         mainVpcPublicGatewayIp,
+ *         mainPublicGatewayIp,
  *         main,
  *     ],
  * });
- * const mainVpcPublicGatewayDhcpReservation = new scaleway.VpcPublicGatewayDhcpReservation("main", {
- *     gatewayNetworkId: mainVpcGatewayNetwork.id,
- *     macAddress: mainInstanceServer.privateNetworks.apply(privateNetworks => privateNetworks?.[0]?.macAddress),
+ * const mainPublicGatewayDhcpReservation = new scaleway.network.PublicGatewayDhcpReservation("main", {
+ *     gatewayNetworkId: mainGatewayNetwork.id,
+ *     macAddress: mainServer.privateNetworks.apply(privateNetworks => privateNetworks?.[0]?.macAddress),
  *     ipAddress: "192.168.1.1",
  * });
  * ```
@@ -65,6 +65,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation
  */
 export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
     /**
@@ -77,6 +79,7 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcPublicGatewayDhcpReservationState, opts?: pulumi.CustomResourceOptions): VpcPublicGatewayDhcpReservation {
+        pulumi.log.warn("VpcPublicGatewayDhcpReservation is deprecated: scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation")
         return new VpcPublicGatewayDhcpReservation(name, <any>state, { ...opts, id: id });
     }
 
@@ -134,8 +137,11 @@ export class VpcPublicGatewayDhcpReservation extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation */
     constructor(name: string, args: VpcPublicGatewayDhcpReservationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation */
     constructor(name: string, argsOrState?: VpcPublicGatewayDhcpReservationArgs | VpcPublicGatewayDhcpReservationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcPublicGatewayDhcpReservation is deprecated: scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

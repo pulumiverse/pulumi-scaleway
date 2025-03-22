@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.FunctionNamespace` resource allows you to
+    /// The `scaleway.functions.Namespace` resource allows you to
     /// for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
     /// Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FunctionNamespace("main", new()
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
     ///     {
     ///         Name = "main-function-namespace",
     ///         Description = "Main function namespace",
@@ -45,6 +45,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace")]
     [ScalewayResourceType("scaleway:index/functionNamespace:FunctionNamespace")]
     public partial class FunctionNamespace : global::Pulumi.CustomResource
     {

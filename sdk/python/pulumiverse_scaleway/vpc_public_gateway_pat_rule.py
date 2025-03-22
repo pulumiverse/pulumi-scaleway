@@ -268,7 +268,12 @@ class _VpcPublicGatewayPatRuleState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcpublicgatewaypatrule.VpcPublicGatewayPatRule has been deprecated in favor of scaleway.network/publicgatewaypatrule.PublicGatewayPatRule""", DeprecationWarning)
+
+
 class VpcPublicGatewayPatRule(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcpublicgatewaypatrule.VpcPublicGatewayPatRule has been deprecated in favor of scaleway.network/publicgatewaypatrule.PublicGatewayPatRule""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -290,7 +295,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        sg01 = scaleway.InstanceSecurityGroup("sg01",
+        sg01 = scaleway.instance.SecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
             inbound_rules=[{
@@ -298,33 +303,33 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                 "port": 22,
                 "protocol": "TCP",
             }])
-        srv01 = scaleway.InstanceServer("srv01",
+        srv01 = scaleway.instance.Server("srv01",
             name="my-server",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
             security_group_id=sg01.id)
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="my-pn")
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id=srv01.id,
             private_network_id=pn01.id)
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
-        ip01 = scaleway.VpcPublicGatewayIp("ip01")
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+        ip01 = scaleway.network.PublicGatewayIp("ip01")
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="my-pg",
             type="VPC-GW-S",
             ip_id=ip01.id)
-        gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gn01 = scaleway.network.GatewayNetwork("gn01",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
             cleanup_dhcp=True,
             enable_masquerade=True)
-        rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+        rsv01 = scaleway.network.PublicGatewayDhcpReservation("rsv01",
             gateway_network_id=gn01.id,
             mac_address=pnic01.mac_address,
             ip_address="192.168.0.7")
         # PAT rule for SSH traffic
-        pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+        pat01 = scaleway.network.PublicGatewayPatRule("pat01",
             gateway_id=pg01.id,
             private_ip=rsv01.ip_address,
             private_port=22,
@@ -367,7 +372,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        sg01 = scaleway.InstanceSecurityGroup("sg01",
+        sg01 = scaleway.instance.SecurityGroup("sg01",
             inbound_default_policy="drop",
             outbound_default_policy="accept",
             inbound_rules=[{
@@ -375,33 +380,33 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                 "port": 22,
                 "protocol": "TCP",
             }])
-        srv01 = scaleway.InstanceServer("srv01",
+        srv01 = scaleway.instance.Server("srv01",
             name="my-server",
             type="PLAY2-NANO",
             image="ubuntu_jammy",
             security_group_id=sg01.id)
-        pn01 = scaleway.VpcPrivateNetwork("pn01", name="my-pn")
-        pnic01 = scaleway.InstancePrivateNic("pnic01",
+        pn01 = scaleway.network.PrivateNetwork("pn01", name="my-pn")
+        pnic01 = scaleway.instance.PrivateNic("pnic01",
             server_id=srv01.id,
             private_network_id=pn01.id)
-        dhcp01 = scaleway.VpcPublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
-        ip01 = scaleway.VpcPublicGatewayIp("ip01")
-        pg01 = scaleway.VpcPublicGateway("pg01",
+        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01", subnet="192.168.0.0/24")
+        ip01 = scaleway.network.PublicGatewayIp("ip01")
+        pg01 = scaleway.network.PublicGateway("pg01",
             name="my-pg",
             type="VPC-GW-S",
             ip_id=ip01.id)
-        gn01 = scaleway.VpcGatewayNetwork("gn01",
+        gn01 = scaleway.network.GatewayNetwork("gn01",
             gateway_id=pg01.id,
             private_network_id=pn01.id,
             dhcp_id=dhcp01.id,
             cleanup_dhcp=True,
             enable_masquerade=True)
-        rsv01 = scaleway.VpcPublicGatewayDhcpReservation("rsv01",
+        rsv01 = scaleway.network.PublicGatewayDhcpReservation("rsv01",
             gateway_network_id=gn01.id,
             mac_address=pnic01.mac_address,
             ip_address="192.168.0.7")
         # PAT rule for SSH traffic
-        pat01 = scaleway.VpcPublicGatewayPatRule("pat01",
+        pat01 = scaleway.network.PublicGatewayPatRule("pat01",
             gateway_id=pg01.id,
             private_ip=rsv01.ip_address,
             private_port=22,
@@ -441,6 +446,7 @@ class VpcPublicGatewayPatRule(pulumi.CustomResource):
                  public_port: Optional[pulumi.Input[int]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPublicGatewayPatRule is deprecated: scaleway.index/vpcpublicgatewaypatrule.VpcPublicGatewayPatRule has been deprecated in favor of scaleway.network/publicgatewaypatrule.PublicGatewayPatRule""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

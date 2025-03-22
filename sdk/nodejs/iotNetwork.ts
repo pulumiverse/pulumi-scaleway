@@ -11,13 +11,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("main", {
+ * const mainHub = new scaleway.iot.Hub("main", {
  *     name: "main",
  *     productPlan: "plan_shared",
  * });
- * const main = new scaleway.IotNetwork("main", {
+ * const main = new scaleway.iot.Network("main", {
  *     name: "main",
- *     hubId: mainIotHub.id,
+ *     hubId: mainHub.id,
  *     type: "sigfox",
  * });
  * ```
@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network
  */
 export class IotNetwork extends pulumi.CustomResource {
     /**
@@ -43,6 +45,7 @@ export class IotNetwork extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotNetworkState, opts?: pulumi.CustomResourceOptions): IotNetwork {
+        pulumi.log.warn("IotNetwork is deprecated: scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network")
         return new IotNetwork(name, <any>state, { ...opts, id: id });
     }
 
@@ -100,8 +103,11 @@ export class IotNetwork extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network */
     constructor(name: string, args: IotNetworkArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network */
     constructor(name: string, argsOrState?: IotNetworkArgs | IotNetworkState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IotNetwork is deprecated: scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

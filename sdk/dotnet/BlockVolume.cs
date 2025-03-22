@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+    /// The `scaleway.block.Volume` resource is used to create and manage Scaleway Block Storage volumes.
     /// 
     /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
     /// 
@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var blockVolume = new Scaleway.BlockVolume("block_volume", new()
+    ///     var blockVolume = new Scaleway.Block.Volume("block_volume", new()
     ///     {
     ///         Iops = 5000,
     ///         Name = "some-volume-name",
@@ -49,20 +49,20 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @base = new Scaleway.BlockVolume("base", new()
+    ///     var @base = new Scaleway.Block.Volume("base", new()
     ///     {
     ///         Name = "block-volume-base",
     ///         Iops = 5000,
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var main = new Scaleway.BlockSnapshot("main", new()
+    ///     var main = new Scaleway.Block.Snapshot("main", new()
     ///     {
     ///         Name = "block-volume-from-snapshot",
     ///         VolumeId = @base.Id,
     ///     });
     /// 
-    ///     var mainBlockVolume = new Scaleway.BlockVolume("main", new()
+    ///     var mainVolume = new Scaleway.Block.Volume("main", new()
     ///     {
     ///         Name = "block-volume-from-snapshot",
     ///         Iops = 5000,
@@ -82,6 +82,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/blockVolume:BlockVolume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume")]
     [ScalewayResourceType("scaleway:index/blockVolume:BlockVolume")]
     public partial class BlockVolume : global::Pulumi.CustomResource
     {

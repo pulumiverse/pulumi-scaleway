@@ -22,6 +22,8 @@ __all__ = [
     'get_flexible_ips_output',
 ]
 
+warnings.warn("""scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps""", DeprecationWarning)
+
 @pulumi.output_type
 class GetFlexibleIpsResult:
     """
@@ -135,26 +137,26 @@ def get_flexible_ips(project_id: Optional[str] = None,
     import pulumiverse_scaleway as scaleway
 
     # Find ips that share the same tags
-    fips_by_tags = scaleway.get_flexible_ips(tags=["a tag"])
+    fips_by_tags = scaleway.elasticmetal.get_ips(tags=["a tag"])
     # Find ips that share the same Server ID
-    my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
-    base = scaleway.BaremetalServer("base",
+    my_offer = scaleway.elasticmetal.get_offer(name="EM-B112X-SSD")
+    base = scaleway.elasticmetal.Server("base",
         name="MyServer",
         offer=my_offer.offer_id,
         install_config_afterward=True)
-    first = scaleway.FlexibleIp("first",
+    first = scaleway.elasticmetal.Ip("first",
         server_id=base.id,
         tags=[
             "foo",
             "first",
         ])
-    second = scaleway.FlexibleIp("second",
+    second = scaleway.elasticmetal.Ip("second",
         server_id=base.id,
         tags=[
             "foo",
             "second",
         ])
-    fips_by_server_id = scaleway.get_flexible_ips_output(server_ids=[base.id])
+    fips_by_server_id = scaleway.elasticmetal.get_ips_output(server_ids=[base.id])
     ```
 
 
@@ -163,6 +165,7 @@ def get_flexible_ips(project_id: Optional[str] = None,
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which IPs exist.
     """
+    pulumi.log.warn("""get_flexible_ips is deprecated: scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps""")
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['serverIds'] = server_ids
@@ -195,26 +198,26 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
     import pulumiverse_scaleway as scaleway
 
     # Find ips that share the same tags
-    fips_by_tags = scaleway.get_flexible_ips(tags=["a tag"])
+    fips_by_tags = scaleway.elasticmetal.get_ips(tags=["a tag"])
     # Find ips that share the same Server ID
-    my_offer = scaleway.get_baremetal_offer(name="EM-B112X-SSD")
-    base = scaleway.BaremetalServer("base",
+    my_offer = scaleway.elasticmetal.get_offer(name="EM-B112X-SSD")
+    base = scaleway.elasticmetal.Server("base",
         name="MyServer",
         offer=my_offer.offer_id,
         install_config_afterward=True)
-    first = scaleway.FlexibleIp("first",
+    first = scaleway.elasticmetal.Ip("first",
         server_id=base.id,
         tags=[
             "foo",
             "first",
         ])
-    second = scaleway.FlexibleIp("second",
+    second = scaleway.elasticmetal.Ip("second",
         server_id=base.id,
         tags=[
             "foo",
             "second",
         ])
-    fips_by_server_id = scaleway.get_flexible_ips_output(server_ids=[base.id])
+    fips_by_server_id = scaleway.elasticmetal.get_ips_output(server_ids=[base.id])
     ```
 
 
@@ -223,6 +226,7 @@ def get_flexible_ips_output(project_id: Optional[pulumi.Input[Optional[str]]] = 
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which IPs exist.
     """
+    pulumi.log.warn("""get_flexible_ips is deprecated: scaleway.index/getflexibleips.getFlexibleIps has been deprecated in favor of scaleway.elasticmetal/getips.getIps""")
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['serverIds'] = server_ids

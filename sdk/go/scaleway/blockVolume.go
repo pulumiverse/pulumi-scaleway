@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `BlockVolume` resource is used to create and manage Scaleway Block Storage volumes.
+// The `block.Volume` resource is used to create and manage Scaleway Block Storage volumes.
 //
 // Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
@@ -28,13 +28,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewBlockVolume(ctx, "block_volume", &scaleway.BlockVolumeArgs{
+//			_, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
 //				Iops:     pulumi.Int(5000),
 //				Name:     pulumi.String("some-volume-name"),
 //				SizeInGb: pulumi.Int(20),
@@ -56,13 +56,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			base, err := scaleway.NewBlockVolume(ctx, "base", &scaleway.BlockVolumeArgs{
+//			base, err := block.NewVolume(ctx, "base", &block.VolumeArgs{
 //				Name:     pulumi.String("block-volume-base"),
 //				Iops:     pulumi.Int(5000),
 //				SizeInGb: pulumi.Int(20),
@@ -70,14 +70,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			main, err := scaleway.NewBlockSnapshot(ctx, "main", &scaleway.BlockSnapshotArgs{
+//			main, err := block.NewSnapshot(ctx, "main", &block.SnapshotArgs{
 //				Name:     pulumi.String("block-volume-from-snapshot"),
 //				VolumeId: base.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewBlockVolume(ctx, "main", &scaleway.BlockVolumeArgs{
+//			_, err = block.NewVolume(ctx, "main", &block.VolumeArgs{
 //				Name:       pulumi.String("block-volume-from-snapshot"),
 //				Iops:       pulumi.Int(5000),
 //				SnapshotId: main.ID(),
@@ -100,6 +100,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/blockVolume:BlockVolume block_volume fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/blockvolume.BlockVolume has been deprecated in favor of scaleway.block/volume.Volume
 type BlockVolume struct {
 	pulumi.CustomResourceState
 

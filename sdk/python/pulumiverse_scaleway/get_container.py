@@ -22,6 +22,8 @@ __all__ = [
     'get_container_output',
 ]
 
+warnings.warn("""scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetContainerResult:
     """
@@ -384,7 +386,7 @@ def get_container(container_id: Optional[str] = None,
                   region: Optional[str] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerResult:
     """
-    The `Container` data source is used to retrieve information about a Serverless Container.
+    The `containers.Container` data source is used to retrieve information about a Serverless Container.
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -402,21 +404,21 @@ def get_container(container_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ContainerNamespace("main")
-    main_container = scaleway.Container("main",
+    main = scaleway.containers.Namespace("main")
+    main_container = scaleway.containers.Container("main",
         name="test-container-data",
         namespace_id=main.id)
     # Get info by container name
-    by_name = scaleway.get_container_output(namespace_id=main.id,
+    by_name = scaleway.containers.get_container_output(namespace_id=main.id,
         name=main_container.name)
     # Get info by container ID
-    by_id = scaleway.get_container_output(namespace_id=main.id,
+    by_id = scaleway.containers.get_container_output(namespace_id=main.id,
         container_id=main_container.id)
     ```
 
     ## Arguments reference
 
-    This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+    This section lists the arguments that you can provide to the `containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
 
     - `name` - (Required) The unique name of the container.
 
@@ -429,6 +431,7 @@ def get_container(container_id: Optional[str] = None,
 
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
+    pulumi.log.warn("""get_container is deprecated: scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer""")
     __args__ = dict()
     __args__['containerId'] = container_id
     __args__['name'] = name
@@ -476,7 +479,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
                          region: Optional[pulumi.Input[Optional[str]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetContainerResult]:
     """
-    The `Container` data source is used to retrieve information about a Serverless Container.
+    The `containers.Container` data source is used to retrieve information about a Serverless Container.
 
     Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -494,21 +497,21 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.ContainerNamespace("main")
-    main_container = scaleway.Container("main",
+    main = scaleway.containers.Namespace("main")
+    main_container = scaleway.containers.Container("main",
         name="test-container-data",
         namespace_id=main.id)
     # Get info by container name
-    by_name = scaleway.get_container_output(namespace_id=main.id,
+    by_name = scaleway.containers.get_container_output(namespace_id=main.id,
         name=main_container.name)
     # Get info by container ID
-    by_id = scaleway.get_container_output(namespace_id=main.id,
+    by_id = scaleway.containers.get_container_output(namespace_id=main.id,
         container_id=main_container.id)
     ```
 
     ## Arguments reference
 
-    This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+    This section lists the arguments that you can provide to the `containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
 
     - `name` - (Required) The unique name of the container.
 
@@ -521,6 +524,7 @@ def get_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = N
 
     :param str region: (Defaults to provider `region`) The region in which the container was created.
     """
+    pulumi.log.warn("""get_container is deprecated: scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer""")
     __args__ = dict()
     __args__['containerId'] = container_id
     __args__['name'] = name

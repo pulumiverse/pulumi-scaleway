@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerNamespace` resource allows you to
+ * The `scaleway.containers.Namespace` resource allows you to
  * for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {
+ * const main = new scaleway.containers.Namespace("main", {
  *     name: "main-container-namespace",
  *     description: "Main container namespace",
  * });
@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace
  */
 export class ContainerNamespace extends pulumi.CustomResource {
     /**
@@ -43,6 +45,7 @@ export class ContainerNamespace extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerNamespaceState, opts?: pulumi.CustomResourceOptions): ContainerNamespace {
+        pulumi.log.warn("ContainerNamespace is deprecated: scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace")
         return new ContainerNamespace(name, <any>state, { ...opts, id: id });
     }
 
@@ -116,8 +119,11 @@ export class ContainerNamespace extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace */
     constructor(name: string, args?: ContainerNamespaceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace */
     constructor(name: string, argsOrState?: ContainerNamespaceArgs | ContainerNamespaceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ContainerNamespace is deprecated: scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

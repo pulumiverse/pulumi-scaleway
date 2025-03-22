@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MongoDbSnapshot("main", new()
+    ///     var main = new Scaleway.Mongodb.Snapshot("main", new()
     ///     {
     ///         InstanceId = mainScalewayMongodbInstance.Id,
     ///         Name = "name-snapshot",
@@ -44,6 +44,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot")]
     [ScalewayResourceType("scaleway:index/mongoDbSnapshot:MongoDbSnapshot")]
     public partial class MongoDbSnapshot : global::Pulumi.CustomResource
     {

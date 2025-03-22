@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const publicIp = new scaleway.InstanceIp("public_ip", {});
- * const web = new scaleway.InstanceServer("web", {
+ * const publicIp = new scaleway.instance.Ip("public_ip", {});
+ * const web = new scaleway.instance.Server("web", {
  *     type: "DEV1-S",
  *     image: "ubuntu_jammy",
  *     ipId: publicIp.id,
@@ -33,11 +33,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const data = new scaleway.BlockVolume("data", {
+ * const data = new scaleway.block.Volume("data", {
  *     sizeInGb: 100,
  *     iops: 5000,
  * });
- * const web = new scaleway.InstanceServer("web", {
+ * const web = new scaleway.instance.Server("web", {
  *     type: "DEV1-S",
  *     image: "ubuntu_jammy",
  *     tags: [
@@ -57,8 +57,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip = new scaleway.InstanceIp("ip", {});
- * const web = new scaleway.InstanceServer("web", {
+ * const ip = new scaleway.instance.Ip("ip", {});
+ * const web = new scaleway.instance.Server("web", {
  *     type: "DEV1-S",
  *     image: "f974feac-abae-4365-b988-8ec7d1cec10d",
  *     tags: [
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const www = new scaleway.InstanceSecurityGroup("www", {
+ * const www = new scaleway.instance.SecurityGroup("www", {
  *     inboundDefaultPolicy: "drop",
  *     outboundDefaultPolicy: "accept",
  *     inboundRules: [
@@ -98,7 +98,7 @@ import * as utilities from "./utilities";
  *         ipRange: "10.20.0.0/24",
  *     }],
  * });
- * const web = new scaleway.InstanceServer("web", {
+ * const web = new scaleway.instance.Server("web", {
  *     type: "DEV1-S",
  *     image: "ubuntu_jammy",
  *     securityGroupId: www.id,
@@ -111,8 +111,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "private_network_instance"});
- * const base = new scaleway.InstanceServer("base", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {name: "private_network_instance"});
+ * const base = new scaleway.instance.Server("base", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     privateNetworks: [{
@@ -129,7 +129,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const image = new scaleway.InstanceServer("image", {
+ * const image = new scaleway.instance.Server("image", {
  *     type: "PRO2-XXS",
  *     image: "ubuntu_jammy",
  *     rootVolume: {
@@ -145,14 +145,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const snapshot = scaleway.getBlockSnapshot({
+ * const snapshot = scaleway.block.getSnapshot({
  *     name: "my_snapshot",
  * });
- * const fromSnapshot = new scaleway.BlockVolume("from_snapshot", {
+ * const fromSnapshot = new scaleway.block.Volume("from_snapshot", {
  *     snapshotId: snapshot.then(snapshot => snapshot.id),
  *     iops: 5000,
  * });
- * const fromSnapshotInstanceServer = new scaleway.InstanceServer("from_snapshot", {
+ * const fromSnapshotServer = new scaleway.instance.Server("from_snapshot", {
  *     type: "PRO2-XXS",
  *     rootVolume: {
  *         volumeId: fromSnapshot.id,
@@ -167,7 +167,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const server = new scaleway.InstanceServer("server", {
+ * const server = new scaleway.instance.Server("server", {
  *     type: "PLAY2-MICRO",
  *     image: "ubuntu_jammy",
  *     rootVolume: {
@@ -199,6 +199,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server
  */
 export class InstanceServer extends pulumi.CustomResource {
     /**
@@ -211,6 +213,7 @@ export class InstanceServer extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceServerState, opts?: pulumi.CustomResourceOptions): InstanceServer {
+        pulumi.log.warn("InstanceServer is deprecated: scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server")
         return new InstanceServer(name, <any>state, { ...opts, id: id });
     }
 
@@ -257,9 +260,9 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
     /**
@@ -283,23 +286,23 @@ export class InstanceServer extends pulumi.CustomResource {
     public readonly ipIds!: pulumi.Output<string[] | undefined>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6Gateway!: pulumi.Output<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     public /*out*/ readonly ipv6PrefixLength!: pulumi.Output<number>;
     /**
@@ -396,8 +399,11 @@ export class InstanceServer extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server */
     constructor(name: string, args: InstanceServerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server */
     constructor(name: string, argsOrState?: InstanceServerArgs | InstanceServerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceServer is deprecated: scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
@@ -504,9 +510,9 @@ export interface InstanceServerState {
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**
@@ -530,23 +536,23 @@ export interface InstanceServerState {
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     ipv6Address?: pulumi.Input<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     ipv6Gateway?: pulumi.Input<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     ipv6PrefixLength?: pulumi.Input<number>;
     /**
@@ -670,9 +676,9 @@ export interface InstanceServerArgs {
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
      * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-     * Deprecated: Please use a scaleway.InstanceIp with a `routedIpv6` type.
+     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
-     * @deprecated Please use a scaleway.InstanceIp with a `routedIpv6` type
+     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
     enableIpv6?: pulumi.Input<boolean>;
     /**

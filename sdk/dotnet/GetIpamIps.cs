@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps")]
     public static class GetIpamIps
     {
         /// <summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byTag = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTag = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Tags = new[]
         ///         {
@@ -51,21 +52,21 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
         ///     {
         ///         Name = "my vpc",
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         VpcId = vpc01.Id,
-        ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+        ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
         ///         {
         ///             Subnet = "172.16.32.0/22",
         ///         },
         ///     });
         /// 
-        ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
+        ///     var redis01 = new Scaleway.Redis.Cluster("redis01", new()
         ///     {
         ///         Name = "my_redis_cluster",
         ///         Version = "7.0.5",
@@ -75,17 +76,17 @@ namespace Pulumiverse.Scaleway
         ///         ClusterSize = 3,
         ///         PrivateNetworks = new[]
         ///         {
-        ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+        ///             new Scaleway.Redis.Inputs.ClusterPrivateNetworkArgs
         ///             {
         ///                 Id = pn01.Id,
         ///             },
         ///         },
         ///     });
         /// 
-        ///     var byTypeAndResource = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTypeAndResource = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Type = "ipv4",
-        ///         Resource = new Scaleway.Inputs.GetIpamIpsResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpsResourceInputArgs
         ///         {
         ///             Id = redis01.Id,
         ///             Type = "redis_cluster",
@@ -115,7 +116,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byTag = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTag = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Tags = new[]
         ///         {
@@ -137,21 +138,21 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
         ///     {
         ///         Name = "my vpc",
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         VpcId = vpc01.Id,
-        ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+        ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
         ///         {
         ///             Subnet = "172.16.32.0/22",
         ///         },
         ///     });
         /// 
-        ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
+        ///     var redis01 = new Scaleway.Redis.Cluster("redis01", new()
         ///     {
         ///         Name = "my_redis_cluster",
         ///         Version = "7.0.5",
@@ -161,17 +162,17 @@ namespace Pulumiverse.Scaleway
         ///         ClusterSize = 3,
         ///         PrivateNetworks = new[]
         ///         {
-        ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+        ///             new Scaleway.Redis.Inputs.ClusterPrivateNetworkArgs
         ///             {
         ///                 Id = pn01.Id,
         ///             },
         ///         },
         ///     });
         /// 
-        ///     var byTypeAndResource = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTypeAndResource = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Type = "ipv4",
-        ///         Resource = new Scaleway.Inputs.GetIpamIpsResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpsResourceInputArgs
         ///         {
         ///             Id = redis01.Id,
         ///             Type = "redis_cluster",
@@ -201,7 +202,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var byTag = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTag = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Tags = new[]
         ///         {
@@ -223,21 +224,21 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+        ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
         ///     {
         ///         Name = "my vpc",
         ///     });
         /// 
-        ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+        ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
         ///     {
         ///         VpcId = vpc01.Id,
-        ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+        ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
         ///         {
         ///             Subnet = "172.16.32.0/22",
         ///         },
         ///     });
         /// 
-        ///     var redis01 = new Scaleway.RedisCluster("redis01", new()
+        ///     var redis01 = new Scaleway.Redis.Cluster("redis01", new()
         ///     {
         ///         Name = "my_redis_cluster",
         ///         Version = "7.0.5",
@@ -247,17 +248,17 @@ namespace Pulumiverse.Scaleway
         ///         ClusterSize = 3,
         ///         PrivateNetworks = new[]
         ///         {
-        ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+        ///             new Scaleway.Redis.Inputs.ClusterPrivateNetworkArgs
         ///             {
         ///                 Id = pn01.Id,
         ///             },
         ///         },
         ///     });
         /// 
-        ///     var byTypeAndResource = Scaleway.GetIpamIps.Invoke(new()
+        ///     var byTypeAndResource = Scaleway.Ipam.GetIps.Invoke(new()
         ///     {
         ///         Type = "ipv4",
-        ///         Resource = new Scaleway.Inputs.GetIpamIpsResourceInputArgs
+        ///         Resource = new Scaleway.Ipam.Inputs.GetIpsResourceInputArgs
         ///         {
         ///             Id = redis01.Id,
         ///             Type = "redis_cluster",

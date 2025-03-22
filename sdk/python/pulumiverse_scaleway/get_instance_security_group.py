@@ -22,6 +22,8 @@ __all__ = [
     'get_instance_security_group_output',
 ]
 
+warnings.warn("""scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceSecurityGroupResult:
     """
@@ -205,6 +207,7 @@ def get_instance_security_group(name: Optional[str] = None,
     :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
     :param str zone: `zone`) The zone in which the security group exists.
     """
+    pulumi.log.warn("""get_instance_security_group is deprecated: scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -243,6 +246,7 @@ def get_instance_security_group_output(name: Optional[pulumi.Input[Optional[str]
     :param str security_group_id: The security group id. Only one of `name` and `security_group_id` should be specified.
     :param str zone: `zone`) The zone in which the security group exists.
     """
+    pulumi.log.warn("""get_instance_security_group is deprecated: scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+ * The `scaleway.account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
  */
+/** @deprecated scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey */
 export function getAccountSshKey(args?: GetAccountSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetAccountSshKeyResult> {
+    pulumi.log.warn("getAccountSshKey is deprecated: scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAccountSshKey:getAccountSshKey", {
@@ -64,11 +66,13 @@ export interface GetAccountSshKeyResult {
     readonly updatedAt: string;
 }
 /**
- * The `scaleway.AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+ * The `scaleway.account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
  */
+/** @deprecated scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey */
 export function getAccountSshKeyOutput(args?: GetAccountSshKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAccountSshKeyResult> {
+    pulumi.log.warn("getAccountSshKey is deprecated: scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAccountSshKey:getAccountSshKey", {

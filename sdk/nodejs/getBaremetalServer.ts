@@ -17,17 +17,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by server name
- * const byName = scaleway.getBaremetalServer({
+ * const byName = scaleway.elasticmetal.getServer({
  *     name: "foobar",
  *     zone: "fr-par-2",
  * });
  * // Get info by server id
- * const byId = scaleway.getBaremetalServer({
+ * const byId = scaleway.elasticmetal.getServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer */
 export function getBaremetalServer(args?: GetBaremetalServerArgs, opts?: pulumi.InvokeOptions): Promise<GetBaremetalServerResult> {
+    pulumi.log.warn("getBaremetalServer is deprecated: scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBaremetalServer:getBaremetalServer", {
@@ -104,17 +106,19 @@ export interface GetBaremetalServerResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by server name
- * const byName = scaleway.getBaremetalServer({
+ * const byName = scaleway.elasticmetal.getServer({
  *     name: "foobar",
  *     zone: "fr-par-2",
  * });
  * // Get info by server id
- * const byId = scaleway.getBaremetalServer({
+ * const byId = scaleway.elasticmetal.getServer({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer */
 export function getBaremetalServerOutput(args?: GetBaremetalServerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBaremetalServerResult> {
+    pulumi.log.warn("getBaremetalServer is deprecated: scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBaremetalServer:getBaremetalServer", {
