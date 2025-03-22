@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getloadbalancerip.getLoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/getip.getIp")]
     public static class GetLoadbalancerIp
     {
         /// <summary>

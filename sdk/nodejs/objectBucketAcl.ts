@@ -13,8 +13,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const someBucket = new scaleway.ObjectBucket("some_bucket", {name: "unique-name"});
- * const main = new scaleway.ObjectBucketAcl("main", {
+ * const someBucket = new scaleway.object.Bucket("some_bucket", {name: "unique-name"});
+ * const main = new scaleway.object.BucketAcl("main", {
  *     bucket: mainScalewayObjectBucket.id,
  *     acl: "private",
  * });
@@ -28,8 +28,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {name: "your-bucket"});
- * const mainObjectBucketAcl = new scaleway.ObjectBucketAcl("main", {
+ * const main = new scaleway.object.Bucket("main", {name: "your-bucket"});
+ * const mainBucketAcl = new scaleway.object.BucketAcl("main", {
  *     bucket: main.id,
  *     accessControlPolicy: {
  *         grants: [
@@ -114,6 +114,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectBucketAcl:ObjectBucketAcl some_bucket fr-par/some-bucket/private@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
+ *
+ * @deprecated scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl
  */
 export class ObjectBucketAcl extends pulumi.CustomResource {
     /**
@@ -126,6 +128,7 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectBucketAclState, opts?: pulumi.CustomResourceOptions): ObjectBucketAcl {
+        pulumi.log.warn("ObjectBucketAcl is deprecated: scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl")
         return new ObjectBucketAcl(name, <any>state, { ...opts, id: id });
     }
 
@@ -175,8 +178,11 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl */
     constructor(name: string, args: ObjectBucketAclArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl */
     constructor(name: string, argsOrState?: ObjectBucketAclArgs | ObjectBucketAclState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectBucketAcl is deprecated: scaleway.index/objectbucketacl.ObjectBucketAcl has been deprecated in favor of scaleway.object/bucketacl.BucketAcl")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

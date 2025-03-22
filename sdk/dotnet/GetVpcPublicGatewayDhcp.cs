@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcpublicgatewaydhcp.getVpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/getpublicgatewaydhcp.getPublicGatewayDhcp")]
     public static class GetVpcPublicGatewayDhcp
     {
         /// <summary>
@@ -26,12 +27,12 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+        ///     var main = new Scaleway.Network.PublicGatewayDhcp("main", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new()
+        ///     var dhcpById = Scaleway.Network.GetPublicGatewayDhcp.Invoke(new()
         ///     {
         ///         DhcpId = main.Id,
         ///     });
@@ -56,12 +57,12 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+        ///     var main = new Scaleway.Network.PublicGatewayDhcp("main", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new()
+        ///     var dhcpById = Scaleway.Network.GetPublicGatewayDhcp.Invoke(new()
         ///     {
         ///         DhcpId = main.Id,
         ///     });
@@ -86,12 +87,12 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+        ///     var main = new Scaleway.Network.PublicGatewayDhcp("main", new()
         ///     {
         ///         Subnet = "192.168.0.0/24",
         ///     });
         /// 
-        ///     var dhcpById = Scaleway.GetVpcPublicGatewayDhcp.Invoke(new()
+        ///     var dhcpById = Scaleway.Network.GetPublicGatewayDhcp.Invoke(new()
         ///     {
         ///         DhcpId = main.Id,
         ///     });

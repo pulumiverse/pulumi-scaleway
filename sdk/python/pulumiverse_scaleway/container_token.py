@@ -120,7 +120,7 @@ class _ContainerTokenState:
                  expires_at: Optional[pulumi.Input[str]] = None,
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 token: Optional[pulumi.Input[str]] = None):
+                 value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerToken resources.
         :param pulumi.Input[str] container_id: The unique identifier of the container.
@@ -132,7 +132,7 @@ class _ContainerTokenState:
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
                > **Important** Updating any of the arguments above will recreate the token.
-        :param pulumi.Input[str] token: The token.
+        :param pulumi.Input[str] value: The token.
         """
         if container_id is not None:
             pulumi.set(__self__, "container_id", container_id)
@@ -144,8 +144,8 @@ class _ContainerTokenState:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter(name="containerId")
@@ -213,18 +213,23 @@ class _ContainerTokenState:
 
     @property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[str]]:
+    def value(self) -> Optional[pulumi.Input[str]]:
         """
         The token.
         """
-        return pulumi.get(self, "token")
+        return pulumi.get(self, "value")
 
-    @token.setter
-    def token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token", value)
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+warnings.warn("""scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token""", DeprecationWarning)
 
 
 class ContainerToken(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -236,7 +241,7 @@ class ContainerToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 
@@ -246,14 +251,14 @@ class ContainerToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", name="test-container-token-ns")
-        main_container = scaleway.Container("main", namespace_id=main.id)
+        main = scaleway.containers.Namespace("main", name="test-container-token-ns")
+        main_container = scaleway.containers.Container("main", namespace_id=main.id)
         # Namespace Token
-        namespace = scaleway.ContainerToken("namespace",
+        namespace = scaleway.containers.Token("namespace",
             namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Container Token
-        container = scaleway.ContainerToken("container", container_id=main_container.id)
+        container = scaleway.containers.Token("container", container_id=main_container.id)
         ```
 
         ## Import
@@ -285,7 +290,7 @@ class ContainerToken(pulumi.CustomResource):
                  args: Optional[ContainerTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 
@@ -295,14 +300,14 @@ class ContainerToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main", name="test-container-token-ns")
-        main_container = scaleway.Container("main", namespace_id=main.id)
+        main = scaleway.containers.Namespace("main", name="test-container-token-ns")
+        main_container = scaleway.containers.Container("main", namespace_id=main.id)
         # Namespace Token
-        namespace = scaleway.ContainerToken("namespace",
+        namespace = scaleway.containers.Token("namespace",
             namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Container Token
-        container = scaleway.ContainerToken("container", container_id=main_container.id)
+        container = scaleway.containers.Token("container", container_id=main_container.id)
         ```
 
         ## Import
@@ -336,6 +341,7 @@ class ContainerToken(pulumi.CustomResource):
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ContainerToken is deprecated: scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -349,8 +355,8 @@ class ContainerToken(pulumi.CustomResource):
             __props__.__dict__["expires_at"] = expires_at
             __props__.__dict__["namespace_id"] = namespace_id
             __props__.__dict__["region"] = region
-            __props__.__dict__["token"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+            __props__.__dict__["value"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["value"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(ContainerToken, __self__).__init__(
             'scaleway:index/containerToken:ContainerToken',
@@ -367,7 +373,7 @@ class ContainerToken(pulumi.CustomResource):
             expires_at: Optional[pulumi.Input[str]] = None,
             namespace_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            token: Optional[pulumi.Input[str]] = None) -> 'ContainerToken':
+            value: Optional[pulumi.Input[str]] = None) -> 'ContainerToken':
         """
         Get an existing ContainerToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -384,7 +390,7 @@ class ContainerToken(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
                > **Important** Updating any of the arguments above will recreate the token.
-        :param pulumi.Input[str] token: The token.
+        :param pulumi.Input[str] value: The token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -395,7 +401,7 @@ class ContainerToken(pulumi.CustomResource):
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["namespace_id"] = namespace_id
         __props__.__dict__["region"] = region
-        __props__.__dict__["token"] = token
+        __props__.__dict__["value"] = value
         return ContainerToken(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -444,9 +450,9 @@ class ContainerToken(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def token(self) -> pulumi.Output[str]:
+    def value(self) -> pulumi.Output[str]:
         """
         The token.
         """
-        return pulumi.get(self, "token")
+        return pulumi.get(self, "value")
 

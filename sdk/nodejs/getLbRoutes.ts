@@ -18,17 +18,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find routes that share the same frontend ID
- * const byFrontendID = scaleway.getLbRoutes({
+ * const byFrontendID = scaleway.loadbalancers.getRoutes({
  *     frontendId: frt01.id,
  * });
  * // Find routes by frontend ID and zone
- * const myKey = scaleway.getLbRoutes({
+ * const myKey = scaleway.loadbalancers.getRoutes({
  *     frontendId: "11111111-1111-1111-1111-111111111111",
  *     zone: "fr-par-2",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes */
 export function getLbRoutes(args?: GetLbRoutesArgs, opts?: pulumi.InvokeOptions): Promise<GetLbRoutesResult> {
+    pulumi.log.warn("getLbRoutes is deprecated: scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbRoutes:getLbRoutes", {
@@ -82,17 +84,19 @@ export interface GetLbRoutesResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find routes that share the same frontend ID
- * const byFrontendID = scaleway.getLbRoutes({
+ * const byFrontendID = scaleway.loadbalancers.getRoutes({
  *     frontendId: frt01.id,
  * });
  * // Find routes by frontend ID and zone
- * const myKey = scaleway.getLbRoutes({
+ * const myKey = scaleway.loadbalancers.getRoutes({
  *     frontendId: "11111111-1111-1111-1111-111111111111",
  *     zone: "fr-par-2",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes */
 export function getLbRoutesOutput(args?: GetLbRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbRoutesResult> {
+    pulumi.log.warn("getLbRoutes is deprecated: scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbRoutes:getLbRoutes", {

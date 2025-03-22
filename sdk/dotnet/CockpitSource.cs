@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+    /// The `scaleway.observability.Source` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
     /// 
     /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
     /// 
@@ -29,12 +29,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = new Scaleway.AccountProject("project", new()
+    ///     var project = new Scaleway.Account.Project("project", new()
     ///     {
     ///         Name = "test project data source",
     ///     });
     /// 
-    ///     var main = new Scaleway.CockpitSource("main", new()
+    ///     var main = new Scaleway.Observability.Source("main", new()
     ///     {
     ///         ProjectId = project.Id,
     ///         Name = "my-data-source",
@@ -55,6 +55,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source")]
     [ScalewayResourceType("scaleway:index/cockpitSource:CockpitSource")]
     public partial class CockpitSource : global::Pulumi.CustomResource
     {

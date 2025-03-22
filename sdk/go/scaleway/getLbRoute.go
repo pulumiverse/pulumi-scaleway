@@ -23,17 +23,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ip01, err := scaleway.NewLoadbalancerIp(ctx, "ip01", nil)
+//			ip01, err := loadbalancers.NewIp(ctx, "ip01", nil)
 //			if err != nil {
 //				return err
 //			}
-//			lb01, err := scaleway.NewLoadbalancer(ctx, "lb01", &scaleway.LoadbalancerArgs{
+//			lb01, err := loadbalancers.NewLoadBalancer(ctx, "lb01", &loadbalancers.LoadBalancerArgs{
 //				IpId: ip01.ID(),
 //				Name: pulumi.String("test-lb"),
 //				Type: pulumi.String("lb-s"),
@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			bkd01, err := scaleway.NewLoadbalancerBackend(ctx, "bkd01", &scaleway.LoadbalancerBackendArgs{
+//			bkd01, err := loadbalancers.NewBackend(ctx, "bkd01", &loadbalancers.BackendArgs{
 //				LbId:            lb01.ID(),
 //				ForwardProtocol: pulumi.String("tcp"),
 //				ForwardPort:     pulumi.Int(80),
@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			frt01, err := scaleway.NewLoadbalancerFrontend(ctx, "frt01", &scaleway.LoadbalancerFrontendArgs{
+//			frt01, err := loadbalancers.NewFrontend(ctx, "frt01", &loadbalancers.FrontendArgs{
 //				LbId:        lb01.ID(),
 //				BackendId:   bkd01.ID(),
 //				InboundPort: pulumi.Int(80),
@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			rt01, err := scaleway.NewLoadbalancerRoute(ctx, "rt01", &scaleway.LoadbalancerRouteArgs{
+//			rt01, err := loadbalancers.NewRoute(ctx, "rt01", &loadbalancers.RouteArgs{
 //				FrontendId: frt01.ID(),
 //				BackendId:  bkd01.ID(),
 //				MatchSni:   pulumi.String("sni.scaleway.com"),
@@ -66,7 +66,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetLbRouteOutput(ctx, scaleway.GetLbRouteOutputArgs{
+//			_ = loadbalancers.LookupRouteOutput(ctx, loadbalancers.GetRouteOutputArgs{
 //				RouteId: rt01.ID(),
 //			}, nil)
 //			return nil
@@ -74,6 +74,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getlbroute.getLbRoute has been deprecated in favor of scaleway.loadbalancers/getroute.getRoute
 func GetLbRoute(ctx *pulumi.Context, args *GetLbRouteArgs, opts ...pulumi.InvokeOption) (*GetLbRouteResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbRouteResult

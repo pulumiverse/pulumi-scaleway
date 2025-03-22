@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `Container` data source is used to retrieve information about a Serverless Container.
+// The `containers.Container` data source is used to retrieve information about a Serverless Container.
 //
 // Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 //
@@ -30,17 +30,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewContainerNamespace(ctx, "main", nil)
+//			main, err := containers.NewNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainContainer, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				Name:        pulumi.String("test-container-data"),
 //				NamespaceId: main.ID(),
 //			})
@@ -48,12 +48,12 @@ import (
 //				return err
 //			}
 //			// Get info by container name
-//			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
+//			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
 //				NamespaceId: main.ID(),
 //				Name:        mainContainer.Name,
 //			}, nil)
 //			// Get info by container ID
-//			_ = scaleway.LookupContainerOutput(ctx, scaleway.GetContainerOutputArgs{
+//			_ = containers.LookupContainerOutput(ctx, containers.GetContainerOutputArgs{
 //				NamespaceId: main.ID(),
 //				ContainerId: mainContainer.ID(),
 //			}, nil)
@@ -65,7 +65,7 @@ import (
 //
 // ## Arguments reference
 //
-// This section lists the arguments that you can provide to the `Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
+// This section lists the arguments that you can provide to the `containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
 //
 // - `name` - (Required) The unique name of the container.
 //
@@ -74,6 +74,8 @@ import (
 // - `projectId` - (Optional) The unique identifier of the project with which the container is associated.
 //
 // > **Important** Updating the `name` argument will recreate the container.
+//
+// Deprecated: scaleway.index/getcontainer.getContainer has been deprecated in favor of scaleway.containers/getcontainer.getContainer
 func LookupContainer(ctx *pulumi.Context, args *LookupContainerArgs, opts ...pulumi.InvokeOption) (*LookupContainerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerResult

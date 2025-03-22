@@ -269,7 +269,12 @@ class _TemWebhookState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook""", DeprecationWarning)
+
+
 class TemWebhook(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -293,7 +298,7 @@ class TemWebhook(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemWebhook("main",
+        main = scaleway.tem.Webhook("main",
             domain_id="your-domain-id",
             event_types=[
                 "email_delivered",
@@ -311,40 +316,40 @@ class TemWebhook(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        sns = scaleway.MnqSns("sns")
-        sns_credentials = scaleway.MnqSnsCredentials("sns_credentials", permissions={
+        sns = scaleway.mnq.Sns("sns")
+        sns_credentials = scaleway.mnq.SnsCredentials("sns_credentials", permissions={
             "can_manage": True,
         })
-        sns_topic = scaleway.MnqSnsTopic("sns_topic",
+        sns_topic = scaleway.mnq.SnsTopic("sns_topic",
             name="test-mnq-sns-topic-basic",
             access_key=sns_credentials.access_key,
             secret_key=sns_credentials.secret_key)
-        cr01 = scaleway.TemDomain("cr01",
+        cr01 = scaleway.tem.Domain("cr01",
             name=domain_name,
             accept_tos=True)
-        spf = scaleway.DomainRecord("spf",
+        spf = scaleway.domain.Record("spf",
             dns_zone=domain_name,
             type="TXT",
             data=cr01.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
-        dkim = scaleway.DomainRecord("dkim",
+        dkim = scaleway.domain.Record("dkim",
             dns_zone=domain_name,
             name=cr01.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=cr01.dkim_config)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
             data=".")
-        dmarc = scaleway.DomainRecord("dmarc",
+        dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=cr01.dmarc_name,
             type="TXT",
             data=cr01.dmarc_config)
-        valid = scaleway.TemDomainValidation("valid",
+        valid = scaleway.tem.DomainValidation("valid",
             domain_id=cr01.id,
             region=cr01.region,
             timeout=3600)
-        webhook = scaleway.TemWebhook("webhook",
+        webhook = scaleway.tem.Webhook("webhook",
             name="example-webhook",
             domain_id=cr01.id,
             event_types=[
@@ -395,7 +400,7 @@ class TemWebhook(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemWebhook("main",
+        main = scaleway.tem.Webhook("main",
             domain_id="your-domain-id",
             event_types=[
                 "email_delivered",
@@ -413,40 +418,40 @@ class TemWebhook(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        sns = scaleway.MnqSns("sns")
-        sns_credentials = scaleway.MnqSnsCredentials("sns_credentials", permissions={
+        sns = scaleway.mnq.Sns("sns")
+        sns_credentials = scaleway.mnq.SnsCredentials("sns_credentials", permissions={
             "can_manage": True,
         })
-        sns_topic = scaleway.MnqSnsTopic("sns_topic",
+        sns_topic = scaleway.mnq.SnsTopic("sns_topic",
             name="test-mnq-sns-topic-basic",
             access_key=sns_credentials.access_key,
             secret_key=sns_credentials.secret_key)
-        cr01 = scaleway.TemDomain("cr01",
+        cr01 = scaleway.tem.Domain("cr01",
             name=domain_name,
             accept_tos=True)
-        spf = scaleway.DomainRecord("spf",
+        spf = scaleway.domain.Record("spf",
             dns_zone=domain_name,
             type="TXT",
             data=cr01.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
-        dkim = scaleway.DomainRecord("dkim",
+        dkim = scaleway.domain.Record("dkim",
             dns_zone=domain_name,
             name=cr01.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=cr01.dkim_config)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
             data=".")
-        dmarc = scaleway.DomainRecord("dmarc",
+        dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=cr01.dmarc_name,
             type="TXT",
             data=cr01.dmarc_config)
-        valid = scaleway.TemDomainValidation("valid",
+        valid = scaleway.tem.DomainValidation("valid",
             domain_id=cr01.id,
             region=cr01.region,
             timeout=3600)
-        webhook = scaleway.TemWebhook("webhook",
+        webhook = scaleway.tem.Webhook("webhook",
             name="example-webhook",
             domain_id=cr01.id,
             event_types=[
@@ -492,6 +497,7 @@ class TemWebhook(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  sns_arn: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""TemWebhook is deprecated: scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

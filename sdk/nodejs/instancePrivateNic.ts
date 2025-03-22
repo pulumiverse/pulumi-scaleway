@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     serverId: "fr-par-1/11111111-1111-1111-1111-111111111111",
  *     privateNetworkId: "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
  * });
@@ -28,16 +28,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "private_network_instance",
  *     region: "fr-par",
  * });
- * const base = new scaleway.InstanceServer("base", {
+ * const base = new scaleway.instance.Server("base", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     zone: pn01.zone,
  * });
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     serverId: base.id,
  *     privateNetworkId: pn01.id,
  *     zone: pn01.zone,
@@ -50,25 +50,25 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "vpc_instance"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "vpc_instance"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "private_network_instance",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.64.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],
  * });
- * const server01 = new scaleway.InstanceServer("server01", {
+ * const server01 = new scaleway.instance.Server("server01", {
  *     image: "ubuntu_focal",
  *     type: "PLAY2-MICRO",
  * });
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     privateNetworkId: pn01.id,
  *     serverId: server01.id,
  *     ipamIpIds: [ip01.id],
@@ -84,6 +84,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
  * ```
+ *
+ * @deprecated scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic
  */
 export class InstancePrivateNic extends pulumi.CustomResource {
     /**
@@ -96,6 +98,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstancePrivateNicState, opts?: pulumi.CustomResourceOptions): InstancePrivateNic {
+        pulumi.log.warn("InstancePrivateNic is deprecated: scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic")
         return new InstancePrivateNic(name, <any>state, { ...opts, id: id });
     }
 
@@ -149,8 +152,11 @@ export class InstancePrivateNic extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic */
     constructor(name: string, args: InstancePrivateNicArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic */
     constructor(name: string, argsOrState?: InstancePrivateNicArgs | InstancePrivateNicState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstancePrivateNic is deprecated: scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

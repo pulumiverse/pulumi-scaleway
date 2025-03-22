@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion")]
     public static class GetSecretVersion
     {
         /// <summary>
-        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+        /// The `scaleway.secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -42,14 +43,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret named fooii
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Create a version of fooii containing data
-        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
+        ///     var mainVersion = new Scaleway.Secrets.Version("main", new()
         ///     {
         ///         Description = "your description",
         ///         SecretId = main.Id,
@@ -57,14 +58,14 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret ID and the desired version
-        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretId = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret name and the desired version
-        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretName = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretName = main.Name,
         ///         Revision = "1",
@@ -72,8 +73,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
-        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getVersionResult =&gt; getVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getVersionResult =&gt; getVersionResult.Data),
         ///     };
         /// });
         /// ```
@@ -91,7 +92,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+        /// The `scaleway.secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -120,14 +121,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret named fooii
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Create a version of fooii containing data
-        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
+        ///     var mainVersion = new Scaleway.Secrets.Version("main", new()
         ///     {
         ///         Description = "your description",
         ///         SecretId = main.Id,
@@ -135,14 +136,14 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret ID and the desired version
-        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretId = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret name and the desired version
-        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretName = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretName = main.Name,
         ///         Revision = "1",
@@ -150,8 +151,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
-        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getVersionResult =&gt; getVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getVersionResult =&gt; getVersionResult.Data),
         ///     };
         /// });
         /// ```
@@ -169,7 +170,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetSecretVersionResult>("scaleway:index/getSecretVersion:getSecretVersion", args ?? new GetSecretVersionInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+        /// The `scaleway.secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
@@ -198,14 +199,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a secret named fooii
-        ///     var main = new Scaleway.Secret("main", new()
+        ///     var main = new Scaleway.Secrets.Secret("main", new()
         ///     {
         ///         Name = "fooii",
         ///         Description = "barr",
         ///     });
         /// 
         ///     // Create a version of fooii containing data
-        ///     var mainSecretVersion = new Scaleway.SecretVersion("main", new()
+        ///     var mainVersion = new Scaleway.Secrets.Version("main", new()
         ///     {
         ///         Description = "your description",
         ///         SecretId = main.Id,
@@ -213,14 +214,14 @@ namespace Pulumiverse.Scaleway
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret ID and the desired version
-        ///     var dataBySecretId = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretId = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretId = main.Id,
         ///         Revision = "1",
         ///     });
         /// 
         ///     // Retrieve the secret version specified by the secret name and the desired version
-        ///     var dataBySecretName = Scaleway.GetSecretVersion.Invoke(new()
+        ///     var dataBySecretName = Scaleway.Secrets.GetVersion.Invoke(new()
         ///     {
         ///         SecretName = main.Name,
         ///         Revision = "1",
@@ -228,8 +229,8 @@ namespace Pulumiverse.Scaleway
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
-        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getSecretVersionResult =&gt; getSecretVersionResult.Data),
+        ///         ["scalewaySecretAccessPayload"] = dataBySecretName.Apply(getVersionResult =&gt; getVersionResult.Data),
+        ///         ["scalewaySecretAccessPayloadById"] = dataBySecretId.Apply(getVersionResult =&gt; getVersionResult.Data),
         ///     };
         /// });
         /// ```

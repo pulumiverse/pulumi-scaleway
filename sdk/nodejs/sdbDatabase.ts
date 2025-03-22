@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+ * The `scaleway.databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
  *
  * Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
  *
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const database = new scaleway.SdbDatabase("database", {
+ * const database = new scaleway.databases.ServerlessDatabase("database", {
  *     name: "my-database",
  *     minCpu: 0,
  *     maxCpu: 8,
@@ -33,6 +33,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase
  */
 export class SdbDatabase extends pulumi.CustomResource {
     /**
@@ -45,6 +47,7 @@ export class SdbDatabase extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SdbDatabaseState, opts?: pulumi.CustomResourceOptions): SdbDatabase {
+        pulumi.log.warn("SdbDatabase is deprecated: scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase")
         return new SdbDatabase(name, <any>state, { ...opts, id: id });
     }
 
@@ -96,8 +99,11 @@ export class SdbDatabase extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase */
     constructor(name: string, args?: SdbDatabaseArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase */
     constructor(name: string, argsOrState?: SdbDatabaseArgs | SdbDatabaseState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("SdbDatabase is deprecated: scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers")]
     public static class GetLbs
     {
         /// <summary>

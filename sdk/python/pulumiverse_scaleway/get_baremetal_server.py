@@ -22,6 +22,8 @@ __all__ = [
     'get_baremetal_server_output',
 ]
 
+warnings.warn("""scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBaremetalServerResult:
     """
@@ -309,10 +311,10 @@ def get_baremetal_server(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by server name
-    by_name = scaleway.get_baremetal_server(name="foobar",
+    by_name = scaleway.elasticmetal.get_server(name="foobar",
         zone="fr-par-2")
     # Get info by server id
-    by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.elasticmetal.get_server(server_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -320,6 +322,7 @@ def get_baremetal_server(name: Optional[str] = None,
     :param str project_id: The ID of the project the baremetal server is associated with.
     :param str zone: `zone`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_baremetal_server is deprecated: scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -373,10 +376,10 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi_scaleway as scaleway
 
     # Get info by server name
-    by_name = scaleway.get_baremetal_server(name="foobar",
+    by_name = scaleway.elasticmetal.get_server(name="foobar",
         zone="fr-par-2")
     # Get info by server id
-    by_id = scaleway.get_baremetal_server(server_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.elasticmetal.get_server(server_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -384,6 +387,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[str]]] = No
     :param str project_id: The ID of the project the baremetal server is associated with.
     :param str zone: `zone`) The zone in which the server exists.
     """
+    pulumi.log.warn("""get_baremetal_server is deprecated: scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

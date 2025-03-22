@@ -143,7 +143,12 @@ class _TemDomainValidationState:
         pulumi.set(self, "validated", value)
 
 
+warnings.warn("""scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation""", DeprecationWarning)
+
+
 class TemDomainValidation(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -161,10 +166,10 @@ class TemDomainValidation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             accept_tos=True,
             name="example.com")
-        example = scaleway.TemDomainValidation("example",
+        example = scaleway.tem.DomainValidation("example",
             domain_id=main.id,
             region="fr-par",
             timeout=300)
@@ -191,10 +196,10 @@ class TemDomainValidation(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             accept_tos=True,
             name="example.com")
-        example = scaleway.TemDomainValidation("example",
+        example = scaleway.tem.DomainValidation("example",
             domain_id=main.id,
             region="fr-par",
             timeout=300)
@@ -219,6 +224,7 @@ class TemDomainValidation(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
+        pulumi.log.warn("""TemDomainValidation is deprecated: scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

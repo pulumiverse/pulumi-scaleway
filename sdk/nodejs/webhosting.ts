@@ -17,11 +17,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const byName = scaleway.getWebHostOffer({
+ * const byName = scaleway.hosting.getOffer({
  *     name: "lite",
  *     controlPanel: "Cpanel",
  * });
- * const main = new scaleway.Webhosting("main", {
+ * const main = new scaleway.hosting.Hosting("main", {
  *     offerId: byName.then(byName => byName.offerId),
  *     email: "your@email.com",
  *     domain: "yourdomain.com",
@@ -42,6 +42,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting
  */
 export class Webhosting extends pulumi.CustomResource {
     /**
@@ -54,6 +56,7 @@ export class Webhosting extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: WebhostingState, opts?: pulumi.CustomResourceOptions): Webhosting {
+        pulumi.log.warn("Webhosting is deprecated: scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting")
         return new Webhosting(name, <any>state, { ...opts, id: id });
     }
 
@@ -161,8 +164,11 @@ export class Webhosting extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting */
     constructor(name: string, args: WebhostingArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting */
     constructor(name: string, argsOrState?: WebhostingArgs | WebhostingState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Webhosting is deprecated: scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

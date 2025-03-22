@@ -116,7 +116,12 @@ class _MnqSnsState:
         pulumi.set(self, "region", value)
 
 
+warnings.warn("""scaleway.index/mnqsns.MnqSns has been deprecated in favor of scaleway.mnq/sns.Sns""", DeprecationWarning)
+
+
 class MnqSns(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsns.MnqSns has been deprecated in favor of scaleway.mnq/sns.Sns""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -139,7 +144,7 @@ class MnqSns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSns("main")
+        main = scaleway.mnq.Sns("main")
         ```
 
         Activate SNS in a specific Project
@@ -149,9 +154,9 @@ class MnqSns(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.get_account_project(name="default")
+        project = scaleway.account.get_project(name="default")
         # For specific Project in default region
-        for_project = scaleway.MnqSns("for_project", project_id=project.id)
+        for_project = scaleway.mnq.Sns("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -191,7 +196,7 @@ class MnqSns(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSns("main")
+        main = scaleway.mnq.Sns("main")
         ```
 
         Activate SNS in a specific Project
@@ -201,9 +206,9 @@ class MnqSns(pulumi.CustomResource):
         import pulumi_scaleway as scaleway
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.get_account_project(name="default")
+        project = scaleway.account.get_project(name="default")
         # For specific Project in default region
-        for_project = scaleway.MnqSns("for_project", project_id=project.id)
+        for_project = scaleway.mnq.Sns("for_project", project_id=project.id)
         ```
 
         ## Import
@@ -234,6 +239,7 @@ class MnqSns(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSns is deprecated: scaleway.index/mnqsns.MnqSns has been deprecated in favor of scaleway.mnq/sns.Sns""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

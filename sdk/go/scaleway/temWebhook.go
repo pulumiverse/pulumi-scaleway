@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewTemWebhook(ctx, "main", &scaleway.TemWebhookArgs{
+//			_, err := tem.NewWebhook(ctx, "main", &tem.WebhookArgs{
 //				DomainId: pulumi.String("your-domain-id"),
 //				EventTypes: pulumi.StringArray{
 //					pulumi.String("email_delivered"),
@@ -60,7 +60,9 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
 //
 // )
 //
@@ -68,19 +70,19 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
 //			domainName := cfg.Require("domainName")
-//			_, err := scaleway.NewMnqSns(ctx, "sns", nil)
+//			_, err := mnq.NewSns(ctx, "sns", nil)
 //			if err != nil {
 //				return err
 //			}
-//			snsCredentials, err := scaleway.NewMnqSnsCredentials(ctx, "sns_credentials", &scaleway.MnqSnsCredentialsArgs{
-//				Permissions: &scaleway.MnqSnsCredentialsPermissionsArgs{
+//			snsCredentials, err := mnq.NewSnsCredentials(ctx, "sns_credentials", &mnq.SnsCredentialsArgs{
+//				Permissions: &mnq.SnsCredentialsPermissionsArgs{
 //					CanManage: pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			snsTopic, err := scaleway.NewMnqSnsTopic(ctx, "sns_topic", &scaleway.MnqSnsTopicArgs{
+//			snsTopic, err := mnq.NewSnsTopic(ctx, "sns_topic", &mnq.SnsTopicArgs{
 //				Name:      pulumi.String("test-mnq-sns-topic-basic"),
 //				AccessKey: snsCredentials.AccessKey,
 //				SecretKey: snsCredentials.SecretKey,
@@ -88,14 +90,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			cr01, err := scaleway.NewTemDomain(ctx, "cr01", &scaleway.TemDomainArgs{
+//			cr01, err := tem.NewDomain(ctx, "cr01", &tem.DomainArgs{
 //				Name:      pulumi.String(domainName),
 //				AcceptTos: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "spf", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("TXT"),
 //				Data: cr01.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
@@ -105,7 +107,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "dkim", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Name: cr01.ProjectId.ApplyT(func(projectId string) (string, error) {
 //					return fmt.Sprintf("%v._domainkey", projectId), nil
@@ -116,7 +118,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "mx", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("MX"),
 //				Data:    pulumi.String("."),
@@ -124,7 +126,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "dmarc", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "dmarc", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Name:    cr01.DmarcName,
 //				Type:    pulumi.String("TXT"),
@@ -133,7 +135,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			valid, err := scaleway.NewTemDomainValidation(ctx, "valid", &scaleway.TemDomainValidationArgs{
+//			valid, err := tem.NewDomainValidation(ctx, "valid", &tem.DomainValidationArgs{
 //				DomainId: cr01.ID(),
 //				Region:   cr01.Region,
 //				Timeout:  pulumi.Int(3600),
@@ -141,7 +143,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewTemWebhook(ctx, "webhook", &scaleway.TemWebhookArgs{
+//			_, err = tem.NewWebhook(ctx, "webhook", &tem.WebhookArgs{
 //				Name:     pulumi.String("example-webhook"),
 //				DomainId: cr01.ID(),
 //				EventTypes: pulumi.StringArray{
@@ -171,6 +173,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/temWebhook:TemWebhook main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook
 type TemWebhook struct {
 	pulumi.CustomResourceState
 

@@ -21,6 +21,8 @@ __all__ = [
     'get_flexible_ip_output',
 ]
 
+warnings.warn("""scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp""", DeprecationWarning)
+
 @pulumi.output_type
 class GetFlexibleIpResult:
     """
@@ -190,6 +192,7 @@ def get_flexible_ip(flexible_ip_id: Optional[str] = None,
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
     """
+    pulumi.log.warn("""get_flexible_ip is deprecated: scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp""")
     __args__ = dict()
     __args__['flexibleIpId'] = flexible_ip_id
     __args__['ipAddress'] = ip_address
@@ -224,6 +227,7 @@ def get_flexible_ip_output(flexible_ip_id: Optional[pulumi.Input[Optional[str]]]
            Only one of `ip_address` and `ip_id` should be specified.
     :param str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
     """
+    pulumi.log.warn("""get_flexible_ip is deprecated: scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp""")
     __args__ = dict()
     __args__['flexibleIpId'] = flexible_ip_id
     __args__['ipAddress'] = ip_address

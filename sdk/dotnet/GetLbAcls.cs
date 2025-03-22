@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls")]
     public static class GetLbAcls
     {
         /// <summary>
@@ -28,13 +29,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find acls that share the same frontend ID
-        ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontID = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find acls by frontend ID and name
-        ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontIDAndName = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///         Name = "tf-acls-datasource",
@@ -62,13 +63,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find acls that share the same frontend ID
-        ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontID = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find acls by frontend ID and name
-        ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontIDAndName = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///         Name = "tf-acls-datasource",
@@ -96,13 +97,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find acls that share the same frontend ID
-        ///     var byFrontID = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontID = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find acls by frontend ID and name
-        ///     var byFrontIDAndName = Scaleway.GetLbAcls.Invoke(new()
+        ///     var byFrontIDAndName = Scaleway.Loadbalancers.GetAcls.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///         Name = "tf-acls-datasource",

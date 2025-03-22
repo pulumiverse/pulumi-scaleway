@@ -21,27 +21,27 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupInstancePrivateNic(ctx, &scaleway.LookupInstancePrivateNicArgs{
+//			_, err := instance.LookupPrivateNic(ctx, &instance.LookupPrivateNicArgs{
 //				ServerId:     "11111111-1111-1111-1111-111111111111",
 //				PrivateNicId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupInstancePrivateNic(ctx, &scaleway.LookupInstancePrivateNicArgs{
+//			_, err = instance.LookupPrivateNic(ctx, &instance.LookupPrivateNicArgs{
 //				ServerId:         "11111111-1111-1111-1111-111111111111",
 //				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupInstancePrivateNic(ctx, &scaleway.LookupInstancePrivateNicArgs{
+//			_, err = instance.LookupPrivateNic(ctx, &instance.LookupPrivateNicArgs{
 //				ServerId: "11111111-1111-1111-1111-111111111111",
 //				Tags: []string{
 //					"mytag",
@@ -55,6 +55,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic
 func LookupInstancePrivateNic(ctx *pulumi.Context, args *LookupInstancePrivateNicArgs, opts ...pulumi.InvokeOption) (*LookupInstancePrivateNicResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstancePrivateNicResult

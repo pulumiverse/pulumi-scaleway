@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about an instance volume.
  */
+/** @deprecated scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume */
 export function getInstanceVolume(args?: GetInstanceVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceVolumeResult> {
+    pulumi.log.warn("getInstanceVolume is deprecated: scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceVolume:getInstanceVolume", {
@@ -68,7 +70,9 @@ export interface GetInstanceVolumeResult {
 /**
  * Gets information about an instance volume.
  */
+/** @deprecated scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume */
 export function getInstanceVolumeOutput(args?: GetInstanceVolumeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceVolumeResult> {
+    pulumi.log.warn("getInstanceVolume is deprecated: scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceVolume:getInstanceVolume", {

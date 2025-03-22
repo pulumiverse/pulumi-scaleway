@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate")]
     [ScalewayResourceType("scaleway:index/loadbalancerCertificate:LoadbalancerCertificate")]
     public partial class LoadbalancerCertificate : global::Pulumi.CustomResource
     {

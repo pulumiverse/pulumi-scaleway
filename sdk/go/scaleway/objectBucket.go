@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+// The `object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information on Object Storage buckets.
 //
@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//			_, err := object.NewBucket(ctx, "some_bucket", &object.BucketArgs{
 //				Name: pulumi.String("some-unique-name"),
 //				Tags: pulumi.StringMap{
 //					"key": pulumi.String("value"),
@@ -52,13 +52,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "some_bucket", &scaleway.ObjectBucketArgs{
+//			_, err := object.NewBucket(ctx, "some_bucket", &object.BucketArgs{
 //				Name:      pulumi.String("some-unique-name"),
 //				ProjectId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //			})
@@ -79,39 +79,39 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			_, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name:   pulumi.String("mybuckectid"),
 //				Region: pulumi.String("fr-par"),
-//				LifecycleRules: scaleway.ObjectBucketLifecycleRuleArray{
-//					&scaleway.ObjectBucketLifecycleRuleArgs{
+//				LifecycleRules: object.BucketLifecycleRuleArray{
+//					&object.BucketLifecycleRuleArgs{
 //						Id:      pulumi.String("id1"),
 //						Prefix:  pulumi.String("path1/"),
 //						Enabled: pulumi.Bool(true),
-//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(365),
 //						},
-//						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
-//							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
+//						Transitions: object.BucketLifecycleRuleTransitionArray{
+//							&object.BucketLifecycleRuleTransitionArgs{
 //								Days:         pulumi.Int(120),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
 //					},
-//					&scaleway.ObjectBucketLifecycleRuleArgs{
+//					&object.BucketLifecycleRuleArgs{
 //						Id:      pulumi.String("id2"),
 //						Prefix:  pulumi.String("path2/"),
 //						Enabled: pulumi.Bool(true),
-//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(50),
 //						},
 //					},
-//					&scaleway.ObjectBucketLifecycleRuleArgs{
+//					&object.BucketLifecycleRuleArgs{
 //						Id:      pulumi.String("id3"),
 //						Prefix:  pulumi.String("path3/"),
 //						Enabled: pulumi.Bool(false),
@@ -119,24 +119,24 @@ import (
 //							"tagKey":    pulumi.String("tagValue"),
 //							"terraform": pulumi.String("hashicorp"),
 //						},
-//						Expiration: &scaleway.ObjectBucketLifecycleRuleExpirationArgs{
+//						Expiration: &object.BucketLifecycleRuleExpirationArgs{
 //							Days: pulumi.Int(1),
 //						},
 //					},
-//					&scaleway.ObjectBucketLifecycleRuleArgs{
+//					&object.BucketLifecycleRuleArgs{
 //						Id:      pulumi.String("id4"),
 //						Enabled: pulumi.Bool(true),
 //						Tags: pulumi.StringMap{
 //							"tag1": pulumi.String("value1"),
 //						},
-//						Transitions: scaleway.ObjectBucketLifecycleRuleTransitionArray{
-//							&scaleway.ObjectBucketLifecycleRuleTransitionArgs{
+//						Transitions: object.BucketLifecycleRuleTransitionArray{
+//							&object.BucketLifecycleRuleTransitionArgs{
 //								Days:         pulumi.Int(1),
 //								StorageClass: pulumi.String("GLACIER"),
 //							},
 //						},
 //					},
-//					&scaleway.ObjectBucketLifecycleRuleArgs{
+//					&object.BucketLifecycleRuleArgs{
 //						Enabled:                            pulumi.Bool(true),
 //						AbortIncompleteMultipartUploadDays: pulumi.Int(30),
 //					},
@@ -170,14 +170,16 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket
 type ObjectBucket struct {
 	pulumi.CustomResourceState
 
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
 	// API URL of the bucket
 	ApiEndpoint pulumi.StringOutput             `pulumi:"apiEndpoint"`
@@ -237,9 +239,9 @@ func GetObjectBucket(ctx *pulumi.Context,
 type objectBucketState struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl *string `pulumi:"acl"`
 	// API URL of the bucket
 	ApiEndpoint *string                `pulumi:"apiEndpoint"`
@@ -270,9 +272,9 @@ type objectBucketState struct {
 type ObjectBucketState struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl pulumi.StringPtrInput
 	// API URL of the bucket
 	ApiEndpoint pulumi.StringPtrInput
@@ -307,9 +309,9 @@ func (ObjectBucketState) ElementType() reflect.Type {
 type objectBucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl       *string                `pulumi:"acl"`
 	CorsRules []ObjectBucketCorsRule `pulumi:"corsRules"`
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -337,9 +339,9 @@ type objectBucketArgs struct {
 type ObjectBucketArgs struct {
 	// (Deprecated) The canned ACL you want to apply to the bucket.
 	//
-	// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
-	// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl       pulumi.StringPtrInput
 	CorsRules ObjectBucketCorsRuleArrayInput
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -452,9 +454,9 @@ func (o ObjectBucketOutput) ToObjectBucketOutputWithContext(ctx context.Context)
 
 // (Deprecated) The canned ACL you want to apply to the bucket.
 //
-// > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 //
-// Deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.
+// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 func (o ObjectBucketOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucket) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }

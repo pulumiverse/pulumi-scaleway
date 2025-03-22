@@ -26,35 +26,35 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "tf-vpc-vpn",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "tf-pn-vpn",
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
     ///         },
     ///         VpcId = vpc01.Id,
     ///     });
     /// 
-    ///     var server01 = new Scaleway.InstanceServer("server01", new()
+    ///     var server01 = new Scaleway.Instance.Server("server01", new()
     ///     {
     ///         Name = "tf-server-vpn",
     ///         Type = "PLAY2-MICRO",
     ///         Image = "openvpn",
     ///     });
     /// 
-    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
     ///     {
     ///         PrivateNetworkId = pn01.Id,
     ///         ServerId = server01.Id,
     ///     });
     /// 
-    ///     var rt01 = new Scaleway.VpcRoute("rt01", new()
+    ///     var rt01 = new Scaleway.Network.Route("rt01", new()
     ///     {
     ///         VpcId = vpc01.Id,
     ///         Description = "tf-route-vpn",
@@ -80,6 +80,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route")]
     [ScalewayResourceType("scaleway:index/vpcRoute:VpcRoute")]
     public partial class VpcRoute : global::Pulumi.CustomResource
     {

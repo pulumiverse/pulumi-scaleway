@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+// The `account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
 //
 // For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
 // you can choose the location that better fits your need (country, latency, etc.).
@@ -28,14 +28,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by Region key
-//			_, err := scaleway.GetAvailabilityZones(ctx, &scaleway.GetAvailabilityZonesArgs{
+//			_, err := account.GetAvailabilityZones(ctx, &account.GetAvailabilityZonesArgs{
 //				Region: pulumi.StringRef("nl-ams"),
 //			}, nil)
 //			if err != nil {
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones
 func GetAvailabilityZones(ctx *pulumi.Context, args *GetAvailabilityZonesArgs, opts ...pulumi.InvokeOption) (*GetAvailabilityZonesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetAvailabilityZonesResult

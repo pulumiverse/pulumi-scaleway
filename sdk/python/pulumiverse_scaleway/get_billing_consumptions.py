@@ -22,6 +22,8 @@ __all__ = [
     'get_billing_consumptions_output',
 ]
 
+warnings.warn("""scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBillingConsumptionsResult:
     """
@@ -103,6 +105,7 @@ def get_billing_consumptions(project_id: Optional[str] = None,
 
     :param str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
+    pulumi.log.warn("""get_billing_consumptions is deprecated: scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions""")
     __args__ = dict()
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -122,6 +125,7 @@ def get_billing_consumptions_output(project_id: Optional[pulumi.Input[Optional[s
 
     :param str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
+    pulumi.log.warn("""get_billing_consumptions is deprecated: scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions""")
     __args__ = dict()
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -25,9 +25,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var serverIp = new Scaleway.InstanceIp("server_ip");
+    ///     var serverIp = new Scaleway.Instance.Ip("server_ip");
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
+    ///     var tfA = new Scaleway.Domain.Record("tf_A", new()
     ///     {
     ///         DnsZone = "scaleway.com",
     ///         Name = "www",
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     ///         Priority = 1,
     ///     });
     /// 
-    ///     var reverse = new Scaleway.InstanceIpReverseDns("reverse", new()
+    ///     var reverse = new Scaleway.Instance.IpReverseDns("reverse", new()
     ///     {
     ///         IpId = serverIp.Id,
     ///         Reverse = "www.scaleway.com",
@@ -56,6 +56,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceIpReverseDns:InstanceIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceipreversedns.InstanceIpReverseDns has been deprecated in favor of scaleway.instance/ipreversedns.IpReverseDns")]
     [ScalewayResourceType("scaleway:index/instanceIpReverseDns:InstanceIpReverseDns")]
     public partial class InstanceIpReverseDns : global::Pulumi.CustomResource
     {

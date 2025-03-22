@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions")]
     public static class GetBillingConsumptions
     {
         /// <summary>

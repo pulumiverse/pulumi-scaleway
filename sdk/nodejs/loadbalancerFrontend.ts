@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
+ * const frontend01 = new scaleway.loadbalancers.Frontend("frontend01", {
  *     lbId: lb01.id,
  *     backendId: backend01.id,
  *     name: "frontend01",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const frontend01 = new scaleway.LoadbalancerFrontend("frontend01", {
+ * const frontend01 = new scaleway.loadbalancers.Frontend("frontend01", {
  *     lbId: lb01.id,
  *     backendId: backend01.id,
  *     name: "frontend01",
@@ -125,6 +125,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/loadbalancerFrontend:LoadbalancerFrontend frontend01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend
  */
 export class LoadbalancerFrontend extends pulumi.CustomResource {
     /**
@@ -137,6 +139,7 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerFrontendState, opts?: pulumi.CustomResourceOptions): LoadbalancerFrontend {
+        pulumi.log.warn("LoadbalancerFrontend is deprecated: scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend")
         return new LoadbalancerFrontend(name, <any>state, { ...opts, id: id });
     }
 
@@ -209,8 +212,11 @@ export class LoadbalancerFrontend extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend */
     constructor(name: string, args: LoadbalancerFrontendArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend */
     constructor(name: string, argsOrState?: LoadbalancerFrontendArgs | LoadbalancerFrontendState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("LoadbalancerFrontend is deprecated: scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

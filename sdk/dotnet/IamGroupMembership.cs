@@ -26,18 +26,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @group = new Scaleway.IamGroup("group", new()
+    ///     var @group = new Scaleway.Iam.Group("group", new()
     ///     {
     ///         Name = "my_group",
     ///         ExternalMembership = true,
     ///     });
     /// 
-    ///     var app = new Scaleway.IamApplication("app", new()
+    ///     var app = new Scaleway.Iam.Application("app", new()
     ///     {
     ///         Name = "my_app",
     ///     });
     /// 
-    ///     var member = new Scaleway.IamGroupMembership("member", new()
+    ///     var member = new Scaleway.Iam.GroupMembership("member", new()
     ///     {
     ///         GroupId = @group.Id,
     ///         ApplicationId = app.Id,
@@ -60,6 +60,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership")]
     [ScalewayResourceType("scaleway:index/iamGroupMembership:IamGroupMembership")]
     public partial class IamGroupMembership : global::Pulumi.CustomResource
     {

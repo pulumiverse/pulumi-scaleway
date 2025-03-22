@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-11"),
@@ -41,14 +41,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabase, err := scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
 //				InstanceId: main.ID(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabaseUser, err := scaleway.NewDatabaseUser(ctx, "main", &scaleway.DatabaseUserArgs{
+//			mainUser, err := databases.NewUser(ctx, "main", &databases.UserArgs{
 //				InstanceId: main.ID(),
 //				Name:       pulumi.String("my-db-user"),
 //				Password:   pulumi.String("thiZ_is_v&ry_s3cret"),
@@ -57,9 +57,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabasePrivilege(ctx, "main", &scaleway.DatabasePrivilegeArgs{
+//			_, err = databases.NewPrivilege(ctx, "main", &databases.PrivilegeArgs{
 //				InstanceId:   main.ID(),
-//				UserName:     mainDatabaseUser.Name,
+//				UserName:     mainUser.Name,
 //				DatabaseName: mainDatabase.Name,
 //				Permission:   pulumi.String("all"),
 //			})
@@ -81,6 +81,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
 // ```
+//
+// Deprecated: scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege
 type DatabasePrivilege struct {
 	pulumi.CustomResourceState
 

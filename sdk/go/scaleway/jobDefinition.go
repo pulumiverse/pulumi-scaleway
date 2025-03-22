@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/job"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewJobDefinition(ctx, "main", &scaleway.JobDefinitionArgs{
+//			_, err := job.NewDefinition(ctx, "main", &job.DefinitionArgs{
 //				Name:        pulumi.String("testjob"),
 //				CpuLimit:    pulumi.Int(140),
 //				MemoryLimit: pulumi.Int(256),
@@ -40,7 +40,7 @@ import (
 //				Env: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
 //				},
-//				Cron: &scaleway.JobDefinitionCronArgs{
+//				Cron: &job.DefinitionCronArgs{
 //					Schedule: pulumi.String("5 4 1 * *"),
 //					Timezone: pulumi.String("Europe/Paris"),
 //				},
@@ -63,6 +63,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition
 type JobDefinition struct {
 	pulumi.CustomResourceState
 

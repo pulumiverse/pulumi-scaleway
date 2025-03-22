@@ -208,7 +208,12 @@ class _IamApplicationState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application""", DeprecationWarning)
+
+
 class IamApplication(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -227,7 +232,7 @@ class IamApplication(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamApplication("main",
+        main = scaleway.iam.Application("main",
             name="My application",
             description="a description")
         ```
@@ -264,7 +269,7 @@ class IamApplication(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamApplication("main",
+        main = scaleway.iam.Application("main",
             name="My application",
             description="a description")
         ```
@@ -299,6 +304,7 @@ class IamApplication(pulumi.CustomResource):
                  organization_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamApplication is deprecated: scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -194,7 +194,12 @@ class _MnqSqsCredentialsState:
         pulumi.set(self, "secret_key", value)
 
 
+warnings.warn("""scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials""", DeprecationWarning)
+
+
 class MnqSqsCredentials(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -217,8 +222,8 @@ class MnqSqsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+        main = scaleway.mnq.Sqs("main")
+        main_sqs_credentials = scaleway.mnq.SqsCredentials("main",
             project_id=main.project_id,
             name="sqs-credentials",
             permissions={
@@ -264,8 +269,8 @@ class MnqSqsCredentials(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MnqSqs("main")
-        main_mnq_sqs_credentials = scaleway.MnqSqsCredentials("main",
+        main = scaleway.mnq.Sqs("main")
+        main_sqs_credentials = scaleway.mnq.SqsCredentials("main",
             project_id=main.project_id,
             name="sqs-credentials",
             permissions={
@@ -305,6 +310,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MnqSqsCredentials is deprecated: scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

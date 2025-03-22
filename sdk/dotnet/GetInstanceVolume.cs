@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstancevolume.getInstanceVolume has been deprecated in favor of scaleway.instance/getvolume.getVolume")]
     public static class GetInstanceVolume
     {
         /// <summary>

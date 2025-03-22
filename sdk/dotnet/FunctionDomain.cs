@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// The `scaleway.functions.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
     /// Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
     /// 
@@ -27,11 +27,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var mainFunctionNamespace = new Scaleway.FunctionNamespace("main");
+    ///     var mainNamespace = new Scaleway.Functions.Namespace("main");
     /// 
-    ///     var mainFunction = new Scaleway.Function("main", new()
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
     ///     {
-    ///         NamespaceId = mainFunctionNamespace.Id,
+    ///         NamespaceId = mainNamespace.Id,
     ///         Runtime = "go118",
     ///         Privacy = "private",
     ///         Handler = "Handle",
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway
     ///         Deploy = true,
     ///     });
     /// 
-    ///     var main = new Scaleway.FunctionDomain("main", new()
+    ///     var main = new Scaleway.Functions.Domain("main", new()
     ///     {
     ///         FunctionId = mainFunction.Id,
     ///         Hostname = "example.com",
@@ -64,6 +64,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain")]
     [ScalewayResourceType("scaleway:index/functionDomain:FunctionDomain")]
     public partial class FunctionDomain : global::Pulumi.CustomResource
     {

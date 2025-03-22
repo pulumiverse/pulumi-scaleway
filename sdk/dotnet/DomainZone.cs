@@ -21,6 +21,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone")]
     [ScalewayResourceType("scaleway:index/domainZone:DomainZone")]
     public partial class DomainZone : global::Pulumi.CustomResource
     {

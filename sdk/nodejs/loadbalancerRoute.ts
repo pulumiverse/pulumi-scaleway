@@ -17,24 +17,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "tcp",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ * const rt01 = new scaleway.loadbalancers.Route("rt01", {
  *     frontendId: frt01.id,
  *     backendId: bkd01.id,
  *     matchSni: "sni.scaleway.com",
@@ -47,24 +47,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip01 = new scaleway.LoadbalancerIp("ip01", {});
- * const lb01 = new scaleway.Loadbalancer("lb01", {
+ * const ip01 = new scaleway.loadbalancers.Ip("ip01", {});
+ * const lb01 = new scaleway.loadbalancers.LoadBalancer("lb01", {
  *     ipId: ip01.id,
  *     name: "test-lb",
  *     type: "lb-s",
  * });
- * const bkd01 = new scaleway.LoadbalancerBackend("bkd01", {
+ * const bkd01 = new scaleway.loadbalancers.Backend("bkd01", {
  *     lbId: lb01.id,
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  *     proxyProtocol: "none",
  * });
- * const frt01 = new scaleway.LoadbalancerFrontend("frt01", {
+ * const frt01 = new scaleway.loadbalancers.Frontend("frt01", {
  *     lbId: lb01.id,
  *     backendId: bkd01.id,
  *     inboundPort: 80,
  * });
- * const rt01 = new scaleway.LoadbalancerRoute("rt01", {
+ * const rt01 = new scaleway.loadbalancers.Route("rt01", {
  *     frontendId: frt01.id,
  *     backendId: bkd01.id,
  *     matchHostHeader: "host.scaleway.com",
@@ -80,6 +80,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/loadbalancerRoute:LoadbalancerRoute main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route
  */
 export class LoadbalancerRoute extends pulumi.CustomResource {
     /**
@@ -92,6 +94,7 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerRouteState, opts?: pulumi.CustomResourceOptions): LoadbalancerRoute {
+        pulumi.log.warn("LoadbalancerRoute is deprecated: scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route")
         return new LoadbalancerRoute(name, <any>state, { ...opts, id: id });
     }
 
@@ -147,8 +150,11 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route */
     constructor(name: string, args: LoadbalancerRouteArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route */
     constructor(name: string, argsOrState?: LoadbalancerRouteArgs | LoadbalancerRouteState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("LoadbalancerRoute is deprecated: scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

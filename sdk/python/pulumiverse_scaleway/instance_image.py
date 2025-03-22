@@ -393,7 +393,12 @@ class _InstanceImageState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image""", DeprecationWarning)
+
+
 class InstanceImage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -419,11 +424,11 @@ class InstanceImage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        volume = scaleway.InstanceVolume("volume",
+        volume = scaleway.instance.Volume("volume",
             type="b_ssd",
             size_in_gb=20)
-        volume_snapshot = scaleway.InstanceSnapshot("volume_snapshot", volume_id=volume.id)
-        volume_image = scaleway.InstanceImage("volume_image",
+        volume_snapshot = scaleway.instance.Snapshot("volume_snapshot", volume_id=volume.id)
+        volume_image = scaleway.instance.Image("volume_image",
             name="image_from_volume",
             root_volume_id=volume_snapshot.id)
         ```
@@ -434,11 +439,11 @@ class InstanceImage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.InstanceServer("server",
+        server = scaleway.instance.Server("server",
             image="ubuntu_jammy",
             type="DEV1-S")
-        server_snapshot = scaleway.InstanceSnapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
-        server_image = scaleway.InstanceImage("server_image",
+        server_snapshot = scaleway.instance.Snapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
+        server_image = scaleway.instance.Image("server_image",
             name="image_from_server",
             root_volume_id=server_snapshot.id)
         ```
@@ -484,11 +489,11 @@ class InstanceImage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        volume = scaleway.InstanceVolume("volume",
+        volume = scaleway.instance.Volume("volume",
             type="b_ssd",
             size_in_gb=20)
-        volume_snapshot = scaleway.InstanceSnapshot("volume_snapshot", volume_id=volume.id)
-        volume_image = scaleway.InstanceImage("volume_image",
+        volume_snapshot = scaleway.instance.Snapshot("volume_snapshot", volume_id=volume.id)
+        volume_image = scaleway.instance.Image("volume_image",
             name="image_from_volume",
             root_volume_id=volume_snapshot.id)
         ```
@@ -499,11 +504,11 @@ class InstanceImage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.InstanceServer("server",
+        server = scaleway.instance.Server("server",
             image="ubuntu_jammy",
             type="DEV1-S")
-        server_snapshot = scaleway.InstanceSnapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
-        server_image = scaleway.InstanceImage("server_image",
+        server_snapshot = scaleway.instance.Snapshot("server_snapshot", volume_id=main["rootVolume"][0]["volumeId"])
+        server_image = scaleway.instance.Image("server_image",
             name="image_from_server",
             root_volume_id=server_snapshot.id)
         ```
@@ -542,6 +547,7 @@ class InstanceImage(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""InstanceImage is deprecated: scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

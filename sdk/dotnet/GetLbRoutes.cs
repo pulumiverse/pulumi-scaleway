@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes")]
     public static class GetLbRoutes
     {
         /// <summary>
@@ -28,13 +29,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find routes that share the same frontend ID
-        ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var byFrontendID = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find routes by frontend ID and zone
-        ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var myKey = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = "11111111-1111-1111-1111-111111111111",
         ///         Zone = "fr-par-2",
@@ -62,13 +63,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find routes that share the same frontend ID
-        ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var byFrontendID = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find routes by frontend ID and zone
-        ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var myKey = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = "11111111-1111-1111-1111-111111111111",
         ///         Zone = "fr-par-2",
@@ -96,13 +97,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Find routes that share the same frontend ID
-        ///     var byFrontendID = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var byFrontendID = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = frt01.Id,
         ///     });
         /// 
         ///     // Find routes by frontend ID and zone
-        ///     var myKey = Scaleway.GetLbRoutes.Invoke(new()
+        ///     var myKey = Scaleway.Loadbalancers.GetRoutes.Invoke(new()
         ///     {
         ///         FrontendId = "11111111-1111-1111-1111-111111111111",
         ///         Zone = "fr-par-2",

@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
     /// 
@@ -28,15 +28,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerNamespace("main");
+    ///     var main = new Scaleway.Containers.Namespace("main");
     /// 
-    ///     var mainContainer = new Scaleway.Container("main", new()
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
     ///     {
     ///         Name = "my-container-with-cron-tf",
     ///         NamespaceId = main.Id,
     ///     });
     /// 
-    ///     var mainContainerCron = new Scaleway.ContainerCron("main", new()
+    ///     var mainCron = new Scaleway.Containers.Cron("main", new()
     ///     {
     ///         ContainerId = mainContainer.Id,
     ///         Name = "my-cron-name",
@@ -68,6 +68,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron")]
     [ScalewayResourceType("scaleway:index/containerCron:ContainerCron")]
     public partial class ContainerCron : global::Pulumi.CustomResource
     {

@@ -9,9 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
  *
- * This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+ * This resource can be used to externalize rules from a `scaleway.instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
  *
- * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
+ * > **Warning:** In order to guaranty rules order in a given security group only one scaleway.instance.SecurityGroupRules is allowed per security group.
  *
  * ## Example Usage
  *
@@ -21,8 +21,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {externalRules: true});
- * const sgrs01 = new scaleway.InstanceSecurityGroupRules("sgrs01", {
+ * const sg01 = new scaleway.instance.SecurityGroup("sg01", {externalRules: true});
+ * const sgrs01 = new scaleway.instance.SecurityGroupRules("sgrs01", {
  *     securityGroupId: sg01.id,
  *     inboundRules: [{
  *         action: "accept",
@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.InstanceSecurityGroup("main", {
+ * const main = new scaleway.instance.SecurityGroup("main", {
  *     description: "test",
  *     name: "terraform test",
  *     inboundDefaultPolicy: "drop",
@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  *     "4.5.6.7",
  *     "7.8.9.10",
  * ];
- * const mainInstanceSecurityGroupRules = new scaleway.InstanceSecurityGroupRules("main", {
+ * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
  *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
  *         action: "accept",
  *         ip: entry.value,
@@ -70,7 +70,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.InstanceSecurityGroup("main", {
+ * const main = new scaleway.instance.SecurityGroup("main", {
  *     description: "test",
  *     name: "terraform test",
  *     inboundDefaultPolicy: "drop",
@@ -90,7 +90,7 @@ import * as utilities from "./utilities";
  *         port: "81",
  *     },
  * ];
- * const mainInstanceSecurityGroupRules = new scaleway.InstanceSecurityGroupRules("main", {
+ * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
  *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
  *         action: "accept",
  *         ip: entry.value.ip,
@@ -109,6 +109,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules
  */
 export class InstanceSecurityGroupRules extends pulumi.CustomResource {
     /**
@@ -121,6 +123,7 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceSecurityGroupRulesState, opts?: pulumi.CustomResourceOptions): InstanceSecurityGroupRules {
+        pulumi.log.warn("InstanceSecurityGroupRules is deprecated: scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules")
         return new InstanceSecurityGroupRules(name, <any>state, { ...opts, id: id });
     }
 
@@ -158,8 +161,11 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules */
     constructor(name: string, args: InstanceSecurityGroupRulesArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules */
     constructor(name: string, argsOrState?: InstanceSecurityGroupRulesArgs | InstanceSecurityGroupRulesState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceSecurityGroupRules is deprecated: scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

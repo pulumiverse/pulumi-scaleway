@@ -296,7 +296,12 @@ class _IamApiKeyState:
         pulumi.set(self, "user_id", value)
 
 
+warnings.warn("""scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey""", DeprecationWarning)
+
+
 class IamApiKey(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -318,8 +323,8 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ci_cd = scaleway.IamApplication("ci_cd", name="My application")
-        main = scaleway.IamApiKey("main",
+        ci_cd = scaleway.iam.Application("ci_cd", name="My application")
+        main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             description="a description")
         ```
@@ -330,8 +335,8 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamUser("main", email="test@test.com")
-        main_iam_api_key = scaleway.IamApiKey("main",
+        main = scaleway.iam.User("main", email="test@test.com")
+        main_api_key = scaleway.iam.ApiKey("main",
             user_id=main.id,
             description="a description")
         ```
@@ -344,7 +349,7 @@ class IamApiKey(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
-        main = scaleway.IamApiKey("main",
+        main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
@@ -386,8 +391,8 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ci_cd = scaleway.IamApplication("ci_cd", name="My application")
-        main = scaleway.IamApiKey("main",
+        ci_cd = scaleway.iam.Application("ci_cd", name="My application")
+        main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             description="a description")
         ```
@@ -398,8 +403,8 @@ class IamApiKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamUser("main", email="test@test.com")
-        main_iam_api_key = scaleway.IamApiKey("main",
+        main = scaleway.iam.User("main", email="test@test.com")
+        main_api_key = scaleway.iam.ApiKey("main",
             user_id=main.id,
             description="a description")
         ```
@@ -412,7 +417,7 @@ class IamApiKey(pulumi.CustomResource):
         import pulumiverse_scaleway as scaleway
 
         rotate_after_a_year = time.index.Rotating("rotate_after_a_year", rotation_years=1)
-        main = scaleway.IamApiKey("main",
+        main = scaleway.iam.ApiKey("main",
             application_id=main_scaleway_iam_application["id"],
             expires_at=rotate_after_a_year["rotationRfc3339"])
         ```
@@ -448,6 +453,7 @@ class IamApiKey(pulumi.CustomResource):
                  expires_at: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamApiKey is deprecated: scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

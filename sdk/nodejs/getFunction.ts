@@ -5,13 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+ * The `scaleway.functions.Function` data source is used to retrieve information about a Serverless Function.
  *
  * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
  *
  * For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
  */
+/** @deprecated scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction */
 export function getFunction(args: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
+    pulumi.log.warn("getFunction is deprecated: scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFunction:getFunction", {
         "functionId": args.functionId,
@@ -81,13 +83,15 @@ export interface GetFunctionResult {
     readonly zipHash: string;
 }
 /**
- * The `scaleway.Function` data source is used to retrieve information about a Serverless Function.
+ * The `scaleway.functions.Function` data source is used to retrieve information about a Serverless Function.
  *
  * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
  *
  * For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
  */
+/** @deprecated scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction */
 export function getFunctionOutput(args: GetFunctionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFunctionResult> {
+    pulumi.log.warn("getFunction is deprecated: scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFunction:getFunction", {
         "functionId": args.functionId,

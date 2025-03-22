@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp")]
     public static class GetInstanceIp
     {
         /// <summary>

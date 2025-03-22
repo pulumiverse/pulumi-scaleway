@@ -205,7 +205,12 @@ class _DatabaseReadReplicaState:
         pulumi.set(self, "same_zone", value)
 
 
+warnings.warn("""scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica""", DeprecationWarning)
+
+
 class DatabaseReadReplica(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -228,7 +233,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="test-rdb-rr-update",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -241,7 +246,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 "scaleway_rdb_read_replica",
                 "minimal",
             ])
-        replica = scaleway.DatabaseReadReplica("replica",
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             direct_access={})
         ```
@@ -252,7 +257,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -260,8 +265,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DatabaseReadReplica("replica",
+        pn = scaleway.network.PrivateNetwork("pn")
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             private_network={
                 "private_network_id": pn.id,
@@ -275,7 +280,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -283,8 +288,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DatabaseReadReplica("replica",
+        pn = scaleway.network.PrivateNetwork("pn")
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             private_network={
                 "private_network_id": pn.id,
@@ -331,7 +336,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="test-rdb-rr-update",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -344,7 +349,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                 "scaleway_rdb_read_replica",
                 "minimal",
             ])
-        replica = scaleway.DatabaseReadReplica("replica",
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             direct_access={})
         ```
@@ -355,7 +360,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -363,8 +368,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DatabaseReadReplica("replica",
+        pn = scaleway.network.PrivateNetwork("pn")
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             private_network={
                 "private_network_id": pn.id,
@@ -378,7 +383,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        instance = scaleway.DatabaseInstance("instance",
+        instance = scaleway.databases.Instance("instance",
             name="rdb_instance",
             node_type="db-dev-s",
             engine="PostgreSQL-14",
@@ -386,8 +391,8 @@ class DatabaseReadReplica(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        pn = scaleway.VpcPrivateNetwork("pn")
-        replica = scaleway.DatabaseReadReplica("replica",
+        pn = scaleway.network.PrivateNetwork("pn")
+        replica = scaleway.databases.ReadReplica("replica",
             instance_id=instance.id,
             private_network={
                 "private_network_id": pn.id,
@@ -426,6 +431,7 @@ class DatabaseReadReplica(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  same_zone: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabaseReadReplica is deprecated: scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

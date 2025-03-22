@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  */
+/** @deprecated scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers */
 export function getLbs(args?: GetLbsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbsResult> {
+    pulumi.log.warn("getLbs is deprecated: scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbs:getLbs", {
@@ -82,7 +84,9 @@ export interface GetLbsResult {
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/concepts/#load-balancers) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-list-load-balancers).
  */
+/** @deprecated scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers */
 export function getLbsOutput(args?: GetLbsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbsResult> {
+    pulumi.log.warn("getLbs is deprecated: scaleway.index/getlbs.getLbs has been deprecated in favor of scaleway.loadbalancers/getloadbalancers.getLoadBalancers")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbs:getLbs", {

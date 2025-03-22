@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Container Registry image.
  */
+/** @deprecated scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage */
 export function getRegistryImage(args?: GetRegistryImageArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageResult> {
+    pulumi.log.warn("getRegistryImage is deprecated: scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryImage:getRegistryImage", {
@@ -89,7 +91,9 @@ export interface GetRegistryImageResult {
 /**
  * Gets information about a Container Registry image.
  */
+/** @deprecated scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage */
 export function getRegistryImageOutput(args?: GetRegistryImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryImageResult> {
+    pulumi.log.warn("getRegistryImage is deprecated: scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryImage:getRegistryImage", {

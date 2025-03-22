@@ -21,6 +21,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool
 type KubernetesNodePool struct {
 	pulumi.CustomResourceState
 

@@ -209,7 +209,12 @@ class _FunctionCronState:
         pulumi.set(self, "status", value)
 
 
+warnings.warn("""scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron""", DeprecationWarning)
+
+
 class FunctionCron(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -221,7 +226,7 @@ class FunctionCron(pulumi.CustomResource):
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
@@ -234,21 +239,21 @@ class FunctionCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main", name="test-cron")
-        main_function = scaleway.Function("main",
+        main = scaleway.functions.Namespace("main", name="test-cron")
+        main_function = scaleway.functions.Function("main",
             name="test-cron",
             namespace_id=main.id,
             runtime="node14",
             privacy="private",
             handler="handler.handle")
-        main_function_cron = scaleway.FunctionCron("main",
+        main_cron = scaleway.functions.Cron("main",
             name="test-cron",
             function_id=main_function.id,
             schedule="0 0 * * *",
             args=json.dumps({
                 "test": "scw",
             }))
-        func = scaleway.FunctionCron("func",
+        func = scaleway.functions.Cron("func",
             function_id=main_function.id,
             schedule="0 1 * * *",
             args=json.dumps({
@@ -282,7 +287,7 @@ class FunctionCron(pulumi.CustomResource):
                  args: FunctionCronArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 
@@ -295,21 +300,21 @@ class FunctionCron(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main", name="test-cron")
-        main_function = scaleway.Function("main",
+        main = scaleway.functions.Namespace("main", name="test-cron")
+        main_function = scaleway.functions.Function("main",
             name="test-cron",
             namespace_id=main.id,
             runtime="node14",
             privacy="private",
             handler="handler.handle")
-        main_function_cron = scaleway.FunctionCron("main",
+        main_cron = scaleway.functions.Cron("main",
             name="test-cron",
             function_id=main_function.id,
             schedule="0 0 * * *",
             args=json.dumps({
                 "test": "scw",
             }))
-        func = scaleway.FunctionCron("func",
+        func = scaleway.functions.Cron("func",
             function_id=main_function.id,
             schedule="0 1 * * *",
             args=json.dumps({
@@ -348,6 +353,7 @@ class FunctionCron(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FunctionCron is deprecated: scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

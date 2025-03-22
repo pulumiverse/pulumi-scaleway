@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+// The `functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 //
@@ -23,19 +23,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//			main, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
 //				Name: pulumi.String("test-function-token-ns"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainFunction, err := scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
+//			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
 //				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Handler:     pulumi.String("Handle"),
@@ -45,7 +45,7 @@ import (
 //				return err
 //			}
 //			// Namespace Token
-//			_, err = scaleway.NewFunctionToken(ctx, "namespace", &scaleway.FunctionTokenArgs{
+//			_, err = functions.NewToken(ctx, "namespace", &functions.TokenArgs{
 //				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			// Function Token
-//			_, err = scaleway.NewFunctionToken(ctx, "function", &scaleway.FunctionTokenArgs{
+//			_, err = functions.NewToken(ctx, "function", &functions.TokenArgs{
 //				FunctionId: mainFunction.ID(),
 //			})
 //			if err != nil {
@@ -74,6 +74,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token
 type FunctionToken struct {
 	pulumi.CustomResourceState
 
@@ -92,7 +94,7 @@ type FunctionToken struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
-	Token pulumi.StringOutput `pulumi:"token"`
+	Value pulumi.StringOutput `pulumi:"value"`
 }
 
 // NewFunctionToken registers a new resource with the given unique name, arguments, and options.
@@ -103,7 +105,7 @@ func NewFunctionToken(ctx *pulumi.Context,
 	}
 
 	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"token",
+		"value",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -144,7 +146,7 @@ type functionTokenState struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
-	Token *string `pulumi:"token"`
+	Value *string `pulumi:"value"`
 }
 
 type FunctionTokenState struct {
@@ -163,7 +165,7 @@ type FunctionTokenState struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
-	Token pulumi.StringPtrInput
+	Value pulumi.StringPtrInput
 }
 
 func (FunctionTokenState) ElementType() reflect.Type {
@@ -322,8 +324,8 @@ func (o FunctionTokenOutput) Region() pulumi.StringOutput {
 }
 
 // The token.
-func (o FunctionTokenOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *FunctionToken) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+func (o FunctionTokenOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *FunctionToken) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
 }
 
 type FunctionTokenArrayOutput struct{ *pulumi.OutputState }

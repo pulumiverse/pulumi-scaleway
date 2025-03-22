@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a specific tag of a Container Registry image.
  */
+/** @deprecated scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag */
 export function getRegistryImageTag(args: GetRegistryImageTagArgs, opts?: pulumi.InvokeOptions): Promise<GetRegistryImageTagResult> {
+    pulumi.log.warn("getRegistryImageTag is deprecated: scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getRegistryImageTag:getRegistryImageTag", {
         "imageId": args.imageId,
@@ -81,7 +83,9 @@ export interface GetRegistryImageTagResult {
 /**
  * Gets information about a specific tag of a Container Registry image.
  */
+/** @deprecated scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag */
 export function getRegistryImageTagOutput(args: GetRegistryImageTagOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRegistryImageTagResult> {
+    pulumi.log.warn("getRegistryImageTag is deprecated: scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getRegistryImageTag:getRegistryImageTag", {
         "imageId": args.imageId,

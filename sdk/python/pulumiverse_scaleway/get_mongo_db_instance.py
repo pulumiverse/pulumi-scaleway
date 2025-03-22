@@ -22,6 +22,8 @@ __all__ = [
     'get_mongo_db_instance_output',
 ]
 
+warnings.warn("""scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance""", DeprecationWarning)
+
 @pulumi.output_type
 class GetMongoDbInstanceResult:
     """
@@ -260,6 +262,7 @@ def get_mongo_db_instance(instance_id: Optional[str] = None,
     :param str project_id: The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `name`.
     :param str region: `region`) The region in which the MongoDB® Instance exists.
     """
+    pulumi.log.warn("""get_mongo_db_instance is deprecated: scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
@@ -306,6 +309,7 @@ def get_mongo_db_instance_output(instance_id: Optional[pulumi.Input[Optional[str
     :param str project_id: The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `name`.
     :param str region: `region`) The region in which the MongoDB® Instance exists.
     """
+    pulumi.log.warn("""get_mongo_db_instance is deprecated: scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name

@@ -35,7 +35,7 @@ class ObjectBucketArgs:
         The set of arguments for constructing a ObjectBucket resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
-               > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+               > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
@@ -49,8 +49,8 @@ class ObjectBucketArgs:
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
         """
         if acl is not None:
-            warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
-            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
+            warnings.warn("""ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if cors_rules is not None:
@@ -74,12 +74,12 @@ class ObjectBucketArgs:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""")
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
 
-        > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         """
         return pulumi.get(self, "acl")
 
@@ -215,7 +215,7 @@ class _ObjectBucketState:
         Input properties used for looking up and filtering ObjectBucket resources.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
-               > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+               > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket.
         :param pulumi.Input[bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -231,8 +231,8 @@ class _ObjectBucketState:
         :param pulumi.Input['ObjectBucketVersioningArgs'] versioning: Allow multiple versions of an object in the same bucket
         """
         if acl is not None:
-            warnings.warn("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""", DeprecationWarning)
-            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
+            warnings.warn("""ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""", DeprecationWarning)
+            pulumi.log.warn("""acl is deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""")
         if acl is not None:
             pulumi.set(__self__, "acl", acl)
         if api_endpoint is not None:
@@ -260,12 +260,12 @@ class _ObjectBucketState:
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""")
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
 
-        > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         """
         return pulumi.get(self, "acl")
 
@@ -406,7 +406,12 @@ class _ObjectBucketState:
         pulumi.set(self, "versioning", value)
 
 
+warnings.warn("""scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket""", DeprecationWarning)
+
+
 class ObjectBucket(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -423,7 +428,7 @@ class ObjectBucket(pulumi.CustomResource):
                  versioning: Optional[pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
                  __props__=None):
         """
-        The `ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information on Object Storage buckets.
 
@@ -433,7 +438,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket",
+        some_bucket = scaleway.object.Bucket("some_bucket",
             name="some-unique-name",
             tags={
                 "key": "value",
@@ -446,7 +451,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket",
+        some_bucket = scaleway.object.Bucket("some_bucket",
             name="some-unique-name",
             project_id="11111111-1111-1111-1111-111111111111")
         ```
@@ -457,7 +462,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="mybuckectid",
             region="fr-par",
             lifecycle_rules=[
@@ -535,7 +540,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
-               > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+               > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[str] name: The name of the bucket.
@@ -555,7 +560,7 @@ class ObjectBucket(pulumi.CustomResource):
                  args: Optional[ObjectBucketArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information on Object Storage buckets.
 
@@ -565,7 +570,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket",
+        some_bucket = scaleway.object.Bucket("some_bucket",
             name="some-unique-name",
             tags={
                 "key": "value",
@@ -578,7 +583,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        some_bucket = scaleway.ObjectBucket("some_bucket",
+        some_bucket = scaleway.object.Bucket("some_bucket",
             name="some-unique-name",
             project_id="11111111-1111-1111-1111-111111111111")
         ```
@@ -589,7 +594,7 @@ class ObjectBucket(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="mybuckectid",
             region="fr-par",
             lifecycle_rules=[
@@ -689,6 +694,7 @@ class ObjectBucket(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input[Union['ObjectBucketVersioningArgs', 'ObjectBucketVersioningArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""ObjectBucket is deprecated: scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -740,7 +746,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
-               > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+               > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[str] api_endpoint: API URL of the bucket
         :param pulumi.Input[str] endpoint: The endpoint URL of the bucket.
         :param pulumi.Input[bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -775,12 +781,12 @@ class ObjectBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource ObjectBucketAcl instead.""")
+    @_utilities.deprecated("""ACL attribute is deprecated. Please use the resource object.BucketAcl instead.""")
     def acl(self) -> pulumi.Output[Optional[str]]:
         """
         (Deprecated) The canned ACL you want to apply to the bucket.
 
-        > **Note:** The `acl` attribute is deprecated. See ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         """
         return pulumi.get(self, "acl")
 

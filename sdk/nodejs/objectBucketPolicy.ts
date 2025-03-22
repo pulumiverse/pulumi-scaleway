@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+ * The `scaleway.object.BucketPolicy` resource allows you to create and manage bucket policies for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information on Object Storage bucket policies.
  *
@@ -19,14 +19,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const _default = scaleway.getAccountProject({
+ * const _default = scaleway.account.getProject({
  *     name: "default",
  * });
  * // IAM configuration
- * const user = scaleway.getIamUser({
+ * const user = scaleway.iam.getUser({
  *     email: "user@scaleway.com",
  * });
- * const policy = new scaleway.IamPolicy("policy", {
+ * const policy = new scaleway.iam.Policy("policy", {
  *     name: "object-storage-policy",
  *     userId: user.then(user => user.id),
  *     rules: [{
@@ -35,8 +35,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
- * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policy", {
+ * const bucket = new scaleway.object.Bucket("bucket", {name: "some-unique-name"});
+ * const policyBucketPolicy = new scaleway.object.BucketPolicy("policy", {
  *     bucket: bucket.name,
  *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
@@ -66,12 +66,12 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const _default = scaleway.getAccountProject({
+ * const _default = scaleway.account.getProject({
  *     name: "default",
  * });
  * // IAM configuration
- * const reading_app = new scaleway.IamApplication("reading-app", {name: "reading-app"});
- * const policy = new scaleway.IamPolicy("policy", {
+ * const reading_app = new scaleway.iam.Application("reading-app", {name: "reading-app"});
+ * const policy = new scaleway.iam.Policy("policy", {
  *     name: "object-storage-policy",
  *     applicationId: reading_app.id,
  *     rules: [{
@@ -80,8 +80,8 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
- * const policyObjectBucketPolicy = new scaleway.ObjectBucketPolicy("policy", {
+ * const bucket = new scaleway.object.Bucket("bucket", {name: "some-unique-name"});
+ * const policyBucketPolicy = new scaleway.object.BucketPolicy("policy", {
  *     bucket: bucket.id,
  *     policy: pulumi.jsonStringify({
  *         Version: "2023-04-17",
@@ -111,11 +111,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const reading_app = scaleway.getIamApplication({
+ * const reading_app = scaleway.iam.getApplication({
  *     name: "reading-app",
  * });
- * const reading_api_key = new scaleway.IamApiKey("reading-api-key", {applicationId: reading_app.then(reading_app => reading_app.id)});
- * const bucket = scaleway.getObjectBucket({
+ * const reading_api_key = new scaleway.iam.ApiKey("reading-api-key", {applicationId: reading_app.then(reading_app => reading_app.id)});
+ * const bucket = scaleway.object.getBucket({
  *     name: "some-unique-name",
  * });
  * ```
@@ -129,11 +129,11 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Scaleway project ID
- * const _default = scaleway.getAccountProject({
+ * const _default = scaleway.account.getProject({
  *     name: "default",
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {name: "some-unique-name"});
+ * const bucket = new scaleway.object.Bucket("bucket", {name: "some-unique-name"});
  * // AWS data source
  * const policy = aws.iam.getPolicyDocumentOutput({
  *     version: "2012-10-17",
@@ -151,7 +151,7 @@ import * as utilities from "./utilities";
  *         ],
  *     }],
  * });
- * const main = new scaleway.ObjectBucketPolicy("main", {
+ * const main = new scaleway.object.BucketPolicy("main", {
  *     bucket: bucket.id,
  *     policy: policy.apply(policy => policy.json),
  * });
@@ -165,15 +165,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Project ID
- * const _default = scaleway.getAccountProject({
+ * const _default = scaleway.account.getProject({
  *     name: "default",
  * });
  * // Object storage configuration
- * const bucket = new scaleway.ObjectBucket("bucket", {
+ * const bucket = new scaleway.object.Bucket("bucket", {
  *     name: "mia-cross-crash-tests",
  *     region: "fr-par",
  * });
- * const policy = new scaleway.ObjectBucketPolicy("policy", {
+ * const policy = new scaleway.object.BucketPolicy("policy", {
  *     bucket: bucket.name,
  *     policy: pulumi.jsonStringify({
  *         Version: "2012-10-17",
@@ -216,6 +216,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectBucketPolicy:ObjectBucketPolicy some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
+ *
+ * @deprecated scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy
  */
 export class ObjectBucketPolicy extends pulumi.CustomResource {
     /**
@@ -228,6 +230,7 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectBucketPolicyState, opts?: pulumi.CustomResourceOptions): ObjectBucketPolicy {
+        pulumi.log.warn("ObjectBucketPolicy is deprecated: scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy")
         return new ObjectBucketPolicy(name, <any>state, { ...opts, id: id });
     }
 
@@ -269,8 +272,11 @@ export class ObjectBucketPolicy extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy */
     constructor(name: string, args: ObjectBucketPolicyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy */
     constructor(name: string, argsOrState?: ObjectBucketPolicyArgs | ObjectBucketPolicyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectBucketPolicy is deprecated: scaleway.index/objectbucketpolicy.ObjectBucketPolicy has been deprecated in favor of scaleway.object/bucketpolicy.BucketPolicy")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

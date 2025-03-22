@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket")]
     public static class GetObjectBucket
     {
         /// <summary>
-        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+        /// The `scaleway.object.Bucket` data source is used to retrieve information about an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
         /// 
@@ -33,7 +34,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.ObjectBucket("main", new()
+        ///     var main = new Scaleway.Object.Bucket("main", new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         Tags = 
@@ -42,7 +43,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = main.Id,
         ///     });
@@ -60,7 +61,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
@@ -73,7 +74,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+        /// The `scaleway.object.Bucket` data source is used to retrieve information about an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
         /// 
@@ -93,7 +94,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.ObjectBucket("main", new()
+        ///     var main = new Scaleway.Object.Bucket("main", new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         Tags = 
@@ -102,7 +103,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = main.Id,
         ///     });
@@ -120,7 +121,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
@@ -133,7 +134,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectBucketResult>("scaleway:index/getObjectBucket:getObjectBucket", args ?? new GetObjectBucketInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+        /// The `scaleway.object.Bucket` data source is used to retrieve information about an Object Storage bucket.
         /// 
         /// Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
         /// 
@@ -153,7 +154,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.ObjectBucket("main", new()
+        ///     var main = new Scaleway.Object.Bucket("main", new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         Tags = 
@@ -162,7 +163,7 @@ namespace Pulumiverse.Scaleway
         ///         },
         ///     });
         /// 
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = main.Id,
         ///     });
@@ -180,7 +181,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var selected = Scaleway.GetObjectBucket.Invoke(new()
+        ///     var selected = Scaleway.Object.GetBucket.Invoke(new()
         ///     {
         ///         Name = "bucket.test.com",
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",

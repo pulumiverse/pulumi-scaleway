@@ -17,18 +17,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqSns("main", {});
- * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("main", {
+ * const main = new scaleway.mnq.Sns("main", {});
+ * const mainSnsCredentials = new scaleway.mnq.SnsCredentials("main", {
  *     projectId: main.projectId,
  *     permissions: {
  *         canManage: true,
  *     },
  * });
- * const topic = new scaleway.MnqSnsTopic("topic", {
+ * const topic = new scaleway.mnq.SnsTopic("topic", {
  *     projectId: main.projectId,
  *     name: "my-topic",
- *     accessKey: mainMnqSnsCredentials.accessKey,
- *     secretKey: mainMnqSnsCredentials.secretKey,
+ *     accessKey: mainSnsCredentials.accessKey,
+ *     secretKey: mainSnsCredentials.secretKey,
  * });
  * ```
  *
@@ -41,6 +41,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
  * ```
+ *
+ * @deprecated scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic
  */
 export class MnqSnsTopic extends pulumi.CustomResource {
     /**
@@ -53,6 +55,7 @@ export class MnqSnsTopic extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqSnsTopicState, opts?: pulumi.CustomResourceOptions): MnqSnsTopic {
+        pulumi.log.warn("MnqSnsTopic is deprecated: scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic")
         return new MnqSnsTopic(name, <any>state, { ...opts, id: id });
     }
 
@@ -123,8 +126,11 @@ export class MnqSnsTopic extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic */
     constructor(name: string, args: MnqSnsTopicArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic */
     constructor(name: string, argsOrState?: MnqSnsTopicArgs | MnqSnsTopicState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqSnsTopic is deprecated: scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

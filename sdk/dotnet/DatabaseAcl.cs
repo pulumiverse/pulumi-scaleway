@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -37,12 +37,12 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabaseAcl = new Scaleway.DatabaseAcl("main", new()
+    ///     var mainAcl = new Scaleway.Databases.Acl("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         AclRules = new[]
     ///         {
-    ///             new Scaleway.Inputs.DatabaseAclAclRuleArgs
+    ///             new Scaleway.Databases.Inputs.AclAclRuleArgs
     ///             {
     ///                 Ip = "1.2.3.4/32",
     ///                 Description = "foo",
@@ -63,6 +63,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl")]
     [ScalewayResourceType("scaleway:index/databaseAcl:DatabaseAcl")]
     public partial class DatabaseAcl : global::Pulumi.CustomResource
     {

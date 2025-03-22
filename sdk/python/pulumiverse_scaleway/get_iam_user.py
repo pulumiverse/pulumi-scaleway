@@ -21,6 +21,8 @@ __all__ = [
     'get_iam_user_output',
 ]
 
+warnings.warn("""scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIamUserResult:
     """
@@ -104,9 +106,9 @@ def get_iam_user(email: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by user id
-    find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.iam.get_user(user_id="11111111-1111-1111-1111-111111111111")
     # Get info by email address
-    find_by_email = scaleway.get_iam_user(email="foo@bar.com")
+    find_by_email = scaleway.iam.get_user(email="foo@bar.com")
     ```
 
 
@@ -118,6 +120,7 @@ def get_iam_user(email: Optional[str] = None,
            
            > **Note** You must specify at least one: `name` and/or `user_id`.
     """
+    pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")
     __args__ = dict()
     __args__['email'] = email
     __args__['organizationId'] = organization_id
@@ -148,9 +151,9 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by user id
-    find_by_id = scaleway.get_iam_user(user_id="11111111-1111-1111-1111-111111111111")
+    find_by_id = scaleway.iam.get_user(user_id="11111111-1111-1111-1111-111111111111")
     # Get info by email address
-    find_by_email = scaleway.get_iam_user(email="foo@bar.com")
+    find_by_email = scaleway.iam.get_user(email="foo@bar.com")
     ```
 
 
@@ -162,6 +165,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[str]]] = None,
            
            > **Note** You must specify at least one: `name` and/or `user_id`.
     """
+    pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")
     __args__ = dict()
     __args__['email'] = email
     __args__['organizationId'] = organization_id

@@ -20,6 +20,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceSecurityGroup:InstanceSecurityGroup web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instancesecuritygroup.InstanceSecurityGroup has been deprecated in favor of scaleway.instance/securitygroup.SecurityGroup
 type InstanceSecurityGroup struct {
 	pulumi.CustomResourceState
 

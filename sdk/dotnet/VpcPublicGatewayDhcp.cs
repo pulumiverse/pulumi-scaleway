@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.VpcPublicGatewayDhcp("main", new()
+    ///     var main = new Scaleway.Network.PublicGatewayDhcp("main", new()
     ///     {
     ///         Subnet = "192.168.1.0/24",
     ///     });
@@ -42,6 +42,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcpublicgatewaydhcp.VpcPublicGatewayDhcp has been deprecated in favor of scaleway.network/publicgatewaydhcp.PublicGatewayDhcp")]
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp")]
     public partial class VpcPublicGatewayDhcp : global::Pulumi.CustomResource
     {
@@ -108,7 +109,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// 
-        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
         [Output("pushDefaultRoute")]
         public Output<bool> PushDefaultRoute { get; private set; } = null!;
@@ -265,7 +266,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// 
-        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }
@@ -389,7 +390,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
         /// 
-        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.VpcGatewayNetwork` resource instead.
+        /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
         [Input("pushDefaultRoute")]
         public Input<bool>? PushDefaultRoute { get; set; }

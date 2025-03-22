@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFlexibleIp(ctx, "main", &scaleway.FlexibleIpArgs{
+//			_, err := elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
 //				Reverse: pulumi.String("my-reverse.com"),
 //			})
 //			if err != nil {
@@ -50,13 +50,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFlexibleIp(ctx, "main", &scaleway.FlexibleIpArgs{
+//			_, err := elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
 //				Zone: pulumi.String("fr-par-2"),
 //			})
 //			if err != nil {
@@ -76,13 +76,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewFlexibleIp(ctx, "main", &scaleway.FlexibleIpArgs{
+//			_, err := elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
 //				IsIpv6: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -102,20 +102,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewAccountSshKey(ctx, "main", &scaleway.AccountSshKeyArgs{
+//			main, err := account.NewSshKey(ctx, "main", &account.SshKeyArgs{
 //				Name:      pulumi.String("main"),
 //				PublicKey: pulumi.String("ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			byId, err := scaleway.GetBaremetalOs(ctx, &scaleway.GetBaremetalOsArgs{
+//			byId, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
 //				Zone:    pulumi.StringRef("fr-par-2"),
 //				Name:    pulumi.StringRef("Ubuntu"),
 //				Version: pulumi.StringRef("20.04 LTS (Focal Fossa)"),
@@ -123,14 +124,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			myOffer, err := scaleway.GetBaremetalOffer(ctx, &scaleway.GetBaremetalOfferArgs{
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
 //				Zone: pulumi.StringRef("fr-par-2"),
 //				Name: pulumi.StringRef("EM-A210R-HDD"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			base, err := scaleway.NewBaremetalServer(ctx, "base", &scaleway.BaremetalServerArgs{
+//			base, err := elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
 //				Zone:      pulumi.String("fr-par-2"),
 //				Offer:     pulumi.String(myOffer.OfferId),
 //				Os:        pulumi.String(byId.OsId),
@@ -139,7 +140,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFlexibleIp(ctx, "main", &scaleway.FlexibleIpArgs{
+//			_, err = elasticmetal.NewIp(ctx, "main", &elasticmetal.IpArgs{
 //				ServerId: base.ID(),
 //				Zone:     pulumi.String("fr-par-2"),
 //			})
@@ -161,6 +162,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip
 type FlexibleIp struct {
 	pulumi.CustomResourceState
 

@@ -16,16 +16,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by offer domain
- * const byDomain = scaleway.getWebhosting({
+ * const byDomain = scaleway.hosting.getHosting({
  *     domain: "foobar.com",
  * });
  * // Get info by id
- * const byId = scaleway.getWebhosting({
+ * const byId = scaleway.hosting.getHosting({
  *     webhostingId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting */
 export function getWebhosting(args?: GetWebhostingArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhostingResult> {
+    pulumi.log.warn("getWebhosting is deprecated: scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getWebhosting:getWebhosting", {
@@ -98,16 +100,18 @@ export interface GetWebhostingResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by offer domain
- * const byDomain = scaleway.getWebhosting({
+ * const byDomain = scaleway.hosting.getHosting({
  *     domain: "foobar.com",
  * });
  * // Get info by id
- * const byId = scaleway.getWebhosting({
+ * const byId = scaleway.hosting.getHosting({
  *     webhostingId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting */
 export function getWebhostingOutput(args?: GetWebhostingOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebhostingResult> {
+    pulumi.log.warn("getWebhosting is deprecated: scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getWebhosting:getWebhosting", {

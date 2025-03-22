@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
@@ -43,14 +43,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainDatabase, err := scaleway.NewDatabase(ctx, "main", &scaleway.DatabaseArgs{
+//			mainDatabase, err := databases.NewDatabase(ctx, "main", &databases.DatabaseArgs{
 //				InstanceId: main.ID(),
 //				Name:       pulumi.String("database"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseBackup(ctx, "main", &scaleway.DatabaseBackupArgs{
+//			_, err = databases.NewDatabaseBackup(ctx, "main", &databases.DatabaseBackupArgs{
 //				InstanceId:   main.ID(),
 //				DatabaseName: mainDatabase.Name,
 //			})
@@ -71,13 +71,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDatabaseBackup(ctx, "main", &scaleway.DatabaseBackupArgs{
+//			_, err := databases.NewDatabaseBackup(ctx, "main", &databases.DatabaseBackupArgs{
 //				InstanceId:   pulumi.Any(mainScalewayRdbInstance.Id),
 //				DatabaseName: pulumi.Any(mainScalewayRdbDatabase.Name),
 //				ExpiresAt:    pulumi.String("2022-06-16T07:48:44Z"),
@@ -100,6 +100,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/databaseBackup:DatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup
 type DatabaseBackup struct {
 	pulumi.CustomResourceState
 

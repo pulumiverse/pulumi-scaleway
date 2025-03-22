@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MongoDbInstance("main", {
+ * const main = new scaleway.mongodb.Instance("main", {
  *     name: "test-mongodb-basic1",
  *     version: "7.0.12",
  *     nodeType: "MGDB-PLAY2-NANO",
@@ -35,11 +35,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "my_private_network",
  *     region: "fr-par",
  * });
- * const main = new scaleway.MongoDbInstance("main", {
+ * const main = new scaleway.mongodb.Instance("main", {
  *     name: "test-mongodb-basic1",
  *     version: "7.0.12",
  *     nodeType: "MGDB-PLAY2-NANO",
@@ -59,7 +59,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const restoredInstance = new scaleway.MongoDbInstance("restored_instance", {
+ * const restoredInstance = new scaleway.mongodb.Instance("restored_instance", {
  *     snapshotId: pn.idscalewayMongodbSnapshot.mainSnapshot.id,
  *     name: "restored-mongodb-from-snapshot",
  *     nodeType: "MGDB-PLAY2-NANO",
@@ -76,6 +76,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance
  */
 export class MongoDbInstance extends pulumi.CustomResource {
     /**
@@ -88,6 +90,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MongoDbInstanceState, opts?: pulumi.CustomResourceOptions): MongoDbInstance {
+        pulumi.log.warn("MongoDbInstance is deprecated: scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance")
         return new MongoDbInstance(name, <any>state, { ...opts, id: id });
     }
 
@@ -181,8 +184,11 @@ export class MongoDbInstance extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance */
     constructor(name: string, args: MongoDbInstanceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance */
     constructor(name: string, argsOrState?: MongoDbInstanceArgs | MongoDbInstanceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MongoDbInstance is deprecated: scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

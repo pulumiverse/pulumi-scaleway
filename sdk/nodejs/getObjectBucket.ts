@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+ * The `scaleway.object.Bucket` data source is used to retrieve information about an Object Storage bucket.
  *
  * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
  *
@@ -23,13 +23,13 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "bucket.test.com",
  *     tags: {
  *         foo: "bar",
  *     },
  * });
- * const selected = scaleway.getObjectBucketOutput({
+ * const selected = scaleway.object.getBucketOutput({
  *     name: main.id,
  * });
  * ```
@@ -40,13 +40,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const selected = scaleway.getObjectBucket({
+ * const selected = scaleway.object.getBucket({
  *     name: "bucket.test.com",
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket */
 export function getObjectBucket(args?: GetObjectBucketArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectBucketResult> {
+    pulumi.log.warn("getObjectBucket is deprecated: scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getObjectBucket:getObjectBucket", {
@@ -96,7 +98,7 @@ export interface GetObjectBucketResult {
     readonly versionings: outputs.GetObjectBucketVersioning[];
 }
 /**
- * The `scaleway.ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+ * The `scaleway.object.Bucket` data source is used to retrieve information about an Object Storage bucket.
  *
  * Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
  *
@@ -112,13 +114,13 @@ export interface GetObjectBucketResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "bucket.test.com",
  *     tags: {
  *         foo: "bar",
  *     },
  * });
- * const selected = scaleway.getObjectBucketOutput({
+ * const selected = scaleway.object.getBucketOutput({
  *     name: main.id,
  * });
  * ```
@@ -129,13 +131,15 @@ export interface GetObjectBucketResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const selected = scaleway.getObjectBucket({
+ * const selected = scaleway.object.getBucket({
  *     name: "bucket.test.com",
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket */
 export function getObjectBucketOutput(args?: GetObjectBucketOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectBucketResult> {
+    pulumi.log.warn("getObjectBucket is deprecated: scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getObjectBucket:getObjectBucket", {

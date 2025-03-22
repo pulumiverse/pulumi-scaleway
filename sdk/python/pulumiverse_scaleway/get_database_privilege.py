@@ -21,6 +21,8 @@ __all__ = [
     'get_database_privilege_output',
 ]
 
+warnings.warn("""scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDatabasePrivilegeResult:
     """
@@ -113,7 +115,7 @@ def get_database_privilege(database_name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-    main = scaleway.get_database_privilege(instance_id="11111111-1111-111111111111",
+    main = scaleway.databases.get_privilege(instance_id="11111111-1111-111111111111",
         user_name="my-user",
         database_name="my-database")
     ```
@@ -124,6 +126,7 @@ def get_database_privilege(database_name: Optional[str] = None,
     :param str region: `region`) The region in which the resource exists.
     :param str user_name: The user name.
     """
+    pulumi.log.warn("""get_database_privilege is deprecated: scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege""")
     __args__ = dict()
     __args__['databaseName'] = database_name
     __args__['instanceId'] = instance_id
@@ -154,7 +157,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
     import pulumi_scaleway as scaleway
 
     # Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-    main = scaleway.get_database_privilege(instance_id="11111111-1111-111111111111",
+    main = scaleway.databases.get_privilege(instance_id="11111111-1111-111111111111",
         user_name="my-user",
         database_name="my-database")
     ```
@@ -165,6 +168,7 @@ def get_database_privilege_output(database_name: Optional[pulumi.Input[str]] = N
     :param str region: `region`) The region in which the resource exists.
     :param str user_name: The user name.
     """
+    pulumi.log.warn("""get_database_privilege is deprecated: scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege""")
     __args__ = dict()
     __args__['databaseName'] = database_name
     __args__['instanceId'] = instance_id

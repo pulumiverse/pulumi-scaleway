@@ -21,6 +21,8 @@ __all__ = [
     'get_instance_image_output',
 ]
 
+warnings.warn("""scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstanceImageResult:
     """
@@ -232,6 +234,7 @@ def get_instance_image(architecture: Optional[str] = None,
     :param str project_id: The ID of the project the image is associated with.
     :param str zone: `zone`) The zone in which the image exists.
     """
+    pulumi.log.warn("""get_instance_image is deprecated: scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage""")
     __args__ = dict()
     __args__['architecture'] = architecture
     __args__['imageId'] = image_id
@@ -277,6 +280,7 @@ def get_instance_image_output(architecture: Optional[pulumi.Input[Optional[str]]
     :param str project_id: The ID of the project the image is associated with.
     :param str zone: `zone`) The zone in which the image exists.
     """
+    pulumi.log.warn("""get_instance_image is deprecated: scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage""")
     __args__ = dict()
     __args__['architecture'] = architecture
     __args__['imageId'] = image_id

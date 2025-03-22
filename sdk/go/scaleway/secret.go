@@ -20,6 +20,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret
 type Secret struct {
 	pulumi.CustomResourceState
 

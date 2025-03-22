@@ -262,7 +262,12 @@ class _MongoDbSnapshotState:
         pulumi.set(self, "volume_type", value)
 
 
+warnings.warn("""scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot""", DeprecationWarning)
+
+
 class MongoDbSnapshot(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -282,7 +287,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MongoDbSnapshot("main",
+        main = scaleway.mongodb.Snapshot("main",
             instance_id=main_scaleway_mongodb_instance["id"],
             name="name-snapshot",
             expires_at="2024-12-31T23:59:59Z")
@@ -323,7 +328,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MongoDbSnapshot("main",
+        main = scaleway.mongodb.Snapshot("main",
             instance_id=main_scaleway_mongodb_instance["id"],
             name="name-snapshot",
             expires_at="2024-12-31T23:59:59Z")
@@ -359,6 +364,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MongoDbSnapshot is deprecated: scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

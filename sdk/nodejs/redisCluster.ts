@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.RedisCluster("main", {
+ * const main = new scaleway.redis.Cluster("main", {
  *     name: "test_redis_basic",
  *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
@@ -43,7 +43,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.RedisCluster("main", {
+ * const main = new scaleway.redis.Cluster("main", {
  *     name: "test_redis_basic",
  *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
@@ -62,8 +62,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn = new scaleway.VpcPrivateNetwork("pn", {name: "private-network"});
- * const main = new scaleway.RedisCluster("main", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {name: "private-network"});
+ * const main = new scaleway.redis.Cluster("main", {
  *     name: "test_redis_endpoints",
  *     version: "6.2.7",
  *     nodeType: "RED1-MICRO",
@@ -88,6 +88,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster
  */
 export class RedisCluster extends pulumi.CustomResource {
     /**
@@ -100,6 +102,7 @@ export class RedisCluster extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RedisClusterState, opts?: pulumi.CustomResourceOptions): RedisCluster {
+        pulumi.log.warn("RedisCluster is deprecated: scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster")
         return new RedisCluster(name, <any>state, { ...opts, id: id });
     }
 
@@ -221,8 +224,11 @@ export class RedisCluster extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster */
     constructor(name: string, args: RedisClusterArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster */
     constructor(name: string, argsOrState?: RedisClusterArgs | RedisClusterState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RedisCluster is deprecated: scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

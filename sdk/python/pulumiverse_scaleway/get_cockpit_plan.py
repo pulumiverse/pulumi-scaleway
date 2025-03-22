@@ -21,6 +21,8 @@ __all__ = [
     'get_cockpit_plan_output',
 ]
 
+warnings.warn("""scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan""", DeprecationWarning)
+
 @pulumi.output_type
 class GetCockpitPlanResult:
     """
@@ -61,7 +63,7 @@ class AwaitableGetCockpitPlanResult(GetCockpitPlanResult):
 def get_cockpit_plan(name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCockpitPlanResult:
     """
-    The `get_cockpit_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
+    The `observability_get_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
 
     Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
 
@@ -76,13 +78,14 @@ def get_cockpit_plan(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    premium = scaleway.get_cockpit_plan(name="premium")
-    main = scaleway.Cockpit("main", plan=premium.id)
+    premium = scaleway.observability.get_plan(name="premium")
+    main = scaleway.observability.Cockpit("main", plan=premium.id)
     ```
 
 
     :param str name: Name of the pricing plan you want to retrieve information about.
     """
+    pulumi.log.warn("""get_cockpit_plan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan""")
     __args__ = dict()
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -94,7 +97,7 @@ def get_cockpit_plan(name: Optional[str] = None,
 def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCockpitPlanResult]:
     """
-    The `get_cockpit_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `Cockpit`.
+    The `observability_get_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
 
     Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
 
@@ -109,13 +112,14 @@ def get_cockpit_plan_output(name: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    premium = scaleway.get_cockpit_plan(name="premium")
-    main = scaleway.Cockpit("main", plan=premium.id)
+    premium = scaleway.observability.get_plan(name="premium")
+    main = scaleway.observability.Cockpit("main", plan=premium.id)
     ```
 
 
     :param str name: Name of the pricing plan you want to retrieve information about.
     """
+    pulumi.log.warn("""get_cockpit_plan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan""")
     __args__ = dict()
     __args__['name'] = name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

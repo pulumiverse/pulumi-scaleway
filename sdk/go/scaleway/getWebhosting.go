@@ -21,21 +21,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/hosting"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by offer domain
-//			_, err := scaleway.LookupWebhosting(ctx, &scaleway.LookupWebhostingArgs{
+//			_, err := hosting.LookupHosting(ctx, &hosting.LookupHostingArgs{
 //				Domain: pulumi.StringRef("foobar.com"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by id
-//			_, err = scaleway.LookupWebhosting(ctx, &scaleway.LookupWebhostingArgs{
+//			_, err = hosting.LookupHosting(ctx, &hosting.LookupHostingArgs{
 //				WebhostingId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting
 func LookupWebhosting(ctx *pulumi.Context, args *LookupWebhostingArgs, opts ...pulumi.InvokeOption) (*LookupWebhostingResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupWebhostingResult

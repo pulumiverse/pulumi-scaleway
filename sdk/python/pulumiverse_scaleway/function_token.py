@@ -120,7 +120,7 @@ class _FunctionTokenState:
                  function_id: Optional[pulumi.Input[str]] = None,
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
-                 token: Optional[pulumi.Input[str]] = None):
+                 value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FunctionToken resources.
         :param pulumi.Input[str] description: The description of the token.
@@ -132,7 +132,7 @@ class _FunctionTokenState:
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
                > **Important** Updating any of the arguments above will recreate the token.
-        :param pulumi.Input[str] token: The token.
+        :param pulumi.Input[str] value: The token.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -144,8 +144,8 @@ class _FunctionTokenState:
             pulumi.set(__self__, "namespace_id", namespace_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if token is not None:
-            pulumi.set(__self__, "token", token)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
 
     @property
     @pulumi.getter
@@ -213,18 +213,23 @@ class _FunctionTokenState:
 
     @property
     @pulumi.getter
-    def token(self) -> Optional[pulumi.Input[str]]:
+    def value(self) -> Optional[pulumi.Input[str]]:
         """
         The token.
         """
-        return pulumi.get(self, "token")
+        return pulumi.get(self, "value")
 
-    @token.setter
-    def token(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "token", value)
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+warnings.warn("""scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token""", DeprecationWarning)
 
 
 class FunctionToken(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -236,7 +241,7 @@ class FunctionToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 
@@ -246,18 +251,18 @@ class FunctionToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main", name="test-function-token-ns")
-        main_function = scaleway.Function("main",
+        main = scaleway.functions.Namespace("main", name="test-function-token-ns")
+        main_function = scaleway.functions.Function("main",
             namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")
         # Namespace Token
-        namespace = scaleway.FunctionToken("namespace",
+        namespace = scaleway.functions.Token("namespace",
             namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Function Token
-        function = scaleway.FunctionToken("function", function_id=main_function.id)
+        function = scaleway.functions.Token("function", function_id=main_function.id)
         ```
 
         ## Import
@@ -289,7 +294,7 @@ class FunctionToken(pulumi.CustomResource):
                  args: Optional[FunctionTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
 
@@ -299,18 +304,18 @@ class FunctionToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.FunctionNamespace("main", name="test-function-token-ns")
-        main_function = scaleway.Function("main",
+        main = scaleway.functions.Namespace("main", name="test-function-token-ns")
+        main_function = scaleway.functions.Function("main",
             namespace_id=main.id,
             runtime="go118",
             handler="Handle",
             privacy="private")
         # Namespace Token
-        namespace = scaleway.FunctionToken("namespace",
+        namespace = scaleway.functions.Token("namespace",
             namespace_id=main.id,
             expires_at="2022-10-18T11:35:15+02:00")
         # Function Token
-        function = scaleway.FunctionToken("function", function_id=main_function.id)
+        function = scaleway.functions.Token("function", function_id=main_function.id)
         ```
 
         ## Import
@@ -344,6 +349,7 @@ class FunctionToken(pulumi.CustomResource):
                  namespace_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FunctionToken is deprecated: scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -357,8 +363,8 @@ class FunctionToken(pulumi.CustomResource):
             __props__.__dict__["function_id"] = function_id
             __props__.__dict__["namespace_id"] = namespace_id
             __props__.__dict__["region"] = region
-            __props__.__dict__["token"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["token"])
+            __props__.__dict__["value"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["value"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(FunctionToken, __self__).__init__(
             'scaleway:index/functionToken:FunctionToken',
@@ -375,7 +381,7 @@ class FunctionToken(pulumi.CustomResource):
             function_id: Optional[pulumi.Input[str]] = None,
             namespace_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
-            token: Optional[pulumi.Input[str]] = None) -> 'FunctionToken':
+            value: Optional[pulumi.Input[str]] = None) -> 'FunctionToken':
         """
         Get an existing FunctionToken resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -392,7 +398,7 @@ class FunctionToken(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`). The region in which the namespace is created.
                
                > **Important** Updating any of the arguments above will recreate the token.
-        :param pulumi.Input[str] token: The token.
+        :param pulumi.Input[str] value: The token.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -403,7 +409,7 @@ class FunctionToken(pulumi.CustomResource):
         __props__.__dict__["function_id"] = function_id
         __props__.__dict__["namespace_id"] = namespace_id
         __props__.__dict__["region"] = region
-        __props__.__dict__["token"] = token
+        __props__.__dict__["value"] = value
         return FunctionToken(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -452,9 +458,9 @@ class FunctionToken(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def token(self) -> pulumi.Output[str]:
+    def value(self) -> pulumi.Output[str]:
         """
         The token.
         """
-        return pulumi.get(self, "token")
+        return pulumi.get(self, "value")
 

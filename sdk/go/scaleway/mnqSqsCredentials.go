@@ -25,20 +25,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewMnqSqs(ctx, "main", nil)
+//			main, err := mnq.NewSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqsCredentials(ctx, "main", &scaleway.MnqSqsCredentialsArgs{
+//			_, err = mnq.NewSqsCredentials(ctx, "main", &mnq.SqsCredentialsArgs{
 //				ProjectId: main.ProjectId,
 //				Name:      pulumi.String("sqs-credentials"),
-//				Permissions: &scaleway.MnqSqsCredentialsPermissionsArgs{
+//				Permissions: &mnq.SqsCredentialsPermissionsArgs{
 //					CanManage:  pulumi.Bool(false),
 //					CanReceive: pulumi.Bool(true),
 //					CanPublish: pulumi.Bool(false),
@@ -62,6 +62,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqSqsCredentials:MnqSqsCredentials main fr-par/11111111111111111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/mnqsqscredentials.MnqSqsCredentials has been deprecated in favor of scaleway.mnq/sqscredentials.SqsCredentials
 type MnqSqsCredentials struct {
 	pulumi.CustomResourceState
 

@@ -21,6 +21,8 @@ __all__ = [
     'get_object_bucket_policy_output',
 ]
 
+warnings.warn("""scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy""", DeprecationWarning)
+
 @pulumi.output_type
 class GetObjectBucketPolicyResult:
     """
@@ -93,7 +95,7 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
                              region: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectBucketPolicyResult:
     """
-    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+    The `object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
     Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
 
@@ -105,13 +107,14 @@ def get_object_bucket_policy(bucket: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_object_bucket_policy(bucket="bucket.test.com")
+    main = scaleway.object.get_bucket_policy(bucket="bucket.test.com")
     ```
 
 
     :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
+    pulumi.log.warn("""get_object_bucket_policy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy""")
     __args__ = dict()
     __args__['bucket'] = bucket
     __args__['projectId'] = project_id
@@ -130,7 +133,7 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
                                     region: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectBucketPolicyResult]:
     """
-    The `ObjectBucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
+    The `object.BucketPolicy` data source is used to retrieve information about the bucket policy of an Object Storage bucket.
 
     Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/bucket-policy/) for more information.
 
@@ -142,13 +145,14 @@ def get_object_bucket_policy_output(bucket: Optional[pulumi.Input[str]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    main = scaleway.get_object_bucket_policy(bucket="bucket.test.com")
+    main = scaleway.object.get_bucket_policy(bucket="bucket.test.com")
     ```
 
 
     :param str bucket: The name of the bucket.
     :param str region: `region`) The region in which the Object Storage exists.
     """
+    pulumi.log.warn("""get_object_bucket_policy is deprecated: scaleway.index/getobjectbucketpolicy.getObjectBucketPolicy has been deprecated in favor of scaleway.object/getbucketpolicy.getBucketPolicy""")
     __args__ = dict()
     __args__['bucket'] = bucket
     __args__['projectId'] = project_id

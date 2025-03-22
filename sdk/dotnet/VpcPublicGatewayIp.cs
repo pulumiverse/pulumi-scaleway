@@ -24,12 +24,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.VpcPublicGatewayIp("main", new()
+    ///     var main = new Scaleway.Network.PublicGatewayIp("main", new()
     ///     {
     ///         Reverse = "tf.example.com",
     ///     });
     /// 
-    ///     var tfA = new Scaleway.DomainRecord("tf_A", new()
+    ///     var tfA = new Scaleway.Domain.Record("tf_A", new()
     ///     {
     ///         DnsZone = "example.com",
     ///         Name = "tf",
@@ -52,6 +52,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp")]
     [ScalewayResourceType("scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp")]
     public partial class VpcPublicGatewayIp : global::Pulumi.CustomResource
     {

@@ -22,6 +22,8 @@ __all__ = [
     'get_webhosting_output',
 ]
 
+warnings.warn("""scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting""", DeprecationWarning)
+
 @pulumi.output_type
 class GetWebhostingResult:
     """
@@ -254,9 +256,9 @@ def get_webhosting(domain: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by offer domain
-    by_domain = scaleway.get_webhosting(domain="foobar.com")
+    by_domain = scaleway.hosting.get_hosting(domain="foobar.com")
     # Get info by id
-    by_id = scaleway.get_webhosting(webhosting_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.hosting.get_hosting(webhosting_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -265,6 +267,7 @@ def get_webhosting(domain: Optional[str] = None,
     :param str project_id: `project_id`) The ID of the project the hosting is associated with.
     :param str webhosting_id: The hosting id. Only one of `domain` and `webhosting_id` should be specified.
     """
+    pulumi.log.warn("""get_webhosting is deprecated: scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['organizationId'] = organization_id
@@ -311,9 +314,9 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by offer domain
-    by_domain = scaleway.get_webhosting(domain="foobar.com")
+    by_domain = scaleway.hosting.get_hosting(domain="foobar.com")
     # Get info by id
-    by_id = scaleway.get_webhosting(webhosting_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.hosting.get_hosting(webhosting_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -322,6 +325,7 @@ def get_webhosting_output(domain: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: `project_id`) The ID of the project the hosting is associated with.
     :param str webhosting_id: The hosting id. Only one of `domain` and `webhosting_id` should be specified.
     """
+    pulumi.log.warn("""get_webhosting is deprecated: scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting""")
     __args__ = dict()
     __args__['domain'] = domain
     __args__['organizationId'] = organization_id

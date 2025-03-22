@@ -45,7 +45,7 @@ class LoadbalancerArgs:
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: The List of IP IDs to attach to the Load Balancer.
                
-               > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+               > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
@@ -155,7 +155,7 @@ class LoadbalancerArgs:
         """
         The List of IP IDs to attach to the Load Balancer.
 
-        > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+        > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -280,7 +280,7 @@ class _LoadbalancerState:
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: The List of IP IDs to attach to the Load Balancer.
                
-               > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+               > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         :param pulumi.Input[str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
@@ -403,7 +403,7 @@ class _LoadbalancerState:
         """
         The List of IP IDs to attach to the Load Balancer.
 
-        > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+        > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         """
         return pulumi.get(self, "ip_ids")
 
@@ -545,7 +545,12 @@ class _LoadbalancerState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer""", DeprecationWarning)
+
+
 class Loadbalancer(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -577,8 +582,8 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.LoadbalancerIp("main", zone="fr-par-1")
-        base = scaleway.Loadbalancer("base",
+        main = scaleway.loadbalancers.Ip("main", zone="fr-par-1")
+        base = scaleway.loadbalancers.LoadBalancer("base",
             ip_ids=[main.id],
             zone=main.zone,
             type="LB-S")
@@ -590,7 +595,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        base = scaleway.Loadbalancer("base",
+        base = scaleway.loadbalancers.LoadBalancer("base",
             name="private-lb",
             type="LB-S",
             assign_flexible_ip=False)
@@ -602,9 +607,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        v4 = scaleway.LoadbalancerIp("v4")
-        v6 = scaleway.LoadbalancerIp("v6", is_ipv6=True)
-        main = scaleway.Loadbalancer("main",
+        v4 = scaleway.loadbalancers.Ip("v4")
+        v6 = scaleway.loadbalancers.Ip("v6", is_ipv6=True)
+        main = scaleway.loadbalancers.LoadBalancer("main",
             ip_ids=[
                 v4.id,
                 v6.id,
@@ -619,19 +624,19 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        v4 = scaleway.LoadbalancerIp("v4")
-        lb01 = scaleway.Loadbalancer("lb01",
+        v4 = scaleway.loadbalancers.Ip("v4")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_ids=[v4.id],
             name="my-lb",
             type="LB-S",
@@ -670,7 +675,7 @@ class Loadbalancer(pulumi.CustomResource):
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: The List of IP IDs to attach to the Load Balancer.
                
-               > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+               > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
@@ -699,8 +704,8 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.LoadbalancerIp("main", zone="fr-par-1")
-        base = scaleway.Loadbalancer("base",
+        main = scaleway.loadbalancers.Ip("main", zone="fr-par-1")
+        base = scaleway.loadbalancers.LoadBalancer("base",
             ip_ids=[main.id],
             zone=main.zone,
             type="LB-S")
@@ -712,7 +717,7 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        base = scaleway.Loadbalancer("base",
+        base = scaleway.loadbalancers.LoadBalancer("base",
             name="private-lb",
             type="LB-S",
             assign_flexible_ip=False)
@@ -724,9 +729,9 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        v4 = scaleway.LoadbalancerIp("v4")
-        v6 = scaleway.LoadbalancerIp("v6", is_ipv6=True)
-        main = scaleway.Loadbalancer("main",
+        v4 = scaleway.loadbalancers.Ip("v4")
+        v6 = scaleway.loadbalancers.Ip("v6", is_ipv6=True)
+        main = scaleway.loadbalancers.LoadBalancer("main",
             ip_ids=[
                 v4.id,
                 v6.id,
@@ -741,19 +746,19 @@ class Loadbalancer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
             }])
-        v4 = scaleway.LoadbalancerIp("v4")
-        lb01 = scaleway.Loadbalancer("lb01",
+        v4 = scaleway.loadbalancers.Ip("v4")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_ids=[v4.id],
             name="my-lb",
             type="LB-S",
@@ -811,6 +816,7 @@ class Loadbalancer(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Loadbalancer is deprecated: scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -881,7 +887,7 @@ class Loadbalancer(pulumi.CustomResource):
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: The List of IP IDs to attach to the Load Balancer.
                
-               > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+               > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         :param pulumi.Input[str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
@@ -966,7 +972,7 @@ class Loadbalancer(pulumi.CustomResource):
         """
         The List of IP IDs to attach to the Load Balancer.
 
-        > **Important:** Make sure to use a `LoadbalancerIp` resource to create the IPs.
+        > **Important:** Make sure to use a `loadbalancers.Ip` resource to create the IPs.
         """
         return pulumi.get(self, "ip_ids")
 

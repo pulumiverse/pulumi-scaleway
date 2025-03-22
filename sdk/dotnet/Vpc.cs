@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my-vpc",
     ///         Tags = new[]
@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my-vpc",
     ///         Tags = new[]
@@ -74,6 +74,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpc:Vpc vpc_demo fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpc.Vpc has been deprecated in favor of scaleway.network/vpc.Vpc")]
     [ScalewayResourceType("scaleway:index/vpc:Vpc")]
     public partial class Vpc : global::Pulumi.CustomResource
     {

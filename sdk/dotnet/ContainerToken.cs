@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
     /// 
@@ -25,25 +25,25 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerNamespace("main", new()
+    ///     var main = new Scaleway.Containers.Namespace("main", new()
     ///     {
     ///         Name = "test-container-token-ns",
     ///     });
     /// 
-    ///     var mainContainer = new Scaleway.Container("main", new()
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
     ///     {
     ///         NamespaceId = main.Id,
     ///     });
     /// 
     ///     // Namespace Token
-    ///     var @namespace = new Scaleway.ContainerToken("namespace", new()
+    ///     var @namespace = new Scaleway.Containers.Token("namespace", new()
     ///     {
     ///         NamespaceId = main.Id,
     ///         ExpiresAt = "2022-10-18T11:35:15+02:00",
     ///     });
     /// 
     ///     // Container Token
-    ///     var container = new Scaleway.ContainerToken("container", new()
+    ///     var container = new Scaleway.Containers.Token("container", new()
     ///     {
     ///         ContainerId = mainContainer.Id,
     ///     });
@@ -61,6 +61,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token")]
     [ScalewayResourceType("scaleway:index/containerToken:ContainerToken")]
     public partial class ContainerToken : global::Pulumi.CustomResource
     {
@@ -101,8 +102,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The token.
         /// </summary>
-        [Output("token")]
-        public Output<string> Token { get; private set; } = null!;
+        [Output("value")]
+        public Output<string> Value { get; private set; } = null!;
 
 
         /// <summary>
@@ -130,7 +131,7 @@ namespace Pulumiverse.Scaleway
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
                 AdditionalSecretOutputs =
                 {
-                    "token",
+                    "value",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -231,19 +232,19 @@ namespace Pulumiverse.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        [Input("token")]
-        private Input<string>? _token;
+        [Input("value")]
+        private Input<string>? _value;
 
         /// <summary>
         /// The token.
         /// </summary>
-        public Input<string>? Token
+        public Input<string>? Value
         {
-            get => _token;
+            get => _value;
             set
             {
                 var emptySecret = Output.CreateSecret(0);
-                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

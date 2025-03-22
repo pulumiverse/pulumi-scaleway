@@ -21,26 +21,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
+//			_, err := databases.LookupDatabaseBackup(ctx, &databases.LookupDatabaseBackupArgs{
 //				Name: pulumi.StringRef("mybackup"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
+//			_, err = databases.LookupDatabaseBackup(ctx, &databases.LookupDatabaseBackupArgs{
 //				Name:       pulumi.StringRef("mybackup"),
 //				InstanceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.LookupDatabaseBackup(ctx, &scaleway.LookupDatabaseBackupArgs{
+//			_, err = databases.LookupDatabaseBackup(ctx, &databases.LookupDatabaseBackupArgs{
 //				BackupId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -51,6 +51,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getdatabasebackup.getDatabaseBackup has been deprecated in favor of scaleway.databases/getdatabasebackup.getDatabaseBackup
 func LookupDatabaseBackup(ctx *pulumi.Context, args *LookupDatabaseBackupArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseBackupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseBackupResult

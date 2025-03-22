@@ -21,6 +21,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function
 type Function struct {
 	pulumi.CustomResourceState
 

@@ -25,12 +25,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ciCd = new Scaleway.IamApplication("ci_cd", new()
+    ///     var ciCd = new Scaleway.Iam.Application("ci_cd", new()
     ///     {
     ///         Name = "My application",
     ///     });
     /// 
-    ///     var main = new Scaleway.IamApiKey("main", new()
+    ///     var main = new Scaleway.Iam.ApiKey("main", new()
     ///     {
     ///         ApplicationId = mainScalewayIamApplication.Id,
     ///         Description = "a description",
@@ -49,12 +49,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.IamUser("main", new()
+    ///     var main = new Scaleway.Iam.User("main", new()
     ///     {
     ///         Email = "test@test.com",
     ///     });
     /// 
-    ///     var mainIamApiKey = new Scaleway.IamApiKey("main", new()
+    ///     var mainApiKey = new Scaleway.Iam.ApiKey("main", new()
     ///     {
     ///         UserId = main.Id,
     ///         Description = "a description",
@@ -79,7 +79,7 @@ namespace Pulumiverse.Scaleway
     ///         RotationYears = 1,
     ///     });
     /// 
-    ///     var main = new Scaleway.IamApiKey("main", new()
+    ///     var main = new Scaleway.Iam.ApiKey("main", new()
     ///     {
     ///         ApplicationId = mainScalewayIamApplication.Id,
     ///         ExpiresAt = rotateAfterAYear.RotationRfc3339,
@@ -98,6 +98,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamapikey.IamApiKey has been deprecated in favor of scaleway.iam/apikey.ApiKey")]
     [ScalewayResourceType("scaleway:index/iamApiKey:IamApiKey")]
     public partial class IamApiKey : global::Pulumi.CustomResource
     {

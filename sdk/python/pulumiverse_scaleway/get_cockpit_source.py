@@ -21,6 +21,8 @@ __all__ = [
     'get_cockpit_source_output',
 ]
 
+warnings.warn("""scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource""", DeprecationWarning)
+
 @pulumi.output_type
 class GetCockpitSourceResult:
     """
@@ -164,7 +166,7 @@ def get_cockpit_source(id: Optional[str] = None,
                        type: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCockpitSourceResult:
     """
-    The `CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+    The `observability.Source` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
     Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -178,7 +180,7 @@ def get_cockpit_source(id: Optional[str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    example = scaleway.get_cockpit_source(id="fr-par/11111111-1111-1111-1111-111111111111")
+    example = scaleway.observability.get_source(id="fr-par/11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -188,6 +190,7 @@ def get_cockpit_source(id: Optional[str] = None,
     :param str project_id: The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
     :param str type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
     """
+    pulumi.log.warn("""get_cockpit_source is deprecated: scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
@@ -216,7 +219,7 @@ def get_cockpit_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                               type: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCockpitSourceResult]:
     """
-    The `CockpitSource` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+    The `observability.Source` data source allows you to retrieve information about a specific [data source](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
 
     Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -230,7 +233,7 @@ def get_cockpit_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    example = scaleway.get_cockpit_source(id="fr-par/11111111-1111-1111-1111-111111111111")
+    example = scaleway.observability.get_source(id="fr-par/11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -240,6 +243,7 @@ def get_cockpit_source_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
     :param str type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
     """
+    pulumi.log.warn("""get_cockpit_source is deprecated: scaleway.index/getcockpitsource.getCockpitSource has been deprecated in favor of scaleway.observability/getsource.getSource""")
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name

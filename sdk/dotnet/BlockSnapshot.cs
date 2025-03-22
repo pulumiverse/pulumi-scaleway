@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+    /// The `scaleway.block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
     /// 
     /// Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
     /// 
@@ -29,14 +29,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var blockVolume = new Scaleway.BlockVolume("block_volume", new()
+    ///     var blockVolume = new Scaleway.Block.Volume("block_volume", new()
     ///     {
     ///         Iops = 5000,
     ///         Name = "some-volume-name",
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var blockSnapshot = new Scaleway.BlockSnapshot("block_snapshot", new()
+    ///     var blockSnapshot = new Scaleway.Block.Snapshot("block_snapshot", new()
     ///     {
     ///         Name = "some-snapshot-name",
     ///         VolumeId = blockVolume.Id,
@@ -55,6 +55,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot")]
     [ScalewayResourceType("scaleway:index/blockSnapshot:BlockSnapshot")]
     public partial class BlockSnapshot : global::Pulumi.CustomResource
     {

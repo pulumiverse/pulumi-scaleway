@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer")]
     public static class GetBaremetalServer
     {
         /// <summary>
@@ -27,14 +28,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by server name
-        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         Zone = "fr-par-2",
         ///     });
         /// 
         ///     // Get info by server id
-        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -60,14 +61,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by server name
-        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         Zone = "fr-par-2",
         ///     });
         /// 
         ///     // Get info by server id
-        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -93,14 +94,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by server name
-        ///     var byName = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byName = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         Name = "foobar",
         ///         Zone = "fr-par-2",
         ///     });
         /// 
         ///     // Get info by server id
-        ///     var byId = Scaleway.GetBaremetalServer.Invoke(new()
+        ///     var byId = Scaleway.Elasticmetal.GetServer.Invoke(new()
         ///     {
         ///         ServerId = "11111111-1111-1111-1111-111111111111",
         ///     });

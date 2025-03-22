@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+ * The `scaleway.secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
  *
  * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
@@ -28,23 +28,23 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a secret named fooii
- * const main = new scaleway.Secret("main", {
+ * const main = new scaleway.secrets.Secret("main", {
  *     name: "fooii",
  *     description: "barr",
  * });
  * // Create a version of fooii containing data
- * const mainSecretVersion = new scaleway.SecretVersion("main", {
+ * const mainVersion = new scaleway.secrets.Version("main", {
  *     description: "your description",
  *     secretId: main.id,
  *     data: "your_secret",
  * });
  * // Retrieve the secret version specified by the secret ID and the desired version
- * const dataBySecretId = scaleway.getSecretVersionOutput({
+ * const dataBySecretId = scaleway.secrets.getVersionOutput({
  *     secretId: main.id,
  *     revision: "1",
  * });
  * // Retrieve the secret version specified by the secret name and the desired version
- * const dataBySecretName = scaleway.getSecretVersionOutput({
+ * const dataBySecretName = scaleway.secrets.getVersionOutput({
  *     secretName: main.name,
  *     revision: "1",
  * });
@@ -61,7 +61,9 @@ import * as utilities from "./utilities";
  *
  * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
+/** @deprecated scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion */
 export function getSecretVersion(args?: GetSecretVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetSecretVersionResult> {
+    pulumi.log.warn("getSecretVersion is deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getSecretVersion:getSecretVersion", {
@@ -135,7 +137,7 @@ export interface GetSecretVersionResult {
     readonly updatedAt: string;
 }
 /**
- * The `scaleway.SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+ * The `scaleway.secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
  *
  * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
@@ -158,23 +160,23 @@ export interface GetSecretVersionResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a secret named fooii
- * const main = new scaleway.Secret("main", {
+ * const main = new scaleway.secrets.Secret("main", {
  *     name: "fooii",
  *     description: "barr",
  * });
  * // Create a version of fooii containing data
- * const mainSecretVersion = new scaleway.SecretVersion("main", {
+ * const mainVersion = new scaleway.secrets.Version("main", {
  *     description: "your description",
  *     secretId: main.id,
  *     data: "your_secret",
  * });
  * // Retrieve the secret version specified by the secret ID and the desired version
- * const dataBySecretId = scaleway.getSecretVersionOutput({
+ * const dataBySecretId = scaleway.secrets.getVersionOutput({
  *     secretId: main.id,
  *     revision: "1",
  * });
  * // Retrieve the secret version specified by the secret name and the desired version
- * const dataBySecretName = scaleway.getSecretVersionOutput({
+ * const dataBySecretName = scaleway.secrets.getVersionOutput({
  *     secretName: main.name,
  *     revision: "1",
  * });
@@ -191,7 +193,9 @@ export interface GetSecretVersionResult {
  *
  * > **Important:**  This property is sensitive and will not be displayed in the pulumi preview, for security reasons.
  */
+/** @deprecated scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion */
 export function getSecretVersionOutput(args?: GetSecretVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSecretVersionResult> {
+    pulumi.log.warn("getSecretVersion is deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getSecretVersion:getSecretVersion", {

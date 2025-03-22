@@ -23,19 +23,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// For default project
-//			_, err := scaleway.LookupMnqSns(ctx, &scaleway.LookupMnqSnsArgs{}, nil)
+//			_, err := mnq.LookupSns(ctx, &mnq.LookupSnsArgs{}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// For specific project
-//			_, err = scaleway.LookupMnqSns(ctx, &scaleway.LookupMnqSnsArgs{
+//			_, err = mnq.LookupSns(ctx, &mnq.LookupSnsArgs{
 //				ProjectId: pulumi.StringRef(mainScalewayAccountProject.Id),
 //			}, nil)
 //			if err != nil {
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getmnqsns.getMnqSns has been deprecated in favor of scaleway.mnq/getsns.getSns
 func LookupMnqSns(ctx *pulumi.Context, args *LookupMnqSnsArgs, opts ...pulumi.InvokeOption) (*LookupMnqSnsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMnqSnsResult

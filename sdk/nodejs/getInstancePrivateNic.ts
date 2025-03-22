@@ -13,21 +13,23 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byNicId = scaleway.getInstancePrivateNic({
+ * const byNicId = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     privateNicId: "11111111-1111-1111-1111-111111111111",
  * });
- * const byPnId = scaleway.getInstancePrivateNic({
+ * const byPnId = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
- * const byTags = scaleway.getInstancePrivateNic({
+ * const byTags = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     tags: ["mytag"],
  * });
  * ```
  */
+/** @deprecated scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic */
 export function getInstancePrivateNic(args: GetInstancePrivateNicArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancePrivateNicResult> {
+    pulumi.log.warn("getInstancePrivateNic is deprecated: scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", {
         "privateNetworkId": args.privateNetworkId,
@@ -93,21 +95,23 @@ export interface GetInstancePrivateNicResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumi/scaleway";
  *
- * const byNicId = scaleway.getInstancePrivateNic({
+ * const byNicId = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     privateNicId: "11111111-1111-1111-1111-111111111111",
  * });
- * const byPnId = scaleway.getInstancePrivateNic({
+ * const byPnId = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
- * const byTags = scaleway.getInstancePrivateNic({
+ * const byTags = scaleway.instance.getPrivateNic({
  *     serverId: "11111111-1111-1111-1111-111111111111",
  *     tags: ["mytag"],
  * });
  * ```
  */
+/** @deprecated scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic */
 export function getInstancePrivateNicOutput(args: GetInstancePrivateNicOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstancePrivateNicResult> {
+    pulumi.log.warn("getInstancePrivateNic is deprecated: scaleway.index/getinstanceprivatenic.getInstancePrivateNic has been deprecated in favor of scaleway.instance/getprivatenic.getPrivateNic")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstancePrivateNic:getInstancePrivateNic", {
         "privateNetworkId": args.privateNetworkId,

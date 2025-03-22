@@ -22,6 +22,8 @@ __all__ = [
     'get_iot_device_output',
 ]
 
+warnings.warn("""scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIotDeviceResult:
     """
@@ -192,6 +194,7 @@ def get_iot_device(device_id: Optional[str] = None,
            Only one of the `name` and `device_id` should be specified.
     :param str region: `region`) The region in which the hub exists.
     """
+    pulumi.log.warn("""get_iot_device is deprecated: scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice""")
     __args__ = dict()
     __args__['deviceId'] = device_id
     __args__['hubId'] = hub_id
@@ -232,6 +235,7 @@ def get_iot_device_output(device_id: Optional[pulumi.Input[Optional[str]]] = Non
            Only one of the `name` and `device_id` should be specified.
     :param str region: `region`) The region in which the hub exists.
     """
+    pulumi.log.warn("""get_iot_device is deprecated: scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice""")
     __args__ = dict()
     __args__['deviceId'] = device_id
     __args__['hubId'] = hub_id

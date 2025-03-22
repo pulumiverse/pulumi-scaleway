@@ -16,24 +16,24 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "tf-vpc-vpn"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "tf-vpc-vpn"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "tf-pn-vpn",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const server01 = new scaleway.InstanceServer("server01", {
+ * const server01 = new scaleway.instance.Server("server01", {
  *     name: "tf-server-vpn",
  *     type: "PLAY2-MICRO",
  *     image: "openvpn",
  * });
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     privateNetworkId: pn01.id,
  *     serverId: server01.id,
  * });
- * const rt01 = new scaleway.VpcRoute("rt01", {
+ * const rt01 = new scaleway.network.Route("rt01", {
  *     vpcId: vpc01.id,
  *     description: "tf-route-vpn",
  *     tags: [
@@ -54,6 +54,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcRoute:VpcRoute main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route
  */
 export class VpcRoute extends pulumi.CustomResource {
     /**
@@ -66,6 +68,7 @@ export class VpcRoute extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcRouteState, opts?: pulumi.CustomResourceOptions): VpcRoute {
+        pulumi.log.warn("VpcRoute is deprecated: scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route")
         return new VpcRoute(name, <any>state, { ...opts, id: id });
     }
 
@@ -127,8 +130,11 @@ export class VpcRoute extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route */
     constructor(name: string, args: VpcRouteArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route */
     constructor(name: string, argsOrState?: VpcRouteArgs | VpcRouteState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcRoute is deprecated: scaleway.index/vpcroute.VpcRoute has been deprecated in favor of scaleway.network/route.Route")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

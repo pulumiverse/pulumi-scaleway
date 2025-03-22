@@ -16,12 +16,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const group = new scaleway.IamGroup("group", {
+ * const group = new scaleway.iam.Group("group", {
  *     name: "my_group",
  *     externalMembership: true,
  * });
- * const app = new scaleway.IamApplication("app", {name: "my_app"});
- * const member = new scaleway.IamGroupMembership("member", {
+ * const app = new scaleway.iam.Application("app", {name: "my_app"});
+ * const member = new scaleway.iam.GroupMembership("member", {
  *     groupId: group.id,
  *     applicationId: app.id,
  * });
@@ -40,6 +40,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamGroupMembership:IamGroupMembership app 11111111-1111-1111-1111-111111111111/app/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership
  */
 export class IamGroupMembership extends pulumi.CustomResource {
     /**
@@ -52,6 +54,7 @@ export class IamGroupMembership extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamGroupMembershipState, opts?: pulumi.CustomResourceOptions): IamGroupMembership {
+        pulumi.log.warn("IamGroupMembership is deprecated: scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership")
         return new IamGroupMembership(name, <any>state, { ...opts, id: id });
     }
 
@@ -91,8 +94,11 @@ export class IamGroupMembership extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership */
     constructor(name: string, args: IamGroupMembershipArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership */
     constructor(name: string, argsOrState?: IamGroupMembershipArgs | IamGroupMembershipState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamGroupMembership is deprecated: scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

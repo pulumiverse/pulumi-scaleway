@@ -18,6 +18,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns
  */
 export class IpamIpReverseDns extends pulumi.CustomResource {
     /**
@@ -30,6 +32,7 @@ export class IpamIpReverseDns extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IpamIpReverseDnsState, opts?: pulumi.CustomResourceOptions): IpamIpReverseDns {
+        pulumi.log.warn("IpamIpReverseDns is deprecated: scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns")
         return new IpamIpReverseDns(name, <any>state, { ...opts, id: id });
     }
 
@@ -71,8 +74,11 @@ export class IpamIpReverseDns extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns */
     constructor(name: string, args: IpamIpReverseDnsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns */
     constructor(name: string, argsOrState?: IpamIpReverseDnsArgs | IpamIpReverseDnsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IpamIpReverseDns is deprecated: scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

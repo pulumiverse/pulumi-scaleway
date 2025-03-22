@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ContainerToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+// The `containers.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Containers tokens [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-tokens-list-all-tokens) for more information.
 //
@@ -23,26 +23,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
 //				Name: pulumi.String("test-container-token-ns"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainContainer, err := scaleway.NewContainer(ctx, "main", &scaleway.ContainerArgs{
+//			mainContainer, err := containers.NewContainer(ctx, "main", &containers.ContainerArgs{
 //				NamespaceId: main.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			// Namespace Token
-//			_, err = scaleway.NewContainerToken(ctx, "namespace", &scaleway.ContainerTokenArgs{
+//			_, err = containers.NewToken(ctx, "namespace", &containers.TokenArgs{
 //				NamespaceId: main.ID(),
 //				ExpiresAt:   pulumi.String("2022-10-18T11:35:15+02:00"),
 //			})
@@ -50,7 +50,7 @@ import (
 //				return err
 //			}
 //			// Container Token
-//			_, err = scaleway.NewContainerToken(ctx, "container", &scaleway.ContainerTokenArgs{
+//			_, err = containers.NewToken(ctx, "container", &containers.TokenArgs{
 //				ContainerId: mainContainer.ID(),
 //			})
 //			if err != nil {
@@ -71,6 +71,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/containerToken:ContainerToken main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/containertoken.ContainerToken has been deprecated in favor of scaleway.containers/token.Token
 type ContainerToken struct {
 	pulumi.CustomResourceState
 
@@ -89,7 +91,7 @@ type ContainerToken struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The token.
-	Token pulumi.StringOutput `pulumi:"token"`
+	Value pulumi.StringOutput `pulumi:"value"`
 }
 
 // NewContainerToken registers a new resource with the given unique name, arguments, and options.
@@ -100,7 +102,7 @@ func NewContainerToken(ctx *pulumi.Context,
 	}
 
 	secrets := pulumi.AdditionalSecretOutputs([]string{
-		"token",
+		"value",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -141,7 +143,7 @@ type containerTokenState struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region *string `pulumi:"region"`
 	// The token.
-	Token *string `pulumi:"token"`
+	Value *string `pulumi:"value"`
 }
 
 type ContainerTokenState struct {
@@ -160,7 +162,7 @@ type ContainerTokenState struct {
 	// > **Important** Updating any of the arguments above will recreate the token.
 	Region pulumi.StringPtrInput
 	// The token.
-	Token pulumi.StringPtrInput
+	Value pulumi.StringPtrInput
 }
 
 func (ContainerTokenState) ElementType() reflect.Type {
@@ -319,8 +321,8 @@ func (o ContainerTokenOutput) Region() pulumi.StringOutput {
 }
 
 // The token.
-func (o ContainerTokenOutput) Token() pulumi.StringOutput {
-	return o.ApplyT(func(v *ContainerToken) pulumi.StringOutput { return v.Token }).(pulumi.StringOutput)
+func (o ContainerTokenOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *ContainerToken) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
 }
 
 type ContainerTokenArrayOutput struct{ *pulumi.OutputState }

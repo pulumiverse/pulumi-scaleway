@@ -26,30 +26,31 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -71,31 +72,32 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Address: pulumi.String("172.16.32.7"),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -117,22 +119,23 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv6Subnets: scaleway.VpcPrivateNetworkIpv6SubnetArray{
-//					&scaleway.VpcPrivateNetworkIpv6SubnetArgs{
+//				Ipv6Subnets: network.PrivateNetworkIpv6SubnetArray{
+//					&network.PrivateNetworkIpv6SubnetArgs{
 //						Subnet: pulumi.String("fd46:78ab:30b8:177c::/64"),
 //					},
 //				},
@@ -140,10 +143,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				IsIpv6: pulumi.Bool(true),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
@@ -165,36 +168,37 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIpamIp(ctx, "ip01", &scaleway.IpamIpArgs{
+//			_, err = ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
 //				Address: pulumi.String("172.16.32.7"),
-//				Sources: scaleway.IpamIpSourceArray{
-//					&scaleway.IpamIpSourceArgs{
+//				Sources: ipam.IpSourceArray{
+//					&ipam.IpSourceArgs{
 //						PrivateNetworkId: pn01.ID(),
 //					},
 //				},
-//				CustomResources: scaleway.IpamIpCustomResourceArray{
-//					&scaleway.IpamIpCustomResourceArgs{
+//				CustomResources: ipam.IpCustomResourceArray{
+//					&ipam.IpCustomResourceArgs{
 //						MacAddress: pulumi.String("bc:24:11:74:d0:6a"),
 //					},
 //				},
@@ -217,6 +221,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/ipamIp:IpamIp ip_demo fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip
 type IpamIp struct {
 	pulumi.CustomResourceState
 

@@ -22,6 +22,8 @@ __all__ = [
     'get_lb_acls_output',
 ]
 
+warnings.warn("""scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbAclsResult:
     """
@@ -124,9 +126,9 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Find acls that share the same frontend ID
-    by_front_id = scaleway.get_lb_acls(frontend_id=frt01["id"])
+    by_front_id = scaleway.loadbalancers.get_acls(frontend_id=frt01["id"])
     # Find acls by frontend ID and name
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=frt01["id"],
+    by_front_id_and_name = scaleway.loadbalancers.get_acls(frontend_id=frt01["id"],
         name="tf-acls-datasource")
     ```
 
@@ -136,6 +138,7 @@ def get_lb_acls(frontend_id: Optional[str] = None,
     :param str name: The ACL name to filter for. ACLs with a matching name are listed.
     :param str zone: `zone`) The zone in which the ACLs exist.
     """
+    pulumi.log.warn("""get_lb_acls is deprecated: scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['name'] = name
@@ -169,9 +172,9 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
 
     # Find acls that share the same frontend ID
-    by_front_id = scaleway.get_lb_acls(frontend_id=frt01["id"])
+    by_front_id = scaleway.loadbalancers.get_acls(frontend_id=frt01["id"])
     # Find acls by frontend ID and name
-    by_front_id_and_name = scaleway.get_lb_acls(frontend_id=frt01["id"],
+    by_front_id_and_name = scaleway.loadbalancers.get_acls(frontend_id=frt01["id"],
         name="tf-acls-datasource")
     ```
 
@@ -181,6 +184,7 @@ def get_lb_acls_output(frontend_id: Optional[pulumi.Input[str]] = None,
     :param str name: The ACL name to filter for. ACLs with a matching name are listed.
     :param str zone: `zone`) The zone in which the ACLs exist.
     """
+    pulumi.log.warn("""get_lb_acls is deprecated: scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls""")
     __args__ = dict()
     __args__['frontendId'] = frontend_id
     __args__['name'] = name

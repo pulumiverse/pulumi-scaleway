@@ -509,7 +509,12 @@ class _TemDomainState:
         pulumi.set(self, "status", value)
 
 
+warnings.warn("""scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain""", DeprecationWarning)
+
+
 class TemDomain(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -532,7 +537,7 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             accept_tos=True,
             name="example.com")
         ```
@@ -545,23 +550,23 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             name=domain_name,
             accept_tos=True)
-        spf = scaleway.DomainRecord("spf",
+        spf = scaleway.domain.Record("spf",
             dns_zone=domain_name,
             type="TXT",
             data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
-        dkim = scaleway.DomainRecord("dkim",
+        dkim = scaleway.domain.Record("dkim",
             dns_zone=domain_name,
             name=main.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=main.dkim_config)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
             data=".")
-        dmarc = scaleway.DomainRecord("dmarc",
+        dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=main.dmarc_name,
             type="TXT",
@@ -576,7 +581,7 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             name=domain_name,
             accept_tos=True,
             autoconfig=True)
@@ -620,7 +625,7 @@ class TemDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             accept_tos=True,
             name="example.com")
         ```
@@ -633,23 +638,23 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             name=domain_name,
             accept_tos=True)
-        spf = scaleway.DomainRecord("spf",
+        spf = scaleway.domain.Record("spf",
             dns_zone=domain_name,
             type="TXT",
             data=main.spf_config.apply(lambda spf_config: f"v=spf1 {spf_config} -all"))
-        dkim = scaleway.DomainRecord("dkim",
+        dkim = scaleway.domain.Record("dkim",
             dns_zone=domain_name,
             name=main.project_id.apply(lambda project_id: f"{project_id}._domainkey"),
             type="TXT",
             data=main.dkim_config)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone=domain_name,
             type="MX",
             data=".")
-        dmarc = scaleway.DomainRecord("dmarc",
+        dmarc = scaleway.domain.Record("dmarc",
             dns_zone=domain_name,
             name=main.dmarc_name,
             type="TXT",
@@ -664,7 +669,7 @@ class TemDomain(pulumi.CustomResource):
 
         config = pulumi.Config()
         domain_name = config.require("domainName")
-        main = scaleway.TemDomain("main",
+        main = scaleway.tem.Domain("main",
             name=domain_name,
             accept_tos=True,
             autoconfig=True)
@@ -701,6 +706,7 @@ class TemDomain(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""TemDomain is deprecated: scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

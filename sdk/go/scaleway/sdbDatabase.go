@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `SdbDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
+// The `databases.ServerlessDatabase` resource allows you to create and manage databases for Scaleway Serverless SQL Databases.
 //
 // Refer to the Serverless SQL Databases [documentation](https://www.scaleway.com/en/docs/serverless-sql-databases/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-databases/) for more information.
 //
@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewSdbDatabase(ctx, "database", &scaleway.SdbDatabaseArgs{
+//			_, err := databases.NewServerlessDatabase(ctx, "database", &databases.ServerlessDatabaseArgs{
 //				Name:   pulumi.String("my-database"),
 //				MinCpu: pulumi.Int(0),
 //				MaxCpu: pulumi.Int(8),
@@ -54,6 +54,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/sdbDatabase:SdbDatabase database fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/sdbdatabase.SdbDatabase has been deprecated in favor of scaleway.databases/serverlessdatabase.ServerlessDatabase
 type SdbDatabase struct {
 	pulumi.CustomResourceState
 

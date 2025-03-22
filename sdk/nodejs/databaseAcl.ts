@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -27,7 +27,7 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const mainDatabaseAcl = new scaleway.DatabaseAcl("main", {
+ * const mainAcl = new scaleway.databases.Acl("main", {
  *     instanceId: main.id,
  *     aclRules: [{
  *         ip: "1.2.3.4/32",
@@ -45,6 +45,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databaseAcl:DatabaseAcl acl01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl
  */
 export class DatabaseAcl extends pulumi.CustomResource {
     /**
@@ -57,6 +59,7 @@ export class DatabaseAcl extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseAclState, opts?: pulumi.CustomResourceOptions): DatabaseAcl {
+        pulumi.log.warn("DatabaseAcl is deprecated: scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl")
         return new DatabaseAcl(name, <any>state, { ...opts, id: id });
     }
 
@@ -96,8 +99,11 @@ export class DatabaseAcl extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl */
     constructor(name: string, args: DatabaseAclArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl */
     constructor(name: string, argsOrState?: DatabaseAclArgs | DatabaseAclState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabaseAcl is deprecated: scaleway.index/databaseacl.DatabaseAcl has been deprecated in favor of scaleway.databases/acl.Acl")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

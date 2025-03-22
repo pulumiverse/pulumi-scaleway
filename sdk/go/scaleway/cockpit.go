@@ -20,6 +20,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/cockpit:Cockpit main 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit
 type Cockpit struct {
 	pulumi.CustomResourceState
 
@@ -39,7 +41,7 @@ type Cockpit struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// [DEPRECATED] Push_url
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Please use `observability.Source` instead
 	PushUrls CockpitPushUrlArrayOutput `pulumi:"pushUrls"`
 }
 
@@ -89,7 +91,7 @@ type cockpitState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// [DEPRECATED] Push_url
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Please use `observability.Source` instead
 	PushUrls []CockpitPushUrl `pulumi:"pushUrls"`
 }
 
@@ -110,7 +112,7 @@ type CockpitState struct {
 	ProjectId pulumi.StringPtrInput
 	// [DEPRECATED] Push_url
 	//
-	// Deprecated: Please use `CockpitSource` instead
+	// Deprecated: Please use `observability.Source` instead
 	PushUrls CockpitPushUrlArrayInput
 }
 
@@ -252,7 +254,7 @@ func (o CockpitOutput) ProjectId() pulumi.StringOutput {
 
 // [DEPRECATED] Push_url
 //
-// Deprecated: Please use `CockpitSource` instead
+// Deprecated: Please use `observability.Source` instead
 func (o CockpitOutput) PushUrls() CockpitPushUrlArrayOutput {
 	return o.ApplyT(func(v *Cockpit) CockpitPushUrlArrayOutput { return v.PushUrls }).(CockpitPushUrlArrayOutput)
 }

@@ -14,6 +14,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/function:Function main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function
  */
 export class Function extends pulumi.CustomResource {
     /**
@@ -26,6 +28,7 @@ export class Function extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionState, opts?: pulumi.CustomResourceOptions): Function {
+        pulumi.log.warn("Function is deprecated: scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function")
         return new Function(name, <any>state, { ...opts, id: id });
     }
 
@@ -138,8 +141,11 @@ export class Function extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function */
     constructor(name: string, args: FunctionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function */
     constructor(name: string, argsOrState?: FunctionArgs | FunctionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Function is deprecated: scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

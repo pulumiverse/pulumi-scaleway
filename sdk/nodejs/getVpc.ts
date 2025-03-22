@@ -14,20 +14,22 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const byName = scaleway.getVpc({
+ * const byName = scaleway.network.getVpc({
  *     name: "foobar",
  * });
  * // Get info by ID
- * const byId = scaleway.getVpc({
+ * const byId = scaleway.network.getVpc({
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get default VPC info
- * const _default = scaleway.getVpc({
+ * const _default = scaleway.network.getVpc({
  *     isDefault: true,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc */
 export function getVpc(args?: GetVpcArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcResult> {
+    pulumi.log.warn("getVpc is deprecated: scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpc:getVpc", {
@@ -96,20 +98,22 @@ export interface GetVpcResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const byName = scaleway.getVpc({
+ * const byName = scaleway.network.getVpc({
  *     name: "foobar",
  * });
  * // Get info by ID
- * const byId = scaleway.getVpc({
+ * const byId = scaleway.network.getVpc({
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get default VPC info
- * const _default = scaleway.getVpc({
+ * const _default = scaleway.network.getVpc({
  *     isDefault: true,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc */
 export function getVpcOutput(args?: GetVpcOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcResult> {
+    pulumi.log.warn("getVpc is deprecated: scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpc:getVpc", {

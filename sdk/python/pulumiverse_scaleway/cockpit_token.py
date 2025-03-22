@@ -210,7 +210,12 @@ class _CockpitTokenState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token""", DeprecationWarning)
+
+
 class CockpitToken(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -221,7 +226,7 @@ class CockpitToken(pulumi.CustomResource):
                  scopes: Optional[pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']]] = None,
                  __props__=None):
         """
-        The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+        The `observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -240,8 +245,8 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="my-project")
-        main = scaleway.CockpitToken("main",
+        project = scaleway.account.Project("project", name="my-project")
+        main = scaleway.observability.Token("main",
             project_id=project.id,
             name="my-awesome-token")
         ```
@@ -250,9 +255,9 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="my-project")
+        project = scaleway.account.Project("project", name="my-project")
         # Create a token that can read metrics and logs but not write
-        main = scaleway.CockpitToken("main",
+        main = scaleway.observability.Token("main",
             project_id=project.id,
             name="my-awesome-token",
             scopes={
@@ -287,7 +292,7 @@ class CockpitToken(pulumi.CustomResource):
                  args: Optional[CockpitTokenArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `CockpitToken` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
+        The `observability.Token` resource allows you to create and manage your Cockpit [tokens](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#tokens).
 
         Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -306,8 +311,8 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="my-project")
-        main = scaleway.CockpitToken("main",
+        project = scaleway.account.Project("project", name="my-project")
+        main = scaleway.observability.Token("main",
             project_id=project.id,
             name="my-awesome-token")
         ```
@@ -316,9 +321,9 @@ class CockpitToken(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        project = scaleway.AccountProject("project", name="my-project")
+        project = scaleway.account.Project("project", name="my-project")
         # Create a token that can read metrics and logs but not write
-        main = scaleway.CockpitToken("main",
+        main = scaleway.observability.Token("main",
             project_id=project.id,
             name="my-awesome-token",
             scopes={
@@ -359,6 +364,7 @@ class CockpitToken(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  scopes: Optional[pulumi.Input[Union['CockpitTokenScopesArgs', 'CockpitTokenScopesArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""CockpitToken is deprecated: scaleway.index/cockpittoken.CockpitToken has been deprecated in favor of scaleway.observability/token.Token""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

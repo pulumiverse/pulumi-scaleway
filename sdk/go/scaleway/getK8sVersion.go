@@ -26,13 +26,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetK8sVersion(ctx, &scaleway.GetK8sVersionArgs{
+//			_, err := kubernetes.GetVersion(ctx, &kubernetes.GetVersionArgs{
 //				Name: "latest",
 //			}, nil)
 //			if err != nil {
@@ -52,13 +52,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetK8sVersion(ctx, &scaleway.GetK8sVersionArgs{
+//			_, err := kubernetes.GetVersion(ctx, &kubernetes.GetVersionArgs{
 //				Name: "1.26.0",
 //			}, nil)
 //			if err != nil {
@@ -69,6 +69,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getk8sversion.getK8sVersion has been deprecated in favor of scaleway.kubernetes/getversion.getVersion
 func GetK8sVersion(ctx *pulumi.Context, args *GetK8sVersionArgs, opts ...pulumi.InvokeOption) (*GetK8sVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetK8sVersionResult

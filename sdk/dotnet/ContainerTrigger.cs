@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ContainerTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Containers triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
     /// 
@@ -27,11 +27,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerTrigger("main", new()
+    ///     var main = new Scaleway.Containers.Trigger("main", new()
     ///     {
     ///         ContainerId = mainScalewayContainer.Id,
     ///         Name = "my-trigger",
-    ///         Sqs = new Scaleway.Inputs.ContainerTriggerSqsArgs
+    ///         Sqs = new Scaleway.Containers.Inputs.TriggerSqsArgs
     ///         {
     ///             ProjectId = mainScalewayMnqSqs.ProjectId,
     ///             Queue = "MyQueue",
@@ -52,11 +52,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerTrigger("main", new()
+    ///     var main = new Scaleway.Containers.Trigger("main", new()
     ///     {
     ///         ContainerId = mainScalewayContainer.Id,
     ///         Name = "my-trigger",
-    ///         Nats = new Scaleway.Inputs.ContainerTriggerNatsArgs
+    ///         Nats = new Scaleway.Containers.Inputs.TriggerNatsArgs
     ///         {
     ///             AccountId = mainScalewayMnqNatsAccount.Id,
     ///             Subject = "MySubject",
@@ -77,6 +77,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/containerTrigger:ContainerTrigger main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/containertrigger.ContainerTrigger has been deprecated in favor of scaleway.containers/trigger.Trigger")]
     [ScalewayResourceType("scaleway:index/containerTrigger:ContainerTrigger")]
     public partial class ContainerTrigger : global::Pulumi.CustomResource
     {

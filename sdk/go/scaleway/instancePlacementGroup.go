@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstancePlacementGroup(ctx, "availability_group", nil)
+//			_, err := instance.NewPlacementGroup(ctx, "availability_group", nil)
 //			if err != nil {
 //				return err
 //			}
@@ -46,6 +46,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instancePlacementGroup:InstancePlacementGroup availability_group fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instanceplacementgroup.InstancePlacementGroup has been deprecated in favor of scaleway.instance/placementgroup.PlacementGroup
 type InstancePlacementGroup struct {
 	pulumi.CustomResourceState
 

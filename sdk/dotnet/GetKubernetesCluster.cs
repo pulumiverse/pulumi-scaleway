@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster")]
     public static class GetKubernetesCluster
     {
         /// <summary>

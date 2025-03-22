@@ -16,12 +16,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
- * const myAcl = scaleway.getDatabaseAcl({
+ * const myAcl = scaleway.databases.getAcl({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl */
 export function getDatabaseAcl(args: GetDatabaseAclArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseAclResult> {
+    pulumi.log.warn("getDatabaseAcl is deprecated: scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,
@@ -68,12 +70,14 @@ export interface GetDatabaseAclResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
- * const myAcl = scaleway.getDatabaseAcl({
+ * const myAcl = scaleway.databases.getAcl({
  *     instanceId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl */
 export function getDatabaseAclOutput(args: GetDatabaseAclOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseAclResult> {
+    pulumi.log.warn("getDatabaseAcl is deprecated: scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabaseAcl:getDatabaseAcl", {
         "instanceId": args.instanceId,

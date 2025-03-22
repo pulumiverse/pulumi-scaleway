@@ -22,6 +22,8 @@ __all__ = [
     'get_database_acl_output',
 ]
 
+warnings.warn("""scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDatabaseAclResult:
     """
@@ -93,13 +95,14 @@ def get_database_acl(instance_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
-    my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
+    my_acl = scaleway.databases.get_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param str instance_id: The RDB instance ID.
     :param str region: `region`) The region in which the Database Instance should be created.
     """
+    pulumi.log.warn("""get_database_acl is deprecated: scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['region'] = region
@@ -124,13 +127,14 @@ def get_database_acl_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
 
     # Get the database ACL for the instance id 11111111-1111-1111-1111-111111111111 located in the default region e.g: fr-par
-    my_acl = scaleway.get_database_acl(instance_id="11111111-1111-1111-1111-111111111111")
+    my_acl = scaleway.databases.get_acl(instance_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param str instance_id: The RDB instance ID.
     :param str region: `region`) The region in which the Database Instance should be created.
     """
+    pulumi.log.warn("""get_database_acl is deprecated: scaleway.index/getdatabaseacl.getDatabaseAcl has been deprecated in favor of scaleway.databases/getacl.getAcl""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['region'] = region

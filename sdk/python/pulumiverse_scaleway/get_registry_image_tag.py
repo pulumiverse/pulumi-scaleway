@@ -21,6 +21,8 @@ __all__ = [
     'get_registry_image_tag_output',
 ]
 
+warnings.warn("""scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag""", DeprecationWarning)
+
 @pulumi.output_type
 class GetRegistryImageTagResult:
     """
@@ -170,6 +172,7 @@ def get_registry_image_tag(image_id: Optional[str] = None,
     :param str region: The region in which the registry image tag exists.
     :param str tag_id: The ID of the registry image tag.
     """
+    pulumi.log.warn("""get_registry_image_tag is deprecated: scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag""")
     __args__ = dict()
     __args__['imageId'] = image_id
     __args__['name'] = name
@@ -207,6 +210,7 @@ def get_registry_image_tag_output(image_id: Optional[pulumi.Input[str]] = None,
     :param str region: The region in which the registry image tag exists.
     :param str tag_id: The ID of the registry image tag.
     """
+    pulumi.log.warn("""get_registry_image_tag is deprecated: scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag""")
     __args__ = dict()
     __args__['imageId'] = image_id
     __args__['name'] = name

@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.RegistryNamespace("main", new()
+    ///     var main = new Scaleway.Registry.Namespace("main", new()
     ///     {
     ///         Name = "main-cr",
     ///         Description = "Main container registry",
@@ -46,6 +46,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/registryNamespace:RegistryNamespace main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/registrynamespace.RegistryNamespace has been deprecated in favor of scaleway.registry/namespace.Namespace")]
     [ScalewayResourceType("scaleway:index/registryNamespace:RegistryNamespace")]
     public partial class RegistryNamespace : global::Pulumi.CustomResource
     {

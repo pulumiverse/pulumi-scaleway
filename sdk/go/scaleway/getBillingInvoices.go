@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about your Scaleway invoices.
+//
+// Deprecated: scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices
 func GetBillingInvoices(ctx *pulumi.Context, args *GetBillingInvoicesArgs, opts ...pulumi.InvokeOption) (*GetBillingInvoicesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetBillingInvoicesResult

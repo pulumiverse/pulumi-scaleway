@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IamApplication("main", {
+ * const main = new scaleway.iam.Application("main", {
  *     name: "My application",
  *     description: "a description",
  * });
@@ -28,6 +28,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iamApplication:IamApplication main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application
  */
 export class IamApplication extends pulumi.CustomResource {
     /**
@@ -40,6 +42,7 @@ export class IamApplication extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IamApplicationState, opts?: pulumi.CustomResourceOptions): IamApplication {
+        pulumi.log.warn("IamApplication is deprecated: scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application")
         return new IamApplication(name, <any>state, { ...opts, id: id });
     }
 
@@ -93,8 +96,11 @@ export class IamApplication extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application */
     constructor(name: string, args?: IamApplicationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application */
     constructor(name: string, argsOrState?: IamApplicationArgs | IamApplicationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IamApplication is deprecated: scaleway.index/iamapplication.IamApplication has been deprecated in favor of scaleway.iam/application.Application")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

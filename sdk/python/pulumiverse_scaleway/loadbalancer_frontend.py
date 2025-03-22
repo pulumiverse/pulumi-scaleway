@@ -359,7 +359,12 @@ class _LoadbalancerFrontendState:
         pulumi.set(self, "timeout_client", value)
 
 
+warnings.warn("""scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend""", DeprecationWarning)
+
+
 class LoadbalancerFrontend(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -387,7 +392,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+        frontend01 = scaleway.loadbalancers.Frontend("frontend01",
             lb_id=lb01["id"],
             backend_id=backend01["id"],
             name="frontend01",
@@ -400,7 +405,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+        frontend01 = scaleway.loadbalancers.Frontend("frontend01",
             lb_id=lb01["id"],
             backend_id=backend01["id"],
             name="frontend01",
@@ -528,7 +533,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+        frontend01 = scaleway.loadbalancers.Frontend("frontend01",
             lb_id=lb01["id"],
             backend_id=backend01["id"],
             name="frontend01",
@@ -541,7 +546,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        frontend01 = scaleway.LoadbalancerFrontend("frontend01",
+        frontend01 = scaleway.loadbalancers.Frontend("frontend01",
             lb_id=lb01["id"],
             backend_id=backend01["id"],
             name="frontend01",
@@ -658,6 +663,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  timeout_client: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""LoadbalancerFrontend is deprecated: scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

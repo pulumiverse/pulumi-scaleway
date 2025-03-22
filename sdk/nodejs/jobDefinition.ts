@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.JobDefinition("main", {
+ * const main = new scaleway.job.Definition("main", {
  *     name: "testjob",
  *     cpuLimit: 140,
  *     memoryLimit: 256,
@@ -43,6 +43,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/jobDefinition:JobDefinition job fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition
  */
 export class JobDefinition extends pulumi.CustomResource {
     /**
@@ -55,6 +57,7 @@ export class JobDefinition extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: JobDefinitionState, opts?: pulumi.CustomResourceOptions): JobDefinition {
+        pulumi.log.warn("JobDefinition is deprecated: scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition")
         return new JobDefinition(name, <any>state, { ...opts, id: id });
     }
 
@@ -124,8 +127,11 @@ export class JobDefinition extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition */
     constructor(name: string, args: JobDefinitionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition */
     constructor(name: string, argsOrState?: JobDefinitionArgs | JobDefinitionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("JobDefinition is deprecated: scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

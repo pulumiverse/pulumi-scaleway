@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqNatsAccount("main", {name: "nats-account"});
- * const mainMnqNatsCredentials = new scaleway.MnqNatsCredentials("main", {accountId: main.id});
+ * const main = new scaleway.mnq.NatsAccount("main", {name: "nats-account"});
+ * const mainNatsCredentials = new scaleway.mnq.NatsCredentials("main", {accountId: main.id});
  * ```
  *
  * ## Import
@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials
  */
 export class MnqNatsCredentials extends pulumi.CustomResource {
     /**
@@ -42,6 +44,7 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqNatsCredentialsState, opts?: pulumi.CustomResourceOptions): MnqNatsCredentials {
+        pulumi.log.warn("MnqNatsCredentials is deprecated: scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials")
         return new MnqNatsCredentials(name, <any>state, { ...opts, id: id });
     }
 
@@ -84,8 +87,11 @@ export class MnqNatsCredentials extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials */
     constructor(name: string, args: MnqNatsCredentialsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials */
     constructor(name: string, argsOrState?: MnqNatsCredentialsArgs | MnqNatsCredentialsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqNatsCredentials is deprecated: scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

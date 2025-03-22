@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp")]
     public static class GetVpcPublicGatewayIp
     {
         /// <summary>
@@ -28,9 +29,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayIp("main");
+        ///     var main = new Scaleway.Network.PublicGatewayIp("main");
         /// 
-        ///     var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new()
+        ///     var ipById = Scaleway.Network.GetPublicGatewayIp.Invoke(new()
         ///     {
         ///         IpId = main.Id,
         ///     });
@@ -57,9 +58,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayIp("main");
+        ///     var main = new Scaleway.Network.PublicGatewayIp("main");
         /// 
-        ///     var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new()
+        ///     var ipById = Scaleway.Network.GetPublicGatewayIp.Invoke(new()
         ///     {
         ///         IpId = main.Id,
         ///     });
@@ -86,9 +87,9 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGatewayIp("main");
+        ///     var main = new Scaleway.Network.PublicGatewayIp("main");
         /// 
-        ///     var ipById = Scaleway.GetVpcPublicGatewayIp.Invoke(new()
+        ///     var ipById = Scaleway.Network.GetPublicGatewayIp.Invoke(new()
         ///     {
         ///         IpId = main.Id,
         ///     });

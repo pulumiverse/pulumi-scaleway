@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getwebhosting.getWebhosting has been deprecated in favor of scaleway.hosting/gethosting.getHosting")]
     public static class GetWebhosting
     {
         /// <summary>
@@ -26,13 +27,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer domain
-        ///     var byDomain = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byDomain = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         Domain = "foobar.com",
         ///     });
         /// 
         ///     // Get info by id
-        ///     var byId = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         WebhostingId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -57,13 +58,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer domain
-        ///     var byDomain = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byDomain = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         Domain = "foobar.com",
         ///     });
         /// 
         ///     // Get info by id
-        ///     var byId = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         WebhostingId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -88,13 +89,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer domain
-        ///     var byDomain = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byDomain = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         Domain = "foobar.com",
         ///     });
         /// 
         ///     // Get info by id
-        ///     var byId = Scaleway.GetWebhosting.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetHosting.Invoke(new()
         ///     {
         ///         WebhostingId = "11111111-1111-1111-1111-111111111111",
         ///     });

@@ -5,11 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.AccountSshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
+ * The `scaleway.account.SshKey` resource allows you to create and manage the Projects of a Scaleway Organization.
  *
  * Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
  *
- * !> **Important:**  The resource `scaleway.AccountSshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.IamSshKey`.
+ * !> **Important:**  The resource `scaleway.account.SshKey` has been deprecated and will no longer be supported. Instead, use `scaleway.iam.SshKey`.
  *
  * ## Example Usage
  *
@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.AccountSshKey("main", {
+ * const main = new scaleway.account.SshKey("main", {
  *     name: "main",
  *     publicKey: "<YOUR-PUBLIC-SSH-KEY>",
  * });
@@ -32,6 +32,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/accountSshKey:AccountSshKey main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey
  */
 export class AccountSshKey extends pulumi.CustomResource {
     /**
@@ -44,6 +46,7 @@ export class AccountSshKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: AccountSshKeyState, opts?: pulumi.CustomResourceOptions): AccountSshKey {
+        pulumi.log.warn("AccountSshKey is deprecated: scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey")
         return new AccountSshKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -101,8 +104,11 @@ export class AccountSshKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey */
     constructor(name: string, args: AccountSshKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey */
     constructor(name: string, argsOrState?: AccountSshKeyArgs | AccountSshKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("AccountSshKey is deprecated: scaleway.index/accountsshkey.AccountSshKey has been deprecated in favor of scaleway.account/sshkey.SshKey")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

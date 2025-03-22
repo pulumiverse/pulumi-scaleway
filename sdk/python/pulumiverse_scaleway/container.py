@@ -873,7 +873,12 @@ class _ContainerState:
         pulumi.set(self, "timeout", value)
 
 
+warnings.warn("""scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container""", DeprecationWarning)
+
+
 class Container(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -904,7 +909,7 @@ class Container(pulumi.CustomResource):
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        The `Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -916,10 +921,10 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="my-ns-test",
             description="test container")
-        main_container = scaleway.Container("main",
+        main_container = scaleway.containers.Container("main",
             name="my-container-02",
             description="environment variables test",
             namespace_id=main.id,
@@ -995,7 +1000,7 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Container("main",
+        main = scaleway.containers.Container("main",
             name="my-container-02",
             namespace_id=main_scaleway_container_namespace["id"],
             health_checks=[{
@@ -1023,7 +1028,7 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Container("main",
+        main = scaleway.containers.Container("main",
             name="my-container-02",
             namespace_id=main_scaleway_container_namespace["id"],
             scaling_options=[{
@@ -1082,7 +1087,7 @@ class Container(pulumi.CustomResource):
                  args: ContainerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+        The `containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 
         Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
 
@@ -1094,10 +1099,10 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ContainerNamespace("main",
+        main = scaleway.containers.Namespace("main",
             name="my-ns-test",
             description="test container")
-        main_container = scaleway.Container("main",
+        main_container = scaleway.containers.Container("main",
             name="my-container-02",
             description="environment variables test",
             namespace_id=main.id,
@@ -1173,7 +1178,7 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Container("main",
+        main = scaleway.containers.Container("main",
             name="my-container-02",
             namespace_id=main_scaleway_container_namespace["id"],
             health_checks=[{
@@ -1201,7 +1206,7 @@ class Container(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.Container("main",
+        main = scaleway.containers.Container("main",
             name="my-container-02",
             namespace_id=main_scaleway_container_namespace["id"],
             scaling_options=[{
@@ -1262,6 +1267,7 @@ class Container(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  __props__=None):
+        pulumi.log.warn("""Container is deprecated: scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

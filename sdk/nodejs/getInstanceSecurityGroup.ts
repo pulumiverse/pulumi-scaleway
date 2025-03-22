@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about a Security Group.
  */
+/** @deprecated scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup */
 export function getInstanceSecurityGroup(args?: GetInstanceSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSecurityGroupResult> {
+    pulumi.log.warn("getInstanceSecurityGroup is deprecated: scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {
@@ -83,7 +85,9 @@ export interface GetInstanceSecurityGroupResult {
 /**
  * Gets information about a Security Group.
  */
+/** @deprecated scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup */
 export function getInstanceSecurityGroupOutput(args?: GetInstanceSecurityGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceSecurityGroupResult> {
+    pulumi.log.warn("getInstanceSecurityGroup is deprecated: scaleway.index/getinstancesecuritygroup.getInstanceSecurityGroup has been deprecated in favor of scaleway.instance/getsecuritygroup.getSecurityGroup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup", {

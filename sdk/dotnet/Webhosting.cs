@@ -25,15 +25,15 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+    ///     var byName = Scaleway.Hosting.GetOffer.Invoke(new()
     ///     {
     ///         Name = "lite",
     ///         ControlPanel = "Cpanel",
     ///     });
     /// 
-    ///     var main = new Scaleway.Webhosting("main", new()
+    ///     var main = new Scaleway.Hosting.Hosting("main", new()
     ///     {
-    ///         OfferId = byName.Apply(getWebHostOfferResult =&gt; getWebHostOfferResult.OfferId),
+    ///         OfferId = byName.Apply(getOfferResult =&gt; getOfferResult.OfferId),
     ///         Email = "your@email.com",
     ///         Domain = "yourdomain.com",
     ///         Tags = new[]
@@ -57,6 +57,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/webhosting:Webhosting hosting01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/webhosting.Webhosting has been deprecated in favor of scaleway.hosting/hosting.Hosting")]
     [ScalewayResourceType("scaleway:index/webhosting:Webhosting")]
     public partial class Webhosting : global::Pulumi.CustomResource
     {

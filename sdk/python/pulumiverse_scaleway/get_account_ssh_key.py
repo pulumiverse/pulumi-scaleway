@@ -21,6 +21,8 @@ __all__ = [
     'get_account_ssh_key_output',
 ]
 
+warnings.warn("""scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey""", DeprecationWarning)
+
 @pulumi.output_type
 class GetAccountSshKeyResult:
     """
@@ -141,7 +143,7 @@ def get_account_ssh_key(name: Optional[str] = None,
                         ssh_key_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountSshKeyResult:
     """
-    The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+    The `account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
     Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
 
@@ -152,6 +154,7 @@ def get_account_ssh_key(name: Optional[str] = None,
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
+    pulumi.log.warn("""get_account_ssh_key is deprecated: scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -175,7 +178,7 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                ssh_key_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountSshKeyResult]:
     """
-    The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+    The `account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 
     Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
 
@@ -186,6 +189,7 @@ def get_account_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = Non
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
+    pulumi.log.warn("""get_account_ssh_key is deprecated: scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

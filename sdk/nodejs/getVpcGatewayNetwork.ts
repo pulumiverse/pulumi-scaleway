@@ -16,23 +16,25 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
- * const byId = scaleway.getVpcGatewayNetworkOutput({
+ * const byId = scaleway.network.getGatewayNetworkOutput({
  *     gatewayNetworkId: main.id,
  * });
- * const byGatewayAndPn = scaleway.getVpcGatewayNetwork({
+ * const byGatewayAndPn = scaleway.network.getGatewayNetwork({
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork */
 export function getVpcGatewayNetwork(args?: GetVpcGatewayNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcGatewayNetworkResult> {
+    pulumi.log.warn("getVpcGatewayNetwork is deprecated: scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {
@@ -91,23 +93,25 @@ export interface GetVpcGatewayNetworkResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
- * const byId = scaleway.getVpcGatewayNetworkOutput({
+ * const byId = scaleway.network.getGatewayNetworkOutput({
  *     gatewayNetworkId: main.id,
  * });
- * const byGatewayAndPn = scaleway.getVpcGatewayNetwork({
+ * const byGatewayAndPn = scaleway.network.getGatewayNetwork({
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork */
 export function getVpcGatewayNetworkOutput(args?: GetVpcGatewayNetworkOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcGatewayNetworkResult> {
+    pulumi.log.warn("getVpcGatewayNetwork is deprecated: scaleway.index/getvpcgatewaynetwork.getVpcGatewayNetwork has been deprecated in favor of scaleway.network/getgatewaynetwork.getGatewayNetwork")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork", {

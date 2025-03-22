@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqSqs("main");
+    ///     var main = new Scaleway.Mnq.Sqs("main");
     /// 
     /// });
     /// ```
@@ -45,14 +45,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var project = Scaleway.GetAccountProject.Invoke(new()
+    ///     var project = Scaleway.Account.GetProject.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
-    ///     var forProject = new Scaleway.MnqSqs("for_project", new()
+    ///     var forProject = new Scaleway.Mnq.Sqs("for_project", new()
     ///     {
-    ///         ProjectId = project.Apply(getAccountProjectResult =&gt; getAccountProjectResult.Id),
+    ///         ProjectId = project.Apply(getProjectResult =&gt; getProjectResult.Id),
     ///     });
     /// 
     /// });
@@ -68,6 +68,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs")]
     [ScalewayResourceType("scaleway:index/mnqSqs:MnqSqs")]
     public partial class MnqSqs : global::Pulumi.CustomResource
     {

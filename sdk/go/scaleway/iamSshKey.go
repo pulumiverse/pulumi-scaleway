@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamSshKey(ctx, "main", &scaleway.IamSshKeyArgs{
+//			_, err := iam.NewSshKey(ctx, "main", &iam.SshKeyArgs{
 //				Name:      pulumi.String("main"),
 //				PublicKey: pulumi.String("<YOUR-PUBLIC-SSH-KEY>"),
 //			})
@@ -51,6 +51,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamSshKey:IamSshKey main 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey
 type IamSshKey struct {
 	pulumi.CustomResourceState
 

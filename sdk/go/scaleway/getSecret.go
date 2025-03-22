@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
+// The `secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.
 //
 // Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
@@ -31,14 +31,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Create a secret
-//			_, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//			_, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
 //				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
 //			})
@@ -46,14 +46,14 @@ import (
 //				return err
 //			}
 //			// Get the secret information specified by the secret ID
-//			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
+//			_, err = secrets.LookupSecret(ctx, &secrets.LookupSecretArgs{
 //				SecretId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get the secret information specified by the secret name
-//			_, err = scaleway.LookupSecret(ctx, &scaleway.LookupSecretArgs{
+//			_, err = secrets.LookupSecret(ctx, &secrets.LookupSecretArgs{
 //				Name: pulumi.StringRef("your_secret_name"),
 //			}, nil)
 //			if err != nil {
@@ -64,6 +64,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getsecret.getSecret has been deprecated in favor of scaleway.secrets/getsecret.getSecret
 func LookupSecret(ctx *pulumi.Context, args *LookupSecretArgs, opts ...pulumi.InvokeOption) (*LookupSecretResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSecretResult

@@ -26,30 +26,30 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewMnqSns(ctx, "main", nil)
+//			main, err := mnq.NewSns(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainMnqSnsCredentials, err := scaleway.NewMnqSnsCredentials(ctx, "main", &scaleway.MnqSnsCredentialsArgs{
+//			mainSnsCredentials, err := mnq.NewSnsCredentials(ctx, "main", &mnq.SnsCredentialsArgs{
 //				ProjectId: main.ProjectId,
-//				Permissions: &scaleway.MnqSnsCredentialsPermissionsArgs{
+//				Permissions: &mnq.SnsCredentialsPermissionsArgs{
 //					CanManage: pulumi.Bool(true),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSnsTopic(ctx, "topic", &scaleway.MnqSnsTopicArgs{
+//			_, err = mnq.NewSnsTopic(ctx, "topic", &mnq.SnsTopicArgs{
 //				ProjectId: main.ProjectId,
 //				Name:      pulumi.String("my-topic"),
-//				AccessKey: mainMnqSnsCredentials.AccessKey,
-//				SecretKey: mainMnqSnsCredentials.SecretKey,
+//				AccessKey: mainSnsCredentials.AccessKey,
+//				SecretKey: mainSnsCredentials.SecretKey,
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +69,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
 // ```
+//
+// Deprecated: scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic
 type MnqSnsTopic struct {
 	pulumi.CustomResourceState
 

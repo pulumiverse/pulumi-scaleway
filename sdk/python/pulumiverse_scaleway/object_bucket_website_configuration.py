@@ -224,7 +224,12 @@ class _ObjectBucketWebsiteConfigurationState:
         pulumi.set(self, "website_endpoint", value)
 
 
+warnings.warn("""scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration""", DeprecationWarning)
+
+
 class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -236,7 +241,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
 
@@ -246,10 +251,10 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read")
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+        main_bucket_website_configuration = scaleway.object.BucketWebsiteConfiguration("main",
             bucket=main.id,
             index_document={
                 "suffix": "index.html",
@@ -263,10 +268,10 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read")
-        main_object_bucket_policy = scaleway.ObjectBucketPolicy("main",
+        main_bucket_policy = scaleway.object.BucketPolicy("main",
             bucket=main.id,
             policy=json.dumps({
                 "Version": "2012-10-17",
@@ -279,7 +284,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                     "Resource": ["<bucket-name>/*"],
                 }],
             }))
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+        main_bucket_website_configuration = scaleway.object.BucketWebsiteConfiguration("main",
             bucket=main.id,
             index_document={
                 "suffix": "index.html",
@@ -321,7 +326,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  args: ObjectBucketWebsiteConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
 
@@ -331,10 +336,10 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read")
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+        main_bucket_website_configuration = scaleway.object.BucketWebsiteConfiguration("main",
             bucket=main.id,
             index_document={
                 "suffix": "index.html",
@@ -348,10 +353,10 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
         import json
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read")
-        main_object_bucket_policy = scaleway.ObjectBucketPolicy("main",
+        main_bucket_policy = scaleway.object.BucketPolicy("main",
             bucket=main.id,
             policy=json.dumps({
                 "Version": "2012-10-17",
@@ -364,7 +369,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                     "Resource": ["<bucket-name>/*"],
                 }],
             }))
-        main_object_bucket_website_configuration = scaleway.ObjectBucketWebsiteConfiguration("main",
+        main_bucket_website_configuration = scaleway.object.BucketWebsiteConfiguration("main",
             bucket=main.id,
             index_document={
                 "suffix": "index.html",
@@ -412,6 +417,7 @@ class ObjectBucketWebsiteConfiguration(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ObjectBucketWebsiteConfiguration is deprecated: scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

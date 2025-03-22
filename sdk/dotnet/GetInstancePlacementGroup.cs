@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstanceplacementgroup.getInstancePlacementGroup has been deprecated in favor of scaleway.instance/getplacementgroup.getPlacementGroup")]
     public static class GetInstancePlacementGroup
     {
         /// <summary>

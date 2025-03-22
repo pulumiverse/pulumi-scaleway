@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace")]
     public static class GetRegistryNamespace
     {
         /// <summary>

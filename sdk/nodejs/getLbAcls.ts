@@ -18,17 +18,19 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find acls that share the same frontend ID
- * const byFrontID = scaleway.getLbAcls({
+ * const byFrontID = scaleway.loadbalancers.getAcls({
  *     frontendId: frt01.id,
  * });
  * // Find acls by frontend ID and name
- * const byFrontIDAndName = scaleway.getLbAcls({
+ * const byFrontIDAndName = scaleway.loadbalancers.getAcls({
  *     frontendId: frt01.id,
  *     name: "tf-acls-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls */
 export function getLbAcls(args: GetLbAclsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbAclsResult> {
+    pulumi.log.warn("getLbAcls is deprecated: scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbAcls:getLbAcls", {
         "frontendId": args.frontendId,
@@ -88,17 +90,19 @@ export interface GetLbAclsResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Find acls that share the same frontend ID
- * const byFrontID = scaleway.getLbAcls({
+ * const byFrontID = scaleway.loadbalancers.getAcls({
  *     frontendId: frt01.id,
  * });
  * // Find acls by frontend ID and name
- * const byFrontIDAndName = scaleway.getLbAcls({
+ * const byFrontIDAndName = scaleway.loadbalancers.getAcls({
  *     frontendId: frt01.id,
  *     name: "tf-acls-datasource",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls */
 export function getLbAclsOutput(args: GetLbAclsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbAclsResult> {
+    pulumi.log.warn("getLbAcls is deprecated: scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbAcls:getLbAcls", {
         "frontendId": args.frontendId,

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+ * The `scaleway.domain.Record` data source is used to get information about an existing domain record.
  *
  * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
  *
@@ -23,20 +23,22 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Query record by DNS zone, record name, type and content
- * const byContent = scaleway.getDomainRecord({
+ * const byContent = scaleway.domain.getRecord({
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.4",
  * });
  * // Query record by DNS zone and record ID
- * const byId = scaleway.getDomainRecord({
+ * const byId = scaleway.domain.getRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord */
 export function getDomainRecord(args?: GetDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainRecordResult> {
+    pulumi.log.warn("getDomainRecord is deprecated: scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainRecord:getDomainRecord", {
@@ -122,7 +124,7 @@ export interface GetDomainRecordResult {
     readonly weighteds: outputs.GetDomainRecordWeighted[];
 }
 /**
- * The `scaleway.DomainRecord` data source is used to get information about an existing domain record.
+ * The `scaleway.domain.Record` data source is used to get information about an existing domain record.
  *
  * Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
  *
@@ -138,20 +140,22 @@ export interface GetDomainRecordResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Query record by DNS zone, record name, type and content
- * const byContent = scaleway.getDomainRecord({
+ * const byContent = scaleway.domain.getRecord({
  *     dnsZone: "domain.tld",
  *     name: "www",
  *     type: "A",
  *     data: "1.2.3.4",
  * });
  * // Query record by DNS zone and record ID
- * const byId = scaleway.getDomainRecord({
+ * const byId = scaleway.domain.getRecord({
  *     dnsZone: "domain.tld",
  *     recordId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord */
 export function getDomainRecordOutput(args?: GetDomainRecordOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDomainRecordResult> {
+    pulumi.log.warn("getDomainRecord is deprecated: scaleway.index/getdomainrecord.getDomainRecord has been deprecated in favor of scaleway.domain/getrecord.getRecord")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDomainRecord:getDomainRecord", {

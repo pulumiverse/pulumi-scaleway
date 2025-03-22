@@ -158,7 +158,12 @@ class _FunctionDomainState:
         pulumi.set(self, "url", value)
 
 
+warnings.warn("""scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain""", DeprecationWarning)
+
+
 class FunctionDomain(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -168,7 +173,7 @@ class FunctionDomain(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 
@@ -180,15 +185,15 @@ class FunctionDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("main")
-        main_function = scaleway.Function("main",
-            namespace_id=main_function_namespace.id,
+        main_namespace = scaleway.functions.Namespace("main")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main_namespace.id,
             runtime="go118",
             privacy="private",
             handler="Handle",
             zip_file="testfixture/gofunction.zip",
             deploy=True)
-        main = scaleway.FunctionDomain("main",
+        main = scaleway.functions.Domain("main",
             function_id=main_function.id,
             hostname="example.com",
             opts = pulumi.ResourceOptions(depends_on=[main_function]))
@@ -221,7 +226,7 @@ class FunctionDomain(pulumi.CustomResource):
                  args: FunctionDomainArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+        The `functions.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 
         Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 
@@ -233,15 +238,15 @@ class FunctionDomain(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main_function_namespace = scaleway.FunctionNamespace("main")
-        main_function = scaleway.Function("main",
-            namespace_id=main_function_namespace.id,
+        main_namespace = scaleway.functions.Namespace("main")
+        main_function = scaleway.functions.Function("main",
+            namespace_id=main_namespace.id,
             runtime="go118",
             privacy="private",
             handler="Handle",
             zip_file="testfixture/gofunction.zip",
             deploy=True)
-        main = scaleway.FunctionDomain("main",
+        main = scaleway.functions.Domain("main",
             function_id=main_function.id,
             hostname="example.com",
             opts = pulumi.ResourceOptions(depends_on=[main_function]))
@@ -276,6 +281,7 @@ class FunctionDomain(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""FunctionDomain is deprecated: scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FlexibleIp("main", new()
+    ///     var main = new Scaleway.Elasticmetal.Ip("main", new()
     ///     {
     ///         Reverse = "my-reverse.com",
     ///     });
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FlexibleIp("main", new()
+    ///     var main = new Scaleway.Elasticmetal.Ip("main", new()
     ///     {
     ///         Zone = "fr-par-2",
     ///     });
@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FlexibleIp("main", new()
+    ///     var main = new Scaleway.Elasticmetal.Ip("main", new()
     ///     {
     ///         IsIpv6 = true,
     ///     });
@@ -81,34 +81,34 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.AccountSshKey("main", new()
+    ///     var main = new Scaleway.Account.SshKey("main", new()
     ///     {
     ///         Name = "main",
     ///         PublicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com",
     ///     });
     /// 
-    ///     var byId = Scaleway.GetBaremetalOs.Invoke(new()
+    ///     var byId = Scaleway.Elasticmetal.GetOs.Invoke(new()
     ///     {
     ///         Zone = "fr-par-2",
     ///         Name = "Ubuntu",
     ///         Version = "20.04 LTS (Focal Fossa)",
     ///     });
     /// 
-    ///     var myOffer = Scaleway.GetBaremetalOffer.Invoke(new()
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
     ///     {
     ///         Zone = "fr-par-2",
     ///         Name = "EM-A210R-HDD",
     ///     });
     /// 
-    ///     var @base = new Scaleway.BaremetalServer("base", new()
+    ///     var @base = new Scaleway.Elasticmetal.Server("base", new()
     ///     {
     ///         Zone = "fr-par-2",
-    ///         Offer = myOffer.Apply(getBaremetalOfferResult =&gt; getBaremetalOfferResult.OfferId),
-    ///         Os = byId.Apply(getBaremetalOsResult =&gt; getBaremetalOsResult.OsId),
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = byId.Apply(getOsResult =&gt; getOsResult.OsId),
     ///         SshKeyIds = main.Id,
     ///     });
     /// 
-    ///     var mainFlexibleIp = new Scaleway.FlexibleIp("main", new()
+    ///     var mainIp = new Scaleway.Elasticmetal.Ip("main", new()
     ///     {
     ///         ServerId = @base.Id,
     ///         Zone = "fr-par-2",
@@ -127,6 +127,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip")]
     [ScalewayResourceType("scaleway:index/flexibleIp:FlexibleIp")]
     public partial class FlexibleIp : global::Pulumi.CustomResource
     {

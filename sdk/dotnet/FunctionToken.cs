@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.FunctionToken` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// The `scaleway.functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
     /// Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.
     /// 
@@ -25,12 +25,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FunctionNamespace("main", new()
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
     ///     {
     ///         Name = "test-function-token-ns",
     ///     });
     /// 
-    ///     var mainFunction = new Scaleway.Function("main", new()
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
     ///     {
     ///         NamespaceId = main.Id,
     ///         Runtime = "go118",
@@ -39,14 +39,14 @@ namespace Pulumiverse.Scaleway
     ///     });
     /// 
     ///     // Namespace Token
-    ///     var @namespace = new Scaleway.FunctionToken("namespace", new()
+    ///     var @namespace = new Scaleway.Functions.Token("namespace", new()
     ///     {
     ///         NamespaceId = main.Id,
     ///         ExpiresAt = "2022-10-18T11:35:15+02:00",
     ///     });
     /// 
     ///     // Function Token
-    ///     var function = new Scaleway.FunctionToken("function", new()
+    ///     var function = new Scaleway.Functions.Token("function", new()
     ///     {
     ///         FunctionId = mainFunction.Id,
     ///     });
@@ -64,6 +64,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/functionToken:FunctionToken main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/functiontoken.FunctionToken has been deprecated in favor of scaleway.functions/token.Token")]
     [ScalewayResourceType("scaleway:index/functionToken:FunctionToken")]
     public partial class FunctionToken : global::Pulumi.CustomResource
     {
@@ -104,8 +105,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The token.
         /// </summary>
-        [Output("token")]
-        public Output<string> Token { get; private set; } = null!;
+        [Output("value")]
+        public Output<string> Value { get; private set; } = null!;
 
 
         /// <summary>
@@ -133,7 +134,7 @@ namespace Pulumiverse.Scaleway
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
                 AdditionalSecretOutputs =
                 {
-                    "token",
+                    "value",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -234,19 +235,19 @@ namespace Pulumiverse.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        [Input("token")]
-        private Input<string>? _token;
+        [Input("value")]
+        private Input<string>? _value;
 
         /// <summary>
         /// The token.
         /// </summary>
-        public Input<string>? Token
+        public Input<string>? Value
         {
-            get => _token;
+            get => _value;
             set
             {
                 var emptySecret = Output.CreateSecret(0);
-                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+                _value = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
 

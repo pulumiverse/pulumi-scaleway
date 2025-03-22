@@ -96,8 +96,8 @@ class _CockpitState:
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if push_urls is not None:
-            warnings.warn("""Please use `CockpitSource` instead""", DeprecationWarning)
-            pulumi.log.warn("""push_urls is deprecated: Please use `CockpitSource` instead""")
+            warnings.warn("""Please use `observability.Source` instead""", DeprecationWarning)
+            pulumi.log.warn("""push_urls is deprecated: Please use `observability.Source` instead""")
         if push_urls is not None:
             pulumi.set(__self__, "push_urls", push_urls)
 
@@ -154,7 +154,7 @@ class _CockpitState:
 
     @property
     @pulumi.getter(name="pushUrls")
-    @_utilities.deprecated("""Please use `CockpitSource` instead""")
+    @_utilities.deprecated("""Please use `observability.Source` instead""")
     def push_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]]]:
         """
         [DEPRECATED] Push_url
@@ -166,7 +166,12 @@ class _CockpitState:
         pulumi.set(self, "push_urls", value)
 
 
+warnings.warn("""scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit""", DeprecationWarning)
+
+
 class Cockpit(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -225,6 +230,7 @@ class Cockpit(pulumi.CustomResource):
                  plan: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Cockpit is deprecated: scaleway.index/cockpit.Cockpit has been deprecated in favor of scaleway.observability/cockpit.Cockpit""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
@@ -314,7 +320,7 @@ class Cockpit(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="pushUrls")
-    @_utilities.deprecated("""Please use `CockpitSource` instead""")
+    @_utilities.deprecated("""Please use `observability.Source` instead""")
     def push_urls(self) -> pulumi.Output[Sequence['outputs.CockpitPushUrl']]:
         """
         [DEPRECATED] Push_url

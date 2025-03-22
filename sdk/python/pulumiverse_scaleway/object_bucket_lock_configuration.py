@@ -160,7 +160,12 @@ class _ObjectBucketLockConfigurationState:
         pulumi.set(self, "rule", value)
 
 
+warnings.warn("""scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration""", DeprecationWarning)
+
+
 class ObjectBucketLockConfiguration(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -171,7 +176,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
         """
-        The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/) for more information on object lock.
 
@@ -185,11 +190,11 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read",
             object_lock_enabled=True)
-        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("main",
+        main_bucket_lock_configuration = scaleway.object.BucketLockConfiguration("main",
             bucket=main.name,
             rule={
                 "default_retention": {
@@ -237,7 +242,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  args: ObjectBucketLockConfigurationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/) for more information on object lock.
 
@@ -251,11 +256,11 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.ObjectBucket("main",
+        main = scaleway.object.Bucket("main",
             name="MyBucket",
             acl="public-read",
             object_lock_enabled=True)
-        main_object_bucket_lock_configuration = scaleway.ObjectBucketLockConfiguration("main",
+        main_bucket_lock_configuration = scaleway.object.BucketLockConfiguration("main",
             bucket=main.name,
             rule={
                 "default_retention": {
@@ -309,6 +314,7 @@ class ObjectBucketLockConfiguration(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  rule: Optional[pulumi.Input[Union['ObjectBucketLockConfigurationRuleArgs', 'ObjectBucketLockConfigurationRuleArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""ObjectBucketLockConfiguration is deprecated: scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

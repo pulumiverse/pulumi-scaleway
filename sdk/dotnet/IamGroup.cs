@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var basic = new Scaleway.IamGroup("basic", new()
+    ///     var basic = new Scaleway.Iam.Group("basic", new()
     ///     {
     ///         Name = "iam_group_basic",
     ///         Description = "basic description",
@@ -47,9 +47,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var app = new Scaleway.IamApplication("app");
+    ///     var app = new Scaleway.Iam.Application("app");
     /// 
-    ///     var withApp = new Scaleway.IamGroup("with_app", new()
+    ///     var withApp = new Scaleway.Iam.Group("with_app", new()
     ///     {
     ///         Name = "iam_group_with_app",
     ///         ApplicationIds = new[]
@@ -72,6 +72,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group")]
     [ScalewayResourceType("scaleway:index/iamGroup:IamGroup")]
     public partial class IamGroup : global::Pulumi.CustomResource
     {

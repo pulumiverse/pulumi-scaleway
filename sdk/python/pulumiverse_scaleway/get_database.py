@@ -21,6 +21,8 @@ __all__ = [
     'get_database_output',
 ]
 
+warnings.warn("""scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase""", DeprecationWarning)
+
 @pulumi.output_type
 class GetDatabaseResult:
     """
@@ -126,7 +128,7 @@ def get_database(instance_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-    my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
+    my_db = scaleway.databases.get_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
 
@@ -134,6 +136,7 @@ def get_database(instance_id: Optional[str] = None,
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
     """
+    pulumi.log.warn("""get_database is deprecated: scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name
@@ -163,7 +166,7 @@ def get_database_output(instance_id: Optional[pulumi.Input[str]] = None,
     import pulumi_scaleway as scaleway
 
     # Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-    my_db = scaleway.get_database(instance_id="11111111-1111-1111-1111-111111111111",
+    my_db = scaleway.databases.get_database(instance_id="11111111-1111-1111-1111-111111111111",
         name="foobar")
     ```
 
@@ -171,6 +174,7 @@ def get_database_output(instance_id: Optional[pulumi.Input[str]] = None,
     :param str instance_id: The RDB instance ID.
     :param str name: The name of the RDB instance.
     """
+    pulumi.log.warn("""get_database is deprecated: scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase""")
     __args__ = dict()
     __args__['instanceId'] = instance_id
     __args__['name'] = name

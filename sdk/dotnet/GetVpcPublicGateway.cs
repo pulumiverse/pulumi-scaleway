@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getvpcpublicgateway.getVpcPublicGateway has been deprecated in favor of scaleway.network/getpublicgateway.getPublicGateway")]
     public static class GetVpcPublicGateway
     {
         /// <summary>
@@ -26,20 +27,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGateway("main", new()
+        ///     var main = new Scaleway.Network.PublicGateway("main", new()
         ///     {
         ///         Name = "demo",
         ///         Type = "VPC-GW-S",
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestByName = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         Name = main.Name,
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestById = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         PublicGatewayId = main.Id,
         ///     });
@@ -64,20 +65,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGateway("main", new()
+        ///     var main = new Scaleway.Network.PublicGateway("main", new()
         ///     {
         ///         Name = "demo",
         ///         Type = "VPC-GW-S",
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestByName = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         Name = main.Name,
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestById = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         PublicGatewayId = main.Id,
         ///     });
@@ -102,20 +103,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var main = new Scaleway.VpcPublicGateway("main", new()
+        ///     var main = new Scaleway.Network.PublicGateway("main", new()
         ///     {
         ///         Name = "demo",
         ///         Type = "VPC-GW-S",
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestByName = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestByName = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         Name = main.Name,
         ///         Zone = "nl-ams-1",
         ///     });
         /// 
-        ///     var pgTestById = Scaleway.GetVpcPublicGateway.Invoke(new()
+        ///     var pgTestById = Scaleway.Network.GetPublicGateway.Invoke(new()
         ///     {
         ///         PublicGatewayId = main.Id,
         ///     });

@@ -255,7 +255,12 @@ class _IamUserState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User""", DeprecationWarning)
+
+
 class IamUser(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -276,7 +281,7 @@ class IamUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.IamUser("basic", email="test@test.com")
+        basic = scaleway.iam.User("basic", email="test@test.com")
         ```
 
         ## Import
@@ -313,7 +318,7 @@ class IamUser(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.IamUser("basic", email="test@test.com")
+        basic = scaleway.iam.User("basic", email="test@test.com")
         ```
 
         ## Import
@@ -345,6 +350,7 @@ class IamUser(pulumi.CustomResource):
                  organization_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamUser is deprecated: scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -22,6 +22,8 @@ __all__ = [
     'get_lb_backend_output',
 ]
 
+warnings.warn("""scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbBackendResult:
     """
@@ -345,19 +347,19 @@ def get_lb_backend(backend_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.LoadbalancerIp("main")
-    main_loadbalancer = scaleway.Loadbalancer("main",
+    main = scaleway.loadbalancers.Ip("main")
+    main_load_balancer = scaleway.loadbalancers.LoadBalancer("main",
         ip_id=main.id,
         name="data-test-lb-backend",
         type="LB-S")
-    main_loadbalancer_backend = scaleway.LoadbalancerBackend("main",
-        lb_id=main_loadbalancer.id,
+    main_backend = scaleway.loadbalancers.Backend("main",
+        lb_id=main_load_balancer.id,
         name="backend01",
         forward_protocol="http",
         forward_port=80)
-    by_id = scaleway.get_lb_backend_output(backend_id=main_loadbalancer_backend.id)
-    by_name = scaleway.get_lb_backend_output(name=main_loadbalancer_backend.name,
-        lb_id=main_loadbalancer.id)
+    by_id = scaleway.loadbalancers.get_backend_output(backend_id=main_backend.id)
+    by_name = scaleway.loadbalancers.get_backend_output(name=main_backend.name,
+        lb_id=main_load_balancer.id)
     ```
 
 
@@ -367,6 +369,7 @@ def get_lb_backend(backend_id: Optional[str] = None,
     :param str name: The name of the backend.
            - When using `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_lb_backend is deprecated: scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend""")
     __args__ = dict()
     __args__['backendId'] = backend_id
     __args__['lbId'] = lb_id
@@ -423,19 +426,19 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    main = scaleway.LoadbalancerIp("main")
-    main_loadbalancer = scaleway.Loadbalancer("main",
+    main = scaleway.loadbalancers.Ip("main")
+    main_load_balancer = scaleway.loadbalancers.LoadBalancer("main",
         ip_id=main.id,
         name="data-test-lb-backend",
         type="LB-S")
-    main_loadbalancer_backend = scaleway.LoadbalancerBackend("main",
-        lb_id=main_loadbalancer.id,
+    main_backend = scaleway.loadbalancers.Backend("main",
+        lb_id=main_load_balancer.id,
         name="backend01",
         forward_protocol="http",
         forward_port=80)
-    by_id = scaleway.get_lb_backend_output(backend_id=main_loadbalancer_backend.id)
-    by_name = scaleway.get_lb_backend_output(name=main_loadbalancer_backend.name,
-        lb_id=main_loadbalancer.id)
+    by_id = scaleway.loadbalancers.get_backend_output(backend_id=main_backend.id)
+    by_name = scaleway.loadbalancers.get_backend_output(name=main_backend.name,
+        lb_id=main_load_balancer.id)
     ```
 
 
@@ -445,6 +448,7 @@ def get_lb_backend_output(backend_id: Optional[pulumi.Input[Optional[str]]] = No
     :param str name: The name of the backend.
            - When using `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_lb_backend is deprecated: scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend""")
     __args__ = dict()
     __args__['backendId'] = backend_id
     __args__['lbId'] = lb_id

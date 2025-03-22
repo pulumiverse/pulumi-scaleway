@@ -22,6 +22,8 @@ __all__ = [
     'get_vpc_private_network_output',
 ]
 
+warnings.warn("""scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcPrivateNetworkResult:
     """
@@ -189,12 +191,12 @@ def get_vpc_private_network(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    my_name = scaleway.get_vpc_private_network(name="foobar")
+    my_name = scaleway.network.get_private_network(name="foobar")
     # Get info by name and VPC ID
-    my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
+    my_name_and_vpc_id = scaleway.network.get_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
     # Get info by IP ID
-    my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
+    my_id = scaleway.network.get_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -203,6 +205,7 @@ def get_vpc_private_network(name: Optional[str] = None,
     :param str project_id: The ID of the Project the Private Network is associated with.
     :param str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
+    pulumi.log.warn("""get_vpc_private_network is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork""")
     __args__ = dict()
     __args__['name'] = name
     __args__['privateNetworkId'] = private_network_id
@@ -243,12 +246,12 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    my_name = scaleway.get_vpc_private_network(name="foobar")
+    my_name = scaleway.network.get_private_network(name="foobar")
     # Get info by name and VPC ID
-    my_name_and_vpc_id = scaleway.get_vpc_private_network(name="foobar",
+    my_name_and_vpc_id = scaleway.network.get_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
     # Get info by IP ID
-    my_id = scaleway.get_vpc_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
+    my_id = scaleway.network.get_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
@@ -257,6 +260,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[str]]] =
     :param str project_id: The ID of the Project the Private Network is associated with.
     :param str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
+    pulumi.log.warn("""get_vpc_private_network is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork""")
     __args__ = dict()
     __args__['name'] = name
     __args__['privateNetworkId'] = private_network_id

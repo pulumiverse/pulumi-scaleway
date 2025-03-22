@@ -18,12 +18,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const volume = new scaleway.InstanceVolume("volume", {
+ * const volume = new scaleway.instance.Volume("volume", {
  *     type: "b_ssd",
  *     sizeInGb: 20,
  * });
- * const volumeSnapshot = new scaleway.InstanceSnapshot("volume_snapshot", {volumeId: volume.id});
- * const volumeImage = new scaleway.InstanceImage("volume_image", {
+ * const volumeSnapshot = new scaleway.instance.Snapshot("volume_snapshot", {volumeId: volume.id});
+ * const volumeImage = new scaleway.instance.Image("volume_image", {
  *     name: "image_from_volume",
  *     rootVolumeId: volumeSnapshot.id,
  * });
@@ -35,12 +35,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const server = new scaleway.InstanceServer("server", {
+ * const server = new scaleway.instance.Server("server", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  * });
- * const serverSnapshot = new scaleway.InstanceSnapshot("server_snapshot", {volumeId: main.rootVolume[0].volumeId});
- * const serverImage = new scaleway.InstanceImage("server_image", {
+ * const serverSnapshot = new scaleway.instance.Snapshot("server_snapshot", {volumeId: main.rootVolume[0].volumeId});
+ * const serverImage = new scaleway.instance.Image("server_image", {
  *     name: "image_from_server",
  *     rootVolumeId: serverSnapshot.id,
  * });
@@ -55,6 +55,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image
  */
 export class InstanceImage extends pulumi.CustomResource {
     /**
@@ -67,6 +69,7 @@ export class InstanceImage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceImageState, opts?: pulumi.CustomResourceOptions): InstanceImage {
+        pulumi.log.warn("InstanceImage is deprecated: scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image")
         return new InstanceImage(name, <any>state, { ...opts, id: id });
     }
 
@@ -150,8 +153,11 @@ export class InstanceImage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image */
     constructor(name: string, args: InstanceImageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image */
     constructor(name: string, argsOrState?: InstanceImageArgs | InstanceImageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceImage is deprecated: scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ * The `scaleway.functions.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
  * Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
  *
@@ -17,15 +17,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionNamespace("main", {name: "test-cron"});
- * const mainFunction = new scaleway.Function("main", {
+ * const main = new scaleway.functions.Namespace("main", {name: "test-cron"});
+ * const mainFunction = new scaleway.functions.Function("main", {
  *     name: "test-cron",
  *     namespaceId: main.id,
  *     runtime: "node14",
  *     privacy: "private",
  *     handler: "handler.handle",
  * });
- * const mainFunctionCron = new scaleway.FunctionCron("main", {
+ * const mainCron = new scaleway.functions.Cron("main", {
  *     name: "test-cron",
  *     functionId: mainFunction.id,
  *     schedule: "0 0 * * *",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *         test: "scw",
  *     }),
  * });
- * const func = new scaleway.FunctionCron("func", {
+ * const func = new scaleway.functions.Cron("func", {
  *     functionId: mainFunction.id,
  *     schedule: "0 1 * * *",
  *     args: JSON.stringify({
@@ -51,6 +51,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron
  */
 export class FunctionCron extends pulumi.CustomResource {
     /**
@@ -63,6 +65,7 @@ export class FunctionCron extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionCronState, opts?: pulumi.CustomResourceOptions): FunctionCron {
+        pulumi.log.warn("FunctionCron is deprecated: scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron")
         return new FunctionCron(name, <any>state, { ...opts, id: id });
     }
 
@@ -113,8 +116,11 @@ export class FunctionCron extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron */
     constructor(name: string, args: FunctionCronArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron */
     constructor(name: string, argsOrState?: FunctionCronArgs | FunctionCronState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FunctionCron is deprecated: scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

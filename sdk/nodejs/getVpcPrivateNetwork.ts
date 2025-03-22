@@ -16,21 +16,23 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const myName = scaleway.getVpcPrivateNetwork({
+ * const myName = scaleway.network.getPrivateNetwork({
  *     name: "foobar",
  * });
  * // Get info by name and VPC ID
- * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
+ * const myNameAndVpcId = scaleway.network.getPrivateNetwork({
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get info by IP ID
- * const myId = scaleway.getVpcPrivateNetwork({
+ * const myId = scaleway.network.getPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork */
 export function getVpcPrivateNetwork(args?: GetVpcPrivateNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPrivateNetworkResult> {
+    pulumi.log.warn("getVpcPrivateNetwork is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {
@@ -103,21 +105,23 @@ export interface GetVpcPrivateNetworkResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const myName = scaleway.getVpcPrivateNetwork({
+ * const myName = scaleway.network.getPrivateNetwork({
  *     name: "foobar",
  * });
  * // Get info by name and VPC ID
- * const myNameAndVpcId = scaleway.getVpcPrivateNetwork({
+ * const myNameAndVpcId = scaleway.network.getPrivateNetwork({
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
  * // Get info by IP ID
- * const myId = scaleway.getVpcPrivateNetwork({
+ * const myId = scaleway.network.getPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork */
 export function getVpcPrivateNetworkOutput(args?: GetVpcPrivateNetworkOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPrivateNetworkResult> {
+    pulumi.log.warn("getVpcPrivateNetwork is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork", {

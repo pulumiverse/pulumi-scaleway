@@ -270,7 +270,12 @@ class _DatabaseBackupState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup""", DeprecationWarning)
+
+
 class DatabaseBackup(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -293,7 +298,7 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -301,10 +306,10 @@ class DatabaseBackup(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="database")
-        main_database_backup = scaleway.DatabaseBackup("main",
+        main_database_backup = scaleway.databases.DatabaseBackup("main",
             instance_id=main.id,
             database_name=main_database.name)
         ```
@@ -315,7 +320,7 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseBackup("main",
+        main = scaleway.databases.DatabaseBackup("main",
             instance_id=main_scaleway_rdb_instance["id"],
             database_name=main_scaleway_rdb_database["name"],
             expires_at="2022-06-16T07:48:44Z")
@@ -361,7 +366,7 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -369,10 +374,10 @@ class DatabaseBackup(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="database")
-        main_database_backup = scaleway.DatabaseBackup("main",
+        main_database_backup = scaleway.databases.DatabaseBackup("main",
             instance_id=main.id,
             database_name=main_database.name)
         ```
@@ -383,7 +388,7 @@ class DatabaseBackup(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseBackup("main",
+        main = scaleway.databases.DatabaseBackup("main",
             instance_id=main_scaleway_rdb_instance["id"],
             database_name=main_scaleway_rdb_database["name"],
             expires_at="2022-06-16T07:48:44Z")
@@ -420,6 +425,7 @@ class DatabaseBackup(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabaseBackup is deprecated: scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

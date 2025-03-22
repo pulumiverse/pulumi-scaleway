@@ -22,20 +22,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			main, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotDevice(ctx, "main", &scaleway.IotDeviceArgs{
+//			_, err = iot.NewDevice(ctx, "main", &iot.DeviceArgs{
 //				HubId: main.ID(),
 //				Name:  pulumi.String("test-iot"),
 //			})
@@ -57,13 +57,13 @@ import (
 //
 //	"github.com/pulumi/pulumi-local/sdk/go/local"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			main, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("test-iot"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
@@ -76,10 +76,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotDevice(ctx, "main", &scaleway.IotDeviceArgs{
+//			_, err = iot.NewDevice(ctx, "main", &iot.DeviceArgs{
 //				HubId: main.ID(),
 //				Name:  pulumi.String("test-iot"),
-//				Certificate: &scaleway.IotDeviceCertificateArgs{
+//				Certificate: &iot.DeviceCertificateArgs{
 //					Crt: pulumi.String(deviceCert.Content),
 //				},
 //			})
@@ -101,6 +101,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device
 type IotDevice struct {
 	pulumi.CustomResourceState
 

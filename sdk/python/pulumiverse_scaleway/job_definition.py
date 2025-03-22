@@ -384,7 +384,12 @@ class _JobDefinitionState:
         pulumi.set(self, "timeout", value)
 
 
+warnings.warn("""scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition""", DeprecationWarning)
+
+
 class JobDefinition(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -412,7 +417,7 @@ class JobDefinition(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.JobDefinition("main",
+        main = scaleway.job.Definition("main",
             name="testjob",
             cpu_limit=140,
             memory_limit=256,
@@ -469,7 +474,7 @@ class JobDefinition(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.JobDefinition("main",
+        main = scaleway.job.Definition("main",
             name="testjob",
             cpu_limit=140,
             memory_limit=256,
@@ -522,6 +527,7 @@ class JobDefinition(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""JobDefinition is deprecated: scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

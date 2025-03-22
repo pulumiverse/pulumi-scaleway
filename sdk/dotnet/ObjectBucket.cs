@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.ObjectBucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+    /// The `scaleway.object.Bucket` resource allows you to create and manage buckets for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information on Object Storage buckets.
     /// 
@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
+    ///     var someBucket = new Scaleway.Object.Bucket("some_bucket", new()
     ///     {
     ///         Name = "some-unique-name",
     ///         Tags = 
@@ -47,7 +47,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var someBucket = new Scaleway.ObjectBucket("some_bucket", new()
+    ///     var someBucket = new Scaleway.Object.Bucket("some_bucket", new()
     ///     {
     ///         Name = "some-unique-name",
     ///         ProjectId = "11111111-1111-1111-1111-111111111111",
@@ -66,41 +66,41 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ObjectBucket("main", new()
+    ///     var main = new Scaleway.Object.Bucket("main", new()
     ///     {
     ///         Name = "mybuckectid",
     ///         Region = "fr-par",
     ///         LifecycleRules = new[]
     ///         {
-    ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
     ///             {
     ///                 Id = "id1",
     ///                 Prefix = "path1/",
     ///                 Enabled = true,
-    ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
     ///                 {
     ///                     Days = 365,
     ///                 },
     ///                 Transitions = new[]
     ///                 {
-    ///                     new Scaleway.Inputs.ObjectBucketLifecycleRuleTransitionArgs
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleTransitionArgs
     ///                     {
     ///                         Days = 120,
     ///                         StorageClass = "GLACIER",
     ///                     },
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
     ///             {
     ///                 Id = "id2",
     ///                 Prefix = "path2/",
     ///                 Enabled = true,
-    ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
     ///                 {
     ///                     Days = 50,
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
     ///             {
     ///                 Id = "id3",
     ///                 Prefix = "path3/",
@@ -110,12 +110,12 @@ namespace Pulumiverse.Scaleway
     ///                     { "tagKey", "tagValue" },
     ///                     { "terraform", "hashicorp" },
     ///                 },
-    ///                 Expiration = new Scaleway.Inputs.ObjectBucketLifecycleRuleExpirationArgs
+    ///                 Expiration = new Scaleway.Object.Inputs.BucketLifecycleRuleExpirationArgs
     ///                 {
     ///                     Days = 1,
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
     ///             {
     ///                 Id = "id4",
     ///                 Enabled = true,
@@ -125,14 +125,14 @@ namespace Pulumiverse.Scaleway
     ///                 },
     ///                 Transitions = new[]
     ///                 {
-    ///                     new Scaleway.Inputs.ObjectBucketLifecycleRuleTransitionArgs
+    ///                     new Scaleway.Object.Inputs.BucketLifecycleRuleTransitionArgs
     ///                     {
     ///                         Days = 1,
     ///                         StorageClass = "GLACIER",
     ///                     },
     ///                 },
     ///             },
-    ///             new Scaleway.Inputs.ObjectBucketLifecycleRuleArgs
+    ///             new Scaleway.Object.Inputs.BucketLifecycleRuleArgs
     ///             {
     ///                 Enabled = true,
     ///                 AbortIncompleteMultipartUploadDays = 30,
@@ -163,13 +163,14 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/objectBucket:ObjectBucket some_bucket fr-par/some-bucket@11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/objectbucket.ObjectBucket has been deprecated in favor of scaleway.object/bucket.Bucket")]
     [ScalewayResourceType("scaleway:index/objectBucket:ObjectBucket")]
     public partial class ObjectBucket : global::Pulumi.CustomResource
     {
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -290,7 +291,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -377,7 +378,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.ObjectBucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }

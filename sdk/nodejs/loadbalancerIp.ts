@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ip = new scaleway.LoadbalancerIp("ip", {reverse: "my-reverse.com"});
+ * const ip = new scaleway.loadbalancers.Ip("ip", {reverse: "my-reverse.com"});
  * ```
  *
  * ### With IPv6
@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const ipv6 = new scaleway.LoadbalancerIp("ipv6", {isIpv6: true});
+ * const ipv6 = new scaleway.loadbalancers.Ip("ipv6", {isIpv6: true});
  * ```
  *
  * ## Import
@@ -38,6 +38,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip
  */
 export class LoadbalancerIp extends pulumi.CustomResource {
     /**
@@ -50,6 +52,7 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: LoadbalancerIpState, opts?: pulumi.CustomResourceOptions): LoadbalancerIp {
+        pulumi.log.warn("LoadbalancerIp is deprecated: scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip")
         return new LoadbalancerIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -111,8 +114,11 @@ export class LoadbalancerIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip */
     constructor(name: string, args?: LoadbalancerIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip */
     constructor(name: string, argsOrState?: LoadbalancerIpArgs | LoadbalancerIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("LoadbalancerIp is deprecated: scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

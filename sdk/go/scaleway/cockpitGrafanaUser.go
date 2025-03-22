@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `CockpitGrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
+// The `observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
 //
 // Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 //
@@ -28,19 +28,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := scaleway.NewAccountProject(ctx, "project", &scaleway.AccountProjectArgs{
+//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
 //				Name: pulumi.String("test project grafana user"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewCockpitGrafanaUser(ctx, "main", &scaleway.CockpitGrafanaUserArgs{
+//			_, err = observability.NewGrafanaUser(ctx, "main", &observability.GrafanaUserArgs{
 //				ProjectId: project.ID(),
 //				Login:     pulumi.String("my-awesome-user"),
 //				Role:      pulumi.String("editor"),
@@ -63,6 +64,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser main 11111111-1111-1111-1111-111111111111/2
 // ```
+//
+// Deprecated: scaleway.index/cockpitgrafanauser.CockpitGrafanaUser has been deprecated in favor of scaleway.observability/grafanauser.GrafanaUser
 type CockpitGrafanaUser struct {
 	pulumi.CustomResourceState
 

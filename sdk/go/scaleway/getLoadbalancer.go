@@ -23,21 +23,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by name
-//			_, err := scaleway.LookupLoadbalancer(ctx, &scaleway.LookupLoadbalancerArgs{
+//			_, err := loadbalancers.LookupLoadBalancer(ctx, &loadbalancers.LookupLoadBalancerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by ID
-//			_, err = scaleway.LookupLoadbalancer(ctx, &scaleway.LookupLoadbalancerArgs{
+//			_, err = loadbalancers.LookupLoadBalancer(ctx, &loadbalancers.LookupLoadBalancerArgs{
 //				LbId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -48,6 +48,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer
 func LookupLoadbalancer(ctx *pulumi.Context, args *LookupLoadbalancerArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerResult

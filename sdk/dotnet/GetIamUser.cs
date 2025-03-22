@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser")]
     public static class GetIamUser
     {
         /// <summary>
@@ -27,13 +28,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by user id
-        ///     var findById = Scaleway.GetIamUser.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         UserId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by email address
-        ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
+        ///     var findByEmail = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         Email = "foo@bar.com",
         ///     });
@@ -59,13 +60,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by user id
-        ///     var findById = Scaleway.GetIamUser.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         UserId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by email address
-        ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
+        ///     var findByEmail = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         Email = "foo@bar.com",
         ///     });
@@ -91,13 +92,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by user id
-        ///     var findById = Scaleway.GetIamUser.Invoke(new()
+        ///     var findById = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         UserId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
         ///     // Get info by email address
-        ///     var findByEmail = Scaleway.GetIamUser.Invoke(new()
+        ///     var findByEmail = Scaleway.Iam.GetUser.Invoke(new()
         ///     {
         ///         Email = "foo@bar.com",
         ///     });

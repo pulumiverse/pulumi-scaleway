@@ -4,7 +4,9 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/** @deprecated scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone */
 export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDomainZoneResult> {
+    pulumi.log.warn("getDomainZone is deprecated: scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainZone:getDomainZone", {
@@ -63,7 +65,9 @@ export interface GetDomainZoneResult {
      */
     readonly updatedAt: string;
 }
+/** @deprecated scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone */
 export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDomainZoneResult> {
+    pulumi.log.warn("getDomainZone is deprecated: scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDomainZone:getDomainZone", {

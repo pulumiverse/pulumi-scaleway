@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer")]
     public static class GetWebHostOffer
     {
         /// <summary>
@@ -26,14 +27,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer name
-        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byName = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
-        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
         ///     });
@@ -58,14 +59,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer name
-        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byName = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
-        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
         ///     });
@@ -90,14 +91,14 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by offer name
-        ///     var byName = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byName = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         Name = "performance",
         ///         ControlPanel = "Cpanel",
         ///     });
         /// 
         ///     // Get info by offer id
-        ///     var byId = Scaleway.GetWebHostOffer.Invoke(new()
+        ///     var byId = Scaleway.Hosting.GetOffer.Invoke(new()
         ///     {
         ///         OfferId = "de2426b4-a9e9-11ec-b909-0242ac120002",
         ///     });

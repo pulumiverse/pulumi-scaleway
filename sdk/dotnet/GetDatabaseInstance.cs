@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdatabaseinstance.getDatabaseInstance has been deprecated in favor of scaleway.databases/getinstance.getInstance")]
     public static class GetDatabaseInstance
     {
         /// <summary>

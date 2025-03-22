@@ -11,9 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+// The `block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
 //
 // Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+//
+// Deprecated: scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot
 func LookupBlockSnapshot(ctx *pulumi.Context, args *LookupBlockSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupBlockSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockSnapshotResult

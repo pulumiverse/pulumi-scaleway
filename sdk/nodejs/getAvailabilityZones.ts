@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+ * The `scaleway.account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
  *
  * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
  * you can choose the location that better fits your need (country, latency, etc.).
@@ -21,12 +21,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by Region key
- * const main = scaleway.getAvailabilityZones({
+ * const main = scaleway.account.getAvailabilityZones({
  *     region: "nl-ams",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones */
 export function getAvailabilityZones(args?: GetAvailabilityZonesArgs, opts?: pulumi.InvokeOptions): Promise<GetAvailabilityZonesResult> {
+    pulumi.log.warn("getAvailabilityZones is deprecated: scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getAvailabilityZones:getAvailabilityZones", {
@@ -59,7 +61,7 @@ export interface GetAvailabilityZonesResult {
     readonly zones: string[];
 }
 /**
- * The `scaleway.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
+ * The `scaleway.account.getAvailabilityZones` data source is used to retrieve information about the available zones based on its Region.
  *
  * For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
  * you can choose the location that better fits your need (country, latency, etc.).
@@ -75,12 +77,14 @@ export interface GetAvailabilityZonesResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by Region key
- * const main = scaleway.getAvailabilityZones({
+ * const main = scaleway.account.getAvailabilityZones({
  *     region: "nl-ams",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones */
 export function getAvailabilityZonesOutput(args?: GetAvailabilityZonesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAvailabilityZonesResult> {
+    pulumi.log.warn("getAvailabilityZones is deprecated: scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getAvailabilityZones:getAvailabilityZones", {

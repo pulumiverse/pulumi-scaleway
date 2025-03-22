@@ -257,7 +257,12 @@ class _LoadbalancerCertificateState:
         pulumi.set(self, "subject_alternative_names", value)
 
 
+warnings.warn("""scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate""", DeprecationWarning)
+
+
 class LoadbalancerCertificate(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -304,6 +309,7 @@ class LoadbalancerCertificate(pulumi.CustomResource):
                  letsencrypt: Optional[pulumi.Input[Union['LoadbalancerCertificateLetsencryptArgs', 'LoadbalancerCertificateLetsencryptArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""LoadbalancerCertificate is deprecated: scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

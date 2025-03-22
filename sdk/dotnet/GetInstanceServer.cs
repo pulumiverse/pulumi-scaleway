@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getinstanceserver.getInstanceServer has been deprecated in favor of scaleway.instance/getserver.getServer")]
     public static class GetInstanceServer
     {
         /// <summary>

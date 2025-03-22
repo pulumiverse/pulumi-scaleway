@@ -26,18 +26,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var volume = new Scaleway.InstanceVolume("volume", new()
+    ///     var volume = new Scaleway.Instance.Volume("volume", new()
     ///     {
     ///         Type = "b_ssd",
     ///         SizeInGb = 20,
     ///     });
     /// 
-    ///     var volumeSnapshot = new Scaleway.InstanceSnapshot("volume_snapshot", new()
+    ///     var volumeSnapshot = new Scaleway.Instance.Snapshot("volume_snapshot", new()
     ///     {
     ///         VolumeId = volume.Id,
     ///     });
     /// 
-    ///     var volumeImage = new Scaleway.InstanceImage("volume_image", new()
+    ///     var volumeImage = new Scaleway.Instance.Image("volume_image", new()
     ///     {
     ///         Name = "image_from_volume",
     ///         RootVolumeId = volumeSnapshot.Id,
@@ -56,18 +56,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var server = new Scaleway.InstanceServer("server", new()
+    ///     var server = new Scaleway.Instance.Server("server", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
     ///     });
     /// 
-    ///     var serverSnapshot = new Scaleway.InstanceSnapshot("server_snapshot", new()
+    ///     var serverSnapshot = new Scaleway.Instance.Snapshot("server_snapshot", new()
     ///     {
     ///         VolumeId = main.RootVolume[0].VolumeId,
     ///     });
     /// 
-    ///     var serverImage = new Scaleway.InstanceImage("server_image", new()
+    ///     var serverImage = new Scaleway.Instance.Image("server_image", new()
     ///     {
     ///         Name = "image_from_server",
     ///         RootVolumeId = serverSnapshot.Id,
@@ -86,6 +86,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image")]
     [ScalewayResourceType("scaleway:index/instanceImage:InstanceImage")]
     public partial class InstanceImage : global::Pulumi.CustomResource
     {

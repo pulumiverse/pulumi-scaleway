@@ -16,16 +16,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const findByName = scaleway.getIamGroup({
+ * const findByName = scaleway.iam.getGroup({
  *     name: "foobar",
  * });
  * // Get info by group ID
- * const findById = scaleway.getIamGroup({
+ * const findById = scaleway.iam.getGroup({
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup */
 export function getIamGroup(args?: GetIamGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetIamGroupResult> {
+    pulumi.log.warn("getIamGroup is deprecated: scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIamGroup:getIamGroup", {
@@ -87,16 +89,18 @@ export interface GetIamGroupResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const findByName = scaleway.getIamGroup({
+ * const findByName = scaleway.iam.getGroup({
  *     name: "foobar",
  * });
  * // Get info by group ID
- * const findById = scaleway.getIamGroup({
+ * const findById = scaleway.iam.getGroup({
  *     groupId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup */
 export function getIamGroupOutput(args?: GetIamGroupOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIamGroupResult> {
+    pulumi.log.warn("getIamGroup is deprecated: scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIamGroup:getIamGroup", {

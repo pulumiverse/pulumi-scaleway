@@ -21,6 +21,8 @@ __all__ = [
     'get_block_volume_output',
 ]
 
+warnings.warn("""scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBlockVolumeResult:
     """
@@ -136,7 +138,7 @@ def get_block_volume(name: Optional[str] = None,
                      zone: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlockVolumeResult:
     """
-    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    The `block.Volume` data source is used to retrieve information about a Block Storage volume.
     Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
@@ -145,6 +147,7 @@ def get_block_volume(name: Optional[str] = None,
     :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
     :param str zone: ). The zone in which the volume exists.
     """
+    pulumi.log.warn("""get_block_volume is deprecated: scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -170,7 +173,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlockVolumeResult]:
     """
-    The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+    The `block.Volume` data source is used to retrieve information about a Block Storage volume.
     Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
 
@@ -179,6 +182,7 @@ def get_block_volume_output(name: Optional[pulumi.Input[Optional[str]]] = None,
     :param str volume_id: The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
     :param str zone: ). The zone in which the volume exists.
     """
+    pulumi.log.warn("""get_block_volume is deprecated: scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

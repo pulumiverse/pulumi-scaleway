@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.InstanceSnapshot("main", {
+ * const main = new scaleway.instance.Snapshot("main", {
  *     name: "some-snapshot-name",
  *     volumeId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -29,11 +29,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.InstanceVolume("main", {
+ * const main = new scaleway.instance.Volume("main", {
  *     type: "l_ssd",
  *     sizeInGb: 10,
  * });
- * const mainInstanceServer = new scaleway.InstanceServer("main", {
+ * const mainServer = new scaleway.instance.Server("main", {
  *     image: "ubuntu_jammy",
  *     type: "DEV1-S",
  *     rootVolume: {
@@ -42,11 +42,11 @@ import * as utilities from "./utilities";
  *     },
  *     additionalVolumeIds: [main.id],
  * });
- * const mainInstanceSnapshot = new scaleway.InstanceSnapshot("main", {
+ * const mainSnapshot = new scaleway.instance.Snapshot("main", {
  *     volumeId: main.id,
  *     type: "unified",
  * }, {
- *     dependsOn: [mainInstanceServer],
+ *     dependsOn: [mainServer],
  * });
  * ```
  *
@@ -56,13 +56,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const bucket = new scaleway.ObjectBucket("bucket", {name: "snapshot-qcow-import"});
- * const qcow = new scaleway.ObjectItem("qcow", {
+ * const bucket = new scaleway.object.Bucket("bucket", {name: "snapshot-qcow-import"});
+ * const qcow = new scaleway.object.Item("qcow", {
  *     bucket: bucket.name,
  *     key: "server.qcow2",
  *     file: "myqcow.qcow2",
  * });
- * const snapshot = new scaleway.InstanceSnapshot("snapshot", {
+ * const snapshot = new scaleway.instance.Snapshot("snapshot", {
  *     type: "unified",
  *     "import": {
  *         bucket: qcow.bucket,
@@ -80,6 +80,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceSnapshot:InstanceSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot
  */
 export class InstanceSnapshot extends pulumi.CustomResource {
     /**
@@ -92,6 +94,7 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceSnapshotState, opts?: pulumi.CustomResourceOptions): InstanceSnapshot {
+        pulumi.log.warn("InstanceSnapshot is deprecated: scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot")
         return new InstanceSnapshot(name, <any>state, { ...opts, id: id });
     }
 
@@ -160,8 +163,11 @@ export class InstanceSnapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot */
     constructor(name: string, args?: InstanceSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot */
     constructor(name: string, argsOrState?: InstanceSnapshotArgs | InstanceSnapshotState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceSnapshot is deprecated: scaleway.index/instancesnapshot.InstanceSnapshot has been deprecated in favor of scaleway.instance/snapshot.Snapshot")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

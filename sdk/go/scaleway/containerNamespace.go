@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ContainerNamespace` resource allows you to
+// The `containers.Namespace` resource allows you to
 // for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Containers namespace [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/create-manage-delete-containers-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-namespaces-list-all-your-namespaces) for more information.
@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//			_, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
 //				Name:        pulumi.String("main-container-namespace"),
 //				Description: pulumi.String("Main container namespace"),
 //			})
@@ -52,6 +52,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/containerNamespace:ContainerNamespace main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/containernamespace.ContainerNamespace has been deprecated in favor of scaleway.containers/namespace.Namespace
 type ContainerNamespace struct {
 	pulumi.CustomResourceState
 

@@ -14,9 +14,9 @@ import (
 
 // Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
 //
-// This resource can be used to externalize rules from a `InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
+// This resource can be used to externalize rules from a `instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `externalRules = true` on the security group.
 //
-// > **Warning:** In order to guaranty rules order in a given security group only one InstanceSecurityGroupRules is allowed per security group.
+// > **Warning:** In order to guaranty rules order in a given security group only one instance.SecurityGroupRules is allowed per security group.
 //
 // ## Example Usage
 //
@@ -28,22 +28,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sg01, err := scaleway.NewInstanceSecurityGroup(ctx, "sg01", &scaleway.InstanceSecurityGroupArgs{
+//			sg01, err := instance.NewSecurityGroup(ctx, "sg01", &instance.SecurityGroupArgs{
 //				ExternalRules: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceSecurityGroupRules(ctx, "sgrs01", &scaleway.InstanceSecurityGroupRulesArgs{
+//			_, err = instance.NewSecurityGroupRules(ctx, "sgrs01", &instance.SecurityGroupRulesArgs{
 //				SecurityGroupId: sg01.ID(),
-//				InboundRules: scaleway.InstanceSecurityGroupRulesInboundRuleArray{
-//					&scaleway.InstanceSecurityGroupRulesInboundRuleArgs{
+//				InboundRules: instance.SecurityGroupRulesInboundRuleArray{
+//					&instance.SecurityGroupRulesInboundRuleArgs{
 //						Action:  pulumi.String("accept"),
 //						Port:    pulumi.Int(80),
 //						IpRange: pulumi.String("0.0.0.0/0"),
@@ -68,6 +68,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules
 type InstanceSecurityGroupRules struct {
 	pulumi.CustomResourceState
 

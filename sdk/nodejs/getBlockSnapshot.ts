@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+ * The `scaleway.block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
  *
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
+/** @deprecated scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot */
 export function getBlockSnapshot(args?: GetBlockSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetBlockSnapshotResult> {
+    pulumi.log.warn("getBlockSnapshot is deprecated: scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBlockSnapshot:getBlockSnapshot", {
@@ -63,11 +65,13 @@ export interface GetBlockSnapshotResult {
     readonly zone?: string;
 }
 /**
- * The `scaleway.BlockSnapshot` data source is used to retrieve information about a Block Storage volume snapshot.
+ * The `scaleway.block.Snapshot` data source is used to retrieve information about a Block Storage volume snapshot.
  *
  * Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
  */
+/** @deprecated scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot */
 export function getBlockSnapshotOutput(args?: GetBlockSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBlockSnapshotResult> {
+    pulumi.log.warn("getBlockSnapshot is deprecated: scaleway.index/getblocksnapshot.getBlockSnapshot has been deprecated in favor of scaleway.block/getsnapshot.getSnapshot")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBlockSnapshot:getBlockSnapshot", {

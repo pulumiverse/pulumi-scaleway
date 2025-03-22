@@ -21,21 +21,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by name
-//			_, err := scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//			_, err := network.LookupPrivateNetwork(ctx, &network.LookupPrivateNetworkArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by name and VPC ID
-//			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//			_, err = network.LookupPrivateNetwork(ctx, &network.LookupPrivateNetworkArgs{
 //				Name:  pulumi.StringRef("foobar"),
 //				VpcId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -43,7 +43,7 @@ import (
 //				return err
 //			}
 //			// Get info by IP ID
-//			_, err = scaleway.LookupVpcPrivateNetwork(ctx, &scaleway.LookupVpcPrivateNetworkArgs{
+//			_, err = network.LookupPrivateNetwork(ctx, &network.LookupPrivateNetworkArgs{
 //				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -54,6 +54,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork
 func LookupVpcPrivateNetwork(ctx *pulumi.Context, args *LookupVpcPrivateNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcPrivateNetworkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPrivateNetworkResult

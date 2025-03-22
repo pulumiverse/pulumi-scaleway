@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an instance server.
+//
+// Deprecated: scaleway.index/getinstanceserver.getInstanceServer has been deprecated in favor of scaleway.instance/getserver.getServer
 func LookupInstanceServer(ctx *pulumi.Context, args *LookupInstanceServerArgs, opts ...pulumi.InvokeOption) (*LookupInstanceServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceServerResult

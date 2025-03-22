@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/hosting"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by offer name
-//			_, err := scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
+//			_, err := hosting.GetOffer(ctx, &hosting.GetOfferArgs{
 //				Name:         pulumi.StringRef("performance"),
 //				ControlPanel: pulumi.StringRef("Cpanel"),
 //			}, nil)
@@ -36,7 +36,7 @@ import (
 //				return err
 //			}
 //			// Get info by offer id
-//			_, err = scaleway.GetWebHostOffer(ctx, &scaleway.GetWebHostOfferArgs{
+//			_, err = hosting.GetOffer(ctx, &hosting.GetOfferArgs{
 //				OfferId: pulumi.StringRef("de2426b4-a9e9-11ec-b909-0242ac120002"),
 //			}, nil)
 //			if err != nil {
@@ -47,6 +47,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getwebhostoffer.getWebHostOffer has been deprecated in favor of scaleway.hosting/getoffer.getOffer
 func GetWebHostOffer(ctx *pulumi.Context, args *GetWebHostOfferArgs, opts ...pulumi.InvokeOption) (*GetWebHostOfferResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetWebHostOfferResult

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage")]
     public static class GetRegistryImage
     {
         /// <summary>

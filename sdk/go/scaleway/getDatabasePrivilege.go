@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
-//			_, err := scaleway.LookupDatabasePrivilege(ctx, &scaleway.LookupDatabasePrivilegeArgs{
+//			_, err := databases.LookupPrivilege(ctx, &databases.LookupPrivilegeArgs{
 //				InstanceId:   "11111111-1111-111111111111",
 //				UserName:     "my-user",
 //				DatabaseName: "my-database",
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege
 func LookupDatabasePrivilege(ctx *pulumi.Context, args *LookupDatabasePrivilegeArgs, opts ...pulumi.InvokeOption) (*LookupDatabasePrivilegeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabasePrivilegeResult

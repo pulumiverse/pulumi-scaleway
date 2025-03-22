@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+// The `block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
 //
 // Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 //
@@ -28,13 +28,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			blockVolume, err := scaleway.NewBlockVolume(ctx, "block_volume", &scaleway.BlockVolumeArgs{
+//			blockVolume, err := block.NewVolume(ctx, "block_volume", &block.VolumeArgs{
 //				Iops:     pulumi.Int(5000),
 //				Name:     pulumi.String("some-volume-name"),
 //				SizeInGb: pulumi.Int(20),
@@ -42,7 +42,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewBlockSnapshot(ctx, "block_snapshot", &scaleway.BlockSnapshotArgs{
+//			_, err = block.NewSnapshot(ctx, "block_snapshot", &block.SnapshotArgs{
 //				Name:     pulumi.String("some-snapshot-name"),
 //				VolumeId: blockVolume.ID(),
 //			})
@@ -64,6 +64,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/blockSnapshot:BlockSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot
 type BlockSnapshot struct {
 	pulumi.CustomResourceState
 

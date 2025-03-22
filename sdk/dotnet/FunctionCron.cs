@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+    /// The `scaleway.functions.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
     /// 
     /// Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
     /// 
@@ -28,12 +28,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.FunctionNamespace("main", new()
+    ///     var main = new Scaleway.Functions.Namespace("main", new()
     ///     {
     ///         Name = "test-cron",
     ///     });
     /// 
-    ///     var mainFunction = new Scaleway.Function("main", new()
+    ///     var mainFunction = new Scaleway.Functions.Function("main", new()
     ///     {
     ///         Name = "test-cron",
     ///         NamespaceId = main.Id,
@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
     ///         Handler = "handler.handle",
     ///     });
     /// 
-    ///     var mainFunctionCron = new Scaleway.FunctionCron("main", new()
+    ///     var mainCron = new Scaleway.Functions.Cron("main", new()
     ///     {
     ///         Name = "test-cron",
     ///         FunctionId = mainFunction.Id,
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway
     ///         }),
     ///     });
     /// 
-    ///     var func = new Scaleway.FunctionCron("func", new()
+    ///     var func = new Scaleway.Functions.Cron("func", new()
     ///     {
     ///         FunctionId = mainFunction.Id,
     ///         Schedule = "0 1 * * *",
@@ -76,6 +76,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron")]
     [ScalewayResourceType("scaleway:index/functionCron:FunctionCron")]
     public partial class FunctionCron : global::Pulumi.CustomResource
     {

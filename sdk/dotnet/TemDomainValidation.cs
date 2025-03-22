@@ -23,13 +23,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     var main = new Scaleway.Tem.Domain("main", new()
     ///     {
     ///         AcceptTos = true,
     ///         Name = "example.com",
     ///     });
     /// 
-    ///     var example = new Scaleway.TemDomainValidation("example", new()
+    ///     var example = new Scaleway.Tem.DomainValidation("example", new()
     ///     {
     ///         DomainId = main.Id,
     ///         Region = "fr-par",
@@ -39,6 +39,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation")]
     [ScalewayResourceType("scaleway:index/temDomainValidation:TemDomainValidation")]
     public partial class TemDomainValidation : global::Pulumi.CustomResource
     {

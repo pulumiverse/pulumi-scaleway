@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+// The `object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
 //
@@ -24,22 +24,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name: pulumi.String("MyBucket"),
 //				Acl:  pulumi.String("public-read"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "main", &scaleway.ObjectBucketWebsiteConfigurationArgs{
+//			_, err = object.NewBucketWebsiteConfiguration(ctx, "main", &object.BucketWebsiteConfigurationArgs{
 //				Bucket: main.ID(),
-//				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
+//				IndexDocument: &object.BucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
 //			})
@@ -62,13 +62,13 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name: pulumi.String("MyBucket"),
 //				Acl:  pulumi.String("public-read"),
 //			})
@@ -96,16 +96,16 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = scaleway.NewObjectBucketPolicy(ctx, "main", &scaleway.ObjectBucketPolicyArgs{
+//			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
 //				Bucket: main.ID(),
 //				Policy: pulumi.String(json0),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketWebsiteConfiguration(ctx, "main", &scaleway.ObjectBucketWebsiteConfigurationArgs{
+//			_, err = object.NewBucketWebsiteConfiguration(ctx, "main", &object.BucketWebsiteConfigurationArgs{
 //				Bucket: main.ID(),
-//				IndexDocument: &scaleway.ObjectBucketWebsiteConfigurationIndexDocumentArgs{
+//				IndexDocument: &object.BucketWebsiteConfigurationIndexDocumentArgs{
 //					Suffix: pulumi.String("index.html"),
 //				},
 //			})
@@ -137,6 +137,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 // ```
+//
+// Deprecated: scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration
 type ObjectBucketWebsiteConfiguration struct {
 	pulumi.CustomResourceState
 

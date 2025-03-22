@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getregistryimagetag.getRegistryImageTag has been deprecated in favor of scaleway.registry/getimagetag.getImageTag")]
     public static class GetRegistryImageTag
     {
         /// <summary>

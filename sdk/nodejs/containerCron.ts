@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/containers/how-to/add-trigger-to-a-container/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-triggers-list-all-triggers) for more information.
  *
@@ -17,12 +17,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {});
- * const mainContainer = new scaleway.Container("main", {
+ * const main = new scaleway.containers.Namespace("main", {});
+ * const mainContainer = new scaleway.containers.Container("main", {
  *     name: "my-container-with-cron-tf",
  *     namespaceId: main.id,
  * });
- * const mainContainerCron = new scaleway.ContainerCron("main", {
+ * const mainCron = new scaleway.containers.Cron("main", {
  *     containerId: mainContainer.id,
  *     name: "my-cron-name",
  *     schedule: "5 4 1 * *",
@@ -48,6 +48,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/containerCron:ContainerCron main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron
  */
 export class ContainerCron extends pulumi.CustomResource {
     /**
@@ -60,6 +62,7 @@ export class ContainerCron extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerCronState, opts?: pulumi.CustomResourceOptions): ContainerCron {
+        pulumi.log.warn("ContainerCron is deprecated: scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron")
         return new ContainerCron(name, <any>state, { ...opts, id: id });
     }
 
@@ -110,8 +113,11 @@ export class ContainerCron extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron */
     constructor(name: string, args: ContainerCronArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron */
     constructor(name: string, argsOrState?: ContainerCronArgs | ContainerCronState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ContainerCron is deprecated: scaleway.index/containercron.ContainerCron has been deprecated in favor of scaleway.containers/cron.Cron")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

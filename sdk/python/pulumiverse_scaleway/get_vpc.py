@@ -21,6 +21,8 @@ __all__ = [
     'get_vpc_output',
 ]
 
+warnings.warn("""scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc""", DeprecationWarning)
+
 @pulumi.output_type
 class GetVpcResult:
     """
@@ -156,11 +158,11 @@ def get_vpc(is_default: Optional[bool] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    by_name = scaleway.get_vpc(name="foobar")
+    by_name = scaleway.network.get_vpc(name="foobar")
     # Get info by ID
-    by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.network.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
     # Get default VPC info
-    default = scaleway.get_vpc(is_default=True)
+    default = scaleway.network.get_vpc(is_default=True)
     ```
 
 
@@ -170,6 +172,7 @@ def get_vpc(is_default: Optional[bool] = None,
     :param str project_id: `project_id`) The ID of the Project the VPC is associated with.
     :param str vpc_id: ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
     """
+    pulumi.log.warn("""get_vpc is deprecated: scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc""")
     __args__ = dict()
     __args__['isDefault'] = is_default
     __args__['name'] = name
@@ -209,11 +212,11 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by name
-    by_name = scaleway.get_vpc(name="foobar")
+    by_name = scaleway.network.get_vpc(name="foobar")
     # Get info by ID
-    by_id = scaleway.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.network.get_vpc(vpc_id="11111111-1111-1111-1111-111111111111")
     # Get default VPC info
-    default = scaleway.get_vpc(is_default=True)
+    default = scaleway.network.get_vpc(is_default=True)
     ```
 
 
@@ -223,6 +226,7 @@ def get_vpc_output(is_default: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str project_id: `project_id`) The ID of the Project the VPC is associated with.
     :param str vpc_id: ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
     """
+    pulumi.log.warn("""get_vpc is deprecated: scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc""")
     __args__ = dict()
     __args__['isDefault'] = is_default
     __args__['name'] = name

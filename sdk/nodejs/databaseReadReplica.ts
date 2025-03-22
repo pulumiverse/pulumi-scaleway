@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const instance = new scaleway.DatabaseInstance("instance", {
+ * const instance = new scaleway.databases.Instance("instance", {
  *     name: "test-rdb-rr-update",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
@@ -32,7 +32,7 @@ import * as utilities from "./utilities";
  *         "minimal",
  *     ],
  * });
- * const replica = new scaleway.DatabaseReadReplica("replica", {
+ * const replica = new scaleway.databases.ReadReplica("replica", {
  *     instanceId: instance.id,
  *     directAccess: {},
  * });
@@ -44,7 +44,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const instance = new scaleway.DatabaseInstance("instance", {
+ * const instance = new scaleway.databases.Instance("instance", {
  *     name: "rdb_instance",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
@@ -53,8 +53,8 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const replica = new scaleway.DatabaseReadReplica("replica", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const replica = new scaleway.databases.ReadReplica("replica", {
  *     instanceId: instance.id,
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const instance = new scaleway.DatabaseInstance("instance", {
+ * const instance = new scaleway.databases.Instance("instance", {
  *     name: "rdb_instance",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-14",
@@ -78,8 +78,8 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const replica = new scaleway.DatabaseReadReplica("replica", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const replica = new scaleway.databases.ReadReplica("replica", {
  *     instanceId: instance.id,
  *     privateNetwork: {
  *         privateNetworkId: pn.id,
@@ -97,6 +97,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica
  */
 export class DatabaseReadReplica extends pulumi.CustomResource {
     /**
@@ -109,6 +111,7 @@ export class DatabaseReadReplica extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseReadReplicaState, opts?: pulumi.CustomResourceOptions): DatabaseReadReplica {
+        pulumi.log.warn("DatabaseReadReplica is deprecated: scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica")
         return new DatabaseReadReplica(name, <any>state, { ...opts, id: id });
     }
 
@@ -157,8 +160,11 @@ export class DatabaseReadReplica extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica */
     constructor(name: string, args: DatabaseReadReplicaArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica */
     constructor(name: string, argsOrState?: DatabaseReadReplicaArgs | DatabaseReadReplicaState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabaseReadReplica is deprecated: scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+ * The `scaleway.object.BucketWebsiteConfiguration` resource allows you to deploy and manage a bucket website with [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/use-bucket-website/) for more information on bucket websites.
  *
@@ -17,11 +17,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "MyBucket",
  *     acl: "public-read",
  * });
- * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("main", {
+ * const mainBucketWebsiteConfiguration = new scaleway.object.BucketWebsiteConfiguration("main", {
  *     bucket: main.id,
  *     indexDocument: {
  *         suffix: "index.html",
@@ -35,11 +35,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "MyBucket",
  *     acl: "public-read",
  * });
- * const mainObjectBucketPolicy = new scaleway.ObjectBucketPolicy("main", {
+ * const mainBucketPolicy = new scaleway.object.BucketPolicy("main", {
  *     bucket: main.id,
  *     policy: JSON.stringify({
  *         Version: "2012-10-17",
@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  *         }],
  *     }),
  * });
- * const mainObjectBucketWebsiteConfiguration = new scaleway.ObjectBucketWebsiteConfiguration("main", {
+ * const mainBucketWebsiteConfiguration = new scaleway.object.BucketWebsiteConfiguration("main", {
  *     bucket: main.id,
  *     indexDocument: {
  *         suffix: "index.html",
@@ -80,6 +80,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
+ *
+ * @deprecated scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration
  */
 export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
     /**
@@ -92,6 +94,7 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectBucketWebsiteConfigurationState, opts?: pulumi.CustomResourceOptions): ObjectBucketWebsiteConfiguration {
+        pulumi.log.warn("ObjectBucketWebsiteConfiguration is deprecated: scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration")
         return new ObjectBucketWebsiteConfiguration(name, <any>state, { ...opts, id: id });
     }
 
@@ -145,8 +148,11 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration */
     constructor(name: string, args: ObjectBucketWebsiteConfigurationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration */
     constructor(name: string, argsOrState?: ObjectBucketWebsiteConfigurationArgs | ObjectBucketWebsiteConfigurationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectBucketWebsiteConfiguration is deprecated: scaleway.index/objectbucketwebsiteconfiguration.ObjectBucketWebsiteConfiguration has been deprecated in favor of scaleway.object/bucketwebsiteconfiguration.BucketWebsiteConfiguration")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

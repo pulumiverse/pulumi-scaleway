@@ -14,6 +14,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/domainZone:DomainZone test test.scaleway-terraform.com
  * ```
+ *
+ * @deprecated scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone
  */
 export class DomainZone extends pulumi.CustomResource {
     /**
@@ -26,6 +28,7 @@ export class DomainZone extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DomainZoneState, opts?: pulumi.CustomResourceOptions): DomainZone {
+        pulumi.log.warn("DomainZone is deprecated: scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone")
         return new DomainZone(name, <any>state, { ...opts, id: id });
     }
 
@@ -87,8 +90,11 @@ export class DomainZone extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone */
     constructor(name: string, args: DomainZoneArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone */
     constructor(name: string, argsOrState?: DomainZoneArgs | DomainZoneState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DomainZone is deprecated: scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

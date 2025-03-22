@@ -16,6 +16,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/secret:Secret main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret
  */
 export class Secret extends pulumi.CustomResource {
     /**
@@ -28,6 +30,7 @@ export class Secret extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecretState, opts?: pulumi.CustomResourceOptions): Secret {
+        pulumi.log.warn("Secret is deprecated: scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret")
         return new Secret(name, <any>state, { ...opts, id: id });
     }
 
@@ -106,8 +109,11 @@ export class Secret extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret */
     constructor(name: string, args?: SecretArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret */
     constructor(name: string, argsOrState?: SecretArgs | SecretState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("Secret is deprecated: scaleway.index/secret.Secret has been deprecated in favor of scaleway.secrets/secret.Secret")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -23,21 +23,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by name
-//			_, err := scaleway.LookupIamGroup(ctx, &scaleway.LookupIamGroupArgs{
+//			_, err := iam.LookupGroup(ctx, &iam.LookupGroupArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by group ID
-//			_, err = scaleway.LookupIamGroup(ctx, &scaleway.LookupIamGroupArgs{
+//			_, err = iam.LookupGroup(ctx, &iam.LookupGroupArgs{
 //				GroupId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -48,6 +48,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getiamgroup.getIamGroup has been deprecated in favor of scaleway.iam/getgroup.getGroup
 func LookupIamGroup(ctx *pulumi.Context, args *LookupIamGroupArgs, opts ...pulumi.InvokeOption) (*LookupIamGroupResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamGroupResult

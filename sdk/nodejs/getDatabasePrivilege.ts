@@ -14,14 +14,16 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
- * const main = scaleway.getDatabasePrivilege({
+ * const main = scaleway.databases.getPrivilege({
  *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
  *     databaseName: "my-database",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege */
 export function getDatabasePrivilege(args: GetDatabasePrivilegeArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabasePrivilegeResult> {
+    pulumi.log.warn("getDatabasePrivilege is deprecated: scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,
@@ -81,14 +83,16 @@ export interface GetDatabasePrivilegeResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the database privilege for the user "my-user" on the database "my-database" hosted on instance id 11111111-1111-1111-1111-111111111111 and on the default region. e.g: fr-par
- * const main = scaleway.getDatabasePrivilege({
+ * const main = scaleway.databases.getPrivilege({
  *     instanceId: "11111111-1111-111111111111",
  *     userName: "my-user",
  *     databaseName: "my-database",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege */
 export function getDatabasePrivilegeOutput(args: GetDatabasePrivilegeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabasePrivilegeResult> {
+    pulumi.log.warn("getDatabasePrivilege is deprecated: scaleway.index/getdatabaseprivilege.getDatabasePrivilege has been deprecated in favor of scaleway.databases/getprivilege.getPrivilege")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDatabasePrivilege:getDatabasePrivilege", {
         "databaseName": args.databaseName,

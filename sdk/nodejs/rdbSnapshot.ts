@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb-instance",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-15",
@@ -33,7 +33,7 @@ import * as utilities from "./utilities";
  *     volumeType: "bssd",
  *     volumeSizeInGb: 10,
  * });
- * const test = new scaleway.RdbSnapshot("test", {
+ * const test = new scaleway.databases.Snapshot("test", {
  *     name: "initial-snapshot",
  *     instanceId: main.id,
  * }, {
@@ -47,7 +47,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const snapshotWithExpiration = new scaleway.RdbSnapshot("snapshot_with_expiration", {
+ * const snapshotWithExpiration = new scaleway.databases.Snapshot("snapshot_with_expiration", {
  *     name: "snapshot-with-expiration",
  *     instanceId: main.id,
  *     expiresAt: "2025-01-31T00:00:00Z",
@@ -60,13 +60,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const snapshotA = new scaleway.RdbSnapshot("snapshot_a", {
+ * const snapshotA = new scaleway.databases.Snapshot("snapshot_a", {
  *     name: "snapshot_a",
  *     instanceId: main.id,
  * }, {
  *     dependsOn: [main],
  * });
- * const snapshotB = new scaleway.RdbSnapshot("snapshot_b", {
+ * const snapshotB = new scaleway.databases.Snapshot("snapshot_b", {
  *     name: "snapshot_b",
  *     instanceId: main.id,
  *     expiresAt: "2025-02-07T00:00:00Z",
@@ -88,6 +88,8 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * RDB Snapshots can be imported using the `{region}/{snapshot_id}` format.
+ *
+ * @deprecated scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot
  */
 export class RdbSnapshot extends pulumi.CustomResource {
     /**
@@ -100,6 +102,7 @@ export class RdbSnapshot extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: RdbSnapshotState, opts?: pulumi.CustomResourceOptions): RdbSnapshot {
+        pulumi.log.warn("RdbSnapshot is deprecated: scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot")
         return new RdbSnapshot(name, <any>state, { ...opts, id: id });
     }
 
@@ -165,8 +168,11 @@ export class RdbSnapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot */
     constructor(name: string, args: RdbSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot */
     constructor(name: string, argsOrState?: RdbSnapshotArgs | RdbSnapshotState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("RdbSnapshot is deprecated: scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

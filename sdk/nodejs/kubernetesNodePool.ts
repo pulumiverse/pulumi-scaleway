@@ -16,6 +16,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/kubernetesNodePool:KubernetesNodePool mypool fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool
  */
 export class KubernetesNodePool extends pulumi.CustomResource {
     /**
@@ -28,6 +30,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KubernetesNodePoolState, opts?: pulumi.CustomResourceOptions): KubernetesNodePool {
+        pulumi.log.warn("KubernetesNodePool is deprecated: scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool")
         return new KubernetesNodePool(name, <any>state, { ...opts, id: id });
     }
 
@@ -171,8 +174,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool */
     constructor(name: string, args: KubernetesNodePoolArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool */
     constructor(name: string, argsOrState?: KubernetesNodePoolArgs | KubernetesNodePoolState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("KubernetesNodePool is deprecated: scaleway.index/kubernetesnodepool.KubernetesNodePool has been deprecated in favor of scaleway.kubernetes/pool.Pool")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

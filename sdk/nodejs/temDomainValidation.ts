@@ -13,16 +13,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.TemDomain("main", {
+ * const main = new scaleway.tem.Domain("main", {
  *     acceptTos: true,
  *     name: "example.com",
  * });
- * const example = new scaleway.TemDomainValidation("example", {
+ * const example = new scaleway.tem.DomainValidation("example", {
  *     domainId: main.id,
  *     region: "fr-par",
  *     timeout: 300,
  * });
  * ```
+ *
+ * @deprecated scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation
  */
 export class TemDomainValidation extends pulumi.CustomResource {
     /**
@@ -35,6 +37,7 @@ export class TemDomainValidation extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TemDomainValidationState, opts?: pulumi.CustomResourceOptions): TemDomainValidation {
+        pulumi.log.warn("TemDomainValidation is deprecated: scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation")
         return new TemDomainValidation(name, <any>state, { ...opts, id: id });
     }
 
@@ -76,8 +79,11 @@ export class TemDomainValidation extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation */
     constructor(name: string, args: TemDomainValidationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation */
     constructor(name: string, argsOrState?: TemDomainValidationArgs | TemDomainValidationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("TemDomainValidation is deprecated: scaleway.index/temdomainvalidation.TemDomainValidation has been deprecated in favor of scaleway.tem/domainvalidation.DomainValidation")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

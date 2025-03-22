@@ -21,21 +21,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by snapshot name
-//			_, err := scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
+//			_, err := instance.LookupSnapshot(ctx, &instance.LookupSnapshotArgs{
 //				Name: pulumi.StringRef("my-snapshot-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by snapshot ID
-//			_, err = scaleway.LookupInstanceSnapshot(ctx, &scaleway.LookupInstanceSnapshotArgs{
+//			_, err = instance.LookupSnapshot(ctx, &instance.LookupSnapshotArgs{
 //				SnapshotId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -46,6 +46,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot
 func LookupInstanceSnapshot(ctx *pulumi.Context, args *LookupInstanceSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupInstanceSnapshotResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceSnapshotResult

@@ -18,28 +18,30 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.LoadbalancerIp("main", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("main", {
+ * const main = new scaleway.loadbalancers.Ip("main", {});
+ * const mainLoadBalancer = new scaleway.loadbalancers.LoadBalancer("main", {
  *     ipId: main.id,
  *     name: "data-test-lb-backend",
  *     type: "LB-S",
  * });
- * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("main", {
- *     lbId: mainLoadbalancer.id,
+ * const mainBackend = new scaleway.loadbalancers.Backend("main", {
+ *     lbId: mainLoadBalancer.id,
  *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  * });
- * const byID = scaleway.getLbBackendOutput({
- *     backendId: mainLoadbalancerBackend.id,
+ * const byID = scaleway.loadbalancers.getBackendOutput({
+ *     backendId: mainBackend.id,
  * });
- * const byName = scaleway.getLbBackendOutput({
- *     name: mainLoadbalancerBackend.name,
- *     lbId: mainLoadbalancer.id,
+ * const byName = scaleway.loadbalancers.getBackendOutput({
+ *     name: mainBackend.name,
+ *     lbId: mainLoadBalancer.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend */
 export function getLbBackend(args?: GetLbBackendArgs, opts?: pulumi.InvokeOptions): Promise<GetLbBackendResult> {
+    pulumi.log.warn("getLbBackend is deprecated: scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbBackend:getLbBackend", {
@@ -121,28 +123,30 @@ export interface GetLbBackendResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.LoadbalancerIp("main", {});
- * const mainLoadbalancer = new scaleway.Loadbalancer("main", {
+ * const main = new scaleway.loadbalancers.Ip("main", {});
+ * const mainLoadBalancer = new scaleway.loadbalancers.LoadBalancer("main", {
  *     ipId: main.id,
  *     name: "data-test-lb-backend",
  *     type: "LB-S",
  * });
- * const mainLoadbalancerBackend = new scaleway.LoadbalancerBackend("main", {
- *     lbId: mainLoadbalancer.id,
+ * const mainBackend = new scaleway.loadbalancers.Backend("main", {
+ *     lbId: mainLoadBalancer.id,
  *     name: "backend01",
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  * });
- * const byID = scaleway.getLbBackendOutput({
- *     backendId: mainLoadbalancerBackend.id,
+ * const byID = scaleway.loadbalancers.getBackendOutput({
+ *     backendId: mainBackend.id,
  * });
- * const byName = scaleway.getLbBackendOutput({
- *     name: mainLoadbalancerBackend.name,
- *     lbId: mainLoadbalancer.id,
+ * const byName = scaleway.loadbalancers.getBackendOutput({
+ *     name: mainBackend.name,
+ *     lbId: mainLoadBalancer.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend */
 export function getLbBackendOutput(args?: GetLbBackendOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbBackendResult> {
+    pulumi.log.warn("getLbBackend is deprecated: scaleway.index/getlbbackend.getLbBackend has been deprecated in favor of scaleway.loadbalancers/getbackend.getBackend")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbBackend:getLbBackend", {

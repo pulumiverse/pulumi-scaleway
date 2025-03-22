@@ -454,7 +454,12 @@ class _ObjectItemState:
         pulumi.set(self, "visibility", value)
 
 
+warnings.warn("""scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item""", DeprecationWarning)
+
+
 class ObjectItem(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -474,7 +479,7 @@ class ObjectItem(pulumi.CustomResource):
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
@@ -523,7 +528,7 @@ class ObjectItem(pulumi.CustomResource):
                  args: ObjectItemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `ObjectItem` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+        The `object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
@@ -576,6 +581,7 @@ class ObjectItem(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""ObjectItem is deprecated: scaleway.index/objectitem.ObjectItem has been deprecated in favor of scaleway.object/item.Item""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

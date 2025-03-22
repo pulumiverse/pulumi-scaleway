@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+// The `functions.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
 //
@@ -26,18 +26,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainFunctionNamespace, err := scaleway.NewFunctionNamespace(ctx, "main", nil)
+//			mainNamespace, err := functions.NewNamespace(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainFunction, err := scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
-//				NamespaceId: mainFunctionNamespace.ID(),
+//			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
+//				NamespaceId: mainNamespace.ID(),
 //				Runtime:     pulumi.String("go118"),
 //				Privacy:     pulumi.String("private"),
 //				Handler:     pulumi.String("Handle"),
@@ -47,7 +47,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewFunctionDomain(ctx, "main", &scaleway.FunctionDomainArgs{
+//			_, err = functions.NewDomain(ctx, "main", &functions.DomainArgs{
 //				FunctionId: mainFunction.ID(),
 //				Hostname:   pulumi.String("example.com"),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -71,6 +71,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain
 type FunctionDomain struct {
 	pulumi.CustomResourceState
 

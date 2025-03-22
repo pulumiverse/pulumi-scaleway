@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancerIp(ctx, "ip", &scaleway.LoadbalancerIpArgs{
+//			_, err := loadbalancers.NewIp(ctx, "ip", &loadbalancers.IpArgs{
 //				Reverse: pulumi.String("my-reverse.com"),
 //			})
 //			if err != nil {
@@ -51,13 +51,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancerIp(ctx, "ipv6", &scaleway.LoadbalancerIpArgs{
+//			_, err := loadbalancers.NewIp(ctx, "ipv6", &loadbalancers.IpArgs{
 //				IsIpv6: pulumi.Bool(true),
 //			})
 //			if err != nil {
@@ -78,6 +78,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/loadbalancerIp:LoadbalancerIp ip01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/loadbalancerip.LoadbalancerIp has been deprecated in favor of scaleway.loadbalancers/ip.Ip
 type LoadbalancerIp struct {
 	pulumi.CustomResourceState
 

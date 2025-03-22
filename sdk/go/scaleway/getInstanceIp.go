@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an instance IP.
+//
+// Deprecated: scaleway.index/getinstanceip.getInstanceIp has been deprecated in favor of scaleway.instance/getip.getIp
 func LookupInstanceIp(ctx *pulumi.Context, args *LookupInstanceIpArgs, opts ...pulumi.InvokeOption) (*LookupInstanceIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceIpResult

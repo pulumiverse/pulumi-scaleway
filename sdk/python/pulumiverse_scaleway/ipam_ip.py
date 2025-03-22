@@ -337,7 +337,12 @@ class _IpamIpState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip""", DeprecationWarning)
+
+
 class IpamIp(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -363,13 +368,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01", sources=[{
+        ip01 = scaleway.ipam.Ip("ip01", sources=[{
             "private_network_id": pn01.id,
         }])
         ```
@@ -380,13 +385,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
@@ -399,13 +404,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv6_subnets=[{
                 "subnet": "fd46:78ab:30b8:177c::/64",
             }])
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             is_ipv6=True,
             sources=[{
                 "private_network_id": pn01.id,
@@ -418,13 +423,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
@@ -473,13 +478,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01", sources=[{
+        ip01 = scaleway.ipam.Ip("ip01", sources=[{
             "private_network_id": pn01.id,
         }])
         ```
@@ -490,13 +495,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
@@ -509,13 +514,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv6_subnets=[{
                 "subnet": "fd46:78ab:30b8:177c::/64",
             }])
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             is_ipv6=True,
             sources=[{
                 "private_network_id": pn01.id,
@@ -528,13 +533,13 @@ class IpamIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             vpc_id=vpc01.id,
             ipv4_subnet={
                 "subnet": "172.16.32.0/22",
             })
-        ip01 = scaleway.IpamIp("ip01",
+        ip01 = scaleway.ipam.Ip("ip01",
             address="172.16.32.7",
             sources=[{
                 "private_network_id": pn01.id,
@@ -577,6 +582,7 @@ class IpamIp(pulumi.CustomResource):
                  sources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpSourceArgs', 'IpamIpSourceArgsDict']]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""IpamIp is deprecated: scaleway.index/ipamip.IpamIp has been deprecated in favor of scaleway.ipam/ip.Ip""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

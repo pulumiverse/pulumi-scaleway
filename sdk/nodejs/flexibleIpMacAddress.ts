@@ -16,8 +16,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {});
- * const mainFlexibleIpMacAddress = new scaleway.FlexibleIpMacAddress("main", {
+ * const main = new scaleway.elasticmetal.Ip("main", {});
+ * const mainIpMacAddress = new scaleway.elasticmetal.IpMacAddress("main", {
  *     flexibleIpId: main.id,
  *     type: "kvm",
  * });
@@ -30,18 +30,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     name: "EM-B112X-SSD",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     name: "TestAccScalewayBaremetalServer_WithoutInstallConfig",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
  * });
- * const ip01 = new scaleway.FlexibleIp("ip01", {serverId: base.id});
- * const ip02 = new scaleway.FlexibleIp("ip02", {serverId: base.id});
- * const ip03 = new scaleway.FlexibleIp("ip03", {serverId: base.id});
- * const main = new scaleway.FlexibleIpMacAddress("main", {
+ * const ip01 = new scaleway.elasticmetal.Ip("ip01", {serverId: base.id});
+ * const ip02 = new scaleway.elasticmetal.Ip("ip02", {serverId: base.id});
+ * const ip03 = new scaleway.elasticmetal.Ip("ip03", {serverId: base.id});
+ * const main = new scaleway.elasticmetal.IpMacAddress("main", {
  *     flexibleIpId: ip01.id,
  *     type: "kvm",
  *     flexibleIpIdsToDuplicates: [
@@ -60,6 +60,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress
  */
 export class FlexibleIpMacAddress extends pulumi.CustomResource {
     /**
@@ -72,6 +74,7 @@ export class FlexibleIpMacAddress extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FlexibleIpMacAddressState, opts?: pulumi.CustomResourceOptions): FlexibleIpMacAddress {
+        pulumi.log.warn("FlexibleIpMacAddress is deprecated: scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress")
         return new FlexibleIpMacAddress(name, <any>state, { ...opts, id: id });
     }
 
@@ -130,8 +133,11 @@ export class FlexibleIpMacAddress extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress */
     constructor(name: string, args: FlexibleIpMacAddressArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress */
     constructor(name: string, argsOrState?: FlexibleIpMacAddressArgs | FlexibleIpMacAddressState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FlexibleIpMacAddress is deprecated: scaleway.index/flexibleipmacaddress.FlexibleIpMacAddress has been deprecated in favor of scaleway.elasticmetal/ipmacaddress.IpMacAddress")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

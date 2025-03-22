@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqSqs("main", {});
+ * const main = new scaleway.mnq.Sqs("main", {});
  * ```
  *
  * Activate SQS for a specific project
@@ -29,10 +29,10 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = scaleway.getAccountProject({
+ * const project = scaleway.account.getProject({
  *     name: "default",
  * });
- * const forProject = new scaleway.MnqSqs("for_project", {projectId: project.then(project => project.id)});
+ * const forProject = new scaleway.mnq.Sqs("for_project", {projectId: project.then(project => project.id)});
  * ```
  *
  * ## Import
@@ -44,6 +44,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqSqs:MnqSqs main fr-par/11111111111111111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs
  */
 export class MnqSqs extends pulumi.CustomResource {
     /**
@@ -56,6 +58,7 @@ export class MnqSqs extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqSqsState, opts?: pulumi.CustomResourceOptions): MnqSqs {
+        pulumi.log.warn("MnqSqs is deprecated: scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs")
         return new MnqSqs(name, <any>state, { ...opts, id: id });
     }
 
@@ -94,8 +97,11 @@ export class MnqSqs extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs */
     constructor(name: string, args?: MnqSqsArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs */
     constructor(name: string, argsOrState?: MnqSqsArgs | MnqSqsState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqSqs is deprecated: scaleway.index/mnqsqs.MnqSqs has been deprecated in favor of scaleway.mnq/sqs.Sqs")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

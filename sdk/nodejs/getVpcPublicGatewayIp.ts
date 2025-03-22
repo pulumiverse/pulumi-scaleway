@@ -16,13 +16,15 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIp("main", {});
- * const ipById = scaleway.getVpcPublicGatewayIpOutput({
+ * const main = new scaleway.network.PublicGatewayIp("main", {});
+ * const ipById = scaleway.network.getPublicGatewayIpOutput({
  *     ipId: main.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp */
 export function getVpcPublicGatewayIp(args?: GetVpcPublicGatewayIpArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicGatewayIpResult> {
+    pulumi.log.warn("getVpcPublicGatewayIp is deprecated: scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {
@@ -67,13 +69,15 @@ export interface GetVpcPublicGatewayIpResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.VpcPublicGatewayIp("main", {});
- * const ipById = scaleway.getVpcPublicGatewayIpOutput({
+ * const main = new scaleway.network.PublicGatewayIp("main", {});
+ * const ipById = scaleway.network.getPublicGatewayIpOutput({
  *     ipId: main.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp */
 export function getVpcPublicGatewayIpOutput(args?: GetVpcPublicGatewayIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicGatewayIpResult> {
+    pulumi.log.warn("getVpcPublicGatewayIp is deprecated: scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp", {

@@ -23,6 +23,8 @@ __all__ = [
     'get_ipam_ips_output',
 ]
 
+warnings.warn("""scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIpamIpsResult:
     """
@@ -194,7 +196,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_tag = scaleway.get_ipam_ips(tags=["tag"])
+    by_tag = scaleway.ipam.get_ips(tags=["tag"])
     ```
 
     ### By type and resource
@@ -204,13 +206,13 @@ def get_ipam_ips(attached: Optional[bool] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-    pn01 = scaleway.VpcPrivateNetwork("pn01",
+    vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+    pn01 = scaleway.network.PrivateNetwork("pn01",
         vpc_id=vpc01.id,
         ipv4_subnet={
             "subnet": "172.16.32.0/22",
         })
-    redis01 = scaleway.RedisCluster("redis01",
+    redis01 = scaleway.redis.Cluster("redis01",
         name="my_redis_cluster",
         version="7.0.5",
         node_type="RED1-XS",
@@ -220,7 +222,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
         private_networks=[{
             "id": pn01.id,
         }])
-    by_type_and_resource = scaleway.get_ipam_ips_output(type="ipv4",
+    by_type_and_resource = scaleway.ipam.get_ips_output(type="ipv4",
         resource={
             "id": redis01.id,
             "type": "redis_cluster",
@@ -238,6 +240,7 @@ def get_ipam_ips(attached: Optional[bool] = None,
     :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
+    pulumi.log.warn("""get_ipam_ips is deprecated: scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps""")
     __args__ = dict()
     __args__['attached'] = attached
     __args__['macAddress'] = mac_address
@@ -287,7 +290,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    by_tag = scaleway.get_ipam_ips(tags=["tag"])
+    by_tag = scaleway.ipam.get_ips(tags=["tag"])
     ```
 
     ### By type and resource
@@ -297,13 +300,13 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     import pulumi_scaleway as scaleway
     import pulumiverse_scaleway as scaleway
 
-    vpc01 = scaleway.Vpc("vpc01", name="my vpc")
-    pn01 = scaleway.VpcPrivateNetwork("pn01",
+    vpc01 = scaleway.network.Vpc("vpc01", name="my vpc")
+    pn01 = scaleway.network.PrivateNetwork("pn01",
         vpc_id=vpc01.id,
         ipv4_subnet={
             "subnet": "172.16.32.0/22",
         })
-    redis01 = scaleway.RedisCluster("redis01",
+    redis01 = scaleway.redis.Cluster("redis01",
         name="my_redis_cluster",
         version="7.0.5",
         node_type="RED1-XS",
@@ -313,7 +316,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
         private_networks=[{
             "id": pn01.id,
         }])
-    by_type_and_resource = scaleway.get_ipam_ips_output(type="ipv4",
+    by_type_and_resource = scaleway.ipam.get_ips_output(type="ipv4",
         resource={
             "id": redis01.id,
             "type": "redis_cluster",
@@ -331,6 +334,7 @@ def get_ipam_ips_output(attached: Optional[pulumi.Input[Optional[bool]]] = None,
     :param str type: The type of IP to filter for (`ipv4` or `ipv6`).
     :param str zonal: Only IPs that are zonal, and in this zone, will be returned.
     """
+    pulumi.log.warn("""get_ipam_ips is deprecated: scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps""")
     __args__ = dict()
     __args__['attached'] = attached
     __args__['macAddress'] = mac_address

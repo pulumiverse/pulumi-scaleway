@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by ipam ip id
- * const byId = scaleway.getIpamIp({
+ * const byId = scaleway.ipam.getIp({
  *     ipamIpId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
@@ -35,17 +35,17 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Connect your instance to a private network using a private nic.
- * const nic = new scaleway.InstancePrivateNic("nic", {
+ * const nic = new scaleway.instance.PrivateNic("nic", {
  *     serverId: server.id,
  *     privateNetworkId: pn.id,
  * });
  * // Find server private IPv4 using private-nic mac address
- * const byMac = scaleway.getIpamIpOutput({
+ * const byMac = scaleway.ipam.getIpOutput({
  *     macAddress: nic.macAddress,
  *     type: "ipv4",
  * });
  * // Find server private IPv4 using private-nic id
- * const byId = scaleway.getIpamIpOutput({
+ * const byId = scaleway.ipam.getIpOutput({
  *     resource: {
  *         id: nic.id,
  *         type: "instance_private_nic",
@@ -62,8 +62,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Find the private IPv4 using resource name
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const main = new scaleway.DatabaseInstance("main", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -75,7 +75,7 @@ import * as utilities from "./utilities";
  *         pnId: pn.id,
  *     },
  * });
- * const byName = scaleway.getIpamIpOutput({
+ * const byName = scaleway.ipam.getIpOutput({
  *     resource: {
  *         name: main.name,
  *         type: "rdb_instance",
@@ -84,7 +84,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  */
+/** @deprecated scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp */
 export function getIpamIp(args?: GetIpamIpArgs, opts?: pulumi.InvokeOptions): Promise<GetIpamIpResult> {
+    pulumi.log.warn("getIpamIp is deprecated: scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getIpamIp:getIpamIp", {
@@ -191,7 +193,7 @@ export interface GetIpamIpResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by ipam ip id
- * const byId = scaleway.getIpamIp({
+ * const byId = scaleway.ipam.getIp({
  *     ipamIpId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
@@ -206,17 +208,17 @@ export interface GetIpamIpResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Connect your instance to a private network using a private nic.
- * const nic = new scaleway.InstancePrivateNic("nic", {
+ * const nic = new scaleway.instance.PrivateNic("nic", {
  *     serverId: server.id,
  *     privateNetworkId: pn.id,
  * });
  * // Find server private IPv4 using private-nic mac address
- * const byMac = scaleway.getIpamIpOutput({
+ * const byMac = scaleway.ipam.getIpOutput({
  *     macAddress: nic.macAddress,
  *     type: "ipv4",
  * });
  * // Find server private IPv4 using private-nic id
- * const byId = scaleway.getIpamIpOutput({
+ * const byId = scaleway.ipam.getIpOutput({
  *     resource: {
  *         id: nic.id,
  *         type: "instance_private_nic",
@@ -233,8 +235,8 @@ export interface GetIpamIpResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Find the private IPv4 using resource name
- * const pn = new scaleway.VpcPrivateNetwork("pn", {});
- * const main = new scaleway.DatabaseInstance("main", {
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -246,7 +248,7 @@ export interface GetIpamIpResult {
  *         pnId: pn.id,
  *     },
  * });
- * const byName = scaleway.getIpamIpOutput({
+ * const byName = scaleway.ipam.getIpOutput({
  *     resource: {
  *         name: main.name,
  *         type: "rdb_instance",
@@ -255,7 +257,9 @@ export interface GetIpamIpResult {
  * });
  * ```
  */
+/** @deprecated scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp */
 export function getIpamIpOutput(args?: GetIpamIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetIpamIpResult> {
+    pulumi.log.warn("getIpamIp is deprecated: scaleway.index/getipamip.getIpamIp has been deprecated in favor of scaleway.ipam/getip.getIp")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getIpamIp:getIpamIp", {

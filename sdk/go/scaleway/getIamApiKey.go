@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get api key infos by id (access_key)
-//			_, err := scaleway.LookupIamApiKey(ctx, &scaleway.LookupIamApiKeyArgs{
+//			_, err := iam.LookupApiKey(ctx, &iam.LookupApiKeyArgs{
 //				AccessKey: "SCWABCDEFGHIJKLMNOPQ",
 //			}, nil)
 //			if err != nil {
@@ -39,6 +39,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getiamapikey.getIamApiKey has been deprecated in favor of scaleway.iam/getapikey.getApiKey
 func LookupIamApiKey(ctx *pulumi.Context, args *LookupIamApiKeyArgs, opts ...pulumi.InvokeOption) (*LookupIamApiKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIamApiKeyResult

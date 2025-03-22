@@ -26,30 +26,31 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_default, err := scaleway.LookupAccountProject(ctx, &scaleway.LookupAccountProjectArgs{
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
 //				Name: pulumi.StringRef("default"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//			app, err := iam.NewApplication(ctx, "app", &iam.ApplicationArgs{
 //				Name: pulumi.String("my app"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "object_read_only", &scaleway.IamPolicyArgs{
+//			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
 //				ApplicationId: app.ID(),
-//				Rules: scaleway.IamPolicyRuleArray{
-//					&scaleway.IamPolicyRuleArgs{
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
 //						ProjectIds: pulumi.StringArray{
 //							pulumi.String(_default.Id),
 //						},
@@ -76,24 +77,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			app, err := scaleway.NewIamApplication(ctx, "app", &scaleway.IamApplicationArgs{
+//			app, err := iam.NewApplication(ctx, "app", &iam.ApplicationArgs{
 //				Name: pulumi.String("my app"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamPolicy(ctx, "object_read_only", &scaleway.IamPolicyArgs{
+//			_, err = iam.NewPolicy(ctx, "object_read_only", &iam.PolicyArgs{
 //				Name:          pulumi.String("my policy"),
 //				Description:   pulumi.String("gives app readonly access to object storage in project"),
 //				ApplicationId: app.ID(),
-//				Rules: scaleway.IamPolicyRuleArray{
-//					&scaleway.IamPolicyRuleArgs{
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
 //						OrganizationId: app.OrganizationId,
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("ObjectStorageReadOnly"),
@@ -125,17 +126,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamPolicy(ctx, "main", &scaleway.IamPolicyArgs{
+//			_, err := iam.NewPolicy(ctx, "main", &iam.PolicyArgs{
 //				Name:        pulumi.String("tf_tests_policy_condition"),
 //				NoPrincipal: pulumi.Bool(true),
-//				Rules: scaleway.IamPolicyRuleArray{
-//					&scaleway.IamPolicyRuleArgs{
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
 //						OrganizationId: pulumi.String("%s"),
 //						PermissionSetNames: pulumi.StringArray{
 //							pulumi.String("AllProductsFullAccess"),
@@ -162,6 +163,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamPolicy:IamPolicy main 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iampolicy.IamPolicy has been deprecated in favor of scaleway.iam/policy.Policy
 type IamPolicy struct {
 	pulumi.CustomResourceState
 

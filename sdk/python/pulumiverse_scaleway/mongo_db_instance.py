@@ -544,7 +544,12 @@ class _MongoDbInstanceState:
         pulumi.set(self, "volume_type", value)
 
 
+warnings.warn("""scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance""", DeprecationWarning)
+
+
 class MongoDbInstance(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -577,7 +582,7 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MongoDbInstance("main",
+        main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
             node_type="MGDB-PLAY2-NANO",
@@ -593,10 +598,10 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="my_private_network",
             region="fr-par")
-        main = scaleway.MongoDbInstance("main",
+        main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
             node_type="MGDB-PLAY2-NANO",
@@ -615,7 +620,7 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        restored_instance = scaleway.MongoDbInstance("restored_instance",
+        restored_instance = scaleway.mongodb.Instance("restored_instance",
             snapshot_id=pn["idscalewayMongodbSnapshot"]["mainSnapshot"]["id"],
             name="restored-mongodb-from-snapshot",
             node_type="MGDB-PLAY2-NANO",
@@ -668,7 +673,7 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.MongoDbInstance("main",
+        main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
             node_type="MGDB-PLAY2-NANO",
@@ -684,10 +689,10 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn01 = scaleway.VpcPrivateNetwork("pn01",
+        pn01 = scaleway.network.PrivateNetwork("pn01",
             name="my_private_network",
             region="fr-par")
-        main = scaleway.MongoDbInstance("main",
+        main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
             node_type="MGDB-PLAY2-NANO",
@@ -706,7 +711,7 @@ class MongoDbInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        restored_instance = scaleway.MongoDbInstance("restored_instance",
+        restored_instance = scaleway.mongodb.Instance("restored_instance",
             snapshot_id=pn["idscalewayMongodbSnapshot"]["mainSnapshot"]["id"],
             name="restored-mongodb-from-snapshot",
             node_type="MGDB-PLAY2-NANO",
@@ -754,6 +759,7 @@ class MongoDbInstance(pulumi.CustomResource):
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""MongoDbInstance is deprecated: scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

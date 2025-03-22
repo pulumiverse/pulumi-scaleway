@@ -22,6 +22,8 @@ __all__ = [
     'get_kubernetes_node_pool_output',
 ]
 
+warnings.warn("""scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool""", DeprecationWarning)
+
 @pulumi.output_type
 class GetKubernetesNodePoolResult:
     """
@@ -345,6 +347,7 @@ def get_kubernetes_node_pool(cluster_id: Optional[str] = None,
     :param str region: `region`) The region in which the pool exists.
     :param int size: The size of the pool.
     """
+    pulumi.log.warn("""get_kubernetes_node_pool is deprecated: scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name
@@ -398,6 +401,7 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[s
     :param str region: `region`) The region in which the pool exists.
     :param int size: The size of the pool.
     """
+    pulumi.log.warn("""get_kubernetes_node_pool is deprecated: scaleway.index/getkubernetesnodepool.getKubernetesNodePool has been deprecated in favor of scaleway.kubernetes/getpool.getPool""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name

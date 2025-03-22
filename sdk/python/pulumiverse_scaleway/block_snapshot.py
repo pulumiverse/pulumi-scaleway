@@ -191,7 +191,12 @@ class _BlockSnapshotState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot""", DeprecationWarning)
+
+
 class BlockSnapshot(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -203,7 +208,7 @@ class BlockSnapshot(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+        The `block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
 
         Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -217,11 +222,11 @@ class BlockSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("block_volume",
+        block_volume = scaleway.block.Volume("block_volume",
             iops=5000,
             name="some-volume-name",
             size_in_gb=20)
-        block_snapshot = scaleway.BlockSnapshot("block_snapshot",
+        block_snapshot = scaleway.block.Snapshot("block_snapshot",
             name="some-snapshot-name",
             volume_id=block_volume.id)
         ```
@@ -251,7 +256,7 @@ class BlockSnapshot(pulumi.CustomResource):
                  args: BlockSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `BlockSnapshot` resource is used to create and manage snapshots of Block Storage volumes.
+        The `block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
 
         Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
 
@@ -265,11 +270,11 @@ class BlockSnapshot(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        block_volume = scaleway.BlockVolume("block_volume",
+        block_volume = scaleway.block.Volume("block_volume",
             iops=5000,
             name="some-volume-name",
             size_in_gb=20)
-        block_snapshot = scaleway.BlockSnapshot("block_snapshot",
+        block_snapshot = scaleway.block.Snapshot("block_snapshot",
             name="some-snapshot-name",
             volume_id=block_volume.id)
         ```
@@ -305,6 +310,7 @@ class BlockSnapshot(pulumi.CustomResource):
                  volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""BlockSnapshot is deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

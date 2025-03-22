@@ -25,26 +25,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			volume, err := scaleway.NewInstanceVolume(ctx, "volume", &scaleway.InstanceVolumeArgs{
+//			volume, err := instance.NewVolume(ctx, "volume", &instance.VolumeArgs{
 //				Type:     pulumi.String("b_ssd"),
 //				SizeInGb: pulumi.Int(20),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			volumeSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "volume_snapshot", &scaleway.InstanceSnapshotArgs{
+//			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
 //				VolumeId: volume.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceImage(ctx, "volume_image", &scaleway.InstanceImageArgs{
+//			_, err = instance.NewImage(ctx, "volume_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_volume"),
 //				RootVolumeId: volumeSnapshot.ID(),
 //			})
@@ -65,26 +65,26 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceServer(ctx, "server", &scaleway.InstanceServerArgs{
+//			_, err := instance.NewServer(ctx, "server", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			serverSnapshot, err := scaleway.NewInstanceSnapshot(ctx, "server_snapshot", &scaleway.InstanceSnapshotArgs{
+//			serverSnapshot, err := instance.NewSnapshot(ctx, "server_snapshot", &instance.SnapshotArgs{
 //				VolumeId: pulumi.Any(main.RootVolume[0].VolumeId),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceImage(ctx, "server_image", &scaleway.InstanceImageArgs{
+//			_, err = instance.NewImage(ctx, "server_image", &instance.ImageArgs{
 //				Name:         pulumi.String("image_from_server"),
 //				RootVolumeId: serverSnapshot.ID(),
 //			})
@@ -106,6 +106,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceImage:InstanceImage main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instanceimage.InstanceImage has been deprecated in favor of scaleway.instance/image.Image
 type InstanceImage struct {
 	pulumi.CustomResourceState
 

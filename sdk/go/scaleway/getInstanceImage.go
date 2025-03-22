@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an instance image.
+//
+// Deprecated: scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage
 func LookupInstanceImage(ctx *pulumi.Context, args *LookupInstanceImageArgs, opts ...pulumi.InvokeOption) (*LookupInstanceImageResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceImageResult

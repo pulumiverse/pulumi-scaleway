@@ -13,9 +13,9 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
     /// 
-    /// This resource can be used to externalize rules from a `scaleway.InstanceSecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+    /// This resource can be used to externalize rules from a `scaleway.instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
     /// 
-    /// &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.InstanceSecurityGroupRules is allowed per security group.
+    /// &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.instance.SecurityGroupRules is allowed per security group.
     /// 
     /// ## Example Usage
     /// 
@@ -29,17 +29,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var sg01 = new Scaleway.InstanceSecurityGroup("sg01", new()
+    ///     var sg01 = new Scaleway.Instance.SecurityGroup("sg01", new()
     ///     {
     ///         ExternalRules = true,
     ///     });
     /// 
-    ///     var sgrs01 = new Scaleway.InstanceSecurityGroupRules("sgrs01", new()
+    ///     var sgrs01 = new Scaleway.Instance.SecurityGroupRules("sgrs01", new()
     ///     {
     ///         SecurityGroupId = sg01.Id,
     ///         InboundRules = new[]
     ///         {
-    ///             new Scaleway.Inputs.InstanceSecurityGroupRulesInboundRuleArgs
+    ///             new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Port = 80,
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.InstanceSecurityGroup("main", new()
+    ///     var main = new Scaleway.Instance.SecurityGroup("main", new()
     ///     {
     ///         Description = "test",
     ///         Name = "terraform test",
@@ -80,11 +80,11 @@ namespace Pulumiverse.Scaleway
     ///         "7.8.9.10",
     ///     };
     /// 
-    ///     var mainInstanceSecurityGroupRules = new Scaleway.InstanceSecurityGroupRules("main", new()
+    ///     var mainSecurityGroupRules = new Scaleway.Instance.SecurityGroupRules("main", new()
     ///     {
     ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
-    ///             return new Scaleway.Inputs.InstanceSecurityGroupRulesInboundRuleArgs
+    ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Ip = entry.Value,
@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.InstanceSecurityGroup("main", new()
+    ///     var main = new Scaleway.Instance.SecurityGroup("main", new()
     ///     {
     ///         Description = "test",
     ///         Name = "terraform test",
@@ -135,11 +135,11 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     };
     /// 
-    ///     var mainInstanceSecurityGroupRules = new Scaleway.InstanceSecurityGroupRules("main", new()
+    ///     var mainSecurityGroupRules = new Scaleway.Instance.SecurityGroupRules("main", new()
     ///     {
     ///         InboundRules = trusted.Select((v, k) =&gt; new { Key = k, Value = v }).Select(entry =&gt; 
     ///         {
-    ///             return new Scaleway.Inputs.InstanceSecurityGroupRulesInboundRuleArgs
+    ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Ip = entry.Value.Ip,
@@ -162,6 +162,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instancesecuritygrouprules.InstanceSecurityGroupRules has been deprecated in favor of scaleway.instance/securitygrouprules.SecurityGroupRules")]
     [ScalewayResourceType("scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules")]
     public partial class InstanceSecurityGroupRules : global::Pulumi.CustomResource
     {

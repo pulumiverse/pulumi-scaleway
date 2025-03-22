@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan")]
     public static class GetCockpitPlan
     {
         /// <summary>
-        /// The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
+        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
         /// 
         /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
         /// 
@@ -32,14 +33,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var premium = Scaleway.GetCockpitPlan.Invoke(new()
+        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
         ///     {
         ///         Name = "premium",
         ///     });
         /// 
-        ///     var main = new Scaleway.Cockpit("main", new()
+        ///     var main = new Scaleway.Observability.Cockpit("main", new()
         ///     {
-        ///         Plan = premium.Apply(getCockpitPlanResult =&gt; getCockpitPlanResult.Id),
+        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
         ///     });
         /// 
         /// });
@@ -49,7 +50,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCockpitPlanResult>("scaleway:index/getCockpitPlan:getCockpitPlan", args ?? new GetCockpitPlanArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
+        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
         /// 
         /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
         /// 
@@ -68,14 +69,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var premium = Scaleway.GetCockpitPlan.Invoke(new()
+        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
         ///     {
         ///         Name = "premium",
         ///     });
         /// 
-        ///     var main = new Scaleway.Cockpit("main", new()
+        ///     var main = new Scaleway.Observability.Cockpit("main", new()
         ///     {
-        ///         Plan = premium.Apply(getCockpitPlanResult =&gt; getCockpitPlanResult.Id),
+        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
         ///     });
         /// 
         /// });
@@ -85,7 +86,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetCockpitPlanResult>("scaleway:index/getCockpitPlan:getCockpitPlan", args ?? new GetCockpitPlanInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.getCockpitPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.Cockpit`.
+        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
         /// 
         /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
         /// 
@@ -104,14 +105,14 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var premium = Scaleway.GetCockpitPlan.Invoke(new()
+        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
         ///     {
         ///         Name = "premium",
         ///     });
         /// 
-        ///     var main = new Scaleway.Cockpit("main", new()
+        ///     var main = new Scaleway.Observability.Cockpit("main", new()
         ///     {
-        ///         Plan = premium.Apply(getCockpitPlanResult =&gt; getCockpitPlanResult.Id),
+        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
         ///     });
         /// 
         /// });

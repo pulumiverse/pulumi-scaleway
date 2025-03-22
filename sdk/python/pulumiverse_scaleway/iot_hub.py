@@ -511,7 +511,12 @@ class _IotHubState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub""", DeprecationWarning)
+
+
 class IotHub(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -536,7 +541,7 @@ class IotHub(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
         ```
@@ -583,7 +588,7 @@ class IotHub(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IotHub("main",
+        main = scaleway.iot.Hub("main",
             name="test-iot",
             product_plan="plan_shared")
         ```
@@ -624,6 +629,7 @@ class IotHub(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IotHub is deprecated: scaleway.index/iothub.IotHub has been deprecated in favor of scaleway.iot/hub.Hub""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

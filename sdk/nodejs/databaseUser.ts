@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as random from "@pulumi/random";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *     length: 16,
  *     special: true,
  * });
- * const dbAdmin = new scaleway.DatabaseUser("db_admin", {
+ * const dbAdmin = new scaleway.databases.User("db_admin", {
  *     instanceId: main.id,
  *     name: "devtools",
  *     password: dbPassword.result,
@@ -47,6 +47,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
  * ```
+ *
+ * @deprecated scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
@@ -59,6 +61,7 @@ export class DatabaseUser extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseUserState, opts?: pulumi.CustomResourceOptions): DatabaseUser {
+        pulumi.log.warn("DatabaseUser is deprecated: scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User")
         return new DatabaseUser(name, <any>state, { ...opts, id: id });
     }
 
@@ -108,8 +111,11 @@ export class DatabaseUser extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User */
     constructor(name: string, args: DatabaseUserArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User */
     constructor(name: string, argsOrState?: DatabaseUserArgs | DatabaseUserState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabaseUser is deprecated: scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

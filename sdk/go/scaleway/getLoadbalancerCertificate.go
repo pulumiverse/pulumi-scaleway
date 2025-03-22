@@ -18,6 +18,8 @@ import (
 // For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 //
 // ## Examples
+//
+// Deprecated: scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate
 func LookupLoadbalancerCertificate(ctx *pulumi.Context, args *LookupLoadbalancerCertificateArgs, opts ...pulumi.InvokeOption) (*LookupLoadbalancerCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLoadbalancerCertificateResult

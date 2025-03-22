@@ -30,24 +30,25 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPrivateNetwork(ctx, "main", &scaleway.VpcPrivateNetworkArgs{
+//			main, err := network.NewPrivateNetwork(ctx, "main", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("your_private_network"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainInstanceServer, err := scaleway.NewInstanceServer(ctx, "main", &scaleway.InstanceServerArgs{
+//			mainServer, err := instance.NewServer(ctx, "main", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
 //				Zone:  pulumi.String("fr-par-1"),
-//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
-//					&scaleway.InstanceServerPrivateNetworkArgs{
+//				PrivateNetworks: instance.ServerPrivateNetworkArray{
+//					&instance.ServerPrivateNetworkArgs{
 //						PnId: main.ID(),
 //					},
 //				},
@@ -55,40 +56,40 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainVpcPublicGatewayIp, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", nil)
+//			mainPublicGatewayIp, err := network.NewPublicGatewayIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainVpcPublicGatewayDhcp, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "main", &scaleway.VpcPublicGatewayDhcpArgs{
+//			mainPublicGatewayDhcp, err := network.NewPublicGatewayDhcp(ctx, "main", &network.PublicGatewayDhcpArgs{
 //				Subnet: pulumi.String("192.168.1.0/24"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainVpcPublicGateway, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//			mainPublicGateway, err := network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
 //				Name: pulumi.String("foobar"),
 //				Type: pulumi.String("VPC-GW-S"),
-//				IpId: mainVpcPublicGatewayIp.ID(),
+//				IpId: mainPublicGatewayIp.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainVpcGatewayNetwork, err := scaleway.NewVpcGatewayNetwork(ctx, "main", &scaleway.VpcGatewayNetworkArgs{
-//				GatewayId:        mainVpcPublicGateway.ID(),
+//			mainGatewayNetwork, err := network.NewGatewayNetwork(ctx, "main", &network.GatewayNetworkArgs{
+//				GatewayId:        mainPublicGateway.ID(),
 //				PrivateNetworkId: main.ID(),
-//				DhcpId:           mainVpcPublicGatewayDhcp.ID(),
+//				DhcpId:           mainPublicGatewayDhcp.ID(),
 //				CleanupDhcp:      pulumi.Bool(true),
 //				EnableMasquerade: pulumi.Bool(true),
 //			}, pulumi.DependsOn([]pulumi.Resource{
-//				mainVpcPublicGatewayIp,
+//				mainPublicGatewayIp,
 //				main,
 //			}))
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "main", &scaleway.VpcPublicGatewayDhcpReservationArgs{
-//				GatewayNetworkId: mainVpcGatewayNetwork.ID(),
-//				MacAddress: pulumi.String(mainInstanceServer.PrivateNetworks.ApplyT(func(privateNetworks []scaleway.InstanceServerPrivateNetwork) (*string, error) {
+//			_, err = network.NewPublicGatewayDhcpReservation(ctx, "main", &network.PublicGatewayDhcpReservationArgs{
+//				GatewayNetworkId: mainGatewayNetwork.ID(),
+//				MacAddress: pulumi.String(mainServer.PrivateNetworks.ApplyT(func(privateNetworks []instance.ServerPrivateNetwork) (*string, error) {
 //					return &privateNetworks[0].MacAddress, nil
 //				}).(pulumi.StringPtrOutput)),
 //				IpAddress: pulumi.String("192.168.1.1"),
@@ -111,6 +112,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcpublicgatewaydhcpreservation.VpcPublicGatewayDhcpReservation has been deprecated in favor of scaleway.network/publicgatewaydhcpreservation.PublicGatewayDhcpReservation
 type VpcPublicGatewayDhcpReservation struct {
 	pulumi.CustomResourceState
 

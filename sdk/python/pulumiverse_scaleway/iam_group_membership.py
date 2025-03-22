@@ -135,7 +135,12 @@ class _IamGroupMembershipState:
         pulumi.set(self, "user_id", value)
 
 
+warnings.warn("""scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership""", DeprecationWarning)
+
+
 class IamGroupMembership(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -156,11 +161,11 @@ class IamGroupMembership(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        group = scaleway.IamGroup("group",
+        group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        app = scaleway.IamApplication("app", name="my_app")
-        member = scaleway.IamGroupMembership("member",
+        app = scaleway.iam.Application("app", name="my_app")
+        member = scaleway.iam.GroupMembership("member",
             group_id=group.id,
             application_id=app.id)
         ```
@@ -205,11 +210,11 @@ class IamGroupMembership(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        group = scaleway.IamGroup("group",
+        group = scaleway.iam.Group("group",
             name="my_group",
             external_membership=True)
-        app = scaleway.IamApplication("app", name="my_app")
-        member = scaleway.IamGroupMembership("member",
+        app = scaleway.iam.Application("app", name="my_app")
+        member = scaleway.iam.GroupMembership("member",
             group_id=group.id,
             application_id=app.id)
         ```
@@ -247,6 +252,7 @@ class IamGroupMembership(pulumi.CustomResource):
                  group_id: Optional[pulumi.Input[str]] = None,
                  user_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamGroupMembership is deprecated: scaleway.index/iamgroupmembership.IamGroupMembership has been deprecated in favor of scaleway.iam/groupmembership.GroupMembership""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

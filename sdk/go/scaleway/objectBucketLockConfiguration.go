@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+// The `object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/) for more information on object lock.
 //
@@ -28,13 +28,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name:              pulumi.String("MyBucket"),
 //				Acl:               pulumi.String("public-read"),
 //				ObjectLockEnabled: pulumi.Bool(true),
@@ -42,10 +42,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewObjectBucketLockConfiguration(ctx, "main", &scaleway.ObjectBucketLockConfigurationArgs{
+//			_, err = object.NewBucketLockConfiguration(ctx, "main", &object.BucketLockConfigurationArgs{
 //				Bucket: main.Name,
-//				Rule: &scaleway.ObjectBucketLockConfigurationRuleArgs{
-//					DefaultRetention: &scaleway.ObjectBucketLockConfigurationRuleDefaultRetentionArgs{
+//				Rule: &object.BucketLockConfigurationRuleArgs{
+//					DefaultRetention: &object.BucketLockConfigurationRuleDefaultRetentionArgs{
 //						Mode: pulumi.String("GOVERNANCE"),
 //						Days: pulumi.Int(1),
 //					},
@@ -83,6 +83,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
 // ```
+//
+// Deprecated: scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration
 type ObjectBucketLockConfiguration struct {
 	pulumi.CustomResourceState
 

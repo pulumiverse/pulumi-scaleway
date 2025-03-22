@@ -20,19 +20,19 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "pn_test_network",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "foobar",
  *     type: "VPC-GW-S",
  * });
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     enableMasquerade: true,
@@ -48,25 +48,25 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const vpc01 = new scaleway.Vpc("vpc01", {name: "my vpc"});
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "my vpc"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
  *     name: "pn_test_network",
  *     ipv4Subnet: {
  *         subnet: "172.16.64.0/22",
  *     },
  *     vpcId: vpc01.id,
  * });
- * const ip01 = new scaleway.IpamIp("ip01", {
+ * const ip01 = new scaleway.ipam.Ip("ip01", {
  *     address: "172.16.64.7",
  *     sources: [{
  *         privateNetworkId: pn01.id,
  *     }],
  * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "foobar",
  *     type: "VPC-GW-S",
  * });
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     enableMasquerade: true,
@@ -83,18 +83,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "pn_test_network"});
- * const gw01 = new scaleway.VpcPublicGatewayIp("gw01", {});
- * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {name: "pn_test_network"});
+ * const gw01 = new scaleway.network.PublicGatewayIp("gw01", {});
+ * const dhcp01 = new scaleway.network.PublicGatewayDhcp("dhcp01", {
  *     subnet: "192.168.1.0/24",
  *     pushDefaultRoute: true,
  * });
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "foobar",
  *     type: "VPC-GW-S",
  *     ipId: gw01.id,
  * });
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     dhcpId: dhcp01.id,
@@ -109,12 +109,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "pn_test_network"});
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {name: "pn_test_network"});
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "foobar",
  *     type: "VPC-GW-S",
  * });
- * const main = new scaleway.VpcGatewayNetwork("main", {
+ * const main = new scaleway.network.GatewayNetwork("main", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     enableDhcp: false,
@@ -132,6 +132,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork
  */
 export class VpcGatewayNetwork extends pulumi.CustomResource {
     /**
@@ -144,6 +146,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: VpcGatewayNetworkState, opts?: pulumi.CustomResourceOptions): VpcGatewayNetwork {
+        pulumi.log.warn("VpcGatewayNetwork is deprecated: scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork")
         return new VpcGatewayNetwork(name, <any>state, { ...opts, id: id });
     }
 
@@ -221,8 +224,11 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork */
     constructor(name: string, args: VpcGatewayNetworkArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork */
     constructor(name: string, argsOrState?: VpcGatewayNetworkArgs | VpcGatewayNetworkState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("VpcGatewayNetwork is deprecated: scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

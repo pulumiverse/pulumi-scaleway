@@ -11,7 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+    /// The `scaleway.containers.Container` resource allows you to create and manage [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
     /// 
     /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
     /// 
@@ -27,13 +27,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.ContainerNamespace("main", new()
+    ///     var main = new Scaleway.Containers.Namespace("main", new()
     ///     {
     ///         Name = "my-ns-test",
     ///         Description = "test container",
     ///     });
     /// 
-    ///     var mainContainer = new Scaleway.Container("main", new()
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
     ///     {
     ///         Name = "my-container-02",
     ///         Description = "environment variables test",
@@ -119,17 +119,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Container("main", new()
+    ///     var main = new Scaleway.Containers.Container("main", new()
     ///     {
     ///         Name = "my-container-02",
     ///         NamespaceId = mainScalewayContainerNamespace.Id,
     ///         HealthChecks = new[]
     ///         {
-    ///             new Scaleway.Inputs.ContainerHealthCheckArgs
+    ///             new Scaleway.Containers.Inputs.ContainerHealthCheckArgs
     ///             {
     ///                 Https = new[]
     ///                 {
-    ///                     new Scaleway.Inputs.ContainerHealthCheckHttpArgs
+    ///                     new Scaleway.Containers.Inputs.ContainerHealthCheckHttpArgs
     ///                     {
     ///                         Path = "/ping",
     ///                     },
@@ -163,13 +163,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Container("main", new()
+    ///     var main = new Scaleway.Containers.Container("main", new()
     ///     {
     ///         Name = "my-container-02",
     ///         NamespaceId = mainScalewayContainerNamespace.Id,
     ///         ScalingOptions = new[]
     ///         {
-    ///             new Scaleway.Inputs.ContainerScalingOptionArgs
+    ///             new Scaleway.Containers.Inputs.ContainerScalingOptionArgs
     ///             {
     ///                 ConcurrentRequestsThreshold = 15,
     ///             },
@@ -192,6 +192,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/container:Container main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/container.Container has been deprecated in favor of scaleway.containers/container.Container")]
     [ScalewayResourceType("scaleway:index/container:Container")]
     public partial class Container : global::Pulumi.CustomResource
     {

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ObjectBucket` data source is used to retrieve information about an Object Storage bucket.
+// The `object.Bucket` data source is used to retrieve information about an Object Storage bucket.
 //
 // Refer to the Object Storage [documentation](https://www.scaleway.com/en/docs/object-storage/how-to/create-a-bucket/) for more information.
 //
@@ -28,13 +28,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewObjectBucket(ctx, "main", &scaleway.ObjectBucketArgs{
+//			main, err := object.NewBucket(ctx, "main", &object.BucketArgs{
 //				Name: pulumi.String("bucket.test.com"),
 //				Tags: pulumi.StringMap{
 //					"foo": pulumi.String("bar"),
@@ -43,7 +43,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupObjectBucketOutput(ctx, scaleway.GetObjectBucketOutputArgs{
+//			_ = object.LookupBucketOutput(ctx, object.GetBucketOutputArgs{
 //				Name: main.ID(),
 //			}, nil)
 //			return nil
@@ -60,13 +60,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.LookupObjectBucket(ctx, &scaleway.LookupObjectBucketArgs{
+//			_, err := object.LookupBucket(ctx, &object.LookupBucketArgs{
 //				Name:      pulumi.StringRef("bucket.test.com"),
 //				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -78,6 +78,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getobjectbucket.getObjectBucket has been deprecated in favor of scaleway.object/getbucket.getBucket
 func LookupObjectBucket(ctx *pulumi.Context, args *LookupObjectBucketArgs, opts ...pulumi.InvokeOption) (*LookupObjectBucketResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectBucketResult

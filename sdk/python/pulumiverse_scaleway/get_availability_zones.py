@@ -21,6 +21,8 @@ __all__ = [
     'get_availability_zones_output',
 ]
 
+warnings.warn("""scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones""", DeprecationWarning)
+
 @pulumi.output_type
 class GetAvailabilityZonesResult:
     """
@@ -73,7 +75,7 @@ class AwaitableGetAvailabilityZonesResult(GetAvailabilityZonesResult):
 def get_availability_zones(region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAvailabilityZonesResult:
     """
-    The `get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
+    The `account_get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
 
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
     you can choose the location that better fits your need (country, latency, etc.).
@@ -89,12 +91,13 @@ def get_availability_zones(region: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by Region key
-    main = scaleway.get_availability_zones(region="nl-ams")
+    main = scaleway.account.get_availability_zones(region="nl-ams")
     ```
 
 
     :param str region: Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
     """
+    pulumi.log.warn("""get_availability_zones is deprecated: scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones""")
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -107,7 +110,7 @@ def get_availability_zones(region: Optional[str] = None,
 def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAvailabilityZonesResult]:
     """
-    The `get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
+    The `account_get_availability_zones` data source is used to retrieve information about the available zones based on its Region.
 
     For technical and legal reasons, some products are split by Region or by Availability Zones. When using such product,
     you can choose the location that better fits your need (country, latency, etc.).
@@ -123,12 +126,13 @@ def get_availability_zones_output(region: Optional[pulumi.Input[Optional[str]]] 
     import pulumi_scaleway as scaleway
 
     # Get info by Region key
-    main = scaleway.get_availability_zones(region="nl-ams")
+    main = scaleway.account.get_availability_zones(region="nl-ams")
     ```
 
 
     :param str region: Region is represented as a Geographical area, such as France. Defaults to `fr-par`.
     """
+    pulumi.log.warn("""get_availability_zones is deprecated: scaleway.index/getavailabilityzones.getAvailabilityZones has been deprecated in favor of scaleway.account/getavailabilityzones.getAvailabilityZones""")
     __args__ = dict()
     __args__['region'] = region
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

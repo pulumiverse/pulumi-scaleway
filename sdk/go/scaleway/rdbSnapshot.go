@@ -26,13 +26,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewDatabaseInstance(ctx, "main", &scaleway.DatabaseInstanceArgs{
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb-instance"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-15"),
@@ -51,7 +51,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewRdbSnapshot(ctx, "test", &scaleway.RdbSnapshotArgs{
+//			_, err = databases.NewSnapshot(ctx, "test", &databases.SnapshotArgs{
 //				Name:       pulumi.String("initial-snapshot"),
 //				InstanceId: main.ID(),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -74,13 +74,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRdbSnapshot(ctx, "snapshot_with_expiration", &scaleway.RdbSnapshotArgs{
+//			_, err := databases.NewSnapshot(ctx, "snapshot_with_expiration", &databases.SnapshotArgs{
 //				Name:       pulumi.String("snapshot-with-expiration"),
 //				InstanceId: pulumi.Any(main.Id),
 //				ExpiresAt:  pulumi.String("2025-01-31T00:00:00Z"),
@@ -102,13 +102,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewRdbSnapshot(ctx, "snapshot_a", &scaleway.RdbSnapshotArgs{
+//			_, err := databases.NewSnapshot(ctx, "snapshot_a", &databases.SnapshotArgs{
 //				Name:       pulumi.String("snapshot_a"),
 //				InstanceId: pulumi.Any(main.Id),
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -117,7 +117,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewRdbSnapshot(ctx, "snapshot_b", &scaleway.RdbSnapshotArgs{
+//			_, err = databases.NewSnapshot(ctx, "snapshot_b", &databases.SnapshotArgs{
 //				Name:       pulumi.String("snapshot_b"),
 //				InstanceId: pulumi.Any(main.Id),
 //				ExpiresAt:  pulumi.String("2025-02-07T00:00:00Z"),
@@ -146,6 +146,8 @@ import (
 // ## Import
 //
 // RDB Snapshots can be imported using the `{region}/{snapshot_id}` format.
+//
+// Deprecated: scaleway.index/rdbsnapshot.RdbSnapshot has been deprecated in favor of scaleway.databases/snapshot.Snapshot
 type RdbSnapshot struct {
 	pulumi.CustomResourceState
 

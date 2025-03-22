@@ -25,6 +25,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/ipamIpReverseDns:IpamIpReverseDns main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/ipamipreversedns.IpamIpReverseDns has been deprecated in favor of scaleway.ipam/ipreversedns.IpReverseDns")]
     [ScalewayResourceType("scaleway:index/ipamIpReverseDns:IpamIpReverseDns")]
     public partial class IpamIpReverseDns : global::Pulumi.CustomResource
     {

@@ -22,6 +22,8 @@ __all__ = [
     'get_cockpit_output',
 ]
 
+warnings.warn("""scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance""", DeprecationWarning)
+
 @pulumi.output_type
 class GetCockpitResult:
     """
@@ -105,13 +107,13 @@ class AwaitableGetCockpitResult(GetCockpitResult):
 def get_cockpit(project_id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCockpitResult:
     """
-    > **Important:**  The data source `Cockpit` has been deprecated and will no longer be supported. Instead, use resource `Cockpit`.
+    > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 
     > **Note:**
     As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
     If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
 
-    The `Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
+    The `observability.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
 
     Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -127,7 +129,7 @@ def get_cockpit(project_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get the default Project's Cockpit
-    main = scaleway.get_cockpit()
+    main = scaleway.observability.get_instance()
     ```
 
     ```python
@@ -135,12 +137,13 @@ def get_cockpit(project_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get a specific Project's Cockpit
-    main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
+    main = scaleway.observability.get_instance(project_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param str project_id: Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
     """
+    pulumi.log.warn("""get_cockpit is deprecated: scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance""")
     __args__ = dict()
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -156,13 +159,13 @@ def get_cockpit(project_id: Optional[str] = None,
 def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCockpitResult]:
     """
-    > **Important:**  The data source `Cockpit` has been deprecated and will no longer be supported. Instead, use resource `Cockpit`.
+    > **Important:**  The data source `observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `observability.Cockpit`.
 
     > **Note:**
     As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
     If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
 
-    The `Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
+    The `observability.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
 
     Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
 
@@ -178,7 +181,7 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get the default Project's Cockpit
-    main = scaleway.get_cockpit()
+    main = scaleway.observability.get_instance()
     ```
 
     ```python
@@ -186,12 +189,13 @@ def get_cockpit_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # Get a specific Project's Cockpit
-    main = scaleway.get_cockpit(project_id="11111111-1111-1111-1111-111111111111")
+    main = scaleway.observability.get_instance(project_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param str project_id: Specifies the ID of the Scaleway Project that the Cockpit is associated with. If not specified, it defaults to the Project ID specified in the provider configuration.
     """
+    pulumi.log.warn("""get_cockpit is deprecated: scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance""")
     __args__ = dict()
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

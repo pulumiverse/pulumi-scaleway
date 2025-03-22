@@ -22,6 +22,8 @@ __all__ = [
     'get_baremetal_offer_output',
 ]
 
+warnings.warn("""scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBaremetalOfferResult:
     """
@@ -185,6 +187,7 @@ def get_baremetal_offer(include_disabled: Optional[bool] = None,
     :param str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
     :param str zone: `zone`) The zone in which the offer should be created.
     """
+    pulumi.log.warn("""get_baremetal_offer is deprecated: scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer""")
     __args__ = dict()
     __args__['includeDisabled'] = include_disabled
     __args__['name'] = name
@@ -222,6 +225,7 @@ def get_baremetal_offer_output(include_disabled: Optional[pulumi.Input[Optional[
     :param str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
     :param str zone: `zone`) The zone in which the offer should be created.
     """
+    pulumi.log.warn("""get_baremetal_offer is deprecated: scaleway.index/getbaremetaloffer.getBaremetalOffer has been deprecated in favor of scaleway.elasticmetal/getoffer.getOffer""")
     __args__ = dict()
     __args__['includeDisabled'] = include_disabled
     __args__['name'] = name

@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey")]
     public static class GetIamSshKey
     {
         /// <summary>

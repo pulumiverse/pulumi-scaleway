@@ -11,11 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `Function` data source is used to retrieve information about a Serverless Function.
+// The `functions.Function` data source is used to retrieve information about a Serverless Function.
 //
 // Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
 //
 // For more information on the limitations of Serverless Functions, refer to the [dedicated documentation](https://www.scaleway.com/en/docs/compute/functions/reference-content/functions-limitations/).
+//
+// Deprecated: scaleway.index/getfunction.getFunction has been deprecated in favor of scaleway.functions/getfunction.getFunction
 func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulumi.InvokeOption) (*LookupFunctionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionResult

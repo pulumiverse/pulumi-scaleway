@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqNatsAccount("main", {name: "nats-account"});
+ * const main = new scaleway.mnq.NatsAccount("main", {name: "nats-account"});
  * ```
  *
  * ## Import
@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqNatsAccount:MnqNatsAccount main fr-par/11111111111111111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount
  */
 export class MnqNatsAccount extends pulumi.CustomResource {
     /**
@@ -42,6 +44,7 @@ export class MnqNatsAccount extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqNatsAccountState, opts?: pulumi.CustomResourceOptions): MnqNatsAccount {
+        pulumi.log.warn("MnqNatsAccount is deprecated: scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount")
         return new MnqNatsAccount(name, <any>state, { ...opts, id: id });
     }
 
@@ -85,8 +88,11 @@ export class MnqNatsAccount extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount */
     constructor(name: string, args?: MnqNatsAccountArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount */
     constructor(name: string, argsOrState?: MnqNatsAccountArgs | MnqNatsAccountState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqNatsAccount is deprecated: scaleway.index/mnqnatsaccount.MnqNatsAccount has been deprecated in favor of scaleway.mnq/natsaccount.NatsAccount")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

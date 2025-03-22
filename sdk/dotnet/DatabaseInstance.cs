@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb-sbs",
     ///         NodeType = "db-play2-pico",
@@ -77,7 +77,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "db-dev-s",
@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -138,19 +138,19 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
     ///     {
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.20.0/22",
     ///         },
     ///     });
     /// 
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-15",
-    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn.Id,
     ///             IpNet = "172.16.20.4/22",
@@ -170,9 +170,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         LoadBalancers = new[]
     ///         {
@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
-    ///         PrivateNetwork = new Scaleway.Inputs.DatabaseInstancePrivateNetworkArgs
+    ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
     ///         {
     ///             PnId = pn.Id,
     ///             EnableIpam = true,
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         NodeType = "db-dev-s",
     ///         Engine = "PostgreSQL-15",
@@ -227,6 +227,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databaseInstance:DatabaseInstance rdb01 fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance")]
     [ScalewayResourceType("scaleway:index/databaseInstance:DatabaseInstance")]
     public partial class DatabaseInstance : global::Pulumi.CustomResource
     {

@@ -25,17 +25,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/inference"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInferenceDeployment(ctx, "deployment", &scaleway.InferenceDeploymentArgs{
+//			_, err := inference.NewDeployment(ctx, "deployment", &inference.DeploymentArgs{
 //				Name:      pulumi.String("tf-inference-deployment"),
 //				NodeType:  pulumi.String("L4"),
 //				ModelName: pulumi.String("meta/llama-3.1-8b-instruct:fp8"),
-//				PublicEndpoint: &scaleway.InferenceDeploymentPublicEndpointArgs{
+//				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
 //					IsEnabled: pulumi.Bool(true),
 //				},
 //				AcceptEula: pulumi.Bool(true),
@@ -58,6 +58,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/inferenceDeployment:InferenceDeployment deployment fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/inferencedeployment.InferenceDeployment has been deprecated in favor of scaleway.inference/deployment.Deployment
 type InferenceDeployment struct {
 	pulumi.CustomResourceState
 

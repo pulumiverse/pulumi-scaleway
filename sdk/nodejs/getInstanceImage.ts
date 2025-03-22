@@ -7,7 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about an instance image.
  */
+/** @deprecated scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage */
 export function getInstanceImage(args?: GetInstanceImageArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceImageResult> {
+    pulumi.log.warn("getInstanceImage is deprecated: scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceImage:getInstanceImage", {
@@ -107,7 +109,9 @@ export interface GetInstanceImageResult {
 /**
  * Gets information about an instance image.
  */
+/** @deprecated scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage */
 export function getInstanceImageOutput(args?: GetInstanceImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceImageResult> {
+    pulumi.log.warn("getInstanceImage is deprecated: scaleway.index/getinstanceimage.getInstanceImage has been deprecated in favor of scaleway.instance/getimage.getImage")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceImage:getInstanceImage", {

@@ -23,21 +23,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Find routes that share the same frontend ID
-//			_, err := scaleway.GetLbRoutes(ctx, &scaleway.GetLbRoutesArgs{
+//			_, err := loadbalancers.GetRoutes(ctx, &loadbalancers.GetRoutesArgs{
 //				FrontendId: pulumi.StringRef(frt01.Id),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Find routes by frontend ID and zone
-//			_, err = scaleway.GetLbRoutes(ctx, &scaleway.GetLbRoutesArgs{
+//			_, err = loadbalancers.GetRoutes(ctx, &loadbalancers.GetRoutesArgs{
 //				FrontendId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //				Zone:       pulumi.StringRef("fr-par-2"),
 //			}, nil)
@@ -49,6 +49,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getlbroutes.getLbRoutes has been deprecated in favor of scaleway.loadbalancers/getroutes.getRoutes
 func GetLbRoutes(ctx *pulumi.Context, args *GetLbRoutesArgs, opts ...pulumi.InvokeOption) (*GetLbRoutesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbRoutesResult

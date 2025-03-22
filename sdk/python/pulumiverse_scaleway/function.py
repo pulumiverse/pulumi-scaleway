@@ -684,7 +684,12 @@ class _FunctionState:
         pulumi.set(self, "zip_hash", value)
 
 
+warnings.warn("""scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function""", DeprecationWarning)
+
+
 class Function(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -795,6 +800,7 @@ class Function(pulumi.CustomResource):
                  zip_file: Optional[pulumi.Input[str]] = None,
                  zip_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Function is deprecated: scaleway.index/function.Function has been deprecated in favor of scaleway.functions/function.Function""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

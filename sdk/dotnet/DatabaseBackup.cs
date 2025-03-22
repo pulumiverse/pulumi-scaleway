@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -37,13 +37,13 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabase = new Scaleway.Database("main", new()
+    ///     var mainDatabase = new Scaleway.Databases.Database("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         Name = "database",
     ///     });
     /// 
-    ///     var mainDatabaseBackup = new Scaleway.DatabaseBackup("main", new()
+    ///     var mainDatabaseBackup = new Scaleway.Databases.DatabaseBackup("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         DatabaseName = mainDatabase.Name,
@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseBackup("main", new()
+    ///     var main = new Scaleway.Databases.DatabaseBackup("main", new()
     ///     {
     ///         InstanceId = mainScalewayRdbInstance.Id,
     ///         DatabaseName = mainScalewayRdbDatabase.Name,
@@ -82,6 +82,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databaseBackup:DatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup")]
     [ScalewayResourceType("scaleway:index/databaseBackup:DatabaseBackup")]
     public partial class DatabaseBackup : global::Pulumi.CustomResource
     {

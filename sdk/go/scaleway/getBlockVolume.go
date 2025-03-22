@@ -11,8 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `BlockVolume` data source is used to retrieve information about a Block Storage volume.
+// The `block.Volume` data source is used to retrieve information about a Block Storage volume.
 // Refer to the Block Storage [product documentation](https://www.scaleway.com/en/docs/block-storage/) and [API documentation](https://www.scaleway.com/en/developers/api/block/) for more information.
+//
+// Deprecated: scaleway.index/getblockvolume.getBlockVolume has been deprecated in favor of scaleway.block/getvolume.getVolume
 func LookupBlockVolume(ctx *pulumi.Context, args *LookupBlockVolumeArgs, opts ...pulumi.InvokeOption) (*LookupBlockVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBlockVolumeResult

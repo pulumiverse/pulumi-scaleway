@@ -227,7 +227,12 @@ class _IamSshKeyState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey""", DeprecationWarning)
+
+
 class IamSshKey(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -247,7 +252,7 @@ class IamSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamSshKey("main",
+        main = scaleway.iam.SshKey("main",
             name="main",
             public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
@@ -286,7 +291,7 @@ class IamSshKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.IamSshKey("main",
+        main = scaleway.iam.SshKey("main",
             name="main",
             public_key="<YOUR-PUBLIC-SSH-KEY>")
         ```
@@ -321,6 +326,7 @@ class IamSshKey(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""IamSshKey is deprecated: scaleway.index/iamsshkey.IamSshKey has been deprecated in favor of scaleway.iam/sshkey.SshKey""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

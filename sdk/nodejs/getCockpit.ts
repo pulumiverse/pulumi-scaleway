@@ -7,13 +7,13 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * > **Important:**  The data source `scaleway.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.Cockpit`.
+ * > **Important:**  The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
  *
  * > **Note:**
  * As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
  * If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
  *
- * The `scaleway.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
+ * The `scaleway.observability.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the default Project's Cockpit
- * const main = scaleway.getCockpit({});
+ * const main = scaleway.observability.getInstance({});
  * ```
  *
  * ```typescript
@@ -37,12 +37,14 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get a specific Project's Cockpit
- * const main = scaleway.getCockpit({
+ * const main = scaleway.observability.getInstance({
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance */
 export function getCockpit(args?: GetCockpitArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitResult> {
+    pulumi.log.warn("getCockpit is deprecated: scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getCockpit:getCockpit", {
@@ -84,13 +86,13 @@ export interface GetCockpitResult {
     readonly pushUrls: outputs.GetCockpitPushUrl[];
 }
 /**
- * > **Important:**  The data source `scaleway.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.Cockpit`.
+ * > **Important:**  The data source `scaleway.observability.Cockpit` has been deprecated and will no longer be supported. Instead, use resource `scaleway.observability.Cockpit`.
  *
  * > **Note:**
  * As of April 2024, Cockpit has introduced [regionalization](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#region) to offer more flexibility and resilience.
  * If you have created customized dashboards with data for your Scaleway resources before April 2024, you will need to update your queries in Grafana, with the new regionalized data sources.
  *
- * The `scaleway.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
+ * The `scaleway.observability.Cockpit` data source is used to retrieve information about a Scaleway Cockpit associated with a given Project. This can be the default Project or a specific Project identified by its ID.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -106,7 +108,7 @@ export interface GetCockpitResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get the default Project's Cockpit
- * const main = scaleway.getCockpit({});
+ * const main = scaleway.observability.getInstance({});
  * ```
  *
  * ```typescript
@@ -114,12 +116,14 @@ export interface GetCockpitResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get a specific Project's Cockpit
- * const main = scaleway.getCockpit({
+ * const main = scaleway.observability.getInstance({
  *     projectId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance */
 export function getCockpitOutput(args?: GetCockpitOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitResult> {
+    pulumi.log.warn("getCockpit is deprecated: scaleway.index/getcockpit.getCockpit has been deprecated in favor of scaleway.observability/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getCockpit:getCockpit", {

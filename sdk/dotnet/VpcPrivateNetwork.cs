@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pn_priv", new()
+    ///     var pnPriv = new Scaleway.Network.PrivateNetwork("pn_priv", new()
     ///     {
     ///         Name = "subnet_demo",
     ///         Tags = new[]
@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pnPriv = new Scaleway.VpcPrivateNetwork("pn_priv", new()
+    ///     var pnPriv = new Scaleway.Network.PrivateNetwork("pn_priv", new()
     ///     {
     ///         Name = "subnet_demo",
     ///         Tags = new[]
@@ -57,17 +57,17 @@ namespace Pulumiverse.Scaleway
     ///             "demo",
     ///             "terraform",
     ///         },
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "192.168.0.0/24",
     ///         },
     ///         Ipv6Subnets = new[]
     ///         {
-    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
+    ///             new Scaleway.Network.Inputs.PrivateNetworkIpv6SubnetArgs
     ///             {
     ///                 Subnet = "fd46:78ab:30b8:177c::/64",
     ///             },
-    ///             new Scaleway.Inputs.VpcPrivateNetworkIpv6SubnetArgs
+    ///             new Scaleway.Network.Inputs.PrivateNetworkIpv6SubnetArgs
     ///             {
     ///                 Subnet = "fd46:78ab:30b8:c7df::/64",
     ///             },
@@ -87,6 +87,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcprivatenetwork.VpcPrivateNetwork has been deprecated in favor of scaleway.network/privatenetwork.PrivateNetwork")]
     [ScalewayResourceType("scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork")]
     public partial class VpcPrivateNetwork : global::Pulumi.CustomResource
     {

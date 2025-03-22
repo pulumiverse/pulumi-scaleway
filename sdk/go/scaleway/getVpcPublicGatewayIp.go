@@ -23,17 +23,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", nil)
+//			main, err := network.NewPublicGatewayIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayIpOutput(ctx, scaleway.GetVpcPublicGatewayIpOutputArgs{
+//			_ = network.LookupPublicGatewayIpOutput(ctx, network.GetPublicGatewayIpOutputArgs{
 //				IpId: main.ID(),
 //			}, nil)
 //			return nil
@@ -41,6 +41,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpcpublicgatewayip.getVpcPublicGatewayIp has been deprecated in favor of scaleway.network/getpublicgatewayip.getPublicGatewayIp
 func LookupVpcPublicGatewayIp(ctx *pulumi.Context, args *LookupVpcPublicGatewayIpArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayIpResult

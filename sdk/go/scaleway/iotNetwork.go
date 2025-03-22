@@ -20,22 +20,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iot"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mainIotHub, err := scaleway.NewIotHub(ctx, "main", &scaleway.IotHubArgs{
+//			mainHub, err := iot.NewHub(ctx, "main", &iot.HubArgs{
 //				Name:        pulumi.String("main"),
 //				ProductPlan: pulumi.String("plan_shared"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIotNetwork(ctx, "main", &scaleway.IotNetworkArgs{
+//			_, err = iot.NewNetwork(ctx, "main", &iot.NetworkArgs{
 //				Name:  pulumi.String("main"),
-//				HubId: mainIotHub.ID(),
+//				HubId: mainHub.ID(),
 //				Type:  pulumi.String("sigfox"),
 //			})
 //			if err != nil {
@@ -56,6 +56,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iotNetwork:IotNetwork net01 fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iotnetwork.IotNetwork has been deprecated in favor of scaleway.iot/network.Network
 type IotNetwork struct {
 	pulumi.CustomResourceState
 

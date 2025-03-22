@@ -22,6 +22,8 @@ __all__ = [
     'get_lb_ips_output',
 ]
 
+warnings.warn("""scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLbIpsResult:
     """
@@ -143,6 +145,7 @@ def get_lb_ips(ip_cidr_range: Optional[str] = None,
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which the IPs exist.
     """
+    pulumi.log.warn("""get_lb_ips is deprecated: scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps""")
     __args__ = dict()
     __args__['ipCidrRange'] = ip_cidr_range
     __args__['ipType'] = ip_type
@@ -179,6 +182,7 @@ def get_lb_ips_output(ip_cidr_range: Optional[pulumi.Input[Optional[str]]] = Non
     :param Sequence[str] tags: List of tags used as filter. IPs with these exact tags are listed.
     :param str zone: `zone`) The zone in which the IPs exist.
     """
+    pulumi.log.warn("""get_lb_ips is deprecated: scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps""")
     __args__ = dict()
     __args__['ipCidrRange'] = ip_cidr_range
     __args__['ipType'] = ip_type

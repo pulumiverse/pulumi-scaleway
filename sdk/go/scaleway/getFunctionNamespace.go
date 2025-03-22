@@ -11,9 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+// The `functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
 //
 // Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
+//
+// Deprecated: scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace
 func LookupFunctionNamespace(ctx *pulumi.Context, args *LookupFunctionNamespaceArgs, opts ...pulumi.InvokeOption) (*LookupFunctionNamespaceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionNamespaceResult

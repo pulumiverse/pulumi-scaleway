@@ -21,6 +21,8 @@ __all__ = [
     'get_instance_placement_group_output',
 ]
 
+warnings.warn("""scaleway.index/getinstanceplacementgroup.getInstancePlacementGroup has been deprecated in favor of scaleway.instance/getplacementgroup.getPlacementGroup""", DeprecationWarning)
+
 @pulumi.output_type
 class GetInstancePlacementGroupResult:
     """
@@ -159,6 +161,7 @@ def get_instance_placement_group(name: Optional[str] = None,
     :param str project_id: `project_id`) The ID of the project the placement group is associated with.
     :param str zone: `zone`) The zone in which the placement group exists.
     """
+    pulumi.log.warn("""get_instance_placement_group is deprecated: scaleway.index/getinstanceplacementgroup.getInstancePlacementGroup has been deprecated in favor of scaleway.instance/getplacementgroup.getPlacementGroup""")
     __args__ = dict()
     __args__['name'] = name
     __args__['placementGroupId'] = placement_group_id
@@ -192,6 +195,7 @@ def get_instance_placement_group_output(name: Optional[pulumi.Input[Optional[str
     :param str project_id: `project_id`) The ID of the project the placement group is associated with.
     :param str zone: `zone`) The zone in which the placement group exists.
     """
+    pulumi.log.warn("""get_instance_placement_group is deprecated: scaleway.index/getinstanceplacementgroup.getInstancePlacementGroup has been deprecated in favor of scaleway.instance/getplacementgroup.getPlacementGroup""")
     __args__ = dict()
     __args__['name'] = name
     __args__['placementGroupId'] = placement_group_id

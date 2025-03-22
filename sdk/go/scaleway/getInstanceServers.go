@@ -14,6 +14,8 @@ import (
 // Gets information about multiple instance servers.
 //
 // ## Examples
+//
+// Deprecated: scaleway.index/getinstanceservers.getInstanceServers has been deprecated in favor of scaleway.instance/getservers.getServers
 func GetInstanceServers(ctx *pulumi.Context, args *GetInstanceServersArgs, opts ...pulumi.InvokeOption) (*GetInstanceServersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInstanceServersResult

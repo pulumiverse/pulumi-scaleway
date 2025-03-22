@@ -27,12 +27,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqNatsAccount("main", new()
+    ///     var main = new Scaleway.Mnq.NatsAccount("main", new()
     ///     {
     ///         Name = "nats-account",
     ///     });
     /// 
-    ///     var mainMnqNatsCredentials = new Scaleway.MnqNatsCredentials("main", new()
+    ///     var mainNatsCredentials = new Scaleway.Mnq.NatsCredentials("main", new()
     ///     {
     ///         AccountId = main.Id,
     ///     });
@@ -50,6 +50,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials")]
     [ScalewayResourceType("scaleway:index/mnqNatsCredentials:MnqNatsCredentials")]
     public partial class MnqNatsCredentials : global::Pulumi.CustomResource
     {

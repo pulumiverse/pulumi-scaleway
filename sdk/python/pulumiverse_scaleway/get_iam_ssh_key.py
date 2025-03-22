@@ -21,6 +21,8 @@ __all__ = [
     'get_iam_ssh_key_output',
 ]
 
+warnings.warn("""scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIamSshKeyResult:
     """
@@ -160,6 +162,7 @@ def get_iam_ssh_key(name: Optional[str] = None,
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
+    pulumi.log.warn("""get_iam_ssh_key is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id
@@ -193,6 +196,7 @@ def get_iam_ssh_key_output(name: Optional[pulumi.Input[Optional[str]]] = None,
            
            > **Note** You must specify at least one: `name` and/or `ssh_key_id`.
     """
+    pulumi.log.warn("""get_iam_ssh_key is deprecated: scaleway.index/getiamsshkey.getIamSshKey has been deprecated in favor of scaleway.iam/getsshkey.getSshKey""")
     __args__ = dict()
     __args__['name'] = name
     __args__['projectId'] = project_id

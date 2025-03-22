@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+ * The `scaleway.secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
  *
  * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
  *
@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.Secret("main", {
+ * const main = new scaleway.secrets.Secret("main", {
  *     name: "foo",
  *     description: "barr",
  *     tags: [
@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *         "terraform",
  *     ],
  * });
- * const v1 = new scaleway.SecretVersion("v1", {
+ * const v1 = new scaleway.secrets.Version("v1", {
  *     description: "version1",
  *     secretId: main.id,
  *     data: "my_new_secret",
@@ -48,6 +48,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
  * ```
+ *
+ * @deprecated scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version
  */
 export class SecretVersion extends pulumi.CustomResource {
     /**
@@ -60,6 +62,7 @@ export class SecretVersion extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: SecretVersionState, opts?: pulumi.CustomResourceOptions): SecretVersion {
+        pulumi.log.warn("SecretVersion is deprecated: scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version")
         return new SecretVersion(name, <any>state, { ...opts, id: id });
     }
 
@@ -117,8 +120,11 @@ export class SecretVersion extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version */
     constructor(name: string, args: SecretVersionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version */
     constructor(name: string, argsOrState?: SecretVersionArgs | SecretVersionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("SecretVersion is deprecated: scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

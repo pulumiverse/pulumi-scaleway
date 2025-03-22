@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+// The `containers.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
 //
 // Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/serverless-containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
 //
@@ -28,17 +28,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			app, err := scaleway.NewContainer(ctx, "app", nil)
+//			app, err := containers.NewContainer(ctx, "app", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainerDomain(ctx, "app", &scaleway.ContainerDomainArgs{
+//			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
 //				ContainerId: app.ID(),
 //				Hostname:    pulumi.String("container.domain.tld"),
 //			})
@@ -61,20 +61,21 @@ import (
 //	"fmt"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewContainerNamespace(ctx, "main", &scaleway.ContainerNamespaceArgs{
+//			main, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
 //				Name:        pulumi.String("my-ns-test"),
 //				Description: pulumi.String("test container"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			app, err := scaleway.NewContainer(ctx, "app", &scaleway.ContainerArgs{
+//			app, err := containers.NewContainer(ctx, "app", &containers.ContainerArgs{
 //				Name:        pulumi.String("app"),
 //				NamespaceId: main.ID(),
 //				RegistryImage: main.RegistryEndpoint.ApplyT(func(registryEndpoint string) (string, error) {
@@ -94,7 +95,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			appDomainRecord, err := scaleway.NewDomainRecord(ctx, "app", &scaleway.DomainRecordArgs{
+//			appRecord, err := domain.NewRecord(ctx, "app", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("subdomain"),
 //				Type:    pulumi.String("CNAME"),
@@ -106,9 +107,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewContainerDomain(ctx, "app", &scaleway.ContainerDomainArgs{
+//			_, err = containers.NewDomain(ctx, "app", &containers.DomainArgs{
 //				ContainerId: app.ID(),
-//				Hostname: pulumi.All(appDomainRecord.Name, appDomainRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {
+//				Hostname: pulumi.All(appRecord.Name, appRecord.DnsZone).ApplyT(func(_args []interface{}) (string, error) {
 //					name := _args[0].(string)
 //					dnsZone := _args[1].(string)
 //					return fmt.Sprintf("%v.%v", name, dnsZone), nil
@@ -132,6 +133,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain
 type ContainerDomain struct {
 	pulumi.CustomResourceState
 

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ * The `scaleway.functions.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
  * Refer to the Functions domain [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-a-custom-domain-name-to-a-function/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-domains-list-all-domain-name-bindings) for more information.
  *
@@ -17,16 +17,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainFunctionNamespace = new scaleway.FunctionNamespace("main", {});
- * const mainFunction = new scaleway.Function("main", {
- *     namespaceId: mainFunctionNamespace.id,
+ * const mainNamespace = new scaleway.functions.Namespace("main", {});
+ * const mainFunction = new scaleway.functions.Function("main", {
+ *     namespaceId: mainNamespace.id,
  *     runtime: "go118",
  *     privacy: "private",
  *     handler: "Handle",
  *     zipFile: "testfixture/gofunction.zip",
  *     deploy: true,
  * });
- * const main = new scaleway.FunctionDomain("main", {
+ * const main = new scaleway.functions.Domain("main", {
  *     functionId: mainFunction.id,
  *     hostname: "example.com",
  * }, {
@@ -43,6 +43,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/functionDomain:FunctionDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain
  */
 export class FunctionDomain extends pulumi.CustomResource {
     /**
@@ -55,6 +57,7 @@ export class FunctionDomain extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionDomainState, opts?: pulumi.CustomResourceOptions): FunctionDomain {
+        pulumi.log.warn("FunctionDomain is deprecated: scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain")
         return new FunctionDomain(name, <any>state, { ...opts, id: id });
     }
 
@@ -100,8 +103,11 @@ export class FunctionDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain */
     constructor(name: string, args: FunctionDomainArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain */
     constructor(name: string, argsOrState?: FunctionDomainArgs | FunctionDomainState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FunctionDomain is deprecated: scaleway.index/functiondomain.FunctionDomain has been deprecated in favor of scaleway.functions/domain.Domain")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about multiple Virtual Private Clouds.
  */
+/** @deprecated scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs */
 export function getVpcs(args?: GetVpcsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcsResult> {
+    pulumi.log.warn("getVpcs is deprecated: scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcs:getVpcs", {
@@ -69,7 +71,9 @@ export interface GetVpcsResult {
 /**
  * Gets information about multiple Virtual Private Clouds.
  */
+/** @deprecated scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs */
 export function getVpcsOutput(args?: GetVpcsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcsResult> {
+    pulumi.log.warn("getVpcs is deprecated: scaleway.index/getvpcs.getVpcs has been deprecated in favor of scaleway.network/getvpcs.getVpcs")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcs:getVpcs", {

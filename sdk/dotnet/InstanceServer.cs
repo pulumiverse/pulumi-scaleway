@@ -27,9 +27,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var publicIp = new Scaleway.InstanceIp("public_ip");
+    ///     var publicIp = new Scaleway.Instance.Ip("public_ip");
     /// 
-    ///     var web = new Scaleway.InstanceServer("web", new()
+    ///     var web = new Scaleway.Instance.Server("web", new()
     ///     {
     ///         Type = "DEV1-S",
     ///         Image = "ubuntu_jammy",
@@ -49,13 +49,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var data = new Scaleway.BlockVolume("data", new()
+    ///     var data = new Scaleway.Block.Volume("data", new()
     ///     {
     ///         SizeInGb = 100,
     ///         Iops = 5000,
     ///     });
     /// 
-    ///     var web = new Scaleway.InstanceServer("web", new()
+    ///     var web = new Scaleway.Instance.Server("web", new()
     ///     {
     ///         Type = "DEV1-S",
     ///         Image = "ubuntu_jammy",
@@ -64,7 +64,7 @@ namespace Pulumiverse.Scaleway
     ///             "hello",
     ///             "public",
     ///         },
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             DeleteOnTermination = false,
     ///         },
@@ -87,9 +87,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var ip = new Scaleway.InstanceIp("ip");
+    ///     var ip = new Scaleway.Instance.Ip("ip");
     /// 
-    ///     var web = new Scaleway.InstanceServer("web", new()
+    ///     var web = new Scaleway.Instance.Server("web", new()
     ///     {
     ///         Type = "DEV1-S",
     ///         Image = "f974feac-abae-4365-b988-8ec7d1cec10d",
@@ -114,24 +114,24 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var www = new Scaleway.InstanceSecurityGroup("www", new()
+    ///     var www = new Scaleway.Instance.SecurityGroup("www", new()
     ///     {
     ///         InboundDefaultPolicy = "drop",
     ///         OutboundDefaultPolicy = "accept",
     ///         InboundRules = new[]
     ///         {
-    ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Port = 22,
     ///                 Ip = "212.47.225.64",
     ///             },
-    ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Port = 80,
     ///             },
-    ///             new Scaleway.Inputs.InstanceSecurityGroupInboundRuleArgs
+    ///             new Scaleway.Instance.Inputs.SecurityGroupInboundRuleArgs
     ///             {
     ///                 Action = "accept",
     ///                 Port = 443,
@@ -139,7 +139,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///         OutboundRules = new[]
     ///         {
-    ///             new Scaleway.Inputs.InstanceSecurityGroupOutboundRuleArgs
+    ///             new Scaleway.Instance.Inputs.SecurityGroupOutboundRuleArgs
     ///             {
     ///                 Action = "drop",
     ///                 IpRange = "10.20.0.0/24",
@@ -147,7 +147,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var web = new Scaleway.InstanceServer("web", new()
+    ///     var web = new Scaleway.Instance.Server("web", new()
     ///     {
     ///         Type = "DEV1-S",
     ///         Image = "ubuntu_jammy",
@@ -167,18 +167,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "private_network_instance",
     ///     });
     /// 
-    ///     var @base = new Scaleway.InstanceServer("base", new()
+    ///     var @base = new Scaleway.Instance.Server("base", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
     ///         PrivateNetworks = new[]
     ///         {
-    ///             new Scaleway.Inputs.InstanceServerPrivateNetworkArgs
+    ///             new Scaleway.Instance.Inputs.ServerPrivateNetworkArgs
     ///             {
     ///                 PnId = pn01.Id,
     ///             },
@@ -200,11 +200,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var image = new Scaleway.InstanceServer("image", new()
+    ///     var image = new Scaleway.Instance.Server("image", new()
     ///     {
     ///         Type = "PRO2-XXS",
     ///         Image = "ubuntu_jammy",
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             SizeInGb = 100,
     ///         },
@@ -224,21 +224,21 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var snapshot = Scaleway.GetBlockSnapshot.Invoke(new()
+    ///     var snapshot = Scaleway.Block.GetSnapshot.Invoke(new()
     ///     {
     ///         Name = "my_snapshot",
     ///     });
     /// 
-    ///     var fromSnapshot = new Scaleway.BlockVolume("from_snapshot", new()
+    ///     var fromSnapshot = new Scaleway.Block.Volume("from_snapshot", new()
     ///     {
-    ///         SnapshotId = snapshot.Apply(getBlockSnapshotResult =&gt; getBlockSnapshotResult.Id),
+    ///         SnapshotId = snapshot.Apply(getSnapshotResult =&gt; getSnapshotResult.Id),
     ///         Iops = 5000,
     ///     });
     /// 
-    ///     var fromSnapshotInstanceServer = new Scaleway.InstanceServer("from_snapshot", new()
+    ///     var fromSnapshotServer = new Scaleway.Instance.Server("from_snapshot", new()
     ///     {
     ///         Type = "PRO2-XXS",
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             VolumeId = fromSnapshot.Id,
     ///             VolumeType = "sbs_volume",
@@ -258,11 +258,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var server = new Scaleway.InstanceServer("server", new()
+    ///     var server = new Scaleway.Instance.Server("server", new()
     ///     {
     ///         Type = "PLAY2-MICRO",
     ///         Image = "ubuntu_jammy",
-    ///         RootVolume = new Scaleway.Inputs.InstanceServerRootVolumeArgs
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
     ///         {
     ///             VolumeType = "sbs_volume",
     ///             SbsIops = 15000,
@@ -295,6 +295,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server")]
     [ScalewayResourceType("scaleway:index/instanceServer:InstanceServer")]
     public partial class InstanceServer : global::Pulumi.CustomResource
     {
@@ -335,7 +336,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
@@ -367,21 +368,21 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6Address")]
         public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
         /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6Gateway")]
         public Output<string> Ipv6Gateway { get; private set; } = null!;
 
         /// <summary>
         /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Output("ipv6PrefixLength")]
         public Output<int> Ipv6PrefixLength { get; private set; } = null!;
@@ -592,7 +593,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -795,7 +796,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
@@ -833,21 +834,21 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
         /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6Gateway")]
         public Input<string>? Ipv6Gateway { get; set; }
 
         /// <summary>
         /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.InstanceIp with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("ipv6PrefixLength")]
         public Input<int>? Ipv6PrefixLength { get; set; }

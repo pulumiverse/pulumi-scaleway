@@ -222,7 +222,12 @@ class _DomainZoneState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone""", DeprecationWarning)
+
+
 class DomainZone(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -284,6 +289,7 @@ class DomainZone(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  subdomain: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DomainZone is deprecated: scaleway.index/domainzone.DomainZone has been deprecated in favor of scaleway.domain/zone.Zone""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

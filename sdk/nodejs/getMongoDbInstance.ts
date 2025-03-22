@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
  */
+/** @deprecated scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance */
 export function getMongoDbInstance(args?: GetMongoDbInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetMongoDbInstanceResult> {
+    pulumi.log.warn("getMongoDbInstance is deprecated: scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getMongoDbInstance:getMongoDbInstance", {
@@ -108,7 +110,9 @@ export interface GetMongoDbInstanceResult {
  *
  * For further information refer to the Managed Databases for MongoDB® [API documentation](https://developers.scaleway.com/en/products/mongodb/api/)
  */
+/** @deprecated scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance */
 export function getMongoDbInstanceOutput(args?: GetMongoDbInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMongoDbInstanceResult> {
+    pulumi.log.warn("getMongoDbInstance is deprecated: scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getMongoDbInstance:getMongoDbInstance", {

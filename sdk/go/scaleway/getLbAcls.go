@@ -23,21 +23,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Find acls that share the same frontend ID
-//			_, err := scaleway.GetLbAcls(ctx, &scaleway.GetLbAclsArgs{
+//			_, err := loadbalancers.GetAcls(ctx, &loadbalancers.GetAclsArgs{
 //				FrontendId: frt01.Id,
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Find acls by frontend ID and name
-//			_, err = scaleway.GetLbAcls(ctx, &scaleway.GetLbAclsArgs{
+//			_, err = loadbalancers.GetAcls(ctx, &loadbalancers.GetAclsArgs{
 //				FrontendId: frt01.Id,
 //				Name:       pulumi.StringRef("tf-acls-datasource"),
 //			}, nil)
@@ -49,6 +49,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getlbacls.getLbAcls has been deprecated in favor of scaleway.loadbalancers/getacls.getAcls
 func GetLbAcls(ctx *pulumi.Context, args *GetLbAclsArgs, opts ...pulumi.InvokeOption) (*GetLbAclsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLbAclsResult

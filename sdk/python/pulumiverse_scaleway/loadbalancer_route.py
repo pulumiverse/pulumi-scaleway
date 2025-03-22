@@ -214,7 +214,12 @@ class _LoadbalancerRouteState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route""", DeprecationWarning)
+
+
 class LoadbalancerRoute(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -237,21 +242,21 @@ class LoadbalancerRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIp("ip01")
-        lb01 = scaleway.Loadbalancer("lb01",
+        ip01 = scaleway.loadbalancers.Ip("ip01")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_id=ip01.id,
             name="test-lb",
             type="lb-s")
-        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+        bkd01 = scaleway.loadbalancers.Backend("bkd01",
             lb_id=lb01.id,
             forward_protocol="tcp",
             forward_port=80,
             proxy_protocol="none")
-        frt01 = scaleway.LoadbalancerFrontend("frt01",
+        frt01 = scaleway.loadbalancers.Frontend("frt01",
             lb_id=lb01.id,
             backend_id=bkd01.id,
             inbound_port=80)
-        rt01 = scaleway.LoadbalancerRoute("rt01",
+        rt01 = scaleway.loadbalancers.Route("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
@@ -263,21 +268,21 @@ class LoadbalancerRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIp("ip01")
-        lb01 = scaleway.Loadbalancer("lb01",
+        ip01 = scaleway.loadbalancers.Ip("ip01")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_id=ip01.id,
             name="test-lb",
             type="lb-s")
-        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+        bkd01 = scaleway.loadbalancers.Backend("bkd01",
             lb_id=lb01.id,
             forward_protocol="http",
             forward_port=80,
             proxy_protocol="none")
-        frt01 = scaleway.LoadbalancerFrontend("frt01",
+        frt01 = scaleway.loadbalancers.Frontend("frt01",
             lb_id=lb01.id,
             backend_id=bkd01.id,
             inbound_port=80)
-        rt01 = scaleway.LoadbalancerRoute("rt01",
+        rt01 = scaleway.loadbalancers.Route("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
@@ -325,21 +330,21 @@ class LoadbalancerRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIp("ip01")
-        lb01 = scaleway.Loadbalancer("lb01",
+        ip01 = scaleway.loadbalancers.Ip("ip01")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_id=ip01.id,
             name="test-lb",
             type="lb-s")
-        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+        bkd01 = scaleway.loadbalancers.Backend("bkd01",
             lb_id=lb01.id,
             forward_protocol="tcp",
             forward_port=80,
             proxy_protocol="none")
-        frt01 = scaleway.LoadbalancerFrontend("frt01",
+        frt01 = scaleway.loadbalancers.Frontend("frt01",
             lb_id=lb01.id,
             backend_id=bkd01.id,
             inbound_port=80)
-        rt01 = scaleway.LoadbalancerRoute("rt01",
+        rt01 = scaleway.loadbalancers.Route("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
             match_sni="sni.scaleway.com")
@@ -351,21 +356,21 @@ class LoadbalancerRoute(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        ip01 = scaleway.LoadbalancerIp("ip01")
-        lb01 = scaleway.Loadbalancer("lb01",
+        ip01 = scaleway.loadbalancers.Ip("ip01")
+        lb01 = scaleway.loadbalancers.LoadBalancer("lb01",
             ip_id=ip01.id,
             name="test-lb",
             type="lb-s")
-        bkd01 = scaleway.LoadbalancerBackend("bkd01",
+        bkd01 = scaleway.loadbalancers.Backend("bkd01",
             lb_id=lb01.id,
             forward_protocol="http",
             forward_port=80,
             proxy_protocol="none")
-        frt01 = scaleway.LoadbalancerFrontend("frt01",
+        frt01 = scaleway.loadbalancers.Frontend("frt01",
             lb_id=lb01.id,
             backend_id=bkd01.id,
             inbound_port=80)
-        rt01 = scaleway.LoadbalancerRoute("rt01",
+        rt01 = scaleway.loadbalancers.Route("rt01",
             frontend_id=frt01.id,
             backend_id=bkd01.id,
             match_host_header="host.scaleway.com")
@@ -401,6 +406,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""LoadbalancerRoute is deprecated: scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

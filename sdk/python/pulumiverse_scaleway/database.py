@@ -183,7 +183,12 @@ class _DatabaseState:
         pulumi.set(self, "size", value)
 
 
+warnings.warn("""scaleway.index/database.Database has been deprecated in favor of scaleway.databases/database.Database""", DeprecationWarning)
+
+
 class Database(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/database.Database has been deprecated in favor of scaleway.databases/database.Database""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -204,7 +209,7 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -212,7 +217,7 @@ class Database(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="my-new-database")
         ```
@@ -253,7 +258,7 @@ class Database(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -261,7 +266,7 @@ class Database(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        main_database = scaleway.Database("main",
+        main_database = scaleway.databases.Database("main",
             instance_id=main.id,
             name="my-new-database")
         ```
@@ -295,6 +300,7 @@ class Database(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""Database is deprecated: scaleway.index/database.Database has been deprecated in favor of scaleway.databases/database.Database""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

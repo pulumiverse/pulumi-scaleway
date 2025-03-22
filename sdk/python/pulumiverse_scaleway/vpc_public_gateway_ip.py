@@ -224,7 +224,12 @@ class _VpcPublicGatewayIpState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp""", DeprecationWarning)
+
+
 class VpcPublicGatewayIp(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -244,8 +249,8 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
-        tf_a = scaleway.DomainRecord("tf_A",
+        main = scaleway.network.PublicGatewayIp("main", reverse="tf.example.com")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="example.com",
             name="tf",
             type="A",
@@ -287,8 +292,8 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.VpcPublicGatewayIp("main", reverse="tf.example.com")
-        tf_a = scaleway.DomainRecord("tf_A",
+        main = scaleway.network.PublicGatewayIp("main", reverse="tf.example.com")
+        tf_a = scaleway.domain.Record("tf_A",
             dns_zone="example.com",
             name="tf",
             type="A",
@@ -327,6 +332,7 @@ class VpcPublicGatewayIp(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""VpcPublicGatewayIp is deprecated: scaleway.index/vpcpublicgatewayip.VpcPublicGatewayIp has been deprecated in favor of scaleway.network/publicgatewayip.PublicGatewayIp""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

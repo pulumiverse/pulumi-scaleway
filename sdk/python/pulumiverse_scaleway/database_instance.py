@@ -889,7 +889,12 @@ class _DatabaseInstanceState:
         pulumi.set(self, "volume_type", value)
 
 
+warnings.warn("""scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance""", DeprecationWarning)
+
+
 class DatabaseInstance(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -929,7 +934,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -946,7 +951,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb-sbs",
             node_type="db-play2-pico",
             engine="PostgreSQL-15",
@@ -964,7 +969,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="db-dev-s",
             disable_backup=True,
@@ -985,7 +990,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -1007,10 +1012,10 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+        pn = scaleway.network.PrivateNetwork("pn", ipv4_subnet={
             "subnet": "172.16.20.0/22",
         })
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
             private_network={
@@ -1025,8 +1030,8 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        main = scaleway.DatabaseInstance("main",
+        pn = scaleway.network.PrivateNetwork("pn")
+        main = scaleway.databases.Instance("main",
             load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -1042,7 +1047,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15")
         ```
@@ -1124,7 +1129,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -1141,7 +1146,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb-sbs",
             node_type="db-play2-pico",
             engine="PostgreSQL-15",
@@ -1159,7 +1164,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="db-dev-s",
             disable_backup=True,
@@ -1180,7 +1185,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -1202,10 +1207,10 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", ipv4_subnet={
+        pn = scaleway.network.PrivateNetwork("pn", ipv4_subnet={
             "subnet": "172.16.20.0/22",
         })
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15",
             private_network={
@@ -1220,8 +1225,8 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn")
-        main = scaleway.DatabaseInstance("main",
+        pn = scaleway.network.PrivateNetwork("pn")
+        main = scaleway.databases.Instance("main",
             load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
@@ -1237,7 +1242,7 @@ class DatabaseInstance(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.DatabaseInstance("main",
+        main = scaleway.databases.Instance("main",
             node_type="db-dev-s",
             engine="PostgreSQL-15")
         ```
@@ -1298,6 +1303,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  volume_size_in_gb: Optional[pulumi.Input[int]] = None,
                  volume_type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""DatabaseInstance is deprecated: scaleway.index/databaseinstance.DatabaseInstance has been deprecated in favor of scaleway.databases/instance.Instance""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

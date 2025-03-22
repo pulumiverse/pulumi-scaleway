@@ -15,20 +15,20 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("main", {
+ * const mainHub = new scaleway.iot.Hub("main", {
  *     name: "main",
  *     productPlan: "plan_shared",
  * });
- * const iot = new scaleway.DatabaseInstance("iot", {
+ * const iot = new scaleway.databases.Instance("iot", {
  *     name: "iot",
  *     nodeType: "db-dev-s",
  *     engine: "PostgreSQL-12",
  *     userName: "root",
  *     password: "T3stP4ssw0rdD0N0tUs3!",
  * });
- * const main = new scaleway.IotRoute("main", {
+ * const main = new scaleway.iot.Route("main", {
  *     name: "default",
- *     hubId: mainIotHub.id,
+ *     hubId: mainHub.id,
  *     topic: "#",
  *     database: {
  *         query: `INSERT INTO measurements(
@@ -60,21 +60,21 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("main", {
+ * const mainHub = new scaleway.iot.Hub("main", {
  *     name: "main",
  *     productPlan: "plan_shared",
  * });
- * const mainObjectBucket = new scaleway.ObjectBucket("main", {
+ * const mainBucket = new scaleway.object.Bucket("main", {
  *     region: "fr-par",
  *     name: "my_awesome-bucket",
  * });
- * const main = new scaleway.IotRoute("main", {
+ * const main = new scaleway.iot.Route("main", {
  *     name: "main",
- *     hubId: mainIotHub.id,
+ *     hubId: mainHub.id,
  *     topic: "#",
  *     s3: {
- *         bucketRegion: mainObjectBucket.region,
- *         bucketName: mainObjectBucket.name,
+ *         bucketRegion: mainBucket.region,
+ *         bucketName: mainBucket.name,
  *         objectPrefix: "foo",
  *         strategy: "per_topic",
  *     },
@@ -87,13 +87,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const mainIotHub = new scaleway.IotHub("main", {
+ * const mainHub = new scaleway.iot.Hub("main", {
  *     name: "main",
  *     productPlan: "plan_shared",
  * });
- * const main = new scaleway.IotRoute("main", {
+ * const main = new scaleway.iot.Route("main", {
  *     name: "main",
- *     hubId: mainIotHub.id,
+ *     hubId: mainHub.id,
  *     topic: "#",
  *     rest: {
  *         verb: "get",
@@ -114,6 +114,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iotRoute:IotRoute route01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route
  */
 export class IotRoute extends pulumi.CustomResource {
     /**
@@ -126,6 +128,7 @@ export class IotRoute extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotRouteState, opts?: pulumi.CustomResourceOptions): IotRoute {
+        pulumi.log.warn("IotRoute is deprecated: scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route")
         return new IotRoute(name, <any>state, { ...opts, id: id });
     }
 
@@ -183,8 +186,11 @@ export class IotRoute extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route */
     constructor(name: string, args: IotRouteArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route */
     constructor(name: string, argsOrState?: IotRouteArgs | IotRouteState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IotRoute is deprecated: scaleway.index/iotroute.IotRoute has been deprecated in favor of scaleway.iot/route.Route")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

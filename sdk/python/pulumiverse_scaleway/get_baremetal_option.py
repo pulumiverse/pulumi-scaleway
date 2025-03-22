@@ -21,6 +21,8 @@ __all__ = [
     'get_baremetal_option_output',
 ]
 
+warnings.warn("""scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption""", DeprecationWarning)
+
 @pulumi.output_type
 class GetBaremetalOptionResult:
     """
@@ -106,9 +108,9 @@ def get_baremetal_option(name: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # Get info by option name
-    by_name = scaleway.get_baremetal_option(name="Remote Access")
+    by_name = scaleway.elasticmetal.get_option(name="Remote Access")
     # Get info by option id
-    by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
+    by_id = scaleway.elasticmetal.get_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
     ```
 
 
@@ -116,6 +118,7 @@ def get_baremetal_option(name: Optional[str] = None,
     :param str option_id: The option id. Only one of `name` and `option_id` should be specified.
     :param str zone: `zone`) The zone in which the option exists.
     """
+    pulumi.log.warn("""get_baremetal_option is deprecated: scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption""")
     __args__ = dict()
     __args__['name'] = name
     __args__['optionId'] = option_id
@@ -144,9 +147,9 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     import pulumi_scaleway as scaleway
 
     # Get info by option name
-    by_name = scaleway.get_baremetal_option(name="Remote Access")
+    by_name = scaleway.elasticmetal.get_option(name="Remote Access")
     # Get info by option id
-    by_id = scaleway.get_baremetal_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
+    by_id = scaleway.elasticmetal.get_option(option_id="931df052-d713-4674-8b58-96a63244c8e2")
     ```
 
 
@@ -154,6 +157,7 @@ def get_baremetal_option_output(name: Optional[pulumi.Input[Optional[str]]] = No
     :param str option_id: The option id. Only one of `name` and `option_id` should be specified.
     :param str zone: `zone`) The zone in which the option exists.
     """
+    pulumi.log.warn("""get_baremetal_option is deprecated: scaleway.index/getbaremetaloption.getBaremetalOption has been deprecated in favor of scaleway.elasticmetal/getoption.getOption""")
     __args__ = dict()
     __args__['name'] = name
     __args__['optionId'] = option_id

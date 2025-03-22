@@ -26,20 +26,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewMnqSqs(ctx, "main", nil)
+//			main, err := mnq.NewSqs(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			mainMnqSqsCredentials, err := scaleway.NewMnqSqsCredentials(ctx, "main", &scaleway.MnqSqsCredentialsArgs{
+//			mainSqsCredentials, err := mnq.NewSqsCredentials(ctx, "main", &mnq.SqsCredentialsArgs{
 //				ProjectId: main.ProjectId,
 //				Name:      pulumi.String("sqs-credentials"),
-//				Permissions: &scaleway.MnqSqsCredentialsPermissionsArgs{
+//				Permissions: &mnq.SqsCredentialsPermissionsArgs{
 //					CanManage:  pulumi.Bool(true),
 //					CanReceive: pulumi.Bool(false),
 //					CanPublish: pulumi.Bool(false),
@@ -48,12 +48,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqSqsQueue(ctx, "main", &scaleway.MnqSqsQueueArgs{
+//			_, err = mnq.NewSqsQueue(ctx, "main", &mnq.SqsQueueArgs{
 //				ProjectId:   main.ProjectId,
 //				Name:        pulumi.String("my-queue"),
 //				SqsEndpoint: main.Endpoint,
-//				AccessKey:   mainMnqSqsCredentials.AccessKey,
-//				SecretKey:   mainMnqSqsCredentials.SecretKey,
+//				AccessKey:   mainSqsCredentials.AccessKey,
+//				SecretKey:   mainSqsCredentials.SecretKey,
 //			})
 //			if err != nil {
 //				return err
@@ -63,6 +63,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue
 type MnqSqsQueue struct {
 	pulumi.CustomResourceState
 

@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject")]
     public static class GetAccountProject
     {
         /// <summary>
-        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// The `scaleway.account.Project` data source is used to retrieve information about a Scaleway project.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// </summary>
@@ -21,7 +22,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// The `scaleway.account.Project` data source is used to retrieve information about a Scaleway project.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// </summary>
@@ -29,7 +30,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetAccountProjectResult>("scaleway:index/getAccountProject:getAccountProject", args ?? new GetAccountProjectInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.AccountProject` data source is used to retrieve information about a Scaleway project.
+        /// The `scaleway.account.Project` data source is used to retrieve information about a Scaleway project.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// </summary>

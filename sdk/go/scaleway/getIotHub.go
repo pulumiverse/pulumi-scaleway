@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an IOT Hub.
+//
+// Deprecated: scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub
 func LookupIotHub(ctx *pulumi.Context, args *LookupIotHubArgs, opts ...pulumi.InvokeOption) (*LookupIotHubResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotHubResult

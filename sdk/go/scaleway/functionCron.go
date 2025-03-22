@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `FunctionCron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+// The `functions.Cron` resource allows you to create and manage CRON triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions CRON triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
 //
@@ -28,19 +28,19 @@ import (
 //	"encoding/json"
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/functions"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewFunctionNamespace(ctx, "main", &scaleway.FunctionNamespaceArgs{
+//			main, err := functions.NewNamespace(ctx, "main", &functions.NamespaceArgs{
 //				Name: pulumi.String("test-cron"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainFunction, err := scaleway.NewFunction(ctx, "main", &scaleway.FunctionArgs{
+//			mainFunction, err := functions.NewFunction(ctx, "main", &functions.FunctionArgs{
 //				Name:        pulumi.String("test-cron"),
 //				NamespaceId: main.ID(),
 //				Runtime:     pulumi.String("node14"),
@@ -57,7 +57,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			_, err = scaleway.NewFunctionCron(ctx, "main", &scaleway.FunctionCronArgs{
+//			_, err = functions.NewCron(ctx, "main", &functions.CronArgs{
 //				Name:       pulumi.String("test-cron"),
 //				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 0 * * *"),
@@ -73,7 +73,7 @@ import (
 //				return err
 //			}
 //			json1 := string(tmpJSON1)
-//			_, err = scaleway.NewFunctionCron(ctx, "func", &scaleway.FunctionCronArgs{
+//			_, err = functions.NewCron(ctx, "func", &functions.CronArgs{
 //				FunctionId: mainFunction.ID(),
 //				Schedule:   pulumi.String("0 1 * * *"),
 //				Args:       pulumi.String(json1),
@@ -96,6 +96,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/functionCron:FunctionCron main fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/functioncron.FunctionCron has been deprecated in favor of scaleway.functions/cron.Cron
 type FunctionCron struct {
 	pulumi.CustomResourceState
 

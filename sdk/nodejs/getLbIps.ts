@@ -11,7 +11,9 @@ import * as utilities from "./utilities";
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
+/** @deprecated scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps */
 export function getLbIps(args?: GetLbIpsArgs, opts?: pulumi.InvokeOptions): Promise<GetLbIpsResult> {
+    pulumi.log.warn("getLbIps is deprecated: scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLbIps:getLbIps", {
@@ -82,7 +84,9 @@ export interface GetLbIpsResult {
  *
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/create-manage-flex-ips/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-ip-addresses-list-ip-addresses).
  */
+/** @deprecated scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps */
 export function getLbIpsOutput(args?: GetLbIpsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLbIpsResult> {
+    pulumi.log.warn("getLbIps is deprecated: scaleway.index/getlbips.getLbIps has been deprecated in favor of scaleway.loadbalancers/getips.getIps")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLbIps:getLbIps", {

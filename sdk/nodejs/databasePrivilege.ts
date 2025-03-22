@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-11",
@@ -23,19 +23,19 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const mainDatabase = new scaleway.Database("main", {
+ * const mainDatabase = new scaleway.databases.Database("main", {
  *     instanceId: main.id,
  *     name: "database",
  * });
- * const mainDatabaseUser = new scaleway.DatabaseUser("main", {
+ * const mainUser = new scaleway.databases.User("main", {
  *     instanceId: main.id,
  *     name: "my-db-user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     isAdmin: false,
  * });
- * const mainDatabasePrivilege = new scaleway.DatabasePrivilege("main", {
+ * const mainPrivilege = new scaleway.databases.Privilege("main", {
  *     instanceId: main.id,
- *     userName: mainDatabaseUser.name,
+ *     userName: mainUser.name,
  *     databaseName: mainDatabase.name,
  *     permission: "all",
  * });
@@ -50,6 +50,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databasePrivilege:DatabasePrivilege o fr-par/11111111-1111-1111-1111-111111111111/database_name/foo
  * ```
+ *
+ * @deprecated scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege
  */
 export class DatabasePrivilege extends pulumi.CustomResource {
     /**
@@ -62,6 +64,7 @@ export class DatabasePrivilege extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabasePrivilegeState, opts?: pulumi.CustomResourceOptions): DatabasePrivilege {
+        pulumi.log.warn("DatabasePrivilege is deprecated: scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege")
         return new DatabasePrivilege(name, <any>state, { ...opts, id: id });
     }
 
@@ -107,8 +110,11 @@ export class DatabasePrivilege extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege */
     constructor(name: string, args: DatabasePrivilegeArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege */
     constructor(name: string, argsOrState?: DatabasePrivilegeArgs | DatabasePrivilegeState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabasePrivilege is deprecated: scaleway.index/databaseprivilege.DatabasePrivilege has been deprecated in favor of scaleway.databases/privilege.Privilege")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

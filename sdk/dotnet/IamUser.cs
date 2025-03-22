@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var basic = new Scaleway.IamUser("basic", new()
+    ///     var basic = new Scaleway.Iam.User("basic", new()
     ///     {
     ///         Email = "test@test.com",
     ///     });
@@ -44,6 +44,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/iamUser:IamUser basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User")]
     [ScalewayResourceType("scaleway:index/iamUser:IamUser")]
     public partial class IamUser : global::Pulumi.CustomResource
     {

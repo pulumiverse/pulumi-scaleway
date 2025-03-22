@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ObjectBucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
+ * The `scaleway.object.BucketLockConfiguration` resource allows you to create and manage an object lock configuration for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/api-cli/object-lock/) for more information on object lock.
  *
@@ -21,12 +21,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ObjectBucket("main", {
+ * const main = new scaleway.object.Bucket("main", {
  *     name: "MyBucket",
  *     acl: "public-read",
  *     objectLockEnabled: true,
  * });
- * const mainObjectBucketLockConfiguration = new scaleway.ObjectBucketLockConfiguration("main", {
+ * const mainBucketLockConfiguration = new scaleway.object.BucketLockConfiguration("main", {
  *     bucket: main.name,
  *     rule: {
  *         defaultRetention: {
@@ -60,6 +60,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration some_bucket fr-par/some-bucket@xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx
  * ```
+ *
+ * @deprecated scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration
  */
 export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
     /**
@@ -72,6 +74,7 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ObjectBucketLockConfigurationState, opts?: pulumi.CustomResourceOptions): ObjectBucketLockConfiguration {
+        pulumi.log.warn("ObjectBucketLockConfiguration is deprecated: scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration")
         return new ObjectBucketLockConfiguration(name, <any>state, { ...opts, id: id });
     }
 
@@ -113,8 +116,11 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration */
     constructor(name: string, args: ObjectBucketLockConfigurationArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration */
     constructor(name: string, argsOrState?: ObjectBucketLockConfigurationArgs | ObjectBucketLockConfigurationState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ObjectBucketLockConfiguration is deprecated: scaleway.index/objectbucketlockconfiguration.ObjectBucketLockConfiguration has been deprecated in favor of scaleway.object/bucketlockconfiguration.BucketLockConfiguration")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

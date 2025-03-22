@@ -11,9 +11,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `AccountSshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
+// The `account.SshKey` data source is used to retrieve information about a the SSH key of a Scaleway account.
 //
 // Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/how-to/create-ssh-key/) and [API documentation](https://www.scaleway.com/en/developers/api/iam/#path-ssh-keys) for more information.
+//
+// Deprecated: scaleway.index/getaccountsshkey.getAccountSshKey has been deprecated in favor of scaleway.account/getsshkey.getSshKey
 func LookupAccountSshKey(ctx *pulumi.Context, args *LookupAccountSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupAccountSshKeyResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupAccountSshKeyResult

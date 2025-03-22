@@ -21,6 +21,8 @@ __all__ = [
     'get_mnq_sqs_output',
 ]
 
+warnings.warn("""scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs""", DeprecationWarning)
+
 @pulumi.output_type
 class GetMnqSqsResult:
     """
@@ -94,15 +96,16 @@ def get_mnq_sqs(project_id: Optional[str] = None,
     import pulumi_scaleway as scaleway
 
     # For default project
-    main = scaleway.get_mnq_sqs()
+    main = scaleway.mnq.get_sqs()
     # For specific project
-    for_project = scaleway.get_mnq_sqs(project_id=main_scaleway_account_project["id"])
+    for_project = scaleway.mnq.get_sqs(project_id=main_scaleway_account_project["id"])
     ```
 
 
     :param str project_id: `project_id`) The ID of the Project in which SQS is enabled.
     :param str region: `region`). The region in which SQS is enabled.
     """
+    pulumi.log.warn("""get_mnq_sqs is deprecated: scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs""")
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['region'] = region
@@ -129,15 +132,16 @@ def get_mnq_sqs_output(project_id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_scaleway as scaleway
 
     # For default project
-    main = scaleway.get_mnq_sqs()
+    main = scaleway.mnq.get_sqs()
     # For specific project
-    for_project = scaleway.get_mnq_sqs(project_id=main_scaleway_account_project["id"])
+    for_project = scaleway.mnq.get_sqs(project_id=main_scaleway_account_project["id"])
     ```
 
 
     :param str project_id: `project_id`) The ID of the Project in which SQS is enabled.
     :param str region: `region`). The region in which SQS is enabled.
     """
+    pulumi.log.warn("""get_mnq_sqs is deprecated: scaleway.index/getmnqsqs.getMnqSqs has been deprecated in favor of scaleway.mnq/getsqs.getSqs""")
     __args__ = dict()
     __args__['projectId'] = project_id
     __args__['region'] = region

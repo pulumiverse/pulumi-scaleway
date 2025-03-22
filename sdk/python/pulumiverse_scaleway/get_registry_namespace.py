@@ -21,6 +21,8 @@ __all__ = [
     'get_registry_namespace_output',
 ]
 
+warnings.warn("""scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace""", DeprecationWarning)
+
 @pulumi.output_type
 class GetRegistryNamespaceResult:
     """
@@ -146,6 +148,7 @@ def get_registry_namespace(name: Optional[str] = None,
     :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_registry_namespace is deprecated: scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id
@@ -180,6 +183,7 @@ def get_registry_namespace_output(name: Optional[pulumi.Input[Optional[str]]] = 
     :param str project_id: `project_id`) The ID of the project the namespace is associated with.
     :param str region: `region`) The region in which the namespace exists.
     """
+    pulumi.log.warn("""get_registry_namespace is deprecated: scaleway.index/getregistrynamespace.getRegistryNamespace has been deprecated in favor of scaleway.registry/getnamespace.getNamespace""")
     __args__ = dict()
     __args__['name'] = name
     __args__['namespaceId'] = namespace_id

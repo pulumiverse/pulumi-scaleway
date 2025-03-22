@@ -28,35 +28,35 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "pn_test_network",
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
     ///         },
     ///         VpcId = vpc01.Id,
     ///     });
     /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
     ///     {
     ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
     ///     {
     ///         GatewayId = pg01.Id,
     ///         PrivateNetworkId = pn01.Id,
     ///         EnableMasquerade = true,
     ///         IpamConfigs = new[]
     ///         {
-    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             new Scaleway.Network.Inputs.GatewayNetworkIpamConfigArgs
     ///             {
     ///                 PushDefaultRoute = true,
     ///             },
@@ -76,47 +76,47 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "pn_test_network",
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
     ///         },
     ///         VpcId = vpc01.Id,
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Address = "172.16.64.7",
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
     ///     {
     ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
     ///     {
     ///         GatewayId = pg01.Id,
     ///         PrivateNetworkId = pn01.Id,
     ///         EnableMasquerade = true,
     ///         IpamConfigs = new[]
     ///         {
-    ///             new Scaleway.Inputs.VpcGatewayNetworkIpamConfigArgs
+    ///             new Scaleway.Network.Inputs.GatewayNetworkIpamConfigArgs
     ///             {
     ///                 PushDefaultRoute = true,
     ///                 IpamIpId = ip01.Id,
@@ -137,27 +137,27 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "pn_test_network",
     ///     });
     /// 
-    ///     var gw01 = new Scaleway.VpcPublicGatewayIp("gw01");
+    ///     var gw01 = new Scaleway.Network.PublicGatewayIp("gw01");
     /// 
-    ///     var dhcp01 = new Scaleway.VpcPublicGatewayDhcp("dhcp01", new()
+    ///     var dhcp01 = new Scaleway.Network.PublicGatewayDhcp("dhcp01", new()
     ///     {
     ///         Subnet = "192.168.1.0/24",
     ///         PushDefaultRoute = true,
     ///     });
     /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
     ///     {
     ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///         IpId = gw01.Id,
     ///     });
     /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
     ///     {
     ///         GatewayId = pg01.Id,
     ///         PrivateNetworkId = pn01.Id,
@@ -179,18 +179,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "pn_test_network",
     ///     });
     /// 
-    ///     var pg01 = new Scaleway.VpcPublicGateway("pg01", new()
+    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
     ///     {
     ///         Name = "foobar",
     ///         Type = "VPC-GW-S",
     ///     });
     /// 
-    ///     var main = new Scaleway.VpcGatewayNetwork("main", new()
+    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
     ///     {
     ///         GatewayId = pg01.Id,
     ///         PrivateNetworkId = pn01.Id,
@@ -212,6 +212,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/vpcgatewaynetwork.VpcGatewayNetwork has been deprecated in favor of scaleway.network/gatewaynetwork.GatewayNetwork")]
     [ScalewayResourceType("scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork")]
     public partial class VpcGatewayNetwork : global::Pulumi.CustomResource
     {

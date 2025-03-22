@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getmnqsns.getMnqSns has been deprecated in favor of scaleway.mnq/getsns.getSns")]
     public static class GetMnqSns
     {
         /// <summary>
@@ -28,10 +29,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSns.Invoke();
+        ///     var main = Scaleway.Mnq.GetSns.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSns.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSns.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
@@ -58,10 +59,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSns.Invoke();
+        ///     var main = Scaleway.Mnq.GetSns.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSns.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSns.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });
@@ -88,10 +89,10 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // For default project
-        ///     var main = Scaleway.GetMnqSns.Invoke();
+        ///     var main = Scaleway.Mnq.GetSns.Invoke();
         /// 
         ///     // For specific project
-        ///     var forProject = Scaleway.GetMnqSns.Invoke(new()
+        ///     var forProject = Scaleway.Mnq.GetSns.Invoke(new()
         ///     {
         ///         ProjectId = mainScalewayAccountProject.Id,
         ///     });

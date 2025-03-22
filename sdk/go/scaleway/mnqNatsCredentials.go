@@ -26,19 +26,19 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewMnqNatsAccount(ctx, "main", &scaleway.MnqNatsAccountArgs{
+//			main, err := mnq.NewNatsAccount(ctx, "main", &mnq.NatsAccountArgs{
 //				Name: pulumi.String("nats-account"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewMnqNatsCredentials(ctx, "main", &scaleway.MnqNatsCredentialsArgs{
+//			_, err = mnq.NewNatsCredentials(ctx, "main", &mnq.NatsCredentialsArgs{
 //				AccountId: main.ID(),
 //			})
 //			if err != nil {
@@ -59,6 +59,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/mnqNatsCredentials:MnqNatsCredentials main fr-par/11111111111111111111111111111111
 // ```
+//
+// Deprecated: scaleway.index/mnqnatscredentials.MnqNatsCredentials has been deprecated in favor of scaleway.mnq/natscredentials.NatsCredentials
 type MnqNatsCredentials struct {
 	pulumi.CustomResourceState
 

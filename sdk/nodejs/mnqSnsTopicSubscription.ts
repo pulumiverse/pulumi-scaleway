@@ -18,8 +18,8 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // For default project in default region
- * const main = new scaleway.MnqSns("main", {});
- * const mainMnqSnsCredentials = new scaleway.MnqSnsCredentials("main", {
+ * const main = new scaleway.mnq.Sns("main", {});
+ * const mainSnsCredentials = new scaleway.mnq.SnsCredentials("main", {
  *     projectId: main.projectId,
  *     permissions: {
  *         canManage: true,
@@ -27,16 +27,16 @@ import * as utilities from "./utilities";
  *         canReceive: true,
  *     },
  * });
- * const topic = new scaleway.MnqSnsTopic("topic", {
+ * const topic = new scaleway.mnq.SnsTopic("topic", {
  *     projectId: main.projectId,
  *     name: "my-topic",
- *     accessKey: mainMnqSnsCredentials.accessKey,
- *     secretKey: mainMnqSnsCredentials.secretKey,
+ *     accessKey: mainSnsCredentials.accessKey,
+ *     secretKey: mainSnsCredentials.secretKey,
  * });
- * const mainMnqSnsTopicSubscription = new scaleway.MnqSnsTopicSubscription("main", {
+ * const mainSnsTopicSubscription = new scaleway.mnq.SnsTopicSubscription("main", {
  *     projectId: main.projectId,
- *     accessKey: mainMnqSnsCredentials.accessKey,
- *     secretKey: mainMnqSnsCredentials.secretKey,
+ *     accessKey: mainSnsCredentials.accessKey,
+ *     secretKey: mainSnsCredentials.secretKey,
  *     topicId: topic.id,
  *     protocol: "http",
  *     endpoint: "http://example.com",
@@ -52,6 +52,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription main fr-par/11111111111111111111111111111111/my-topic/11111111111111111111111111111111
  * ```
+ *
+ * @deprecated scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription
  */
 export class MnqSnsTopicSubscription extends pulumi.CustomResource {
     /**
@@ -64,6 +66,7 @@ export class MnqSnsTopicSubscription extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqSnsTopicSubscriptionState, opts?: pulumi.CustomResourceOptions): MnqSnsTopicSubscription {
+        pulumi.log.warn("MnqSnsTopicSubscription is deprecated: scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription")
         return new MnqSnsTopicSubscription(name, <any>state, { ...opts, id: id });
     }
 
@@ -134,8 +137,11 @@ export class MnqSnsTopicSubscription extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription */
     constructor(name: string, args: MnqSnsTopicSubscriptionArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription */
     constructor(name: string, argsOrState?: MnqSnsTopicSubscriptionArgs | MnqSnsTopicSubscriptionState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqSnsTopicSubscription is deprecated: scaleway.index/mnqsnstopicsubscription.MnqSnsTopicSubscription has been deprecated in favor of scaleway.mnq/snstopicsubscription.SnsTopicSubscription")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

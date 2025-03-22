@@ -26,17 +26,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			publicIp, err := scaleway.NewInstanceIp(ctx, "public_ip", nil)
+//			publicIp, err := instance.NewIp(ctx, "public_ip", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				IpId:  publicIp.ID(),
@@ -58,27 +58,28 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			data, err := scaleway.NewBlockVolume(ctx, "data", &scaleway.BlockVolumeArgs{
+//			data, err := block.NewVolume(ctx, "data", &block.VolumeArgs{
 //				SizeInGb: pulumi.Int(100),
 //				Iops:     pulumi.Int(5000),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("hello"),
 //					pulumi.String("public"),
 //				},
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					DeleteOnTermination: pulumi.Bool(false),
 //				},
 //				AdditionalVolumeIds: pulumi.StringArray{
@@ -102,17 +103,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			ip, err := scaleway.NewInstanceIp(ctx, "ip", nil)
+//			ip, err := instance.NewIp(ctx, "ip", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:  pulumi.String("DEV1-S"),
 //				Image: pulumi.String("f974feac-abae-4365-b988-8ec7d1cec10d"),
 //				Tags: pulumi.StringArray{
@@ -138,32 +139,32 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			www, err := scaleway.NewInstanceSecurityGroup(ctx, "www", &scaleway.InstanceSecurityGroupArgs{
+//			www, err := instance.NewSecurityGroup(ctx, "www", &instance.SecurityGroupArgs{
 //				InboundDefaultPolicy:  pulumi.String("drop"),
 //				OutboundDefaultPolicy: pulumi.String("accept"),
-//				InboundRules: scaleway.InstanceSecurityGroupInboundRuleArray{
-//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//				InboundRules: instance.SecurityGroupInboundRuleArray{
+//					&instance.SecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(22),
 //						Ip:     pulumi.String("212.47.225.64"),
 //					},
-//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//					&instance.SecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(80),
 //					},
-//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//					&instance.SecurityGroupInboundRuleArgs{
 //						Action: pulumi.String("accept"),
 //						Port:   pulumi.Int(443),
 //					},
 //				},
-//				OutboundRules: scaleway.InstanceSecurityGroupOutboundRuleArray{
-//					&scaleway.InstanceSecurityGroupOutboundRuleArgs{
+//				OutboundRules: instance.SecurityGroupOutboundRuleArray{
+//					&instance.SecurityGroupOutboundRuleArgs{
 //						Action:  pulumi.String("drop"),
 //						IpRange: pulumi.String("10.20.0.0/24"),
 //					},
@@ -172,7 +173,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				Type:            pulumi.String("DEV1-S"),
 //				Image:           pulumi.String("ubuntu_jammy"),
 //				SecurityGroupId: www.ID(),
@@ -194,23 +195,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("private_network_instance"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "base", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "base", &instance.ServerArgs{
 //				Image: pulumi.String("ubuntu_jammy"),
 //				Type:  pulumi.String("DEV1-S"),
-//				PrivateNetworks: scaleway.InstanceServerPrivateNetworkArray{
-//					&scaleway.InstanceServerPrivateNetworkArgs{
+//				PrivateNetworks: instance.ServerPrivateNetworkArray{
+//					&instance.ServerPrivateNetworkArgs{
 //						PnId: pn01.ID(),
 //					},
 //				},
@@ -234,16 +236,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceServer(ctx, "image", &scaleway.InstanceServerArgs{
+//			_, err := instance.NewServer(ctx, "image", &instance.ServerArgs{
 //				Type:  pulumi.String("PRO2-XXS"),
 //				Image: pulumi.String("ubuntu_jammy"),
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					SizeInGb: pulumi.Int(100),
 //				},
 //			})
@@ -264,28 +266,29 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			snapshot, err := scaleway.LookupBlockSnapshot(ctx, &scaleway.LookupBlockSnapshotArgs{
+//			snapshot, err := block.LookupSnapshot(ctx, &block.LookupSnapshotArgs{
 //				Name: pulumi.StringRef("my_snapshot"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
-//			fromSnapshot, err := scaleway.NewBlockVolume(ctx, "from_snapshot", &scaleway.BlockVolumeArgs{
+//			fromSnapshot, err := block.NewVolume(ctx, "from_snapshot", &block.VolumeArgs{
 //				SnapshotId: pulumi.String(snapshot.Id),
 //				Iops:       pulumi.Int(5000),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewInstanceServer(ctx, "from_snapshot", &scaleway.InstanceServerArgs{
+//			_, err = instance.NewServer(ctx, "from_snapshot", &instance.ServerArgs{
 //				Type: pulumi.String("PRO2-XXS"),
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					VolumeId:   fromSnapshot.ID(),
 //					VolumeType: pulumi.String("sbs_volume"),
 //				},
@@ -307,16 +310,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceServer(ctx, "server", &scaleway.InstanceServerArgs{
+//			_, err := instance.NewServer(ctx, "server", &instance.ServerArgs{
 //				Type:  pulumi.String("PLAY2-MICRO"),
 //				Image: pulumi.String("ubuntu_jammy"),
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					VolumeType: pulumi.String("sbs_volume"),
 //					SbsIops:    pulumi.Int(15000),
 //					SizeInGb:   pulumi.Int(50),
@@ -352,6 +355,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceServer:InstanceServer web fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instanceserver.InstanceServer has been deprecated in favor of scaleway.instance/server.Server
 type InstanceServer struct {
 	pulumi.CustomResourceState
 
@@ -373,9 +378,9 @@ type InstanceServer struct {
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrOutput `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -391,19 +396,19 @@ type InstanceServer struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayOutput `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Address pulumi.StringOutput `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Gateway pulumi.StringOutput `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6PrefixLength pulumi.IntOutput `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -509,9 +514,9 @@ type instanceServerState struct {
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -527,19 +532,19 @@ type instanceServerState struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds []string `pulumi:"ipIds"`
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Address *string `pulumi:"ipv6Address"`
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Gateway *string `pulumi:"ipv6Gateway"`
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6PrefixLength *int `pulumi:"ipv6PrefixLength"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
@@ -613,9 +618,9 @@ type InstanceServerState struct {
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -631,19 +636,19 @@ type InstanceServerState struct {
 	// > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
 	IpIds pulumi.StringArrayInput
 	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Address pulumi.StringPtrInput
 	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6Gateway pulumi.StringPtrInput
 	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	Ipv6PrefixLength pulumi.IntPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
@@ -721,9 +726,9 @@ type instanceServerArgs struct {
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -799,9 +804,9 @@ type InstanceServerArgs struct {
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
 	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
-	// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 	EnableIpv6 pulumi.BoolPtrInput
 	// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
 	// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -977,9 +982,9 @@ func (o InstanceServerOutput) EnableDynamicIp() pulumi.BoolPtrOutput {
 }
 
 // Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 //
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 func (o InstanceServerOutput) EnableIpv6() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableIpv6 }).(pulumi.BoolPtrOutput)
 }
@@ -1007,25 +1012,25 @@ func (o InstanceServerOutput) IpIds() pulumi.StringArrayOutput {
 }
 
 // The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 //
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Address }).(pulumi.StringOutput)
 }
 
 // The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 //
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.Ipv6Gateway }).(pulumi.StringOutput)
 }
 
 // The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type.
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 //
-// Deprecated: Please use a InstanceIp with a `routedIpv6` type
+// Deprecated: Please use a instance.Ip with a `routedIpv6` type
 func (o InstanceServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.IntOutput { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }

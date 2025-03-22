@@ -27,12 +27,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.LoadbalancerIp("main", new()
+    ///     var main = new Scaleway.Loadbalancers.Ip("main", new()
     ///     {
     ///         Zone = "fr-par-1",
     ///     });
     /// 
-    ///     var @base = new Scaleway.Loadbalancer("base", new()
+    ///     var @base = new Scaleway.Loadbalancers.LoadBalancer("base", new()
     ///     {
     ///         IpIds = new[]
     ///         {
@@ -55,7 +55,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var @base = new Scaleway.Loadbalancer("base", new()
+    ///     var @base = new Scaleway.Loadbalancers.LoadBalancer("base", new()
     ///     {
     ///         Name = "private-lb",
     ///         Type = "LB-S",
@@ -75,14 +75,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var v4 = new Scaleway.LoadbalancerIp("v4");
+    ///     var v4 = new Scaleway.Loadbalancers.Ip("v4");
     /// 
-    ///     var v6 = new Scaleway.LoadbalancerIp("v6", new()
+    ///     var v6 = new Scaleway.Loadbalancers.Ip("v6", new()
     ///     {
     ///         IsIpv6 = true,
     ///     });
     /// 
-    ///     var main = new Scaleway.Loadbalancer("main", new()
+    ///     var main = new Scaleway.Loadbalancers.LoadBalancer("main", new()
     ///     {
     ///         IpIds = new[]
     ///         {
@@ -106,35 +106,35 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "my vpc",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         VpcId = vpc01.Id,
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.32.0/22",
     ///         },
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Address = "172.16.32.7",
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var v4 = new Scaleway.LoadbalancerIp("v4");
+    ///     var v4 = new Scaleway.Loadbalancers.Ip("v4");
     /// 
-    ///     var lb01 = new Scaleway.Loadbalancer("lb01", new()
+    ///     var lb01 = new Scaleway.Loadbalancers.LoadBalancer("lb01", new()
     ///     {
     ///         IpIds = new[]
     ///         {
@@ -144,7 +144,7 @@ namespace Pulumiverse.Scaleway
     ///         Type = "LB-S",
     ///         PrivateNetworks = new[]
     ///         {
-    ///             new Scaleway.Inputs.LoadbalancerPrivateNetworkArgs
+    ///             new Scaleway.Loadbalancers.Inputs.LoadBalancerPrivateNetworkArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///                 IpamIds = ip01.Id,
@@ -174,6 +174,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Be aware that you will also need to import the `scaleway_lb_ip` resource.
     /// </summary>
+    [Obsolete(@"scaleway.index/loadbalancer.Loadbalancer has been deprecated in favor of scaleway.loadbalancers/loadbalancer.LoadBalancer")]
     [ScalewayResourceType("scaleway:index/loadbalancer:Loadbalancer")]
     public partial class Loadbalancer : global::Pulumi.CustomResource
     {
@@ -212,7 +213,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
         /// 
-        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+        /// &gt; **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
@@ -362,7 +363,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
         /// 
-        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+        /// &gt; **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -476,7 +477,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The List of IP IDs to attach to the Load Balancer.
         /// 
-        /// &gt; **Important:** Make sure to use a `scaleway.LoadbalancerIp` resource to create the IPs.
+        /// &gt; **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
         /// </summary>
         public InputList<string> IpIds
         {

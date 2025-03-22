@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///     });
     /// 
-    ///     var mainDatabase = new Scaleway.Database("main", new()
+    ///     var mainDatabase = new Scaleway.Databases.Database("main", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         Name = "my-new-database",
@@ -56,6 +56,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/database:Database rdb01_mydb fr-par/11111111-1111-1111-1111-111111111111/mydb
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/database.Database has been deprecated in favor of scaleway.databases/database.Database")]
     [ScalewayResourceType("scaleway:index/database:Database")]
     public partial class Database : global::Pulumi.CustomResource
     {

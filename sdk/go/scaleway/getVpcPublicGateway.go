@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPublicGateway(ctx, "main", &scaleway.VpcPublicGatewayArgs{
+//			main, err := network.NewPublicGateway(ctx, "main", &network.PublicGatewayArgs{
 //				Name: pulumi.String("demo"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				Zone: pulumi.String("nl-ams-1"),
@@ -35,11 +35,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, scaleway.GetVpcPublicGatewayOutputArgs{
+//			_ = network.LookupPublicGatewayOutput(ctx, network.GetPublicGatewayOutputArgs{
 //				Name: main.Name,
 //				Zone: pulumi.String("nl-ams-1"),
 //			}, nil)
-//			_ = scaleway.LookupVpcPublicGatewayOutput(ctx, scaleway.GetVpcPublicGatewayOutputArgs{
+//			_ = network.LookupPublicGatewayOutput(ctx, network.GetPublicGatewayOutputArgs{
 //				PublicGatewayId: main.ID(),
 //			}, nil)
 //			return nil
@@ -47,6 +47,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpcpublicgateway.getVpcPublicGateway has been deprecated in favor of scaleway.network/getpublicgateway.getPublicGateway
 func LookupVpcPublicGateway(ctx *pulumi.Context, args *LookupVpcPublicGatewayArgs, opts ...pulumi.InvokeOption) (*LookupVpcPublicGatewayResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcPublicGatewayResult

@@ -9,7 +9,9 @@ import * as utilities from "./utilities";
 /**
  * Gets information about your Scaleway invoices.
  */
+/** @deprecated scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices */
 export function getBillingInvoices(args?: GetBillingInvoicesArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingInvoicesResult> {
+    pulumi.log.warn("getBillingInvoices is deprecated: scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getBillingInvoices:getBillingInvoices", {
@@ -60,7 +62,9 @@ export interface GetBillingInvoicesResult {
 /**
  * Gets information about your Scaleway invoices.
  */
+/** @deprecated scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices */
 export function getBillingInvoicesOutput(args?: GetBillingInvoicesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBillingInvoicesResult> {
+    pulumi.log.warn("getBillingInvoices is deprecated: scaleway.index/getbillinginvoices.getBillingInvoices has been deprecated in favor of scaleway.billing/getinvoices.getInvoices")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getBillingInvoices:getBillingInvoices", {

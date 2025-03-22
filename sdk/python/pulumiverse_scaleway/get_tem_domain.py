@@ -22,6 +22,8 @@ __all__ = [
     'get_tem_domain_output',
 ]
 
+warnings.warn("""scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain""", DeprecationWarning)
+
 @pulumi.output_type
 class GetTemDomainResult:
     """
@@ -291,6 +293,7 @@ def get_tem_domain(domain_id: Optional[str] = None,
     :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str region: `region`) The region in which the domain exists.
     """
+    pulumi.log.warn("""get_tem_domain is deprecated: scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain""")
     __args__ = dict()
     __args__['domainId'] = domain_id
     __args__['name'] = name
@@ -342,6 +345,7 @@ def get_tem_domain_output(domain_id: Optional[pulumi.Input[Optional[str]]] = Non
     :param str project_id: `project_id`) The ID of the project the domain is associated with.
     :param str region: `region`) The region in which the domain exists.
     """
+    pulumi.log.warn("""get_tem_domain is deprecated: scaleway.index/gettemdomain.getTemDomain has been deprecated in favor of scaleway.tem/getdomain.getDomain""")
     __args__ = dict()
     __args__['domainId'] = domain_id
     __args__['name'] = name

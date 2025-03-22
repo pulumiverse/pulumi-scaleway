@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Container Registry image.
+//
+// Deprecated: scaleway.index/getregistryimage.getRegistryImage has been deprecated in favor of scaleway.registry/getimage.getImage
 func GetRegistryImage(ctx *pulumi.Context, args *GetRegistryImageArgs, opts ...pulumi.InvokeOption) (*GetRegistryImageResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRegistryImageResult

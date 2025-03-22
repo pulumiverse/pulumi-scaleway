@@ -447,7 +447,12 @@ class _DomainRecordState:
         pulumi.set(self, "weighteds", value)
 
 
+warnings.warn("""scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record""", DeprecationWarning)
+
+
 class DomainRecord(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -466,7 +471,7 @@ class DomainRecord(pulumi.CustomResource):
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None,
                  __props__=None):
         """
-        The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+        The `domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
 
         Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
@@ -484,26 +489,26 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        www = scaleway.DomainRecord("www",
+        www = scaleway.domain.Record("www",
             dns_zone="domain.tld",
             name="www",
             type="A",
             data="1.2.3.4",
             ttl=3600)
-        www2 = scaleway.DomainRecord("www2",
+        www2 = scaleway.domain.Record("www2",
             dns_zone="domain.tld",
             name="www",
             type="A",
             data="1.2.3.5",
             ttl=3600)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone="domain.tld",
             name="",
             type="MX",
             data="mx.online.net.",
             ttl=3600,
             priority=10)
-        mx2 = scaleway.DomainRecord("mx2",
+        mx2 = scaleway.domain.Record("mx2",
             dns_zone="domain.tld",
             name="",
             type="MX",
@@ -528,7 +533,7 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        geo_ip = scaleway.DomainRecord("geo_ip",
+        geo_ip = scaleway.domain.Record("geo_ip",
             dns_zone="domain.tld",
             name="images",
             type="A",
@@ -547,7 +552,7 @@ class DomainRecord(pulumi.CustomResource):
                     },
                 ],
             })
-        http_service = scaleway.DomainRecord("http_service",
+        http_service = scaleway.domain.Record("http_service",
             dns_zone="domain.tld",
             name="app",
             type="A",
@@ -563,7 +568,7 @@ class DomainRecord(pulumi.CustomResource):
                 "user_agent": "scw_service_up",
                 "strategy": "hashed",
             })
-        view = scaleway.DomainRecord("view",
+        view = scaleway.domain.Record("view",
             dns_zone="domain.tld",
             name="db",
             type="A",
@@ -579,7 +584,7 @@ class DomainRecord(pulumi.CustomResource):
                     "data": "1.2.3.6",
                 },
             ])
-        weighted = scaleway.DomainRecord("weighted",
+        weighted = scaleway.domain.Record("weighted",
             dns_zone="domain.tld",
             name="web",
             type="A",
@@ -613,8 +618,8 @@ class DomainRecord(pulumi.CustomResource):
         project_id = config.require("projectId")
         # The DNS Zone used for testing records.
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIp("public_ip", project_id=project_id)
-        web = scaleway.InstanceServer("web",
+        public_ip = scaleway.instance.Ip("public_ip", project_id=project_id)
+        web = scaleway.instance.Server("web",
             project_id=project_id,
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -626,19 +631,19 @@ class DomainRecord(pulumi.CustomResource):
             root_volume={
                 "size_in_gb": 20,
             })
-        web_a = scaleway.DomainRecord("web_A",
+        web_a = scaleway.domain.Record("web_A",
             dns_zone=dns_zone,
             name="web",
             type="A",
             data=web.public_ip,
             ttl=3600)
-        web_cname = scaleway.DomainRecord("web_cname",
+        web_cname = scaleway.domain.Record("web_cname",
             dns_zone=dns_zone,
             name="www",
             type="CNAME",
             data=f"web.{dns_zone}.",
             ttl=3600)
-        web_alias = scaleway.DomainRecord("web_alias",
+        web_alias = scaleway.domain.Record("web_alias",
             dns_zone=dns_zone,
             name="",
             type="ALIAS",
@@ -648,7 +653,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record`  resource with the same `name`, and the records will be added.
 
         Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 
@@ -684,7 +689,7 @@ class DomainRecord(pulumi.CustomResource):
                  args: DomainRecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+        The `domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
 
         Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 
@@ -702,26 +707,26 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        www = scaleway.DomainRecord("www",
+        www = scaleway.domain.Record("www",
             dns_zone="domain.tld",
             name="www",
             type="A",
             data="1.2.3.4",
             ttl=3600)
-        www2 = scaleway.DomainRecord("www2",
+        www2 = scaleway.domain.Record("www2",
             dns_zone="domain.tld",
             name="www",
             type="A",
             data="1.2.3.5",
             ttl=3600)
-        mx = scaleway.DomainRecord("mx",
+        mx = scaleway.domain.Record("mx",
             dns_zone="domain.tld",
             name="",
             type="MX",
             data="mx.online.net.",
             ttl=3600,
             priority=10)
-        mx2 = scaleway.DomainRecord("mx2",
+        mx2 = scaleway.domain.Record("mx2",
             dns_zone="domain.tld",
             name="",
             type="MX",
@@ -746,7 +751,7 @@ class DomainRecord(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        geo_ip = scaleway.DomainRecord("geo_ip",
+        geo_ip = scaleway.domain.Record("geo_ip",
             dns_zone="domain.tld",
             name="images",
             type="A",
@@ -765,7 +770,7 @@ class DomainRecord(pulumi.CustomResource):
                     },
                 ],
             })
-        http_service = scaleway.DomainRecord("http_service",
+        http_service = scaleway.domain.Record("http_service",
             dns_zone="domain.tld",
             name="app",
             type="A",
@@ -781,7 +786,7 @@ class DomainRecord(pulumi.CustomResource):
                 "user_agent": "scw_service_up",
                 "strategy": "hashed",
             })
-        view = scaleway.DomainRecord("view",
+        view = scaleway.domain.Record("view",
             dns_zone="domain.tld",
             name="db",
             type="A",
@@ -797,7 +802,7 @@ class DomainRecord(pulumi.CustomResource):
                     "data": "1.2.3.6",
                 },
             ])
-        weighted = scaleway.DomainRecord("weighted",
+        weighted = scaleway.domain.Record("weighted",
             dns_zone="domain.tld",
             name="web",
             type="A",
@@ -831,8 +836,8 @@ class DomainRecord(pulumi.CustomResource):
         project_id = config.require("projectId")
         # The DNS Zone used for testing records.
         dns_zone = config.require("dnsZone")
-        public_ip = scaleway.InstanceIp("public_ip", project_id=project_id)
-        web = scaleway.InstanceServer("web",
+        public_ip = scaleway.instance.Ip("public_ip", project_id=project_id)
+        web = scaleway.instance.Server("web",
             project_id=project_id,
             type="DEV1-S",
             image="ubuntu_jammy",
@@ -844,19 +849,19 @@ class DomainRecord(pulumi.CustomResource):
             root_volume={
                 "size_in_gb": 20,
             })
-        web_a = scaleway.DomainRecord("web_A",
+        web_a = scaleway.domain.Record("web_A",
             dns_zone=dns_zone,
             name="web",
             type="A",
             data=web.public_ip,
             ttl=3600)
-        web_cname = scaleway.DomainRecord("web_cname",
+        web_cname = scaleway.domain.Record("web_cname",
             dns_zone=dns_zone,
             name="www",
             type="CNAME",
             data=f"web.{dns_zone}.",
             ttl=3600)
-        web_alias = scaleway.DomainRecord("web_alias",
+        web_alias = scaleway.domain.Record("web_alias",
             dns_zone=dns_zone,
             name="",
             type="ALIAS",
@@ -866,7 +871,7 @@ class DomainRecord(pulumi.CustomResource):
 
         ## Multiple records
 
-        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
+        Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record`  resource with the same `name`, and the records will be added.
 
         Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 
@@ -908,6 +913,7 @@ class DomainRecord(pulumi.CustomResource):
                  views: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordViewArgs', 'DomainRecordViewArgsDict']]]]] = None,
                  weighteds: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DomainRecordWeightedArgs', 'DomainRecordWeightedArgsDict']]]]] = None,
                  __props__=None):
+        pulumi.log.warn("""DomainRecord is deprecated: scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

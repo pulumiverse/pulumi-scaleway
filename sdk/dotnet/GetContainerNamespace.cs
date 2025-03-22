@@ -10,10 +10,11 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getcontainernamespace.getContainerNamespace has been deprecated in favor of scaleway.containers/getnamespace.getNamespace")]
     public static class GetContainerNamespace
     {
         /// <summary>
-        /// The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+        /// The `scaleway.containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
@@ -33,13 +34,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by namespace name
-        ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byName = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "my-namespace-name",
         ///     });
         /// 
         ///     // Get info by namespace ID
-        ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byId = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -51,7 +52,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+        /// The `scaleway.containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
@@ -71,13 +72,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by namespace name
-        ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byName = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "my-namespace-name",
         ///     });
         /// 
         ///     // Get info by namespace ID
-        ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byId = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -89,7 +90,7 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerNamespaceResult>("scaleway:index/getContainerNamespace:getContainerNamespace", args ?? new GetContainerNamespaceInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.ContainerNamespace` data source is used to retrieve information about a Serverless Containers namespace.
+        /// The `scaleway.containers.Namespace` data source is used to retrieve information about a Serverless Containers namespace.
         /// 
         /// Refer to the Serverless Containers [product documentation](https://www.scaleway.com/en/docs/serverless/containers/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/) for more information.
         /// 
@@ -109,13 +110,13 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get info by namespace name
-        ///     var byName = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byName = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         Name = "my-namespace-name",
         ///     });
         /// 
         ///     // Get info by namespace ID
-        ///     var byId = Scaleway.GetContainerNamespace.Invoke(new()
+        ///     var byId = Scaleway.Containers.GetNamespace.Invoke(new()
         ///     {
         ///         NamespaceId = "11111111-1111-1111-1111-111111111111",
         ///     });

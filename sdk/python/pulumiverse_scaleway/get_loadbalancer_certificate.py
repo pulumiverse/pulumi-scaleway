@@ -22,6 +22,8 @@ __all__ = [
     'get_loadbalancer_certificate_output',
 ]
 
+warnings.warn("""scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate""", DeprecationWarning)
+
 @pulumi.output_type
 class GetLoadbalancerCertificateResult:
     """
@@ -169,6 +171,7 @@ def get_loadbalancer_certificate(certificate_id: Optional[str] = None,
     :param str name: The name of the Load Balancer certificate.
            - When using a certificate `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_loadbalancer_certificate is deprecated: scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate""")
     __args__ = dict()
     __args__['certificateId'] = certificate_id
     __args__['lbId'] = lb_id
@@ -209,6 +212,7 @@ def get_loadbalancer_certificate_output(certificate_id: Optional[pulumi.Input[Op
     :param str name: The name of the Load Balancer certificate.
            - When using a certificate `name` you should specify the `lb-id`
     """
+    pulumi.log.warn("""get_loadbalancer_certificate is deprecated: scaleway.index/getloadbalancercertificate.getLoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/getcertificate.getCertificate""")
     __args__ = dict()
     __args__['certificateId'] = certificate_id
     __args__['lbId'] = lb_id

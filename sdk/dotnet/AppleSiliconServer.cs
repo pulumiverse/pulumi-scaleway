@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var server = new Scaleway.AppleSiliconServer("server", new()
+    ///     var server = new Scaleway.Applesilicon.Server("server", new()
     ///     {
     ///         Name = "test-m1",
     ///         Type = "M1-M",
@@ -45,6 +45,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/appleSiliconServer:AppleSiliconServer main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server")]
     [ScalewayResourceType("scaleway:index/appleSiliconServer:AppleSiliconServer")]
     public partial class AppleSiliconServer : global::Pulumi.CustomResource
     {

@@ -21,14 +21,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-//			_, err := scaleway.LookupDatabase(ctx, &scaleway.LookupDatabaseArgs{
+//			_, err := databases.LookupDatabase(ctx, &databases.LookupDatabaseArgs{
 //				InstanceId: "11111111-1111-1111-1111-111111111111",
 //				Name:       "foobar",
 //			}, nil)
@@ -40,6 +40,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase
 func LookupDatabase(ctx *pulumi.Context, args *LookupDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseResult

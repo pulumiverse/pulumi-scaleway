@@ -22,6 +22,8 @@ __all__ = [
     'get_kubernetes_cluster_output',
 ]
 
+warnings.warn("""scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster""", DeprecationWarning)
+
 @pulumi.output_type
 class GetKubernetesClusterResult:
     """
@@ -334,6 +336,7 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
     :param str project_id: The ID of the project the cluster is associated with.
     :param str region: `region`) The region in which the cluster exists.
     """
+    pulumi.log.warn("""get_kubernetes_cluster is deprecated: scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name
@@ -382,6 +385,7 @@ def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str
     :param str project_id: The ID of the project the cluster is associated with.
     :param str region: `region`) The region in which the cluster exists.
     """
+    pulumi.log.warn("""get_kubernetes_cluster is deprecated: scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster""")
     __args__ = dict()
     __args__['clusterId'] = cluster_id
     __args__['name'] = name

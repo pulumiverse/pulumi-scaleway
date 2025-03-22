@@ -26,21 +26,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewLoadbalancerAcl(ctx, "acl01", &scaleway.LoadbalancerAclArgs{
+//			_, err := loadbalancers.NewAcl(ctx, "acl01", &loadbalancers.AclArgs{
 //				FrontendId:  pulumi.Any(frt01.Id),
 //				Name:        pulumi.String("acl01"),
 //				Description: pulumi.String("Exclude well-known IPs"),
 //				Index:       pulumi.Int(0),
-//				Action: &scaleway.LoadbalancerAclActionArgs{
+//				Action: &loadbalancers.AclActionArgs{
 //					Type: pulumi.String("allow"),
 //				},
-//				Match: &scaleway.LoadbalancerAclMatchArgs{
+//				Match: &loadbalancers.AclMatchArgs{
 //					IpSubnets: pulumi.StringArray{
 //						pulumi.String("192.168.0.1"),
 //						pulumi.String("192.168.0.2"),
@@ -66,6 +66,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/loadbalancerAcl:LoadbalancerAcl acl01 fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/loadbalanceracl.LoadbalancerAcl has been deprecated in favor of scaleway.loadbalancers/acl.Acl
 type LoadbalancerAcl struct {
 	pulumi.CustomResourceState
 

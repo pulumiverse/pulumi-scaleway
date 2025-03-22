@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {reverse: "my-reverse.com"});
+ * const main = new scaleway.elasticmetal.Ip("main", {reverse: "my-reverse.com"});
  * ```
  *
  * ### With zone
@@ -25,7 +25,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {zone: "fr-par-2"});
+ * const main = new scaleway.elasticmetal.Ip("main", {zone: "fr-par-2"});
  * ```
  *
  * ### With IPv6
@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FlexibleIp("main", {isIpv6: true});
+ * const main = new scaleway.elasticmetal.Ip("main", {isIpv6: true});
  * ```
  *
  * ### With baremetal server
@@ -44,26 +44,26 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.AccountSshKey("main", {
+ * const main = new scaleway.account.SshKey("main", {
  *     name: "main",
  *     publicKey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILHy/M5FVm5ydLGcal3e5LNcfTalbeN7QL/ZGCvDEdqJ foobar@example.com",
  * });
- * const byId = scaleway.getBaremetalOs({
+ * const byId = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-2",
  *     name: "Ubuntu",
  *     version: "20.04 LTS (Focal Fossa)",
  * });
- * const myOffer = scaleway.getBaremetalOffer({
+ * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-2",
  *     name: "EM-A210R-HDD",
  * });
- * const base = new scaleway.BaremetalServer("base", {
+ * const base = new scaleway.elasticmetal.Server("base", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     os: byId.then(byId => byId.osId),
  *     sshKeyIds: main.id,
  * });
- * const mainFlexibleIp = new scaleway.FlexibleIp("main", {
+ * const mainIp = new scaleway.elasticmetal.Ip("main", {
  *     serverId: base.id,
  *     zone: "fr-par-2",
  * });
@@ -78,6 +78,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/flexibleIp:FlexibleIp main fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip
  */
 export class FlexibleIp extends pulumi.CustomResource {
     /**
@@ -90,6 +92,7 @@ export class FlexibleIp extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FlexibleIpState, opts?: pulumi.CustomResourceOptions): FlexibleIp {
+        pulumi.log.warn("FlexibleIp is deprecated: scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip")
         return new FlexibleIp(name, <any>state, { ...opts, id: id });
     }
 
@@ -163,8 +166,11 @@ export class FlexibleIp extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip */
     constructor(name: string, args?: FlexibleIpArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip */
     constructor(name: string, argsOrState?: FlexibleIpArgs | FlexibleIpState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FlexibleIp is deprecated: scaleway.index/flexibleip.FlexibleIp has been deprecated in favor of scaleway.elasticmetal/ip.Ip")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

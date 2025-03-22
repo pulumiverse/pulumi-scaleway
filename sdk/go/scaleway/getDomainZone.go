@@ -11,6 +11,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// Deprecated: scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone
 func LookupDomainZone(ctx *pulumi.Context, args *LookupDomainZoneArgs, opts ...pulumi.InvokeOption) (*LookupDomainZoneResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDomainZoneResult

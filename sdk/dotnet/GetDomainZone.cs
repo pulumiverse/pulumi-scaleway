@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdomainzone.getDomainZone has been deprecated in favor of scaleway.domain/getzone.getZone")]
     public static class GetDomainZone
     {
         public static Task<GetDomainZoneResult> InvokeAsync(GetDomainZoneArgs? args = null, InvokeOptions? options = null)

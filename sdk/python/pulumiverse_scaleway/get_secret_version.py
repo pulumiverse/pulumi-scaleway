@@ -21,6 +21,8 @@ __all__ = [
     'get_secret_version_output',
 ]
 
+warnings.warn("""scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion""", DeprecationWarning)
+
 @pulumi.output_type
 class GetSecretVersionResult:
     """
@@ -171,7 +173,7 @@ def get_secret_version(organization_id: Optional[str] = None,
                        secret_name: Optional[str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretVersionResult:
     """
-    The `SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+    The `secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
 
     Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -194,19 +196,19 @@ def get_secret_version(organization_id: Optional[str] = None,
     import pulumiverse_scaleway as scaleway
 
     # Create a secret named fooii
-    main = scaleway.Secret("main",
+    main = scaleway.secrets.Secret("main",
         name="fooii",
         description="barr")
     # Create a version of fooii containing data
-    main_secret_version = scaleway.SecretVersion("main",
+    main_version = scaleway.secrets.Version("main",
         description="your description",
         secret_id=main.id,
         data="your_secret")
     # Retrieve the secret version specified by the secret ID and the desired version
-    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main.id,
+    data_by_secret_id = scaleway.secrets.get_version_output(secret_id=main.id,
         revision="1")
     # Retrieve the secret version specified by the secret name and the desired version
-    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main.name,
+    data_by_secret_name = scaleway.secrets.get_version_output(secret_name=main.name,
         revision="1")
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
@@ -228,6 +230,7 @@ def get_secret_version(organization_id: Optional[str] = None,
     :param str secret_name: The name of the secret associated with the secret version.
            Only one of `secret_id` and `secret_name` should be specified.
     """
+    pulumi.log.warn("""get_secret_version is deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion""")
     __args__ = dict()
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id
@@ -259,7 +262,7 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[st
                               secret_name: Optional[pulumi.Input[Optional[str]]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretVersionResult]:
     """
-    The `SecretVersion` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
+    The `secrets.Version` data source is used to get information about a specific secret version stored in Scaleway Secret Manager.
 
     Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 
@@ -282,19 +285,19 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[st
     import pulumiverse_scaleway as scaleway
 
     # Create a secret named fooii
-    main = scaleway.Secret("main",
+    main = scaleway.secrets.Secret("main",
         name="fooii",
         description="barr")
     # Create a version of fooii containing data
-    main_secret_version = scaleway.SecretVersion("main",
+    main_version = scaleway.secrets.Version("main",
         description="your description",
         secret_id=main.id,
         data="your_secret")
     # Retrieve the secret version specified by the secret ID and the desired version
-    data_by_secret_id = scaleway.get_secret_version_output(secret_id=main.id,
+    data_by_secret_id = scaleway.secrets.get_version_output(secret_id=main.id,
         revision="1")
     # Retrieve the secret version specified by the secret name and the desired version
-    data_by_secret_name = scaleway.get_secret_version_output(secret_name=main.name,
+    data_by_secret_name = scaleway.secrets.get_version_output(secret_name=main.name,
         revision="1")
     pulumi.export("scalewaySecretAccessPayload", data_by_secret_name.data)
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
@@ -316,6 +319,7 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[st
     :param str secret_name: The name of the secret associated with the secret version.
            Only one of `secret_id` and `secret_name` should be specified.
     """
+    pulumi.log.warn("""get_secret_version is deprecated: scaleway.index/getsecretversion.getSecretVersion has been deprecated in favor of scaleway.secrets/getversion.getVersion""")
     __args__ = dict()
     __args__['organizationId'] = organization_id
     __args__['projectId'] = project_id

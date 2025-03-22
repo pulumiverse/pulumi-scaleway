@@ -17,8 +17,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.MnqSqs("main", {});
- * const mainMnqSqsCredentials = new scaleway.MnqSqsCredentials("main", {
+ * const main = new scaleway.mnq.Sqs("main", {});
+ * const mainSqsCredentials = new scaleway.mnq.SqsCredentials("main", {
  *     projectId: main.projectId,
  *     name: "sqs-credentials",
  *     permissions: {
@@ -27,14 +27,16 @@ import * as utilities from "./utilities";
  *         canPublish: false,
  *     },
  * });
- * const mainMnqSqsQueue = new scaleway.MnqSqsQueue("main", {
+ * const mainSqsQueue = new scaleway.mnq.SqsQueue("main", {
  *     projectId: main.projectId,
  *     name: "my-queue",
  *     sqsEndpoint: main.endpoint,
- *     accessKey: mainMnqSqsCredentials.accessKey,
- *     secretKey: mainMnqSqsCredentials.secretKey,
+ *     accessKey: mainSqsCredentials.accessKey,
+ *     secretKey: mainSqsCredentials.secretKey,
  * });
  * ```
+ *
+ * @deprecated scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue
  */
 export class MnqSqsQueue extends pulumi.CustomResource {
     /**
@@ -47,6 +49,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: MnqSqsQueueState, opts?: pulumi.CustomResourceOptions): MnqSqsQueue {
+        pulumi.log.warn("MnqSqsQueue is deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue")
         return new MnqSqsQueue(name, <any>state, { ...opts, id: id });
     }
 
@@ -128,8 +131,11 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue */
     constructor(name: string, args: MnqSqsQueueArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue */
     constructor(name: string, argsOrState?: MnqSqsQueueArgs | MnqSqsQueueState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("MnqSqsQueue is deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

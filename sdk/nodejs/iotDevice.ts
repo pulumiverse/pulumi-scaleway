@@ -15,11 +15,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IotHub("main", {
+ * const main = new scaleway.iot.Hub("main", {
  *     name: "test-iot",
  *     productPlan: "plan_shared",
  * });
- * const mainIotDevice = new scaleway.IotDevice("main", {
+ * const mainDevice = new scaleway.iot.Device("main", {
  *     hubId: main.id,
  *     name: "test-iot",
  * });
@@ -32,14 +32,14 @@ import * as utilities from "./utilities";
  * import * as local from "@pulumi/local";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.IotHub("main", {
+ * const main = new scaleway.iot.Hub("main", {
  *     name: "test-iot",
  *     productPlan: "plan_shared",
  * });
  * const deviceCert = local.getFile({
  *     filename: "device-certificate.pem",
  * });
- * const mainIotDevice = new scaleway.IotDevice("main", {
+ * const mainDevice = new scaleway.iot.Device("main", {
  *     hubId: main.id,
  *     name: "test-iot",
  *     certificate: {
@@ -57,6 +57,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/iotDevice:IotDevice device01 fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device
  */
 export class IotDevice extends pulumi.CustomResource {
     /**
@@ -69,6 +71,7 @@ export class IotDevice extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: IotDeviceState, opts?: pulumi.CustomResourceOptions): IotDevice {
+        pulumi.log.warn("IotDevice is deprecated: scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device")
         return new IotDevice(name, <any>state, { ...opts, id: id });
     }
 
@@ -152,8 +155,11 @@ export class IotDevice extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device */
     constructor(name: string, args: IotDeviceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device */
     constructor(name: string, argsOrState?: IotDeviceArgs | IotDeviceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("IotDevice is deprecated: scaleway.index/iotdevice.IotDevice has been deprecated in favor of scaleway.iot/device.Device")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Flexible IP.
+//
+// Deprecated: scaleway.index/getflexibleip.getFlexibleIp has been deprecated in favor of scaleway.elasticmetal/getip.getIp
 func LookupFlexibleIp(ctx *pulumi.Context, args *LookupFlexibleIpArgs, opts ...pulumi.InvokeOption) (*LookupFlexibleIpResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFlexibleIpResult

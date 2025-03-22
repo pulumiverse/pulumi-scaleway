@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about an IOT Device.
+//
+// Deprecated: scaleway.index/getiotdevice.getIotDevice has been deprecated in favor of scaleway.iot/getdevice.getDevice
 func LookupIotDevice(ctx *pulumi.Context, args *LookupIotDeviceArgs, opts ...pulumi.InvokeOption) (*LookupIotDeviceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIotDeviceResult

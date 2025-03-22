@@ -16,16 +16,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by snapshot name
- * const byName = scaleway.getInstanceSnapshot({
+ * const byName = scaleway.instance.getSnapshot({
  *     name: "my-snapshot-name",
  * });
  * // Get info by snapshot ID
- * const byId = scaleway.getInstanceSnapshot({
+ * const byId = scaleway.instance.getSnapshot({
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot */
 export function getInstanceSnapshot(args?: GetInstanceSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceSnapshotResult> {
+    pulumi.log.warn("getInstanceSnapshot is deprecated: scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {
@@ -90,16 +92,18 @@ export interface GetInstanceSnapshotResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by snapshot name
- * const byName = scaleway.getInstanceSnapshot({
+ * const byName = scaleway.instance.getSnapshot({
  *     name: "my-snapshot-name",
  * });
  * // Get info by snapshot ID
- * const byId = scaleway.getInstanceSnapshot({
+ * const byId = scaleway.instance.getSnapshot({
  *     snapshotId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot */
 export function getInstanceSnapshotOutput(args?: GetInstanceSnapshotOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceSnapshotResult> {
+    pulumi.log.warn("getInstanceSnapshot is deprecated: scaleway.index/getinstancesnapshot.getInstanceSnapshot has been deprecated in favor of scaleway.instance/getsnapshot.getSnapshot")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getInstanceSnapshot:getInstanceSnapshot", {

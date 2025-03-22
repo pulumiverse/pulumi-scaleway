@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `SecretVersion` resource allows you to create and manage secret versions in Scaleway Secret Manager.
+// The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
 //
 // Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
 //
@@ -31,13 +31,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/secrets"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewSecret(ctx, "main", &scaleway.SecretArgs{
+//			main, err := secrets.NewSecret(ctx, "main", &secrets.SecretArgs{
 //				Name:        pulumi.String("foo"),
 //				Description: pulumi.String("barr"),
 //				Tags: pulumi.StringArray{
@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewSecretVersion(ctx, "v1", &scaleway.SecretVersionArgs{
+//			_, err = secrets.NewVersion(ctx, "v1", &secrets.VersionArgs{
 //				Description: pulumi.String("version1"),
 //				SecretId:    main.ID(),
 //				Data:        pulumi.String("my_new_secret"),
@@ -73,6 +73,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/secretVersion:SecretVersion main fr-par/11111111-1111-1111-1111-111111111111/2
 // ```
+//
+// Deprecated: scaleway.index/secretversion.SecretVersion has been deprecated in favor of scaleway.secrets/version.Version
 type SecretVersion struct {
 	pulumi.CustomResourceState
 

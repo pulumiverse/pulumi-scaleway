@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.CockpitSource` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
+ * The `scaleway.observability.Source` resource allows you to create and manage [data sources](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-sources) in Scaleway's Cockpit.
  *
  * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
  *
@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const project = new scaleway.AccountProject("project", {name: "test project data source"});
- * const main = new scaleway.CockpitSource("main", {
+ * const project = new scaleway.account.Project("project", {name: "test project data source"});
+ * const main = new scaleway.observability.Source("main", {
  *     projectId: project.id,
  *     name: "my-data-source",
  *     type: "metrics",
@@ -37,6 +37,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/cockpitSource:CockpitSource main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source
  */
 export class CockpitSource extends pulumi.CustomResource {
     /**
@@ -49,6 +51,7 @@ export class CockpitSource extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: CockpitSourceState, opts?: pulumi.CustomResourceOptions): CockpitSource {
+        pulumi.log.warn("CockpitSource is deprecated: scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source")
         return new CockpitSource(name, <any>state, { ...opts, id: id });
     }
 
@@ -118,8 +121,11 @@ export class CockpitSource extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source */
     constructor(name: string, args: CockpitSourceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source */
     constructor(name: string, argsOrState?: CockpitSourceArgs | CockpitSourceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("CockpitSource is deprecated: scaleway.index/cockpitsource.CockpitSource has been deprecated in favor of scaleway.observability/source.Source")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

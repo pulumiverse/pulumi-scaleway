@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     var main = new Scaleway.Tem.Domain("main", new()
     ///     {
     ///         AcceptTos = true,
     ///         Name = "example.com",
@@ -47,20 +47,20 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var config = new Config();
     ///     var domainName = config.Require("domainName");
-    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     var main = new Scaleway.Tem.Domain("main", new()
     ///     {
     ///         Name = domainName,
     ///         AcceptTos = true,
     ///     });
     /// 
-    ///     var spf = new Scaleway.DomainRecord("spf", new()
+    ///     var spf = new Scaleway.Domain.Record("spf", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "TXT",
     ///         Data = main.SpfConfig.Apply(spfConfig =&gt; $"v=spf1 {spfConfig} -all"),
     ///     });
     /// 
-    ///     var dkim = new Scaleway.DomainRecord("dkim", new()
+    ///     var dkim = new Scaleway.Domain.Record("dkim", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Name = main.ProjectId.Apply(projectId =&gt; $"{projectId}._domainkey"),
@@ -68,14 +68,14 @@ namespace Pulumiverse.Scaleway
     ///         Data = main.DkimConfig,
     ///     });
     /// 
-    ///     var mx = new Scaleway.DomainRecord("mx", new()
+    ///     var mx = new Scaleway.Domain.Record("mx", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "MX",
     ///         Data = ".",
     ///     });
     /// 
-    ///     var dmarc = new Scaleway.DomainRecord("dmarc", new()
+    ///     var dmarc = new Scaleway.Domain.Record("dmarc", new()
     ///     {
     ///         DnsZone = domainName,
     ///         Name = main.DmarcName,
@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway
     /// {
     ///     var config = new Config();
     ///     var domainName = config.Require("domainName");
-    ///     var main = new Scaleway.TemDomain("main", new()
+    ///     var main = new Scaleway.Tem.Domain("main", new()
     ///     {
     ///         Name = domainName,
     ///         AcceptTos = true,
@@ -118,6 +118,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/temDomain:TemDomain main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/temdomain.TemDomain has been deprecated in favor of scaleway.tem/domain.Domain")]
     [ScalewayResourceType("scaleway:index/temDomain:TemDomain")]
     public partial class TemDomain : global::Pulumi.CustomResource
     {

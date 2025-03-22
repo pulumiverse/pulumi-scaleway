@@ -12,7 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `DomainRecord` resource allows you to create and manage DNS records for Scaleway domains.
+// The `domain.Record` resource allows you to create and manage DNS records for Scaleway domains.
 //
 // Refer to the Domains and DNS [product documentation](https://www.scaleway.com/en/docs/network/domains-and-dns/) and [API documentation](https://www.scaleway.com/en/developers/api/domains-and-dns/) for more information.
 //
@@ -32,13 +32,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDomainRecord(ctx, "www", &scaleway.DomainRecordArgs{
+//			_, err := domain.NewRecord(ctx, "www", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("A"),
@@ -48,7 +48,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "www2", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "www2", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("A"),
@@ -58,7 +58,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "mx", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
 //				DnsZone:  pulumi.String("domain.tld"),
 //				Name:     pulumi.String(""),
 //				Type:     pulumi.String("MX"),
@@ -69,7 +69,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "mx2", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "mx2", &domain.RecordArgs{
 //				DnsZone:  pulumi.String("domain.tld"),
 //				Name:     pulumi.String(""),
 //				Type:     pulumi.String("MX"),
@@ -104,21 +104,21 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewDomainRecord(ctx, "geo_ip", &scaleway.DomainRecordArgs{
+//			_, err := domain.NewRecord(ctx, "geo_ip", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("images"),
 //				Type:    pulumi.String("A"),
 //				Data:    pulumi.String("1.2.3.4"),
 //				Ttl:     pulumi.Int(3600),
-//				GeoIp: &scaleway.DomainRecordGeoIpArgs{
-//					Matches: scaleway.DomainRecordGeoIpMatchArray{
-//						&scaleway.DomainRecordGeoIpMatchArgs{
+//				GeoIp: &domain.RecordGeoIpArgs{
+//					Matches: domain.RecordGeoIpMatchArray{
+//						&domain.RecordGeoIpMatchArgs{
 //							Continents: pulumi.StringArray{
 //								pulumi.String("EU"),
 //							},
@@ -127,7 +127,7 @@ import (
 //							},
 //							Data: pulumi.String("1.2.3.5"),
 //						},
-//						&scaleway.DomainRecordGeoIpMatchArgs{
+//						&domain.RecordGeoIpMatchArgs{
 //							Continents: pulumi.StringArray{
 //								pulumi.String("NA"),
 //							},
@@ -139,13 +139,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "http_service", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "http_service", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("app"),
 //				Type:    pulumi.String("A"),
 //				Data:    pulumi.String("1.2.3.4"),
 //				Ttl:     pulumi.Int(3600),
-//				HttpService: &scaleway.DomainRecordHttpServiceArgs{
+//				HttpService: &domain.RecordHttpServiceArgs{
 //					Ips: pulumi.StringArray{
 //						pulumi.String("1.2.3.5"),
 //						pulumi.String("1.2.3.6"),
@@ -159,18 +159,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "view", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "view", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("db"),
 //				Type:    pulumi.String("A"),
 //				Data:    pulumi.String("1.2.3.4"),
 //				Ttl:     pulumi.Int(3600),
-//				Views: scaleway.DomainRecordViewArray{
-//					&scaleway.DomainRecordViewArgs{
+//				Views: domain.RecordViewArray{
+//					&domain.RecordViewArgs{
 //						Subnet: pulumi.String("100.0.0.0/16"),
 //						Data:   pulumi.String("1.2.3.5"),
 //					},
-//					&scaleway.DomainRecordViewArgs{
+//					&domain.RecordViewArgs{
 //						Subnet: pulumi.String("100.1.0.0/16"),
 //						Data:   pulumi.String("1.2.3.6"),
 //					},
@@ -179,18 +179,18 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "weighted", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "weighted", &domain.RecordArgs{
 //				DnsZone: pulumi.String("domain.tld"),
 //				Name:    pulumi.String("web"),
 //				Type:    pulumi.String("A"),
 //				Data:    pulumi.String("1.2.3.4"),
 //				Ttl:     pulumi.Int(3600),
-//				Weighteds: scaleway.DomainRecordWeightedArray{
-//					&scaleway.DomainRecordWeightedArgs{
+//				Weighteds: domain.RecordWeightedArray{
+//					&domain.RecordWeightedArgs{
 //						Ip:     pulumi.String("1.2.3.5"),
 //						Weight: pulumi.Int(1),
 //					},
-//					&scaleway.DomainRecordWeightedArgs{
+//					&domain.RecordWeightedArgs{
 //						Ip:     pulumi.String("1.2.3.6"),
 //						Weight: pulumi.Int(2),
 //					},
@@ -221,7 +221,8 @@ import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
@@ -232,13 +233,13 @@ import (
 //			projectId := cfg.Require("projectId")
 //			// The DNS Zone used for testing records.
 //			dnsZone := cfg.Require("dnsZone")
-//			publicIp, err := scaleway.NewInstanceIp(ctx, "public_ip", &scaleway.InstanceIpArgs{
+//			publicIp, err := instance.NewIp(ctx, "public_ip", &instance.IpArgs{
 //				ProjectId: pulumi.String(projectId),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			web, err := scaleway.NewInstanceServer(ctx, "web", &scaleway.InstanceServerArgs{
+//			web, err := instance.NewServer(ctx, "web", &instance.ServerArgs{
 //				ProjectId: pulumi.String(projectId),
 //				Type:      pulumi.String("DEV1-S"),
 //				Image:     pulumi.String("ubuntu_jammy"),
@@ -247,14 +248,14 @@ import (
 //					pulumi.String("web"),
 //				},
 //				IpId: publicIp.ID(),
-//				RootVolume: &scaleway.InstanceServerRootVolumeArgs{
+//				RootVolume: &instance.ServerRootVolumeArgs{
 //					SizeInGb: pulumi.Int(20),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "web_A", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "web_A", &domain.RecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
 //				Name:    pulumi.String("web"),
 //				Type:    pulumi.String("A"),
@@ -264,7 +265,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "web_cname", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "web_cname", &domain.RecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
 //				Name:    pulumi.String("www"),
 //				Type:    pulumi.String("CNAME"),
@@ -274,7 +275,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "web_alias", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "web_alias", &domain.RecordArgs{
 //				DnsZone: pulumi.String(dnsZone),
 //				Name:    pulumi.String(""),
 //				Type:    pulumi.String("ALIAS"),
@@ -292,7 +293,7 @@ import (
 //
 // ## Multiple records
 //
-// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `DomainRecord`  resource with the same `name`, and the records will be added.
+// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `domain.Record`  resource with the same `name`, and the records will be added.
 //
 // Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
 //
@@ -305,6 +306,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/domainRecord:DomainRecord www subdomain.domain.tld/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/domainrecord.DomainRecord has been deprecated in favor of scaleway.domain/record.Record
 type DomainRecord struct {
 	pulumi.CustomResourceState
 

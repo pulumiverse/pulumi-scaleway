@@ -22,14 +22,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by server name
-//			_, err := scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
+//			_, err := elasticmetal.LookupServer(ctx, &elasticmetal.LookupServerArgs{
 //				Name: pulumi.StringRef("foobar"),
 //				Zone: pulumi.StringRef("fr-par-2"),
 //			}, nil)
@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			// Get info by server id
-//			_, err = scaleway.LookupBaremetalServer(ctx, &scaleway.LookupBaremetalServerArgs{
+//			_, err = elasticmetal.LookupServer(ctx, &elasticmetal.LookupServerArgs{
 //				ServerId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
@@ -48,6 +48,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getbaremetalserver.getBaremetalServer has been deprecated in favor of scaleway.elasticmetal/getserver.getServer
 func LookupBaremetalServer(ctx *pulumi.Context, args *LookupBaremetalServerArgs, opts ...pulumi.InvokeOption) (*LookupBaremetalServerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupBaremetalServerResult

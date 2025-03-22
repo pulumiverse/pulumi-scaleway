@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getmongodbinstance.getMongoDbInstance has been deprecated in favor of scaleway.mongodb/getinstance.getInstance")]
     public static class GetMongoDbInstance
     {
         /// <summary>

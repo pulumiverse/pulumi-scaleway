@@ -23,17 +23,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			sg01, err := scaleway.NewInstanceSecurityGroup(ctx, "sg01", &scaleway.InstanceSecurityGroupArgs{
+//			sg01, err := instance.NewSecurityGroup(ctx, "sg01", &instance.SecurityGroupArgs{
 //				InboundDefaultPolicy:  pulumi.String("drop"),
 //				OutboundDefaultPolicy: pulumi.String("accept"),
-//				InboundRules: scaleway.InstanceSecurityGroupInboundRuleArray{
-//					&scaleway.InstanceSecurityGroupInboundRuleArgs{
+//				InboundRules: instance.SecurityGroupInboundRuleArray{
+//					&instance.SecurityGroupInboundRuleArgs{
 //						Action:   pulumi.String("accept"),
 //						Port:     pulumi.Int(22),
 //						Protocol: pulumi.String("TCP"),
@@ -43,7 +44,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			srv01, err := scaleway.NewInstanceServer(ctx, "srv01", &scaleway.InstanceServerArgs{
+//			srv01, err := instance.NewServer(ctx, "srv01", &instance.ServerArgs{
 //				Name:            pulumi.String("my-server"),
 //				Type:            pulumi.String("PLAY2-NANO"),
 //				Image:           pulumi.String("ubuntu_jammy"),
@@ -52,30 +53,30 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				Name: pulumi.String("my-pn"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pnic01, err := scaleway.NewInstancePrivateNic(ctx, "pnic01", &scaleway.InstancePrivateNicArgs{
+//			pnic01, err := instance.NewPrivateNic(ctx, "pnic01", &instance.PrivateNicArgs{
 //				ServerId:         srv01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			dhcp01, err := scaleway.NewVpcPublicGatewayDhcp(ctx, "dhcp01", &scaleway.VpcPublicGatewayDhcpArgs{
+//			dhcp01, err := network.NewPublicGatewayDhcp(ctx, "dhcp01", &network.PublicGatewayDhcpArgs{
 //				Subnet: pulumi.String("192.168.0.0/24"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			ip01, err := scaleway.NewVpcPublicGatewayIp(ctx, "ip01", nil)
+//			ip01, err := network.NewPublicGatewayIp(ctx, "ip01", nil)
 //			if err != nil {
 //				return err
 //			}
-//			pg01, err := scaleway.NewVpcPublicGateway(ctx, "pg01", &scaleway.VpcPublicGatewayArgs{
+//			pg01, err := network.NewPublicGateway(ctx, "pg01", &network.PublicGatewayArgs{
 //				Name: pulumi.String("my-pg"),
 //				Type: pulumi.String("VPC-GW-S"),
 //				IpId: ip01.ID(),
@@ -83,7 +84,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			gn01, err := scaleway.NewVpcGatewayNetwork(ctx, "gn01", &scaleway.VpcGatewayNetworkArgs{
+//			gn01, err := network.NewGatewayNetwork(ctx, "gn01", &network.GatewayNetworkArgs{
 //				GatewayId:        pg01.ID(),
 //				PrivateNetworkId: pn01.ID(),
 //				DhcpId:           dhcp01.ID(),
@@ -93,7 +94,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			rsv01, err := scaleway.NewVpcPublicGatewayDhcpReservation(ctx, "rsv01", &scaleway.VpcPublicGatewayDhcpReservationArgs{
+//			rsv01, err := network.NewPublicGatewayDhcpReservation(ctx, "rsv01", &network.PublicGatewayDhcpReservationArgs{
 //				GatewayNetworkId: gn01.ID(),
 //				MacAddress:       pnic01.MacAddress,
 //				IpAddress:        pulumi.String("192.168.0.7"),
@@ -102,7 +103,7 @@ import (
 //				return err
 //			}
 //			// PAT rule for SSH traffic
-//			_, err = scaleway.NewVpcPublicGatewayPatRule(ctx, "pat01", &scaleway.VpcPublicGatewayPatRuleArgs{
+//			_, err = network.NewPublicGatewayPatRule(ctx, "pat01", &network.PublicGatewayPatRuleArgs{
 //				GatewayId:   pg01.ID(),
 //				PrivateIp:   rsv01.IpAddress,
 //				PrivatePort: pulumi.Int(22),
@@ -127,6 +128,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule main fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcpublicgatewaypatrule.VpcPublicGatewayPatRule has been deprecated in favor of scaleway.network/publicgatewaypatrule.PublicGatewayPatRule
 type VpcPublicGatewayPatRule struct {
 	pulumi.CustomResourceState
 

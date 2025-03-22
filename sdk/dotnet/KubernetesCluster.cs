@@ -25,9 +25,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Version = "1.29.1",
@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
-    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
     ///         Name = "tf-pool",
@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Type = "multicloud",
@@ -66,7 +66,7 @@ namespace Pulumiverse.Scaleway
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
-    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
     ///         Name = "tf-pool",
@@ -90,9 +90,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Description = "cluster made in terraform",
@@ -104,7 +104,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
-    ///         AutoscalerConfig = new Scaleway.Inputs.KubernetesClusterAutoscalerConfigArgs
+    ///         AutoscalerConfig = new Scaleway.Kubernetes.Inputs.ClusterAutoscalerConfigArgs
     ///         {
     ///             DisableScaleDown = false,
     ///             ScaleDownDelayAfterAdd = "5m",
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
     ///         Name = "tf-pool",
@@ -142,9 +142,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Version = "1.29.1",
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway
     ///         DeleteAdditionalResources = false,
     ///     });
     /// 
-    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
     ///         Name = "tf-pool",
@@ -195,9 +195,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn");
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
-    ///     var cluster = new Scaleway.KubernetesCluster("cluster", new()
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
     ///         Version = "1.29.1",
@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway
     ///         PrivateNetworkId = pn.Id,
     ///     });
     /// 
-    ///     var pool = new Scaleway.KubernetesNodePool("pool", new()
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
     ///     {
     ///         ClusterId = cluster.Id,
     ///         Name = "tf-pool",
@@ -230,7 +230,7 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var nginxIp = new Scaleway.LoadbalancerIp("nginx_ip", new()
+    ///     var nginxIp = new Scaleway.Loadbalancers.Ip("nginx_ip", new()
     ///     {
     ///         Zone = "fr-par-1",
     ///         ProjectId = cluster.ProjectId,
@@ -285,6 +285,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/kubernetesCluster:KubernetesCluster mycluster fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/kubernetescluster.KubernetesCluster has been deprecated in favor of scaleway.kubernetes/cluster.Cluster")]
     [ScalewayResourceType("scaleway:index/kubernetesCluster:KubernetesCluster")]
     public partial class KubernetesCluster : global::Pulumi.CustomResource
     {

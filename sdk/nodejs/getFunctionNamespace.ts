@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+ * The `scaleway.functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
  *
  * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
  */
+/** @deprecated scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace */
 export function getFunctionNamespace(args?: GetFunctionNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionNamespaceResult> {
+    pulumi.log.warn("getFunctionNamespace is deprecated: scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getFunctionNamespace:getFunctionNamespace", {
@@ -78,11 +80,13 @@ export interface GetFunctionNamespaceResult {
     readonly tags: string[];
 }
 /**
- * The `scaleway.FunctionNamespace` data source is used to retrieve information about a Serverless Functions namespace.
+ * The `scaleway.functions.Namespace` data source is used to retrieve information about a Serverless Functions namespace.
  *
  * Refer to the Serverless Functions [product documentation](https://www.scaleway.com/en/docs/serverless/functions/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/) for more information.
  */
+/** @deprecated scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace */
 export function getFunctionNamespaceOutput(args?: GetFunctionNamespaceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFunctionNamespaceResult> {
+    pulumi.log.warn("getFunctionNamespace is deprecated: scaleway.index/getfunctionnamespace.getFunctionNamespace has been deprecated in favor of scaleway.functions/getnamespace.getNamespace")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getFunctionNamespace:getFunctionNamespace", {

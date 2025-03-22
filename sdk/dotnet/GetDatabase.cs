@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getdatabase.getDatabase has been deprecated in favor of scaleway.databases/getdatabase.getDatabase")]
     public static class GetDatabase
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-        ///     var myDb = Scaleway.GetDatabase.Invoke(new()
+        ///     var myDb = Scaleway.Databases.GetDatabase.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///         Name = "foobar",
@@ -52,7 +53,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-        ///     var myDb = Scaleway.GetDatabase.Invoke(new()
+        ///     var myDb = Scaleway.Databases.GetDatabase.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///         Name = "foobar",
@@ -78,7 +79,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Get the database foobar hosted on instance id 11111111-1111-1111-1111-111111111111
-        ///     var myDb = Scaleway.GetDatabase.Invoke(new()
+        ///     var myDb = Scaleway.Databases.GetDatabase.Invoke(new()
         ///     {
         ///         InstanceId = "11111111-1111-1111-1111-111111111111",
         ///         Name = "foobar",

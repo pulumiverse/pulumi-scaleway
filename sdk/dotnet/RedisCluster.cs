@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     var main = new Scaleway.Redis.Cluster("main", new()
     ///     {
     ///         Name = "test_redis_basic",
     ///         Version = "6.2.7",
@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
     ///         TlsEnabled = true,
     ///         Acls = new[]
     ///         {
-    ///             new Scaleway.Inputs.RedisClusterAclArgs
+    ///             new Scaleway.Redis.Inputs.ClusterAclArgs
     ///             {
     ///                 Ip = "0.0.0.0/0",
     ///                 Description = "Allow all",
@@ -63,7 +63,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     var main = new Scaleway.Redis.Cluster("main", new()
     ///     {
     ///         Name = "test_redis_basic",
     ///         Version = "6.2.7",
@@ -90,12 +90,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn = new Scaleway.VpcPrivateNetwork("pn", new()
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
     ///     {
     ///         Name = "private-network",
     ///     });
     /// 
-    ///     var main = new Scaleway.RedisCluster("main", new()
+    ///     var main = new Scaleway.Redis.Cluster("main", new()
     ///     {
     ///         Name = "test_redis_endpoints",
     ///         Version = "6.2.7",
@@ -105,7 +105,7 @@ namespace Pulumiverse.Scaleway
     ///         ClusterSize = 1,
     ///         PrivateNetworks = new[]
     ///         {
-    ///             new Scaleway.Inputs.RedisClusterPrivateNetworkArgs
+    ///             new Scaleway.Redis.Inputs.ClusterPrivateNetworkArgs
     ///             {
     ///                 Id = pn.Id,
     ///                 ServiceIps = new[]
@@ -135,6 +135,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/redisCluster:RedisCluster main fr-par-1/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster")]
     [ScalewayResourceType("scaleway:index/redisCluster:RedisCluster")]
     public partial class RedisCluster : global::Pulumi.CustomResource
     {

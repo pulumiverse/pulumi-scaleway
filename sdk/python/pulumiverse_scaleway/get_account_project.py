@@ -21,6 +21,8 @@ __all__ = [
     'get_account_project_output',
 ]
 
+warnings.warn("""scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject""", DeprecationWarning)
+
 @pulumi.output_type
 class GetAccountProjectResult:
     """
@@ -108,7 +110,7 @@ def get_account_project(name: Optional[str] = None,
                         project_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAccountProjectResult:
     """
-    The `AccountProject` data source is used to retrieve information about a Scaleway project.
+    The `account.Project` data source is used to retrieve information about a Scaleway project.
 
     Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
@@ -121,6 +123,7 @@ def get_account_project(name: Optional[str] = None,
     :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
+    pulumi.log.warn("""get_account_project is deprecated: scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject""")
     __args__ = dict()
     __args__['name'] = name
     __args__['organizationId'] = organization_id
@@ -141,7 +144,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
                                project_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccountProjectResult]:
     """
-    The `AccountProject` data source is used to retrieve information about a Scaleway project.
+    The `account.Project` data source is used to retrieve information about a Scaleway project.
 
     Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
 
@@ -154,6 +157,7 @@ def get_account_project_output(name: Optional[pulumi.Input[Optional[str]]] = Non
     :param str project_id: The unique identifier of the Project.
            Only one of the `name` and `project_id` should be specified.
     """
+    pulumi.log.warn("""get_account_project is deprecated: scaleway.index/getaccountproject.getAccountProject has been deprecated in favor of scaleway.account/getproject.getProject""")
     __args__ = dict()
     __args__['name'] = name
     __args__['organizationId'] = organization_id

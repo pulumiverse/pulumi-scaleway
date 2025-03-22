@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const serverVolume = new scaleway.InstanceVolume("server_volume", {
+ * const serverVolume = new scaleway.instance.Volume("server_volume", {
  *     type: "l_ssd",
  *     name: "some-volume-name",
  *     sizeInGb: 20,
@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/instanceVolume:InstanceVolume server_volume fr-par-1/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume
  */
 export class InstanceVolume extends pulumi.CustomResource {
     /**
@@ -42,6 +44,7 @@ export class InstanceVolume extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: InstanceVolumeState, opts?: pulumi.CustomResourceOptions): InstanceVolume {
+        pulumi.log.warn("InstanceVolume is deprecated: scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume")
         return new InstanceVolume(name, <any>state, { ...opts, id: id });
     }
 
@@ -107,8 +110,11 @@ export class InstanceVolume extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume */
     constructor(name: string, args: InstanceVolumeArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume */
     constructor(name: string, argsOrState?: InstanceVolumeArgs | InstanceVolumeState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("InstanceVolume is deprecated: scaleway.index/instancevolume.InstanceVolume has been deprecated in favor of scaleway.instance/volume.Volume")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

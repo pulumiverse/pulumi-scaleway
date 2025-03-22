@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {
+ * const sg01 = new scaleway.instance.SecurityGroup("sg01", {
  *     inboundDefaultPolicy: "drop",
  *     outboundDefaultPolicy: "accept",
  *     inboundRules: [{
@@ -24,49 +24,51 @@ import * as utilities from "./utilities";
  *         protocol: "TCP",
  *     }],
  * });
- * const srv01 = new scaleway.InstanceServer("srv01", {
+ * const srv01 = new scaleway.instance.Server("srv01", {
  *     name: "my-server",
  *     type: "PLAY2-NANO",
  *     image: "ubuntu_jammy",
  *     securityGroupId: sg01.id,
  * });
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "my-pn"});
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {name: "my-pn"});
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     serverId: srv01.id,
  *     privateNetworkId: pn01.id,
  * });
- * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
- * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const dhcp01 = new scaleway.network.PublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
+ * const ip01 = new scaleway.network.PublicGatewayIp("ip01", {});
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "my-pg",
  *     type: "VPC-GW-S",
  *     ipId: ip01.id,
  * });
- * const gn01 = new scaleway.VpcGatewayNetwork("gn01", {
+ * const gn01 = new scaleway.network.GatewayNetwork("gn01", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
- * const rsv01 = new scaleway.VpcPublicGatewayDhcpReservation("rsv01", {
+ * const rsv01 = new scaleway.network.PublicGatewayDhcpReservation("rsv01", {
  *     gatewayNetworkId: gn01.id,
  *     macAddress: pnic01.macAddress,
  *     ipAddress: "192.168.0.7",
  * });
- * const pat01 = new scaleway.VpcPublicGatewayPatRule("pat01", {
+ * const pat01 = new scaleway.network.PublicGatewayPatRule("pat01", {
  *     gatewayId: pg01.id,
  *     privateIp: rsv01.ipAddress,
  *     privatePort: 22,
  *     publicPort: 2202,
  *     protocol: "tcp",
  * });
- * const main = scaleway.getVpcPublicPatRuleOutput({
+ * const main = scaleway.network.getPublicGatewayPatRuleOutput({
  *     patRuleId: pat01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule */
 export function getVpcPublicPatRule(args: GetVpcPublicPatRuleArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcPublicPatRuleResult> {
+    pulumi.log.warn("getVpcPublicPatRule is deprecated: scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", {
         "patRuleId": args.patRuleId,
@@ -134,7 +136,7 @@ export interface GetVpcPublicPatRuleResult {
  * import * as scaleway from "@pulumi/scaleway";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const sg01 = new scaleway.InstanceSecurityGroup("sg01", {
+ * const sg01 = new scaleway.instance.SecurityGroup("sg01", {
  *     inboundDefaultPolicy: "drop",
  *     outboundDefaultPolicy: "accept",
  *     inboundRules: [{
@@ -143,49 +145,51 @@ export interface GetVpcPublicPatRuleResult {
  *         protocol: "TCP",
  *     }],
  * });
- * const srv01 = new scaleway.InstanceServer("srv01", {
+ * const srv01 = new scaleway.instance.Server("srv01", {
  *     name: "my-server",
  *     type: "PLAY2-NANO",
  *     image: "ubuntu_jammy",
  *     securityGroupId: sg01.id,
  * });
- * const pn01 = new scaleway.VpcPrivateNetwork("pn01", {name: "my-pn"});
- * const pnic01 = new scaleway.InstancePrivateNic("pnic01", {
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {name: "my-pn"});
+ * const pnic01 = new scaleway.instance.PrivateNic("pnic01", {
  *     serverId: srv01.id,
  *     privateNetworkId: pn01.id,
  * });
- * const dhcp01 = new scaleway.VpcPublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
- * const ip01 = new scaleway.VpcPublicGatewayIp("ip01", {});
- * const pg01 = new scaleway.VpcPublicGateway("pg01", {
+ * const dhcp01 = new scaleway.network.PublicGatewayDhcp("dhcp01", {subnet: "192.168.0.0/24"});
+ * const ip01 = new scaleway.network.PublicGatewayIp("ip01", {});
+ * const pg01 = new scaleway.network.PublicGateway("pg01", {
  *     name: "my-pg",
  *     type: "VPC-GW-S",
  *     ipId: ip01.id,
  * });
- * const gn01 = new scaleway.VpcGatewayNetwork("gn01", {
+ * const gn01 = new scaleway.network.GatewayNetwork("gn01", {
  *     gatewayId: pg01.id,
  *     privateNetworkId: pn01.id,
  *     dhcpId: dhcp01.id,
  *     cleanupDhcp: true,
  *     enableMasquerade: true,
  * });
- * const rsv01 = new scaleway.VpcPublicGatewayDhcpReservation("rsv01", {
+ * const rsv01 = new scaleway.network.PublicGatewayDhcpReservation("rsv01", {
  *     gatewayNetworkId: gn01.id,
  *     macAddress: pnic01.macAddress,
  *     ipAddress: "192.168.0.7",
  * });
- * const pat01 = new scaleway.VpcPublicGatewayPatRule("pat01", {
+ * const pat01 = new scaleway.network.PublicGatewayPatRule("pat01", {
  *     gatewayId: pg01.id,
  *     privateIp: rsv01.ipAddress,
  *     privatePort: 22,
  *     publicPort: 2202,
  *     protocol: "tcp",
  * });
- * const main = scaleway.getVpcPublicPatRuleOutput({
+ * const main = scaleway.network.getPublicGatewayPatRuleOutput({
  *     patRuleId: pat01.id,
  * });
  * ```
  */
+/** @deprecated scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule */
 export function getVpcPublicPatRuleOutput(args: GetVpcPublicPatRuleOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetVpcPublicPatRuleResult> {
+    pulumi.log.warn("getVpcPublicPatRule is deprecated: scaleway.index/getvpcpublicpatrule.getVpcPublicPatRule has been deprecated in favor of scaleway.network/getpublicgatewaypatrule.getPublicGatewayPatRule")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule", {
         "patRuleId": args.patRuleId,

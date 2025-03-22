@@ -972,11 +972,65 @@ utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 
 
 // Export sub-modules:
+import * as account from "./account";
+import * as applesilicon from "./applesilicon";
+import * as billing from "./billing";
+import * as block from "./block";
 import * as config from "./config";
+import * as containers from "./containers";
+import * as databases from "./databases";
+import * as domain from "./domain";
+import * as elasticmetal from "./elasticmetal";
+import * as functions from "./functions";
+import * as hosting from "./hosting";
+import * as iam from "./iam";
+import * as inference from "./inference";
+import * as instance from "./instance";
+import * as iot from "./iot";
+import * as ipam from "./ipam";
+import * as job from "./job";
+import * as kubernetes from "./kubernetes";
+import * as loadbalancers from "./loadbalancers";
+import * as mnq from "./mnq";
+import * as mongodb from "./mongodb";
+import * as network from "./network";
+import * as object from "./object";
+import * as observability from "./observability";
+import * as redis from "./redis";
+import * as registry from "./registry";
+import * as secrets from "./secrets";
+import * as tem from "./tem";
 import * as types from "./types";
 
 export {
+    account,
+    applesilicon,
+    billing,
+    block,
     config,
+    containers,
+    databases,
+    domain,
+    elasticmetal,
+    functions,
+    hosting,
+    iam,
+    inference,
+    instance,
+    iot,
+    ipam,
+    job,
+    kubernetes,
+    loadbalancers,
+    mnq,
+    mongodb,
+    network,
+    object,
+    observability,
+    redis,
+    registry,
+    secrets,
+    tem,
     types,
 };
 

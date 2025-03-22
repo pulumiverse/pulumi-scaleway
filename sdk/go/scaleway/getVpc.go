@@ -21,28 +21,28 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Get info by name
-//			_, err := scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
+//			_, err := network.LookupVpc(ctx, &network.LookupVpcArgs{
 //				Name: pulumi.StringRef("foobar"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get info by ID
-//			_, err = scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
+//			_, err = network.LookupVpc(ctx, &network.LookupVpcArgs{
 //				VpcId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
 //			// Get default VPC info
-//			_, err = scaleway.LookupVpc(ctx, &scaleway.LookupVpcArgs{
+//			_, err = network.LookupVpc(ctx, &network.LookupVpcArgs{
 //				IsDefault: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {
@@ -53,6 +53,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getvpc.getVpc has been deprecated in favor of scaleway.network/getvpc.getVpc
 func LookupVpc(ctx *pulumi.Context, args *LookupVpcArgs, opts ...pulumi.InvokeOption) (*LookupVpcResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVpcResult

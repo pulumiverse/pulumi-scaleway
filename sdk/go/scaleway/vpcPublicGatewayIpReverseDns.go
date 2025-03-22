@@ -23,17 +23,18 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewVpcPublicGatewayIp(ctx, "main", nil)
+//			main, err := network.NewPublicGatewayIp(ctx, "main", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDomainRecord(ctx, "tf_A", &scaleway.DomainRecordArgs{
+//			_, err = domain.NewRecord(ctx, "tf_A", &domain.RecordArgs{
 //				DnsZone:  pulumi.String("example.com"),
 //				Name:     pulumi.String("tf"),
 //				Type:     pulumi.String("A"),
@@ -44,7 +45,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewVpcPublicGatewayIpReverseDns(ctx, "main", &scaleway.VpcPublicGatewayIpReverseDnsArgs{
+//			_, err = network.NewPublicGatewayIpReverseDns(ctx, "main", &network.PublicGatewayIpReverseDnsArgs{
 //				GatewayIpId: main.ID(),
 //				Reverse:     pulumi.String("tf.example.com"),
 //			})
@@ -66,6 +67,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns reverse fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/vpcpublicgatewayipreversedns.VpcPublicGatewayIpReverseDns has been deprecated in favor of scaleway.network/publicgatewayipreversedns.PublicGatewayIpReverseDns
 type VpcPublicGatewayIpReverseDns struct {
 	pulumi.CustomResourceState
 

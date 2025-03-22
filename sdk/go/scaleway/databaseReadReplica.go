@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//			instance, err := databases.NewInstance(ctx, "instance", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb-rr-update"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
@@ -48,9 +48,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
+//			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
 //				InstanceId:   instance.ID(),
-//				DirectAccess: &scaleway.DatabaseReadReplicaDirectAccessArgs{},
+//				DirectAccess: &databases.ReadReplicaDirectAccessArgs{},
 //			})
 //			if err != nil {
 //				return err
@@ -69,13 +69,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//			instance, err := databases.NewInstance(ctx, "instance", &databases.InstanceArgs{
 //				Name:          pulumi.String("rdb_instance"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
@@ -87,13 +88,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
+//			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
 //				InstanceId: instance.ID(),
-//				PrivateNetwork: &scaleway.DatabaseReadReplicaPrivateNetworkArgs{
+//				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
 //					PrivateNetworkId: pn.ID(),
 //					ServiceIp:        pulumi.String("192.168.1.254/24"),
 //				},
@@ -115,13 +116,14 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			instance, err := scaleway.NewDatabaseInstance(ctx, "instance", &scaleway.DatabaseInstanceArgs{
+//			instance, err := databases.NewInstance(ctx, "instance", &databases.InstanceArgs{
 //				Name:          pulumi.String("rdb_instance"),
 //				NodeType:      pulumi.String("db-dev-s"),
 //				Engine:        pulumi.String("PostgreSQL-14"),
@@ -133,13 +135,13 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			pn, err := scaleway.NewVpcPrivateNetwork(ctx, "pn", nil)
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewDatabaseReadReplica(ctx, "replica", &scaleway.DatabaseReadReplicaArgs{
+//			_, err = databases.NewReadReplica(ctx, "replica", &databases.ReadReplicaArgs{
 //				InstanceId: instance.ID(),
-//				PrivateNetwork: &scaleway.DatabaseReadReplicaPrivateNetworkArgs{
+//				PrivateNetwork: &databases.ReadReplicaPrivateNetworkArgs{
 //					PrivateNetworkId: pn.ID(),
 //					EnableIpam:       pulumi.Bool(true),
 //				},
@@ -162,6 +164,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/databaseReadReplica:DatabaseReadReplica rr fr-par/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/databasereadreplica.DatabaseReadReplica has been deprecated in favor of scaleway.databases/readreplica.ReadReplica
 type DatabaseReadReplica struct {
 	pulumi.CustomResourceState
 

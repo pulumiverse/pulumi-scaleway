@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about a Kubernetes Cluster.
+//
+// Deprecated: scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesClusterResult

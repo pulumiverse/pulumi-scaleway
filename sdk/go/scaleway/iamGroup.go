@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewIamGroup(ctx, "basic", &scaleway.IamGroupArgs{
+//			_, err := iam.NewGroup(ctx, "basic", &iam.GroupArgs{
 //				Name:           pulumi.String("iam_group_basic"),
 //				Description:    pulumi.String("basic description"),
 //				ApplicationIds: pulumi.StringArray{},
@@ -53,17 +53,17 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			app, err := scaleway.NewIamApplication(ctx, "app", nil)
+//			app, err := iam.NewApplication(ctx, "app", nil)
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewIamGroup(ctx, "with_app", &scaleway.IamGroupArgs{
+//			_, err = iam.NewGroup(ctx, "with_app", &iam.GroupArgs{
 //				Name: pulumi.String("iam_group_with_app"),
 //				ApplicationIds: pulumi.StringArray{
 //					app.ID(),
@@ -88,6 +88,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/iamGroup:IamGroup basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/iamgroup.IamGroup has been deprecated in favor of scaleway.iam/group.Group
 type IamGroup struct {
 	pulumi.CustomResourceState
 

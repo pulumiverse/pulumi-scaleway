@@ -21,6 +21,8 @@ __all__ = [
     'get_iot_hub_output',
 ]
 
+warnings.warn("""scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub""", DeprecationWarning)
+
 @pulumi.output_type
 class GetIotHubResult:
     """
@@ -245,6 +247,7 @@ def get_iot_hub(hub_id: Optional[str] = None,
     :param str project_id: The ID of the project the hub is associated with.
     :param str region: `region`) The region in which the hub exists.
     """
+    pulumi.log.warn("""get_iot_hub is deprecated: scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub""")
     __args__ = dict()
     __args__['hubId'] = hub_id
     __args__['name'] = name
@@ -291,6 +294,7 @@ def get_iot_hub_output(hub_id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str project_id: The ID of the project the hub is associated with.
     :param str region: `region`) The region in which the hub exists.
     """
+    pulumi.log.warn("""get_iot_hub is deprecated: scaleway.index/getiothub.getIotHub has been deprecated in favor of scaleway.iot/gethub.getHub""")
     __args__ = dict()
     __args__['hubId'] = hub_id
     __args__['name'] = name

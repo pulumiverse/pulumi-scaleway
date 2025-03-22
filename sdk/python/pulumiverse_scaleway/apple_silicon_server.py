@@ -369,7 +369,12 @@ class _AppleSiliconServerState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server""", DeprecationWarning)
+
+
 class AppleSiliconServer(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -393,7 +398,7 @@ class AppleSiliconServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.AppleSiliconServer("server",
+        server = scaleway.applesilicon.Server("server",
             name="test-m1",
             type="M1-M")
         ```
@@ -439,7 +444,7 @@ class AppleSiliconServer(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        server = scaleway.AppleSiliconServer("server",
+        server = scaleway.applesilicon.Server("server",
             name="test-m1",
             type="M1-M")
         ```
@@ -476,6 +481,7 @@ class AppleSiliconServer(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""AppleSiliconServer is deprecated: scaleway.index/applesiliconserver.AppleSiliconServer has been deprecated in favor of scaleway.applesilicon/server.Server""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

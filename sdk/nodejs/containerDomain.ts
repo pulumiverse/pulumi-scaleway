@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.ContainerDomain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
+ * The `scaleway.containers.Domain` resource allows you to create and manage domain name bindings for Scaleway [Serverless Containers](https://www.scaleway.com/en/docs/serverless/containers/).
  *
  * Refer to the Containers domain [documentation](https://www.scaleway.com/en/docs/serverless-containers/how-to/add-a-custom-domain-to-a-container/) and the [API documentation](https://www.scaleway.com/en/developers/api/serverless-containers/#path-domains-list-all-domain-name-bindings) for more information.
  *
@@ -19,8 +19,8 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const app = new scaleway.Container("app", {});
- * const appContainerDomain = new scaleway.ContainerDomain("app", {
+ * const app = new scaleway.containers.Container("app", {});
+ * const appDomain = new scaleway.containers.Domain("app", {
  *     containerId: app.id,
  *     hostname: "container.domain.tld",
  * });
@@ -32,11 +32,11 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.ContainerNamespace("main", {
+ * const main = new scaleway.containers.Namespace("main", {
  *     name: "my-ns-test",
  *     description: "test container",
  * });
- * const app = new scaleway.Container("app", {
+ * const app = new scaleway.containers.Container("app", {
  *     name: "app",
  *     namespaceId: main.id,
  *     registryImage: pulumi.interpolate`${main.registryEndpoint}/nginx:alpine`,
@@ -51,16 +51,16 @@ import * as utilities from "./utilities";
  *     protocol: "http1",
  *     deploy: true,
  * });
- * const appDomainRecord = new scaleway.DomainRecord("app", {
+ * const appRecord = new scaleway.domain.Record("app", {
  *     dnsZone: "domain.tld",
  *     name: "subdomain",
  *     type: "CNAME",
  *     data: pulumi.interpolate`${app.domainName}.`,
  *     ttl: 3600,
  * });
- * const appContainerDomain = new scaleway.ContainerDomain("app", {
+ * const appDomain = new scaleway.containers.Domain("app", {
  *     containerId: app.id,
- *     hostname: pulumi.interpolate`${appDomainRecord.name}.${appDomainRecord.dnsZone}`,
+ *     hostname: pulumi.interpolate`${appRecord.name}.${appRecord.dnsZone}`,
  * });
  * ```
  *
@@ -73,6 +73,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/containerDomain:ContainerDomain main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain
  */
 export class ContainerDomain extends pulumi.CustomResource {
     /**
@@ -85,6 +87,7 @@ export class ContainerDomain extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: ContainerDomainState, opts?: pulumi.CustomResourceOptions): ContainerDomain {
+        pulumi.log.warn("ContainerDomain is deprecated: scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain")
         return new ContainerDomain(name, <any>state, { ...opts, id: id });
     }
 
@@ -126,8 +129,11 @@ export class ContainerDomain extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain */
     constructor(name: string, args: ContainerDomainArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain */
     constructor(name: string, argsOrState?: ContainerDomainArgs | ContainerDomainState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("ContainerDomain is deprecated: scaleway.index/containerdomain.ContainerDomain has been deprecated in favor of scaleway.containers/domain.Domain")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

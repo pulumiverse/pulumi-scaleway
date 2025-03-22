@@ -27,23 +27,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.MnqSns("main");
+    ///     var main = new Scaleway.Mnq.Sns("main");
     /// 
-    ///     var mainMnqSnsCredentials = new Scaleway.MnqSnsCredentials("main", new()
+    ///     var mainSnsCredentials = new Scaleway.Mnq.SnsCredentials("main", new()
     ///     {
     ///         ProjectId = main.ProjectId,
-    ///         Permissions = new Scaleway.Inputs.MnqSnsCredentialsPermissionsArgs
+    ///         Permissions = new Scaleway.Mnq.Inputs.SnsCredentialsPermissionsArgs
     ///         {
     ///             CanManage = true,
     ///         },
     ///     });
     /// 
-    ///     var topic = new Scaleway.MnqSnsTopic("topic", new()
+    ///     var topic = new Scaleway.Mnq.SnsTopic("topic", new()
     ///     {
     ///         ProjectId = main.ProjectId,
     ///         Name = "my-topic",
-    ///         AccessKey = mainMnqSnsCredentials.AccessKey,
-    ///         SecretKey = mainMnqSnsCredentials.SecretKey,
+    ///         AccessKey = mainSnsCredentials.AccessKey,
+    ///         SecretKey = mainSnsCredentials.SecretKey,
     ///     });
     /// 
     /// });
@@ -59,6 +59,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/mnqSnsTopic:MnqSnsTopic main fr-par/11111111111111111111111111111111/my-topic
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/mnqsnstopic.MnqSnsTopic has been deprecated in favor of scaleway.mnq/snstopic.SnsTopic")]
     [ScalewayResourceType("scaleway:index/mnqSnsTopic:MnqSnsTopic")]
     public partial class MnqSnsTopic : global::Pulumi.CustomResource
     {

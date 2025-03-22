@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionTrigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
+ * The `scaleway.functions.Trigger` resource allows you to create and manage triggers for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
  * Refer to the Functions triggers [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/add-trigger-to-a-function/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-triggers-list-all-triggers) for more information.
  *
@@ -19,7 +19,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionTrigger("main", {
+ * const main = new scaleway.functions.Trigger("main", {
  *     functionId: mainScalewayFunction.id,
  *     name: "my-trigger",
  *     sqs: {
@@ -36,7 +36,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionTrigger("main", {
+ * const main = new scaleway.functions.Trigger("main", {
  *     functionId: mainScalewayFunction.id,
  *     name: "my-trigger",
  *     nats: {
@@ -56,6 +56,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/functionTrigger:FunctionTrigger main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger
  */
 export class FunctionTrigger extends pulumi.CustomResource {
     /**
@@ -68,6 +70,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionTriggerState, opts?: pulumi.CustomResourceOptions): FunctionTrigger {
+        pulumi.log.warn("FunctionTrigger is deprecated: scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger")
         return new FunctionTrigger(name, <any>state, { ...opts, id: id });
     }
 
@@ -117,8 +120,11 @@ export class FunctionTrigger extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger */
     constructor(name: string, args: FunctionTriggerArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger */
     constructor(name: string, argsOrState?: FunctionTriggerArgs | FunctionTriggerState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FunctionTrigger is deprecated: scaleway.index/functiontrigger.FunctionTrigger has been deprecated in favor of scaleway.functions/trigger.Trigger")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

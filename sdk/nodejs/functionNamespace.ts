@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.FunctionNamespace` resource allows you to
+ * The `scaleway.functions.Namespace` resource allows you to
  * for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
  *
  * Refer to the Functions namespace [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-manage-delete-functions-namespace/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-namespaces-list-all-your-namespaces) for more information.
@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.FunctionNamespace("main", {
+ * const main = new scaleway.functions.Namespace("main", {
  *     name: "main-function-namespace",
  *     description: "Main function namespace",
  * });
@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/functionNamespace:FunctionNamespace main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace
  */
 export class FunctionNamespace extends pulumi.CustomResource {
     /**
@@ -43,6 +45,7 @@ export class FunctionNamespace extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FunctionNamespaceState, opts?: pulumi.CustomResourceOptions): FunctionNamespace {
+        pulumi.log.warn("FunctionNamespace is deprecated: scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace")
         return new FunctionNamespace(name, <any>state, { ...opts, id: id });
     }
 
@@ -110,8 +113,11 @@ export class FunctionNamespace extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace */
     constructor(name: string, args?: FunctionNamespaceArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace */
     constructor(name: string, argsOrState?: FunctionNamespaceArgs | FunctionNamespaceState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("FunctionNamespace is deprecated: scaleway.index/functionnamespace.FunctionNamespace has been deprecated in favor of scaleway.functions/namespace.Namespace")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

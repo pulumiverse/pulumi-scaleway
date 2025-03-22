@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
     ///     {
     ///         ServerId = "fr-par-1/11111111-1111-1111-1111-111111111111",
     ///         PrivateNetworkId = "fr-par-1/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -45,20 +45,20 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "private_network_instance",
     ///         Region = "fr-par",
     ///     });
     /// 
-    ///     var @base = new Scaleway.InstanceServer("base", new()
+    ///     var @base = new Scaleway.Instance.Server("base", new()
     ///     {
     ///         Image = "ubuntu_jammy",
     ///         Type = "DEV1-S",
     ///         Zone = pn01.Zone,
     ///     });
     /// 
-    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
     ///     {
     ///         ServerId = @base.Id,
     ///         PrivateNetworkId = pn01.Id,
@@ -78,40 +78,40 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var vpc01 = new Scaleway.Vpc("vpc01", new()
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
     ///     {
     ///         Name = "vpc_instance",
     ///     });
     /// 
-    ///     var pn01 = new Scaleway.VpcPrivateNetwork("pn01", new()
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
     ///     {
     ///         Name = "private_network_instance",
-    ///         Ipv4Subnet = new Scaleway.Inputs.VpcPrivateNetworkIpv4SubnetArgs
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
     ///         {
     ///             Subnet = "172.16.64.0/22",
     ///         },
     ///         VpcId = vpc01.Id,
     ///     });
     /// 
-    ///     var ip01 = new Scaleway.IpamIp("ip01", new()
+    ///     var ip01 = new Scaleway.Ipam.Ip("ip01", new()
     ///     {
     ///         Address = "172.16.64.7",
     ///         Sources = new[]
     ///         {
-    ///             new Scaleway.Inputs.IpamIpSourceArgs
+    ///             new Scaleway.Ipam.Inputs.IpSourceArgs
     ///             {
     ///                 PrivateNetworkId = pn01.Id,
     ///             },
     ///         },
     ///     });
     /// 
-    ///     var server01 = new Scaleway.InstanceServer("server01", new()
+    ///     var server01 = new Scaleway.Instance.Server("server01", new()
     ///     {
     ///         Image = "ubuntu_focal",
     ///         Type = "PLAY2-MICRO",
     ///     });
     /// 
-    ///     var pnic01 = new Scaleway.InstancePrivateNic("pnic01", new()
+    ///     var pnic01 = new Scaleway.Instance.PrivateNic("pnic01", new()
     ///     {
     ///         PrivateNetworkId = pn01.Id,
     ///         ServerId = server01.Id,
@@ -134,6 +134,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/instancePrivateNic:InstancePrivateNic pnic01 fr-par-1/11111111-1111-1111-1111-111111111111/22222222-2222-2222-2222-222222222222
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/instanceprivatenic.InstancePrivateNic has been deprecated in favor of scaleway.instance/privatenic.PrivateNic")]
     [ScalewayResourceType("scaleway:index/instancePrivateNic:InstancePrivateNic")]
     public partial class InstancePrivateNic : global::Pulumi.CustomResource
     {

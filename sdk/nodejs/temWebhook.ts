@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.TemWebhook("main", {
+ * const main = new scaleway.tem.Webhook("main", {
  *     domainId: "your-domain-id",
  *     eventTypes: [
  *         "email_delivered",
@@ -35,47 +35,47 @@ import * as utilities from "./utilities";
  *
  * const config = new pulumi.Config();
  * const domainName = config.require("domainName");
- * const sns = new scaleway.MnqSns("sns", {});
- * const snsCredentials = new scaleway.MnqSnsCredentials("sns_credentials", {permissions: {
+ * const sns = new scaleway.mnq.Sns("sns", {});
+ * const snsCredentials = new scaleway.mnq.SnsCredentials("sns_credentials", {permissions: {
  *     canManage: true,
  * }});
- * const snsTopic = new scaleway.MnqSnsTopic("sns_topic", {
+ * const snsTopic = new scaleway.mnq.SnsTopic("sns_topic", {
  *     name: "test-mnq-sns-topic-basic",
  *     accessKey: snsCredentials.accessKey,
  *     secretKey: snsCredentials.secretKey,
  * });
- * const cr01 = new scaleway.TemDomain("cr01", {
+ * const cr01 = new scaleway.tem.Domain("cr01", {
  *     name: domainName,
  *     acceptTos: true,
  * });
- * const spf = new scaleway.DomainRecord("spf", {
+ * const spf = new scaleway.domain.Record("spf", {
  *     dnsZone: domainName,
  *     type: "TXT",
  *     data: pulumi.interpolate`v=spf1 ${cr01.spfConfig} -all`,
  * });
- * const dkim = new scaleway.DomainRecord("dkim", {
+ * const dkim = new scaleway.domain.Record("dkim", {
  *     dnsZone: domainName,
  *     name: pulumi.interpolate`${cr01.projectId}._domainkey`,
  *     type: "TXT",
  *     data: cr01.dkimConfig,
  * });
- * const mx = new scaleway.DomainRecord("mx", {
+ * const mx = new scaleway.domain.Record("mx", {
  *     dnsZone: domainName,
  *     type: "MX",
  *     data: ".",
  * });
- * const dmarc = new scaleway.DomainRecord("dmarc", {
+ * const dmarc = new scaleway.domain.Record("dmarc", {
  *     dnsZone: domainName,
  *     name: cr01.dmarcName,
  *     type: "TXT",
  *     data: cr01.dmarcConfig,
  * });
- * const valid = new scaleway.TemDomainValidation("valid", {
+ * const valid = new scaleway.tem.DomainValidation("valid", {
  *     domainId: cr01.id,
  *     region: cr01.region,
  *     timeout: 3600,
  * });
- * const webhook = new scaleway.TemWebhook("webhook", {
+ * const webhook = new scaleway.tem.Webhook("webhook", {
  *     name: "example-webhook",
  *     domainId: cr01.id,
  *     eventTypes: [
@@ -100,6 +100,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/temWebhook:TemWebhook main fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook
  */
 export class TemWebhook extends pulumi.CustomResource {
     /**
@@ -112,6 +114,7 @@ export class TemWebhook extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: TemWebhookState, opts?: pulumi.CustomResourceOptions): TemWebhook {
+        pulumi.log.warn("TemWebhook is deprecated: scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook")
         return new TemWebhook(name, <any>state, { ...opts, id: id });
     }
 
@@ -173,8 +176,11 @@ export class TemWebhook extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook */
     constructor(name: string, args: TemWebhookArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook */
     constructor(name: string, argsOrState?: TemWebhookArgs | TemWebhookState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("TemWebhook is deprecated: scaleway.index/temwebhook.TemWebhook has been deprecated in favor of scaleway.tem/webhook.Webhook")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

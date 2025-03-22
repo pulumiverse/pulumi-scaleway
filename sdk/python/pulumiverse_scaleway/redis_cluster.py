@@ -638,7 +638,12 @@ class _RedisClusterState:
         pulumi.set(self, "zone", value)
 
 
+warnings.warn("""scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster""", DeprecationWarning)
+
+
 class RedisCluster(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -670,7 +675,7 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RedisCluster("main",
+        main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -694,7 +699,7 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RedisCluster("main",
+        main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -712,8 +717,8 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", name="private-network")
-        main = scaleway.RedisCluster("main",
+        pn = scaleway.network.PrivateNetwork("pn", name="private-network")
+        main = scaleway.redis.Cluster("main",
             name="test_redis_endpoints",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -800,7 +805,7 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RedisCluster("main",
+        main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -824,7 +829,7 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.RedisCluster("main",
+        main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -842,8 +847,8 @@ class RedisCluster(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        pn = scaleway.VpcPrivateNetwork("pn", name="private-network")
-        main = scaleway.RedisCluster("main",
+        pn = scaleway.network.PrivateNetwork("pn", name="private-network")
+        main = scaleway.redis.Cluster("main",
             name="test_redis_endpoints",
             version="6.2.7",
             node_type="RED1-MICRO",
@@ -897,6 +902,7 @@ class RedisCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
+        pulumi.log.warn("""RedisCluster is deprecated: scaleway.index/rediscluster.RedisCluster has been deprecated in favor of scaleway.redis/cluster.Cluster""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

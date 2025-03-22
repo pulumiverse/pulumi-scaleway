@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.DatabaseInstance("main", new()
+    ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
     ///         NodeType = "DB-DEV-S",
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
     ///         Special = true,
     ///     });
     /// 
-    ///     var dbAdmin = new Scaleway.DatabaseUser("db_admin", new()
+    ///     var dbAdmin = new Scaleway.Databases.User("db_admin", new()
     ///     {
     ///         InstanceId = main.Id,
     ///         Name = "devtools",
@@ -65,6 +65,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/databaseUser:DatabaseUser admin fr-par/11111111-1111-1111-1111-111111111111/admin
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/databaseuser.DatabaseUser has been deprecated in favor of scaleway.databases/user.User")]
     [ScalewayResourceType("scaleway:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : global::Pulumi.CustomResource
     {

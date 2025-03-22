@@ -18,16 +18,18 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const byName = scaleway.getLoadbalancer({
+ * const byName = scaleway.loadbalancers.getLoadBalancer({
  *     name: "foobar",
  * });
  * // Get info by ID
- * const byId = scaleway.getLoadbalancer({
+ * const byId = scaleway.loadbalancers.getLoadBalancer({
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer */
 export function getLoadbalancer(args?: GetLoadbalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadbalancerResult> {
+    pulumi.log.warn("getLoadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getLoadbalancer:getLoadbalancer", {
@@ -110,16 +112,18 @@ export interface GetLoadbalancerResult {
  * import * as scaleway from "@pulumi/scaleway";
  *
  * // Get info by name
- * const byName = scaleway.getLoadbalancer({
+ * const byName = scaleway.loadbalancers.getLoadBalancer({
  *     name: "foobar",
  * });
  * // Get info by ID
- * const byId = scaleway.getLoadbalancer({
+ * const byId = scaleway.loadbalancers.getLoadBalancer({
  *     lbId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer */
 export function getLoadbalancerOutput(args?: GetLoadbalancerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadbalancerResult> {
+    pulumi.log.warn("getLoadbalancer is deprecated: scaleway.index/getloadbalancer.getLoadbalancer has been deprecated in favor of scaleway.loadbalancers/getloadbalancer.getLoadBalancer")
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getLoadbalancer:getLoadbalancer", {

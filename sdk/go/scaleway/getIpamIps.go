@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.GetIpamIps(ctx, &scaleway.GetIpamIpsArgs{
+//			_, err := ipam.GetIps(ctx, &ipam.GetIpsArgs{
 //				Tags: []string{
 //					"tag",
 //				},
@@ -53,36 +53,38 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := scaleway.NewVpc(ctx, "vpc01", &scaleway.VpcArgs{
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
 //				Name: pulumi.String("my vpc"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			pn01, err := scaleway.NewVpcPrivateNetwork(ctx, "pn01", &scaleway.VpcPrivateNetworkArgs{
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
 //				VpcId: vpc01.ID(),
-//				Ipv4Subnet: &scaleway.VpcPrivateNetworkIpv4SubnetArgs{
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
 //					Subnet: pulumi.String("172.16.32.0/22"),
 //				},
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			redis01, err := scaleway.NewRedisCluster(ctx, "redis01", &scaleway.RedisClusterArgs{
+//			redis01, err := redis.NewCluster(ctx, "redis01", &redis.ClusterArgs{
 //				Name:        pulumi.String("my_redis_cluster"),
 //				Version:     pulumi.String("7.0.5"),
 //				NodeType:    pulumi.String("RED1-XS"),
 //				UserName:    pulumi.String("my_initial_user"),
 //				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
 //				ClusterSize: pulumi.Int(3),
-//				PrivateNetworks: scaleway.RedisClusterPrivateNetworkArray{
-//					&scaleway.RedisClusterPrivateNetworkArgs{
+//				PrivateNetworks: redis.ClusterPrivateNetworkArray{
+//					&redis.ClusterPrivateNetworkArgs{
 //						Id: pn01.ID(),
 //					},
 //				},
@@ -90,9 +92,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = scaleway.GetIpamIpsOutput(ctx, scaleway.GetIpamIpsOutputArgs{
+//			_ = ipam.GetIpsOutput(ctx, ipam.GetIpsOutputArgs{
 //				Type: pulumi.String("ipv4"),
-//				Resource: &scaleway.GetIpamIpsResourceArgs{
+//				Resource: &ipam.GetIpsResourceArgs{
 //					Id:   redis01.ID(),
 //					Type: pulumi.String("redis_cluster"),
 //				},
@@ -102,6 +104,8 @@ import (
 //	}
 //
 // ```
+//
+// Deprecated: scaleway.index/getipamips.getIpamIps has been deprecated in favor of scaleway.ipam/getips.getIps
 func GetIpamIps(ctx *pulumi.Context, args *GetIpamIpsArgs, opts ...pulumi.InvokeOption) (*GetIpamIpsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpamIpsResult

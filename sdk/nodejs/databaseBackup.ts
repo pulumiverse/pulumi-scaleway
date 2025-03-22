@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseInstance("main", {
+ * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
@@ -25,11 +25,11 @@ import * as utilities from "./utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const mainDatabase = new scaleway.Database("main", {
+ * const mainDatabase = new scaleway.databases.Database("main", {
  *     instanceId: main.id,
  *     name: "database",
  * });
- * const mainDatabaseBackup = new scaleway.DatabaseBackup("main", {
+ * const mainDatabaseBackup = new scaleway.databases.DatabaseBackup("main", {
  *     instanceId: main.id,
  *     databaseName: mainDatabase.name,
  * });
@@ -41,7 +41,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.DatabaseBackup("main", {
+ * const main = new scaleway.databases.DatabaseBackup("main", {
  *     instanceId: mainScalewayRdbInstance.id,
  *     databaseName: mainScalewayRdbDatabase.name,
  *     expiresAt: "2022-06-16T07:48:44Z",
@@ -57,6 +57,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/databaseBackup:DatabaseBackup mybackup fr-par/11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup
  */
 export class DatabaseBackup extends pulumi.CustomResource {
     /**
@@ -69,6 +71,7 @@ export class DatabaseBackup extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: DatabaseBackupState, opts?: pulumi.CustomResourceOptions): DatabaseBackup {
+        pulumi.log.warn("DatabaseBackup is deprecated: scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup")
         return new DatabaseBackup(name, <any>state, { ...opts, id: id });
     }
 
@@ -134,8 +137,11 @@ export class DatabaseBackup extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup */
     constructor(name: string, args: DatabaseBackupArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup */
     constructor(name: string, argsOrState?: DatabaseBackupArgs | DatabaseBackupState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("DatabaseBackup is deprecated: scaleway.index/databasebackup.DatabaseBackup has been deprecated in favor of scaleway.databases/databasebackup.DatabaseBackup")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

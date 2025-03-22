@@ -21,13 +21,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewInstanceIp(ctx, "server_ip", nil)
+//			_, err := instance.NewIp(ctx, "server_ip", nil)
 //			if err != nil {
 //				return err
 //			}
@@ -46,6 +46,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/instanceIp:InstanceIp server_ip fr-par-1/11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/instanceip.InstanceIp has been deprecated in favor of scaleway.instance/ip.Ip
 type InstanceIp struct {
 	pulumi.CustomResourceState
 
