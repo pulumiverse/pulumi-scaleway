@@ -177,6 +177,10 @@ export class Frontend extends pulumi.CustomResource {
      */
     public readonly certificateIds!: pulumi.Output<string[] | undefined>;
     /**
+     * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+     */
+    public readonly connectionRateLimit!: pulumi.Output<number | undefined>;
+    /**
      * Activates HTTP/3 protocol.
      */
     public readonly enableHttp3!: pulumi.Output<boolean | undefined>;
@@ -219,6 +223,7 @@ export class Frontend extends pulumi.CustomResource {
             resourceInputs["backendId"] = state ? state.backendId : undefined;
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["certificateIds"] = state ? state.certificateIds : undefined;
+            resourceInputs["connectionRateLimit"] = state ? state.connectionRateLimit : undefined;
             resourceInputs["enableHttp3"] = state ? state.enableHttp3 : undefined;
             resourceInputs["externalAcls"] = state ? state.externalAcls : undefined;
             resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
@@ -239,6 +244,7 @@ export class Frontend extends pulumi.CustomResource {
             resourceInputs["acls"] = args ? args.acls : undefined;
             resourceInputs["backendId"] = args ? args.backendId : undefined;
             resourceInputs["certificateIds"] = args ? args.certificateIds : undefined;
+            resourceInputs["connectionRateLimit"] = args ? args.connectionRateLimit : undefined;
             resourceInputs["enableHttp3"] = args ? args.enableHttp3 : undefined;
             resourceInputs["externalAcls"] = args ? args.externalAcls : undefined;
             resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
@@ -280,6 +286,10 @@ export interface FrontendState {
      * > **Important:** Certificates are not allowed on port 80.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+     */
+    connectionRateLimit?: pulumi.Input<number>;
     /**
      * Activates HTTP/3 protocol.
      */
@@ -327,6 +337,10 @@ export interface FrontendArgs {
      * > **Important:** Certificates are not allowed on port 80.
      */
     certificateIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+     */
+    connectionRateLimit?: pulumi.Input<number>;
     /**
      * Activates HTTP/3 protocol.
      */

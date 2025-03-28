@@ -8,6 +8,9 @@ import * as utilities from "../utilities";
  * Creates and manages Scaleway flexible IPs.
  * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
  *
+ * > **Note:**
+ * Flexible IPs are exclusively available for Elastic Metal (bare metal) servers. They are not compatible with other Scaleway products.
+ *
  * ## Example Usage
  *
  * ### Basic
@@ -152,7 +155,7 @@ export class Ip extends pulumi.CustomResource {
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
-     * The zone of the Flexible IP.
+     * `zone`) The zone of the Flexible IP.
      */
     public readonly zone!: pulumi.Output<string>;
 
@@ -252,7 +255,7 @@ export interface IpState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The zone of the Flexible IP.
+     * `zone`) The zone of the Flexible IP.
      */
     zone?: pulumi.Input<string>;
 }
@@ -286,7 +289,7 @@ export interface IpArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The zone of the Flexible IP.
+     * `zone`) The zone of the Flexible IP.
      */
     zone?: pulumi.Input<string>;
 }

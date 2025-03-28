@@ -1451,7 +1451,7 @@ class GetBackendsBackendHealthCheckHttpResult(dict):
         :param str host_header: The HTTP host header to use for health check requests.
         :param str method: The HTTP method to use for health check requests.
         :param str sni: The SNI to use for HC requests over SSL.
-        :param str uri: The HTTPS endpoint URL to call for health check requests.
+        :param str uri: The path of health check requests.
         """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "host_header", host_header)
@@ -1495,7 +1495,7 @@ class GetBackendsBackendHealthCheckHttpResult(dict):
     @pulumi.getter
     def uri(self) -> str:
         """
-        The HTTPS endpoint URL to call for health check requests.
+        The path of health check requests.
         """
         return pulumi.get(self, "uri")
 
@@ -2414,6 +2414,7 @@ class GetRoutesRouteResult(dict):
                  id: str,
                  match_host_header: str,
                  match_sni: str,
+                 match_subdomains: bool,
                  update_at: str):
         """
         :param str backend_id: The backend ID to redirect to
@@ -2422,6 +2423,7 @@ class GetRoutesRouteResult(dict):
         :param str id: The associated route ID.
         :param str match_host_header: Specifies the host of the server to which the request is being sent.
         :param str match_sni: Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
+        :param bool match_subdomains: If true, all subdomains will match.
         :param str update_at: The date on which the route was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "backend_id", backend_id)
@@ -2430,6 +2432,7 @@ class GetRoutesRouteResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "match_host_header", match_host_header)
         pulumi.set(__self__, "match_sni", match_sni)
+        pulumi.set(__self__, "match_subdomains", match_subdomains)
         pulumi.set(__self__, "update_at", update_at)
 
     @property
@@ -2479,6 +2482,14 @@ class GetRoutesRouteResult(dict):
         Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
         """
         return pulumi.get(self, "match_sni")
+
+    @property
+    @pulumi.getter(name="matchSubdomains")
+    def match_subdomains(self) -> bool:
+        """
+        If true, all subdomains will match.
+        """
+        return pulumi.get(self, "match_subdomains")
 
     @property
     @pulumi.getter(name="updateAt")

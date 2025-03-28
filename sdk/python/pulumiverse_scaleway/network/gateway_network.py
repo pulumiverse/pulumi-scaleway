@@ -34,26 +34,42 @@ class GatewayNetworkArgs:
         The set of arguments for constructing a GatewayNetwork resource.
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
-        :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
-        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        :param pulumi.Input[bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        :param pulumi.Input[str] dhcp_id: Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[bool] enable_dhcp: Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
+               
+               > **Important:**
+               In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+               For more information, please refer to the dedicated guide.
         """
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "private_network_id", private_network_id)
         if cleanup_dhcp is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""cleanup_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+        if cleanup_dhcp is not None:
             pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if dhcp_id is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""dhcp_id is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+        if dhcp_id is not None:
             pulumi.set(__self__, "dhcp_id", dhcp_id)
+        if enable_dhcp is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""enable_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
         if enable_dhcp is not None:
             pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
             pulumi.set(__self__, "enable_masquerade", enable_masquerade)
         if ipam_configs is not None:
             pulumi.set(__self__, "ipam_configs", ipam_configs)
+        if static_address is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""static_address is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
         if static_address is not None:
             pulumi.set(__self__, "static_address", static_address)
         if zone is not None:
@@ -85,9 +101,10 @@ class GatewayNetworkArgs:
 
     @property
     @pulumi.getter(name="cleanupDhcp")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def cleanup_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         """
         return pulumi.get(self, "cleanup_dhcp")
 
@@ -97,9 +114,10 @@ class GatewayNetworkArgs:
 
     @property
     @pulumi.getter(name="dhcpId")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def dhcp_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
@@ -109,9 +127,10 @@ class GatewayNetworkArgs:
 
     @property
     @pulumi.getter(name="enableDhcp")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def enable_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
@@ -123,7 +142,7 @@ class GatewayNetworkArgs:
     @pulumi.getter(name="enableMasquerade")
     def enable_masquerade(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         """
         return pulumi.get(self, "enable_masquerade")
 
@@ -145,9 +164,10 @@ class GatewayNetworkArgs:
 
     @property
     @pulumi.getter(name="staticAddress")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -160,6 +180,10 @@ class GatewayNetworkArgs:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the gateway network should be created.
+
+        > **Important:**
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        For more information, please refer to the dedicated guide.
         """
         return pulumi.get(self, "zone")
 
@@ -186,26 +210,39 @@ class _GatewayNetworkState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering GatewayNetwork resources.
-        :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        :param pulumi.Input[bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] created_at: The date and time of the creation of the GatewayNetwork.
-        :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
-        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        :param pulumi.Input[str] dhcp_id: Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[bool] enable_dhcp: Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the GatewayNetwork.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
+               
+               > **Important:**
+               In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+               For more information, please refer to the dedicated guide.
         """
+        if cleanup_dhcp is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""cleanup_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
         if cleanup_dhcp is not None:
             pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dhcp_id is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""dhcp_id is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+        if dhcp_id is not None:
             pulumi.set(__self__, "dhcp_id", dhcp_id)
+        if enable_dhcp is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""enable_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
         if enable_dhcp is not None:
             pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
@@ -219,6 +256,9 @@ class _GatewayNetworkState:
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if static_address is not None:
+            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""static_address is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+        if static_address is not None:
             pulumi.set(__self__, "static_address", static_address)
         if status is not None:
             pulumi.set(__self__, "status", status)
@@ -229,9 +269,10 @@ class _GatewayNetworkState:
 
     @property
     @pulumi.getter(name="cleanupDhcp")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def cleanup_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         """
         return pulumi.get(self, "cleanup_dhcp")
 
@@ -253,9 +294,10 @@ class _GatewayNetworkState:
 
     @property
     @pulumi.getter(name="dhcpId")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def dhcp_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
@@ -265,9 +307,10 @@ class _GatewayNetworkState:
 
     @property
     @pulumi.getter(name="enableDhcp")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def enable_dhcp(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
@@ -279,7 +322,7 @@ class _GatewayNetworkState:
     @pulumi.getter(name="enableMasquerade")
     def enable_masquerade(self) -> Optional[pulumi.Input[bool]]:
         """
-        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         """
         return pulumi.get(self, "enable_masquerade")
 
@@ -337,9 +380,10 @@ class _GatewayNetworkState:
 
     @property
     @pulumi.getter(name="staticAddress")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -376,6 +420,10 @@ class _GatewayNetworkState:
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
         `zone`) The zone in which the gateway network should be created.
+
+        > **Important:**
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        For more information, please refer to the dedicated guide.
         """
         return pulumi.get(self, "zone")
 
@@ -402,8 +450,8 @@ class GatewayNetwork(pulumi.CustomResource):
         """
         Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
 
-        It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
-        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+        It allows the attachment of Private Networks to Public Gateways.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
         ## Example Usage
 
@@ -461,47 +509,6 @@ class GatewayNetwork(pulumi.CustomResource):
                 "push_default_route": True,
                 "ipam_ip_id": ip01.id,
             }])
-        ```
-
-        ### Create a GatewayNetwork with DHCP
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
-        gw01 = scaleway.network.PublicGatewayIp("gw01")
-        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01",
-            subnet="192.168.1.0/24",
-            push_default_route=True)
-        pg01 = scaleway.network.PublicGateway("pg01",
-            name="foobar",
-            type="VPC-GW-S",
-            ip_id=gw01.id)
-        main = scaleway.network.GatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ```
-
-        ### Create a GatewayNetwork with a static IP address
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
-        pg01 = scaleway.network.PublicGateway("pg01",
-            name="foobar",
-            type="VPC-GW-S")
-        main = scaleway.network.GatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            enable_dhcp=False,
-            enable_masquerade=True,
-            static_address="192.168.1.42/24")
         ```
 
         ## Import
@@ -516,15 +523,19 @@ class GatewayNetwork(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
-        :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
-        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        :param pulumi.Input[bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        :param pulumi.Input[str] dhcp_id: Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[bool] enable_dhcp: Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
+               
+               > **Important:**
+               In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+               For more information, please refer to the dedicated guide.
         """
         ...
     @overload
@@ -535,8 +546,8 @@ class GatewayNetwork(pulumi.CustomResource):
         """
         Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
 
-        It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
-        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+        It allows the attachment of Private Networks to Public Gateways.
+        For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
 
         ## Example Usage
 
@@ -594,47 +605,6 @@ class GatewayNetwork(pulumi.CustomResource):
                 "push_default_route": True,
                 "ipam_ip_id": ip01.id,
             }])
-        ```
-
-        ### Create a GatewayNetwork with DHCP
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
-        gw01 = scaleway.network.PublicGatewayIp("gw01")
-        dhcp01 = scaleway.network.PublicGatewayDhcp("dhcp01",
-            subnet="192.168.1.0/24",
-            push_default_route=True)
-        pg01 = scaleway.network.PublicGateway("pg01",
-            name="foobar",
-            type="VPC-GW-S",
-            ip_id=gw01.id)
-        main = scaleway.network.GatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            dhcp_id=dhcp01.id,
-            cleanup_dhcp=True,
-            enable_masquerade=True)
-        ```
-
-        ### Create a GatewayNetwork with a static IP address
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01", name="pn_test_network")
-        pg01 = scaleway.network.PublicGateway("pg01",
-            name="foobar",
-            type="VPC-GW-S")
-        main = scaleway.network.GatewayNetwork("main",
-            gateway_id=pg01.id,
-            private_network_id=pn01.id,
-            enable_dhcp=False,
-            enable_masquerade=True,
-            static_address="192.168.1.42/24")
         ```
 
         ## Import
@@ -729,19 +699,23 @@ class GatewayNetwork(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] cleanup_dhcp: Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        :param pulumi.Input[bool] cleanup_dhcp: Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         :param pulumi.Input[str] created_at: The date and time of the creation of the GatewayNetwork.
-        :param pulumi.Input[str] dhcp_id: The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
-        :param pulumi.Input[bool] enable_dhcp: Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
-        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        :param pulumi.Input[str] dhcp_id: Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[bool] enable_dhcp: Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[str] static_address: Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the GatewayNetwork.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
+               
+               > **Important:**
+               In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+               For more information, please refer to the dedicated guide.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -764,9 +738,10 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cleanupDhcp")
-    def cleanup_dhcp(self) -> pulumi.Output[Optional[bool]]:
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    def cleanup_dhcp(self) -> pulumi.Output[bool]:
         """
-        Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         """
         return pulumi.get(self, "cleanup_dhcp")
 
@@ -780,17 +755,19 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="dhcpId")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def dhcp_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "dhcp_id")
 
     @property
     @pulumi.getter(name="enableDhcp")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def enable_dhcp(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         """
         return pulumi.get(self, "enable_dhcp")
 
@@ -798,7 +775,7 @@ class GatewayNetwork(pulumi.CustomResource):
     @pulumi.getter(name="enableMasquerade")
     def enable_masquerade(self) -> pulumi.Output[Optional[bool]]:
         """
-        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         """
         return pulumi.get(self, "enable_masquerade")
 
@@ -836,9 +813,10 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="staticAddress")
+    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> pulumi.Output[str]:
         """
-        Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -863,6 +841,10 @@ class GatewayNetwork(pulumi.CustomResource):
     def zone(self) -> pulumi.Output[str]:
         """
         `zone`) The zone in which the gateway network should be created.
+
+        > **Important:**
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        For more information, please refer to the dedicated guide.
         """
         return pulumi.get(self, "zone")
 

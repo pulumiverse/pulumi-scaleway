@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { BlockedListArgs, BlockedListState } from "./blockedList";
+export type BlockedList = import("./blockedList").BlockedList;
+export const BlockedList: typeof import("./blockedList").BlockedList = null as any;
+utilities.lazyLoad(exports, ["BlockedList"], () => require("./blockedList"));
+
 export { DomainArgs, DomainState } from "./domain";
 export type Domain = import("./domain").Domain;
 export const Domain: typeof import("./domain").Domain = null as any;
@@ -20,6 +25,11 @@ export const getDomain: typeof import("./getDomain").getDomain = null as any;
 export const getDomainOutput: typeof import("./getDomain").getDomainOutput = null as any;
 utilities.lazyLoad(exports, ["getDomain","getDomainOutput"], () => require("./getDomain"));
 
+export { GetOfferSubscriptionArgs, GetOfferSubscriptionResult, GetOfferSubscriptionOutputArgs } from "./getOfferSubscription";
+export const getOfferSubscription: typeof import("./getOfferSubscription").getOfferSubscription = null as any;
+export const getOfferSubscriptionOutput: typeof import("./getOfferSubscription").getOfferSubscriptionOutput = null as any;
+utilities.lazyLoad(exports, ["getOfferSubscription","getOfferSubscriptionOutput"], () => require("./getOfferSubscription"));
+
 export { WebhookArgs, WebhookState } from "./webhook";
 export type Webhook = import("./webhook").Webhook;
 export const Webhook: typeof import("./webhook").Webhook = null as any;
@@ -30,6 +40,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:tem/blockedList:BlockedList":
+                return new BlockedList(name, <any>undefined, { urn })
             case "scaleway:tem/domain:Domain":
                 return new Domain(name, <any>undefined, { urn })
             case "scaleway:tem/domainValidation:DomainValidation":
@@ -41,6 +53,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "tem/blockedList", _module)
 pulumi.runtime.registerResourceModule("scaleway", "tem/domain", _module)
 pulumi.runtime.registerResourceModule("scaleway", "tem/domainValidation", _module)
 pulumi.runtime.registerResourceModule("scaleway", "tem/webhook", _module)

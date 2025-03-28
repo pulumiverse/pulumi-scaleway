@@ -35,6 +35,7 @@ class TemDomainArgs:
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+               > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         """
         pulumi.set(__self__, "accept_tos", accept_tos)
         if autoconfig is not None:
@@ -101,6 +102,7 @@ class TemDomainArgs:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the domain should be created.
+        > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         """
         return pulumi.get(self, "region")
 
@@ -153,6 +155,7 @@ class _TemDomainState:
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+               > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         :param pulumi.Input[Sequence[pulumi.Input['TemDomainReputationArgs']]] reputations: The domain's reputation.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
         :param pulumi.Input[str] smtp_host: The SMTP host to use to send emails.
@@ -369,6 +372,7 @@ class _TemDomainState:
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`). The region in which the domain should be created.
+        > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         """
         return pulumi.get(self, "region")
 
@@ -606,6 +610,7 @@ class TemDomain(pulumi.CustomResource):
                > **Important:** Updates to `name` will recreate the domain.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+               > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         """
         ...
     @overload
@@ -797,6 +802,7 @@ class TemDomain(pulumi.CustomResource):
         :param pulumi.Input[str] next_check_at: The date and time of the next scheduled check (RFC 3339 format).
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the domain is associated with.
         :param pulumi.Input[str] region: `region`). The region in which the domain should be created.
+               > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         :param pulumi.Input[Sequence[pulumi.Input[Union['TemDomainReputationArgs', 'TemDomainReputationArgsDict']]]] reputations: The domain's reputation.
         :param pulumi.Input[str] revoked_at: The date and time of the revocation of the domain (RFC 3339 format).
         :param pulumi.Input[str] smtp_host: The SMTP host to use to send emails.
@@ -943,6 +949,7 @@ class TemDomain(pulumi.CustomResource):
     def region(self) -> pulumi.Output[str]:
         """
         `region`). The region in which the domain should be created.
+        > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         """
         return pulumi.get(self, "region")
 

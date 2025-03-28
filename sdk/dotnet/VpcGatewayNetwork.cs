@@ -13,8 +13,8 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Creates and manages GatewayNetworks (connections between a Public Gateway and a Private Network).
     /// 
-    /// It allows the attachment of Private Networks to Public Gateways and DHCP configurations.
-    /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
+    /// It allows the attachment of Private Networks to Public Gateways.
+    /// For more information, see [the API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#step-3-attach-private-networks-to-the-vpc-public-gateway).
     /// 
     /// ## Example Usage
     /// 
@@ -127,81 +127,6 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Create a GatewayNetwork with DHCP
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
-    ///     {
-    ///         Name = "pn_test_network",
-    ///     });
-    /// 
-    ///     var gw01 = new Scaleway.Network.PublicGatewayIp("gw01");
-    /// 
-    ///     var dhcp01 = new Scaleway.Network.PublicGatewayDhcp("dhcp01", new()
-    ///     {
-    ///         Subnet = "192.168.1.0/24",
-    ///         PushDefaultRoute = true,
-    ///     });
-    /// 
-    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
-    ///     {
-    ///         Name = "foobar",
-    ///         Type = "VPC-GW-S",
-    ///         IpId = gw01.Id,
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
-    ///     {
-    ///         GatewayId = pg01.Id,
-    ///         PrivateNetworkId = pn01.Id,
-    ///         DhcpId = dhcp01.Id,
-    ///         CleanupDhcp = true,
-    ///         EnableMasquerade = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Create a GatewayNetwork with a static IP address
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
-    ///     {
-    ///         Name = "pn_test_network",
-    ///     });
-    /// 
-    ///     var pg01 = new Scaleway.Network.PublicGateway("pg01", new()
-    ///     {
-    ///         Name = "foobar",
-    ///         Type = "VPC-GW-S",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Network.GatewayNetwork("main", new()
-    ///     {
-    ///         GatewayId = pg01.Id,
-    ///         PrivateNetworkId = pn01.Id,
-    ///         EnableDhcp = false,
-    ///         EnableMasquerade = true,
-    ///         StaticAddress = "192.168.1.42/24",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// GatewayNetwork can be imported using `{zone}/{id}`, e.g.
@@ -217,10 +142,10 @@ namespace Pulumiverse.Scaleway
     public partial class VpcGatewayNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Output("cleanupDhcp")]
-        public Output<bool?> CleanupDhcp { get; private set; } = null!;
+        public Output<bool> CleanupDhcp { get; private set; } = null!;
 
         /// <summary>
         /// The date and time of the creation of the GatewayNetwork.
@@ -229,19 +154,19 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("dhcpId")]
         public Output<string?> DhcpId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Output("enableDhcp")]
         public Output<bool?> EnableDhcp { get; private set; } = null!;
 
         /// <summary>
-        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         /// </summary>
         [Output("enableMasquerade")]
         public Output<bool?> EnableMasquerade { get; private set; } = null!;
@@ -271,7 +196,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Output("staticAddress")]
         public Output<string> StaticAddress { get; private set; } = null!;
@@ -290,6 +215,10 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the gateway network should be created.
+        /// 
+        /// &gt; **Important:**
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        /// For more information, please refer to the dedicated guide.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -342,25 +271,25 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcGatewayNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
 
         /// <summary>
-        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         /// </summary>
         [Input("enableMasquerade")]
         public Input<bool>? EnableMasquerade { get; set; }
@@ -390,13 +319,17 @@ namespace Pulumiverse.Scaleway
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
 
         /// <summary>
         /// `zone`) The zone in which the gateway network should be created.
+        /// 
+        /// &gt; **Important:**
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        /// For more information, please refer to the dedicated guide.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -410,7 +343,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcGatewayNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
@@ -422,19 +355,19 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
 
         /// <summary>
-        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork
+        /// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         /// </summary>
         [Input("enableMasquerade")]
         public Input<bool>? EnableMasquerade { get; set; }
@@ -470,7 +403,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
@@ -489,6 +422,10 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `zone`) The zone in which the gateway network should be created.
+        /// 
+        /// &gt; **Important:**
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
+        /// For more information, please refer to the dedicated guide.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

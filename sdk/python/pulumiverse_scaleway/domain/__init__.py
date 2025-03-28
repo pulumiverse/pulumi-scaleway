@@ -8,6 +8,7 @@ import typing
 from .get_record import *
 from .get_zone import *
 from .record import *
+from .registration import *
 from .zone import *
 from ._inputs import *
 from . import outputs

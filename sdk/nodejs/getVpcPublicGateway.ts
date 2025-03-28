@@ -64,6 +64,8 @@ export interface GetVpcPublicGatewayArgs {
  * A collection of values returned by getVpcPublicGateway.
  */
 export interface GetVpcPublicGatewayResult {
+    readonly allowedIpRanges: string[];
+    readonly bandwidth: number;
     readonly bastionEnabled: boolean;
     readonly bastionPort: number;
     readonly createdAt: string;
@@ -73,6 +75,7 @@ export interface GetVpcPublicGatewayResult {
      */
     readonly id: string;
     readonly ipId: string;
+    readonly moveToIpam: boolean;
     readonly name?: string;
     readonly organizationId: string;
     readonly projectId?: string;

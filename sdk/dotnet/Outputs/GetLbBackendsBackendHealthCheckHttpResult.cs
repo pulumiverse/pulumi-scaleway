@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Sni;
         /// <summary>
-        /// The HTTPS endpoint URL to call for health check requests.
+        /// The path of health check requests.
         /// </summary>
         public readonly string Uri;
 

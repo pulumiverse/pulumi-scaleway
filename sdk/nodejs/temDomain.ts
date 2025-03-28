@@ -170,6 +170,7 @@ export class TemDomain extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -350,6 +351,7 @@ export interface TemDomainState {
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     region?: pulumi.Input<string>;
     /**
@@ -422,6 +424,7 @@ export interface TemDomainArgs {
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     region?: pulumi.Input<string>;
 }

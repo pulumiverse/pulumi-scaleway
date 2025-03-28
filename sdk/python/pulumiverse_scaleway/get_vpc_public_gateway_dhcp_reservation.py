@@ -148,6 +148,10 @@ def get_vpc_public_gateway_dhcp_reservation(gateway_network_id: Optional[str] = 
                                             zone: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcPublicGatewayDhcpReservationResult:
     """
+    > **Important:**  The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+    In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+    You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+
     Gets information about a DHCP entry. For further information, please see the
     [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
 
@@ -270,6 +274,10 @@ def get_vpc_public_gateway_dhcp_reservation_output(gateway_network_id: Optional[
                                                    zone: Optional[pulumi.Input[Optional[str]]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetVpcPublicGatewayDhcpReservationResult]:
     """
+    > **Important:**  The data source `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+    In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+    You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+
     Gets information about a DHCP entry. For further information, please see the
     [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
 

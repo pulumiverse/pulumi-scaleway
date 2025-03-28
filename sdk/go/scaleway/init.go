@@ -73,6 +73,24 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
 		r = &DomainZone{}
+	case "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage":
+		r = &EdgeServicesBackendStage{}
+	case "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage":
+		r = &EdgeServicesCacheStage{}
+	case "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage":
+		r = &EdgeServicesDnsStage{}
+	case "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage":
+		r = &EdgeServicesHeadStage{}
+	case "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline":
+		r = &EdgeServicesPipeline{}
+	case "scaleway:index/edgeServicesPlan:EdgeServicesPlan":
+		r = &EdgeServicesPlan{}
+	case "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage":
+		r = &EdgeServicesRouteStage{}
+	case "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage":
+		r = &EdgeServicesTlsStage{}
+	case "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage":
+		r = &EdgeServicesWafStage{}
 	case "scaleway:index/flexibleIp:FlexibleIp":
 		r = &FlexibleIp{}
 	case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
@@ -392,6 +410,51 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/domainZone",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesBackendStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesCacheStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesDnsStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesHeadStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesPipeline",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesPlan",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesRouteStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesTlsStage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/edgeServicesWafStage",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

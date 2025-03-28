@@ -16,7 +16,9 @@ from .. import _utilities
 
 __all__ = [
     'SecretEphemeralPolicy',
+    'SecretVersion',
     'GetSecretEphemeralPolicyResult',
+    'GetSecretVersionResult',
 ]
 
 @pulumi.output_type
@@ -79,6 +81,118 @@ class SecretEphemeralPolicy(dict):
 
 
 @pulumi.output_type
+class SecretVersion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "secretId":
+            suggest = "secret_id"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SecretVersion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SecretVersion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SecretVersion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 description: Optional[str] = None,
+                 latest: Optional[bool] = None,
+                 revision: Optional[str] = None,
+                 secret_id: Optional[str] = None,
+                 status: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        :param str created_at: Date and time of the secret's creation (in RFC 3339 format).
+        :param str description: Description of the secret (e.g. `my-new-description`).
+        :param bool latest: Returns true if the version is the latest.
+        :param str revision: The revision of secret version
+        :param str secret_id: The secret ID associated with this version
+        :param str status: The status of the secret.
+        :param str updated_at: Date and time of the secret's last update (in RFC 3339 format).
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if latest is not None:
+            pulumi.set(__self__, "latest", latest)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        Date and time of the secret's creation (in RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the secret (e.g. `my-new-description`).
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def latest(self) -> Optional[bool]:
+        """
+        Returns true if the version is the latest.
+        """
+        return pulumi.get(self, "latest")
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[str]:
+        """
+        The revision of secret version
+        """
+        return pulumi.get(self, "revision")
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[str]:
+        """
+        The secret ID associated with this version
+        """
+        return pulumi.get(self, "secret_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        The status of the secret.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        """
+        Date and time of the secret's last update (in RFC 3339 format).
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
 class GetSecretEphemeralPolicyResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -116,5 +230,91 @@ class GetSecretEphemeralPolicyResult(dict):
         Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
         """
         return pulumi.get(self, "ttl")
+
+
+@pulumi.output_type
+class GetSecretVersionResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 latest: bool,
+                 revision: str,
+                 secret_id: str,
+                 status: str,
+                 updated_at: str):
+        """
+        :param str created_at: Date and time of secret version's creation (RFC 3339 format)
+        :param str description: Description of the secret version
+        :param bool latest: Returns true if the version is the latest.
+        :param str revision: The revision of secret version
+        :param str secret_id: The ID of the secret.
+               Only one of `name` and `secret_id` should be specified.
+        :param str status: Status of the secret version
+        :param str updated_at: Date and time of secret version's creation (RFC 3339 format)
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "latest", latest)
+        pulumi.set(__self__, "revision", revision)
+        pulumi.set(__self__, "secret_id", secret_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Date and time of secret version's creation (RFC 3339 format)
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of the secret version
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def latest(self) -> bool:
+        """
+        Returns true if the version is the latest.
+        """
+        return pulumi.get(self, "latest")
+
+    @property
+    @pulumi.getter
+    def revision(self) -> str:
+        """
+        The revision of secret version
+        """
+        return pulumi.get(self, "revision")
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> str:
+        """
+        The ID of the secret.
+        Only one of `name` and `secret_id` should be specified.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Status of the secret version
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Date and time of secret version's creation (RFC 3339 format)
+        """
+        return pulumi.get(self, "updated_at")
 
 

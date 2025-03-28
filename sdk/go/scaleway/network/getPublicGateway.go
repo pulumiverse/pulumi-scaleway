@@ -70,13 +70,16 @@ type LookupPublicGatewayArgs struct {
 
 // A collection of values returned by getPublicGateway.
 type LookupPublicGatewayResult struct {
-	BastionEnabled bool   `pulumi:"bastionEnabled"`
-	BastionPort    int    `pulumi:"bastionPort"`
-	CreatedAt      string `pulumi:"createdAt"`
-	EnableSmtp     bool   `pulumi:"enableSmtp"`
+	AllowedIpRanges []string `pulumi:"allowedIpRanges"`
+	Bandwidth       int      `pulumi:"bandwidth"`
+	BastionEnabled  bool     `pulumi:"bastionEnabled"`
+	BastionPort     int      `pulumi:"bastionPort"`
+	CreatedAt       string   `pulumi:"createdAt"`
+	EnableSmtp      bool     `pulumi:"enableSmtp"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                 string   `pulumi:"id"`
 	IpId               string   `pulumi:"ipId"`
+	MoveToIpam         bool     `pulumi:"moveToIpam"`
 	Name               *string  `pulumi:"name"`
 	OrganizationId     string   `pulumi:"organizationId"`
 	ProjectId          *string  `pulumi:"projectId"`
@@ -129,6 +132,14 @@ func (o LookupPublicGatewayResultOutput) ToLookupPublicGatewayResultOutputWithCo
 	return o
 }
 
+func (o LookupPublicGatewayResultOutput) AllowedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupPublicGatewayResult) []string { return v.AllowedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupPublicGatewayResultOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupPublicGatewayResult) int { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
 func (o LookupPublicGatewayResultOutput) BastionEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupPublicGatewayResult) bool { return v.BastionEnabled }).(pulumi.BoolOutput)
 }
@@ -152,6 +163,10 @@ func (o LookupPublicGatewayResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupPublicGatewayResultOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPublicGatewayResult) string { return v.IpId }).(pulumi.StringOutput)
+}
+
+func (o LookupPublicGatewayResultOutput) MoveToIpam() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupPublicGatewayResult) bool { return v.MoveToIpam }).(pulumi.BoolOutput)
 }
 
 func (o LookupPublicGatewayResultOutput) Name() pulumi.StringPtrOutput {

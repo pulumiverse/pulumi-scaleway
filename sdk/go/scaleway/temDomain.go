@@ -189,6 +189,7 @@ type TemDomain struct {
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
+	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The domain's reputation.
 	Reputations TemDomainReputationArrayOutput `pulumi:"reputations"`
@@ -276,6 +277,7 @@ type temDomainState struct {
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
+	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 	Region *string `pulumi:"region"`
 	// The domain's reputation.
 	Reputations []TemDomainReputation `pulumi:"reputations"`
@@ -331,6 +333,7 @@ type TemDomainState struct {
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the domain should be created.
+	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 	Region pulumi.StringPtrInput
 	// The domain's reputation.
 	Reputations TemDomainReputationArrayInput
@@ -372,6 +375,7 @@ type temDomainArgs struct {
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
+	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 	Region *string `pulumi:"region"`
 }
 
@@ -388,6 +392,7 @@ type TemDomainArgs struct {
 	// `projectId`) The ID of the project the domain is associated with.
 	ProjectId pulumi.StringPtrInput
 	// `region`). The region in which the domain should be created.
+	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 	Region pulumi.StringPtrInput
 }
 
@@ -543,6 +548,7 @@ func (o TemDomainOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the domain should be created.
+// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
 func (o TemDomainOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

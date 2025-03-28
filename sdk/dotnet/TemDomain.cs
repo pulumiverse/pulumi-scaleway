@@ -198,6 +198,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `region`). The region in which the domain should be created.
+        /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -343,6 +344,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `region`). The region in which the domain should be created.
+        /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -431,6 +433,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// `region`). The region in which the domain should be created.
+        /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -230,6 +230,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly string MatchHostHeader;
         public readonly string MatchSni;
+        public readonly bool MatchSubdomains;
         public readonly string RouteId;
         public readonly string UpdatedAt;
 
@@ -247,6 +248,8 @@ namespace Pulumiverse.Scaleway
 
             string matchSni,
 
+            bool matchSubdomains,
+
             string routeId,
 
             string updatedAt)
@@ -257,6 +260,7 @@ namespace Pulumiverse.Scaleway
             Id = id;
             MatchHostHeader = matchHostHeader;
             MatchSni = matchSni;
+            MatchSubdomains = matchSubdomains;
             RouteId = routeId;
             UpdatedAt = updatedAt;
         }

@@ -34,7 +34,7 @@ class FlexibleIpArgs:
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
-        :param pulumi.Input[str] zone: The zone of the Flexible IP.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Flexible IP.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -127,7 +127,7 @@ class FlexibleIpArgs:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone of the Flexible IP.
+        `zone`) The zone of the Flexible IP.
         """
         return pulumi.get(self, "zone")
 
@@ -164,7 +164,7 @@ class _FlexibleIpState:
         :param pulumi.Input[str] status: The status of the flexible IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601).
-        :param pulumi.Input[str] zone: The zone of the Flexible IP.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Flexible IP.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -327,7 +327,7 @@ class _FlexibleIpState:
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
-        The zone of the Flexible IP.
+        `zone`) The zone of the Flexible IP.
         """
         return pulumi.get(self, "zone")
 
@@ -357,6 +357,9 @@ class FlexibleIp(pulumi.CustomResource):
         """
         Creates and manages Scaleway flexible IPs.
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
+
+        > **Note:**
+        Flexible IPs are exclusively available for Elastic Metal (bare metal) servers. They are not compatible with other Scaleway products.
 
         ## Example Usage
 
@@ -430,7 +433,7 @@ class FlexibleIp(pulumi.CustomResource):
         :param pulumi.Input[str] reverse: The reverse domain associated with this flexible IP.
         :param pulumi.Input[str] server_id: The ID of the associated server.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
-        :param pulumi.Input[str] zone: The zone of the Flexible IP.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Flexible IP.
         """
         ...
     @overload
@@ -441,6 +444,9 @@ class FlexibleIp(pulumi.CustomResource):
         """
         Creates and manages Scaleway flexible IPs.
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
+
+        > **Note:**
+        Flexible IPs are exclusively available for Elastic Metal (bare metal) servers. They are not compatible with other Scaleway products.
 
         ## Example Usage
 
@@ -590,7 +596,7 @@ class FlexibleIp(pulumi.CustomResource):
         :param pulumi.Input[str] status: The status of the flexible IP.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the flexible IP.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Flexible IP (Format ISO 8601).
-        :param pulumi.Input[str] zone: The zone of the Flexible IP.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Flexible IP.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -702,7 +708,7 @@ class FlexibleIp(pulumi.CustomResource):
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
         """
-        The zone of the Flexible IP.
+        `zone`) The zone of the Flexible IP.
         """
         return pulumi.get(self, "zone")
 

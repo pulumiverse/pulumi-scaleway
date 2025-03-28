@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'SecretEphemeralPolicyArgs',
     'SecretEphemeralPolicyArgsDict',
+    'SecretVersionArgs',
+    'SecretVersionArgsDict',
 ]
 
 MYPY = False
@@ -90,5 +92,157 @@ class SecretEphemeralPolicyArgs:
     @ttl.setter
     def ttl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ttl", value)
+
+
+if not MYPY:
+    class SecretVersionArgsDict(TypedDict):
+        created_at: NotRequired[pulumi.Input[str]]
+        """
+        Date and time of the secret's creation (in RFC 3339 format).
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Description of the secret (e.g. `my-new-description`).
+        """
+        latest: NotRequired[pulumi.Input[bool]]
+        """
+        Returns true if the version is the latest.
+        """
+        revision: NotRequired[pulumi.Input[str]]
+        """
+        The revision of secret version
+        """
+        secret_id: NotRequired[pulumi.Input[str]]
+        """
+        The secret ID associated with this version
+        """
+        status: NotRequired[pulumi.Input[str]]
+        """
+        The status of the secret.
+        """
+        updated_at: NotRequired[pulumi.Input[str]]
+        """
+        Date and time of the secret's last update (in RFC 3339 format).
+        """
+elif False:
+    SecretVersionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SecretVersionArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 latest: Optional[pulumi.Input[bool]] = None,
+                 revision: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] created_at: Date and time of the secret's creation (in RFC 3339 format).
+        :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[bool] latest: Returns true if the version is the latest.
+        :param pulumi.Input[str] revision: The revision of secret version
+        :param pulumi.Input[str] secret_id: The secret ID associated with this version
+        :param pulumi.Input[str] status: The status of the secret.
+        :param pulumi.Input[str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if latest is not None:
+            pulumi.set(__self__, "latest", latest)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of the secret's creation (in RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the secret (e.g. `my-new-description`).
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def latest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Returns true if the version is the latest.
+        """
+        return pulumi.get(self, "latest")
+
+    @latest.setter
+    def latest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "latest", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        The revision of secret version
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret ID associated with this version
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the secret.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of the secret's last update (in RFC 3339 format).
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
 

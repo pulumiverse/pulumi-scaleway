@@ -39,6 +39,10 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string MatchSni;
         /// <summary>
+        /// If true, all subdomains will match.
+        /// </summary>
+        public readonly bool MatchSubdomains;
+        /// <summary>
         /// The date on which the route was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
@@ -57,6 +61,8 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string matchSni,
 
+            bool matchSubdomains,
+
             string updateAt)
         {
             BackendId = backendId;
@@ -65,6 +71,7 @@ namespace Pulumiverse.Scaleway.Outputs
             Id = id;
             MatchHostHeader = matchHostHeader;
             MatchSni = matchSni;
+            MatchSubdomains = matchSubdomains;
             UpdateAt = updateAt;
         }
     }

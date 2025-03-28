@@ -55,6 +55,18 @@ namespace Pulumiverse.Scaleway
     public partial class VpcPublicGateway : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+        /// </summary>
+        [Output("allowedIpRanges")]
+        public Output<ImmutableArray<string>> AllowedIpRanges { get; private set; } = null!;
+
+        /// <summary>
+        /// The bandwidth available of the gateway
+        /// </summary>
+        [Output("bandwidth")]
+        public Output<int> Bandwidth { get; private set; } = null!;
+
+        /// <summary>
         /// Enable SSH bastion on the gateway.
         /// </summary>
         [Output("bastionEnabled")]
@@ -83,6 +95,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
+
+        /// <summary>
+        /// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+        /// </summary>
+        [Output("moveToIpam")]
+        public Output<bool?> MoveToIpam { get; private set; } = null!;
 
         /// <summary>
         /// The name for the Public Gateway. If not provided it will be randomly generated.
@@ -191,6 +209,18 @@ namespace Pulumiverse.Scaleway
 
     public sealed class VpcPublicGatewayArgs : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpRanges")]
+        private InputList<string>? _allowedIpRanges;
+
+        /// <summary>
+        /// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+        /// </summary>
+        public InputList<string> AllowedIpRanges
+        {
+            get => _allowedIpRanges ?? (_allowedIpRanges = new InputList<string>());
+            set => _allowedIpRanges = value;
+        }
+
         /// <summary>
         /// Enable SSH bastion on the gateway.
         /// </summary>
@@ -214,6 +244,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        /// <summary>
+        /// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+        /// </summary>
+        [Input("moveToIpam")]
+        public Input<bool>? MoveToIpam { get; set; }
 
         /// <summary>
         /// The name for the Public Gateway. If not provided it will be randomly generated.
@@ -251,18 +287,6 @@ namespace Pulumiverse.Scaleway
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
-        [Input("upstreamDnsServers")]
-        private InputList<string>? _upstreamDnsServers;
-
-        /// <summary>
-        /// Override the gateway's default recursive DNS servers, if DNS features are enabled.
-        /// </summary>
-        public InputList<string> UpstreamDnsServers
-        {
-            get => _upstreamDnsServers ?? (_upstreamDnsServers = new InputList<string>());
-            set => _upstreamDnsServers = value;
-        }
-
         /// <summary>
         /// `zone`) The zone in which the Public Gateway should be created.
         /// </summary>
@@ -277,6 +301,24 @@ namespace Pulumiverse.Scaleway
 
     public sealed class VpcPublicGatewayState : global::Pulumi.ResourceArgs
     {
+        [Input("allowedIpRanges")]
+        private InputList<string>? _allowedIpRanges;
+
+        /// <summary>
+        /// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+        /// </summary>
+        public InputList<string> AllowedIpRanges
+        {
+            get => _allowedIpRanges ?? (_allowedIpRanges = new InputList<string>());
+            set => _allowedIpRanges = value;
+        }
+
+        /// <summary>
+        /// The bandwidth available of the gateway
+        /// </summary>
+        [Input("bandwidth")]
+        public Input<int>? Bandwidth { get; set; }
+
         /// <summary>
         /// Enable SSH bastion on the gateway.
         /// </summary>
@@ -306,6 +348,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
+
+        /// <summary>
+        /// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+        /// </summary>
+        [Input("moveToIpam")]
+        public Input<bool>? MoveToIpam { get; set; }
 
         /// <summary>
         /// The name for the Public Gateway. If not provided it will be randomly generated.

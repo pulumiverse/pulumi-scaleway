@@ -60,6 +60,10 @@ import (
 type PublicGateway struct {
 	pulumi.CustomResourceState
 
+	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+	AllowedIpRanges pulumi.StringArrayOutput `pulumi:"allowedIpRanges"`
+	// The bandwidth available of the gateway
+	Bandwidth pulumi.IntOutput `pulumi:"bandwidth"`
 	// Enable SSH bastion on the gateway.
 	BastionEnabled pulumi.BoolPtrOutput `pulumi:"bastionEnabled"`
 	// The port on which the SSH bastion will listen.
@@ -70,6 +74,8 @@ type PublicGateway struct {
 	EnableSmtp pulumi.BoolOutput `pulumi:"enableSmtp"`
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringOutput `pulumi:"ipId"`
+	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	MoveToIpam pulumi.BoolPtrOutput `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The Organization ID the Public Gateway is associated with.
@@ -131,6 +137,10 @@ func GetPublicGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering PublicGateway resources.
 type publicGatewayState struct {
+	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+	AllowedIpRanges []string `pulumi:"allowedIpRanges"`
+	// The bandwidth available of the gateway
+	Bandwidth *int `pulumi:"bandwidth"`
 	// Enable SSH bastion on the gateway.
 	BastionEnabled *bool `pulumi:"bastionEnabled"`
 	// The port on which the SSH bastion will listen.
@@ -141,6 +151,8 @@ type publicGatewayState struct {
 	EnableSmtp *bool `pulumi:"enableSmtp"`
 	// Attach an existing flexible IP to the gateway.
 	IpId *string `pulumi:"ipId"`
+	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	MoveToIpam *bool `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// The Organization ID the Public Gateway is associated with.
@@ -164,6 +176,10 @@ type publicGatewayState struct {
 }
 
 type PublicGatewayState struct {
+	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+	AllowedIpRanges pulumi.StringArrayInput
+	// The bandwidth available of the gateway
+	Bandwidth pulumi.IntPtrInput
 	// Enable SSH bastion on the gateway.
 	BastionEnabled pulumi.BoolPtrInput
 	// The port on which the SSH bastion will listen.
@@ -174,6 +190,8 @@ type PublicGatewayState struct {
 	EnableSmtp pulumi.BoolPtrInput
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringPtrInput
+	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	MoveToIpam pulumi.BoolPtrInput
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// The Organization ID the Public Gateway is associated with.
@@ -201,6 +219,8 @@ func (PublicGatewayState) ElementType() reflect.Type {
 }
 
 type publicGatewayArgs struct {
+	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+	AllowedIpRanges []string `pulumi:"allowedIpRanges"`
 	// Enable SSH bastion on the gateway.
 	BastionEnabled *bool `pulumi:"bastionEnabled"`
 	// The port on which the SSH bastion will listen.
@@ -209,6 +229,8 @@ type publicGatewayArgs struct {
 	EnableSmtp *bool `pulumi:"enableSmtp"`
 	// Attach an existing flexible IP to the gateway.
 	IpId *string `pulumi:"ipId"`
+	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	MoveToIpam *bool `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
 	// `projectId`) The ID of the project the public gateway is associated with.
@@ -219,14 +241,14 @@ type publicGatewayArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The gateway type.
 	Type string `pulumi:"type"`
-	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
-	UpstreamDnsServers []string `pulumi:"upstreamDnsServers"`
 	// `zone`) The zone in which the Public Gateway should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a PublicGateway resource.
 type PublicGatewayArgs struct {
+	// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+	AllowedIpRanges pulumi.StringArrayInput
 	// Enable SSH bastion on the gateway.
 	BastionEnabled pulumi.BoolPtrInput
 	// The port on which the SSH bastion will listen.
@@ -235,6 +257,8 @@ type PublicGatewayArgs struct {
 	EnableSmtp pulumi.BoolPtrInput
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringPtrInput
+	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	MoveToIpam pulumi.BoolPtrInput
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
 	// `projectId`) The ID of the project the public gateway is associated with.
@@ -245,8 +269,6 @@ type PublicGatewayArgs struct {
 	Tags pulumi.StringArrayInput
 	// The gateway type.
 	Type pulumi.StringInput
-	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
-	UpstreamDnsServers pulumi.StringArrayInput
 	// `zone`) The zone in which the Public Gateway should be created.
 	Zone pulumi.StringPtrInput
 }
@@ -338,6 +360,16 @@ func (o PublicGatewayOutput) ToPublicGatewayOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+func (o PublicGatewayOutput) AllowedIpRanges() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.StringArrayOutput { return v.AllowedIpRanges }).(pulumi.StringArrayOutput)
+}
+
+// The bandwidth available of the gateway
+func (o PublicGatewayOutput) Bandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.IntOutput { return v.Bandwidth }).(pulumi.IntOutput)
+}
+
 // Enable SSH bastion on the gateway.
 func (o PublicGatewayOutput) BastionEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.BoolPtrOutput { return v.BastionEnabled }).(pulumi.BoolPtrOutput)
@@ -361,6 +393,11 @@ func (o PublicGatewayOutput) EnableSmtp() pulumi.BoolOutput {
 // Attach an existing flexible IP to the gateway.
 func (o PublicGatewayOutput) IpId() pulumi.StringOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.StringOutput { return v.IpId }).(pulumi.StringOutput)
+}
+
+// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+func (o PublicGatewayOutput) MoveToIpam() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.BoolPtrOutput { return v.MoveToIpam }).(pulumi.BoolPtrOutput)
 }
 
 // The name for the Public Gateway. If not provided it will be randomly generated.

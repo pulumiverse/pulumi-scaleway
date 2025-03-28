@@ -280,6 +280,7 @@ namespace Pulumiverse.Scaleway.Secrets
         public readonly string Type;
         public readonly string UpdatedAt;
         public readonly int VersionCount;
+        public readonly ImmutableArray<Outputs.GetSecretVersionResult> Versions;
 
         [OutputConstructor]
         private GetSecretResult(
@@ -313,7 +314,9 @@ namespace Pulumiverse.Scaleway.Secrets
 
             string updatedAt,
 
-            int versionCount)
+            int versionCount,
+
+            ImmutableArray<Outputs.GetSecretVersionResult> versions)
         {
             CreatedAt = createdAt;
             Description = description;
@@ -331,6 +334,7 @@ namespace Pulumiverse.Scaleway.Secrets
             Type = type;
             UpdatedAt = updatedAt;
             VersionCount = versionCount;
+            Versions = versions;
         }
     }
 }

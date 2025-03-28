@@ -101,6 +101,7 @@ export class Secret extends pulumi.CustomResource {
      * The amount of secret versions.
      */
     public /*out*/ readonly versionCount!: pulumi.Output<number>;
+    public /*out*/ readonly versions!: pulumi.Output<outputs.SecretVersion[]>;
 
     /**
      * Create a Secret resource with the given unique name, arguments, and options.
@@ -131,6 +132,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["versionCount"] = state ? state.versionCount : undefined;
+            resourceInputs["versions"] = state ? state.versions : undefined;
         } else {
             const args = argsOrState as SecretArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -146,6 +148,7 @@ export class Secret extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["versionCount"] = undefined /*out*/;
+            resourceInputs["versions"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Secret.__pulumiType, name, resourceInputs, opts);
@@ -209,6 +212,7 @@ export interface SecretState {
      * The amount of secret versions.
      */
     versionCount?: pulumi.Input<number>;
+    versions?: pulumi.Input<pulumi.Input<inputs.SecretVersion>[]>;
 }
 
 /**

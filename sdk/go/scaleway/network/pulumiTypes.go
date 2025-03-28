@@ -13,6 +13,175 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AclRule struct {
+	// The policy to apply to the packet.
+	Action *string `pulumi:"action"`
+	// The rule description.
+	Description *string `pulumi:"description"`
+	// The destination IP range to which this rule applies (CIDR notation with subnet mask).
+	Destination *string `pulumi:"destination"`
+	// The ending port of the destination port range to which this rule applies (inclusive).
+	DstPortHigh *int `pulumi:"dstPortHigh"`
+	// The starting port of the destination port range to which this rule applies (inclusive).
+	DstPortLow *int `pulumi:"dstPortLow"`
+	// The protocol to which this rule applies. Default value: ANY.
+	Protocol *string `pulumi:"protocol"`
+	// The Source IP range to which this rule applies (CIDR notation with subnet mask).
+	Source *string `pulumi:"source"`
+	// The ending port of the source port range to which this rule applies (inclusive).
+	SrcPortHigh *int `pulumi:"srcPortHigh"`
+	// The starting port of the source port range to which this rule applies (inclusive).
+	SrcPortLow *int `pulumi:"srcPortLow"`
+}
+
+// AclRuleInput is an input type that accepts AclRuleArgs and AclRuleOutput values.
+// You can construct a concrete instance of `AclRuleInput` via:
+//
+//	AclRuleArgs{...}
+type AclRuleInput interface {
+	pulumi.Input
+
+	ToAclRuleOutput() AclRuleOutput
+	ToAclRuleOutputWithContext(context.Context) AclRuleOutput
+}
+
+type AclRuleArgs struct {
+	// The policy to apply to the packet.
+	Action pulumi.StringPtrInput `pulumi:"action"`
+	// The rule description.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The destination IP range to which this rule applies (CIDR notation with subnet mask).
+	Destination pulumi.StringPtrInput `pulumi:"destination"`
+	// The ending port of the destination port range to which this rule applies (inclusive).
+	DstPortHigh pulumi.IntPtrInput `pulumi:"dstPortHigh"`
+	// The starting port of the destination port range to which this rule applies (inclusive).
+	DstPortLow pulumi.IntPtrInput `pulumi:"dstPortLow"`
+	// The protocol to which this rule applies. Default value: ANY.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+	// The Source IP range to which this rule applies (CIDR notation with subnet mask).
+	Source pulumi.StringPtrInput `pulumi:"source"`
+	// The ending port of the source port range to which this rule applies (inclusive).
+	SrcPortHigh pulumi.IntPtrInput `pulumi:"srcPortHigh"`
+	// The starting port of the source port range to which this rule applies (inclusive).
+	SrcPortLow pulumi.IntPtrInput `pulumi:"srcPortLow"`
+}
+
+func (AclRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclRule)(nil)).Elem()
+}
+
+func (i AclRuleArgs) ToAclRuleOutput() AclRuleOutput {
+	return i.ToAclRuleOutputWithContext(context.Background())
+}
+
+func (i AclRuleArgs) ToAclRuleOutputWithContext(ctx context.Context) AclRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclRuleOutput)
+}
+
+// AclRuleArrayInput is an input type that accepts AclRuleArray and AclRuleArrayOutput values.
+// You can construct a concrete instance of `AclRuleArrayInput` via:
+//
+//	AclRuleArray{ AclRuleArgs{...} }
+type AclRuleArrayInput interface {
+	pulumi.Input
+
+	ToAclRuleArrayOutput() AclRuleArrayOutput
+	ToAclRuleArrayOutputWithContext(context.Context) AclRuleArrayOutput
+}
+
+type AclRuleArray []AclRuleInput
+
+func (AclRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclRule)(nil)).Elem()
+}
+
+func (i AclRuleArray) ToAclRuleArrayOutput() AclRuleArrayOutput {
+	return i.ToAclRuleArrayOutputWithContext(context.Background())
+}
+
+func (i AclRuleArray) ToAclRuleArrayOutputWithContext(ctx context.Context) AclRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclRuleArrayOutput)
+}
+
+type AclRuleOutput struct{ *pulumi.OutputState }
+
+func (AclRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclRule)(nil)).Elem()
+}
+
+func (o AclRuleOutput) ToAclRuleOutput() AclRuleOutput {
+	return o
+}
+
+func (o AclRuleOutput) ToAclRuleOutputWithContext(ctx context.Context) AclRuleOutput {
+	return o
+}
+
+// The policy to apply to the packet.
+func (o AclRuleOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclRule) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+// The rule description.
+func (o AclRuleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The destination IP range to which this rule applies (CIDR notation with subnet mask).
+func (o AclRuleOutput) Destination() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclRule) *string { return v.Destination }).(pulumi.StringPtrOutput)
+}
+
+// The ending port of the destination port range to which this rule applies (inclusive).
+func (o AclRuleOutput) DstPortHigh() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AclRule) *int { return v.DstPortHigh }).(pulumi.IntPtrOutput)
+}
+
+// The starting port of the destination port range to which this rule applies (inclusive).
+func (o AclRuleOutput) DstPortLow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AclRule) *int { return v.DstPortLow }).(pulumi.IntPtrOutput)
+}
+
+// The protocol to which this rule applies. Default value: ANY.
+func (o AclRuleOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+// The Source IP range to which this rule applies (CIDR notation with subnet mask).
+func (o AclRuleOutput) Source() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclRule) *string { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+// The ending port of the source port range to which this rule applies (inclusive).
+func (o AclRuleOutput) SrcPortHigh() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AclRule) *int { return v.SrcPortHigh }).(pulumi.IntPtrOutput)
+}
+
+// The starting port of the source port range to which this rule applies (inclusive).
+func (o AclRuleOutput) SrcPortLow() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AclRule) *int { return v.SrcPortLow }).(pulumi.IntPtrOutput)
+}
+
+type AclRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (AclRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclRule)(nil)).Elem()
+}
+
+func (o AclRuleArrayOutput) ToAclRuleArrayOutput() AclRuleArrayOutput {
+	return o
+}
+
+func (o AclRuleArrayOutput) ToAclRuleArrayOutputWithContext(ctx context.Context) AclRuleArrayOutput {
+	return o
+}
+
+func (o AclRuleArrayOutput) Index(i pulumi.IntInput) AclRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclRule {
+		return vs[0].([]AclRule)[vs[1].(int)]
+	}).(AclRuleOutput)
+}
+
 type GatewayNetworkIpamConfig struct {
 	// Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
 	IpamIpId *string `pulumi:"ipamIpId"`
@@ -1298,6 +1467,8 @@ func (o GetVpcsVpcArrayOutput) Index(i pulumi.IntInput) GetVpcsVpcOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclRuleInput)(nil)).Elem(), AclRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclRuleArrayInput)(nil)).Elem(), AclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkIpamConfigInput)(nil)).Elem(), GatewayNetworkIpamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkIpamConfigArrayInput)(nil)).Elem(), GatewayNetworkIpamConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNetworkIpv4SubnetInput)(nil)).Elem(), PrivateNetworkIpv4SubnetArgs{})
@@ -1314,6 +1485,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRoutesRouteArrayInput)(nil)).Elem(), GetRoutesRouteArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcInput)(nil)).Elem(), GetVpcsVpcArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcsVpcArrayInput)(nil)).Elem(), GetVpcsVpcArray{})
+	pulumi.RegisterOutputType(AclRuleOutput{})
+	pulumi.RegisterOutputType(AclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GatewayNetworkIpamConfigOutput{})
 	pulumi.RegisterOutputType(GatewayNetworkIpamConfigArrayOutput{})
 	pulumi.RegisterOutputType(PrivateNetworkIpv4SubnetOutput{})

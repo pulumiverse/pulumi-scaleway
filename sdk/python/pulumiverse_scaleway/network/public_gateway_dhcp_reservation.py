@@ -232,6 +232,10 @@ class PublicGatewayDhcpReservation(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        > **Important:**  The resource `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+
         Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/vpc/concepts/#dhcp).
 
         These static associations are used to assign IP addresses based on the MAC addresses of the resource.
@@ -302,6 +306,10 @@ class PublicGatewayDhcpReservation(pulumi.CustomResource):
                  args: PublicGatewayDhcpReservationArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Important:**  The resource `network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+
         Creates and manages [Scaleway DHCP Reservations](https://www.scaleway.com/en/docs/vpc/concepts/#dhcp).
 
         These static associations are used to assign IP addresses based on the MAC addresses of the resource.
