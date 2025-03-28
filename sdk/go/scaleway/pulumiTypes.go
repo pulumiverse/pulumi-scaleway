@@ -4118,6 +4118,1134 @@ func (o DomainRecordWeightedArrayOutput) Index(i pulumi.IntInput) DomainRecordWe
 	}).(DomainRecordWeightedOutput)
 }
 
+type EdgeServicesBackendStageLbBackendConfig struct {
+	// The Load Balancer config.
+	LbConfig *EdgeServicesBackendStageLbBackendConfigLbConfig `pulumi:"lbConfig"`
+}
+
+// EdgeServicesBackendStageLbBackendConfigInput is an input type that accepts EdgeServicesBackendStageLbBackendConfigArgs and EdgeServicesBackendStageLbBackendConfigOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageLbBackendConfigInput` via:
+//
+//	EdgeServicesBackendStageLbBackendConfigArgs{...}
+type EdgeServicesBackendStageLbBackendConfigInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageLbBackendConfigOutput() EdgeServicesBackendStageLbBackendConfigOutput
+	ToEdgeServicesBackendStageLbBackendConfigOutputWithContext(context.Context) EdgeServicesBackendStageLbBackendConfigOutput
+}
+
+type EdgeServicesBackendStageLbBackendConfigArgs struct {
+	// The Load Balancer config.
+	LbConfig EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput `pulumi:"lbConfig"`
+}
+
+func (EdgeServicesBackendStageLbBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigArgs) ToEdgeServicesBackendStageLbBackendConfigOutput() EdgeServicesBackendStageLbBackendConfigOutput {
+	return i.ToEdgeServicesBackendStageLbBackendConfigOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigArgs) ToEdgeServicesBackendStageLbBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageLbBackendConfigOutput)
+}
+
+// EdgeServicesBackendStageLbBackendConfigArrayInput is an input type that accepts EdgeServicesBackendStageLbBackendConfigArray and EdgeServicesBackendStageLbBackendConfigArrayOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageLbBackendConfigArrayInput` via:
+//
+//	EdgeServicesBackendStageLbBackendConfigArray{ EdgeServicesBackendStageLbBackendConfigArgs{...} }
+type EdgeServicesBackendStageLbBackendConfigArrayInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageLbBackendConfigArrayOutput() EdgeServicesBackendStageLbBackendConfigArrayOutput
+	ToEdgeServicesBackendStageLbBackendConfigArrayOutputWithContext(context.Context) EdgeServicesBackendStageLbBackendConfigArrayOutput
+}
+
+type EdgeServicesBackendStageLbBackendConfigArray []EdgeServicesBackendStageLbBackendConfigInput
+
+func (EdgeServicesBackendStageLbBackendConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigArray) ToEdgeServicesBackendStageLbBackendConfigArrayOutput() EdgeServicesBackendStageLbBackendConfigArrayOutput {
+	return i.ToEdgeServicesBackendStageLbBackendConfigArrayOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigArray) ToEdgeServicesBackendStageLbBackendConfigArrayOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageLbBackendConfigArrayOutput)
+}
+
+type EdgeServicesBackendStageLbBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageLbBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigOutput) ToEdgeServicesBackendStageLbBackendConfigOutput() EdgeServicesBackendStageLbBackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigOutput) ToEdgeServicesBackendStageLbBackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigOutput {
+	return o
+}
+
+// The Load Balancer config.
+func (o EdgeServicesBackendStageLbBackendConfigOutput) LbConfig() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfig) *EdgeServicesBackendStageLbBackendConfigLbConfig {
+		return v.LbConfig
+	}).(EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput)
+}
+
+type EdgeServicesBackendStageLbBackendConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageLbBackendConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigArrayOutput) ToEdgeServicesBackendStageLbBackendConfigArrayOutput() EdgeServicesBackendStageLbBackendConfigArrayOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigArrayOutput) ToEdgeServicesBackendStageLbBackendConfigArrayOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigArrayOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigArrayOutput) Index(i pulumi.IntInput) EdgeServicesBackendStageLbBackendConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesBackendStageLbBackendConfig {
+		return vs[0].([]EdgeServicesBackendStageLbBackendConfig)[vs[1].(int)]
+	}).(EdgeServicesBackendStageLbBackendConfigOutput)
+}
+
+type EdgeServicesBackendStageLbBackendConfigLbConfig struct {
+	// The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+	DomainName *string `pulumi:"domainName"`
+	// The ID of the frontend.
+	FrontendId *string `pulumi:"frontendId"`
+	// The ID of the Load Balancer.
+	Id *string `pulumi:"id"`
+	// Defines whether the Load Balancer's frontend handles SSL connections.
+	IsSsl *bool `pulumi:"isSsl"`
+	// `zone`) The zone of the Load Balancer.
+	Zone *string `pulumi:"zone"`
+}
+
+// EdgeServicesBackendStageLbBackendConfigLbConfigInput is an input type that accepts EdgeServicesBackendStageLbBackendConfigLbConfigArgs and EdgeServicesBackendStageLbBackendConfigLbConfigOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageLbBackendConfigLbConfigInput` via:
+//
+//	EdgeServicesBackendStageLbBackendConfigLbConfigArgs{...}
+type EdgeServicesBackendStageLbBackendConfigLbConfigInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageLbBackendConfigLbConfigOutput() EdgeServicesBackendStageLbBackendConfigLbConfigOutput
+	ToEdgeServicesBackendStageLbBackendConfigLbConfigOutputWithContext(context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigOutput
+}
+
+type EdgeServicesBackendStageLbBackendConfigLbConfigArgs struct {
+	// The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+	// The ID of the frontend.
+	FrontendId pulumi.StringPtrInput `pulumi:"frontendId"`
+	// The ID of the Load Balancer.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Defines whether the Load Balancer's frontend handles SSL connections.
+	IsSsl pulumi.BoolPtrInput `pulumi:"isSsl"`
+	// `zone`) The zone of the Load Balancer.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
+}
+
+func (EdgeServicesBackendStageLbBackendConfigLbConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigLbConfigArgs) ToEdgeServicesBackendStageLbBackendConfigLbConfigOutput() EdgeServicesBackendStageLbBackendConfigLbConfigOutput {
+	return i.ToEdgeServicesBackendStageLbBackendConfigLbConfigOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigLbConfigArgs) ToEdgeServicesBackendStageLbBackendConfigLbConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageLbBackendConfigLbConfigOutput)
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigLbConfigArgs) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageLbBackendConfigLbConfigArgs) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageLbBackendConfigLbConfigOutput).ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput is an input type that accepts EdgeServicesBackendStageLbBackendConfigLbConfigArgs, EdgeServicesBackendStageLbBackendConfigLbConfigPtr and EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput` via:
+//
+//	        EdgeServicesBackendStageLbBackendConfigLbConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput
+	ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput
+}
+
+type edgeServicesBackendStageLbBackendConfigLbConfigPtrType EdgeServicesBackendStageLbBackendConfigLbConfigArgs
+
+func EdgeServicesBackendStageLbBackendConfigLbConfigPtr(v *EdgeServicesBackendStageLbBackendConfigLbConfigArgs) EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput {
+	return (*edgeServicesBackendStageLbBackendConfigLbConfigPtrType)(v)
+}
+
+func (*edgeServicesBackendStageLbBackendConfigLbConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (i *edgeServicesBackendStageLbBackendConfigLbConfigPtrType) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesBackendStageLbBackendConfigLbConfigPtrType) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput)
+}
+
+type EdgeServicesBackendStageLbBackendConfigLbConfigOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageLbBackendConfigLbConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigOutput() EdgeServicesBackendStageLbBackendConfigLbConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return o.ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesBackendStageLbBackendConfigLbConfig) *EdgeServicesBackendStageLbBackendConfigLbConfig {
+		return &v
+	}).(EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput)
+}
+
+// The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the frontend.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) FrontendId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.FrontendId }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Defines whether the Load Balancer's frontend handles SSL connections.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) IsSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *bool { return v.IsSsl }).(pulumi.BoolPtrOutput)
+}
+
+// `zone`) The zone of the Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.Zone }).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput() EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) ToEdgeServicesBackendStageLbBackendConfigLbConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) Elem() EdgeServicesBackendStageLbBackendConfigLbConfigOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) EdgeServicesBackendStageLbBackendConfigLbConfig {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesBackendStageLbBackendConfigLbConfig
+		return ret
+	}).(EdgeServicesBackendStageLbBackendConfigLbConfigOutput)
+}
+
+// The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DomainName
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the frontend.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) FrontendId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FrontendId
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// Defines whether the Load Balancer's frontend handles SSL connections.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) IsSsl() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsSsl
+	}).(pulumi.BoolPtrOutput)
+}
+
+// `zone`) The zone of the Load Balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Zone
+	}).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesBackendStageS3BackendConfig struct {
+	// The name of the Bucket.
+	BucketName *string `pulumi:"bucketName"`
+	// The region of the Bucket.
+	BucketRegion *string `pulumi:"bucketRegion"`
+	// Defines whether the bucket website feature is enabled.
+	IsWebsite *bool `pulumi:"isWebsite"`
+}
+
+// EdgeServicesBackendStageS3BackendConfigInput is an input type that accepts EdgeServicesBackendStageS3BackendConfigArgs and EdgeServicesBackendStageS3BackendConfigOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageS3BackendConfigInput` via:
+//
+//	EdgeServicesBackendStageS3BackendConfigArgs{...}
+type EdgeServicesBackendStageS3BackendConfigInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageS3BackendConfigOutput() EdgeServicesBackendStageS3BackendConfigOutput
+	ToEdgeServicesBackendStageS3BackendConfigOutputWithContext(context.Context) EdgeServicesBackendStageS3BackendConfigOutput
+}
+
+type EdgeServicesBackendStageS3BackendConfigArgs struct {
+	// The name of the Bucket.
+	BucketName pulumi.StringPtrInput `pulumi:"bucketName"`
+	// The region of the Bucket.
+	BucketRegion pulumi.StringPtrInput `pulumi:"bucketRegion"`
+	// Defines whether the bucket website feature is enabled.
+	IsWebsite pulumi.BoolPtrInput `pulumi:"isWebsite"`
+}
+
+func (EdgeServicesBackendStageS3BackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (i EdgeServicesBackendStageS3BackendConfigArgs) ToEdgeServicesBackendStageS3BackendConfigOutput() EdgeServicesBackendStageS3BackendConfigOutput {
+	return i.ToEdgeServicesBackendStageS3BackendConfigOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageS3BackendConfigArgs) ToEdgeServicesBackendStageS3BackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageS3BackendConfigOutput)
+}
+
+func (i EdgeServicesBackendStageS3BackendConfigArgs) ToEdgeServicesBackendStageS3BackendConfigPtrOutput() EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesBackendStageS3BackendConfigArgs) ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageS3BackendConfigOutput).ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesBackendStageS3BackendConfigPtrInput is an input type that accepts EdgeServicesBackendStageS3BackendConfigArgs, EdgeServicesBackendStageS3BackendConfigPtr and EdgeServicesBackendStageS3BackendConfigPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesBackendStageS3BackendConfigPtrInput` via:
+//
+//	        EdgeServicesBackendStageS3BackendConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesBackendStageS3BackendConfigPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesBackendStageS3BackendConfigPtrOutput() EdgeServicesBackendStageS3BackendConfigPtrOutput
+	ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(context.Context) EdgeServicesBackendStageS3BackendConfigPtrOutput
+}
+
+type edgeServicesBackendStageS3BackendConfigPtrType EdgeServicesBackendStageS3BackendConfigArgs
+
+func EdgeServicesBackendStageS3BackendConfigPtr(v *EdgeServicesBackendStageS3BackendConfigArgs) EdgeServicesBackendStageS3BackendConfigPtrInput {
+	return (*edgeServicesBackendStageS3BackendConfigPtrType)(v)
+}
+
+func (*edgeServicesBackendStageS3BackendConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (i *edgeServicesBackendStageS3BackendConfigPtrType) ToEdgeServicesBackendStageS3BackendConfigPtrOutput() EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return i.ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesBackendStageS3BackendConfigPtrType) ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesBackendStageS3BackendConfigPtrOutput)
+}
+
+type EdgeServicesBackendStageS3BackendConfigOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageS3BackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigOutput) ToEdgeServicesBackendStageS3BackendConfigOutput() EdgeServicesBackendStageS3BackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigOutput) ToEdgeServicesBackendStageS3BackendConfigOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigOutput) ToEdgeServicesBackendStageS3BackendConfigPtrOutput() EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return o.ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigOutput) ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesBackendStageS3BackendConfig) *EdgeServicesBackendStageS3BackendConfig {
+		return &v
+	}).(EdgeServicesBackendStageS3BackendConfigPtrOutput)
+}
+
+// The name of the Bucket.
+func (o EdgeServicesBackendStageS3BackendConfigOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageS3BackendConfig) *string { return v.BucketName }).(pulumi.StringPtrOutput)
+}
+
+// The region of the Bucket.
+func (o EdgeServicesBackendStageS3BackendConfigOutput) BucketRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageS3BackendConfig) *string { return v.BucketRegion }).(pulumi.StringPtrOutput)
+}
+
+// Defines whether the bucket website feature is enabled.
+func (o EdgeServicesBackendStageS3BackendConfigOutput) IsWebsite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageS3BackendConfig) *bool { return v.IsWebsite }).(pulumi.BoolPtrOutput)
+}
+
+type EdgeServicesBackendStageS3BackendConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesBackendStageS3BackendConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) ToEdgeServicesBackendStageS3BackendConfigPtrOutput() EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) ToEdgeServicesBackendStageS3BackendConfigPtrOutputWithContext(ctx context.Context) EdgeServicesBackendStageS3BackendConfigPtrOutput {
+	return o
+}
+
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) Elem() EdgeServicesBackendStageS3BackendConfigOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageS3BackendConfig) EdgeServicesBackendStageS3BackendConfig {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesBackendStageS3BackendConfig
+		return ret
+	}).(EdgeServicesBackendStageS3BackendConfigOutput)
+}
+
+// The name of the Bucket.
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) BucketName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageS3BackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BucketName
+	}).(pulumi.StringPtrOutput)
+}
+
+// The region of the Bucket.
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) BucketRegion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageS3BackendConfig) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BucketRegion
+	}).(pulumi.StringPtrOutput)
+}
+
+// Defines whether the bucket website feature is enabled.
+func (o EdgeServicesBackendStageS3BackendConfigPtrOutput) IsWebsite() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageS3BackendConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IsWebsite
+	}).(pulumi.BoolPtrOutput)
+}
+
+type EdgeServicesCacheStagePurgeRequest struct {
+	// Defines whether to purge all content.
+	All *bool `pulumi:"all"`
+	// The list of asserts to purge.
+	Assets []string `pulumi:"assets"`
+	// The pipeline ID in which the purge request will be created.
+	PipelineId *string `pulumi:"pipelineId"`
+}
+
+// EdgeServicesCacheStagePurgeRequestInput is an input type that accepts EdgeServicesCacheStagePurgeRequestArgs and EdgeServicesCacheStagePurgeRequestOutput values.
+// You can construct a concrete instance of `EdgeServicesCacheStagePurgeRequestInput` via:
+//
+//	EdgeServicesCacheStagePurgeRequestArgs{...}
+type EdgeServicesCacheStagePurgeRequestInput interface {
+	pulumi.Input
+
+	ToEdgeServicesCacheStagePurgeRequestOutput() EdgeServicesCacheStagePurgeRequestOutput
+	ToEdgeServicesCacheStagePurgeRequestOutputWithContext(context.Context) EdgeServicesCacheStagePurgeRequestOutput
+}
+
+type EdgeServicesCacheStagePurgeRequestArgs struct {
+	// Defines whether to purge all content.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// The list of asserts to purge.
+	Assets pulumi.StringArrayInput `pulumi:"assets"`
+	// The pipeline ID in which the purge request will be created.
+	PipelineId pulumi.StringPtrInput `pulumi:"pipelineId"`
+}
+
+func (EdgeServicesCacheStagePurgeRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (i EdgeServicesCacheStagePurgeRequestArgs) ToEdgeServicesCacheStagePurgeRequestOutput() EdgeServicesCacheStagePurgeRequestOutput {
+	return i.ToEdgeServicesCacheStagePurgeRequestOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesCacheStagePurgeRequestArgs) ToEdgeServicesCacheStagePurgeRequestOutputWithContext(ctx context.Context) EdgeServicesCacheStagePurgeRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesCacheStagePurgeRequestOutput)
+}
+
+// EdgeServicesCacheStagePurgeRequestArrayInput is an input type that accepts EdgeServicesCacheStagePurgeRequestArray and EdgeServicesCacheStagePurgeRequestArrayOutput values.
+// You can construct a concrete instance of `EdgeServicesCacheStagePurgeRequestArrayInput` via:
+//
+//	EdgeServicesCacheStagePurgeRequestArray{ EdgeServicesCacheStagePurgeRequestArgs{...} }
+type EdgeServicesCacheStagePurgeRequestArrayInput interface {
+	pulumi.Input
+
+	ToEdgeServicesCacheStagePurgeRequestArrayOutput() EdgeServicesCacheStagePurgeRequestArrayOutput
+	ToEdgeServicesCacheStagePurgeRequestArrayOutputWithContext(context.Context) EdgeServicesCacheStagePurgeRequestArrayOutput
+}
+
+type EdgeServicesCacheStagePurgeRequestArray []EdgeServicesCacheStagePurgeRequestInput
+
+func (EdgeServicesCacheStagePurgeRequestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (i EdgeServicesCacheStagePurgeRequestArray) ToEdgeServicesCacheStagePurgeRequestArrayOutput() EdgeServicesCacheStagePurgeRequestArrayOutput {
+	return i.ToEdgeServicesCacheStagePurgeRequestArrayOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesCacheStagePurgeRequestArray) ToEdgeServicesCacheStagePurgeRequestArrayOutputWithContext(ctx context.Context) EdgeServicesCacheStagePurgeRequestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesCacheStagePurgeRequestArrayOutput)
+}
+
+type EdgeServicesCacheStagePurgeRequestOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesCacheStagePurgeRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (o EdgeServicesCacheStagePurgeRequestOutput) ToEdgeServicesCacheStagePurgeRequestOutput() EdgeServicesCacheStagePurgeRequestOutput {
+	return o
+}
+
+func (o EdgeServicesCacheStagePurgeRequestOutput) ToEdgeServicesCacheStagePurgeRequestOutputWithContext(ctx context.Context) EdgeServicesCacheStagePurgeRequestOutput {
+	return o
+}
+
+// Defines whether to purge all content.
+func (o EdgeServicesCacheStagePurgeRequestOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EdgeServicesCacheStagePurgeRequest) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// The list of asserts to purge.
+func (o EdgeServicesCacheStagePurgeRequestOutput) Assets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v EdgeServicesCacheStagePurgeRequest) []string { return v.Assets }).(pulumi.StringArrayOutput)
+}
+
+// The pipeline ID in which the purge request will be created.
+func (o EdgeServicesCacheStagePurgeRequestOutput) PipelineId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesCacheStagePurgeRequest) *string { return v.PipelineId }).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesCacheStagePurgeRequestArrayOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesCacheStagePurgeRequestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (o EdgeServicesCacheStagePurgeRequestArrayOutput) ToEdgeServicesCacheStagePurgeRequestArrayOutput() EdgeServicesCacheStagePurgeRequestArrayOutput {
+	return o
+}
+
+func (o EdgeServicesCacheStagePurgeRequestArrayOutput) ToEdgeServicesCacheStagePurgeRequestArrayOutputWithContext(ctx context.Context) EdgeServicesCacheStagePurgeRequestArrayOutput {
+	return o
+}
+
+func (o EdgeServicesCacheStagePurgeRequestArrayOutput) Index(i pulumi.IntInput) EdgeServicesCacheStagePurgeRequestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesCacheStagePurgeRequest {
+		return vs[0].([]EdgeServicesCacheStagePurgeRequest)[vs[1].(int)]
+	}).(EdgeServicesCacheStagePurgeRequestOutput)
+}
+
+type EdgeServicesRouteStageRule struct {
+	// The ID of the backend stage that requests matching the rule should be forwarded to.
+	BackendStageId string `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	RuleHttpMatch *EdgeServicesRouteStageRuleRuleHttpMatch `pulumi:"ruleHttpMatch"`
+}
+
+// EdgeServicesRouteStageRuleInput is an input type that accepts EdgeServicesRouteStageRuleArgs and EdgeServicesRouteStageRuleOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleInput` via:
+//
+//	EdgeServicesRouteStageRuleArgs{...}
+type EdgeServicesRouteStageRuleInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleOutput() EdgeServicesRouteStageRuleOutput
+	ToEdgeServicesRouteStageRuleOutputWithContext(context.Context) EdgeServicesRouteStageRuleOutput
+}
+
+type EdgeServicesRouteStageRuleArgs struct {
+	// The ID of the backend stage that requests matching the rule should be forwarded to.
+	BackendStageId pulumi.StringInput `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	RuleHttpMatch EdgeServicesRouteStageRuleRuleHttpMatchPtrInput `pulumi:"ruleHttpMatch"`
+}
+
+func (EdgeServicesRouteStageRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRule)(nil)).Elem()
+}
+
+func (i EdgeServicesRouteStageRuleArgs) ToEdgeServicesRouteStageRuleOutput() EdgeServicesRouteStageRuleOutput {
+	return i.ToEdgeServicesRouteStageRuleOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleArgs) ToEdgeServicesRouteStageRuleOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleOutput)
+}
+
+// EdgeServicesRouteStageRuleArrayInput is an input type that accepts EdgeServicesRouteStageRuleArray and EdgeServicesRouteStageRuleArrayOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleArrayInput` via:
+//
+//	EdgeServicesRouteStageRuleArray{ EdgeServicesRouteStageRuleArgs{...} }
+type EdgeServicesRouteStageRuleArrayInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleArrayOutput() EdgeServicesRouteStageRuleArrayOutput
+	ToEdgeServicesRouteStageRuleArrayOutputWithContext(context.Context) EdgeServicesRouteStageRuleArrayOutput
+}
+
+type EdgeServicesRouteStageRuleArray []EdgeServicesRouteStageRuleInput
+
+func (EdgeServicesRouteStageRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesRouteStageRule)(nil)).Elem()
+}
+
+func (i EdgeServicesRouteStageRuleArray) ToEdgeServicesRouteStageRuleArrayOutput() EdgeServicesRouteStageRuleArrayOutput {
+	return i.ToEdgeServicesRouteStageRuleArrayOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleArray) ToEdgeServicesRouteStageRuleArrayOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleArrayOutput)
+}
+
+type EdgeServicesRouteStageRuleOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRule)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleOutput) ToEdgeServicesRouteStageRuleOutput() EdgeServicesRouteStageRuleOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleOutput) ToEdgeServicesRouteStageRuleOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleOutput {
+	return o
+}
+
+// The ID of the backend stage that requests matching the rule should be forwarded to.
+func (o EdgeServicesRouteStageRuleOutput) BackendStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) string { return v.BackendStageId }).(pulumi.StringOutput)
+}
+
+// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+func (o EdgeServicesRouteStageRuleOutput) RuleHttpMatch() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) *EdgeServicesRouteStageRuleRuleHttpMatch { return v.RuleHttpMatch }).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesRouteStageRule)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleArrayOutput) ToEdgeServicesRouteStageRuleArrayOutput() EdgeServicesRouteStageRuleArrayOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleArrayOutput) ToEdgeServicesRouteStageRuleArrayOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleArrayOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleArrayOutput) Index(i pulumi.IntInput) EdgeServicesRouteStageRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesRouteStageRule {
+		return vs[0].([]EdgeServicesRouteStageRule)[vs[1].(int)]
+	}).(EdgeServicesRouteStageRuleOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatch struct {
+	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+	MethodFilters []string `pulumi:"methodFilters"`
+	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+	PathFilter *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter `pulumi:"pathFilter"`
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchArgs and EdgeServicesRouteStageRuleRuleHttpMatchOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchInput` via:
+//
+//	EdgeServicesRouteStageRuleRuleHttpMatchArgs{...}
+type EdgeServicesRouteStageRuleRuleHttpMatchInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchOutput() EdgeServicesRouteStageRuleRuleHttpMatchOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchOutput
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchArgs struct {
+	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+	MethodFilters pulumi.StringArrayInput `pulumi:"methodFilters"`
+	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+	PathFilter EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput `pulumi:"pathFilter"`
+}
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchOutput() EdgeServicesRouteStageRuleRuleHttpMatchOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchOutput)
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchOutput).ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchPtrInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchArgs, EdgeServicesRouteStageRuleRuleHttpMatchPtr and EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchPtrInput` via:
+//
+//	        EdgeServicesRouteStageRuleRuleHttpMatchArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesRouteStageRuleRuleHttpMatchPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput
+}
+
+type edgeServicesRouteStageRuleRuleHttpMatchPtrType EdgeServicesRouteStageRuleRuleHttpMatchArgs
+
+func EdgeServicesRouteStageRuleRuleHttpMatchPtr(v *EdgeServicesRouteStageRuleRuleHttpMatchArgs) EdgeServicesRouteStageRuleRuleHttpMatchPtrInput {
+	return (*edgeServicesRouteStageRuleRuleHttpMatchPtrType)(v)
+}
+
+func (*edgeServicesRouteStageRuleRuleHttpMatchPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchOutput() EdgeServicesRouteStageRuleRuleHttpMatchOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return o.ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesRouteStageRuleRuleHttpMatch) *EdgeServicesRouteStageRuleRuleHttpMatch {
+		return &v
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) MethodFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatch) []string { return v.MethodFilters }).(pulumi.StringArrayOutput)
+}
+
+// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchOutput) PathFilter() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatch) *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+		return v.PathFilter
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) Elem() EdgeServicesRouteStageRuleRuleHttpMatchOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatch) EdgeServicesRouteStageRuleRuleHttpMatch {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesRouteStageRuleRuleHttpMatch
+		return ret
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchOutput)
+}
+
+// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) MethodFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatch) []string {
+		if v == nil {
+			return nil
+		}
+		return v.MethodFilters
+	}).(pulumi.StringArrayOutput)
+}
+
+// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput) PathFilter() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatch) *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+		if v == nil {
+			return nil
+		}
+		return v.PathFilter
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilter struct {
+	// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+	PathFilterType string `pulumi:"pathFilterType"`
+	// The value to be matched for the HTTP URL path.
+	Value string `pulumi:"value"`
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchPathFilterInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs and EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchPathFilterInput` via:
+//
+//	EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{...}
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilterInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs struct {
+	// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+	PathFilterType pulumi.StringInput `pulumi:"pathFilterType"`
+	// The value to be matched for the HTTP URL path.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput)
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput).ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(ctx)
+}
+
+// EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput is an input type that accepts EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs, EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtr and EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput values.
+// You can construct a concrete instance of `EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput` via:
+//
+//	        EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{...}
+//
+//	or:
+//
+//	        nil
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput interface {
+	pulumi.Input
+
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput
+	ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput
+}
+
+type edgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrType EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs
+
+func EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtr(v *EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput {
+	return (*edgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrType)(v)
+}
+
+func (*edgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return i.ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(context.Background())
+}
+
+func (i *edgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrType) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o.ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(context.Background())
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+		return &v
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput)
+}
+
+// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) PathFilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) string { return v.PathFilterType }).(pulumi.StringOutput)
+}
+
+// The value to be matched for the HTTP URL path.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EdgeServicesRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) ToEdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutputWithContext(ctx context.Context) EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput {
+	return o
+}
+
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) Elem() EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+		if v != nil {
+			return *v
+		}
+		var ret EdgeServicesRouteStageRuleRuleHttpMatchPathFilter
+		return ret
+	}).(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput)
+}
+
+// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) PathFilterType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PathFilterType
+	}).(pulumi.StringPtrOutput)
+}
+
+// The value to be matched for the HTTP URL path.
+func (o EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStageRuleRuleHttpMatchPathFilter) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Value
+	}).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesTlsStageSecret struct {
+	// The region of the secret.
+	Region *string `pulumi:"region"`
+	// The ID of the Secret
+	SecretId *string `pulumi:"secretId"`
+}
+
+// EdgeServicesTlsStageSecretInput is an input type that accepts EdgeServicesTlsStageSecretArgs and EdgeServicesTlsStageSecretOutput values.
+// You can construct a concrete instance of `EdgeServicesTlsStageSecretInput` via:
+//
+//	EdgeServicesTlsStageSecretArgs{...}
+type EdgeServicesTlsStageSecretInput interface {
+	pulumi.Input
+
+	ToEdgeServicesTlsStageSecretOutput() EdgeServicesTlsStageSecretOutput
+	ToEdgeServicesTlsStageSecretOutputWithContext(context.Context) EdgeServicesTlsStageSecretOutput
+}
+
+type EdgeServicesTlsStageSecretArgs struct {
+	// The region of the secret.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// The ID of the Secret
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+}
+
+func (EdgeServicesTlsStageSecretArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesTlsStageSecret)(nil)).Elem()
+}
+
+func (i EdgeServicesTlsStageSecretArgs) ToEdgeServicesTlsStageSecretOutput() EdgeServicesTlsStageSecretOutput {
+	return i.ToEdgeServicesTlsStageSecretOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesTlsStageSecretArgs) ToEdgeServicesTlsStageSecretOutputWithContext(ctx context.Context) EdgeServicesTlsStageSecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesTlsStageSecretOutput)
+}
+
+// EdgeServicesTlsStageSecretArrayInput is an input type that accepts EdgeServicesTlsStageSecretArray and EdgeServicesTlsStageSecretArrayOutput values.
+// You can construct a concrete instance of `EdgeServicesTlsStageSecretArrayInput` via:
+//
+//	EdgeServicesTlsStageSecretArray{ EdgeServicesTlsStageSecretArgs{...} }
+type EdgeServicesTlsStageSecretArrayInput interface {
+	pulumi.Input
+
+	ToEdgeServicesTlsStageSecretArrayOutput() EdgeServicesTlsStageSecretArrayOutput
+	ToEdgeServicesTlsStageSecretArrayOutputWithContext(context.Context) EdgeServicesTlsStageSecretArrayOutput
+}
+
+type EdgeServicesTlsStageSecretArray []EdgeServicesTlsStageSecretInput
+
+func (EdgeServicesTlsStageSecretArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesTlsStageSecret)(nil)).Elem()
+}
+
+func (i EdgeServicesTlsStageSecretArray) ToEdgeServicesTlsStageSecretArrayOutput() EdgeServicesTlsStageSecretArrayOutput {
+	return i.ToEdgeServicesTlsStageSecretArrayOutputWithContext(context.Background())
+}
+
+func (i EdgeServicesTlsStageSecretArray) ToEdgeServicesTlsStageSecretArrayOutputWithContext(ctx context.Context) EdgeServicesTlsStageSecretArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EdgeServicesTlsStageSecretArrayOutput)
+}
+
+type EdgeServicesTlsStageSecretOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesTlsStageSecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EdgeServicesTlsStageSecret)(nil)).Elem()
+}
+
+func (o EdgeServicesTlsStageSecretOutput) ToEdgeServicesTlsStageSecretOutput() EdgeServicesTlsStageSecretOutput {
+	return o
+}
+
+func (o EdgeServicesTlsStageSecretOutput) ToEdgeServicesTlsStageSecretOutputWithContext(ctx context.Context) EdgeServicesTlsStageSecretOutput {
+	return o
+}
+
+// The region of the secret.
+func (o EdgeServicesTlsStageSecretOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesTlsStageSecret) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Secret
+func (o EdgeServicesTlsStageSecretOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesTlsStageSecret) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+type EdgeServicesTlsStageSecretArrayOutput struct{ *pulumi.OutputState }
+
+func (EdgeServicesTlsStageSecretArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]EdgeServicesTlsStageSecret)(nil)).Elem()
+}
+
+func (o EdgeServicesTlsStageSecretArrayOutput) ToEdgeServicesTlsStageSecretArrayOutput() EdgeServicesTlsStageSecretArrayOutput {
+	return o
+}
+
+func (o EdgeServicesTlsStageSecretArrayOutput) ToEdgeServicesTlsStageSecretArrayOutputWithContext(ctx context.Context) EdgeServicesTlsStageSecretArrayOutput {
+	return o
+}
+
+func (o EdgeServicesTlsStageSecretArrayOutput) Index(i pulumi.IntInput) EdgeServicesTlsStageSecretOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EdgeServicesTlsStageSecret {
+		return vs[0].([]EdgeServicesTlsStageSecret)[vs[1].(int)]
+	}).(EdgeServicesTlsStageSecretOutput)
+}
+
 type FunctionTriggerNats struct {
 	// unique identifier of the Messaging and Queuing NATS account.
 	AccountId *string `pulumi:"accountId"`
@@ -14610,6 +15738,157 @@ func (o SecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) SecretEphemer
 	}).(SecretEphemeralPolicyOutput)
 }
 
+type SecretVersionType struct {
+	// Date and time of the secret's creation (in RFC 3339 format).
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the secret (e.g. `my-new-description`).
+	Description *string `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest *bool `pulumi:"latest"`
+	// The revision of secret version
+	Revision *string `pulumi:"revision"`
+	// The secret ID associated with this version
+	SecretId *string `pulumi:"secretId"`
+	// The status of the secret.
+	Status *string `pulumi:"status"`
+	// Date and time of the secret's last update (in RFC 3339 format).
+	UpdatedAt *string `pulumi:"updatedAt"`
+}
+
+// SecretVersionTypeInput is an input type that accepts SecretVersionTypeArgs and SecretVersionTypeOutput values.
+// You can construct a concrete instance of `SecretVersionTypeInput` via:
+//
+//	SecretVersionTypeArgs{...}
+type SecretVersionTypeInput interface {
+	pulumi.Input
+
+	ToSecretVersionTypeOutput() SecretVersionTypeOutput
+	ToSecretVersionTypeOutputWithContext(context.Context) SecretVersionTypeOutput
+}
+
+type SecretVersionTypeArgs struct {
+	// Date and time of the secret's creation (in RFC 3339 format).
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Description of the secret (e.g. `my-new-description`).
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest pulumi.BoolPtrInput `pulumi:"latest"`
+	// The revision of secret version
+	Revision pulumi.StringPtrInput `pulumi:"revision"`
+	// The secret ID associated with this version
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+	// The status of the secret.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Date and time of the secret's last update (in RFC 3339 format).
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+}
+
+func (SecretVersionTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersionType)(nil)).Elem()
+}
+
+func (i SecretVersionTypeArgs) ToSecretVersionTypeOutput() SecretVersionTypeOutput {
+	return i.ToSecretVersionTypeOutputWithContext(context.Background())
+}
+
+func (i SecretVersionTypeArgs) ToSecretVersionTypeOutputWithContext(ctx context.Context) SecretVersionTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionTypeOutput)
+}
+
+// SecretVersionTypeArrayInput is an input type that accepts SecretVersionTypeArray and SecretVersionTypeArrayOutput values.
+// You can construct a concrete instance of `SecretVersionTypeArrayInput` via:
+//
+//	SecretVersionTypeArray{ SecretVersionTypeArgs{...} }
+type SecretVersionTypeArrayInput interface {
+	pulumi.Input
+
+	ToSecretVersionTypeArrayOutput() SecretVersionTypeArrayOutput
+	ToSecretVersionTypeArrayOutputWithContext(context.Context) SecretVersionTypeArrayOutput
+}
+
+type SecretVersionTypeArray []SecretVersionTypeInput
+
+func (SecretVersionTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersionType)(nil)).Elem()
+}
+
+func (i SecretVersionTypeArray) ToSecretVersionTypeArrayOutput() SecretVersionTypeArrayOutput {
+	return i.ToSecretVersionTypeArrayOutputWithContext(context.Background())
+}
+
+func (i SecretVersionTypeArray) ToSecretVersionTypeArrayOutputWithContext(ctx context.Context) SecretVersionTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionTypeArrayOutput)
+}
+
+type SecretVersionTypeOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersionType)(nil)).Elem()
+}
+
+func (o SecretVersionTypeOutput) ToSecretVersionTypeOutput() SecretVersionTypeOutput {
+	return o
+}
+
+func (o SecretVersionTypeOutput) ToSecretVersionTypeOutputWithContext(ctx context.Context) SecretVersionTypeOutput {
+	return o
+}
+
+// Date and time of the secret's creation (in RFC 3339 format).
+func (o SecretVersionTypeOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Description of the secret (e.g. `my-new-description`).
+func (o SecretVersionTypeOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Returns true if the version is the latest.
+func (o SecretVersionTypeOutput) Latest() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *bool { return v.Latest }).(pulumi.BoolPtrOutput)
+}
+
+// The revision of secret version
+func (o SecretVersionTypeOutput) Revision() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.Revision }).(pulumi.StringPtrOutput)
+}
+
+// The secret ID associated with this version
+func (o SecretVersionTypeOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+// The status of the secret.
+func (o SecretVersionTypeOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Date and time of the secret's last update (in RFC 3339 format).
+func (o SecretVersionTypeOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersionType) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type SecretVersionTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersionType)(nil)).Elem()
+}
+
+func (o SecretVersionTypeArrayOutput) ToSecretVersionTypeArrayOutput() SecretVersionTypeArrayOutput {
+	return o
+}
+
+func (o SecretVersionTypeArrayOutput) ToSecretVersionTypeArrayOutputWithContext(ctx context.Context) SecretVersionTypeArrayOutput {
+	return o
+}
+
+func (o SecretVersionTypeArrayOutput) Index(i pulumi.IntInput) SecretVersionTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretVersionType {
+		return vs[0].([]SecretVersionType)[vs[1].(int)]
+	}).(SecretVersionTypeOutput)
+}
+
 type TemDomainReputation struct {
 	// The previously-calculated domain's reputation score.
 	PreviousScore *int `pulumi:"previousScore"`
@@ -23261,7 +24540,7 @@ type GetLbBackendsBackendHealthCheckHttp struct {
 	Method string `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni string `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for health check requests.
+	// The path of health check requests.
 	Uri string `pulumi:"uri"`
 }
 
@@ -23285,7 +24564,7 @@ type GetLbBackendsBackendHealthCheckHttpArgs struct {
 	Method pulumi.StringInput `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni pulumi.StringInput `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for health check requests.
+	// The path of health check requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -23360,7 +24639,7 @@ func (o GetLbBackendsBackendHealthCheckHttpOutput) Sni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Sni }).(pulumi.StringOutput)
 }
 
-// The HTTPS endpoint URL to call for health check requests.
+// The path of health check requests.
 func (o GetLbBackendsBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbBackendsBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -24329,6 +25608,8 @@ type GetLbRoutesRoute struct {
 	MatchHostHeader string `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains bool `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
@@ -24357,6 +25638,8 @@ type GetLbRoutesRouteArgs struct {
 	MatchHostHeader pulumi.StringInput `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni pulumi.StringInput `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolInput `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
@@ -24440,6 +25723,11 @@ func (o GetLbRoutesRouteOutput) MatchHostHeader() pulumi.StringOutput {
 // Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 func (o GetLbRoutesRouteOutput) MatchSni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRoutesRoute) string { return v.MatchSni }).(pulumi.StringOutput)
+}
+
+// If true, all subdomains will match.
+func (o GetLbRoutesRouteOutput) MatchSubdomains() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbRoutesRoute) bool { return v.MatchSubdomains }).(pulumi.BoolOutput)
 }
 
 // The date on which the route was last updated (RFC 3339 format).
@@ -26635,6 +27923,160 @@ func (o GetSecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) GetSecretE
 	}).(GetSecretEphemeralPolicyOutput)
 }
 
+type GetSecretVersionType struct {
+	// Date and time of secret version's creation (RFC 3339 format)
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the secret version
+	Description string `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest bool `pulumi:"latest"`
+	// The revision of secret version
+	Revision string `pulumi:"revision"`
+	// The ID of the secret.
+	// Only one of `name` and `secretId` should be specified.
+	SecretId string `pulumi:"secretId"`
+	// Status of the secret version
+	Status string `pulumi:"status"`
+	// Date and time of secret version's creation (RFC 3339 format)
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetSecretVersionTypeInput is an input type that accepts GetSecretVersionTypeArgs and GetSecretVersionTypeOutput values.
+// You can construct a concrete instance of `GetSecretVersionTypeInput` via:
+//
+//	GetSecretVersionTypeArgs{...}
+type GetSecretVersionTypeInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionTypeOutput() GetSecretVersionTypeOutput
+	ToGetSecretVersionTypeOutputWithContext(context.Context) GetSecretVersionTypeOutput
+}
+
+type GetSecretVersionTypeArgs struct {
+	// Date and time of secret version's creation (RFC 3339 format)
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Description of the secret version
+	Description pulumi.StringInput `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest pulumi.BoolInput `pulumi:"latest"`
+	// The revision of secret version
+	Revision pulumi.StringInput `pulumi:"revision"`
+	// The ID of the secret.
+	// Only one of `name` and `secretId` should be specified.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+	// Status of the secret version
+	Status pulumi.StringInput `pulumi:"status"`
+	// Date and time of secret version's creation (RFC 3339 format)
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetSecretVersionTypeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionType)(nil)).Elem()
+}
+
+func (i GetSecretVersionTypeArgs) ToGetSecretVersionTypeOutput() GetSecretVersionTypeOutput {
+	return i.ToGetSecretVersionTypeOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionTypeArgs) ToGetSecretVersionTypeOutputWithContext(ctx context.Context) GetSecretVersionTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionTypeOutput)
+}
+
+// GetSecretVersionTypeArrayInput is an input type that accepts GetSecretVersionTypeArray and GetSecretVersionTypeArrayOutput values.
+// You can construct a concrete instance of `GetSecretVersionTypeArrayInput` via:
+//
+//	GetSecretVersionTypeArray{ GetSecretVersionTypeArgs{...} }
+type GetSecretVersionTypeArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionTypeArrayOutput() GetSecretVersionTypeArrayOutput
+	ToGetSecretVersionTypeArrayOutputWithContext(context.Context) GetSecretVersionTypeArrayOutput
+}
+
+type GetSecretVersionTypeArray []GetSecretVersionTypeInput
+
+func (GetSecretVersionTypeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersionType)(nil)).Elem()
+}
+
+func (i GetSecretVersionTypeArray) ToGetSecretVersionTypeArrayOutput() GetSecretVersionTypeArrayOutput {
+	return i.ToGetSecretVersionTypeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionTypeArray) ToGetSecretVersionTypeArrayOutputWithContext(ctx context.Context) GetSecretVersionTypeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionTypeArrayOutput)
+}
+
+type GetSecretVersionTypeOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersionType)(nil)).Elem()
+}
+
+func (o GetSecretVersionTypeOutput) ToGetSecretVersionTypeOutput() GetSecretVersionTypeOutput {
+	return o
+}
+
+func (o GetSecretVersionTypeOutput) ToGetSecretVersionTypeOutputWithContext(ctx context.Context) GetSecretVersionTypeOutput {
+	return o
+}
+
+// Date and time of secret version's creation (RFC 3339 format)
+func (o GetSecretVersionTypeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Description of the secret version
+func (o GetSecretVersionTypeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Returns true if the version is the latest.
+func (o GetSecretVersionTypeOutput) Latest() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSecretVersionType) bool { return v.Latest }).(pulumi.BoolOutput)
+}
+
+// The revision of secret version
+func (o GetSecretVersionTypeOutput) Revision() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.Revision }).(pulumi.StringOutput)
+}
+
+// The ID of the secret.
+// Only one of `name` and `secretId` should be specified.
+func (o GetSecretVersionTypeOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// Status of the secret version
+func (o GetSecretVersionTypeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Date and time of secret version's creation (RFC 3339 format)
+func (o GetSecretVersionTypeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersionType) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetSecretVersionTypeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionTypeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersionType)(nil)).Elem()
+}
+
+func (o GetSecretVersionTypeArrayOutput) ToGetSecretVersionTypeArrayOutput() GetSecretVersionTypeArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionTypeArrayOutput) ToGetSecretVersionTypeArrayOutputWithContext(ctx context.Context) GetSecretVersionTypeArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionTypeArrayOutput) Index(i pulumi.IntInput) GetSecretVersionTypeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretVersionType {
+		return vs[0].([]GetSecretVersionType)[vs[1].(int)]
+	}).(GetSecretVersionTypeOutput)
+}
+
 type GetTemDomainReputation struct {
 	// The previously-calculated domain's reputation score
 	PreviousScore int `pulumi:"previousScore"`
@@ -28527,6 +29969,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordViewArrayInput)(nil)).Elem(), DomainRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedInput)(nil)).Elem(), DomainRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordWeightedArrayInput)(nil)).Elem(), DomainRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigArrayInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigLbConfigInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigLbConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageLbBackendConfigLbConfigPtrInput)(nil)).Elem(), EdgeServicesBackendStageLbBackendConfigLbConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageS3BackendConfigInput)(nil)).Elem(), EdgeServicesBackendStageS3BackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesBackendStageS3BackendConfigPtrInput)(nil)).Elem(), EdgeServicesBackendStageS3BackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesCacheStagePurgeRequestInput)(nil)).Elem(), EdgeServicesCacheStagePurgeRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesCacheStagePurgeRequestArrayInput)(nil)).Elem(), EdgeServicesCacheStagePurgeRequestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleInput)(nil)).Elem(), EdgeServicesRouteStageRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleArrayInput)(nil)).Elem(), EdgeServicesRouteStageRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilterInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesTlsStageSecretInput)(nil)).Elem(), EdgeServicesTlsStageSecretArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EdgeServicesTlsStageSecretArrayInput)(nil)).Elem(), EdgeServicesTlsStageSecretArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerNatsPtrInput)(nil)).Elem(), FunctionTriggerNatsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FunctionTriggerSqsInput)(nil)).Elem(), FunctionTriggerSqsArgs{})
@@ -28657,6 +30115,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyInput)(nil)).Elem(), SecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyArrayInput)(nil)).Elem(), SecretEphemeralPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionTypeInput)(nil)).Elem(), SecretVersionTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionTypeArrayInput)(nil)).Elem(), SecretVersionTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationInput)(nil)).Elem(), TemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationArrayInput)(nil)).Elem(), TemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArgs{})
@@ -28836,6 +30296,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkArrayInput)(nil)).Elem(), GetRedisClusterPublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyInput)(nil)).Elem(), GetSecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyArrayInput)(nil)).Elem(), GetSecretEphemeralPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionTypeInput)(nil)).Elem(), GetSecretVersionTypeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionTypeArrayInput)(nil)).Elem(), GetSecretVersionTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationInput)(nil)).Elem(), GetTemDomainReputationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationArrayInput)(nil)).Elem(), GetTemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArgs{})
@@ -28916,6 +30378,22 @@ func init() {
 	pulumi.RegisterOutputType(DomainRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedOutput{})
 	pulumi.RegisterOutputType(DomainRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigLbConfigOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageS3BackendConfigOutput{})
+	pulumi.RegisterOutputType(EdgeServicesBackendStageS3BackendConfigPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesCacheStagePurgeRequestOutput{})
+	pulumi.RegisterOutputType(EdgeServicesCacheStagePurgeRequestArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleArrayOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterOutput{})
+	pulumi.RegisterOutputType(EdgeServicesRouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
+	pulumi.RegisterOutputType(EdgeServicesTlsStageSecretOutput{})
+	pulumi.RegisterOutputType(EdgeServicesTlsStageSecretArrayOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerNatsOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerNatsPtrOutput{})
 	pulumi.RegisterOutputType(FunctionTriggerSqsOutput{})
@@ -29046,6 +30524,8 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyArrayOutput{})
+	pulumi.RegisterOutputType(SecretVersionTypeOutput{})
+	pulumi.RegisterOutputType(SecretVersionTypeArrayOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationOutput{})
 	pulumi.RegisterOutputType(TemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigOutput{})
@@ -29225,6 +30705,8 @@ func init() {
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionTypeOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionTypeArrayOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationOutput{})
 	pulumi.RegisterOutputType(GetTemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigOutput{})

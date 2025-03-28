@@ -26,7 +26,13 @@ class GetPublicGatewayResult:
     """
     A collection of values returned by getPublicGateway.
     """
-    def __init__(__self__, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, refresh_ssh_keys=None, status=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+    def __init__(__self__, allowed_ip_ranges=None, bandwidth=None, bastion_enabled=None, bastion_port=None, created_at=None, enable_smtp=None, id=None, ip_id=None, move_to_ipam=None, name=None, organization_id=None, project_id=None, public_gateway_id=None, refresh_ssh_keys=None, status=None, tags=None, type=None, updated_at=None, upstream_dns_servers=None, zone=None):
+        if allowed_ip_ranges and not isinstance(allowed_ip_ranges, list):
+            raise TypeError("Expected argument 'allowed_ip_ranges' to be a list")
+        pulumi.set(__self__, "allowed_ip_ranges", allowed_ip_ranges)
+        if bandwidth and not isinstance(bandwidth, int):
+            raise TypeError("Expected argument 'bandwidth' to be a int")
+        pulumi.set(__self__, "bandwidth", bandwidth)
         if bastion_enabled and not isinstance(bastion_enabled, bool):
             raise TypeError("Expected argument 'bastion_enabled' to be a bool")
         pulumi.set(__self__, "bastion_enabled", bastion_enabled)
@@ -45,6 +51,9 @@ class GetPublicGatewayResult:
         if ip_id and not isinstance(ip_id, str):
             raise TypeError("Expected argument 'ip_id' to be a str")
         pulumi.set(__self__, "ip_id", ip_id)
+        if move_to_ipam and not isinstance(move_to_ipam, bool):
+            raise TypeError("Expected argument 'move_to_ipam' to be a bool")
+        pulumi.set(__self__, "move_to_ipam", move_to_ipam)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -80,6 +89,16 @@ class GetPublicGatewayResult:
         pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter(name="allowedIpRanges")
+    def allowed_ip_ranges(self) -> Sequence[str]:
+        return pulumi.get(self, "allowed_ip_ranges")
+
+    @property
+    @pulumi.getter
+    def bandwidth(self) -> int:
+        return pulumi.get(self, "bandwidth")
+
+    @property
     @pulumi.getter(name="bastionEnabled")
     def bastion_enabled(self) -> bool:
         return pulumi.get(self, "bastion_enabled")
@@ -111,6 +130,11 @@ class GetPublicGatewayResult:
     @pulumi.getter(name="ipId")
     def ip_id(self) -> str:
         return pulumi.get(self, "ip_id")
+
+    @property
+    @pulumi.getter(name="moveToIpam")
+    def move_to_ipam(self) -> bool:
+        return pulumi.get(self, "move_to_ipam")
 
     @property
     @pulumi.getter
@@ -174,12 +198,15 @@ class AwaitableGetPublicGatewayResult(GetPublicGatewayResult):
         if False:
             yield self
         return GetPublicGatewayResult(
+            allowed_ip_ranges=self.allowed_ip_ranges,
+            bandwidth=self.bandwidth,
             bastion_enabled=self.bastion_enabled,
             bastion_port=self.bastion_port,
             created_at=self.created_at,
             enable_smtp=self.enable_smtp,
             id=self.id,
             ip_id=self.ip_id,
+            move_to_ipam=self.move_to_ipam,
             name=self.name,
             organization_id=self.organization_id,
             project_id=self.project_id,
@@ -231,12 +258,15 @@ def get_public_gateway(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:network/getPublicGateway:getPublicGateway', __args__, opts=opts, typ=GetPublicGatewayResult).value
 
     return AwaitableGetPublicGatewayResult(
+        allowed_ip_ranges=pulumi.get(__ret__, 'allowed_ip_ranges'),
+        bandwidth=pulumi.get(__ret__, 'bandwidth'),
         bastion_enabled=pulumi.get(__ret__, 'bastion_enabled'),
         bastion_port=pulumi.get(__ret__, 'bastion_port'),
         created_at=pulumi.get(__ret__, 'created_at'),
         enable_smtp=pulumi.get(__ret__, 'enable_smtp'),
         id=pulumi.get(__ret__, 'id'),
         ip_id=pulumi.get(__ret__, 'ip_id'),
+        move_to_ipam=pulumi.get(__ret__, 'move_to_ipam'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -285,12 +315,15 @@ def get_public_gateway_output(name: Optional[pulumi.Input[Optional[str]]] = None
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:network/getPublicGateway:getPublicGateway', __args__, opts=opts, typ=GetPublicGatewayResult)
     return __ret__.apply(lambda __response__: GetPublicGatewayResult(
+        allowed_ip_ranges=pulumi.get(__response__, 'allowed_ip_ranges'),
+        bandwidth=pulumi.get(__response__, 'bandwidth'),
         bastion_enabled=pulumi.get(__response__, 'bastion_enabled'),
         bastion_port=pulumi.get(__response__, 'bastion_port'),
         created_at=pulumi.get(__response__, 'created_at'),
         enable_smtp=pulumi.get(__response__, 'enable_smtp'),
         id=pulumi.get(__response__, 'id'),
         ip_id=pulumi.get(__response__, 'ip_id'),
+        move_to_ipam=pulumi.get(__response__, 'move_to_ipam'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         project_id=pulumi.get(__response__, 'project_id'),

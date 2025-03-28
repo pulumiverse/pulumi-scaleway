@@ -189,6 +189,8 @@ type LoadbalancerFrontend struct {
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayOutput `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit pulumi.IntPtrOutput `pulumi:"connectionRateLimit"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrOutput `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -257,6 +259,8 @@ type loadbalancerFrontendState struct {
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit *int `pulumi:"connectionRateLimit"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -287,6 +291,8 @@ type LoadbalancerFrontendState struct {
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit pulumi.IntPtrInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
@@ -317,6 +323,8 @@ type loadbalancerFrontendArgs struct {
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit *int `pulumi:"connectionRateLimit"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -344,6 +352,8 @@ type LoadbalancerFrontendArgs struct {
 	//
 	// > **Important:** Certificates are not allowed on port 80.
 	CertificateIds pulumi.StringArrayInput
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit pulumi.IntPtrInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
@@ -470,6 +480,11 @@ func (o LoadbalancerFrontendOutput) CertificateId() pulumi.StringOutput {
 // > **Important:** Certificates are not allowed on port 80.
 func (o LoadbalancerFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringArrayOutput { return v.CertificateIds }).(pulumi.StringArrayOutput)
+}
+
+// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+func (o LoadbalancerFrontendOutput) ConnectionRateLimit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntPtrOutput { return v.ConnectionRateLimit }).(pulumi.IntPtrOutput)
 }
 
 // Activates HTTP/3 protocol.

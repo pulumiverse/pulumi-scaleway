@@ -20,6 +20,11 @@ export type Record = import("./record").Record;
 export const Record: typeof import("./record").Record = null as any;
 utilities.lazyLoad(exports, ["Record"], () => require("./record"));
 
+export { RegistrationArgs, RegistrationState } from "./registration";
+export type Registration = import("./registration").Registration;
+export const Registration: typeof import("./registration").Registration = null as any;
+utilities.lazyLoad(exports, ["Registration"], () => require("./registration"));
+
 export { ZoneArgs, ZoneState } from "./zone";
 export type Zone = import("./zone").Zone;
 export const Zone: typeof import("./zone").Zone = null as any;
@@ -32,6 +37,8 @@ const _module = {
         switch (type) {
             case "scaleway:domain/record:Record":
                 return new Record(name, <any>undefined, { urn })
+            case "scaleway:domain/registration:Registration":
+                return new Registration(name, <any>undefined, { urn })
             case "scaleway:domain/zone:Zone":
                 return new Zone(name, <any>undefined, { urn })
             default:
@@ -40,4 +47,5 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "domain/record", _module)
+pulumi.runtime.registerResourceModule("scaleway", "domain/registration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "domain/zone", _module)

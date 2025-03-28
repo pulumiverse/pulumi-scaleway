@@ -67,7 +67,7 @@ import (
 //				ForwardProtocol: pulumi.String("http"),
 //				ForwardPort:     pulumi.Int(80),
 //				HealthCheckHttp: &loadbalancers.BackendHealthCheckHttpArgs{
-//					Uri: pulumi.String("www.test.com/health"),
+//					Uri: pulumi.String("/health"),
 //				},
 //			})
 //			if err != nil {

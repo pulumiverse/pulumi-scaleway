@@ -249,6 +249,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly string BackendId;
         public readonly string CertificateId;
         public readonly ImmutableArray<string> CertificateIds;
+        public readonly int ConnectionRateLimit;
         public readonly bool EnableHttp3;
         public readonly bool ExternalAcls;
         public readonly string? FrontendId;
@@ -271,6 +272,8 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             ImmutableArray<string> certificateIds,
 
+            int connectionRateLimit,
+
             bool enableHttp3,
 
             bool externalAcls,
@@ -291,6 +294,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
             BackendId = backendId;
             CertificateId = certificateId;
             CertificateIds = certificateIds;
+            ConnectionRateLimit = connectionRateLimit;
             EnableHttp3 = enableHttp3;
             ExternalAcls = externalAcls;
             FrontendId = frontendId;

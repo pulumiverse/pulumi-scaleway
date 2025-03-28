@@ -69,6 +69,22 @@ __all__ = [
     'DomainRecordViewArgsDict',
     'DomainRecordWeightedArgs',
     'DomainRecordWeightedArgsDict',
+    'EdgeServicesBackendStageLbBackendConfigArgs',
+    'EdgeServicesBackendStageLbBackendConfigArgsDict',
+    'EdgeServicesBackendStageLbBackendConfigLbConfigArgs',
+    'EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict',
+    'EdgeServicesBackendStageS3BackendConfigArgs',
+    'EdgeServicesBackendStageS3BackendConfigArgsDict',
+    'EdgeServicesCacheStagePurgeRequestArgs',
+    'EdgeServicesCacheStagePurgeRequestArgsDict',
+    'EdgeServicesRouteStageRuleArgs',
+    'EdgeServicesRouteStageRuleArgsDict',
+    'EdgeServicesRouteStageRuleRuleHttpMatchArgs',
+    'EdgeServicesRouteStageRuleRuleHttpMatchArgsDict',
+    'EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs',
+    'EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict',
+    'EdgeServicesTlsStageSecretArgs',
+    'EdgeServicesTlsStageSecretArgsDict',
     'FunctionTriggerNatsArgs',
     'FunctionTriggerNatsArgsDict',
     'FunctionTriggerSqsArgs',
@@ -201,6 +217,8 @@ __all__ = [
     'RedisClusterPublicNetworkArgsDict',
     'SecretEphemeralPolicyArgs',
     'SecretEphemeralPolicyArgsDict',
+    'SecretVersionArgs',
+    'SecretVersionArgsDict',
     'TemDomainReputationArgs',
     'TemDomainReputationArgsDict',
     'VpcGatewayNetworkIpamConfigArgs',
@@ -2675,6 +2693,499 @@ class DomainRecordWeightedArgs:
     @weight.setter
     def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
+
+
+if not MYPY:
+    class EdgeServicesBackendStageLbBackendConfigArgsDict(TypedDict):
+        lb_config: NotRequired[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict']]
+        """
+        The Load Balancer config.
+        """
+elif False:
+    EdgeServicesBackendStageLbBackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesBackendStageLbBackendConfigArgs:
+    def __init__(__self__, *,
+                 lb_config: Optional[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgs']] = None):
+        """
+        :param pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgs'] lb_config: The Load Balancer config.
+        """
+        if lb_config is not None:
+            pulumi.set(__self__, "lb_config", lb_config)
+
+    @property
+    @pulumi.getter(name="lbConfig")
+    def lb_config(self) -> Optional[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgs']]:
+        """
+        The Load Balancer config.
+        """
+        return pulumi.get(self, "lb_config")
+
+    @lb_config.setter
+    def lb_config(self, value: Optional[pulumi.Input['EdgeServicesBackendStageLbBackendConfigLbConfigArgs']]):
+        pulumi.set(self, "lb_config", value)
+
+
+if not MYPY:
+    class EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict(TypedDict):
+        domain_name: NotRequired[pulumi.Input[str]]
+        """
+        The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+        """
+        frontend_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the frontend.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the Load Balancer.
+        """
+        is_ssl: NotRequired[pulumi.Input[bool]]
+        """
+        Defines whether the Load Balancer's frontend handles SSL connections.
+        """
+        zone: NotRequired[pulumi.Input[str]]
+        """
+        `zone`) The zone of the Load Balancer.
+        """
+elif False:
+    EdgeServicesBackendStageLbBackendConfigLbConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
+    def __init__(__self__, *,
+                 domain_name: Optional[pulumi.Input[str]] = None,
+                 frontend_id: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 is_ssl: Optional[pulumi.Input[bool]] = None,
+                 zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] domain_name: The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+        :param pulumi.Input[str] frontend_id: The ID of the frontend.
+        :param pulumi.Input[str] id: The ID of the Load Balancer.
+        :param pulumi.Input[bool] is_ssl: Defines whether the Load Balancer's frontend handles SSL connections.
+        :param pulumi.Input[str] zone: `zone`) The zone of the Load Balancer.
+        """
+        if domain_name is not None:
+            pulumi.set(__self__, "domain_name", domain_name)
+        if frontend_id is not None:
+            pulumi.set(__self__, "frontend_id", frontend_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if is_ssl is not None:
+            pulumi.set(__self__, "is_ssl", is_ssl)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+        """
+        return pulumi.get(self, "domain_name")
+
+    @domain_name.setter
+    def domain_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_name", value)
+
+    @property
+    @pulumi.getter(name="frontendId")
+    def frontend_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the frontend.
+        """
+        return pulumi.get(self, "frontend_id")
+
+    @frontend_id.setter
+    def frontend_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "frontend_id", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Load Balancer.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="isSsl")
+    def is_ssl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether the Load Balancer's frontend handles SSL connections.
+        """
+        return pulumi.get(self, "is_ssl")
+
+    @is_ssl.setter
+    def is_ssl(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_ssl", value)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        `zone`) The zone of the Load Balancer.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "zone", value)
+
+
+if not MYPY:
+    class EdgeServicesBackendStageS3BackendConfigArgsDict(TypedDict):
+        bucket_name: NotRequired[pulumi.Input[str]]
+        """
+        The name of the Bucket.
+        """
+        bucket_region: NotRequired[pulumi.Input[str]]
+        """
+        The region of the Bucket.
+        """
+        is_website: NotRequired[pulumi.Input[bool]]
+        """
+        Defines whether the bucket website feature is enabled.
+        """
+elif False:
+    EdgeServicesBackendStageS3BackendConfigArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesBackendStageS3BackendConfigArgs:
+    def __init__(__self__, *,
+                 bucket_name: Optional[pulumi.Input[str]] = None,
+                 bucket_region: Optional[pulumi.Input[str]] = None,
+                 is_website: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] bucket_name: The name of the Bucket.
+        :param pulumi.Input[str] bucket_region: The region of the Bucket.
+        :param pulumi.Input[bool] is_website: Defines whether the bucket website feature is enabled.
+        """
+        if bucket_name is not None:
+            pulumi.set(__self__, "bucket_name", bucket_name)
+        if bucket_region is not None:
+            pulumi.set(__self__, "bucket_region", bucket_region)
+        if is_website is not None:
+            pulumi.set(__self__, "is_website", is_website)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Bucket.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region of the Bucket.
+        """
+        return pulumi.get(self, "bucket_region")
+
+    @bucket_region.setter
+    def bucket_region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bucket_region", value)
+
+    @property
+    @pulumi.getter(name="isWebsite")
+    def is_website(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether the bucket website feature is enabled.
+        """
+        return pulumi.get(self, "is_website")
+
+    @is_website.setter
+    def is_website(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "is_website", value)
+
+
+if not MYPY:
+    class EdgeServicesCacheStagePurgeRequestArgsDict(TypedDict):
+        all: NotRequired[pulumi.Input[bool]]
+        """
+        Defines whether to purge all content.
+        """
+        assets: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        The list of asserts to purge.
+        """
+        pipeline_id: NotRequired[pulumi.Input[str]]
+        """
+        The pipeline ID in which the purge request will be created.
+        """
+elif False:
+    EdgeServicesCacheStagePurgeRequestArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesCacheStagePurgeRequestArgs:
+    def __init__(__self__, *,
+                 all: Optional[pulumi.Input[bool]] = None,
+                 assets: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 pipeline_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] all: Defines whether to purge all content.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] assets: The list of asserts to purge.
+        :param pulumi.Input[str] pipeline_id: The pipeline ID in which the purge request will be created.
+        """
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if assets is not None:
+            pulumi.set(__self__, "assets", assets)
+        if pipeline_id is not None:
+            pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Defines whether to purge all content.
+        """
+        return pulumi.get(self, "all")
+
+    @all.setter
+    def all(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "all", value)
+
+    @property
+    @pulumi.getter
+    def assets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The list of asserts to purge.
+        """
+        return pulumi.get(self, "assets")
+
+    @assets.setter
+    def assets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "assets", value)
+
+    @property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The pipeline ID in which the purge request will be created.
+        """
+        return pulumi.get(self, "pipeline_id")
+
+    @pipeline_id.setter
+    def pipeline_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pipeline_id", value)
+
+
+if not MYPY:
+    class EdgeServicesRouteStageRuleArgsDict(TypedDict):
+        backend_stage_id: pulumi.Input[str]
+        """
+        The ID of the backend stage that requests matching the rule should be forwarded to.
+        """
+        rule_http_match: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgsDict']]
+        """
+        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        """
+elif False:
+    EdgeServicesRouteStageRuleArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesRouteStageRuleArgs:
+    def __init__(__self__, *,
+                 backend_stage_id: pulumi.Input[str],
+                 rule_http_match: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']] = None):
+        """
+        :param pulumi.Input[str] backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to.
+        :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs'] rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        """
+        pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        if rule_http_match is not None:
+            pulumi.set(__self__, "rule_http_match", rule_http_match)
+
+    @property
+    @pulumi.getter(name="backendStageId")
+    def backend_stage_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the backend stage that requests matching the rule should be forwarded to.
+        """
+        return pulumi.get(self, "backend_stage_id")
+
+    @backend_stage_id.setter
+    def backend_stage_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backend_stage_id", value)
+
+    @property
+    @pulumi.getter(name="ruleHttpMatch")
+    def rule_http_match(self) -> Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']]:
+        """
+        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        """
+        return pulumi.get(self, "rule_http_match")
+
+    @rule_http_match.setter
+    def rule_http_match(self, value: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']]):
+        pulumi.set(self, "rule_http_match", value)
+
+
+if not MYPY:
+    class EdgeServicesRouteStageRuleRuleHttpMatchArgsDict(TypedDict):
+        method_filters: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+        """
+        path_filter: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict']]
+        """
+        HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+        """
+elif False:
+    EdgeServicesRouteStageRuleRuleHttpMatchArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesRouteStageRuleRuleHttpMatchArgs:
+    def __init__(__self__, *,
+                 method_filters: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 path_filter: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] method_filters: HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+        :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs'] path_filter: HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+        """
+        if method_filters is not None:
+            pulumi.set(__self__, "method_filters", method_filters)
+        if path_filter is not None:
+            pulumi.set(__self__, "path_filter", path_filter)
+
+    @property
+    @pulumi.getter(name="methodFilters")
+    def method_filters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+        """
+        return pulumi.get(self, "method_filters")
+
+    @method_filters.setter
+    def method_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "method_filters", value)
+
+    @property
+    @pulumi.getter(name="pathFilter")
+    def path_filter(self) -> Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']]:
+        """
+        HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+        """
+        return pulumi.get(self, "path_filter")
+
+    @path_filter.setter
+    def path_filter(self, value: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs']]):
+        pulumi.set(self, "path_filter", value)
+
+
+if not MYPY:
+    class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict(TypedDict):
+        path_filter_type: pulumi.Input[str]
+        """
+        The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        """
+        value: pulumi.Input[str]
+        """
+        The value to be matched for the HTTP URL path.
+        """
+elif False:
+    EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs:
+    def __init__(__self__, *,
+                 path_filter_type: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] path_filter_type: The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        :param pulumi.Input[str] value: The value to be matched for the HTTP URL path.
+        """
+        pulumi.set(__self__, "path_filter_type", path_filter_type)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="pathFilterType")
+    def path_filter_type(self) -> pulumi.Input[str]:
+        """
+        The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        """
+        return pulumi.get(self, "path_filter_type")
+
+    @path_filter_type.setter
+    def path_filter_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path_filter_type", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The value to be matched for the HTTP URL path.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+
+if not MYPY:
+    class EdgeServicesTlsStageSecretArgsDict(TypedDict):
+        region: NotRequired[pulumi.Input[str]]
+        """
+        The region of the secret.
+        """
+        secret_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the Secret
+        """
+elif False:
+    EdgeServicesTlsStageSecretArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class EdgeServicesTlsStageSecretArgs:
+    def __init__(__self__, *,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] region: The region of the secret.
+        :param pulumi.Input[str] secret_id: The ID of the Secret
+        """
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region of the secret.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Secret
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_id", value)
 
 
 if not MYPY:
@@ -8404,6 +8915,158 @@ class SecretEphemeralPolicyArgs:
     @ttl.setter
     def ttl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ttl", value)
+
+
+if not MYPY:
+    class SecretVersionArgsDict(TypedDict):
+        created_at: NotRequired[pulumi.Input[str]]
+        """
+        Date and time of the secret's creation (in RFC 3339 format).
+        """
+        description: NotRequired[pulumi.Input[str]]
+        """
+        Description of the secret (e.g. `my-new-description`).
+        """
+        latest: NotRequired[pulumi.Input[bool]]
+        """
+        Returns true if the version is the latest.
+        """
+        revision: NotRequired[pulumi.Input[str]]
+        """
+        The revision of secret version
+        """
+        secret_id: NotRequired[pulumi.Input[str]]
+        """
+        The secret ID associated with this version
+        """
+        status: NotRequired[pulumi.Input[str]]
+        """
+        The status of the secret.
+        """
+        updated_at: NotRequired[pulumi.Input[str]]
+        """
+        Date and time of the secret's last update (in RFC 3339 format).
+        """
+elif False:
+    SecretVersionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SecretVersionArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 latest: Optional[pulumi.Input[bool]] = None,
+                 revision: Optional[pulumi.Input[str]] = None,
+                 secret_id: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] created_at: Date and time of the secret's creation (in RFC 3339 format).
+        :param pulumi.Input[str] description: Description of the secret (e.g. `my-new-description`).
+        :param pulumi.Input[bool] latest: Returns true if the version is the latest.
+        :param pulumi.Input[str] revision: The revision of secret version
+        :param pulumi.Input[str] secret_id: The secret ID associated with this version
+        :param pulumi.Input[str] status: The status of the secret.
+        :param pulumi.Input[str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if latest is not None:
+            pulumi.set(__self__, "latest", latest)
+        if revision is not None:
+            pulumi.set(__self__, "revision", revision)
+        if secret_id is not None:
+            pulumi.set(__self__, "secret_id", secret_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of the secret's creation (in RFC 3339 format).
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the secret (e.g. `my-new-description`).
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def latest(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Returns true if the version is the latest.
+        """
+        return pulumi.get(self, "latest")
+
+    @latest.setter
+    def latest(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "latest", value)
+
+    @property
+    @pulumi.getter
+    def revision(self) -> Optional[pulumi.Input[str]]:
+        """
+        The revision of secret version
+        """
+        return pulumi.get(self, "revision")
+
+    @revision.setter
+    def revision(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "revision", value)
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret ID associated with this version
+        """
+        return pulumi.get(self, "secret_id")
+
+    @secret_id.setter
+    def secret_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_id", value)
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the secret.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Date and time of the secret's last update (in RFC 3339 format).
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
 
 
 if not MYPY:

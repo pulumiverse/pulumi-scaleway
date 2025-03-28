@@ -29,7 +29,7 @@ class GetSecretResult:
     """
     A collection of values returned by getSecret.
     """
-    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, status=None, tags=None, type=None, updated_at=None, version_count=None):
+    def __init__(__self__, created_at=None, description=None, ephemeral_policies=None, id=None, name=None, organization_id=None, path=None, project_id=None, protected=None, region=None, secret_id=None, status=None, tags=None, type=None, updated_at=None, version_count=None, versions=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -78,6 +78,9 @@ class GetSecretResult:
         if version_count and not isinstance(version_count, int):
             raise TypeError("Expected argument 'version_count' to be a int")
         pulumi.set(__self__, "version_count", version_count)
+        if versions and not isinstance(versions, list):
+            raise TypeError("Expected argument 'versions' to be a list")
+        pulumi.set(__self__, "versions", versions)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -162,6 +165,11 @@ class GetSecretResult:
     def version_count(self) -> int:
         return pulumi.get(self, "version_count")
 
+    @property
+    @pulumi.getter
+    def versions(self) -> Sequence['outputs.GetSecretVersionResult']:
+        return pulumi.get(self, "versions")
+
 
 class AwaitableGetSecretResult(GetSecretResult):
     # pylint: disable=using-constant-test
@@ -184,7 +192,8 @@ class AwaitableGetSecretResult(GetSecretResult):
             tags=self.tags,
             type=self.type,
             updated_at=self.updated_at,
-            version_count=self.version_count)
+            version_count=self.version_count,
+            versions=self.versions)
 
 
 def get_secret(name: Optional[str] = None,
@@ -263,7 +272,8 @@ def get_secret(name: Optional[str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
-        version_count=pulumi.get(__ret__, 'version_count'))
+        version_count=pulumi.get(__ret__, 'version_count'),
+        versions=pulumi.get(__ret__, 'versions'))
 def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
                       organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                       path: Optional[pulumi.Input[Optional[str]]] = None,
@@ -339,4 +349,5 @@ def get_secret_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),
         updated_at=pulumi.get(__response__, 'updated_at'),
-        version_count=pulumi.get(__response__, 'version_count')))
+        version_count=pulumi.get(__response__, 'version_count'),
+        versions=pulumi.get(__response__, 'versions')))

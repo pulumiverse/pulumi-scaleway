@@ -82,6 +82,7 @@ export interface GetFrontendResult {
     readonly backendId: string;
     readonly certificateId: string;
     readonly certificateIds: string[];
+    readonly connectionRateLimit: number;
     readonly enableHttp3: boolean;
     readonly externalAcls: boolean;
     readonly frontendId?: string;

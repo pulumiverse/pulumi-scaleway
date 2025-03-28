@@ -101,6 +101,7 @@ type GetLbRouteResult struct {
 	Id              string `pulumi:"id"`
 	MatchHostHeader string `pulumi:"matchHostHeader"`
 	MatchSni        string `pulumi:"matchSni"`
+	MatchSubdomains bool   `pulumi:"matchSubdomains"`
 	RouteId         string `pulumi:"routeId"`
 	UpdatedAt       string `pulumi:"updatedAt"`
 }
@@ -162,6 +163,10 @@ func (o GetLbRouteResultOutput) MatchHostHeader() pulumi.StringOutput {
 
 func (o GetLbRouteResultOutput) MatchSni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRouteResult) string { return v.MatchSni }).(pulumi.StringOutput)
+}
+
+func (o GetLbRouteResultOutput) MatchSubdomains() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbRouteResult) bool { return v.MatchSubdomains }).(pulumi.BoolOutput)
 }
 
 func (o GetLbRouteResultOutput) RouteId() pulumi.StringOutput {

@@ -594,6 +594,10 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        > **Important:**  The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        For more information, please refer to the dedicated guide.
+
         Creates and manages Scaleway VPC Public Gateway DHCP configurations.
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
 
@@ -643,6 +647,10 @@ class VpcPublicGatewayDhcp(pulumi.CustomResource):
                  args: VpcPublicGatewayDhcpArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        > **Important:**  The resource `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+        In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        For more information, please refer to the dedicated guide.
+
         Creates and manages Scaleway VPC Public Gateway DHCP configurations.
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#dhcp-c05544).
 

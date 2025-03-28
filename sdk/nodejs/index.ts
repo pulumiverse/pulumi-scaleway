@@ -135,6 +135,51 @@ export type DomainZone = import("./domainZone").DomainZone;
 export const DomainZone: typeof import("./domainZone").DomainZone = null as any;
 utilities.lazyLoad(exports, ["DomainZone"], () => require("./domainZone"));
 
+export { EdgeServicesBackendStageArgs, EdgeServicesBackendStageState } from "./edgeServicesBackendStage";
+export type EdgeServicesBackendStage = import("./edgeServicesBackendStage").EdgeServicesBackendStage;
+export const EdgeServicesBackendStage: typeof import("./edgeServicesBackendStage").EdgeServicesBackendStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesBackendStage"], () => require("./edgeServicesBackendStage"));
+
+export { EdgeServicesCacheStageArgs, EdgeServicesCacheStageState } from "./edgeServicesCacheStage";
+export type EdgeServicesCacheStage = import("./edgeServicesCacheStage").EdgeServicesCacheStage;
+export const EdgeServicesCacheStage: typeof import("./edgeServicesCacheStage").EdgeServicesCacheStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesCacheStage"], () => require("./edgeServicesCacheStage"));
+
+export { EdgeServicesDnsStageArgs, EdgeServicesDnsStageState } from "./edgeServicesDnsStage";
+export type EdgeServicesDnsStage = import("./edgeServicesDnsStage").EdgeServicesDnsStage;
+export const EdgeServicesDnsStage: typeof import("./edgeServicesDnsStage").EdgeServicesDnsStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesDnsStage"], () => require("./edgeServicesDnsStage"));
+
+export { EdgeServicesHeadStageArgs, EdgeServicesHeadStageState } from "./edgeServicesHeadStage";
+export type EdgeServicesHeadStage = import("./edgeServicesHeadStage").EdgeServicesHeadStage;
+export const EdgeServicesHeadStage: typeof import("./edgeServicesHeadStage").EdgeServicesHeadStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesHeadStage"], () => require("./edgeServicesHeadStage"));
+
+export { EdgeServicesPipelineArgs, EdgeServicesPipelineState } from "./edgeServicesPipeline";
+export type EdgeServicesPipeline = import("./edgeServicesPipeline").EdgeServicesPipeline;
+export const EdgeServicesPipeline: typeof import("./edgeServicesPipeline").EdgeServicesPipeline = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesPipeline"], () => require("./edgeServicesPipeline"));
+
+export { EdgeServicesPlanArgs, EdgeServicesPlanState } from "./edgeServicesPlan";
+export type EdgeServicesPlan = import("./edgeServicesPlan").EdgeServicesPlan;
+export const EdgeServicesPlan: typeof import("./edgeServicesPlan").EdgeServicesPlan = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesPlan"], () => require("./edgeServicesPlan"));
+
+export { EdgeServicesRouteStageArgs, EdgeServicesRouteStageState } from "./edgeServicesRouteStage";
+export type EdgeServicesRouteStage = import("./edgeServicesRouteStage").EdgeServicesRouteStage;
+export const EdgeServicesRouteStage: typeof import("./edgeServicesRouteStage").EdgeServicesRouteStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesRouteStage"], () => require("./edgeServicesRouteStage"));
+
+export { EdgeServicesTlsStageArgs, EdgeServicesTlsStageState } from "./edgeServicesTlsStage";
+export type EdgeServicesTlsStage = import("./edgeServicesTlsStage").EdgeServicesTlsStage;
+export const EdgeServicesTlsStage: typeof import("./edgeServicesTlsStage").EdgeServicesTlsStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesTlsStage"], () => require("./edgeServicesTlsStage"));
+
+export { EdgeServicesWafStageArgs, EdgeServicesWafStageState } from "./edgeServicesWafStage";
+export type EdgeServicesWafStage = import("./edgeServicesWafStage").EdgeServicesWafStage;
+export const EdgeServicesWafStage: typeof import("./edgeServicesWafStage").EdgeServicesWafStage = null as any;
+utilities.lazyLoad(exports, ["EdgeServicesWafStage"], () => require("./edgeServicesWafStage"));
+
 export { FlexibleIpArgs, FlexibleIpState } from "./flexibleIp";
 export type FlexibleIp = import("./flexibleIp").FlexibleIp;
 export const FlexibleIp: typeof import("./flexibleIp").FlexibleIp = null as any;
@@ -1090,6 +1135,24 @@ const _module = {
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
                 return new DomainZone(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage":
+                return new EdgeServicesBackendStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage":
+                return new EdgeServicesCacheStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage":
+                return new EdgeServicesDnsStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage":
+                return new EdgeServicesHeadStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline":
+                return new EdgeServicesPipeline(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesPlan:EdgeServicesPlan":
+                return new EdgeServicesPlan(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage":
+                return new EdgeServicesRouteStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage":
+                return new EdgeServicesTlsStage(name, <any>undefined, { urn })
+            case "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage":
+                return new EdgeServicesWafStage(name, <any>undefined, { urn })
             case "scaleway:index/flexibleIp:FlexibleIp":
                 return new FlexibleIp(name, <any>undefined, { urn })
             case "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress":
@@ -1281,6 +1344,15 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesBackendStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesCacheStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesDnsStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesHeadStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesPipeline", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesPlan", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesRouteStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesTlsStage", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesWafStage", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/flexibleIpMacAddress", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/function", _module)

@@ -68,6 +68,14 @@ export class VpcPublicGateway extends pulumi.CustomResource {
     }
 
     /**
+     * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+     */
+    public readonly allowedIpRanges!: pulumi.Output<string[]>;
+    /**
+     * The bandwidth available of the gateway
+     */
+    public /*out*/ readonly bandwidth!: pulumi.Output<number>;
+    /**
      * Enable SSH bastion on the gateway.
      */
     public readonly bastionEnabled!: pulumi.Output<boolean | undefined>;
@@ -87,6 +95,10 @@ export class VpcPublicGateway extends pulumi.CustomResource {
      * Attach an existing flexible IP to the gateway.
      */
     public readonly ipId!: pulumi.Output<string>;
+    /**
+     * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     */
+    public readonly moveToIpam!: pulumi.Output<boolean | undefined>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
@@ -122,7 +134,7 @@ export class VpcPublicGateway extends pulumi.CustomResource {
     /**
      * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      */
-    public readonly upstreamDnsServers!: pulumi.Output<string[] | undefined>;
+    public /*out*/ readonly upstreamDnsServers!: pulumi.Output<string[]>;
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */
@@ -144,11 +156,14 @@ export class VpcPublicGateway extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPublicGatewayState | undefined;
+            resourceInputs["allowedIpRanges"] = state ? state.allowedIpRanges : undefined;
+            resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
             resourceInputs["bastionEnabled"] = state ? state.bastionEnabled : undefined;
             resourceInputs["bastionPort"] = state ? state.bastionPort : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["enableSmtp"] = state ? state.enableSmtp : undefined;
             resourceInputs["ipId"] = state ? state.ipId : undefined;
+            resourceInputs["moveToIpam"] = state ? state.moveToIpam : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -164,21 +179,24 @@ export class VpcPublicGateway extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["allowedIpRanges"] = args ? args.allowedIpRanges : undefined;
             resourceInputs["bastionEnabled"] = args ? args.bastionEnabled : undefined;
             resourceInputs["bastionPort"] = args ? args.bastionPort : undefined;
             resourceInputs["enableSmtp"] = args ? args.enableSmtp : undefined;
             resourceInputs["ipId"] = args ? args.ipId : undefined;
+            resourceInputs["moveToIpam"] = args ? args.moveToIpam : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["refreshSshKeys"] = args ? args.refreshSshKeys : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["upstreamDnsServers"] = args ? args.upstreamDnsServers : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["bandwidth"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["upstreamDnsServers"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VpcPublicGateway.__pulumiType, name, resourceInputs, opts);
@@ -189,6 +207,14 @@ export class VpcPublicGateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcPublicGateway resources.
  */
 export interface VpcPublicGatewayState {
+    /**
+     * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+     */
+    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The bandwidth available of the gateway
+     */
+    bandwidth?: pulumi.Input<number>;
     /**
      * Enable SSH bastion on the gateway.
      */
@@ -209,6 +235,10 @@ export interface VpcPublicGatewayState {
      * Attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     */
+    moveToIpam?: pulumi.Input<boolean>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
@@ -256,6 +286,10 @@ export interface VpcPublicGatewayState {
  */
 export interface VpcPublicGatewayArgs {
     /**
+     * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
+     */
+    allowedIpRanges?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * Enable SSH bastion on the gateway.
      */
     bastionEnabled?: pulumi.Input<boolean>;
@@ -271,6 +305,10 @@ export interface VpcPublicGatewayArgs {
      * Attach an existing flexible IP to the gateway.
      */
     ipId?: pulumi.Input<string>;
+    /**
+     * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     */
+    moveToIpam?: pulumi.Input<boolean>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
@@ -291,10 +329,6 @@ export interface VpcPublicGatewayArgs {
      * The gateway type.
      */
     type: pulumi.Input<string>;
-    /**
-     * Override the gateway's default recursive DNS servers, if DNS features are enabled.
-     */
-    upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */

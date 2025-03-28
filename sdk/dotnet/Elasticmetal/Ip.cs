@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     /// Creates and manages Scaleway flexible IPs.
     /// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
     /// 
+    /// &gt; **Note:**
+    /// Flexible IPs are exclusively available for Elastic Metal (bare metal) servers. They are not compatible with other Scaleway products.
+    /// 
     /// ## Example Usage
     /// 
     /// ### Basic
@@ -197,7 +200,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The zone of the Flexible IP.
+        /// `zone`) The zone of the Flexible IP.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -296,7 +299,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         }
 
         /// <summary>
-        /// The zone of the Flexible IP.
+        /// `zone`) The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -382,7 +385,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The zone of the Flexible IP.
+        /// `zone`) The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

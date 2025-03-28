@@ -191,6 +191,8 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetVpcPublicGatewayResult
     {
+        public readonly ImmutableArray<string> AllowedIpRanges;
+        public readonly int Bandwidth;
         public readonly bool BastionEnabled;
         public readonly int BastionPort;
         public readonly string CreatedAt;
@@ -200,6 +202,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string IpId;
+        public readonly bool MoveToIpam;
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string? ProjectId;
@@ -214,6 +217,10 @@ namespace Pulumiverse.Scaleway
 
         [OutputConstructor]
         private GetVpcPublicGatewayResult(
+            ImmutableArray<string> allowedIpRanges,
+
+            int bandwidth,
+
             bool bastionEnabled,
 
             int bastionPort,
@@ -225,6 +232,8 @@ namespace Pulumiverse.Scaleway
             string id,
 
             string ipId,
+
+            bool moveToIpam,
 
             string? name,
 
@@ -248,12 +257,15 @@ namespace Pulumiverse.Scaleway
 
             string? zone)
         {
+            AllowedIpRanges = allowedIpRanges;
+            Bandwidth = bandwidth;
             BastionEnabled = bastionEnabled;
             BastionPort = bastionPort;
             CreatedAt = createdAt;
             EnableSmtp = enableSmtp;
             Id = id;
             IpId = ipId;
+            MoveToIpam = moveToIpam;
             Name = name;
             OrganizationId = organizationId;
             ProjectId = projectId;

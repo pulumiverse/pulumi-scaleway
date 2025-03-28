@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:tem/blockedList:BlockedList":
+		r = &BlockedList{}
 	case "scaleway:tem/domain:Domain":
 		r = &Domain{}
 	case "scaleway:tem/domainValidation:DomainValidation":
@@ -40,6 +42,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"tem/blockedList",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"tem/domain",

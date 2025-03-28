@@ -51,7 +51,8 @@ type Secret struct {
 	// Date and time of the secret's last update (in RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The amount of secret versions.
-	VersionCount pulumi.IntOutput `pulumi:"versionCount"`
+	VersionCount pulumi.IntOutput             `pulumi:"versionCount"`
+	Versions     SecretVersionTypeArrayOutput `pulumi:"versions"`
 }
 
 // NewSecret registers a new resource with the given unique name, arguments, and options.
@@ -110,7 +111,8 @@ type secretState struct {
 	// Date and time of the secret's last update (in RFC 3339 format).
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The amount of secret versions.
-	VersionCount *int `pulumi:"versionCount"`
+	VersionCount *int                `pulumi:"versionCount"`
+	Versions     []SecretVersionType `pulumi:"versions"`
 }
 
 type SecretState struct {
@@ -141,6 +143,7 @@ type SecretState struct {
 	UpdatedAt pulumi.StringPtrInput
 	// The amount of secret versions.
 	VersionCount pulumi.IntPtrInput
+	Versions     SecretVersionTypeArrayInput
 }
 
 func (SecretState) ElementType() reflect.Type {
@@ -343,6 +346,10 @@ func (o SecretOutput) UpdatedAt() pulumi.StringOutput {
 // The amount of secret versions.
 func (o SecretOutput) VersionCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Secret) pulumi.IntOutput { return v.VersionCount }).(pulumi.IntOutput)
+}
+
+func (o SecretOutput) Versions() SecretVersionTypeArrayOutput {
+	return o.ApplyT(func(v *Secret) SecretVersionTypeArrayOutput { return v.Versions }).(SecretVersionTypeArrayOutput)
 }
 
 type SecretArrayOutput struct{ *pulumi.OutputState }

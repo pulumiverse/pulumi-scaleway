@@ -128,6 +128,157 @@ func (o SecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) SecretEphemer
 	}).(SecretEphemeralPolicyOutput)
 }
 
+type SecretVersion struct {
+	// Date and time of the secret's creation (in RFC 3339 format).
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the secret (e.g. `my-new-description`).
+	Description *string `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest *bool `pulumi:"latest"`
+	// The revision of secret version
+	Revision *string `pulumi:"revision"`
+	// The secret ID associated with this version
+	SecretId *string `pulumi:"secretId"`
+	// The status of the secret.
+	Status *string `pulumi:"status"`
+	// Date and time of the secret's last update (in RFC 3339 format).
+	UpdatedAt *string `pulumi:"updatedAt"`
+}
+
+// SecretVersionInput is an input type that accepts SecretVersionArgs and SecretVersionOutput values.
+// You can construct a concrete instance of `SecretVersionInput` via:
+//
+//	SecretVersionArgs{...}
+type SecretVersionInput interface {
+	pulumi.Input
+
+	ToSecretVersionOutput() SecretVersionOutput
+	ToSecretVersionOutputWithContext(context.Context) SecretVersionOutput
+}
+
+type SecretVersionArgs struct {
+	// Date and time of the secret's creation (in RFC 3339 format).
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Description of the secret (e.g. `my-new-description`).
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest pulumi.BoolPtrInput `pulumi:"latest"`
+	// The revision of secret version
+	Revision pulumi.StringPtrInput `pulumi:"revision"`
+	// The secret ID associated with this version
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
+	// The status of the secret.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Date and time of the secret's last update (in RFC 3339 format).
+	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
+}
+
+func (SecretVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersion)(nil)).Elem()
+}
+
+func (i SecretVersionArgs) ToSecretVersionOutput() SecretVersionOutput {
+	return i.ToSecretVersionOutputWithContext(context.Background())
+}
+
+func (i SecretVersionArgs) ToSecretVersionOutputWithContext(ctx context.Context) SecretVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionOutput)
+}
+
+// SecretVersionArrayInput is an input type that accepts SecretVersionArray and SecretVersionArrayOutput values.
+// You can construct a concrete instance of `SecretVersionArrayInput` via:
+//
+//	SecretVersionArray{ SecretVersionArgs{...} }
+type SecretVersionArrayInput interface {
+	pulumi.Input
+
+	ToSecretVersionArrayOutput() SecretVersionArrayOutput
+	ToSecretVersionArrayOutputWithContext(context.Context) SecretVersionArrayOutput
+}
+
+type SecretVersionArray []SecretVersionInput
+
+func (SecretVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersion)(nil)).Elem()
+}
+
+func (i SecretVersionArray) ToSecretVersionArrayOutput() SecretVersionArrayOutput {
+	return i.ToSecretVersionArrayOutputWithContext(context.Background())
+}
+
+func (i SecretVersionArray) ToSecretVersionArrayOutputWithContext(ctx context.Context) SecretVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretVersionArrayOutput)
+}
+
+type SecretVersionOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretVersion)(nil)).Elem()
+}
+
+func (o SecretVersionOutput) ToSecretVersionOutput() SecretVersionOutput {
+	return o
+}
+
+func (o SecretVersionOutput) ToSecretVersionOutputWithContext(ctx context.Context) SecretVersionOutput {
+	return o
+}
+
+// Date and time of the secret's creation (in RFC 3339 format).
+func (o SecretVersionOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Description of the secret (e.g. `my-new-description`).
+func (o SecretVersionOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// Returns true if the version is the latest.
+func (o SecretVersionOutput) Latest() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *bool { return v.Latest }).(pulumi.BoolPtrOutput)
+}
+
+// The revision of secret version
+func (o SecretVersionOutput) Revision() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.Revision }).(pulumi.StringPtrOutput)
+}
+
+// The secret ID associated with this version
+func (o SecretVersionOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.SecretId }).(pulumi.StringPtrOutput)
+}
+
+// The status of the secret.
+func (o SecretVersionOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// Date and time of the secret's last update (in RFC 3339 format).
+func (o SecretVersionOutput) UpdatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SecretVersion) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
+}
+
+type SecretVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (SecretVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SecretVersion)(nil)).Elem()
+}
+
+func (o SecretVersionArrayOutput) ToSecretVersionArrayOutput() SecretVersionArrayOutput {
+	return o
+}
+
+func (o SecretVersionArrayOutput) ToSecretVersionArrayOutputWithContext(ctx context.Context) SecretVersionArrayOutput {
+	return o
+}
+
+func (o SecretVersionArrayOutput) Index(i pulumi.IntInput) SecretVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretVersion {
+		return vs[0].([]SecretVersion)[vs[1].(int)]
+	}).(SecretVersionOutput)
+}
+
 type GetSecretEphemeralPolicy struct {
 	// Action to perform when the version of a secret expires.
 	Action string `pulumi:"action"`
@@ -243,13 +394,175 @@ func (o GetSecretEphemeralPolicyArrayOutput) Index(i pulumi.IntInput) GetSecretE
 	}).(GetSecretEphemeralPolicyOutput)
 }
 
+type GetSecretVersion struct {
+	// Date and time of secret version's creation (RFC 3339 format)
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the secret version
+	Description string `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest bool `pulumi:"latest"`
+	// The revision of secret version
+	Revision string `pulumi:"revision"`
+	// The ID of the secret.
+	// Only one of `name` and `secretId` should be specified.
+	SecretId string `pulumi:"secretId"`
+	// Status of the secret version
+	Status string `pulumi:"status"`
+	// Date and time of secret version's creation (RFC 3339 format)
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetSecretVersionInput is an input type that accepts GetSecretVersionArgs and GetSecretVersionOutput values.
+// You can construct a concrete instance of `GetSecretVersionInput` via:
+//
+//	GetSecretVersionArgs{...}
+type GetSecretVersionInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionOutput() GetSecretVersionOutput
+	ToGetSecretVersionOutputWithContext(context.Context) GetSecretVersionOutput
+}
+
+type GetSecretVersionArgs struct {
+	// Date and time of secret version's creation (RFC 3339 format)
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Description of the secret version
+	Description pulumi.StringInput `pulumi:"description"`
+	// Returns true if the version is the latest.
+	Latest pulumi.BoolInput `pulumi:"latest"`
+	// The revision of secret version
+	Revision pulumi.StringInput `pulumi:"revision"`
+	// The ID of the secret.
+	// Only one of `name` and `secretId` should be specified.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+	// Status of the secret version
+	Status pulumi.StringInput `pulumi:"status"`
+	// Date and time of secret version's creation (RFC 3339 format)
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetSecretVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersion)(nil)).Elem()
+}
+
+func (i GetSecretVersionArgs) ToGetSecretVersionOutput() GetSecretVersionOutput {
+	return i.ToGetSecretVersionOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionArgs) ToGetSecretVersionOutputWithContext(ctx context.Context) GetSecretVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionOutput)
+}
+
+// GetSecretVersionArrayInput is an input type that accepts GetSecretVersionArray and GetSecretVersionArrayOutput values.
+// You can construct a concrete instance of `GetSecretVersionArrayInput` via:
+//
+//	GetSecretVersionArray{ GetSecretVersionArgs{...} }
+type GetSecretVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetSecretVersionArrayOutput() GetSecretVersionArrayOutput
+	ToGetSecretVersionArrayOutputWithContext(context.Context) GetSecretVersionArrayOutput
+}
+
+type GetSecretVersionArray []GetSecretVersionInput
+
+func (GetSecretVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersion)(nil)).Elem()
+}
+
+func (i GetSecretVersionArray) ToGetSecretVersionArrayOutput() GetSecretVersionArrayOutput {
+	return i.ToGetSecretVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetSecretVersionArray) ToGetSecretVersionArrayOutputWithContext(ctx context.Context) GetSecretVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretVersionArrayOutput)
+}
+
+type GetSecretVersionOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretVersion)(nil)).Elem()
+}
+
+func (o GetSecretVersionOutput) ToGetSecretVersionOutput() GetSecretVersionOutput {
+	return o
+}
+
+func (o GetSecretVersionOutput) ToGetSecretVersionOutputWithContext(ctx context.Context) GetSecretVersionOutput {
+	return o
+}
+
+// Date and time of secret version's creation (RFC 3339 format)
+func (o GetSecretVersionOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Description of the secret version
+func (o GetSecretVersionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Returns true if the version is the latest.
+func (o GetSecretVersionOutput) Latest() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSecretVersion) bool { return v.Latest }).(pulumi.BoolOutput)
+}
+
+// The revision of secret version
+func (o GetSecretVersionOutput) Revision() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.Revision }).(pulumi.StringOutput)
+}
+
+// The ID of the secret.
+// Only one of `name` and `secretId` should be specified.
+func (o GetSecretVersionOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+// Status of the secret version
+func (o GetSecretVersionOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Date and time of secret version's creation (RFC 3339 format)
+func (o GetSecretVersionOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSecretVersion) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetSecretVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSecretVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSecretVersion)(nil)).Elem()
+}
+
+func (o GetSecretVersionArrayOutput) ToGetSecretVersionArrayOutput() GetSecretVersionArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionArrayOutput) ToGetSecretVersionArrayOutputWithContext(ctx context.Context) GetSecretVersionArrayOutput {
+	return o
+}
+
+func (o GetSecretVersionArrayOutput) Index(i pulumi.IntInput) GetSecretVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSecretVersion {
+		return vs[0].([]GetSecretVersion)[vs[1].(int)]
+	}).(GetSecretVersionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyInput)(nil)).Elem(), SecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyArrayInput)(nil)).Elem(), SecretEphemeralPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionInput)(nil)).Elem(), SecretVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionArrayInput)(nil)).Elem(), SecretVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyInput)(nil)).Elem(), GetSecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretEphemeralPolicyArrayInput)(nil)).Elem(), GetSecretEphemeralPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionInput)(nil)).Elem(), GetSecretVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretVersionArrayInput)(nil)).Elem(), GetSecretVersionArray{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyArrayOutput{})
+	pulumi.RegisterOutputType(SecretVersionOutput{})
+	pulumi.RegisterOutputType(SecretVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(GetSecretEphemeralPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionOutput{})
+	pulumi.RegisterOutputType(GetSecretVersionArrayOutput{})
 }

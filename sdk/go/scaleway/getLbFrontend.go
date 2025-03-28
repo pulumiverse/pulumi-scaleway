@@ -96,13 +96,14 @@ type GetLbFrontendArgs struct {
 
 // A collection of values returned by getLbFrontend.
 type GetLbFrontendResult struct {
-	Acls           []GetLbFrontendAcl `pulumi:"acls"`
-	BackendId      string             `pulumi:"backendId"`
-	CertificateId  string             `pulumi:"certificateId"`
-	CertificateIds []string           `pulumi:"certificateIds"`
-	EnableHttp3    bool               `pulumi:"enableHttp3"`
-	ExternalAcls   bool               `pulumi:"externalAcls"`
-	FrontendId     *string            `pulumi:"frontendId"`
+	Acls                []GetLbFrontendAcl `pulumi:"acls"`
+	BackendId           string             `pulumi:"backendId"`
+	CertificateId       string             `pulumi:"certificateId"`
+	CertificateIds      []string           `pulumi:"certificateIds"`
+	ConnectionRateLimit int                `pulumi:"connectionRateLimit"`
+	EnableHttp3         bool               `pulumi:"enableHttp3"`
+	ExternalAcls        bool               `pulumi:"externalAcls"`
+	FrontendId          *string            `pulumi:"frontendId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id            string  `pulumi:"id"`
 	InboundPort   int     `pulumi:"inboundPort"`
@@ -165,6 +166,10 @@ func (o GetLbFrontendResultOutput) CertificateId() pulumi.StringOutput {
 
 func (o GetLbFrontendResultOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendResult) []string { return v.CertificateIds }).(pulumi.StringArrayOutput)
+}
+
+func (o GetLbFrontendResultOutput) ConnectionRateLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbFrontendResult) int { return v.ConnectionRateLimit }).(pulumi.IntOutput)
 }
 
 func (o GetLbFrontendResultOutput) EnableHttp3() pulumi.BoolOutput {

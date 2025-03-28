@@ -160,6 +160,8 @@ type Route struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrOutput `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -222,6 +224,8 @@ type routeState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains *bool `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -243,6 +247,8 @@ type RouteState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrInput
 	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -266,6 +272,8 @@ type routeArgs struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains *bool `pulumi:"matchSubdomains"`
 }
 
 // The set of arguments for constructing a Route resource.
@@ -284,6 +292,8 @@ type RouteArgs struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrInput
 }
 
 func (RouteArgs) ElementType() reflect.Type {
@@ -402,6 +412,11 @@ func (o RouteOutput) MatchHostHeader() pulumi.StringPtrOutput {
 // > **Important:** This field should be set for routes on TCP Load Balancers.
 func (o RouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
+}
+
+// If true, all subdomains will match.
+func (o RouteOutput) MatchSubdomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Route) pulumi.BoolPtrOutput { return v.MatchSubdomains }).(pulumi.BoolPtrOutput)
 }
 
 // The date on which the route was last updated.

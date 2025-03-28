@@ -162,6 +162,8 @@ type LoadbalancerRoute struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrOutput `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -218,6 +220,8 @@ type loadbalancerRouteState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains *bool `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -239,6 +243,8 @@ type LoadbalancerRouteState struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrInput
 	// The date on which the route was last updated.
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -262,6 +268,8 @@ type loadbalancerRouteArgs struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains *bool `pulumi:"matchSubdomains"`
 }
 
 // The set of arguments for constructing a LoadbalancerRoute resource.
@@ -280,6 +288,8 @@ type LoadbalancerRouteArgs struct {
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolPtrInput
 }
 
 func (LoadbalancerRouteArgs) ElementType() reflect.Type {
@@ -398,6 +408,11 @@ func (o LoadbalancerRouteOutput) MatchHostHeader() pulumi.StringPtrOutput {
 // > **Important:** This field should be set for routes on TCP Load Balancers.
 func (o LoadbalancerRouteOutput) MatchSni() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.StringPtrOutput { return v.MatchSni }).(pulumi.StringPtrOutput)
+}
+
+// If true, all subdomains will match.
+func (o LoadbalancerRouteOutput) MatchSubdomains() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerRoute) pulumi.BoolPtrOutput { return v.MatchSubdomains }).(pulumi.BoolPtrOutput)
 }
 
 // The date on which the route was last updated.

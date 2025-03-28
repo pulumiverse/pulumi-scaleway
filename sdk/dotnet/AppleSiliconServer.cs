@@ -50,6 +50,12 @@ namespace Pulumiverse.Scaleway
     public partial class AppleSiliconServer : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The commitment period of the server
+        /// </summary>
+        [Output("commitment")]
+        public Output<string?> Commitment { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the creation of the Apple Silicon server.
         /// </summary>
         [Output("createdAt")]
@@ -86,6 +92,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The password of the server
+        /// </summary>
+        [Output("password")]
+        public Output<string> Password { get; private set; } = null!;
+
+        /// <summary>
         /// The private networks to attach to the server
         /// </summary>
         [Output("privateNetworks")]
@@ -117,6 +129,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The username of the server
+        /// </summary>
+        [Output("username")]
+        public Output<string> Username { get; private set; } = null!;
 
         /// <summary>
         /// URL of the VNC.
@@ -161,6 +179,10 @@ namespace Pulumiverse.Scaleway
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                AdditionalSecretOutputs =
+                {
+                    "password",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -184,6 +206,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class AppleSiliconServerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The commitment period of the server
+        /// </summary>
+        [Input("commitment")]
+        public Input<string>? Commitment { get; set; }
+
         /// <summary>
         /// : Enables the VPC option when set to true.
         /// </summary>
@@ -239,6 +267,12 @@ namespace Pulumiverse.Scaleway
     public sealed class AppleSiliconServerState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The commitment period of the server
+        /// </summary>
+        [Input("commitment")]
+        public Input<string>? Commitment { get; set; }
+
+        /// <summary>
         /// The date and time of the creation of the Apple Silicon server.
         /// </summary>
         [Input("createdAt")]
@@ -273,6 +307,22 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("password")]
+        private Input<string>? _password;
+
+        /// <summary>
+        /// The password of the server
+        /// </summary>
+        public Input<string>? Password
+        {
+            get => _password;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         [Input("privateNetworks")]
         private InputList<Inputs.AppleSiliconServerPrivateNetworkGetArgs>? _privateNetworks;
@@ -312,6 +362,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The username of the server
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         /// <summary>
         /// URL of the VNC.

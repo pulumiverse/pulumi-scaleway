@@ -31,6 +31,15 @@ from .database_read_replica import *
 from .database_user import *
 from .domain_record import *
 from .domain_zone import *
+from .edge_services_backend_stage import *
+from .edge_services_cache_stage import *
+from .edge_services_dns_stage import *
+from .edge_services_head_stage import *
+from .edge_services_pipeline import *
+from .edge_services_plan import *
+from .edge_services_route_stage import *
+from .edge_services_tls_stage import *
+from .edge_services_waf_stage import *
 from .flexible_ip import *
 from .flexible_ip_mac_address import *
 from .function import *
@@ -462,6 +471,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "domain/registration",
+  "fqn": "pulumiverse_scaleway.domain",
+  "classes": {
+   "scaleway:domain/registration:Registration": "Registration"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "domain/zone",
   "fqn": "pulumiverse_scaleway.domain",
   "classes": {
@@ -810,6 +827,78 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/domainZone:DomainZone": "DomainZone"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesBackendStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage": "EdgeServicesBackendStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesCacheStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage": "EdgeServicesCacheStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesDnsStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage": "EdgeServicesDnsStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesHeadStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage": "EdgeServicesHeadStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesPipeline",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline": "EdgeServicesPipeline"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesPlan",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesPlan:EdgeServicesPlan": "EdgeServicesPlan"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesRouteStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage": "EdgeServicesRouteStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesTlsStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage": "EdgeServicesTlsStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/edgeServicesWafStage",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage": "EdgeServicesWafStage"
   }
  },
  {
@@ -1766,6 +1855,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "network/acl",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/acl:Acl": "Acl"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "network/gatewayNetwork",
   "fqn": "pulumiverse_scaleway.network",
   "classes": {
@@ -1962,6 +2059,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.secrets",
   "classes": {
    "scaleway:secrets/version:Version": "Version"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "tem/blockedList",
+  "fqn": "pulumiverse_scaleway.tem",
+  "classes": {
+   "scaleway:tem/blockedList:BlockedList": "BlockedList"
   }
  },
  {

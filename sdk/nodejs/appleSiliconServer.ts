@@ -66,6 +66,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
     }
 
     /**
+     * The commitment period of the server
+     */
+    public readonly commitment!: pulumi.Output<string | undefined>;
+    /**
      * The date and time of the creation of the Apple Silicon server.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -90,6 +94,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
+     * The password of the server
+     */
+    public /*out*/ readonly password!: pulumi.Output<string>;
+    /**
      * The private networks to attach to the server
      */
     public readonly privateNetworks!: pulumi.Output<outputs.AppleSiliconServerPrivateNetwork[] | undefined>;
@@ -112,6 +120,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      * The date and time of the last update of the Apple Silicon server.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * The username of the server
+     */
+    public /*out*/ readonly username!: pulumi.Output<string>;
     /**
      * URL of the VNC.
      */
@@ -142,17 +154,20 @@ export class AppleSiliconServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppleSiliconServerState | undefined;
+            resourceInputs["commitment"] = state ? state.commitment : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletableAt"] = state ? state.deletableAt : undefined;
             resourceInputs["enableVpc"] = state ? state.enableVpc : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
             resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
             resourceInputs["vpcStatus"] = state ? state.vpcStatus : undefined;
             resourceInputs["zone"] = state ? state.zone : undefined;
@@ -161,6 +176,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
+            resourceInputs["commitment"] = args ? args.commitment : undefined;
             resourceInputs["enableVpc"] = args ? args.enableVpc : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
@@ -171,12 +187,16 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["deletableAt"] = undefined /*out*/;
             resourceInputs["ip"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["password"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
+            resourceInputs["username"] = undefined /*out*/;
             resourceInputs["vncUrl"] = undefined /*out*/;
             resourceInputs["vpcStatus"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["password"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(AppleSiliconServer.__pulumiType, name, resourceInputs, opts);
     }
 }
@@ -185,6 +205,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AppleSiliconServer resources.
  */
 export interface AppleSiliconServerState {
+    /**
+     * The commitment period of the server
+     */
+    commitment?: pulumi.Input<string>;
     /**
      * The date and time of the creation of the Apple Silicon server.
      */
@@ -210,6 +234,10 @@ export interface AppleSiliconServerState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The password of the server
+     */
+    password?: pulumi.Input<string>;
+    /**
      * The private networks to attach to the server
      */
     privateNetworks?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateNetwork>[]>;
@@ -233,6 +261,10 @@ export interface AppleSiliconServerState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
+     * The username of the server
+     */
+    username?: pulumi.Input<string>;
+    /**
      * URL of the VNC.
      */
     vncUrl?: pulumi.Input<string>;
@@ -251,6 +283,10 @@ export interface AppleSiliconServerState {
  * The set of arguments for constructing a AppleSiliconServer resource.
  */
 export interface AppleSiliconServerArgs {
+    /**
+     * The commitment period of the server
+     */
+    commitment?: pulumi.Input<string>;
     /**
      * : Enables the VPC option when set to true.
      */

@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AclRule',
     'GatewayNetworkIpamConfig',
     'PrivateNetworkIpv4Subnet',
     'PrivateNetworkIpv6Subnet',
@@ -24,6 +25,144 @@ __all__ = [
     'GetRoutesRouteResult',
     'GetVpcsVpcResult',
 ]
+
+@pulumi.output_type
+class AclRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dstPortHigh":
+            suggest = "dst_port_high"
+        elif key == "dstPortLow":
+            suggest = "dst_port_low"
+        elif key == "srcPortHigh":
+            suggest = "src_port_high"
+        elif key == "srcPortLow":
+            suggest = "src_port_low"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AclRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AclRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AclRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 description: Optional[str] = None,
+                 destination: Optional[str] = None,
+                 dst_port_high: Optional[int] = None,
+                 dst_port_low: Optional[int] = None,
+                 protocol: Optional[str] = None,
+                 source: Optional[str] = None,
+                 src_port_high: Optional[int] = None,
+                 src_port_low: Optional[int] = None):
+        """
+        :param str action: The policy to apply to the packet.
+        :param str description: The rule description.
+        :param str destination: The destination IP range to which this rule applies (CIDR notation with subnet mask).
+        :param int dst_port_high: The ending port of the destination port range to which this rule applies (inclusive).
+        :param int dst_port_low: The starting port of the destination port range to which this rule applies (inclusive).
+        :param str protocol: The protocol to which this rule applies. Default value: ANY.
+        :param str source: The Source IP range to which this rule applies (CIDR notation with subnet mask).
+        :param int src_port_high: The ending port of the source port range to which this rule applies (inclusive).
+        :param int src_port_low: The starting port of the source port range to which this rule applies (inclusive).
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if destination is not None:
+            pulumi.set(__self__, "destination", destination)
+        if dst_port_high is not None:
+            pulumi.set(__self__, "dst_port_high", dst_port_high)
+        if dst_port_low is not None:
+            pulumi.set(__self__, "dst_port_low", dst_port_low)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if source is not None:
+            pulumi.set(__self__, "source", source)
+        if src_port_high is not None:
+            pulumi.set(__self__, "src_port_high", src_port_high)
+        if src_port_low is not None:
+            pulumi.set(__self__, "src_port_low", src_port_low)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        The policy to apply to the packet.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        The rule description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def destination(self) -> Optional[str]:
+        """
+        The destination IP range to which this rule applies (CIDR notation with subnet mask).
+        """
+        return pulumi.get(self, "destination")
+
+    @property
+    @pulumi.getter(name="dstPortHigh")
+    def dst_port_high(self) -> Optional[int]:
+        """
+        The ending port of the destination port range to which this rule applies (inclusive).
+        """
+        return pulumi.get(self, "dst_port_high")
+
+    @property
+    @pulumi.getter(name="dstPortLow")
+    def dst_port_low(self) -> Optional[int]:
+        """
+        The starting port of the destination port range to which this rule applies (inclusive).
+        """
+        return pulumi.get(self, "dst_port_low")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        The protocol to which this rule applies. Default value: ANY.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def source(self) -> Optional[str]:
+        """
+        The Source IP range to which this rule applies (CIDR notation with subnet mask).
+        """
+        return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter(name="srcPortHigh")
+    def src_port_high(self) -> Optional[int]:
+        """
+        The ending port of the source port range to which this rule applies (inclusive).
+        """
+        return pulumi.get(self, "src_port_high")
+
+    @property
+    @pulumi.getter(name="srcPortLow")
+    def src_port_low(self) -> Optional[int]:
+        """
+        The starting port of the source port range to which this rule applies (inclusive).
+        """
+        return pulumi.get(self, "src_port_low")
+
 
 @pulumi.output_type
 class GatewayNetworkIpamConfig(dict):

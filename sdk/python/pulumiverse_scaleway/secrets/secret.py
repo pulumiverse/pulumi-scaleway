@@ -187,7 +187,8 @@ class _SecretState:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
-                 version_count: Optional[pulumi.Input[int]] = None):
+                 version_count: Optional[pulumi.Input[int]] = None,
+                 versions: Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]] = None):
         """
         Input properties used for looking up and filtering Secret resources.
         :param pulumi.Input[str] created_at: Date and time of the secret's creation (in RFC 3339 format).
@@ -231,6 +232,8 @@ class _SecretState:
             pulumi.set(__self__, "updated_at", updated_at)
         if version_count is not None:
             pulumi.set(__self__, "version_count", version_count)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -389,6 +392,15 @@ class _SecretState:
     def version_count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "version_count", value)
 
+    @property
+    @pulumi.getter
+    def versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]]:
+        return pulumi.get(self, "versions")
+
+    @versions.setter
+    def versions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]]):
+        pulumi.set(self, "versions", value)
+
 
 class Secret(pulumi.CustomResource):
     @overload
@@ -492,6 +504,7 @@ class Secret(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
             __props__.__dict__["version_count"] = None
+            __props__.__dict__["versions"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/secret:Secret")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(Secret, __self__).__init__(
@@ -516,7 +529,8 @@ class Secret(pulumi.CustomResource):
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
-            version_count: Optional[pulumi.Input[int]] = None) -> 'Secret':
+            version_count: Optional[pulumi.Input[int]] = None,
+            versions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SecretVersionArgs', 'SecretVersionArgsDict']]]]] = None) -> 'Secret':
         """
         Get an existing Secret resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -556,6 +570,7 @@ class Secret(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["version_count"] = version_count
+        __props__.__dict__["versions"] = versions
         return Secret(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -662,4 +677,9 @@ class Secret(pulumi.CustomResource):
         The amount of secret versions.
         """
         return pulumi.get(self, "version_count")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> pulumi.Output[Sequence['outputs.SecretVersion']]:
+        return pulumi.get(self, "versions")
 

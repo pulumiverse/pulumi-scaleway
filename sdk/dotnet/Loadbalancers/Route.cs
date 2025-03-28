@@ -155,6 +155,12 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string?> MatchSni { get; private set; } = null!;
 
         /// <summary>
+        /// If true, all subdomains will match.
+        /// </summary>
+        [Output("matchSubdomains")]
+        public Output<bool?> MatchSubdomains { get; private set; } = null!;
+
+        /// <summary>
         /// The date on which the route was last updated.
         /// </summary>
         [Output("updatedAt")]
@@ -241,6 +247,12 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
 
+        /// <summary>
+        /// If true, all subdomains will match.
+        /// </summary>
+        [Input("matchSubdomains")]
+        public Input<bool>? MatchSubdomains { get; set; }
+
         public RouteArgs()
         {
         }
@@ -284,6 +296,12 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// </summary>
         [Input("matchSni")]
         public Input<string>? MatchSni { get; set; }
+
+        /// <summary>
+        /// If true, all subdomains will match.
+        /// </summary>
+        [Input("matchSubdomains")]
+        public Input<bool>? MatchSubdomains { get; set; }
 
         /// <summary>
         /// The date on which the route was last updated.

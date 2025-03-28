@@ -100,19 +100,20 @@ type LookupSecretResult struct {
 	Description       string                     `pulumi:"description"`
 	EphemeralPolicies []GetSecretEphemeralPolicy `pulumi:"ephemeralPolicies"`
 	// The provider-assigned unique ID for this managed resource.
-	Id             string   `pulumi:"id"`
-	Name           *string  `pulumi:"name"`
-	OrganizationId string   `pulumi:"organizationId"`
-	Path           *string  `pulumi:"path"`
-	ProjectId      *string  `pulumi:"projectId"`
-	Protected      bool     `pulumi:"protected"`
-	Region         *string  `pulumi:"region"`
-	SecretId       *string  `pulumi:"secretId"`
-	Status         string   `pulumi:"status"`
-	Tags           []string `pulumi:"tags"`
-	Type           string   `pulumi:"type"`
-	UpdatedAt      string   `pulumi:"updatedAt"`
-	VersionCount   int      `pulumi:"versionCount"`
+	Id             string             `pulumi:"id"`
+	Name           *string            `pulumi:"name"`
+	OrganizationId string             `pulumi:"organizationId"`
+	Path           *string            `pulumi:"path"`
+	ProjectId      *string            `pulumi:"projectId"`
+	Protected      bool               `pulumi:"protected"`
+	Region         *string            `pulumi:"region"`
+	SecretId       *string            `pulumi:"secretId"`
+	Status         string             `pulumi:"status"`
+	Tags           []string           `pulumi:"tags"`
+	Type           string             `pulumi:"type"`
+	UpdatedAt      string             `pulumi:"updatedAt"`
+	VersionCount   int                `pulumi:"versionCount"`
+	Versions       []GetSecretVersion `pulumi:"versions"`
 }
 
 func LookupSecretOutput(ctx *pulumi.Context, args LookupSecretOutputArgs, opts ...pulumi.InvokeOption) LookupSecretResultOutput {
@@ -226,6 +227,10 @@ func (o LookupSecretResultOutput) UpdatedAt() pulumi.StringOutput {
 
 func (o LookupSecretResultOutput) VersionCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSecretResult) int { return v.VersionCount }).(pulumi.IntOutput)
+}
+
+func (o LookupSecretResultOutput) Versions() GetSecretVersionArrayOutput {
+	return o.ApplyT(func(v LookupSecretResult) []GetSecretVersion { return v.Versions }).(GetSecretVersionArrayOutput)
 }
 
 func init() {

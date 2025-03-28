@@ -167,6 +167,7 @@ export class Domain extends pulumi.CustomResource {
     public readonly projectId!: pulumi.Output<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -346,6 +347,7 @@ export interface DomainState {
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     region?: pulumi.Input<string>;
     /**
@@ -418,6 +420,7 @@ export interface DomainArgs {
     projectId?: pulumi.Input<string>;
     /**
      * `region`). The region in which the domain should be created.
+     * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
     region?: pulumi.Input<string>;
 }

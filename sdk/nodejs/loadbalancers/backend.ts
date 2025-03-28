@@ -39,7 +39,7 @@ import * as utilities from "../utilities";
  *     forwardProtocol: "http",
  *     forwardPort: 80,
  *     healthCheckHttp: {
- *         uri: "www.test.com/health",
+ *         uri: "/health",
  *     },
  * });
  * ```

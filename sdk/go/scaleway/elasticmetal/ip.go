@@ -14,6 +14,9 @@ import (
 // Creates and manages Scaleway flexible IPs.
 // For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal-flexible-ip).
 //
+// > **Note:**
+// Flexible IPs are exclusively available for Elastic Metal (bare metal) servers. They are not compatible with other Scaleway products.
+//
 // ## Example Usage
 //
 // ### Basic
@@ -187,7 +190,7 @@ type Ip struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the Flexible IP (Format ISO 8601).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The zone of the Flexible IP.
+	// `zone`) The zone of the Flexible IP.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
@@ -249,7 +252,7 @@ type ipState struct {
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the Flexible IP (Format ISO 8601).
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The zone of the Flexible IP.
+	// `zone`) The zone of the Flexible IP.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -276,7 +279,7 @@ type IpState struct {
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the Flexible IP (Format ISO 8601).
 	UpdatedAt pulumi.StringPtrInput
-	// The zone of the Flexible IP.
+	// `zone`) The zone of the Flexible IP.
 	Zone pulumi.StringPtrInput
 }
 
@@ -297,7 +300,7 @@ type ipArgs struct {
 	ServerId *string `pulumi:"serverId"`
 	// A list of tags to apply to the flexible IP.
 	Tags []string `pulumi:"tags"`
-	// The zone of the Flexible IP.
+	// `zone`) The zone of the Flexible IP.
 	Zone *string `pulumi:"zone"`
 }
 
@@ -315,7 +318,7 @@ type IpArgs struct {
 	ServerId pulumi.StringPtrInput
 	// A list of tags to apply to the flexible IP.
 	Tags pulumi.StringArrayInput
-	// The zone of the Flexible IP.
+	// `zone`) The zone of the Flexible IP.
 	Zone pulumi.StringPtrInput
 }
 
@@ -461,7 +464,7 @@ func (o IpOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The zone of the Flexible IP.
+// `zone`) The zone of the Flexible IP.
 func (o IpOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

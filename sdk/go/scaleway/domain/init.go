@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "scaleway:domain/record:Record":
 		r = &Record{}
+	case "scaleway:domain/registration:Registration":
+		r = &Registration{}
 	case "scaleway:domain/zone:Zone":
 		r = &Zone{}
 	default:
@@ -41,6 +43,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"domain/record",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"domain/registration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

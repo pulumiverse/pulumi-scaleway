@@ -215,6 +215,12 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> CertificateIds { get; private set; } = null!;
 
         /// <summary>
+        /// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        /// </summary>
+        [Output("connectionRateLimit")]
+        public Output<int?> ConnectionRateLimit { get; private set; } = null!;
+
+        /// <summary>
         /// Activates HTTP/3 protocol.
         /// </summary>
         [Output("enableHttp3")]
@@ -333,6 +339,12 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
+        /// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        /// </summary>
+        [Input("connectionRateLimit")]
+        public Input<int>? ConnectionRateLimit { get; set; }
+
+        /// <summary>
         /// Activates HTTP/3 protocol.
         /// </summary>
         [Input("enableHttp3")]
@@ -416,6 +428,12 @@ namespace Pulumiverse.Scaleway
             get => _certificateIds ?? (_certificateIds = new InputList<string>());
             set => _certificateIds = value;
         }
+
+        /// <summary>
+        /// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        /// </summary>
+        [Input("connectionRateLimit")]
+        public Input<int>? ConnectionRateLimit { get; set; }
 
         /// <summary>
         /// Activates HTTP/3 protocol.

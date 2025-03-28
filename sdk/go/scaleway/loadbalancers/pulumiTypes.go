@@ -2980,7 +2980,7 @@ type GetBackendsBackendHealthCheckHttp struct {
 	Method string `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni string `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for health check requests.
+	// The path of health check requests.
 	Uri string `pulumi:"uri"`
 }
 
@@ -3004,7 +3004,7 @@ type GetBackendsBackendHealthCheckHttpArgs struct {
 	Method pulumi.StringInput `pulumi:"method"`
 	// The SNI to use for HC requests over SSL.
 	Sni pulumi.StringInput `pulumi:"sni"`
-	// The HTTPS endpoint URL to call for health check requests.
+	// The path of health check requests.
 	Uri pulumi.StringInput `pulumi:"uri"`
 }
 
@@ -3079,7 +3079,7 @@ func (o GetBackendsBackendHealthCheckHttpOutput) Sni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackendsBackendHealthCheckHttp) string { return v.Sni }).(pulumi.StringOutput)
 }
 
-// The HTTPS endpoint URL to call for health check requests.
+// The path of health check requests.
 func (o GetBackendsBackendHealthCheckHttpOutput) Uri() pulumi.StringOutput {
 	return o.ApplyT(func(v GetBackendsBackendHealthCheckHttp) string { return v.Uri }).(pulumi.StringOutput)
 }
@@ -4933,6 +4933,8 @@ type GetRoutesRoute struct {
 	MatchHostHeader string `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni string `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains bool `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
@@ -4961,6 +4963,8 @@ type GetRoutesRouteArgs struct {
 	MatchHostHeader pulumi.StringInput `pulumi:"matchHostHeader"`
 	// Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 	MatchSni pulumi.StringInput `pulumi:"matchSni"`
+	// If true, all subdomains will match.
+	MatchSubdomains pulumi.BoolInput `pulumi:"matchSubdomains"`
 	// The date on which the route was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
@@ -5044,6 +5048,11 @@ func (o GetRoutesRouteOutput) MatchHostHeader() pulumi.StringOutput {
 // Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
 func (o GetRoutesRouteOutput) MatchSni() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRoutesRoute) string { return v.MatchSni }).(pulumi.StringOutput)
+}
+
+// If true, all subdomains will match.
+func (o GetRoutesRouteOutput) MatchSubdomains() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRoutesRoute) bool { return v.MatchSubdomains }).(pulumi.BoolOutput)
 }
 
 // The date on which the route was last updated (RFC 3339 format).

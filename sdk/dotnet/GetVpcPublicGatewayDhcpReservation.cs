@@ -14,6 +14,10 @@ namespace Pulumiverse.Scaleway
     public static class GetVpcPublicGatewayDhcpReservation
     {
         /// <summary>
+        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        /// You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+        /// 
         /// Gets information about a DHCP entry. For further information, please see the
         /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 
@@ -169,6 +173,10 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        /// You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+        /// 
         /// Gets information about a DHCP entry. For further information, please see the
         /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 
@@ -324,6 +332,10 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetVpcPublicGatewayDhcpReservationResult>("scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation", args ?? new GetVpcPublicGatewayDhcpReservationInvokeArgs(), options.WithDefaults());
 
         /// <summary>
+        /// &gt; **Important:**  The data source `scaleway.network.PublicGatewayDhcpReservation` has been deprecated and will no longer be supported.
+        /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+        /// You can use IPAM to manage your IPs. For more information, please refer to the dedicated guide.
+        /// 
         /// Gets information about a DHCP entry. For further information, please see the
         /// [API documentation](https://www.scaleway.com/en/developers/api/public-gateway/#path-dhcp-entries-list-dhcp-entries).
         /// 

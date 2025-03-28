@@ -11,6 +11,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// > **Important:**  The data source `network.PublicGatewayDhcp` has been deprecated and will no longer be supported.
+// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed.
+// For more information, please refer to the dedicated guide.
+//
 // Gets information about a Public Gateway DHCP configuration.
 //
 // ## Example Usage

@@ -26,6 +26,7 @@ class FrontendArgs:
                  lb_id: pulumi.Input[str],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['FrontendAclArgs']]]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 connection_rate_limit: Optional[pulumi.Input[int]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
                  external_acls: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,7 @@ class FrontendArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
+        :param pulumi.Input[int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -54,6 +56,8 @@ class FrontendArgs:
             pulumi.set(__self__, "acls", acls)
         if certificate_ids is not None:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
+        if connection_rate_limit is not None:
+            pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
@@ -128,6 +132,18 @@ class FrontendArgs:
         pulumi.set(self, "certificate_ids", value)
 
     @property
+    @pulumi.getter(name="connectionRateLimit")
+    def connection_rate_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        """
+        return pulumi.get(self, "connection_rate_limit")
+
+    @connection_rate_limit.setter
+    def connection_rate_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_rate_limit", value)
+
+    @property
     @pulumi.getter(name="enableHttp3")
     def enable_http3(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -184,6 +200,7 @@ class _FrontendState:
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 connection_rate_limit: Optional[pulumi.Input[int]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
                  external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
@@ -200,6 +217,7 @@ class _FrontendState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
+        :param pulumi.Input[int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -219,6 +237,8 @@ class _FrontendState:
             pulumi.set(__self__, "certificate_id", certificate_id)
         if certificate_ids is not None:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
+        if connection_rate_limit is not None:
+            pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
@@ -284,6 +304,18 @@ class _FrontendState:
     @certificate_ids.setter
     def certificate_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "certificate_ids", value)
+
+    @property
+    @pulumi.getter(name="connectionRateLimit")
+    def connection_rate_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        """
+        return pulumi.get(self, "connection_rate_limit")
+
+    @connection_rate_limit.setter
+    def connection_rate_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "connection_rate_limit", value)
 
     @property
     @pulumi.getter(name="enableHttp3")
@@ -367,6 +399,7 @@ class Frontend(pulumi.CustomResource):
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 connection_rate_limit: Optional[pulumi.Input[int]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
                  external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
@@ -501,6 +534,7 @@ class Frontend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
+        :param pulumi.Input[int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -651,6 +685,7 @@ class Frontend(pulumi.CustomResource):
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FrontendAclArgs', 'FrontendAclArgsDict']]]]] = None,
                  backend_id: Optional[pulumi.Input[str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 connection_rate_limit: Optional[pulumi.Input[int]] = None,
                  enable_http3: Optional[pulumi.Input[bool]] = None,
                  external_acls: Optional[pulumi.Input[bool]] = None,
                  inbound_port: Optional[pulumi.Input[int]] = None,
@@ -671,6 +706,7 @@ class Frontend(pulumi.CustomResource):
                 raise TypeError("Missing required property 'backend_id'")
             __props__.__dict__["backend_id"] = backend_id
             __props__.__dict__["certificate_ids"] = certificate_ids
+            __props__.__dict__["connection_rate_limit"] = connection_rate_limit
             __props__.__dict__["enable_http3"] = enable_http3
             __props__.__dict__["external_acls"] = external_acls
             if inbound_port is None and not opts.urn:
@@ -698,6 +734,7 @@ class Frontend(pulumi.CustomResource):
             backend_id: Optional[pulumi.Input[str]] = None,
             certificate_id: Optional[pulumi.Input[str]] = None,
             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            connection_rate_limit: Optional[pulumi.Input[int]] = None,
             enable_http3: Optional[pulumi.Input[bool]] = None,
             external_acls: Optional[pulumi.Input[bool]] = None,
             inbound_port: Optional[pulumi.Input[int]] = None,
@@ -719,6 +756,7 @@ class Frontend(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: List of certificate IDs that should be used by the frontend.
                
                > **Important:** Certificates are not allowed on port 80.
+        :param pulumi.Input[int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         :param pulumi.Input[bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -735,6 +773,7 @@ class Frontend(pulumi.CustomResource):
         __props__.__dict__["backend_id"] = backend_id
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["certificate_ids"] = certificate_ids
+        __props__.__dict__["connection_rate_limit"] = connection_rate_limit
         __props__.__dict__["enable_http3"] = enable_http3
         __props__.__dict__["external_acls"] = external_acls
         __props__.__dict__["inbound_port"] = inbound_port
@@ -779,6 +818,14 @@ class Frontend(pulumi.CustomResource):
         > **Important:** Certificates are not allowed on port 80.
         """
         return pulumi.get(self, "certificate_ids")
+
+    @property
+    @pulumi.getter(name="connectionRateLimit")
+    def connection_rate_limit(self) -> pulumi.Output[Optional[int]]:
+        """
+        The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        """
+        return pulumi.get(self, "connection_rate_limit")
 
     @property
     @pulumi.getter(name="enableHttp3")

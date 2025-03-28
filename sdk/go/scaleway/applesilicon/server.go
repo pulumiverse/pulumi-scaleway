@@ -56,6 +56,8 @@ import (
 type Server struct {
 	pulumi.CustomResourceState
 
+	// The commitment period of the server
+	Commitment pulumi.StringPtrOutput `pulumi:"commitment"`
 	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
@@ -68,6 +70,8 @@ type Server struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The password of the server
+	Password pulumi.StringOutput `pulumi:"password"`
 	// The private networks to attach to the server
 	PrivateNetworks ServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is
@@ -81,6 +85,8 @@ type Server struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// The username of the server
+	Username pulumi.StringOutput `pulumi:"username"`
 	// URL of the VNC.
 	VncUrl pulumi.StringOutput `pulumi:"vncUrl"`
 	// The current status of the VPC option.
@@ -106,6 +112,10 @@ func NewServer(ctx *pulumi.Context,
 		},
 	})
 	opts = append(opts, aliases)
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"password",
+	})
+	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Server
 	err := ctx.RegisterResource("scaleway:applesilicon/server:Server", name, args, &resource, opts...)
@@ -129,6 +139,8 @@ func GetServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Server resources.
 type serverState struct {
+	// The commitment period of the server
+	Commitment *string `pulumi:"commitment"`
 	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
@@ -141,6 +153,8 @@ type serverState struct {
 	Name *string `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The password of the server
+	Password *string `pulumi:"password"`
 	// The private networks to attach to the server
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is
@@ -154,6 +168,8 @@ type serverState struct {
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// The username of the server
+	Username *string `pulumi:"username"`
 	// URL of the VNC.
 	VncUrl *string `pulumi:"vncUrl"`
 	// The current status of the VPC option.
@@ -164,6 +180,8 @@ type serverState struct {
 }
 
 type ServerState struct {
+	// The commitment period of the server
+	Commitment pulumi.StringPtrInput
 	// The date and time of the creation of the Apple Silicon server.
 	CreatedAt pulumi.StringPtrInput
 	// The minimal date and time on which you can delete this server due to Apple licence
@@ -176,6 +194,8 @@ type ServerState struct {
 	Name pulumi.StringPtrInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The password of the server
+	Password pulumi.StringPtrInput
 	// The private networks to attach to the server
 	PrivateNetworks ServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is
@@ -189,6 +209,8 @@ type ServerState struct {
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the Apple Silicon server.
 	UpdatedAt pulumi.StringPtrInput
+	// The username of the server
+	Username pulumi.StringPtrInput
 	// URL of the VNC.
 	VncUrl pulumi.StringPtrInput
 	// The current status of the VPC option.
@@ -203,6 +225,8 @@ func (ServerState) ElementType() reflect.Type {
 }
 
 type serverArgs struct {
+	// The commitment period of the server
+	Commitment *string `pulumi:"commitment"`
 	// : Enables the VPC option when set to true.
 	EnableVpc *bool `pulumi:"enableVpc"`
 	// The name of the server.
@@ -223,6 +247,8 @@ type serverArgs struct {
 
 // The set of arguments for constructing a Server resource.
 type ServerArgs struct {
+	// The commitment period of the server
+	Commitment pulumi.StringPtrInput
 	// : Enables the VPC option when set to true.
 	EnableVpc pulumi.BoolPtrInput
 	// The name of the server.
@@ -328,6 +354,11 @@ func (o ServerOutput) ToServerOutputWithContext(ctx context.Context) ServerOutpu
 	return o
 }
 
+// The commitment period of the server
+func (o ServerOutput) Commitment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Commitment }).(pulumi.StringPtrOutput)
+}
+
 // The date and time of the creation of the Apple Silicon server.
 func (o ServerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -358,6 +389,11 @@ func (o ServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The password of the server
+func (o ServerOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
 // The private networks to attach to the server
 func (o ServerOutput) PrivateNetworks() ServerPrivateNetworkArrayOutput {
 	return o.ApplyT(func(v *Server) ServerPrivateNetworkArrayOutput { return v.PrivateNetworks }).(ServerPrivateNetworkArrayOutput)
@@ -384,6 +420,11 @@ func (o ServerOutput) Type() pulumi.StringOutput {
 // The date and time of the last update of the Apple Silicon server.
 func (o ServerOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The username of the server
+func (o ServerOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 // URL of the VNC.

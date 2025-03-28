@@ -22,7 +22,8 @@ class LoadbalancerRouteArgs:
                  backend_id: pulumi.Input[str],
                  frontend_id: pulumi.Input[str],
                  match_host_header: Optional[pulumi.Input[str]] = None,
-                 match_sni: Optional[pulumi.Input[str]] = None):
+                 match_sni: Optional[pulumi.Input[str]] = None,
+                 match_subdomains: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a LoadbalancerRoute resource.
         :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
@@ -35,6 +36,7 @@ class LoadbalancerRouteArgs:
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
+        :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "frontend_id", frontend_id)
@@ -42,6 +44,8 @@ class LoadbalancerRouteArgs:
             pulumi.set(__self__, "match_host_header", match_host_header)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
+        if match_subdomains is not None:
+            pulumi.set(__self__, "match_subdomains", match_subdomains)
 
     @property
     @pulumi.getter(name="backendId")
@@ -97,6 +101,18 @@ class LoadbalancerRouteArgs:
     def match_sni(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "match_sni", value)
 
+    @property
+    @pulumi.getter(name="matchSubdomains")
+    def match_subdomains(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, all subdomains will match.
+        """
+        return pulumi.get(self, "match_subdomains")
+
+    @match_subdomains.setter
+    def match_subdomains(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "match_subdomains", value)
+
 
 @pulumi.input_type
 class _LoadbalancerRouteState:
@@ -106,6 +122,7 @@ class _LoadbalancerRouteState:
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
+                 match_subdomains: Optional[pulumi.Input[bool]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerRoute resources.
@@ -120,6 +137,7 @@ class _LoadbalancerRouteState:
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
+        :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
         :param pulumi.Input[str] updated_at: The date on which the route was last updated.
         """
         if backend_id is not None:
@@ -132,6 +150,8 @@ class _LoadbalancerRouteState:
             pulumi.set(__self__, "match_host_header", match_host_header)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
+        if match_subdomains is not None:
+            pulumi.set(__self__, "match_subdomains", match_subdomains)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
@@ -202,6 +222,18 @@ class _LoadbalancerRouteState:
         pulumi.set(self, "match_sni", value)
 
     @property
+    @pulumi.getter(name="matchSubdomains")
+    def match_subdomains(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, all subdomains will match.
+        """
+        return pulumi.get(self, "match_subdomains")
+
+    @match_subdomains.setter
+    def match_subdomains(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "match_subdomains", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -228,6 +260,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
+                 match_subdomains: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Load Balancer routes.
@@ -310,6 +343,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
+        :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
         """
         ...
     @overload
@@ -405,6 +439,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
+                 match_subdomains: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         pulumi.log.warn("""LoadbalancerRoute is deprecated: scaleway.index/loadbalancerroute.LoadbalancerRoute has been deprecated in favor of scaleway.loadbalancers/route.Route""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -423,6 +458,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
             __props__.__dict__["frontend_id"] = frontend_id
             __props__.__dict__["match_host_header"] = match_host_header
             __props__.__dict__["match_sni"] = match_sni
+            __props__.__dict__["match_subdomains"] = match_subdomains
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(LoadbalancerRoute, __self__).__init__(
@@ -440,6 +476,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
             frontend_id: Optional[pulumi.Input[str]] = None,
             match_host_header: Optional[pulumi.Input[str]] = None,
             match_sni: Optional[pulumi.Input[str]] = None,
+            match_subdomains: Optional[pulumi.Input[bool]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerRoute':
         """
         Get an existing LoadbalancerRoute resource's state with the given name, id, and optional extra
@@ -459,6 +496,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                Only one of `match_sni` and `match_host_header` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
+        :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
         :param pulumi.Input[str] updated_at: The date on which the route was last updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -470,6 +508,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         __props__.__dict__["frontend_id"] = frontend_id
         __props__.__dict__["match_host_header"] = match_host_header
         __props__.__dict__["match_sni"] = match_sni
+        __props__.__dict__["match_subdomains"] = match_subdomains
         __props__.__dict__["updated_at"] = updated_at
         return LoadbalancerRoute(resource_name, opts=opts, __props__=__props__)
 
@@ -518,6 +557,14 @@ class LoadbalancerRoute(pulumi.CustomResource):
         > **Important:** This field should be set for routes on TCP Load Balancers.
         """
         return pulumi.get(self, "match_sni")
+
+    @property
+    @pulumi.getter(name="matchSubdomains")
+    def match_subdomains(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If true, all subdomains will match.
+        """
+        return pulumi.get(self, "match_subdomains")
 
     @property
     @pulumi.getter(name="updatedAt")

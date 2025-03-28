@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     ///         ForwardPort = 80,
     ///         HealthCheckHttp = new Scaleway.Loadbalancers.Inputs.BackendHealthCheckHttpArgs
     ///         {
-    ///             Uri = "www.test.com/health",
+    ///             Uri = "/health",
     ///         },
     ///     });
     /// 

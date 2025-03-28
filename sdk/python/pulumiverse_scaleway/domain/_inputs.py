@@ -25,6 +25,62 @@ __all__ = [
     'RecordViewArgsDict',
     'RecordWeightedArgs',
     'RecordWeightedArgsDict',
+    'RegistrationAdministrativeContactArgs',
+    'RegistrationAdministrativeContactArgsDict',
+    'RegistrationAdministrativeContactExtensionEuArgs',
+    'RegistrationAdministrativeContactExtensionEuArgsDict',
+    'RegistrationAdministrativeContactExtensionFrArgs',
+    'RegistrationAdministrativeContactExtensionFrArgsDict',
+    'RegistrationAdministrativeContactExtensionFrAssociationInfoArgs',
+    'RegistrationAdministrativeContactExtensionFrAssociationInfoArgsDict',
+    'RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs',
+    'RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgsDict',
+    'RegistrationAdministrativeContactExtensionFrDunsInfoArgs',
+    'RegistrationAdministrativeContactExtensionFrDunsInfoArgsDict',
+    'RegistrationAdministrativeContactExtensionFrIndividualInfoArgs',
+    'RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict',
+    'RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs',
+    'RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict',
+    'RegistrationDsRecordArgs',
+    'RegistrationDsRecordArgsDict',
+    'RegistrationDsRecordDigestArgs',
+    'RegistrationDsRecordDigestArgsDict',
+    'RegistrationDsRecordDigestPublicKeyArgs',
+    'RegistrationDsRecordDigestPublicKeyArgsDict',
+    'RegistrationDsRecordPublicKeyArgs',
+    'RegistrationDsRecordPublicKeyArgsDict',
+    'RegistrationOwnerContactArgs',
+    'RegistrationOwnerContactArgsDict',
+    'RegistrationOwnerContactExtensionEuArgs',
+    'RegistrationOwnerContactExtensionEuArgsDict',
+    'RegistrationOwnerContactExtensionFrArgs',
+    'RegistrationOwnerContactExtensionFrArgsDict',
+    'RegistrationOwnerContactExtensionFrAssociationInfoArgs',
+    'RegistrationOwnerContactExtensionFrAssociationInfoArgsDict',
+    'RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs',
+    'RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgsDict',
+    'RegistrationOwnerContactExtensionFrDunsInfoArgs',
+    'RegistrationOwnerContactExtensionFrDunsInfoArgsDict',
+    'RegistrationOwnerContactExtensionFrIndividualInfoArgs',
+    'RegistrationOwnerContactExtensionFrIndividualInfoArgsDict',
+    'RegistrationOwnerContactExtensionFrTrademarkInfoArgs',
+    'RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict',
+    'RegistrationTechnicalContactArgs',
+    'RegistrationTechnicalContactArgsDict',
+    'RegistrationTechnicalContactExtensionEuArgs',
+    'RegistrationTechnicalContactExtensionEuArgsDict',
+    'RegistrationTechnicalContactExtensionFrArgs',
+    'RegistrationTechnicalContactExtensionFrArgsDict',
+    'RegistrationTechnicalContactExtensionFrAssociationInfoArgs',
+    'RegistrationTechnicalContactExtensionFrAssociationInfoArgsDict',
+    'RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs',
+    'RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgsDict',
+    'RegistrationTechnicalContactExtensionFrDunsInfoArgs',
+    'RegistrationTechnicalContactExtensionFrDunsInfoArgsDict',
+    'RegistrationTechnicalContactExtensionFrIndividualInfoArgs',
+    'RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict',
+    'RegistrationTechnicalContactExtensionFrTrademarkInfoArgs',
+    'RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict',
 ]
 
 MYPY = False
@@ -337,5 +393,2646 @@ class RecordWeightedArgs:
     @weight.setter
     def weight(self, value: pulumi.Input[int]):
         pulumi.set(self, "weight", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactArgsDict(TypedDict):
+        address_line1: pulumi.Input[str]
+        """
+        Primary address line for the contact.
+        """
+        city: pulumi.Input[str]
+        """
+        City of the contact's address.
+        """
+        company_identification_code: pulumi.Input[str]
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        country: pulumi.Input[str]
+        """
+        Country code of the contact's address (ISO format).
+        """
+        email: pulumi.Input[str]
+        """
+        Primary email address of the contact.
+        """
+        firstname: pulumi.Input[str]
+        """
+        First name of the contact.
+        """
+        lastname: pulumi.Input[str]
+        """
+        Last name of the contact.
+        """
+        legal_form: pulumi.Input[str]
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        phone_number: pulumi.Input[str]
+        """
+        Primary phone number of the contact.
+        """
+        vat_identification_code: pulumi.Input[str]
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        zip: pulumi.Input[str]
+        """
+        Postal code of the contact's address.
+        """
+        address_line2: NotRequired[pulumi.Input[str]]
+        """
+        Secondary address line for the contact (optional).
+        """
+        company_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        email_alt: NotRequired[pulumi.Input[str]]
+        """
+        Alternative email address for the contact.
+        """
+        extension_eu: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionEuArgsDict']]
+        """
+        Details specific to European domain extensions.
+        """
+        extension_fr: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrArgsDict']]
+        """
+        Details specific to French domain extensions.
+        """
+        extension_nls: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        fax_number: NotRequired[pulumi.Input[str]]
+        """
+        Fax number for the contact (if available).
+        """
+        lang: NotRequired[pulumi.Input[str]]
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        resale: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State or region of the contact.
+        """
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationAdministrativeContactArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactArgs:
+    def __init__(__self__, *,
+                 address_line1: pulumi.Input[str],
+                 city: pulumi.Input[str],
+                 company_identification_code: pulumi.Input[str],
+                 country: pulumi.Input[str],
+                 email: pulumi.Input[str],
+                 firstname: pulumi.Input[str],
+                 lastname: pulumi.Input[str],
+                 legal_form: pulumi.Input[str],
+                 phone_number: pulumi.Input[str],
+                 vat_identification_code: pulumi.Input[str],
+                 zip: pulumi.Input[str],
+                 address_line2: Optional[pulumi.Input[str]] = None,
+                 company_name: Optional[pulumi.Input[str]] = None,
+                 email_alt: Optional[pulumi.Input[str]] = None,
+                 extension_eu: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs']] = None,
+                 extension_fr: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrArgs']] = None,
+                 extension_nls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 fax_number: Optional[pulumi.Input[str]] = None,
+                 lang: Optional[pulumi.Input[str]] = None,
+                 resale: Optional[pulumi.Input[bool]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] address_line1: Primary address line for the contact.
+        :param pulumi.Input[str] city: City of the contact's address.
+        :param pulumi.Input[str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param pulumi.Input[str] country: Country code of the contact's address (ISO format).
+        :param pulumi.Input[str] email: Primary email address of the contact.
+        :param pulumi.Input[str] firstname: First name of the contact.
+        :param pulumi.Input[str] lastname: Last name of the contact.
+        :param pulumi.Input[str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[str] phone_number: Primary phone number of the contact.
+        :param pulumi.Input[str] vat_identification_code: VAT identification code of the contact, if applicable.
+        :param pulumi.Input[str] zip: Postal code of the contact's address.
+        :param pulumi.Input[str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[str] company_name: Name of the company associated with the contact (if applicable).
+        :param pulumi.Input[str] email_alt: Alternative email address for the contact.
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[str] fax_number: Fax number for the contact (if available).
+        :param pulumi.Input[str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param pulumi.Input[bool] resale: Indicates if the contact is used for resale purposes.
+        :param pulumi.Input[str] state: State or region of the contact.
+        :param pulumi.Input[bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "zip", zip)
+        if address_line2 is not None:
+            pulumi.set(__self__, "address_line2", address_line2)
+        if company_name is not None:
+            pulumi.set(__self__, "company_name", company_name)
+        if email_alt is not None:
+            pulumi.set(__self__, "email_alt", email_alt)
+        if extension_eu is not None:
+            pulumi.set(__self__, "extension_eu", extension_eu)
+        if extension_fr is not None:
+            pulumi.set(__self__, "extension_fr", extension_fr)
+        if extension_nls is not None:
+            pulumi.set(__self__, "extension_nls", extension_nls)
+        if fax_number is not None:
+            pulumi.set(__self__, "fax_number", fax_number)
+        if lang is not None:
+            pulumi.set(__self__, "lang", lang)
+        if resale is not None:
+            pulumi.set(__self__, "resale", resale)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> pulumi.Input[str]:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @address_line1.setter
+    def address_line1(self, value: pulumi.Input[str]):
+        pulumi.set(self, "address_line1", value)
+
+    @property
+    @pulumi.getter
+    def city(self) -> pulumi.Input[str]:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @city.setter
+    def city(self, value: pulumi.Input[str]):
+        pulumi.set(self, "city", value)
+
+    @property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "company_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def country(self) -> pulumi.Input[str]:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: pulumi.Input[str]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> pulumi.Input[str]:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: pulumi.Input[str]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter
+    def firstname(self) -> pulumi.Input[str]:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @firstname.setter
+    def firstname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "firstname", value)
+
+    @property
+    @pulumi.getter
+    def lastname(self) -> pulumi.Input[str]:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @lastname.setter
+    def lastname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "lastname", value)
+
+    @property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[str]:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[str]):
+        pulumi.set(self, "legal_form", value)
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> pulumi.Input[str]:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @phone_number.setter
+    def phone_number(self, value: pulumi.Input[str]):
+        pulumi.set(self, "phone_number", value)
+
+    @property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "vat_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[str]:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zip", value)
+
+    @property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @address_line2.setter
+    def address_line2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_line2", value)
+
+    @property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @company_name.setter
+    def company_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "company_name", value)
+
+    @property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @email_alt.setter
+    def email_alt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email_alt", value)
+
+    @property
+    @pulumi.getter(name="extensionEu")
+    def extension_eu(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs']]:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eu")
+
+    @extension_eu.setter
+    def extension_eu(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionEuArgs']]):
+        pulumi.set(self, "extension_eu", value)
+
+    @property
+    @pulumi.getter(name="extensionFr")
+    def extension_fr(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrArgs']]:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_fr")
+
+    @extension_fr.setter
+    def extension_fr(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrArgs']]):
+        pulumi.set(self, "extension_fr", value)
+
+    @property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @extension_nls.setter
+    def extension_nls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "extension_nls", value)
+
+    @property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @fax_number.setter
+    def fax_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fax_number", value)
+
+    @property
+    @pulumi.getter
+    def lang(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @lang.setter
+    def lang(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lang", value)
+
+    @property
+    @pulumi.getter
+    def resale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @resale.setter
+    def resale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "resale", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionEuArgsDict(TypedDict):
+        european_citizenship: NotRequired[pulumi.Input[str]]
+        """
+        Indicates the European citizenship of the contact.
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionEuArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionEuArgs:
+    def __init__(__self__, *,
+                 european_citizenship: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] european_citizenship: Indicates the European citizenship of the contact.
+        """
+        if european_citizenship is not None:
+            pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+    @european_citizenship.setter
+    def european_citizenship(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "european_citizenship", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrArgsDict(TypedDict):
+        association_info: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrAssociationInfoArgsDict']]
+        """
+        Association-specific information for the domain (French extension).
+        """
+        code_auth_afnic_info: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgsDict']]
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        duns_info: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrDunsInfoArgsDict']]
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        individual_info: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict']]
+        """
+        Information about the individual registration for French domains.
+        """
+        mode: NotRequired[pulumi.Input[str]]
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        trademark_info: NotRequired[pulumi.Input['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict']]
+        """
+        Trademark-related information for the domain (French extension).
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrArgs:
+    def __init__(__self__, *,
+                 association_info: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrAssociationInfoArgs']] = None,
+                 code_auth_afnic_info: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs']] = None,
+                 duns_info: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrDunsInfoArgs']] = None,
+                 individual_info: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrIndividualInfoArgs']] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 trademark_info: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs']] = None):
+        """
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrAssociationInfoArgs'] association_info: Association-specific information for the domain (French extension).
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_info: AFNIC authorization information for the contact (French extension).
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrDunsInfoArgs'] duns_info: DUNS information for the domain owner (specific to French domains).
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrIndividualInfoArgs'] individual_info: Information about the individual registration for French domains.
+        :param pulumi.Input[str] mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param pulumi.Input['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs'] trademark_info: Trademark-related information for the domain (French extension).
+        """
+        if association_info is not None:
+            pulumi.set(__self__, "association_info", association_info)
+        if code_auth_afnic_info is not None:
+            pulumi.set(__self__, "code_auth_afnic_info", code_auth_afnic_info)
+        if duns_info is not None:
+            pulumi.set(__self__, "duns_info", duns_info)
+        if individual_info is not None:
+            pulumi.set(__self__, "individual_info", individual_info)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if trademark_info is not None:
+            pulumi.set(__self__, "trademark_info", trademark_info)
+
+    @property
+    @pulumi.getter(name="associationInfo")
+    def association_info(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrAssociationInfoArgs']]:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_info")
+
+    @association_info.setter
+    def association_info(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrAssociationInfoArgs']]):
+        pulumi.set(self, "association_info", value)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnicInfo")
+    def code_auth_afnic_info(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs']]:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_info")
+
+    @code_auth_afnic_info.setter
+    def code_auth_afnic_info(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs']]):
+        pulumi.set(self, "code_auth_afnic_info", value)
+
+    @property
+    @pulumi.getter(name="dunsInfo")
+    def duns_info(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrDunsInfoArgs']]:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_info")
+
+    @duns_info.setter
+    def duns_info(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrDunsInfoArgs']]):
+        pulumi.set(self, "duns_info", value)
+
+    @property
+    @pulumi.getter(name="individualInfo")
+    def individual_info(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrIndividualInfoArgs']]:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_info")
+
+    @individual_info.setter
+    def individual_info(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrIndividualInfoArgs']]):
+        pulumi.set(self, "individual_info", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="trademarkInfo")
+    def trademark_info(self) -> Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs']]:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_info")
+
+    @trademark_info.setter
+    def trademark_info(self, value: Optional[pulumi.Input['RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs']]):
+        pulumi.set(self, "trademark_info", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrAssociationInfoArgsDict(TypedDict):
+        publication_jo: NotRequired[pulumi.Input[str]]
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        publication_jo_page: NotRequired[pulumi.Input[int]]
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrAssociationInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrAssociationInfoArgs:
+    def __init__(__self__, *,
+                 publication_jo: Optional[pulumi.Input[str]] = None,
+                 publication_jo_page: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param pulumi.Input[int] publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        if publication_jo is not None:
+            pulumi.set(__self__, "publication_jo", publication_jo)
+        if publication_jo_page is not None:
+            pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @publication_jo.setter
+    def publication_jo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "publication_jo", value)
+
+    @property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> Optional[pulumi.Input[int]]:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+    @publication_jo_page.setter
+    def publication_jo_page(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "publication_jo_page", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgsDict(TypedDict):
+        code_auth_afnic: NotRequired[pulumi.Input[str]]
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs:
+    def __init__(__self__, *,
+                 code_auth_afnic: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        if code_auth_afnic is not None:
+            pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> Optional[pulumi.Input[str]]:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+    @code_auth_afnic.setter
+    def code_auth_afnic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code_auth_afnic", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrDunsInfoArgsDict(TypedDict):
+        duns_id: NotRequired[pulumi.Input[str]]
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        local_id: NotRequired[pulumi.Input[str]]
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrDunsInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrDunsInfoArgs:
+    def __init__(__self__, *,
+                 duns_id: Optional[pulumi.Input[str]] = None,
+                 local_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param pulumi.Input[str] local_id: Local identifier of the domain owner (for French domains).
+        """
+        if duns_id is not None:
+            pulumi.set(__self__, "duns_id", duns_id)
+        if local_id is not None:
+            pulumi.set(__self__, "local_id", local_id)
+
+    @property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @duns_id.setter
+    def duns_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "duns_id", value)
+
+    @property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+    @local_id.setter
+    def local_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_id", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict(TypedDict):
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrIndividualInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrIndividualInfoArgs:
+    def __init__(__self__, *,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict(TypedDict):
+        trademark_inpi: NotRequired[pulumi.Input[str]]
+        """
+        Trademark information from INPI (French extension).
+        """
+elif False:
+    RegistrationAdministrativeContactExtensionFrTrademarkInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationAdministrativeContactExtensionFrTrademarkInfoArgs:
+    def __init__(__self__, *,
+                 trademark_inpi: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] trademark_inpi: Trademark information from INPI (French extension).
+        """
+        if trademark_inpi is not None:
+            pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
+
+    @trademark_inpi.setter
+    def trademark_inpi(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trademark_inpi", value)
+
+
+if not MYPY:
+    class RegistrationDsRecordArgsDict(TypedDict):
+        algorithm: NotRequired[pulumi.Input[str]]
+        """
+        The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+        """
+        digests: NotRequired[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestArgsDict']]]]
+        """
+        Details about the digest.
+        """
+        key_id: NotRequired[pulumi.Input[int]]
+        """
+        The identifier for the dnssec key.
+        """
+        public_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgsDict']]]]
+        """
+        Public key associated with the dnssec record.
+        """
+elif False:
+    RegistrationDsRecordArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationDsRecordArgs:
+    def __init__(__self__, *,
+                 algorithm: Optional[pulumi.Input[str]] = None,
+                 digests: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestArgs']]]] = None,
+                 key_id: Optional[pulumi.Input[int]] = None,
+                 public_keys: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgs']]]] = None):
+        """
+        :param pulumi.Input[str] algorithm: The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestArgs']]] digests: Details about the digest.
+        :param pulumi.Input[int] key_id: The identifier for the dnssec key.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgs']]] public_keys: Public key associated with the dnssec record.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if digests is not None:
+            pulumi.set(__self__, "digests", digests)
+        if key_id is not None:
+            pulumi.set(__self__, "key_id", key_id)
+        if public_keys is not None:
+            pulumi.set(__self__, "public_keys", public_keys)
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @property
+    @pulumi.getter
+    def digests(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestArgs']]]]:
+        """
+        Details about the digest.
+        """
+        return pulumi.get(self, "digests")
+
+    @digests.setter
+    def digests(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestArgs']]]]):
+        pulumi.set(self, "digests", value)
+
+    @property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        The identifier for the dnssec key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @key_id.setter
+    def key_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "key_id", value)
+
+    @property
+    @pulumi.getter(name="publicKeys")
+    def public_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgs']]]]:
+        """
+        Public key associated with the dnssec record.
+        """
+        return pulumi.get(self, "public_keys")
+
+    @public_keys.setter
+    def public_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordPublicKeyArgs']]]]):
+        pulumi.set(self, "public_keys", value)
+
+
+if not MYPY:
+    class RegistrationDsRecordDigestArgsDict(TypedDict):
+        digest: NotRequired[pulumi.Input[str]]
+        """
+        The digest value.
+        """
+        public_keys: NotRequired[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgsDict']]]]
+        """
+        The public key associated with the digest.
+        """
+        type: NotRequired[pulumi.Input[str]]
+        """
+        The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+        """
+elif False:
+    RegistrationDsRecordDigestArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationDsRecordDigestArgs:
+    def __init__(__self__, *,
+                 digest: Optional[pulumi.Input[str]] = None,
+                 public_keys: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgs']]]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] digest: The digest value.
+        :param pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgs']]] public_keys: The public key associated with the digest.
+        :param pulumi.Input[str] type: The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+        """
+        if digest is not None:
+            pulumi.set(__self__, "digest", digest)
+        if public_keys is not None:
+            pulumi.set(__self__, "public_keys", public_keys)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def digest(self) -> Optional[pulumi.Input[str]]:
+        """
+        The digest value.
+        """
+        return pulumi.get(self, "digest")
+
+    @digest.setter
+    def digest(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "digest", value)
+
+    @property
+    @pulumi.getter(name="publicKeys")
+    def public_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgs']]]]:
+        """
+        The public key associated with the digest.
+        """
+        return pulumi.get(self, "public_keys")
+
+    @public_keys.setter
+    def public_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RegistrationDsRecordDigestPublicKeyArgs']]]]):
+        pulumi.set(self, "public_keys", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
+    class RegistrationDsRecordDigestPublicKeyArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        """
+        The public key value.
+        """
+elif False:
+    RegistrationDsRecordDigestPublicKeyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationDsRecordDigestPublicKeyArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The public key value.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The public key value.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+
+if not MYPY:
+    class RegistrationDsRecordPublicKeyArgsDict(TypedDict):
+        key: pulumi.Input[str]
+        """
+        The public key value.
+        """
+elif False:
+    RegistrationDsRecordPublicKeyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationDsRecordPublicKeyArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] key: The public key value.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The public key value.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactArgsDict(TypedDict):
+        address_line1: pulumi.Input[str]
+        """
+        Primary address line for the contact.
+        """
+        city: pulumi.Input[str]
+        """
+        City of the contact's address.
+        """
+        company_identification_code: pulumi.Input[str]
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        country: pulumi.Input[str]
+        """
+        Country code of the contact's address (ISO format).
+        """
+        email: pulumi.Input[str]
+        """
+        Primary email address of the contact.
+        """
+        firstname: pulumi.Input[str]
+        """
+        First name of the contact.
+        """
+        lastname: pulumi.Input[str]
+        """
+        Last name of the contact.
+        """
+        legal_form: pulumi.Input[str]
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        phone_number: pulumi.Input[str]
+        """
+        Primary phone number of the contact.
+        """
+        vat_identification_code: pulumi.Input[str]
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        zip: pulumi.Input[str]
+        """
+        Postal code of the contact's address.
+        """
+        address_line2: NotRequired[pulumi.Input[str]]
+        """
+        Secondary address line for the contact (optional).
+        """
+        company_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        email_alt: NotRequired[pulumi.Input[str]]
+        """
+        Alternative email address for the contact.
+        """
+        extension_eu: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionEuArgsDict']]
+        """
+        Details specific to European domain extensions.
+        """
+        extension_fr: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrArgsDict']]
+        """
+        Details specific to French domain extensions.
+        """
+        extension_nls: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        fax_number: NotRequired[pulumi.Input[str]]
+        """
+        Fax number for the contact (if available).
+        """
+        lang: NotRequired[pulumi.Input[str]]
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        resale: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State or region of the contact.
+        """
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationOwnerContactArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactArgs:
+    def __init__(__self__, *,
+                 address_line1: pulumi.Input[str],
+                 city: pulumi.Input[str],
+                 company_identification_code: pulumi.Input[str],
+                 country: pulumi.Input[str],
+                 email: pulumi.Input[str],
+                 firstname: pulumi.Input[str],
+                 lastname: pulumi.Input[str],
+                 legal_form: pulumi.Input[str],
+                 phone_number: pulumi.Input[str],
+                 vat_identification_code: pulumi.Input[str],
+                 zip: pulumi.Input[str],
+                 address_line2: Optional[pulumi.Input[str]] = None,
+                 company_name: Optional[pulumi.Input[str]] = None,
+                 email_alt: Optional[pulumi.Input[str]] = None,
+                 extension_eu: Optional[pulumi.Input['RegistrationOwnerContactExtensionEuArgs']] = None,
+                 extension_fr: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrArgs']] = None,
+                 extension_nls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 fax_number: Optional[pulumi.Input[str]] = None,
+                 lang: Optional[pulumi.Input[str]] = None,
+                 resale: Optional[pulumi.Input[bool]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] address_line1: Primary address line for the contact.
+        :param pulumi.Input[str] city: City of the contact's address.
+        :param pulumi.Input[str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param pulumi.Input[str] country: Country code of the contact's address (ISO format).
+        :param pulumi.Input[str] email: Primary email address of the contact.
+        :param pulumi.Input[str] firstname: First name of the contact.
+        :param pulumi.Input[str] lastname: Last name of the contact.
+        :param pulumi.Input[str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[str] phone_number: Primary phone number of the contact.
+        :param pulumi.Input[str] vat_identification_code: VAT identification code of the contact, if applicable.
+        :param pulumi.Input[str] zip: Postal code of the contact's address.
+        :param pulumi.Input[str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[str] company_name: Name of the company associated with the contact (if applicable).
+        :param pulumi.Input[str] email_alt: Alternative email address for the contact.
+        :param pulumi.Input['RegistrationOwnerContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[str] fax_number: Fax number for the contact (if available).
+        :param pulumi.Input[str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param pulumi.Input[bool] resale: Indicates if the contact is used for resale purposes.
+        :param pulumi.Input[str] state: State or region of the contact.
+        :param pulumi.Input[bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "zip", zip)
+        if address_line2 is not None:
+            pulumi.set(__self__, "address_line2", address_line2)
+        if company_name is not None:
+            pulumi.set(__self__, "company_name", company_name)
+        if email_alt is not None:
+            pulumi.set(__self__, "email_alt", email_alt)
+        if extension_eu is not None:
+            pulumi.set(__self__, "extension_eu", extension_eu)
+        if extension_fr is not None:
+            pulumi.set(__self__, "extension_fr", extension_fr)
+        if extension_nls is not None:
+            pulumi.set(__self__, "extension_nls", extension_nls)
+        if fax_number is not None:
+            pulumi.set(__self__, "fax_number", fax_number)
+        if lang is not None:
+            pulumi.set(__self__, "lang", lang)
+        if resale is not None:
+            pulumi.set(__self__, "resale", resale)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> pulumi.Input[str]:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @address_line1.setter
+    def address_line1(self, value: pulumi.Input[str]):
+        pulumi.set(self, "address_line1", value)
+
+    @property
+    @pulumi.getter
+    def city(self) -> pulumi.Input[str]:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @city.setter
+    def city(self, value: pulumi.Input[str]):
+        pulumi.set(self, "city", value)
+
+    @property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "company_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def country(self) -> pulumi.Input[str]:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: pulumi.Input[str]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> pulumi.Input[str]:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: pulumi.Input[str]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter
+    def firstname(self) -> pulumi.Input[str]:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @firstname.setter
+    def firstname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "firstname", value)
+
+    @property
+    @pulumi.getter
+    def lastname(self) -> pulumi.Input[str]:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @lastname.setter
+    def lastname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "lastname", value)
+
+    @property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[str]:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[str]):
+        pulumi.set(self, "legal_form", value)
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> pulumi.Input[str]:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @phone_number.setter
+    def phone_number(self, value: pulumi.Input[str]):
+        pulumi.set(self, "phone_number", value)
+
+    @property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "vat_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[str]:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zip", value)
+
+    @property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @address_line2.setter
+    def address_line2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_line2", value)
+
+    @property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @company_name.setter
+    def company_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "company_name", value)
+
+    @property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @email_alt.setter
+    def email_alt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email_alt", value)
+
+    @property
+    @pulumi.getter(name="extensionEu")
+    def extension_eu(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionEuArgs']]:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eu")
+
+    @extension_eu.setter
+    def extension_eu(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionEuArgs']]):
+        pulumi.set(self, "extension_eu", value)
+
+    @property
+    @pulumi.getter(name="extensionFr")
+    def extension_fr(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrArgs']]:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_fr")
+
+    @extension_fr.setter
+    def extension_fr(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrArgs']]):
+        pulumi.set(self, "extension_fr", value)
+
+    @property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @extension_nls.setter
+    def extension_nls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "extension_nls", value)
+
+    @property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @fax_number.setter
+    def fax_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fax_number", value)
+
+    @property
+    @pulumi.getter
+    def lang(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @lang.setter
+    def lang(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lang", value)
+
+    @property
+    @pulumi.getter
+    def resale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @resale.setter
+    def resale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "resale", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionEuArgsDict(TypedDict):
+        european_citizenship: NotRequired[pulumi.Input[str]]
+        """
+        Indicates the European citizenship of the contact.
+        """
+elif False:
+    RegistrationOwnerContactExtensionEuArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionEuArgs:
+    def __init__(__self__, *,
+                 european_citizenship: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] european_citizenship: Indicates the European citizenship of the contact.
+        """
+        if european_citizenship is not None:
+            pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+    @european_citizenship.setter
+    def european_citizenship(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "european_citizenship", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrArgsDict(TypedDict):
+        association_info: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrAssociationInfoArgsDict']]
+        """
+        Association-specific information for the domain (French extension).
+        """
+        code_auth_afnic_info: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgsDict']]
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        duns_info: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrDunsInfoArgsDict']]
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        individual_info: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrIndividualInfoArgsDict']]
+        """
+        Information about the individual registration for French domains.
+        """
+        mode: NotRequired[pulumi.Input[str]]
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        trademark_info: NotRequired[pulumi.Input['RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict']]
+        """
+        Trademark-related information for the domain (French extension).
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrArgs:
+    def __init__(__self__, *,
+                 association_info: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrAssociationInfoArgs']] = None,
+                 code_auth_afnic_info: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs']] = None,
+                 duns_info: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrDunsInfoArgs']] = None,
+                 individual_info: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrIndividualInfoArgs']] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 trademark_info: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrTrademarkInfoArgs']] = None):
+        """
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrAssociationInfoArgs'] association_info: Association-specific information for the domain (French extension).
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_info: AFNIC authorization information for the contact (French extension).
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrDunsInfoArgs'] duns_info: DUNS information for the domain owner (specific to French domains).
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrIndividualInfoArgs'] individual_info: Information about the individual registration for French domains.
+        :param pulumi.Input[str] mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param pulumi.Input['RegistrationOwnerContactExtensionFrTrademarkInfoArgs'] trademark_info: Trademark-related information for the domain (French extension).
+        """
+        if association_info is not None:
+            pulumi.set(__self__, "association_info", association_info)
+        if code_auth_afnic_info is not None:
+            pulumi.set(__self__, "code_auth_afnic_info", code_auth_afnic_info)
+        if duns_info is not None:
+            pulumi.set(__self__, "duns_info", duns_info)
+        if individual_info is not None:
+            pulumi.set(__self__, "individual_info", individual_info)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if trademark_info is not None:
+            pulumi.set(__self__, "trademark_info", trademark_info)
+
+    @property
+    @pulumi.getter(name="associationInfo")
+    def association_info(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrAssociationInfoArgs']]:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_info")
+
+    @association_info.setter
+    def association_info(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrAssociationInfoArgs']]):
+        pulumi.set(self, "association_info", value)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnicInfo")
+    def code_auth_afnic_info(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs']]:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_info")
+
+    @code_auth_afnic_info.setter
+    def code_auth_afnic_info(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs']]):
+        pulumi.set(self, "code_auth_afnic_info", value)
+
+    @property
+    @pulumi.getter(name="dunsInfo")
+    def duns_info(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrDunsInfoArgs']]:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_info")
+
+    @duns_info.setter
+    def duns_info(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrDunsInfoArgs']]):
+        pulumi.set(self, "duns_info", value)
+
+    @property
+    @pulumi.getter(name="individualInfo")
+    def individual_info(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrIndividualInfoArgs']]:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_info")
+
+    @individual_info.setter
+    def individual_info(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrIndividualInfoArgs']]):
+        pulumi.set(self, "individual_info", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="trademarkInfo")
+    def trademark_info(self) -> Optional[pulumi.Input['RegistrationOwnerContactExtensionFrTrademarkInfoArgs']]:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_info")
+
+    @trademark_info.setter
+    def trademark_info(self, value: Optional[pulumi.Input['RegistrationOwnerContactExtensionFrTrademarkInfoArgs']]):
+        pulumi.set(self, "trademark_info", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrAssociationInfoArgsDict(TypedDict):
+        publication_jo: NotRequired[pulumi.Input[str]]
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        publication_jo_page: NotRequired[pulumi.Input[int]]
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrAssociationInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrAssociationInfoArgs:
+    def __init__(__self__, *,
+                 publication_jo: Optional[pulumi.Input[str]] = None,
+                 publication_jo_page: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param pulumi.Input[int] publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        if publication_jo is not None:
+            pulumi.set(__self__, "publication_jo", publication_jo)
+        if publication_jo_page is not None:
+            pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @publication_jo.setter
+    def publication_jo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "publication_jo", value)
+
+    @property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> Optional[pulumi.Input[int]]:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+    @publication_jo_page.setter
+    def publication_jo_page(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "publication_jo_page", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgsDict(TypedDict):
+        code_auth_afnic: NotRequired[pulumi.Input[str]]
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs:
+    def __init__(__self__, *,
+                 code_auth_afnic: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        if code_auth_afnic is not None:
+            pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> Optional[pulumi.Input[str]]:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+    @code_auth_afnic.setter
+    def code_auth_afnic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code_auth_afnic", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrDunsInfoArgsDict(TypedDict):
+        duns_id: NotRequired[pulumi.Input[str]]
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        local_id: NotRequired[pulumi.Input[str]]
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrDunsInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrDunsInfoArgs:
+    def __init__(__self__, *,
+                 duns_id: Optional[pulumi.Input[str]] = None,
+                 local_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param pulumi.Input[str] local_id: Local identifier of the domain owner (for French domains).
+        """
+        if duns_id is not None:
+            pulumi.set(__self__, "duns_id", duns_id)
+        if local_id is not None:
+            pulumi.set(__self__, "local_id", local_id)
+
+    @property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @duns_id.setter
+    def duns_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "duns_id", value)
+
+    @property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+    @local_id.setter
+    def local_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_id", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrIndividualInfoArgsDict(TypedDict):
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrIndividualInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrIndividualInfoArgs:
+    def __init__(__self__, *,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict(TypedDict):
+        trademark_inpi: NotRequired[pulumi.Input[str]]
+        """
+        Trademark information from INPI (French extension).
+        """
+elif False:
+    RegistrationOwnerContactExtensionFrTrademarkInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationOwnerContactExtensionFrTrademarkInfoArgs:
+    def __init__(__self__, *,
+                 trademark_inpi: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] trademark_inpi: Trademark information from INPI (French extension).
+        """
+        if trademark_inpi is not None:
+            pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
+
+    @trademark_inpi.setter
+    def trademark_inpi(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trademark_inpi", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactArgsDict(TypedDict):
+        address_line1: pulumi.Input[str]
+        """
+        Primary address line for the contact.
+        """
+        city: pulumi.Input[str]
+        """
+        City of the contact's address.
+        """
+        company_identification_code: pulumi.Input[str]
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        country: pulumi.Input[str]
+        """
+        Country code of the contact's address (ISO format).
+        """
+        email: pulumi.Input[str]
+        """
+        Primary email address of the contact.
+        """
+        firstname: pulumi.Input[str]
+        """
+        First name of the contact.
+        """
+        lastname: pulumi.Input[str]
+        """
+        Last name of the contact.
+        """
+        legal_form: pulumi.Input[str]
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        phone_number: pulumi.Input[str]
+        """
+        Primary phone number of the contact.
+        """
+        vat_identification_code: pulumi.Input[str]
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        zip: pulumi.Input[str]
+        """
+        Postal code of the contact's address.
+        """
+        address_line2: NotRequired[pulumi.Input[str]]
+        """
+        Secondary address line for the contact (optional).
+        """
+        company_name: NotRequired[pulumi.Input[str]]
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        email_alt: NotRequired[pulumi.Input[str]]
+        """
+        Alternative email address for the contact.
+        """
+        extension_eu: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionEuArgsDict']]
+        """
+        Details specific to European domain extensions.
+        """
+        extension_fr: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrArgsDict']]
+        """
+        Details specific to French domain extensions.
+        """
+        extension_nls: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        fax_number: NotRequired[pulumi.Input[str]]
+        """
+        Fax number for the contact (if available).
+        """
+        lang: NotRequired[pulumi.Input[str]]
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        resale: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        state: NotRequired[pulumi.Input[str]]
+        """
+        State or region of the contact.
+        """
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationTechnicalContactArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactArgs:
+    def __init__(__self__, *,
+                 address_line1: pulumi.Input[str],
+                 city: pulumi.Input[str],
+                 company_identification_code: pulumi.Input[str],
+                 country: pulumi.Input[str],
+                 email: pulumi.Input[str],
+                 firstname: pulumi.Input[str],
+                 lastname: pulumi.Input[str],
+                 legal_form: pulumi.Input[str],
+                 phone_number: pulumi.Input[str],
+                 vat_identification_code: pulumi.Input[str],
+                 zip: pulumi.Input[str],
+                 address_line2: Optional[pulumi.Input[str]] = None,
+                 company_name: Optional[pulumi.Input[str]] = None,
+                 email_alt: Optional[pulumi.Input[str]] = None,
+                 extension_eu: Optional[pulumi.Input['RegistrationTechnicalContactExtensionEuArgs']] = None,
+                 extension_fr: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrArgs']] = None,
+                 extension_nls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 fax_number: Optional[pulumi.Input[str]] = None,
+                 lang: Optional[pulumi.Input[str]] = None,
+                 resale: Optional[pulumi.Input[bool]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] address_line1: Primary address line for the contact.
+        :param pulumi.Input[str] city: City of the contact's address.
+        :param pulumi.Input[str] company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param pulumi.Input[str] country: Country code of the contact's address (ISO format).
+        :param pulumi.Input[str] email: Primary email address of the contact.
+        :param pulumi.Input[str] firstname: First name of the contact.
+        :param pulumi.Input[str] lastname: Last name of the contact.
+        :param pulumi.Input[str] legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param pulumi.Input[str] phone_number: Primary phone number of the contact.
+        :param pulumi.Input[str] vat_identification_code: VAT identification code of the contact, if applicable.
+        :param pulumi.Input[str] zip: Postal code of the contact's address.
+        :param pulumi.Input[str] address_line2: Secondary address line for the contact (optional).
+        :param pulumi.Input[str] company_name: Name of the company associated with the contact (if applicable).
+        :param pulumi.Input[str] email_alt: Alternative email address for the contact.
+        :param pulumi.Input['RegistrationTechnicalContactExtensionEuArgs'] extension_eu: Details specific to European domain extensions.
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrArgs'] extension_fr: Details specific to French domain extensions.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] extension_nls: Extension details specific to Dutch domain registrations.
+        :param pulumi.Input[str] fax_number: Fax number for the contact (if available).
+        :param pulumi.Input[str] lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param pulumi.Input[bool] resale: Indicates if the contact is used for resale purposes.
+        :param pulumi.Input[str] state: State or region of the contact.
+        :param pulumi.Input[bool] whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "zip", zip)
+        if address_line2 is not None:
+            pulumi.set(__self__, "address_line2", address_line2)
+        if company_name is not None:
+            pulumi.set(__self__, "company_name", company_name)
+        if email_alt is not None:
+            pulumi.set(__self__, "email_alt", email_alt)
+        if extension_eu is not None:
+            pulumi.set(__self__, "extension_eu", extension_eu)
+        if extension_fr is not None:
+            pulumi.set(__self__, "extension_fr", extension_fr)
+        if extension_nls is not None:
+            pulumi.set(__self__, "extension_nls", extension_nls)
+        if fax_number is not None:
+            pulumi.set(__self__, "fax_number", fax_number)
+        if lang is not None:
+            pulumi.set(__self__, "lang", lang)
+        if resale is not None:
+            pulumi.set(__self__, "resale", resale)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> pulumi.Input[str]:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @address_line1.setter
+    def address_line1(self, value: pulumi.Input[str]):
+        pulumi.set(self, "address_line1", value)
+
+    @property
+    @pulumi.getter
+    def city(self) -> pulumi.Input[str]:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @city.setter
+    def city(self, value: pulumi.Input[str]):
+        pulumi.set(self, "city", value)
+
+    @property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> pulumi.Input[str]:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @company_identification_code.setter
+    def company_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "company_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def country(self) -> pulumi.Input[str]:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @country.setter
+    def country(self, value: pulumi.Input[str]):
+        pulumi.set(self, "country", value)
+
+    @property
+    @pulumi.getter
+    def email(self) -> pulumi.Input[str]:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @email.setter
+    def email(self, value: pulumi.Input[str]):
+        pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter
+    def firstname(self) -> pulumi.Input[str]:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @firstname.setter
+    def firstname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "firstname", value)
+
+    @property
+    @pulumi.getter
+    def lastname(self) -> pulumi.Input[str]:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @lastname.setter
+    def lastname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "lastname", value)
+
+    @property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> pulumi.Input[str]:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @legal_form.setter
+    def legal_form(self, value: pulumi.Input[str]):
+        pulumi.set(self, "legal_form", value)
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> pulumi.Input[str]:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @phone_number.setter
+    def phone_number(self, value: pulumi.Input[str]):
+        pulumi.set(self, "phone_number", value)
+
+    @property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> pulumi.Input[str]:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @vat_identification_code.setter
+    def vat_identification_code(self, value: pulumi.Input[str]):
+        pulumi.set(self, "vat_identification_code", value)
+
+    @property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[str]:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zip", value)
+
+    @property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> Optional[pulumi.Input[str]]:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @address_line2.setter
+    def address_line2(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address_line2", value)
+
+    @property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @company_name.setter
+    def company_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "company_name", value)
+
+    @property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @email_alt.setter
+    def email_alt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "email_alt", value)
+
+    @property
+    @pulumi.getter(name="extensionEu")
+    def extension_eu(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionEuArgs']]:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eu")
+
+    @extension_eu.setter
+    def extension_eu(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionEuArgs']]):
+        pulumi.set(self, "extension_eu", value)
+
+    @property
+    @pulumi.getter(name="extensionFr")
+    def extension_fr(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrArgs']]:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_fr")
+
+    @extension_fr.setter
+    def extension_fr(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrArgs']]):
+        pulumi.set(self, "extension_fr", value)
+
+    @property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @extension_nls.setter
+    def extension_nls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "extension_nls", value)
+
+    @property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @fax_number.setter
+    def fax_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fax_number", value)
+
+    @property
+    @pulumi.getter
+    def lang(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @lang.setter
+    def lang(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lang", value)
+
+    @property
+    @pulumi.getter
+    def resale(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @resale.setter
+    def resale(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "resale", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionEuArgsDict(TypedDict):
+        european_citizenship: NotRequired[pulumi.Input[str]]
+        """
+        Indicates the European citizenship of the contact.
+        """
+elif False:
+    RegistrationTechnicalContactExtensionEuArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionEuArgs:
+    def __init__(__self__, *,
+                 european_citizenship: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] european_citizenship: Indicates the European citizenship of the contact.
+        """
+        if european_citizenship is not None:
+            pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> Optional[pulumi.Input[str]]:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+    @european_citizenship.setter
+    def european_citizenship(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "european_citizenship", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrArgsDict(TypedDict):
+        association_info: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrAssociationInfoArgsDict']]
+        """
+        Association-specific information for the domain (French extension).
+        """
+        code_auth_afnic_info: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgsDict']]
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        duns_info: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrDunsInfoArgsDict']]
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        individual_info: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict']]
+        """
+        Information about the individual registration for French domains.
+        """
+        mode: NotRequired[pulumi.Input[str]]
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        trademark_info: NotRequired[pulumi.Input['RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict']]
+        """
+        Trademark-related information for the domain (French extension).
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrArgs:
+    def __init__(__self__, *,
+                 association_info: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrAssociationInfoArgs']] = None,
+                 code_auth_afnic_info: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs']] = None,
+                 duns_info: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrDunsInfoArgs']] = None,
+                 individual_info: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrIndividualInfoArgs']] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 trademark_info: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrTrademarkInfoArgs']] = None):
+        """
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrAssociationInfoArgs'] association_info: Association-specific information for the domain (French extension).
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_info: AFNIC authorization information for the contact (French extension).
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrDunsInfoArgs'] duns_info: DUNS information for the domain owner (specific to French domains).
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrIndividualInfoArgs'] individual_info: Information about the individual registration for French domains.
+        :param pulumi.Input[str] mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param pulumi.Input['RegistrationTechnicalContactExtensionFrTrademarkInfoArgs'] trademark_info: Trademark-related information for the domain (French extension).
+        """
+        if association_info is not None:
+            pulumi.set(__self__, "association_info", association_info)
+        if code_auth_afnic_info is not None:
+            pulumi.set(__self__, "code_auth_afnic_info", code_auth_afnic_info)
+        if duns_info is not None:
+            pulumi.set(__self__, "duns_info", duns_info)
+        if individual_info is not None:
+            pulumi.set(__self__, "individual_info", individual_info)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if trademark_info is not None:
+            pulumi.set(__self__, "trademark_info", trademark_info)
+
+    @property
+    @pulumi.getter(name="associationInfo")
+    def association_info(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrAssociationInfoArgs']]:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_info")
+
+    @association_info.setter
+    def association_info(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrAssociationInfoArgs']]):
+        pulumi.set(self, "association_info", value)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnicInfo")
+    def code_auth_afnic_info(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs']]:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_info")
+
+    @code_auth_afnic_info.setter
+    def code_auth_afnic_info(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs']]):
+        pulumi.set(self, "code_auth_afnic_info", value)
+
+    @property
+    @pulumi.getter(name="dunsInfo")
+    def duns_info(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrDunsInfoArgs']]:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_info")
+
+    @duns_info.setter
+    def duns_info(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrDunsInfoArgs']]):
+        pulumi.set(self, "duns_info", value)
+
+    @property
+    @pulumi.getter(name="individualInfo")
+    def individual_info(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrIndividualInfoArgs']]:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_info")
+
+    @individual_info.setter
+    def individual_info(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrIndividualInfoArgs']]):
+        pulumi.set(self, "individual_info", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="trademarkInfo")
+    def trademark_info(self) -> Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrTrademarkInfoArgs']]:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_info")
+
+    @trademark_info.setter
+    def trademark_info(self, value: Optional[pulumi.Input['RegistrationTechnicalContactExtensionFrTrademarkInfoArgs']]):
+        pulumi.set(self, "trademark_info", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrAssociationInfoArgsDict(TypedDict):
+        publication_jo: NotRequired[pulumi.Input[str]]
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        publication_jo_page: NotRequired[pulumi.Input[int]]
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrAssociationInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrAssociationInfoArgs:
+    def __init__(__self__, *,
+                 publication_jo: Optional[pulumi.Input[str]] = None,
+                 publication_jo_page: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param pulumi.Input[int] publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        if publication_jo is not None:
+            pulumi.set(__self__, "publication_jo", publication_jo)
+        if publication_jo_page is not None:
+            pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @publication_jo.setter
+    def publication_jo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "publication_jo", value)
+
+    @property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> Optional[pulumi.Input[int]]:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+    @publication_jo_page.setter
+    def publication_jo_page(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "publication_jo_page", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgsDict(TypedDict):
+        code_auth_afnic: NotRequired[pulumi.Input[str]]
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs:
+    def __init__(__self__, *,
+                 code_auth_afnic: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        if code_auth_afnic is not None:
+            pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> Optional[pulumi.Input[str]]:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+    @code_auth_afnic.setter
+    def code_auth_afnic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "code_auth_afnic", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrDunsInfoArgsDict(TypedDict):
+        duns_id: NotRequired[pulumi.Input[str]]
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        local_id: NotRequired[pulumi.Input[str]]
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrDunsInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrDunsInfoArgs:
+    def __init__(__self__, *,
+                 duns_id: Optional[pulumi.Input[str]] = None,
+                 local_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param pulumi.Input[str] local_id: Local identifier of the domain owner (for French domains).
+        """
+        if duns_id is not None:
+            pulumi.set(__self__, "duns_id", duns_id)
+        if local_id is not None:
+            pulumi.set(__self__, "local_id", local_id)
+
+    @property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @duns_id.setter
+    def duns_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "duns_id", value)
+
+    @property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+    @local_id.setter
+    def local_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_id", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict(TypedDict):
+        whois_opt_in: NotRequired[pulumi.Input[bool]]
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrIndividualInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrIndividualInfoArgs:
+    def __init__(__self__, *,
+                 whois_opt_in: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        if whois_opt_in is not None:
+            pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @whois_opt_in.setter
+    def whois_opt_in(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "whois_opt_in", value)
+
+
+if not MYPY:
+    class RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict(TypedDict):
+        trademark_inpi: NotRequired[pulumi.Input[str]]
+        """
+        Trademark information from INPI (French extension).
+        """
+elif False:
+    RegistrationTechnicalContactExtensionFrTrademarkInfoArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class RegistrationTechnicalContactExtensionFrTrademarkInfoArgs:
+    def __init__(__self__, *,
+                 trademark_inpi: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] trademark_inpi: Trademark information from INPI (French extension).
+        """
+        if trademark_inpi is not None:
+            pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> Optional[pulumi.Input[str]]:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
+
+    @trademark_inpi.setter
+    def trademark_inpi(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trademark_inpi", value)
 
 

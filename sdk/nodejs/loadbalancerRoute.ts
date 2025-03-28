@@ -139,6 +139,10 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
      */
     public readonly matchSni!: pulumi.Output<string | undefined>;
     /**
+     * If true, all subdomains will match.
+     */
+    public readonly matchSubdomains!: pulumi.Output<boolean | undefined>;
+    /**
      * The date on which the route was last updated.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -164,6 +168,7 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
             resourceInputs["frontendId"] = state ? state.frontendId : undefined;
             resourceInputs["matchHostHeader"] = state ? state.matchHostHeader : undefined;
             resourceInputs["matchSni"] = state ? state.matchSni : undefined;
+            resourceInputs["matchSubdomains"] = state ? state.matchSubdomains : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as LoadbalancerRouteArgs | undefined;
@@ -177,6 +182,7 @@ export class LoadbalancerRoute extends pulumi.CustomResource {
             resourceInputs["frontendId"] = args ? args.frontendId : undefined;
             resourceInputs["matchHostHeader"] = args ? args.matchHostHeader : undefined;
             resourceInputs["matchSni"] = args ? args.matchSni : undefined;
+            resourceInputs["matchSubdomains"] = args ? args.matchSubdomains : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -216,6 +222,10 @@ export interface LoadbalancerRouteState {
      */
     matchSni?: pulumi.Input<string>;
     /**
+     * If true, all subdomains will match.
+     */
+    matchSubdomains?: pulumi.Input<boolean>;
+    /**
      * The date on which the route was last updated.
      */
     updatedAt?: pulumi.Input<string>;
@@ -247,4 +257,8 @@ export interface LoadbalancerRouteArgs {
      * > **Important:** This field should be set for routes on TCP Load Balancers.
      */
     matchSni?: pulumi.Input<string>;
+    /**
+     * If true, all subdomains will match.
+     */
+    matchSubdomains?: pulumi.Input<boolean>;
 }

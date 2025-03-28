@@ -73,6 +73,7 @@ export interface GetRouteResult {
     readonly id: string;
     readonly matchHostHeader: string;
     readonly matchSni: string;
+    readonly matchSubdomains: boolean;
     readonly routeId: string;
     readonly updatedAt: string;
 }

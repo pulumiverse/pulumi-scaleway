@@ -518,6 +518,110 @@ export interface DomainRecordWeighted {
     weight: number;
 }
 
+export interface EdgeServicesBackendStageLbBackendConfig {
+    /**
+     * The Load Balancer config.
+     */
+    lbConfig?: outputs.EdgeServicesBackendStageLbBackendConfigLbConfig;
+}
+
+export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
+    /**
+     * The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+     */
+    domainName?: string;
+    /**
+     * The ID of the frontend.
+     */
+    frontendId?: string;
+    /**
+     * The ID of the Load Balancer.
+     */
+    id?: string;
+    /**
+     * Defines whether the Load Balancer's frontend handles SSL connections.
+     */
+    isSsl?: boolean;
+    /**
+     * `zone`) The zone of the Load Balancer.
+     */
+    zone: string;
+}
+
+export interface EdgeServicesBackendStageS3BackendConfig {
+    /**
+     * The name of the Bucket.
+     */
+    bucketName?: string;
+    /**
+     * The region of the Bucket.
+     */
+    bucketRegion?: string;
+    /**
+     * Defines whether the bucket website feature is enabled.
+     */
+    isWebsite?: boolean;
+}
+
+export interface EdgeServicesCacheStagePurgeRequest {
+    /**
+     * Defines whether to purge all content.
+     */
+    all?: boolean;
+    /**
+     * The list of asserts to purge.
+     */
+    assets?: string[];
+    /**
+     * The pipeline ID in which the purge request will be created.
+     */
+    pipelineId?: string;
+}
+
+export interface EdgeServicesRouteStageRule {
+    /**
+     * The ID of the backend stage that requests matching the rule should be forwarded to.
+     */
+    backendStageId: string;
+    /**
+     * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+     */
+    ruleHttpMatch?: outputs.EdgeServicesRouteStageRuleRuleHttpMatch;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatch {
+    /**
+     * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+     */
+    methodFilters: string[];
+    /**
+     * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+     */
+    pathFilter?: outputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilter;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+    /**
+     * The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+     */
+    pathFilterType: string;
+    /**
+     * The value to be matched for the HTTP URL path.
+     */
+    value: string;
+}
+
+export interface EdgeServicesTlsStageSecret {
+    /**
+     * The region of the secret.
+     */
+    region: string;
+    /**
+     * The ID of the Secret
+     */
+    secretId: string;
+}
+
 export interface FunctionTriggerNats {
     /**
      * unique identifier of the Messaging and Queuing NATS account.
@@ -1870,7 +1974,7 @@ export interface GetLbBackendsBackendHealthCheckHttp {
      */
     sni: string;
     /**
-     * The HTTPS endpoint URL to call for health check requests.
+     * The path of health check requests.
      */
     uri: string;
 }
@@ -2060,6 +2164,10 @@ export interface GetLbRoutesRoute {
      * Server Name Indication TLS extension field from an incoming connection made via an SSL/TLS transport layer.
      */
     matchSni: string;
+    /**
+     * If true, all subdomains will match.
+     */
+    matchSubdomains: boolean;
     /**
      * The date on which the route was last updated (RFC 3339 format).
      */
@@ -2397,6 +2505,38 @@ export interface GetSecretEphemeralPolicy {
      * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in Go Duration format
      */
     ttl: string;
+}
+
+export interface GetSecretVersion {
+    /**
+     * Date and time of secret version's creation (RFC 3339 format)
+     */
+    createdAt: string;
+    /**
+     * Description of the secret version
+     */
+    description: string;
+    /**
+     * Returns true if the version is the latest.
+     */
+    latest: boolean;
+    /**
+     * The revision of secret version
+     */
+    revision: string;
+    /**
+     * The ID of the secret.
+     * Only one of `name` and `secretId` should be specified.
+     */
+    secretId: string;
+    /**
+     * Status of the secret version
+     */
+    status: string;
+    /**
+     * Date and time of secret version's creation (RFC 3339 format)
+     */
+    updatedAt: string;
 }
 
 export interface GetTemDomainReputation {
@@ -3912,6 +4052,37 @@ export interface SecretEphemeralPolicy {
     ttl?: string;
 }
 
+export interface SecretVersion {
+    /**
+     * Date and time of the secret's creation (in RFC 3339 format).
+     */
+    createdAt: string;
+    /**
+     * Description of the secret (e.g. `my-new-description`).
+     */
+    description?: string;
+    /**
+     * Returns true if the version is the latest.
+     */
+    latest?: boolean;
+    /**
+     * The revision of secret version
+     */
+    revision: string;
+    /**
+     * The secret ID associated with this version
+     */
+    secretId: string;
+    /**
+     * The status of the secret.
+     */
+    status: string;
+    /**
+     * Date and time of the secret's last update (in RFC 3339 format).
+     */
+    updatedAt: string;
+}
+
 export interface TemDomainReputation {
     /**
      * The previously-calculated domain's reputation score.
@@ -4700,6 +4871,558 @@ export namespace domain {
          * The weight of the IP
          */
         weight: number;
+    }
+
+    export interface RegistrationAdministrativeContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu: outputs.domain.RegistrationAdministrativeContactExtensionEu;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr: outputs.domain.RegistrationAdministrativeContactExtensionFr;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state?: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: string;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: outputs.domain.RegistrationAdministrativeContactExtensionFrAssociationInfo;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: outputs.domain.RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: outputs.domain.RegistrationAdministrativeContactExtensionFrDunsInfo;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: outputs.domain.RegistrationAdministrativeContactExtensionFrIndividualInfo;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: outputs.domain.RegistrationAdministrativeContactExtensionFrTrademarkInfo;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: number;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: string;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: string;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: string;
+    }
+
+    export interface RegistrationDsRecord {
+        /**
+         * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+         */
+        algorithm: string;
+        /**
+         * Details about the digest.
+         */
+        digests: outputs.domain.RegistrationDsRecordDigest[];
+        /**
+         * The identifier for the dnssec key.
+         */
+        keyId: number;
+        /**
+         * Public key associated with the dnssec record.
+         */
+        publicKeys: outputs.domain.RegistrationDsRecordPublicKey[];
+    }
+
+    export interface RegistrationDsRecordDigest {
+        /**
+         * The digest value.
+         */
+        digest: string;
+        /**
+         * The public key associated with the digest.
+         */
+        publicKeys: outputs.domain.RegistrationDsRecordDigestPublicKey[];
+        /**
+         * The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+         */
+        type: string;
+    }
+
+    export interface RegistrationDsRecordDigestPublicKey {
+        /**
+         * The public key value.
+         */
+        key: string;
+    }
+
+    export interface RegistrationDsRecordPublicKey {
+        /**
+         * The public key value.
+         */
+        key: string;
+    }
+
+    export interface RegistrationOwnerContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu: outputs.domain.RegistrationOwnerContactExtensionEu;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr: outputs.domain.RegistrationOwnerContactExtensionFr;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state?: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface RegistrationOwnerContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: string;
+    }
+
+    export interface RegistrationOwnerContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: outputs.domain.RegistrationOwnerContactExtensionFrAssociationInfo;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: outputs.domain.RegistrationOwnerContactExtensionFrCodeAuthAfnicInfo;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: outputs.domain.RegistrationOwnerContactExtensionFrDunsInfo;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: outputs.domain.RegistrationOwnerContactExtensionFrIndividualInfo;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: outputs.domain.RegistrationOwnerContactExtensionFrTrademarkInfo;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: number;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: string;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: string;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: string;
+    }
+
+    export interface RegistrationTechnicalContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu: outputs.domain.RegistrationTechnicalContactExtensionEu;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr: outputs.domain.RegistrationTechnicalContactExtensionFr;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state?: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface RegistrationTechnicalContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: string;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: outputs.domain.RegistrationTechnicalContactExtensionFrAssociationInfo;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: outputs.domain.RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: outputs.domain.RegistrationTechnicalContactExtensionFrDunsInfo;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: outputs.domain.RegistrationTechnicalContactExtensionFrIndividualInfo;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: outputs.domain.RegistrationTechnicalContactExtensionFrTrademarkInfo;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: number;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: string;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: string;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: boolean;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: string;
     }
 
 }
@@ -6869,7 +7592,7 @@ export namespace loadbalancers {
          */
         sni: string;
         /**
-         * The HTTPS endpoint URL to call for health check requests.
+         * The path of health check requests.
          */
         uri: string;
     }
@@ -7230,6 +7953,10 @@ export namespace loadbalancers {
          */
         matchSni: string;
         /**
+         * If true, all subdomains will match.
+         */
+        matchSubdomains: boolean;
+        /**
          * The date on which the route was last updated (RFC 3339 format).
          */
         updateAt: string;
@@ -7382,6 +8109,45 @@ export namespace mongodb {
 }
 
 export namespace network {
+    export interface AclRule {
+        /**
+         * The policy to apply to the packet.
+         */
+        action?: string;
+        /**
+         * The rule description.
+         */
+        description?: string;
+        /**
+         * The destination IP range to which this rule applies (CIDR notation with subnet mask).
+         */
+        destination?: string;
+        /**
+         * The ending port of the destination port range to which this rule applies (inclusive).
+         */
+        dstPortHigh?: number;
+        /**
+         * The starting port of the destination port range to which this rule applies (inclusive).
+         */
+        dstPortLow?: number;
+        /**
+         * The protocol to which this rule applies. Default value: ANY.
+         */
+        protocol?: string;
+        /**
+         * The Source IP range to which this rule applies (CIDR notation with subnet mask).
+         */
+        source?: string;
+        /**
+         * The ending port of the source port range to which this rule applies (inclusive).
+         */
+        srcPortHigh?: number;
+        /**
+         * The starting port of the source port range to which this rule applies (inclusive).
+         */
+        srcPortLow?: number;
+    }
+
     export interface GatewayNetworkIpamConfig {
         /**
          * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
@@ -8109,6 +8875,38 @@ export namespace secrets {
         ttl: string;
     }
 
+    export interface GetSecretVersion {
+        /**
+         * Date and time of secret version's creation (RFC 3339 format)
+         */
+        createdAt: string;
+        /**
+         * Description of the secret version
+         */
+        description: string;
+        /**
+         * Returns true if the version is the latest.
+         */
+        latest: boolean;
+        /**
+         * The revision of secret version
+         */
+        revision: string;
+        /**
+         * The ID of the secret.
+         * Only one of `name` and `secretId` should be specified.
+         */
+        secretId: string;
+        /**
+         * Status of the secret version
+         */
+        status: string;
+        /**
+         * Date and time of secret version's creation (RFC 3339 format)
+         */
+        updatedAt: string;
+    }
+
     export interface SecretEphemeralPolicy {
         /**
          * Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
@@ -8122,6 +8920,37 @@ export namespace secrets {
          * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
          */
         ttl?: string;
+    }
+
+    export interface SecretVersion {
+        /**
+         * Date and time of the secret's creation (in RFC 3339 format).
+         */
+        createdAt: string;
+        /**
+         * Description of the secret (e.g. `my-new-description`).
+         */
+        description?: string;
+        /**
+         * Returns true if the version is the latest.
+         */
+        latest?: boolean;
+        /**
+         * The revision of secret version
+         */
+        revision: string;
+        /**
+         * The secret ID associated with this version
+         */
+        secretId: string;
+        /**
+         * The status of the secret.
+         */
+        status: string;
+        /**
+         * Date and time of the secret's last update (in RFC 3339 format).
+         */
+        updatedAt: string;
     }
 
 }

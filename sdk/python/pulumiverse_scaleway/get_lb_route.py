@@ -28,7 +28,7 @@ class GetLbRouteResult:
     """
     A collection of values returned by getLbRoute.
     """
-    def __init__(__self__, backend_id=None, created_at=None, frontend_id=None, id=None, match_host_header=None, match_sni=None, route_id=None, updated_at=None):
+    def __init__(__self__, backend_id=None, created_at=None, frontend_id=None, id=None, match_host_header=None, match_sni=None, match_subdomains=None, route_id=None, updated_at=None):
         if backend_id and not isinstance(backend_id, str):
             raise TypeError("Expected argument 'backend_id' to be a str")
         pulumi.set(__self__, "backend_id", backend_id)
@@ -47,6 +47,9 @@ class GetLbRouteResult:
         if match_sni and not isinstance(match_sni, str):
             raise TypeError("Expected argument 'match_sni' to be a str")
         pulumi.set(__self__, "match_sni", match_sni)
+        if match_subdomains and not isinstance(match_subdomains, bool):
+            raise TypeError("Expected argument 'match_subdomains' to be a bool")
+        pulumi.set(__self__, "match_subdomains", match_subdomains)
         if route_id and not isinstance(route_id, str):
             raise TypeError("Expected argument 'route_id' to be a str")
         pulumi.set(__self__, "route_id", route_id)
@@ -88,6 +91,11 @@ class GetLbRouteResult:
         return pulumi.get(self, "match_sni")
 
     @property
+    @pulumi.getter(name="matchSubdomains")
+    def match_subdomains(self) -> bool:
+        return pulumi.get(self, "match_subdomains")
+
+    @property
     @pulumi.getter(name="routeId")
     def route_id(self) -> str:
         return pulumi.get(self, "route_id")
@@ -110,6 +118,7 @@ class AwaitableGetLbRouteResult(GetLbRouteResult):
             id=self.id,
             match_host_header=self.match_host_header,
             match_sni=self.match_sni,
+            match_subdomains=self.match_subdomains,
             route_id=self.route_id,
             updated_at=self.updated_at)
 
@@ -165,6 +174,7 @@ def get_lb_route(route_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         match_host_header=pulumi.get(__ret__, 'match_host_header'),
         match_sni=pulumi.get(__ret__, 'match_sni'),
+        match_subdomains=pulumi.get(__ret__, 'match_subdomains'),
         route_id=pulumi.get(__ret__, 'route_id'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
@@ -217,5 +227,6 @@ def get_lb_route_output(route_id: Optional[pulumi.Input[str]] = None,
         id=pulumi.get(__response__, 'id'),
         match_host_header=pulumi.get(__response__, 'match_host_header'),
         match_sni=pulumi.get(__response__, 'match_sni'),
+        match_subdomains=pulumi.get(__response__, 'match_subdomains'),
         route_id=pulumi.get(__response__, 'route_id'),
         updated_at=pulumi.get(__response__, 'updated_at')))

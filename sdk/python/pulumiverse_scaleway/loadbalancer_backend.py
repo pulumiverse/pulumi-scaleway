@@ -1056,7 +1056,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             forward_protocol="http",
             forward_port=80,
             health_check_http={
-                "uri": "www.test.com/health",
+                "uri": "/health",
             })
         ```
 
@@ -1140,7 +1140,7 @@ class LoadbalancerBackend(pulumi.CustomResource):
             forward_protocol="http",
             forward_port=80,
             health_check_http={
-                "uri": "www.test.com/health",
+                "uri": "/health",
             })
         ```
 

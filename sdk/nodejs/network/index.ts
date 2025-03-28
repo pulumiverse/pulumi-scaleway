@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { AclArgs, AclState } from "./acl";
+export type Acl = import("./acl").Acl;
+export const Acl: typeof import("./acl").Acl = null as any;
+utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
+
 export { GatewayNetworkArgs, GatewayNetworkState } from "./gatewayNetwork";
 export type GatewayNetwork = import("./gatewayNetwork").GatewayNetwork;
 export const GatewayNetwork: typeof import("./gatewayNetwork").GatewayNetwork = null as any;
@@ -110,6 +115,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:network/acl:Acl":
+                return new Acl(name, <any>undefined, { urn })
             case "scaleway:network/gatewayNetwork:GatewayNetwork":
                 return new GatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:network/privateNetwork:PrivateNetwork":
@@ -135,6 +142,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "network/acl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/gatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/privateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/publicGateway", _module)

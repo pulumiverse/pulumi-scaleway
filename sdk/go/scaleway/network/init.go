@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:network/acl:Acl":
+		r = &Acl{}
 	case "scaleway:network/gatewayNetwork:GatewayNetwork":
 		r = &GatewayNetwork{}
 	case "scaleway:network/privateNetwork:PrivateNetwork":
@@ -54,6 +56,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"network/acl",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"network/gatewayNetwork",

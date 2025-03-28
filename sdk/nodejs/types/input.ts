@@ -518,6 +518,110 @@ export interface DomainRecordWeighted {
     weight: pulumi.Input<number>;
 }
 
+export interface EdgeServicesBackendStageLbBackendConfig {
+    /**
+     * The Load Balancer config.
+     */
+    lbConfig?: pulumi.Input<inputs.EdgeServicesBackendStageLbBackendConfigLbConfig>;
+}
+
+export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
+    /**
+     * The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+     */
+    domainName?: pulumi.Input<string>;
+    /**
+     * The ID of the frontend.
+     */
+    frontendId?: pulumi.Input<string>;
+    /**
+     * The ID of the Load Balancer.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Defines whether the Load Balancer's frontend handles SSL connections.
+     */
+    isSsl?: pulumi.Input<boolean>;
+    /**
+     * `zone`) The zone of the Load Balancer.
+     */
+    zone?: pulumi.Input<string>;
+}
+
+export interface EdgeServicesBackendStageS3BackendConfig {
+    /**
+     * The name of the Bucket.
+     */
+    bucketName?: pulumi.Input<string>;
+    /**
+     * The region of the Bucket.
+     */
+    bucketRegion?: pulumi.Input<string>;
+    /**
+     * Defines whether the bucket website feature is enabled.
+     */
+    isWebsite?: pulumi.Input<boolean>;
+}
+
+export interface EdgeServicesCacheStagePurgeRequest {
+    /**
+     * Defines whether to purge all content.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * The list of asserts to purge.
+     */
+    assets?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The pipeline ID in which the purge request will be created.
+     */
+    pipelineId?: pulumi.Input<string>;
+}
+
+export interface EdgeServicesRouteStageRule {
+    /**
+     * The ID of the backend stage that requests matching the rule should be forwarded to.
+     */
+    backendStageId: pulumi.Input<string>;
+    /**
+     * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+     */
+    ruleHttpMatch?: pulumi.Input<inputs.EdgeServicesRouteStageRuleRuleHttpMatch>;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatch {
+    /**
+     * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+     */
+    methodFilters?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+     */
+    pathFilter?: pulumi.Input<inputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilter>;
+}
+
+export interface EdgeServicesRouteStageRuleRuleHttpMatchPathFilter {
+    /**
+     * The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+     */
+    pathFilterType: pulumi.Input<string>;
+    /**
+     * The value to be matched for the HTTP URL path.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface EdgeServicesTlsStageSecret {
+    /**
+     * The region of the secret.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * The ID of the Secret
+     */
+    secretId?: pulumi.Input<string>;
+}
+
 export interface FunctionTriggerNats {
     /**
      * unique identifier of the Messaging and Queuing NATS account.
@@ -1808,6 +1912,37 @@ export interface SecretEphemeralPolicy {
     ttl?: pulumi.Input<string>;
 }
 
+export interface SecretVersion {
+    /**
+     * Date and time of the secret's creation (in RFC 3339 format).
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the secret (e.g. `my-new-description`).
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Returns true if the version is the latest.
+     */
+    latest?: pulumi.Input<boolean>;
+    /**
+     * The revision of secret version
+     */
+    revision?: pulumi.Input<string>;
+    /**
+     * The secret ID associated with this version
+     */
+    secretId?: pulumi.Input<string>;
+    /**
+     * The status of the secret.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * Date and time of the secret's last update (in RFC 3339 format).
+     */
+    updatedAt?: pulumi.Input<string>;
+}
+
 export interface TemDomainReputation {
     /**
      * The previously-calculated domain's reputation score.
@@ -2291,6 +2426,558 @@ export namespace domain {
          * The weight of the IP
          */
         weight: pulumi.Input<number>;
+    }
+
+    export interface RegistrationAdministrativeContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: pulumi.Input<string>;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: pulumi.Input<string>;
+        /**
+         * City of the contact's address.
+         */
+        city: pulumi.Input<string>;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: pulumi.Input<string>;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: pulumi.Input<string>;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: pulumi.Input<string>;
+        /**
+         * Primary email address of the contact.
+         */
+        email: pulumi.Input<string>;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: pulumi.Input<string>;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionEu>;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFr>;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: pulumi.Input<string>;
+        /**
+         * First name of the contact.
+         */
+        firstname: pulumi.Input<string>;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang?: pulumi.Input<string>;
+        /**
+         * Last name of the contact.
+         */
+        lastname: pulumi.Input<string>;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: pulumi.Input<string>;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: pulumi.Input<string>;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: pulumi.Input<boolean>;
+        /**
+         * State or region of the contact.
+         */
+        state?: pulumi.Input<string>;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: pulumi.Input<string>;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: pulumi.Input<string>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFrAssociationInfo>;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo>;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFrDunsInfo>;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFrIndividualInfo>;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: pulumi.Input<string>;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: pulumi.Input<inputs.domain.RegistrationAdministrativeContactExtensionFrTrademarkInfo>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: pulumi.Input<string>;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: pulumi.Input<number>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: pulumi.Input<string>;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistrationAdministrativeContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationDsRecord {
+        /**
+         * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+         */
+        algorithm?: pulumi.Input<string>;
+        /**
+         * Details about the digest.
+         */
+        digests?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationDsRecordDigest>[]>;
+        /**
+         * The identifier for the dnssec key.
+         */
+        keyId?: pulumi.Input<number>;
+        /**
+         * Public key associated with the dnssec record.
+         */
+        publicKeys?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationDsRecordPublicKey>[]>;
+    }
+
+    export interface RegistrationDsRecordDigest {
+        /**
+         * The digest value.
+         */
+        digest?: pulumi.Input<string>;
+        /**
+         * The public key associated with the digest.
+         */
+        publicKeys?: pulumi.Input<pulumi.Input<inputs.domain.RegistrationDsRecordDigestPublicKey>[]>;
+        /**
+         * The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+         */
+        type?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationDsRecordDigestPublicKey {
+        /**
+         * The public key value.
+         */
+        key: pulumi.Input<string>;
+    }
+
+    export interface RegistrationDsRecordPublicKey {
+        /**
+         * The public key value.
+         */
+        key: pulumi.Input<string>;
+    }
+
+    export interface RegistrationOwnerContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: pulumi.Input<string>;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: pulumi.Input<string>;
+        /**
+         * City of the contact's address.
+         */
+        city: pulumi.Input<string>;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: pulumi.Input<string>;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: pulumi.Input<string>;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: pulumi.Input<string>;
+        /**
+         * Primary email address of the contact.
+         */
+        email: pulumi.Input<string>;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: pulumi.Input<string>;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionEu>;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFr>;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: pulumi.Input<string>;
+        /**
+         * First name of the contact.
+         */
+        firstname: pulumi.Input<string>;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang?: pulumi.Input<string>;
+        /**
+         * Last name of the contact.
+         */
+        lastname: pulumi.Input<string>;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: pulumi.Input<string>;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: pulumi.Input<string>;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: pulumi.Input<boolean>;
+        /**
+         * State or region of the contact.
+         */
+        state?: pulumi.Input<string>;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: pulumi.Input<string>;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: pulumi.Input<string>;
+    }
+
+    export interface RegistrationOwnerContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFrAssociationInfo>;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFrCodeAuthAfnicInfo>;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFrDunsInfo>;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFrIndividualInfo>;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: pulumi.Input<string>;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: pulumi.Input<inputs.domain.RegistrationOwnerContactExtensionFrTrademarkInfo>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: pulumi.Input<string>;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: pulumi.Input<number>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: pulumi.Input<string>;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistrationOwnerContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationTechnicalContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: pulumi.Input<string>;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2?: pulumi.Input<string>;
+        /**
+         * City of the contact's address.
+         */
+        city: pulumi.Input<string>;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: pulumi.Input<string>;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName?: pulumi.Input<string>;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: pulumi.Input<string>;
+        /**
+         * Primary email address of the contact.
+         */
+        email: pulumi.Input<string>;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt?: pulumi.Input<string>;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEu?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionEu>;
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFr?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFr>;
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber?: pulumi.Input<string>;
+        /**
+         * First name of the contact.
+         */
+        firstname: pulumi.Input<string>;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang?: pulumi.Input<string>;
+        /**
+         * Last name of the contact.
+         */
+        lastname: pulumi.Input<string>;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: pulumi.Input<string>;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: pulumi.Input<string>;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale?: pulumi.Input<boolean>;
+        /**
+         * State or region of the contact.
+         */
+        state?: pulumi.Input<string>;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: pulumi.Input<string>;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: pulumi.Input<string>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionEu {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfo?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFrAssociationInfo>;
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfo?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo>;
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfo?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFrDunsInfo>;
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfo?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFrIndividualInfo>;
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode?: pulumi.Input<string>;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfo?: pulumi.Input<inputs.domain.RegistrationTechnicalContactExtensionFrTrademarkInfo>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo?: pulumi.Input<string>;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage?: pulumi.Input<number>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId?: pulumi.Input<string>;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId?: pulumi.Input<string>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn?: pulumi.Input<boolean>;
+    }
+
+    export interface RegistrationTechnicalContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi?: pulumi.Input<string>;
     }
 }
 
@@ -3500,6 +4187,45 @@ export namespace mongodb {
 }
 
 export namespace network {
+    export interface AclRule {
+        /**
+         * The policy to apply to the packet.
+         */
+        action?: pulumi.Input<string>;
+        /**
+         * The rule description.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The destination IP range to which this rule applies (CIDR notation with subnet mask).
+         */
+        destination?: pulumi.Input<string>;
+        /**
+         * The ending port of the destination port range to which this rule applies (inclusive).
+         */
+        dstPortHigh?: pulumi.Input<number>;
+        /**
+         * The starting port of the destination port range to which this rule applies (inclusive).
+         */
+        dstPortLow?: pulumi.Input<number>;
+        /**
+         * The protocol to which this rule applies. Default value: ANY.
+         */
+        protocol?: pulumi.Input<string>;
+        /**
+         * The Source IP range to which this rule applies (CIDR notation with subnet mask).
+         */
+        source?: pulumi.Input<string>;
+        /**
+         * The ending port of the source port range to which this rule applies (inclusive).
+         */
+        srcPortHigh?: pulumi.Input<number>;
+        /**
+         * The starting port of the source port range to which this rule applies (inclusive).
+         */
+        srcPortLow?: pulumi.Input<number>;
+    }
+
     export interface GatewayNetworkIpamConfig {
         /**
          * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network.
@@ -3917,6 +4643,37 @@ export namespace secrets {
          * Time frame, from one second and up to one year, during which the secret's versions are valid. Has to be specified in [Go Duration format](https://pkg.go.dev/time#ParseDuration) (ex: "30m", "24h").
          */
         ttl?: pulumi.Input<string>;
+    }
+
+    export interface SecretVersion {
+        /**
+         * Date and time of the secret's creation (in RFC 3339 format).
+         */
+        createdAt?: pulumi.Input<string>;
+        /**
+         * Description of the secret (e.g. `my-new-description`).
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * Returns true if the version is the latest.
+         */
+        latest?: pulumi.Input<boolean>;
+        /**
+         * The revision of secret version
+         */
+        revision?: pulumi.Input<string>;
+        /**
+         * The secret ID associated with this version
+         */
+        secretId?: pulumi.Input<string>;
+        /**
+         * The status of the secret.
+         */
+        status?: pulumi.Input<string>;
+        /**
+         * Date and time of the secret's last update (in RFC 3339 format).
+         */
+        updatedAt?: pulumi.Input<string>;
     }
 }
 

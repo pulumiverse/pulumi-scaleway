@@ -111,6 +111,7 @@ export interface GetSecretResult {
     readonly type: string;
     readonly updatedAt: string;
     readonly versionCount: number;
+    readonly versions: outputs.secrets.GetSecretVersion[];
 }
 /**
  * The `scaleway.secrets.Secret` data source is used to get information about a specific secret in Scaleway's Secret Manager.

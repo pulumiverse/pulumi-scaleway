@@ -22,6 +22,7 @@ __all__ = ['ServerArgs', 'Server']
 class ServerArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 commitment: Optional[pulumi.Input[str]] = None,
                  enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
@@ -32,6 +33,7 @@ class ServerArgs:
         :param pulumi.Input[str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
+        :param pulumi.Input[str] commitment: The commitment period of the server
         :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
@@ -41,6 +43,8 @@ class ServerArgs:
                the server should be created.
         """
         pulumi.set(__self__, "type", type)
+        if commitment is not None:
+            pulumi.set(__self__, "commitment", commitment)
         if enable_vpc is not None:
             pulumi.set(__self__, "enable_vpc", enable_vpc)
         if name is not None:
@@ -65,6 +69,18 @@ class ServerArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def commitment(self) -> Optional[pulumi.Input[str]]:
+        """
+        The commitment period of the server
+        """
+        return pulumi.get(self, "commitment")
+
+    @commitment.setter
+    def commitment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "commitment", value)
 
     @property
     @pulumi.getter(name="enableVpc")
@@ -132,28 +148,33 @@ class ServerArgs:
 @pulumi.input_type
 class _ServerState:
     def __init__(__self__, *,
+                 commitment: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  deletable_at: Optional[pulumi.Input[str]] = None,
                  enable_vpc: Optional[pulumi.Input[bool]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  vnc_url: Optional[pulumi.Input[str]] = None,
                  vpc_status: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Server resources.
+        :param pulumi.Input[str] commitment: The commitment period of the server
         :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
         :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] password: The password of the server
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
@@ -162,11 +183,14 @@ class _ServerState:
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[str] username: The username of the server
         :param pulumi.Input[str] vnc_url: URL of the VNC.
         :param pulumi.Input[str] vpc_status: The current status of the VPC option.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the server should be created.
         """
+        if commitment is not None:
+            pulumi.set(__self__, "commitment", commitment)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if deletable_at is not None:
@@ -179,6 +203,8 @@ class _ServerState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -189,12 +215,26 @@ class _ServerState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
         if vnc_url is not None:
             pulumi.set(__self__, "vnc_url", vnc_url)
         if vpc_status is not None:
             pulumi.set(__self__, "vpc_status", vpc_status)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def commitment(self) -> Optional[pulumi.Input[str]]:
+        """
+        The commitment period of the server
+        """
+        return pulumi.get(self, "commitment")
+
+    @commitment.setter
+    def commitment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "commitment", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -269,6 +309,18 @@ class _ServerState:
         pulumi.set(self, "organization_id", value)
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password of the server
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
@@ -332,6 +384,18 @@ class _ServerState:
         pulumi.set(self, "updated_at", value)
 
     @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username of the server
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
+    @property
     @pulumi.getter(name="vncUrl")
     def vnc_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -374,6 +438,7 @@ class Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 commitment: Optional[pulumi.Input[str]] = None,
                  enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
@@ -410,6 +475,7 @@ class Server(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] commitment: The commitment period of the server
         :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
@@ -469,6 +535,7 @@ class Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 commitment: Optional[pulumi.Input[str]] = None,
                  enable_vpc: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
@@ -484,6 +551,7 @@ class Server(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ServerArgs.__new__(ServerArgs)
 
+            __props__.__dict__["commitment"] = commitment
             __props__.__dict__["enable_vpc"] = enable_vpc
             __props__.__dict__["name"] = name
             __props__.__dict__["private_networks"] = private_networks
@@ -496,12 +564,16 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["deletable_at"] = None
             __props__.__dict__["ip"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["password"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["updated_at"] = None
+            __props__.__dict__["username"] = None
             __props__.__dict__["vnc_url"] = None
             __props__.__dict__["vpc_status"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/appleSiliconServer:AppleSiliconServer")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Server, __self__).__init__(
             'scaleway:applesilicon/server:Server',
             resource_name,
@@ -512,17 +584,20 @@ class Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            commitment: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             deletable_at: Optional[pulumi.Input[str]] = None,
             enable_vpc: Optional[pulumi.Input[bool]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            password: Optional[pulumi.Input[str]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
+            username: Optional[pulumi.Input[str]] = None,
             vnc_url: Optional[pulumi.Input[str]] = None,
             vpc_status: Optional[pulumi.Input[str]] = None,
             zone: Optional[pulumi.Input[str]] = None) -> 'Server':
@@ -533,12 +608,14 @@ class Server(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] commitment: The commitment period of the server
         :param pulumi.Input[str] created_at: The date and time of the creation of the Apple Silicon server.
         :param pulumi.Input[str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
         :param pulumi.Input[bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[str] name: The name of the server.
         :param pulumi.Input[str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[str] password: The password of the server
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is
                associated with.
@@ -547,6 +624,7 @@ class Server(pulumi.CustomResource):
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[str] username: The username of the server
         :param pulumi.Input[str] vnc_url: URL of the VNC.
         :param pulumi.Input[str] vpc_status: The current status of the VPC option.
         :param pulumi.Input[str] zone: `zone`) The zone in which
@@ -556,21 +634,32 @@ class Server(pulumi.CustomResource):
 
         __props__ = _ServerState.__new__(_ServerState)
 
+        __props__.__dict__["commitment"] = commitment
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deletable_at"] = deletable_at
         __props__.__dict__["enable_vpc"] = enable_vpc
         __props__.__dict__["ip"] = ip
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["password"] = password
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["username"] = username
         __props__.__dict__["vnc_url"] = vnc_url
         __props__.__dict__["vpc_status"] = vpc_status
         __props__.__dict__["zone"] = zone
         return Server(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def commitment(self) -> pulumi.Output[Optional[str]]:
+        """
+        The commitment period of the server
+        """
+        return pulumi.get(self, "commitment")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -621,6 +710,14 @@ class Server(pulumi.CustomResource):
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[str]:
+        """
+        The password of the server
+        """
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.ServerPrivateNetwork']]]:
         """
@@ -662,6 +759,14 @@ class Server(pulumi.CustomResource):
         The date and time of the last update of the Apple Silicon server.
         """
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Output[str]:
+        """
+        The username of the server
+        """
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter(name="vncUrl")
