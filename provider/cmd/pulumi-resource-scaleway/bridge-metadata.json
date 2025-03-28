@@ -317,6 +317,139 @@
                     }
                 }
             },
+            "scaleway_domain_registration": {
+                "current": "scaleway:domain/registration:Registration",
+                "fields": {
+                    "administrative_contact": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": true
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "domain_names": {
+                        "maxItemsOne": false
+                    },
+                    "ds_record": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "digest": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "public_key": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "public_key": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "owner_contact": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": true
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "technical_contact": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": true
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": true
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_domain_zone": {
                 "current": "scaleway:domain/zone:Zone",
                 "past": [
@@ -337,6 +470,92 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_edge_services_backend_stage": {
+                "current": "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage",
+                "fields": {
+                    "lb_backend_config": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "lb_config": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    },
+                    "s3_backend_config": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_edge_services_cache_stage": {
+                "current": "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage",
+                "fields": {
+                    "purge_requests": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "assets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "scaleway_edge_services_dns_stage": {
+                "current": "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage",
+                "fields": {
+                    "fqdns": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_edge_services_head_stage": {
+                "current": "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage"
+            },
+            "scaleway_edge_services_pipeline": {
+                "current": "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline"
+            },
+            "scaleway_edge_services_plan": {
+                "current": "scaleway:index/edgeServicesPlan:EdgeServicesPlan"
+            },
+            "scaleway_edge_services_route_stage": {
+                "current": "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage",
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "rule_http_match": {
+                                    "maxItemsOne": true,
+                                    "elem": {
+                                        "fields": {
+                                            "method_filters": {
+                                                "maxItemsOne": false
+                                            },
+                                            "path_filter": {
+                                                "maxItemsOne": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "scaleway_edge_services_tls_stage": {
+                "current": "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage",
+                "fields": {
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_edge_services_waf_stage": {
+                "current": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage"
             },
             "scaleway_flexible_ip": {
                 "current": "scaleway:elasticmetal/ip:Ip",
@@ -1625,6 +1844,9 @@
                     },
                     "tags": {
                         "maxItemsOne": false
+                    },
+                    "versions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1637,6 +1859,9 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "scaleway_tem_blocked_list": {
+                "current": "scaleway:tem/blockedList:BlockedList"
             },
             "scaleway_tem_domain": {
                 "current": "scaleway:tem/domain:Domain",
@@ -1693,6 +1918,14 @@
                     }
                 }
             },
+            "scaleway_vpc_acl": {
+                "current": "scaleway:network/acl:Acl",
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_vpc_gateway_network": {
                 "current": "scaleway:network/gatewayNetwork:GatewayNetwork",
                 "past": [
@@ -1739,6 +1972,9 @@
                     }
                 ],
                 "fields": {
+                    "allowed_ip_ranges": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     },
@@ -3282,6 +3518,9 @@
                     },
                     "tags": {
                         "maxItemsOne": false
+                    },
+                    "versions": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -3309,6 +3548,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_tem_offer_subscription": {
+                "current": "scaleway:tem/getOfferSubscription:getOfferSubscription"
             },
             "scaleway_vpc": {
                 "current": "scaleway:network/getVpc:getVpc",
@@ -3371,6 +3613,9 @@
                     }
                 ],
                 "fields": {
+                    "allowed_ip_ranges": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     },

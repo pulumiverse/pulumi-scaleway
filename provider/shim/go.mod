@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.36.0
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.51.0
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.52.0
 )
 
 require (
@@ -76,15 +76,15 @@ require (
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
-	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.32.0.20250306092204-9c7eed199df5 // indirect
+	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.32.0.20250320132958-0f59cae533d0 // indirect
 	github.com/vmihailenco/msgpack v4.0.4+incompatible // indirect
 	github.com/vmihailenco/msgpack/v5 v5.4.1 // indirect
 	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/zclconf/go-cty v1.16.2 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.49.0 // indirect
-	golang.org/x/crypto v0.33.0 // indirect
+	golang.org/x/crypto v0.35.0 // indirect
 	golang.org/x/mod v0.23.0 // indirect
-	golang.org/x/net v0.35.0 // indirect
+	golang.org/x/net v0.36.0 // indirect
 	golang.org/x/sync v0.11.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/text v0.22.0 // indirect
