@@ -16,6 +16,8 @@ go.work*
 
 yarn.lock
 package_lock.json
+**/.yarn
+**/.pnp*
 **/pulumiManifest.go
 
 ci-scripts

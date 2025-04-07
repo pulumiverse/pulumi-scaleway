@@ -1,7 +1,8 @@
 module github.com/pulumiverse/pulumi-scaleway/examples
 
-go 1.22
-toolchain go1.24.1
+go 1.23.0
+
+toolchain go1.24.2
 
 require github.com/pulumi/pulumi/pkg/v3 v3.156.0
 
