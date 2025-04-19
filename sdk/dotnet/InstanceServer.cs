@@ -335,7 +335,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> EnableDynamicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Determines if IPv6 is enabled for the server.
         /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Output("enableIpv6")]
@@ -432,6 +432,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
+
+        /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Output("protected")]
+        public Output<bool?> Protected { get; private set; } = null!;
 
         /// <summary>
         /// The public IP address of the server (Deprecated use `public_ips` instead).
@@ -592,7 +598,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Determines if IPv6 is enabled for the server.
         /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
@@ -662,6 +668,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
 
         [Input("publicIps")]
         private InputList<Inputs.InstanceServerPublicIpArgs>? _publicIps;
@@ -795,7 +807,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EnableDynamicIp { get; set; }
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server. Useful only with `routed_ip_enabled` as false, otherwise ipv6 is always supported.
+        /// Determines if IPv6 is enabled for the server.
         /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
         /// </summary>
         [Input("enableIpv6")]
@@ -904,6 +916,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
 
         /// <summary>
         /// The public IP address of the server (Deprecated use `public_ips` instead).

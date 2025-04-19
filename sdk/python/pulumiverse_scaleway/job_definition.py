@@ -31,6 +31,7 @@ class JobDefinitionArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 secret_references: Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a JobDefinition resource.
@@ -44,6 +45,7 @@ class JobDefinitionArgs:
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[str] region: `region`) The region of the Job.
+        :param pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         pulumi.set(__self__, "cpu_limit", cpu_limit)
@@ -64,6 +66,8 @@ class JobDefinitionArgs:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secret_references is not None:
+            pulumi.set(__self__, "secret_references", secret_references)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
 
@@ -188,6 +192,18 @@ class JobDefinitionArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="secretReferences")
+    def secret_references(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]:
+        """
+        A reference to a secret stored in Secret Manager.
+        """
+        return pulumi.get(self, "secret_references")
+
+    @secret_references.setter
+    def secret_references(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]):
+        pulumi.set(self, "secret_references", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[str]]:
         """
@@ -213,6 +229,7 @@ class _JobDefinitionState:
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 secret_references: Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering JobDefinition resources.
@@ -226,6 +243,7 @@ class _JobDefinitionState:
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[str] region: `region`) The region of the Job.
+        :param pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         if command is not None:
@@ -248,6 +266,8 @@ class _JobDefinitionState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if secret_references is not None:
+            pulumi.set(__self__, "secret_references", secret_references)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
 
@@ -372,6 +392,18 @@ class _JobDefinitionState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="secretReferences")
+    def secret_references(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]:
+        """
+        A reference to a secret stored in Secret Manager.
+        """
+        return pulumi.get(self, "secret_references")
+
+    @secret_references.setter
+    def secret_references(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['JobDefinitionSecretReferenceArgs']]]]):
+        pulumi.set(self, "secret_references", value)
+
+    @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[str]]:
         """
@@ -404,6 +436,7 @@ class JobDefinition(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -433,6 +466,36 @@ class JobDefinition(pulumi.CustomResource):
             })
         ```
 
+        ### With Secret Reference
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.job.Definition("main",
+            name="testjob",
+            cpu_limit=140,
+            memory_limit=256,
+            image_uri="docker.io/alpine:latest",
+            command="ls",
+            timeout="10m",
+            cron={
+                "schedule": "5 4 1 * *",
+                "timezone": "Europe/Paris",
+            },
+            secret_references=[
+                {
+                    "secret_id": "11111111-1111-1111-1111-111111111111",
+                    "file": "/home/dev/secret_file",
+                },
+                {
+                    "secret_id": job_secret["id"],
+                    "secret_version": "1",
+                    "environment": "FOO",
+                },
+            ])
+        ```
+
         ## Import
 
         Serverless Jobs can be imported using the `{region}/{id}`, e.g.
@@ -455,6 +518,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[str] region: `region`) The region of the Job.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         ...
@@ -488,6 +552,36 @@ class JobDefinition(pulumi.CustomResource):
                 "schedule": "5 4 1 * *",
                 "timezone": "Europe/Paris",
             })
+        ```
+
+        ### With Secret Reference
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.job.Definition("main",
+            name="testjob",
+            cpu_limit=140,
+            memory_limit=256,
+            image_uri="docker.io/alpine:latest",
+            command="ls",
+            timeout="10m",
+            cron={
+                "schedule": "5 4 1 * *",
+                "timezone": "Europe/Paris",
+            },
+            secret_references=[
+                {
+                    "secret_id": "11111111-1111-1111-1111-111111111111",
+                    "file": "/home/dev/secret_file",
+                },
+                {
+                    "secret_id": job_secret["id"],
+                    "secret_version": "1",
+                    "environment": "FOO",
+                },
+            ])
         ```
 
         ## Import
@@ -525,6 +619,7 @@ class JobDefinition(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
                  timeout: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         pulumi.log.warn("""JobDefinition is deprecated: scaleway.index/jobdefinition.JobDefinition has been deprecated in favor of scaleway.job/definition.Definition""")
@@ -550,6 +645,7 @@ class JobDefinition(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["secret_references"] = secret_references
             __props__.__dict__["timeout"] = timeout
         super(JobDefinition, __self__).__init__(
             'scaleway:index/jobDefinition:JobDefinition',
@@ -571,6 +667,7 @@ class JobDefinition(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]]] = None,
             timeout: Optional[pulumi.Input[str]] = None) -> 'JobDefinition':
         """
         Get an existing JobDefinition resource's state with the given name, id, and optional extra
@@ -589,6 +686,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the job.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[str] region: `region`) The region of the Job.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['JobDefinitionSecretReferenceArgs', 'JobDefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
         :param pulumi.Input[str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -605,6 +703,7 @@ class JobDefinition(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["secret_references"] = secret_references
         __props__.__dict__["timeout"] = timeout
         return JobDefinition(resource_name, opts=opts, __props__=__props__)
 
@@ -687,6 +786,14 @@ class JobDefinition(pulumi.CustomResource):
         `region`) The region of the Job.
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretReferences")
+    def secret_references(self) -> pulumi.Output[Optional[Sequence['outputs.JobDefinitionSecretReference']]]:
+        """
+        A reference to a secret stored in Secret Manager.
+        """
+        return pulumi.get(self, "secret_references")
 
     @property
     @pulumi.getter

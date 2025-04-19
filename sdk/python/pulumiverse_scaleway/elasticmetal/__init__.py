@@ -5,6 +5,7 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_easy_partitioning import *
 from .get_ip import *
 from .get_ips import *
 from .get_offer import *

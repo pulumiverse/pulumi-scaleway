@@ -60,10 +60,44 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesCacheStage = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     var mainEdgeServicesWafStage = new Scaleway.EdgeServicesWafStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
     ///         BackendStageId = mainEdgeServicesBackendStage.Id,
+    ///         Mode = "enable",
+    ///         ParanoiaLevel = 3,
+    ///     });
+    /// 
+    ///     var mainEdgeServicesRouteStage = new Scaleway.EdgeServicesRouteStage("main", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         WafStageId = mainEdgeServicesWafStage.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Inputs.EdgeServicesRouteStageRuleArgs
+    ///             {
+    ///                 BackendStageId = mainEdgeServicesBackendStage.Id,
+    ///                 RuleHttpMatch = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchArgs
+    ///                 {
+    ///                     MethodFilters = new[]
+    ///                     {
+    ///                         "get",
+    ///                         "post",
+    ///                     },
+    ///                     PathFilter = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs
+    ///                     {
+    ///                         PathFilterType = "regex",
+    ///                         Value = ".*",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var mainEdgeServicesCacheStage = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         RouteStageId = mainEdgeServicesRouteStage.Id,
     ///     });
     /// 
     ///     var mainEdgeServicesTlsStage = new Scaleway.EdgeServicesTlsStage("main", new()

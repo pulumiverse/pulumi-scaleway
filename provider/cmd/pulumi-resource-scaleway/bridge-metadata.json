@@ -1123,6 +1123,9 @@
                 "fields": {
                     "cron": {
                         "maxItemsOne": true
+                    },
+                    "secret_reference": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2127,6 +2130,9 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_baremetal_easy_partitioning": {
+                "current": "scaleway:elasticmetal/getEasyPartitioning:getEasyPartitioning"
             },
             "scaleway_baremetal_offer": {
                 "current": "scaleway:elasticmetal/getOffer:getOffer",

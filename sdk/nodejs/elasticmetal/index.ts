@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetEasyPartitioningArgs, GetEasyPartitioningResult, GetEasyPartitioningOutputArgs } from "./getEasyPartitioning";
+export const getEasyPartitioning: typeof import("./getEasyPartitioning").getEasyPartitioning = null as any;
+export const getEasyPartitioningOutput: typeof import("./getEasyPartitioning").getEasyPartitioningOutput = null as any;
+utilities.lazyLoad(exports, ["getEasyPartitioning","getEasyPartitioningOutput"], () => require("./getEasyPartitioning"));
+
 export { GetIpArgs, GetIpResult, GetIpOutputArgs } from "./getIp";
 export const getIp: typeof import("./getIp").getIp = null as any;
 export const getIpOutput: typeof import("./getIp").getIpOutput = null as any;

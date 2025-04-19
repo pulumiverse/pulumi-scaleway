@@ -47,6 +47,48 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With Secret Reference
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Job.Definition("main", new()
+    ///     {
+    ///         Name = "testjob",
+    ///         CpuLimit = 140,
+    ///         MemoryLimit = 256,
+    ///         ImageUri = "docker.io/alpine:latest",
+    ///         Command = "ls",
+    ///         Timeout = "10m",
+    ///         Cron = new Scaleway.Job.Inputs.DefinitionCronArgs
+    ///         {
+    ///             Schedule = "5 4 1 * *",
+    ///             Timezone = "Europe/Paris",
+    ///         },
+    ///         SecretReferences = new[]
+    ///         {
+    ///             new Scaleway.Job.Inputs.DefinitionSecretReferenceArgs
+    ///             {
+    ///                 SecretId = "11111111-1111-1111-1111-111111111111",
+    ///                 File = "/home/dev/secret_file",
+    ///             },
+    ///             new Scaleway.Job.Inputs.DefinitionSecretReferenceArgs
+    ///             {
+    ///                 SecretId = jobSecret.Id,
+    ///                 SecretVersion = "1",
+    ///                 Environment = "FOO",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Serverless Jobs can be imported using the `{region}/{id}`, e.g.
@@ -120,6 +162,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// A reference to a secret stored in Secret Manager.
+        /// </summary>
+        [Output("secretReferences")]
+        public Output<ImmutableArray<Outputs.JobDefinitionSecretReference>> SecretReferences { get; private set; } = null!;
 
         /// <summary>
         /// The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -240,6 +288,18 @@ namespace Pulumiverse.Scaleway
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        [Input("secretReferences")]
+        private InputList<Inputs.JobDefinitionSecretReferenceArgs>? _secretReferences;
+
+        /// <summary>
+        /// A reference to a secret stored in Secret Manager.
+        /// </summary>
+        public InputList<Inputs.JobDefinitionSecretReferenceArgs> SecretReferences
+        {
+            get => _secretReferences ?? (_secretReferences = new InputList<Inputs.JobDefinitionSecretReferenceArgs>());
+            set => _secretReferences = value;
+        }
+
         /// <summary>
         /// The job run timeout, in Go Time format (ex: `2h30m25s`)
         /// </summary>
@@ -319,6 +379,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        [Input("secretReferences")]
+        private InputList<Inputs.JobDefinitionSecretReferenceGetArgs>? _secretReferences;
+
+        /// <summary>
+        /// A reference to a secret stored in Secret Manager.
+        /// </summary>
+        public InputList<Inputs.JobDefinitionSecretReferenceGetArgs> SecretReferences
+        {
+            get => _secretReferences ?? (_secretReferences = new InputList<Inputs.JobDefinitionSecretReferenceGetArgs>());
+            set => _secretReferences = value;
+        }
 
         /// <summary>
         /// The job run timeout, in Go Time format (ex: `2h30m25s`)

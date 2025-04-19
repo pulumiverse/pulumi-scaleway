@@ -55,7 +55,7 @@ import (
 type EdgeServicesCacheStage struct {
 	pulumi.CustomResourceState
 
-	// The backend stage ID the cache stage will be linked to.
+	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringOutput `pulumi:"backendStageId"`
 	// The date and time of the creation of the cache stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -69,8 +69,12 @@ type EdgeServicesCacheStage struct {
 	PurgeRequests EdgeServicesCacheStagePurgeRequestArrayOutput `pulumi:"purgeRequests"`
 	// Trigger a refresh of the cache by changing this field's value.
 	RefreshCache pulumi.StringPtrOutput `pulumi:"refreshCache"`
+	// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringOutput `pulumi:"routeStageId"`
 	// The date and time of the last update of the cache stage.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringOutput `pulumi:"wafStageId"`
 }
 
 // NewEdgeServicesCacheStage registers a new resource with the given unique name, arguments, and options.
@@ -106,7 +110,7 @@ func GetEdgeServicesCacheStage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EdgeServicesCacheStage resources.
 type edgeServicesCacheStageState struct {
-	// The backend stage ID the cache stage will be linked to.
+	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
 	// The date and time of the creation of the cache stage.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -120,12 +124,16 @@ type edgeServicesCacheStageState struct {
 	PurgeRequests []EdgeServicesCacheStagePurgeRequest `pulumi:"purgeRequests"`
 	// Trigger a refresh of the cache by changing this field's value.
 	RefreshCache *string `pulumi:"refreshCache"`
+	// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId *string `pulumi:"routeStageId"`
 	// The date and time of the last update of the cache stage.
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 type EdgeServicesCacheStageState struct {
-	// The backend stage ID the cache stage will be linked to.
+	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
 	// The date and time of the creation of the cache stage.
 	CreatedAt pulumi.StringPtrInput
@@ -139,8 +147,12 @@ type EdgeServicesCacheStageState struct {
 	PurgeRequests EdgeServicesCacheStagePurgeRequestArrayInput
 	// Trigger a refresh of the cache by changing this field's value.
 	RefreshCache pulumi.StringPtrInput
+	// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringPtrInput
 	// The date and time of the last update of the cache stage.
 	UpdatedAt pulumi.StringPtrInput
+	// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringPtrInput
 }
 
 func (EdgeServicesCacheStageState) ElementType() reflect.Type {
@@ -148,7 +160,7 @@ func (EdgeServicesCacheStageState) ElementType() reflect.Type {
 }
 
 type edgeServicesCacheStageArgs struct {
-	// The backend stage ID the cache stage will be linked to.
+	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl *int `pulumi:"fallbackTtl"`
@@ -160,11 +172,15 @@ type edgeServicesCacheStageArgs struct {
 	PurgeRequests []EdgeServicesCacheStagePurgeRequest `pulumi:"purgeRequests"`
 	// Trigger a refresh of the cache by changing this field's value.
 	RefreshCache *string `pulumi:"refreshCache"`
+	// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId *string `pulumi:"routeStageId"`
+	// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // The set of arguments for constructing a EdgeServicesCacheStage resource.
 type EdgeServicesCacheStageArgs struct {
-	// The backend stage ID the cache stage will be linked to.
+	// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl pulumi.IntPtrInput
@@ -176,6 +192,10 @@ type EdgeServicesCacheStageArgs struct {
 	PurgeRequests EdgeServicesCacheStagePurgeRequestArrayInput
 	// Trigger a refresh of the cache by changing this field's value.
 	RefreshCache pulumi.StringPtrInput
+	// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringPtrInput
+	// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringPtrInput
 }
 
 func (EdgeServicesCacheStageArgs) ElementType() reflect.Type {
@@ -265,7 +285,7 @@ func (o EdgeServicesCacheStageOutput) ToEdgeServicesCacheStageOutputWithContext(
 	return o
 }
 
-// The backend stage ID the cache stage will be linked to.
+// The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
 func (o EdgeServicesCacheStageOutput) BackendStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.StringOutput { return v.BackendStageId }).(pulumi.StringOutput)
 }
@@ -300,9 +320,19 @@ func (o EdgeServicesCacheStageOutput) RefreshCache() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.StringPtrOutput { return v.RefreshCache }).(pulumi.StringPtrOutput)
 }
 
+// The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+func (o EdgeServicesCacheStageOutput) RouteStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.StringOutput { return v.RouteStageId }).(pulumi.StringOutput)
+}
+
 // The date and time of the last update of the cache stage.
 func (o EdgeServicesCacheStageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+func (o EdgeServicesCacheStageOutput) WafStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.StringOutput { return v.WafStageId }).(pulumi.StringOutput)
 }
 
 type EdgeServicesCacheStageArrayOutput struct{ *pulumi.OutputState }

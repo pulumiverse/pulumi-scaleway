@@ -28,11 +28,11 @@ class EdgeServicesDnsStageArgs:
         """
         The set of arguments for constructing a EdgeServicesDnsStage resource.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to.
-        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
-        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
         if backend_stage_id is not None:
@@ -62,7 +62,7 @@ class EdgeServicesDnsStageArgs:
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The backend stage ID the DNS stage will be linked to.
+        The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -74,7 +74,7 @@ class EdgeServicesDnsStageArgs:
     @pulumi.getter(name="cacheStageId")
     def cache_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The cache stage ID the DNS stage will be linked to.
+        The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "cache_stage_id")
 
@@ -110,7 +110,7 @@ class EdgeServicesDnsStageArgs:
     @pulumi.getter(name="tlsStageId")
     def tls_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The TLS stage ID the DNS stage will be linked to.
+        The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "tls_stage_id")
 
@@ -133,13 +133,13 @@ class _EdgeServicesDnsStageState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesDnsStage resources.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to.
-        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the DNS stage.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
-        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[str] type: The type of the stage.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the DNS stage.
         """
@@ -166,7 +166,7 @@ class _EdgeServicesDnsStageState:
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The backend stage ID the DNS stage will be linked to.
+        The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -178,7 +178,7 @@ class _EdgeServicesDnsStageState:
     @pulumi.getter(name="cacheStageId")
     def cache_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The cache stage ID the DNS stage will be linked to.
+        The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "cache_stage_id")
 
@@ -238,7 +238,7 @@ class _EdgeServicesDnsStageState:
     @pulumi.getter(name="tlsStageId")
     def tls_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The TLS stage ID the DNS stage will be linked to.
+        The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "tls_stage_id")
 
@@ -311,12 +311,12 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to.
-        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
-        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         ...
     @overload
@@ -417,13 +417,13 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to.
-        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        :param pulumi.Input[str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the DNS stage.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
-        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to.
+        :param pulumi.Input[str] tls_stage_id: The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[str] type: The type of the stage.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the DNS stage.
         """
@@ -446,7 +446,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> pulumi.Output[str]:
         """
-        The backend stage ID the DNS stage will be linked to.
+        The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -454,7 +454,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
     @pulumi.getter(name="cacheStageId")
     def cache_stage_id(self) -> pulumi.Output[str]:
         """
-        The cache stage ID the DNS stage will be linked to.
+        The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "cache_stage_id")
 
@@ -494,7 +494,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
     @pulumi.getter(name="tlsStageId")
     def tls_stage_id(self) -> pulumi.Output[str]:
         """
-        The TLS stage ID the DNS stage will be linked to.
+        The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         """
         return pulumi.get(self, "tls_stage_id")
 

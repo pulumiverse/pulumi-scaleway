@@ -77,11 +77,11 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
     }
 
     /**
-     * The backend stage ID the TLS stage will be linked to.
+     * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     public readonly backendStageId!: pulumi.Output<string>;
     /**
-     * The cache stage ID the TLS stage will be linked to.
+     * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     public readonly cacheStageId!: pulumi.Output<string>;
     /**
@@ -105,6 +105,10 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    public readonly routeStageId!: pulumi.Output<string>;
+    /**
      * The TLS secrets.
      */
     public readonly secrets!: pulumi.Output<outputs.EdgeServicesTlsStageSecret[]>;
@@ -112,6 +116,10 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
      * The date and time of the last update of the TLS stage.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    public readonly wafStageId!: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesTlsStage resource with the given unique name, arguments, and options.
@@ -133,8 +141,10 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
             resourceInputs["managedCertificate"] = state ? state.managedCertificate : undefined;
             resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["routeStageId"] = state ? state.routeStageId : undefined;
             resourceInputs["secrets"] = state ? state.secrets : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["wafStageId"] = state ? state.wafStageId : undefined;
         } else {
             const args = argsOrState as EdgeServicesTlsStageArgs | undefined;
             if ((!args || args.pipelineId === undefined) && !opts.urn) {
@@ -145,7 +155,9 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
             resourceInputs["managedCertificate"] = args ? args.managedCertificate : undefined;
             resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["routeStageId"] = args ? args.routeStageId : undefined;
             resourceInputs["secrets"] = args ? args.secrets : undefined;
+            resourceInputs["wafStageId"] = args ? args.wafStageId : undefined;
             resourceInputs["certificateExpiresAt"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -160,11 +172,11 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
  */
 export interface EdgeServicesTlsStageState {
     /**
-     * The backend stage ID the TLS stage will be linked to.
+     * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
-     * The cache stage ID the TLS stage will be linked to.
+     * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     cacheStageId?: pulumi.Input<string>;
     /**
@@ -188,6 +200,10 @@ export interface EdgeServicesTlsStageState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    routeStageId?: pulumi.Input<string>;
+    /**
      * The TLS secrets.
      */
     secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[]>;
@@ -195,6 +211,10 @@ export interface EdgeServicesTlsStageState {
      * The date and time of the last update of the TLS stage.
      */
     updatedAt?: pulumi.Input<string>;
+    /**
+     * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    wafStageId?: pulumi.Input<string>;
 }
 
 /**
@@ -202,11 +222,11 @@ export interface EdgeServicesTlsStageState {
  */
 export interface EdgeServicesTlsStageArgs {
     /**
-     * The backend stage ID the TLS stage will be linked to.
+     * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
-     * The cache stage ID the TLS stage will be linked to.
+     * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     cacheStageId?: pulumi.Input<string>;
     /**
@@ -222,7 +242,15 @@ export interface EdgeServicesTlsStageArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    routeStageId?: pulumi.Input<string>;
+    /**
      * The TLS secrets.
      */
     secrets?: pulumi.Input<pulumi.Input<inputs.EdgeServicesTlsStageSecret>[]>;
+    /**
+     * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    wafStageId?: pulumi.Input<string>;
 }
