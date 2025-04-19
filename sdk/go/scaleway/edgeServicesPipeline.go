@@ -73,9 +73,40 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesCacheStage, err := scaleway.NewEdgeServicesCacheStage(ctx, "main", &scaleway.EdgeServicesCacheStageArgs{
+//			mainEdgeServicesWafStage, err := scaleway.NewEdgeServicesWafStage(ctx, "main", &scaleway.EdgeServicesWafStageArgs{
 //				PipelineId:     main.ID(),
 //				BackendStageId: mainEdgeServicesBackendStage.ID(),
+//				Mode:           pulumi.String("enable"),
+//				ParanoiaLevel:  pulumi.Int(3),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainEdgeServicesRouteStage, err := scaleway.NewEdgeServicesRouteStage(ctx, "main", &scaleway.EdgeServicesRouteStageArgs{
+//				PipelineId: main.ID(),
+//				WafStageId: mainEdgeServicesWafStage.ID(),
+//				Rules: scaleway.EdgeServicesRouteStageRuleArray{
+//					&scaleway.EdgeServicesRouteStageRuleArgs{
+//						BackendStageId: mainEdgeServicesBackendStage.ID(),
+//						RuleHttpMatch: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchArgs{
+//							MethodFilters: pulumi.StringArray{
+//								pulumi.String("get"),
+//								pulumi.String("post"),
+//							},
+//							PathFilter: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{
+//								PathFilterType: pulumi.String("regex"),
+//								Value:          pulumi.String(".*"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainEdgeServicesCacheStage, err := scaleway.NewEdgeServicesCacheStage(ctx, "main", &scaleway.EdgeServicesCacheStageArgs{
+//				PipelineId:   main.ID(),
+//				RouteStageId: mainEdgeServicesRouteStage.ID(),
 //			})
 //			if err != nil {
 //				return err

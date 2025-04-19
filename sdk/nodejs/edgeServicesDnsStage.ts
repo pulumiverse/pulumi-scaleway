@@ -60,11 +60,11 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
     }
 
     /**
-     * The backend stage ID the DNS stage will be linked to.
+     * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     public readonly backendStageId!: pulumi.Output<string>;
     /**
-     * The cache stage ID the DNS stage will be linked to.
+     * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     public readonly cacheStageId!: pulumi.Output<string>;
     /**
@@ -84,7 +84,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The TLS stage ID the DNS stage will be linked to.
+     * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     public readonly tlsStageId!: pulumi.Output<string>;
     /**
@@ -143,11 +143,11 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
  */
 export interface EdgeServicesDnsStageState {
     /**
-     * The backend stage ID the DNS stage will be linked to.
+     * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
-     * The cache stage ID the DNS stage will be linked to.
+     * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     cacheStageId?: pulumi.Input<string>;
     /**
@@ -167,7 +167,7 @@ export interface EdgeServicesDnsStageState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The TLS stage ID the DNS stage will be linked to.
+     * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     tlsStageId?: pulumi.Input<string>;
     /**
@@ -185,11 +185,11 @@ export interface EdgeServicesDnsStageState {
  */
 export interface EdgeServicesDnsStageArgs {
     /**
-     * The backend stage ID the DNS stage will be linked to.
+     * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
-     * The cache stage ID the DNS stage will be linked to.
+     * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     cacheStageId?: pulumi.Input<string>;
     /**
@@ -205,7 +205,7 @@ export interface EdgeServicesDnsStageArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The TLS stage ID the DNS stage will be linked to.
+     * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
     tlsStageId?: pulumi.Input<string>;
 }

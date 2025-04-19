@@ -33,6 +33,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
+        /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         /// </summary>
         [Output("plan")]
         public Output<string?> Plan { get; private set; } = null!;
@@ -104,6 +105,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
+        /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -137,6 +139,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
+        /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

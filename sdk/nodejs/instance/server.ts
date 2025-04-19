@@ -256,7 +256,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
     /**
-     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Determines if IPv6 is enabled for the server.
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
@@ -336,6 +336,10 @@ export class Server extends pulumi.CustomResource {
      * `projectId`) The ID of the project the server is associated with.
      */
     public readonly projectId!: pulumi.Output<string>;
+    /**
+     * Set to true to activate server protection option.
+     */
+    public readonly protected!: pulumi.Output<boolean | undefined>;
     /**
      * The public IP address of the server (Deprecated use `publicIps` instead).
      *
@@ -421,6 +425,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["privateIp"] = state ? state.privateIp : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["protected"] = state ? state.protected : undefined;
             resourceInputs["publicIp"] = state ? state.publicIp : undefined;
             resourceInputs["publicIps"] = state ? state.publicIps : undefined;
             resourceInputs["replaceOnTypeChange"] = state ? state.replaceOnTypeChange : undefined;
@@ -449,6 +454,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["protected"] = args ? args.protected : undefined;
             resourceInputs["publicIps"] = args ? args.publicIps : undefined;
             resourceInputs["replaceOnTypeChange"] = args ? args.replaceOnTypeChange : undefined;
             resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
@@ -505,7 +511,7 @@ export interface ServerState {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Determines if IPv6 is enabled for the server.
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
@@ -585,6 +591,10 @@ export interface ServerState {
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Set to true to activate server protection option.
+     */
+    protected?: pulumi.Input<boolean>;
     /**
      * The public IP address of the server (Deprecated use `publicIps` instead).
      *
@@ -671,7 +681,7 @@ export interface ServerArgs {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+     * Determines if IPv6 is enabled for the server.
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
@@ -716,6 +726,10 @@ export interface ServerArgs {
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Set to true to activate server protection option.
+     */
+    protected?: pulumi.Input<boolean>;
     /**
      * The list of public IPs of the server.
      */

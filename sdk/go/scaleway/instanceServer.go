@@ -377,7 +377,7 @@ type InstanceServer struct {
 	CloudInit pulumi.StringOutput `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrOutput `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Determines if IPv6 is enabled for the server.
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -429,6 +429,8 @@ type InstanceServer struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// The public IP address of the server (Deprecated use `publicIps` instead).
 	//
 	// Deprecated: Use publicIps instead
@@ -513,7 +515,7 @@ type instanceServerState struct {
 	CloudInit *string `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Determines if IPv6 is enabled for the server.
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -565,6 +567,8 @@ type instanceServerState struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// The public IP address of the server (Deprecated use `publicIps` instead).
 	//
 	// Deprecated: Use publicIps instead
@@ -617,7 +621,7 @@ type InstanceServerState struct {
 	CloudInit pulumi.StringPtrInput
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
-	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Determines if IPv6 is enabled for the server.
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -669,6 +673,8 @@ type InstanceServerState struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// The public IP address of the server (Deprecated use `publicIps` instead).
 	//
 	// Deprecated: Use publicIps instead
@@ -725,7 +731,7 @@ type instanceServerArgs struct {
 	CloudInit *string `pulumi:"cloudInit"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp *bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Determines if IPv6 is enabled for the server.
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -754,6 +760,8 @@ type instanceServerArgs struct {
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// The list of public IPs of the server.
 	PublicIps []InstanceServerPublicIp `pulumi:"publicIps"`
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
@@ -803,7 +811,7 @@ type InstanceServerArgs struct {
 	CloudInit pulumi.StringPtrInput
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolPtrInput
-	// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+	// Determines if IPv6 is enabled for the server.
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 	//
 	// Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -832,6 +840,8 @@ type InstanceServerArgs struct {
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// The list of public IPs of the server.
 	PublicIps InstanceServerPublicIpArrayInput
 	// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
@@ -981,7 +991,7 @@ func (o InstanceServerOutput) EnableDynamicIp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.EnableDynamicIp }).(pulumi.BoolPtrOutput)
 }
 
-// Determines if IPv6 is enabled for the server. Useful only with `routedIpEnabled` as false, otherwise ipv6 is always supported.
+// Determines if IPv6 is enabled for the server.
 // Deprecated: Please use a instance.Ip with a `routedIpv6` type.
 //
 // Deprecated: Please use a instance.Ip with a `routedIpv6` type
@@ -1073,6 +1083,11 @@ func (o InstanceServerOutput) PrivateNetworks() InstanceServerPrivateNetworkArra
 // `projectId`) The ID of the project the server is associated with.
 func (o InstanceServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Set to true to activate server protection option.
+func (o InstanceServerOutput) Protected() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *InstanceServer) pulumi.BoolPtrOutput { return v.Protected }).(pulumi.BoolPtrOutput)
 }
 
 // The public IP address of the server (Deprecated use `publicIps` instead).

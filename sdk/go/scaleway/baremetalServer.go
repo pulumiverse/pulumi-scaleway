@@ -419,6 +419,87 @@ import (
 //
 // ```
 //
+// ### Migrate from hourly to monthly plan
+//
+// To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
+// You cannot directly modify the subscriptionPeriod of an existing elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+//
+// ### Hourly Plan Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone:               pulumi.StringRef("fr-par-1"),
+//				Name:               pulumi.StringRef("EM-B220E-NVME"),
+//				SubscriptionPeriod: pulumi.StringRef("hourly"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "server01", &elasticmetal.ServerArgs{
+//				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
+//				Offer:                  pulumi.String(myOffer.OfferId),
+//				Zone:                   pulumi.String("%s"),
+//				InstallConfigAfterward: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Monthly Plan Example
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone:               pulumi.StringRef("fr-par-1"),
+//				Name:               pulumi.StringRef("EM-B220E-NVME"),
+//				SubscriptionPeriod: pulumi.StringRef("monthly"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "server01", &elasticmetal.ServerArgs{
+//				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
+//				Offer:                  pulumi.String(myOffer.OfferId),
+//				Zone:                   pulumi.String("fr-par-1"),
+//				InstallConfigAfterward: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+//
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g.

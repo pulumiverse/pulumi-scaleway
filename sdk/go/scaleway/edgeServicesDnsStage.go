@@ -57,9 +57,9 @@ import (
 type EdgeServicesDnsStage struct {
 	pulumi.CustomResourceState
 
-	// The backend stage ID the DNS stage will be linked to.
+	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId pulumi.StringOutput `pulumi:"backendStageId"`
-	// The cache stage ID the DNS stage will be linked to.
+	// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	CacheStageId pulumi.StringOutput `pulumi:"cacheStageId"`
 	// The date and time of the creation of the DNS stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -69,7 +69,7 @@ type EdgeServicesDnsStage struct {
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the DNS stage is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The TLS stage ID the DNS stage will be linked to.
+	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId pulumi.StringOutput `pulumi:"tlsStageId"`
 	// The type of the stage.
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -110,9 +110,9 @@ func GetEdgeServicesDnsStage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EdgeServicesDnsStage resources.
 type edgeServicesDnsStageState struct {
-	// The backend stage ID the DNS stage will be linked to.
+	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
-	// The cache stage ID the DNS stage will be linked to.
+	// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	CacheStageId *string `pulumi:"cacheStageId"`
 	// The date and time of the creation of the DNS stage.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -122,7 +122,7 @@ type edgeServicesDnsStageState struct {
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the DNS stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The TLS stage ID the DNS stage will be linked to.
+	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId *string `pulumi:"tlsStageId"`
 	// The type of the stage.
 	Type *string `pulumi:"type"`
@@ -131,9 +131,9 @@ type edgeServicesDnsStageState struct {
 }
 
 type EdgeServicesDnsStageState struct {
-	// The backend stage ID the DNS stage will be linked to.
+	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
-	// The cache stage ID the DNS stage will be linked to.
+	// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	CacheStageId pulumi.StringPtrInput
 	// The date and time of the creation of the DNS stage.
 	CreatedAt pulumi.StringPtrInput
@@ -143,7 +143,7 @@ type EdgeServicesDnsStageState struct {
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the DNS stage is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The TLS stage ID the DNS stage will be linked to.
+	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId pulumi.StringPtrInput
 	// The type of the stage.
 	Type pulumi.StringPtrInput
@@ -156,9 +156,9 @@ func (EdgeServicesDnsStageState) ElementType() reflect.Type {
 }
 
 type edgeServicesDnsStageArgs struct {
-	// The backend stage ID the DNS stage will be linked to.
+	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
-	// The cache stage ID the DNS stage will be linked to.
+	// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	CacheStageId *string `pulumi:"cacheStageId"`
 	// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
 	Fqdns []string `pulumi:"fqdns"`
@@ -166,15 +166,15 @@ type edgeServicesDnsStageArgs struct {
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the DNS stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The TLS stage ID the DNS stage will be linked to.
+	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId *string `pulumi:"tlsStageId"`
 }
 
 // The set of arguments for constructing a EdgeServicesDnsStage resource.
 type EdgeServicesDnsStageArgs struct {
-	// The backend stage ID the DNS stage will be linked to.
+	// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
-	// The cache stage ID the DNS stage will be linked to.
+	// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	CacheStageId pulumi.StringPtrInput
 	// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
 	Fqdns pulumi.StringArrayInput
@@ -182,7 +182,7 @@ type EdgeServicesDnsStageArgs struct {
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the DNS stage is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The TLS stage ID the DNS stage will be linked to.
+	// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 	TlsStageId pulumi.StringPtrInput
 }
 
@@ -273,12 +273,12 @@ func (o EdgeServicesDnsStageOutput) ToEdgeServicesDnsStageOutputWithContext(ctx 
 	return o
 }
 
-// The backend stage ID the DNS stage will be linked to.
+// The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 func (o EdgeServicesDnsStageOutput) BackendStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.BackendStageId }).(pulumi.StringOutput)
 }
 
-// The cache stage ID the DNS stage will be linked to.
+// The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 func (o EdgeServicesDnsStageOutput) CacheStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.CacheStageId }).(pulumi.StringOutput)
 }
@@ -303,7 +303,7 @@ func (o EdgeServicesDnsStageOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The TLS stage ID the DNS stage will be linked to.
+// The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
 func (o EdgeServicesDnsStageOutput) TlsStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.TlsStageId }).(pulumi.StringOutput)
 }

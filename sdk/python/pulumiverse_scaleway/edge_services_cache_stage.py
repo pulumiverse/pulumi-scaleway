@@ -26,15 +26,19 @@ class EdgeServicesCacheStageArgs:
                  fallback_ttl: Optional[pulumi.Input[int]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]]] = None,
-                 refresh_cache: Optional[pulumi.Input[str]] = None):
+                 refresh_cache: Optional[pulumi.Input[str]] = None,
+                 route_stage_id: Optional[pulumi.Input[str]] = None,
+                 waf_stage_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EdgeServicesCacheStage resource.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[str] refresh_cache: Trigger a refresh of the cache by changing this field's value.
+        :param pulumi.Input[str] route_stage_id: The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        :param pulumi.Input[str] waf_stage_id: The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
         if backend_stage_id is not None:
@@ -47,6 +51,10 @@ class EdgeServicesCacheStageArgs:
             pulumi.set(__self__, "purge_requests", purge_requests)
         if refresh_cache is not None:
             pulumi.set(__self__, "refresh_cache", refresh_cache)
+        if route_stage_id is not None:
+            pulumi.set(__self__, "route_stage_id", route_stage_id)
+        if waf_stage_id is not None:
+            pulumi.set(__self__, "waf_stage_id", waf_stage_id)
 
     @property
     @pulumi.getter(name="pipelineId")
@@ -64,7 +72,7 @@ class EdgeServicesCacheStageArgs:
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The backend stage ID the cache stage will be linked to.
+        The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -120,6 +128,30 @@ class EdgeServicesCacheStageArgs:
     def refresh_cache(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "refresh_cache", value)
 
+    @property
+    @pulumi.getter(name="routeStageId")
+    def route_stage_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "route_stage_id")
+
+    @route_stage_id.setter
+    def route_stage_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_stage_id", value)
+
+    @property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "waf_stage_id")
+
+    @waf_stage_id.setter
+    def waf_stage_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_stage_id", value)
+
 
 @pulumi.input_type
 class _EdgeServicesCacheStageState:
@@ -131,17 +163,21 @@ class _EdgeServicesCacheStageState:
                  project_id: Optional[pulumi.Input[str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]]] = None,
                  refresh_cache: Optional[pulumi.Input[str]] = None,
-                 updated_at: Optional[pulumi.Input[str]] = None):
+                 route_stage_id: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 waf_stage_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EdgeServicesCacheStage resources.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the cache stage.
         :param pulumi.Input[int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[str] refresh_cache: Trigger a refresh of the cache by changing this field's value.
+        :param pulumi.Input[str] route_stage_id: The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the cache stage.
+        :param pulumi.Input[str] waf_stage_id: The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         if backend_stage_id is not None:
             pulumi.set(__self__, "backend_stage_id", backend_stage_id)
@@ -157,14 +193,18 @@ class _EdgeServicesCacheStageState:
             pulumi.set(__self__, "purge_requests", purge_requests)
         if refresh_cache is not None:
             pulumi.set(__self__, "refresh_cache", refresh_cache)
+        if route_stage_id is not None:
+            pulumi.set(__self__, "route_stage_id", route_stage_id)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if waf_stage_id is not None:
+            pulumi.set(__self__, "waf_stage_id", waf_stage_id)
 
     @property
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The backend stage ID the cache stage will be linked to.
+        The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -245,6 +285,18 @@ class _EdgeServicesCacheStageState:
         pulumi.set(self, "refresh_cache", value)
 
     @property
+    @pulumi.getter(name="routeStageId")
+    def route_stage_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "route_stage_id")
+
+    @route_stage_id.setter
+    def route_stage_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_stage_id", value)
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
@@ -255,6 +307,18 @@ class _EdgeServicesCacheStageState:
     @updated_at.setter
     def updated_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "updated_at", value)
+
+    @property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "waf_stage_id")
+
+    @waf_stage_id.setter
+    def waf_stage_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "waf_stage_id", value)
 
 
 class EdgeServicesCacheStage(pulumi.CustomResource):
@@ -268,6 +332,8 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
                  refresh_cache: Optional[pulumi.Input[str]] = None,
+                 route_stage_id: Optional[pulumi.Input[str]] = None,
+                 waf_stage_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway Edge Services Cache Stages.
@@ -297,12 +363,14 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[str] refresh_cache: Trigger a refresh of the cache by changing this field's value.
+        :param pulumi.Input[str] route_stage_id: The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        :param pulumi.Input[str] waf_stage_id: The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         ...
     @overload
@@ -357,6 +425,8 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
                  refresh_cache: Optional[pulumi.Input[str]] = None,
+                 route_stage_id: Optional[pulumi.Input[str]] = None,
+                 waf_stage_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -374,6 +444,8 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["purge_requests"] = purge_requests
             __props__.__dict__["refresh_cache"] = refresh_cache
+            __props__.__dict__["route_stage_id"] = route_stage_id
+            __props__.__dict__["waf_stage_id"] = waf_stage_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
         super(EdgeServicesCacheStage, __self__).__init__(
@@ -393,7 +465,9 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[str]] = None,
             purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
             refresh_cache: Optional[pulumi.Input[str]] = None,
-            updated_at: Optional[pulumi.Input[str]] = None) -> 'EdgeServicesCacheStage':
+            route_stage_id: Optional[pulumi.Input[str]] = None,
+            updated_at: Optional[pulumi.Input[str]] = None,
+            waf_stage_id: Optional[pulumi.Input[str]] = None) -> 'EdgeServicesCacheStage':
         """
         Get an existing EdgeServicesCacheStage resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -401,14 +475,16 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to.
+        :param pulumi.Input[str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[str] created_at: The date and time of the creation of the cache stage.
         :param pulumi.Input[int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
         :param pulumi.Input[str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[str] refresh_cache: Trigger a refresh of the cache by changing this field's value.
+        :param pulumi.Input[str] route_stage_id: The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the cache stage.
+        :param pulumi.Input[str] waf_stage_id: The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -421,14 +497,16 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["purge_requests"] = purge_requests
         __props__.__dict__["refresh_cache"] = refresh_cache
+        __props__.__dict__["route_stage_id"] = route_stage_id
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["waf_stage_id"] = waf_stage_id
         return EdgeServicesCacheStage(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter(name="backendStageId")
     def backend_stage_id(self) -> pulumi.Output[str]:
         """
-        The backend stage ID the cache stage will be linked to.
+        The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -481,10 +559,26 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         return pulumi.get(self, "refresh_cache")
 
     @property
+    @pulumi.getter(name="routeStageId")
+    def route_stage_id(self) -> pulumi.Output[str]:
+        """
+        The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "route_stage_id")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
         The date and time of the last update of the cache stage.
         """
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> pulumi.Output[str]:
+        """
+        The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        """
+        return pulumi.get(self, "waf_stage_id")
 

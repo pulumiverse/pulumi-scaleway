@@ -362,6 +362,71 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     /// });
     /// ```
     /// 
+    /// ### Migrate from hourly to monthly plan
+    /// 
+    /// To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
+    /// You cannot directly modify the subscription_period of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+    /// 
+    /// ### Hourly Plan Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "EM-B220E-NVME",
+    ///         SubscriptionPeriod = "hourly",
+    ///     });
+    /// 
+    ///     var server01 = new Scaleway.Elasticmetal.Server("server01", new()
+    ///     {
+    ///         Name = "UpdateSubscriptionPeriod",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Zone = "%s",
+    ///         InstallConfigAfterward = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Monthly Plan Example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "EM-B220E-NVME",
+    ///         SubscriptionPeriod = "monthly",
+    ///     });
+    /// 
+    ///     var server01 = new Scaleway.Elasticmetal.Server("server01", new()
+    ///     {
+    ///         Name = "UpdateSubscriptionPeriod",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Zone = "fr-par-1",
+    ///         InstallConfigAfterward = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+    /// 
     /// ## Import
     /// 
     /// Baremetal servers can be imported using the `{zone}/{id}`, e.g.

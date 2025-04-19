@@ -54,6 +54,52 @@ import (
 //
 // ```
 //
+// ### With Secret Reference
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/job"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := job.NewDefinition(ctx, "main", &job.DefinitionArgs{
+//				Name:        pulumi.String("testjob"),
+//				CpuLimit:    pulumi.Int(140),
+//				MemoryLimit: pulumi.Int(256),
+//				ImageUri:    pulumi.String("docker.io/alpine:latest"),
+//				Command:     pulumi.String("ls"),
+//				Timeout:     pulumi.String("10m"),
+//				Cron: &job.DefinitionCronArgs{
+//					Schedule: pulumi.String("5 4 1 * *"),
+//					Timezone: pulumi.String("Europe/Paris"),
+//				},
+//				SecretReferences: job.DefinitionSecretReferenceArray{
+//					&job.DefinitionSecretReferenceArgs{
+//						SecretId: pulumi.String("11111111-1111-1111-1111-111111111111"),
+//						File:     pulumi.String("/home/dev/secret_file"),
+//					},
+//					&job.DefinitionSecretReferenceArgs{
+//						SecretId:      pulumi.Any(jobSecret.Id),
+//						SecretVersion: pulumi.String("1"),
+//						Environment:   pulumi.String("FOO"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Serverless Jobs can be imported using the `{region}/{id}`, e.g.
@@ -86,6 +132,8 @@ type Definition struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region pulumi.StringOutput `pulumi:"region"`
+	// A reference to a secret stored in Secret Manager.
+	SecretReferences DefinitionSecretReferenceArrayOutput `pulumi:"secretReferences"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringOutput `pulumi:"timeout"`
 }
@@ -152,6 +200,8 @@ type definitionState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region *string `pulumi:"region"`
+	// A reference to a secret stored in Secret Manager.
+	SecretReferences []DefinitionSecretReference `pulumi:"secretReferences"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout *string `pulumi:"timeout"`
 }
@@ -177,6 +227,8 @@ type DefinitionState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the Job.
 	Region pulumi.StringPtrInput
+	// A reference to a secret stored in Secret Manager.
+	SecretReferences DefinitionSecretReferenceArrayInput
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringPtrInput
 }
@@ -206,6 +258,8 @@ type definitionArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region of the Job.
 	Region *string `pulumi:"region"`
+	// A reference to a secret stored in Secret Manager.
+	SecretReferences []DefinitionSecretReference `pulumi:"secretReferences"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout *string `pulumi:"timeout"`
 }
@@ -232,6 +286,8 @@ type DefinitionArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region of the Job.
 	Region pulumi.StringPtrInput
+	// A reference to a secret stored in Secret Manager.
+	SecretReferences DefinitionSecretReferenceArrayInput
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringPtrInput
 }
@@ -371,6 +427,11 @@ func (o DefinitionOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region of the Job.
 func (o DefinitionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Definition) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// A reference to a secret stored in Secret Manager.
+func (o DefinitionOutput) SecretReferences() DefinitionSecretReferenceArrayOutput {
+	return o.ApplyT(func(v *Definition) DefinitionSecretReferenceArrayOutput { return v.SecretReferences }).(DefinitionSecretReferenceArrayOutput)
 }
 
 // The job run timeout, in Go Time format (ex: `2h30m25s`)

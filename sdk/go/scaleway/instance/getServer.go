@@ -70,6 +70,7 @@ type LookupServerResult struct {
 	PrivateIp       string                    `pulumi:"privateIp"`
 	PrivateNetworks []GetServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       *string                   `pulumi:"projectId"`
+	Protected       bool                      `pulumi:"protected"`
 	// The public IP address of the server.
 	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
@@ -223,6 +224,10 @@ func (o LookupServerResultOutput) PrivateNetworks() GetServerPrivateNetworkArray
 
 func (o LookupServerResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupServerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupServerResultOutput) Protected() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupServerResult) bool { return v.Protected }).(pulumi.BoolOutput)
 }
 
 // The public IP address of the server.

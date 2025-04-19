@@ -963,6 +963,47 @@ class Server(pulumi.CustomResource):
             ssh_key_ids=[main.id])
         ```
 
+        ### Migrate from hourly to monthly plan
+
+        To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
+        You cannot directly modify the subscription_period of an existing elasticmetal_get_offer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+
+        ### Hourly Plan Example
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="hourly")
+        server01 = scaleway.elasticmetal.Server("server01",
+            name="UpdateSubscriptionPeriod",
+            offer=my_offer.offer_id,
+            zone="%s",
+            install_config_afterward=True)
+        ```
+
+        ### Monthly Plan Example
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="monthly")
+        server01 = scaleway.elasticmetal.Server("server01",
+            name="UpdateSubscriptionPeriod",
+            offer=my_offer.offer_id,
+            zone="fr-par-1",
+            install_config_afterward=True)
+        ```
+
+        **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+
         ## Import
 
         Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -1180,6 +1221,47 @@ class Server(pulumi.CustomResource):
             ],
             ssh_key_ids=[main.id])
         ```
+
+        ### Migrate from hourly to monthly plan
+
+        To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
+        You cannot directly modify the subscription_period of an existing elasticmetal_get_offer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+
+        ### Hourly Plan Example
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="hourly")
+        server01 = scaleway.elasticmetal.Server("server01",
+            name="UpdateSubscriptionPeriod",
+            offer=my_offer.offer_id,
+            zone="%s",
+            install_config_afterward=True)
+        ```
+
+        ### Monthly Plan Example
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
+            name="EM-B220E-NVME",
+            subscription_period="monthly")
+        server01 = scaleway.elasticmetal.Server("server01",
+            name="UpdateSubscriptionPeriod",
+            offer=my_offer.offer_id,
+            zone="fr-par-1",
+            install_config_afterward=True)
+        ```
+
+        **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 
         ## Import
 

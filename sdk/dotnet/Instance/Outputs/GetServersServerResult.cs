@@ -77,10 +77,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServersServerPublicIpResult> PublicIps;
         /// <summary>
-        /// True if the server support routed ip only.
-        /// </summary>
-        public readonly bool RoutedIpEnabled;
-        /// <summary>
         /// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         /// </summary>
         public readonly string SecurityGroupId;
@@ -137,8 +133,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
 
             ImmutableArray<Outputs.GetServersServerPublicIpResult> publicIps,
 
-            bool routedIpEnabled,
-
             string securityGroupId,
 
             string state,
@@ -166,7 +160,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
             ProjectId = projectId;
             PublicIp = publicIp;
             PublicIps = publicIps;
-            RoutedIpEnabled = routedIpEnabled;
             SecurityGroupId = securityGroupId;
             State = state;
             Tags = tags;

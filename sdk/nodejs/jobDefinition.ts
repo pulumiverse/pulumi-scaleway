@@ -34,6 +34,37 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With Secret Reference
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.job.Definition("main", {
+ *     name: "testjob",
+ *     cpuLimit: 140,
+ *     memoryLimit: 256,
+ *     imageUri: "docker.io/alpine:latest",
+ *     command: "ls",
+ *     timeout: "10m",
+ *     cron: {
+ *         schedule: "5 4 1 * *",
+ *         timezone: "Europe/Paris",
+ *     },
+ *     secretReferences: [
+ *         {
+ *             secretId: "11111111-1111-1111-1111-111111111111",
+ *             file: "/home/dev/secret_file",
+ *         },
+ *         {
+ *             secretId: jobSecret.id,
+ *             secretVersion: "1",
+ *             environment: "FOO",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Serverless Jobs can be imported using the `{region}/{id}`, e.g.
@@ -116,6 +147,10 @@ export class JobDefinition extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
+     * A reference to a secret stored in Secret Manager.
+     */
+    public readonly secretReferences!: pulumi.Output<outputs.JobDefinitionSecretReference[] | undefined>;
+    /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
     public readonly timeout!: pulumi.Output<string>;
@@ -146,6 +181,7 @@ export class JobDefinition extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["secretReferences"] = state ? state.secretReferences : undefined;
             resourceInputs["timeout"] = state ? state.timeout : undefined;
         } else {
             const args = argsOrState as JobDefinitionArgs | undefined;
@@ -165,6 +201,7 @@ export class JobDefinition extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["secretReferences"] = args ? args.secretReferences : undefined;
             resourceInputs["timeout"] = args ? args.timeout : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -217,6 +254,10 @@ export interface JobDefinitionState {
      */
     region?: pulumi.Input<string>;
     /**
+     * A reference to a secret stored in Secret Manager.
+     */
+    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[]>;
+    /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
     timeout?: pulumi.Input<string>;
@@ -266,6 +307,10 @@ export interface JobDefinitionArgs {
      * `region`) The region of the Job.
      */
     region?: pulumi.Input<string>;
+    /**
+     * A reference to a secret stored in Secret Manager.
+     */
+    secretReferences?: pulumi.Input<pulumi.Input<inputs.JobDefinitionSecretReference>[]>;
     /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */

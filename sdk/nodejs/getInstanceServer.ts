@@ -108,6 +108,7 @@ export interface GetInstanceServerResult {
     readonly privateIp: string;
     readonly privateNetworks: outputs.GetInstanceServerPrivateNetwork[];
     readonly projectId?: string;
+    readonly protected: boolean;
     /**
      * The public IP address of the server.
      */

@@ -44,6 +44,7 @@ class GetPlanResult:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.""")
     def name(self) -> str:
         return pulumi.get(self, "name")
 

@@ -96,6 +96,7 @@
         "edgeServicesRouteStage.ts",
         "edgeServicesTlsStage.ts",
         "edgeServicesWafStage.ts",
+        "elasticmetal/getEasyPartitioning.ts",
         "elasticmetal/getIp.ts",
         "elasticmetal/getIps.ts",
         "elasticmetal/getOffer.ts",
