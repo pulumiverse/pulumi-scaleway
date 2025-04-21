@@ -62,7 +62,7 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
     }
 
     /**
-     * The backend stage ID the cache stage will be linked to.
+     * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     public readonly backendStageId!: pulumi.Output<string>;
     /**
@@ -90,9 +90,17 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
      */
     public readonly refreshCache!: pulumi.Output<string | undefined>;
     /**
+     * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    public readonly routeStageId!: pulumi.Output<string>;
+    /**
      * The date and time of the last update of the cache stage.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    public readonly wafStageId!: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesCacheStage resource with the given unique name, arguments, and options.
@@ -114,7 +122,9 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["purgeRequests"] = state ? state.purgeRequests : undefined;
             resourceInputs["refreshCache"] = state ? state.refreshCache : undefined;
+            resourceInputs["routeStageId"] = state ? state.routeStageId : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["wafStageId"] = state ? state.wafStageId : undefined;
         } else {
             const args = argsOrState as EdgeServicesCacheStageArgs | undefined;
             if ((!args || args.pipelineId === undefined) && !opts.urn) {
@@ -126,6 +136,8 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["purgeRequests"] = args ? args.purgeRequests : undefined;
             resourceInputs["refreshCache"] = args ? args.refreshCache : undefined;
+            resourceInputs["routeStageId"] = args ? args.routeStageId : undefined;
+            resourceInputs["wafStageId"] = args ? args.wafStageId : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -139,7 +151,7 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
  */
 export interface EdgeServicesCacheStageState {
     /**
-     * The backend stage ID the cache stage will be linked to.
+     * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
@@ -167,9 +179,17 @@ export interface EdgeServicesCacheStageState {
      */
     refreshCache?: pulumi.Input<string>;
     /**
+     * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    routeStageId?: pulumi.Input<string>;
+    /**
      * The date and time of the last update of the cache stage.
      */
     updatedAt?: pulumi.Input<string>;
+    /**
+     * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    wafStageId?: pulumi.Input<string>;
 }
 
 /**
@@ -177,7 +197,7 @@ export interface EdgeServicesCacheStageState {
  */
 export interface EdgeServicesCacheStageArgs {
     /**
-     * The backend stage ID the cache stage will be linked to.
+     * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
     backendStageId?: pulumi.Input<string>;
     /**
@@ -200,4 +220,12 @@ export interface EdgeServicesCacheStageArgs {
      * Trigger a refresh of the cache by changing this field's value.
      */
     refreshCache?: pulumi.Input<string>;
+    /**
+     * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    routeStageId?: pulumi.Input<string>;
+    /**
+     * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
+     */
+    wafStageId?: pulumi.Input<string>;
 }

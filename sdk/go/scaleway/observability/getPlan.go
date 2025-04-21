@@ -63,13 +63,16 @@ func GetPlan(ctx *pulumi.Context, args *GetPlanArgs, opts ...pulumi.InvokeOption
 // A collection of arguments for invoking getPlan.
 type GetPlanArgs struct {
 	// Name of the pricing plan you want to retrieve information about.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getPlan.
 type GetPlanResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Name string `pulumi:"name"`
 }
 
@@ -85,6 +88,8 @@ func GetPlanOutput(ctx *pulumi.Context, args GetPlanOutputArgs, opts ...pulumi.I
 // A collection of arguments for invoking getPlan.
 type GetPlanOutputArgs struct {
 	// Name of the pricing plan you want to retrieve information about.
+	//
+	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -112,6 +117,7 @@ func (o GetPlanResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPlanResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 func (o GetPlanResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPlanResult) string { return v.Name }).(pulumi.StringOutput)
 }

@@ -2206,8 +2206,6 @@ type GetServersServer struct {
 	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps []GetServersServerPublicIp `pulumi:"publicIps"`
-	// True if the server support routed ip only.
-	RoutedIpEnabled bool `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId string `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -2267,8 +2265,6 @@ type GetServersServerArgs struct {
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps GetServersServerPublicIpArrayInput `pulumi:"publicIps"`
-	// True if the server support routed ip only.
-	RoutedIpEnabled pulumi.BoolInput `pulumi:"routedIpEnabled"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
 	SecurityGroupId pulumi.StringInput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -2416,11 +2412,6 @@ func (o GetServersServerOutput) PublicIp() pulumi.StringOutput {
 // The list of public IPs of the server
 func (o GetServersServerOutput) PublicIps() GetServersServerPublicIpArrayOutput {
 	return o.ApplyT(func(v GetServersServer) []GetServersServerPublicIp { return v.PublicIps }).(GetServersServerPublicIpArrayOutput)
-}
-
-// True if the server support routed ip only.
-func (o GetServersServerOutput) RoutedIpEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServersServer) bool { return v.RoutedIpEnabled }).(pulumi.BoolOutput)
 }
 
 // The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.

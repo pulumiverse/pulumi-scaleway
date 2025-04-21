@@ -39,6 +39,8 @@ export function getPlan(args: GetPlanArgs, opts?: pulumi.InvokeOptions): Promise
 export interface GetPlanArgs {
     /**
      * Name of the pricing plan you want to retrieve information about.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     name: string;
 }
@@ -51,6 +53,9 @@ export interface GetPlanResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
+     */
     readonly name: string;
 }
 /**
@@ -88,6 +93,8 @@ export function getPlanOutput(args: GetPlanOutputArgs, opts?: pulumi.InvokeOutpu
 export interface GetPlanOutputArgs {
     /**
      * Name of the pricing plan you want to retrieve information about.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     name: pulumi.Input<string>;
 }
