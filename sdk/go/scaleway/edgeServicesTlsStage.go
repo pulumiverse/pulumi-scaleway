@@ -87,9 +87,9 @@ import (
 type EdgeServicesTlsStage struct {
 	pulumi.CustomResourceState
 
-	// The backend stage ID the TLS stage will be linked to.
+	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringOutput `pulumi:"backendStageId"`
-	// The cache stage ID the TLS stage will be linked to.
+	// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	CacheStageId pulumi.StringOutput `pulumi:"cacheStageId"`
 	// The expiration date of the certificate.
 	CertificateExpiresAt pulumi.StringOutput `pulumi:"certificateExpiresAt"`
@@ -101,10 +101,14 @@ type EdgeServicesTlsStage struct {
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the TLS stage is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringOutput `pulumi:"routeStageId"`
 	// The TLS secrets.
 	Secrets EdgeServicesTlsStageSecretArrayOutput `pulumi:"secrets"`
 	// The date and time of the last update of the TLS stage.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringOutput `pulumi:"wafStageId"`
 }
 
 // NewEdgeServicesTlsStage registers a new resource with the given unique name, arguments, and options.
@@ -140,9 +144,9 @@ func GetEdgeServicesTlsStage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EdgeServicesTlsStage resources.
 type edgeServicesTlsStageState struct {
-	// The backend stage ID the TLS stage will be linked to.
+	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
-	// The cache stage ID the TLS stage will be linked to.
+	// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	CacheStageId *string `pulumi:"cacheStageId"`
 	// The expiration date of the certificate.
 	CertificateExpiresAt *string `pulumi:"certificateExpiresAt"`
@@ -154,16 +158,20 @@ type edgeServicesTlsStageState struct {
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the TLS stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId *string `pulumi:"routeStageId"`
 	// The TLS secrets.
 	Secrets []EdgeServicesTlsStageSecret `pulumi:"secrets"`
 	// The date and time of the last update of the TLS stage.
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 type EdgeServicesTlsStageState struct {
-	// The backend stage ID the TLS stage will be linked to.
+	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
-	// The cache stage ID the TLS stage will be linked to.
+	// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	CacheStageId pulumi.StringPtrInput
 	// The expiration date of the certificate.
 	CertificateExpiresAt pulumi.StringPtrInput
@@ -175,10 +183,14 @@ type EdgeServicesTlsStageState struct {
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the TLS stage is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringPtrInput
 	// The TLS secrets.
 	Secrets EdgeServicesTlsStageSecretArrayInput
 	// The date and time of the last update of the TLS stage.
 	UpdatedAt pulumi.StringPtrInput
+	// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringPtrInput
 }
 
 func (EdgeServicesTlsStageState) ElementType() reflect.Type {
@@ -186,9 +198,9 @@ func (EdgeServicesTlsStageState) ElementType() reflect.Type {
 }
 
 type edgeServicesTlsStageArgs struct {
-	// The backend stage ID the TLS stage will be linked to.
+	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId *string `pulumi:"backendStageId"`
-	// The cache stage ID the TLS stage will be linked to.
+	// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	CacheStageId *string `pulumi:"cacheStageId"`
 	// Set to true when Scaleway generates and manages a Let's Encrypt certificate for the TLS stage/custom endpoint.
 	ManagedCertificate *bool `pulumi:"managedCertificate"`
@@ -196,15 +208,19 @@ type edgeServicesTlsStageArgs struct {
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the TLS stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId *string `pulumi:"routeStageId"`
 	// The TLS secrets.
 	Secrets []EdgeServicesTlsStageSecret `pulumi:"secrets"`
+	// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // The set of arguments for constructing a EdgeServicesTlsStage resource.
 type EdgeServicesTlsStageArgs struct {
-	// The backend stage ID the TLS stage will be linked to.
+	// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	BackendStageId pulumi.StringPtrInput
-	// The cache stage ID the TLS stage will be linked to.
+	// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 	CacheStageId pulumi.StringPtrInput
 	// Set to true when Scaleway generates and manages a Let's Encrypt certificate for the TLS stage/custom endpoint.
 	ManagedCertificate pulumi.BoolPtrInput
@@ -212,8 +228,12 @@ type EdgeServicesTlsStageArgs struct {
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the TLS stage is associated with.
 	ProjectId pulumi.StringPtrInput
+	// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	RouteStageId pulumi.StringPtrInput
 	// The TLS secrets.
 	Secrets EdgeServicesTlsStageSecretArrayInput
+	// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+	WafStageId pulumi.StringPtrInput
 }
 
 func (EdgeServicesTlsStageArgs) ElementType() reflect.Type {
@@ -303,12 +323,12 @@ func (o EdgeServicesTlsStageOutput) ToEdgeServicesTlsStageOutputWithContext(ctx 
 	return o
 }
 
-// The backend stage ID the TLS stage will be linked to.
+// The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 func (o EdgeServicesTlsStageOutput) BackendStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.BackendStageId }).(pulumi.StringOutput)
 }
 
-// The cache stage ID the TLS stage will be linked to.
+// The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
 func (o EdgeServicesTlsStageOutput) CacheStageId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.CacheStageId }).(pulumi.StringOutput)
 }
@@ -338,6 +358,11 @@ func (o EdgeServicesTlsStageOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+func (o EdgeServicesTlsStageOutput) RouteStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.RouteStageId }).(pulumi.StringOutput)
+}
+
 // The TLS secrets.
 func (o EdgeServicesTlsStageOutput) Secrets() EdgeServicesTlsStageSecretArrayOutput {
 	return o.ApplyT(func(v *EdgeServicesTlsStage) EdgeServicesTlsStageSecretArrayOutput { return v.Secrets }).(EdgeServicesTlsStageSecretArrayOutput)
@@ -346,6 +371,11 @@ func (o EdgeServicesTlsStageOutput) Secrets() EdgeServicesTlsStageSecretArrayOut
 // The date and time of the last update of the TLS stage.
 func (o EdgeServicesTlsStageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
+func (o EdgeServicesTlsStageOutput) WafStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v *EdgeServicesTlsStage) pulumi.StringOutput { return v.WafStageId }).(pulumi.StringOutput)
 }
 
 type EdgeServicesTlsStageArrayOutput struct{ *pulumi.OutputState }

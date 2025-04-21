@@ -53,6 +53,7 @@ export class Cockpit extends pulumi.CustomResource {
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.observability.CockpitEndpoint[]>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
@@ -119,6 +120,7 @@ export interface CockpitState {
     endpoints?: pulumi.Input<pulumi.Input<inputs.observability.CockpitEndpoint>[]>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
@@ -147,6 +149,7 @@ export interface CockpitState {
 export interface CockpitArgs {
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
+     * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */

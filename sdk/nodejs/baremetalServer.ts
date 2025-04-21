@@ -223,6 +223,53 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Migrate from hourly to monthly plan
+ *
+ * To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
+ * You cannot directly modify the subscriptionPeriod of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+ *
+ * ### Hourly Plan Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-1",
+ *     name: "EM-B220E-NVME",
+ *     subscriptionPeriod: "hourly",
+ * });
+ * const server01 = new scaleway.elasticmetal.Server("server01", {
+ *     name: "UpdateSubscriptionPeriod",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     zone: "%s",
+ *     installConfigAfterward: true,
+ * });
+ * ```
+ *
+ * ### Monthly Plan Example
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-1",
+ *     name: "EM-B220E-NVME",
+ *     subscriptionPeriod: "monthly",
+ * });
+ * const server01 = new scaleway.elasticmetal.Server("server01", {
+ *     name: "UpdateSubscriptionPeriod",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     zone: "fr-par-1",
+ *     installConfigAfterward: true,
+ * });
+ * ```
+ *
+ * **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
+ *
  * ## Import
  *
  * Baremetal servers can be imported using the `{zone}/{id}`, e.g.

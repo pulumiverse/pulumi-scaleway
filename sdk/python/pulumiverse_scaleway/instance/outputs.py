@@ -1239,7 +1239,6 @@ class GetServersServerResult(dict):
                  project_id: str,
                  public_ip: str,
                  public_ips: Sequence['outputs.GetServersServerPublicIpResult'],
-                 routed_ip_enabled: bool,
                  security_group_id: str,
                  state: str,
                  tags: Sequence[str],
@@ -1261,7 +1260,6 @@ class GetServersServerResult(dict):
         :param str project_id: The ID of the project the server is associated with.
         :param str public_ip: The public IP address of the server.
         :param Sequence['GetServersServerPublicIpArgs'] public_ips: The list of public IPs of the server
-        :param bool routed_ip_enabled: True if the server support routed ip only.
         :param str security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param str state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
         :param Sequence[str] tags: List of tags used as filter. Servers with these exact tags are listed.
@@ -1285,7 +1283,6 @@ class GetServersServerResult(dict):
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ips", public_ips)
-        pulumi.set(__self__, "routed_ip_enabled", routed_ip_enabled)
         pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "state", state)
         pulumi.set(__self__, "tags", tags)
@@ -1423,14 +1420,6 @@ class GetServersServerResult(dict):
         The list of public IPs of the server
         """
         return pulumi.get(self, "public_ips")
-
-    @property
-    @pulumi.getter(name="routedIpEnabled")
-    def routed_ip_enabled(self) -> bool:
-        """
-        True if the server support routed ip only.
-        """
-        return pulumi.get(self, "routed_ip_enabled")
 
     @property
     @pulumi.getter(name="securityGroupId")

@@ -26,6 +26,7 @@ class CockpitArgs:
         """
         The set of arguments for constructing a Cockpit resource.
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+               > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         if plan is not None:
@@ -42,6 +43,7 @@ class CockpitArgs:
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
+        > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         """
         return pulumi.get(self, "plan")
 
@@ -74,6 +76,7 @@ class _CockpitState:
         Input properties used for looking up and filtering Cockpit resources.
         :param pulumi.Input[Sequence[pulumi.Input['CockpitEndpointArgs']]] endpoints: (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+               > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['CockpitPushUrlArgs']]] push_urls: [DEPRECATED] Push_url
@@ -120,6 +123,7 @@ class _CockpitState:
     def plan(self) -> Optional[pulumi.Input[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
+        > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         """
         return pulumi.get(self, "plan")
 
@@ -193,6 +197,7 @@ class Cockpit(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+               > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         """
         ...
@@ -268,6 +273,7 @@ class Cockpit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitEndpointArgs', 'CockpitEndpointArgsDict']]]] endpoints: (Deprecated) A list of [endpoints](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#endpoints) related to Cockpit, each with specific URLs:
         :param pulumi.Input[str] plan: Name of the plan to use. Available plans are: free, premium, and custom.
+               > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         :param pulumi.Input[str] plan_id: (Deprecated) The ID of the current pricing plan.
         :param pulumi.Input[str] project_id: ) The ID of the Project the Cockpit is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['CockpitPushUrlArgs', 'CockpitPushUrlArgsDict']]]] push_urls: [DEPRECATED] Push_url
@@ -298,6 +304,7 @@ class Cockpit(pulumi.CustomResource):
     def plan(self) -> pulumi.Output[Optional[str]]:
         """
         Name of the plan to use. Available plans are: free, premium, and custom.
+        > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
         """
         return pulumi.get(self, "plan")
 

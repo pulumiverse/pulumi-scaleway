@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway
     public partial class EdgeServicesCacheStage : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to.
+        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Output("backendStageId")]
         public Output<string> BackendStageId { get; private set; } = null!;
@@ -90,10 +90,22 @@ namespace Pulumiverse.Scaleway
         public Output<string?> RefreshCache { get; private set; } = null!;
 
         /// <summary>
+        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Output("routeStageId")]
+        public Output<string> RouteStageId { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the last update of the cache stage.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Output("wafStageId")]
+        public Output<string> WafStageId { get; private set; } = null!;
 
 
         /// <summary>
@@ -143,7 +155,7 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesCacheStageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to.
+        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
@@ -184,6 +196,18 @@ namespace Pulumiverse.Scaleway
         [Input("refreshCache")]
         public Input<string>? RefreshCache { get; set; }
 
+        /// <summary>
+        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("routeStageId")]
+        public Input<string>? RouteStageId { get; set; }
+
+        /// <summary>
+        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("wafStageId")]
+        public Input<string>? WafStageId { get; set; }
+
         public EdgeServicesCacheStageArgs()
         {
         }
@@ -193,7 +217,7 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesCacheStageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to.
+        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
@@ -241,10 +265,22 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RefreshCache { get; set; }
 
         /// <summary>
+        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("routeStageId")]
+        public Input<string>? RouteStageId { get; set; }
+
+        /// <summary>
         /// The date and time of the last update of the cache stage.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("wafStageId")]
+        public Input<string>? WafStageId { get; set; }
 
         public EdgeServicesCacheStageState()
         {

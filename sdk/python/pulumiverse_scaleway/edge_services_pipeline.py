@@ -216,9 +216,30 @@ class EdgeServicesPipeline(pulumi.CustomResource):
                 "bucket_name": "my-bucket-name",
                 "bucket_region": "fr-par",
             })
+        main_edge_services_waf_stage = scaleway.EdgeServicesWafStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=main_edge_services_backend_stage.id,
+            mode="enable",
+            paranoia_level=3)
+        main_edge_services_route_stage = scaleway.EdgeServicesRouteStage("main",
+            pipeline_id=main.id,
+            waf_stage_id=main_edge_services_waf_stage.id,
+            rules=[{
+                "backend_stage_id": main_edge_services_backend_stage.id,
+                "rule_http_match": {
+                    "method_filters": [
+                        "get",
+                        "post",
+                    ],
+                    "path_filter": {
+                        "path_filter_type": "regex",
+                        "value": ".*",
+                    },
+                },
+            }])
         main_edge_services_cache_stage = scaleway.EdgeServicesCacheStage("main",
             pipeline_id=main.id,
-            backend_stage_id=main_edge_services_backend_stage.id)
+            route_stage_id=main_edge_services_route_stage.id)
         main_edge_services_tls_stage = scaleway.EdgeServicesTlsStage("main",
             pipeline_id=main.id,
             cache_stage_id=main_edge_services_cache_stage.id,
@@ -285,9 +306,30 @@ class EdgeServicesPipeline(pulumi.CustomResource):
                 "bucket_name": "my-bucket-name",
                 "bucket_region": "fr-par",
             })
+        main_edge_services_waf_stage = scaleway.EdgeServicesWafStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=main_edge_services_backend_stage.id,
+            mode="enable",
+            paranoia_level=3)
+        main_edge_services_route_stage = scaleway.EdgeServicesRouteStage("main",
+            pipeline_id=main.id,
+            waf_stage_id=main_edge_services_waf_stage.id,
+            rules=[{
+                "backend_stage_id": main_edge_services_backend_stage.id,
+                "rule_http_match": {
+                    "method_filters": [
+                        "get",
+                        "post",
+                    ],
+                    "path_filter": {
+                        "path_filter_type": "regex",
+                        "value": ".*",
+                    },
+                },
+            }])
         main_edge_services_cache_stage = scaleway.EdgeServicesCacheStage("main",
             pipeline_id=main.id,
-            backend_stage_id=main_edge_services_backend_stage.id)
+            route_stage_id=main_edge_services_route_stage.id)
         main_edge_services_tls_stage = scaleway.EdgeServicesTlsStage("main",
             pipeline_id=main.id,
             cache_stage_id=main_edge_services_cache_stage.id,

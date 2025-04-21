@@ -41,6 +41,8 @@ export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOpt
 export interface GetCockpitPlanArgs {
     /**
      * Name of the pricing plan you want to retrieve information about.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     name: string;
 }
@@ -53,6 +55,9 @@ export interface GetCockpitPlanResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
+     */
     readonly name: string;
 }
 /**
@@ -92,6 +97,8 @@ export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulu
 export interface GetCockpitPlanOutputArgs {
     /**
      * Name of the pricing plan you want to retrieve information about.
+     *
+     * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     name: pulumi.Input<string>;
 }

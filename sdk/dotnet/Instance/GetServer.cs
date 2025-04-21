@@ -160,6 +160,7 @@ namespace Pulumiverse.Scaleway.Instance
         public readonly string PrivateIp;
         public readonly ImmutableArray<Outputs.GetServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
+        public readonly bool Protected;
         /// <summary>
         /// The public IP address of the server.
         /// </summary>
@@ -236,6 +237,8 @@ namespace Pulumiverse.Scaleway.Instance
 
             string? projectId,
 
+            bool @protected,
+
             string publicIp,
 
             ImmutableArray<Outputs.GetServerPublicIpResult> publicIps,
@@ -278,6 +281,7 @@ namespace Pulumiverse.Scaleway.Instance
             PrivateIp = privateIp;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
+            Protected = @protected;
             PublicIp = publicIp;
             PublicIps = publicIps;
             ReplaceOnTypeChange = replaceOnTypeChange;

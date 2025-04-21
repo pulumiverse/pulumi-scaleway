@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, protected=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -88,6 +88,9 @@ class GetServerResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if protected and not isinstance(protected, bool):
+            raise TypeError("Expected argument 'protected' to be a bool")
+        pulumi.set(__self__, "protected", protected)
         if public_ip and not isinstance(public_ip, str):
             raise TypeError("Expected argument 'public_ip' to be a str")
         pulumi.set(__self__, "public_ip", public_ip)
@@ -263,6 +266,11 @@ class GetServerResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter
+    def protected(self) -> bool:
+        return pulumi.get(self, "protected")
+
+    @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
         """
@@ -366,6 +374,7 @@ class AwaitableGetServerResult(GetServerResult):
             private_ip=self.private_ip,
             private_networks=self.private_networks,
             project_id=self.project_id,
+            protected=self.protected,
             public_ip=self.public_ip,
             public_ips=self.public_ips,
             replace_on_type_change=self.replace_on_type_change,
@@ -422,6 +431,7 @@ def get_server(name: Optional[str] = None,
         private_ip=pulumi.get(__ret__, 'private_ip'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        protected=pulumi.get(__ret__, 'protected'),
         public_ip=pulumi.get(__ret__, 'public_ip'),
         public_ips=pulumi.get(__ret__, 'public_ips'),
         replace_on_type_change=pulumi.get(__ret__, 'replace_on_type_change'),
@@ -475,6 +485,7 @@ def get_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         private_ip=pulumi.get(__response__, 'private_ip'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
+        protected=pulumi.get(__response__, 'protected'),
         public_ip=pulumi.get(__response__, 'public_ip'),
         public_ips=pulumi.get(__response__, 'public_ips'),
         replace_on_type_change=pulumi.get(__response__, 'replace_on_type_change'),

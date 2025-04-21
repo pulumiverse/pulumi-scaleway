@@ -74,13 +74,13 @@ namespace Pulumiverse.Scaleway
     public partial class EdgeServicesTlsStage : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The backend stage ID the TLS stage will be linked to.
+        /// The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Output("backendStageId")]
         public Output<string> BackendStageId { get; private set; } = null!;
 
         /// <summary>
-        /// The cache stage ID the TLS stage will be linked to.
+        /// The cache stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Output("cacheStageId")]
         public Output<string> CacheStageId { get; private set; } = null!;
@@ -116,6 +116,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// The route stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Output("routeStageId")]
+        public Output<string> RouteStageId { get; private set; } = null!;
+
+        /// <summary>
         /// The TLS secrets.
         /// </summary>
         [Output("secrets")]
@@ -126,6 +132,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The WAF stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Output("wafStageId")]
+        public Output<string> WafStageId { get; private set; } = null!;
 
 
         /// <summary>
@@ -175,13 +187,13 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesTlsStageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the TLS stage will be linked to.
+        /// The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The cache stage ID the TLS stage will be linked to.
+        /// The cache stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("cacheStageId")]
         public Input<string>? CacheStageId { get; set; }
@@ -204,6 +216,12 @@ namespace Pulumiverse.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The route stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("routeStageId")]
+        public Input<string>? RouteStageId { get; set; }
+
         [Input("secrets")]
         private InputList<Inputs.EdgeServicesTlsStageSecretArgs>? _secrets;
 
@@ -216,6 +234,12 @@ namespace Pulumiverse.Scaleway
             set => _secrets = value;
         }
 
+        /// <summary>
+        /// The WAF stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("wafStageId")]
+        public Input<string>? WafStageId { get; set; }
+
         public EdgeServicesTlsStageArgs()
         {
         }
@@ -225,13 +249,13 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesTlsStageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the TLS stage will be linked to.
+        /// The backend stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The cache stage ID the TLS stage will be linked to.
+        /// The cache stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         /// </summary>
         [Input("cacheStageId")]
         public Input<string>? CacheStageId { get; set; }
@@ -266,6 +290,12 @@ namespace Pulumiverse.Scaleway
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// The route stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("routeStageId")]
+        public Input<string>? RouteStageId { get; set; }
+
         [Input("secrets")]
         private InputList<Inputs.EdgeServicesTlsStageSecretGetArgs>? _secrets;
 
@@ -283,6 +313,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The WAF stage ID the TLS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// </summary>
+        [Input("wafStageId")]
+        public Input<string>? WafStageId { get; set; }
 
         public EdgeServicesTlsStageState()
         {

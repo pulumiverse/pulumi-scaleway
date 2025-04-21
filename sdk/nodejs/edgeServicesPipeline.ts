@@ -38,9 +38,32 @@ import * as utilities from "./utilities";
  *         bucketRegion: "fr-par",
  *     },
  * });
- * const mainEdgeServicesCacheStage = new scaleway.EdgeServicesCacheStage("main", {
+ * const mainEdgeServicesWafStage = new scaleway.EdgeServicesWafStage("main", {
  *     pipelineId: main.id,
  *     backendStageId: mainEdgeServicesBackendStage.id,
+ *     mode: "enable",
+ *     paranoiaLevel: 3,
+ * });
+ * const mainEdgeServicesRouteStage = new scaleway.EdgeServicesRouteStage("main", {
+ *     pipelineId: main.id,
+ *     wafStageId: mainEdgeServicesWafStage.id,
+ *     rules: [{
+ *         backendStageId: mainEdgeServicesBackendStage.id,
+ *         ruleHttpMatch: {
+ *             methodFilters: [
+ *                 "get",
+ *                 "post",
+ *             ],
+ *             pathFilter: {
+ *                 pathFilterType: "regex",
+ *                 value: ".*",
+ *             },
+ *         },
+ *     }],
+ * });
+ * const mainEdgeServicesCacheStage = new scaleway.EdgeServicesCacheStage("main", {
+ *     pipelineId: main.id,
+ *     routeStageId: mainEdgeServicesRouteStage.id,
  * });
  * const mainEdgeServicesTlsStage = new scaleway.EdgeServicesTlsStage("main", {
  *     pipelineId: main.id,
