@@ -48,6 +48,11 @@ func NewProvider(ctx *pulumi.Context,
 			args.AccessKey = pulumi.StringPtr(d.(string))
 		}
 	}
+	if args.OrganizationId == nil {
+		if d := internal.GetEnvOrDefault(nil, nil, "SCW_ORGANIZATION_ID"); d != nil {
+			args.OrganizationId = pulumi.StringPtr(d.(string))
+		}
+	}
 	if args.ProjectId == nil {
 		if d := internal.GetEnvOrDefault(nil, nil, "SCW_DEFAULT_PROJECT_ID"); d != nil {
 			args.ProjectId = pulumi.StringPtr(d.(string))

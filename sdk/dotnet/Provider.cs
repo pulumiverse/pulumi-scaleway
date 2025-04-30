@@ -147,6 +147,7 @@ namespace Pulumiverse.Scaleway
         public ProviderArgs()
         {
             AccessKey = Utilities.GetEnv("SCW_ACCESS_KEY");
+            OrganizationId = Utilities.GetEnv("SCW_ORGANIZATION_ID");
             ProjectId = Utilities.GetEnv("SCW_DEFAULT_PROJECT_ID");
             Region = Utilities.GetEnv("SCW_DEFAULT_REGION");
             SecretKey = Utilities.GetEnv("SCW_SECRET_KEY");

@@ -52,7 +52,7 @@ namespace Pulumiverse.Scaleway
             set => _apiUrl.Set(value);
         }
 
-        private static readonly __Value<string?> _organizationId = new __Value<string?>(() => __config.Get("organizationId"));
+        private static readonly __Value<string?> _organizationId = new __Value<string?>(() => __config.Get("organizationId") ?? Utilities.GetEnv("SCW_ORGANIZATION_ID"));
         /// <summary>
         /// The Scaleway organization ID.
         /// </summary>

@@ -31,7 +31,15 @@ func GetApiUrl(ctx *pulumi.Context) string {
 
 // The Scaleway organization ID.
 func GetOrganizationId(ctx *pulumi.Context) string {
-	return config.Get(ctx, "scaleway:organizationId")
+	v, err := config.Try(ctx, "scaleway:organizationId")
+	if err == nil {
+		return v
+	}
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "SCW_ORGANIZATION_ID"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The Scaleway profile to use.
