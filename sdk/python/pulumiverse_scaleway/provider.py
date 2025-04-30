@@ -44,6 +44,8 @@ class ProviderArgs:
             pulumi.set(__self__, "access_key", access_key)
         if api_url is not None:
             pulumi.set(__self__, "api_url", api_url)
+        if organization_id is None:
+            organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
         if profile is not None:
@@ -241,6 +243,8 @@ class Provider(pulumi.ProviderResource):
                 access_key = _utilities.get_env('SCW_ACCESS_KEY')
             __props__.__dict__["access_key"] = access_key
             __props__.__dict__["api_url"] = api_url
+            if organization_id is None:
+                organization_id = _utilities.get_env('SCW_ORGANIZATION_ID')
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["profile"] = profile
             if project_id is None:

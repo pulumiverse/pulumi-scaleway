@@ -39,7 +39,7 @@ class _ExportableConfig(types.ModuleType):
         """
         The Scaleway organization ID.
         """
-        return __config__.get('organizationId')
+        return __config__.get('organizationId') or _utilities.get_env('SCW_ORGANIZATION_ID')
 
     @property
     def profile(self) -> Optional[str]:
