@@ -62,25 +62,7 @@ class AwaitableGetPlanResult(GetPlanResult):
 def get_plan(name: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPlanResult:
     """
-    The `observability_get_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
-
-    Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-
-    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-
-    ## Fetch and associate a pricing plan to a Cockpit
-
-    The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
-
-    premium = scaleway.observability.get_plan(name="premium")
-    main = scaleway.observability.Cockpit("main", plan=premium.id)
-    ```
-
+    Use this data source to access information about an existing resource.
 
     :param str name: Name of the pricing plan you want to retrieve information about.
     """
@@ -95,25 +77,7 @@ def get_plan(name: Optional[str] = None,
 def get_plan_output(name: Optional[pulumi.Input[str]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPlanResult]:
     """
-    The `observability_get_plan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
-
-    Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-
-    Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-
-    ## Fetch and associate a pricing plan to a Cockpit
-
-    The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-
-    ```python
-    import pulumi
-    import pulumi_scaleway as scaleway
-    import pulumiverse_scaleway as scaleway
-
-    premium = scaleway.observability.get_plan(name="premium")
-    main = scaleway.observability.Cockpit("main", plan=premium.id)
-    ```
-
+    Use this data source to access information about an existing resource.
 
     :param str name: Name of the pricing plan you want to retrieve information about.
     """

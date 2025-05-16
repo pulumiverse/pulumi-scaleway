@@ -15,6 +15,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'AclAclRuleArgs',
+    'AclAclRuleArgsDict',
     'ClusterAutoUpgradeArgs',
     'ClusterAutoUpgradeArgsDict',
     'ClusterAutoscalerConfigArgs',
@@ -25,11 +27,120 @@ __all__ = [
     'ClusterOpenIdConnectConfigArgsDict',
     'PoolNodeArgs',
     'PoolNodeArgsDict',
+    'PoolNodePrivateIpArgs',
+    'PoolNodePrivateIpArgsDict',
     'PoolUpgradePolicyArgs',
     'PoolUpgradePolicyArgsDict',
 ]
 
 MYPY = False
+
+if not MYPY:
+    class AclAclRuleArgsDict(TypedDict):
+        description: NotRequired[pulumi.Input[str]]
+        """
+        A text describing this rule.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the ACL resource. It is the same as the ID of the cluster.
+        """
+        ip: NotRequired[pulumi.Input[str]]
+        """
+        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+
+        > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
+        """
+        scaleway_ranges: NotRequired[pulumi.Input[bool]]
+        """
+        Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+        Only one rule with this field set to true can be added.
+
+        > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        """
+elif False:
+    AclAclRuleArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AclAclRuleArgs:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
+                 ip: Optional[pulumi.Input[str]] = None,
+                 scaleway_ranges: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] description: A text describing this rule.
+        :param pulumi.Input[str] id: The ID of the ACL resource. It is the same as the ID of the cluster.
+        :param pulumi.Input[str] ip: The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+               
+               > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
+        :param pulumi.Input[bool] scaleway_ranges: Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+               Only one rule with this field set to true can be added.
+               
+               > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if scaleway_ranges is not None:
+            pulumi.set(__self__, "scaleway_ranges", scaleway_ranges)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A text describing this rule.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the ACL resource. It is the same as the ID of the cluster.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+
+        > **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
+        """
+        return pulumi.get(self, "ip")
+
+    @ip.setter
+    def ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter(name="scalewayRanges")
+    def scaleway_ranges(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+        Only one rule with this field set to true can be added.
+
+        > **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        """
+        return pulumi.get(self, "scaleway_ranges")
+
+    @scaleway_ranges.setter
+    def scaleway_ranges(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "scaleway_ranges", value)
+
 
 if not MYPY:
     class ClusterAutoUpgradeArgsDict(TypedDict):
@@ -559,11 +670,19 @@ class ClusterOpenIdConnectConfigArgs:
 
 if not MYPY:
     class PoolNodeArgsDict(TypedDict):
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IP address resource.
+        """
         name: NotRequired[pulumi.Input[str]]
         """
         The name for the pool.
 
         > **Important:** Updates to this field will recreate a new resource.
+        """
+        private_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgsDict']]]]
+        """
+        The list of private IPv4 and IPv6 addresses associated with the node.
         """
         public_ip: NotRequired[pulumi.Input[str]]
         """
@@ -583,20 +702,28 @@ elif False:
 @pulumi.input_type
 class PoolNodeArgs:
     def __init__(__self__, *,
+                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]] = None,
                  public_ip: Optional[pulumi.Input[str]] = None,
                  public_ip_v6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[str] id: The ID of the IP address resource.
         :param pulumi.Input[str] name: The name for the pool.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param pulumi.Input[str] public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param pulumi.Input[str] public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param pulumi.Input[str] status: The status of the node.
         """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if public_ip is not None:
             warnings.warn("""Please use the official Kubernetes provider and the kubernetes_nodes data source""", DeprecationWarning)
             pulumi.log.warn("""public_ip is deprecated: Please use the official Kubernetes provider and the kubernetes_nodes data source""")
@@ -612,6 +739,18 @@ class PoolNodeArgs:
 
     @property
     @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
         The name for the pool.
@@ -623,6 +762,18 @@ class PoolNodeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the node.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PoolNodePrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="publicIp")
@@ -661,6 +812,58 @@ class PoolNodeArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+
+if not MYPY:
+    class PoolNodePrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IP address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IP address resource.
+        """
+elif False:
+    PoolNodePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PoolNodePrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IP address.
+        :param pulumi.Input[str] id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:

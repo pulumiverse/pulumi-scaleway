@@ -261,6 +261,7 @@ class _LoadbalancerState:
                  ipv6_address: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -284,6 +285,7 @@ class _LoadbalancerState:
         :param pulumi.Input[str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateNetworkArgs']]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
@@ -314,6 +316,8 @@ class _LoadbalancerState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -446,6 +450,18 @@ class _LoadbalancerState:
     @organization_id.setter
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetworks")
@@ -843,6 +859,7 @@ class Loadbalancer(pulumi.CustomResource):
             __props__.__dict__["ip_address"] = None
             __props__.__dict__["ipv6_address"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["private_ips"] = None
             __props__.__dict__["region"] = None
         super(Loadbalancer, __self__).__init__(
             'scaleway:index/loadbalancer:Loadbalancer',
@@ -863,6 +880,7 @@ class Loadbalancer(pulumi.CustomResource):
             ipv6_address: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -891,6 +909,7 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[str] ipv6_address: The Load Balancer public IPv6 address.
         :param pulumi.Input[str] name: The name of the Load Balancer.
         :param pulumi.Input[str] organization_id: The ID of the Organization ID the Load Balancer is associated with.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateIpArgs', 'LoadbalancerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['LoadbalancerPrivateNetworkArgs', 'LoadbalancerPrivateNetworkArgsDict']]]] private_networks: List of private network to connect with your load balancer.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project the Load Balancer is associated with.
         :param pulumi.Input[str] region: The region of the resource
@@ -913,6 +932,7 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["ipv6_address"] = ipv6_address
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
@@ -999,6 +1019,14 @@ class Loadbalancer(pulumi.CustomResource):
         The ID of the Organization ID the Load Balancer is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> pulumi.Output[Sequence['outputs.LoadbalancerPrivateIp']]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="privateNetworks")

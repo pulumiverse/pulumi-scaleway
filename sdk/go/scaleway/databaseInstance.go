@@ -334,6 +334,8 @@ type DatabaseInstance struct {
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
 	// Password for the first user of the Database Instance.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps DatabaseInstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the Database
@@ -346,8 +348,7 @@ type DatabaseInstance struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
-	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -359,7 +360,7 @@ type DatabaseInstance struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
 	VolumeSizeInGb pulumi.IntOutput `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+	// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
@@ -450,6 +451,8 @@ type databaseInstanceState struct {
 	OrganizationId *string `pulumi:"organizationId"`
 	// Password for the first user of the Database Instance.
 	Password *string `pulumi:"password"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps []DatabaseInstancePrivateIp `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
 	PrivateNetwork *DatabaseInstancePrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the Database
@@ -462,8 +465,7 @@ type databaseInstanceState struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
-	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -475,7 +477,7 @@ type databaseInstanceState struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+	// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -527,6 +529,8 @@ type DatabaseInstanceState struct {
 	OrganizationId pulumi.StringPtrInput
 	// Password for the first user of the Database Instance.
 	Password pulumi.StringPtrInput
+	// The private IPv4 address associated with the resource.
+	PrivateIps DatabaseInstancePrivateIpArrayInput
 	// List of Private Networks endpoints of the Database Instance.
 	PrivateNetwork DatabaseInstancePrivateNetworkPtrInput
 	// `projectId`) The ID of the project the Database
@@ -539,8 +543,7 @@ type DatabaseInstanceState struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
-	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -552,7 +555,7 @@ type DatabaseInstanceState struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+	// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -606,8 +609,7 @@ type databaseInstanceArgs struct {
 	Region *string `pulumi:"region"`
 	// Map of engine settings to be set on a running instance.
 	Settings map[string]string `pulumi:"settings"`
-	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
@@ -619,7 +621,7 @@ type databaseInstanceArgs struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
 	VolumeSizeInGb *int `pulumi:"volumeSizeInGb"`
-	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+	// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 	VolumeType *string `pulumi:"volumeType"`
 }
 
@@ -670,8 +672,7 @@ type DatabaseInstanceArgs struct {
 	Region pulumi.StringPtrInput
 	// Map of engine settings to be set on a running instance.
 	Settings pulumi.StringMapInput
-	// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-	// captured in the specified snapshot. Conflicts with the `engine` attribute.
+	// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
@@ -683,7 +684,7 @@ type DatabaseInstanceArgs struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
 	VolumeSizeInGb pulumi.IntPtrInput
-	// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+	// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 	VolumeType pulumi.StringPtrInput
 }
 
@@ -872,6 +873,11 @@ func (o DatabaseInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The private IPv4 address associated with the resource.
+func (o DatabaseInstanceOutput) PrivateIps() DatabaseInstancePrivateIpArrayOutput {
+	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstancePrivateIpArrayOutput { return v.PrivateIps }).(DatabaseInstancePrivateIpArrayOutput)
+}
+
 // List of Private Networks endpoints of the Database Instance.
 func (o DatabaseInstanceOutput) PrivateNetwork() DatabaseInstancePrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(DatabaseInstancePrivateNetworkPtrOutput)
@@ -899,8 +905,7 @@ func (o DatabaseInstanceOutput) Settings() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringMapOutput { return v.Settings }).(pulumi.StringMapOutput)
 }
 
-// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-// captured in the specified snapshot. Conflicts with the `engine` attribute.
+// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
 func (o DatabaseInstanceOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }
@@ -924,7 +929,7 @@ func (o DatabaseInstanceOutput) VolumeSizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.VolumeSizeInGb }).(pulumi.IntOutput)
 }
 
-// Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+// Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
 func (o DatabaseInstanceOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }

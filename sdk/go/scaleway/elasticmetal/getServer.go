@@ -90,6 +90,7 @@ type LookupServerResult struct {
 	OsName                   string                    `pulumi:"osName"`
 	Partitioning             string                    `pulumi:"partitioning"`
 	Password                 string                    `pulumi:"password"`
+	PrivateIps               []GetServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks          []GetServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                   `pulumi:"projectId"`
 	ReinstallOnConfigChanges bool                      `pulumi:"reinstallOnConfigChanges"`
@@ -212,6 +213,10 @@ func (o LookupServerResultOutput) Partitioning() pulumi.StringOutput {
 
 func (o LookupServerResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) PrivateIps() GetServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupServerResult) []GetServerPrivateIp { return v.PrivateIps }).(GetServerPrivateIpArrayOutput)
 }
 
 func (o LookupServerResultOutput) PrivateNetworks() GetServerPrivateNetworkArrayOutput {

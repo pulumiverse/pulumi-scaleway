@@ -16,306 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
-//				Name: pulumi.StringRef("main"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("EM-I220E-NVME"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
-//				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String("d17d6872-0412-45d9-a198-af82c34d3c5c"),
-//				SshKeyIds: pulumi.StringArray{
-//					mainScalewayAccountSshKey.Id,
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With option
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
-//				Name: pulumi.StringRef("main"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
-//				Zone:    pulumi.StringRef("fr-par-2"),
-//				Name:    pulumi.StringRef("Ubuntu"),
-//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("EM-B112X-SSD"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			privateNetwork, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("Private Network"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			remoteAccess, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("Remote Access"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
-//				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
-//				SshKeyIds: pulumi.StringArray{
-//					mainScalewayAccountSshKey.Id,
-//				},
-//				Options: elasticmetal.ServerOptionArray{
-//					&elasticmetal.ServerOptionArgs{
-//						Id: pulumi.String(privateNetwork.OptionId),
-//					},
-//					&elasticmetal.ServerOptionArgs{
-//						Id: pulumi.String(remoteAccess.OptionId),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With private network
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
-//				Name: pulumi.StringRef("main"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
-//				Zone:    pulumi.StringRef("fr-par-2"),
-//				Name:    pulumi.StringRef("Ubuntu"),
-//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("EM-B112X-SSD"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			privateNetwork, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("Private Network"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				Region: pulumi.String("fr-par"),
-//				Name:   pulumi.String("baremetal_private_network"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
-//				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
-//				SshKeyIds: pulumi.StringArray{
-//					mainScalewayAccountSshKey.Id,
-//				},
-//				Options: elasticmetal.ServerOptionArray{
-//					&elasticmetal.ServerOptionArgs{
-//						Id: pulumi.String(privateNetwork.OptionId),
-//					},
-//				},
-//				PrivateNetworks: elasticmetal.ServerPrivateNetworkArray{
-//					&elasticmetal.ServerPrivateNetworkArgs{
-//						Id: pn.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With IPAM IP IDs
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
-//				Name: pulumi.String("vpc_baremetal"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				Name: pulumi.String("private_network_baremetal"),
-//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
-//					Subnet: pulumi.String("172.16.64.0/22"),
-//				},
-//				VpcId: vpc01.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			ip01, err := ipam.NewIp(ctx, "ip01", &ipam.IpArgs{
-//				Address: pulumi.String("172.16.64.7"),
-//				Sources: ipam.IpSourceArray{
-//					&ipam.IpSourceArgs{
-//						PrivateNetworkId: pn01.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
-//				Name: pulumi.StringRef("main"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
-//				Zone:    pulumi.StringRef("fr-par-1"),
-//				Name:    pulumi.StringRef("Ubuntu"),
-//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-1"),
-//				Name: pulumi.StringRef("EM-A115X-SSD"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			privateNetwork, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
-//				Zone: pulumi.StringRef("fr-par-1"),
-//				Name: pulumi.StringRef("Private Network"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
-//				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
-//				SshKeyIds: pulumi.StringArray{
-//					myKeyScalewayAccountSshKey.Id,
-//				},
-//				Options: elasticmetal.ServerOptionArray{
-//					&elasticmetal.ServerOptionArgs{
-//						Id: pulumi.String(privateNetwork.OptionId),
-//					},
-//				},
-//				PrivateNetworks: elasticmetal.ServerPrivateNetworkArray{
-//					&elasticmetal.ServerPrivateNetworkArgs{
-//						Id: pn01.ID(),
-//						IpamIpIds: pulumi.StringArray{
-//							ip01.ID(),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ### Without install config
 //
 // ```go
@@ -337,7 +37,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
 //				Zone:                   pulumi.String("fr-par-2"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				InstallConfigAfterward: pulumi.Bool(true),
@@ -368,7 +68,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			cfg := config.New(ctx, "")
-//			configCustomPartitioning := "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}"
+//			configCustomPartitioning := "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"boot\",\"number\":2,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"root\",\"number\":3,\"size\":1018839433216,\"useAllAvailableSpace\":false}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"boot\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"data\",\"number\":2,\"size\":1018839433216,\"useAllAvailableSpace\":false}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/nvme0n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/nvme0n1p3\",\"format\":\"ext4\",\"mountpoint\":\"/\"},{\"device\":\"/dev/nvme1n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/data\"}],\"raids\":[]}"
 //			if param := cfg.Get("configCustomPartitioning"); param != "" {
 //				configCustomPartitioning = param
 //			}
@@ -380,8 +80,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			main, err := iam.NewSshKey(ctx, "main", &iam.SshKeyArgs{
-//				Name: pulumi.String("main"),
+//			mySshKey, err := iam.NewSshKey(ctx, "my_ssh_key", &iam.SshKeyArgs{
+//				Name:      pulumi.String("my_ssh_key"),
+//				PublicKey: pulumi.String("ssh XXXXXXXXXXX"),
 //			})
 //			if err != nil {
 //				return err
@@ -394,8 +95,8 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = elasticmetal.NewServer(ctx, "base", &elasticmetal.ServerArgs{
-//				Name:         pulumi.String("%s"),
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
+//				Name:         pulumi.String("my_super_server"),
 //				Zone:         pulumi.String("fr-par-1"),
 //				Description:  pulumi.String("test a description"),
 //				Offer:        pulumi.String(myOffer.OfferId),
@@ -407,7 +108,7 @@ import (
 //					pulumi.String("minimal"),
 //				},
 //				SshKeyIds: pulumi.StringArray{
-//					main.ID(),
+//					mySshKey.ID(),
 //				},
 //			})
 //			if err != nil {
@@ -446,7 +147,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = elasticmetal.NewServer(ctx, "server01", &elasticmetal.ServerArgs{
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				Zone:                   pulumi.String("%s"),
@@ -483,7 +184,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = elasticmetal.NewServer(ctx, "server01", &elasticmetal.ServerArgs{
+//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
 //				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
 //				Offer:                  pulumi.String(myOffer.OfferId),
 //				Zone:                   pulumi.String("fr-par-1"),
@@ -552,6 +253,8 @@ type Server struct {
 	Partitioning pulumi.StringPtrOutput `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
 	PrivateNetworks ServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
@@ -663,6 +366,8 @@ type serverState struct {
 	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []ServerPrivateIp `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
@@ -725,6 +430,8 @@ type ServerState struct {
 	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
 	PrivateNetworks ServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
@@ -1019,6 +726,11 @@ func (o ServerOutput) Partitioning() pulumi.StringPtrOutput {
 // Password used for the installation. May be required depending on used os.
 func (o ServerOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o ServerOutput) PrivateIps() ServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v *Server) ServerPrivateIpArrayOutput { return v.PrivateIps }).(ServerPrivateIpArrayOutput)
 }
 
 // The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)

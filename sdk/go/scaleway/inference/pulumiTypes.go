@@ -401,13 +401,471 @@ func (o DeploymentPublicEndpointPtrOutput) Url() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type ModelNodesSupport struct {
+	// The type of node supported.
+	NodeTypeName *string `pulumi:"nodeTypeName"`
+	// A list of supported quantization options, including:
+	Quantizations []ModelNodesSupportQuantization `pulumi:"quantizations"`
+}
+
+// ModelNodesSupportInput is an input type that accepts ModelNodesSupportArgs and ModelNodesSupportOutput values.
+// You can construct a concrete instance of `ModelNodesSupportInput` via:
+//
+//	ModelNodesSupportArgs{...}
+type ModelNodesSupportInput interface {
+	pulumi.Input
+
+	ToModelNodesSupportOutput() ModelNodesSupportOutput
+	ToModelNodesSupportOutputWithContext(context.Context) ModelNodesSupportOutput
+}
+
+type ModelNodesSupportArgs struct {
+	// The type of node supported.
+	NodeTypeName pulumi.StringPtrInput `pulumi:"nodeTypeName"`
+	// A list of supported quantization options, including:
+	Quantizations ModelNodesSupportQuantizationArrayInput `pulumi:"quantizations"`
+}
+
+func (ModelNodesSupportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModelNodesSupport)(nil)).Elem()
+}
+
+func (i ModelNodesSupportArgs) ToModelNodesSupportOutput() ModelNodesSupportOutput {
+	return i.ToModelNodesSupportOutputWithContext(context.Background())
+}
+
+func (i ModelNodesSupportArgs) ToModelNodesSupportOutputWithContext(ctx context.Context) ModelNodesSupportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModelNodesSupportOutput)
+}
+
+// ModelNodesSupportArrayInput is an input type that accepts ModelNodesSupportArray and ModelNodesSupportArrayOutput values.
+// You can construct a concrete instance of `ModelNodesSupportArrayInput` via:
+//
+//	ModelNodesSupportArray{ ModelNodesSupportArgs{...} }
+type ModelNodesSupportArrayInput interface {
+	pulumi.Input
+
+	ToModelNodesSupportArrayOutput() ModelNodesSupportArrayOutput
+	ToModelNodesSupportArrayOutputWithContext(context.Context) ModelNodesSupportArrayOutput
+}
+
+type ModelNodesSupportArray []ModelNodesSupportInput
+
+func (ModelNodesSupportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ModelNodesSupport)(nil)).Elem()
+}
+
+func (i ModelNodesSupportArray) ToModelNodesSupportArrayOutput() ModelNodesSupportArrayOutput {
+	return i.ToModelNodesSupportArrayOutputWithContext(context.Background())
+}
+
+func (i ModelNodesSupportArray) ToModelNodesSupportArrayOutputWithContext(ctx context.Context) ModelNodesSupportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModelNodesSupportArrayOutput)
+}
+
+type ModelNodesSupportOutput struct{ *pulumi.OutputState }
+
+func (ModelNodesSupportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModelNodesSupport)(nil)).Elem()
+}
+
+func (o ModelNodesSupportOutput) ToModelNodesSupportOutput() ModelNodesSupportOutput {
+	return o
+}
+
+func (o ModelNodesSupportOutput) ToModelNodesSupportOutputWithContext(ctx context.Context) ModelNodesSupportOutput {
+	return o
+}
+
+// The type of node supported.
+func (o ModelNodesSupportOutput) NodeTypeName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ModelNodesSupport) *string { return v.NodeTypeName }).(pulumi.StringPtrOutput)
+}
+
+// A list of supported quantization options, including:
+func (o ModelNodesSupportOutput) Quantizations() ModelNodesSupportQuantizationArrayOutput {
+	return o.ApplyT(func(v ModelNodesSupport) []ModelNodesSupportQuantization { return v.Quantizations }).(ModelNodesSupportQuantizationArrayOutput)
+}
+
+type ModelNodesSupportArrayOutput struct{ *pulumi.OutputState }
+
+func (ModelNodesSupportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ModelNodesSupport)(nil)).Elem()
+}
+
+func (o ModelNodesSupportArrayOutput) ToModelNodesSupportArrayOutput() ModelNodesSupportArrayOutput {
+	return o
+}
+
+func (o ModelNodesSupportArrayOutput) ToModelNodesSupportArrayOutputWithContext(ctx context.Context) ModelNodesSupportArrayOutput {
+	return o
+}
+
+func (o ModelNodesSupportArrayOutput) Index(i pulumi.IntInput) ModelNodesSupportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ModelNodesSupport {
+		return vs[0].([]ModelNodesSupport)[vs[1].(int)]
+	}).(ModelNodesSupportOutput)
+}
+
+type ModelNodesSupportQuantization struct {
+	// Whether this quantization is allowed.
+	Allowed *bool `pulumi:"allowed"`
+	// Maximum context length supported by this quantization.
+	MaxContextSize *int `pulumi:"maxContextSize"`
+	// Number of bits used for quantization (e.g., 8, 16).
+	QuantizationBits *int `pulumi:"quantizationBits"`
+}
+
+// ModelNodesSupportQuantizationInput is an input type that accepts ModelNodesSupportQuantizationArgs and ModelNodesSupportQuantizationOutput values.
+// You can construct a concrete instance of `ModelNodesSupportQuantizationInput` via:
+//
+//	ModelNodesSupportQuantizationArgs{...}
+type ModelNodesSupportQuantizationInput interface {
+	pulumi.Input
+
+	ToModelNodesSupportQuantizationOutput() ModelNodesSupportQuantizationOutput
+	ToModelNodesSupportQuantizationOutputWithContext(context.Context) ModelNodesSupportQuantizationOutput
+}
+
+type ModelNodesSupportQuantizationArgs struct {
+	// Whether this quantization is allowed.
+	Allowed pulumi.BoolPtrInput `pulumi:"allowed"`
+	// Maximum context length supported by this quantization.
+	MaxContextSize pulumi.IntPtrInput `pulumi:"maxContextSize"`
+	// Number of bits used for quantization (e.g., 8, 16).
+	QuantizationBits pulumi.IntPtrInput `pulumi:"quantizationBits"`
+}
+
+func (ModelNodesSupportQuantizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (i ModelNodesSupportQuantizationArgs) ToModelNodesSupportQuantizationOutput() ModelNodesSupportQuantizationOutput {
+	return i.ToModelNodesSupportQuantizationOutputWithContext(context.Background())
+}
+
+func (i ModelNodesSupportQuantizationArgs) ToModelNodesSupportQuantizationOutputWithContext(ctx context.Context) ModelNodesSupportQuantizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModelNodesSupportQuantizationOutput)
+}
+
+// ModelNodesSupportQuantizationArrayInput is an input type that accepts ModelNodesSupportQuantizationArray and ModelNodesSupportQuantizationArrayOutput values.
+// You can construct a concrete instance of `ModelNodesSupportQuantizationArrayInput` via:
+//
+//	ModelNodesSupportQuantizationArray{ ModelNodesSupportQuantizationArgs{...} }
+type ModelNodesSupportQuantizationArrayInput interface {
+	pulumi.Input
+
+	ToModelNodesSupportQuantizationArrayOutput() ModelNodesSupportQuantizationArrayOutput
+	ToModelNodesSupportQuantizationArrayOutputWithContext(context.Context) ModelNodesSupportQuantizationArrayOutput
+}
+
+type ModelNodesSupportQuantizationArray []ModelNodesSupportQuantizationInput
+
+func (ModelNodesSupportQuantizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (i ModelNodesSupportQuantizationArray) ToModelNodesSupportQuantizationArrayOutput() ModelNodesSupportQuantizationArrayOutput {
+	return i.ToModelNodesSupportQuantizationArrayOutputWithContext(context.Background())
+}
+
+func (i ModelNodesSupportQuantizationArray) ToModelNodesSupportQuantizationArrayOutputWithContext(ctx context.Context) ModelNodesSupportQuantizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ModelNodesSupportQuantizationArrayOutput)
+}
+
+type ModelNodesSupportQuantizationOutput struct{ *pulumi.OutputState }
+
+func (ModelNodesSupportQuantizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (o ModelNodesSupportQuantizationOutput) ToModelNodesSupportQuantizationOutput() ModelNodesSupportQuantizationOutput {
+	return o
+}
+
+func (o ModelNodesSupportQuantizationOutput) ToModelNodesSupportQuantizationOutputWithContext(ctx context.Context) ModelNodesSupportQuantizationOutput {
+	return o
+}
+
+// Whether this quantization is allowed.
+func (o ModelNodesSupportQuantizationOutput) Allowed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ModelNodesSupportQuantization) *bool { return v.Allowed }).(pulumi.BoolPtrOutput)
+}
+
+// Maximum context length supported by this quantization.
+func (o ModelNodesSupportQuantizationOutput) MaxContextSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ModelNodesSupportQuantization) *int { return v.MaxContextSize }).(pulumi.IntPtrOutput)
+}
+
+// Number of bits used for quantization (e.g., 8, 16).
+func (o ModelNodesSupportQuantizationOutput) QuantizationBits() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ModelNodesSupportQuantization) *int { return v.QuantizationBits }).(pulumi.IntPtrOutput)
+}
+
+type ModelNodesSupportQuantizationArrayOutput struct{ *pulumi.OutputState }
+
+func (ModelNodesSupportQuantizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (o ModelNodesSupportQuantizationArrayOutput) ToModelNodesSupportQuantizationArrayOutput() ModelNodesSupportQuantizationArrayOutput {
+	return o
+}
+
+func (o ModelNodesSupportQuantizationArrayOutput) ToModelNodesSupportQuantizationArrayOutputWithContext(ctx context.Context) ModelNodesSupportQuantizationArrayOutput {
+	return o
+}
+
+func (o ModelNodesSupportQuantizationArrayOutput) Index(i pulumi.IntInput) ModelNodesSupportQuantizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ModelNodesSupportQuantization {
+		return vs[0].([]ModelNodesSupportQuantization)[vs[1].(int)]
+	}).(ModelNodesSupportQuantizationOutput)
+}
+
+type GetModelNodesSupport struct {
+	// The type of node supported.
+	NodeTypeName string `pulumi:"nodeTypeName"`
+	// A list of supported quantization options, including:
+	Quantizations []GetModelNodesSupportQuantization `pulumi:"quantizations"`
+}
+
+// GetModelNodesSupportInput is an input type that accepts GetModelNodesSupportArgs and GetModelNodesSupportOutput values.
+// You can construct a concrete instance of `GetModelNodesSupportInput` via:
+//
+//	GetModelNodesSupportArgs{...}
+type GetModelNodesSupportInput interface {
+	pulumi.Input
+
+	ToGetModelNodesSupportOutput() GetModelNodesSupportOutput
+	ToGetModelNodesSupportOutputWithContext(context.Context) GetModelNodesSupportOutput
+}
+
+type GetModelNodesSupportArgs struct {
+	// The type of node supported.
+	NodeTypeName pulumi.StringInput `pulumi:"nodeTypeName"`
+	// A list of supported quantization options, including:
+	Quantizations GetModelNodesSupportQuantizationArrayInput `pulumi:"quantizations"`
+}
+
+func (GetModelNodesSupportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModelNodesSupport)(nil)).Elem()
+}
+
+func (i GetModelNodesSupportArgs) ToGetModelNodesSupportOutput() GetModelNodesSupportOutput {
+	return i.ToGetModelNodesSupportOutputWithContext(context.Background())
+}
+
+func (i GetModelNodesSupportArgs) ToGetModelNodesSupportOutputWithContext(ctx context.Context) GetModelNodesSupportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModelNodesSupportOutput)
+}
+
+// GetModelNodesSupportArrayInput is an input type that accepts GetModelNodesSupportArray and GetModelNodesSupportArrayOutput values.
+// You can construct a concrete instance of `GetModelNodesSupportArrayInput` via:
+//
+//	GetModelNodesSupportArray{ GetModelNodesSupportArgs{...} }
+type GetModelNodesSupportArrayInput interface {
+	pulumi.Input
+
+	ToGetModelNodesSupportArrayOutput() GetModelNodesSupportArrayOutput
+	ToGetModelNodesSupportArrayOutputWithContext(context.Context) GetModelNodesSupportArrayOutput
+}
+
+type GetModelNodesSupportArray []GetModelNodesSupportInput
+
+func (GetModelNodesSupportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModelNodesSupport)(nil)).Elem()
+}
+
+func (i GetModelNodesSupportArray) ToGetModelNodesSupportArrayOutput() GetModelNodesSupportArrayOutput {
+	return i.ToGetModelNodesSupportArrayOutputWithContext(context.Background())
+}
+
+func (i GetModelNodesSupportArray) ToGetModelNodesSupportArrayOutputWithContext(ctx context.Context) GetModelNodesSupportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModelNodesSupportArrayOutput)
+}
+
+type GetModelNodesSupportOutput struct{ *pulumi.OutputState }
+
+func (GetModelNodesSupportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModelNodesSupport)(nil)).Elem()
+}
+
+func (o GetModelNodesSupportOutput) ToGetModelNodesSupportOutput() GetModelNodesSupportOutput {
+	return o
+}
+
+func (o GetModelNodesSupportOutput) ToGetModelNodesSupportOutputWithContext(ctx context.Context) GetModelNodesSupportOutput {
+	return o
+}
+
+// The type of node supported.
+func (o GetModelNodesSupportOutput) NodeTypeName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetModelNodesSupport) string { return v.NodeTypeName }).(pulumi.StringOutput)
+}
+
+// A list of supported quantization options, including:
+func (o GetModelNodesSupportOutput) Quantizations() GetModelNodesSupportQuantizationArrayOutput {
+	return o.ApplyT(func(v GetModelNodesSupport) []GetModelNodesSupportQuantization { return v.Quantizations }).(GetModelNodesSupportQuantizationArrayOutput)
+}
+
+type GetModelNodesSupportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModelNodesSupportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModelNodesSupport)(nil)).Elem()
+}
+
+func (o GetModelNodesSupportArrayOutput) ToGetModelNodesSupportArrayOutput() GetModelNodesSupportArrayOutput {
+	return o
+}
+
+func (o GetModelNodesSupportArrayOutput) ToGetModelNodesSupportArrayOutputWithContext(ctx context.Context) GetModelNodesSupportArrayOutput {
+	return o
+}
+
+func (o GetModelNodesSupportArrayOutput) Index(i pulumi.IntInput) GetModelNodesSupportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModelNodesSupport {
+		return vs[0].([]GetModelNodesSupport)[vs[1].(int)]
+	}).(GetModelNodesSupportOutput)
+}
+
+type GetModelNodesSupportQuantization struct {
+	// Whether this quantization is allowed.
+	Allowed bool `pulumi:"allowed"`
+	// Maximum context length supported by this quantization.
+	MaxContextSize int `pulumi:"maxContextSize"`
+	// Number of bits used for quantization (e.g., 8, 16).
+	QuantizationBits int `pulumi:"quantizationBits"`
+}
+
+// GetModelNodesSupportQuantizationInput is an input type that accepts GetModelNodesSupportQuantizationArgs and GetModelNodesSupportQuantizationOutput values.
+// You can construct a concrete instance of `GetModelNodesSupportQuantizationInput` via:
+//
+//	GetModelNodesSupportQuantizationArgs{...}
+type GetModelNodesSupportQuantizationInput interface {
+	pulumi.Input
+
+	ToGetModelNodesSupportQuantizationOutput() GetModelNodesSupportQuantizationOutput
+	ToGetModelNodesSupportQuantizationOutputWithContext(context.Context) GetModelNodesSupportQuantizationOutput
+}
+
+type GetModelNodesSupportQuantizationArgs struct {
+	// Whether this quantization is allowed.
+	Allowed pulumi.BoolInput `pulumi:"allowed"`
+	// Maximum context length supported by this quantization.
+	MaxContextSize pulumi.IntInput `pulumi:"maxContextSize"`
+	// Number of bits used for quantization (e.g., 8, 16).
+	QuantizationBits pulumi.IntInput `pulumi:"quantizationBits"`
+}
+
+func (GetModelNodesSupportQuantizationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (i GetModelNodesSupportQuantizationArgs) ToGetModelNodesSupportQuantizationOutput() GetModelNodesSupportQuantizationOutput {
+	return i.ToGetModelNodesSupportQuantizationOutputWithContext(context.Background())
+}
+
+func (i GetModelNodesSupportQuantizationArgs) ToGetModelNodesSupportQuantizationOutputWithContext(ctx context.Context) GetModelNodesSupportQuantizationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModelNodesSupportQuantizationOutput)
+}
+
+// GetModelNodesSupportQuantizationArrayInput is an input type that accepts GetModelNodesSupportQuantizationArray and GetModelNodesSupportQuantizationArrayOutput values.
+// You can construct a concrete instance of `GetModelNodesSupportQuantizationArrayInput` via:
+//
+//	GetModelNodesSupportQuantizationArray{ GetModelNodesSupportQuantizationArgs{...} }
+type GetModelNodesSupportQuantizationArrayInput interface {
+	pulumi.Input
+
+	ToGetModelNodesSupportQuantizationArrayOutput() GetModelNodesSupportQuantizationArrayOutput
+	ToGetModelNodesSupportQuantizationArrayOutputWithContext(context.Context) GetModelNodesSupportQuantizationArrayOutput
+}
+
+type GetModelNodesSupportQuantizationArray []GetModelNodesSupportQuantizationInput
+
+func (GetModelNodesSupportQuantizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (i GetModelNodesSupportQuantizationArray) ToGetModelNodesSupportQuantizationArrayOutput() GetModelNodesSupportQuantizationArrayOutput {
+	return i.ToGetModelNodesSupportQuantizationArrayOutputWithContext(context.Background())
+}
+
+func (i GetModelNodesSupportQuantizationArray) ToGetModelNodesSupportQuantizationArrayOutputWithContext(ctx context.Context) GetModelNodesSupportQuantizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetModelNodesSupportQuantizationArrayOutput)
+}
+
+type GetModelNodesSupportQuantizationOutput struct{ *pulumi.OutputState }
+
+func (GetModelNodesSupportQuantizationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (o GetModelNodesSupportQuantizationOutput) ToGetModelNodesSupportQuantizationOutput() GetModelNodesSupportQuantizationOutput {
+	return o
+}
+
+func (o GetModelNodesSupportQuantizationOutput) ToGetModelNodesSupportQuantizationOutputWithContext(ctx context.Context) GetModelNodesSupportQuantizationOutput {
+	return o
+}
+
+// Whether this quantization is allowed.
+func (o GetModelNodesSupportQuantizationOutput) Allowed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetModelNodesSupportQuantization) bool { return v.Allowed }).(pulumi.BoolOutput)
+}
+
+// Maximum context length supported by this quantization.
+func (o GetModelNodesSupportQuantizationOutput) MaxContextSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetModelNodesSupportQuantization) int { return v.MaxContextSize }).(pulumi.IntOutput)
+}
+
+// Number of bits used for quantization (e.g., 8, 16).
+func (o GetModelNodesSupportQuantizationOutput) QuantizationBits() pulumi.IntOutput {
+	return o.ApplyT(func(v GetModelNodesSupportQuantization) int { return v.QuantizationBits }).(pulumi.IntOutput)
+}
+
+type GetModelNodesSupportQuantizationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetModelNodesSupportQuantizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetModelNodesSupportQuantization)(nil)).Elem()
+}
+
+func (o GetModelNodesSupportQuantizationArrayOutput) ToGetModelNodesSupportQuantizationArrayOutput() GetModelNodesSupportQuantizationArrayOutput {
+	return o
+}
+
+func (o GetModelNodesSupportQuantizationArrayOutput) ToGetModelNodesSupportQuantizationArrayOutputWithContext(ctx context.Context) GetModelNodesSupportQuantizationArrayOutput {
+	return o
+}
+
+func (o GetModelNodesSupportQuantizationArrayOutput) Index(i pulumi.IntInput) GetModelNodesSupportQuantizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetModelNodesSupportQuantization {
+		return vs[0].([]GetModelNodesSupportQuantization)[vs[1].(int)]
+	}).(GetModelNodesSupportQuantizationOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateEndpointInput)(nil)).Elem(), DeploymentPrivateEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateEndpointPtrInput)(nil)).Elem(), DeploymentPrivateEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicEndpointInput)(nil)).Elem(), DeploymentPublicEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicEndpointPtrInput)(nil)).Elem(), DeploymentPublicEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ModelNodesSupportInput)(nil)).Elem(), ModelNodesSupportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ModelNodesSupportArrayInput)(nil)).Elem(), ModelNodesSupportArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ModelNodesSupportQuantizationInput)(nil)).Elem(), ModelNodesSupportQuantizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ModelNodesSupportQuantizationArrayInput)(nil)).Elem(), ModelNodesSupportQuantizationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetModelNodesSupportInput)(nil)).Elem(), GetModelNodesSupportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetModelNodesSupportArrayInput)(nil)).Elem(), GetModelNodesSupportArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetModelNodesSupportQuantizationInput)(nil)).Elem(), GetModelNodesSupportQuantizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetModelNodesSupportQuantizationArrayInput)(nil)).Elem(), GetModelNodesSupportQuantizationArray{})
 	pulumi.RegisterOutputType(DeploymentPrivateEndpointOutput{})
 	pulumi.RegisterOutputType(DeploymentPrivateEndpointPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentPublicEndpointOutput{})
 	pulumi.RegisterOutputType(DeploymentPublicEndpointPtrOutput{})
+	pulumi.RegisterOutputType(ModelNodesSupportOutput{})
+	pulumi.RegisterOutputType(ModelNodesSupportArrayOutput{})
+	pulumi.RegisterOutputType(ModelNodesSupportQuantizationOutput{})
+	pulumi.RegisterOutputType(ModelNodesSupportQuantizationArrayOutput{})
+	pulumi.RegisterOutputType(GetModelNodesSupportOutput{})
+	pulumi.RegisterOutputType(GetModelNodesSupportArrayOutput{})
+	pulumi.RegisterOutputType(GetModelNodesSupportQuantizationOutput{})
+	pulumi.RegisterOutputType(GetModelNodesSupportQuantizationArrayOutput{})
 }

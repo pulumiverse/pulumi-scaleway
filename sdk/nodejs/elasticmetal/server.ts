@@ -11,164 +11,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = scaleway.iam.getSshKey({
- *     name: "main",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-2",
- *     name: "EM-I220E-NVME",
- * });
- * const base = new scaleway.elasticmetal.Server("base", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: "d17d6872-0412-45d9-a198-af82c34d3c5c",
- *     sshKeyIds: [mainScalewayAccountSshKey.id],
- * });
- * ```
- *
- * ### With option
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = scaleway.iam.getSshKey({
- *     name: "main",
- * });
- * const myOs = scaleway.elasticmetal.getOs({
- *     zone: "fr-par-2",
- *     name: "Ubuntu",
- *     version: "22.04 LTS (Jammy Jellyfish)",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-2",
- *     name: "EM-B112X-SSD",
- * });
- * const privateNetwork = scaleway.elasticmetal.getOption({
- *     zone: "fr-par-2",
- *     name: "Private Network",
- * });
- * const remoteAccess = scaleway.elasticmetal.getOption({
- *     zone: "fr-par-2",
- *     name: "Remote Access",
- * });
- * const base = new scaleway.elasticmetal.Server("base", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [mainScalewayAccountSshKey.id],
- *     options: [
- *         {
- *             id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
- *         },
- *         {
- *             id: remoteAccess.then(remoteAccess => remoteAccess.optionId),
- *         },
- *     ],
- * });
- * ```
- *
- * ### With private network
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = scaleway.iam.getSshKey({
- *     name: "main",
- * });
- * const myOs = scaleway.elasticmetal.getOs({
- *     zone: "fr-par-2",
- *     name: "Ubuntu",
- *     version: "22.04 LTS (Jammy Jellyfish)",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-2",
- *     name: "EM-B112X-SSD",
- * });
- * const privateNetwork = scaleway.elasticmetal.getOption({
- *     zone: "fr-par-2",
- *     name: "Private Network",
- * });
- * const pn = new scaleway.network.PrivateNetwork("pn", {
- *     region: "fr-par",
- *     name: "baremetal_private_network",
- * });
- * const base = new scaleway.elasticmetal.Server("base", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [mainScalewayAccountSshKey.id],
- *     options: [{
- *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
- *     }],
- *     privateNetworks: [{
- *         id: pn.id,
- *     }],
- * });
- * ```
- *
- * ### With IPAM IP IDs
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "vpc_baremetal"});
- * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
- *     name: "private_network_baremetal",
- *     ipv4Subnet: {
- *         subnet: "172.16.64.0/22",
- *     },
- *     vpcId: vpc01.id,
- * });
- * const ip01 = new scaleway.ipam.Ip("ip01", {
- *     address: "172.16.64.7",
- *     sources: [{
- *         privateNetworkId: pn01.id,
- *     }],
- * });
- * const myKey = scaleway.iam.getSshKey({
- *     name: "main",
- * });
- * const myOs = scaleway.elasticmetal.getOs({
- *     zone: "fr-par-1",
- *     name: "Ubuntu",
- *     version: "22.04 LTS (Jammy Jellyfish)",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-1",
- *     name: "EM-A115X-SSD",
- * });
- * const privateNetwork = scaleway.elasticmetal.getOption({
- *     zone: "fr-par-1",
- *     name: "Private Network",
- * });
- * const base = new scaleway.elasticmetal.Server("base", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [myKeyScalewayAccountSshKey.id],
- *     options: [{
- *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
- *     }],
- *     privateNetworks: [{
- *         id: pn01.id,
- *         ipamIpIds: [ip01.id],
- *     }],
- * });
- * ```
- *
  * ### Without install config
  *
  * ```typescript
@@ -180,7 +22,7 @@ import * as utilities from "../utilities";
  *     zone: "fr-par-2",
  *     name: "EM-B112X-SSD",
  * });
- * const base = new scaleway.elasticmetal.Server("base", {
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
  *     zone: "fr-par-2",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     installConfigAfterward: true,
@@ -195,20 +37,23 @@ import * as utilities from "../utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * const config = new pulumi.Config();
- * const configCustomPartitioning = config.get("configCustomPartitioning") || "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912},{\"label\":\"swap\",\"number\":2,\"size\":4294967296},{\"label\":\"boot\",\"number\":3,\"size\":1073741824},{\"label\":\"root\",\"number\":4,\"size\":1017827045376}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"swap\",\"number\":1,\"size\":4294967296},{\"label\":\"boot\",\"number\":2,\"size\":1073741824},{\"label\":\"root\",\"number\":3,\"size\":1017827045376}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/md0\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/md1\",\"format\":\"ext4\",\"mountpoint\":\"/\"}],\"raids\":[{\"devices\":[\"/dev/nvme0n1p3\",\"/dev/nvme1n1p2\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md0\"},{\"devices\":[\"/dev/nvme0n1p4\",\"/dev/nvme1n1p3\"],\"level\":\"raid_level_1\",\"name\":\"/dev/md1\"}],\"zfs\":{\"pools\":[]}}";
+ * const configCustomPartitioning = config.get("configCustomPartitioning") || "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"boot\",\"number\":2,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"root\",\"number\":3,\"size\":1018839433216,\"useAllAvailableSpace\":false}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"boot\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"data\",\"number\":2,\"size\":1018839433216,\"useAllAvailableSpace\":false}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/nvme0n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/nvme0n1p3\",\"format\":\"ext4\",\"mountpoint\":\"/\"},{\"device\":\"/dev/nvme1n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/data\"}],\"raids\":[]}";
  * const myOs = scaleway.elasticmetal.getOs({
  *     zone: "fr-par-1",
  *     name: "Ubuntu",
  *     version: "22.04 LTS (Jammy Jellyfish)",
  * });
- * const main = new scaleway.iam.SshKey("main", {name: "main"});
+ * const mySshKey = new scaleway.iam.SshKey("my_ssh_key", {
+ *     name: "my_ssh_key",
+ *     publicKey: "ssh XXXXXXXXXXX",
+ * });
  * const myOffer = scaleway.elasticmetal.getOffer({
  *     zone: "fr-par-1",
  *     name: "EM-B220E-NVME",
  *     subscriptionPeriod: "hourly",
  * });
- * const base = new scaleway.elasticmetal.Server("base", {
- *     name: "%s",
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
+ *     name: "my_super_server",
  *     zone: "fr-par-1",
  *     description: "test a description",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
@@ -219,7 +64,7 @@ import * as utilities from "../utilities";
  *         "scaleway_baremetal_server",
  *         "minimal",
  *     ],
- *     sshKeyIds: [main.id],
+ *     sshKeyIds: [mySshKey.id],
  * });
  * ```
  *
@@ -240,7 +85,7 @@ import * as utilities from "../utilities";
  *     name: "EM-B220E-NVME",
  *     subscriptionPeriod: "hourly",
  * });
- * const server01 = new scaleway.elasticmetal.Server("server01", {
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
  *     name: "UpdateSubscriptionPeriod",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     zone: "%s",
@@ -260,7 +105,7 @@ import * as utilities from "../utilities";
  *     name: "EM-B220E-NVME",
  *     subscriptionPeriod: "monthly",
  * });
- * const server01 = new scaleway.elasticmetal.Server("server01", {
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
  *     name: "UpdateSubscriptionPeriod",
  *     offer: myOffer.then(myOffer => myOffer.offerId),
  *     zone: "fr-par-1",
@@ -383,6 +228,10 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.elasticmetal.ServerPrivateIp[]>;
+    /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */
     public readonly privateNetworks!: pulumi.Output<outputs.elasticmetal.ServerPrivateNetwork[] | undefined>;
@@ -450,6 +299,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["osName"] = state ? state.osName : undefined;
             resourceInputs["partitioning"] = state ? state.partitioning : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["reinstallOnConfigChanges"] = state ? state.reinstallOnConfigChanges : undefined;
@@ -490,6 +340,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["offerName"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["osName"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/baremetalServer:BaremetalServer" }] };
@@ -578,6 +429,10 @@ export interface ServerState {
      * Password used for the installation. May be required depending on used os.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.elasticmetal.ServerPrivateIp>[]>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */

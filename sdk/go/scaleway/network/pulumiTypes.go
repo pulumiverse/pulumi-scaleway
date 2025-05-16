@@ -288,6 +288,112 @@ func (o GatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) GatewayNet
 	}).(GatewayNetworkIpamConfigOutput)
 }
 
+type GatewayNetworkPrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id *string `pulumi:"id"`
+}
+
+// GatewayNetworkPrivateIpInput is an input type that accepts GatewayNetworkPrivateIpArgs and GatewayNetworkPrivateIpOutput values.
+// You can construct a concrete instance of `GatewayNetworkPrivateIpInput` via:
+//
+//	GatewayNetworkPrivateIpArgs{...}
+type GatewayNetworkPrivateIpInput interface {
+	pulumi.Input
+
+	ToGatewayNetworkPrivateIpOutput() GatewayNetworkPrivateIpOutput
+	ToGatewayNetworkPrivateIpOutputWithContext(context.Context) GatewayNetworkPrivateIpOutput
+}
+
+type GatewayNetworkPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (GatewayNetworkPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GatewayNetworkPrivateIpArgs) ToGatewayNetworkPrivateIpOutput() GatewayNetworkPrivateIpOutput {
+	return i.ToGatewayNetworkPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GatewayNetworkPrivateIpArgs) ToGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GatewayNetworkPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayNetworkPrivateIpOutput)
+}
+
+// GatewayNetworkPrivateIpArrayInput is an input type that accepts GatewayNetworkPrivateIpArray and GatewayNetworkPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GatewayNetworkPrivateIpArrayInput` via:
+//
+//	GatewayNetworkPrivateIpArray{ GatewayNetworkPrivateIpArgs{...} }
+type GatewayNetworkPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGatewayNetworkPrivateIpArrayOutput() GatewayNetworkPrivateIpArrayOutput
+	ToGatewayNetworkPrivateIpArrayOutputWithContext(context.Context) GatewayNetworkPrivateIpArrayOutput
+}
+
+type GatewayNetworkPrivateIpArray []GatewayNetworkPrivateIpInput
+
+func (GatewayNetworkPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GatewayNetworkPrivateIpArray) ToGatewayNetworkPrivateIpArrayOutput() GatewayNetworkPrivateIpArrayOutput {
+	return i.ToGatewayNetworkPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GatewayNetworkPrivateIpArray) ToGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GatewayNetworkPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GatewayNetworkPrivateIpArrayOutput)
+}
+
+type GatewayNetworkPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GatewayNetworkPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GatewayNetworkPrivateIpOutput) ToGatewayNetworkPrivateIpOutput() GatewayNetworkPrivateIpOutput {
+	return o
+}
+
+func (o GatewayNetworkPrivateIpOutput) ToGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GatewayNetworkPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o GatewayNetworkPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewayNetworkPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o GatewayNetworkPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GatewayNetworkPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type GatewayNetworkPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GatewayNetworkPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GatewayNetworkPrivateIpArrayOutput) ToGatewayNetworkPrivateIpArrayOutput() GatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GatewayNetworkPrivateIpArrayOutput) ToGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GatewayNetworkPrivateIpArrayOutput) Index(i pulumi.IntInput) GatewayNetworkPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GatewayNetworkPrivateIp {
+		return vs[0].([]GatewayNetworkPrivateIp)[vs[1].(int)]
+	}).(GatewayNetworkPrivateIpOutput)
+}
+
 type PrivateNetworkIpv4Subnet struct {
 	// The network address of the subnet in hexadecimal notation, e.g., '2001:db8::' for a '2001:db8::/64' subnet.
 	Address *string `pulumi:"address"`
@@ -794,6 +900,112 @@ func (o GetGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) GetGate
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewayNetworkIpamConfig {
 		return vs[0].([]GetGatewayNetworkIpamConfig)[vs[1].(int)]
 	}).(GetGatewayNetworkIpamConfigOutput)
+}
+
+type GetGatewayNetworkPrivateIp struct {
+	// The private IPv4 address.
+	Address string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id string `pulumi:"id"`
+}
+
+// GetGatewayNetworkPrivateIpInput is an input type that accepts GetGatewayNetworkPrivateIpArgs and GetGatewayNetworkPrivateIpOutput values.
+// You can construct a concrete instance of `GetGatewayNetworkPrivateIpInput` via:
+//
+//	GetGatewayNetworkPrivateIpArgs{...}
+type GetGatewayNetworkPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetGatewayNetworkPrivateIpOutput() GetGatewayNetworkPrivateIpOutput
+	ToGetGatewayNetworkPrivateIpOutputWithContext(context.Context) GetGatewayNetworkPrivateIpOutput
+}
+
+type GetGatewayNetworkPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetGatewayNetworkPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GetGatewayNetworkPrivateIpArgs) ToGetGatewayNetworkPrivateIpOutput() GetGatewayNetworkPrivateIpOutput {
+	return i.ToGetGatewayNetworkPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetGatewayNetworkPrivateIpArgs) ToGetGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GetGatewayNetworkPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayNetworkPrivateIpOutput)
+}
+
+// GetGatewayNetworkPrivateIpArrayInput is an input type that accepts GetGatewayNetworkPrivateIpArray and GetGatewayNetworkPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetGatewayNetworkPrivateIpArrayInput` via:
+//
+//	GetGatewayNetworkPrivateIpArray{ GetGatewayNetworkPrivateIpArgs{...} }
+type GetGatewayNetworkPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewayNetworkPrivateIpArrayOutput() GetGatewayNetworkPrivateIpArrayOutput
+	ToGetGatewayNetworkPrivateIpArrayOutputWithContext(context.Context) GetGatewayNetworkPrivateIpArrayOutput
+}
+
+type GetGatewayNetworkPrivateIpArray []GetGatewayNetworkPrivateIpInput
+
+func (GetGatewayNetworkPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GetGatewayNetworkPrivateIpArray) ToGetGatewayNetworkPrivateIpArrayOutput() GetGatewayNetworkPrivateIpArrayOutput {
+	return i.ToGetGatewayNetworkPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewayNetworkPrivateIpArray) ToGetGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GetGatewayNetworkPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayNetworkPrivateIpArrayOutput)
+}
+
+type GetGatewayNetworkPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayNetworkPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GetGatewayNetworkPrivateIpOutput) ToGetGatewayNetworkPrivateIpOutput() GetGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+func (o GetGatewayNetworkPrivateIpOutput) ToGetGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GetGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o GetGatewayNetworkPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayNetworkPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o GetGatewayNetworkPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayNetworkPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetGatewayNetworkPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayNetworkPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GetGatewayNetworkPrivateIpArrayOutput) ToGetGatewayNetworkPrivateIpArrayOutput() GetGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetGatewayNetworkPrivateIpArrayOutput) ToGetGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GetGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetGatewayNetworkPrivateIpArrayOutput) Index(i pulumi.IntInput) GetGatewayNetworkPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewayNetworkPrivateIp {
+		return vs[0].([]GetGatewayNetworkPrivateIp)[vs[1].(int)]
+	}).(GetGatewayNetworkPrivateIpOutput)
 }
 
 type GetPrivateNetworkIpv4Subnet struct {
@@ -1471,12 +1683,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclRuleArrayInput)(nil)).Elem(), AclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkIpamConfigInput)(nil)).Elem(), GatewayNetworkIpamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkIpamConfigArrayInput)(nil)).Elem(), GatewayNetworkIpamConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkPrivateIpInput)(nil)).Elem(), GatewayNetworkPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GatewayNetworkPrivateIpArrayInput)(nil)).Elem(), GatewayNetworkPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNetworkIpv4SubnetInput)(nil)).Elem(), PrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNetworkIpv4SubnetPtrInput)(nil)).Elem(), PrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNetworkIpv6SubnetInput)(nil)).Elem(), PrivateNetworkIpv6SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNetworkIpv6SubnetArrayInput)(nil)).Elem(), PrivateNetworkIpv6SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayNetworkIpamConfigInput)(nil)).Elem(), GetGatewayNetworkIpamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayNetworkIpamConfigArrayInput)(nil)).Elem(), GetGatewayNetworkIpamConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayNetworkPrivateIpInput)(nil)).Elem(), GetGatewayNetworkPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayNetworkPrivateIpArrayInput)(nil)).Elem(), GetGatewayNetworkPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateNetworkIpv4SubnetInput)(nil)).Elem(), GetPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetPrivateNetworkIpv4SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetPrivateNetworkIpv6SubnetArgs{})
@@ -1489,12 +1705,16 @@ func init() {
 	pulumi.RegisterOutputType(AclRuleArrayOutput{})
 	pulumi.RegisterOutputType(GatewayNetworkIpamConfigOutput{})
 	pulumi.RegisterOutputType(GatewayNetworkIpamConfigArrayOutput{})
+	pulumi.RegisterOutputType(GatewayNetworkPrivateIpOutput{})
+	pulumi.RegisterOutputType(GatewayNetworkPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(PrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(PrivateNetworkIpv4SubnetPtrOutput{})
 	pulumi.RegisterOutputType(PrivateNetworkIpv6SubnetOutput{})
 	pulumi.RegisterOutputType(PrivateNetworkIpv6SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetGatewayNetworkIpamConfigOutput{})
 	pulumi.RegisterOutputType(GetGatewayNetworkIpamConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewayNetworkPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetGatewayNetworkPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(GetPrivateNetworkIpv4SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetPrivateNetworkIpv6SubnetOutput{})

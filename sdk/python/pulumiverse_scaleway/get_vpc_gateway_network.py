@@ -29,7 +29,7 @@ class GetVpcGatewayNetworkResult:
     """
     A collection of values returned by getVpcGatewayNetwork.
     """
-    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_network_id=None, static_address=None, status=None, updated_at=None, zone=None):
+    def __init__(__self__, cleanup_dhcp=None, created_at=None, dhcp_id=None, enable_dhcp=None, enable_masquerade=None, gateway_id=None, gateway_network_id=None, id=None, ipam_configs=None, mac_address=None, private_ips=None, private_network_id=None, static_address=None, status=None, updated_at=None, zone=None):
         if cleanup_dhcp and not isinstance(cleanup_dhcp, bool):
             raise TypeError("Expected argument 'cleanup_dhcp' to be a bool")
         pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
@@ -60,6 +60,9 @@ class GetVpcGatewayNetworkResult:
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -130,6 +133,11 @@ class GetVpcGatewayNetworkResult:
         return pulumi.get(self, "mac_address")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetVpcGatewayNetworkPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[str]:
         return pulumi.get(self, "private_network_id")
@@ -171,6 +179,7 @@ class AwaitableGetVpcGatewayNetworkResult(GetVpcGatewayNetworkResult):
             id=self.id,
             ipam_configs=self.ipam_configs,
             mac_address=self.mac_address,
+            private_ips=self.private_ips,
             private_network_id=self.private_network_id,
             static_address=self.static_address,
             status=self.status,
@@ -229,6 +238,7 @@ def get_vpc_gateway_network(dhcp_id: Optional[str] = None,
         id=pulumi.get(__ret__, 'id'),
         ipam_configs=pulumi.get(__ret__, 'ipam_configs'),
         mac_address=pulumi.get(__ret__, 'mac_address'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         static_address=pulumi.get(__ret__, 'static_address'),
         status=pulumi.get(__ret__, 'status'),
@@ -284,6 +294,7 @@ def get_vpc_gateway_network_output(dhcp_id: Optional[pulumi.Input[Optional[str]]
         id=pulumi.get(__response__, 'id'),
         ipam_configs=pulumi.get(__response__, 'ipam_configs'),
         mac_address=pulumi.get(__response__, 'mac_address'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         static_address=pulumi.get(__response__, 'static_address'),
         status=pulumi.get(__response__, 'status'),

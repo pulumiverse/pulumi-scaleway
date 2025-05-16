@@ -80,6 +80,7 @@ export interface GetLoadBalancerResult {
     readonly lbId?: string;
     readonly name?: string;
     readonly organizationId: string;
+    readonly privateIps: outputs.loadbalancers.GetLoadBalancerPrivateIp[];
     readonly privateNetworks: outputs.loadbalancers.GetLoadBalancerPrivateNetwork[];
     readonly projectId?: string;
     readonly region: string;

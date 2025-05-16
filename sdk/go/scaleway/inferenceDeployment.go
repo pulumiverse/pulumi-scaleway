@@ -17,38 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/inference"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := inference.NewDeployment(ctx, "deployment", &inference.DeploymentArgs{
-//				Name:      pulumi.String("tf-inference-deployment"),
-//				NodeType:  pulumi.String("L4"),
-//				ModelName: pulumi.String("meta/llama-3.1-8b-instruct:fp8"),
-//				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
-//					IsEnabled: pulumi.Bool(true),
-//				},
-//				AcceptEula: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // Functions can be imported using, `{region}/{id}`, as shown below:
@@ -68,12 +36,12 @@ type InferenceDeployment struct {
 	// The date and time of the creation of the deployment.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The maximum size of the pool.
-	MaxSize pulumi.IntOutput `pulumi:"maxSize"`
+	MaxSize pulumi.IntPtrOutput `pulumi:"maxSize"`
 	// The minimum size of the pool.
-	MinSize pulumi.IntOutput `pulumi:"minSize"`
+	MinSize pulumi.IntPtrOutput `pulumi:"minSize"`
 	// The model id used for the deployment.
 	ModelId pulumi.StringOutput `pulumi:"modelId"`
-	// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+	// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
 	ModelName pulumi.StringOutput `pulumi:"modelName"`
 	// The deployment name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -85,6 +53,8 @@ type InferenceDeployment struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Configuration of the deployment's public endpoint.
 	PublicEndpoint InferenceDeploymentPublicEndpointPtrOutput `pulumi:"publicEndpoint"`
+	// The number of bits each model parameter should be quantized to
+	Quantization pulumi.IntPtrOutput `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of the pool.
@@ -104,8 +74,8 @@ func NewInferenceDeployment(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.ModelName == nil {
-		return nil, errors.New("invalid value for required argument 'ModelName'")
+	if args.ModelId == nil {
+		return nil, errors.New("invalid value for required argument 'ModelId'")
 	}
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
@@ -143,7 +113,7 @@ type inferenceDeploymentState struct {
 	MinSize *int `pulumi:"minSize"`
 	// The model id used for the deployment.
 	ModelId *string `pulumi:"modelId"`
-	// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+	// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
 	ModelName *string `pulumi:"modelName"`
 	// The deployment name.
 	Name *string `pulumi:"name"`
@@ -155,6 +125,8 @@ type inferenceDeploymentState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Configuration of the deployment's public endpoint.
 	PublicEndpoint *InferenceDeploymentPublicEndpoint `pulumi:"publicEndpoint"`
+	// The number of bits each model parameter should be quantized to
+	Quantization *int `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
 	Region *string `pulumi:"region"`
 	// The size of the pool.
@@ -178,7 +150,7 @@ type InferenceDeploymentState struct {
 	MinSize pulumi.IntPtrInput
 	// The model id used for the deployment.
 	ModelId pulumi.StringPtrInput
-	// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+	// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
 	ModelName pulumi.StringPtrInput
 	// The deployment name.
 	Name pulumi.StringPtrInput
@@ -190,6 +162,8 @@ type InferenceDeploymentState struct {
 	ProjectId pulumi.StringPtrInput
 	// Configuration of the deployment's public endpoint.
 	PublicEndpoint InferenceDeploymentPublicEndpointPtrInput
+	// The number of bits each model parameter should be quantized to
+	Quantization pulumi.IntPtrInput
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringPtrInput
 	// The size of the pool.
@@ -213,8 +187,8 @@ type inferenceDeploymentArgs struct {
 	MaxSize *int `pulumi:"maxSize"`
 	// The minimum size of the pool.
 	MinSize *int `pulumi:"minSize"`
-	// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
-	ModelName string `pulumi:"modelName"`
+	// The model id used for the deployment.
+	ModelId string `pulumi:"modelId"`
 	// The deployment name.
 	Name *string `pulumi:"name"`
 	// The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
@@ -225,6 +199,8 @@ type inferenceDeploymentArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Configuration of the deployment's public endpoint.
 	PublicEndpoint *InferenceDeploymentPublicEndpoint `pulumi:"publicEndpoint"`
+	// The number of bits each model parameter should be quantized to
+	Quantization *int `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
 	Region *string `pulumi:"region"`
 	// The tags associated with the deployment.
@@ -239,8 +215,8 @@ type InferenceDeploymentArgs struct {
 	MaxSize pulumi.IntPtrInput
 	// The minimum size of the pool.
 	MinSize pulumi.IntPtrInput
-	// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
-	ModelName pulumi.StringInput
+	// The model id used for the deployment.
+	ModelId pulumi.StringInput
 	// The deployment name.
 	Name pulumi.StringPtrInput
 	// The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
@@ -251,6 +227,8 @@ type InferenceDeploymentArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// Configuration of the deployment's public endpoint.
 	PublicEndpoint InferenceDeploymentPublicEndpointPtrInput
+	// The number of bits each model parameter should be quantized to
+	Quantization pulumi.IntPtrInput
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringPtrInput
 	// The tags associated with the deployment.
@@ -355,13 +333,13 @@ func (o InferenceDeploymentOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // The maximum size of the pool.
-func (o InferenceDeploymentOutput) MaxSize() pulumi.IntOutput {
-	return o.ApplyT(func(v *InferenceDeployment) pulumi.IntOutput { return v.MaxSize }).(pulumi.IntOutput)
+func (o InferenceDeploymentOutput) MaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InferenceDeployment) pulumi.IntPtrOutput { return v.MaxSize }).(pulumi.IntPtrOutput)
 }
 
 // The minimum size of the pool.
-func (o InferenceDeploymentOutput) MinSize() pulumi.IntOutput {
-	return o.ApplyT(func(v *InferenceDeployment) pulumi.IntOutput { return v.MinSize }).(pulumi.IntOutput)
+func (o InferenceDeploymentOutput) MinSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InferenceDeployment) pulumi.IntPtrOutput { return v.MinSize }).(pulumi.IntPtrOutput)
 }
 
 // The model id used for the deployment.
@@ -369,7 +347,7 @@ func (o InferenceDeploymentOutput) ModelId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringOutput { return v.ModelId }).(pulumi.StringOutput)
 }
 
-// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
 func (o InferenceDeploymentOutput) ModelName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringOutput { return v.ModelName }).(pulumi.StringOutput)
 }
@@ -397,6 +375,11 @@ func (o InferenceDeploymentOutput) ProjectId() pulumi.StringOutput {
 // Configuration of the deployment's public endpoint.
 func (o InferenceDeploymentOutput) PublicEndpoint() InferenceDeploymentPublicEndpointPtrOutput {
 	return o.ApplyT(func(v *InferenceDeployment) InferenceDeploymentPublicEndpointPtrOutput { return v.PublicEndpoint }).(InferenceDeploymentPublicEndpointPtrOutput)
+}
+
+// The number of bits each model parameter should be quantized to
+func (o InferenceDeploymentOutput) Quantization() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InferenceDeployment) pulumi.IntPtrOutput { return v.Quantization }).(pulumi.IntPtrOutput)
 }
 
 // `region`) The region in which the deployment is created.

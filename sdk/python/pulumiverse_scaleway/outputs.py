@@ -21,6 +21,7 @@ __all__ = [
     'BaremetalServerIpv4',
     'BaremetalServerIpv6',
     'BaremetalServerOption',
+    'BaremetalServerPrivateIp',
     'BaremetalServerPrivateNetwork',
     'CockpitAlertManagerContactPoint',
     'CockpitEndpoint',
@@ -34,6 +35,7 @@ __all__ = [
     'DatabaseAclAclRule',
     'DatabaseInstanceLoadBalancer',
     'DatabaseInstanceLogsPolicy',
+    'DatabaseInstancePrivateIp',
     'DatabaseInstancePrivateNetwork',
     'DatabaseInstanceReadReplica',
     'DatabaseReadReplicaDirectAccess',
@@ -57,10 +59,12 @@ __all__ = [
     'InferenceDeploymentPrivateEndpoint',
     'InferenceDeploymentPublicEndpoint',
     'InstanceImageAdditionalVolume',
+    'InstancePrivateNicPrivateIp',
     'InstanceSecurityGroupInboundRule',
     'InstanceSecurityGroupOutboundRule',
     'InstanceSecurityGroupRulesInboundRule',
     'InstanceSecurityGroupRulesOutboundRule',
+    'InstanceServerPrivateIp',
     'InstanceServerPrivateNetwork',
     'InstanceServerPublicIp',
     'InstanceServerRootVolume',
@@ -83,6 +87,7 @@ __all__ = [
     'KubernetesClusterKubeconfig',
     'KubernetesClusterOpenIdConnectConfig',
     'KubernetesNodePoolNode',
+    'KubernetesNodePoolNodePrivateIp',
     'KubernetesNodePoolUpgradePolicy',
     'LoadbalancerAclAction',
     'LoadbalancerAclActionRedirect',
@@ -96,6 +101,7 @@ __all__ = [
     'LoadbalancerFrontendAclAction',
     'LoadbalancerFrontendAclActionRedirect',
     'LoadbalancerFrontendAclMatch',
+    'LoadbalancerPrivateIp',
     'LoadbalancerPrivateNetwork',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
@@ -115,12 +121,14 @@ __all__ = [
     'ObjectBucketWebsiteConfigurationErrorDocument',
     'ObjectBucketWebsiteConfigurationIndexDocument',
     'RedisClusterAcl',
+    'RedisClusterPrivateIp',
     'RedisClusterPrivateNetwork',
     'RedisClusterPublicNetwork',
     'SecretEphemeralPolicy',
     'SecretVersion',
     'TemDomainReputation',
     'VpcGatewayNetworkIpamConfig',
+    'VpcGatewayNetworkPrivateIp',
     'VpcPrivateNetworkIpv4Subnet',
     'VpcPrivateNetworkIpv6Subnet',
     'WebhostingCpanelUrl',
@@ -134,6 +142,7 @@ __all__ = [
     'GetBaremetalServerIpv4Result',
     'GetBaremetalServerIpv6Result',
     'GetBaremetalServerOptionResult',
+    'GetBaremetalServerPrivateIpResult',
     'GetBaremetalServerPrivateNetworkResult',
     'GetBillingConsumptionsConsumptionResult',
     'GetBillingInvoicesInvoiceResult',
@@ -145,6 +154,7 @@ __all__ = [
     'GetDatabaseAclAclRuleResult',
     'GetDatabaseInstanceLoadBalancerResult',
     'GetDatabaseInstanceLogsPolicyResult',
+    'GetDatabaseInstancePrivateIpResult',
     'GetDatabaseInstancePrivateNetworkResult',
     'GetDatabaseInstanceReadReplicaResult',
     'GetDomainRecordGeoIpResult',
@@ -154,8 +164,10 @@ __all__ = [
     'GetDomainRecordWeightedResult',
     'GetFlexibleIpsIpResult',
     'GetFlexibleIpsIpMacAddressResult',
+    'GetInstancePrivateNicPrivateIpResult',
     'GetInstanceSecurityGroupInboundRuleResult',
     'GetInstanceSecurityGroupOutboundRuleResult',
+    'GetInstanceServerPrivateIpResult',
     'GetInstanceServerPrivateNetworkResult',
     'GetInstanceServerPublicIpResult',
     'GetInstanceServerRootVolumeResult',
@@ -175,6 +187,7 @@ __all__ = [
     'GetKubernetesClusterKubeconfigResult',
     'GetKubernetesClusterOpenIdConnectConfigResult',
     'GetKubernetesNodePoolNodeResult',
+    'GetKubernetesNodePoolNodePrivateIpResult',
     'GetKubernetesNodePoolUpgradePolicyResult',
     'GetLbAclsAclResult',
     'GetLbAclsAclActionResult',
@@ -197,6 +210,7 @@ __all__ = [
     'GetLbsLbIpResult',
     'GetLoadbalancerCertificateCustomCertificateResult',
     'GetLoadbalancerCertificateLetsencryptResult',
+    'GetLoadbalancerPrivateIpResult',
     'GetLoadbalancerPrivateNetworkResult',
     'GetMongoDbInstancePrivateNetworkResult',
     'GetMongoDbInstancePublicNetworkResult',
@@ -206,12 +220,14 @@ __all__ = [
     'GetObjectBucketLifecycleRuleTransitionResult',
     'GetObjectBucketVersioningResult',
     'GetRedisClusterAclResult',
+    'GetRedisClusterPrivateIpResult',
     'GetRedisClusterPrivateNetworkResult',
     'GetRedisClusterPublicNetworkResult',
     'GetSecretEphemeralPolicyResult',
     'GetSecretVersionResult',
     'GetTemDomainReputationResult',
     'GetVpcGatewayNetworkIpamConfigResult',
+    'GetVpcGatewayNetworkPrivateIpResult',
     'GetVpcPrivateNetworkIpv4SubnetResult',
     'GetVpcPrivateNetworkIpv6SubnetResult',
     'GetVpcRoutesRouteResult',
@@ -549,6 +565,37 @@ class BaremetalServerOption(dict):
 
 
 @pulumi.output_type
+class BaremetalServerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The address of the IPv6.
+        :param str id: The ID of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv6.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class BaremetalServerPrivateNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -557,6 +604,8 @@ class BaremetalServerPrivateNetwork(dict):
             suggest = "created_at"
         elif key == "ipamIpIds":
             suggest = "ipam_ip_ids"
+        elif key == "mappingId":
+            suggest = "mapping_id"
         elif key == "updatedAt":
             suggest = "updated_at"
 
@@ -575,6 +624,7 @@ class BaremetalServerPrivateNetwork(dict):
                  id: str,
                  created_at: Optional[str] = None,
                  ipam_ip_ids: Optional[Sequence[str]] = None,
+                 mapping_id: Optional[str] = None,
                  status: Optional[str] = None,
                  updated_at: Optional[str] = None,
                  vlan: Optional[int] = None):
@@ -582,6 +632,7 @@ class BaremetalServerPrivateNetwork(dict):
         :param str id: The id of the private network to attach.
         :param str created_at: The date and time of the creation of the private network.
         :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to assign to the server in the requested private network.
+        :param str mapping_id: The ID of the Server-to-Private Network mapping.
         :param str status: The private network status.
         :param str updated_at: The date and time of the last update of the private network.
         :param int vlan: The VLAN ID associated to the private network.
@@ -591,6 +642,8 @@ class BaremetalServerPrivateNetwork(dict):
             pulumi.set(__self__, "created_at", created_at)
         if ipam_ip_ids is not None:
             pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if mapping_id is not None:
+            pulumi.set(__self__, "mapping_id", mapping_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -621,6 +674,14 @@ class BaremetalServerPrivateNetwork(dict):
         List of IPAM IP IDs to assign to the server in the requested private network.
         """
         return pulumi.get(self, "ipam_ip_ids")
+
+    @property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> Optional[str]:
+        """
+        The ID of the Server-to-Private Network mapping.
+        """
+        return pulumi.get(self, "mapping_id")
 
     @property
     @pulumi.getter
@@ -1404,6 +1465,37 @@ class DatabaseInstanceLogsPolicy(dict):
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
+class DatabaseInstancePrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -3025,6 +3117,37 @@ class InstanceImageAdditionalVolume(dict):
 
 
 @pulumi.output_type
+class InstancePrivateNicPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class InstanceSecurityGroupInboundRule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -3414,6 +3537,37 @@ class InstanceSecurityGroupRulesOutboundRule(dict):
         Protocol for this rule (TCP, UDP, ICMP or ANY)
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class InstanceServerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -4755,7 +4909,9 @@ class KubernetesNodePoolNode(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "publicIp":
+        if key == "privateIps":
+            suggest = "private_ips"
+        elif key == "publicIp":
             suggest = "public_ip"
         elif key == "publicIpV6":
             suggest = "public_ip_v6"
@@ -4772,26 +4928,42 @@ class KubernetesNodePoolNode(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 id: Optional[str] = None,
                  name: Optional[str] = None,
+                 private_ips: Optional[Sequence['outputs.KubernetesNodePoolNodePrivateIp']] = None,
                  public_ip: Optional[str] = None,
                  public_ip_v6: Optional[str] = None,
                  status: Optional[str] = None):
         """
+        :param str id: The ID of the IP address resource.
         :param str name: The name for the pool.
                
                > **Important:** Updates to this field will recreate a new resource.
+        :param Sequence['KubernetesNodePoolNodePrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the node.
         :param str public_ip: The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param str public_ip_v6: The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         :param str status: The status of the node.
         """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
         if public_ip_v6 is not None:
             pulumi.set(__self__, "public_ip_v6", public_ip_v6)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -4802,6 +4974,14 @@ class KubernetesNodePoolNode(dict):
         > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[Sequence['outputs.KubernetesNodePoolNodePrivateIp']]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the node.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -4828,6 +5008,37 @@ class KubernetesNodePoolNode(dict):
         The status of the node.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class KubernetesNodePoolNodePrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -5556,6 +5767,37 @@ class LoadbalancerFrontendAclMatch(dict):
         A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
+
+
+@pulumi.output_type
+class LoadbalancerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -6523,7 +6765,7 @@ class RedisClusterAcl(dict):
         :param str description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
-        :param str id: (Required) The UUID of the endpoint.
+        :param str id: The ID of the IPv4 address resource.
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -6554,7 +6796,38 @@ class RedisClusterAcl(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class RedisClusterPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
@@ -6679,7 +6952,7 @@ class RedisClusterPublicNetwork(dict):
                  ips: Optional[Sequence[str]] = None,
                  port: Optional[int] = None):
         """
-        :param str id: (Required) The UUID of the endpoint.
+        :param str id: The ID of the IPv4 address resource.
         :param Sequence[str] ips: Lis of IPv4 address of the endpoint (IP address).
         :param int port: TCP port of the endpoint.
         """
@@ -6694,7 +6967,7 @@ class RedisClusterPublicNetwork(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
@@ -7022,6 +7295,37 @@ class VpcGatewayNetworkIpamConfig(dict):
         Defines whether to enable the default route on the GatewayNetwork.
         """
         return pulumi.get(self, "push_default_route")
+
+
+@pulumi.output_type
+class VpcGatewayNetworkPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -7754,11 +8058,41 @@ class GetBaremetalServerOptionResult(dict):
 
 
 @pulumi.output_type
+class GetBaremetalServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the server.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetBaremetalServerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,
                  ipam_ip_ids: Sequence[str],
+                 mapping_id: str,
                  status: str,
                  updated_at: str,
                  vlan: int):
@@ -7766,6 +8100,7 @@ class GetBaremetalServerPrivateNetworkResult(dict):
         :param str created_at: The date and time of the creation of the private network
         :param str id: The ID of the server.
         :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
+        :param str mapping_id: The ID of the Server-to-Private Network mapping
         :param str status: The private network status
         :param str updated_at: The date and time of the last update of the private network
         :param int vlan: The VLAN ID associated to the private network
@@ -7773,6 +8108,7 @@ class GetBaremetalServerPrivateNetworkResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        pulumi.set(__self__, "mapping_id", mapping_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vlan", vlan)
@@ -7800,6 +8136,14 @@ class GetBaremetalServerPrivateNetworkResult(dict):
         List of IPAM IP IDs to attach to the server
         """
         return pulumi.get(self, "ipam_ip_ids")
+
+    @property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> str:
+        """
+        The ID of the Server-to-Private Network mapping
+        """
+        return pulumi.get(self, "mapping_id")
 
     @property
     @pulumi.getter
@@ -8403,6 +8747,35 @@ class GetDatabaseInstanceLogsPolicyResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseInstancePrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the Database Instance.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Database Instance.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetDatabaseInstancePrivateNetworkResult(dict):
     def __init__(__self__, *,
                  enable_ipam: bool,
@@ -8946,6 +9319,35 @@ class GetFlexibleIpsIpMacAddressResult(dict):
 
 
 @pulumi.output_type
+class GetInstancePrivateNicPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the IP address resource
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP address resource
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetInstanceSecurityGroupInboundRuleResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -9097,6 +9499,35 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetInstanceServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The address of the IP
+        :param str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -10227,20 +10658,34 @@ class GetKubernetesClusterOpenIdConnectConfigResult(dict):
 @pulumi.output_type
 class GetKubernetesNodePoolNodeResult(dict):
     def __init__(__self__, *,
+                 id: str,
                  name: str,
+                 private_ips: Sequence['outputs.GetKubernetesNodePoolNodePrivateIpResult'],
                  public_ip: str,
                  public_ip_v6: str,
                  status: str):
         """
+        :param str id: The ID of the pool.
         :param str name: The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        :param Sequence['GetKubernetesNodePoolNodePrivateIpArgs'] private_ips: List of private IPv4 and IPv6 addresses associated with the node
         :param str public_ip: The public IPv4.
         :param str public_ip_v6: The public IPv6.
         :param str status: The status of the node.
         """
+        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ip_v6", public_ip_v6)
         pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the pool.
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
@@ -10249,6 +10694,14 @@ class GetKubernetesNodePoolNodeResult(dict):
         The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetKubernetesNodePoolNodePrivateIpResult']:
+        """
+        List of private IPv4 and IPv6 addresses associated with the node
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="publicIp")
@@ -10273,6 +10726,35 @@ class GetKubernetesNodePoolNodeResult(dict):
         The status of the node.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetKubernetesNodePoolNodePrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the pool.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the pool.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -11896,6 +12378,35 @@ class GetLoadbalancerCertificateLetsencryptResult(dict):
 
 
 @pulumi.output_type
+class GetLoadbalancerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the Load Balancer.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Load Balancer.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetLoadbalancerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  dhcp_config: bool,
@@ -12300,6 +12811,35 @@ class GetRedisClusterAclResult(dict):
 
 
 @pulumi.output_type
+class GetRedisClusterPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the Redis cluster.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Redis cluster.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetRedisClusterPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  endpoint_id: str,
@@ -12601,6 +13141,35 @@ class GetVpcGatewayNetworkIpamConfigResult(dict):
         Defines whether the default route is enabled on that Gateway Network
         """
         return pulumi.get(self, "push_default_route")
+
+
+@pulumi.output_type
+class GetVpcGatewayNetworkPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

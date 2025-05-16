@@ -236,6 +236,12 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.LoadBalancerPrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// List of private network to connect with your load balancer.
         /// </summary>
         [Output("privateNetworks")]
@@ -505,6 +511,18 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        [Input("privateIps")]
+        private InputList<Inputs.LoadBalancerPrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.LoadBalancerPrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.LoadBalancerPrivateIpGetArgs>());
+            set => _privateIps = value;
+        }
 
         [Input("privateNetworks")]
         private InputList<Inputs.LoadBalancerPrivateNetworkGetArgs>? _privateNetworks;

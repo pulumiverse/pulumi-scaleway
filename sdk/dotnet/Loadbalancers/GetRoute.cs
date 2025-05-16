@@ -228,6 +228,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// </summary>
         public readonly string Id;
         public readonly string MatchHostHeader;
+        public readonly string MatchPathBegin;
         public readonly string MatchSni;
         public readonly bool MatchSubdomains;
         public readonly string RouteId;
@@ -245,6 +246,8 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             string matchHostHeader,
 
+            string matchPathBegin,
+
             string matchSni,
 
             bool matchSubdomains,
@@ -258,6 +261,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
             FrontendId = frontendId;
             Id = id;
             MatchHostHeader = matchHostHeader;
+            MatchPathBegin = matchPathBegin;
             MatchSni = matchSni;
             MatchSubdomains = matchSubdomains;
             RouteId = routeId;

@@ -65,6 +65,9 @@
                     "options": {
                         "maxItemsOne": false
                     },
+                    "private_ips": {
+                        "maxItemsOne": false
+                    },
                     "private_network": {
                         "maxItemsOne": false,
                         "elem": {
@@ -790,6 +793,24 @@
                     }
                 }
             },
+            "scaleway_inference_model": {
+                "current": "scaleway:inference/model:Model",
+                "fields": {
+                    "nodes_support": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "quantization": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_instance_image": {
                 "current": "scaleway:instance/image:Image",
                 "past": [
@@ -874,6 +895,9 @@
                     "ipam_ip_ids": {
                         "maxItemsOne": false
                     },
+                    "private_ips": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -932,6 +956,9 @@
                         "maxItemsOne": false
                     },
                     "ip_ids": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -1129,6 +1156,14 @@
                     }
                 }
             },
+            "scaleway_k8s_acl": {
+                "current": "scaleway:kubernetes/acl:Acl",
+                "fields": {
+                    "acl_rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_k8s_cluster": {
                 "current": "scaleway:kubernetes/cluster:Cluster",
                 "past": [
@@ -1186,7 +1221,14 @@
                 ],
                 "fields": {
                     "nodes": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "private_ips": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "tags": {
                         "maxItemsOne": false
@@ -1207,6 +1249,9 @@
                 ],
                 "fields": {
                     "ip_ids": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -1715,6 +1760,9 @@
                     "logs_policy": {
                         "maxItemsOne": true
                     },
+                    "private_ip": {
+                        "maxItemsOne": false
+                    },
                     "private_network": {
                         "maxItemsOne": true
                     },
@@ -1785,6 +1833,9 @@
                 ],
                 "fields": {
                     "acl": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -1940,6 +1991,9 @@
                 ],
                 "fields": {
                     "ipam_config": {
+                        "maxItemsOne": false
+                    },
+                    "private_ip": {
                         "maxItemsOne": false
                     }
                 }
@@ -2195,6 +2249,9 @@
                         "maxItemsOne": false
                     },
                     "options": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -2567,6 +2624,24 @@
                     }
                 }
             },
+            "scaleway_inference_model": {
+                "current": "scaleway:inference/getModel:getModel",
+                "fields": {
+                    "nodes_support": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "quantization": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_instance_image": {
                 "current": "scaleway:instance/getImage:getImage",
                 "past": [
@@ -2628,6 +2703,9 @@
                     "ipam_ip_ids": {
                         "maxItemsOne": false
                     },
+                    "private_ips": {
+                        "maxItemsOne": false
+                    },
                     "tags": {
                         "maxItemsOne": false
                     }
@@ -2668,6 +2746,9 @@
                         "maxItemsOne": false
                     },
                     "ip_ids": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -2903,7 +2984,14 @@
                 ],
                 "fields": {
                     "nodes": {
-                        "maxItemsOne": false
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "private_ips": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
                     },
                     "tags": {
                         "maxItemsOne": false
@@ -2945,6 +3033,9 @@
                 ],
                 "fields": {
                     "ip_ids": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -3415,6 +3506,9 @@
                     "logs_policy": {
                         "maxItemsOne": false
                     },
+                    "private_ip": {
+                        "maxItemsOne": false
+                    },
                     "private_network": {
                         "maxItemsOne": false
                     },
@@ -3447,6 +3541,9 @@
                 ],
                 "fields": {
                     "acl": {
+                        "maxItemsOne": false
+                    },
+                    "private_ips": {
                         "maxItemsOne": false
                     },
                     "private_network": {
@@ -3584,6 +3681,9 @@
                 ],
                 "fields": {
                     "ipam_config": {
+                        "maxItemsOne": false
+                    },
+                    "private_ip": {
                         "maxItemsOne": false
                     }
                 }

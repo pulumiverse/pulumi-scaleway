@@ -104,6 +104,7 @@ export interface GetServerResult {
      * The Scaleway internal IP address of the server.
      */
     readonly privateIp: string;
+    readonly privateIps: outputs.instance.GetServerPrivateIp[];
     readonly privateNetworks: outputs.instance.GetServerPrivateNetwork[];
     readonly projectId?: string;
     readonly protected: boolean;

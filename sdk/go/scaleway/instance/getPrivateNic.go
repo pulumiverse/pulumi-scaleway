@@ -85,15 +85,16 @@ type LookupPrivateNicArgs struct {
 // A collection of values returned by getPrivateNic.
 type LookupPrivateNicResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id               string   `pulumi:"id"`
-	IpIds            []string `pulumi:"ipIds"`
-	IpamIpIds        []string `pulumi:"ipamIpIds"`
-	MacAddress       string   `pulumi:"macAddress"`
-	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
-	PrivateNicId     *string  `pulumi:"privateNicId"`
-	ServerId         string   `pulumi:"serverId"`
-	Tags             []string `pulumi:"tags"`
-	Zone             *string  `pulumi:"zone"`
+	Id               string                   `pulumi:"id"`
+	IpIds            []string                 `pulumi:"ipIds"`
+	IpamIpIds        []string                 `pulumi:"ipamIpIds"`
+	MacAddress       string                   `pulumi:"macAddress"`
+	PrivateIps       []GetPrivateNicPrivateIp `pulumi:"privateIps"`
+	PrivateNetworkId *string                  `pulumi:"privateNetworkId"`
+	PrivateNicId     *string                  `pulumi:"privateNicId"`
+	ServerId         string                   `pulumi:"serverId"`
+	Tags             []string                 `pulumi:"tags"`
+	Zone             *string                  `pulumi:"zone"`
 }
 
 func LookupPrivateNicOutput(ctx *pulumi.Context, args LookupPrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateNicResultOutput {
@@ -156,6 +157,10 @@ func (o LookupPrivateNicResultOutput) IpamIpIds() pulumi.StringArrayOutput {
 
 func (o LookupPrivateNicResultOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateNicResult) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupPrivateNicResultOutput) PrivateIps() GetPrivateNicPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupPrivateNicResult) []GetPrivateNicPrivateIp { return v.PrivateIps }).(GetPrivateNicPrivateIpArrayOutput)
 }
 
 func (o LookupPrivateNicResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {

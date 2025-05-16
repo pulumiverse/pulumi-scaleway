@@ -68,6 +68,7 @@ type LookupServerResult struct {
 	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp       string                    `pulumi:"privateIp"`
+	PrivateIps      []GetServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks []GetServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       *string                   `pulumi:"projectId"`
 	Protected       bool                      `pulumi:"protected"`
@@ -216,6 +217,10 @@ func (o LookupServerResultOutput) PlacementGroupPolicyRespected() pulumi.BoolOut
 // The Scaleway internal IP address of the server.
 func (o LookupServerResultOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) PrivateIps() GetServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupServerResult) []GetServerPrivateIp { return v.PrivateIps }).(GetServerPrivateIpArrayOutput)
 }
 
 func (o LookupServerResultOutput) PrivateNetworks() GetServerPrivateNetworkArrayOutput {

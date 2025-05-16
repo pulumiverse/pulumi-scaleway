@@ -71,7 +71,7 @@ type MnqSnsCredentials struct {
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
 	// The unique name of the SNS credentials.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSnsCredentialsPermissionsOutput `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -120,7 +120,7 @@ type mnqSnsCredentialsState struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// The unique name of the SNS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions *MnqSnsCredentialsPermissions `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
@@ -135,7 +135,7 @@ type MnqSnsCredentialsState struct {
 	AccessKey pulumi.StringPtrInput
 	// The unique name of the SNS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSnsCredentialsPermissionsPtrInput
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
@@ -152,7 +152,7 @@ func (MnqSnsCredentialsState) ElementType() reflect.Type {
 type mnqSnsCredentialsArgs struct {
 	// The unique name of the SNS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions *MnqSnsCredentialsPermissions `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId *string `pulumi:"projectId"`
@@ -164,7 +164,7 @@ type mnqSnsCredentialsArgs struct {
 type MnqSnsCredentialsArgs struct {
 	// The unique name of the SNS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSnsCredentialsPermissionsPtrInput
 	// `projectId`) The ID of the Project in which SNS is enabled.
 	ProjectId pulumi.StringPtrInput
@@ -269,7 +269,7 @@ func (o MnqSnsCredentialsOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+// . List of permissions associated with these credentials.
 func (o MnqSnsCredentialsOutput) Permissions() MnqSnsCredentialsPermissionsOutput {
 	return o.ApplyT(func(v *MnqSnsCredentials) MnqSnsCredentialsPermissionsOutput { return v.Permissions }).(MnqSnsCredentialsPermissionsOutput)
 }

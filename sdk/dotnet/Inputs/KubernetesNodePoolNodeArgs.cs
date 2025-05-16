@@ -14,12 +14,30 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class KubernetesNodePoolNodeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the IP address resource.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
         /// The name for the pool.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("privateIps")]
+        private InputList<Inputs.KubernetesNodePoolNodePrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the node.
+        /// </summary>
+        public InputList<Inputs.KubernetesNodePoolNodePrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.KubernetesNodePoolNodePrivateIpArgs>());
+            set => _privateIps = value;
+        }
 
         /// <summary>
         /// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)

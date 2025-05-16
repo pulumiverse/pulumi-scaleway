@@ -82,6 +82,7 @@ export interface GetServerResult {
     readonly osName: string;
     readonly partitioning: string;
     readonly password: string;
+    readonly privateIps: outputs.elasticmetal.GetServerPrivateIp[];
     readonly privateNetworks: outputs.elasticmetal.GetServerPrivateNetwork[];
     readonly projectId?: string;
     readonly reinstallOnConfigChanges: boolean;

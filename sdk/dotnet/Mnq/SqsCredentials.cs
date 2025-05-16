@@ -70,7 +70,7 @@ namespace Pulumiverse.Scaleway.Mnq
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        /// . List of permissions associated with these credentials.
         /// </summary>
         [Output("permissions")]
         public Output<Outputs.SqsCredentialsPermissions> Permissions { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        /// . List of permissions associated with these credentials.
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.SqsCredentialsPermissionsArgs>? Permissions { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        /// . List of permissions associated with these credentials.
         /// </summary>
         [Input("permissions")]
         public Input<Inputs.SqsCredentialsPermissionsGetArgs>? Permissions { get; set; }

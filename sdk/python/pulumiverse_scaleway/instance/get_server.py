@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_networks=None, project_id=None, protected=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_ips=None, private_networks=None, project_id=None, protected=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -82,6 +82,9 @@ class GetServerResult:
         if private_ip and not isinstance(private_ip, str):
             raise TypeError("Expected argument 'private_ip' to be a str")
         pulumi.set(__self__, "private_ip", private_ip)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_networks and not isinstance(private_networks, list):
             raise TypeError("Expected argument 'private_networks' to be a list")
         pulumi.set(__self__, "private_networks", private_networks)
@@ -256,6 +259,11 @@ class GetServerResult:
         return pulumi.get(self, "private_ip")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetServerPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence['outputs.GetServerPrivateNetworkResult']:
         return pulumi.get(self, "private_networks")
@@ -372,6 +380,7 @@ class AwaitableGetServerResult(GetServerResult):
             placement_group_id=self.placement_group_id,
             placement_group_policy_respected=self.placement_group_policy_respected,
             private_ip=self.private_ip,
+            private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             protected=self.protected,
@@ -429,6 +438,7 @@ def get_server(name: Optional[str] = None,
         placement_group_id=pulumi.get(__ret__, 'placement_group_id'),
         placement_group_policy_respected=pulumi.get(__ret__, 'placement_group_policy_respected'),
         private_ip=pulumi.get(__ret__, 'private_ip'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protected=pulumi.get(__ret__, 'protected'),
@@ -483,6 +493,7 @@ def get_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         placement_group_id=pulumi.get(__response__, 'placement_group_id'),
         placement_group_policy_respected=pulumi.get(__response__, 'placement_group_policy_respected'),
         private_ip=pulumi.get(__response__, 'private_ip'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         protected=pulumi.get(__response__, 'protected'),

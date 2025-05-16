@@ -422,6 +422,8 @@ type Server struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks ServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
@@ -566,6 +568,8 @@ type serverState struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp *string `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []ServerPrivateIp `pulumi:"privateIps"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
@@ -672,6 +676,8 @@ type ServerState struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayInput
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks ServerPrivateNetworkArrayInput
@@ -1076,6 +1082,11 @@ func (o ServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 // Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 func (o ServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o ServerOutput) PrivateIps() ServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v *Server) ServerPrivateIpArrayOutput { return v.PrivateIps }).(ServerPrivateIpArrayOutput)
 }
 
 // The private network associated with the server.

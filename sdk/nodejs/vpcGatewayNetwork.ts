@@ -157,6 +157,10 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
     /**
+     * The private IPv4 address associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.VpcGatewayNetworkPrivateIp[]>;
+    /**
      * The ID of the Private Network.
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
@@ -207,6 +211,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
             resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
             resourceInputs["ipamConfigs"] = state ? state.ipamConfigs : undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["staticAddress"] = state ? state.staticAddress : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -231,6 +236,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -281,6 +287,10 @@ export interface VpcGatewayNetworkState {
      * The MAC address of the GatewayNetwork.
      */
     macAddress?: pulumi.Input<string>;
+    /**
+     * The private IPv4 address associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.VpcGatewayNetworkPrivateIp>[]>;
     /**
      * The ID of the Private Network.
      */

@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class RedisClusterPublicNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// (Required) The UUID of the endpoint.
+        /// The ID of the IPv4 address resource.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

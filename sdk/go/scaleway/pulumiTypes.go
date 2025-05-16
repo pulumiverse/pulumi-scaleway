@@ -642,6 +642,112 @@ func (o BaremetalServerOptionArrayOutput) Index(i pulumi.IntInput) BaremetalServ
 	}).(BaremetalServerOptionOutput)
 }
 
+type BaremetalServerPrivateIp struct {
+	// The address of the IPv6.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv6.
+	Id *string `pulumi:"id"`
+}
+
+// BaremetalServerPrivateIpInput is an input type that accepts BaremetalServerPrivateIpArgs and BaremetalServerPrivateIpOutput values.
+// You can construct a concrete instance of `BaremetalServerPrivateIpInput` via:
+//
+//	BaremetalServerPrivateIpArgs{...}
+type BaremetalServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToBaremetalServerPrivateIpOutput() BaremetalServerPrivateIpOutput
+	ToBaremetalServerPrivateIpOutputWithContext(context.Context) BaremetalServerPrivateIpOutput
+}
+
+type BaremetalServerPrivateIpArgs struct {
+	// The address of the IPv6.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv6.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (BaremetalServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (i BaremetalServerPrivateIpArgs) ToBaremetalServerPrivateIpOutput() BaremetalServerPrivateIpOutput {
+	return i.ToBaremetalServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerPrivateIpArgs) ToBaremetalServerPrivateIpOutputWithContext(ctx context.Context) BaremetalServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerPrivateIpOutput)
+}
+
+// BaremetalServerPrivateIpArrayInput is an input type that accepts BaremetalServerPrivateIpArray and BaremetalServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `BaremetalServerPrivateIpArrayInput` via:
+//
+//	BaremetalServerPrivateIpArray{ BaremetalServerPrivateIpArgs{...} }
+type BaremetalServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToBaremetalServerPrivateIpArrayOutput() BaremetalServerPrivateIpArrayOutput
+	ToBaremetalServerPrivateIpArrayOutputWithContext(context.Context) BaremetalServerPrivateIpArrayOutput
+}
+
+type BaremetalServerPrivateIpArray []BaremetalServerPrivateIpInput
+
+func (BaremetalServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (i BaremetalServerPrivateIpArray) ToBaremetalServerPrivateIpArrayOutput() BaremetalServerPrivateIpArrayOutput {
+	return i.ToBaremetalServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i BaremetalServerPrivateIpArray) ToBaremetalServerPrivateIpArrayOutputWithContext(ctx context.Context) BaremetalServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BaremetalServerPrivateIpArrayOutput)
+}
+
+type BaremetalServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (o BaremetalServerPrivateIpOutput) ToBaremetalServerPrivateIpOutput() BaremetalServerPrivateIpOutput {
+	return o
+}
+
+func (o BaremetalServerPrivateIpOutput) ToBaremetalServerPrivateIpOutputWithContext(ctx context.Context) BaremetalServerPrivateIpOutput {
+	return o
+}
+
+// The address of the IPv6.
+func (o BaremetalServerPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv6.
+func (o BaremetalServerPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type BaremetalServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (BaremetalServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (o BaremetalServerPrivateIpArrayOutput) ToBaremetalServerPrivateIpArrayOutput() BaremetalServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o BaremetalServerPrivateIpArrayOutput) ToBaremetalServerPrivateIpArrayOutputWithContext(ctx context.Context) BaremetalServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o BaremetalServerPrivateIpArrayOutput) Index(i pulumi.IntInput) BaremetalServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BaremetalServerPrivateIp {
+		return vs[0].([]BaremetalServerPrivateIp)[vs[1].(int)]
+	}).(BaremetalServerPrivateIpOutput)
+}
+
 type BaremetalServerPrivateNetwork struct {
 	// The date and time of the creation of the private network.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -649,6 +755,8 @@ type BaremetalServerPrivateNetwork struct {
 	Id string `pulumi:"id"`
 	// List of IPAM IP IDs to assign to the server in the requested private network.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping.
+	MappingId *string `pulumi:"mappingId"`
 	// The private network status.
 	Status *string `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -675,6 +783,8 @@ type BaremetalServerPrivateNetworkArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// List of IPAM IP IDs to assign to the server in the requested private network.
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping.
+	MappingId pulumi.StringPtrInput `pulumi:"mappingId"`
 	// The private network status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -747,6 +857,11 @@ func (o BaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 // List of IPAM IP IDs to assign to the server in the requested private network.
 func (o BaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v BaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Server-to-Private Network mapping.
+func (o BaremetalServerPrivateNetworkOutput) MappingId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BaremetalServerPrivateNetwork) *string { return v.MappingId }).(pulumi.StringPtrOutput)
 }
 
 // The private network status.
@@ -2525,6 +2640,112 @@ func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrO
 		}
 		return v.TotalDiskRetention
 	}).(pulumi.IntPtrOutput)
+}
+
+type DatabaseInstancePrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id *string `pulumi:"id"`
+}
+
+// DatabaseInstancePrivateIpInput is an input type that accepts DatabaseInstancePrivateIpArgs and DatabaseInstancePrivateIpOutput values.
+// You can construct a concrete instance of `DatabaseInstancePrivateIpInput` via:
+//
+//	DatabaseInstancePrivateIpArgs{...}
+type DatabaseInstancePrivateIpInput interface {
+	pulumi.Input
+
+	ToDatabaseInstancePrivateIpOutput() DatabaseInstancePrivateIpOutput
+	ToDatabaseInstancePrivateIpOutputWithContext(context.Context) DatabaseInstancePrivateIpOutput
+}
+
+type DatabaseInstancePrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (DatabaseInstancePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (i DatabaseInstancePrivateIpArgs) ToDatabaseInstancePrivateIpOutput() DatabaseInstancePrivateIpOutput {
+	return i.ToDatabaseInstancePrivateIpOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstancePrivateIpArgs) ToDatabaseInstancePrivateIpOutputWithContext(ctx context.Context) DatabaseInstancePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstancePrivateIpOutput)
+}
+
+// DatabaseInstancePrivateIpArrayInput is an input type that accepts DatabaseInstancePrivateIpArray and DatabaseInstancePrivateIpArrayOutput values.
+// You can construct a concrete instance of `DatabaseInstancePrivateIpArrayInput` via:
+//
+//	DatabaseInstancePrivateIpArray{ DatabaseInstancePrivateIpArgs{...} }
+type DatabaseInstancePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseInstancePrivateIpArrayOutput() DatabaseInstancePrivateIpArrayOutput
+	ToDatabaseInstancePrivateIpArrayOutputWithContext(context.Context) DatabaseInstancePrivateIpArrayOutput
+}
+
+type DatabaseInstancePrivateIpArray []DatabaseInstancePrivateIpInput
+
+func (DatabaseInstancePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (i DatabaseInstancePrivateIpArray) ToDatabaseInstancePrivateIpArrayOutput() DatabaseInstancePrivateIpArrayOutput {
+	return i.ToDatabaseInstancePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstancePrivateIpArray) ToDatabaseInstancePrivateIpArrayOutputWithContext(ctx context.Context) DatabaseInstancePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstancePrivateIpArrayOutput)
+}
+
+type DatabaseInstancePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstancePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (o DatabaseInstancePrivateIpOutput) ToDatabaseInstancePrivateIpOutput() DatabaseInstancePrivateIpOutput {
+	return o
+}
+
+func (o DatabaseInstancePrivateIpOutput) ToDatabaseInstancePrivateIpOutputWithContext(ctx context.Context) DatabaseInstancePrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o DatabaseInstancePrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstancePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o DatabaseInstancePrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstancePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type DatabaseInstancePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstancePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (o DatabaseInstancePrivateIpArrayOutput) ToDatabaseInstancePrivateIpArrayOutput() DatabaseInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o DatabaseInstancePrivateIpArrayOutput) ToDatabaseInstancePrivateIpArrayOutputWithContext(ctx context.Context) DatabaseInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o DatabaseInstancePrivateIpArrayOutput) Index(i pulumi.IntInput) DatabaseInstancePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstancePrivateIp {
+		return vs[0].([]DatabaseInstancePrivateIp)[vs[1].(int)]
+	}).(DatabaseInstancePrivateIpOutput)
 }
 
 type DatabaseInstancePrivateNetwork struct {
@@ -6371,6 +6592,112 @@ func (o InstanceImageAdditionalVolumeArrayOutput) Index(i pulumi.IntInput) Insta
 	}).(InstanceImageAdditionalVolumeOutput)
 }
 
+type InstancePrivateNicPrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// InstancePrivateNicPrivateIpInput is an input type that accepts InstancePrivateNicPrivateIpArgs and InstancePrivateNicPrivateIpOutput values.
+// You can construct a concrete instance of `InstancePrivateNicPrivateIpInput` via:
+//
+//	InstancePrivateNicPrivateIpArgs{...}
+type InstancePrivateNicPrivateIpInput interface {
+	pulumi.Input
+
+	ToInstancePrivateNicPrivateIpOutput() InstancePrivateNicPrivateIpOutput
+	ToInstancePrivateNicPrivateIpOutputWithContext(context.Context) InstancePrivateNicPrivateIpOutput
+}
+
+type InstancePrivateNicPrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (InstancePrivateNicPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (i InstancePrivateNicPrivateIpArgs) ToInstancePrivateNicPrivateIpOutput() InstancePrivateNicPrivateIpOutput {
+	return i.ToInstancePrivateNicPrivateIpOutputWithContext(context.Background())
+}
+
+func (i InstancePrivateNicPrivateIpArgs) ToInstancePrivateNicPrivateIpOutputWithContext(ctx context.Context) InstancePrivateNicPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicPrivateIpOutput)
+}
+
+// InstancePrivateNicPrivateIpArrayInput is an input type that accepts InstancePrivateNicPrivateIpArray and InstancePrivateNicPrivateIpArrayOutput values.
+// You can construct a concrete instance of `InstancePrivateNicPrivateIpArrayInput` via:
+//
+//	InstancePrivateNicPrivateIpArray{ InstancePrivateNicPrivateIpArgs{...} }
+type InstancePrivateNicPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToInstancePrivateNicPrivateIpArrayOutput() InstancePrivateNicPrivateIpArrayOutput
+	ToInstancePrivateNicPrivateIpArrayOutputWithContext(context.Context) InstancePrivateNicPrivateIpArrayOutput
+}
+
+type InstancePrivateNicPrivateIpArray []InstancePrivateNicPrivateIpInput
+
+func (InstancePrivateNicPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (i InstancePrivateNicPrivateIpArray) ToInstancePrivateNicPrivateIpArrayOutput() InstancePrivateNicPrivateIpArrayOutput {
+	return i.ToInstancePrivateNicPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i InstancePrivateNicPrivateIpArray) ToInstancePrivateNicPrivateIpArrayOutputWithContext(ctx context.Context) InstancePrivateNicPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstancePrivateNicPrivateIpArrayOutput)
+}
+
+type InstancePrivateNicPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (InstancePrivateNicPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (o InstancePrivateNicPrivateIpOutput) ToInstancePrivateNicPrivateIpOutput() InstancePrivateNicPrivateIpOutput {
+	return o
+}
+
+func (o InstancePrivateNicPrivateIpOutput) ToInstancePrivateNicPrivateIpOutputWithContext(ctx context.Context) InstancePrivateNicPrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o InstancePrivateNicPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstancePrivateNicPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o InstancePrivateNicPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstancePrivateNicPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type InstancePrivateNicPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (InstancePrivateNicPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (o InstancePrivateNicPrivateIpArrayOutput) ToInstancePrivateNicPrivateIpArrayOutput() InstancePrivateNicPrivateIpArrayOutput {
+	return o
+}
+
+func (o InstancePrivateNicPrivateIpArrayOutput) ToInstancePrivateNicPrivateIpArrayOutputWithContext(ctx context.Context) InstancePrivateNicPrivateIpArrayOutput {
+	return o
+}
+
+func (o InstancePrivateNicPrivateIpArrayOutput) Index(i pulumi.IntInput) InstancePrivateNicPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstancePrivateNicPrivateIp {
+		return vs[0].([]InstancePrivateNicPrivateIp)[vs[1].(int)]
+	}).(InstancePrivateNicPrivateIpOutput)
+}
+
 type InstanceSecurityGroupInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
@@ -6961,6 +7288,112 @@ func (o InstanceSecurityGroupRulesOutboundRuleArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceSecurityGroupRulesOutboundRule {
 		return vs[0].([]InstanceSecurityGroupRulesOutboundRule)[vs[1].(int)]
 	}).(InstanceSecurityGroupRulesOutboundRuleOutput)
+}
+
+type InstanceServerPrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// InstanceServerPrivateIpInput is an input type that accepts InstanceServerPrivateIpArgs and InstanceServerPrivateIpOutput values.
+// You can construct a concrete instance of `InstanceServerPrivateIpInput` via:
+//
+//	InstanceServerPrivateIpArgs{...}
+type InstanceServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToInstanceServerPrivateIpOutput() InstanceServerPrivateIpOutput
+	ToInstanceServerPrivateIpOutputWithContext(context.Context) InstanceServerPrivateIpOutput
+}
+
+type InstanceServerPrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (InstanceServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (i InstanceServerPrivateIpArgs) ToInstanceServerPrivateIpOutput() InstanceServerPrivateIpOutput {
+	return i.ToInstanceServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i InstanceServerPrivateIpArgs) ToInstanceServerPrivateIpOutputWithContext(ctx context.Context) InstanceServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerPrivateIpOutput)
+}
+
+// InstanceServerPrivateIpArrayInput is an input type that accepts InstanceServerPrivateIpArray and InstanceServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `InstanceServerPrivateIpArrayInput` via:
+//
+//	InstanceServerPrivateIpArray{ InstanceServerPrivateIpArgs{...} }
+type InstanceServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToInstanceServerPrivateIpArrayOutput() InstanceServerPrivateIpArrayOutput
+	ToInstanceServerPrivateIpArrayOutputWithContext(context.Context) InstanceServerPrivateIpArrayOutput
+}
+
+type InstanceServerPrivateIpArray []InstanceServerPrivateIpInput
+
+func (InstanceServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (i InstanceServerPrivateIpArray) ToInstanceServerPrivateIpArrayOutput() InstanceServerPrivateIpArrayOutput {
+	return i.ToInstanceServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceServerPrivateIpArray) ToInstanceServerPrivateIpArrayOutputWithContext(ctx context.Context) InstanceServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerPrivateIpArrayOutput)
+}
+
+type InstanceServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (o InstanceServerPrivateIpOutput) ToInstanceServerPrivateIpOutput() InstanceServerPrivateIpOutput {
+	return o
+}
+
+func (o InstanceServerPrivateIpOutput) ToInstanceServerPrivateIpOutputWithContext(ctx context.Context) InstanceServerPrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o InstanceServerPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o InstanceServerPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type InstanceServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (o InstanceServerPrivateIpArrayOutput) ToInstanceServerPrivateIpArrayOutput() InstanceServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o InstanceServerPrivateIpArrayOutput) ToInstanceServerPrivateIpArrayOutputWithContext(ctx context.Context) InstanceServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o InstanceServerPrivateIpArrayOutput) Index(i pulumi.IntInput) InstanceServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceServerPrivateIp {
+		return vs[0].([]InstanceServerPrivateIp)[vs[1].(int)]
+	}).(InstanceServerPrivateIpOutput)
 }
 
 type InstanceServerPrivateNetwork struct {
@@ -10481,10 +10914,14 @@ func (o KubernetesClusterOpenIdConnectConfigPtrOutput) UsernamePrefix() pulumi.S
 }
 
 type KubernetesNodePoolNode struct {
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
 	// The name for the pool.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
+	// The list of private IPv4 and IPv6 addresses associated with the node.
+	PrivateIps []KubernetesNodePoolNodePrivateIp `pulumi:"privateIps"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
@@ -10509,10 +10946,14 @@ type KubernetesNodePoolNodeInput interface {
 }
 
 type KubernetesNodePoolNodeArgs struct {
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The name for the pool.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The list of private IPv4 and IPv6 addresses associated with the node.
+	PrivateIps KubernetesNodePoolNodePrivateIpArrayInput `pulumi:"privateIps"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
@@ -10576,11 +11017,21 @@ func (o KubernetesNodePoolNodeOutput) ToKubernetesNodePoolNodeOutputWithContext(
 	return o
 }
 
+// The ID of the IP address resource.
+func (o KubernetesNodePoolNodeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
 // The name for the pool.
 //
 // > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesNodePoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the node.
+func (o KubernetesNodePoolNodeOutput) PrivateIps() KubernetesNodePoolNodePrivateIpArrayOutput {
+	return o.ApplyT(func(v KubernetesNodePoolNode) []KubernetesNodePoolNodePrivateIp { return v.PrivateIps }).(KubernetesNodePoolNodePrivateIpArrayOutput)
 }
 
 // The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
@@ -10620,6 +11071,112 @@ func (o KubernetesNodePoolNodeArrayOutput) Index(i pulumi.IntInput) KubernetesNo
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolNode {
 		return vs[0].([]KubernetesNodePoolNode)[vs[1].(int)]
 	}).(KubernetesNodePoolNodeOutput)
+}
+
+type KubernetesNodePoolNodePrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// KubernetesNodePoolNodePrivateIpInput is an input type that accepts KubernetesNodePoolNodePrivateIpArgs and KubernetesNodePoolNodePrivateIpOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolNodePrivateIpInput` via:
+//
+//	KubernetesNodePoolNodePrivateIpArgs{...}
+type KubernetesNodePoolNodePrivateIpInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolNodePrivateIpOutput() KubernetesNodePoolNodePrivateIpOutput
+	ToKubernetesNodePoolNodePrivateIpOutputWithContext(context.Context) KubernetesNodePoolNodePrivateIpOutput
+}
+
+type KubernetesNodePoolNodePrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (KubernetesNodePoolNodePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolNodePrivateIpArgs) ToKubernetesNodePoolNodePrivateIpOutput() KubernetesNodePoolNodePrivateIpOutput {
+	return i.ToKubernetesNodePoolNodePrivateIpOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolNodePrivateIpArgs) ToKubernetesNodePoolNodePrivateIpOutputWithContext(ctx context.Context) KubernetesNodePoolNodePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolNodePrivateIpOutput)
+}
+
+// KubernetesNodePoolNodePrivateIpArrayInput is an input type that accepts KubernetesNodePoolNodePrivateIpArray and KubernetesNodePoolNodePrivateIpArrayOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolNodePrivateIpArrayInput` via:
+//
+//	KubernetesNodePoolNodePrivateIpArray{ KubernetesNodePoolNodePrivateIpArgs{...} }
+type KubernetesNodePoolNodePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolNodePrivateIpArrayOutput() KubernetesNodePoolNodePrivateIpArrayOutput
+	ToKubernetesNodePoolNodePrivateIpArrayOutputWithContext(context.Context) KubernetesNodePoolNodePrivateIpArrayOutput
+}
+
+type KubernetesNodePoolNodePrivateIpArray []KubernetesNodePoolNodePrivateIpInput
+
+func (KubernetesNodePoolNodePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolNodePrivateIpArray) ToKubernetesNodePoolNodePrivateIpArrayOutput() KubernetesNodePoolNodePrivateIpArrayOutput {
+	return i.ToKubernetesNodePoolNodePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolNodePrivateIpArray) ToKubernetesNodePoolNodePrivateIpArrayOutputWithContext(ctx context.Context) KubernetesNodePoolNodePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolNodePrivateIpArrayOutput)
+}
+
+type KubernetesNodePoolNodePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolNodePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolNodePrivateIpOutput) ToKubernetesNodePoolNodePrivateIpOutput() KubernetesNodePoolNodePrivateIpOutput {
+	return o
+}
+
+func (o KubernetesNodePoolNodePrivateIpOutput) ToKubernetesNodePoolNodePrivateIpOutputWithContext(ctx context.Context) KubernetesNodePoolNodePrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o KubernetesNodePoolNodePrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodePoolNodePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o KubernetesNodePoolNodePrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesNodePoolNodePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type KubernetesNodePoolNodePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolNodePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolNodePrivateIpArrayOutput) ToKubernetesNodePoolNodePrivateIpArrayOutput() KubernetesNodePoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolNodePrivateIpArrayOutput) ToKubernetesNodePoolNodePrivateIpArrayOutputWithContext(ctx context.Context) KubernetesNodePoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolNodePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolNodePrivateIp {
+		return vs[0].([]KubernetesNodePoolNodePrivateIp)[vs[1].(int)]
+	}).(KubernetesNodePoolNodePrivateIpOutput)
 }
 
 type KubernetesNodePoolUpgradePolicy struct {
@@ -12505,6 +13062,112 @@ func (o LoadbalancerFrontendAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 // A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+type LoadbalancerPrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// LoadbalancerPrivateIpInput is an input type that accepts LoadbalancerPrivateIpArgs and LoadbalancerPrivateIpOutput values.
+// You can construct a concrete instance of `LoadbalancerPrivateIpInput` via:
+//
+//	LoadbalancerPrivateIpArgs{...}
+type LoadbalancerPrivateIpInput interface {
+	pulumi.Input
+
+	ToLoadbalancerPrivateIpOutput() LoadbalancerPrivateIpOutput
+	ToLoadbalancerPrivateIpOutputWithContext(context.Context) LoadbalancerPrivateIpOutput
+}
+
+type LoadbalancerPrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (LoadbalancerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (i LoadbalancerPrivateIpArgs) ToLoadbalancerPrivateIpOutput() LoadbalancerPrivateIpOutput {
+	return i.ToLoadbalancerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerPrivateIpArgs) ToLoadbalancerPrivateIpOutputWithContext(ctx context.Context) LoadbalancerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerPrivateIpOutput)
+}
+
+// LoadbalancerPrivateIpArrayInput is an input type that accepts LoadbalancerPrivateIpArray and LoadbalancerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `LoadbalancerPrivateIpArrayInput` via:
+//
+//	LoadbalancerPrivateIpArray{ LoadbalancerPrivateIpArgs{...} }
+type LoadbalancerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToLoadbalancerPrivateIpArrayOutput() LoadbalancerPrivateIpArrayOutput
+	ToLoadbalancerPrivateIpArrayOutputWithContext(context.Context) LoadbalancerPrivateIpArrayOutput
+}
+
+type LoadbalancerPrivateIpArray []LoadbalancerPrivateIpInput
+
+func (LoadbalancerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (i LoadbalancerPrivateIpArray) ToLoadbalancerPrivateIpArrayOutput() LoadbalancerPrivateIpArrayOutput {
+	return i.ToLoadbalancerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i LoadbalancerPrivateIpArray) ToLoadbalancerPrivateIpArrayOutputWithContext(ctx context.Context) LoadbalancerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadbalancerPrivateIpArrayOutput)
+}
+
+type LoadbalancerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (o LoadbalancerPrivateIpOutput) ToLoadbalancerPrivateIpOutput() LoadbalancerPrivateIpOutput {
+	return o
+}
+
+func (o LoadbalancerPrivateIpOutput) ToLoadbalancerPrivateIpOutputWithContext(ctx context.Context) LoadbalancerPrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o LoadbalancerPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o LoadbalancerPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadbalancerPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type LoadbalancerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadbalancerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (o LoadbalancerPrivateIpArrayOutput) ToLoadbalancerPrivateIpArrayOutput() LoadbalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o LoadbalancerPrivateIpArrayOutput) ToLoadbalancerPrivateIpArrayOutputWithContext(ctx context.Context) LoadbalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o LoadbalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) LoadbalancerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadbalancerPrivateIp {
+		return vs[0].([]LoadbalancerPrivateIp)[vs[1].(int)]
+	}).(LoadbalancerPrivateIpOutput)
 }
 
 type LoadbalancerPrivateNetwork struct {
@@ -15278,7 +15941,7 @@ type RedisClusterAcl struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description *string `pulumi:"description"`
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
 	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -15301,7 +15964,7 @@ type RedisClusterAclArgs struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -15366,7 +16029,7 @@ func (o RedisClusterAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o RedisClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -15395,6 +16058,112 @@ func (o RedisClusterAclArrayOutput) Index(i pulumi.IntInput) RedisClusterAclOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RedisClusterAcl {
 		return vs[0].([]RedisClusterAcl)[vs[1].(int)]
 	}).(RedisClusterAclOutput)
+}
+
+type RedisClusterPrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id *string `pulumi:"id"`
+}
+
+// RedisClusterPrivateIpInput is an input type that accepts RedisClusterPrivateIpArgs and RedisClusterPrivateIpOutput values.
+// You can construct a concrete instance of `RedisClusterPrivateIpInput` via:
+//
+//	RedisClusterPrivateIpArgs{...}
+type RedisClusterPrivateIpInput interface {
+	pulumi.Input
+
+	ToRedisClusterPrivateIpOutput() RedisClusterPrivateIpOutput
+	ToRedisClusterPrivateIpOutputWithContext(context.Context) RedisClusterPrivateIpOutput
+}
+
+type RedisClusterPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (RedisClusterPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (i RedisClusterPrivateIpArgs) ToRedisClusterPrivateIpOutput() RedisClusterPrivateIpOutput {
+	return i.ToRedisClusterPrivateIpOutputWithContext(context.Background())
+}
+
+func (i RedisClusterPrivateIpArgs) ToRedisClusterPrivateIpOutputWithContext(ctx context.Context) RedisClusterPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisClusterPrivateIpOutput)
+}
+
+// RedisClusterPrivateIpArrayInput is an input type that accepts RedisClusterPrivateIpArray and RedisClusterPrivateIpArrayOutput values.
+// You can construct a concrete instance of `RedisClusterPrivateIpArrayInput` via:
+//
+//	RedisClusterPrivateIpArray{ RedisClusterPrivateIpArgs{...} }
+type RedisClusterPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToRedisClusterPrivateIpArrayOutput() RedisClusterPrivateIpArrayOutput
+	ToRedisClusterPrivateIpArrayOutputWithContext(context.Context) RedisClusterPrivateIpArrayOutput
+}
+
+type RedisClusterPrivateIpArray []RedisClusterPrivateIpInput
+
+func (RedisClusterPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (i RedisClusterPrivateIpArray) ToRedisClusterPrivateIpArrayOutput() RedisClusterPrivateIpArrayOutput {
+	return i.ToRedisClusterPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i RedisClusterPrivateIpArray) ToRedisClusterPrivateIpArrayOutputWithContext(ctx context.Context) RedisClusterPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisClusterPrivateIpArrayOutput)
+}
+
+type RedisClusterPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (RedisClusterPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (o RedisClusterPrivateIpOutput) ToRedisClusterPrivateIpOutput() RedisClusterPrivateIpOutput {
+	return o
+}
+
+func (o RedisClusterPrivateIpOutput) ToRedisClusterPrivateIpOutputWithContext(ctx context.Context) RedisClusterPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o RedisClusterPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedisClusterPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o RedisClusterPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RedisClusterPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type RedisClusterPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (RedisClusterPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]RedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (o RedisClusterPrivateIpArrayOutput) ToRedisClusterPrivateIpArrayOutput() RedisClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o RedisClusterPrivateIpArrayOutput) ToRedisClusterPrivateIpArrayOutputWithContext(ctx context.Context) RedisClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o RedisClusterPrivateIpArrayOutput) Index(i pulumi.IntInput) RedisClusterPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RedisClusterPrivateIp {
+		return vs[0].([]RedisClusterPrivateIp)[vs[1].(int)]
+	}).(RedisClusterPrivateIpOutput)
 }
 
 type RedisClusterPrivateNetwork struct {
@@ -15582,7 +16351,7 @@ func (o RedisClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) RedisClu
 }
 
 type RedisClusterPublicNetwork struct {
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips []string `pulumi:"ips"`
@@ -15602,7 +16371,7 @@ type RedisClusterPublicNetworkInput interface {
 }
 
 type RedisClusterPublicNetworkArgs struct {
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
@@ -15687,7 +16456,7 @@ func (o RedisClusterPublicNetworkOutput) ToRedisClusterPublicNetworkPtrOutputWit
 	}).(RedisClusterPublicNetworkPtrOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o RedisClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -15726,7 +16495,7 @@ func (o RedisClusterPublicNetworkPtrOutput) Elem() RedisClusterPublicNetworkOutp
 	}).(RedisClusterPublicNetworkOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o RedisClusterPublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RedisClusterPublicNetwork) *string {
 		if v == nil {
@@ -16259,6 +17028,112 @@ func (o VpcGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) VpcGate
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcGatewayNetworkIpamConfig {
 		return vs[0].([]VpcGatewayNetworkIpamConfig)[vs[1].(int)]
 	}).(VpcGatewayNetworkIpamConfigOutput)
+}
+
+type VpcGatewayNetworkPrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id *string `pulumi:"id"`
+}
+
+// VpcGatewayNetworkPrivateIpInput is an input type that accepts VpcGatewayNetworkPrivateIpArgs and VpcGatewayNetworkPrivateIpOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkPrivateIpInput` via:
+//
+//	VpcGatewayNetworkPrivateIpArgs{...}
+type VpcGatewayNetworkPrivateIpInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkPrivateIpOutput() VpcGatewayNetworkPrivateIpOutput
+	ToVpcGatewayNetworkPrivateIpOutputWithContext(context.Context) VpcGatewayNetworkPrivateIpOutput
+}
+
+type VpcGatewayNetworkPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (VpcGatewayNetworkPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkPrivateIpArgs) ToVpcGatewayNetworkPrivateIpOutput() VpcGatewayNetworkPrivateIpOutput {
+	return i.ToVpcGatewayNetworkPrivateIpOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkPrivateIpArgs) ToVpcGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) VpcGatewayNetworkPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkPrivateIpOutput)
+}
+
+// VpcGatewayNetworkPrivateIpArrayInput is an input type that accepts VpcGatewayNetworkPrivateIpArray and VpcGatewayNetworkPrivateIpArrayOutput values.
+// You can construct a concrete instance of `VpcGatewayNetworkPrivateIpArrayInput` via:
+//
+//	VpcGatewayNetworkPrivateIpArray{ VpcGatewayNetworkPrivateIpArgs{...} }
+type VpcGatewayNetworkPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToVpcGatewayNetworkPrivateIpArrayOutput() VpcGatewayNetworkPrivateIpArrayOutput
+	ToVpcGatewayNetworkPrivateIpArrayOutputWithContext(context.Context) VpcGatewayNetworkPrivateIpArrayOutput
+}
+
+type VpcGatewayNetworkPrivateIpArray []VpcGatewayNetworkPrivateIpInput
+
+func (VpcGatewayNetworkPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i VpcGatewayNetworkPrivateIpArray) ToVpcGatewayNetworkPrivateIpArrayOutput() VpcGatewayNetworkPrivateIpArrayOutput {
+	return i.ToVpcGatewayNetworkPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i VpcGatewayNetworkPrivateIpArray) ToVpcGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpcGatewayNetworkPrivateIpArrayOutput)
+}
+
+type VpcGatewayNetworkPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkPrivateIpOutput) ToVpcGatewayNetworkPrivateIpOutput() VpcGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkPrivateIpOutput) ToVpcGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) VpcGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o VpcGatewayNetworkPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcGatewayNetworkPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o VpcGatewayNetworkPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpcGatewayNetworkPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type VpcGatewayNetworkPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (VpcGatewayNetworkPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o VpcGatewayNetworkPrivateIpArrayOutput) ToVpcGatewayNetworkPrivateIpArrayOutput() VpcGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkPrivateIpArrayOutput) ToVpcGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) VpcGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o VpcGatewayNetworkPrivateIpArrayOutput) Index(i pulumi.IntInput) VpcGatewayNetworkPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpcGatewayNetworkPrivateIp {
+		return vs[0].([]VpcGatewayNetworkPrivateIp)[vs[1].(int)]
+	}).(VpcGatewayNetworkPrivateIpOutput)
 }
 
 type VpcPrivateNetworkIpv4Subnet struct {
@@ -17910,6 +18785,112 @@ func (o GetBaremetalServerOptionArrayOutput) Index(i pulumi.IntInput) GetBaremet
 	}).(GetBaremetalServerOptionOutput)
 }
 
+type GetBaremetalServerPrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the server.
+	Id string `pulumi:"id"`
+}
+
+// GetBaremetalServerPrivateIpInput is an input type that accepts GetBaremetalServerPrivateIpArgs and GetBaremetalServerPrivateIpOutput values.
+// You can construct a concrete instance of `GetBaremetalServerPrivateIpInput` via:
+//
+//	GetBaremetalServerPrivateIpArgs{...}
+type GetBaremetalServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerPrivateIpOutput() GetBaremetalServerPrivateIpOutput
+	ToGetBaremetalServerPrivateIpOutputWithContext(context.Context) GetBaremetalServerPrivateIpOutput
+}
+
+type GetBaremetalServerPrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the server.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetBaremetalServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetBaremetalServerPrivateIpArgs) ToGetBaremetalServerPrivateIpOutput() GetBaremetalServerPrivateIpOutput {
+	return i.ToGetBaremetalServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerPrivateIpArgs) ToGetBaremetalServerPrivateIpOutputWithContext(ctx context.Context) GetBaremetalServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerPrivateIpOutput)
+}
+
+// GetBaremetalServerPrivateIpArrayInput is an input type that accepts GetBaremetalServerPrivateIpArray and GetBaremetalServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetBaremetalServerPrivateIpArrayInput` via:
+//
+//	GetBaremetalServerPrivateIpArray{ GetBaremetalServerPrivateIpArgs{...} }
+type GetBaremetalServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetBaremetalServerPrivateIpArrayOutput() GetBaremetalServerPrivateIpArrayOutput
+	ToGetBaremetalServerPrivateIpArrayOutputWithContext(context.Context) GetBaremetalServerPrivateIpArrayOutput
+}
+
+type GetBaremetalServerPrivateIpArray []GetBaremetalServerPrivateIpInput
+
+func (GetBaremetalServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetBaremetalServerPrivateIpArray) ToGetBaremetalServerPrivateIpArrayOutput() GetBaremetalServerPrivateIpArrayOutput {
+	return i.ToGetBaremetalServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetBaremetalServerPrivateIpArray) ToGetBaremetalServerPrivateIpArrayOutputWithContext(ctx context.Context) GetBaremetalServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBaremetalServerPrivateIpArrayOutput)
+}
+
+type GetBaremetalServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetBaremetalServerPrivateIpOutput) ToGetBaremetalServerPrivateIpOutput() GetBaremetalServerPrivateIpOutput {
+	return o
+}
+
+func (o GetBaremetalServerPrivateIpOutput) ToGetBaremetalServerPrivateIpOutputWithContext(ctx context.Context) GetBaremetalServerPrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetBaremetalServerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the server.
+func (o GetBaremetalServerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetBaremetalServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBaremetalServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBaremetalServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetBaremetalServerPrivateIpArrayOutput) ToGetBaremetalServerPrivateIpArrayOutput() GetBaremetalServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerPrivateIpArrayOutput) ToGetBaremetalServerPrivateIpArrayOutputWithContext(ctx context.Context) GetBaremetalServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetBaremetalServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetBaremetalServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBaremetalServerPrivateIp {
+		return vs[0].([]GetBaremetalServerPrivateIp)[vs[1].(int)]
+	}).(GetBaremetalServerPrivateIpOutput)
+}
+
 type GetBaremetalServerPrivateNetwork struct {
 	// The date and time of the creation of the private network
 	CreatedAt string `pulumi:"createdAt"`
@@ -17917,6 +18898,8 @@ type GetBaremetalServerPrivateNetwork struct {
 	Id string `pulumi:"id"`
 	// List of IPAM IP IDs to attach to the server
 	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping
+	MappingId string `pulumi:"mappingId"`
 	// The private network status
 	Status string `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -17943,6 +18926,8 @@ type GetBaremetalServerPrivateNetworkArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// List of IPAM IP IDs to attach to the server
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping
+	MappingId pulumi.StringInput `pulumi:"mappingId"`
 	// The private network status
 	Status pulumi.StringInput `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -18015,6 +19000,11 @@ func (o GetBaremetalServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 // List of IPAM IP IDs to attach to the server
 func (o GetBaremetalServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Server-to-Private Network mapping
+func (o GetBaremetalServerPrivateNetworkOutput) MappingId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBaremetalServerPrivateNetwork) string { return v.MappingId }).(pulumi.StringOutput)
 }
 
 // The private network status
@@ -19346,6 +20336,112 @@ func (o GetDatabaseInstanceLogsPolicyArrayOutput) Index(i pulumi.IntInput) GetDa
 	}).(GetDatabaseInstanceLogsPolicyOutput)
 }
 
+type GetDatabaseInstancePrivateIp struct {
+	// The private IPv4 address
+	Address string `pulumi:"address"`
+	// The ID of the Database Instance.
+	Id string `pulumi:"id"`
+}
+
+// GetDatabaseInstancePrivateIpInput is an input type that accepts GetDatabaseInstancePrivateIpArgs and GetDatabaseInstancePrivateIpOutput values.
+// You can construct a concrete instance of `GetDatabaseInstancePrivateIpInput` via:
+//
+//	GetDatabaseInstancePrivateIpArgs{...}
+type GetDatabaseInstancePrivateIpInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstancePrivateIpOutput() GetDatabaseInstancePrivateIpOutput
+	ToGetDatabaseInstancePrivateIpOutputWithContext(context.Context) GetDatabaseInstancePrivateIpOutput
+}
+
+type GetDatabaseInstancePrivateIpArgs struct {
+	// The private IPv4 address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the Database Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetDatabaseInstancePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (i GetDatabaseInstancePrivateIpArgs) ToGetDatabaseInstancePrivateIpOutput() GetDatabaseInstancePrivateIpOutput {
+	return i.ToGetDatabaseInstancePrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstancePrivateIpArgs) ToGetDatabaseInstancePrivateIpOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstancePrivateIpOutput)
+}
+
+// GetDatabaseInstancePrivateIpArrayInput is an input type that accepts GetDatabaseInstancePrivateIpArray and GetDatabaseInstancePrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstancePrivateIpArrayInput` via:
+//
+//	GetDatabaseInstancePrivateIpArray{ GetDatabaseInstancePrivateIpArgs{...} }
+type GetDatabaseInstancePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstancePrivateIpArrayOutput() GetDatabaseInstancePrivateIpArrayOutput
+	ToGetDatabaseInstancePrivateIpArrayOutputWithContext(context.Context) GetDatabaseInstancePrivateIpArrayOutput
+}
+
+type GetDatabaseInstancePrivateIpArray []GetDatabaseInstancePrivateIpInput
+
+func (GetDatabaseInstancePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (i GetDatabaseInstancePrivateIpArray) ToGetDatabaseInstancePrivateIpArrayOutput() GetDatabaseInstancePrivateIpArrayOutput {
+	return i.ToGetDatabaseInstancePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstancePrivateIpArray) ToGetDatabaseInstancePrivateIpArrayOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstancePrivateIpArrayOutput)
+}
+
+type GetDatabaseInstancePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstancePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (o GetDatabaseInstancePrivateIpOutput) ToGetDatabaseInstancePrivateIpOutput() GetDatabaseInstancePrivateIpOutput {
+	return o
+}
+
+func (o GetDatabaseInstancePrivateIpOutput) ToGetDatabaseInstancePrivateIpOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address
+func (o GetDatabaseInstancePrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstancePrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the Database Instance.
+func (o GetDatabaseInstancePrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstancePrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetDatabaseInstancePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstancePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstancePrivateIp)(nil)).Elem()
+}
+
+func (o GetDatabaseInstancePrivateIpArrayOutput) ToGetDatabaseInstancePrivateIpArrayOutput() GetDatabaseInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstancePrivateIpArrayOutput) ToGetDatabaseInstancePrivateIpArrayOutputWithContext(ctx context.Context) GetDatabaseInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstancePrivateIpArrayOutput) Index(i pulumi.IntInput) GetDatabaseInstancePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstancePrivateIp {
+		return vs[0].([]GetDatabaseInstancePrivateIp)[vs[1].(int)]
+	}).(GetDatabaseInstancePrivateIpOutput)
+}
+
 type GetDatabaseInstancePrivateNetwork struct {
 	// Whether or not the private network endpoint should be configured with IPAM
 	EnableIpam bool `pulumi:"enableIpam"`
@@ -20531,6 +21627,112 @@ func (o GetFlexibleIpsIpMacAddressArrayOutput) Index(i pulumi.IntInput) GetFlexi
 	}).(GetFlexibleIpsIpMacAddressOutput)
 }
 
+type GetInstancePrivateNicPrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the IP address resource
+	Id string `pulumi:"id"`
+}
+
+// GetInstancePrivateNicPrivateIpInput is an input type that accepts GetInstancePrivateNicPrivateIpArgs and GetInstancePrivateNicPrivateIpOutput values.
+// You can construct a concrete instance of `GetInstancePrivateNicPrivateIpInput` via:
+//
+//	GetInstancePrivateNicPrivateIpArgs{...}
+type GetInstancePrivateNicPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetInstancePrivateNicPrivateIpOutput() GetInstancePrivateNicPrivateIpOutput
+	ToGetInstancePrivateNicPrivateIpOutputWithContext(context.Context) GetInstancePrivateNicPrivateIpOutput
+}
+
+type GetInstancePrivateNicPrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IP address resource
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetInstancePrivateNicPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstancePrivateNicPrivateIpArgs) ToGetInstancePrivateNicPrivateIpOutput() GetInstancePrivateNicPrivateIpOutput {
+	return i.ToGetInstancePrivateNicPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetInstancePrivateNicPrivateIpArgs) ToGetInstancePrivateNicPrivateIpOutputWithContext(ctx context.Context) GetInstancePrivateNicPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePrivateNicPrivateIpOutput)
+}
+
+// GetInstancePrivateNicPrivateIpArrayInput is an input type that accepts GetInstancePrivateNicPrivateIpArray and GetInstancePrivateNicPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetInstancePrivateNicPrivateIpArrayInput` via:
+//
+//	GetInstancePrivateNicPrivateIpArray{ GetInstancePrivateNicPrivateIpArgs{...} }
+type GetInstancePrivateNicPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancePrivateNicPrivateIpArrayOutput() GetInstancePrivateNicPrivateIpArrayOutput
+	ToGetInstancePrivateNicPrivateIpArrayOutputWithContext(context.Context) GetInstancePrivateNicPrivateIpArrayOutput
+}
+
+type GetInstancePrivateNicPrivateIpArray []GetInstancePrivateNicPrivateIpInput
+
+func (GetInstancePrivateNicPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstancePrivateNicPrivateIpArray) ToGetInstancePrivateNicPrivateIpArrayOutput() GetInstancePrivateNicPrivateIpArrayOutput {
+	return i.ToGetInstancePrivateNicPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancePrivateNicPrivateIpArray) ToGetInstancePrivateNicPrivateIpArrayOutputWithContext(ctx context.Context) GetInstancePrivateNicPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePrivateNicPrivateIpArrayOutput)
+}
+
+type GetInstancePrivateNicPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePrivateNicPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstancePrivateNicPrivateIpOutput) ToGetInstancePrivateNicPrivateIpOutput() GetInstancePrivateNicPrivateIpOutput {
+	return o
+}
+
+func (o GetInstancePrivateNicPrivateIpOutput) ToGetInstancePrivateNicPrivateIpOutputWithContext(ctx context.Context) GetInstancePrivateNicPrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetInstancePrivateNicPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePrivateNicPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IP address resource
+func (o GetInstancePrivateNicPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePrivateNicPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetInstancePrivateNicPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePrivateNicPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePrivateNicPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstancePrivateNicPrivateIpArrayOutput) ToGetInstancePrivateNicPrivateIpArrayOutput() GetInstancePrivateNicPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstancePrivateNicPrivateIpArrayOutput) ToGetInstancePrivateNicPrivateIpArrayOutputWithContext(ctx context.Context) GetInstancePrivateNicPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstancePrivateNicPrivateIpArrayOutput) Index(i pulumi.IntInput) GetInstancePrivateNicPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancePrivateNicPrivateIp {
+		return vs[0].([]GetInstancePrivateNicPrivateIp)[vs[1].(int)]
+	}).(GetInstancePrivateNicPrivateIpOutput)
+}
+
 type GetInstanceSecurityGroupInboundRule struct {
 	// The action to take when rule match. Possible values are: `accept` or `drop`.
 	Action string `pulumi:"action"`
@@ -20825,6 +22027,112 @@ func (o GetInstanceSecurityGroupOutboundRuleArrayOutput) Index(i pulumi.IntInput
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceSecurityGroupOutboundRule {
 		return vs[0].([]GetInstanceSecurityGroupOutboundRule)[vs[1].(int)]
 	}).(GetInstanceSecurityGroupOutboundRuleOutput)
+}
+
+type GetInstanceServerPrivateIp struct {
+	// The address of the IP
+	Address string `pulumi:"address"`
+	// The ID of the IP
+	Id string `pulumi:"id"`
+}
+
+// GetInstanceServerPrivateIpInput is an input type that accepts GetInstanceServerPrivateIpArgs and GetInstanceServerPrivateIpOutput values.
+// You can construct a concrete instance of `GetInstanceServerPrivateIpInput` via:
+//
+//	GetInstanceServerPrivateIpArgs{...}
+type GetInstanceServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerPrivateIpOutput() GetInstanceServerPrivateIpOutput
+	ToGetInstanceServerPrivateIpOutputWithContext(context.Context) GetInstanceServerPrivateIpOutput
+}
+
+type GetInstanceServerPrivateIpArgs struct {
+	// The address of the IP
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IP
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetInstanceServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstanceServerPrivateIpArgs) ToGetInstanceServerPrivateIpOutput() GetInstanceServerPrivateIpOutput {
+	return i.ToGetInstanceServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerPrivateIpArgs) ToGetInstanceServerPrivateIpOutputWithContext(ctx context.Context) GetInstanceServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerPrivateIpOutput)
+}
+
+// GetInstanceServerPrivateIpArrayInput is an input type that accepts GetInstanceServerPrivateIpArray and GetInstanceServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetInstanceServerPrivateIpArrayInput` via:
+//
+//	GetInstanceServerPrivateIpArray{ GetInstanceServerPrivateIpArgs{...} }
+type GetInstanceServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerPrivateIpArrayOutput() GetInstanceServerPrivateIpArrayOutput
+	ToGetInstanceServerPrivateIpArrayOutputWithContext(context.Context) GetInstanceServerPrivateIpArrayOutput
+}
+
+type GetInstanceServerPrivateIpArray []GetInstanceServerPrivateIpInput
+
+func (GetInstanceServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstanceServerPrivateIpArray) ToGetInstanceServerPrivateIpArrayOutput() GetInstanceServerPrivateIpArrayOutput {
+	return i.ToGetInstanceServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerPrivateIpArray) ToGetInstanceServerPrivateIpArrayOutputWithContext(ctx context.Context) GetInstanceServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerPrivateIpArrayOutput)
+}
+
+type GetInstanceServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstanceServerPrivateIpOutput) ToGetInstanceServerPrivateIpOutput() GetInstanceServerPrivateIpOutput {
+	return o
+}
+
+func (o GetInstanceServerPrivateIpOutput) ToGetInstanceServerPrivateIpOutputWithContext(ctx context.Context) GetInstanceServerPrivateIpOutput {
+	return o
+}
+
+// The address of the IP
+func (o GetInstanceServerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IP
+func (o GetInstanceServerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetInstanceServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstanceServerPrivateIpArrayOutput) ToGetInstanceServerPrivateIpArrayOutput() GetInstanceServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstanceServerPrivateIpArrayOutput) ToGetInstanceServerPrivateIpArrayOutputWithContext(ctx context.Context) GetInstanceServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstanceServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetInstanceServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceServerPrivateIp {
+		return vs[0].([]GetInstanceServerPrivateIp)[vs[1].(int)]
+	}).(GetInstanceServerPrivateIpOutput)
 }
 
 type GetInstanceServerPrivateNetwork struct {
@@ -23354,8 +24662,12 @@ func (o GetKubernetesClusterOpenIdConnectConfigArrayOutput) Index(i pulumi.IntIn
 }
 
 type GetKubernetesNodePoolNode struct {
+	// The ID of the pool.
+	Id string `pulumi:"id"`
 	// The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 	Name string `pulumi:"name"`
+	// List of private IPv4 and IPv6 addresses associated with the node
+	PrivateIps []GetKubernetesNodePoolNodePrivateIp `pulumi:"privateIps"`
 	// The public IPv4.
 	PublicIp string `pulumi:"publicIp"`
 	// The public IPv6.
@@ -23376,8 +24688,12 @@ type GetKubernetesNodePoolNodeInput interface {
 }
 
 type GetKubernetesNodePoolNodeArgs struct {
+	// The ID of the pool.
+	Id pulumi.StringInput `pulumi:"id"`
 	// The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 	Name pulumi.StringInput `pulumi:"name"`
+	// List of private IPv4 and IPv6 addresses associated with the node
+	PrivateIps GetKubernetesNodePoolNodePrivateIpArrayInput `pulumi:"privateIps"`
 	// The public IPv4.
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The public IPv6.
@@ -23437,9 +24753,19 @@ func (o GetKubernetesNodePoolNodeOutput) ToGetKubernetesNodePoolNodeOutputWithCo
 	return o
 }
 
+// The ID of the pool.
+func (o GetKubernetesNodePoolNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
 // The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 func (o GetKubernetesNodePoolNodeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesNodePoolNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of private IPv4 and IPv6 addresses associated with the node
+func (o GetKubernetesNodePoolNodeOutput) PrivateIps() GetKubernetesNodePoolNodePrivateIpArrayOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolNode) []GetKubernetesNodePoolNodePrivateIp { return v.PrivateIps }).(GetKubernetesNodePoolNodePrivateIpArrayOutput)
 }
 
 // The public IPv4.
@@ -23475,6 +24801,112 @@ func (o GetKubernetesNodePoolNodeArrayOutput) Index(i pulumi.IntInput) GetKubern
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesNodePoolNode {
 		return vs[0].([]GetKubernetesNodePoolNode)[vs[1].(int)]
 	}).(GetKubernetesNodePoolNodeOutput)
+}
+
+type GetKubernetesNodePoolNodePrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the pool.
+	Id string `pulumi:"id"`
+}
+
+// GetKubernetesNodePoolNodePrivateIpInput is an input type that accepts GetKubernetesNodePoolNodePrivateIpArgs and GetKubernetesNodePoolNodePrivateIpOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolNodePrivateIpInput` via:
+//
+//	GetKubernetesNodePoolNodePrivateIpArgs{...}
+type GetKubernetesNodePoolNodePrivateIpInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolNodePrivateIpOutput() GetKubernetesNodePoolNodePrivateIpOutput
+	ToGetKubernetesNodePoolNodePrivateIpOutputWithContext(context.Context) GetKubernetesNodePoolNodePrivateIpOutput
+}
+
+type GetKubernetesNodePoolNodePrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the pool.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetKubernetesNodePoolNodePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolNodePrivateIpArgs) ToGetKubernetesNodePoolNodePrivateIpOutput() GetKubernetesNodePoolNodePrivateIpOutput {
+	return i.ToGetKubernetesNodePoolNodePrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolNodePrivateIpArgs) ToGetKubernetesNodePoolNodePrivateIpOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolNodePrivateIpOutput)
+}
+
+// GetKubernetesNodePoolNodePrivateIpArrayInput is an input type that accepts GetKubernetesNodePoolNodePrivateIpArray and GetKubernetesNodePoolNodePrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesNodePoolNodePrivateIpArrayInput` via:
+//
+//	GetKubernetesNodePoolNodePrivateIpArray{ GetKubernetesNodePoolNodePrivateIpArgs{...} }
+type GetKubernetesNodePoolNodePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesNodePoolNodePrivateIpArrayOutput() GetKubernetesNodePoolNodePrivateIpArrayOutput
+	ToGetKubernetesNodePoolNodePrivateIpArrayOutputWithContext(context.Context) GetKubernetesNodePoolNodePrivateIpArrayOutput
+}
+
+type GetKubernetesNodePoolNodePrivateIpArray []GetKubernetesNodePoolNodePrivateIpInput
+
+func (GetKubernetesNodePoolNodePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i GetKubernetesNodePoolNodePrivateIpArray) ToGetKubernetesNodePoolNodePrivateIpArrayOutput() GetKubernetesNodePoolNodePrivateIpArrayOutput {
+	return i.ToGetKubernetesNodePoolNodePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesNodePoolNodePrivateIpArray) ToGetKubernetesNodePoolNodePrivateIpArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesNodePoolNodePrivateIpArrayOutput)
+}
+
+type GetKubernetesNodePoolNodePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolNodePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolNodePrivateIpOutput) ToGetKubernetesNodePoolNodePrivateIpOutput() GetKubernetesNodePoolNodePrivateIpOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolNodePrivateIpOutput) ToGetKubernetesNodePoolNodePrivateIpOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodePrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetKubernetesNodePoolNodePrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolNodePrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the pool.
+func (o GetKubernetesNodePoolNodePrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesNodePoolNodePrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetKubernetesNodePoolNodePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesNodePoolNodePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesNodePoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o GetKubernetesNodePoolNodePrivateIpArrayOutput) ToGetKubernetesNodePoolNodePrivateIpArrayOutput() GetKubernetesNodePoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolNodePrivateIpArrayOutput) ToGetKubernetesNodePoolNodePrivateIpArrayOutputWithContext(ctx context.Context) GetKubernetesNodePoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetKubernetesNodePoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) GetKubernetesNodePoolNodePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesNodePoolNodePrivateIp {
+		return vs[0].([]GetKubernetesNodePoolNodePrivateIp)[vs[1].(int)]
+	}).(GetKubernetesNodePoolNodePrivateIpOutput)
 }
 
 type GetKubernetesNodePoolUpgradePolicy struct {
@@ -26622,6 +28054,112 @@ func (o GetLoadbalancerCertificateLetsencryptArrayOutput) Index(i pulumi.IntInpu
 	}).(GetLoadbalancerCertificateLetsencryptOutput)
 }
 
+type GetLoadbalancerPrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the Load Balancer.
+	Id string `pulumi:"id"`
+}
+
+// GetLoadbalancerPrivateIpInput is an input type that accepts GetLoadbalancerPrivateIpArgs and GetLoadbalancerPrivateIpOutput values.
+// You can construct a concrete instance of `GetLoadbalancerPrivateIpInput` via:
+//
+//	GetLoadbalancerPrivateIpArgs{...}
+type GetLoadbalancerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerPrivateIpOutput() GetLoadbalancerPrivateIpOutput
+	ToGetLoadbalancerPrivateIpOutputWithContext(context.Context) GetLoadbalancerPrivateIpOutput
+}
+
+type GetLoadbalancerPrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the Load Balancer.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetLoadbalancerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (i GetLoadbalancerPrivateIpArgs) ToGetLoadbalancerPrivateIpOutput() GetLoadbalancerPrivateIpOutput {
+	return i.ToGetLoadbalancerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerPrivateIpArgs) ToGetLoadbalancerPrivateIpOutputWithContext(ctx context.Context) GetLoadbalancerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerPrivateIpOutput)
+}
+
+// GetLoadbalancerPrivateIpArrayInput is an input type that accepts GetLoadbalancerPrivateIpArray and GetLoadbalancerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetLoadbalancerPrivateIpArrayInput` via:
+//
+//	GetLoadbalancerPrivateIpArray{ GetLoadbalancerPrivateIpArgs{...} }
+type GetLoadbalancerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadbalancerPrivateIpArrayOutput() GetLoadbalancerPrivateIpArrayOutput
+	ToGetLoadbalancerPrivateIpArrayOutputWithContext(context.Context) GetLoadbalancerPrivateIpArrayOutput
+}
+
+type GetLoadbalancerPrivateIpArray []GetLoadbalancerPrivateIpInput
+
+func (GetLoadbalancerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (i GetLoadbalancerPrivateIpArray) ToGetLoadbalancerPrivateIpArrayOutput() GetLoadbalancerPrivateIpArrayOutput {
+	return i.ToGetLoadbalancerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadbalancerPrivateIpArray) ToGetLoadbalancerPrivateIpArrayOutputWithContext(ctx context.Context) GetLoadbalancerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadbalancerPrivateIpArrayOutput)
+}
+
+type GetLoadbalancerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (o GetLoadbalancerPrivateIpOutput) ToGetLoadbalancerPrivateIpOutput() GetLoadbalancerPrivateIpOutput {
+	return o
+}
+
+func (o GetLoadbalancerPrivateIpOutput) ToGetLoadbalancerPrivateIpOutputWithContext(ctx context.Context) GetLoadbalancerPrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetLoadbalancerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the Load Balancer.
+func (o GetLoadbalancerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadbalancerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetLoadbalancerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadbalancerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadbalancerPrivateIp)(nil)).Elem()
+}
+
+func (o GetLoadbalancerPrivateIpArrayOutput) ToGetLoadbalancerPrivateIpArrayOutput() GetLoadbalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancerPrivateIpArrayOutput) ToGetLoadbalancerPrivateIpArrayOutputWithContext(ctx context.Context) GetLoadbalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetLoadbalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetLoadbalancerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadbalancerPrivateIp {
+		return vs[0].([]GetLoadbalancerPrivateIp)[vs[1].(int)]
+	}).(GetLoadbalancerPrivateIpOutput)
+}
+
 type GetLoadbalancerPrivateNetwork struct {
 	// Set to true if you want to let DHCP assign IP addresses
 	DhcpConfig bool `pulumi:"dhcpConfig"`
@@ -27696,6 +29234,112 @@ func (o GetRedisClusterAclArrayOutput) Index(i pulumi.IntInput) GetRedisClusterA
 	}).(GetRedisClusterAclOutput)
 }
 
+type GetRedisClusterPrivateIp struct {
+	// The private IPv4 address
+	Address string `pulumi:"address"`
+	// The ID of the Redis cluster.
+	Id string `pulumi:"id"`
+}
+
+// GetRedisClusterPrivateIpInput is an input type that accepts GetRedisClusterPrivateIpArgs and GetRedisClusterPrivateIpOutput values.
+// You can construct a concrete instance of `GetRedisClusterPrivateIpInput` via:
+//
+//	GetRedisClusterPrivateIpArgs{...}
+type GetRedisClusterPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetRedisClusterPrivateIpOutput() GetRedisClusterPrivateIpOutput
+	ToGetRedisClusterPrivateIpOutputWithContext(context.Context) GetRedisClusterPrivateIpOutput
+}
+
+type GetRedisClusterPrivateIpArgs struct {
+	// The private IPv4 address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the Redis cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetRedisClusterPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (i GetRedisClusterPrivateIpArgs) ToGetRedisClusterPrivateIpOutput() GetRedisClusterPrivateIpOutput {
+	return i.ToGetRedisClusterPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetRedisClusterPrivateIpArgs) ToGetRedisClusterPrivateIpOutputWithContext(ctx context.Context) GetRedisClusterPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisClusterPrivateIpOutput)
+}
+
+// GetRedisClusterPrivateIpArrayInput is an input type that accepts GetRedisClusterPrivateIpArray and GetRedisClusterPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetRedisClusterPrivateIpArrayInput` via:
+//
+//	GetRedisClusterPrivateIpArray{ GetRedisClusterPrivateIpArgs{...} }
+type GetRedisClusterPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetRedisClusterPrivateIpArrayOutput() GetRedisClusterPrivateIpArrayOutput
+	ToGetRedisClusterPrivateIpArrayOutputWithContext(context.Context) GetRedisClusterPrivateIpArrayOutput
+}
+
+type GetRedisClusterPrivateIpArray []GetRedisClusterPrivateIpInput
+
+func (GetRedisClusterPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (i GetRedisClusterPrivateIpArray) ToGetRedisClusterPrivateIpArrayOutput() GetRedisClusterPrivateIpArrayOutput {
+	return i.ToGetRedisClusterPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetRedisClusterPrivateIpArray) ToGetRedisClusterPrivateIpArrayOutputWithContext(ctx context.Context) GetRedisClusterPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisClusterPrivateIpArrayOutput)
+}
+
+type GetRedisClusterPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetRedisClusterPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (o GetRedisClusterPrivateIpOutput) ToGetRedisClusterPrivateIpOutput() GetRedisClusterPrivateIpOutput {
+	return o
+}
+
+func (o GetRedisClusterPrivateIpOutput) ToGetRedisClusterPrivateIpOutputWithContext(ctx context.Context) GetRedisClusterPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address
+func (o GetRedisClusterPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRedisClusterPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the Redis cluster.
+func (o GetRedisClusterPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRedisClusterPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetRedisClusterPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRedisClusterPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRedisClusterPrivateIp)(nil)).Elem()
+}
+
+func (o GetRedisClusterPrivateIpArrayOutput) ToGetRedisClusterPrivateIpArrayOutput() GetRedisClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetRedisClusterPrivateIpArrayOutput) ToGetRedisClusterPrivateIpArrayOutputWithContext(ctx context.Context) GetRedisClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetRedisClusterPrivateIpArrayOutput) Index(i pulumi.IntInput) GetRedisClusterPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRedisClusterPrivateIp {
+		return vs[0].([]GetRedisClusterPrivateIp)[vs[1].(int)]
+	}).(GetRedisClusterPrivateIpOutput)
+}
+
 type GetRedisClusterPrivateNetwork struct {
 	// The ID of the endpoint.
 	EndpointId string `pulumi:"endpointId"`
@@ -28438,6 +30082,112 @@ func (o GetVpcGatewayNetworkIpamConfigArrayOutput) Index(i pulumi.IntInput) GetV
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcGatewayNetworkIpamConfig {
 		return vs[0].([]GetVpcGatewayNetworkIpamConfig)[vs[1].(int)]
 	}).(GetVpcGatewayNetworkIpamConfigOutput)
+}
+
+type GetVpcGatewayNetworkPrivateIp struct {
+	// The private IPv4 address.
+	Address string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id string `pulumi:"id"`
+}
+
+// GetVpcGatewayNetworkPrivateIpInput is an input type that accepts GetVpcGatewayNetworkPrivateIpArgs and GetVpcGatewayNetworkPrivateIpOutput values.
+// You can construct a concrete instance of `GetVpcGatewayNetworkPrivateIpInput` via:
+//
+//	GetVpcGatewayNetworkPrivateIpArgs{...}
+type GetVpcGatewayNetworkPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetVpcGatewayNetworkPrivateIpOutput() GetVpcGatewayNetworkPrivateIpOutput
+	ToGetVpcGatewayNetworkPrivateIpOutputWithContext(context.Context) GetVpcGatewayNetworkPrivateIpOutput
+}
+
+type GetVpcGatewayNetworkPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetVpcGatewayNetworkPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GetVpcGatewayNetworkPrivateIpArgs) ToGetVpcGatewayNetworkPrivateIpOutput() GetVpcGatewayNetworkPrivateIpOutput {
+	return i.ToGetVpcGatewayNetworkPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetVpcGatewayNetworkPrivateIpArgs) ToGetVpcGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GetVpcGatewayNetworkPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcGatewayNetworkPrivateIpOutput)
+}
+
+// GetVpcGatewayNetworkPrivateIpArrayInput is an input type that accepts GetVpcGatewayNetworkPrivateIpArray and GetVpcGatewayNetworkPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetVpcGatewayNetworkPrivateIpArrayInput` via:
+//
+//	GetVpcGatewayNetworkPrivateIpArray{ GetVpcGatewayNetworkPrivateIpArgs{...} }
+type GetVpcGatewayNetworkPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetVpcGatewayNetworkPrivateIpArrayOutput() GetVpcGatewayNetworkPrivateIpArrayOutput
+	ToGetVpcGatewayNetworkPrivateIpArrayOutputWithContext(context.Context) GetVpcGatewayNetworkPrivateIpArrayOutput
+}
+
+type GetVpcGatewayNetworkPrivateIpArray []GetVpcGatewayNetworkPrivateIpInput
+
+func (GetVpcGatewayNetworkPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (i GetVpcGatewayNetworkPrivateIpArray) ToGetVpcGatewayNetworkPrivateIpArrayOutput() GetVpcGatewayNetworkPrivateIpArrayOutput {
+	return i.ToGetVpcGatewayNetworkPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetVpcGatewayNetworkPrivateIpArray) ToGetVpcGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GetVpcGatewayNetworkPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetVpcGatewayNetworkPrivateIpArrayOutput)
+}
+
+type GetVpcGatewayNetworkPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetVpcGatewayNetworkPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetVpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GetVpcGatewayNetworkPrivateIpOutput) ToGetVpcGatewayNetworkPrivateIpOutput() GetVpcGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkPrivateIpOutput) ToGetVpcGatewayNetworkPrivateIpOutputWithContext(ctx context.Context) GetVpcGatewayNetworkPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o GetVpcGatewayNetworkPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcGatewayNetworkPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o GetVpcGatewayNetworkPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpcGatewayNetworkPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetVpcGatewayNetworkPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetVpcGatewayNetworkPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetVpcGatewayNetworkPrivateIp)(nil)).Elem()
+}
+
+func (o GetVpcGatewayNetworkPrivateIpArrayOutput) ToGetVpcGatewayNetworkPrivateIpArrayOutput() GetVpcGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkPrivateIpArrayOutput) ToGetVpcGatewayNetworkPrivateIpArrayOutputWithContext(ctx context.Context) GetVpcGatewayNetworkPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetVpcGatewayNetworkPrivateIpArrayOutput) Index(i pulumi.IntInput) GetVpcGatewayNetworkPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetVpcGatewayNetworkPrivateIp {
+		return vs[0].([]GetVpcGatewayNetworkPrivateIp)[vs[1].(int)]
+	}).(GetVpcGatewayNetworkPrivateIpOutput)
 }
 
 type GetVpcPrivateNetworkIpv4Subnet struct {
@@ -30049,6 +31799,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv6ArrayInput)(nil)).Elem(), BaremetalServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionInput)(nil)).Elem(), BaremetalServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerOptionArrayInput)(nil)).Elem(), BaremetalServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateIpInput)(nil)).Elem(), BaremetalServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateIpArrayInput)(nil)).Elem(), BaremetalServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
@@ -30075,6 +31827,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyPtrInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateIpInput)(nil)).Elem(), DatabaseInstancePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateIpArrayInput)(nil)).Elem(), DatabaseInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkPtrInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceReadReplicaInput)(nil)).Elem(), DatabaseInstanceReadReplicaArgs{})
@@ -30121,6 +31875,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeArrayInput)(nil)).Elem(), InstanceImageAdditionalVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicPrivateIpInput)(nil)).Elem(), InstancePrivateNicPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicPrivateIpArrayInput)(nil)).Elem(), InstancePrivateNicPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), InstanceSecurityGroupOutboundRuleArgs{})
@@ -30129,6 +31885,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesInboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupRulesInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesOutboundRuleInput)(nil)).Elem(), InstanceSecurityGroupRulesOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesOutboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupRulesOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateIpInput)(nil)).Elem(), InstanceServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateIpArrayInput)(nil)).Elem(), InstanceServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateNetworkInput)(nil)).Elem(), InstanceServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateNetworkArrayInput)(nil)).Elem(), InstanceServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPublicIpInput)(nil)).Elem(), InstanceServerPublicIpArgs{})
@@ -30173,6 +31931,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterOpenIdConnectConfigPtrInput)(nil)).Elem(), KubernetesClusterOpenIdConnectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodeInput)(nil)).Elem(), KubernetesNodePoolNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodeArrayInput)(nil)).Elem(), KubernetesNodePoolNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodePrivateIpInput)(nil)).Elem(), KubernetesNodePoolNodePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolNodePrivateIpArrayInput)(nil)).Elem(), KubernetesNodePoolNodePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), KubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolUpgradePolicyPtrInput)(nil)).Elem(), KubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerAclActionInput)(nil)).Elem(), LoadbalancerAclActionArgs{})
@@ -30197,6 +31957,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclActionRedirectInput)(nil)).Elem(), LoadbalancerFrontendAclActionRedirectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclActionRedirectArrayInput)(nil)).Elem(), LoadbalancerFrontendAclActionRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerFrontendAclMatchInput)(nil)).Elem(), LoadbalancerFrontendAclMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateIpInput)(nil)).Elem(), LoadbalancerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateIpArrayInput)(nil)).Elem(), LoadbalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkInput)(nil)).Elem(), LoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), LoadbalancerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
@@ -30235,6 +31997,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclInput)(nil)).Elem(), RedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclArrayInput)(nil)).Elem(), RedisClusterAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateIpInput)(nil)).Elem(), RedisClusterPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateIpArrayInput)(nil)).Elem(), RedisClusterPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkInput)(nil)).Elem(), RedisClusterPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
@@ -30247,6 +32011,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*TemDomainReputationArrayInput)(nil)).Elem(), TemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkIpamConfigArrayInput)(nil)).Elem(), VpcGatewayNetworkIpamConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkPrivateIpInput)(nil)).Elem(), VpcGatewayNetworkPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewayNetworkPrivateIpArrayInput)(nil)).Elem(), VpcGatewayNetworkPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv4SubnetPtrInput)(nil)).Elem(), VpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), VpcPrivateNetworkIpv6SubnetArgs{})
@@ -30272,6 +32038,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerIpv6ArrayInput)(nil)).Elem(), GetBaremetalServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionInput)(nil)).Elem(), GetBaremetalServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerOptionArrayInput)(nil)).Elem(), GetBaremetalServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateIpInput)(nil)).Elem(), GetBaremetalServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateIpArrayInput)(nil)).Elem(), GetBaremetalServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), GetBaremetalServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingConsumptionsConsumptionInput)(nil)).Elem(), GetBillingConsumptionsConsumptionArgs{})
@@ -30294,6 +32062,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), GetDatabaseInstanceLoadBalancerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceLogsPolicyArrayInput)(nil)).Elem(), GetDatabaseInstanceLogsPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateIpInput)(nil)).Elem(), GetDatabaseInstancePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateIpArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArgs{})
@@ -30312,10 +32082,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpArrayInput)(nil)).Elem(), GetFlexibleIpsIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpMacAddressInput)(nil)).Elem(), GetFlexibleIpsIpMacAddressArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFlexibleIpsIpMacAddressArrayInput)(nil)).Elem(), GetFlexibleIpsIpMacAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNicPrivateIpInput)(nil)).Elem(), GetInstancePrivateNicPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNicPrivateIpArrayInput)(nil)).Elem(), GetInstancePrivateNicPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateIpInput)(nil)).Elem(), GetInstanceServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateIpArrayInput)(nil)).Elem(), GetInstanceServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateNetworkInput)(nil)).Elem(), GetInstanceServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateNetworkArrayInput)(nil)).Elem(), GetInstanceServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPublicIpInput)(nil)).Elem(), GetInstanceServerPublicIpArgs{})
@@ -30354,6 +32128,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterOpenIdConnectConfigArrayInput)(nil)).Elem(), GetKubernetesClusterOpenIdConnectConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeInput)(nil)).Elem(), GetKubernetesNodePoolNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodeArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIpInput)(nil)).Elem(), GetKubernetesNodePoolNodePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolNodePrivateIpArrayInput)(nil)).Elem(), GetKubernetesNodePoolNodePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesNodePoolUpgradePolicyArrayInput)(nil)).Elem(), GetKubernetesNodePoolUpgradePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLbAclsAclInput)(nil)).Elem(), GetLbAclsAclArgs{})
@@ -30398,6 +32174,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateCustomCertificateArrayInput)(nil)).Elem(), GetLoadbalancerCertificateCustomCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerCertificateLetsencryptArrayInput)(nil)).Elem(), GetLoadbalancerCertificateLetsencryptArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateIpInput)(nil)).Elem(), GetLoadbalancerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateIpArrayInput)(nil)).Elem(), GetLoadbalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArgs{})
@@ -30416,6 +32194,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetObjectBucketVersioningArrayInput)(nil)).Elem(), GetObjectBucketVersioningArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterAclInput)(nil)).Elem(), GetRedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterAclArrayInput)(nil)).Elem(), GetRedisClusterAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateIpInput)(nil)).Elem(), GetRedisClusterPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateIpArrayInput)(nil)).Elem(), GetRedisClusterPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPrivateNetworkArrayInput)(nil)).Elem(), GetRedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisClusterPublicNetworkInput)(nil)).Elem(), GetRedisClusterPublicNetworkArgs{})
@@ -30428,6 +32208,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTemDomainReputationArrayInput)(nil)).Elem(), GetTemDomainReputationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkIpamConfigArrayInput)(nil)).Elem(), GetVpcGatewayNetworkIpamConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkPrivateIpInput)(nil)).Elem(), GetVpcGatewayNetworkPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcGatewayNetworkPrivateIpArrayInput)(nil)).Elem(), GetVpcGatewayNetworkPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv4SubnetArrayInput)(nil)).Elem(), GetVpcPrivateNetworkIpv4SubnetArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetVpcPrivateNetworkIpv6SubnetInput)(nil)).Elem(), GetVpcPrivateNetworkIpv6SubnetArgs{})
@@ -30460,6 +32242,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionOutput{})
 	pulumi.RegisterOutputType(BaremetalServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(BaremetalServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(BaremetalServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
@@ -30486,6 +32270,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyPtrOutput{})
+	pulumi.RegisterOutputType(DatabaseInstancePrivateIpOutput{})
+	pulumi.RegisterOutputType(DatabaseInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceReadReplicaOutput{})
@@ -30532,6 +32318,8 @@ func init() {
 	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointPtrOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeArrayOutput{})
+	pulumi.RegisterOutputType(InstancePrivateNicPrivateIpOutput{})
+	pulumi.RegisterOutputType(InstancePrivateNicPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupOutboundRuleOutput{})
@@ -30540,6 +32328,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesOutboundRuleOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(InstanceServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(InstanceServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(InstanceServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerPublicIpOutput{})
@@ -30584,6 +32374,8 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesClusterOpenIdConnectConfigPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolNodeOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolNodeArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolNodePrivateIpOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolNodePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolUpgradePolicyPtrOutput{})
 	pulumi.RegisterOutputType(LoadbalancerAclActionOutput{})
@@ -30608,6 +32400,8 @@ func init() {
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclActionRedirectOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclActionRedirectArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerFrontendAclMatchOutput{})
+	pulumi.RegisterOutputType(LoadbalancerPrivateIpOutput{})
+	pulumi.RegisterOutputType(LoadbalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LoadbalancerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsOutput{})
@@ -30646,6 +32440,8 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclArrayOutput{})
+	pulumi.RegisterOutputType(RedisClusterPrivateIpOutput{})
+	pulumi.RegisterOutputType(RedisClusterPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
@@ -30658,6 +32454,8 @@ func init() {
 	pulumi.RegisterOutputType(TemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigOutput{})
 	pulumi.RegisterOutputType(VpcGatewayNetworkIpamConfigArrayOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkPrivateIpOutput{})
+	pulumi.RegisterOutputType(VpcGatewayNetworkPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv4SubnetPtrOutput{})
 	pulumi.RegisterOutputType(VpcPrivateNetworkIpv6SubnetOutput{})
@@ -30683,6 +32481,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBaremetalServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerOptionOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetBaremetalServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetBaremetalServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetBillingConsumptionsConsumptionOutput{})
@@ -30705,6 +32505,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseInstanceLoadBalancerArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceLogsPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstancePrivateIpOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaOutput{})
@@ -30723,10 +32525,14 @@ func init() {
 	pulumi.RegisterOutputType(GetFlexibleIpsIpArrayOutput{})
 	pulumi.RegisterOutputType(GetFlexibleIpsIpMacAddressOutput{})
 	pulumi.RegisterOutputType(GetFlexibleIpsIpMacAddressArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancePrivateNicPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetInstancePrivateNicPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetInstanceServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPublicIpOutput{})
@@ -30765,6 +32571,8 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesClusterOpenIdConnectConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodeOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolNodePrivateIpOutput{})
+	pulumi.RegisterOutputType(GetKubernetesNodePoolNodePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(GetKubernetesNodePoolUpgradePolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetLbAclsAclOutput{})
@@ -30809,6 +32617,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateCustomCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateLetsencryptOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerCertificateLetsencryptArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetLoadbalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkOutput{})
@@ -30827,6 +32637,8 @@ func init() {
 	pulumi.RegisterOutputType(GetObjectBucketVersioningArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterAclOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterAclArrayOutput{})
+	pulumi.RegisterOutputType(GetRedisClusterPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetRedisClusterPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetRedisClusterPublicNetworkOutput{})
@@ -30839,6 +32651,8 @@ func init() {
 	pulumi.RegisterOutputType(GetTemDomainReputationArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigOutput{})
 	pulumi.RegisterOutputType(GetVpcGatewayNetworkIpamConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetVpcGatewayNetworkPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetVpcGatewayNetworkPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv4SubnetArrayOutput{})
 	pulumi.RegisterOutputType(GetVpcPrivateNetworkIpv6SubnetOutput{})

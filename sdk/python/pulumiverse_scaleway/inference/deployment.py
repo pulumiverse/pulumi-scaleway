@@ -21,7 +21,7 @@ __all__ = ['DeploymentArgs', 'Deployment']
 @pulumi.input_type
 class DeploymentArgs:
     def __init__(__self__, *,
-                 model_name: pulumi.Input[str],
+                 model_id: pulumi.Input[str],
                  node_type: pulumi.Input[str],
                  accept_eula: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
@@ -30,11 +30,12 @@ class DeploymentArgs:
                  private_endpoint: Optional[pulumi.Input['DeploymentPrivateEndpointArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input['DeploymentPublicEndpointArgs']] = None,
+                 quantization: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Deployment resource.
-        :param pulumi.Input[str] model_name: The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        :param pulumi.Input[str] model_id: The model id used for the deployment.
         :param pulumi.Input[str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
         :param pulumi.Input[bool] accept_eula: Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
         :param pulumi.Input[int] max_size: The maximum size of the pool.
@@ -43,10 +44,11 @@ class DeploymentArgs:
         :param pulumi.Input['DeploymentPrivateEndpointArgs'] private_endpoint: Configuration of the deployment's private endpoint.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input['DeploymentPublicEndpointArgs'] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the deployment.
         """
-        pulumi.set(__self__, "model_name", model_name)
+        pulumi.set(__self__, "model_id", model_id)
         pulumi.set(__self__, "node_type", node_type)
         if accept_eula is not None:
             pulumi.set(__self__, "accept_eula", accept_eula)
@@ -62,22 +64,24 @@ class DeploymentArgs:
             pulumi.set(__self__, "project_id", project_id)
         if public_endpoint is not None:
             pulumi.set(__self__, "public_endpoint", public_endpoint)
+        if quantization is not None:
+            pulumi.set(__self__, "quantization", quantization)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
 
     @property
-    @pulumi.getter(name="modelName")
-    def model_name(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="modelId")
+    def model_id(self) -> pulumi.Input[str]:
         """
-        The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        The model id used for the deployment.
         """
-        return pulumi.get(self, "model_name")
+        return pulumi.get(self, "model_id")
 
-    @model_name.setter
-    def model_name(self, value: pulumi.Input[str]):
-        pulumi.set(self, "model_name", value)
+    @model_id.setter
+    def model_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "model_id", value)
 
     @property
     @pulumi.getter(name="nodeType")
@@ -177,6 +181,18 @@ class DeploymentArgs:
 
     @property
     @pulumi.getter
+    def quantization(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits each model parameter should be quantized to
+        """
+        return pulumi.get(self, "quantization")
+
+    @quantization.setter
+    def quantization(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quantization", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         `region`) The region in which the deployment is created.
@@ -214,6 +230,7 @@ class _DeploymentState:
                  private_endpoint: Optional[pulumi.Input['DeploymentPrivateEndpointArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input['DeploymentPublicEndpointArgs']] = None,
+                 quantization: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -226,12 +243,13 @@ class _DeploymentState:
         :param pulumi.Input[int] max_size: The maximum size of the pool.
         :param pulumi.Input[int] min_size: The minimum size of the pool.
         :param pulumi.Input[str] model_id: The model id used for the deployment.
-        :param pulumi.Input[str] model_name: The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        :param pulumi.Input[str] model_name: The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         :param pulumi.Input[str] name: The deployment name.
         :param pulumi.Input[str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
         :param pulumi.Input['DeploymentPrivateEndpointArgs'] private_endpoint: Configuration of the deployment's private endpoint.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input['DeploymentPublicEndpointArgs'] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[int] size: The size of the pool.
         :param pulumi.Input[str] status: The status of the deployment.
@@ -260,6 +278,8 @@ class _DeploymentState:
             pulumi.set(__self__, "project_id", project_id)
         if public_endpoint is not None:
             pulumi.set(__self__, "public_endpoint", public_endpoint)
+        if quantization is not None:
+            pulumi.set(__self__, "quantization", quantization)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if size is not None:
@@ -335,7 +355,7 @@ class _DeploymentState:
     @pulumi.getter(name="modelName")
     def model_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         """
         return pulumi.get(self, "model_name")
 
@@ -402,6 +422,18 @@ class _DeploymentState:
     @public_endpoint.setter
     def public_endpoint(self, value: Optional[pulumi.Input['DeploymentPublicEndpointArgs']]):
         pulumi.set(self, "public_endpoint", value)
+
+    @property
+    @pulumi.getter
+    def quantization(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of bits each model parameter should be quantized to
+        """
+        return pulumi.get(self, "quantization")
+
+    @quantization.setter
+    def quantization(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quantization", value)
 
     @property
     @pulumi.getter
@@ -472,12 +504,13 @@ class Deployment(pulumi.CustomResource):
                  accept_eula: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
                  min_size: Optional[pulumi.Input[int]] = None,
-                 model_name: Optional[pulumi.Input[str]] = None,
+                 model_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  private_endpoint: Optional[pulumi.Input[Union['DeploymentPrivateEndpointArgs', 'DeploymentPrivateEndpointArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[Union['DeploymentPublicEndpointArgs', 'DeploymentPublicEndpointArgsDict']]] = None,
+                 quantization: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -486,22 +519,6 @@ class Deployment(pulumi.CustomResource):
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/inference/).
 
         ## Example Usage
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        deployment = scaleway.inference.Deployment("deployment",
-            name="tf-inference-deployment",
-            node_type="L4",
-            model_name="meta/llama-3.1-8b-instruct:fp8",
-            public_endpoint={
-                "is_enabled": True,
-            },
-            accept_eula=True)
-        ```
 
         ## Import
 
@@ -518,12 +535,13 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[bool] accept_eula: Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
         :param pulumi.Input[int] max_size: The maximum size of the pool.
         :param pulumi.Input[int] min_size: The minimum size of the pool.
-        :param pulumi.Input[str] model_name: The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        :param pulumi.Input[str] model_id: The model id used for the deployment.
         :param pulumi.Input[str] name: The deployment name.
         :param pulumi.Input[str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
         :param pulumi.Input[Union['DeploymentPrivateEndpointArgs', 'DeploymentPrivateEndpointArgsDict']] private_endpoint: Configuration of the deployment's private endpoint.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[Union['DeploymentPublicEndpointArgs', 'DeploymentPublicEndpointArgsDict']] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the deployment.
         """
@@ -538,22 +556,6 @@ class Deployment(pulumi.CustomResource):
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/inference/).
 
         ## Example Usage
-
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        deployment = scaleway.inference.Deployment("deployment",
-            name="tf-inference-deployment",
-            node_type="L4",
-            model_name="meta/llama-3.1-8b-instruct:fp8",
-            public_endpoint={
-                "is_enabled": True,
-            },
-            accept_eula=True)
-        ```
 
         ## Import
 
@@ -583,12 +585,13 @@ class Deployment(pulumi.CustomResource):
                  accept_eula: Optional[pulumi.Input[bool]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
                  min_size: Optional[pulumi.Input[int]] = None,
-                 model_name: Optional[pulumi.Input[str]] = None,
+                 model_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  private_endpoint: Optional[pulumi.Input[Union['DeploymentPrivateEndpointArgs', 'DeploymentPrivateEndpointArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_endpoint: Optional[pulumi.Input[Union['DeploymentPublicEndpointArgs', 'DeploymentPublicEndpointArgsDict']]] = None,
+                 quantization: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
@@ -603,9 +606,9 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["accept_eula"] = accept_eula
             __props__.__dict__["max_size"] = max_size
             __props__.__dict__["min_size"] = min_size
-            if model_name is None and not opts.urn:
-                raise TypeError("Missing required property 'model_name'")
-            __props__.__dict__["model_name"] = model_name
+            if model_id is None and not opts.urn:
+                raise TypeError("Missing required property 'model_id'")
+            __props__.__dict__["model_id"] = model_id
             __props__.__dict__["name"] = name
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
@@ -613,10 +616,11 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["private_endpoint"] = private_endpoint
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_endpoint"] = public_endpoint
+            __props__.__dict__["quantization"] = quantization
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["model_id"] = None
+            __props__.__dict__["model_name"] = None
             __props__.__dict__["size"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
@@ -643,6 +647,7 @@ class Deployment(pulumi.CustomResource):
             private_endpoint: Optional[pulumi.Input[Union['DeploymentPrivateEndpointArgs', 'DeploymentPrivateEndpointArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             public_endpoint: Optional[pulumi.Input[Union['DeploymentPublicEndpointArgs', 'DeploymentPublicEndpointArgsDict']]] = None,
+            quantization: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -660,12 +665,13 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[int] max_size: The maximum size of the pool.
         :param pulumi.Input[int] min_size: The minimum size of the pool.
         :param pulumi.Input[str] model_id: The model id used for the deployment.
-        :param pulumi.Input[str] model_name: The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        :param pulumi.Input[str] model_name: The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         :param pulumi.Input[str] name: The deployment name.
         :param pulumi.Input[str] node_type: The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
         :param pulumi.Input[Union['DeploymentPrivateEndpointArgs', 'DeploymentPrivateEndpointArgsDict']] private_endpoint: Configuration of the deployment's private endpoint.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[Union['DeploymentPublicEndpointArgs', 'DeploymentPublicEndpointArgsDict']] public_endpoint: Configuration of the deployment's public endpoint.
+        :param pulumi.Input[int] quantization: The number of bits each model parameter should be quantized to
         :param pulumi.Input[str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[int] size: The size of the pool.
         :param pulumi.Input[str] status: The status of the deployment.
@@ -687,6 +693,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["private_endpoint"] = private_endpoint
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_endpoint"] = public_endpoint
+        __props__.__dict__["quantization"] = quantization
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
@@ -712,7 +719,7 @@ class Deployment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxSize")
-    def max_size(self) -> pulumi.Output[int]:
+    def max_size(self) -> pulumi.Output[Optional[int]]:
         """
         The maximum size of the pool.
         """
@@ -720,7 +727,7 @@ class Deployment(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="minSize")
-    def min_size(self) -> pulumi.Output[int]:
+    def min_size(self) -> pulumi.Output[Optional[int]]:
         """
         The minimum size of the pool.
         """
@@ -738,7 +745,7 @@ class Deployment(pulumi.CustomResource):
     @pulumi.getter(name="modelName")
     def model_name(self) -> pulumi.Output[str]:
         """
-        The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         """
         return pulumi.get(self, "model_name")
 
@@ -781,6 +788,14 @@ class Deployment(pulumi.CustomResource):
         Configuration of the deployment's public endpoint.
         """
         return pulumi.get(self, "public_endpoint")
+
+    @property
+    @pulumi.getter
+    def quantization(self) -> pulumi.Output[Optional[int]]:
+        """
+        The number of bits each model parameter should be quantized to
+        """
+        return pulumi.get(self, "quantization")
 
     @property
     @pulumi.getter

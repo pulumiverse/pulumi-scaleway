@@ -17,7 +17,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
+// ### With Instance
 //
 // ```go
 // package main
@@ -72,6 +72,108 @@ import (
 //				},
 //				Destination:       pulumi.String("10.0.0.0/24"),
 //				NexthopResourceId: pnic01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### With Baremetal
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc01, err := network.NewVpc(ctx, "vpc01", &network.VpcArgs{
+//				Name: pulumi.String("tf-vpc-vpn"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn01, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
+//				Name: pulumi.String("tf-pn-vpn"),
+//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
+//					Subnet: pulumi.String("172.16.64.0/22"),
+//				},
+//				VpcId: vpc01.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-2"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-B112X-SSD"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			privateNetwork, err := elasticmetal.GetOption(ctx, &elasticmetal.GetOptionArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("Private Network"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name: pulumi.StringRef("main"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myServer, err := elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(myKey.Id),
+//				},
+//				Options: elasticmetal.ServerOptionArray{
+//					&elasticmetal.ServerOptionArgs{
+//						Id: pulumi.String(privateNetwork.OptionId),
+//					},
+//				},
+//				PrivateNetworks: elasticmetal.ServerPrivateNetworkArray{
+//					&elasticmetal.ServerPrivateNetworkArgs{
+//						Id: pn01.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = network.NewRoute(ctx, "rt01", &network.RouteArgs{
+//				VpcId:       vpc01.ID(),
+//				Description: pulumi.String("tf-route-vpn"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("tf"),
+//					pulumi.String("route"),
+//				},
+//				Destination: pulumi.String("10.0.0.0/24"),
+//				NexthopResourceId: pulumi.String(myServer.PrivateNetworks.ApplyT(func(privateNetworks []elasticmetal.ServerPrivateNetwork) (*string, error) {
+//					return &privateNetworks[0].MappingId, nil
+//				}).(pulumi.StringPtrOutput)),
 //			})
 //			if err != nil {
 //				return err

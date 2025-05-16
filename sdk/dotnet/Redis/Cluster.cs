@@ -199,6 +199,12 @@ namespace Pulumiverse.Scaleway.Redis
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The list of private IPv4 addresses associated with the resource.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.ClusterPrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// Describes the Private Network you want to connect to your cluster. If not set, a public
         /// network will be provided. More details on the Private Network section
         /// </summary>
@@ -551,6 +557,18 @@ namespace Pulumiverse.Scaleway.Redis
                 var emptySecret = Output.CreateSecret(0);
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
+        }
+
+        [Input("privateIps")]
+        private InputList<Inputs.ClusterPrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.ClusterPrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.ClusterPrivateIpGetArgs>());
+            set => _privateIps = value;
         }
 
         [Input("privateNetworks")]

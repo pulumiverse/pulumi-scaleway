@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -78,6 +80,7 @@ export interface GetPrivateNicResult {
     readonly ipIds: string[];
     readonly ipamIpIds: string[];
     readonly macAddress: string;
+    readonly privateIps: outputs.instance.GetPrivateNicPrivateIp[];
     readonly privateNetworkId?: string;
     readonly privateNicId?: string;
     readonly serverId: string;

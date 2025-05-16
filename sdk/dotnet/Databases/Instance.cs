@@ -342,6 +342,12 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.InstancePrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// List of Private Networks endpoints of the Database Instance.
         /// </summary>
         [Output("privateNetwork")]
@@ -374,8 +380,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<ImmutableDictionary<string, string>> Settings { get; private set; } = null!;
 
         /// <summary>
-        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
@@ -403,7 +408,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<int> VolumeSizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        /// Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Output("volumeType")]
         public Output<string?> VolumeType { get; private set; } = null!;
@@ -605,8 +610,7 @@ namespace Pulumiverse.Scaleway.Databases
         }
 
         /// <summary>
-        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -640,7 +644,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        /// Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }
@@ -786,6 +790,18 @@ namespace Pulumiverse.Scaleway.Databases
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.InstancePrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        public InputList<Inputs.InstancePrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.InstancePrivateIpGetArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// List of Private Networks endpoints of the Database Instance.
         /// </summary>
@@ -831,8 +847,7 @@ namespace Pulumiverse.Scaleway.Databases
         }
 
         /// <summary>
-        /// ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        /// captured in the specified snapshot. Conflicts with the `engine` attribute.
+        /// The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -866,7 +881,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<int>? VolumeSizeInGb { get; set; }
 
         /// <summary>
-        /// Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        /// Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         /// </summary>
         [Input("volumeType")]
         public Input<string>? VolumeType { get; set; }

@@ -82,6 +82,7 @@ export interface GetRedisClusterResult {
      * Password of the first user of the Redis Cluster.
      */
     readonly password: string;
+    readonly privateIps: outputs.GetRedisClusterPrivateIp[];
     /**
      * List of private networks endpoints of the Redis Cluster.
      */

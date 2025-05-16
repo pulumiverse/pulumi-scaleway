@@ -20,6 +20,7 @@ __all__ = [
     'ServerIpv4',
     'ServerIpv6',
     'ServerOption',
+    'ServerPrivateIp',
     'ServerPrivateNetwork',
     'GetIpsIpResult',
     'GetIpsIpMacAddressResult',
@@ -30,6 +31,7 @@ __all__ = [
     'GetServerIpv4Result',
     'GetServerIpv6Result',
     'GetServerOptionResult',
+    'GetServerPrivateIpResult',
     'GetServerPrivateNetworkResult',
 ]
 
@@ -258,6 +260,37 @@ class ServerOption(dict):
 
 
 @pulumi.output_type
+class ServerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The address of the IPv6.
+        :param str id: The ID of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv6.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class ServerPrivateNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -266,6 +299,8 @@ class ServerPrivateNetwork(dict):
             suggest = "created_at"
         elif key == "ipamIpIds":
             suggest = "ipam_ip_ids"
+        elif key == "mappingId":
+            suggest = "mapping_id"
         elif key == "updatedAt":
             suggest = "updated_at"
 
@@ -284,6 +319,7 @@ class ServerPrivateNetwork(dict):
                  id: str,
                  created_at: Optional[str] = None,
                  ipam_ip_ids: Optional[Sequence[str]] = None,
+                 mapping_id: Optional[str] = None,
                  status: Optional[str] = None,
                  updated_at: Optional[str] = None,
                  vlan: Optional[int] = None):
@@ -291,6 +327,7 @@ class ServerPrivateNetwork(dict):
         :param str id: The id of the private network to attach.
         :param str created_at: The date and time of the creation of the private network.
         :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to assign to the server in the requested private network.
+        :param str mapping_id: The ID of the Server-to-Private Network mapping.
         :param str status: The private network status.
         :param str updated_at: The date and time of the last update of the private network.
         :param int vlan: The VLAN ID associated to the private network.
@@ -300,6 +337,8 @@ class ServerPrivateNetwork(dict):
             pulumi.set(__self__, "created_at", created_at)
         if ipam_ip_ids is not None:
             pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if mapping_id is not None:
+            pulumi.set(__self__, "mapping_id", mapping_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -330,6 +369,14 @@ class ServerPrivateNetwork(dict):
         List of IPAM IP IDs to assign to the server in the requested private network.
         """
         return pulumi.get(self, "ipam_ip_ids")
+
+    @property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> Optional[str]:
+        """
+        The ID of the Server-to-Private Network mapping.
+        """
+        return pulumi.get(self, "mapping_id")
 
     @property
     @pulumi.getter
@@ -900,11 +947,41 @@ class GetServerOptionResult(dict):
 
 
 @pulumi.output_type
+class GetServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the server.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the server.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetServerPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  created_at: str,
                  id: str,
                  ipam_ip_ids: Sequence[str],
+                 mapping_id: str,
                  status: str,
                  updated_at: str,
                  vlan: int):
@@ -912,6 +989,7 @@ class GetServerPrivateNetworkResult(dict):
         :param str created_at: The date and time of the creation of the private network
         :param str id: The ID of the server.
         :param Sequence[str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
+        :param str mapping_id: The ID of the Server-to-Private Network mapping
         :param str status: The private network status
         :param str updated_at: The date and time of the last update of the private network
         :param int vlan: The VLAN ID associated to the private network
@@ -919,6 +997,7 @@ class GetServerPrivateNetworkResult(dict):
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        pulumi.set(__self__, "mapping_id", mapping_id)
         pulumi.set(__self__, "status", status)
         pulumi.set(__self__, "updated_at", updated_at)
         pulumi.set(__self__, "vlan", vlan)
@@ -946,6 +1025,14 @@ class GetServerPrivateNetworkResult(dict):
         List of IPAM IP IDs to attach to the server
         """
         return pulumi.get(self, "ipam_ip_ids")
+
+    @property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> str:
+        """
+        The ID of the Server-to-Private Network mapping
+        """
+        return pulumi.get(self, "mapping_id")
 
     @property
     @pulumi.getter

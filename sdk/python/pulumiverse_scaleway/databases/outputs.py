@@ -18,6 +18,7 @@ __all__ = [
     'AclAclRule',
     'InstanceLoadBalancer',
     'InstanceLogsPolicy',
+    'InstancePrivateIp',
     'InstancePrivateNetwork',
     'InstanceReadReplica',
     'ReadReplicaDirectAccess',
@@ -25,6 +26,7 @@ __all__ = [
     'GetAclAclRuleResult',
     'GetInstanceLoadBalancerResult',
     'GetInstanceLogsPolicyResult',
+    'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstanceReadReplicaResult',
 ]
@@ -191,6 +193,37 @@ class InstanceLogsPolicy(dict):
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
+class InstancePrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -716,6 +749,35 @@ class GetInstanceLogsPolicyResult(dict):
         The max disk size of remote logs to keep on the Database Instance.
         """
         return pulumi.get(self, "total_disk_retention")
+
+
+@pulumi.output_type
+class GetInstancePrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the Database Instance.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Database Instance.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

@@ -424,6 +424,8 @@ type InstanceServer struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps InstanceServerPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
@@ -562,6 +564,8 @@ type instanceServerState struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp *string `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []InstanceServerPrivateIp `pulumi:"privateIps"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks []InstanceServerPrivateNetwork `pulumi:"privateNetworks"`
@@ -668,6 +672,8 @@ type InstanceServerState struct {
 	//
 	// Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 	PrivateIp pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps InstanceServerPrivateIpArrayInput
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks InstanceServerPrivateNetworkArrayInput
@@ -1072,6 +1078,11 @@ func (o InstanceServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput 
 // Deprecated: Use ipamIp datasource instead to fetch your server's IP in your private network.
 func (o InstanceServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o InstanceServerOutput) PrivateIps() InstanceServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v *InstanceServer) InstanceServerPrivateIpArrayOutput { return v.PrivateIps }).(InstanceServerPrivateIpArrayOutput)
 }
 
 // The private network associated with the server.

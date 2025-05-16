@@ -204,6 +204,7 @@ namespace Pulumiverse.Scaleway
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetVpcGatewayNetworkIpamConfigResult> IpamConfigs;
         public readonly string MacAddress;
+        public readonly ImmutableArray<Outputs.GetVpcGatewayNetworkPrivateIpResult> PrivateIps;
         public readonly string? PrivateNetworkId;
         public readonly string StaticAddress;
         public readonly string Status;
@@ -232,6 +233,8 @@ namespace Pulumiverse.Scaleway
 
             string macAddress,
 
+            ImmutableArray<Outputs.GetVpcGatewayNetworkPrivateIpResult> privateIps,
+
             string? privateNetworkId,
 
             string staticAddress,
@@ -252,6 +255,7 @@ namespace Pulumiverse.Scaleway
             Id = id;
             IpamConfigs = ipamConfigs;
             MacAddress = macAddress;
+            PrivateIps = privateIps;
             PrivateNetworkId = privateNetworkId;
             StaticAddress = staticAddress;
             Status = status;

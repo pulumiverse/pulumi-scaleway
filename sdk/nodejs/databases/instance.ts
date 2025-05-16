@@ -271,6 +271,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * The private IPv4 address associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.databases.InstancePrivateIp[]>;
+    /**
      * List of Private Networks endpoints of the Database Instance.
      */
     public readonly privateNetwork!: pulumi.Output<outputs.databases.InstancePrivateNetwork | undefined>;
@@ -293,8 +297,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly settings!: pulumi.Output<{[key: string]: string}>;
     /**
-     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
     /**
@@ -314,7 +317,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly volumeSizeInGb!: pulumi.Output<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+     * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
     public readonly volumeType!: pulumi.Output<string | undefined>;
 
@@ -348,6 +351,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["readReplicas"] = state ? state.readReplicas : undefined;
@@ -389,6 +393,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["endpointIp"] = undefined /*out*/;
             resourceInputs["endpointPort"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -486,6 +491,10 @@ export interface InstanceState {
      */
     password?: pulumi.Input<string>;
     /**
+     * The private IPv4 address associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[]>;
+    /**
      * List of Private Networks endpoints of the Database Instance.
      */
     privateNetwork?: pulumi.Input<inputs.databases.InstancePrivateNetwork>;
@@ -508,8 +517,7 @@ export interface InstanceState {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
     snapshotId?: pulumi.Input<string>;
     /**
@@ -529,7 +537,7 @@ export interface InstanceState {
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+     * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
     volumeType?: pulumi.Input<string>;
 }
@@ -618,8 +626,7 @@ export interface InstanceArgs {
      */
     settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-     * captured in the specified snapshot. Conflicts with the `engine` attribute.
+     * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
     snapshotId?: pulumi.Input<string>;
     /**
@@ -639,7 +646,7 @@ export interface InstanceArgs {
      */
     volumeSizeInGb?: pulumi.Input<number>;
     /**
-     * Type of volume where data are stored (`bssd`, `lssd`, `sbs5k` or `sbs15k`).
+     * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
     volumeType?: pulumi.Input<string>;
 }

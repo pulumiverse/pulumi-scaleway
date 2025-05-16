@@ -311,7 +311,7 @@ class VpcRoute(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### With Instance
 
         ```python
         import pulumi
@@ -340,6 +340,50 @@ class VpcRoute(pulumi.CustomResource):
             ],
             destination="10.0.0.0/24",
             nexthop_resource_id=pnic01.id)
+        ```
+
+        ### With Baremetal
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-vpn")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
+            name="tf-pn-vpn",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
+            name="Private Network")
+        my_key = scaleway.iam.get_ssh_key(name="main")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_key.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+            }])
+        rt01 = scaleway.network.Route("rt01",
+            vpc_id=vpc01.id,
+            description="tf-route-vpn",
+            tags=[
+                "tf",
+                "route",
+            ],
+            destination="10.0.0.0/24",
+            nexthop_resource_id=my_server.private_networks[0].mapping_id)
         ```
 
         ## Import
@@ -374,7 +418,7 @@ class VpcRoute(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### With Instance
 
         ```python
         import pulumi
@@ -403,6 +447,50 @@ class VpcRoute(pulumi.CustomResource):
             ],
             destination="10.0.0.0/24",
             nexthop_resource_id=pnic01.id)
+        ```
+
+        ### With Baremetal
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        vpc01 = scaleway.network.Vpc("vpc01", name="tf-vpc-vpn")
+        pn01 = scaleway.network.PrivateNetwork("pn01",
+            name="tf-pn-vpn",
+            ipv4_subnet={
+                "subnet": "172.16.64.0/22",
+            },
+            vpc_id=vpc01.id)
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-B112X-SSD")
+        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
+            name="Private Network")
+        my_key = scaleway.iam.get_ssh_key(name="main")
+        my_server = scaleway.elasticmetal.Server("my_server",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_key.id],
+            options=[{
+                "id": private_network.option_id,
+            }],
+            private_networks=[{
+                "id": pn01.id,
+            }])
+        rt01 = scaleway.network.Route("rt01",
+            vpc_id=vpc01.id,
+            description="tf-route-vpn",
+            tags=[
+                "tf",
+                "route",
+            ],
+            destination="10.0.0.0/24",
+            nexthop_resource_id=my_server.private_networks[0].mapping_id)
         ```
 
         ## Import

@@ -1551,6 +1551,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "inference/model",
+  "fqn": "pulumiverse_scaleway.inference",
+  "classes": {
+   "scaleway:inference/model:Model": "Model"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "instance/image",
   "fqn": "pulumiverse_scaleway.instance",
   "classes": {
@@ -1691,6 +1699,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.job",
   "classes": {
    "scaleway:job/definition:Definition": "Definition"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "kubernetes/acl",
+  "fqn": "pulumiverse_scaleway.kubernetes",
+  "classes": {
+   "scaleway:kubernetes/acl:Acl": "Acl"
   }
  },
  {

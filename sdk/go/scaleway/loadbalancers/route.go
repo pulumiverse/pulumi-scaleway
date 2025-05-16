@@ -132,6 +132,80 @@ import (
 //
 // ```
 //
+// ### With path-begin matching for HTTP backends
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ip, err := loadbalancers.NewIp(ctx, "ip", nil)
+//			if err != nil {
+//				return err
+//			}
+//			lb, err := loadbalancers.NewLoadBalancer(ctx, "lb", &loadbalancers.LoadBalancerArgs{
+//				IpId: ip.ID(),
+//				Name: pulumi.String("my-lb"),
+//				Type: pulumi.String("lb-s"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			app, err := loadbalancers.NewBackend(ctx, "app", &loadbalancers.BackendArgs{
+//				LbId:            lb.ID(),
+//				ForwardProtocol: pulumi.String("http"),
+//				ForwardPort:     pulumi.Int(80),
+//				ProxyProtocol:   pulumi.String("none"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			admin, err := loadbalancers.NewBackend(ctx, "admin", &loadbalancers.BackendArgs{
+//				LbId:            lb.ID(),
+//				ForwardProtocol: pulumi.String("http"),
+//				ForwardPort:     pulumi.Int(8080),
+//				ProxyProtocol:   pulumi.String("none"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			frontend, err := loadbalancers.NewFrontend(ctx, "frontend", &loadbalancers.FrontendArgs{
+//				LbId:        lb.ID(),
+//				BackendId:   app.ID(),
+//				InboundPort: pulumi.Int(80),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = loadbalancers.NewRoute(ctx, "admin_route", &loadbalancers.RouteArgs{
+//				FrontendId:     frontend.ID(),
+//				BackendId:      admin.ID(),
+//				MatchPathBegin: pulumi.String("/admin"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = loadbalancers.NewRoute(ctx, "default_route", &loadbalancers.RouteArgs{
+//				FrontendId:     frontend.ID(),
+//				BackendId:      app.ID(),
+//				MatchPathBegin: pulumi.String("/"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
@@ -151,12 +225,15 @@ type Route struct {
 	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrOutput `pulumi:"matchHostHeader"`
+	// The value to match in the URL beginning path from an incoming request.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+	MatchPathBegin pulumi.StringPtrOutput `pulumi:"matchPathBegin"`
 	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrOutput `pulumi:"matchSni"`
@@ -215,12 +292,15 @@ type routeState struct {
 	// The ID of the frontend the route is associated with.
 	FrontendId *string `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader *string `pulumi:"matchHostHeader"`
+	// The value to match in the URL beginning path from an incoming request.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+	MatchPathBegin *string `pulumi:"matchPathBegin"`
 	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
@@ -238,12 +318,15 @@ type RouteState struct {
 	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringPtrInput
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrInput
+	// The value to match in the URL beginning path from an incoming request.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+	MatchPathBegin pulumi.StringPtrInput
 	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
@@ -263,12 +346,15 @@ type routeArgs struct {
 	// The ID of the frontend the route is associated with.
 	FrontendId string `pulumi:"frontendId"`
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader *string `pulumi:"matchHostHeader"`
+	// The value to match in the URL beginning path from an incoming request.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+	MatchPathBegin *string `pulumi:"matchPathBegin"`
 	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni *string `pulumi:"matchSni"`
@@ -283,12 +369,15 @@ type RouteArgs struct {
 	// The ID of the frontend the route is associated with.
 	FrontendId pulumi.StringInput
 	// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on HTTP Load Balancers.
 	MatchHostHeader pulumi.StringPtrInput
+	// The value to match in the URL beginning path from an incoming request.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+	MatchPathBegin pulumi.StringPtrInput
 	// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-	// Only one of `matchSni` and `matchHostHeader` should be specified.
+	// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 	//
 	// > **Important:** This field should be set for routes on TCP Load Balancers.
 	MatchSni pulumi.StringPtrInput
@@ -399,15 +488,21 @@ func (o RouteOutput) FrontendId() pulumi.StringOutput {
 }
 
 // The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-// Only one of `matchSni` and `matchHostHeader` should be specified.
+// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 //
 // > **Important:** This field should be set for routes on HTTP Load Balancers.
 func (o RouteOutput) MatchHostHeader() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.MatchHostHeader }).(pulumi.StringPtrOutput)
 }
 
+// The value to match in the URL beginning path from an incoming request.
+// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
+func (o RouteOutput) MatchPathBegin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.MatchPathBegin }).(pulumi.StringPtrOutput)
+}
+
 // The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-// Only one of `matchSni` and `matchHostHeader` should be specified.
+// Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
 //
 // > **Important:** This field should be set for routes on TCP Load Balancers.
 func (o RouteOutput) MatchSni() pulumi.StringPtrOutput {

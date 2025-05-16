@@ -105,6 +105,65 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     /// });
     /// ```
     /// 
+    /// ### With path-begin matching for HTTP backends
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ip = new Scaleway.Loadbalancers.Ip("ip");
+    /// 
+    ///     var lb = new Scaleway.Loadbalancers.LoadBalancer("lb", new()
+    ///     {
+    ///         IpId = ip.Id,
+    ///         Name = "my-lb",
+    ///         Type = "lb-s",
+    ///     });
+    /// 
+    ///     var app = new Scaleway.Loadbalancers.Backend("app", new()
+    ///     {
+    ///         LbId = lb.Id,
+    ///         ForwardProtocol = "http",
+    ///         ForwardPort = 80,
+    ///         ProxyProtocol = "none",
+    ///     });
+    /// 
+    ///     var admin = new Scaleway.Loadbalancers.Backend("admin", new()
+    ///     {
+    ///         LbId = lb.Id,
+    ///         ForwardProtocol = "http",
+    ///         ForwardPort = 8080,
+    ///         ProxyProtocol = "none",
+    ///     });
+    /// 
+    ///     var frontend = new Scaleway.Loadbalancers.Frontend("frontend", new()
+    ///     {
+    ///         LbId = lb.Id,
+    ///         BackendId = app.Id,
+    ///         InboundPort = 80,
+    ///     });
+    /// 
+    ///     var adminRoute = new Scaleway.Loadbalancers.Route("admin_route", new()
+    ///     {
+    ///         FrontendId = frontend.Id,
+    ///         BackendId = admin.Id,
+    ///         MatchPathBegin = "/admin",
+    ///     });
+    /// 
+    ///     var defaultRoute = new Scaleway.Loadbalancers.Route("default_route", new()
+    ///     {
+    ///         FrontendId = frontend.Id,
+    ///         BackendId = app.Id,
+    ///         MatchPathBegin = "/",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
@@ -138,7 +197,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -146,8 +205,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string?> MatchHostHeader { get; private set; } = null!;
 
         /// <summary>
+        /// The value to match in the URL beginning path from an incoming request.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// </summary>
+        [Output("matchPathBegin")]
+        public Output<string?> MatchPathBegin { get; private set; } = null!;
+
+        /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
@@ -231,7 +297,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -239,8 +305,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? MatchHostHeader { get; set; }
 
         /// <summary>
+        /// The value to match in the URL beginning path from an incoming request.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// </summary>
+        [Input("matchPathBegin")]
+        public Input<string>? MatchPathBegin { get; set; }
+
+        /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
@@ -281,7 +354,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -289,8 +362,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? MatchHostHeader { get; set; }
 
         /// <summary>
+        /// The value to match in the URL beginning path from an incoming request.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// </summary>
+        [Input("matchPathBegin")]
+        public Input<string>? MatchPathBegin { get; set; }
+
+        /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni` and `match_host_header` should be specified.
+        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>

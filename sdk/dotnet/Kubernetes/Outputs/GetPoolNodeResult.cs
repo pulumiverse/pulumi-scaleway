@@ -15,9 +15,17 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
     public sealed class GetPoolNodeResult
     {
         /// <summary>
+        /// The ID of the pool.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
         /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// List of private IPv4 and IPv6 addresses associated with the node
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetPoolNodePrivateIpResult> PrivateIps;
         /// <summary>
         /// The public IPv4.
         /// </summary>
@@ -33,7 +41,11 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
         [OutputConstructor]
         private GetPoolNodeResult(
+            string id,
+
             string name,
+
+            ImmutableArray<Outputs.GetPoolNodePrivateIpResult> privateIps,
 
             string publicIp,
 
@@ -41,7 +53,9 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
             string status)
         {
+            Id = id;
             Name = name;
+            PrivateIps = privateIps;
             PublicIp = publicIp;
             PublicIpV6 = publicIpV6;
             Status = status;

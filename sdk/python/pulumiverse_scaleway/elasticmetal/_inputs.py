@@ -23,6 +23,8 @@ __all__ = [
     'ServerIpv6ArgsDict',
     'ServerOptionArgs',
     'ServerOptionArgsDict',
+    'ServerPrivateIpArgs',
+    'ServerPrivateIpArgsDict',
     'ServerPrivateNetworkArgs',
     'ServerPrivateNetworkArgsDict',
 ]
@@ -377,6 +379,58 @@ class ServerOptionArgs:
 
 
 if not MYPY:
+    class ServerPrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The address of the IPv6.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IPv6.
+        """
+elif False:
+    ServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServerPrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The address of the IPv6.
+        :param pulumi.Input[str] id: The ID of the IPv6.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The address of the IPv6.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IPv6.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+if not MYPY:
     class ServerPrivateNetworkArgsDict(TypedDict):
         id: pulumi.Input[str]
         """
@@ -389,6 +443,10 @@ if not MYPY:
         ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
         List of IPAM IP IDs to assign to the server in the requested private network.
+        """
+        mapping_id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the Server-to-Private Network mapping.
         """
         status: NotRequired[pulumi.Input[str]]
         """
@@ -411,6 +469,7 @@ class ServerPrivateNetworkArgs:
                  id: pulumi.Input[str],
                  created_at: Optional[pulumi.Input[str]] = None,
                  ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 mapping_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None,
                  vlan: Optional[pulumi.Input[int]] = None):
@@ -418,6 +477,7 @@ class ServerPrivateNetworkArgs:
         :param pulumi.Input[str] id: The id of the private network to attach.
         :param pulumi.Input[str] created_at: The date and time of the creation of the private network.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipam_ip_ids: List of IPAM IP IDs to assign to the server in the requested private network.
+        :param pulumi.Input[str] mapping_id: The ID of the Server-to-Private Network mapping.
         :param pulumi.Input[str] status: The private network status.
         :param pulumi.Input[str] updated_at: The date and time of the last update of the private network.
         :param pulumi.Input[int] vlan: The VLAN ID associated to the private network.
@@ -427,6 +487,8 @@ class ServerPrivateNetworkArgs:
             pulumi.set(__self__, "created_at", created_at)
         if ipam_ip_ids is not None:
             pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if mapping_id is not None:
+            pulumi.set(__self__, "mapping_id", mapping_id)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if updated_at is not None:
@@ -469,6 +531,18 @@ class ServerPrivateNetworkArgs:
     @ipam_ip_ids.setter
     def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ipam_ip_ids", value)
+
+    @property
+    @pulumi.getter(name="mappingId")
+    def mapping_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Server-to-Private Network mapping.
+        """
+        return pulumi.get(self, "mapping_id")
+
+    @mapping_id.setter
+    def mapping_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mapping_id", value)
 
     @property
     @pulumi.getter

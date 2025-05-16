@@ -81,7 +81,7 @@ export class MnqSqsCredentials extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
+     * . List of permissions associated with these credentials.
      */
     public readonly permissions!: pulumi.Output<outputs.MnqSqsCredentialsPermissions>;
     /**
@@ -148,7 +148,7 @@ export interface MnqSqsCredentialsState {
      */
     name?: pulumi.Input<string>;
     /**
-     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
+     * . List of permissions associated with these credentials.
      */
     permissions?: pulumi.Input<inputs.MnqSqsCredentialsPermissions>;
     /**
@@ -174,7 +174,7 @@ export interface MnqSqsCredentialsArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * . List of permissions associated with these credentials. Only one of the following permissions may be set:
+     * . List of permissions associated with these credentials.
      */
     permissions?: pulumi.Input<inputs.MnqSqsCredentialsPermissions>;
     /**

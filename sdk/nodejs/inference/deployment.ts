@@ -12,23 +12,6 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const deployment = new scaleway.inference.Deployment("deployment", {
- *     name: "tf-inference-deployment",
- *     nodeType: "L4",
- *     modelName: "meta/llama-3.1-8b-instruct:fp8",
- *     publicEndpoint: {
- *         isEnabled: true,
- *     },
- *     acceptEula: true,
- * });
- * ```
- *
  * ## Import
  *
  * Functions can be imported using, `{region}/{id}`, as shown below:
@@ -78,19 +61,19 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * The maximum size of the pool.
      */
-    public readonly maxSize!: pulumi.Output<number>;
+    public readonly maxSize!: pulumi.Output<number | undefined>;
     /**
      * The minimum size of the pool.
      */
-    public readonly minSize!: pulumi.Output<number>;
+    public readonly minSize!: pulumi.Output<number | undefined>;
     /**
      * The model id used for the deployment.
      */
-    public /*out*/ readonly modelId!: pulumi.Output<string>;
+    public readonly modelId!: pulumi.Output<string>;
     /**
-     * The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+     * The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
      */
-    public readonly modelName!: pulumi.Output<string>;
+    public /*out*/ readonly modelName!: pulumi.Output<string>;
     /**
      * The deployment name.
      */
@@ -111,6 +94,10 @@ export class Deployment extends pulumi.CustomResource {
      * Configuration of the deployment's public endpoint.
      */
     public readonly publicEndpoint!: pulumi.Output<outputs.inference.DeploymentPublicEndpoint | undefined>;
+    /**
+     * The number of bits each model parameter should be quantized to
+     */
+    public readonly quantization!: pulumi.Output<number | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
@@ -156,6 +143,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["privateEndpoint"] = state ? state.privateEndpoint : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicEndpoint"] = state ? state.publicEndpoint : undefined;
+            resourceInputs["quantization"] = state ? state.quantization : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -163,8 +151,8 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
-            if ((!args || args.modelName === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'modelName'");
+            if ((!args || args.modelId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'modelId'");
             }
             if ((!args || args.nodeType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
@@ -172,16 +160,17 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["acceptEula"] = args ? args.acceptEula : undefined;
             resourceInputs["maxSize"] = args ? args.maxSize : undefined;
             resourceInputs["minSize"] = args ? args.minSize : undefined;
-            resourceInputs["modelName"] = args ? args.modelName : undefined;
+            resourceInputs["modelId"] = args ? args.modelId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["privateEndpoint"] = args ? args.privateEndpoint : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["publicEndpoint"] = args ? args.publicEndpoint : undefined;
+            resourceInputs["quantization"] = args ? args.quantization : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
-            resourceInputs["modelId"] = undefined /*out*/;
+            resourceInputs["modelName"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -218,7 +207,7 @@ export interface DeploymentState {
      */
     modelId?: pulumi.Input<string>;
     /**
-     * The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+     * The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
      */
     modelName?: pulumi.Input<string>;
     /**
@@ -241,6 +230,10 @@ export interface DeploymentState {
      * Configuration of the deployment's public endpoint.
      */
     publicEndpoint?: pulumi.Input<inputs.inference.DeploymentPublicEndpoint>;
+    /**
+     * The number of bits each model parameter should be quantized to
+     */
+    quantization?: pulumi.Input<number>;
     /**
      * `region`) The region in which the deployment is created.
      */
@@ -280,9 +273,9 @@ export interface DeploymentArgs {
      */
     minSize?: pulumi.Input<number>;
     /**
-     * The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+     * The model id used for the deployment.
      */
-    modelName: pulumi.Input<string>;
+    modelId: pulumi.Input<string>;
     /**
      * The deployment name.
      */
@@ -303,6 +296,10 @@ export interface DeploymentArgs {
      * Configuration of the deployment's public endpoint.
      */
     publicEndpoint?: pulumi.Input<inputs.inference.DeploymentPublicEndpoint>;
+    /**
+     * The number of bits each model parameter should be quantized to
+     */
+    quantization?: pulumi.Input<number>;
     /**
      * `region`) The region in which the deployment is created.
      */

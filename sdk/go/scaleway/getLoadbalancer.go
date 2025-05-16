@@ -87,6 +87,7 @@ type LookupLoadbalancerResult struct {
 	LbId                  *string                         `pulumi:"lbId"`
 	Name                  *string                         `pulumi:"name"`
 	OrganizationId        string                          `pulumi:"organizationId"`
+	PrivateIps            []GetLoadbalancerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks       []GetLoadbalancerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId             *string                         `pulumi:"projectId"`
 	Region                string                          `pulumi:"region"`
@@ -184,6 +185,10 @@ func (o LookupLoadbalancerResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o LookupLoadbalancerResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadbalancerResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+func (o LookupLoadbalancerResultOutput) PrivateIps() GetLoadbalancerPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupLoadbalancerResult) []GetLoadbalancerPrivateIp { return v.PrivateIps }).(GetLoadbalancerPrivateIpArrayOutput)
 }
 
 func (o LookupLoadbalancerResultOutput) PrivateNetworks() GetLoadbalancerPrivateNetworkArrayOutput {

@@ -190,6 +190,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.VpcGatewayNetworkPrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the Private Network.
         /// </summary>
         [Output("privateNetworkId")]
@@ -395,6 +401,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
+
+        [Input("privateIps")]
+        private InputList<Inputs.VpcGatewayNetworkPrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        public InputList<Inputs.VpcGatewayNetworkPrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.VpcGatewayNetworkPrivateIpGetArgs>());
+            set => _privateIps = value;
+        }
 
         /// <summary>
         /// The ID of the Private Network.

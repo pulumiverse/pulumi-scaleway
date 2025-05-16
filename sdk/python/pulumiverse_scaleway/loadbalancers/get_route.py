@@ -26,7 +26,7 @@ class GetRouteResult:
     """
     A collection of values returned by getRoute.
     """
-    def __init__(__self__, backend_id=None, created_at=None, frontend_id=None, id=None, match_host_header=None, match_sni=None, match_subdomains=None, route_id=None, updated_at=None):
+    def __init__(__self__, backend_id=None, created_at=None, frontend_id=None, id=None, match_host_header=None, match_path_begin=None, match_sni=None, match_subdomains=None, route_id=None, updated_at=None):
         if backend_id and not isinstance(backend_id, str):
             raise TypeError("Expected argument 'backend_id' to be a str")
         pulumi.set(__self__, "backend_id", backend_id)
@@ -42,6 +42,9 @@ class GetRouteResult:
         if match_host_header and not isinstance(match_host_header, str):
             raise TypeError("Expected argument 'match_host_header' to be a str")
         pulumi.set(__self__, "match_host_header", match_host_header)
+        if match_path_begin and not isinstance(match_path_begin, str):
+            raise TypeError("Expected argument 'match_path_begin' to be a str")
+        pulumi.set(__self__, "match_path_begin", match_path_begin)
         if match_sni and not isinstance(match_sni, str):
             raise TypeError("Expected argument 'match_sni' to be a str")
         pulumi.set(__self__, "match_sni", match_sni)
@@ -84,6 +87,11 @@ class GetRouteResult:
         return pulumi.get(self, "match_host_header")
 
     @property
+    @pulumi.getter(name="matchPathBegin")
+    def match_path_begin(self) -> str:
+        return pulumi.get(self, "match_path_begin")
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> str:
         return pulumi.get(self, "match_sni")
@@ -115,6 +123,7 @@ class AwaitableGetRouteResult(GetRouteResult):
             frontend_id=self.frontend_id,
             id=self.id,
             match_host_header=self.match_host_header,
+            match_path_begin=self.match_path_begin,
             match_sni=self.match_sni,
             match_subdomains=self.match_subdomains,
             route_id=self.route_id,
@@ -170,6 +179,7 @@ def get_route(route_id: Optional[str] = None,
         frontend_id=pulumi.get(__ret__, 'frontend_id'),
         id=pulumi.get(__ret__, 'id'),
         match_host_header=pulumi.get(__ret__, 'match_host_header'),
+        match_path_begin=pulumi.get(__ret__, 'match_path_begin'),
         match_sni=pulumi.get(__ret__, 'match_sni'),
         match_subdomains=pulumi.get(__ret__, 'match_subdomains'),
         route_id=pulumi.get(__ret__, 'route_id'),
@@ -222,6 +232,7 @@ def get_route_output(route_id: Optional[pulumi.Input[str]] = None,
         frontend_id=pulumi.get(__response__, 'frontend_id'),
         id=pulumi.get(__response__, 'id'),
         match_host_header=pulumi.get(__response__, 'match_host_header'),
+        match_path_begin=pulumi.get(__response__, 'match_path_begin'),
         match_sni=pulumi.get(__response__, 'match_sni'),
         match_subdomains=pulumi.get(__response__, 'match_subdomains'),
         route_id=pulumi.get(__response__, 'route_id'),

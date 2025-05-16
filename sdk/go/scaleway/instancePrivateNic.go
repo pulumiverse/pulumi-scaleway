@@ -174,6 +174,8 @@ type InstancePrivateNic struct {
 	IpamIpIds pulumi.StringArrayOutput `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps InstancePrivateNicPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -226,6 +228,8 @@ type instancePrivateNicState struct {
 	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []InstancePrivateNicPrivateIp `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -243,6 +247,8 @@ type InstancePrivateNicState struct {
 	IpamIpIds pulumi.StringArrayInput
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps InstancePrivateNicPrivateIpArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringPtrInput
 	// The ID of the server associated with.
@@ -388,6 +394,11 @@ func (o InstancePrivateNicOutput) IpamIpIds() pulumi.StringArrayOutput {
 // The MAC address of the private NIC.
 func (o InstancePrivateNicOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstancePrivateNic) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o InstancePrivateNicOutput) PrivateIps() InstancePrivateNicPrivateIpArrayOutput {
+	return o.ApplyT(func(v *InstancePrivateNic) InstancePrivateNicPrivateIpArrayOutput { return v.PrivateIps }).(InstancePrivateNicPrivateIpArrayOutput)
 }
 
 // The ID of the private network attached to.

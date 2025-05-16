@@ -12,111 +12,12 @@ namespace Pulumiverse.Scaleway.Observability
 {
     public static class GetPlan
     {
-        /// <summary>
-        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
-        /// 
-        /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-        /// 
-        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-        /// 
-        /// ## Fetch and associate a pricing plan to a Cockpit
-        /// 
-        /// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = Pulumiverse.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
-        ///     {
-        ///         Name = "premium",
-        ///     });
-        /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Task<GetPlanResult> InvokeAsync(GetPlanArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPlanResult>("scaleway:observability/getPlan:getPlan", args ?? new GetPlanArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
-        /// 
-        /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-        /// 
-        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-        /// 
-        /// ## Fetch and associate a pricing plan to a Cockpit
-        /// 
-        /// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = Pulumiverse.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
-        ///     {
-        ///         Name = "premium",
-        ///     });
-        /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetPlanResult> Invoke(GetPlanInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPlanResult>("scaleway:observability/getPlan:getPlan", args ?? new GetPlanInvokeArgs(), options.WithDefaults());
 
-        /// <summary>
-        /// The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
-        /// 
-        /// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-        /// 
-        /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-        /// 
-        /// ## Fetch and associate a pricing plan to a Cockpit
-        /// 
-        /// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Scaleway = Pulumi.Scaleway;
-        /// using Scaleway = Pulumiverse.Scaleway;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var premium = Scaleway.Observability.GetPlan.Invoke(new()
-        ///     {
-        ///         Name = "premium",
-        ///     });
-        /// 
-        ///     var main = new Scaleway.Observability.Cockpit("main", new()
-        ///     {
-        ///         Plan = premium.Apply(getPlanResult =&gt; getPlanResult.Id),
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// </summary>
         public static Output<GetPlanResult> Invoke(GetPlanInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPlanResult>("scaleway:observability/getPlan:getPlan", args ?? new GetPlanInvokeArgs(), options.WithDefaults());
     }

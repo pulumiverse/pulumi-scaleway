@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "scaleway:inference/deployment:Deployment":
 		r = &Deployment{}
+	case "scaleway:inference/model:Model":
+		r = &Model{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -39,6 +41,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"inference/deployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"inference/model",
 		&module{version},
 	)
 }

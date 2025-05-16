@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'ClusterAclArgs',
     'ClusterAclArgsDict',
+    'ClusterPrivateIpArgs',
+    'ClusterPrivateIpArgsDict',
     'ClusterPrivateNetworkArgs',
     'ClusterPrivateNetworkArgsDict',
     'ClusterPublicNetworkArgs',
@@ -40,7 +42,7 @@ if not MYPY:
         """
         id: NotRequired[pulumi.Input[str]]
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
         """
 elif False:
     ClusterAclArgsDict: TypeAlias = Mapping[str, Any]
@@ -57,7 +59,7 @@ class ClusterAclArgs:
         :param pulumi.Input[str] description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
-        :param pulumi.Input[str] id: (Required) The UUID of the endpoint.
+        :param pulumi.Input[str] id: The ID of the IPv4 address resource.
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -96,7 +98,59 @@ class ClusterAclArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+
+if not MYPY:
+    class ClusterPrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IPv4 address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IPv4 address resource.
+        """
+elif False:
+    ClusterPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ClusterPrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IPv4 address.
+        :param pulumi.Input[str] id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
@@ -260,7 +314,7 @@ if not MYPY:
     class ClusterPublicNetworkArgsDict(TypedDict):
         id: NotRequired[pulumi.Input[str]]
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
         """
         ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
         """
@@ -280,7 +334,7 @@ class ClusterPublicNetworkArgs:
                  ips: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  port: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] id: (Required) The UUID of the endpoint.
+        :param pulumi.Input[str] id: The ID of the IPv4 address resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: Lis of IPv4 address of the endpoint (IP address).
         :param pulumi.Input[int] port: TCP port of the endpoint.
         """
@@ -295,7 +349,7 @@ class ClusterPublicNetworkArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 

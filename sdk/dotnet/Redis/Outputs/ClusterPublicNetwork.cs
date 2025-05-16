@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
     public sealed class ClusterPublicNetwork
     {
         /// <summary>
-        /// (Required) The UUID of the endpoint.
+        /// The ID of the IPv4 address resource.
         /// </summary>
         public readonly string? Id;
         /// <summary>

@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -126,6 +128,10 @@ export class PrivateNic extends pulumi.CustomResource {
      */
     public /*out*/ readonly macAddress!: pulumi.Output<string>;
     /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.instance.PrivateNicPrivateIp[]>;
+    /**
      * The ID of the private network attached to.
      */
     public readonly privateNetworkId!: pulumi.Output<string>;
@@ -158,6 +164,7 @@ export class PrivateNic extends pulumi.CustomResource {
             resourceInputs["ipIds"] = state ? state.ipIds : undefined;
             resourceInputs["ipamIpIds"] = state ? state.ipamIpIds : undefined;
             resourceInputs["macAddress"] = state ? state.macAddress : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
             resourceInputs["serverId"] = state ? state.serverId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -177,6 +184,7 @@ export class PrivateNic extends pulumi.CustomResource {
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["macAddress"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/instancePrivateNic:InstancePrivateNic" }] };
@@ -201,6 +209,10 @@ export interface PrivateNicState {
      * The MAC address of the private NIC.
      */
     macAddress?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.PrivateNicPrivateIp>[]>;
     /**
      * The ID of the private network attached to.
      */

@@ -17,16 +17,20 @@ from . import outputs
 
 __all__ = [
     'ImageAdditionalVolume',
+    'PrivateNicPrivateIp',
     'SecurityGroupInboundRule',
     'SecurityGroupOutboundRule',
     'SecurityGroupRulesInboundRule',
     'SecurityGroupRulesOutboundRule',
+    'ServerPrivateIp',
     'ServerPrivateNetwork',
     'ServerPublicIp',
     'ServerRootVolume',
     'SnapshotImport',
+    'GetPrivateNicPrivateIpResult',
     'GetSecurityGroupInboundRuleResult',
     'GetSecurityGroupOutboundRuleResult',
+    'GetServerPrivateIpResult',
     'GetServerPrivateNetworkResult',
     'GetServerPublicIpResult',
     'GetServerRootVolumeResult',
@@ -219,6 +223,37 @@ class ImageAdditionalVolume(dict):
         The zone in which the image should be created.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class PrivateNicPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -614,6 +649,37 @@ class SecurityGroupRulesOutboundRule(dict):
 
 
 @pulumi.output_type
+class ServerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class ServerPrivateNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -891,6 +957,35 @@ class SnapshotImport(dict):
 
 
 @pulumi.output_type
+class GetPrivateNicPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the IP address resource
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP address resource
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class GetSecurityGroupInboundRuleResult(dict):
     def __init__(__self__, *,
                  action: str,
@@ -1042,6 +1137,35 @@ class GetSecurityGroupOutboundRuleResult(dict):
         The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The address of the IP
+        :param str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

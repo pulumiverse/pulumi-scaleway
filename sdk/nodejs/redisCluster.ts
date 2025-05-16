@@ -167,6 +167,10 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string>;
     /**
+     * The list of private IPv4 addresses associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.RedisClusterPrivateIp[]>;
+    /**
      * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
@@ -240,6 +244,7 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
@@ -280,6 +285,7 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -339,6 +345,10 @@ export interface RedisClusterState {
      * Password for the first user of the Redis™ cluster.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.RedisClusterPrivateIp>[]>;
     /**
      * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section

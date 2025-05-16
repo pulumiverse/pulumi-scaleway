@@ -98,6 +98,7 @@ type LookupRouteResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id              string `pulumi:"id"`
 	MatchHostHeader string `pulumi:"matchHostHeader"`
+	MatchPathBegin  string `pulumi:"matchPathBegin"`
 	MatchSni        string `pulumi:"matchSni"`
 	MatchSubdomains bool   `pulumi:"matchSubdomains"`
 	RouteId         string `pulumi:"routeId"`
@@ -157,6 +158,10 @@ func (o LookupRouteResultOutput) Id() pulumi.StringOutput {
 
 func (o LookupRouteResultOutput) MatchHostHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouteResult) string { return v.MatchHostHeader }).(pulumi.StringOutput)
+}
+
+func (o LookupRouteResultOutput) MatchPathBegin() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouteResult) string { return v.MatchPathBegin }).(pulumi.StringOutput)
 }
 
 func (o LookupRouteResultOutput) MatchSni() pulumi.StringOutput {

@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'GetPrivateNicResult',
@@ -26,7 +27,7 @@ class GetPrivateNicResult:
     """
     A collection of values returned by getPrivateNic.
     """
-    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_network_id=None, private_nic_id=None, server_id=None, tags=None, zone=None):
+    def __init__(__self__, id=None, ip_ids=None, ipam_ip_ids=None, mac_address=None, private_ips=None, private_network_id=None, private_nic_id=None, server_id=None, tags=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -39,6 +40,9 @@ class GetPrivateNicResult:
         if mac_address and not isinstance(mac_address, str):
             raise TypeError("Expected argument 'mac_address' to be a str")
         pulumi.set(__self__, "mac_address", mac_address)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -79,6 +83,11 @@ class GetPrivateNicResult:
         return pulumi.get(self, "mac_address")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetPrivateNicPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[str]:
         return pulumi.get(self, "private_network_id")
@@ -114,6 +123,7 @@ class AwaitableGetPrivateNicResult(GetPrivateNicResult):
             ip_ids=self.ip_ids,
             ipam_ip_ids=self.ipam_ip_ids,
             mac_address=self.mac_address,
+            private_ips=self.private_ips,
             private_network_id=self.private_network_id,
             private_nic_id=self.private_nic_id,
             server_id=self.server_id,
@@ -168,6 +178,7 @@ def get_private_nic(private_network_id: Optional[str] = None,
         ip_ids=pulumi.get(__ret__, 'ip_ids'),
         ipam_ip_ids=pulumi.get(__ret__, 'ipam_ip_ids'),
         mac_address=pulumi.get(__ret__, 'mac_address'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         private_nic_id=pulumi.get(__ret__, 'private_nic_id'),
         server_id=pulumi.get(__ret__, 'server_id'),
@@ -219,6 +230,7 @@ def get_private_nic_output(private_network_id: Optional[pulumi.Input[Optional[st
         ip_ids=pulumi.get(__response__, 'ip_ids'),
         ipam_ip_ids=pulumi.get(__response__, 'ipam_ip_ids'),
         mac_address=pulumi.get(__response__, 'mac_address'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         private_nic_id=pulumi.get(__response__, 'private_nic_id'),
         server_id=pulumi.get(__response__, 'server_id'),

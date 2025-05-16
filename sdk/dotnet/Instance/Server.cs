@@ -420,6 +420,12 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.ServerPrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// The private network associated with the server.
         /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         /// </summary>
@@ -900,6 +906,18 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
+
+        [Input("privateIps")]
+        private InputList<Inputs.ServerPrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.ServerPrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.ServerPrivateIpGetArgs>());
+            set => _privateIps = value;
+        }
 
         [Input("privateNetworks")]
         private InputList<Inputs.ServerPrivateNetworkGetArgs>? _privateNetworks;

@@ -185,6 +185,8 @@ type Cluster struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password for the first user of the Redis™ cluster.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps ClusterPrivateIpArrayOutput `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks ClusterPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
@@ -304,6 +306,8 @@ type clusterState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password for the first user of the Redis™ cluster.
 	Password *string `pulumi:"password"`
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps []ClusterPrivateIp `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks []ClusterPrivateNetwork `pulumi:"privateNetworks"`
@@ -369,6 +373,8 @@ type ClusterState struct {
 	NodeType pulumi.StringPtrInput
 	// Password for the first user of the Redis™ cluster.
 	Password pulumi.StringPtrInput
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps ClusterPrivateIpArrayInput
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks ClusterPrivateNetworkArrayInput
@@ -662,6 +668,11 @@ func (o ClusterOutput) NodeType() pulumi.StringOutput {
 // Password for the first user of the Redis™ cluster.
 func (o ClusterOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 addresses associated with the resource.
+func (o ClusterOutput) PrivateIps() ClusterPrivateIpArrayOutput {
+	return o.ApplyT(func(v *Cluster) ClusterPrivateIpArrayOutput { return v.PrivateIps }).(ClusterPrivateIpArrayOutput)
 }
 
 // Describes the Private Network you want to connect to your cluster. If not set, a public

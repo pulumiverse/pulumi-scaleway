@@ -11,45 +11,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `observability.Cockpit`.
-//
-// Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
-//
-// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-//
-// ## Fetch and associate a pricing plan to a Cockpit
-//
-// The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			premium, err := observability.GetPlan(ctx, &observability.GetPlanArgs{
-//				Name: "premium",
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = observability.NewCockpit(ctx, "main", &observability.CockpitArgs{
-//				Plan: pulumi.String(premium.Id),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetPlan(ctx *pulumi.Context, args *GetPlanArgs, opts ...pulumi.InvokeOption) (*GetPlanResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPlanResult

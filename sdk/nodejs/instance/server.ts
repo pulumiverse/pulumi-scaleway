@@ -328,6 +328,10 @@ export class Server extends pulumi.CustomResource {
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.instance.ServerPrivateIp[]>;
+    /**
      * The private network associated with the server.
      * Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
      */
@@ -423,6 +427,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
             resourceInputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
             resourceInputs["privateIp"] = state ? state.privateIp : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["protected"] = state ? state.protected : undefined;
@@ -470,6 +475,7 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["placementGroupPolicyRespected"] = undefined /*out*/;
             resourceInputs["privateIp"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["publicIp"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -582,6 +588,10 @@ export interface ServerState {
      * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
      */
     privateIp?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.instance.ServerPrivateIp>[]>;
     /**
      * The private network associated with the server.
      * Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
