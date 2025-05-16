@@ -17,9 +17,11 @@ from .. import _utilities
 __all__ = [
     'AclRule',
     'GatewayNetworkIpamConfig',
+    'GatewayNetworkPrivateIp',
     'PrivateNetworkIpv4Subnet',
     'PrivateNetworkIpv6Subnet',
     'GetGatewayNetworkIpamConfigResult',
+    'GetGatewayNetworkPrivateIpResult',
     'GetPrivateNetworkIpv4SubnetResult',
     'GetPrivateNetworkIpv6SubnetResult',
     'GetRoutesRouteResult',
@@ -212,6 +214,37 @@ class GatewayNetworkIpamConfig(dict):
         Defines whether to enable the default route on the GatewayNetwork.
         """
         return pulumi.get(self, "push_default_route")
+
+
+@pulumi.output_type
+class GatewayNetworkPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -469,6 +502,35 @@ class GetGatewayNetworkIpamConfigResult(dict):
         Defines whether the default route is enabled on that Gateway Network
         """
         return pulumi.get(self, "push_default_route")
+
+
+@pulumi.output_type
+class GetGatewayNetworkPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

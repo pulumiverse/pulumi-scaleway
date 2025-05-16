@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'ImageAdditionalVolumeArgs',
     'ImageAdditionalVolumeArgsDict',
+    'PrivateNicPrivateIpArgs',
+    'PrivateNicPrivateIpArgsDict',
     'SecurityGroupInboundRuleArgs',
     'SecurityGroupInboundRuleArgsDict',
     'SecurityGroupOutboundRuleArgs',
@@ -25,6 +27,8 @@ __all__ = [
     'SecurityGroupRulesInboundRuleArgsDict',
     'SecurityGroupRulesOutboundRuleArgs',
     'SecurityGroupRulesOutboundRuleArgsDict',
+    'ServerPrivateIpArgs',
+    'ServerPrivateIpArgsDict',
     'ServerPrivateNetworkArgs',
     'ServerPrivateNetworkArgsDict',
     'ServerPublicIpArgs',
@@ -307,6 +311,58 @@ class ImageAdditionalVolumeArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "zone", value)
+
+
+if not MYPY:
+    class PrivateNicPrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IP address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IP address resource.
+        """
+elif False:
+    PrivateNicPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class PrivateNicPrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IP address.
+        :param pulumi.Input[str] id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:
@@ -847,6 +903,58 @@ class SecurityGroupRulesOutboundRuleArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+
+if not MYPY:
+    class ServerPrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IP address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IP address resource.
+        """
+elif False:
+    ServerPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServerPrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IP address.
+        :param pulumi.Input[str] id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:

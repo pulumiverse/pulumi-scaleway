@@ -74,6 +74,7 @@ export interface GetDatabaseInstanceResult {
     readonly nodeType: string;
     readonly organizationId: string;
     readonly password: string;
+    readonly privateIps: outputs.GetDatabaseInstancePrivateIp[];
     readonly privateNetworks: outputs.GetDatabaseInstancePrivateNetwork[];
     readonly projectId?: string;
     readonly readReplicas: outputs.GetDatabaseInstanceReadReplica[];

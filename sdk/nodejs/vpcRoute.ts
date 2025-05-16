@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### With Instance
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -42,6 +42,61 @@ import * as utilities from "./utilities";
  *     ],
  *     destination: "10.0.0.0/24",
  *     nexthopResourceId: pnic01.id,
+ * });
+ * ```
+ *
+ * ### With Baremetal
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumi/scaleway";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc01 = new scaleway.network.Vpc("vpc01", {name: "tf-vpc-vpn"});
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
+ *     name: "tf-pn-vpn",
+ *     ipv4Subnet: {
+ *         subnet: "172.16.64.0/22",
+ *     },
+ *     vpcId: vpc01.id,
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-2",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-B112X-SSD",
+ * });
+ * const privateNetwork = scaleway.elasticmetal.getOption({
+ *     zone: "fr-par-2",
+ *     name: "Private Network",
+ * });
+ * const myKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ * });
+ * const myServer = new scaleway.elasticmetal.Server("my_server", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [myKey.then(myKey => myKey.id)],
+ *     options: [{
+ *         id: privateNetwork.then(privateNetwork => privateNetwork.optionId),
+ *     }],
+ *     privateNetworks: [{
+ *         id: pn01.id,
+ *     }],
+ * });
+ * const rt01 = new scaleway.network.Route("rt01", {
+ *     vpcId: vpc01.id,
+ *     description: "tf-route-vpn",
+ *     tags: [
+ *         "tf",
+ *         "route",
+ *     ],
+ *     destination: "10.0.0.0/24",
+ *     nexthopResourceId: myServer.privateNetworks.apply(privateNetworks => privateNetworks?.[0]?.mappingId),
  * });
  * ```
  *

@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
     ///             "scaleway_rdb_instance",
     ///             "minimal",
     ///         },
-    ///         VolumeType = "bssd",
+    ///         VolumeType = "sbs_5k",
     ///         VolumeSizeInGb = 10,
     ///     });
     /// 

@@ -73,8 +73,7 @@ class InstanceArgs:
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-               captured in the specified snapshot. Conflicts with the `engine` attribute.
+        :param pulumi.Input[str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -82,7 +81,7 @@ class InstanceArgs:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         pulumi.set(__self__, "node_type", node_type)
         if backup_same_region is not None:
@@ -347,8 +346,7 @@ class InstanceArgs:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -400,7 +398,7 @@ class InstanceArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -429,6 +427,7 @@ class _InstanceState:
                  node_type: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceReadReplicaArgs']]]] = None,
@@ -467,6 +466,7 @@ class _InstanceState:
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
@@ -474,8 +474,7 @@ class _InstanceState:
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-               captured in the specified snapshot. Conflicts with the `engine` attribute.
+        :param pulumi.Input[str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -483,7 +482,7 @@ class _InstanceState:
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         if backup_same_region is not None:
             pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -525,6 +524,8 @@ class _InstanceState:
             pulumi.set(__self__, "organization_id", organization_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
             pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
@@ -762,6 +763,18 @@ class _InstanceState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
+
+    @property
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> Optional[pulumi.Input['InstancePrivateNetworkArgs']]:
         """
@@ -827,8 +840,7 @@ class _InstanceState:
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -880,7 +892,7 @@ class _InstanceState:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 
@@ -1095,8 +1107,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-               captured in the specified snapshot. Conflicts with the `engine` attribute.
+        :param pulumi.Input[str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -1104,7 +1115,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         ...
     @overload
@@ -1334,6 +1345,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["endpoint_ip"] = None
             __props__.__dict__["endpoint_port"] = None
             __props__.__dict__["organization_id"] = None
+            __props__.__dict__["private_ips"] = None
             __props__.__dict__["read_replicas"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/databaseInstance:DatabaseInstance")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -1366,6 +1378,7 @@ class Instance(pulumi.CustomResource):
             node_type: Optional[pulumi.Input[str]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
             private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             read_replicas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceReadReplicaArgs', 'InstanceReadReplicaArgsDict']]]]] = None,
@@ -1409,6 +1422,7 @@ class Instance(pulumi.CustomResource):
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] organization_id: The organization ID the Database Instance is associated with.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
@@ -1416,8 +1430,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] region: `region`) The region
                in which the Database Instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] settings: Map of engine settings to be set on a running instance.
-        :param pulumi.Input[str] snapshot_id: ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-               captured in the specified snapshot. Conflicts with the `engine` attribute.
+        :param pulumi.Input[str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the Database Instance.
         :param pulumi.Input[str] user_name: Identifier for the first user of the Database Instance.
                
@@ -1425,7 +1438,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] volume_size_in_gb: Volume size (in GB). Cannot be used when `volume_type` is set to `lssd`.
                
                > **Important** Once your Database Instance reaches `disk_full` status, you should increase the volume size before making any other change to your Database Instance.
-        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        :param pulumi.Input[str] volume_type: Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1448,6 +1461,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["read_replicas"] = read_replicas
@@ -1608,6 +1622,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> pulumi.Output[Sequence['outputs.InstancePrivateIp']]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetwork")
     def private_network(self) -> pulumi.Output[Optional['outputs.InstancePrivateNetwork']]:
         """
@@ -1653,8 +1675,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Output[Optional[str]]:
         """
-        ID of an existing snapshot to create a new instance from. This allows restoring a database instance to the state
-        captured in the specified snapshot. Conflicts with the `engine` attribute.
+        The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         """
         return pulumi.get(self, "snapshot_id")
 
@@ -1690,7 +1711,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> pulumi.Output[Optional[str]]:
         """
-        Type of volume where data are stored (`bssd`, `lssd`, `sbs_5k` or `sbs_15k`).
+        Type of volume where data are stored (`lssd`, `sbs_5k` or `sbs_15k`).
         """
         return pulumi.get(self, "volume_type")
 

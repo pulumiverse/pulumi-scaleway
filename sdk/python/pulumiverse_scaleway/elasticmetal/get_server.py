@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -82,6 +82,9 @@ class GetServerResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_networks and not isinstance(private_networks, list):
             raise TypeError("Expected argument 'private_networks' to be a list")
         pulumi.set(__self__, "private_networks", private_networks)
@@ -207,6 +210,11 @@ class GetServerResult:
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetServerPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence['outputs.GetServerPrivateNetworkResult']:
         return pulumi.get(self, "private_networks")
@@ -281,6 +289,7 @@ class AwaitableGetServerResult(GetServerResult):
             os_name=self.os_name,
             partitioning=self.partitioning,
             password=self.password,
+            private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             reinstall_on_config_changes=self.reinstall_on_config_changes,
@@ -347,6 +356,7 @@ def get_server(name: Optional[str] = None,
         os_name=pulumi.get(__ret__, 'os_name'),
         partitioning=pulumi.get(__ret__, 'partitioning'),
         password=pulumi.get(__ret__, 'password'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         reinstall_on_config_changes=pulumi.get(__ret__, 'reinstall_on_config_changes'),
@@ -410,6 +420,7 @@ def get_server_output(name: Optional[pulumi.Input[Optional[str]]] = None,
         os_name=pulumi.get(__response__, 'os_name'),
         partitioning=pulumi.get(__response__, 'partitioning'),
         password=pulumi.get(__response__, 'password'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         reinstall_on_config_changes=pulumi.get(__response__, 'reinstall_on_config_changes'),

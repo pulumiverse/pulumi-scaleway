@@ -159,6 +159,7 @@ namespace Pulumiverse.Scaleway
         /// The Scaleway internal IP address of the server.
         /// </summary>
         public readonly string PrivateIp;
+        public readonly ImmutableArray<Outputs.GetInstanceServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
         public readonly bool Protected;
@@ -234,6 +235,8 @@ namespace Pulumiverse.Scaleway
 
             string privateIp,
 
+            ImmutableArray<Outputs.GetInstanceServerPrivateIpResult> privateIps,
+
             ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> privateNetworks,
 
             string? projectId,
@@ -280,6 +283,7 @@ namespace Pulumiverse.Scaleway
             PlacementGroupId = placementGroupId;
             PlacementGroupPolicyRespected = placementGroupPolicyRespected;
             PrivateIp = privateIp;
+            PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             Protected = @protected;

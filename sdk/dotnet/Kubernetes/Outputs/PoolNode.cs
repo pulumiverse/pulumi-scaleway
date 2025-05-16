@@ -15,11 +15,19 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
     public sealed class PoolNode
     {
         /// <summary>
+        /// The ID of the IP address resource.
+        /// </summary>
+        public readonly string? Id;
+        /// <summary>
         /// The name for the pool.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the node.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.PoolNodePrivateIp> PrivateIps;
         /// <summary>
         /// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
         /// </summary>
@@ -35,7 +43,11 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
         [OutputConstructor]
         private PoolNode(
+            string? id,
+
             string? name,
+
+            ImmutableArray<Outputs.PoolNodePrivateIp> privateIps,
 
             string? publicIp,
 
@@ -43,7 +55,9 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
 
             string? status)
         {
+            Id = id;
             Name = name;
+            PrivateIps = privateIps;
             PublicIp = publicIp;
             PublicIpV6 = publicIpV6;
             Status = status;

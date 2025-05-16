@@ -38,6 +38,12 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
+        /// The ID of the Server-to-Private Network mapping.
+        /// </summary>
+        [Input("mappingId")]
+        public Input<string>? MappingId { get; set; }
+
+        /// <summary>
         /// The private network status.
         /// </summary>
         [Input("status")]

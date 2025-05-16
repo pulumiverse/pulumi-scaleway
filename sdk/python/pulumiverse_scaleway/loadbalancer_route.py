@@ -22,6 +22,7 @@ class LoadbalancerRouteArgs:
                  backend_id: pulumi.Input[str],
                  frontend_id: pulumi.Input[str],
                  match_host_header: Optional[pulumi.Input[str]] = None,
+                 match_path_begin: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  match_subdomains: Optional[pulumi.Input[bool]] = None):
         """
@@ -29,11 +30,13 @@ class LoadbalancerRouteArgs:
         :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
         :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on HTTP Load Balancers.
+        :param pulumi.Input[str] match_path_begin: The value to match in the URL beginning path from an incoming request.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         :param pulumi.Input[str] match_sni: The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
         :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
@@ -42,6 +45,8 @@ class LoadbalancerRouteArgs:
         pulumi.set(__self__, "frontend_id", frontend_id)
         if match_host_header is not None:
             pulumi.set(__self__, "match_host_header", match_host_header)
+        if match_path_begin is not None:
+            pulumi.set(__self__, "match_path_begin", match_path_begin)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
         if match_subdomains is not None:
@@ -76,7 +81,7 @@ class LoadbalancerRouteArgs:
     def match_host_header(self) -> Optional[pulumi.Input[str]]:
         """
         The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on HTTP Load Balancers.
         """
@@ -87,11 +92,24 @@ class LoadbalancerRouteArgs:
         pulumi.set(self, "match_host_header", value)
 
     @property
+    @pulumi.getter(name="matchPathBegin")
+    def match_path_begin(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value to match in the URL beginning path from an incoming request.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        """
+        return pulumi.get(self, "match_path_begin")
+
+    @match_path_begin.setter
+    def match_path_begin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_path_begin", value)
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
         The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on TCP Load Balancers.
         """
@@ -121,6 +139,7 @@ class _LoadbalancerRouteState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
+                 match_path_begin: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  match_subdomains: Optional[pulumi.Input[bool]] = None,
                  updated_at: Optional[pulumi.Input[str]] = None):
@@ -130,11 +149,13 @@ class _LoadbalancerRouteState:
         :param pulumi.Input[str] created_at: The date on which the route was created.
         :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on HTTP Load Balancers.
+        :param pulumi.Input[str] match_path_begin: The value to match in the URL beginning path from an incoming request.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         :param pulumi.Input[str] match_sni: The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
         :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
@@ -148,6 +169,8 @@ class _LoadbalancerRouteState:
             pulumi.set(__self__, "frontend_id", frontend_id)
         if match_host_header is not None:
             pulumi.set(__self__, "match_host_header", match_host_header)
+        if match_path_begin is not None:
+            pulumi.set(__self__, "match_path_begin", match_path_begin)
         if match_sni is not None:
             pulumi.set(__self__, "match_sni", match_sni)
         if match_subdomains is not None:
@@ -196,7 +219,7 @@ class _LoadbalancerRouteState:
     def match_host_header(self) -> Optional[pulumi.Input[str]]:
         """
         The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on HTTP Load Balancers.
         """
@@ -207,11 +230,24 @@ class _LoadbalancerRouteState:
         pulumi.set(self, "match_host_header", value)
 
     @property
+    @pulumi.getter(name="matchPathBegin")
+    def match_path_begin(self) -> Optional[pulumi.Input[str]]:
+        """
+        The value to match in the URL beginning path from an incoming request.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        """
+        return pulumi.get(self, "match_path_begin")
+
+    @match_path_begin.setter
+    def match_path_begin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_path_begin", value)
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> Optional[pulumi.Input[str]]:
         """
         The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on TCP Load Balancers.
         """
@@ -259,6 +295,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
+                 match_path_begin: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  match_subdomains: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -321,6 +358,41 @@ class LoadbalancerRoute(pulumi.CustomResource):
             match_host_header="host.scaleway.com")
         ```
 
+        ### With path-begin matching for HTTP backends
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip = scaleway.loadbalancers.Ip("ip")
+        lb = scaleway.loadbalancers.LoadBalancer("lb",
+            ip_id=ip.id,
+            name="my-lb",
+            type="lb-s")
+        app = scaleway.loadbalancers.Backend("app",
+            lb_id=lb.id,
+            forward_protocol="http",
+            forward_port=80,
+            proxy_protocol="none")
+        admin = scaleway.loadbalancers.Backend("admin",
+            lb_id=lb.id,
+            forward_protocol="http",
+            forward_port=8080,
+            proxy_protocol="none")
+        frontend = scaleway.loadbalancers.Frontend("frontend",
+            lb_id=lb.id,
+            backend_id=app.id,
+            inbound_port=80)
+        admin_route = scaleway.loadbalancers.Route("admin_route",
+            frontend_id=frontend.id,
+            backend_id=admin.id,
+            match_path_begin="/admin")
+        default_route = scaleway.loadbalancers.Route("default_route",
+            frontend_id=frontend.id,
+            backend_id=app.id,
+            match_path_begin="/")
+        ```
+
         ## Import
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
@@ -336,11 +408,13 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param pulumi.Input[str] backend_id: The ID of the backend the route is associated with.
         :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on HTTP Load Balancers.
+        :param pulumi.Input[str] match_path_begin: The value to match in the URL beginning path from an incoming request.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         :param pulumi.Input[str] match_sni: The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
         :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
@@ -410,6 +484,41 @@ class LoadbalancerRoute(pulumi.CustomResource):
             match_host_header="host.scaleway.com")
         ```
 
+        ### With path-begin matching for HTTP backends
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ip = scaleway.loadbalancers.Ip("ip")
+        lb = scaleway.loadbalancers.LoadBalancer("lb",
+            ip_id=ip.id,
+            name="my-lb",
+            type="lb-s")
+        app = scaleway.loadbalancers.Backend("app",
+            lb_id=lb.id,
+            forward_protocol="http",
+            forward_port=80,
+            proxy_protocol="none")
+        admin = scaleway.loadbalancers.Backend("admin",
+            lb_id=lb.id,
+            forward_protocol="http",
+            forward_port=8080,
+            proxy_protocol="none")
+        frontend = scaleway.loadbalancers.Frontend("frontend",
+            lb_id=lb.id,
+            backend_id=app.id,
+            inbound_port=80)
+        admin_route = scaleway.loadbalancers.Route("admin_route",
+            frontend_id=frontend.id,
+            backend_id=admin.id,
+            match_path_begin="/admin")
+        default_route = scaleway.loadbalancers.Route("default_route",
+            frontend_id=frontend.id,
+            backend_id=app.id,
+            match_path_begin="/")
+        ```
+
         ## Import
 
         Load Balancer frontends can be imported using `{zone}/{id}`, e.g.
@@ -438,6 +547,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[str]] = None,
                  frontend_id: Optional[pulumi.Input[str]] = None,
                  match_host_header: Optional[pulumi.Input[str]] = None,
+                 match_path_begin: Optional[pulumi.Input[str]] = None,
                  match_sni: Optional[pulumi.Input[str]] = None,
                  match_subdomains: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
@@ -457,6 +567,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
                 raise TypeError("Missing required property 'frontend_id'")
             __props__.__dict__["frontend_id"] = frontend_id
             __props__.__dict__["match_host_header"] = match_host_header
+            __props__.__dict__["match_path_begin"] = match_path_begin
             __props__.__dict__["match_sni"] = match_sni
             __props__.__dict__["match_subdomains"] = match_subdomains
             __props__.__dict__["created_at"] = None
@@ -475,6 +586,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             frontend_id: Optional[pulumi.Input[str]] = None,
             match_host_header: Optional[pulumi.Input[str]] = None,
+            match_path_begin: Optional[pulumi.Input[str]] = None,
             match_sni: Optional[pulumi.Input[str]] = None,
             match_subdomains: Optional[pulumi.Input[bool]] = None,
             updated_at: Optional[pulumi.Input[str]] = None) -> 'LoadbalancerRoute':
@@ -489,11 +601,13 @@ class LoadbalancerRoute(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date on which the route was created.
         :param pulumi.Input[str] frontend_id: The ID of the frontend the route is associated with.
         :param pulumi.Input[str] match_host_header: The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on HTTP Load Balancers.
+        :param pulumi.Input[str] match_path_begin: The value to match in the URL beginning path from an incoming request.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
         :param pulumi.Input[str] match_sni: The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-               Only one of `match_sni` and `match_host_header` should be specified.
+               Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
                
                > **Important:** This field should be set for routes on TCP Load Balancers.
         :param pulumi.Input[bool] match_subdomains: If true, all subdomains will match.
@@ -507,6 +621,7 @@ class LoadbalancerRoute(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["frontend_id"] = frontend_id
         __props__.__dict__["match_host_header"] = match_host_header
+        __props__.__dict__["match_path_begin"] = match_path_begin
         __props__.__dict__["match_sni"] = match_sni
         __props__.__dict__["match_subdomains"] = match_subdomains
         __props__.__dict__["updated_at"] = updated_at
@@ -541,18 +656,27 @@ class LoadbalancerRoute(pulumi.CustomResource):
     def match_host_header(self) -> pulumi.Output[Optional[str]]:
         """
         The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on HTTP Load Balancers.
         """
         return pulumi.get(self, "match_host_header")
 
     @property
+    @pulumi.getter(name="matchPathBegin")
+    def match_path_begin(self) -> pulumi.Output[Optional[str]]:
+        """
+        The value to match in the URL beginning path from an incoming request.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        """
+        return pulumi.get(self, "match_path_begin")
+
+    @property
     @pulumi.getter(name="matchSni")
     def match_sni(self) -> pulumi.Output[Optional[str]]:
         """
         The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        Only one of `match_sni` and `match_host_header` should be specified.
+        Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
 
         > **Important:** This field should be set for routes on TCP Load Balancers.
         """

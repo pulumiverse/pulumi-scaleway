@@ -291,7 +291,7 @@ class Snapshot(pulumi.CustomResource):
                 "scaleway_rdb_instance",
                 "minimal",
             ],
-            volume_type="bssd",
+            volume_type="sbs_5k",
             volume_size_in_gb=10)
         test = scaleway.databases.Snapshot("test",
             name="initial-snapshot",
@@ -381,7 +381,7 @@ class Snapshot(pulumi.CustomResource):
                 "scaleway_rdb_instance",
                 "minimal",
             ],
-            volume_type="bssd",
+            volume_type="sbs_5k",
             volume_size_in_gb=10)
         test = scaleway.databases.Snapshot("test",
             name="initial-snapshot",

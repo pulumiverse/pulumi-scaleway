@@ -16,9 +16,11 @@ from .. import _utilities
 
 __all__ = [
     'ClusterAcl',
+    'ClusterPrivateIp',
     'ClusterPrivateNetwork',
     'ClusterPublicNetwork',
     'GetClusterAclResult',
+    'GetClusterPrivateIpResult',
     'GetClusterPrivateNetworkResult',
     'GetClusterPublicNetworkResult',
 ]
@@ -35,7 +37,7 @@ class ClusterAcl(dict):
         :param str description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
-        :param str id: (Required) The UUID of the endpoint.
+        :param str id: The ID of the IPv4 address resource.
         """
         pulumi.set(__self__, "ip", ip)
         if description is not None:
@@ -66,7 +68,38 @@ class ClusterAcl(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class ClusterPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
@@ -191,7 +224,7 @@ class ClusterPublicNetwork(dict):
                  ips: Optional[Sequence[str]] = None,
                  port: Optional[int] = None):
         """
-        :param str id: (Required) The UUID of the endpoint.
+        :param str id: The ID of the IPv4 address resource.
         :param Sequence[str] ips: Lis of IPv4 address of the endpoint (IP address).
         :param int port: TCP port of the endpoint.
         """
@@ -206,7 +239,7 @@ class ClusterPublicNetwork(dict):
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        (Required) The UUID of the endpoint.
+        The ID of the IPv4 address resource.
         """
         return pulumi.get(self, "id")
 
@@ -265,6 +298,35 @@ class GetClusterAclResult(dict):
         IPv4 network address of the rule (IP network in a CIDR format).
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class GetClusterPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the Redis cluster.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Redis cluster.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

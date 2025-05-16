@@ -18,7 +18,7 @@ type ClusterAcl struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description *string `pulumi:"description"`
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
 	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -41,7 +41,7 @@ type ClusterAclArgs struct {
 	//
 	// > The `acl` conflict with `privateNetwork`. Only one should be specified.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The IP range to whitelist
 	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
@@ -106,7 +106,7 @@ func (o ClusterAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o ClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -135,6 +135,112 @@ func (o ClusterAclArrayOutput) Index(i pulumi.IntInput) ClusterAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterAcl {
 		return vs[0].([]ClusterAcl)[vs[1].(int)]
 	}).(ClusterAclOutput)
+}
+
+type ClusterPrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id *string `pulumi:"id"`
+}
+
+// ClusterPrivateIpInput is an input type that accepts ClusterPrivateIpArgs and ClusterPrivateIpOutput values.
+// You can construct a concrete instance of `ClusterPrivateIpInput` via:
+//
+//	ClusterPrivateIpArgs{...}
+type ClusterPrivateIpInput interface {
+	pulumi.Input
+
+	ToClusterPrivateIpOutput() ClusterPrivateIpOutput
+	ToClusterPrivateIpOutputWithContext(context.Context) ClusterPrivateIpOutput
+}
+
+type ClusterPrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv4 address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (ClusterPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterPrivateIp)(nil)).Elem()
+}
+
+func (i ClusterPrivateIpArgs) ToClusterPrivateIpOutput() ClusterPrivateIpOutput {
+	return i.ToClusterPrivateIpOutputWithContext(context.Background())
+}
+
+func (i ClusterPrivateIpArgs) ToClusterPrivateIpOutputWithContext(ctx context.Context) ClusterPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateIpOutput)
+}
+
+// ClusterPrivateIpArrayInput is an input type that accepts ClusterPrivateIpArray and ClusterPrivateIpArrayOutput values.
+// You can construct a concrete instance of `ClusterPrivateIpArrayInput` via:
+//
+//	ClusterPrivateIpArray{ ClusterPrivateIpArgs{...} }
+type ClusterPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToClusterPrivateIpArrayOutput() ClusterPrivateIpArrayOutput
+	ToClusterPrivateIpArrayOutputWithContext(context.Context) ClusterPrivateIpArrayOutput
+}
+
+type ClusterPrivateIpArray []ClusterPrivateIpInput
+
+func (ClusterPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterPrivateIp)(nil)).Elem()
+}
+
+func (i ClusterPrivateIpArray) ToClusterPrivateIpArrayOutput() ClusterPrivateIpArrayOutput {
+	return i.ToClusterPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i ClusterPrivateIpArray) ToClusterPrivateIpArrayOutputWithContext(ctx context.Context) ClusterPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterPrivateIpArrayOutput)
+}
+
+type ClusterPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (ClusterPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterPrivateIp)(nil)).Elem()
+}
+
+func (o ClusterPrivateIpOutput) ToClusterPrivateIpOutput() ClusterPrivateIpOutput {
+	return o
+}
+
+func (o ClusterPrivateIpOutput) ToClusterPrivateIpOutputWithContext(ctx context.Context) ClusterPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o ClusterPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv4 address resource.
+func (o ClusterPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type ClusterPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (ClusterPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ClusterPrivateIp)(nil)).Elem()
+}
+
+func (o ClusterPrivateIpArrayOutput) ToClusterPrivateIpArrayOutput() ClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o ClusterPrivateIpArrayOutput) ToClusterPrivateIpArrayOutputWithContext(ctx context.Context) ClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o ClusterPrivateIpArrayOutput) Index(i pulumi.IntInput) ClusterPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterPrivateIp {
+		return vs[0].([]ClusterPrivateIp)[vs[1].(int)]
+	}).(ClusterPrivateIpOutput)
 }
 
 type ClusterPrivateNetwork struct {
@@ -322,7 +428,7 @@ func (o ClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) ClusterPrivat
 }
 
 type ClusterPublicNetwork struct {
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips []string `pulumi:"ips"`
@@ -342,7 +448,7 @@ type ClusterPublicNetworkInput interface {
 }
 
 type ClusterPublicNetworkArgs struct {
-	// (Required) The UUID of the endpoint.
+	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Lis of IPv4 address of the endpoint (IP address).
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
@@ -427,7 +533,7 @@ func (o ClusterPublicNetworkOutput) ToClusterPublicNetworkPtrOutputWithContext(c
 	}).(ClusterPublicNetworkPtrOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o ClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -466,7 +572,7 @@ func (o ClusterPublicNetworkPtrOutput) Elem() ClusterPublicNetworkOutput {
 	}).(ClusterPublicNetworkOutput)
 }
 
-// (Required) The UUID of the endpoint.
+// The ID of the IPv4 address resource.
 func (o ClusterPublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterPublicNetwork) *string {
 		if v == nil {
@@ -609,6 +715,112 @@ func (o GetClusterAclArrayOutput) Index(i pulumi.IntInput) GetClusterAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterAcl {
 		return vs[0].([]GetClusterAcl)[vs[1].(int)]
 	}).(GetClusterAclOutput)
+}
+
+type GetClusterPrivateIp struct {
+	// The private IPv4 address
+	Address string `pulumi:"address"`
+	// The ID of the Redis cluster.
+	Id string `pulumi:"id"`
+}
+
+// GetClusterPrivateIpInput is an input type that accepts GetClusterPrivateIpArgs and GetClusterPrivateIpOutput values.
+// You can construct a concrete instance of `GetClusterPrivateIpInput` via:
+//
+//	GetClusterPrivateIpArgs{...}
+type GetClusterPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetClusterPrivateIpOutput() GetClusterPrivateIpOutput
+	ToGetClusterPrivateIpOutputWithContext(context.Context) GetClusterPrivateIpOutput
+}
+
+type GetClusterPrivateIpArgs struct {
+	// The private IPv4 address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the Redis cluster.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetClusterPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterPrivateIp)(nil)).Elem()
+}
+
+func (i GetClusterPrivateIpArgs) ToGetClusterPrivateIpOutput() GetClusterPrivateIpOutput {
+	return i.ToGetClusterPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetClusterPrivateIpArgs) ToGetClusterPrivateIpOutputWithContext(ctx context.Context) GetClusterPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterPrivateIpOutput)
+}
+
+// GetClusterPrivateIpArrayInput is an input type that accepts GetClusterPrivateIpArray and GetClusterPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetClusterPrivateIpArrayInput` via:
+//
+//	GetClusterPrivateIpArray{ GetClusterPrivateIpArgs{...} }
+type GetClusterPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetClusterPrivateIpArrayOutput() GetClusterPrivateIpArrayOutput
+	ToGetClusterPrivateIpArrayOutputWithContext(context.Context) GetClusterPrivateIpArrayOutput
+}
+
+type GetClusterPrivateIpArray []GetClusterPrivateIpInput
+
+func (GetClusterPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterPrivateIp)(nil)).Elem()
+}
+
+func (i GetClusterPrivateIpArray) ToGetClusterPrivateIpArrayOutput() GetClusterPrivateIpArrayOutput {
+	return i.ToGetClusterPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetClusterPrivateIpArray) ToGetClusterPrivateIpArrayOutputWithContext(ctx context.Context) GetClusterPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetClusterPrivateIpArrayOutput)
+}
+
+type GetClusterPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetClusterPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetClusterPrivateIp)(nil)).Elem()
+}
+
+func (o GetClusterPrivateIpOutput) ToGetClusterPrivateIpOutput() GetClusterPrivateIpOutput {
+	return o
+}
+
+func (o GetClusterPrivateIpOutput) ToGetClusterPrivateIpOutputWithContext(ctx context.Context) GetClusterPrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address
+func (o GetClusterPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the Redis cluster.
+func (o GetClusterPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetClusterPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetClusterPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetClusterPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetClusterPrivateIp)(nil)).Elem()
+}
+
+func (o GetClusterPrivateIpArrayOutput) ToGetClusterPrivateIpArrayOutput() GetClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetClusterPrivateIpArrayOutput) ToGetClusterPrivateIpArrayOutputWithContext(ctx context.Context) GetClusterPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetClusterPrivateIpArrayOutput) Index(i pulumi.IntInput) GetClusterPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetClusterPrivateIp {
+		return vs[0].([]GetClusterPrivateIp)[vs[1].(int)]
+	}).(GetClusterPrivateIpOutput)
 }
 
 type GetClusterPrivateNetwork struct {
@@ -850,24 +1062,32 @@ func (o GetClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetClusterP
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAclInput)(nil)).Elem(), ClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAclArrayInput)(nil)).Elem(), ClusterAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateIpInput)(nil)).Elem(), ClusterPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateIpArrayInput)(nil)).Elem(), ClusterPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateNetworkInput)(nil)).Elem(), ClusterPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPrivateNetworkArrayInput)(nil)).Elem(), ClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPublicNetworkInput)(nil)).Elem(), ClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPublicNetworkPtrInput)(nil)).Elem(), ClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAclInput)(nil)).Elem(), GetClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAclArrayInput)(nil)).Elem(), GetClusterAclArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateIpInput)(nil)).Elem(), GetClusterPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateIpArrayInput)(nil)).Elem(), GetClusterPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateNetworkInput)(nil)).Elem(), GetClusterPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPrivateNetworkArrayInput)(nil)).Elem(), GetClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkInput)(nil)).Elem(), GetClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterPublicNetworkArrayInput)(nil)).Elem(), GetClusterPublicNetworkArray{})
 	pulumi.RegisterOutputType(ClusterAclOutput{})
 	pulumi.RegisterOutputType(ClusterAclArrayOutput{})
+	pulumi.RegisterOutputType(ClusterPrivateIpOutput{})
+	pulumi.RegisterOutputType(ClusterPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(ClusterPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(ClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(ClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(ClusterPublicNetworkPtrOutput{})
 	pulumi.RegisterOutputType(GetClusterAclOutput{})
 	pulumi.RegisterOutputType(GetClusterAclArrayOutput{})
+	pulumi.RegisterOutputType(GetClusterPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetClusterPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetClusterPublicNetworkOutput{})

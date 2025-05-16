@@ -82,6 +82,7 @@ export interface GetLoadbalancerResult {
     readonly lbId?: string;
     readonly name?: string;
     readonly organizationId: string;
+    readonly privateIps: outputs.GetLoadbalancerPrivateIp[];
     readonly privateNetworks: outputs.GetLoadbalancerPrivateNetwork[];
     readonly projectId?: string;
     readonly region: string;

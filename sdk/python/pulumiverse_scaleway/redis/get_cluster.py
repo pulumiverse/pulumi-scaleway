@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, created_at=None, id=None, name=None, node_type=None, password=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
+    def __init__(__self__, acls=None, certificate=None, cluster_id=None, cluster_size=None, created_at=None, id=None, name=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, settings=None, tags=None, tls_enabled=None, updated_at=None, user_name=None, version=None, zone=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
@@ -55,6 +55,9 @@ class GetClusterResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_networks and not isinstance(private_networks, list):
             raise TypeError("Expected argument 'private_networks' to be a list")
         pulumi.set(__self__, "private_networks", private_networks)
@@ -153,6 +156,11 @@ class GetClusterResult:
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetClusterPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence['outputs.GetClusterPrivateNetworkResult']:
         """
@@ -242,6 +250,7 @@ class AwaitableGetClusterResult(GetClusterResult):
             name=self.name,
             node_type=self.node_type,
             password=self.password,
+            private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             public_networks=self.public_networks,
@@ -290,6 +299,7 @@ def get_cluster(cluster_id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         node_type=pulumi.get(__ret__, 'node_type'),
         password=pulumi.get(__ret__, 'password'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_networks=pulumi.get(__ret__, 'public_networks'),
@@ -335,6 +345,7 @@ def get_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
         name=pulumi.get(__response__, 'name'),
         node_type=pulumi.get(__response__, 'node_type'),
         password=pulumi.get(__response__, 'password'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         public_networks=pulumi.get(__response__, 'public_networks'),

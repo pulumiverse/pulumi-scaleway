@@ -172,6 +172,8 @@ type PrivateNic struct {
 	IpamIpIds pulumi.StringArrayOutput `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps PrivateNicPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -230,6 +232,8 @@ type privateNicState struct {
 	IpamIpIds []string `pulumi:"ipamIpIds"`
 	// The MAC address of the private NIC.
 	MacAddress *string `pulumi:"macAddress"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []PrivateNicPrivateIp `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -247,6 +251,8 @@ type PrivateNicState struct {
 	IpamIpIds pulumi.StringArrayInput
 	// The MAC address of the private NIC.
 	MacAddress pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps PrivateNicPrivateIpArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringPtrInput
 	// The ID of the server associated with.
@@ -392,6 +398,11 @@ func (o PrivateNicOutput) IpamIpIds() pulumi.StringArrayOutput {
 // The MAC address of the private NIC.
 func (o PrivateNicOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateNic) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o PrivateNicOutput) PrivateIps() PrivateNicPrivateIpArrayOutput {
+	return o.ApplyT(func(v *PrivateNic) PrivateNicPrivateIpArrayOutput { return v.PrivateIps }).(PrivateNicPrivateIpArrayOutput)
 }
 
 // The ID of the private network attached to.

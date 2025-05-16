@@ -13,10 +13,15 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 
 __all__ = [
     'DeploymentPrivateEndpoint',
     'DeploymentPublicEndpoint',
+    'ModelNodesSupport',
+    'ModelNodesSupportQuantization',
+    'GetModelNodesSupportResult',
+    'GetModelNodesSupportQuantizationResult',
 ]
 
 @pulumi.output_type
@@ -165,5 +170,184 @@ class DeploymentPublicEndpoint(dict):
         (Optional) The URL of the endpoint.
         """
         return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class ModelNodesSupport(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nodeTypeName":
+            suggest = "node_type_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModelNodesSupport. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModelNodesSupport.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModelNodesSupport.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 node_type_name: Optional[str] = None,
+                 quantizations: Optional[Sequence['outputs.ModelNodesSupportQuantization']] = None):
+        """
+        :param str node_type_name: The type of node supported.
+        :param Sequence['ModelNodesSupportQuantizationArgs'] quantizations: A list of supported quantization options, including:
+        """
+        if node_type_name is not None:
+            pulumi.set(__self__, "node_type_name", node_type_name)
+        if quantizations is not None:
+            pulumi.set(__self__, "quantizations", quantizations)
+
+    @property
+    @pulumi.getter(name="nodeTypeName")
+    def node_type_name(self) -> Optional[str]:
+        """
+        The type of node supported.
+        """
+        return pulumi.get(self, "node_type_name")
+
+    @property
+    @pulumi.getter
+    def quantizations(self) -> Optional[Sequence['outputs.ModelNodesSupportQuantization']]:
+        """
+        A list of supported quantization options, including:
+        """
+        return pulumi.get(self, "quantizations")
+
+
+@pulumi.output_type
+class ModelNodesSupportQuantization(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxContextSize":
+            suggest = "max_context_size"
+        elif key == "quantizationBits":
+            suggest = "quantization_bits"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ModelNodesSupportQuantization. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ModelNodesSupportQuantization.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ModelNodesSupportQuantization.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allowed: Optional[bool] = None,
+                 max_context_size: Optional[int] = None,
+                 quantization_bits: Optional[int] = None):
+        """
+        :param bool allowed: Whether this quantization is allowed.
+        :param int max_context_size: Maximum context length supported by this quantization.
+        :param int quantization_bits: Number of bits used for quantization (e.g., 8, 16).
+        """
+        if allowed is not None:
+            pulumi.set(__self__, "allowed", allowed)
+        if max_context_size is not None:
+            pulumi.set(__self__, "max_context_size", max_context_size)
+        if quantization_bits is not None:
+            pulumi.set(__self__, "quantization_bits", quantization_bits)
+
+    @property
+    @pulumi.getter
+    def allowed(self) -> Optional[bool]:
+        """
+        Whether this quantization is allowed.
+        """
+        return pulumi.get(self, "allowed")
+
+    @property
+    @pulumi.getter(name="maxContextSize")
+    def max_context_size(self) -> Optional[int]:
+        """
+        Maximum context length supported by this quantization.
+        """
+        return pulumi.get(self, "max_context_size")
+
+    @property
+    @pulumi.getter(name="quantizationBits")
+    def quantization_bits(self) -> Optional[int]:
+        """
+        Number of bits used for quantization (e.g., 8, 16).
+        """
+        return pulumi.get(self, "quantization_bits")
+
+
+@pulumi.output_type
+class GetModelNodesSupportResult(dict):
+    def __init__(__self__, *,
+                 node_type_name: str,
+                 quantizations: Sequence['outputs.GetModelNodesSupportQuantizationResult']):
+        """
+        :param str node_type_name: The type of node supported.
+        :param Sequence['GetModelNodesSupportQuantizationArgs'] quantizations: A list of supported quantization options, including:
+        """
+        pulumi.set(__self__, "node_type_name", node_type_name)
+        pulumi.set(__self__, "quantizations", quantizations)
+
+    @property
+    @pulumi.getter(name="nodeTypeName")
+    def node_type_name(self) -> str:
+        """
+        The type of node supported.
+        """
+        return pulumi.get(self, "node_type_name")
+
+    @property
+    @pulumi.getter
+    def quantizations(self) -> Sequence['outputs.GetModelNodesSupportQuantizationResult']:
+        """
+        A list of supported quantization options, including:
+        """
+        return pulumi.get(self, "quantizations")
+
+
+@pulumi.output_type
+class GetModelNodesSupportQuantizationResult(dict):
+    def __init__(__self__, *,
+                 allowed: bool,
+                 max_context_size: int,
+                 quantization_bits: int):
+        """
+        :param bool allowed: Whether this quantization is allowed.
+        :param int max_context_size: Maximum context length supported by this quantization.
+        :param int quantization_bits: Number of bits used for quantization (e.g., 8, 16).
+        """
+        pulumi.set(__self__, "allowed", allowed)
+        pulumi.set(__self__, "max_context_size", max_context_size)
+        pulumi.set(__self__, "quantization_bits", quantization_bits)
+
+    @property
+    @pulumi.getter
+    def allowed(self) -> bool:
+        """
+        Whether this quantization is allowed.
+        """
+        return pulumi.get(self, "allowed")
+
+    @property
+    @pulumi.getter(name="maxContextSize")
+    def max_context_size(self) -> int:
+        """
+        Maximum context length supported by this quantization.
+        """
+        return pulumi.get(self, "max_context_size")
+
+    @property
+    @pulumi.getter(name="quantizationBits")
+    def quantization_bits(self) -> int:
+        """
+        Number of bits used for quantization (e.g., 8, 16).
+        """
+        return pulumi.get(self, "quantization_bits")
 
 

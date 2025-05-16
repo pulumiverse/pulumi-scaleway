@@ -92,6 +92,7 @@ type LookupBaremetalServerResult struct {
 	OsName                   string                             `pulumi:"osName"`
 	Partitioning             string                             `pulumi:"partitioning"`
 	Password                 string                             `pulumi:"password"`
+	PrivateIps               []GetBaremetalServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                            `pulumi:"projectId"`
 	ReinstallOnConfigChanges bool                               `pulumi:"reinstallOnConfigChanges"`
@@ -214,6 +215,10 @@ func (o LookupBaremetalServerResultOutput) Partitioning() pulumi.StringOutput {
 
 func (o LookupBaremetalServerResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) PrivateIps() GetBaremetalServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerPrivateIp { return v.PrivateIps }).(GetBaremetalServerPrivateIpArrayOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) PrivateNetworks() GetBaremetalServerPrivateNetworkArrayOutput {

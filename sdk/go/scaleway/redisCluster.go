@@ -187,6 +187,8 @@ type RedisCluster struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password for the first user of the Redis™ cluster.
 	Password pulumi.StringOutput `pulumi:"password"`
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps RedisClusterPrivateIpArrayOutput `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks RedisClusterPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
@@ -300,6 +302,8 @@ type redisClusterState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password for the first user of the Redis™ cluster.
 	Password *string `pulumi:"password"`
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps []RedisClusterPrivateIp `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks []RedisClusterPrivateNetwork `pulumi:"privateNetworks"`
@@ -365,6 +369,8 @@ type RedisClusterState struct {
 	NodeType pulumi.StringPtrInput
 	// Password for the first user of the Redis™ cluster.
 	Password pulumi.StringPtrInput
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps RedisClusterPrivateIpArrayInput
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks RedisClusterPrivateNetworkArrayInput
@@ -658,6 +664,11 @@ func (o RedisClusterOutput) NodeType() pulumi.StringOutput {
 // Password for the first user of the Redis™ cluster.
 func (o RedisClusterOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisCluster) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 addresses associated with the resource.
+func (o RedisClusterOutput) PrivateIps() RedisClusterPrivateIpArrayOutput {
+	return o.ApplyT(func(v *RedisCluster) RedisClusterPrivateIpArrayOutput { return v.PrivateIps }).(RedisClusterPrivateIpArrayOutput)
 }
 
 // Describes the Private Network you want to connect to your cluster. If not set, a public

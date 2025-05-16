@@ -500,6 +500,112 @@ func (o ServerOptionArrayOutput) Index(i pulumi.IntInput) ServerOptionOutput {
 	}).(ServerOptionOutput)
 }
 
+type ServerPrivateIp struct {
+	// The address of the IPv6.
+	Address *string `pulumi:"address"`
+	// The ID of the IPv6.
+	Id *string `pulumi:"id"`
+}
+
+// ServerPrivateIpInput is an input type that accepts ServerPrivateIpArgs and ServerPrivateIpOutput values.
+// You can construct a concrete instance of `ServerPrivateIpInput` via:
+//
+//	ServerPrivateIpArgs{...}
+type ServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToServerPrivateIpOutput() ServerPrivateIpOutput
+	ToServerPrivateIpOutputWithContext(context.Context) ServerPrivateIpOutput
+}
+
+type ServerPrivateIpArgs struct {
+	// The address of the IPv6.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IPv6.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (ServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerPrivateIp)(nil)).Elem()
+}
+
+func (i ServerPrivateIpArgs) ToServerPrivateIpOutput() ServerPrivateIpOutput {
+	return i.ToServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i ServerPrivateIpArgs) ToServerPrivateIpOutputWithContext(ctx context.Context) ServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerPrivateIpOutput)
+}
+
+// ServerPrivateIpArrayInput is an input type that accepts ServerPrivateIpArray and ServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `ServerPrivateIpArrayInput` via:
+//
+//	ServerPrivateIpArray{ ServerPrivateIpArgs{...} }
+type ServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToServerPrivateIpArrayOutput() ServerPrivateIpArrayOutput
+	ToServerPrivateIpArrayOutputWithContext(context.Context) ServerPrivateIpArrayOutput
+}
+
+type ServerPrivateIpArray []ServerPrivateIpInput
+
+func (ServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerPrivateIp)(nil)).Elem()
+}
+
+func (i ServerPrivateIpArray) ToServerPrivateIpArrayOutput() ServerPrivateIpArrayOutput {
+	return i.ToServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i ServerPrivateIpArray) ToServerPrivateIpArrayOutputWithContext(ctx context.Context) ServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerPrivateIpArrayOutput)
+}
+
+type ServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (ServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerPrivateIp)(nil)).Elem()
+}
+
+func (o ServerPrivateIpOutput) ToServerPrivateIpOutput() ServerPrivateIpOutput {
+	return o
+}
+
+func (o ServerPrivateIpOutput) ToServerPrivateIpOutputWithContext(ctx context.Context) ServerPrivateIpOutput {
+	return o
+}
+
+// The address of the IPv6.
+func (o ServerPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPv6.
+func (o ServerPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type ServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerPrivateIp)(nil)).Elem()
+}
+
+func (o ServerPrivateIpArrayOutput) ToServerPrivateIpArrayOutput() ServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o ServerPrivateIpArrayOutput) ToServerPrivateIpArrayOutputWithContext(ctx context.Context) ServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o ServerPrivateIpArrayOutput) Index(i pulumi.IntInput) ServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerPrivateIp {
+		return vs[0].([]ServerPrivateIp)[vs[1].(int)]
+	}).(ServerPrivateIpOutput)
+}
+
 type ServerPrivateNetwork struct {
 	// The date and time of the creation of the private network.
 	CreatedAt *string `pulumi:"createdAt"`
@@ -507,6 +613,8 @@ type ServerPrivateNetwork struct {
 	Id string `pulumi:"id"`
 	// List of IPAM IP IDs to assign to the server in the requested private network.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping.
+	MappingId *string `pulumi:"mappingId"`
 	// The private network status.
 	Status *string `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -533,6 +641,8 @@ type ServerPrivateNetworkArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// List of IPAM IP IDs to assign to the server in the requested private network.
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping.
+	MappingId pulumi.StringPtrInput `pulumi:"mappingId"`
 	// The private network status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// The date and time of the last update of the private network.
@@ -605,6 +715,11 @@ func (o ServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 // List of IPAM IP IDs to assign to the server in the requested private network.
 func (o ServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Server-to-Private Network mapping.
+func (o ServerPrivateNetworkOutput) MappingId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPrivateNetwork) *string { return v.MappingId }).(pulumi.StringPtrOutput)
 }
 
 // The private network status.
@@ -1782,6 +1897,112 @@ func (o GetServerOptionArrayOutput) Index(i pulumi.IntInput) GetServerOptionOutp
 	}).(GetServerOptionOutput)
 }
 
+type GetServerPrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the server.
+	Id string `pulumi:"id"`
+}
+
+// GetServerPrivateIpInput is an input type that accepts GetServerPrivateIpArgs and GetServerPrivateIpOutput values.
+// You can construct a concrete instance of `GetServerPrivateIpInput` via:
+//
+//	GetServerPrivateIpArgs{...}
+type GetServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetServerPrivateIpOutput() GetServerPrivateIpOutput
+	ToGetServerPrivateIpOutputWithContext(context.Context) GetServerPrivateIpOutput
+}
+
+type GetServerPrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the server.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetServerPrivateIpArgs) ToGetServerPrivateIpOutput() GetServerPrivateIpOutput {
+	return i.ToGetServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetServerPrivateIpArgs) ToGetServerPrivateIpOutputWithContext(ctx context.Context) GetServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerPrivateIpOutput)
+}
+
+// GetServerPrivateIpArrayInput is an input type that accepts GetServerPrivateIpArray and GetServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetServerPrivateIpArrayInput` via:
+//
+//	GetServerPrivateIpArray{ GetServerPrivateIpArgs{...} }
+type GetServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetServerPrivateIpArrayOutput() GetServerPrivateIpArrayOutput
+	ToGetServerPrivateIpArrayOutputWithContext(context.Context) GetServerPrivateIpArrayOutput
+}
+
+type GetServerPrivateIpArray []GetServerPrivateIpInput
+
+func (GetServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetServerPrivateIpArray) ToGetServerPrivateIpArrayOutput() GetServerPrivateIpArrayOutput {
+	return i.ToGetServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerPrivateIpArray) ToGetServerPrivateIpArrayOutputWithContext(ctx context.Context) GetServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerPrivateIpArrayOutput)
+}
+
+type GetServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetServerPrivateIpOutput) ToGetServerPrivateIpOutput() GetServerPrivateIpOutput {
+	return o
+}
+
+func (o GetServerPrivateIpOutput) ToGetServerPrivateIpOutputWithContext(ctx context.Context) GetServerPrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetServerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the server.
+func (o GetServerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetServerPrivateIpArrayOutput) ToGetServerPrivateIpArrayOutput() GetServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetServerPrivateIpArrayOutput) ToGetServerPrivateIpArrayOutputWithContext(ctx context.Context) GetServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerPrivateIp {
+		return vs[0].([]GetServerPrivateIp)[vs[1].(int)]
+	}).(GetServerPrivateIpOutput)
+}
+
 type GetServerPrivateNetwork struct {
 	// The date and time of the creation of the private network
 	CreatedAt string `pulumi:"createdAt"`
@@ -1789,6 +2010,8 @@ type GetServerPrivateNetwork struct {
 	Id string `pulumi:"id"`
 	// List of IPAM IP IDs to attach to the server
 	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping
+	MappingId string `pulumi:"mappingId"`
 	// The private network status
 	Status string `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -1815,6 +2038,8 @@ type GetServerPrivateNetworkArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// List of IPAM IP IDs to attach to the server
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
+	// The ID of the Server-to-Private Network mapping
+	MappingId pulumi.StringInput `pulumi:"mappingId"`
 	// The private network status
 	Status pulumi.StringInput `pulumi:"status"`
 	// The date and time of the last update of the private network
@@ -1889,6 +2114,11 @@ func (o GetServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
+// The ID of the Server-to-Private Network mapping
+func (o GetServerPrivateNetworkOutput) MappingId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPrivateNetwork) string { return v.MappingId }).(pulumi.StringOutput)
+}
+
 // The private network status
 func (o GetServerPrivateNetworkOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPrivateNetwork) string { return v.Status }).(pulumi.StringOutput)
@@ -1933,6 +2163,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerIpv6ArrayInput)(nil)).Elem(), ServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionInput)(nil)).Elem(), ServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerOptionArrayInput)(nil)).Elem(), ServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateIpInput)(nil)).Elem(), ServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateIpArrayInput)(nil)).Elem(), ServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateNetworkInput)(nil)).Elem(), ServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateNetworkArrayInput)(nil)).Elem(), ServerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsIpInput)(nil)).Elem(), GetIpsIpArgs{})
@@ -1952,6 +2184,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerIpv6ArrayInput)(nil)).Elem(), GetServerIpv6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionInput)(nil)).Elem(), GetServerOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerOptionArrayInput)(nil)).Elem(), GetServerOptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateIpInput)(nil)).Elem(), GetServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateIpArrayInput)(nil)).Elem(), GetServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateNetworkInput)(nil)).Elem(), GetServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateNetworkArrayInput)(nil)).Elem(), GetServerPrivateNetworkArray{})
 	pulumi.RegisterOutputType(ServerIpOutput{})
@@ -1962,6 +2196,8 @@ func init() {
 	pulumi.RegisterOutputType(ServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(ServerOptionOutput{})
 	pulumi.RegisterOutputType(ServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(ServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(ServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(ServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(ServerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetIpsIpOutput{})
@@ -1981,6 +2217,8 @@ func init() {
 	pulumi.RegisterOutputType(GetServerIpv6ArrayOutput{})
 	pulumi.RegisterOutputType(GetServerOptionOutput{})
 	pulumi.RegisterOutputType(GetServerOptionArrayOutput{})
+	pulumi.RegisterOutputType(GetServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetServerPrivateNetworkArrayOutput{})
 }

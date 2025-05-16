@@ -347,6 +347,7 @@ class _ServerState:
                  os_name: Optional[pulumi.Input[str]] = None,
                  partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
@@ -381,6 +382,7 @@ class _ServerState:
         :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -426,6 +428,8 @@ class _ServerState:
             pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -656,6 +660,18 @@ class _ServerState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]]:
         """
@@ -794,127 +810,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-I220E-NVME")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
-        ```
-
-        ### With option
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Private Network")
-        remote_access = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Remote Access")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
-            options=[
-                {
-                    "id": private_network.option_id,
-                },
-                {
-                    "id": remote_access.option_id,
-                },
-            ])
-        ```
-
-        ### With private network
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Private Network")
-        pn = scaleway.network.PrivateNetwork("pn",
-            region="fr-par",
-            name="baremetal_private_network")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
-            options=[{
-                "id": private_network.option_id,
-            }],
-            private_networks=[{
-                "id": pn.id,
-            }])
-        ```
-
-        ### With IPAM IP IDs
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_baremetal")
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="private_network_baremetal",
-            ipv4_subnet={
-                "subnet": "172.16.64.0/22",
-            },
-            vpc_id=vpc01.id)
-        ip01 = scaleway.ipam.Ip("ip01",
-            address="172.16.64.7",
-            sources=[{
-                "private_network_id": pn01.id,
-            }])
-        my_key = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-A115X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-1",
-            name="Private Network")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[my_key_scaleway_account_ssh_key["id"]],
-            options=[{
-                "id": private_network.option_id,
-            }],
-            private_networks=[{
-                "id": pn01.id,
-                "ipam_ip_ids": [ip01.id],
-            }])
-        ```
-
         ### Without install config
 
         ```python
@@ -924,7 +819,7 @@ class Server(pulumi.CustomResource):
 
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
             name="EM-B112X-SSD")
-        base = scaleway.elasticmetal.Server("base",
+        my_server = scaleway.elasticmetal.Server("my_server",
             zone="fr-par-2",
             offer=my_offer.offer_id,
             install_config_afterward=True)
@@ -940,16 +835,18 @@ class Server(pulumi.CustomResource):
         config = pulumi.Config()
         config_custom_partitioning = config.get("configCustomPartitioning")
         if config_custom_partitioning is None:
-            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912},{\\"label\\":\\"swap\\",\\"number\\":2,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":3,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":4,\\"size\\":1017827045376}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"swap\\",\\"number\\":1,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1017827045376}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/md0\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/md1\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"}],\\"raids\\":[{\\"devices\\":[\\"/dev/nvme0n1p3\\",\\"/dev/nvme1n1p2\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md0\\"},{\\"devices\\":[\\"/dev/nvme0n1p4\\",\\"/dev/nvme1n1p3\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md1\\"}],\\"zfs\\":{\\"pools\\":[]}}"
+            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"boot\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"data\\",\\"number\\":2,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/nvme0n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/nvme0n1p3\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"},{\\"device\\":\\"/dev/nvme1n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/data\\"}],\\"raids\\":[]}"
         my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
-        main = scaleway.iam.SshKey("main", name="main")
+        my_ssh_key = scaleway.iam.SshKey("my_ssh_key",
+            name="my_ssh_key",
+            public_key="ssh XXXXXXXXXXX")
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="hourly")
-        base = scaleway.elasticmetal.Server("base",
-            name="%s",
+        my_server = scaleway.elasticmetal.Server("my_server",
+            name="my_super_server",
             zone="fr-par-1",
             description="test a description",
             offer=my_offer.offer_id,
@@ -960,7 +857,7 @@ class Server(pulumi.CustomResource):
                 "scaleway_baremetal_server",
                 "minimal",
             ],
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[my_ssh_key.id])
         ```
 
         ### Migrate from hourly to monthly plan
@@ -978,7 +875,7 @@ class Server(pulumi.CustomResource):
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="hourly")
-        server01 = scaleway.elasticmetal.Server("server01",
+        my_server = scaleway.elasticmetal.Server("my_server",
             name="UpdateSubscriptionPeriod",
             offer=my_offer.offer_id,
             zone="%s",
@@ -995,7 +892,7 @@ class Server(pulumi.CustomResource):
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="monthly")
-        server01 = scaleway.elasticmetal.Server("server01",
+        my_server = scaleway.elasticmetal.Server("my_server",
             name="UpdateSubscriptionPeriod",
             offer=my_offer.offer_id,
             zone="fr-par-1",
@@ -1053,127 +950,6 @@ class Server(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-I220E-NVME")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os="d17d6872-0412-45d9-a198-af82c34d3c5c",
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]])
-        ```
-
-        ### With option
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Private Network")
-        remote_access = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Remote Access")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
-            options=[
-                {
-                    "id": private_network.option_id,
-                },
-                {
-                    "id": remote_access.option_id,
-                },
-            ])
-        ```
-
-        ### With private network
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-2",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-2",
-            name="Private Network")
-        pn = scaleway.network.PrivateNetwork("pn",
-            region="fr-par",
-            name="baremetal_private_network")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[main_scaleway_account_ssh_key["id"]],
-            options=[{
-                "id": private_network.option_id,
-            }],
-            private_networks=[{
-                "id": pn.id,
-            }])
-        ```
-
-        ### With IPAM IP IDs
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        vpc01 = scaleway.network.Vpc("vpc01", name="vpc_baremetal")
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="private_network_baremetal",
-            ipv4_subnet={
-                "subnet": "172.16.64.0/22",
-            },
-            vpc_id=vpc01.id)
-        ip01 = scaleway.ipam.Ip("ip01",
-            address="172.16.64.7",
-            sources=[{
-                "private_network_id": pn01.id,
-            }])
-        my_key = scaleway.iam.get_ssh_key(name="main")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-A115X-SSD")
-        private_network = scaleway.elasticmetal.get_option(zone="fr-par-1",
-            name="Private Network")
-        base = scaleway.elasticmetal.Server("base",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[my_key_scaleway_account_ssh_key["id"]],
-            options=[{
-                "id": private_network.option_id,
-            }],
-            private_networks=[{
-                "id": pn01.id,
-                "ipam_ip_ids": [ip01.id],
-            }])
-        ```
-
         ### Without install config
 
         ```python
@@ -1183,7 +959,7 @@ class Server(pulumi.CustomResource):
 
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
             name="EM-B112X-SSD")
-        base = scaleway.elasticmetal.Server("base",
+        my_server = scaleway.elasticmetal.Server("my_server",
             zone="fr-par-2",
             offer=my_offer.offer_id,
             install_config_afterward=True)
@@ -1199,16 +975,18 @@ class Server(pulumi.CustomResource):
         config = pulumi.Config()
         config_custom_partitioning = config.get("configCustomPartitioning")
         if config_custom_partitioning is None:
-            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912},{\\"label\\":\\"swap\\",\\"number\\":2,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":3,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":4,\\"size\\":1017827045376}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"swap\\",\\"number\\":1,\\"size\\":4294967296},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":1073741824},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1017827045376}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/md0\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/md1\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"}],\\"raids\\":[{\\"devices\\":[\\"/dev/nvme0n1p3\\",\\"/dev/nvme1n1p2\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md0\\"},{\\"devices\\":[\\"/dev/nvme0n1p4\\",\\"/dev/nvme1n1p3\\"],\\"level\\":\\"raid_level_1\\",\\"name\\":\\"/dev/md1\\"}],\\"zfs\\":{\\"pools\\":[]}}"
+            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"boot\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"data\\",\\"number\\":2,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/nvme0n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/nvme0n1p3\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"},{\\"device\\":\\"/dev/nvme1n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/data\\"}],\\"raids\\":[]}"
         my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
             name="Ubuntu",
             version="22.04 LTS (Jammy Jellyfish)")
-        main = scaleway.iam.SshKey("main", name="main")
+        my_ssh_key = scaleway.iam.SshKey("my_ssh_key",
+            name="my_ssh_key",
+            public_key="ssh XXXXXXXXXXX")
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="hourly")
-        base = scaleway.elasticmetal.Server("base",
-            name="%s",
+        my_server = scaleway.elasticmetal.Server("my_server",
+            name="my_super_server",
             zone="fr-par-1",
             description="test a description",
             offer=my_offer.offer_id,
@@ -1219,7 +997,7 @@ class Server(pulumi.CustomResource):
                 "scaleway_baremetal_server",
                 "minimal",
             ],
-            ssh_key_ids=[main.id])
+            ssh_key_ids=[my_ssh_key.id])
         ```
 
         ### Migrate from hourly to monthly plan
@@ -1237,7 +1015,7 @@ class Server(pulumi.CustomResource):
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="hourly")
-        server01 = scaleway.elasticmetal.Server("server01",
+        my_server = scaleway.elasticmetal.Server("my_server",
             name="UpdateSubscriptionPeriod",
             offer=my_offer.offer_id,
             zone="%s",
@@ -1254,7 +1032,7 @@ class Server(pulumi.CustomResource):
         my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
             name="EM-B220E-NVME",
             subscription_period="monthly")
-        server01 = scaleway.elasticmetal.Server("server01",
+        my_server = scaleway.elasticmetal.Server("my_server",
             name="UpdateSubscriptionPeriod",
             offer=my_offer.offer_id,
             zone="fr-par-1",
@@ -1343,6 +1121,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["offer_name"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["os_name"] = None
+            __props__.__dict__["private_ips"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/baremetalServer:BaremetalServer")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "servicePassword"])
@@ -1374,6 +1153,7 @@ class Server(pulumi.CustomResource):
             os_name: Optional[pulumi.Input[str]] = None,
             partitioning: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
@@ -1413,6 +1193,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] os_name: The name of the os.
         :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -1445,6 +1226,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["os_name"] = os_name
         __props__.__dict__["partitioning"] = partitioning
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
@@ -1597,6 +1379,14 @@ class Server(pulumi.CustomResource):
         Password used for the installation. May be required depending on used os.
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> pulumi.Output[Sequence['outputs.ServerPrivateIp']]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="privateNetworks")

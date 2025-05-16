@@ -45,7 +45,7 @@ import (
 //					pulumi.String("scaleway_rdb_instance"),
 //					pulumi.String("minimal"),
 //				},
-//				VolumeType:     pulumi.String("bssd"),
+//				VolumeType:     pulumi.String("sbs_5k"),
 //				VolumeSizeInGb: pulumi.Int(10),
 //			})
 //			if err != nil {

@@ -21,7 +21,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// (Required) The UUID of the endpoint.
+        /// The ID of the IPv4 address resource.
         /// </summary>
         public readonly string? Id;
         /// <summary>

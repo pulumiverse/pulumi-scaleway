@@ -132,6 +132,7 @@ namespace Pulumiverse.Scaleway.Databases
         public readonly string NodeType;
         public readonly string OrganizationId;
         public readonly string Password;
+        public readonly ImmutableArray<Outputs.GetInstancePrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetInstancePrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
         public readonly ImmutableArray<Outputs.GetInstanceReadReplicaResult> ReadReplicas;
@@ -183,6 +184,8 @@ namespace Pulumiverse.Scaleway.Databases
 
             string password,
 
+            ImmutableArray<Outputs.GetInstancePrivateIpResult> privateIps,
+
             ImmutableArray<Outputs.GetInstancePrivateNetworkResult> privateNetworks,
 
             string? projectId,
@@ -222,6 +225,7 @@ namespace Pulumiverse.Scaleway.Databases
             NodeType = nodeType;
             OrganizationId = organizationId;
             Password = password;
+            PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             ReadReplicas = readReplicas;

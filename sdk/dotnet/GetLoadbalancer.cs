@@ -199,6 +199,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? LbId;
         public readonly string? Name;
         public readonly string OrganizationId;
+        public readonly ImmutableArray<Outputs.GetLoadbalancerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
         public readonly string Region;
@@ -241,6 +242,8 @@ namespace Pulumiverse.Scaleway
 
             string organizationId,
 
+            ImmutableArray<Outputs.GetLoadbalancerPrivateIpResult> privateIps,
+
             ImmutableArray<Outputs.GetLoadbalancerPrivateNetworkResult> privateNetworks,
 
             string? projectId,
@@ -268,6 +271,7 @@ namespace Pulumiverse.Scaleway
             LbId = lbId;
             Name = name;
             OrganizationId = organizationId;
+            PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             Region = region;

@@ -16,7 +16,7 @@ namespace Pulumiverse.Scaleway.Network
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### With Instance
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -65,6 +65,97 @@ namespace Pulumiverse.Scaleway.Network
     ///         },
     ///         Destination = "10.0.0.0/24",
     ///         NexthopResourceId = pnic01.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### With Baremetal
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc01 = new Scaleway.Network.Vpc("vpc01", new()
+    ///     {
+    ///         Name = "tf-vpc-vpn",
+    ///     });
+    /// 
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "tf-pn-vpn",
+    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
+    ///         {
+    ///             Subnet = "172.16.64.0/22",
+    ///         },
+    ///         VpcId = vpc01.Id,
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-B112X-SSD",
+    ///     });
+    /// 
+    ///     var privateNetwork = Scaleway.Elasticmetal.GetOption.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "Private Network",
+    ///     });
+    /// 
+    ///     var myKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             myKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///         Options = new[]
+    ///         {
+    ///             new Scaleway.Elasticmetal.Inputs.ServerOptionArgs
+    ///             {
+    ///                 Id = privateNetwork.Apply(getOptionResult =&gt; getOptionResult.OptionId),
+    ///             },
+    ///         },
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Elasticmetal.Inputs.ServerPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn01.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var rt01 = new Scaleway.Network.Route("rt01", new()
+    ///     {
+    ///         VpcId = vpc01.Id,
+    ///         Description = "tf-route-vpn",
+    ///         Tags = new[]
+    ///         {
+    ///             "tf",
+    ///             "route",
+    ///         },
+    ///         Destination = "10.0.0.0/24",
+    ///         NexthopResourceId = myServer.PrivateNetworks.Apply(privateNetworks =&gt; privateNetworks[0]?.MappingId),
     ///     });
     /// 
     /// });

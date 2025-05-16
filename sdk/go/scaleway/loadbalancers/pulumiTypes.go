@@ -1742,6 +1742,112 @@ func (o FrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
 }
 
+type LoadBalancerPrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// LoadBalancerPrivateIpInput is an input type that accepts LoadBalancerPrivateIpArgs and LoadBalancerPrivateIpOutput values.
+// You can construct a concrete instance of `LoadBalancerPrivateIpInput` via:
+//
+//	LoadBalancerPrivateIpArgs{...}
+type LoadBalancerPrivateIpInput interface {
+	pulumi.Input
+
+	ToLoadBalancerPrivateIpOutput() LoadBalancerPrivateIpOutput
+	ToLoadBalancerPrivateIpOutputWithContext(context.Context) LoadBalancerPrivateIpOutput
+}
+
+type LoadBalancerPrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (LoadBalancerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (i LoadBalancerPrivateIpArgs) ToLoadBalancerPrivateIpOutput() LoadBalancerPrivateIpOutput {
+	return i.ToLoadBalancerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i LoadBalancerPrivateIpArgs) ToLoadBalancerPrivateIpOutputWithContext(ctx context.Context) LoadBalancerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerPrivateIpOutput)
+}
+
+// LoadBalancerPrivateIpArrayInput is an input type that accepts LoadBalancerPrivateIpArray and LoadBalancerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `LoadBalancerPrivateIpArrayInput` via:
+//
+//	LoadBalancerPrivateIpArray{ LoadBalancerPrivateIpArgs{...} }
+type LoadBalancerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToLoadBalancerPrivateIpArrayOutput() LoadBalancerPrivateIpArrayOutput
+	ToLoadBalancerPrivateIpArrayOutputWithContext(context.Context) LoadBalancerPrivateIpArrayOutput
+}
+
+type LoadBalancerPrivateIpArray []LoadBalancerPrivateIpInput
+
+func (LoadBalancerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (i LoadBalancerPrivateIpArray) ToLoadBalancerPrivateIpArrayOutput() LoadBalancerPrivateIpArrayOutput {
+	return i.ToLoadBalancerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i LoadBalancerPrivateIpArray) ToLoadBalancerPrivateIpArrayOutputWithContext(ctx context.Context) LoadBalancerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LoadBalancerPrivateIpArrayOutput)
+}
+
+type LoadBalancerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (LoadBalancerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (o LoadBalancerPrivateIpOutput) ToLoadBalancerPrivateIpOutput() LoadBalancerPrivateIpOutput {
+	return o
+}
+
+func (o LoadBalancerPrivateIpOutput) ToLoadBalancerPrivateIpOutputWithContext(ctx context.Context) LoadBalancerPrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o LoadBalancerPrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadBalancerPrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o LoadBalancerPrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LoadBalancerPrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type LoadBalancerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (LoadBalancerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]LoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (o LoadBalancerPrivateIpArrayOutput) ToLoadBalancerPrivateIpArrayOutput() LoadBalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o LoadBalancerPrivateIpArrayOutput) ToLoadBalancerPrivateIpArrayOutputWithContext(ctx context.Context) LoadBalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o LoadBalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) LoadBalancerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LoadBalancerPrivateIp {
+		return vs[0].([]LoadBalancerPrivateIp)[vs[1].(int)]
+	}).(LoadBalancerPrivateIpOutput)
+}
+
 type LoadBalancerPrivateNetwork struct {
 	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
 	//
@@ -4238,6 +4344,112 @@ func (o GetIpsIpArrayOutput) Index(i pulumi.IntInput) GetIpsIpOutput {
 	}).(GetIpsIpOutput)
 }
 
+type GetLoadBalancerPrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the Load Balancer.
+	Id string `pulumi:"id"`
+}
+
+// GetLoadBalancerPrivateIpInput is an input type that accepts GetLoadBalancerPrivateIpArgs and GetLoadBalancerPrivateIpOutput values.
+// You can construct a concrete instance of `GetLoadBalancerPrivateIpInput` via:
+//
+//	GetLoadBalancerPrivateIpArgs{...}
+type GetLoadBalancerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetLoadBalancerPrivateIpOutput() GetLoadBalancerPrivateIpOutput
+	ToGetLoadBalancerPrivateIpOutputWithContext(context.Context) GetLoadBalancerPrivateIpOutput
+}
+
+type GetLoadBalancerPrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the Load Balancer.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetLoadBalancerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (i GetLoadBalancerPrivateIpArgs) ToGetLoadBalancerPrivateIpOutput() GetLoadBalancerPrivateIpOutput {
+	return i.ToGetLoadBalancerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetLoadBalancerPrivateIpArgs) ToGetLoadBalancerPrivateIpOutputWithContext(ctx context.Context) GetLoadBalancerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerPrivateIpOutput)
+}
+
+// GetLoadBalancerPrivateIpArrayInput is an input type that accepts GetLoadBalancerPrivateIpArray and GetLoadBalancerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetLoadBalancerPrivateIpArrayInput` via:
+//
+//	GetLoadBalancerPrivateIpArray{ GetLoadBalancerPrivateIpArgs{...} }
+type GetLoadBalancerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadBalancerPrivateIpArrayOutput() GetLoadBalancerPrivateIpArrayOutput
+	ToGetLoadBalancerPrivateIpArrayOutputWithContext(context.Context) GetLoadBalancerPrivateIpArrayOutput
+}
+
+type GetLoadBalancerPrivateIpArray []GetLoadBalancerPrivateIpInput
+
+func (GetLoadBalancerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (i GetLoadBalancerPrivateIpArray) ToGetLoadBalancerPrivateIpArrayOutput() GetLoadBalancerPrivateIpArrayOutput {
+	return i.ToGetLoadBalancerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadBalancerPrivateIpArray) ToGetLoadBalancerPrivateIpArrayOutputWithContext(ctx context.Context) GetLoadBalancerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerPrivateIpArrayOutput)
+}
+
+type GetLoadBalancerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetLoadBalancerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (o GetLoadBalancerPrivateIpOutput) ToGetLoadBalancerPrivateIpOutput() GetLoadBalancerPrivateIpOutput {
+	return o
+}
+
+func (o GetLoadBalancerPrivateIpOutput) ToGetLoadBalancerPrivateIpOutputWithContext(ctx context.Context) GetLoadBalancerPrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetLoadBalancerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadBalancerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the Load Balancer.
+func (o GetLoadBalancerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadBalancerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetLoadBalancerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadBalancerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadBalancerPrivateIp)(nil)).Elem()
+}
+
+func (o GetLoadBalancerPrivateIpArrayOutput) ToGetLoadBalancerPrivateIpArrayOutput() GetLoadBalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetLoadBalancerPrivateIpArrayOutput) ToGetLoadBalancerPrivateIpArrayOutputWithContext(ctx context.Context) GetLoadBalancerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetLoadBalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetLoadBalancerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadBalancerPrivateIp {
+		return vs[0].([]GetLoadBalancerPrivateIp)[vs[1].(int)]
+	}).(GetLoadBalancerPrivateIpOutput)
+}
+
 type GetLoadBalancerPrivateNetwork struct {
 	// Set to true if you want to let DHCP assign IP addresses
 	DhcpConfig bool `pulumi:"dhcpConfig"`
@@ -5103,6 +5315,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FrontendAclActionRedirectInput)(nil)).Elem(), FrontendAclActionRedirectArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FrontendAclActionRedirectArrayInput)(nil)).Elem(), FrontendAclActionRedirectArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FrontendAclMatchInput)(nil)).Elem(), FrontendAclMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadBalancerPrivateIpInput)(nil)).Elem(), LoadBalancerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LoadBalancerPrivateIpArrayInput)(nil)).Elem(), LoadBalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadBalancerPrivateNetworkInput)(nil)).Elem(), LoadBalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LoadBalancerPrivateNetworkArrayInput)(nil)).Elem(), LoadBalancerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAclsAclInput)(nil)).Elem(), GetAclsAclArgs{})
@@ -5139,6 +5353,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFrontendsFrontendArrayInput)(nil)).Elem(), GetFrontendsFrontendArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsIpInput)(nil)).Elem(), GetIpsIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpsIpArrayInput)(nil)).Elem(), GetIpsIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerPrivateIpInput)(nil)).Elem(), GetLoadBalancerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerPrivateIpArrayInput)(nil)).Elem(), GetLoadBalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerPrivateNetworkInput)(nil)).Elem(), GetLoadBalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadBalancerPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancersLbInput)(nil)).Elem(), GetLoadBalancersLbArgs{})
@@ -5171,6 +5387,8 @@ func init() {
 	pulumi.RegisterOutputType(FrontendAclActionRedirectOutput{})
 	pulumi.RegisterOutputType(FrontendAclActionRedirectArrayOutput{})
 	pulumi.RegisterOutputType(FrontendAclMatchOutput{})
+	pulumi.RegisterOutputType(LoadBalancerPrivateIpOutput{})
+	pulumi.RegisterOutputType(LoadBalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(LoadBalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(LoadBalancerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetAclsAclOutput{})
@@ -5207,6 +5425,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFrontendsFrontendArrayOutput{})
 	pulumi.RegisterOutputType(GetIpsIpOutput{})
 	pulumi.RegisterOutputType(GetIpsIpArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadBalancerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetLoadBalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadBalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadBalancerPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadBalancersLbOutput{})

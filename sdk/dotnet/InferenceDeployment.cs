@@ -16,31 +16,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var deployment = new Scaleway.Inference.Deployment("deployment", new()
-    ///     {
-    ///         Name = "tf-inference-deployment",
-    ///         NodeType = "L4",
-    ///         ModelName = "meta/llama-3.1-8b-instruct:fp8",
-    ///         PublicEndpoint = new Scaleway.Inference.Inputs.DeploymentPublicEndpointArgs
-    ///         {
-    ///             IsEnabled = true,
-    ///         },
-    ///         AcceptEula = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// Functions can be imported using, `{region}/{id}`, as shown below:
@@ -71,13 +46,13 @@ namespace Pulumiverse.Scaleway
         /// The maximum size of the pool.
         /// </summary>
         [Output("maxSize")]
-        public Output<int> MaxSize { get; private set; } = null!;
+        public Output<int?> MaxSize { get; private set; } = null!;
 
         /// <summary>
         /// The minimum size of the pool.
         /// </summary>
         [Output("minSize")]
-        public Output<int> MinSize { get; private set; } = null!;
+        public Output<int?> MinSize { get; private set; } = null!;
 
         /// <summary>
         /// The model id used for the deployment.
@@ -86,7 +61,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ModelId { get; private set; } = null!;
 
         /// <summary>
-        /// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        /// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         /// </summary>
         [Output("modelName")]
         public Output<string> ModelName { get; private set; } = null!;
@@ -120,6 +95,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("publicEndpoint")]
         public Output<Outputs.InferenceDeploymentPublicEndpoint?> PublicEndpoint { get; private set; } = null!;
+
+        /// <summary>
+        /// The number of bits each model parameter should be quantized to
+        /// </summary>
+        [Output("quantization")]
+        public Output<int?> Quantization { get; private set; } = null!;
 
         /// <summary>
         /// `region`) The region in which the deployment is created.
@@ -217,10 +198,10 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MinSize { get; set; }
 
         /// <summary>
-        /// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        /// The model id used for the deployment.
         /// </summary>
-        [Input("modelName", required: true)]
-        public Input<string> ModelName { get; set; } = null!;
+        [Input("modelId", required: true)]
+        public Input<string> ModelId { get; set; } = null!;
 
         /// <summary>
         /// The deployment name.
@@ -251,6 +232,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("publicEndpoint")]
         public Input<Inputs.InferenceDeploymentPublicEndpointArgs>? PublicEndpoint { get; set; }
+
+        /// <summary>
+        /// The number of bits each model parameter should be quantized to
+        /// </summary>
+        [Input("quantization")]
+        public Input<int>? Quantization { get; set; }
 
         /// <summary>
         /// `region`) The region in which the deployment is created.
@@ -309,7 +296,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ModelId { get; set; }
 
         /// <summary>
-        /// The model name to use for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
+        /// The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
         /// </summary>
         [Input("modelName")]
         public Input<string>? ModelName { get; set; }
@@ -343,6 +330,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("publicEndpoint")]
         public Input<Inputs.InferenceDeploymentPublicEndpointGetArgs>? PublicEndpoint { get; set; }
+
+        /// <summary>
+        /// The number of bits each model parameter should be quantized to
+        /// </summary>
+        [Input("quantization")]
+        public Input<int>? Quantization { get; set; }
 
         /// <summary>
         /// `region`) The region in which the deployment is created.

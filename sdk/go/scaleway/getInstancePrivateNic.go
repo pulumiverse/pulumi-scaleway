@@ -87,15 +87,16 @@ type LookupInstancePrivateNicArgs struct {
 // A collection of values returned by getInstancePrivateNic.
 type LookupInstancePrivateNicResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id               string   `pulumi:"id"`
-	IpIds            []string `pulumi:"ipIds"`
-	IpamIpIds        []string `pulumi:"ipamIpIds"`
-	MacAddress       string   `pulumi:"macAddress"`
-	PrivateNetworkId *string  `pulumi:"privateNetworkId"`
-	PrivateNicId     *string  `pulumi:"privateNicId"`
-	ServerId         string   `pulumi:"serverId"`
-	Tags             []string `pulumi:"tags"`
-	Zone             *string  `pulumi:"zone"`
+	Id               string                           `pulumi:"id"`
+	IpIds            []string                         `pulumi:"ipIds"`
+	IpamIpIds        []string                         `pulumi:"ipamIpIds"`
+	MacAddress       string                           `pulumi:"macAddress"`
+	PrivateIps       []GetInstancePrivateNicPrivateIp `pulumi:"privateIps"`
+	PrivateNetworkId *string                          `pulumi:"privateNetworkId"`
+	PrivateNicId     *string                          `pulumi:"privateNicId"`
+	ServerId         string                           `pulumi:"serverId"`
+	Tags             []string                         `pulumi:"tags"`
+	Zone             *string                          `pulumi:"zone"`
 }
 
 func LookupInstancePrivateNicOutput(ctx *pulumi.Context, args LookupInstancePrivateNicOutputArgs, opts ...pulumi.InvokeOption) LookupInstancePrivateNicResultOutput {
@@ -158,6 +159,10 @@ func (o LookupInstancePrivateNicResultOutput) IpamIpIds() pulumi.StringArrayOutp
 
 func (o LookupInstancePrivateNicResultOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstancePrivateNicResult) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupInstancePrivateNicResultOutput) PrivateIps() GetInstancePrivateNicPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupInstancePrivateNicResult) []GetInstancePrivateNicPrivateIp { return v.PrivateIps }).(GetInstancePrivateNicPrivateIpArrayOutput)
 }
 
 func (o LookupInstancePrivateNicResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {

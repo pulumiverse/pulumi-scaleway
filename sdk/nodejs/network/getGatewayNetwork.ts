@@ -75,6 +75,7 @@ export interface GetGatewayNetworkResult {
     readonly id: string;
     readonly ipamConfigs: outputs.network.GetGatewayNetworkIpamConfig[];
     readonly macAddress: string;
+    readonly privateIps: outputs.network.GetGatewayNetworkPrivateIp[];
     readonly privateNetworkId?: string;
     readonly staticAddress: string;
     readonly status: string;

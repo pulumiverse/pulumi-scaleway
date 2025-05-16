@@ -19,6 +19,8 @@ __all__ = [
     'AclRuleArgsDict',
     'GatewayNetworkIpamConfigArgs',
     'GatewayNetworkIpamConfigArgsDict',
+    'GatewayNetworkPrivateIpArgs',
+    'GatewayNetworkPrivateIpArgsDict',
     'PrivateNetworkIpv4SubnetArgs',
     'PrivateNetworkIpv4SubnetArgsDict',
     'PrivateNetworkIpv6SubnetArgs',
@@ -269,6 +271,58 @@ class GatewayNetworkIpamConfigArgs:
     @push_default_route.setter
     def push_default_route(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "push_default_route", value)
+
+
+if not MYPY:
+    class GatewayNetworkPrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IPv4 address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IPv4 address resource.
+        """
+elif False:
+    GatewayNetworkPrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class GatewayNetworkPrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IPv4 address.
+        :param pulumi.Input[str] id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:

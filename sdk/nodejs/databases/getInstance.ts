@@ -72,6 +72,7 @@ export interface GetInstanceResult {
     readonly nodeType: string;
     readonly organizationId: string;
     readonly password: string;
+    readonly privateIps: outputs.databases.GetInstancePrivateIp[];
     readonly privateNetworks: outputs.databases.GetInstancePrivateNetwork[];
     readonly projectId?: string;
     readonly readReplicas: outputs.databases.GetInstanceReadReplica[];

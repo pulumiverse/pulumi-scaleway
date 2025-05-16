@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "scaleway:kubernetes/acl:Acl":
+		r = &Acl{}
 	case "scaleway:kubernetes/cluster:Cluster":
 		r = &Cluster{}
 	case "scaleway:kubernetes/pool:Pool":
@@ -38,6 +40,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"kubernetes/acl",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"kubernetes/cluster",

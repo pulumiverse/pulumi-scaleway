@@ -179,6 +179,10 @@ export class LoadBalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly organizationId!: pulumi.Output<string>;
     /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    public /*out*/ readonly privateIps!: pulumi.Output<outputs.loadbalancers.LoadBalancerPrivateIp[]>;
+    /**
      * List of private network to connect with your load balancer.
      */
     public readonly privateNetworks!: pulumi.Output<outputs.loadbalancers.LoadBalancerPrivateNetwork[] | undefined>;
@@ -235,6 +239,7 @@ export class LoadBalancer extends pulumi.CustomResource {
             resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -264,6 +269,7 @@ export class LoadBalancer extends pulumi.CustomResource {
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["ipv6Address"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["region"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -319,6 +325,10 @@ export interface LoadBalancerState {
      * The ID of the Organization ID the Load Balancer is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.loadbalancers.LoadBalancerPrivateIp>[]>;
     /**
      * List of private network to connect with your load balancer.
      */

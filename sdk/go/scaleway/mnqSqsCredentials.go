@@ -71,7 +71,7 @@ type MnqSqsCredentials struct {
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
 	// The unique name of the SQS credentials.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSqsCredentialsPermissionsOutput `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -120,7 +120,7 @@ type mnqSqsCredentialsState struct {
 	AccessKey *string `pulumi:"accessKey"`
 	// The unique name of the SQS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions *MnqSqsCredentialsPermissions `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
@@ -135,7 +135,7 @@ type MnqSqsCredentialsState struct {
 	AccessKey pulumi.StringPtrInput
 	// The unique name of the SQS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSqsCredentialsPermissionsPtrInput
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
@@ -152,7 +152,7 @@ func (MnqSqsCredentialsState) ElementType() reflect.Type {
 type mnqSqsCredentialsArgs struct {
 	// The unique name of the SQS credentials.
 	Name *string `pulumi:"name"`
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions *MnqSqsCredentialsPermissions `pulumi:"permissions"`
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId *string `pulumi:"projectId"`
@@ -164,7 +164,7 @@ type mnqSqsCredentialsArgs struct {
 type MnqSqsCredentialsArgs struct {
 	// The unique name of the SQS credentials.
 	Name pulumi.StringPtrInput
-	// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+	// . List of permissions associated with these credentials.
 	Permissions MnqSqsCredentialsPermissionsPtrInput
 	// `projectId`) The ID of the Project in which SQS is enabled.
 	ProjectId pulumi.StringPtrInput
@@ -269,7 +269,7 @@ func (o MnqSqsCredentialsOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// . List of permissions associated with these credentials. Only one of the following permissions may be set:
+// . List of permissions associated with these credentials.
 func (o MnqSqsCredentialsOutput) Permissions() MnqSqsCredentialsPermissionsOutput {
 	return o.ApplyT(func(v *MnqSqsCredentials) MnqSqsCredentialsPermissionsOutput { return v.Permissions }).(MnqSqsCredentialsPermissionsOutput)
 }

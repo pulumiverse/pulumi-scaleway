@@ -236,6 +236,8 @@ type LoadBalancer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps LoadBalancerPrivateIpArrayOutput `pulumi:"privateIps"`
 	// List of private network to connect with your load balancer.
 	PrivateNetworks LoadBalancerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
@@ -319,6 +321,8 @@ type loadBalancerState struct {
 	Name *string `pulumi:"name"`
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []LoadBalancerPrivateIp `pulumi:"privateIps"`
 	// List of private network to connect with your load balancer.
 	PrivateNetworks []LoadBalancerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
@@ -364,6 +368,8 @@ type LoadBalancerState struct {
 	Name pulumi.StringPtrInput
 	// The ID of the Organization ID the Load Balancer is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps LoadBalancerPrivateIpArrayInput
 	// List of private network to connect with your load balancer.
 	PrivateNetworks LoadBalancerPrivateNetworkArrayInput
 	// `projectId`) The ID of the Project the Load Balancer is associated with.
@@ -599,6 +605,11 @@ func (o LoadBalancerOutput) Name() pulumi.StringOutput {
 // The ID of the Organization ID the Load Balancer is associated with.
 func (o LoadBalancerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadBalancer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the resource.
+func (o LoadBalancerOutput) PrivateIps() LoadBalancerPrivateIpArrayOutput {
+	return o.ApplyT(func(v *LoadBalancer) LoadBalancerPrivateIpArrayOutput { return v.PrivateIps }).(LoadBalancerPrivateIpArrayOutput)
 }
 
 // List of private network to connect with your load balancer.

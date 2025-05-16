@@ -19,6 +19,10 @@ __all__ = [
     'DeploymentPrivateEndpointArgsDict',
     'DeploymentPublicEndpointArgs',
     'DeploymentPublicEndpointArgsDict',
+    'ModelNodesSupportArgs',
+    'ModelNodesSupportArgsDict',
+    'ModelNodesSupportQuantizationArgs',
+    'ModelNodesSupportQuantizationArgsDict',
 ]
 
 MYPY = False
@@ -205,5 +209,129 @@ class DeploymentPublicEndpointArgs:
     @url.setter
     def url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "url", value)
+
+
+if not MYPY:
+    class ModelNodesSupportArgsDict(TypedDict):
+        node_type_name: NotRequired[pulumi.Input[str]]
+        """
+        The type of node supported.
+        """
+        quantizations: NotRequired[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgsDict']]]]
+        """
+        A list of supported quantization options, including:
+        """
+elif False:
+    ModelNodesSupportArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ModelNodesSupportArgs:
+    def __init__(__self__, *,
+                 node_type_name: Optional[pulumi.Input[str]] = None,
+                 quantizations: Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]] = None):
+        """
+        :param pulumi.Input[str] node_type_name: The type of node supported.
+        :param pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]] quantizations: A list of supported quantization options, including:
+        """
+        if node_type_name is not None:
+            pulumi.set(__self__, "node_type_name", node_type_name)
+        if quantizations is not None:
+            pulumi.set(__self__, "quantizations", quantizations)
+
+    @property
+    @pulumi.getter(name="nodeTypeName")
+    def node_type_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of node supported.
+        """
+        return pulumi.get(self, "node_type_name")
+
+    @node_type_name.setter
+    def node_type_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "node_type_name", value)
+
+    @property
+    @pulumi.getter
+    def quantizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]:
+        """
+        A list of supported quantization options, including:
+        """
+        return pulumi.get(self, "quantizations")
+
+    @quantizations.setter
+    def quantizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ModelNodesSupportQuantizationArgs']]]]):
+        pulumi.set(self, "quantizations", value)
+
+
+if not MYPY:
+    class ModelNodesSupportQuantizationArgsDict(TypedDict):
+        allowed: NotRequired[pulumi.Input[bool]]
+        """
+        Whether this quantization is allowed.
+        """
+        max_context_size: NotRequired[pulumi.Input[int]]
+        """
+        Maximum context length supported by this quantization.
+        """
+        quantization_bits: NotRequired[pulumi.Input[int]]
+        """
+        Number of bits used for quantization (e.g., 8, 16).
+        """
+elif False:
+    ModelNodesSupportQuantizationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ModelNodesSupportQuantizationArgs:
+    def __init__(__self__, *,
+                 allowed: Optional[pulumi.Input[bool]] = None,
+                 max_context_size: Optional[pulumi.Input[int]] = None,
+                 quantization_bits: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] allowed: Whether this quantization is allowed.
+        :param pulumi.Input[int] max_context_size: Maximum context length supported by this quantization.
+        :param pulumi.Input[int] quantization_bits: Number of bits used for quantization (e.g., 8, 16).
+        """
+        if allowed is not None:
+            pulumi.set(__self__, "allowed", allowed)
+        if max_context_size is not None:
+            pulumi.set(__self__, "max_context_size", max_context_size)
+        if quantization_bits is not None:
+            pulumi.set(__self__, "quantization_bits", quantization_bits)
+
+    @property
+    @pulumi.getter
+    def allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether this quantization is allowed.
+        """
+        return pulumi.get(self, "allowed")
+
+    @allowed.setter
+    def allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "allowed", value)
+
+    @property
+    @pulumi.getter(name="maxContextSize")
+    def max_context_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum context length supported by this quantization.
+        """
+        return pulumi.get(self, "max_context_size")
+
+    @max_context_size.setter
+    def max_context_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_context_size", value)
+
+    @property
+    @pulumi.getter(name="quantizationBits")
+    def quantization_bits(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of bits used for quantization (e.g., 8, 16).
+        """
+        return pulumi.get(self, "quantization_bits")
+
+    @quantization_bits.setter
+    def quantization_bits(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quantization_bits", value)
 
 

@@ -28,7 +28,7 @@ class MnqSqsCredentialsArgs:
         """
         The set of arguments for constructing a MnqSqsCredentials resource.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         """
@@ -57,7 +57,7 @@ class MnqSqsCredentialsArgs:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        . List of permissions associated with these credentials.
         """
         return pulumi.get(self, "permissions")
 
@@ -103,7 +103,7 @@ class _MnqSqsCredentialsState:
         Input properties used for looking up and filtering MnqSqsCredentials resources.
         :param pulumi.Input[str] access_key: The ID of the key.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input['MnqSqsCredentialsPermissionsArgs'] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
@@ -149,7 +149,7 @@ class _MnqSqsCredentialsState:
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input['MnqSqsCredentialsPermissionsArgs']]:
         """
-        . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        . List of permissions associated with these credentials.
         """
         return pulumi.get(self, "permissions")
 
@@ -246,7 +246,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         """
@@ -352,7 +352,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_key: The ID of the key.
         :param pulumi.Input[str] name: The unique name of the SQS credentials.
-        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        :param pulumi.Input[Union['MnqSqsCredentialsPermissionsArgs', 'MnqSqsCredentialsPermissionsArgsDict']] permissions: . List of permissions associated with these credentials.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the Project in which SQS is enabled.
         :param pulumi.Input[str] region: `region`). The region in which SQS is enabled.
         :param pulumi.Input[str] secret_key: The secret value of the key.
@@ -389,7 +389,7 @@ class MnqSqsCredentials(pulumi.CustomResource):
     @pulumi.getter
     def permissions(self) -> pulumi.Output['outputs.MnqSqsCredentialsPermissions']:
         """
-        . List of permissions associated with these credentials. Only one of the following permissions may be set:
+        . List of permissions associated with these credentials.
         """
         return pulumi.get(self, "permissions")
 

@@ -104,6 +104,17 @@ export interface BaremetalServerOption {
     name?: pulumi.Input<string>;
 }
 
+export interface BaremetalServerPrivateIp {
+    /**
+     * The address of the IPv6.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IPv6.
+     */
+    id?: pulumi.Input<string>;
+}
+
 export interface BaremetalServerPrivateNetwork {
     /**
      * The date and time of the creation of the private network.
@@ -117,6 +128,10 @@ export interface BaremetalServerPrivateNetwork {
      * List of IPAM IP IDs to assign to the server in the requested private network.
      */
     ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the Server-to-Private Network mapping.
+     */
+    mappingId?: pulumi.Input<string>;
     /**
      * The private network status.
      */
@@ -331,6 +346,17 @@ export interface DatabaseInstanceLogsPolicy {
      * The max disk size of remote logs to keep on the Database Instance.
      */
     totalDiskRetention?: pulumi.Input<number>;
+}
+
+export interface DatabaseInstancePrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface DatabaseInstancePrivateNetwork {
@@ -842,6 +868,17 @@ export interface InstanceImageAdditionalVolume {
     zone?: pulumi.Input<string>;
 }
 
+export interface InstancePrivateNicPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP address resource.
+     */
+    id?: pulumi.Input<string>;
+}
+
 export interface InstanceSecurityGroupInboundRule {
     /**
      * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -956,6 +993,17 @@ export interface InstanceSecurityGroupRulesOutboundRule {
      * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: pulumi.Input<string>;
+}
+
+export interface InstanceServerPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface InstanceServerPrivateNetwork {
@@ -1351,11 +1399,19 @@ export interface KubernetesClusterOpenIdConnectConfig {
 
 export interface KubernetesNodePoolNode {
     /**
+     * The ID of the IP address resource.
+     */
+    id?: pulumi.Input<string>;
+    /**
      * The name for the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the node.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolNodePrivateIp>[]>;
     /**
      * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
      *
@@ -1372,6 +1428,17 @@ export interface KubernetesNodePoolNode {
      * The status of the node.
      */
     status?: pulumi.Input<string>;
+}
+
+export interface KubernetesNodePoolNodePrivateIp {
+    /**
+     * The private IP address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface KubernetesNodePoolUpgradePolicy {
@@ -1577,6 +1644,17 @@ export interface LoadbalancerFrontendAclMatch {
      * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface LoadbalancerPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IP address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface LoadbalancerPrivateNetwork {
@@ -1856,7 +1934,7 @@ export interface RedisClusterAcl {
      */
     description?: pulumi.Input<string>;
     /**
-     * (Required) The UUID of the endpoint.
+     * The ID of the IPv4 address resource.
      */
     id?: pulumi.Input<string>;
     /**
@@ -1864,6 +1942,17 @@ export interface RedisClusterAcl {
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: pulumi.Input<string>;
+}
+
+export interface RedisClusterPrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface RedisClusterPrivateNetwork {
@@ -1907,7 +1996,7 @@ export interface RedisClusterPrivateNetwork {
 
 export interface RedisClusterPublicNetwork {
     /**
-     * (Required) The UUID of the endpoint.
+     * The ID of the IPv4 address resource.
      */
     id?: pulumi.Input<string>;
     /**
@@ -1998,6 +2087,17 @@ export interface VpcGatewayNetworkIpamConfig {
      * Defines whether to enable the default route on the GatewayNetwork.
      */
     pushDefaultRoute?: pulumi.Input<boolean>;
+}
+
+export interface VpcGatewayNetworkPrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id?: pulumi.Input<string>;
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {
@@ -2262,6 +2362,17 @@ export namespace databases {
          * The max disk size of remote logs to keep on the Database Instance.
          */
         totalDiskRetention?: pulumi.Input<number>;
+    }
+
+    export interface InstancePrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface InstancePrivateNetwork {
@@ -3077,6 +3188,17 @@ export namespace elasticmetal {
         name?: pulumi.Input<string>;
     }
 
+    export interface ServerPrivateIp {
+        /**
+         * The address of the IPv6.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IPv6.
+         */
+        id?: pulumi.Input<string>;
+    }
+
     export interface ServerPrivateNetwork {
         /**
          * The date and time of the creation of the private network.
@@ -3090,6 +3212,10 @@ export namespace elasticmetal {
          * List of IPAM IP IDs to assign to the server in the requested private network.
          */
         ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the Server-to-Private Network mapping.
+         */
+        mappingId?: pulumi.Input<string>;
         /**
          * The private network status.
          */
@@ -3262,6 +3388,32 @@ export namespace inference {
          */
         url?: pulumi.Input<string>;
     }
+
+    export interface ModelNodesSupport {
+        /**
+         * The type of node supported.
+         */
+        nodeTypeName?: pulumi.Input<string>;
+        /**
+         * A list of supported quantization options, including:
+         */
+        quantizations?: pulumi.Input<pulumi.Input<inputs.inference.ModelNodesSupportQuantization>[]>;
+    }
+
+    export interface ModelNodesSupportQuantization {
+        /**
+         * Whether this quantization is allowed.
+         */
+        allowed?: pulumi.Input<boolean>;
+        /**
+         * Maximum context length supported by this quantization.
+         */
+        maxContextSize?: pulumi.Input<number>;
+        /**
+         * Number of bits used for quantization (e.g., 8, 16).
+         */
+        quantizationBits?: pulumi.Input<number>;
+    }
 }
 
 export namespace instance {
@@ -3318,6 +3470,17 @@ export namespace instance {
          * The zone in which the image should be created.
          */
         zone?: pulumi.Input<string>;
+    }
+
+    export interface PrivateNicPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IP address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface SecurityGroupInboundRule {
@@ -3434,6 +3597,17 @@ export namespace instance {
          * Protocol for this rule (TCP, UDP, ICMP or ANY)
          */
         protocol?: pulumi.Input<string>;
+    }
+
+    export interface ServerPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IP address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface ServerPrivateNetwork {
@@ -3786,6 +3960,30 @@ export namespace job {
 }
 
 export namespace kubernetes {
+    export interface AclAclRule {
+        /**
+         * A text describing this rule.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * The ID of the ACL resource. It is the same as the ID of the cluster.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         *
+         * > **Important:** If the `ip` field is set, `scalewayRanges` cannot be set to true in the same rule.
+         */
+        ip?: pulumi.Input<string>;
+        /**
+         * Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+         * Only one rule with this field set to true can be added.
+         *
+         * > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
+         */
+        scalewayRanges?: pulumi.Input<boolean>;
+    }
+
     export interface ClusterAutoUpgrade {
         /**
          * Set to `true` to enable Kubernetes patch version auto upgrades.
@@ -3897,11 +4095,19 @@ export namespace kubernetes {
 
     export interface PoolNode {
         /**
+         * The ID of the IP address resource.
+         */
+        id?: pulumi.Input<string>;
+        /**
          * The name for the pool.
          *
          * > **Important:** Updates to this field will recreate a new resource.
          */
         name?: pulumi.Input<string>;
+        /**
+         * The list of private IPv4 and IPv6 addresses associated with the node.
+         */
+        privateIps?: pulumi.Input<pulumi.Input<inputs.kubernetes.PoolNodePrivateIp>[]>;
         /**
          * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
          *
@@ -3918,6 +4124,17 @@ export namespace kubernetes {
          * The status of the node.
          */
         status?: pulumi.Input<string>;
+    }
+
+    export interface PoolNodePrivateIp {
+        /**
+         * The private IP address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IP address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface PoolUpgradePolicy {
@@ -4127,6 +4344,17 @@ export namespace loadbalancers {
         ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface LoadBalancerPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IP address resource.
+         */
+        id?: pulumi.Input<string>;
+    }
+
     export interface LoadBalancerPrivateNetwork {
         /**
          * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
@@ -4281,6 +4509,17 @@ export namespace network {
          * Defines whether to enable the default route on the GatewayNetwork.
          */
         pushDefaultRoute?: pulumi.Input<boolean>;
+    }
+
+    export interface GatewayNetworkPrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface PrivateNetworkIpv4Subnet {
@@ -4609,7 +4848,7 @@ export namespace redis {
          */
         description?: pulumi.Input<string>;
         /**
-         * (Required) The UUID of the endpoint.
+         * The ID of the IPv4 address resource.
          */
         id?: pulumi.Input<string>;
         /**
@@ -4617,6 +4856,17 @@ export namespace redis {
          * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
          */
         ip: pulumi.Input<string>;
+    }
+
+    export interface ClusterPrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id?: pulumi.Input<string>;
     }
 
     export interface ClusterPrivateNetwork {
@@ -4660,7 +4910,7 @@ export namespace redis {
 
     export interface ClusterPublicNetwork {
         /**
-         * (Required) The UUID of the endpoint.
+         * The ID of the IPv4 address resource.
          */
         id?: pulumi.Input<string>;
         /**

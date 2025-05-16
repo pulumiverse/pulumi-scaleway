@@ -203,6 +203,7 @@ class _VpcGatewayNetworkState:
                  gateway_id: Optional[pulumi.Input[str]] = None,
                  ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]]] = None,
                  mac_address: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkPrivateIpArgs']]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -218,6 +219,7 @@ class _VpcGatewayNetworkState:
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The MAC address of the GatewayNetwork.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkPrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] status: The status of the Public Gateway's connection to the Private Network.
@@ -253,6 +255,8 @@ class _VpcGatewayNetworkState:
             pulumi.set(__self__, "ipam_configs", ipam_configs)
         if mac_address is not None:
             pulumi.set(__self__, "mac_address", mac_address)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if static_address is not None:
@@ -365,6 +369,18 @@ class _VpcGatewayNetworkState:
     @mac_address.setter
     def mac_address(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac_address", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkPrivateIpArgs']]]]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpcGatewayNetworkPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetworkId")
@@ -671,6 +687,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["mac_address"] = None
+            __props__.__dict__["private_ips"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         super(VpcGatewayNetwork, __self__).__init__(
@@ -691,6 +708,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
             gateway_id: Optional[pulumi.Input[str]] = None,
             ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]]] = None,
             mac_address: Optional[pulumi.Input[str]] = None,
+            private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkPrivateIpArgs', 'VpcGatewayNetworkPrivateIpArgsDict']]]]] = None,
             private_network_id: Optional[pulumi.Input[str]] = None,
             static_address: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -711,6 +729,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkIpamConfigArgs', 'VpcGatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] mac_address: The MAC address of the GatewayNetwork.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['VpcGatewayNetworkPrivateIpArgs', 'VpcGatewayNetworkPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] status: The status of the Public Gateway's connection to the Private Network.
@@ -733,6 +752,7 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         __props__.__dict__["gateway_id"] = gateway_id
         __props__.__dict__["ipam_configs"] = ipam_configs
         __props__.__dict__["mac_address"] = mac_address
+        __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["static_address"] = static_address
         __props__.__dict__["status"] = status
@@ -806,6 +826,14 @@ class VpcGatewayNetwork(pulumi.CustomResource):
         The MAC address of the GatewayNetwork.
         """
         return pulumi.get(self, "mac_address")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> pulumi.Output[Sequence['outputs.VpcGatewayNetworkPrivateIp']]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="privateNetworkId")

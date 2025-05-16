@@ -180,6 +180,8 @@ type VpcGatewayNetwork struct {
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayOutput `pulumi:"ipamConfigs"`
 	// The MAC address of the GatewayNetwork.
 	MacAddress pulumi.StringOutput `pulumi:"macAddress"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps VpcGatewayNetworkPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The ID of the Private Network.
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
@@ -256,6 +258,8 @@ type vpcGatewayNetworkState struct {
 	IpamConfigs []VpcGatewayNetworkIpamConfig `pulumi:"ipamConfigs"`
 	// The MAC address of the GatewayNetwork.
 	MacAddress *string `pulumi:"macAddress"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps []VpcGatewayNetworkPrivateIp `pulumi:"privateIps"`
 	// The ID of the Private Network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
@@ -297,6 +301,8 @@ type VpcGatewayNetworkState struct {
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayInput
 	// The MAC address of the GatewayNetwork.
 	MacAddress pulumi.StringPtrInput
+	// The private IPv4 address associated with the resource.
+	PrivateIps VpcGatewayNetworkPrivateIpArrayInput
 	// The ID of the Private Network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
@@ -517,6 +523,11 @@ func (o VpcGatewayNetworkOutput) IpamConfigs() VpcGatewayNetworkIpamConfigArrayO
 // The MAC address of the GatewayNetwork.
 func (o VpcGatewayNetworkOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+// The private IPv4 address associated with the resource.
+func (o VpcGatewayNetworkOutput) PrivateIps() VpcGatewayNetworkPrivateIpArrayOutput {
+	return o.ApplyT(func(v *VpcGatewayNetwork) VpcGatewayNetworkPrivateIpArrayOutput { return v.PrivateIps }).(VpcGatewayNetworkPrivateIpArrayOutput)
 }
 
 // The ID of the Private Network.

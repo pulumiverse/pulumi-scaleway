@@ -100,6 +100,7 @@ type GetLbRouteResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id              string `pulumi:"id"`
 	MatchHostHeader string `pulumi:"matchHostHeader"`
+	MatchPathBegin  string `pulumi:"matchPathBegin"`
 	MatchSni        string `pulumi:"matchSni"`
 	MatchSubdomains bool   `pulumi:"matchSubdomains"`
 	RouteId         string `pulumi:"routeId"`
@@ -159,6 +160,10 @@ func (o GetLbRouteResultOutput) Id() pulumi.StringOutput {
 
 func (o GetLbRouteResultOutput) MatchHostHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbRouteResult) string { return v.MatchHostHeader }).(pulumi.StringOutput)
+}
+
+func (o GetLbRouteResultOutput) MatchPathBegin() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbRouteResult) string { return v.MatchPathBegin }).(pulumi.StringOutput)
 }
 
 func (o GetLbRouteResultOutput) MatchSni() pulumi.StringOutput {

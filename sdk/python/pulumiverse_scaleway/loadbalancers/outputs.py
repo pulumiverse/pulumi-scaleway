@@ -28,6 +28,7 @@ __all__ = [
     'FrontendAclAction',
     'FrontendAclActionRedirect',
     'FrontendAclMatch',
+    'LoadBalancerPrivateIp',
     'LoadBalancerPrivateNetwork',
     'GetAclsAclResult',
     'GetAclsAclActionResult',
@@ -46,6 +47,7 @@ __all__ = [
     'GetFrontendAclMatchResult',
     'GetFrontendsFrontendResult',
     'GetIpsIpResult',
+    'GetLoadBalancerPrivateIpResult',
     'GetLoadBalancerPrivateNetworkResult',
     'GetLoadBalancersLbResult',
     'GetLoadBalancersLbInstanceResult',
@@ -729,6 +731,37 @@ class FrontendAclMatch(dict):
         A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
+
+
+@pulumi.output_type
+class LoadBalancerPrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IP address.
+        :param str id: The ID of the IP address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IP address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the IP address resource.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -1973,6 +2006,35 @@ class GetIpsIpResult(dict):
         `zone`) The zone in which the IPs exist.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetLoadBalancerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IP address
+        :param str id: The ID of the Load Balancer.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IP address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the Load Balancer.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

@@ -13,6 +13,145 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type AclAclRule struct {
+	// A text describing this rule.
+	Description *string `pulumi:"description"`
+	// The ID of the ACL resource. It is the same as the ID of the cluster.
+	Id *string `pulumi:"id"`
+	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	//
+	// > **Important:** If the `ip` field is set, `scalewayRanges` cannot be set to true in the same rule.
+	Ip *string `pulumi:"ip"`
+	// Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+	// Only one rule with this field set to true can be added.
+	//
+	// > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
+	ScalewayRanges *bool `pulumi:"scalewayRanges"`
+}
+
+// AclAclRuleInput is an input type that accepts AclAclRuleArgs and AclAclRuleOutput values.
+// You can construct a concrete instance of `AclAclRuleInput` via:
+//
+//	AclAclRuleArgs{...}
+type AclAclRuleInput interface {
+	pulumi.Input
+
+	ToAclAclRuleOutput() AclAclRuleOutput
+	ToAclAclRuleOutputWithContext(context.Context) AclAclRuleOutput
+}
+
+type AclAclRuleArgs struct {
+	// A text describing this rule.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The ID of the ACL resource. It is the same as the ID of the cluster.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	//
+	// > **Important:** If the `ip` field is set, `scalewayRanges` cannot be set to true in the same rule.
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+	// Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+	// Only one rule with this field set to true can be added.
+	//
+	// > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
+	ScalewayRanges pulumi.BoolPtrInput `pulumi:"scalewayRanges"`
+}
+
+func (AclAclRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAclRule)(nil)).Elem()
+}
+
+func (i AclAclRuleArgs) ToAclAclRuleOutput() AclAclRuleOutput {
+	return i.ToAclAclRuleOutputWithContext(context.Background())
+}
+
+func (i AclAclRuleArgs) ToAclAclRuleOutputWithContext(ctx context.Context) AclAclRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAclRuleOutput)
+}
+
+// AclAclRuleArrayInput is an input type that accepts AclAclRuleArray and AclAclRuleArrayOutput values.
+// You can construct a concrete instance of `AclAclRuleArrayInput` via:
+//
+//	AclAclRuleArray{ AclAclRuleArgs{...} }
+type AclAclRuleArrayInput interface {
+	pulumi.Input
+
+	ToAclAclRuleArrayOutput() AclAclRuleArrayOutput
+	ToAclAclRuleArrayOutputWithContext(context.Context) AclAclRuleArrayOutput
+}
+
+type AclAclRuleArray []AclAclRuleInput
+
+func (AclAclRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclAclRule)(nil)).Elem()
+}
+
+func (i AclAclRuleArray) ToAclAclRuleArrayOutput() AclAclRuleArrayOutput {
+	return i.ToAclAclRuleArrayOutputWithContext(context.Background())
+}
+
+func (i AclAclRuleArray) ToAclAclRuleArrayOutputWithContext(ctx context.Context) AclAclRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AclAclRuleArrayOutput)
+}
+
+type AclAclRuleOutput struct{ *pulumi.OutputState }
+
+func (AclAclRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AclAclRule)(nil)).Elem()
+}
+
+func (o AclAclRuleOutput) ToAclAclRuleOutput() AclAclRuleOutput {
+	return o
+}
+
+func (o AclAclRuleOutput) ToAclAclRuleOutputWithContext(ctx context.Context) AclAclRuleOutput {
+	return o
+}
+
+// A text describing this rule.
+func (o AclAclRuleOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the ACL resource. It is the same as the ID of the cluster.
+func (o AclAclRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAclRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+//
+// > **Important:** If the `ip` field is set, `scalewayRanges` cannot be set to true in the same rule.
+func (o AclAclRuleOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AclAclRule) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+// Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+// Only one rule with this field set to true can be added.
+//
+// > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
+func (o AclAclRuleOutput) ScalewayRanges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AclAclRule) *bool { return v.ScalewayRanges }).(pulumi.BoolPtrOutput)
+}
+
+type AclAclRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (AclAclRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AclAclRule)(nil)).Elem()
+}
+
+func (o AclAclRuleArrayOutput) ToAclAclRuleArrayOutput() AclAclRuleArrayOutput {
+	return o
+}
+
+func (o AclAclRuleArrayOutput) ToAclAclRuleArrayOutputWithContext(ctx context.Context) AclAclRuleArrayOutput {
+	return o
+}
+
+func (o AclAclRuleArrayOutput) Index(i pulumi.IntInput) AclAclRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AclAclRule {
+		return vs[0].([]AclAclRule)[vs[1].(int)]
+	}).(AclAclRuleOutput)
+}
+
 type ClusterAutoUpgrade struct {
 	// Set to `true` to enable Kubernetes patch version auto upgrades.
 	// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
@@ -876,10 +1015,14 @@ func (o ClusterOpenIdConnectConfigPtrOutput) UsernamePrefix() pulumi.StringPtrOu
 }
 
 type PoolNode struct {
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
 	// The name for the pool.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name *string `pulumi:"name"`
+	// The list of private IPv4 and IPv6 addresses associated with the node.
+	PrivateIps []PoolNodePrivateIp `pulumi:"privateIps"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
@@ -904,10 +1047,14 @@ type PoolNodeInput interface {
 }
 
 type PoolNodeArgs struct {
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The name for the pool.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The list of private IPv4 and IPv6 addresses associated with the node.
+	PrivateIps PoolNodePrivateIpArrayInput `pulumi:"privateIps"`
 	// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
 	//
 	// Deprecated: Please use the official Kubernetes provider and the kubernetesNodes data source
@@ -971,11 +1118,21 @@ func (o PoolNodeOutput) ToPoolNodeOutputWithContext(ctx context.Context) PoolNod
 	return o
 }
 
+// The ID of the IP address resource.
+func (o PoolNodeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolNode) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
 // The name for the pool.
 //
 // > **Important:** Updates to this field will recreate a new resource.
 func (o PoolNodeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PoolNode) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the node.
+func (o PoolNodeOutput) PrivateIps() PoolNodePrivateIpArrayOutput {
+	return o.ApplyT(func(v PoolNode) []PoolNodePrivateIp { return v.PrivateIps }).(PoolNodePrivateIpArrayOutput)
 }
 
 // The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
@@ -1015,6 +1172,112 @@ func (o PoolNodeArrayOutput) Index(i pulumi.IntInput) PoolNodeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PoolNode {
 		return vs[0].([]PoolNode)[vs[1].(int)]
 	}).(PoolNodeOutput)
+}
+
+type PoolNodePrivateIp struct {
+	// The private IP address.
+	Address *string `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id *string `pulumi:"id"`
+}
+
+// PoolNodePrivateIpInput is an input type that accepts PoolNodePrivateIpArgs and PoolNodePrivateIpOutput values.
+// You can construct a concrete instance of `PoolNodePrivateIpInput` via:
+//
+//	PoolNodePrivateIpArgs{...}
+type PoolNodePrivateIpInput interface {
+	pulumi.Input
+
+	ToPoolNodePrivateIpOutput() PoolNodePrivateIpOutput
+	ToPoolNodePrivateIpOutputWithContext(context.Context) PoolNodePrivateIpOutput
+}
+
+type PoolNodePrivateIpArgs struct {
+	// The private IP address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the IP address resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (PoolNodePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i PoolNodePrivateIpArgs) ToPoolNodePrivateIpOutput() PoolNodePrivateIpOutput {
+	return i.ToPoolNodePrivateIpOutputWithContext(context.Background())
+}
+
+func (i PoolNodePrivateIpArgs) ToPoolNodePrivateIpOutputWithContext(ctx context.Context) PoolNodePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolNodePrivateIpOutput)
+}
+
+// PoolNodePrivateIpArrayInput is an input type that accepts PoolNodePrivateIpArray and PoolNodePrivateIpArrayOutput values.
+// You can construct a concrete instance of `PoolNodePrivateIpArrayInput` via:
+//
+//	PoolNodePrivateIpArray{ PoolNodePrivateIpArgs{...} }
+type PoolNodePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToPoolNodePrivateIpArrayOutput() PoolNodePrivateIpArrayOutput
+	ToPoolNodePrivateIpArrayOutputWithContext(context.Context) PoolNodePrivateIpArrayOutput
+}
+
+type PoolNodePrivateIpArray []PoolNodePrivateIpInput
+
+func (PoolNodePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i PoolNodePrivateIpArray) ToPoolNodePrivateIpArrayOutput() PoolNodePrivateIpArrayOutput {
+	return i.ToPoolNodePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i PoolNodePrivateIpArray) ToPoolNodePrivateIpArrayOutputWithContext(ctx context.Context) PoolNodePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PoolNodePrivateIpArrayOutput)
+}
+
+type PoolNodePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (PoolNodePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o PoolNodePrivateIpOutput) ToPoolNodePrivateIpOutput() PoolNodePrivateIpOutput {
+	return o
+}
+
+func (o PoolNodePrivateIpOutput) ToPoolNodePrivateIpOutputWithContext(ctx context.Context) PoolNodePrivateIpOutput {
+	return o
+}
+
+// The private IP address.
+func (o PoolNodePrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolNodePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP address resource.
+func (o PoolNodePrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v PoolNodePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type PoolNodePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (PoolNodePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]PoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o PoolNodePrivateIpArrayOutput) ToPoolNodePrivateIpArrayOutput() PoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o PoolNodePrivateIpArrayOutput) ToPoolNodePrivateIpArrayOutputWithContext(ctx context.Context) PoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o PoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) PoolNodePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) PoolNodePrivateIp {
+		return vs[0].([]PoolNodePrivateIp)[vs[1].(int)]
+	}).(PoolNodePrivateIpOutput)
 }
 
 type PoolUpgradePolicy struct {
@@ -1742,8 +2005,12 @@ func (o GetClusterOpenIdConnectConfigArrayOutput) Index(i pulumi.IntInput) GetCl
 }
 
 type GetPoolNode struct {
+	// The ID of the pool.
+	Id string `pulumi:"id"`
 	// The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 	Name string `pulumi:"name"`
+	// List of private IPv4 and IPv6 addresses associated with the node
+	PrivateIps []GetPoolNodePrivateIp `pulumi:"privateIps"`
 	// The public IPv4.
 	PublicIp string `pulumi:"publicIp"`
 	// The public IPv6.
@@ -1764,8 +2031,12 @@ type GetPoolNodeInput interface {
 }
 
 type GetPoolNodeArgs struct {
+	// The ID of the pool.
+	Id pulumi.StringInput `pulumi:"id"`
 	// The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 	Name pulumi.StringInput `pulumi:"name"`
+	// List of private IPv4 and IPv6 addresses associated with the node
+	PrivateIps GetPoolNodePrivateIpArrayInput `pulumi:"privateIps"`
 	// The public IPv4.
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The public IPv6.
@@ -1825,9 +2096,19 @@ func (o GetPoolNodeOutput) ToGetPoolNodeOutputWithContext(ctx context.Context) G
 	return o
 }
 
+// The ID of the pool.
+func (o GetPoolNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
 // The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
 func (o GetPoolNodeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPoolNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of private IPv4 and IPv6 addresses associated with the node
+func (o GetPoolNodeOutput) PrivateIps() GetPoolNodePrivateIpArrayOutput {
+	return o.ApplyT(func(v GetPoolNode) []GetPoolNodePrivateIp { return v.PrivateIps }).(GetPoolNodePrivateIpArrayOutput)
 }
 
 // The public IPv4.
@@ -1863,6 +2144,112 @@ func (o GetPoolNodeArrayOutput) Index(i pulumi.IntInput) GetPoolNodeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoolNode {
 		return vs[0].([]GetPoolNode)[vs[1].(int)]
 	}).(GetPoolNodeOutput)
+}
+
+type GetPoolNodePrivateIp struct {
+	// The private IP address
+	Address string `pulumi:"address"`
+	// The ID of the pool.
+	Id string `pulumi:"id"`
+}
+
+// GetPoolNodePrivateIpInput is an input type that accepts GetPoolNodePrivateIpArgs and GetPoolNodePrivateIpOutput values.
+// You can construct a concrete instance of `GetPoolNodePrivateIpInput` via:
+//
+//	GetPoolNodePrivateIpArgs{...}
+type GetPoolNodePrivateIpInput interface {
+	pulumi.Input
+
+	ToGetPoolNodePrivateIpOutput() GetPoolNodePrivateIpOutput
+	ToGetPoolNodePrivateIpOutputWithContext(context.Context) GetPoolNodePrivateIpOutput
+}
+
+type GetPoolNodePrivateIpArgs struct {
+	// The private IP address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the pool.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetPoolNodePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i GetPoolNodePrivateIpArgs) ToGetPoolNodePrivateIpOutput() GetPoolNodePrivateIpOutput {
+	return i.ToGetPoolNodePrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetPoolNodePrivateIpArgs) ToGetPoolNodePrivateIpOutputWithContext(ctx context.Context) GetPoolNodePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolNodePrivateIpOutput)
+}
+
+// GetPoolNodePrivateIpArrayInput is an input type that accepts GetPoolNodePrivateIpArray and GetPoolNodePrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetPoolNodePrivateIpArrayInput` via:
+//
+//	GetPoolNodePrivateIpArray{ GetPoolNodePrivateIpArgs{...} }
+type GetPoolNodePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetPoolNodePrivateIpArrayOutput() GetPoolNodePrivateIpArrayOutput
+	ToGetPoolNodePrivateIpArrayOutputWithContext(context.Context) GetPoolNodePrivateIpArrayOutput
+}
+
+type GetPoolNodePrivateIpArray []GetPoolNodePrivateIpInput
+
+func (GetPoolNodePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolNodePrivateIp)(nil)).Elem()
+}
+
+func (i GetPoolNodePrivateIpArray) ToGetPoolNodePrivateIpArrayOutput() GetPoolNodePrivateIpArrayOutput {
+	return i.ToGetPoolNodePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetPoolNodePrivateIpArray) ToGetPoolNodePrivateIpArrayOutputWithContext(ctx context.Context) GetPoolNodePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPoolNodePrivateIpArrayOutput)
+}
+
+type GetPoolNodePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetPoolNodePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o GetPoolNodePrivateIpOutput) ToGetPoolNodePrivateIpOutput() GetPoolNodePrivateIpOutput {
+	return o
+}
+
+func (o GetPoolNodePrivateIpOutput) ToGetPoolNodePrivateIpOutputWithContext(ctx context.Context) GetPoolNodePrivateIpOutput {
+	return o
+}
+
+// The private IP address
+func (o GetPoolNodePrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolNodePrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the pool.
+func (o GetPoolNodePrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPoolNodePrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetPoolNodePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPoolNodePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPoolNodePrivateIp)(nil)).Elem()
+}
+
+func (o GetPoolNodePrivateIpArrayOutput) ToGetPoolNodePrivateIpArrayOutput() GetPoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetPoolNodePrivateIpArrayOutput) ToGetPoolNodePrivateIpArrayOutputWithContext(ctx context.Context) GetPoolNodePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetPoolNodePrivateIpArrayOutput) Index(i pulumi.IntInput) GetPoolNodePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPoolNodePrivateIp {
+		return vs[0].([]GetPoolNodePrivateIp)[vs[1].(int)]
+	}).(GetPoolNodePrivateIpOutput)
 }
 
 type GetPoolUpgradePolicy struct {
@@ -1972,6 +2359,8 @@ func (o GetPoolUpgradePolicyArrayOutput) Index(i pulumi.IntInput) GetPoolUpgrade
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleInput)(nil)).Elem(), AclAclRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleArrayInput)(nil)).Elem(), AclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAutoUpgradeInput)(nil)).Elem(), ClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAutoUpgradePtrInput)(nil)).Elem(), ClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterAutoscalerConfigInput)(nil)).Elem(), ClusterAutoscalerConfigArgs{})
@@ -1982,6 +2371,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOpenIdConnectConfigPtrInput)(nil)).Elem(), ClusterOpenIdConnectConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodeInput)(nil)).Elem(), PoolNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodeArrayInput)(nil)).Elem(), PoolNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodePrivateIpInput)(nil)).Elem(), PoolNodePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PoolNodePrivateIpArrayInput)(nil)).Elem(), PoolNodePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolUpgradePolicyInput)(nil)).Elem(), PoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PoolUpgradePolicyPtrInput)(nil)).Elem(), PoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterAutoUpgradeInput)(nil)).Elem(), GetClusterAutoUpgradeArgs{})
@@ -1994,8 +2385,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetClusterOpenIdConnectConfigArrayInput)(nil)).Elem(), GetClusterOpenIdConnectConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodeInput)(nil)).Elem(), GetPoolNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodeArrayInput)(nil)).Elem(), GetPoolNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodePrivateIpInput)(nil)).Elem(), GetPoolNodePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolNodePrivateIpArrayInput)(nil)).Elem(), GetPoolNodePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolUpgradePolicyInput)(nil)).Elem(), GetPoolUpgradePolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPoolUpgradePolicyArrayInput)(nil)).Elem(), GetPoolUpgradePolicyArray{})
+	pulumi.RegisterOutputType(AclAclRuleOutput{})
+	pulumi.RegisterOutputType(AclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(ClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(ClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(ClusterAutoscalerConfigOutput{})
@@ -2006,6 +2401,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterOpenIdConnectConfigPtrOutput{})
 	pulumi.RegisterOutputType(PoolNodeOutput{})
 	pulumi.RegisterOutputType(PoolNodeArrayOutput{})
+	pulumi.RegisterOutputType(PoolNodePrivateIpOutput{})
+	pulumi.RegisterOutputType(PoolNodePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(PoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(PoolUpgradePolicyPtrOutput{})
 	pulumi.RegisterOutputType(GetClusterAutoUpgradeOutput{})
@@ -2018,6 +2415,8 @@ func init() {
 	pulumi.RegisterOutputType(GetClusterOpenIdConnectConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolNodeOutput{})
 	pulumi.RegisterOutputType(GetPoolNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetPoolNodePrivateIpOutput{})
+	pulumi.RegisterOutputType(GetPoolNodePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetPoolUpgradePolicyOutput{})
 	pulumi.RegisterOutputType(GetPoolUpgradePolicyArrayOutput{})
 }

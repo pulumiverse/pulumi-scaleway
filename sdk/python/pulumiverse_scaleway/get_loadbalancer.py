@@ -29,7 +29,7 @@ class GetLoadbalancerResult:
     """
     A collection of values returned by getLoadbalancer.
     """
-    def __init__(__self__, assign_flexible_ip=None, assign_flexible_ipv6=None, description=None, id=None, ip_address=None, ip_id=None, ip_ids=None, ipv6_address=None, lb_id=None, name=None, organization_id=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+    def __init__(__self__, assign_flexible_ip=None, assign_flexible_ipv6=None, description=None, id=None, ip_address=None, ip_id=None, ip_ids=None, ipv6_address=None, lb_id=None, name=None, organization_id=None, private_ips=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
         if assign_flexible_ip and not isinstance(assign_flexible_ip, bool):
             raise TypeError("Expected argument 'assign_flexible_ip' to be a bool")
         pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
@@ -63,6 +63,9 @@ class GetLoadbalancerResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_networks and not isinstance(private_networks, list):
             raise TypeError("Expected argument 'private_networks' to be a list")
         pulumi.set(__self__, "private_networks", private_networks)
@@ -150,6 +153,11 @@ class GetLoadbalancerResult:
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetLoadbalancerPrivateIpResult']:
+        return pulumi.get(self, "private_ips")
+
+    @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence['outputs.GetLoadbalancerPrivateNetworkResult']:
         return pulumi.get(self, "private_networks")
@@ -216,6 +224,7 @@ class AwaitableGetLoadbalancerResult(GetLoadbalancerResult):
             lb_id=self.lb_id,
             name=self.name,
             organization_id=self.organization_id,
+            private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             region=self.region,
@@ -276,6 +285,7 @@ def get_loadbalancer(lb_id: Optional[str] = None,
         lb_id=pulumi.get(__ret__, 'lb_id'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
@@ -333,6 +343,7 @@ def get_loadbalancer_output(lb_id: Optional[pulumi.Input[Optional[str]]] = None,
         lb_id=pulumi.get(__response__, 'lb_id'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),

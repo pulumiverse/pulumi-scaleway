@@ -21,6 +21,8 @@ __all__ = [
     'InstanceLoadBalancerArgsDict',
     'InstanceLogsPolicyArgs',
     'InstanceLogsPolicyArgsDict',
+    'InstancePrivateIpArgs',
+    'InstancePrivateIpArgsDict',
     'InstancePrivateNetworkArgs',
     'InstancePrivateNetworkArgsDict',
     'InstanceReadReplicaArgs',
@@ -246,6 +248,58 @@ class InstanceLogsPolicyArgs:
     @total_disk_retention.setter
     def total_disk_retention(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "total_disk_retention", value)
+
+
+if not MYPY:
+    class InstancePrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IPv4 address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the IPv4 address resource.
+        """
+elif False:
+    InstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class InstancePrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IPv4 address.
+        :param pulumi.Input[str] id: The ID of the IPv4 address resource.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the IPv4 address resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:

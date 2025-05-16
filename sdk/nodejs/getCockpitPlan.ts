@@ -4,28 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
- *
- * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
- *
- * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
- *
- * ## Fetch and associate a pricing plan to a Cockpit
- *
- * The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const premium = scaleway.observability.getPlan({
- *     name: "premium",
- * });
- * const main = new scaleway.observability.Cockpit("main", {plan: premium.then(premium => premium.id)});
- * ```
- */
 /** @deprecated scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan */
 export function getCockpitPlan(args: GetCockpitPlanArgs, opts?: pulumi.InvokeOptions): Promise<GetCockpitPlanResult> {
     pulumi.log.warn("getCockpitPlan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan")
@@ -60,28 +38,6 @@ export interface GetCockpitPlanResult {
      */
     readonly name: string;
 }
-/**
- * The `scaleway.observability.getPlan` data source is used to fetch details about a specific Scaleway Cockpit pricing plan. This information can then be used to configure resources like `scaleway.observability.Cockpit`.
- *
- * Find out more about [pricing plans](https://console.scaleway.com/cockpit/plans) in the Scaleway console.
- *
- * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
- *
- * ## Fetch and associate a pricing plan to a Cockpit
- *
- * The following command shows how to fetch information about the `premium` pricing plan and how to associate it with the Cockpit of your Scaleway default Project.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumi/scaleway";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const premium = scaleway.observability.getPlan({
- *     name: "premium",
- * });
- * const main = new scaleway.observability.Cockpit("main", {plan: premium.then(premium => premium.id)});
- * ```
- */
 /** @deprecated scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan */
 export function getCockpitPlanOutput(args: GetCockpitPlanOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCockpitPlanResult> {
     pulumi.log.warn("getCockpitPlan is deprecated: scaleway.index/getcockpitplan.getCockpitPlan has been deprecated in favor of scaleway.observability/getplan.getPlan")

@@ -104,6 +104,17 @@ export interface BaremetalServerOption {
     name: string;
 }
 
+export interface BaremetalServerPrivateIp {
+    /**
+     * The address of the IPv6.
+     */
+    address: string;
+    /**
+     * The ID of the IPv6.
+     */
+    id: string;
+}
+
 export interface BaremetalServerPrivateNetwork {
     /**
      * The date and time of the creation of the private network.
@@ -117,6 +128,10 @@ export interface BaremetalServerPrivateNetwork {
      * List of IPAM IP IDs to assign to the server in the requested private network.
      */
     ipamIpIds: string[];
+    /**
+     * The ID of the Server-to-Private Network mapping.
+     */
+    mappingId: string;
     /**
      * The private network status.
      */
@@ -331,6 +346,17 @@ export interface DatabaseInstanceLogsPolicy {
      * The max disk size of remote logs to keep on the Database Instance.
      */
     totalDiskRetention: number;
+}
+
+export interface DatabaseInstancePrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address: string;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id: string;
 }
 
 export interface DatabaseInstancePrivateNetwork {
@@ -783,6 +809,17 @@ export interface GetBaremetalServerOption {
     name: string;
 }
 
+export interface GetBaremetalServerPrivateIp {
+    /**
+     * The private IP address
+     */
+    address: string;
+    /**
+     * The ID of the server.
+     */
+    id: string;
+}
+
 export interface GetBaremetalServerPrivateNetwork {
     /**
      * The date and time of the creation of the private network
@@ -796,6 +833,10 @@ export interface GetBaremetalServerPrivateNetwork {
      * List of IPAM IP IDs to attach to the server
      */
     ipamIpIds: string[];
+    /**
+     * The ID of the Server-to-Private Network mapping
+     */
+    mappingId: string;
     /**
      * The private network status
      */
@@ -1024,6 +1065,17 @@ export interface GetDatabaseInstanceLogsPolicy {
     totalDiskRetention: number;
 }
 
+export interface GetDatabaseInstancePrivateIp {
+    /**
+     * The private IPv4 address
+     */
+    address: string;
+    /**
+     * The ID of the Database Instance.
+     */
+    id: string;
+}
+
 export interface GetDatabaseInstancePrivateNetwork {
     /**
      * Whether or not the private network endpoint should be configured with IPAM
@@ -1224,6 +1276,17 @@ export interface GetFlexibleIpsIpMacAddress {
     zone: string;
 }
 
+export interface GetInstancePrivateNicPrivateIp {
+    /**
+     * The private IP address
+     */
+    address: string;
+    /**
+     * The ID of the IP address resource
+     */
+    id: string;
+}
+
 export interface GetInstanceSecurityGroupInboundRule {
     /**
      * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -1280,6 +1343,17 @@ export interface GetInstanceSecurityGroupOutboundRule {
      * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
      */
     protocol: string;
+}
+
+export interface GetInstanceServerPrivateIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface GetInstanceServerPrivateNetwork {
@@ -1701,9 +1775,17 @@ export interface GetKubernetesClusterOpenIdConnectConfig {
 
 export interface GetKubernetesNodePoolNode {
     /**
+     * The ID of the pool.
+     */
+    id: string;
+    /**
      * The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
      */
     name: string;
+    /**
+     * List of private IPv4 and IPv6 addresses associated with the node
+     */
+    privateIps: outputs.GetKubernetesNodePoolNodePrivateIp[];
     /**
      * The public IPv4.
      */
@@ -1716,6 +1798,17 @@ export interface GetKubernetesNodePoolNode {
      * The status of the node.
      */
     status: string;
+}
+
+export interface GetKubernetesNodePoolNodePrivateIp {
+    /**
+     * The private IP address
+     */
+    address: string;
+    /**
+     * The ID of the pool.
+     */
+    id: string;
 }
 
 export interface GetKubernetesNodePoolUpgradePolicy {
@@ -2313,6 +2406,17 @@ export interface GetLoadbalancerCertificateLetsencrypt {
     subjectAlternativeNames: string[];
 }
 
+export interface GetLoadbalancerPrivateIp {
+    /**
+     * The private IP address
+     */
+    address: string;
+    /**
+     * The ID of the Load Balancer.
+     */
+    id: string;
+}
+
 export interface GetLoadbalancerPrivateNetwork {
     /**
      * Set to true if you want to let DHCP assign IP addresses
@@ -2457,6 +2561,17 @@ export interface GetRedisClusterAcl {
     ip: string;
 }
 
+export interface GetRedisClusterPrivateIp {
+    /**
+     * The private IPv4 address
+     */
+    address: string;
+    /**
+     * The ID of the Redis cluster.
+     */
+    id: string;
+}
+
 export interface GetRedisClusterPrivateNetwork {
     /**
      * The ID of the endpoint.
@@ -2567,6 +2682,17 @@ export interface GetVpcGatewayNetworkIpamConfig {
      * Defines whether the default route is enabled on that Gateway Network
      */
     pushDefaultRoute: boolean;
+}
+
+export interface GetVpcGatewayNetworkPrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address: string;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id: string;
 }
 
 export interface GetVpcPrivateNetworkIpv4Subnet {
@@ -2978,6 +3104,17 @@ export interface InstanceImageAdditionalVolume {
     zone: string;
 }
 
+export interface InstancePrivateNicPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address: string;
+    /**
+     * The ID of the IP address resource.
+     */
+    id: string;
+}
+
 export interface InstanceSecurityGroupInboundRule {
     /**
      * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -3092,6 +3229,17 @@ export interface InstanceSecurityGroupRulesOutboundRule {
      * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: string;
+}
+
+export interface InstanceServerPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address: string;
+    /**
+     * The ID of the IP address resource.
+     */
+    id: string;
 }
 
 export interface InstanceServerPrivateNetwork {
@@ -3487,11 +3635,19 @@ export interface KubernetesClusterOpenIdConnectConfig {
 
 export interface KubernetesNodePoolNode {
     /**
+     * The ID of the IP address resource.
+     */
+    id: string;
+    /**
      * The name for the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
     name: string;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the node.
+     */
+    privateIps: outputs.KubernetesNodePoolNodePrivateIp[];
     /**
      * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
      *
@@ -3508,6 +3664,17 @@ export interface KubernetesNodePoolNode {
      * The status of the node.
      */
     status: string;
+}
+
+export interface KubernetesNodePoolNodePrivateIp {
+    /**
+     * The private IP address.
+     */
+    address: string;
+    /**
+     * The ID of the IP address resource.
+     */
+    id: string;
 }
 
 export interface KubernetesNodePoolUpgradePolicy {
@@ -3713,6 +3880,17 @@ export interface LoadbalancerFrontendAclMatch {
      * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets?: string[];
+}
+
+export interface LoadbalancerPrivateIp {
+    /**
+     * The private IP address.
+     */
+    address: string;
+    /**
+     * The ID of the IP address resource.
+     */
+    id: string;
 }
 
 export interface LoadbalancerPrivateNetwork {
@@ -3992,7 +4170,7 @@ export interface RedisClusterAcl {
      */
     description: string;
     /**
-     * (Required) The UUID of the endpoint.
+     * The ID of the IPv4 address resource.
      */
     id: string;
     /**
@@ -4000,6 +4178,17 @@ export interface RedisClusterAcl {
      * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
      */
     ip: string;
+}
+
+export interface RedisClusterPrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address: string;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id: string;
 }
 
 export interface RedisClusterPrivateNetwork {
@@ -4043,7 +4232,7 @@ export interface RedisClusterPrivateNetwork {
 
 export interface RedisClusterPublicNetwork {
     /**
-     * (Required) The UUID of the endpoint.
+     * The ID of the IPv4 address resource.
      */
     id: string;
     /**
@@ -4134,6 +4323,17 @@ export interface VpcGatewayNetworkIpamConfig {
      * Defines whether to enable the default route on the GatewayNetwork.
      */
     pushDefaultRoute?: boolean;
+}
+
+export interface VpcGatewayNetworkPrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address: string;
+    /**
+     * The ID of the IPv4 address resource.
+     */
+    id: string;
 }
 
 export interface VpcPrivateNetworkIpv4Subnet {
@@ -4549,6 +4749,17 @@ export namespace databases {
         totalDiskRetention: number;
     }
 
+    export interface GetInstancePrivateIp {
+        /**
+         * The private IPv4 address
+         */
+        address: string;
+        /**
+         * The ID of the Database Instance.
+         */
+        id: string;
+    }
+
     export interface GetInstancePrivateNetwork {
         /**
          * Whether or not the private network endpoint should be configured with IPAM
@@ -4635,6 +4846,17 @@ export namespace databases {
          * The max disk size of remote logs to keep on the Database Instance.
          */
         totalDiskRetention: number;
+    }
+
+    export interface InstancePrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address: string;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id: string;
     }
 
     export interface InstancePrivateNetwork {
@@ -5647,6 +5869,17 @@ export namespace elasticmetal {
         name: string;
     }
 
+    export interface GetServerPrivateIp {
+        /**
+         * The private IP address
+         */
+        address: string;
+        /**
+         * The ID of the server.
+         */
+        id: string;
+    }
+
     export interface GetServerPrivateNetwork {
         /**
          * The date and time of the creation of the private network
@@ -5660,6 +5893,10 @@ export namespace elasticmetal {
          * List of IPAM IP IDs to attach to the server
          */
         ipamIpIds: string[];
+        /**
+         * The ID of the Server-to-Private Network mapping
+         */
+        mappingId: string;
         /**
          * The private network status
          */
@@ -5746,6 +5983,17 @@ export namespace elasticmetal {
         name: string;
     }
 
+    export interface ServerPrivateIp {
+        /**
+         * The address of the IPv6.
+         */
+        address: string;
+        /**
+         * The ID of the IPv6.
+         */
+        id: string;
+    }
+
     export interface ServerPrivateNetwork {
         /**
          * The date and time of the creation of the private network.
@@ -5759,6 +6007,10 @@ export namespace elasticmetal {
          * List of IPAM IP IDs to assign to the server in the requested private network.
          */
         ipamIpIds: string[];
+        /**
+         * The ID of the Server-to-Private Network mapping.
+         */
+        mappingId: string;
         /**
          * The private network status.
          */
@@ -6074,9 +6326,72 @@ export namespace inference {
         url: string;
     }
 
+    export interface GetModelNodesSupport {
+        /**
+         * The type of node supported.
+         */
+        nodeTypeName: string;
+        /**
+         * A list of supported quantization options, including:
+         */
+        quantizations: outputs.inference.GetModelNodesSupportQuantization[];
+    }
+
+    export interface GetModelNodesSupportQuantization {
+        /**
+         * Whether this quantization is allowed.
+         */
+        allowed: boolean;
+        /**
+         * Maximum context length supported by this quantization.
+         */
+        maxContextSize: number;
+        /**
+         * Number of bits used for quantization (e.g., 8, 16).
+         */
+        quantizationBits: number;
+    }
+
+    export interface ModelNodesSupport {
+        /**
+         * The type of node supported.
+         */
+        nodeTypeName: string;
+        /**
+         * A list of supported quantization options, including:
+         */
+        quantizations: outputs.inference.ModelNodesSupportQuantization[];
+    }
+
+    export interface ModelNodesSupportQuantization {
+        /**
+         * Whether this quantization is allowed.
+         */
+        allowed: boolean;
+        /**
+         * Maximum context length supported by this quantization.
+         */
+        maxContextSize: number;
+        /**
+         * Number of bits used for quantization (e.g., 8, 16).
+         */
+        quantizationBits: number;
+    }
+
 }
 
 export namespace instance {
+    export interface GetPrivateNicPrivateIp {
+        /**
+         * The private IP address
+         */
+        address: string;
+        /**
+         * The ID of the IP address resource
+         */
+        id: string;
+    }
+
     export interface GetSecurityGroupInboundRule {
         /**
          * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -6133,6 +6448,17 @@ export namespace instance {
          * The protocol this rule apply to. Possible values are: `TCP`, `UDP`, `ICMP` or `ANY`.
          */
         protocol: string;
+    }
+
+    export interface GetServerPrivateIp {
+        /**
+         * The address of the IP
+         */
+        address: string;
+        /**
+         * The ID of the IP
+         */
+        id: string;
     }
 
     export interface GetServerPrivateNetwork {
@@ -6367,6 +6693,17 @@ export namespace instance {
         zone: string;
     }
 
+    export interface PrivateNicPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address: string;
+        /**
+         * The ID of the IP address resource.
+         */
+        id: string;
+    }
+
     export interface SecurityGroupInboundRule {
         /**
          * The action to take when rule match. Possible values are: `accept` or `drop`.
@@ -6481,6 +6818,17 @@ export namespace instance {
          * Protocol for this rule (TCP, UDP, ICMP or ANY)
          */
         protocol?: string;
+    }
+
+    export interface ServerPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address: string;
+        /**
+         * The ID of the IP address resource.
+         */
+        id: string;
     }
 
     export interface ServerPrivateNetwork {
@@ -6909,6 +7257,30 @@ export namespace job {
 }
 
 export namespace kubernetes {
+    export interface AclAclRule {
+        /**
+         * A text describing this rule.
+         */
+        description?: string;
+        /**
+         * The ID of the ACL resource. It is the same as the ID of the cluster.
+         */
+        id: string;
+        /**
+         * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         *
+         * > **Important:** If the `ip` field is set, `scalewayRanges` cannot be set to true in the same rule.
+         */
+        ip?: string;
+        /**
+         * Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
+         * Only one rule with this field set to true can be added.
+         *
+         * > **Important:** If the `scalewayRanges` field is set to true, the `ip` field cannot be set on the same rule.
+         */
+        scalewayRanges?: boolean;
+    }
+
     export interface ClusterAutoUpgrade {
         /**
          * Set to `true` to enable Kubernetes patch version auto upgrades.
@@ -7128,9 +7500,17 @@ export namespace kubernetes {
 
     export interface GetPoolNode {
         /**
+         * The ID of the pool.
+         */
+        id: string;
+        /**
          * The pool name. Only one of `name` and `poolId` should be specified. `clusterId` should be specified with `name`.
          */
         name: string;
+        /**
+         * List of private IPv4 and IPv6 addresses associated with the node
+         */
+        privateIps: outputs.kubernetes.GetPoolNodePrivateIp[];
         /**
          * The public IPv4.
          */
@@ -7143,6 +7523,17 @@ export namespace kubernetes {
          * The status of the node.
          */
         status: string;
+    }
+
+    export interface GetPoolNodePrivateIp {
+        /**
+         * The private IP address
+         */
+        address: string;
+        /**
+         * The ID of the pool.
+         */
+        id: string;
     }
 
     export interface GetPoolUpgradePolicy {
@@ -7158,11 +7549,19 @@ export namespace kubernetes {
 
     export interface PoolNode {
         /**
+         * The ID of the IP address resource.
+         */
+        id: string;
+        /**
          * The name for the pool.
          *
          * > **Important:** Updates to this field will recreate a new resource.
          */
         name: string;
+        /**
+         * The list of private IPv4 and IPv6 addresses associated with the node.
+         */
+        privateIps: outputs.kubernetes.PoolNodePrivateIp[];
         /**
          * The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetesNodes data source)
          *
@@ -7179,6 +7578,17 @@ export namespace kubernetes {
          * The status of the node.
          */
         status: string;
+    }
+
+    export interface PoolNodePrivateIp {
+        /**
+         * The private IP address.
+         */
+        address: string;
+        /**
+         * The ID of the IP address resource.
+         */
+        id: string;
     }
 
     export interface PoolUpgradePolicy {
@@ -7813,6 +8223,17 @@ export namespace loadbalancers {
         zone: string;
     }
 
+    export interface GetLoadBalancerPrivateIp {
+        /**
+         * The private IP address
+         */
+        address: string;
+        /**
+         * The ID of the Load Balancer.
+         */
+        id: string;
+    }
+
     export interface GetLoadBalancerPrivateNetwork {
         /**
          * Set to true if you want to let DHCP assign IP addresses
@@ -7998,6 +8419,17 @@ export namespace loadbalancers {
          * The date on which the route was last updated (RFC 3339 format).
          */
         updateAt: string;
+    }
+
+    export interface LoadBalancerPrivateIp {
+        /**
+         * The private IP address.
+         */
+        address: string;
+        /**
+         * The ID of the IP address resource.
+         */
+        id: string;
     }
 
     export interface LoadBalancerPrivateNetwork {
@@ -8197,6 +8629,17 @@ export namespace network {
         pushDefaultRoute?: boolean;
     }
 
+    export interface GatewayNetworkPrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address: string;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id: string;
+    }
+
     export interface GetGatewayNetworkIpamConfig {
         /**
          * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network
@@ -8206,6 +8649,17 @@ export namespace network {
          * Defines whether the default route is enabled on that Gateway Network
          */
         pushDefaultRoute: boolean;
+    }
+
+    export interface GetGatewayNetworkPrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address: string;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id: string;
     }
 
     export interface GetPrivateNetworkIpv4Subnet {
@@ -8785,7 +9239,7 @@ export namespace redis {
          */
         description: string;
         /**
-         * (Required) The UUID of the endpoint.
+         * The ID of the IPv4 address resource.
          */
         id: string;
         /**
@@ -8793,6 +9247,17 @@ export namespace redis {
          * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
          */
         ip: string;
+    }
+
+    export interface ClusterPrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address: string;
+        /**
+         * The ID of the IPv4 address resource.
+         */
+        id: string;
     }
 
     export interface ClusterPrivateNetwork {
@@ -8836,7 +9301,7 @@ export namespace redis {
 
     export interface ClusterPublicNetwork {
         /**
-         * (Required) The UUID of the endpoint.
+         * The ID of the IPv4 address resource.
          */
         id: string;
         /**
@@ -8862,6 +9327,17 @@ export namespace redis {
          * IPv4 network address of the rule (IP network in a CIDR format).
          */
         ip: string;
+    }
+
+    export interface GetClusterPrivateIp {
+        /**
+         * The private IPv4 address
+         */
+        address: string;
+        /**
+         * The ID of the Redis cluster.
+         */
+        id: string;
     }
 
     export interface GetClusterPrivateNetwork {

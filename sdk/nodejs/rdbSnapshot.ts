@@ -30,7 +30,7 @@ import * as utilities from "./utilities";
  *         "scaleway_rdb_instance",
  *         "minimal",
  *     ],
- *     volumeType: "bssd",
+ *     volumeType: "sbs_5k",
  *     volumeSizeInGb: 10,
  * });
  * const test = new scaleway.databases.Snapshot("test", {

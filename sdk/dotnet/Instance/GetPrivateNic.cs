@@ -239,6 +239,7 @@ namespace Pulumiverse.Scaleway.Instance
         public readonly ImmutableArray<string> IpIds;
         public readonly ImmutableArray<string> IpamIpIds;
         public readonly string MacAddress;
+        public readonly ImmutableArray<Outputs.GetPrivateNicPrivateIpResult> PrivateIps;
         public readonly string? PrivateNetworkId;
         public readonly string? PrivateNicId;
         public readonly string ServerId;
@@ -255,6 +256,8 @@ namespace Pulumiverse.Scaleway.Instance
 
             string macAddress,
 
+            ImmutableArray<Outputs.GetPrivateNicPrivateIpResult> privateIps,
+
             string? privateNetworkId,
 
             string? privateNicId,
@@ -269,6 +272,7 @@ namespace Pulumiverse.Scaleway.Instance
             IpIds = ipIds;
             IpamIpIds = ipamIpIds;
             MacAddress = macAddress;
+            PrivateIps = privateIps;
             PrivateNetworkId = privateNetworkId;
             PrivateNicId = privateNicId;
             ServerId = serverId;

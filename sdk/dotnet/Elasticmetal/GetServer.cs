@@ -196,6 +196,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public readonly string OsName;
         public readonly string Partitioning;
         public readonly string Password;
+        public readonly ImmutableArray<Outputs.GetServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
         public readonly bool ReinstallOnConfigChanges;
@@ -245,6 +246,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string password,
 
+            ImmutableArray<Outputs.GetServerPrivateIpResult> privateIps,
+
             ImmutableArray<Outputs.GetServerPrivateNetworkResult> privateNetworks,
 
             string? projectId,
@@ -283,6 +286,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
             OsName = osName;
             Partitioning = partitioning;
             Password = password;
+            PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             ReinstallOnConfigChanges = reinstallOnConfigChanges;

@@ -27,6 +27,10 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// </summary>
         public readonly ImmutableArray<string> IpamIpIds;
         /// <summary>
+        /// The ID of the Server-to-Private Network mapping
+        /// </summary>
+        public readonly string MappingId;
+        /// <summary>
         /// The private network status
         /// </summary>
         public readonly string Status;
@@ -47,6 +51,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
 
             ImmutableArray<string> ipamIpIds,
 
+            string mappingId,
+
             string status,
 
             string updatedAt,
@@ -56,6 +62,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
             CreatedAt = createdAt;
             Id = id;
             IpamIpIds = ipamIpIds;
+            MappingId = mappingId;
             Status = status;
             UpdatedAt = updatedAt;
             Vlan = vlan;

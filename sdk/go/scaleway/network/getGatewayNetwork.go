@@ -85,6 +85,7 @@ type LookupGatewayNetworkResult struct {
 	Id               string                        `pulumi:"id"`
 	IpamConfigs      []GetGatewayNetworkIpamConfig `pulumi:"ipamConfigs"`
 	MacAddress       string                        `pulumi:"macAddress"`
+	PrivateIps       []GetGatewayNetworkPrivateIp  `pulumi:"privateIps"`
 	PrivateNetworkId *string                       `pulumi:"privateNetworkId"`
 	StaticAddress    string                        `pulumi:"staticAddress"`
 	Status           string                        `pulumi:"status"`
@@ -169,6 +170,10 @@ func (o LookupGatewayNetworkResultOutput) IpamConfigs() GetGatewayNetworkIpamCon
 
 func (o LookupGatewayNetworkResultOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGatewayNetworkResult) string { return v.MacAddress }).(pulumi.StringOutput)
+}
+
+func (o LookupGatewayNetworkResultOutput) PrivateIps() GetGatewayNetworkPrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupGatewayNetworkResult) []GetGatewayNetworkPrivateIp { return v.PrivateIps }).(GetGatewayNetworkPrivateIpArrayOutput)
 }
 
 func (o LookupGatewayNetworkResultOutput) PrivateNetworkId() pulumi.StringPtrOutput {
