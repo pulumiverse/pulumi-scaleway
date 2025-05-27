@@ -34,6 +34,7 @@ class InstanceArgs:
                  logs_policy: Optional[pulumi.Input['InstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -67,6 +68,7 @@ class InstanceArgs:
         :param pulumi.Input['InstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[str] name: The name of the Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
@@ -108,6 +110,8 @@ class InstanceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
             pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
@@ -291,6 +295,18 @@ class InstanceArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetwork")
@@ -919,6 +935,7 @@ class Instance(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -1101,6 +1118,7 @@ class Instance(pulumi.CustomResource):
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Database
                Instance is associated with.
@@ -1299,6 +1317,7 @@ class Instance(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -1332,6 +1351,7 @@ class Instance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
@@ -1345,7 +1365,6 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["endpoint_ip"] = None
             __props__.__dict__["endpoint_port"] = None
             __props__.__dict__["organization_id"] = None
-            __props__.__dict__["private_ips"] = None
             __props__.__dict__["read_replicas"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/databaseInstance:DatabaseInstance")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)

@@ -146,6 +146,17 @@ export interface BaremetalServerPrivateNetwork {
     vlan?: pulumi.Input<number>;
 }
 
+export interface BlockSnapshotImport {
+    /**
+     * Bucket containing qcow
+     */
+    bucket: pulumi.Input<string>;
+    /**
+     * Key of the qcow file in the specified bucket
+     */
+    key: pulumi.Input<string>;
+}
+
 export interface CockpitAlertManagerContactPoint {
     /**
      * Email addresses for the alert receivers
@@ -1719,6 +1730,17 @@ export interface MnqSqsCredentialsPermissions {
     canReceive?: pulumi.Input<boolean>;
 }
 
+export interface MongoDbInstancePrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address?: pulumi.Input<string>;
+    /**
+     * The ID of the endpoint.
+     */
+    id?: pulumi.Input<string>;
+}
+
 export interface MongoDbInstancePrivateNetwork {
     /**
      * List of DNS records for your endpoint.
@@ -2207,6 +2229,9 @@ export interface WebhostingRecord {
     type?: pulumi.Input<string>;
     value?: pulumi.Input<string>;
 }
+export namespace account {
+}
+
 export namespace applesilicon {
     export interface ServerPrivateNetwork {
         /**
@@ -2237,6 +2262,19 @@ export namespace applesilicon {
 }
 
 export namespace billing {
+}
+
+export namespace block {
+    export interface SnapshotImport {
+        /**
+         * Bucket containing qcow
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * Key of the qcow file in the specified bucket
+         */
+        key: pulumi.Input<string>;
+    }
 }
 
 export namespace containers {
@@ -4421,6 +4459,17 @@ export namespace mnq {
 }
 
 export namespace mongodb {
+    export interface InstancePrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address?: pulumi.Input<string>;
+        /**
+         * The ID of the endpoint.
+         */
+        id?: pulumi.Input<string>;
+    }
+
     export interface InstancePrivateNetwork {
         /**
          * List of DNS records for your endpoint.

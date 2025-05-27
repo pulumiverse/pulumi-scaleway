@@ -10,14 +10,34 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### Guest user
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const basic = new scaleway.iam.User("basic", {email: "test@test.com"});
+ * const guest = new scaleway.iam.User("guest", {
+ *     email: "foo@test.com",
+ *     tags: ["test-tag"],
+ * });
  * ```
+ *
+ * ### Member user
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const member = new scaleway.iam.User("member", {
+ *     email: "foo@test.com",
+ *     tags: ["test-tag"],
+ *     username: "foo",
+ *     firstName: "Foo",
+ *     lastName: "Bar",
+ * });
+ * ```
+ *
+ * When `username` is set, the user is created as a [Member](https://www.scaleway.com/en/docs/iam/concepts/#member). Otherwise, it is created as a [Guest](https://www.scaleway.com/en/docs/iam/concepts/#guest).
  *
  * ## Import
  *
@@ -70,13 +90,31 @@ export class User extends pulumi.CustomResource {
      */
     public /*out*/ readonly deletable!: pulumi.Output<boolean>;
     /**
-     * The email of the IAM user.
+     * The email of the IAM user. For Guest users, this argument is not editable.
      */
     public readonly email!: pulumi.Output<string>;
+    /**
+     * The user's first name.
+     */
+    public readonly firstName!: pulumi.Output<string | undefined>;
     /**
      * The date of the last login.
      */
     public /*out*/ readonly lastLoginAt!: pulumi.Output<string>;
+    /**
+     * The user's last name.
+     */
+    public readonly lastName!: pulumi.Output<string | undefined>;
+    /**
+     * The user's locale (e.g., en_US).
+     *
+     * Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+     */
+    public readonly locale!: pulumi.Output<string>;
+    /**
+     * Whether the user is locked.
+     */
+    public /*out*/ readonly locked!: pulumi.Output<boolean>;
     /**
      * Whether the MFA is enabled.
      */
@@ -85,6 +123,22 @@ export class User extends pulumi.CustomResource {
      * `organizationId`) The ID of the organization the user is associated with.
      */
     public readonly organizationId!: pulumi.Output<string>;
+    /**
+     * The password for first access.
+     */
+    public readonly password!: pulumi.Output<string | undefined>;
+    /**
+     * The user's phone number.
+     */
+    public readonly phoneNumber!: pulumi.Output<string | undefined>;
+    /**
+     * Whether or not to send an email containing the password for first access.
+     */
+    public readonly sendPasswordEmail!: pulumi.Output<boolean | undefined>;
+    /**
+     * Whether or not to send a welcome email that includes onboarding information.
+     */
+    public readonly sendWelcomeEmail!: pulumi.Output<boolean | undefined>;
     /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
@@ -101,6 +155,10 @@ export class User extends pulumi.CustomResource {
      * The date and time of the last update of the IAM user.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    /**
+     * The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+     */
+    public readonly username!: pulumi.Output<string>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -119,25 +177,43 @@ export class User extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletable"] = state ? state.deletable : undefined;
             resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["firstName"] = state ? state.firstName : undefined;
             resourceInputs["lastLoginAt"] = state ? state.lastLoginAt : undefined;
+            resourceInputs["lastName"] = state ? state.lastName : undefined;
+            resourceInputs["locale"] = state ? state.locale : undefined;
+            resourceInputs["locked"] = state ? state.locked : undefined;
             resourceInputs["mfa"] = state ? state.mfa : undefined;
             resourceInputs["organizationId"] = state ? state.organizationId : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["phoneNumber"] = state ? state.phoneNumber : undefined;
+            resourceInputs["sendPasswordEmail"] = state ? state.sendPasswordEmail : undefined;
+            resourceInputs["sendWelcomeEmail"] = state ? state.sendWelcomeEmail : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
         } else {
             const args = argsOrState as UserArgs | undefined;
             if ((!args || args.email === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
             resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["firstName"] = args ? args.firstName : undefined;
+            resourceInputs["lastName"] = args ? args.lastName : undefined;
+            resourceInputs["locale"] = args ? args.locale : undefined;
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["phoneNumber"] = args ? args.phoneNumber : undefined;
+            resourceInputs["sendPasswordEmail"] = args ? args.sendPasswordEmail : undefined;
+            resourceInputs["sendWelcomeEmail"] = args ? args.sendWelcomeEmail : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["accountRootUserId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deletable"] = undefined /*out*/;
             resourceInputs["lastLoginAt"] = undefined /*out*/;
+            resourceInputs["locked"] = undefined /*out*/;
             resourceInputs["mfa"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
@@ -167,13 +243,31 @@ export interface UserState {
      */
     deletable?: pulumi.Input<boolean>;
     /**
-     * The email of the IAM user.
+     * The email of the IAM user. For Guest users, this argument is not editable.
      */
     email?: pulumi.Input<string>;
+    /**
+     * The user's first name.
+     */
+    firstName?: pulumi.Input<string>;
     /**
      * The date of the last login.
      */
     lastLoginAt?: pulumi.Input<string>;
+    /**
+     * The user's last name.
+     */
+    lastName?: pulumi.Input<string>;
+    /**
+     * The user's locale (e.g., en_US).
+     *
+     * Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+     */
+    locale?: pulumi.Input<string>;
+    /**
+     * Whether the user is locked.
+     */
+    locked?: pulumi.Input<boolean>;
     /**
      * Whether the MFA is enabled.
      */
@@ -182,6 +276,22 @@ export interface UserState {
      * `organizationId`) The ID of the organization the user is associated with.
      */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The password for first access.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The user's phone number.
+     */
+    phoneNumber?: pulumi.Input<string>;
+    /**
+     * Whether or not to send an email containing the password for first access.
+     */
+    sendPasswordEmail?: pulumi.Input<boolean>;
+    /**
+     * Whether or not to send a welcome email that includes onboarding information.
+     */
+    sendWelcomeEmail?: pulumi.Input<boolean>;
     /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
@@ -198,6 +308,10 @@ export interface UserState {
      * The date and time of the last update of the IAM user.
      */
     updatedAt?: pulumi.Input<string>;
+    /**
+     * The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+     */
+    username?: pulumi.Input<string>;
 }
 
 /**
@@ -205,15 +319,49 @@ export interface UserState {
  */
 export interface UserArgs {
     /**
-     * The email of the IAM user.
+     * The email of the IAM user. For Guest users, this argument is not editable.
      */
     email: pulumi.Input<string>;
+    /**
+     * The user's first name.
+     */
+    firstName?: pulumi.Input<string>;
+    /**
+     * The user's last name.
+     */
+    lastName?: pulumi.Input<string>;
+    /**
+     * The user's locale (e.g., en_US).
+     *
+     * Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+     */
+    locale?: pulumi.Input<string>;
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The password for first access.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * The user's phone number.
+     */
+    phoneNumber?: pulumi.Input<string>;
+    /**
+     * Whether or not to send an email containing the password for first access.
+     */
+    sendPasswordEmail?: pulumi.Input<boolean>;
+    /**
+     * Whether or not to send a welcome email that includes onboarding information.
+     */
+    sendWelcomeEmail?: pulumi.Input<boolean>;
+    /**
      * The tags associated with the user.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+     */
+    username?: pulumi.Input<string>;
 }

@@ -146,6 +146,17 @@ export interface BaremetalServerPrivateNetwork {
     vlan: number;
 }
 
+export interface BlockSnapshotImport {
+    /**
+     * Bucket containing qcow
+     */
+    bucket: string;
+    /**
+     * Key of the qcow file in the specified bucket
+     */
+    key: string;
+}
+
 export interface CockpitAlertManagerContactPoint {
     /**
      * Email addresses for the alert receivers
@@ -947,6 +958,17 @@ export interface GetBillingInvoicesInvoice {
      * The total amount, untaxed.
      */
     totalUntaxed: string;
+}
+
+export interface GetBlockSnapshotImport {
+    /**
+     * Bucket containing qcow
+     */
+    bucket: string;
+    /**
+     * Key of the qcow file in the specified bucket
+     */
+    key: string;
 }
 
 export interface GetCockpitEndpoint {
@@ -2442,6 +2464,17 @@ export interface GetLoadbalancerPrivateNetwork {
      * (Defaults to provider `zone`) The zone in which the Load Balancer exists.
      */
     zone: string;
+}
+
+export interface GetMongoDbInstancePrivateIp {
+    /**
+     * The private IPv4 address
+     */
+    address: string;
+    /**
+     * The ID of the MongoDB® Instance.
+     */
+    id: string;
 }
 
 export interface GetMongoDbInstancePrivateNetwork {
@@ -3955,6 +3988,17 @@ export interface MnqSqsCredentialsPermissions {
     canReceive: boolean;
 }
 
+export interface MongoDbInstancePrivateIp {
+    /**
+     * The private IPv4 address.
+     */
+    address: string;
+    /**
+     * The ID of the endpoint.
+     */
+    id: string;
+}
+
 export interface MongoDbInstancePrivateNetwork {
     /**
      * List of DNS records for your endpoint.
@@ -4444,6 +4488,37 @@ export interface WebhostingRecord {
     value: string;
 }
 
+export namespace account {
+    export interface GetProjectsProject {
+        /**
+         * (Computed) The date and time when the project was created.
+         */
+        createdAt: string;
+        /**
+         * (Computed) The description of the project.
+         */
+        description: string;
+        /**
+         * (Computed) The unique identifier of the project.
+         */
+        id: string;
+        /**
+         * (Computed) The name of the project.
+         */
+        name: string;
+        /**
+         * The unique identifier of the Organization with which the Projects are associated.
+         * If no default `organizationId` is set, one must be set explicitly in this datasource
+         */
+        organizationId: string;
+        /**
+         * (Computed) The date and time when the project was updated.
+         */
+        updatedAt: string;
+    }
+
+}
+
 export namespace applesilicon {
     export interface ServerPrivateNetwork {
         /**
@@ -4571,6 +4646,31 @@ export namespace billing {
          * The total amount, untaxed.
          */
         totalUntaxed: string;
+    }
+
+}
+
+export namespace block {
+    export interface GetSnapshotImport {
+        /**
+         * Bucket containing qcow
+         */
+        bucket: string;
+        /**
+         * Key of the qcow file in the specified bucket
+         */
+        key: string;
+    }
+
+    export interface SnapshotImport {
+        /**
+         * Bucket containing qcow
+         */
+        bucket: string;
+        /**
+         * Key of the qcow file in the specified bucket
+         */
+        key: string;
     }
 
 }
@@ -8500,6 +8600,17 @@ export namespace mnq {
 }
 
 export namespace mongodb {
+    export interface GetInstancePrivateIp {
+        /**
+         * The private IPv4 address
+         */
+        address: string;
+        /**
+         * The ID of the MongoDB® Instance.
+         */
+        id: string;
+    }
+
     export interface GetInstancePrivateNetwork {
         /**
          * List of DNS records for your endpoint
@@ -8536,6 +8647,17 @@ export namespace mongodb {
          * TCP port of the endpoint
          */
         port: number;
+    }
+
+    export interface InstancePrivateIp {
+        /**
+         * The private IPv4 address.
+         */
+        address: string;
+        /**
+         * The ID of the endpoint.
+         */
+        id: string;
     }
 
     export interface InstancePrivateNetwork {

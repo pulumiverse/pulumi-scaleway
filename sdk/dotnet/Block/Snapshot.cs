@@ -59,6 +59,12 @@ namespace Pulumiverse.Scaleway.Block
     public partial class Snapshot : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Import snapshot from a qcow
+        /// </summary>
+        [Output("import")]
+        public Output<Outputs.SnapshotImport?> Import { get; private set; } = null!;
+
+        /// <summary>
         /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Output("name")]
@@ -80,7 +86,7 @@ namespace Pulumiverse.Scaleway.Block
         /// The ID of the volume to take a snapshot from.
         /// </summary>
         [Output("volumeId")]
-        public Output<string> VolumeId { get; private set; } = null!;
+        public Output<string?> VolumeId { get; private set; } = null!;
 
         /// <summary>
         /// ). The zone in which the snapshot should be created.
@@ -96,7 +102,7 @@ namespace Pulumiverse.Scaleway.Block
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Snapshot(string name, SnapshotArgs args, CustomResourceOptions? options = null)
+        public Snapshot(string name, SnapshotArgs? args = null, CustomResourceOptions? options = null)
             : base("scaleway:block/snapshot:Snapshot", name, args ?? new SnapshotArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -140,6 +146,12 @@ namespace Pulumiverse.Scaleway.Block
     public sealed class SnapshotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Import snapshot from a qcow
+        /// </summary>
+        [Input("import")]
+        public Input<Inputs.SnapshotImportArgs>? Import { get; set; }
+
+        /// <summary>
         /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>
         [Input("name")]
@@ -166,8 +178,8 @@ namespace Pulumiverse.Scaleway.Block
         /// <summary>
         /// The ID of the volume to take a snapshot from.
         /// </summary>
-        [Input("volumeId", required: true)]
-        public Input<string> VolumeId { get; set; } = null!;
+        [Input("volumeId")]
+        public Input<string>? VolumeId { get; set; }
 
         /// <summary>
         /// ). The zone in which the snapshot should be created.
@@ -183,6 +195,12 @@ namespace Pulumiverse.Scaleway.Block
 
     public sealed class SnapshotState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Import snapshot from a qcow
+        /// </summary>
+        [Input("import")]
+        public Input<Inputs.SnapshotImportGetArgs>? Import { get; set; }
+
         /// <summary>
         /// The name of the snapshot. If not provided, a name will be randomly generated.
         /// </summary>

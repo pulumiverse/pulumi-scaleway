@@ -92,6 +92,50 @@ import (
 //
 // ```
 //
+// ### Private Network and Public Network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
+//				Name:   pulumi.String("my_private_network"),
+//				Region: pulumi.String("fr-par"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
+//				Name:           pulumi.String("test-mongodb-basic1"),
+//				Version:        pulumi.String("7.0.12"),
+//				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
+//				NodeNumber:     pulumi.Int(1),
+//				UserName:       pulumi.String("my_initial_user"),
+//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
+//				VolumeSizeInGb: pulumi.Int(5),
+//				PrivateNetwork: &mongodb.InstancePrivateNetworkArgs{
+//					PnId: pulumi.Any(pn02.Id),
+//				},
+//				PublicNetwork: &mongodb.InstancePublicNetworkArgs{},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Restore From Snapshot
 //
 // ```go
@@ -145,11 +189,14 @@ type MongoDbInstance struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password of the user.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The private IPv4 address associated with the instance.
+	PrivateIps MongoDbInstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork MongoDbInstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Public network specs details.
+	// Public network endpoint configuration (no arguments).
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork MongoDbInstancePublicNetworkOutput `pulumi:"publicNetwork"`
 	// The region you want to attach the resource to
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -224,11 +271,14 @@ type mongoDbInstanceState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// The private IPv4 address associated with the instance.
+	PrivateIps []MongoDbInstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork *MongoDbInstancePrivateNetwork `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// Public network specs details.
+	// Public network endpoint configuration (no arguments).
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork *MongoDbInstancePublicNetwork `pulumi:"publicNetwork"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -261,11 +311,14 @@ type MongoDbInstanceState struct {
 	NodeType pulumi.StringPtrInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// The private IPv4 address associated with the instance.
+	PrivateIps MongoDbInstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork MongoDbInstancePrivateNetworkPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// Public network specs details.
+	// Public network endpoint configuration (no arguments).
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork MongoDbInstancePublicNetworkPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -300,11 +353,14 @@ type mongoDbInstanceArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// The private IPv4 address associated with the instance.
+	PrivateIps []MongoDbInstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork *MongoDbInstancePrivateNetwork `pulumi:"privateNetwork"`
 	// The projectId you want to attach the resource to
 	ProjectId *string `pulumi:"projectId"`
-	// Public network specs details.
+	// Public network endpoint configuration (no arguments).
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork *MongoDbInstancePublicNetwork `pulumi:"publicNetwork"`
 	// The region you want to attach the resource to
 	Region *string `pulumi:"region"`
@@ -334,11 +390,14 @@ type MongoDbInstanceArgs struct {
 	NodeType pulumi.StringInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// The private IPv4 address associated with the instance.
+	PrivateIps MongoDbInstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork MongoDbInstancePrivateNetworkPtrInput
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringPtrInput
-	// Public network specs details.
+	// Public network endpoint configuration (no arguments).
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork MongoDbInstancePublicNetworkPtrInput
 	// The region you want to attach the resource to
 	Region pulumi.StringPtrInput
@@ -470,6 +529,11 @@ func (o MongoDbInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// The private IPv4 address associated with the instance.
+func (o MongoDbInstanceOutput) PrivateIps() MongoDbInstancePrivateIpArrayOutput {
+	return o.ApplyT(func(v *MongoDbInstance) MongoDbInstancePrivateIpArrayOutput { return v.PrivateIps }).(MongoDbInstancePrivateIpArrayOutput)
+}
+
 // Private Network endpoints of the Database Instance.
 func (o MongoDbInstanceOutput) PrivateNetwork() MongoDbInstancePrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) MongoDbInstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(MongoDbInstancePrivateNetworkPtrOutput)
@@ -480,7 +544,8 @@ func (o MongoDbInstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Public network specs details.
+// Public network endpoint configuration (no arguments).
+// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 func (o MongoDbInstanceOutput) PublicNetwork() MongoDbInstancePublicNetworkOutput {
 	return o.ApplyT(func(v *MongoDbInstance) MongoDbInstancePublicNetworkOutput { return v.PublicNetwork }).(MongoDbInstancePublicNetworkOutput)
 }

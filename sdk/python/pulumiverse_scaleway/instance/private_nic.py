@@ -25,6 +25,7 @@ class PrivateNicArgs:
                  server_id: pulumi.Input[str],
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNicPrivateIpArgs']]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
@@ -33,6 +34,7 @@ class PrivateNicArgs:
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: IPAM ip list, should be for internal use only
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipam_ip_ids: IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+        :param pulumi.Input[Sequence[pulumi.Input['PrivateNicPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private NIC.
         :param pulumi.Input[str] zone: `zone`) The zone in which the server must be created.
         """
@@ -42,6 +44,8 @@ class PrivateNicArgs:
             pulumi.set(__self__, "ip_ids", ip_ids)
         if ipam_ip_ids is not None:
             pulumi.set(__self__, "ipam_ip_ids", ipam_ip_ids)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if zone is not None:
@@ -94,6 +98,18 @@ class PrivateNicArgs:
     @ipam_ip_ids.setter
     def ipam_ip_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "ipam_ip_ids", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNicPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateNicPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter
@@ -263,6 +279,7 @@ class PrivateNic(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateNicPrivateIpArgs', 'PrivateNicPrivateIpArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -345,6 +362,7 @@ class PrivateNic(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ip_ids: IPAM ip list, should be for internal use only
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ipam_ip_ids: IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateNicPrivateIpArgs', 'PrivateNicPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[str] private_network_id: The ID of the private network attached to.
         :param pulumi.Input[str] server_id: The ID of the server associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the private NIC.
@@ -446,6 +464,7 @@ class PrivateNic(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ipam_ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateNicPrivateIpArgs', 'PrivateNicPrivateIpArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  server_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -461,6 +480,7 @@ class PrivateNic(pulumi.CustomResource):
 
             __props__.__dict__["ip_ids"] = ip_ids
             __props__.__dict__["ipam_ip_ids"] = ipam_ip_ids
+            __props__.__dict__["private_ips"] = private_ips
             if private_network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_network_id'")
             __props__.__dict__["private_network_id"] = private_network_id
@@ -470,7 +490,6 @@ class PrivateNic(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["zone"] = zone
             __props__.__dict__["mac_address"] = None
-            __props__.__dict__["private_ips"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/instancePrivateNic:InstancePrivateNic")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
         super(PrivateNic, __self__).__init__(

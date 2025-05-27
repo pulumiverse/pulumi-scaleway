@@ -344,6 +344,8 @@ type vpcGatewayNetworkArgs struct {
 	GatewayId string `pulumi:"gatewayId"`
 	// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs []VpcGatewayNetworkIpamConfig `pulumi:"ipamConfigs"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps []VpcGatewayNetworkPrivateIp `pulumi:"privateIps"`
 	// The ID of the Private Network.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
@@ -378,6 +380,8 @@ type VpcGatewayNetworkArgs struct {
 	GatewayId pulumi.StringInput
 	// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	IpamConfigs VpcGatewayNetworkIpamConfigArrayInput
+	// The private IPv4 address associated with the resource.
+	PrivateIps VpcGatewayNetworkPrivateIpArrayInput
 	// The ID of the Private Network.
 	PrivateNetworkId pulumi.StringInput
 	// Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.

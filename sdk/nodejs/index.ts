@@ -280,11 +280,6 @@ export const getCockpit: typeof import("./getCockpit").getCockpit = null as any;
 export const getCockpitOutput: typeof import("./getCockpit").getCockpitOutput = null as any;
 utilities.lazyLoad(exports, ["getCockpit","getCockpitOutput"], () => require("./getCockpit"));
 
-export { GetCockpitPlanArgs, GetCockpitPlanResult, GetCockpitPlanOutputArgs } from "./getCockpitPlan";
-export const getCockpitPlan: typeof import("./getCockpitPlan").getCockpitPlan = null as any;
-export const getCockpitPlanOutput: typeof import("./getCockpitPlan").getCockpitPlanOutput = null as any;
-utilities.lazyLoad(exports, ["getCockpitPlan","getCockpitPlanOutput"], () => require("./getCockpitPlan"));
-
 export { GetCockpitSourceArgs, GetCockpitSourceResult, GetCockpitSourceOutputArgs } from "./getCockpitSource";
 export const getCockpitSource: typeof import("./getCockpitSource").getCockpitSource = null as any;
 export const getCockpitSourceOutput: typeof import("./getCockpitSource").getCockpitSourceOutput = null as any;

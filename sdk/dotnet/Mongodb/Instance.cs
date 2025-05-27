@@ -74,6 +74,41 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// });
     /// ```
     /// 
+    /// ### Private Network and Public Network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
+    ///     {
+    ///         Name = "my_private_network",
+    ///         Region = "fr-par",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Mongodb.Instance("main", new()
+    ///     {
+    ///         Name = "test-mongodb-basic1",
+    ///         Version = "7.0.12",
+    ///         NodeType = "MGDB-PLAY2-NANO",
+    ///         NodeNumber = 1,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 5,
+    ///         PrivateNetwork = new Scaleway.Mongodb.Inputs.InstancePrivateNetworkArgs
+    ///         {
+    ///             PnId = pn02.Id,
+    ///         },
+    ///         PublicNetwork = null,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Restore From Snapshot
     /// 
     /// ```csharp
@@ -139,6 +174,12 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// The private IPv4 address associated with the instance.
+        /// </summary>
+        [Output("privateIps")]
+        public Output<ImmutableArray<Outputs.InstancePrivateIp>> PrivateIps { get; private set; } = null!;
+
+        /// <summary>
         /// Private Network endpoints of the Database Instance.
         /// </summary>
         [Output("privateNetwork")]
@@ -151,7 +192,8 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Public network specs details.
+        /// Public network endpoint configuration (no arguments).
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Output("publicNetwork")]
         public Output<Outputs.InstancePublicNetwork> PublicNetwork { get; private set; } = null!;
@@ -299,6 +341,18 @@ namespace Pulumiverse.Scaleway.Mongodb
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.InstancePrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the instance.
+        /// </summary>
+        public InputList<Inputs.InstancePrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.InstancePrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// Private Network endpoints of the Database Instance.
         /// </summary>
@@ -312,7 +366,8 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Public network specs details.
+        /// Public network endpoint configuration (no arguments).
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.InstancePublicNetworkArgs>? PublicNetwork { get; set; }
@@ -425,6 +480,18 @@ namespace Pulumiverse.Scaleway.Mongodb
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.InstancePrivateIpGetArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the instance.
+        /// </summary>
+        public InputList<Inputs.InstancePrivateIpGetArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.InstancePrivateIpGetArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// Private Network endpoints of the Database Instance.
         /// </summary>
@@ -438,7 +505,8 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Public network specs details.
+        /// Public network endpoint configuration (no arguments).
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.InstancePublicNetworkGetArgs>? PublicNetwork { get; set; }

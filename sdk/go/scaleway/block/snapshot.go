@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
@@ -67,6 +66,8 @@ import (
 type Snapshot struct {
 	pulumi.CustomResourceState
 
+	// Import snapshot from a qcow
+	Import SnapshotImportPtrOutput `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -74,7 +75,7 @@ type Snapshot struct {
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
-	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
+	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
 	Zone pulumi.StringOutput `pulumi:"zone"`
 }
@@ -83,12 +84,9 @@ type Snapshot struct {
 func NewSnapshot(ctx *pulumi.Context,
 	name string, args *SnapshotArgs, opts ...pulumi.ResourceOption) (*Snapshot, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &SnapshotArgs{}
 	}
 
-	if args.VolumeId == nil {
-		return nil, errors.New("invalid value for required argument 'VolumeId'")
-	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
 			Type: pulumi.String("scaleway:index/blockSnapshot:BlockSnapshot"),
@@ -118,6 +116,8 @@ func GetSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Snapshot resources.
 type snapshotState struct {
+	// Import snapshot from a qcow
+	Import *SnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -131,6 +131,8 @@ type snapshotState struct {
 }
 
 type SnapshotState struct {
+	// Import snapshot from a qcow
+	Import SnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -148,6 +150,8 @@ func (SnapshotState) ElementType() reflect.Type {
 }
 
 type snapshotArgs struct {
+	// Import snapshot from a qcow
+	Import *SnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -155,13 +159,15 @@ type snapshotArgs struct {
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
 	// The ID of the volume to take a snapshot from.
-	VolumeId string `pulumi:"volumeId"`
+	VolumeId *string `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
 	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a Snapshot resource.
 type SnapshotArgs struct {
+	// Import snapshot from a qcow
+	Import SnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
 	// ). The ID of the Scaleway Project the snapshot is associated with.
@@ -169,7 +175,7 @@ type SnapshotArgs struct {
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
 	// The ID of the volume to take a snapshot from.
-	VolumeId pulumi.StringInput
+	VolumeId pulumi.StringPtrInput
 	// ). The zone in which the snapshot should be created.
 	Zone pulumi.StringPtrInput
 }
@@ -261,6 +267,11 @@ func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) Snapsho
 	return o
 }
 
+// Import snapshot from a qcow
+func (o SnapshotOutput) Import() SnapshotImportPtrOutput {
+	return o.ApplyT(func(v *Snapshot) SnapshotImportPtrOutput { return v.Import }).(SnapshotImportPtrOutput)
+}
+
 // The name of the snapshot. If not provided, a name will be randomly generated.
 func (o SnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -277,8 +288,8 @@ func (o SnapshotOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The ID of the volume to take a snapshot from.
-func (o SnapshotOutput) VolumeId() pulumi.StringOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
+func (o SnapshotOutput) VolumeId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.VolumeId }).(pulumi.StringPtrOutput)
 }
 
 // ). The zone in which the snapshot should be created.

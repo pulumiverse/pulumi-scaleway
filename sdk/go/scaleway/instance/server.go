@@ -765,6 +765,8 @@ type serverArgs struct {
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []ServerPrivateIp `pulumi:"privateIps"`
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
@@ -845,6 +847,8 @@ type ServerArgs struct {
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayInput
 	// The private network associated with the server.
 	// Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
 	PrivateNetworks ServerPrivateNetworkArrayInput

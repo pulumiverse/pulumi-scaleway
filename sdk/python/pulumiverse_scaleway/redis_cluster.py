@@ -28,6 +28,7 @@ class RedisClusterArgs:
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
                  cluster_size: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input['RedisClusterPublicNetworkArgs']] = None,
@@ -65,6 +66,7 @@ class RedisClusterArgs:
                > **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
                recreate your cluster as you will be switching to the cluster mode.
         :param pulumi.Input[str] name: The name of the Redis™ cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis™ cluster is
@@ -90,6 +92,8 @@ class RedisClusterArgs:
             pulumi.set(__self__, "cluster_size", cluster_size)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -209,6 +213,18 @@ class RedisClusterArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetworks")
@@ -669,6 +685,7 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
@@ -783,6 +800,7 @@ class RedisCluster(pulumi.CustomResource):
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
         :param pulumi.Input[str] password: Password for the first user of the Redis™ cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the Redis™ cluster is
@@ -908,6 +926,7 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  node_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  public_network: Optional[pulumi.Input[Union['RedisClusterPublicNetworkArgs', 'RedisClusterPublicNetworkArgsDict']]] = None,
@@ -936,6 +955,7 @@ class RedisCluster(pulumi.CustomResource):
             if password is None and not opts.urn:
                 raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_network"] = public_network
@@ -951,7 +971,6 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["certificate"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["private_ips"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)

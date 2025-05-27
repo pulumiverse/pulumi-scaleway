@@ -133,7 +133,7 @@ export class InstancePrivateNic extends pulumi.CustomResource {
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public /*out*/ readonly privateIps!: pulumi.Output<outputs.InstancePrivateNicPrivateIp[]>;
+    public readonly privateIps!: pulumi.Output<outputs.InstancePrivateNicPrivateIp[]>;
     /**
      * The ID of the private network attached to.
      */
@@ -185,12 +185,12 @@ export class InstancePrivateNic extends pulumi.CustomResource {
             }
             resourceInputs["ipIds"] = args ? args.ipIds : undefined;
             resourceInputs["ipamIpIds"] = args ? args.ipamIpIds : undefined;
+            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["serverId"] = args ? args.serverId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["macAddress"] = undefined /*out*/;
-            resourceInputs["privateIps"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstancePrivateNic.__pulumiType, name, resourceInputs, opts);
@@ -247,6 +247,10 @@ export interface InstancePrivateNicArgs {
      * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
      */
     ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.InstancePrivateNicPrivateIp>[]>;
     /**
      * The ID of the private network attached to.
      */

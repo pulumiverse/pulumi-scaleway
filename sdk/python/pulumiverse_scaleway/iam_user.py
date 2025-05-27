@@ -20,31 +20,103 @@ __all__ = ['IamUserArgs', 'IamUser']
 class IamUserArgs:
     def __init__(__self__, *,
                  email: pulumi.Input[str],
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 locale: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 password: Optional[pulumi.Input[str]] = None,
+                 phone_number: Optional[pulumi.Input[str]] = None,
+                 send_password_email: Optional[pulumi.Input[bool]] = None,
+                 send_welcome_email: Optional[pulumi.Input[bool]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IamUser resource.
-        :param pulumi.Input[str] email: The email of the IAM user.
+        :param pulumi.Input[str] email: The email of the IAM user. For Guest users, this argument is not editable.
+        :param pulumi.Input[str] first_name: The user's first name.
+        :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[str] locale: The user's locale (e.g., en_US).
+               
+               Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[str] password: The password for first access.
+        :param pulumi.Input[str] phone_number: The user's phone number.
+        :param pulumi.Input[bool] send_password_email: Whether or not to send an email containing the password for first access.
+        :param pulumi.Input[bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
+        :param pulumi.Input[str] username: The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
         """
         pulumi.set(__self__, "email", email)
+        if first_name is not None:
+            pulumi.set(__self__, "first_name", first_name)
+        if last_name is not None:
+            pulumi.set(__self__, "last_name", last_name)
+        if locale is not None:
+            pulumi.set(__self__, "locale", locale)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if phone_number is not None:
+            pulumi.set(__self__, "phone_number", phone_number)
+        if send_password_email is not None:
+            pulumi.set(__self__, "send_password_email", send_password_email)
+        if send_welcome_email is not None:
+            pulumi.set(__self__, "send_welcome_email", send_welcome_email)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter
     def email(self) -> pulumi.Input[str]:
         """
-        The email of the IAM user.
+        The email of the IAM user. For Guest users, this argument is not editable.
         """
         return pulumi.get(self, "email")
 
     @email.setter
     def email(self, value: pulumi.Input[str]):
         pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's first name.
+        """
+        return pulumi.get(self, "first_name")
+
+    @first_name.setter
+    def first_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "first_name", value)
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's last name.
+        """
+        return pulumi.get(self, "last_name")
+
+    @last_name.setter
+    def last_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_name", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's locale (e.g., en_US).
+
+        Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "locale", value)
 
     @property
     @pulumi.getter(name="organizationId")
@@ -60,6 +132,54 @@ class IamUserArgs:
 
     @property
     @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password for first access.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's phone number.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @phone_number.setter
+    def phone_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "phone_number", value)
+
+    @property
+    @pulumi.getter(name="sendPasswordEmail")
+    def send_password_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to send an email containing the password for first access.
+        """
+        return pulumi.get(self, "send_password_email")
+
+    @send_password_email.setter
+    def send_password_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_password_email", value)
+
+    @property
+    @pulumi.getter(name="sendWelcomeEmail")
+    def send_welcome_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to send a welcome email that includes onboarding information.
+        """
+        return pulumi.get(self, "send_welcome_email")
+
+    @send_welcome_email.setter
+    def send_welcome_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_welcome_email", value)
+
+    @property
+    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The tags associated with the user.
@@ -70,6 +190,18 @@ class IamUserArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
 
 @pulumi.input_type
 class _IamUserState:
@@ -78,26 +210,46 @@ class _IamUserState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  deletable: Optional[pulumi.Input[bool]] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
                  last_login_at: Optional[pulumi.Input[str]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 locale: Optional[pulumi.Input[str]] = None,
+                 locked: Optional[pulumi.Input[bool]] = None,
                  mfa: Optional[pulumi.Input[bool]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 phone_number: Optional[pulumi.Input[str]] = None,
+                 send_password_email: Optional[pulumi.Input[bool]] = None,
+                 send_welcome_email: Optional[pulumi.Input[bool]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
-                 updated_at: Optional[pulumi.Input[str]] = None):
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 username: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamUser resources.
         :param pulumi.Input[str] account_root_user_id: The ID of the account root user associated with the user.
         :param pulumi.Input[str] created_at: The date and time of the creation of the IAM user.
         :param pulumi.Input[bool] deletable: Whether the IAM user is deletable.
-        :param pulumi.Input[str] email: The email of the IAM user.
+        :param pulumi.Input[str] email: The email of the IAM user. For Guest users, this argument is not editable.
+        :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input[str] last_login_at: The date of the last login.
+        :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[str] locale: The user's locale (e.g., en_US).
+               
+               Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        :param pulumi.Input[bool] locked: Whether the user is locked.
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[str] password: The password for first access.
+        :param pulumi.Input[str] phone_number: The user's phone number.
+        :param pulumi.Input[bool] send_password_email: Whether or not to send an email containing the password for first access.
+        :param pulumi.Input[bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
         :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
+        :param pulumi.Input[str] username: The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
         """
         if account_root_user_id is not None:
             pulumi.set(__self__, "account_root_user_id", account_root_user_id)
@@ -107,12 +259,28 @@ class _IamUserState:
             pulumi.set(__self__, "deletable", deletable)
         if email is not None:
             pulumi.set(__self__, "email", email)
+        if first_name is not None:
+            pulumi.set(__self__, "first_name", first_name)
         if last_login_at is not None:
             pulumi.set(__self__, "last_login_at", last_login_at)
+        if last_name is not None:
+            pulumi.set(__self__, "last_name", last_name)
+        if locale is not None:
+            pulumi.set(__self__, "locale", locale)
+        if locked is not None:
+            pulumi.set(__self__, "locked", locked)
         if mfa is not None:
             pulumi.set(__self__, "mfa", mfa)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if phone_number is not None:
+            pulumi.set(__self__, "phone_number", phone_number)
+        if send_password_email is not None:
+            pulumi.set(__self__, "send_password_email", send_password_email)
+        if send_welcome_email is not None:
+            pulumi.set(__self__, "send_welcome_email", send_welcome_email)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -121,6 +289,8 @@ class _IamUserState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
 
     @property
     @pulumi.getter(name="accountRootUserId")
@@ -162,13 +332,25 @@ class _IamUserState:
     @pulumi.getter
     def email(self) -> Optional[pulumi.Input[str]]:
         """
-        The email of the IAM user.
+        The email of the IAM user. For Guest users, this argument is not editable.
         """
         return pulumi.get(self, "email")
 
     @email.setter
     def email(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "email", value)
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's first name.
+        """
+        return pulumi.get(self, "first_name")
+
+    @first_name.setter
+    def first_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "first_name", value)
 
     @property
     @pulumi.getter(name="lastLoginAt")
@@ -181,6 +363,44 @@ class _IamUserState:
     @last_login_at.setter
     def last_login_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "last_login_at", value)
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's last name.
+        """
+        return pulumi.get(self, "last_name")
+
+    @last_name.setter
+    def last_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "last_name", value)
+
+    @property
+    @pulumi.getter
+    def locale(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's locale (e.g., en_US).
+
+        Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        """
+        return pulumi.get(self, "locale")
+
+    @locale.setter
+    def locale(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "locale", value)
+
+    @property
+    @pulumi.getter
+    def locked(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the user is locked.
+        """
+        return pulumi.get(self, "locked")
+
+    @locked.setter
+    def locked(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "locked", value)
 
     @property
     @pulumi.getter
@@ -205,6 +425,54 @@ class _IamUserState:
     @organization_id.setter
     def organization_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "organization_id", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        The password for first access.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> Optional[pulumi.Input[str]]:
+        """
+        The user's phone number.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @phone_number.setter
+    def phone_number(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "phone_number", value)
+
+    @property
+    @pulumi.getter(name="sendPasswordEmail")
+    def send_password_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to send an email containing the password for first access.
+        """
+        return pulumi.get(self, "send_password_email")
+
+    @send_password_email.setter
+    def send_password_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_password_email", value)
+
+    @property
+    @pulumi.getter(name="sendWelcomeEmail")
+    def send_welcome_email(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether or not to send a welcome email that includes onboarding information.
+        """
+        return pulumi.get(self, "send_welcome_email")
+
+    @send_welcome_email.setter
+    def send_welcome_email(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "send_welcome_email", value)
 
     @property
     @pulumi.getter
@@ -254,6 +522,18 @@ class _IamUserState:
     def updated_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "updated_at", value)
 
+    @property
+    @pulumi.getter
+    def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username", value)
+
 
 warnings.warn("""scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User""", DeprecationWarning)
 
@@ -266,8 +546,16 @@ class IamUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 locale: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 phone_number: Optional[pulumi.Input[str]] = None,
+                 send_password_email: Optional[pulumi.Input[bool]] = None,
+                 send_welcome_email: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Creates and manages Scaleway IAM Users.
@@ -275,14 +563,32 @@ class IamUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Guest user
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.iam.User("basic", email="test@test.com")
+        guest = scaleway.iam.User("guest",
+            email="foo@test.com",
+            tags=["test-tag"])
         ```
+
+        ### Member user
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        member = scaleway.iam.User("member",
+            email="foo@test.com",
+            tags=["test-tag"],
+            username="foo",
+            first_name="Foo",
+            last_name="Bar")
+        ```
+
+        When `username` is set, the user is created as a [Member](https://www.scaleway.com/en/docs/iam/concepts/#member). Otherwise, it is created as a [Guest](https://www.scaleway.com/en/docs/iam/concepts/#guest).
 
         ## Import
 
@@ -296,9 +602,19 @@ class IamUser(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] email: The email of the IAM user.
+        :param pulumi.Input[str] email: The email of the IAM user. For Guest users, this argument is not editable.
+        :param pulumi.Input[str] first_name: The user's first name.
+        :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[str] locale: The user's locale (e.g., en_US).
+               
+               Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[str] password: The password for first access.
+        :param pulumi.Input[str] phone_number: The user's phone number.
+        :param pulumi.Input[bool] send_password_email: Whether or not to send an email containing the password for first access.
+        :param pulumi.Input[bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
+        :param pulumi.Input[str] username: The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
         """
         ...
     @overload
@@ -312,14 +628,32 @@ class IamUser(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Guest user
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        basic = scaleway.iam.User("basic", email="test@test.com")
+        guest = scaleway.iam.User("guest",
+            email="foo@test.com",
+            tags=["test-tag"])
         ```
+
+        ### Member user
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        member = scaleway.iam.User("member",
+            email="foo@test.com",
+            tags=["test-tag"],
+            username="foo",
+            first_name="Foo",
+            last_name="Bar")
+        ```
+
+        When `username` is set, the user is created as a [Member](https://www.scaleway.com/en/docs/iam/concepts/#member). Otherwise, it is created as a [Guest](https://www.scaleway.com/en/docs/iam/concepts/#guest).
 
         ## Import
 
@@ -347,8 +681,16 @@ class IamUser(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  email: Optional[pulumi.Input[str]] = None,
+                 first_name: Optional[pulumi.Input[str]] = None,
+                 last_name: Optional[pulumi.Input[str]] = None,
+                 locale: Optional[pulumi.Input[str]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input[str]] = None,
+                 phone_number: Optional[pulumi.Input[str]] = None,
+                 send_password_email: Optional[pulumi.Input[bool]] = None,
+                 send_welcome_email: Optional[pulumi.Input[bool]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 username: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         pulumi.log.warn("""IamUser is deprecated: scaleway.index/iamuser.IamUser has been deprecated in favor of scaleway.iam/user.User""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -362,12 +704,21 @@ class IamUser(pulumi.CustomResource):
             if email is None and not opts.urn:
                 raise TypeError("Missing required property 'email'")
             __props__.__dict__["email"] = email
+            __props__.__dict__["first_name"] = first_name
+            __props__.__dict__["last_name"] = last_name
+            __props__.__dict__["locale"] = locale
             __props__.__dict__["organization_id"] = organization_id
+            __props__.__dict__["password"] = password
+            __props__.__dict__["phone_number"] = phone_number
+            __props__.__dict__["send_password_email"] = send_password_email
+            __props__.__dict__["send_welcome_email"] = send_welcome_email
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["username"] = username
             __props__.__dict__["account_root_user_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["deletable"] = None
             __props__.__dict__["last_login_at"] = None
+            __props__.__dict__["locked"] = None
             __props__.__dict__["mfa"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["type"] = None
@@ -386,13 +737,22 @@ class IamUser(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             deletable: Optional[pulumi.Input[bool]] = None,
             email: Optional[pulumi.Input[str]] = None,
+            first_name: Optional[pulumi.Input[str]] = None,
             last_login_at: Optional[pulumi.Input[str]] = None,
+            last_name: Optional[pulumi.Input[str]] = None,
+            locale: Optional[pulumi.Input[str]] = None,
+            locked: Optional[pulumi.Input[bool]] = None,
             mfa: Optional[pulumi.Input[bool]] = None,
             organization_id: Optional[pulumi.Input[str]] = None,
+            password: Optional[pulumi.Input[str]] = None,
+            phone_number: Optional[pulumi.Input[str]] = None,
+            send_password_email: Optional[pulumi.Input[bool]] = None,
+            send_welcome_email: Optional[pulumi.Input[bool]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
-            updated_at: Optional[pulumi.Input[str]] = None) -> 'IamUser':
+            updated_at: Optional[pulumi.Input[str]] = None,
+            username: Optional[pulumi.Input[str]] = None) -> 'IamUser':
         """
         Get an existing IamUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -403,14 +763,25 @@ class IamUser(pulumi.CustomResource):
         :param pulumi.Input[str] account_root_user_id: The ID of the account root user associated with the user.
         :param pulumi.Input[str] created_at: The date and time of the creation of the IAM user.
         :param pulumi.Input[bool] deletable: Whether the IAM user is deletable.
-        :param pulumi.Input[str] email: The email of the IAM user.
+        :param pulumi.Input[str] email: The email of the IAM user. For Guest users, this argument is not editable.
+        :param pulumi.Input[str] first_name: The user's first name.
         :param pulumi.Input[str] last_login_at: The date of the last login.
+        :param pulumi.Input[str] last_name: The user's last name.
+        :param pulumi.Input[str] locale: The user's locale (e.g., en_US).
+               
+               Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        :param pulumi.Input[bool] locked: Whether the user is locked.
         :param pulumi.Input[bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[str] organization_id: `organization_id`) The ID of the organization the user is associated with.
+        :param pulumi.Input[str] password: The password for first access.
+        :param pulumi.Input[str] phone_number: The user's phone number.
+        :param pulumi.Input[bool] send_password_email: Whether or not to send an email containing the password for first access.
+        :param pulumi.Input[bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
         :param pulumi.Input[str] status: The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: The tags associated with the user.
         :param pulumi.Input[str] type: The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
         :param pulumi.Input[str] updated_at: The date and time of the last update of the IAM user.
+        :param pulumi.Input[str] username: The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -420,13 +791,22 @@ class IamUser(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deletable"] = deletable
         __props__.__dict__["email"] = email
+        __props__.__dict__["first_name"] = first_name
         __props__.__dict__["last_login_at"] = last_login_at
+        __props__.__dict__["last_name"] = last_name
+        __props__.__dict__["locale"] = locale
+        __props__.__dict__["locked"] = locked
         __props__.__dict__["mfa"] = mfa
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["password"] = password
+        __props__.__dict__["phone_number"] = phone_number
+        __props__.__dict__["send_password_email"] = send_password_email
+        __props__.__dict__["send_welcome_email"] = send_welcome_email
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["username"] = username
         return IamUser(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -457,9 +837,17 @@ class IamUser(pulumi.CustomResource):
     @pulumi.getter
     def email(self) -> pulumi.Output[str]:
         """
-        The email of the IAM user.
+        The email of the IAM user. For Guest users, this argument is not editable.
         """
         return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter(name="firstName")
+    def first_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The user's first name.
+        """
+        return pulumi.get(self, "first_name")
 
     @property
     @pulumi.getter(name="lastLoginAt")
@@ -468,6 +856,32 @@ class IamUser(pulumi.CustomResource):
         The date of the last login.
         """
         return pulumi.get(self, "last_login_at")
+
+    @property
+    @pulumi.getter(name="lastName")
+    def last_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        The user's last name.
+        """
+        return pulumi.get(self, "last_name")
+
+    @property
+    @pulumi.getter
+    def locale(self) -> pulumi.Output[str]:
+        """
+        The user's locale (e.g., en_US).
+
+        Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        """
+        return pulumi.get(self, "locale")
+
+    @property
+    @pulumi.getter
+    def locked(self) -> pulumi.Output[bool]:
+        """
+        Whether the user is locked.
+        """
+        return pulumi.get(self, "locked")
 
     @property
     @pulumi.getter
@@ -484,6 +898,38 @@ class IamUser(pulumi.CustomResource):
         `organization_id`) The ID of the organization the user is associated with.
         """
         return pulumi.get(self, "organization_id")
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Output[Optional[str]]:
+        """
+        The password for first access.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> pulumi.Output[Optional[str]]:
+        """
+        The user's phone number.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @property
+    @pulumi.getter(name="sendPasswordEmail")
+    def send_password_email(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether or not to send an email containing the password for first access.
+        """
+        return pulumi.get(self, "send_password_email")
+
+    @property
+    @pulumi.getter(name="sendWelcomeEmail")
+    def send_welcome_email(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether or not to send a welcome email that includes onboarding information.
+        """
+        return pulumi.get(self, "send_welcome_email")
 
     @property
     @pulumi.getter
@@ -516,4 +962,12 @@ class IamUser(pulumi.CustomResource):
         The date and time of the last update of the IAM user.
         """
         return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def username(self) -> pulumi.Output[str]:
+        """
+        The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        """
+        return pulumi.get(self, "username")
 

@@ -95,7 +95,10 @@ export class InstanceVolume extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     *
+     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
+     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -187,7 +190,10 @@ export interface InstanceVolumeState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     *
+     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
+     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type?: pulumi.Input<string>;
     /**
@@ -225,7 +231,10 @@ export interface InstanceVolumeArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of the volume. The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
+     *
+     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
+     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type: pulumi.Input<string>;
     /**

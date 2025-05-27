@@ -133,6 +133,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string NodeType;
         public readonly string Password;
+        public readonly ImmutableArray<Outputs.GetMongoDbInstancePrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetMongoDbInstancePrivateNetworkResult> PrivateNetworks;
         /// <summary>
         /// The ID of the project the instance belongs to.
@@ -180,6 +181,8 @@ namespace Pulumiverse.Scaleway
 
             string password,
 
+            ImmutableArray<Outputs.GetMongoDbInstancePrivateIpResult> privateIps,
+
             ImmutableArray<Outputs.GetMongoDbInstancePrivateNetworkResult> privateNetworks,
 
             string? projectId,
@@ -211,6 +214,7 @@ namespace Pulumiverse.Scaleway
             NodeNumber = nodeNumber;
             NodeType = nodeType;
             Password = password;
+            PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             PublicNetworks = publicNetworks;

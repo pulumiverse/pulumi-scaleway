@@ -74,6 +74,7 @@ export interface GetMongoDbInstanceResult {
      */
     readonly nodeType: string;
     readonly password: string;
+    readonly privateIps: outputs.GetMongoDbInstancePrivateIp[];
     readonly privateNetworks: outputs.GetMongoDbInstancePrivateNetwork[];
     /**
      * The ID of the project the instance belongs to.

@@ -23,6 +23,7 @@ __all__ = [
     'BaremetalServerOption',
     'BaremetalServerPrivateIp',
     'BaremetalServerPrivateNetwork',
+    'BlockSnapshotImport',
     'CockpitAlertManagerContactPoint',
     'CockpitEndpoint',
     'CockpitPushUrl',
@@ -105,6 +106,7 @@ __all__ = [
     'LoadbalancerPrivateNetwork',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
+    'MongoDbInstancePrivateIp',
     'MongoDbInstancePrivateNetwork',
     'MongoDbInstancePublicNetwork',
     'ObjectBucketAclAccessControlPolicy',
@@ -146,6 +148,7 @@ __all__ = [
     'GetBaremetalServerPrivateNetworkResult',
     'GetBillingConsumptionsConsumptionResult',
     'GetBillingInvoicesInvoiceResult',
+    'GetBlockSnapshotImportResult',
     'GetCockpitEndpointResult',
     'GetCockpitPushUrlResult',
     'GetContainerHealthCheckResult',
@@ -212,6 +215,7 @@ __all__ = [
     'GetLoadbalancerCertificateLetsencryptResult',
     'GetLoadbalancerPrivateIpResult',
     'GetLoadbalancerPrivateNetworkResult',
+    'GetMongoDbInstancePrivateIpResult',
     'GetMongoDbInstancePrivateNetworkResult',
     'GetMongoDbInstancePublicNetworkResult',
     'GetObjectBucketCorsRuleResult',
@@ -706,6 +710,35 @@ class BaremetalServerPrivateNetwork(dict):
         The VLAN ID associated to the private network.
         """
         return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
+class BlockSnapshotImport(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 key: str):
+        """
+        :param str bucket: Bucket containing qcow
+        :param str key: Key of the qcow file in the specified bucket
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        Bucket containing qcow
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Key of the qcow file in the specified bucket
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
@@ -6034,6 +6067,37 @@ class MnqSqsCredentialsPermissions(dict):
 
 
 @pulumi.output_type
+class MongoDbInstancePrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the endpoint.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class MongoDbInstancePrivateNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8435,6 +8499,35 @@ class GetBillingInvoicesInvoiceResult(dict):
         The total amount, untaxed.
         """
         return pulumi.get(self, "total_untaxed")
+
+
+@pulumi.output_type
+class GetBlockSnapshotImportResult(dict):
+    def __init__(__self__, *,
+                 bucket: str,
+                 key: str):
+        """
+        :param str bucket: Bucket containing qcow
+        :param str key: Key of the qcow file in the specified bucket
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> str:
+        """
+        Bucket containing qcow
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Key of the qcow file in the specified bucket
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
@@ -12477,6 +12570,35 @@ class GetLoadbalancerPrivateNetworkResult(dict):
         (Defaults to provider `zone`) The zone in which the Load Balancer exists.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetMongoDbInstancePrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the MongoDB® Instance.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the MongoDB® Instance.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

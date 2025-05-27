@@ -33,6 +33,7 @@ class InstanceServerArgs:
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  protected: Optional[pulumi.Input[bool]] = None,
@@ -79,6 +80,7 @@ class InstanceServerArgs:
                
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+        :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateNetworkArgs']]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -126,6 +128,8 @@ class InstanceServerArgs:
             pulumi.set(__self__, "name", name)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -315,6 +319,18 @@ class InstanceServerArgs:
     @placement_group_id.setter
     def placement_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "placement_group_id", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['InstanceServerPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetworks")
@@ -1068,6 +1084,7 @@ class InstanceServer(pulumi.CustomResource):
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateIpArgs', 'InstanceServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  protected: Optional[pulumi.Input[bool]] = None,
@@ -1291,6 +1308,7 @@ class InstanceServer(pulumi.CustomResource):
                
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateIpArgs', 'InstanceServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]] private_networks: The private network associated with the server.
                Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
@@ -1528,6 +1546,7 @@ class InstanceServer(pulumi.CustomResource):
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateIpArgs', 'InstanceServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstanceServerPrivateNetworkArgs', 'InstanceServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  protected: Optional[pulumi.Input[bool]] = None,
@@ -1561,6 +1580,7 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["ip_ids"] = ip_ids
             __props__.__dict__["name"] = name
             __props__.__dict__["placement_group_id"] = placement_group_id
+            __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["protected"] = protected
@@ -1581,7 +1601,6 @@ class InstanceServer(pulumi.CustomResource):
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["placement_group_policy_respected"] = None
             __props__.__dict__["private_ip"] = None
-            __props__.__dict__["private_ips"] = None
             __props__.__dict__["public_ip"] = None
         super(InstanceServer, __self__).__init__(
             'scaleway:index/instanceServer:InstanceServer',

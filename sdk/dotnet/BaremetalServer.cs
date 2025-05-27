@@ -474,6 +474,18 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.BaremetalServerPrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.BaremetalServerPrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.BaremetalServerPrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         [Input("privateNetworks")]
         private InputList<Inputs.BaremetalServerPrivateNetworkArgs>? _privateNetworks;
 

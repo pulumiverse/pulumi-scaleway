@@ -41,13 +41,14 @@ type LookupSnapshotArgs struct {
 // A collection of values returned by getSnapshot.
 type LookupSnapshotResult struct {
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Name       *string  `pulumi:"name"`
-	ProjectId  *string  `pulumi:"projectId"`
-	SnapshotId *string  `pulumi:"snapshotId"`
-	Tags       []string `pulumi:"tags"`
-	VolumeId   *string  `pulumi:"volumeId"`
-	Zone       *string  `pulumi:"zone"`
+	Id         string              `pulumi:"id"`
+	Imports    []GetSnapshotImport `pulumi:"imports"`
+	Name       *string             `pulumi:"name"`
+	ProjectId  *string             `pulumi:"projectId"`
+	SnapshotId *string             `pulumi:"snapshotId"`
+	Tags       []string            `pulumi:"tags"`
+	VolumeId   *string             `pulumi:"volumeId"`
+	Zone       *string             `pulumi:"zone"`
 }
 
 func LookupSnapshotOutput(ctx *pulumi.Context, args LookupSnapshotOutputArgs, opts ...pulumi.InvokeOption) LookupSnapshotResultOutput {
@@ -95,6 +96,10 @@ func (o LookupSnapshotResultOutput) ToLookupSnapshotResultOutputWithContext(ctx 
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSnapshotResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSnapshotResultOutput) Imports() GetSnapshotImportArrayOutput {
+	return o.ApplyT(func(v LookupSnapshotResult) []GetSnapshotImport { return v.Imports }).(GetSnapshotImportArrayOutput)
 }
 
 func (o LookupSnapshotResultOutput) Name() pulumi.StringPtrOutput {

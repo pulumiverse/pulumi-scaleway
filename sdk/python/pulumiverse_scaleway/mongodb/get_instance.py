@@ -27,7 +27,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, created_at=None, id=None, instance_id=None, name=None, node_number=None, node_type=None, password=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, tags=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, created_at=None, id=None, instance_id=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, tags=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -49,6 +49,9 @@ class GetInstanceResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if private_ips and not isinstance(private_ips, list):
+            raise TypeError("Expected argument 'private_ips' to be a list")
+        pulumi.set(__self__, "private_ips", private_ips)
         if private_networks and not isinstance(private_networks, list):
             raise TypeError("Expected argument 'private_networks' to be a list")
         pulumi.set(__self__, "private_networks", private_networks)
@@ -135,6 +138,11 @@ class GetInstanceResult:
     @pulumi.getter
     def password(self) -> str:
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetInstancePrivateIpResult']:
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="privateNetworks")
@@ -228,6 +236,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             node_number=self.node_number,
             node_type=self.node_type,
             password=self.password,
+            private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             public_networks=self.public_networks,
@@ -276,6 +285,7 @@ def get_instance(instance_id: Optional[str] = None,
         node_number=pulumi.get(__ret__, 'node_number'),
         node_type=pulumi.get(__ret__, 'node_type'),
         password=pulumi.get(__ret__, 'password'),
+        private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_networks=pulumi.get(__ret__, 'public_networks'),
@@ -321,6 +331,7 @@ def get_instance_output(instance_id: Optional[pulumi.Input[Optional[str]]] = Non
         node_number=pulumi.get(__response__, 'node_number'),
         node_type=pulumi.get(__response__, 'node_type'),
         password=pulumi.get(__response__, 'password'),
+        private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         public_networks=pulumi.get(__response__, 'public_networks'),

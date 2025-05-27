@@ -321,6 +321,18 @@ namespace Pulumiverse.Scaleway.Network
             set => _ipamConfigs = value;
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.GatewayNetworkPrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        public InputList<Inputs.GatewayNetworkPrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.GatewayNetworkPrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// The ID of the Private Network.
         /// </summary>

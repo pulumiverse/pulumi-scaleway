@@ -273,7 +273,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The private IPv4 address associated with the resource.
      */
-    public /*out*/ readonly privateIps!: pulumi.Output<outputs.databases.InstancePrivateIp[]>;
+    public readonly privateIps!: pulumi.Output<outputs.databases.InstancePrivateIp[]>;
     /**
      * List of Private Networks endpoints of the Database Instance.
      */
@@ -380,6 +380,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -393,7 +394,6 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["endpointIp"] = undefined /*out*/;
             resourceInputs["endpointPort"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
-            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -607,6 +607,10 @@ export interface InstanceArgs {
      * Password for the first user of the Database Instance.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The private IPv4 address associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.databases.InstancePrivateIp>[]>;
     /**
      * List of Private Networks endpoints of the Database Instance.
      */

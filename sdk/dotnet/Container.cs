@@ -135,7 +135,7 @@ namespace Pulumiverse.Scaleway
     ///                     },
     ///                 },
     ///                 FailureThreshold = 40,
-    ///                 Interval = "3s",
+    ///                 Interval = "5s",
     ///             },
     ///         },
     ///     });

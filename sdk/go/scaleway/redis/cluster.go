@@ -440,6 +440,8 @@ type clusterArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the Redis™ cluster.
 	Password string `pulumi:"password"`
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps []ClusterPrivateIp `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks []ClusterPrivateNetwork `pulumi:"privateNetworks"`
@@ -500,6 +502,8 @@ type ClusterArgs struct {
 	NodeType pulumi.StringInput
 	// Password for the first user of the Redis™ cluster.
 	Password pulumi.StringInput
+	// The list of private IPv4 addresses associated with the resource.
+	PrivateIps ClusterPrivateIpArrayInput
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
 	// network will be provided. More details on the Private Network section
 	PrivateNetworks ClusterPrivateNetworkArrayInput

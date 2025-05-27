@@ -28,6 +28,7 @@ class GatewayNetworkArgs:
                  enable_dhcp: Optional[pulumi.Input[bool]] = None,
                  enable_masquerade: Optional[pulumi.Input[bool]] = None,
                  ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
@@ -39,6 +40,7 @@ class GatewayNetworkArgs:
         :param pulumi.Input[bool] enable_dhcp: Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
                
@@ -67,6 +69,8 @@ class GatewayNetworkArgs:
             pulumi.set(__self__, "enable_masquerade", enable_masquerade)
         if ipam_configs is not None:
             pulumi.set(__self__, "ipam_configs", ipam_configs)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if static_address is not None:
             warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
             pulumi.log.warn("""static_address is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
@@ -161,6 +165,18 @@ class GatewayNetworkArgs:
     @ipam_configs.setter
     def ipam_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]]]):
         pulumi.set(self, "ipam_configs", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]:
+        """
+        The private IPv4 address associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="staticAddress")
@@ -459,6 +475,7 @@ class GatewayNetwork(pulumi.CustomResource):
                  enable_masquerade: Optional[pulumi.Input[bool]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
                  ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -545,6 +562,7 @@ class GatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[str] gateway_id: The ID of the Public Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[str] private_network_id: The ID of the Private Network.
         :param pulumi.Input[str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[str] zone: `zone`) The zone in which the gateway network should be created.
@@ -654,6 +672,7 @@ class GatewayNetwork(pulumi.CustomResource):
                  enable_masquerade: Optional[pulumi.Input[bool]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
                  ipam_configs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
                  static_address: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None,
@@ -674,6 +693,7 @@ class GatewayNetwork(pulumi.CustomResource):
                 raise TypeError("Missing required property 'gateway_id'")
             __props__.__dict__["gateway_id"] = gateway_id
             __props__.__dict__["ipam_configs"] = ipam_configs
+            __props__.__dict__["private_ips"] = private_ips
             if private_network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'private_network_id'")
             __props__.__dict__["private_network_id"] = private_network_id
@@ -681,7 +701,6 @@ class GatewayNetwork(pulumi.CustomResource):
             __props__.__dict__["zone"] = zone
             __props__.__dict__["created_at"] = None
             __props__.__dict__["mac_address"] = None
-            __props__.__dict__["private_ips"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork")])

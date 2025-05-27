@@ -257,6 +257,18 @@ namespace Pulumiverse.Scaleway
             set => _ipamIpIds = value;
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.InstancePrivateNicPrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.InstancePrivateNicPrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.InstancePrivateNicPrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// The ID of the private network attached to.
         /// </summary>

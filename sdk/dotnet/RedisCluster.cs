@@ -390,6 +390,18 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.RedisClusterPrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.RedisClusterPrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.RedisClusterPrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         [Input("privateNetworks")]
         private InputList<Inputs.RedisClusterPrivateNetworkArgs>? _privateNetworks;
 

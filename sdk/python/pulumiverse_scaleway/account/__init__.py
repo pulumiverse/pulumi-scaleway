@@ -7,6 +7,8 @@ import typing
 # Export this package's modules as members:
 from .get_availability_zones import *
 from .get_project import *
+from .get_projects import *
 from .get_ssh_key import *
 from .project import *
 from .ssh_key import *
+from . import outputs

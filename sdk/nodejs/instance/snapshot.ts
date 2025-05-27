@@ -139,8 +139,11 @@ export class Snapshot extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
      * Updates to this field will recreate a new resource.
+     *
+     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
+     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -230,8 +233,11 @@ export interface SnapshotState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
      * Updates to this field will recreate a new resource.
+     *
+     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
+     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type?: pulumi.Input<string>;
     /**
@@ -267,8 +273,11 @@ export interface SnapshotArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+     * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
      * Updates to this field will recreate a new resource.
+     *
+     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
+     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type?: pulumi.Input<string>;
     /**

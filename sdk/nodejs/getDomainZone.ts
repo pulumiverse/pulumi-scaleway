@@ -11,6 +11,7 @@ export function getDomainZone(args?: GetDomainZoneArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getDomainZone:getDomainZone", {
         "domain": args.domain,
+        "projectId": args.projectId,
         "subdomain": args.subdomain,
     }, opts);
 }
@@ -23,6 +24,10 @@ export interface GetDomainZoneArgs {
      * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: string;
+    /**
+     * ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+     */
+    projectId?: string;
     /**
      * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
@@ -54,7 +59,7 @@ export interface GetDomainZoneResult {
      * The master list of name servers for the zone.
      */
     readonly nsMasters: string[];
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The status of the domain zone.
      */
@@ -72,6 +77,7 @@ export function getDomainZoneOutput(args?: GetDomainZoneOutputArgs, opts?: pulum
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getDomainZone:getDomainZone", {
         "domain": args.domain,
+        "projectId": args.projectId,
         "subdomain": args.subdomain,
     }, opts);
 }
@@ -84,6 +90,10 @@ export interface GetDomainZoneOutputArgs {
      * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: pulumi.Input<string>;
+    /**
+     * ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */

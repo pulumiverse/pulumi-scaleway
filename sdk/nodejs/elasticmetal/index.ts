@@ -5,11 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetEasyPartitioningArgs, GetEasyPartitioningResult, GetEasyPartitioningOutputArgs } from "./getEasyPartitioning";
-export const getEasyPartitioning: typeof import("./getEasyPartitioning").getEasyPartitioning = null as any;
-export const getEasyPartitioningOutput: typeof import("./getEasyPartitioning").getEasyPartitioningOutput = null as any;
-utilities.lazyLoad(exports, ["getEasyPartitioning","getEasyPartitioningOutput"], () => require("./getEasyPartitioning"));
-
 export { GetIpArgs, GetIpResult, GetIpOutputArgs } from "./getIp";
 export const getIp: typeof import("./getIp").getIp = null as any;
 export const getIpOutput: typeof import("./getIp").getIpOutput = null as any;
@@ -34,6 +29,11 @@ export { GetOsArgs, GetOsResult, GetOsOutputArgs } from "./getOs";
 export const getOs: typeof import("./getOs").getOs = null as any;
 export const getOsOutput: typeof import("./getOs").getOsOutput = null as any;
 utilities.lazyLoad(exports, ["getOs","getOsOutput"], () => require("./getOs"));
+
+export { GetPartitionSchemaArgs, GetPartitionSchemaResult, GetPartitionSchemaOutputArgs } from "./getPartitionSchema";
+export const getPartitionSchema: typeof import("./getPartitionSchema").getPartitionSchema = null as any;
+export const getPartitionSchemaOutput: typeof import("./getPartitionSchema").getPartitionSchemaOutput = null as any;
+utilities.lazyLoad(exports, ["getPartitionSchema","getPartitionSchemaOutput"], () => require("./getPartitionSchema"));
 
 export { GetServerArgs, GetServerResult, GetServerOutputArgs } from "./getServer";
 export const getServer: typeof import("./getServer").getServer = null as any;

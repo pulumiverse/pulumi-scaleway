@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
@@ -69,6 +71,10 @@ export class Snapshot extends pulumi.CustomResource {
     }
 
     /**
+     * Import snapshot from a qcow
+     */
+    public readonly import!: pulumi.Output<outputs.block.SnapshotImport | undefined>;
+    /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
@@ -83,7 +89,7 @@ export class Snapshot extends pulumi.CustomResource {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    public readonly volumeId!: pulumi.Output<string>;
+    public readonly volumeId!: pulumi.Output<string | undefined>;
     /**
      * ). The zone in which the snapshot should be created.
      */
@@ -96,12 +102,13 @@ export class Snapshot extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: SnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: SnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SnapshotArgs | SnapshotState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnapshotState | undefined;
+            resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -109,9 +116,7 @@ export class Snapshot extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as SnapshotArgs | undefined;
-            if ((!args || args.volumeId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'volumeId'");
-            }
+            resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -129,6 +134,10 @@ export class Snapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Snapshot resources.
  */
 export interface SnapshotState {
+    /**
+     * Import snapshot from a qcow
+     */
+    import?: pulumi.Input<inputs.block.SnapshotImport>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
@@ -156,6 +165,10 @@ export interface SnapshotState {
  */
 export interface SnapshotArgs {
     /**
+     * Import snapshot from a qcow
+     */
+    import?: pulumi.Input<inputs.block.SnapshotImport>;
+    /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
@@ -170,7 +183,7 @@ export interface SnapshotArgs {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string>;
     /**
      * ). The zone in which the snapshot should be created.
      */

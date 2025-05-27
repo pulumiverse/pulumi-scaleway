@@ -13,46 +13,53 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['BlockSnapshotArgs', 'BlockSnapshot']
 
 @pulumi.input_type
 class BlockSnapshotArgs:
     def __init__(__self__, *,
-                 volume_id: pulumi.Input[str],
+                 import_: Optional[pulumi.Input['BlockSnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 volume_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a BlockSnapshot resource.
-        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
+        :param pulumi.Input['BlockSnapshotImportArgs'] import_: Import snapshot from a qcow
         :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
+        :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
-        pulumi.set(__self__, "volume_id", volume_id)
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if volume_id is not None:
+            pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
     @property
-    @pulumi.getter(name="volumeId")
-    def volume_id(self) -> pulumi.Input[str]:
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input['BlockSnapshotImportArgs']]:
         """
-        The ID of the volume to take a snapshot from.
+        Import snapshot from a qcow
         """
-        return pulumi.get(self, "volume_id")
+        return pulumi.get(self, "import_")
 
-    @volume_id.setter
-    def volume_id(self, value: pulumi.Input[str]):
-        pulumi.set(self, "volume_id", value)
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input['BlockSnapshotImportArgs']]):
+        pulumi.set(self, "import_", value)
 
     @property
     @pulumi.getter
@@ -91,6 +98,18 @@ class BlockSnapshotArgs:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="volumeId")
+    def volume_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the volume to take a snapshot from.
+        """
+        return pulumi.get(self, "volume_id")
+
+    @volume_id.setter
+    def volume_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume_id", value)
+
+    @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
         """
@@ -106,6 +125,7 @@ class BlockSnapshotArgs:
 @pulumi.input_type
 class _BlockSnapshotState:
     def __init__(__self__, *,
+                 import_: Optional[pulumi.Input['BlockSnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -113,12 +133,15 @@ class _BlockSnapshotState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering BlockSnapshot resources.
+        :param pulumi.Input['BlockSnapshotImportArgs'] import_: Import snapshot from a qcow
         :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: ). The zone in which the snapshot should be created.
         """
+        if import_ is not None:
+            pulumi.set(__self__, "import_", import_)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -129,6 +152,18 @@ class _BlockSnapshotState:
             pulumi.set(__self__, "volume_id", volume_id)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> Optional[pulumi.Input['BlockSnapshotImportArgs']]:
+        """
+        Import snapshot from a qcow
+        """
+        return pulumi.get(self, "import_")
+
+    @import_.setter
+    def import_(self, value: Optional[pulumi.Input['BlockSnapshotImportArgs']]):
+        pulumi.set(self, "import_", value)
 
     @property
     @pulumi.getter
@@ -201,6 +236,7 @@ class BlockSnapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -243,6 +279,7 @@ class BlockSnapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']] import_: Import snapshot from a qcow
         :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
@@ -253,7 +290,7 @@ class BlockSnapshot(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: BlockSnapshotArgs,
+                 args: Optional[BlockSnapshotArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The `block.Snapshot` resource is used to create and manage snapshots of Block Storage volumes.
@@ -304,6 +341,7 @@ class BlockSnapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -319,11 +357,10 @@ class BlockSnapshot(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BlockSnapshotArgs.__new__(BlockSnapshotArgs)
 
+            __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tags"] = tags
-            if volume_id is None and not opts.urn:
-                raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
             __props__.__dict__["zone"] = zone
         super(BlockSnapshot, __self__).__init__(
@@ -336,6 +373,7 @@ class BlockSnapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            import_: Optional[pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -348,6 +386,7 @@ class BlockSnapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['BlockSnapshotImportArgs', 'BlockSnapshotImportArgsDict']] import_: Import snapshot from a qcow
         :param pulumi.Input[str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
@@ -358,12 +397,21 @@ class BlockSnapshot(pulumi.CustomResource):
 
         __props__ = _BlockSnapshotState.__new__(_BlockSnapshotState)
 
+        __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["tags"] = tags
         __props__.__dict__["volume_id"] = volume_id
         __props__.__dict__["zone"] = zone
         return BlockSnapshot(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="import")
+    def import_(self) -> pulumi.Output[Optional['outputs.BlockSnapshotImport']]:
+        """
+        Import snapshot from a qcow
+        """
+        return pulumi.get(self, "import_")
 
     @property
     @pulumi.getter
@@ -391,7 +439,7 @@ class BlockSnapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="volumeId")
-    def volume_id(self) -> pulumi.Output[str]:
+    def volume_id(self) -> pulumi.Output[Optional[str]]:
         """
         The ID of the volume to take a snapshot from.
         """

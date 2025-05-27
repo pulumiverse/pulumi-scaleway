@@ -8,7 +8,6 @@ import typing
 from .alert_manager import *
 from .cockpit import *
 from .get_instance import *
-from .get_plan import *
 from .get_source import *
 from .grafana_user import *
 from .source import *

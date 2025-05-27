@@ -233,7 +233,7 @@ export class BaremetalServer extends pulumi.CustomResource {
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public /*out*/ readonly privateIps!: pulumi.Output<outputs.BaremetalServerPrivateIp[]>;
+    public readonly privateIps!: pulumi.Output<outputs.BaremetalServerPrivateIp[]>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */
@@ -329,6 +329,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["partitioning"] = args ? args.partitioning : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["reinstallOnConfigChanges"] = args ? args.reinstallOnConfigChanges : undefined;
@@ -346,7 +347,6 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["offerName"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["osName"] = undefined /*out*/;
-            resourceInputs["privateIps"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password", "servicePassword"] };
@@ -522,6 +522,10 @@ export interface BaremetalServerArgs {
      * Password used for the installation. May be required depending on used os.
      */
     password?: pulumi.Input<string>;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.BaremetalServerPrivateIp>[]>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */

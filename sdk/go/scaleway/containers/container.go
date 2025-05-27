@@ -146,7 +146,7 @@ import (
 //							},
 //						},
 //						FailureThreshold: pulumi.Int(40),
-//						Interval:         pulumi.String("3s"),
+//						Interval:         pulumi.String("5s"),
 //					},
 //				},
 //			})
