@@ -52,6 +52,7 @@ type LookupInstanceResult struct {
 	// The type of MongoDB® node.
 	NodeType        string                      `pulumi:"nodeType"`
 	Password        string                      `pulumi:"password"`
+	PrivateIps      []GetInstancePrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks []GetInstancePrivateNetwork `pulumi:"privateNetworks"`
 	// The ID of the project the instance belongs to.
 	ProjectId *string `pulumi:"projectId"`
@@ -145,6 +146,10 @@ func (o LookupInstanceResultOutput) NodeType() pulumi.StringOutput {
 
 func (o LookupInstanceResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) PrivateIps() GetInstancePrivateIpArrayOutput {
+	return o.ApplyT(func(v LookupInstanceResult) []GetInstancePrivateIp { return v.PrivateIps }).(GetInstancePrivateIpArrayOutput)
 }
 
 func (o LookupInstanceResultOutput) PrivateNetworks() GetInstancePrivateNetworkArrayOutput {

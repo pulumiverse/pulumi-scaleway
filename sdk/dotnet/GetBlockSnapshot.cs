@@ -123,6 +123,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly ImmutableArray<Outputs.GetBlockSnapshotImportResult> Imports;
         public readonly string? Name;
         public readonly string? ProjectId;
         public readonly string? SnapshotId;
@@ -133,6 +134,8 @@ namespace Pulumiverse.Scaleway
         [OutputConstructor]
         private GetBlockSnapshotResult(
             string id,
+
+            ImmutableArray<Outputs.GetBlockSnapshotImportResult> imports,
 
             string? name,
 
@@ -147,6 +150,7 @@ namespace Pulumiverse.Scaleway
             string? zone)
         {
             Id = id;
+            Imports = imports;
             Name = name;
             ProjectId = projectId;
             SnapshotId = snapshotId;

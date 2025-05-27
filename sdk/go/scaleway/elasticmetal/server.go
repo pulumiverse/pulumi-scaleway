@@ -482,6 +482,8 @@ type serverArgs struct {
 	Partitioning *string `pulumi:"partitioning"`
 	// Password used for the installation. May be required depending on used os.
 	Password *string `pulumi:"password"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []ServerPrivateIp `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
@@ -529,6 +531,8 @@ type ServerArgs struct {
 	Partitioning pulumi.StringPtrInput
 	// Password used for the installation. May be required depending on used os.
 	Password pulumi.StringPtrInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps ServerPrivateIpArrayInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
 	PrivateNetworks ServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.

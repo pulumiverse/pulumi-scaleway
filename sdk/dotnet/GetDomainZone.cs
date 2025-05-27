@@ -33,6 +33,12 @@ namespace Pulumiverse.Scaleway
         public string? Domain { get; set; }
 
         /// <summary>
+        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
         /// The subdomain (or zone name) within the primary domain. This is a mandatory field.
         /// </summary>
         [Input("subdomain")]
@@ -51,6 +57,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
+
+        /// <summary>
+        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The subdomain (or zone name) within the primary domain. This is a mandatory field.
@@ -89,7 +101,7 @@ namespace Pulumiverse.Scaleway
         /// The master list of name servers for the zone.
         /// </summary>
         public readonly ImmutableArray<string> NsMasters;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The status of the domain zone.
         /// </summary>
@@ -114,7 +126,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> nsMasters,
 
-            string projectId,
+            string? projectId,
 
             string status,
 

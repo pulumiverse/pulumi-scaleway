@@ -16,7 +16,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Guest user
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -26,13 +26,44 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var basic = new Scaleway.Iam.User("basic", new()
+    ///     var guest = new Scaleway.Iam.User("guest", new()
     ///     {
-    ///         Email = "test@test.com",
+    ///         Email = "foo@test.com",
+    ///         Tags = new[]
+    ///         {
+    ///             "test-tag",
+    ///         },
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// ### Member user
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var member = new Scaleway.Iam.User("member", new()
+    ///     {
+    ///         Email = "foo@test.com",
+    ///         Tags = new[]
+    ///         {
+    ///             "test-tag",
+    ///         },
+    ///         Username = "foo",
+    ///         FirstName = "Foo",
+    ///         LastName = "Bar",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// When `username` is set, the user is created as a [Member](https://www.scaleway.com/en/docs/iam/concepts/#member). Otherwise, it is created as a [Guest](https://www.scaleway.com/en/docs/iam/concepts/#guest).
     /// 
     /// ## Import
     /// 
@@ -67,16 +98,42 @@ namespace Pulumiverse.Scaleway
         public Output<bool> Deletable { get; private set; } = null!;
 
         /// <summary>
-        /// The email of the IAM user.
+        /// The email of the IAM user. For Guest users, this argument is not editable.
         /// </summary>
         [Output("email")]
         public Output<string> Email { get; private set; } = null!;
+
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
+        [Output("firstName")]
+        public Output<string?> FirstName { get; private set; } = null!;
 
         /// <summary>
         /// The date of the last login.
         /// </summary>
         [Output("lastLoginAt")]
         public Output<string> LastLoginAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
+        [Output("lastName")]
+        public Output<string?> LastName { get; private set; } = null!;
+
+        /// <summary>
+        /// The user's locale (e.g., en_US).
+        /// 
+        /// Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        /// </summary>
+        [Output("locale")]
+        public Output<string> Locale { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the user is locked.
+        /// </summary>
+        [Output("locked")]
+        public Output<bool> Locked { get; private set; } = null!;
 
         /// <summary>
         /// Whether the MFA is enabled.
@@ -89,6 +146,30 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
+
+        /// <summary>
+        /// The password for first access.
+        /// </summary>
+        [Output("password")]
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// The user's phone number.
+        /// </summary>
+        [Output("phoneNumber")]
+        public Output<string?> PhoneNumber { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether or not to send an email containing the password for first access.
+        /// </summary>
+        [Output("sendPasswordEmail")]
+        public Output<bool?> SendPasswordEmail { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether or not to send a welcome email that includes onboarding information.
+        /// </summary>
+        [Output("sendWelcomeEmail")]
+        public Output<bool?> SendWelcomeEmail { get; private set; } = null!;
 
         /// <summary>
         /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -113,6 +194,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        /// </summary>
+        [Output("username")]
+        public Output<string> Username { get; private set; } = null!;
 
 
         /// <summary>
@@ -162,16 +249,60 @@ namespace Pulumiverse.Scaleway
     public sealed class IamUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The email of the IAM user.
+        /// The email of the IAM user. For Guest users, this argument is not editable.
         /// </summary>
         [Input("email", required: true)]
         public Input<string> Email { get; set; } = null!;
+
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
+        [Input("firstName")]
+        public Input<string>? FirstName { get; set; }
+
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
+        [Input("lastName")]
+        public Input<string>? LastName { get; set; }
+
+        /// <summary>
+        /// The user's locale (e.g., en_US).
+        /// 
+        /// Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        /// </summary>
+        [Input("locale")]
+        public Input<string>? Locale { get; set; }
 
         /// <summary>
         /// `organization_id`) The ID of the organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The password for first access.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
+        /// The user's phone number.
+        /// </summary>
+        [Input("phoneNumber")]
+        public Input<string>? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Whether or not to send an email containing the password for first access.
+        /// </summary>
+        [Input("sendPasswordEmail")]
+        public Input<bool>? SendPasswordEmail { get; set; }
+
+        /// <summary>
+        /// Whether or not to send a welcome email that includes onboarding information.
+        /// </summary>
+        [Input("sendWelcomeEmail")]
+        public Input<bool>? SendWelcomeEmail { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -184,6 +315,12 @@ namespace Pulumiverse.Scaleway
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public IamUserArgs()
         {
@@ -212,16 +349,42 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Deletable { get; set; }
 
         /// <summary>
-        /// The email of the IAM user.
+        /// The email of the IAM user. For Guest users, this argument is not editable.
         /// </summary>
         [Input("email")]
         public Input<string>? Email { get; set; }
+
+        /// <summary>
+        /// The user's first name.
+        /// </summary>
+        [Input("firstName")]
+        public Input<string>? FirstName { get; set; }
 
         /// <summary>
         /// The date of the last login.
         /// </summary>
         [Input("lastLoginAt")]
         public Input<string>? LastLoginAt { get; set; }
+
+        /// <summary>
+        /// The user's last name.
+        /// </summary>
+        [Input("lastName")]
+        public Input<string>? LastName { get; set; }
+
+        /// <summary>
+        /// The user's locale (e.g., en_US).
+        /// 
+        /// Important: When creating a Guest user, all arguments are ignored, except for `organization_id`, `email` and `tags`.
+        /// </summary>
+        [Input("locale")]
+        public Input<string>? Locale { get; set; }
+
+        /// <summary>
+        /// Whether the user is locked.
+        /// </summary>
+        [Input("locked")]
+        public Input<bool>? Locked { get; set; }
 
         /// <summary>
         /// Whether the MFA is enabled.
@@ -234,6 +397,30 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
+
+        /// <summary>
+        /// The password for first access.
+        /// </summary>
+        [Input("password")]
+        public Input<string>? Password { get; set; }
+
+        /// <summary>
+        /// The user's phone number.
+        /// </summary>
+        [Input("phoneNumber")]
+        public Input<string>? PhoneNumber { get; set; }
+
+        /// <summary>
+        /// Whether or not to send an email containing the password for first access.
+        /// </summary>
+        [Input("sendPasswordEmail")]
+        public Input<bool>? SendPasswordEmail { get; set; }
+
+        /// <summary>
+        /// Whether or not to send a welcome email that includes onboarding information.
+        /// </summary>
+        [Input("sendWelcomeEmail")]
+        public Input<bool>? SendWelcomeEmail { get; set; }
 
         /// <summary>
         /// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -264,6 +451,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
+
+        /// <summary>
+        /// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+        /// </summary>
+        [Input("username")]
+        public Input<string>? Username { get; set; }
 
         public IamUserState()
         {

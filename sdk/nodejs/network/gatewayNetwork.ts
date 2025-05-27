@@ -156,7 +156,7 @@ export class GatewayNetwork extends pulumi.CustomResource {
     /**
      * The private IPv4 address associated with the resource.
      */
-    public /*out*/ readonly privateIps!: pulumi.Output<outputs.network.GatewayNetworkPrivateIp[]>;
+    public readonly privateIps!: pulumi.Output<outputs.network.GatewayNetworkPrivateIp[]>;
     /**
      * The ID of the Private Network.
      */
@@ -225,12 +225,12 @@ export class GatewayNetwork extends pulumi.CustomResource {
             resourceInputs["enableMasquerade"] = args ? args.enableMasquerade : undefined;
             resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
             resourceInputs["ipamConfigs"] = args ? args.ipamConfigs : undefined;
+            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
             resourceInputs["staticAddress"] = args ? args.staticAddress : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["macAddress"] = undefined /*out*/;
-            resourceInputs["privateIps"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -349,6 +349,10 @@ export interface GatewayNetworkArgs {
      * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
     ipamConfigs?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkIpamConfig>[]>;
+    /**
+     * The private IPv4 address associated with the resource.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.network.GatewayNetworkPrivateIp>[]>;
     /**
      * The ID of the Private Network.
      */

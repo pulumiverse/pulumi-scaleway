@@ -603,6 +603,8 @@ type instanceArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password for the first user of the Database Instance.
 	Password *string `pulumi:"password"`
+	// The private IPv4 address associated with the resource.
+	PrivateIps []InstancePrivateIp `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
 	PrivateNetwork *InstancePrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the Database
@@ -666,6 +668,8 @@ type InstanceArgs struct {
 	NodeType pulumi.StringInput
 	// Password for the first user of the Database Instance.
 	Password pulumi.StringPtrInput
+	// The private IPv4 address associated with the resource.
+	PrivateIps InstancePrivateIpArrayInput
 	// List of Private Networks endpoints of the Database Instance.
 	PrivateNetwork InstancePrivateNetworkPtrInput
 	// `projectId`) The ID of the project the Database

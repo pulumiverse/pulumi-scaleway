@@ -15,11 +15,44 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'InstancePrivateIp',
     'InstancePrivateNetwork',
     'InstancePublicNetwork',
+    'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstancePublicNetworkResult',
 ]
+
+@pulumi.output_type
+class InstancePrivateIp(dict):
+    def __init__(__self__, *,
+                 address: Optional[str] = None,
+                 id: Optional[str] = None):
+        """
+        :param str address: The private IPv4 address.
+        :param str id: The ID of the endpoint.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
 
 @pulumi.output_type
 class InstancePrivateNetwork(dict):
@@ -164,6 +197,35 @@ class InstancePublicNetwork(dict):
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetInstancePrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: str,
+                 id: str):
+        """
+        :param str address: The private IPv4 address
+        :param str id: The ID of the MongoDB® Instance.
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> str:
+        """
+        The private IPv4 address
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the MongoDB® Instance.
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

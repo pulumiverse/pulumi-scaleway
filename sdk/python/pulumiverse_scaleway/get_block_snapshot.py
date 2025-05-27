@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetBlockSnapshotResult',
@@ -28,10 +29,13 @@ class GetBlockSnapshotResult:
     """
     A collection of values returned by getBlockSnapshot.
     """
-    def __init__(__self__, id=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if imports and not isinstance(imports, list):
+            raise TypeError("Expected argument 'imports' to be a list")
+        pulumi.set(__self__, "imports", imports)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -58,6 +62,11 @@ class GetBlockSnapshotResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def imports(self) -> Sequence['outputs.GetBlockSnapshotImportResult']:
+        return pulumi.get(self, "imports")
 
     @property
     @pulumi.getter
@@ -97,6 +106,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
             yield self
         return GetBlockSnapshotResult(
             id=self.id,
+            imports=self.imports,
             name=self.name,
             project_id=self.project_id,
             snapshot_id=self.snapshot_id,
@@ -135,6 +145,7 @@ def get_block_snapshot(name: Optional[str] = None,
 
     return AwaitableGetBlockSnapshotResult(
         id=pulumi.get(__ret__, 'id'),
+        imports=pulumi.get(__ret__, 'imports'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
@@ -170,6 +181,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[str]]] = None
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
     return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
         id=pulumi.get(__response__, 'id'),
+        imports=pulumi.get(__response__, 'imports'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),

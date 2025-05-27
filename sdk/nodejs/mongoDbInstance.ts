@@ -53,6 +53,31 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Private Network and Public Network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
+ *     name: "my_private_network",
+ *     region: "fr-par",
+ * });
+ * const main = new scaleway.mongodb.Instance("main", {
+ *     name: "test-mongodb-basic1",
+ *     version: "7.0.12",
+ *     nodeType: "MGDB-PLAY2-NANO",
+ *     nodeNumber: 1,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 5,
+ *     privateNetwork: {
+ *         pnId: pn02.id,
+ *     },
+ *     publicNetwork: {},
+ * });
+ * ```
+ *
  * ### Restore From Snapshot
  *
  * ```typescript
@@ -129,6 +154,10 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * The private IPv4 address associated with the instance.
+     */
+    public readonly privateIps!: pulumi.Output<outputs.MongoDbInstancePrivateIp[]>;
+    /**
      * Private Network endpoints of the Database Instance.
      */
     public readonly privateNetwork!: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
@@ -137,7 +166,8 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * Public network specs details.
+     * Public network endpoint configuration (no arguments).
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     public readonly publicNetwork!: pulumi.Output<outputs.MongoDbInstancePublicNetwork>;
     /**
@@ -198,6 +228,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
@@ -222,6 +253,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
@@ -268,6 +300,10 @@ export interface MongoDbInstanceState {
      */
     password?: pulumi.Input<string>;
     /**
+     * The private IPv4 address associated with the instance.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[]>;
+    /**
      * Private Network endpoints of the Database Instance.
      */
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
@@ -276,7 +312,8 @@ export interface MongoDbInstanceState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Public network specs details.
+     * Public network endpoint configuration (no arguments).
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
     /**
@@ -338,6 +375,10 @@ export interface MongoDbInstanceArgs {
      */
     password?: pulumi.Input<string>;
     /**
+     * The private IPv4 address associated with the instance.
+     */
+    privateIps?: pulumi.Input<pulumi.Input<inputs.MongoDbInstancePrivateIp>[]>;
+    /**
      * Private Network endpoints of the Database Instance.
      */
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
@@ -346,7 +387,8 @@ export interface MongoDbInstanceArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * Public network specs details.
+     * Public network endpoint configuration (no arguments).
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
     /**

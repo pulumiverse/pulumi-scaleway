@@ -72,6 +72,7 @@ export interface GetInstanceResult {
      */
     readonly nodeType: string;
     readonly password: string;
+    readonly privateIps: outputs.mongodb.GetInstancePrivateIp[];
     readonly privateNetworks: outputs.mongodb.GetInstancePrivateNetwork[];
     /**
      * The ID of the project the instance belongs to.

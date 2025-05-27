@@ -574,6 +574,18 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        [Input("privateIps")]
+        private InputList<Inputs.DatabaseInstancePrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The private IPv4 address associated with the resource.
+        /// </summary>
+        public InputList<Inputs.DatabaseInstancePrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.DatabaseInstancePrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         /// <summary>
         /// List of Private Networks endpoints of the Database Instance.
         /// </summary>

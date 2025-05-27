@@ -108,7 +108,7 @@ import * as utilities from "./utilities";
  *             path: "/ping",
  *         }],
  *         failureThreshold: 40,
- *         interval: "3s",
+ *         interval: "5s",
  *     }],
  * });
  * ```

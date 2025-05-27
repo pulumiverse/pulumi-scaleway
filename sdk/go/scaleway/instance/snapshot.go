@@ -164,8 +164,11 @@ type Snapshot struct {
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 	// Updates to this field will recreate a new resource.
+	//
+	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
@@ -225,8 +228,11 @@ type snapshotState struct {
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 	// Updates to this field will recreate a new resource.
+	//
+	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
@@ -251,8 +257,11 @@ type SnapshotState struct {
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 	// Updates to this field will recreate a new resource.
+	//
+	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
@@ -275,8 +284,11 @@ type snapshotArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A list of tags to apply to the snapshot.
 	Tags []string `pulumi:"tags"`
-	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 	// Updates to this field will recreate a new resource.
+	//
+	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
@@ -296,8 +308,11 @@ type SnapshotArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// A list of tags to apply to the snapshot.
 	Tags pulumi.StringArrayInput
-	// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 	// Updates to this field will recreate a new resource.
+	//
+	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
@@ -429,8 +444,11 @@ func (o SnapshotOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The snapshot's volume type.  The possible values are: `bSsd` (Block SSD), `lSsd` (Local SSD) and `unified`.
+// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD) and `unified`.
 // Updates to this field will recreate a new resource.
+//
+// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 func (o SnapshotOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

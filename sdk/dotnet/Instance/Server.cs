@@ -659,6 +659,18 @@ namespace Pulumiverse.Scaleway.Instance
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
 
+        [Input("privateIps")]
+        private InputList<Inputs.ServerPrivateIpArgs>? _privateIps;
+
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the resource.
+        /// </summary>
+        public InputList<Inputs.ServerPrivateIpArgs> PrivateIps
+        {
+            get => _privateIps ?? (_privateIps = new InputList<Inputs.ServerPrivateIpArgs>());
+            set => _privateIps = value;
+        }
+
         [Input("privateNetworks")]
         private InputList<Inputs.ServerPrivateNetworkArgs>? _privateNetworks;
 

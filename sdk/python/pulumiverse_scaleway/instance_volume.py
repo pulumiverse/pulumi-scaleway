@@ -29,7 +29,10 @@ class InstanceVolumeArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstanceVolume resource.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+               
+               > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+               If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] from_snapshot_id: If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[bool] migrate_to_sbs: If true, consider that this volume may have been migrated and no longer exists.
         :param pulumi.Input[str] name: The name of the volume. If not provided it will be randomly generated.
@@ -58,7 +61,10 @@ class InstanceVolumeArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+
+        > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+        If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 
@@ -174,7 +180,10 @@ class _InstanceVolumeState:
         :param pulumi.Input[str] server_id: The id of the associated server.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+               
+               > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+               If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         if from_snapshot_id is not None:
@@ -298,7 +307,10 @@ class _InstanceVolumeState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+
+        > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+        If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 
@@ -372,7 +384,10 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+               
+               > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+               If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         ...
@@ -487,7 +502,10 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[str] server_id: The id of the associated server.
         :param pulumi.Input[int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the volume.
-        :param pulumi.Input[str] type: The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        :param pulumi.Input[str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+               
+               > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+               If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] zone: `zone`) The zone in which the volume should be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -574,7 +592,10 @@ class InstanceVolume(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The type of the volume. The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+
+        > **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
+        If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 

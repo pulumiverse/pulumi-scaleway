@@ -20,11 +20,6 @@ export const getInstance: typeof import("./getInstance").getInstance = null as a
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
 utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
 
-export { GetPlanArgs, GetPlanResult, GetPlanOutputArgs } from "./getPlan";
-export const getPlan: typeof import("./getPlan").getPlan = null as any;
-export const getPlanOutput: typeof import("./getPlan").getPlanOutput = null as any;
-utilities.lazyLoad(exports, ["getPlan","getPlanOutput"], () => require("./getPlan"));
-
 export { GetSourceArgs, GetSourceResult, GetSourceOutputArgs } from "./getSource";
 export const getSource: typeof import("./getSource").getSource = null as any;
 export const getSourceOutput: typeof import("./getSource").getSourceOutput = null as any;

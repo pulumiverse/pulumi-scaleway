@@ -60,7 +60,6 @@ from .get_billing_invoices import *
 from .get_block_snapshot import *
 from .get_block_volume import *
 from .get_cockpit import *
-from .get_cockpit_plan import *
 from .get_cockpit_source import *
 from .get_config import *
 from .get_container import *

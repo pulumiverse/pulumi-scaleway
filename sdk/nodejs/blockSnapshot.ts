@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -72,6 +74,10 @@ export class BlockSnapshot extends pulumi.CustomResource {
     }
 
     /**
+     * Import snapshot from a qcow
+     */
+    public readonly import!: pulumi.Output<outputs.BlockSnapshotImport | undefined>;
+    /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     public readonly name!: pulumi.Output<string>;
@@ -86,7 +92,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    public readonly volumeId!: pulumi.Output<string>;
+    public readonly volumeId!: pulumi.Output<string | undefined>;
     /**
      * ). The zone in which the snapshot should be created.
      */
@@ -100,7 +106,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     /** @deprecated scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot */
-    constructor(name: string, args: BlockSnapshotArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: BlockSnapshotArgs, opts?: pulumi.CustomResourceOptions)
     /** @deprecated scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot */
     constructor(name: string, argsOrState?: BlockSnapshotArgs | BlockSnapshotState, opts?: pulumi.CustomResourceOptions) {
         pulumi.log.warn("BlockSnapshot is deprecated: scaleway.index/blocksnapshot.BlockSnapshot has been deprecated in favor of scaleway.block/snapshot.Snapshot")
@@ -108,6 +114,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BlockSnapshotState | undefined;
+            resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -115,9 +122,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as BlockSnapshotArgs | undefined;
-            if ((!args || args.volumeId === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'volumeId'");
-            }
+            resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -133,6 +138,10 @@ export class BlockSnapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BlockSnapshot resources.
  */
 export interface BlockSnapshotState {
+    /**
+     * Import snapshot from a qcow
+     */
+    import?: pulumi.Input<inputs.BlockSnapshotImport>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
@@ -160,6 +169,10 @@ export interface BlockSnapshotState {
  */
 export interface BlockSnapshotArgs {
     /**
+     * Import snapshot from a qcow
+     */
+    import?: pulumi.Input<inputs.BlockSnapshotImport>;
+    /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
     name?: pulumi.Input<string>;
@@ -174,7 +187,7 @@ export interface BlockSnapshotArgs {
     /**
      * The ID of the volume to take a snapshot from.
      */
-    volumeId: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string>;
     /**
      * ). The zone in which the snapshot should be created.
      */

@@ -17,7 +17,7 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Guest user
 //
 // ```go
 // package main
@@ -31,8 +31,11 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := iam.NewUser(ctx, "basic", &iam.UserArgs{
-//				Email: pulumi.String("test@test.com"),
+//			_, err := iam.NewUser(ctx, "guest", &iam.UserArgs{
+//				Email: pulumi.String("foo@test.com"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("test-tag"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -42,6 +45,40 @@ import (
 //	}
 //
 // ```
+//
+// ### Member user
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := iam.NewUser(ctx, "member", &iam.UserArgs{
+//				Email: pulumi.String("foo@test.com"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("test-tag"),
+//				},
+//				Username:  pulumi.String("foo"),
+//				FirstName: pulumi.String("Foo"),
+//				LastName:  pulumi.String("Bar"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// When `username` is set, the user is created as a [Member](https://www.scaleway.com/en/docs/iam/concepts/#member). Otherwise, it is created as a [Guest](https://www.scaleway.com/en/docs/iam/concepts/#guest).
 //
 // ## Import
 //
@@ -61,14 +98,32 @@ type User struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Whether the IAM user is deletable.
 	Deletable pulumi.BoolOutput `pulumi:"deletable"`
-	// The email of the IAM user.
+	// The email of the IAM user. For Guest users, this argument is not editable.
 	Email pulumi.StringOutput `pulumi:"email"`
+	// The user's first name.
+	FirstName pulumi.StringPtrOutput `pulumi:"firstName"`
 	// The date of the last login.
 	LastLoginAt pulumi.StringOutput `pulumi:"lastLoginAt"`
+	// The user's last name.
+	LastName pulumi.StringPtrOutput `pulumi:"lastName"`
+	// The user's locale (e.g., en_US).
+	//
+	// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+	Locale pulumi.StringOutput `pulumi:"locale"`
+	// Whether the user is locked.
+	Locked pulumi.BoolOutput `pulumi:"locked"`
 	// Whether the MFA is enabled.
 	Mfa pulumi.BoolOutput `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The password for first access.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// The user's phone number.
+	PhoneNumber pulumi.StringPtrOutput `pulumi:"phoneNumber"`
+	// Whether or not to send an email containing the password for first access.
+	SendPasswordEmail pulumi.BoolPtrOutput `pulumi:"sendPasswordEmail"`
+	// Whether or not to send a welcome email that includes onboarding information.
+	SendWelcomeEmail pulumi.BoolPtrOutput `pulumi:"sendWelcomeEmail"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the user.
@@ -77,6 +132,8 @@ type User struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date and time of the last update of the IAM user.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
+	// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+	Username pulumi.StringOutput `pulumi:"username"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -124,14 +181,32 @@ type userState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Whether the IAM user is deletable.
 	Deletable *bool `pulumi:"deletable"`
-	// The email of the IAM user.
+	// The email of the IAM user. For Guest users, this argument is not editable.
 	Email *string `pulumi:"email"`
+	// The user's first name.
+	FirstName *string `pulumi:"firstName"`
 	// The date of the last login.
 	LastLoginAt *string `pulumi:"lastLoginAt"`
+	// The user's last name.
+	LastName *string `pulumi:"lastName"`
+	// The user's locale (e.g., en_US).
+	//
+	// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+	Locale *string `pulumi:"locale"`
+	// Whether the user is locked.
+	Locked *bool `pulumi:"locked"`
 	// Whether the MFA is enabled.
 	Mfa *bool `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The password for first access.
+	Password *string `pulumi:"password"`
+	// The user's phone number.
+	PhoneNumber *string `pulumi:"phoneNumber"`
+	// Whether or not to send an email containing the password for first access.
+	SendPasswordEmail *bool `pulumi:"sendPasswordEmail"`
+	// Whether or not to send a welcome email that includes onboarding information.
+	SendWelcomeEmail *bool `pulumi:"sendWelcomeEmail"`
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status *string `pulumi:"status"`
 	// The tags associated with the user.
@@ -140,6 +215,8 @@ type userState struct {
 	Type *string `pulumi:"type"`
 	// The date and time of the last update of the IAM user.
 	UpdatedAt *string `pulumi:"updatedAt"`
+	// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+	Username *string `pulumi:"username"`
 }
 
 type UserState struct {
@@ -149,14 +226,32 @@ type UserState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Whether the IAM user is deletable.
 	Deletable pulumi.BoolPtrInput
-	// The email of the IAM user.
+	// The email of the IAM user. For Guest users, this argument is not editable.
 	Email pulumi.StringPtrInput
+	// The user's first name.
+	FirstName pulumi.StringPtrInput
 	// The date of the last login.
 	LastLoginAt pulumi.StringPtrInput
+	// The user's last name.
+	LastName pulumi.StringPtrInput
+	// The user's locale (e.g., en_US).
+	//
+	// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+	Locale pulumi.StringPtrInput
+	// Whether the user is locked.
+	Locked pulumi.BoolPtrInput
 	// Whether the MFA is enabled.
 	Mfa pulumi.BoolPtrInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The password for first access.
+	Password pulumi.StringPtrInput
+	// The user's phone number.
+	PhoneNumber pulumi.StringPtrInput
+	// Whether or not to send an email containing the password for first access.
+	SendPasswordEmail pulumi.BoolPtrInput
+	// Whether or not to send a welcome email that includes onboarding information.
+	SendWelcomeEmail pulumi.BoolPtrInput
 	// The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
 	Status pulumi.StringPtrInput
 	// The tags associated with the user.
@@ -165,6 +260,8 @@ type UserState struct {
 	Type pulumi.StringPtrInput
 	// The date and time of the last update of the IAM user.
 	UpdatedAt pulumi.StringPtrInput
+	// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+	Username pulumi.StringPtrInput
 }
 
 func (UserState) ElementType() reflect.Type {
@@ -172,22 +269,58 @@ func (UserState) ElementType() reflect.Type {
 }
 
 type userArgs struct {
-	// The email of the IAM user.
+	// The email of the IAM user. For Guest users, this argument is not editable.
 	Email string `pulumi:"email"`
+	// The user's first name.
+	FirstName *string `pulumi:"firstName"`
+	// The user's last name.
+	LastName *string `pulumi:"lastName"`
+	// The user's locale (e.g., en_US).
+	//
+	// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+	Locale *string `pulumi:"locale"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The password for first access.
+	Password *string `pulumi:"password"`
+	// The user's phone number.
+	PhoneNumber *string `pulumi:"phoneNumber"`
+	// Whether or not to send an email containing the password for first access.
+	SendPasswordEmail *bool `pulumi:"sendPasswordEmail"`
+	// Whether or not to send a welcome email that includes onboarding information.
+	SendWelcomeEmail *bool `pulumi:"sendWelcomeEmail"`
 	// The tags associated with the user.
 	Tags []string `pulumi:"tags"`
+	// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+	Username *string `pulumi:"username"`
 }
 
 // The set of arguments for constructing a User resource.
 type UserArgs struct {
-	// The email of the IAM user.
+	// The email of the IAM user. For Guest users, this argument is not editable.
 	Email pulumi.StringInput
+	// The user's first name.
+	FirstName pulumi.StringPtrInput
+	// The user's last name.
+	LastName pulumi.StringPtrInput
+	// The user's locale (e.g., en_US).
+	//
+	// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+	Locale pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The password for first access.
+	Password pulumi.StringPtrInput
+	// The user's phone number.
+	PhoneNumber pulumi.StringPtrInput
+	// Whether or not to send an email containing the password for first access.
+	SendPasswordEmail pulumi.BoolPtrInput
+	// Whether or not to send a welcome email that includes onboarding information.
+	SendWelcomeEmail pulumi.BoolPtrInput
 	// The tags associated with the user.
 	Tags pulumi.StringArrayInput
+	// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+	Username pulumi.StringPtrInput
 }
 
 func (UserArgs) ElementType() reflect.Type {
@@ -292,14 +425,36 @@ func (o UserOutput) Deletable() pulumi.BoolOutput {
 	return o.ApplyT(func(v *User) pulumi.BoolOutput { return v.Deletable }).(pulumi.BoolOutput)
 }
 
-// The email of the IAM user.
+// The email of the IAM user. For Guest users, this argument is not editable.
 func (o UserOutput) Email() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Email }).(pulumi.StringOutput)
+}
+
+// The user's first name.
+func (o UserOutput) FirstName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.FirstName }).(pulumi.StringPtrOutput)
 }
 
 // The date of the last login.
 func (o UserOutput) LastLoginAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.LastLoginAt }).(pulumi.StringOutput)
+}
+
+// The user's last name.
+func (o UserOutput) LastName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.LastName }).(pulumi.StringPtrOutput)
+}
+
+// The user's locale (e.g., en_US).
+//
+// Important: When creating a Guest user, all arguments are ignored, except for `organizationId`, `email` and `tags`.
+func (o UserOutput) Locale() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Locale }).(pulumi.StringOutput)
+}
+
+// Whether the user is locked.
+func (o UserOutput) Locked() pulumi.BoolOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolOutput { return v.Locked }).(pulumi.BoolOutput)
 }
 
 // Whether the MFA is enabled.
@@ -310,6 +465,26 @@ func (o UserOutput) Mfa() pulumi.BoolOutput {
 // `organizationId`) The ID of the organization the user is associated with.
 func (o UserOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// The password for first access.
+func (o UserOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// The user's phone number.
+func (o UserOutput) PhoneNumber() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.PhoneNumber }).(pulumi.StringPtrOutput)
+}
+
+// Whether or not to send an email containing the password for first access.
+func (o UserOutput) SendPasswordEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.SendPasswordEmail }).(pulumi.BoolPtrOutput)
+}
+
+// Whether or not to send a welcome email that includes onboarding information.
+func (o UserOutput) SendWelcomeEmail() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.BoolPtrOutput { return v.SendWelcomeEmail }).(pulumi.BoolPtrOutput)
 }
 
 // The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
@@ -330,6 +505,11 @@ func (o UserOutput) Type() pulumi.StringOutput {
 // The date and time of the last update of the IAM user.
 func (o UserOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The username of the IAM user. When it is set, the user is created as a Member. When it is not set, the user is created as a Guest and the username is set as equal to the email.
+func (o UserOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
 }
 
 type UserArrayOutput struct{ *pulumi.OutputState }

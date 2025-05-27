@@ -35,8 +35,11 @@ class InstanceSnapshotArgs:
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
                Updates to this field will recreate a new resource.
+               
+               > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+               If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
@@ -109,8 +112,11 @@ class InstanceSnapshotArgs:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
         Updates to this field will recreate a new resource.
+
+        > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+        If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 
@@ -167,8 +173,11 @@ class _InstanceSnapshotState:
                associated with.
         :param pulumi.Input[int] size_in_gb: (Optional) The size of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
                Updates to this field will recreate a new resource.
+               
+               > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+               If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
@@ -283,8 +292,11 @@ class _InstanceSnapshotState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
         Updates to this field will recreate a new resource.
+
+        > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+        If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 
@@ -411,8 +423,11 @@ class InstanceSnapshot(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the snapshot is
                associated with.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
                Updates to this field will recreate a new resource.
+               
+               > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+               If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
@@ -568,8 +583,11 @@ class InstanceSnapshot(pulumi.CustomResource):
                associated with.
         :param pulumi.Input[int] size_in_gb: (Optional) The size of the snapshot.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A list of tags to apply to the snapshot.
-        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        :param pulumi.Input[str] type: The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
                Updates to this field will recreate a new resource.
+               
+               > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+               If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         :param pulumi.Input[str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[str] zone: `zone`) The zone in which
                the snapshot should be created.
@@ -651,8 +669,11 @@ class InstanceSnapshot(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The snapshot's volume type.  The possible values are: `b_ssd` (Block SSD), `l_ssd` (Local SSD) and `unified`.
+        The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD) and `unified`.
         Updates to this field will recreate a new resource.
+
+        > **Important:** Snapshots of volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
+        If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         """
         return pulumi.get(self, "type")
 

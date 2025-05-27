@@ -26,6 +26,8 @@ func LookupDomainZone(ctx *pulumi.Context, args *LookupDomainZoneArgs, opts ...p
 type LookupDomainZoneArgs struct {
 	// The primary domain name where the DNS zone is located. This is a mandatory field.
 	Domain *string `pulumi:"domain"`
+	// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+	ProjectId *string `pulumi:"projectId"`
 	// The subdomain (or zone name) within the primary domain. This is a mandatory field.
 	Subdomain *string `pulumi:"subdomain"`
 }
@@ -43,7 +45,7 @@ type LookupDomainZoneResult struct {
 	NsDefaults []string `pulumi:"nsDefaults"`
 	// The master list of name servers for the zone.
 	NsMasters []string `pulumi:"nsMasters"`
-	ProjectId string   `pulumi:"projectId"`
+	ProjectId *string  `pulumi:"projectId"`
 	// The status of the domain zone.
 	Status    string  `pulumi:"status"`
 	Subdomain *string `pulumi:"subdomain"`
@@ -64,6 +66,8 @@ func LookupDomainZoneOutput(ctx *pulumi.Context, args LookupDomainZoneOutputArgs
 type LookupDomainZoneOutputArgs struct {
 	// The primary domain name where the DNS zone is located. This is a mandatory field.
 	Domain pulumi.StringPtrInput `pulumi:"domain"`
+	// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
 	// The subdomain (or zone name) within the primary domain. This is a mandatory field.
 	Subdomain pulumi.StringPtrInput `pulumi:"subdomain"`
 }
@@ -116,8 +120,8 @@ func (o LookupDomainZoneResultOutput) NsMasters() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDomainZoneResult) []string { return v.NsMasters }).(pulumi.StringArrayOutput)
 }
 
-func (o LookupDomainZoneResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupDomainZoneResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupDomainZoneResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupDomainZoneResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The status of the domain zone.

@@ -30,6 +30,7 @@ class BaremetalServerArgs:
                  os: Optional[pulumi.Input[str]] = None,
                  partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
@@ -56,6 +57,7 @@ class BaremetalServerArgs:
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -84,6 +86,8 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_ips is not None:
+            pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
@@ -216,6 +220,18 @@ class BaremetalServerArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the resource.
+        """
+        return pulumi.get(self, "private_ips")
+
+    @private_ips.setter
+    def private_ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]]):
+        pulumi.set(self, "private_ips", value)
 
     @property
     @pulumi.getter(name="privateNetworks")
@@ -800,6 +816,7 @@ class BaremetalServer(pulumi.CustomResource):
                  os: Optional[pulumi.Input[str]] = None,
                  partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
@@ -933,6 +950,7 @@ class BaremetalServer(pulumi.CustomResource):
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[str] partitioning: The partitioning schema in JSON format
         :param pulumi.Input[str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
@@ -1080,6 +1098,7 @@ class BaremetalServer(pulumi.CustomResource):
                  os: Optional[pulumi.Input[str]] = None,
                  partitioning: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[bool]] = None,
@@ -1110,6 +1129,7 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["os"] = os
             __props__.__dict__["partitioning"] = partitioning
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
@@ -1127,7 +1147,6 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["offer_name"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["os_name"] = None
-            __props__.__dict__["private_ips"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "servicePassword"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BaremetalServer, __self__).__init__(

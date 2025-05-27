@@ -272,6 +272,8 @@ type privateNicArgs struct {
 	IpIds []string `pulumi:"ipIds"`
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps []PrivateNicPrivateIp `pulumi:"privateIps"`
 	// The ID of the private network attached to.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// The ID of the server associated with.
@@ -288,6 +290,8 @@ type PrivateNicArgs struct {
 	IpIds pulumi.StringArrayInput
 	// IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
 	IpamIpIds pulumi.StringArrayInput
+	// The list of private IPv4 and IPv6 addresses associated with the resource.
+	PrivateIps PrivateNicPrivateIpArrayInput
 	// The ID of the private network attached to.
 	PrivateNetworkId pulumi.StringInput
 	// The ID of the server associated with.

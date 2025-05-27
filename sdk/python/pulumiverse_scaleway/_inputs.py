@@ -29,6 +29,8 @@ __all__ = [
     'BaremetalServerPrivateIpArgsDict',
     'BaremetalServerPrivateNetworkArgs',
     'BaremetalServerPrivateNetworkArgsDict',
+    'BlockSnapshotImportArgs',
+    'BlockSnapshotImportArgsDict',
     'CockpitAlertManagerContactPointArgs',
     'CockpitAlertManagerContactPointArgsDict',
     'CockpitEndpointArgs',
@@ -193,6 +195,8 @@ __all__ = [
     'MnqSnsCredentialsPermissionsArgsDict',
     'MnqSqsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgsDict',
+    'MongoDbInstancePrivateIpArgs',
+    'MongoDbInstancePrivateIpArgsDict',
     'MongoDbInstancePrivateNetworkArgs',
     'MongoDbInstancePrivateNetworkArgsDict',
     'MongoDbInstancePublicNetworkArgs',
@@ -940,6 +944,56 @@ class BaremetalServerPrivateNetworkArgs:
     @vlan.setter
     def vlan(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vlan", value)
+
+
+if not MYPY:
+    class BlockSnapshotImportArgsDict(TypedDict):
+        bucket: pulumi.Input[str]
+        """
+        Bucket containing qcow
+        """
+        key: pulumi.Input[str]
+        """
+        Key of the qcow file in the specified bucket
+        """
+elif False:
+    BlockSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BlockSnapshotImportArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[str],
+                 key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] bucket: Bucket containing qcow
+        :param pulumi.Input[str] key: Key of the qcow file in the specified bucket
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[str]:
+        """
+        Bucket containing qcow
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        Key of the qcow file in the specified bucket
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
 
 
 if not MYPY:
@@ -8075,6 +8129,58 @@ class MnqSqsCredentialsPermissionsArgs:
     @can_receive.setter
     def can_receive(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "can_receive", value)
+
+
+if not MYPY:
+    class MongoDbInstancePrivateIpArgsDict(TypedDict):
+        address: NotRequired[pulumi.Input[str]]
+        """
+        The private IPv4 address.
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        The ID of the endpoint.
+        """
+elif False:
+    MongoDbInstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MongoDbInstancePrivateIpArgs:
+    def __init__(__self__, *,
+                 address: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: The private IPv4 address.
+        :param pulumi.Input[str] id: The ID of the endpoint.
+        """
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address.
+        """
+        return pulumi.get(self, "address")
+
+    @address.setter
+    def address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "address", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
 
 
 if not MYPY:

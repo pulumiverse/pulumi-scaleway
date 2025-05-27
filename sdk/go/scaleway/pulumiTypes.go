@@ -899,6 +899,162 @@ func (o BaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Barem
 	}).(BaremetalServerPrivateNetworkOutput)
 }
 
+type BlockSnapshotImport struct {
+	// Bucket containing qcow
+	Bucket string `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key string `pulumi:"key"`
+}
+
+// BlockSnapshotImportInput is an input type that accepts BlockSnapshotImportArgs and BlockSnapshotImportOutput values.
+// You can construct a concrete instance of `BlockSnapshotImportInput` via:
+//
+//	BlockSnapshotImportArgs{...}
+type BlockSnapshotImportInput interface {
+	pulumi.Input
+
+	ToBlockSnapshotImportOutput() BlockSnapshotImportOutput
+	ToBlockSnapshotImportOutputWithContext(context.Context) BlockSnapshotImportOutput
+}
+
+type BlockSnapshotImportArgs struct {
+	// Bucket containing qcow
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (BlockSnapshotImportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BlockSnapshotImport)(nil)).Elem()
+}
+
+func (i BlockSnapshotImportArgs) ToBlockSnapshotImportOutput() BlockSnapshotImportOutput {
+	return i.ToBlockSnapshotImportOutputWithContext(context.Background())
+}
+
+func (i BlockSnapshotImportArgs) ToBlockSnapshotImportOutputWithContext(ctx context.Context) BlockSnapshotImportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotImportOutput)
+}
+
+func (i BlockSnapshotImportArgs) ToBlockSnapshotImportPtrOutput() BlockSnapshotImportPtrOutput {
+	return i.ToBlockSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (i BlockSnapshotImportArgs) ToBlockSnapshotImportPtrOutputWithContext(ctx context.Context) BlockSnapshotImportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotImportOutput).ToBlockSnapshotImportPtrOutputWithContext(ctx)
+}
+
+// BlockSnapshotImportPtrInput is an input type that accepts BlockSnapshotImportArgs, BlockSnapshotImportPtr and BlockSnapshotImportPtrOutput values.
+// You can construct a concrete instance of `BlockSnapshotImportPtrInput` via:
+//
+//	        BlockSnapshotImportArgs{...}
+//
+//	or:
+//
+//	        nil
+type BlockSnapshotImportPtrInput interface {
+	pulumi.Input
+
+	ToBlockSnapshotImportPtrOutput() BlockSnapshotImportPtrOutput
+	ToBlockSnapshotImportPtrOutputWithContext(context.Context) BlockSnapshotImportPtrOutput
+}
+
+type blockSnapshotImportPtrType BlockSnapshotImportArgs
+
+func BlockSnapshotImportPtr(v *BlockSnapshotImportArgs) BlockSnapshotImportPtrInput {
+	return (*blockSnapshotImportPtrType)(v)
+}
+
+func (*blockSnapshotImportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BlockSnapshotImport)(nil)).Elem()
+}
+
+func (i *blockSnapshotImportPtrType) ToBlockSnapshotImportPtrOutput() BlockSnapshotImportPtrOutput {
+	return i.ToBlockSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (i *blockSnapshotImportPtrType) ToBlockSnapshotImportPtrOutputWithContext(ctx context.Context) BlockSnapshotImportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotImportPtrOutput)
+}
+
+type BlockSnapshotImportOutput struct{ *pulumi.OutputState }
+
+func (BlockSnapshotImportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BlockSnapshotImport)(nil)).Elem()
+}
+
+func (o BlockSnapshotImportOutput) ToBlockSnapshotImportOutput() BlockSnapshotImportOutput {
+	return o
+}
+
+func (o BlockSnapshotImportOutput) ToBlockSnapshotImportOutputWithContext(ctx context.Context) BlockSnapshotImportOutput {
+	return o
+}
+
+func (o BlockSnapshotImportOutput) ToBlockSnapshotImportPtrOutput() BlockSnapshotImportPtrOutput {
+	return o.ToBlockSnapshotImportPtrOutputWithContext(context.Background())
+}
+
+func (o BlockSnapshotImportOutput) ToBlockSnapshotImportPtrOutputWithContext(ctx context.Context) BlockSnapshotImportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BlockSnapshotImport) *BlockSnapshotImport {
+		return &v
+	}).(BlockSnapshotImportPtrOutput)
+}
+
+// Bucket containing qcow
+func (o BlockSnapshotImportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v BlockSnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Key of the qcow file in the specified bucket
+func (o BlockSnapshotImportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BlockSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type BlockSnapshotImportPtrOutput struct{ *pulumi.OutputState }
+
+func (BlockSnapshotImportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BlockSnapshotImport)(nil)).Elem()
+}
+
+func (o BlockSnapshotImportPtrOutput) ToBlockSnapshotImportPtrOutput() BlockSnapshotImportPtrOutput {
+	return o
+}
+
+func (o BlockSnapshotImportPtrOutput) ToBlockSnapshotImportPtrOutputWithContext(ctx context.Context) BlockSnapshotImportPtrOutput {
+	return o
+}
+
+func (o BlockSnapshotImportPtrOutput) Elem() BlockSnapshotImportOutput {
+	return o.ApplyT(func(v *BlockSnapshotImport) BlockSnapshotImport {
+		if v != nil {
+			return *v
+		}
+		var ret BlockSnapshotImport
+		return ret
+	}).(BlockSnapshotImportOutput)
+}
+
+// Bucket containing qcow
+func (o BlockSnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BlockSnapshotImport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key of the qcow file in the specified bucket
+func (o BlockSnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BlockSnapshotImport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
 type CockpitAlertManagerContactPoint struct {
 	// Email addresses for the alert receivers
 	Email *string `pulumi:"email"`
@@ -13677,6 +13833,112 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
+type MongoDbInstancePrivateIp struct {
+	// The private IPv4 address.
+	Address *string `pulumi:"address"`
+	// The ID of the endpoint.
+	Id *string `pulumi:"id"`
+}
+
+// MongoDbInstancePrivateIpInput is an input type that accepts MongoDbInstancePrivateIpArgs and MongoDbInstancePrivateIpOutput values.
+// You can construct a concrete instance of `MongoDbInstancePrivateIpInput` via:
+//
+//	MongoDbInstancePrivateIpArgs{...}
+type MongoDbInstancePrivateIpInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePrivateIpOutput() MongoDbInstancePrivateIpOutput
+	ToMongoDbInstancePrivateIpOutputWithContext(context.Context) MongoDbInstancePrivateIpOutput
+}
+
+type MongoDbInstancePrivateIpArgs struct {
+	// The private IPv4 address.
+	Address pulumi.StringPtrInput `pulumi:"address"`
+	// The ID of the endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (MongoDbInstancePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (i MongoDbInstancePrivateIpArgs) ToMongoDbInstancePrivateIpOutput() MongoDbInstancePrivateIpOutput {
+	return i.ToMongoDbInstancePrivateIpOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePrivateIpArgs) ToMongoDbInstancePrivateIpOutputWithContext(ctx context.Context) MongoDbInstancePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePrivateIpOutput)
+}
+
+// MongoDbInstancePrivateIpArrayInput is an input type that accepts MongoDbInstancePrivateIpArray and MongoDbInstancePrivateIpArrayOutput values.
+// You can construct a concrete instance of `MongoDbInstancePrivateIpArrayInput` via:
+//
+//	MongoDbInstancePrivateIpArray{ MongoDbInstancePrivateIpArgs{...} }
+type MongoDbInstancePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToMongoDbInstancePrivateIpArrayOutput() MongoDbInstancePrivateIpArrayOutput
+	ToMongoDbInstancePrivateIpArrayOutputWithContext(context.Context) MongoDbInstancePrivateIpArrayOutput
+}
+
+type MongoDbInstancePrivateIpArray []MongoDbInstancePrivateIpInput
+
+func (MongoDbInstancePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (i MongoDbInstancePrivateIpArray) ToMongoDbInstancePrivateIpArrayOutput() MongoDbInstancePrivateIpArrayOutput {
+	return i.ToMongoDbInstancePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i MongoDbInstancePrivateIpArray) ToMongoDbInstancePrivateIpArrayOutputWithContext(ctx context.Context) MongoDbInstancePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MongoDbInstancePrivateIpArrayOutput)
+}
+
+type MongoDbInstancePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (o MongoDbInstancePrivateIpOutput) ToMongoDbInstancePrivateIpOutput() MongoDbInstancePrivateIpOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateIpOutput) ToMongoDbInstancePrivateIpOutputWithContext(ctx context.Context) MongoDbInstancePrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address.
+func (o MongoDbInstancePrivateIpOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the endpoint.
+func (o MongoDbInstancePrivateIpOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MongoDbInstancePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type MongoDbInstancePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (MongoDbInstancePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (o MongoDbInstancePrivateIpArrayOutput) ToMongoDbInstancePrivateIpArrayOutput() MongoDbInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateIpArrayOutput) ToMongoDbInstancePrivateIpArrayOutputWithContext(ctx context.Context) MongoDbInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o MongoDbInstancePrivateIpArrayOutput) Index(i pulumi.IntInput) MongoDbInstancePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MongoDbInstancePrivateIp {
+		return vs[0].([]MongoDbInstancePrivateIp)[vs[1].(int)]
+	}).(MongoDbInstancePrivateIpOutput)
+}
+
 type MongoDbInstancePrivateNetwork struct {
 	// List of DNS records for your endpoint.
 	DnsRecords []string `pulumi:"dnsRecords"`
@@ -19423,6 +19685,112 @@ func (o GetBillingInvoicesInvoiceArrayOutput) Index(i pulumi.IntInput) GetBillin
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBillingInvoicesInvoice {
 		return vs[0].([]GetBillingInvoicesInvoice)[vs[1].(int)]
 	}).(GetBillingInvoicesInvoiceOutput)
+}
+
+type GetBlockSnapshotImport struct {
+	// Bucket containing qcow
+	Bucket string `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key string `pulumi:"key"`
+}
+
+// GetBlockSnapshotImportInput is an input type that accepts GetBlockSnapshotImportArgs and GetBlockSnapshotImportOutput values.
+// You can construct a concrete instance of `GetBlockSnapshotImportInput` via:
+//
+//	GetBlockSnapshotImportArgs{...}
+type GetBlockSnapshotImportInput interface {
+	pulumi.Input
+
+	ToGetBlockSnapshotImportOutput() GetBlockSnapshotImportOutput
+	ToGetBlockSnapshotImportOutputWithContext(context.Context) GetBlockSnapshotImportOutput
+}
+
+type GetBlockSnapshotImportArgs struct {
+	// Bucket containing qcow
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetBlockSnapshotImportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlockSnapshotImport)(nil)).Elem()
+}
+
+func (i GetBlockSnapshotImportArgs) ToGetBlockSnapshotImportOutput() GetBlockSnapshotImportOutput {
+	return i.ToGetBlockSnapshotImportOutputWithContext(context.Background())
+}
+
+func (i GetBlockSnapshotImportArgs) ToGetBlockSnapshotImportOutputWithContext(ctx context.Context) GetBlockSnapshotImportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlockSnapshotImportOutput)
+}
+
+// GetBlockSnapshotImportArrayInput is an input type that accepts GetBlockSnapshotImportArray and GetBlockSnapshotImportArrayOutput values.
+// You can construct a concrete instance of `GetBlockSnapshotImportArrayInput` via:
+//
+//	GetBlockSnapshotImportArray{ GetBlockSnapshotImportArgs{...} }
+type GetBlockSnapshotImportArrayInput interface {
+	pulumi.Input
+
+	ToGetBlockSnapshotImportArrayOutput() GetBlockSnapshotImportArrayOutput
+	ToGetBlockSnapshotImportArrayOutputWithContext(context.Context) GetBlockSnapshotImportArrayOutput
+}
+
+type GetBlockSnapshotImportArray []GetBlockSnapshotImportInput
+
+func (GetBlockSnapshotImportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBlockSnapshotImport)(nil)).Elem()
+}
+
+func (i GetBlockSnapshotImportArray) ToGetBlockSnapshotImportArrayOutput() GetBlockSnapshotImportArrayOutput {
+	return i.ToGetBlockSnapshotImportArrayOutputWithContext(context.Background())
+}
+
+func (i GetBlockSnapshotImportArray) ToGetBlockSnapshotImportArrayOutputWithContext(ctx context.Context) GetBlockSnapshotImportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlockSnapshotImportArrayOutput)
+}
+
+type GetBlockSnapshotImportOutput struct{ *pulumi.OutputState }
+
+func (GetBlockSnapshotImportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlockSnapshotImport)(nil)).Elem()
+}
+
+func (o GetBlockSnapshotImportOutput) ToGetBlockSnapshotImportOutput() GetBlockSnapshotImportOutput {
+	return o
+}
+
+func (o GetBlockSnapshotImportOutput) ToGetBlockSnapshotImportOutputWithContext(ctx context.Context) GetBlockSnapshotImportOutput {
+	return o
+}
+
+// Bucket containing qcow
+func (o GetBlockSnapshotImportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlockSnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Key of the qcow file in the specified bucket
+func (o GetBlockSnapshotImportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlockSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetBlockSnapshotImportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBlockSnapshotImportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBlockSnapshotImport)(nil)).Elem()
+}
+
+func (o GetBlockSnapshotImportArrayOutput) ToGetBlockSnapshotImportArrayOutput() GetBlockSnapshotImportArrayOutput {
+	return o
+}
+
+func (o GetBlockSnapshotImportArrayOutput) ToGetBlockSnapshotImportArrayOutputWithContext(ctx context.Context) GetBlockSnapshotImportArrayOutput {
+	return o
+}
+
+func (o GetBlockSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetBlockSnapshotImportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBlockSnapshotImport {
+		return vs[0].([]GetBlockSnapshotImport)[vs[1].(int)]
+	}).(GetBlockSnapshotImportOutput)
 }
 
 type GetCockpitEndpoint struct {
@@ -28302,6 +28670,112 @@ func (o GetLoadbalancerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetLo
 	}).(GetLoadbalancerPrivateNetworkOutput)
 }
 
+type GetMongoDbInstancePrivateIp struct {
+	// The private IPv4 address
+	Address string `pulumi:"address"`
+	// The ID of the MongoDB® Instance.
+	Id string `pulumi:"id"`
+}
+
+// GetMongoDbInstancePrivateIpInput is an input type that accepts GetMongoDbInstancePrivateIpArgs and GetMongoDbInstancePrivateIpOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePrivateIpInput` via:
+//
+//	GetMongoDbInstancePrivateIpArgs{...}
+type GetMongoDbInstancePrivateIpInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePrivateIpOutput() GetMongoDbInstancePrivateIpOutput
+	ToGetMongoDbInstancePrivateIpOutputWithContext(context.Context) GetMongoDbInstancePrivateIpOutput
+}
+
+type GetMongoDbInstancePrivateIpArgs struct {
+	// The private IPv4 address
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the MongoDB® Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetMongoDbInstancePrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePrivateIpArgs) ToGetMongoDbInstancePrivateIpOutput() GetMongoDbInstancePrivateIpOutput {
+	return i.ToGetMongoDbInstancePrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePrivateIpArgs) ToGetMongoDbInstancePrivateIpOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePrivateIpOutput)
+}
+
+// GetMongoDbInstancePrivateIpArrayInput is an input type that accepts GetMongoDbInstancePrivateIpArray and GetMongoDbInstancePrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetMongoDbInstancePrivateIpArrayInput` via:
+//
+//	GetMongoDbInstancePrivateIpArray{ GetMongoDbInstancePrivateIpArgs{...} }
+type GetMongoDbInstancePrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetMongoDbInstancePrivateIpArrayOutput() GetMongoDbInstancePrivateIpArrayOutput
+	ToGetMongoDbInstancePrivateIpArrayOutputWithContext(context.Context) GetMongoDbInstancePrivateIpArrayOutput
+}
+
+type GetMongoDbInstancePrivateIpArray []GetMongoDbInstancePrivateIpInput
+
+func (GetMongoDbInstancePrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (i GetMongoDbInstancePrivateIpArray) ToGetMongoDbInstancePrivateIpArrayOutput() GetMongoDbInstancePrivateIpArrayOutput {
+	return i.ToGetMongoDbInstancePrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetMongoDbInstancePrivateIpArray) ToGetMongoDbInstancePrivateIpArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMongoDbInstancePrivateIpArrayOutput)
+}
+
+type GetMongoDbInstancePrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePrivateIpOutput) ToGetMongoDbInstancePrivateIpOutput() GetMongoDbInstancePrivateIpOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateIpOutput) ToGetMongoDbInstancePrivateIpOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateIpOutput {
+	return o
+}
+
+// The private IPv4 address
+func (o GetMongoDbInstancePrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the MongoDB® Instance.
+func (o GetMongoDbInstancePrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMongoDbInstancePrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetMongoDbInstancePrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMongoDbInstancePrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMongoDbInstancePrivateIp)(nil)).Elem()
+}
+
+func (o GetMongoDbInstancePrivateIpArrayOutput) ToGetMongoDbInstancePrivateIpArrayOutput() GetMongoDbInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateIpArrayOutput) ToGetMongoDbInstancePrivateIpArrayOutputWithContext(ctx context.Context) GetMongoDbInstancePrivateIpArrayOutput {
+	return o
+}
+
+func (o GetMongoDbInstancePrivateIpArrayOutput) Index(i pulumi.IntInput) GetMongoDbInstancePrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMongoDbInstancePrivateIp {
+		return vs[0].([]GetMongoDbInstancePrivateIp)[vs[1].(int)]
+	}).(GetMongoDbInstancePrivateIpOutput)
+}
+
 type GetMongoDbInstancePrivateNetwork struct {
 	// List of DNS records for your endpoint
 	DnsRecords []string `pulumi:"dnsRecords"`
@@ -31803,6 +32277,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateIpArrayInput)(nil)).Elem(), BaremetalServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotImportInput)(nil)).Elem(), BlockSnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotImportPtrInput)(nil)).Elem(), BlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointArrayInput)(nil)).Elem(), CockpitAlertManagerContactPointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointInput)(nil)).Elem(), CockpitEndpointArgs{})
@@ -31965,6 +32441,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateIpInput)(nil)).Elem(), MongoDbInstancePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateIpArrayInput)(nil)).Elem(), MongoDbInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateNetworkInput)(nil)).Elem(), MongoDbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateNetworkPtrInput)(nil)).Elem(), MongoDbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePublicNetworkInput)(nil)).Elem(), MongoDbInstancePublicNetworkArgs{})
@@ -32046,6 +32524,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingConsumptionsConsumptionArrayInput)(nil)).Elem(), GetBillingConsumptionsConsumptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceInput)(nil)).Elem(), GetBillingInvoicesInvoiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceArrayInput)(nil)).Elem(), GetBillingInvoicesInvoiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportInput)(nil)).Elem(), GetBlockSnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportArrayInput)(nil)).Elem(), GetBlockSnapshotImportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointArrayInput)(nil)).Elem(), GetCockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitPushUrlInput)(nil)).Elem(), GetCockpitPushUrlArgs{})
@@ -32178,6 +32658,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateIpArrayInput)(nil)).Elem(), GetLoadbalancerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadbalancerPrivateNetworkArrayInput)(nil)).Elem(), GetLoadbalancerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateIpInput)(nil)).Elem(), GetMongoDbInstancePrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateIpArrayInput)(nil)).Elem(), GetMongoDbInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePrivateNetworkArrayInput)(nil)).Elem(), GetMongoDbInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMongoDbInstancePublicNetworkInput)(nil)).Elem(), GetMongoDbInstancePublicNetworkArgs{})
@@ -32246,6 +32728,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(BlockSnapshotImportOutput{})
+	pulumi.RegisterOutputType(BlockSnapshotImportPtrOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointOutput{})
@@ -32408,6 +32892,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePrivateIpOutput{})
+	pulumi.RegisterOutputType(MongoDbInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePublicNetworkOutput{})
@@ -32489,6 +32975,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBillingConsumptionsConsumptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceOutput{})
 	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceArrayOutput{})
+	pulumi.RegisterOutputType(GetBlockSnapshotImportOutput{})
+	pulumi.RegisterOutputType(GetBlockSnapshotImportArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitPushUrlOutput{})
@@ -32621,6 +33109,8 @@ func init() {
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetLoadbalancerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePrivateIpOutput{})
+	pulumi.RegisterOutputType(GetMongoDbInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetMongoDbInstancePublicNetworkOutput{})

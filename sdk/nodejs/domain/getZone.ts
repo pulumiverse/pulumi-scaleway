@@ -9,6 +9,7 @@ export function getZone(args?: GetZoneArgs, opts?: pulumi.InvokeOptions): Promis
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:domain/getZone:getZone", {
         "domain": args.domain,
+        "projectId": args.projectId,
         "subdomain": args.subdomain,
     }, opts);
 }
@@ -21,6 +22,10 @@ export interface GetZoneArgs {
      * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: string;
+    /**
+     * ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+     */
+    projectId?: string;
     /**
      * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
@@ -52,7 +57,7 @@ export interface GetZoneResult {
      * The master list of name servers for the zone.
      */
     readonly nsMasters: string[];
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The status of the domain zone.
      */
@@ -68,6 +73,7 @@ export function getZoneOutput(args?: GetZoneOutputArgs, opts?: pulumi.InvokeOutp
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:domain/getZone:getZone", {
         "domain": args.domain,
+        "projectId": args.projectId,
         "subdomain": args.subdomain,
     }, opts);
 }
@@ -80,6 +86,10 @@ export interface GetZoneOutputArgs {
      * The primary domain name where the DNS zone is located. This is a mandatory field.
      */
     domain?: pulumi.Input<string>;
+    /**
+     * ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `projectId` set in the provider configuration.
+     */
+    projectId?: pulumi.Input<string>;
     /**
      * The subdomain (or zone name) within the primary domain. This is a mandatory field.
      */
