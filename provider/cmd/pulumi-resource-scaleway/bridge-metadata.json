@@ -31,6 +31,9 @@
                     }
                 ],
                 "fields": {
+                    "private_ips": {
+                        "maxItemsOne": false
+                    },
                     "private_network": {
                         "maxItemsOne": false,
                         "elem": {
@@ -197,6 +200,12 @@
                     }
                 ],
                 "fields": {
+                    "args": {
+                        "maxItemsOne": false
+                    },
+                    "command": {
+                        "maxItemsOne": false
+                    },
                     "health_check": {
                         "maxItemsOne": false,
                         "elem": {
@@ -208,6 +217,9 @@
                         }
                     },
                     "scaling_option": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
                         "maxItemsOne": false
                     }
                 }
@@ -563,6 +575,14 @@
             "scaleway_edge_services_waf_stage": {
                 "current": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage"
             },
+            "scaleway_file_filesystem": {
+                "current": "scaleway:index/fileFilesystem:FileFilesystem",
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_flexible_ip": {
                 "current": "scaleway:elasticmetal/ip:Ip",
                 "past": [
@@ -601,7 +621,12 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_function_cron": {
                 "current": "scaleway:functions/cron:Cron",
@@ -787,6 +812,9 @@
                 "fields": {
                     "private_endpoint": {
                         "maxItemsOne": true
+                    },
+                    "private_ip": {
+                        "maxItemsOne": false
                     },
                     "public_endpoint": {
                         "maxItemsOne": true
@@ -2390,6 +2418,12 @@
                     }
                 ],
                 "fields": {
+                    "args": {
+                        "maxItemsOne": false
+                    },
+                    "command": {
+                        "maxItemsOne": false
+                    },
                     "health_check": {
                         "maxItemsOne": false,
                         "elem": {
@@ -2401,6 +2435,9 @@
                         }
                     },
                     "scaling_option": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
                         "maxItemsOne": false
                     }
                 }
@@ -2543,7 +2580,12 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_function_namespace": {
                 "current": "scaleway:functions/getNamespace:getNamespace",
