@@ -140,6 +140,14 @@ namespace Pulumiverse.Scaleway
         public Output<string> RootVolumeType { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the security group
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Output("securityGroupId")]
+        public Output<string> SecurityGroupId { get; private set; } = null!;
+
+        /// <summary>
         /// The size of the pool.
         /// 
         /// &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -343,6 +351,14 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RootVolumeType { get; set; }
 
         /// <summary>
+        /// The ID of the security group
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
+
+        /// <summary>
         /// The size of the pool.
         /// 
         /// &gt; **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -517,6 +533,14 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("rootVolumeType")]
         public Input<string>? RootVolumeType { get; set; }
+
+        /// <summary>
+        /// The ID of the security group
+        /// 
+        /// &gt; **Important:** Updates to this field will recreate a new resource.
+        /// </summary>
+        [Input("securityGroupId")]
+        public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
         /// The size of the pool.

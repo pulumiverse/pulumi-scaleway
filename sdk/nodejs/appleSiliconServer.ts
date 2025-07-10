@@ -111,6 +111,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+     */
+    public readonly publicBandwidth!: pulumi.Output<number>;
+    /**
      * The state of the server.
      */
     public /*out*/ readonly state!: pulumi.Output<string>;
@@ -169,6 +173,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["publicBandwidth"] = state ? state.publicBandwidth : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -187,6 +192,7 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["publicBandwidth"] = args ? args.publicBandwidth : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -257,6 +263,10 @@ export interface AppleSiliconServerState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+     */
+    publicBandwidth?: pulumi.Input<number>;
+    /**
      * The state of the server.
      */
     state?: pulumi.Input<string>;
@@ -318,6 +328,10 @@ export interface AppleSiliconServerArgs {
      * associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+     */
+    publicBandwidth?: pulumi.Input<number>;
     /**
      * The commercial type of the server. You find all the available types on
      * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new

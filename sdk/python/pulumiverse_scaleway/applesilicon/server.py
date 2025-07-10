@@ -29,6 +29,7 @@ class ServerArgs:
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 public_bandwidth: Optional[pulumi.Input[builtins.int]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
@@ -42,6 +43,7 @@ class ServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
+        :param pulumi.Input[builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[builtins.str] zone: `zone`) The zone in which
                the server should be created.
         """
@@ -58,6 +60,8 @@ class ServerArgs:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_bandwidth is not None:
+            pulumi.set(__self__, "public_bandwidth", public_bandwidth)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -149,6 +153,18 @@ class ServerArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="publicBandwidth")
+    def public_bandwidth(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        """
+        return pulumi.get(self, "public_bandwidth")
+
+    @public_bandwidth.setter
+    def public_bandwidth(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "public_bandwidth", value)
+
+    @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -176,6 +192,7 @@ class _ServerState:
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 public_bandwidth: Optional[pulumi.Input[builtins.int]] = None,
                  state: Optional[pulumi.Input[builtins.str]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[builtins.str]] = None,
@@ -197,6 +214,7 @@ class _ServerState:
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
+        :param pulumi.Input[builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[builtins.str] state: The state of the server.
         :param pulumi.Input[builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -230,6 +248,8 @@ class _ServerState:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_bandwidth is not None:
+            pulumi.set(__self__, "public_bandwidth", public_bandwidth)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if type is not None:
@@ -379,6 +399,18 @@ class _ServerState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter(name="publicBandwidth")
+    def public_bandwidth(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        """
+        return pulumi.get(self, "public_bandwidth")
+
+    @public_bandwidth.setter
+    def public_bandwidth(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "public_bandwidth", value)
+
+    @property
     @pulumi.getter
     def state(self) -> Optional[pulumi.Input[builtins.str]]:
         """
@@ -478,6 +510,7 @@ class Server(pulumi.CustomResource):
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 public_bandwidth: Optional[pulumi.Input[builtins.int]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -517,6 +550,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
+        :param pulumi.Input[builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
@@ -577,6 +611,7 @@ class Server(pulumi.CustomResource):
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 public_bandwidth: Optional[pulumi.Input[builtins.int]] = None,
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None,
                  __props__=None):
@@ -594,6 +629,7 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["public_bandwidth"] = public_bandwidth
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -633,6 +669,7 @@ class Server(pulumi.CustomResource):
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
+            public_bandwidth: Optional[pulumi.Input[builtins.int]] = None,
             state: Optional[pulumi.Input[builtins.str]] = None,
             type: Optional[pulumi.Input[builtins.str]] = None,
             updated_at: Optional[pulumi.Input[builtins.str]] = None,
@@ -659,6 +696,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
+        :param pulumi.Input[builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         :param pulumi.Input[builtins.str] state: The state of the server.
         :param pulumi.Input[builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -685,6 +723,7 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["public_bandwidth"] = public_bandwidth
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -782,6 +821,14 @@ class Server(pulumi.CustomResource):
         associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="publicBandwidth")
+    def public_bandwidth(self) -> pulumi.Output[builtins.int]:
+        """
+        Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        """
+        return pulumi.get(self, "public_bandwidth")
 
     @property
     @pulumi.getter

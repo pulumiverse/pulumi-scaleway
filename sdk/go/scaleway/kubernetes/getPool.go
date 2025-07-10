@@ -68,6 +68,7 @@ type LookupPoolResult struct {
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
+	SecurityGroupId    string  `pulumi:"securityGroupId"`
 	// The size of the pool.
 	Size *int `pulumi:"size"`
 	// The status of the node.
@@ -210,6 +211,10 @@ func (o LookupPoolResultOutput) RootVolumeSizeInGb() pulumi.IntOutput {
 
 func (o LookupPoolResultOutput) RootVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPoolResult) string { return v.RootVolumeType }).(pulumi.StringOutput)
+}
+
+func (o LookupPoolResultOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPoolResult) string { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

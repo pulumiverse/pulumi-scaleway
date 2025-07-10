@@ -204,6 +204,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcPrivateNetworkResult
     {
         public readonly string CreatedAt;
+        public readonly bool EnableDefaultRoutePropagation;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -230,6 +231,8 @@ namespace Pulumiverse.Scaleway
         [OutputConstructor]
         private GetVpcPrivateNetworkResult(
             string createdAt,
+
+            bool enableDefaultRoutePropagation,
 
             string id,
 
@@ -258,6 +261,7 @@ namespace Pulumiverse.Scaleway
             string zone)
         {
             CreatedAt = createdAt;
+            EnableDefaultRoutePropagation = enableDefaultRoutePropagation;
             Id = id;
             Ipv4Subnets = ipv4Subnets;
             Ipv6Subnets = ipv6Subnets;

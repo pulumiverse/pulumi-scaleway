@@ -72,6 +72,10 @@ type KubernetesNodePool struct {
 	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringOutput `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -181,6 +185,10 @@ type kubernetesNodePoolState struct {
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -252,6 +260,10 @@ type KubernetesNodePoolState struct {
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -321,6 +333,10 @@ type kubernetesNodePoolArgs struct {
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -381,6 +397,10 @@ type KubernetesNodePoolArgs struct {
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -581,6 +601,13 @@ func (o KubernetesNodePoolOutput) RootVolumeSizeInGb() pulumi.IntOutput {
 // System volume type of the nodes composing the pool
 func (o KubernetesNodePoolOutput) RootVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.RootVolumeType }).(pulumi.StringOutput)
+}
+
+// The ID of the security group
+//
+// > **Important:** Updates to this field will recreate a new resource.
+func (o KubernetesNodePoolOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

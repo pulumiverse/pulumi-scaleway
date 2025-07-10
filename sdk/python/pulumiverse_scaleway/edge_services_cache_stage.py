@@ -25,6 +25,7 @@ class EdgeServicesCacheStageArgs:
                  pipeline_id: pulumi.Input[builtins.str],
                  backend_stage_id: Optional[pulumi.Input[builtins.str]] = None,
                  fallback_ttl: Optional[pulumi.Input[builtins.int]] = None,
+                 include_cookies: Optional[pulumi.Input[builtins.bool]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]]] = None,
                  refresh_cache: Optional[pulumi.Input[builtins.str]] = None,
@@ -35,6 +36,7 @@ class EdgeServicesCacheStageArgs:
         :param pulumi.Input[builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
+        :param pulumi.Input[builtins.bool] include_cookies: Defines whether responses to requests with cookies must be stored in the cache.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
         :param pulumi.Input[builtins.str] refresh_cache: Trigger a refresh of the cache by changing this field's value.
@@ -46,6 +48,8 @@ class EdgeServicesCacheStageArgs:
             pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if fallback_ttl is not None:
             pulumi.set(__self__, "fallback_ttl", fallback_ttl)
+        if include_cookies is not None:
+            pulumi.set(__self__, "include_cookies", include_cookies)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if purge_requests is not None:
@@ -92,6 +96,18 @@ class EdgeServicesCacheStageArgs:
     @fallback_ttl.setter
     def fallback_ttl(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "fallback_ttl", value)
+
+    @property
+    @pulumi.getter(name="includeCookies")
+    def include_cookies(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether responses to requests with cookies must be stored in the cache.
+        """
+        return pulumi.get(self, "include_cookies")
+
+    @include_cookies.setter
+    def include_cookies(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "include_cookies", value)
 
     @property
     @pulumi.getter(name="projectId")
@@ -160,6 +176,7 @@ class _EdgeServicesCacheStageState:
                  backend_stage_id: Optional[pulumi.Input[builtins.str]] = None,
                  created_at: Optional[pulumi.Input[builtins.str]] = None,
                  fallback_ttl: Optional[pulumi.Input[builtins.int]] = None,
+                 include_cookies: Optional[pulumi.Input[builtins.bool]] = None,
                  pipeline_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]]] = None,
@@ -172,6 +189,7 @@ class _EdgeServicesCacheStageState:
         :param pulumi.Input[builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the cache stage.
         :param pulumi.Input[builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
+        :param pulumi.Input[builtins.bool] include_cookies: Defines whether responses to requests with cookies must be stored in the cache.
         :param pulumi.Input[builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input['EdgeServicesCacheStagePurgeRequestArgs']]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
@@ -186,6 +204,8 @@ class _EdgeServicesCacheStageState:
             pulumi.set(__self__, "created_at", created_at)
         if fallback_ttl is not None:
             pulumi.set(__self__, "fallback_ttl", fallback_ttl)
+        if include_cookies is not None:
+            pulumi.set(__self__, "include_cookies", include_cookies)
         if pipeline_id is not None:
             pulumi.set(__self__, "pipeline_id", pipeline_id)
         if project_id is not None:
@@ -236,6 +256,18 @@ class _EdgeServicesCacheStageState:
     @fallback_ttl.setter
     def fallback_ttl(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "fallback_ttl", value)
+
+    @property
+    @pulumi.getter(name="includeCookies")
+    def include_cookies(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether responses to requests with cookies must be stored in the cache.
+        """
+        return pulumi.get(self, "include_cookies")
+
+    @include_cookies.setter
+    def include_cookies(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "include_cookies", value)
 
     @property
     @pulumi.getter(name="pipelineId")
@@ -330,6 +362,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_stage_id: Optional[pulumi.Input[builtins.str]] = None,
                  fallback_ttl: Optional[pulumi.Input[builtins.int]] = None,
+                 include_cookies: Optional[pulumi.Input[builtins.bool]] = None,
                  pipeline_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
@@ -367,6 +400,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
+        :param pulumi.Input[builtins.bool] include_cookies: Defines whether responses to requests with cookies must be stored in the cache.
         :param pulumi.Input[builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
@@ -423,6 +457,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backend_stage_id: Optional[pulumi.Input[builtins.str]] = None,
                  fallback_ttl: Optional[pulumi.Input[builtins.int]] = None,
+                 include_cookies: Optional[pulumi.Input[builtins.bool]] = None,
                  pipeline_id: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
                  purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
@@ -440,6 +475,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
 
             __props__.__dict__["backend_stage_id"] = backend_stage_id
             __props__.__dict__["fallback_ttl"] = fallback_ttl
+            __props__.__dict__["include_cookies"] = include_cookies
             if pipeline_id is None and not opts.urn:
                 raise TypeError("Missing required property 'pipeline_id'")
             __props__.__dict__["pipeline_id"] = pipeline_id
@@ -463,6 +499,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
             backend_stage_id: Optional[pulumi.Input[builtins.str]] = None,
             created_at: Optional[pulumi.Input[builtins.str]] = None,
             fallback_ttl: Optional[pulumi.Input[builtins.int]] = None,
+            include_cookies: Optional[pulumi.Input[builtins.bool]] = None,
             pipeline_id: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
             purge_requests: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]]] = None,
@@ -480,6 +517,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] backend_stage_id: The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the cache stage.
         :param pulumi.Input[builtins.int] fallback_ttl: The Time To Live (TTL) in seconds. Defines how long content is cached.
+        :param pulumi.Input[builtins.bool] include_cookies: Defines whether responses to requests with cookies must be stored in the cache.
         :param pulumi.Input[builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the cache stage is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesCacheStagePurgeRequestArgs', 'EdgeServicesCacheStagePurgeRequestArgsDict']]]] purge_requests: The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
@@ -495,6 +533,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         __props__.__dict__["backend_stage_id"] = backend_stage_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["fallback_ttl"] = fallback_ttl
+        __props__.__dict__["include_cookies"] = include_cookies
         __props__.__dict__["pipeline_id"] = pipeline_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["purge_requests"] = purge_requests
@@ -527,6 +566,14 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         The Time To Live (TTL) in seconds. Defines how long content is cached.
         """
         return pulumi.get(self, "fallback_ttl")
+
+    @property
+    @pulumi.getter(name="includeCookies")
+    def include_cookies(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Defines whether responses to requests with cookies must be stored in the cache.
+        """
+        return pulumi.get(self, "include_cookies")
 
     @property
     @pulumi.getter(name="pipelineId")

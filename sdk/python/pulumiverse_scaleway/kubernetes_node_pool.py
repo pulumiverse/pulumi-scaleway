@@ -37,6 +37,7 @@ class KubernetesNodePoolArgs:
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[builtins.int]] = None,
                  root_volume_type: Optional[pulumi.Input[builtins.str]] = None,
+                 security_group_id: Optional[pulumi.Input[builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input['KubernetesNodePoolUpgradePolicyArgs']] = None,
                  wait_for_pool_ready: Optional[pulumi.Input[builtins.bool]] = None,
@@ -72,6 +73,9 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[builtins.str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[builtins.str] security_group_id: The ID of the security group
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
@@ -108,6 +112,8 @@ class KubernetesNodePoolArgs:
             pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
         if root_volume_type is not None:
             pulumi.set(__self__, "root_volume_type", root_volume_type)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if upgrade_policy is not None:
@@ -312,6 +318,20 @@ class KubernetesNodePoolArgs:
         pulumi.set(self, "root_volume_type", value)
 
     @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the security group
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
@@ -384,6 +404,7 @@ class _KubernetesNodePoolState:
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[builtins.int]] = None,
                  root_volume_type: Optional[pulumi.Input[builtins.str]] = None,
+                 security_group_id: Optional[pulumi.Input[builtins.str]] = None,
                  size: Optional[pulumi.Input[builtins.int]] = None,
                  status: Optional[pulumi.Input[builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
@@ -423,6 +444,9 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[builtins.str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[builtins.str] security_group_id: The ID of the security group
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -472,6 +496,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "root_volume_size_in_gb", root_volume_size_in_gb)
         if root_volume_type is not None:
             pulumi.set(__self__, "root_volume_type", root_volume_type)
+        if security_group_id is not None:
+            pulumi.set(__self__, "security_group_id", security_group_id)
         if size is not None:
             pulumi.set(__self__, "size", size)
         if status is not None:
@@ -706,6 +732,20 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "root_volume_type", value)
 
     @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the security group
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "security_group_id")
+
+    @security_group_id.setter
+    def security_group_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "security_group_id", value)
+
+    @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[builtins.int]]:
         """
@@ -833,6 +873,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[builtins.int]] = None,
                  root_volume_type: Optional[pulumi.Input[builtins.str]] = None,
+                 security_group_id: Optional[pulumi.Input[builtins.str]] = None,
                  size: Optional[pulumi.Input[builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
@@ -878,6 +919,9 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[builtins.str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[builtins.str] security_group_id: The ID of the security group
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -936,6 +980,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  region: Optional[pulumi.Input[builtins.str]] = None,
                  root_volume_size_in_gb: Optional[pulumi.Input[builtins.int]] = None,
                  root_volume_type: Optional[pulumi.Input[builtins.str]] = None,
+                 security_group_id: Optional[pulumi.Input[builtins.str]] = None,
                  size: Optional[pulumi.Input[builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  upgrade_policy: Optional[pulumi.Input[Union['KubernetesNodePoolUpgradePolicyArgs', 'KubernetesNodePoolUpgradePolicyArgsDict']]] = None,
@@ -969,6 +1014,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
             __props__.__dict__["root_volume_type"] = root_volume_type
+            __props__.__dict__["security_group_id"] = security_group_id
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
@@ -1009,6 +1055,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             region: Optional[pulumi.Input[builtins.str]] = None,
             root_volume_size_in_gb: Optional[pulumi.Input[builtins.int]] = None,
             root_volume_type: Optional[pulumi.Input[builtins.str]] = None,
+            security_group_id: Optional[pulumi.Input[builtins.str]] = None,
             size: Optional[pulumi.Input[builtins.int]] = None,
             status: Optional[pulumi.Input[builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
@@ -1053,6 +1100,9 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] region: `region`) The region in which the pool should be created.
         :param pulumi.Input[builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[builtins.str] root_volume_type: System volume type of the nodes composing the pool
+        :param pulumi.Input[builtins.str] security_group_id: The ID of the security group
+               
+               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -1089,6 +1139,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["root_volume_size_in_gb"] = root_volume_size_in_gb
         __props__.__dict__["root_volume_type"] = root_volume_type
+        __props__.__dict__["security_group_id"] = security_group_id
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -1246,6 +1297,16 @@ class KubernetesNodePool(pulumi.CustomResource):
         System volume type of the nodes composing the pool
         """
         return pulumi.get(self, "root_volume_type")
+
+    @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> pulumi.Output[builtins.str]:
+        """
+        The ID of the security group
+
+        > **Important:** Updates to this field will recreate a new resource.
+        """
+        return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter

@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<int> Index { get; private set; } = null!;
 
         /// <summary>
-        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         /// </summary>
         [Output("match")]
         public Output<Outputs.AclMatch?> Match { get; private set; } = null!;
@@ -188,7 +188,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<int> Index { get; set; } = null!;
 
         /// <summary>
-        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         /// </summary>
         [Input("match")]
         public Input<Inputs.AclMatchArgs>? Match { get; set; }
@@ -238,7 +238,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<int>? Index { get; set; }
 
         /// <summary>
-        /// The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        /// The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         /// </summary>
         [Input("match")]
         public Input<Inputs.AclMatchGetArgs>? Match { get; set; }

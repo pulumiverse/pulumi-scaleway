@@ -43,6 +43,116 @@ export interface AppleSiliconServerPrivateNetwork {
     vlan?: pulumi.Input<number>;
 }
 
+export interface AutoscalingInstanceGroupCapacity {
+    /**
+     * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+     */
+    cooldownDelay?: pulumi.Input<number>;
+    /**
+     * The maximum count of Instances for the Instance group.
+     */
+    maxReplicas?: pulumi.Input<number>;
+    /**
+     * The minimum count of Instances for the Instance group.
+     */
+    minReplicas?: pulumi.Input<number>;
+}
+
+export interface AutoscalingInstanceGroupLoadBalancer {
+    /**
+     * The Load Balancer backend IDs.
+     */
+    backendIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the Load Balancer.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The ID of the Private Network attached to the Load Balancer.
+     */
+    privateNetworkId?: pulumi.Input<string>;
+}
+
+export interface AutoscalingInstancePolicyMetric {
+    /**
+     * How the values sampled for the `metric` should be aggregated.
+     */
+    aggregate: pulumi.Input<string>;
+    /**
+     * The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+     */
+    cockpitMetricName?: pulumi.Input<string>;
+    /**
+     * The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+     */
+    managedMetric?: pulumi.Input<string>;
+    /**
+     * Name or description of the metric policy.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+     */
+    operator: pulumi.Input<string>;
+    /**
+     * The Interval of time, in minutes, during which metric is sampled.
+     */
+    samplingRangeMin?: pulumi.Input<number>;
+    /**
+     * The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+     */
+    threshold?: pulumi.Input<number>;
+}
+
+export interface AutoscalingInstanceTemplateVolume {
+    /**
+     * Force the Instance to boot on this volume.
+     */
+    boot?: pulumi.Input<boolean>;
+    /**
+     * Volume instance template from empty
+     */
+    fromEmpty?: pulumi.Input<inputs.AutoscalingInstanceTemplateVolumeFromEmpty>;
+    /**
+     * Volume instance template from snapshot
+     */
+    fromSnapshot?: pulumi.Input<inputs.AutoscalingInstanceTemplateVolumeFromSnapshot>;
+    /**
+     * The name of the volume.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+     */
+    perfIops?: pulumi.Input<number>;
+    /**
+     * The list of tags assigned to the volume.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of the volume.
+     */
+    volumeType: pulumi.Input<string>;
+}
+
+export interface AutoscalingInstanceTemplateVolumeFromEmpty {
+    /**
+     * Size in GB of the new empty volume
+     */
+    size: pulumi.Input<number>;
+}
+
+export interface AutoscalingInstanceTemplateVolumeFromSnapshot {
+    /**
+     * Override size (in GB) of the cloned volume
+     */
+    size?: pulumi.Input<number>;
+    /**
+     * ID of the snapshot to clone
+     */
+    snapshotId: pulumi.Input<string>;
+}
+
 export interface BaremetalServerIp {
     /**
      * The address of the IPv6.
@@ -1532,9 +1642,13 @@ export interface LoadbalancerAclMatch {
      */
     invert?: pulumi.Input<boolean>;
     /**
-     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
      */
     ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+     */
+    ipsEdgeServices?: pulumi.Input<boolean>;
 }
 
 export interface LoadbalancerBackendHealthCheckHttp {
@@ -1614,7 +1728,7 @@ export interface LoadbalancerFrontendAcl {
      */
     description?: pulumi.Input<string>;
     /**
-     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
     match: pulumi.Input<inputs.LoadbalancerFrontendAclMatch>;
     /**
@@ -1674,9 +1788,13 @@ export interface LoadbalancerFrontendAclMatch {
      */
     invert?: pulumi.Input<boolean>;
     /**
-     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
      */
     ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+     */
+    ipsEdgeServices?: pulumi.Input<boolean>;
 }
 
 export interface LoadbalancerPrivateIp {
@@ -1825,11 +1943,15 @@ export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
     /**
      * The `region`, `bucket` and `acl` separated by (`/`).
      */
-    id: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
     /**
-     * Type of grantee. Valid values: `CanonicalUser`
+     * Type of grantee. Valid values: `CanonicalUser`, `Group`
      */
-    type: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+    /**
+     * The uri of the grantee if you are granting permissions to a predefined group.
+     */
+    uri?: pulumi.Input<string>;
 }
 
 export interface ObjectBucketAclAccessControlPolicyOwner {
@@ -4279,9 +4401,13 @@ export namespace loadbalancers {
          */
         invert?: pulumi.Input<boolean>;
         /**
-         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
          */
         ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+         */
+        ipsEdgeServices?: pulumi.Input<boolean>;
     }
 
     export interface BackendHealthCheckHttp {
@@ -4361,7 +4487,7 @@ export namespace loadbalancers {
          */
         description?: pulumi.Input<string>;
         /**
-         * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+         * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
          */
         match: pulumi.Input<inputs.loadbalancers.FrontendAclMatch>;
         /**
@@ -4421,9 +4547,13 @@ export namespace loadbalancers {
          */
         invert?: pulumi.Input<boolean>;
         /**
-         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
          */
         ipSubnets?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+         */
+        ipsEdgeServices?: pulumi.Input<boolean>;
     }
 
     export interface LoadBalancerPrivateIp {
@@ -4703,11 +4833,15 @@ export namespace object {
         /**
          * The `region`, `bucket` and `acl` separated by (`/`).
          */
-        id: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
         /**
-         * Type of grantee. Valid values: `CanonicalUser`
+         * Type of grantee. Valid values: `CanonicalUser`, `Group`
          */
-        type: pulumi.Input<string>;
+        type?: pulumi.Input<string>;
+        /**
+         * The uri of the grantee if you are granting permissions to a predefined group.
+         */
+        uri?: pulumi.Input<string>;
     }
 
     export interface BucketAclAccessControlPolicyOwner {

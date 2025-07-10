@@ -143,56 +143,42 @@ class BucketAclAccessControlPolicyGrantArgs:
 
 if not MYPY:
     class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-        id: pulumi.Input[builtins.str]
+        display_name: NotRequired[pulumi.Input[builtins.str]]
+        id: NotRequired[pulumi.Input[builtins.str]]
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
-        type: pulumi.Input[builtins.str]
+        type: NotRequired[pulumi.Input[builtins.str]]
         """
-        Type of grantee. Valid values: `CanonicalUser`
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
-        display_name: NotRequired[pulumi.Input[builtins.str]]
+        uri: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
 elif False:
     BucketAclAccessControlPolicyGrantGranteeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class BucketAclAccessControlPolicyGrantGranteeArgs:
     def __init__(__self__, *,
-                 id: pulumi.Input[builtins.str],
-                 type: pulumi.Input[builtins.str],
-                 display_name: Optional[pulumi.Input[builtins.str]] = None):
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 type: Optional[pulumi.Input[builtins.str]] = None,
+                 uri: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
-        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`
+        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`, `Group`
+        :param pulumi.Input[builtins.str] uri: The uri of the grantee if you are granting permissions to a predefined group.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "type", type)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[builtins.str]:
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[builtins.str]:
-        """
-        Type of grantee. Valid values: `CanonicalUser`
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "type", value)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
 
     @property
     @pulumi.getter(name="displayName")
@@ -202,6 +188,42 @@ class BucketAclAccessControlPolicyGrantGranteeArgs:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The `region`, `bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "uri", value)
 
 
 if not MYPY:

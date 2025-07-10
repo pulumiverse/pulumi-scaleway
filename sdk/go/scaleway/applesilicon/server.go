@@ -79,6 +79,8 @@ type Server struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+	PublicBandwidth pulumi.IntOutput `pulumi:"publicBandwidth"`
 	// The state of the server.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -164,6 +166,8 @@ type serverState struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+	PublicBandwidth *int `pulumi:"publicBandwidth"`
 	// The state of the server.
 	State *string `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -207,6 +211,8 @@ type ServerState struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
+	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+	PublicBandwidth pulumi.IntPtrInput
 	// The state of the server.
 	State pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
@@ -244,6 +250,8 @@ type serverArgs struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+	PublicBandwidth *int `pulumi:"publicBandwidth"`
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
@@ -268,6 +276,8 @@ type ServerArgs struct {
 	// `projectId`) The ID of the project the server is
 	// associated with.
 	ProjectId pulumi.StringPtrInput
+	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+	PublicBandwidth pulumi.IntPtrInput
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
@@ -418,6 +428,11 @@ func (o ServerOutput) PrivateNetworks() ServerPrivateNetworkArrayOutput {
 // associated with.
 func (o ServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+func (o ServerOutput) PublicBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.PublicBandwidth }).(pulumi.IntOutput)
 }
 
 // The state of the server.

@@ -165,6 +165,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Region;
         public readonly int RootVolumeSizeInGb;
         public readonly string RootVolumeType;
+        public readonly string SecurityGroupId;
         /// <summary>
         /// The size of the pool.
         /// </summary>
@@ -229,6 +230,8 @@ namespace Pulumiverse.Scaleway
 
             string rootVolumeType,
 
+            string securityGroupId,
+
             int? size,
 
             string status,
@@ -264,6 +267,7 @@ namespace Pulumiverse.Scaleway
             Region = region;
             RootVolumeSizeInGb = rootVolumeSizeInGb;
             RootVolumeType = rootVolumeType;
+            SecurityGroupId = securityGroupId;
             Size = size;
             Status = status;
             Tags = tags;

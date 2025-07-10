@@ -103,6 +103,8 @@ type VpcPrivateNetwork struct {
 
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Defines whether default v4 and v6 routes are propagated for this Private Network.
+	EnableDefaultRoutePropagation pulumi.BoolOutput `pulumi:"enableDefaultRoutePropagation"`
 	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetOutput `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
@@ -163,6 +165,8 @@ func GetVpcPrivateNetwork(ctx *pulumi.Context,
 type vpcPrivateNetworkState struct {
 	// The date and time of the creation of the subnet.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Defines whether default v4 and v6 routes are propagated for this Private Network.
+	EnableDefaultRoutePropagation *bool `pulumi:"enableDefaultRoutePropagation"`
 	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
@@ -194,6 +198,8 @@ type vpcPrivateNetworkState struct {
 type VpcPrivateNetworkState struct {
 	// The date and time of the creation of the subnet.
 	CreatedAt pulumi.StringPtrInput
+	// Defines whether default v4 and v6 routes are propagated for this Private Network.
+	EnableDefaultRoutePropagation pulumi.BoolPtrInput
 	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
 	// The IPv6 subnets to associate with the private network.
@@ -227,6 +233,8 @@ func (VpcPrivateNetworkState) ElementType() reflect.Type {
 }
 
 type vpcPrivateNetworkArgs struct {
+	// Defines whether default v4 and v6 routes are propagated for this Private Network.
+	EnableDefaultRoutePropagation *bool `pulumi:"enableDefaultRoutePropagation"`
 	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet *VpcPrivateNetworkIpv4Subnet `pulumi:"ipv4Subnet"`
 	// The IPv6 subnets to associate with the private network.
@@ -253,6 +261,8 @@ type vpcPrivateNetworkArgs struct {
 
 // The set of arguments for constructing a VpcPrivateNetwork resource.
 type VpcPrivateNetworkArgs struct {
+	// Defines whether default v4 and v6 routes are propagated for this Private Network.
+	EnableDefaultRoutePropagation pulumi.BoolPtrInput
 	// The IPv4 subnet to associate with the Private Network.
 	Ipv4Subnet VpcPrivateNetworkIpv4SubnetPtrInput
 	// The IPv6 subnets to associate with the private network.
@@ -367,6 +377,11 @@ func (o VpcPrivateNetworkOutput) ToVpcPrivateNetworkOutputWithContext(ctx contex
 // The date and time of the creation of the subnet.
 func (o VpcPrivateNetworkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Defines whether default v4 and v6 routes are propagated for this Private Network.
+func (o VpcPrivateNetworkOutput) EnableDefaultRoutePropagation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.BoolOutput { return v.EnableDefaultRoutePropagation }).(pulumi.BoolOutput)
 }
 
 // The IPv4 subnet to associate with the Private Network.

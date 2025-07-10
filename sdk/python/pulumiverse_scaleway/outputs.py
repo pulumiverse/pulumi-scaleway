@@ -19,6 +19,12 @@ from . import outputs
 __all__ = [
     'AppleSiliconServerPrivateIp',
     'AppleSiliconServerPrivateNetwork',
+    'AutoscalingInstanceGroupCapacity',
+    'AutoscalingInstanceGroupLoadBalancer',
+    'AutoscalingInstancePolicyMetric',
+    'AutoscalingInstanceTemplateVolume',
+    'AutoscalingInstanceTemplateVolumeFromEmpty',
+    'AutoscalingInstanceTemplateVolumeFromSnapshot',
     'BaremetalServerIp',
     'BaremetalServerIpv4',
     'BaremetalServerIpv6',
@@ -376,6 +382,418 @@ class AppleSiliconServerPrivateNetwork(dict):
         The VLAN ID associated to the private network
         """
         return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
+class AutoscalingInstanceGroupCapacity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cooldownDelay":
+            suggest = "cooldown_delay"
+        elif key == "maxReplicas":
+            suggest = "max_replicas"
+        elif key == "minReplicas":
+            suggest = "min_replicas"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutoscalingInstanceGroupCapacity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutoscalingInstanceGroupCapacity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutoscalingInstanceGroupCapacity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cooldown_delay: Optional[builtins.int] = None,
+                 max_replicas: Optional[builtins.int] = None,
+                 min_replicas: Optional[builtins.int] = None):
+        """
+        :param builtins.int cooldown_delay: Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+        :param builtins.int max_replicas: The maximum count of Instances for the Instance group.
+        :param builtins.int min_replicas: The minimum count of Instances for the Instance group.
+        """
+        if cooldown_delay is not None:
+            pulumi.set(__self__, "cooldown_delay", cooldown_delay)
+        if max_replicas is not None:
+            pulumi.set(__self__, "max_replicas", max_replicas)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @property
+    @pulumi.getter(name="cooldownDelay")
+    def cooldown_delay(self) -> Optional[builtins.int]:
+        """
+        Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+        """
+        return pulumi.get(self, "cooldown_delay")
+
+    @property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> Optional[builtins.int]:
+        """
+        The maximum count of Instances for the Instance group.
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> Optional[builtins.int]:
+        """
+        The minimum count of Instances for the Instance group.
+        """
+        return pulumi.get(self, "min_replicas")
+
+
+@pulumi.output_type
+class AutoscalingInstanceGroupLoadBalancer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backendIds":
+            suggest = "backend_ids"
+        elif key == "privateNetworkId":
+            suggest = "private_network_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutoscalingInstanceGroupLoadBalancer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutoscalingInstanceGroupLoadBalancer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutoscalingInstanceGroupLoadBalancer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backend_ids: Optional[Sequence[builtins.str]] = None,
+                 id: Optional[builtins.str] = None,
+                 private_network_id: Optional[builtins.str] = None):
+        """
+        :param Sequence[builtins.str] backend_ids: The Load Balancer backend IDs.
+        :param builtins.str id: The ID of the Load Balancer.
+        :param builtins.str private_network_id: The ID of the Private Network attached to the Load Balancer.
+        """
+        if backend_ids is not None:
+            pulumi.set(__self__, "backend_ids", backend_ids)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @property
+    @pulumi.getter(name="backendIds")
+    def backend_ids(self) -> Optional[Sequence[builtins.str]]:
+        """
+        The Load Balancer backend IDs.
+        """
+        return pulumi.get(self, "backend_ids")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[builtins.str]:
+        """
+        The ID of the Load Balancer.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[builtins.str]:
+        """
+        The ID of the Private Network attached to the Load Balancer.
+        """
+        return pulumi.get(self, "private_network_id")
+
+
+@pulumi.output_type
+class AutoscalingInstancePolicyMetric(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cockpitMetricName":
+            suggest = "cockpit_metric_name"
+        elif key == "managedMetric":
+            suggest = "managed_metric"
+        elif key == "samplingRangeMin":
+            suggest = "sampling_range_min"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutoscalingInstancePolicyMetric. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutoscalingInstancePolicyMetric.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutoscalingInstancePolicyMetric.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aggregate: builtins.str,
+                 name: builtins.str,
+                 operator: builtins.str,
+                 cockpit_metric_name: Optional[builtins.str] = None,
+                 managed_metric: Optional[builtins.str] = None,
+                 sampling_range_min: Optional[builtins.int] = None,
+                 threshold: Optional[builtins.int] = None):
+        """
+        :param builtins.str aggregate: How the values sampled for the `metric` should be aggregated.
+        :param builtins.str name: Name or description of the metric policy.
+        :param builtins.str operator: Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        :param builtins.str cockpit_metric_name: The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        :param builtins.str managed_metric: The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        :param builtins.int sampling_range_min: The Interval of time, in minutes, during which metric is sampled.
+        :param builtins.int threshold: The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        """
+        pulumi.set(__self__, "aggregate", aggregate)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        if cockpit_metric_name is not None:
+            pulumi.set(__self__, "cockpit_metric_name", cockpit_metric_name)
+        if managed_metric is not None:
+            pulumi.set(__self__, "managed_metric", managed_metric)
+        if sampling_range_min is not None:
+            pulumi.set(__self__, "sampling_range_min", sampling_range_min)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+
+    @property
+    @pulumi.getter
+    def aggregate(self) -> builtins.str:
+        """
+        How the values sampled for the `metric` should be aggregated.
+        """
+        return pulumi.get(self, "aggregate")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        Name or description of the metric policy.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def operator(self) -> builtins.str:
+        """
+        Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        """
+        return pulumi.get(self, "operator")
+
+    @property
+    @pulumi.getter(name="cockpitMetricName")
+    def cockpit_metric_name(self) -> Optional[builtins.str]:
+        """
+        The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        """
+        return pulumi.get(self, "cockpit_metric_name")
+
+    @property
+    @pulumi.getter(name="managedMetric")
+    def managed_metric(self) -> Optional[builtins.str]:
+        """
+        The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        """
+        return pulumi.get(self, "managed_metric")
+
+    @property
+    @pulumi.getter(name="samplingRangeMin")
+    def sampling_range_min(self) -> Optional[builtins.int]:
+        """
+        The Interval of time, in minutes, during which metric is sampled.
+        """
+        return pulumi.get(self, "sampling_range_min")
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[builtins.int]:
+        """
+        The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+
+@pulumi.output_type
+class AutoscalingInstanceTemplateVolume(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "volumeType":
+            suggest = "volume_type"
+        elif key == "fromEmpty":
+            suggest = "from_empty"
+        elif key == "fromSnapshot":
+            suggest = "from_snapshot"
+        elif key == "perfIops":
+            suggest = "perf_iops"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutoscalingInstanceTemplateVolume. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutoscalingInstanceTemplateVolume.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutoscalingInstanceTemplateVolume.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: builtins.str,
+                 volume_type: builtins.str,
+                 boot: Optional[builtins.bool] = None,
+                 from_empty: Optional['outputs.AutoscalingInstanceTemplateVolumeFromEmpty'] = None,
+                 from_snapshot: Optional['outputs.AutoscalingInstanceTemplateVolumeFromSnapshot'] = None,
+                 perf_iops: Optional[builtins.int] = None,
+                 tags: Optional[Sequence[builtins.str]] = None):
+        """
+        :param builtins.str name: The name of the volume.
+        :param builtins.str volume_type: The type of the volume.
+        :param builtins.bool boot: Force the Instance to boot on this volume.
+        :param 'AutoscalingInstanceTemplateVolumeFromEmptyArgs' from_empty: Volume instance template from empty
+        :param 'AutoscalingInstanceTemplateVolumeFromSnapshotArgs' from_snapshot: Volume instance template from snapshot
+        :param builtins.int perf_iops: The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+        :param Sequence[builtins.str] tags: The list of tags assigned to the volume.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "volume_type", volume_type)
+        if boot is not None:
+            pulumi.set(__self__, "boot", boot)
+        if from_empty is not None:
+            pulumi.set(__self__, "from_empty", from_empty)
+        if from_snapshot is not None:
+            pulumi.set(__self__, "from_snapshot", from_snapshot)
+        if perf_iops is not None:
+            pulumi.set(__self__, "perf_iops", perf_iops)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        The name of the volume.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> builtins.str:
+        """
+        The type of the volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @property
+    @pulumi.getter
+    def boot(self) -> Optional[builtins.bool]:
+        """
+        Force the Instance to boot on this volume.
+        """
+        return pulumi.get(self, "boot")
+
+    @property
+    @pulumi.getter(name="fromEmpty")
+    def from_empty(self) -> Optional['outputs.AutoscalingInstanceTemplateVolumeFromEmpty']:
+        """
+        Volume instance template from empty
+        """
+        return pulumi.get(self, "from_empty")
+
+    @property
+    @pulumi.getter(name="fromSnapshot")
+    def from_snapshot(self) -> Optional['outputs.AutoscalingInstanceTemplateVolumeFromSnapshot']:
+        """
+        Volume instance template from snapshot
+        """
+        return pulumi.get(self, "from_snapshot")
+
+    @property
+    @pulumi.getter(name="perfIops")
+    def perf_iops(self) -> Optional[builtins.int]:
+        """
+        The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+        """
+        return pulumi.get(self, "perf_iops")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Sequence[builtins.str]]:
+        """
+        The list of tags assigned to the volume.
+        """
+        return pulumi.get(self, "tags")
+
+
+@pulumi.output_type
+class AutoscalingInstanceTemplateVolumeFromEmpty(dict):
+    def __init__(__self__, *,
+                 size: builtins.int):
+        """
+        :param builtins.int size: Size in GB of the new empty volume
+        """
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def size(self) -> builtins.int:
+        """
+        Size in GB of the new empty volume
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class AutoscalingInstanceTemplateVolumeFromSnapshot(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "snapshotId":
+            suggest = "snapshot_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AutoscalingInstanceTemplateVolumeFromSnapshot. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AutoscalingInstanceTemplateVolumeFromSnapshot.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AutoscalingInstanceTemplateVolumeFromSnapshot.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 snapshot_id: builtins.str,
+                 size: Optional[builtins.int] = None):
+        """
+        :param builtins.str snapshot_id: ID of the snapshot to clone
+        :param builtins.int size: Override size (in GB) of the cloned volume
+        """
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> builtins.str:
+        """
+        ID of the snapshot to clone
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[builtins.int]:
+        """
+        Override size (in GB) of the cloned volume
+        """
+        return pulumi.get(self, "size")
 
 
 @pulumi.output_type
@@ -5275,6 +5693,8 @@ class LoadbalancerAclMatch(dict):
             suggest = "http_filter_values"
         elif key == "ipSubnets":
             suggest = "ip_subnets"
+        elif key == "ipsEdgeServices":
+            suggest = "ips_edge_services"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in LoadbalancerAclMatch. Access the value via the '{suggest}' property getter instead.")
@@ -5292,7 +5712,8 @@ class LoadbalancerAclMatch(dict):
                  http_filter_option: Optional[builtins.str] = None,
                  http_filter_values: Optional[Sequence[builtins.str]] = None,
                  invert: Optional[builtins.bool] = None,
-                 ip_subnets: Optional[Sequence[builtins.str]] = None):
+                 ip_subnets: Optional[Sequence[builtins.str]] = None,
+                 ips_edge_services: Optional[builtins.bool] = None):
         """
         :param builtins.str http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -5301,7 +5722,8 @@ class LoadbalancerAclMatch(dict):
         :param Sequence[builtins.str] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param builtins.bool invert: If set to `true`, the condition will be of type "unless".
-        :param Sequence[builtins.str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param Sequence[builtins.str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param builtins.bool ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -5313,6 +5735,8 @@ class LoadbalancerAclMatch(dict):
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -5353,9 +5777,17 @@ class LoadbalancerAclMatch(dict):
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[Sequence[builtins.str]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[builtins.bool]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
 
 
 @pulumi.output_type
@@ -5632,7 +6064,7 @@ class LoadbalancerFrontendAcl(dict):
                  updated_at: Optional[builtins.str] = None):
         """
         :param 'LoadbalancerFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
-        :param 'LoadbalancerFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param 'LoadbalancerFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param builtins.str created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param builtins.str description: Description of the ACL
         :param builtins.str name: The ACL name. If not provided it will be randomly generated.
@@ -5661,7 +6093,7 @@ class LoadbalancerFrontendAcl(dict):
     @pulumi.getter
     def match(self) -> 'outputs.LoadbalancerFrontendAclMatch':
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
@@ -5784,6 +6216,8 @@ class LoadbalancerFrontendAclMatch(dict):
             suggest = "http_filter_values"
         elif key == "ipSubnets":
             suggest = "ip_subnets"
+        elif key == "ipsEdgeServices":
+            suggest = "ips_edge_services"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in LoadbalancerFrontendAclMatch. Access the value via the '{suggest}' property getter instead.")
@@ -5801,7 +6235,8 @@ class LoadbalancerFrontendAclMatch(dict):
                  http_filter_option: Optional[builtins.str] = None,
                  http_filter_values: Optional[Sequence[builtins.str]] = None,
                  invert: Optional[builtins.bool] = None,
-                 ip_subnets: Optional[Sequence[builtins.str]] = None):
+                 ip_subnets: Optional[Sequence[builtins.str]] = None,
+                 ips_edge_services: Optional[builtins.bool] = None):
         """
         :param builtins.str http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -5810,7 +6245,8 @@ class LoadbalancerFrontendAclMatch(dict):
         :param Sequence[builtins.str] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param builtins.bool invert: If set to `true`, the condition will be of type "unless".
-        :param Sequence[builtins.str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param Sequence[builtins.str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param builtins.bool ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -5822,6 +6258,8 @@ class LoadbalancerFrontendAclMatch(dict):
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -5862,9 +6300,17 @@ class LoadbalancerFrontendAclMatch(dict):
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[Sequence[builtins.str]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[builtins.bool]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
 
 
 @pulumi.output_type
@@ -6383,21 +6829,32 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 id: builtins.str,
-                 type: builtins.str,
-                 display_name: Optional[builtins.str] = None):
+                 display_name: Optional[builtins.str] = None,
+                 id: Optional[builtins.str] = None,
+                 type: Optional[builtins.str] = None,
+                 uri: Optional[builtins.str] = None):
         """
         :param builtins.str id: The `region`, `bucket` and `acl` separated by (`/`).
-        :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`
+        :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`, `Group`
+        :param builtins.str uri: The uri of the grantee if you are granting permissions to a predefined group.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "type", type)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[builtins.str]:
+        return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.str:
+    def id(self) -> Optional[builtins.str]:
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
@@ -6405,16 +6862,19 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> builtins.str:
+    def type(self) -> Optional[builtins.str]:
         """
-        Type of grantee. Valid values: `CanonicalUser`
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
         return pulumi.get(self, "type")
 
     @property
-    @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[builtins.str]:
-        return pulumi.get(self, "display_name")
+    @pulumi.getter
+    def uri(self) -> Optional[builtins.str]:
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
+        return pulumi.get(self, "uri")
 
 
 @pulumi.output_type
@@ -11130,19 +11590,22 @@ class GetLbAclsAclMatchResult(dict):
                  http_filter_option: builtins.str,
                  http_filter_values: Sequence[builtins.str],
                  invert: builtins.bool,
-                 ip_subnets: Sequence[builtins.str]):
+                 ip_subnets: Sequence[builtins.str],
+                 ips_edge_services: builtins.bool):
         """
         :param builtins.str http_filter: The HTTP filter to match.
         :param builtins.str http_filter_option: A list of possible values for the HTTP filter based on the HTTP header.
         :param Sequence[builtins.str] http_filter_values: The possible values to match for a given HTTP filter.
         :param builtins.bool invert: The condition will be of type "unless" if invert is set to `true`
         :param Sequence[builtins.str] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param builtins.bool ips_edge_services: Defines whether Edge Services IPs should be matched.
         """
         pulumi.set(__self__, "http_filter", http_filter)
         pulumi.set(__self__, "http_filter_option", http_filter_option)
         pulumi.set(__self__, "http_filter_values", http_filter_values)
         pulumi.set(__self__, "invert", invert)
         pulumi.set(__self__, "ip_subnets", ip_subnets)
+        pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -11183,6 +11646,14 @@ class GetLbAclsAclMatchResult(dict):
         A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
         """
         return pulumi.get(self, "ip_subnets")
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> builtins.bool:
+        """
+        Defines whether Edge Services IPs should be matched.
+        """
+        return pulumi.get(self, "ips_edge_services")
 
 
 @pulumi.output_type
@@ -11765,19 +12236,22 @@ class GetLbFrontendAclMatchResult(dict):
                  http_filter_option: builtins.str,
                  http_filter_values: Sequence[builtins.str],
                  invert: builtins.bool,
-                 ip_subnets: Sequence[builtins.str]):
+                 ip_subnets: Sequence[builtins.str],
+                 ips_edge_services: builtins.bool):
         """
         :param builtins.str http_filter: The HTTP filter to match
         :param builtins.str http_filter_option: You can use this field with http_header_match acl type to set the header name to filter
         :param Sequence[builtins.str] http_filter_values: A list of possible values to match for the given HTTP filter
         :param builtins.bool invert: If set to true, the condition will be of type "unless"
         :param Sequence[builtins.str] ip_subnets: A list of IPs or CIDR v4/v6 addresses of the client of the session to match
+        :param builtins.bool ips_edge_services: Defines whether Edge Services IPs should be matched
         """
         pulumi.set(__self__, "http_filter", http_filter)
         pulumi.set(__self__, "http_filter_option", http_filter_option)
         pulumi.set(__self__, "http_filter_values", http_filter_values)
         pulumi.set(__self__, "invert", invert)
         pulumi.set(__self__, "ip_subnets", ip_subnets)
+        pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -11818,6 +12292,14 @@ class GetLbFrontendAclMatchResult(dict):
         A list of IPs or CIDR v4/v6 addresses of the client of the session to match
         """
         return pulumi.get(self, "ip_subnets")
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> builtins.bool:
+        """
+        Defines whether Edge Services IPs should be matched
+        """
+        return pulumi.get(self, "ips_edge_services")
 
 
 @pulumi.output_type

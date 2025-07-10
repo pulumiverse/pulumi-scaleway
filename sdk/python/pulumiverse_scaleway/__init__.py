@@ -9,6 +9,9 @@ import typing
 from .account_project import *
 from .account_ssh_key import *
 from .apple_silicon_server import *
+from .autoscaling_instance_group import *
+from .autoscaling_instance_policy import *
+from .autoscaling_instance_template import *
 from .baremetal_server import *
 from .block_snapshot import *
 from .block_volume import *
@@ -644,6 +647,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/appleSiliconServer:AppleSiliconServer": "AppleSiliconServer"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/autoscalingInstanceGroup",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/autoscalingInstanceGroup:AutoscalingInstanceGroup": "AutoscalingInstanceGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/autoscalingInstancePolicy",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/autoscalingInstancePolicy:AutoscalingInstancePolicy": "AutoscalingInstancePolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/autoscalingInstanceTemplate",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/autoscalingInstanceTemplate:AutoscalingInstanceTemplate": "AutoscalingInstanceTemplate"
   }
  },
  {

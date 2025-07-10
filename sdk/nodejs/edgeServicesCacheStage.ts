@@ -74,6 +74,10 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
      */
     public readonly fallbackTtl!: pulumi.Output<number | undefined>;
     /**
+     * Defines whether responses to requests with cookies must be stored in the cache.
+     */
+    public readonly includeCookies!: pulumi.Output<boolean | undefined>;
+    /**
      * The ID of the pipeline.
      */
     public readonly pipelineId!: pulumi.Output<string>;
@@ -118,6 +122,7 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
             resourceInputs["backendStageId"] = state ? state.backendStageId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["fallbackTtl"] = state ? state.fallbackTtl : undefined;
+            resourceInputs["includeCookies"] = state ? state.includeCookies : undefined;
             resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["purgeRequests"] = state ? state.purgeRequests : undefined;
@@ -132,6 +137,7 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
             }
             resourceInputs["backendStageId"] = args ? args.backendStageId : undefined;
             resourceInputs["fallbackTtl"] = args ? args.fallbackTtl : undefined;
+            resourceInputs["includeCookies"] = args ? args.includeCookies : undefined;
             resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
             resourceInputs["purgeRequests"] = args ? args.purgeRequests : undefined;
@@ -162,6 +168,10 @@ export interface EdgeServicesCacheStageState {
      * The Time To Live (TTL) in seconds. Defines how long content is cached.
      */
     fallbackTtl?: pulumi.Input<number>;
+    /**
+     * Defines whether responses to requests with cookies must be stored in the cache.
+     */
+    includeCookies?: pulumi.Input<boolean>;
     /**
      * The ID of the pipeline.
      */
@@ -204,6 +214,10 @@ export interface EdgeServicesCacheStageArgs {
      * The Time To Live (TTL) in seconds. Defines how long content is cached.
      */
     fallbackTtl?: pulumi.Input<number>;
+    /**
+     * Defines whether responses to requests with cookies must be stored in the cache.
+     */
+    includeCookies?: pulumi.Input<boolean>;
     /**
      * The ID of the pipeline.
      */

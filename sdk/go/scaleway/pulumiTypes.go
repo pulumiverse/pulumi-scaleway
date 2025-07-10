@@ -261,6 +261,835 @@ func (o AppleSiliconServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Ap
 	}).(AppleSiliconServerPrivateNetworkOutput)
 }
 
+type AutoscalingInstanceGroupCapacity struct {
+	// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+	CooldownDelay *int `pulumi:"cooldownDelay"`
+	// The maximum count of Instances for the Instance group.
+	MaxReplicas *int `pulumi:"maxReplicas"`
+	// The minimum count of Instances for the Instance group.
+	MinReplicas *int `pulumi:"minReplicas"`
+}
+
+// AutoscalingInstanceGroupCapacityInput is an input type that accepts AutoscalingInstanceGroupCapacityArgs and AutoscalingInstanceGroupCapacityOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceGroupCapacityInput` via:
+//
+//	AutoscalingInstanceGroupCapacityArgs{...}
+type AutoscalingInstanceGroupCapacityInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceGroupCapacityOutput() AutoscalingInstanceGroupCapacityOutput
+	ToAutoscalingInstanceGroupCapacityOutputWithContext(context.Context) AutoscalingInstanceGroupCapacityOutput
+}
+
+type AutoscalingInstanceGroupCapacityArgs struct {
+	// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+	CooldownDelay pulumi.IntPtrInput `pulumi:"cooldownDelay"`
+	// The maximum count of Instances for the Instance group.
+	MaxReplicas pulumi.IntPtrInput `pulumi:"maxReplicas"`
+	// The minimum count of Instances for the Instance group.
+	MinReplicas pulumi.IntPtrInput `pulumi:"minReplicas"`
+}
+
+func (AutoscalingInstanceGroupCapacityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceGroupCapacityArgs) ToAutoscalingInstanceGroupCapacityOutput() AutoscalingInstanceGroupCapacityOutput {
+	return i.ToAutoscalingInstanceGroupCapacityOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceGroupCapacityArgs) ToAutoscalingInstanceGroupCapacityOutputWithContext(ctx context.Context) AutoscalingInstanceGroupCapacityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceGroupCapacityOutput)
+}
+
+// AutoscalingInstanceGroupCapacityArrayInput is an input type that accepts AutoscalingInstanceGroupCapacityArray and AutoscalingInstanceGroupCapacityArrayOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceGroupCapacityArrayInput` via:
+//
+//	AutoscalingInstanceGroupCapacityArray{ AutoscalingInstanceGroupCapacityArgs{...} }
+type AutoscalingInstanceGroupCapacityArrayInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceGroupCapacityArrayOutput() AutoscalingInstanceGroupCapacityArrayOutput
+	ToAutoscalingInstanceGroupCapacityArrayOutputWithContext(context.Context) AutoscalingInstanceGroupCapacityArrayOutput
+}
+
+type AutoscalingInstanceGroupCapacityArray []AutoscalingInstanceGroupCapacityInput
+
+func (AutoscalingInstanceGroupCapacityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceGroupCapacityArray) ToAutoscalingInstanceGroupCapacityArrayOutput() AutoscalingInstanceGroupCapacityArrayOutput {
+	return i.ToAutoscalingInstanceGroupCapacityArrayOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceGroupCapacityArray) ToAutoscalingInstanceGroupCapacityArrayOutputWithContext(ctx context.Context) AutoscalingInstanceGroupCapacityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceGroupCapacityArrayOutput)
+}
+
+type AutoscalingInstanceGroupCapacityOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceGroupCapacityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceGroupCapacityOutput) ToAutoscalingInstanceGroupCapacityOutput() AutoscalingInstanceGroupCapacityOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupCapacityOutput) ToAutoscalingInstanceGroupCapacityOutputWithContext(ctx context.Context) AutoscalingInstanceGroupCapacityOutput {
+	return o
+}
+
+// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+func (o AutoscalingInstanceGroupCapacityOutput) CooldownDelay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupCapacity) *int { return v.CooldownDelay }).(pulumi.IntPtrOutput)
+}
+
+// The maximum count of Instances for the Instance group.
+func (o AutoscalingInstanceGroupCapacityOutput) MaxReplicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupCapacity) *int { return v.MaxReplicas }).(pulumi.IntPtrOutput)
+}
+
+// The minimum count of Instances for the Instance group.
+func (o AutoscalingInstanceGroupCapacityOutput) MinReplicas() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupCapacity) *int { return v.MinReplicas }).(pulumi.IntPtrOutput)
+}
+
+type AutoscalingInstanceGroupCapacityArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceGroupCapacityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceGroupCapacityArrayOutput) ToAutoscalingInstanceGroupCapacityArrayOutput() AutoscalingInstanceGroupCapacityArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupCapacityArrayOutput) ToAutoscalingInstanceGroupCapacityArrayOutputWithContext(ctx context.Context) AutoscalingInstanceGroupCapacityArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupCapacityArrayOutput) Index(i pulumi.IntInput) AutoscalingInstanceGroupCapacityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoscalingInstanceGroupCapacity {
+		return vs[0].([]AutoscalingInstanceGroupCapacity)[vs[1].(int)]
+	}).(AutoscalingInstanceGroupCapacityOutput)
+}
+
+type AutoscalingInstanceGroupLoadBalancer struct {
+	// The Load Balancer backend IDs.
+	BackendIds []string `pulumi:"backendIds"`
+	// The ID of the Load Balancer.
+	Id *string `pulumi:"id"`
+	// The ID of the Private Network attached to the Load Balancer.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+}
+
+// AutoscalingInstanceGroupLoadBalancerInput is an input type that accepts AutoscalingInstanceGroupLoadBalancerArgs and AutoscalingInstanceGroupLoadBalancerOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceGroupLoadBalancerInput` via:
+//
+//	AutoscalingInstanceGroupLoadBalancerArgs{...}
+type AutoscalingInstanceGroupLoadBalancerInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceGroupLoadBalancerOutput() AutoscalingInstanceGroupLoadBalancerOutput
+	ToAutoscalingInstanceGroupLoadBalancerOutputWithContext(context.Context) AutoscalingInstanceGroupLoadBalancerOutput
+}
+
+type AutoscalingInstanceGroupLoadBalancerArgs struct {
+	// The Load Balancer backend IDs.
+	BackendIds pulumi.StringArrayInput `pulumi:"backendIds"`
+	// The ID of the Load Balancer.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The ID of the Private Network attached to the Load Balancer.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+}
+
+func (AutoscalingInstanceGroupLoadBalancerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceGroupLoadBalancerArgs) ToAutoscalingInstanceGroupLoadBalancerOutput() AutoscalingInstanceGroupLoadBalancerOutput {
+	return i.ToAutoscalingInstanceGroupLoadBalancerOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceGroupLoadBalancerArgs) ToAutoscalingInstanceGroupLoadBalancerOutputWithContext(ctx context.Context) AutoscalingInstanceGroupLoadBalancerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceGroupLoadBalancerOutput)
+}
+
+// AutoscalingInstanceGroupLoadBalancerArrayInput is an input type that accepts AutoscalingInstanceGroupLoadBalancerArray and AutoscalingInstanceGroupLoadBalancerArrayOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceGroupLoadBalancerArrayInput` via:
+//
+//	AutoscalingInstanceGroupLoadBalancerArray{ AutoscalingInstanceGroupLoadBalancerArgs{...} }
+type AutoscalingInstanceGroupLoadBalancerArrayInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceGroupLoadBalancerArrayOutput() AutoscalingInstanceGroupLoadBalancerArrayOutput
+	ToAutoscalingInstanceGroupLoadBalancerArrayOutputWithContext(context.Context) AutoscalingInstanceGroupLoadBalancerArrayOutput
+}
+
+type AutoscalingInstanceGroupLoadBalancerArray []AutoscalingInstanceGroupLoadBalancerInput
+
+func (AutoscalingInstanceGroupLoadBalancerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceGroupLoadBalancerArray) ToAutoscalingInstanceGroupLoadBalancerArrayOutput() AutoscalingInstanceGroupLoadBalancerArrayOutput {
+	return i.ToAutoscalingInstanceGroupLoadBalancerArrayOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceGroupLoadBalancerArray) ToAutoscalingInstanceGroupLoadBalancerArrayOutputWithContext(ctx context.Context) AutoscalingInstanceGroupLoadBalancerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceGroupLoadBalancerArrayOutput)
+}
+
+type AutoscalingInstanceGroupLoadBalancerOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceGroupLoadBalancerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceGroupLoadBalancerOutput) ToAutoscalingInstanceGroupLoadBalancerOutput() AutoscalingInstanceGroupLoadBalancerOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupLoadBalancerOutput) ToAutoscalingInstanceGroupLoadBalancerOutputWithContext(ctx context.Context) AutoscalingInstanceGroupLoadBalancerOutput {
+	return o
+}
+
+// The Load Balancer backend IDs.
+func (o AutoscalingInstanceGroupLoadBalancerOutput) BackendIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupLoadBalancer) []string { return v.BackendIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the Load Balancer.
+func (o AutoscalingInstanceGroupLoadBalancerOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupLoadBalancer) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the Private Network attached to the Load Balancer.
+func (o AutoscalingInstanceGroupLoadBalancerOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceGroupLoadBalancer) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+type AutoscalingInstanceGroupLoadBalancerArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceGroupLoadBalancerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceGroupLoadBalancerArrayOutput) ToAutoscalingInstanceGroupLoadBalancerArrayOutput() AutoscalingInstanceGroupLoadBalancerArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupLoadBalancerArrayOutput) ToAutoscalingInstanceGroupLoadBalancerArrayOutputWithContext(ctx context.Context) AutoscalingInstanceGroupLoadBalancerArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceGroupLoadBalancerArrayOutput) Index(i pulumi.IntInput) AutoscalingInstanceGroupLoadBalancerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoscalingInstanceGroupLoadBalancer {
+		return vs[0].([]AutoscalingInstanceGroupLoadBalancer)[vs[1].(int)]
+	}).(AutoscalingInstanceGroupLoadBalancerOutput)
+}
+
+type AutoscalingInstancePolicyMetric struct {
+	// How the values sampled for the `metric` should be aggregated.
+	Aggregate string `pulumi:"aggregate"`
+	// The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	CockpitMetricName *string `pulumi:"cockpitMetricName"`
+	// The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+	ManagedMetric *string `pulumi:"managedMetric"`
+	// Name or description of the metric policy.
+	Name string `pulumi:"name"`
+	// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+	Operator string `pulumi:"operator"`
+	// The Interval of time, in minutes, during which metric is sampled.
+	SamplingRangeMin *int `pulumi:"samplingRangeMin"`
+	// The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+	Threshold *int `pulumi:"threshold"`
+}
+
+// AutoscalingInstancePolicyMetricInput is an input type that accepts AutoscalingInstancePolicyMetricArgs and AutoscalingInstancePolicyMetricOutput values.
+// You can construct a concrete instance of `AutoscalingInstancePolicyMetricInput` via:
+//
+//	AutoscalingInstancePolicyMetricArgs{...}
+type AutoscalingInstancePolicyMetricInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstancePolicyMetricOutput() AutoscalingInstancePolicyMetricOutput
+	ToAutoscalingInstancePolicyMetricOutputWithContext(context.Context) AutoscalingInstancePolicyMetricOutput
+}
+
+type AutoscalingInstancePolicyMetricArgs struct {
+	// How the values sampled for the `metric` should be aggregated.
+	Aggregate pulumi.StringInput `pulumi:"aggregate"`
+	// The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	CockpitMetricName pulumi.StringPtrInput `pulumi:"cockpitMetricName"`
+	// The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+	ManagedMetric pulumi.StringPtrInput `pulumi:"managedMetric"`
+	// Name or description of the metric policy.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// The Interval of time, in minutes, during which metric is sampled.
+	SamplingRangeMin pulumi.IntPtrInput `pulumi:"samplingRangeMin"`
+	// The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+	Threshold pulumi.IntPtrInput `pulumi:"threshold"`
+}
+
+func (AutoscalingInstancePolicyMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstancePolicyMetric)(nil)).Elem()
+}
+
+func (i AutoscalingInstancePolicyMetricArgs) ToAutoscalingInstancePolicyMetricOutput() AutoscalingInstancePolicyMetricOutput {
+	return i.ToAutoscalingInstancePolicyMetricOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstancePolicyMetricArgs) ToAutoscalingInstancePolicyMetricOutputWithContext(ctx context.Context) AutoscalingInstancePolicyMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstancePolicyMetricOutput)
+}
+
+// AutoscalingInstancePolicyMetricArrayInput is an input type that accepts AutoscalingInstancePolicyMetricArray and AutoscalingInstancePolicyMetricArrayOutput values.
+// You can construct a concrete instance of `AutoscalingInstancePolicyMetricArrayInput` via:
+//
+//	AutoscalingInstancePolicyMetricArray{ AutoscalingInstancePolicyMetricArgs{...} }
+type AutoscalingInstancePolicyMetricArrayInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstancePolicyMetricArrayOutput() AutoscalingInstancePolicyMetricArrayOutput
+	ToAutoscalingInstancePolicyMetricArrayOutputWithContext(context.Context) AutoscalingInstancePolicyMetricArrayOutput
+}
+
+type AutoscalingInstancePolicyMetricArray []AutoscalingInstancePolicyMetricInput
+
+func (AutoscalingInstancePolicyMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstancePolicyMetric)(nil)).Elem()
+}
+
+func (i AutoscalingInstancePolicyMetricArray) ToAutoscalingInstancePolicyMetricArrayOutput() AutoscalingInstancePolicyMetricArrayOutput {
+	return i.ToAutoscalingInstancePolicyMetricArrayOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstancePolicyMetricArray) ToAutoscalingInstancePolicyMetricArrayOutputWithContext(ctx context.Context) AutoscalingInstancePolicyMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstancePolicyMetricArrayOutput)
+}
+
+type AutoscalingInstancePolicyMetricOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstancePolicyMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstancePolicyMetric)(nil)).Elem()
+}
+
+func (o AutoscalingInstancePolicyMetricOutput) ToAutoscalingInstancePolicyMetricOutput() AutoscalingInstancePolicyMetricOutput {
+	return o
+}
+
+func (o AutoscalingInstancePolicyMetricOutput) ToAutoscalingInstancePolicyMetricOutputWithContext(ctx context.Context) AutoscalingInstancePolicyMetricOutput {
+	return o
+}
+
+// How the values sampled for the `metric` should be aggregated.
+func (o AutoscalingInstancePolicyMetricOutput) Aggregate() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) string { return v.Aggregate }).(pulumi.StringOutput)
+}
+
+// The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+func (o AutoscalingInstancePolicyMetricOutput) CockpitMetricName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) *string { return v.CockpitMetricName }).(pulumi.StringPtrOutput)
+}
+
+// The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+func (o AutoscalingInstancePolicyMetricOutput) ManagedMetric() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) *string { return v.ManagedMetric }).(pulumi.StringPtrOutput)
+}
+
+// Name or description of the metric policy.
+func (o AutoscalingInstancePolicyMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+func (o AutoscalingInstancePolicyMetricOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// The Interval of time, in minutes, during which metric is sampled.
+func (o AutoscalingInstancePolicyMetricOutput) SamplingRangeMin() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) *int { return v.SamplingRangeMin }).(pulumi.IntPtrOutput)
+}
+
+// The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+func (o AutoscalingInstancePolicyMetricOutput) Threshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstancePolicyMetric) *int { return v.Threshold }).(pulumi.IntPtrOutput)
+}
+
+type AutoscalingInstancePolicyMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstancePolicyMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstancePolicyMetric)(nil)).Elem()
+}
+
+func (o AutoscalingInstancePolicyMetricArrayOutput) ToAutoscalingInstancePolicyMetricArrayOutput() AutoscalingInstancePolicyMetricArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstancePolicyMetricArrayOutput) ToAutoscalingInstancePolicyMetricArrayOutputWithContext(ctx context.Context) AutoscalingInstancePolicyMetricArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstancePolicyMetricArrayOutput) Index(i pulumi.IntInput) AutoscalingInstancePolicyMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoscalingInstancePolicyMetric {
+		return vs[0].([]AutoscalingInstancePolicyMetric)[vs[1].(int)]
+	}).(AutoscalingInstancePolicyMetricOutput)
+}
+
+type AutoscalingInstanceTemplateVolume struct {
+	// Force the Instance to boot on this volume.
+	Boot *bool `pulumi:"boot"`
+	// Volume instance template from empty
+	FromEmpty *AutoscalingInstanceTemplateVolumeFromEmpty `pulumi:"fromEmpty"`
+	// Volume instance template from snapshot
+	FromSnapshot *AutoscalingInstanceTemplateVolumeFromSnapshot `pulumi:"fromSnapshot"`
+	// The name of the volume.
+	Name string `pulumi:"name"`
+	// The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+	PerfIops *int `pulumi:"perfIops"`
+	// The list of tags assigned to the volume.
+	Tags []string `pulumi:"tags"`
+	// The type of the volume.
+	VolumeType string `pulumi:"volumeType"`
+}
+
+// AutoscalingInstanceTemplateVolumeInput is an input type that accepts AutoscalingInstanceTemplateVolumeArgs and AutoscalingInstanceTemplateVolumeOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeInput` via:
+//
+//	AutoscalingInstanceTemplateVolumeArgs{...}
+type AutoscalingInstanceTemplateVolumeInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeOutput() AutoscalingInstanceTemplateVolumeOutput
+	ToAutoscalingInstanceTemplateVolumeOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeOutput
+}
+
+type AutoscalingInstanceTemplateVolumeArgs struct {
+	// Force the Instance to boot on this volume.
+	Boot pulumi.BoolPtrInput `pulumi:"boot"`
+	// Volume instance template from empty
+	FromEmpty AutoscalingInstanceTemplateVolumeFromEmptyPtrInput `pulumi:"fromEmpty"`
+	// Volume instance template from snapshot
+	FromSnapshot AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput `pulumi:"fromSnapshot"`
+	// The name of the volume.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+	PerfIops pulumi.IntPtrInput `pulumi:"perfIops"`
+	// The list of tags assigned to the volume.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// The type of the volume.
+	VolumeType pulumi.StringInput `pulumi:"volumeType"`
+}
+
+func (AutoscalingInstanceTemplateVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolume)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceTemplateVolumeArgs) ToAutoscalingInstanceTemplateVolumeOutput() AutoscalingInstanceTemplateVolumeOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeArgs) ToAutoscalingInstanceTemplateVolumeOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeOutput)
+}
+
+// AutoscalingInstanceTemplateVolumeArrayInput is an input type that accepts AutoscalingInstanceTemplateVolumeArray and AutoscalingInstanceTemplateVolumeArrayOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeArrayInput` via:
+//
+//	AutoscalingInstanceTemplateVolumeArray{ AutoscalingInstanceTemplateVolumeArgs{...} }
+type AutoscalingInstanceTemplateVolumeArrayInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeArrayOutput() AutoscalingInstanceTemplateVolumeArrayOutput
+	ToAutoscalingInstanceTemplateVolumeArrayOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeArrayOutput
+}
+
+type AutoscalingInstanceTemplateVolumeArray []AutoscalingInstanceTemplateVolumeInput
+
+func (AutoscalingInstanceTemplateVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceTemplateVolume)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceTemplateVolumeArray) ToAutoscalingInstanceTemplateVolumeArrayOutput() AutoscalingInstanceTemplateVolumeArrayOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeArray) ToAutoscalingInstanceTemplateVolumeArrayOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeArrayOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolume)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeOutput) ToAutoscalingInstanceTemplateVolumeOutput() AutoscalingInstanceTemplateVolumeOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeOutput) ToAutoscalingInstanceTemplateVolumeOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeOutput {
+	return o
+}
+
+// Force the Instance to boot on this volume.
+func (o AutoscalingInstanceTemplateVolumeOutput) Boot() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) *bool { return v.Boot }).(pulumi.BoolPtrOutput)
+}
+
+// Volume instance template from empty
+func (o AutoscalingInstanceTemplateVolumeOutput) FromEmpty() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) *AutoscalingInstanceTemplateVolumeFromEmpty {
+		return v.FromEmpty
+	}).(AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput)
+}
+
+// Volume instance template from snapshot
+func (o AutoscalingInstanceTemplateVolumeOutput) FromSnapshot() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) *AutoscalingInstanceTemplateVolumeFromSnapshot {
+		return v.FromSnapshot
+	}).(AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput)
+}
+
+// The name of the volume.
+func (o AutoscalingInstanceTemplateVolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+func (o AutoscalingInstanceTemplateVolumeOutput) PerfIops() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) *int { return v.PerfIops }).(pulumi.IntPtrOutput)
+}
+
+// The list of tags assigned to the volume.
+func (o AutoscalingInstanceTemplateVolumeOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The type of the volume.
+func (o AutoscalingInstanceTemplateVolumeOutput) VolumeType() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolume) string { return v.VolumeType }).(pulumi.StringOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]AutoscalingInstanceTemplateVolume)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeArrayOutput) ToAutoscalingInstanceTemplateVolumeArrayOutput() AutoscalingInstanceTemplateVolumeArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeArrayOutput) ToAutoscalingInstanceTemplateVolumeArrayOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeArrayOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeArrayOutput) Index(i pulumi.IntInput) AutoscalingInstanceTemplateVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AutoscalingInstanceTemplateVolume {
+		return vs[0].([]AutoscalingInstanceTemplateVolume)[vs[1].(int)]
+	}).(AutoscalingInstanceTemplateVolumeOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromEmpty struct {
+	// Size in GB of the new empty volume
+	Size int `pulumi:"size"`
+}
+
+// AutoscalingInstanceTemplateVolumeFromEmptyInput is an input type that accepts AutoscalingInstanceTemplateVolumeFromEmptyArgs and AutoscalingInstanceTemplateVolumeFromEmptyOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeFromEmptyInput` via:
+//
+//	AutoscalingInstanceTemplateVolumeFromEmptyArgs{...}
+type AutoscalingInstanceTemplateVolumeFromEmptyInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeFromEmptyOutput() AutoscalingInstanceTemplateVolumeFromEmptyOutput
+	ToAutoscalingInstanceTemplateVolumeFromEmptyOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeFromEmptyOutput
+}
+
+type AutoscalingInstanceTemplateVolumeFromEmptyArgs struct {
+	// Size in GB of the new empty volume
+	Size pulumi.IntInput `pulumi:"size"`
+}
+
+func (AutoscalingInstanceTemplateVolumeFromEmptyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromEmpty)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromEmptyArgs) ToAutoscalingInstanceTemplateVolumeFromEmptyOutput() AutoscalingInstanceTemplateVolumeFromEmptyOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromEmptyOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromEmptyArgs) ToAutoscalingInstanceTemplateVolumeFromEmptyOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromEmptyOutput)
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromEmptyArgs) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutput() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromEmptyArgs) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromEmptyOutput).ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(ctx)
+}
+
+// AutoscalingInstanceTemplateVolumeFromEmptyPtrInput is an input type that accepts AutoscalingInstanceTemplateVolumeFromEmptyArgs, AutoscalingInstanceTemplateVolumeFromEmptyPtr and AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeFromEmptyPtrInput` via:
+//
+//	        AutoscalingInstanceTemplateVolumeFromEmptyArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoscalingInstanceTemplateVolumeFromEmptyPtrInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutput() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput
+	ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput
+}
+
+type autoscalingInstanceTemplateVolumeFromEmptyPtrType AutoscalingInstanceTemplateVolumeFromEmptyArgs
+
+func AutoscalingInstanceTemplateVolumeFromEmptyPtr(v *AutoscalingInstanceTemplateVolumeFromEmptyArgs) AutoscalingInstanceTemplateVolumeFromEmptyPtrInput {
+	return (*autoscalingInstanceTemplateVolumeFromEmptyPtrType)(v)
+}
+
+func (*autoscalingInstanceTemplateVolumeFromEmptyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscalingInstanceTemplateVolumeFromEmpty)(nil)).Elem()
+}
+
+func (i *autoscalingInstanceTemplateVolumeFromEmptyPtrType) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutput() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(context.Background())
+}
+
+func (i *autoscalingInstanceTemplateVolumeFromEmptyPtrType) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromEmptyOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeFromEmptyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromEmpty)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyOutput() AutoscalingInstanceTemplateVolumeFromEmptyOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutput() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return o.ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(context.Background())
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoscalingInstanceTemplateVolumeFromEmpty) *AutoscalingInstanceTemplateVolumeFromEmpty {
+		return &v
+	}).(AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput)
+}
+
+// Size in GB of the new empty volume
+func (o AutoscalingInstanceTemplateVolumeFromEmptyOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolumeFromEmpty) int { return v.Size }).(pulumi.IntOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscalingInstanceTemplateVolumeFromEmpty)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutput() AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput) ToAutoscalingInstanceTemplateVolumeFromEmptyPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput) Elem() AutoscalingInstanceTemplateVolumeFromEmptyOutput {
+	return o.ApplyT(func(v *AutoscalingInstanceTemplateVolumeFromEmpty) AutoscalingInstanceTemplateVolumeFromEmpty {
+		if v != nil {
+			return *v
+		}
+		var ret AutoscalingInstanceTemplateVolumeFromEmpty
+		return ret
+	}).(AutoscalingInstanceTemplateVolumeFromEmptyOutput)
+}
+
+// Size in GB of the new empty volume
+func (o AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AutoscalingInstanceTemplateVolumeFromEmpty) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromSnapshot struct {
+	// Override size (in GB) of the cloned volume
+	Size *int `pulumi:"size"`
+	// ID of the snapshot to clone
+	SnapshotId string `pulumi:"snapshotId"`
+}
+
+// AutoscalingInstanceTemplateVolumeFromSnapshotInput is an input type that accepts AutoscalingInstanceTemplateVolumeFromSnapshotArgs and AutoscalingInstanceTemplateVolumeFromSnapshotOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeFromSnapshotInput` via:
+//
+//	AutoscalingInstanceTemplateVolumeFromSnapshotArgs{...}
+type AutoscalingInstanceTemplateVolumeFromSnapshotInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeFromSnapshotOutput() AutoscalingInstanceTemplateVolumeFromSnapshotOutput
+	ToAutoscalingInstanceTemplateVolumeFromSnapshotOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotOutput
+}
+
+type AutoscalingInstanceTemplateVolumeFromSnapshotArgs struct {
+	// Override size (in GB) of the cloned volume
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// ID of the snapshot to clone
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+}
+
+func (AutoscalingInstanceTemplateVolumeFromSnapshotArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromSnapshot)(nil)).Elem()
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromSnapshotArgs) ToAutoscalingInstanceTemplateVolumeFromSnapshotOutput() AutoscalingInstanceTemplateVolumeFromSnapshotOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromSnapshotOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromSnapshotArgs) ToAutoscalingInstanceTemplateVolumeFromSnapshotOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromSnapshotOutput)
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromSnapshotArgs) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i AutoscalingInstanceTemplateVolumeFromSnapshotArgs) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromSnapshotOutput).ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(ctx)
+}
+
+// AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput is an input type that accepts AutoscalingInstanceTemplateVolumeFromSnapshotArgs, AutoscalingInstanceTemplateVolumeFromSnapshotPtr and AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput values.
+// You can construct a concrete instance of `AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput` via:
+//
+//	        AutoscalingInstanceTemplateVolumeFromSnapshotArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput interface {
+	pulumi.Input
+
+	ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput
+	ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput
+}
+
+type autoscalingInstanceTemplateVolumeFromSnapshotPtrType AutoscalingInstanceTemplateVolumeFromSnapshotArgs
+
+func AutoscalingInstanceTemplateVolumeFromSnapshotPtr(v *AutoscalingInstanceTemplateVolumeFromSnapshotArgs) AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput {
+	return (*autoscalingInstanceTemplateVolumeFromSnapshotPtrType)(v)
+}
+
+func (*autoscalingInstanceTemplateVolumeFromSnapshotPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscalingInstanceTemplateVolumeFromSnapshot)(nil)).Elem()
+}
+
+func (i *autoscalingInstanceTemplateVolumeFromSnapshotPtrType) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return i.ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (i *autoscalingInstanceTemplateVolumeFromSnapshotPtrType) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromSnapshotOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeFromSnapshotOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromSnapshot)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotOutput() AutoscalingInstanceTemplateVolumeFromSnapshotOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return o.ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(context.Background())
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoscalingInstanceTemplateVolumeFromSnapshot) *AutoscalingInstanceTemplateVolumeFromSnapshot {
+		return &v
+	}).(AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput)
+}
+
+// Override size (in GB) of the cloned volume
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolumeFromSnapshot) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// ID of the snapshot to clone
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v AutoscalingInstanceTemplateVolumeFromSnapshot) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+type AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscalingInstanceTemplateVolumeFromSnapshot)(nil)).Elem()
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput() AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) ToAutoscalingInstanceTemplateVolumeFromSnapshotPtrOutputWithContext(ctx context.Context) AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput {
+	return o
+}
+
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) Elem() AutoscalingInstanceTemplateVolumeFromSnapshotOutput {
+	return o.ApplyT(func(v *AutoscalingInstanceTemplateVolumeFromSnapshot) AutoscalingInstanceTemplateVolumeFromSnapshot {
+		if v != nil {
+			return *v
+		}
+		var ret AutoscalingInstanceTemplateVolumeFromSnapshot
+		return ret
+	}).(AutoscalingInstanceTemplateVolumeFromSnapshotOutput)
+}
+
+// Override size (in GB) of the cloned volume
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AutoscalingInstanceTemplateVolumeFromSnapshot) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Size
+	}).(pulumi.IntPtrOutput)
+}
+
+// ID of the snapshot to clone
+func (o AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput) SnapshotId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AutoscalingInstanceTemplateVolumeFromSnapshot) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SnapshotId
+	}).(pulumi.StringPtrOutput)
+}
+
 type BaremetalServerIp struct {
 	// The address of the IPv6.
 	Address *string `pulumi:"address"`
@@ -11986,8 +12815,10 @@ type LoadbalancerAclMatch struct {
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices *bool `pulumi:"ipsEdgeServices"`
 }
 
 // LoadbalancerAclMatchInput is an input type that accepts LoadbalancerAclMatchArgs and LoadbalancerAclMatchOutput values.
@@ -12013,8 +12844,10 @@ type LoadbalancerAclMatchArgs struct {
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices pulumi.BoolPtrInput `pulumi:"ipsEdgeServices"`
 }
 
 func (LoadbalancerAclMatchArgs) ElementType() reflect.Type {
@@ -12117,9 +12950,14 @@ func (o LoadbalancerAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerAclMatchOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerAclMatch) *bool { return v.IpsEdgeServices }).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerAclMatchPtrOutput struct{ *pulumi.OutputState }
@@ -12189,7 +13027,7 @@ func (o LoadbalancerAclMatchPtrOutput) Invert() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerAclMatch) []string {
 		if v == nil {
@@ -12197,6 +13035,16 @@ func (o LoadbalancerAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 		}
 		return v.IpSubnets
 	}).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerAclMatchPtrOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerAclMatch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IpsEdgeServices
+	}).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerBackendHealthCheckHttp struct {
@@ -13024,7 +13872,7 @@ type LoadbalancerFrontendAcl struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -13050,7 +13898,7 @@ type LoadbalancerFrontendAclArgs struct {
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -13124,7 +13972,7 @@ func (o LoadbalancerFrontendAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 func (o LoadbalancerFrontendAclOutput) Match() LoadbalancerFrontendAclMatchOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) LoadbalancerFrontendAclMatch { return v.Match }).(LoadbalancerFrontendAclMatchOutput)
 }
@@ -13347,8 +14195,10 @@ type LoadbalancerFrontendAclMatch struct {
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices *bool `pulumi:"ipsEdgeServices"`
 }
 
 // LoadbalancerFrontendAclMatchInput is an input type that accepts LoadbalancerFrontendAclMatchArgs and LoadbalancerFrontendAclMatchOutput values.
@@ -13374,8 +14224,10 @@ type LoadbalancerFrontendAclMatchArgs struct {
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices pulumi.BoolPtrInput `pulumi:"ipsEdgeServices"`
 }
 
 func (LoadbalancerFrontendAclMatchArgs) ElementType() reflect.Type {
@@ -13427,9 +14279,14 @@ func (o LoadbalancerFrontendAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerFrontendAclMatchOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) *bool { return v.IpsEdgeServices }).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerPrivateIp struct {
@@ -14802,9 +15659,11 @@ func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntIn
 type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id string `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type string `pulumi:"type"`
+	Id *string `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type *string `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri *string `pulumi:"uri"`
 }
 
 // ObjectBucketAclAccessControlPolicyGrantGranteeInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantGranteeArgs and ObjectBucketAclAccessControlPolicyGrantGranteeOutput values.
@@ -14821,9 +15680,11 @@ type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
 type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id pulumi.StringInput `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type pulumi.StringInput `pulumi:"type"`
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri pulumi.StringPtrInput `pulumi:"uri"`
 }
 
 func (ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ElementType() reflect.Type {
@@ -14908,13 +15769,18 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulu
 }
 
 // The `region`, `bucket` and `acl` separated by (`/`).
-func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
-func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Type }).(pulumi.StringOutput)
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Uri }).(pulumi.StringPtrOutput)
 }
 
 type ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput struct{ *pulumi.OutputState }
@@ -14956,17 +15822,27 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.Str
 		if v == nil {
 			return nil
 		}
-		return &v.Id
+		return v.Id
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
 func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Type
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uri
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -26002,6 +26878,8 @@ type GetLbAclsAclMatch struct {
 	Invert bool `pulumi:"invert"`
 	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched.
+	IpsEdgeServices bool `pulumi:"ipsEdgeServices"`
 }
 
 // GetLbAclsAclMatchInput is an input type that accepts GetLbAclsAclMatchArgs and GetLbAclsAclMatchOutput values.
@@ -26026,6 +26904,8 @@ type GetLbAclsAclMatchArgs struct {
 	Invert pulumi.BoolInput `pulumi:"invert"`
 	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched.
+	IpsEdgeServices pulumi.BoolInput `pulumi:"ipsEdgeServices"`
 }
 
 func (GetLbAclsAclMatchArgs) ElementType() reflect.Type {
@@ -26102,6 +26982,11 @@ func (o GetLbAclsAclMatchOutput) Invert() pulumi.BoolOutput {
 // A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o GetLbAclsAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched.
+func (o GetLbAclsAclMatchOutput) IpsEdgeServices() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) bool { return v.IpsEdgeServices }).(pulumi.BoolOutput)
 }
 
 type GetLbAclsAclMatchArrayOutput struct{ *pulumi.OutputState }
@@ -27265,6 +28150,8 @@ type GetLbFrontendAclMatch struct {
 	Invert bool `pulumi:"invert"`
 	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched
+	IpsEdgeServices bool `pulumi:"ipsEdgeServices"`
 }
 
 // GetLbFrontendAclMatchInput is an input type that accepts GetLbFrontendAclMatchArgs and GetLbFrontendAclMatchOutput values.
@@ -27289,6 +28176,8 @@ type GetLbFrontendAclMatchArgs struct {
 	Invert pulumi.BoolInput `pulumi:"invert"`
 	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched
+	IpsEdgeServices pulumi.BoolInput `pulumi:"ipsEdgeServices"`
 }
 
 func (GetLbFrontendAclMatchArgs) ElementType() reflect.Type {
@@ -27365,6 +28254,11 @@ func (o GetLbFrontendAclMatchOutput) Invert() pulumi.BoolOutput {
 // A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 func (o GetLbFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched
+func (o GetLbFrontendAclMatchOutput) IpsEdgeServices() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) bool { return v.IpsEdgeServices }).(pulumi.BoolOutput)
 }
 
 type GetLbFrontendAclMatchArrayOutput struct{ *pulumi.OutputState }
@@ -32479,6 +33373,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AppleSiliconServerPrivateIpArrayInput)(nil)).Elem(), AppleSiliconServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AppleSiliconServerPrivateNetworkInput)(nil)).Elem(), AppleSiliconServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AppleSiliconServerPrivateNetworkArrayInput)(nil)).Elem(), AppleSiliconServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceGroupCapacityInput)(nil)).Elem(), AutoscalingInstanceGroupCapacityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceGroupCapacityArrayInput)(nil)).Elem(), AutoscalingInstanceGroupCapacityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceGroupLoadBalancerInput)(nil)).Elem(), AutoscalingInstanceGroupLoadBalancerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceGroupLoadBalancerArrayInput)(nil)).Elem(), AutoscalingInstanceGroupLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstancePolicyMetricInput)(nil)).Elem(), AutoscalingInstancePolicyMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstancePolicyMetricArrayInput)(nil)).Elem(), AutoscalingInstancePolicyMetricArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeArrayInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromEmptyInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeFromEmptyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromEmptyPtrInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeFromEmptyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromSnapshotInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeFromSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscalingInstanceTemplateVolumeFromSnapshotPtrInput)(nil)).Elem(), AutoscalingInstanceTemplateVolumeFromSnapshotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpInput)(nil)).Elem(), BaremetalServerIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpArrayInput)(nil)).Elem(), BaremetalServerIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerIpv4Input)(nil)).Elem(), BaremetalServerIpv4Args{})
@@ -32934,6 +33840,18 @@ func init() {
 	pulumi.RegisterOutputType(AppleSiliconServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(AppleSiliconServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceGroupCapacityOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceGroupCapacityArrayOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceGroupLoadBalancerOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceGroupLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstancePolicyMetricOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstancePolicyMetricArrayOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeArrayOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeFromEmptyOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeFromEmptyPtrOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeFromSnapshotOutput{})
+	pulumi.RegisterOutputType(AutoscalingInstanceTemplateVolumeFromSnapshotPtrOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerIpv4Output{})

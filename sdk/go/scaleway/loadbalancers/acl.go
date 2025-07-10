@@ -79,7 +79,7 @@ type Acl struct {
 	FrontendId pulumi.StringOutput `pulumi:"frontendId"`
 	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntOutput `pulumi:"index"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match AclMatchPtrOutput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -142,7 +142,7 @@ type aclState struct {
 	FrontendId *string `pulumi:"frontendId"`
 	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index *int `pulumi:"index"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match *AclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -161,7 +161,7 @@ type AclState struct {
 	FrontendId pulumi.StringPtrInput
 	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntPtrInput
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match AclMatchPtrInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -182,7 +182,7 @@ type aclArgs struct {
 	FrontendId string `pulumi:"frontendId"`
 	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index int `pulumi:"index"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match *AclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -198,7 +198,7 @@ type AclArgs struct {
 	FrontendId pulumi.StringInput
 	// The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
 	Index pulumi.IntInput
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match AclMatchPtrInput
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -316,7 +316,7 @@ func (o AclOutput) Index() pulumi.IntOutput {
 	return o.ApplyT(func(v *Acl) pulumi.IntOutput { return v.Index }).(pulumi.IntOutput)
 }
 
-// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 func (o AclOutput) Match() AclMatchPtrOutput {
 	return o.ApplyT(func(v *Acl) AclMatchPtrOutput { return v.Match }).(AclMatchPtrOutput)
 }

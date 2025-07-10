@@ -27,6 +27,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccountSshKey{}
 	case "scaleway:index/appleSiliconServer:AppleSiliconServer":
 		r = &AppleSiliconServer{}
+	case "scaleway:index/autoscalingInstanceGroup:AutoscalingInstanceGroup":
+		r = &AutoscalingInstanceGroup{}
+	case "scaleway:index/autoscalingInstancePolicy:AutoscalingInstancePolicy":
+		r = &AutoscalingInstancePolicy{}
+	case "scaleway:index/autoscalingInstanceTemplate:AutoscalingInstanceTemplate":
+		r = &AutoscalingInstanceTemplate{}
 	case "scaleway:index/baremetalServer:BaremetalServer":
 		r = &BaremetalServer{}
 	case "scaleway:index/blockSnapshot:BlockSnapshot":
@@ -297,6 +303,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/appleSiliconServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/autoscalingInstanceGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/autoscalingInstancePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/autoscalingInstanceTemplate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

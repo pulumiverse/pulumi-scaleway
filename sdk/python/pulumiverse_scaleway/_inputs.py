@@ -20,6 +20,18 @@ __all__ = [
     'AppleSiliconServerPrivateIpArgsDict',
     'AppleSiliconServerPrivateNetworkArgs',
     'AppleSiliconServerPrivateNetworkArgsDict',
+    'AutoscalingInstanceGroupCapacityArgs',
+    'AutoscalingInstanceGroupCapacityArgsDict',
+    'AutoscalingInstanceGroupLoadBalancerArgs',
+    'AutoscalingInstanceGroupLoadBalancerArgsDict',
+    'AutoscalingInstancePolicyMetricArgs',
+    'AutoscalingInstancePolicyMetricArgsDict',
+    'AutoscalingInstanceTemplateVolumeArgs',
+    'AutoscalingInstanceTemplateVolumeArgsDict',
+    'AutoscalingInstanceTemplateVolumeFromEmptyArgs',
+    'AutoscalingInstanceTemplateVolumeFromEmptyArgsDict',
+    'AutoscalingInstanceTemplateVolumeFromSnapshotArgs',
+    'AutoscalingInstanceTemplateVolumeFromSnapshotArgsDict',
     'BaremetalServerIpArgs',
     'BaremetalServerIpArgsDict',
     'BaremetalServerIpv4Args',
@@ -451,6 +463,531 @@ class AppleSiliconServerPrivateNetworkArgs:
     @vlan.setter
     def vlan(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "vlan", value)
+
+
+if not MYPY:
+    class AutoscalingInstanceGroupCapacityArgsDict(TypedDict):
+        cooldown_delay: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+        """
+        max_replicas: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The maximum count of Instances for the Instance group.
+        """
+        min_replicas: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The minimum count of Instances for the Instance group.
+        """
+elif False:
+    AutoscalingInstanceGroupCapacityArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstanceGroupCapacityArgs:
+    def __init__(__self__, *,
+                 cooldown_delay: Optional[pulumi.Input[builtins.int]] = None,
+                 max_replicas: Optional[pulumi.Input[builtins.int]] = None,
+                 min_replicas: Optional[pulumi.Input[builtins.int]] = None):
+        """
+        :param pulumi.Input[builtins.int] cooldown_delay: Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+        :param pulumi.Input[builtins.int] max_replicas: The maximum count of Instances for the Instance group.
+        :param pulumi.Input[builtins.int] min_replicas: The minimum count of Instances for the Instance group.
+        """
+        if cooldown_delay is not None:
+            pulumi.set(__self__, "cooldown_delay", cooldown_delay)
+        if max_replicas is not None:
+            pulumi.set(__self__, "max_replicas", max_replicas)
+        if min_replicas is not None:
+            pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @property
+    @pulumi.getter(name="cooldownDelay")
+    def cooldown_delay(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+        """
+        return pulumi.get(self, "cooldown_delay")
+
+    @cooldown_delay.setter
+    def cooldown_delay(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "cooldown_delay", value)
+
+    @property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The maximum count of Instances for the Instance group.
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @max_replicas.setter
+    def max_replicas(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "max_replicas", value)
+
+    @property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The minimum count of Instances for the Instance group.
+        """
+        return pulumi.get(self, "min_replicas")
+
+    @min_replicas.setter
+    def min_replicas(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "min_replicas", value)
+
+
+if not MYPY:
+    class AutoscalingInstanceGroupLoadBalancerArgsDict(TypedDict):
+        backend_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
+        """
+        The Load Balancer backend IDs.
+        """
+        id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of the Load Balancer.
+        """
+        private_network_id: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The ID of the Private Network attached to the Load Balancer.
+        """
+elif False:
+    AutoscalingInstanceGroupLoadBalancerArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstanceGroupLoadBalancerArgs:
+    def __init__(__self__, *,
+                 backend_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 private_network_id: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] backend_ids: The Load Balancer backend IDs.
+        :param pulumi.Input[builtins.str] id: The ID of the Load Balancer.
+        :param pulumi.Input[builtins.str] private_network_id: The ID of the Private Network attached to the Load Balancer.
+        """
+        if backend_ids is not None:
+            pulumi.set(__self__, "backend_ids", backend_ids)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @property
+    @pulumi.getter(name="backendIds")
+    def backend_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
+        """
+        The Load Balancer backend IDs.
+        """
+        return pulumi.get(self, "backend_ids")
+
+    @backend_ids.setter
+    def backend_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "backend_ids", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the Load Balancer.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The ID of the Private Network attached to the Load Balancer.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "private_network_id", value)
+
+
+if not MYPY:
+    class AutoscalingInstancePolicyMetricArgsDict(TypedDict):
+        aggregate: pulumi.Input[builtins.str]
+        """
+        How the values sampled for the `metric` should be aggregated.
+        """
+        name: pulumi.Input[builtins.str]
+        """
+        Name or description of the metric policy.
+        """
+        operator: pulumi.Input[builtins.str]
+        """
+        Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        """
+        cockpit_metric_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        """
+        managed_metric: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        """
+        sampling_range_min: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The Interval of time, in minutes, during which metric is sampled.
+        """
+        threshold: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        """
+elif False:
+    AutoscalingInstancePolicyMetricArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstancePolicyMetricArgs:
+    def __init__(__self__, *,
+                 aggregate: pulumi.Input[builtins.str],
+                 name: pulumi.Input[builtins.str],
+                 operator: pulumi.Input[builtins.str],
+                 cockpit_metric_name: Optional[pulumi.Input[builtins.str]] = None,
+                 managed_metric: Optional[pulumi.Input[builtins.str]] = None,
+                 sampling_range_min: Optional[pulumi.Input[builtins.int]] = None,
+                 threshold: Optional[pulumi.Input[builtins.int]] = None):
+        """
+        :param pulumi.Input[builtins.str] aggregate: How the values sampled for the `metric` should be aggregated.
+        :param pulumi.Input[builtins.str] name: Name or description of the metric policy.
+        :param pulumi.Input[builtins.str] operator: Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        :param pulumi.Input[builtins.str] cockpit_metric_name: The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        :param pulumi.Input[builtins.str] managed_metric: The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        :param pulumi.Input[builtins.int] sampling_range_min: The Interval of time, in minutes, during which metric is sampled.
+        :param pulumi.Input[builtins.int] threshold: The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        """
+        pulumi.set(__self__, "aggregate", aggregate)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        if cockpit_metric_name is not None:
+            pulumi.set(__self__, "cockpit_metric_name", cockpit_metric_name)
+        if managed_metric is not None:
+            pulumi.set(__self__, "managed_metric", managed_metric)
+        if sampling_range_min is not None:
+            pulumi.set(__self__, "sampling_range_min", sampling_range_min)
+        if threshold is not None:
+            pulumi.set(__self__, "threshold", threshold)
+
+    @property
+    @pulumi.getter
+    def aggregate(self) -> pulumi.Input[builtins.str]:
+        """
+        How the values sampled for the `metric` should be aggregated.
+        """
+        return pulumi.get(self, "aggregate")
+
+    @aggregate.setter
+    def aggregate(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "aggregate", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        Name or description of the metric policy.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def operator(self) -> pulumi.Input[builtins.str]:
+        """
+        Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        """
+        return pulumi.get(self, "operator")
+
+    @operator.setter
+    def operator(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "operator", value)
+
+    @property
+    @pulumi.getter(name="cockpitMetricName")
+    def cockpit_metric_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        """
+        return pulumi.get(self, "cockpit_metric_name")
+
+    @cockpit_metric_name.setter
+    def cockpit_metric_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "cockpit_metric_name", value)
+
+    @property
+    @pulumi.getter(name="managedMetric")
+    def managed_metric(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        """
+        return pulumi.get(self, "managed_metric")
+
+    @managed_metric.setter
+    def managed_metric(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "managed_metric", value)
+
+    @property
+    @pulumi.getter(name="samplingRangeMin")
+    def sampling_range_min(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The Interval of time, in minutes, during which metric is sampled.
+        """
+        return pulumi.get(self, "sampling_range_min")
+
+    @sampling_range_min.setter
+    def sampling_range_min(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "sampling_range_min", value)
+
+    @property
+    @pulumi.getter
+    def threshold(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        """
+        return pulumi.get(self, "threshold")
+
+    @threshold.setter
+    def threshold(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "threshold", value)
+
+
+if not MYPY:
+    class AutoscalingInstanceTemplateVolumeArgsDict(TypedDict):
+        name: pulumi.Input[builtins.str]
+        """
+        The name of the volume.
+        """
+        volume_type: pulumi.Input[builtins.str]
+        """
+        The type of the volume.
+        """
+        boot: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Force the Instance to boot on this volume.
+        """
+        from_empty: NotRequired[pulumi.Input['AutoscalingInstanceTemplateVolumeFromEmptyArgsDict']]
+        """
+        Volume instance template from empty
+        """
+        from_snapshot: NotRequired[pulumi.Input['AutoscalingInstanceTemplateVolumeFromSnapshotArgsDict']]
+        """
+        Volume instance template from snapshot
+        """
+        perf_iops: NotRequired[pulumi.Input[builtins.int]]
+        """
+        The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+        """
+        tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
+        """
+        The list of tags assigned to the volume.
+        """
+elif False:
+    AutoscalingInstanceTemplateVolumeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstanceTemplateVolumeArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[builtins.str],
+                 volume_type: pulumi.Input[builtins.str],
+                 boot: Optional[pulumi.Input[builtins.bool]] = None,
+                 from_empty: Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromEmptyArgs']] = None,
+                 from_snapshot: Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromSnapshotArgs']] = None,
+                 perf_iops: Optional[pulumi.Input[builtins.int]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+        """
+        :param pulumi.Input[builtins.str] name: The name of the volume.
+        :param pulumi.Input[builtins.str] volume_type: The type of the volume.
+        :param pulumi.Input[builtins.bool] boot: Force the Instance to boot on this volume.
+        :param pulumi.Input['AutoscalingInstanceTemplateVolumeFromEmptyArgs'] from_empty: Volume instance template from empty
+        :param pulumi.Input['AutoscalingInstanceTemplateVolumeFromSnapshotArgs'] from_snapshot: Volume instance template from snapshot
+        :param pulumi.Input[builtins.int] perf_iops: The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: The list of tags assigned to the volume.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "volume_type", volume_type)
+        if boot is not None:
+            pulumi.set(__self__, "boot", boot)
+        if from_empty is not None:
+            pulumi.set(__self__, "from_empty", from_empty)
+        if from_snapshot is not None:
+            pulumi.set(__self__, "from_snapshot", from_snapshot)
+        if perf_iops is not None:
+            pulumi.set(__self__, "perf_iops", perf_iops)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the volume.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> pulumi.Input[builtins.str]:
+        """
+        The type of the volume.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "volume_type", value)
+
+    @property
+    @pulumi.getter
+    def boot(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Force the Instance to boot on this volume.
+        """
+        return pulumi.get(self, "boot")
+
+    @boot.setter
+    def boot(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "boot", value)
+
+    @property
+    @pulumi.getter(name="fromEmpty")
+    def from_empty(self) -> Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromEmptyArgs']]:
+        """
+        Volume instance template from empty
+        """
+        return pulumi.get(self, "from_empty")
+
+    @from_empty.setter
+    def from_empty(self, value: Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromEmptyArgs']]):
+        pulumi.set(self, "from_empty", value)
+
+    @property
+    @pulumi.getter(name="fromSnapshot")
+    def from_snapshot(self) -> Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromSnapshotArgs']]:
+        """
+        Volume instance template from snapshot
+        """
+        return pulumi.get(self, "from_snapshot")
+
+    @from_snapshot.setter
+    def from_snapshot(self, value: Optional[pulumi.Input['AutoscalingInstanceTemplateVolumeFromSnapshotArgs']]):
+        pulumi.set(self, "from_snapshot", value)
+
+    @property
+    @pulumi.getter(name="perfIops")
+    def perf_iops(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+        """
+        return pulumi.get(self, "perf_iops")
+
+    @perf_iops.setter
+    def perf_iops(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "perf_iops", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
+        """
+        The list of tags assigned to the volume.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+if not MYPY:
+    class AutoscalingInstanceTemplateVolumeFromEmptyArgsDict(TypedDict):
+        size: pulumi.Input[builtins.int]
+        """
+        Size in GB of the new empty volume
+        """
+elif False:
+    AutoscalingInstanceTemplateVolumeFromEmptyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstanceTemplateVolumeFromEmptyArgs:
+    def __init__(__self__, *,
+                 size: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.int] size: Size in GB of the new empty volume
+        """
+        pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[builtins.int]:
+        """
+        Size in GB of the new empty volume
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "size", value)
+
+
+if not MYPY:
+    class AutoscalingInstanceTemplateVolumeFromSnapshotArgsDict(TypedDict):
+        snapshot_id: pulumi.Input[builtins.str]
+        """
+        ID of the snapshot to clone
+        """
+        size: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Override size (in GB) of the cloned volume
+        """
+elif False:
+    AutoscalingInstanceTemplateVolumeFromSnapshotArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class AutoscalingInstanceTemplateVolumeFromSnapshotArgs:
+    def __init__(__self__, *,
+                 snapshot_id: pulumi.Input[builtins.str],
+                 size: Optional[pulumi.Input[builtins.int]] = None):
+        """
+        :param pulumi.Input[builtins.str] snapshot_id: ID of the snapshot to clone
+        :param pulumi.Input[builtins.int] size: Override size (in GB) of the cloned volume
+        """
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> pulumi.Input[builtins.str]:
+        """
+        ID of the snapshot to clone
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Override size (in GB) of the cloned volume
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "size", value)
 
 
 if not MYPY:
@@ -7134,7 +7671,11 @@ if not MYPY:
         """
         ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        ips_edge_services: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
 elif False:
     LoadbalancerAclMatchArgsDict: TypeAlias = Mapping[str, Any]
@@ -7146,7 +7687,8 @@ class LoadbalancerAclMatchArgs:
                  http_filter_option: Optional[pulumi.Input[builtins.str]] = None,
                  http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  invert: Optional[pulumi.Input[builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 ips_edge_services: Optional[pulumi.Input[builtins.bool]] = None):
         """
         :param pulumi.Input[builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -7155,7 +7697,8 @@ class LoadbalancerAclMatchArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[builtins.bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param pulumi.Input[builtins.bool] ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -7167,6 +7710,8 @@ class LoadbalancerAclMatchArgs:
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -7223,13 +7768,25 @@ class LoadbalancerAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
     def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
+
+    @ips_edge_services.setter
+    def ips_edge_services(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ips_edge_services", value)
 
 
 if not MYPY:
@@ -7536,7 +8093,7 @@ if not MYPY:
         """
         match: pulumi.Input['LoadbalancerFrontendAclMatchArgsDict']
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         created_at: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -7568,7 +8125,7 @@ class LoadbalancerFrontendAclArgs:
                  updated_at: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input['LoadbalancerFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
-        :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[builtins.str] description: Description of the ACL
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
@@ -7601,7 +8158,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter
     def match(self) -> pulumi.Input['LoadbalancerFrontendAclMatchArgs']:
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
@@ -7804,7 +8361,11 @@ if not MYPY:
         """
         ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        ips_edge_services: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
 elif False:
     LoadbalancerFrontendAclMatchArgsDict: TypeAlias = Mapping[str, Any]
@@ -7816,7 +8377,8 @@ class LoadbalancerFrontendAclMatchArgs:
                  http_filter_option: Optional[pulumi.Input[builtins.str]] = None,
                  http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  invert: Optional[pulumi.Input[builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 ips_edge_services: Optional[pulumi.Input[builtins.bool]] = None):
         """
         :param pulumi.Input[builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -7825,7 +8387,8 @@ class LoadbalancerFrontendAclMatchArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[builtins.bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param pulumi.Input[builtins.bool] ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -7837,6 +8400,8 @@ class LoadbalancerFrontendAclMatchArgs:
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -7893,13 +8458,25 @@ class LoadbalancerFrontendAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
     def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
+
+    @ips_edge_services.setter
+    def ips_edge_services(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ips_edge_services", value)
 
 
 if not MYPY:
@@ -8572,56 +9149,42 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
 
 if not MYPY:
     class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-        id: pulumi.Input[builtins.str]
+        display_name: NotRequired[pulumi.Input[builtins.str]]
+        id: NotRequired[pulumi.Input[builtins.str]]
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
-        type: pulumi.Input[builtins.str]
+        type: NotRequired[pulumi.Input[builtins.str]]
         """
-        Type of grantee. Valid values: `CanonicalUser`
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
-        display_name: NotRequired[pulumi.Input[builtins.str]]
+        uri: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
 elif False:
     ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     def __init__(__self__, *,
-                 id: pulumi.Input[builtins.str],
-                 type: pulumi.Input[builtins.str],
-                 display_name: Optional[pulumi.Input[builtins.str]] = None):
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 type: Optional[pulumi.Input[builtins.str]] = None,
+                 uri: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
-        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`
+        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`, `Group`
+        :param pulumi.Input[builtins.str] uri: The uri of the grantee if you are granting permissions to a predefined group.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "type", type)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[builtins.str]:
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[builtins.str]:
-        """
-        Type of grantee. Valid values: `CanonicalUser`
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "type", value)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
 
     @property
     @pulumi.getter(name="displayName")
@@ -8631,6 +9194,42 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The `region`, `bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "uri", value)
 
 
 if not MYPY:

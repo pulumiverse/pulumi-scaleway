@@ -81,7 +81,8 @@ type LookupVpcPrivateNetworkArgs struct {
 
 // A collection of values returned by getVpcPrivateNetwork.
 type LookupVpcPrivateNetworkResult struct {
-	CreatedAt string `pulumi:"createdAt"`
+	CreatedAt                     string `pulumi:"createdAt"`
+	EnableDefaultRoutePropagation bool   `pulumi:"enableDefaultRoutePropagation"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The IPv4 subnet associated with the Private Network.
@@ -143,6 +144,10 @@ func (o LookupVpcPrivateNetworkResultOutput) ToLookupVpcPrivateNetworkResultOutp
 
 func (o LookupVpcPrivateNetworkResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcPrivateNetworkResultOutput) EnableDefaultRoutePropagation() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcPrivateNetworkResult) bool { return v.EnableDefaultRoutePropagation }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

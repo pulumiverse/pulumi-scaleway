@@ -34,7 +34,7 @@ class AclArgs:
         :param pulumi.Input[builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
         :param pulumi.Input[builtins.str] description: The ACL description.
-        :param pulumi.Input['AclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input['AclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         """
         pulumi.set(__self__, "action", action)
@@ -99,7 +99,7 @@ class AclArgs:
     @pulumi.getter
     def match(self) -> Optional[pulumi.Input['AclMatchArgs']]:
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
@@ -138,7 +138,7 @@ class _AclState:
         :param pulumi.Input[builtins.str] description: The ACL description.
         :param pulumi.Input[builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input['AclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input['AclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[builtins.str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
@@ -223,7 +223,7 @@ class _AclState:
     @pulumi.getter
     def match(self) -> Optional[pulumi.Input['AclMatchArgs']]:
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
@@ -315,7 +315,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] description: The ACL description.
         :param pulumi.Input[builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         """
         ...
@@ -440,7 +440,7 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] description: The ACL description.
         :param pulumi.Input[builtins.str] frontend_id: The ID of the Load Balancer frontend to attach the ACL to.
         :param pulumi.Input[builtins.int] index: The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
-        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input[Union['AclMatchArgs', 'AclMatchArgsDict']] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[builtins.str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
         """
@@ -502,7 +502,7 @@ class Acl(pulumi.CustomResource):
     @pulumi.getter
     def match(self) -> pulumi.Output[Optional['outputs.AclMatch']]:
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 

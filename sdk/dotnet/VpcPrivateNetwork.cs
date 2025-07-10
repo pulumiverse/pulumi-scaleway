@@ -98,6 +98,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether default v4 and v6 routes are propagated for this Private Network.
+        /// </summary>
+        [Output("enableDefaultRoutePropagation")]
+        public Output<bool> EnableDefaultRoutePropagation { get; private set; } = null!;
+
+        /// <summary>
         /// The IPv4 subnet to associate with the Private Network.
         /// </summary>
         [Output("ipv4Subnet")]
@@ -211,6 +217,12 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcPrivateNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Defines whether default v4 and v6 routes are propagated for this Private Network.
+        /// </summary>
+        [Input("enableDefaultRoutePropagation")]
+        public Input<bool>? EnableDefaultRoutePropagation { get; set; }
+
+        /// <summary>
         /// The IPv4 subnet to associate with the Private Network.
         /// </summary>
         [Input("ipv4Subnet")]
@@ -289,6 +301,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Defines whether default v4 and v6 routes are propagated for this Private Network.
+        /// </summary>
+        [Input("enableDefaultRoutePropagation")]
+        public Input<bool>? EnableDefaultRoutePropagation { get; set; }
 
         /// <summary>
         /// The IPv4 subnet to associate with the Private Network.

@@ -19,14 +19,20 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// The `region`, `bucket` and `acl` separated by (`/`).
         /// </summary>
-        [Input("id", required: true)]
-        public Input<string> Id { get; set; } = null!;
+        [Input("id")]
+        public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// Type of grantee. Valid values: `CanonicalUser`
+        /// Type of grantee. Valid values: `CanonicalUser`, `Group`
         /// </summary>
-        [Input("type", required: true)]
-        public Input<string> Type { get; set; } = null!;
+        [Input("type")]
+        public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// The uri of the grantee if you are granting permissions to a predefined group.
+        /// </summary>
+        [Input("uri")]
+        public Input<string>? Uri { get; set; }
 
         public ObjectBucketAclAccessControlPolicyGrantGranteeArgs()
         {

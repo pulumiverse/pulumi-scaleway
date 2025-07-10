@@ -18,23 +18,30 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// The `region`, `bucket` and `acl` separated by (`/`).
         /// </summary>
-        public readonly string Id;
+        public readonly string? Id;
         /// <summary>
-        /// Type of grantee. Valid values: `CanonicalUser`
+        /// Type of grantee. Valid values: `CanonicalUser`, `Group`
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
+        /// <summary>
+        /// The uri of the grantee if you are granting permissions to a predefined group.
+        /// </summary>
+        public readonly string? Uri;
 
         [OutputConstructor]
         private ObjectBucketAclAccessControlPolicyGrantGrantee(
             string? displayName,
 
-            string id,
+            string? id,
 
-            string type)
+            string? type,
+
+            string? uri)
         {
             DisplayName = displayName;
             Id = id;
             Type = type;
+            Uri = uri;
         }
     }
 }

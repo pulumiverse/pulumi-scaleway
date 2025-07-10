@@ -23,6 +23,21 @@ import * as utilities from "../utilities";
  *     id: "fr-par/11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ *
+ * ### Retrieve a data source by filters
+ *
+ * You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const filtered = scaleway.observability.getSource({
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ *     region: "fr-par",
+ *     name: "my-data-source",
+ * });
+ * ```
  */
 export function getSource(args?: GetSourceArgs, opts?: pulumi.InvokeOptions): Promise<GetSourceResult> {
     args = args || {};
@@ -32,6 +47,7 @@ export function getSource(args?: GetSourceArgs, opts?: pulumi.InvokeOptions): Pr
         "name": args.name,
         "origin": args.origin,
         "projectId": args.projectId,
+        "region": args.region,
         "type": args.type,
     }, opts);
 }
@@ -57,6 +73,10 @@ export interface GetSourceArgs {
      */
     projectId?: string;
     /**
+     * The region where the data source is located. Defaults to the region specified in the provider configuration.
+     */
+    region?: string;
+    /**
      * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */
     type?: string;
@@ -73,14 +93,15 @@ export interface GetSourceResult {
     /**
      * The unique identifier of the data source in the `{region}/{id}` format.
      */
-    readonly id: string;
-    readonly name: string;
+    readonly id?: string;
+    readonly name?: string;
     /**
      * The origin of the data source.
      */
-    readonly origin: string;
-    readonly projectId: string;
-    readonly region: string;
+    readonly origin?: string;
+    readonly projectId?: string;
+    readonly pushUrl: string;
+    readonly region?: string;
     /**
      * The number of days the data is retained in the data source.
      */
@@ -89,7 +110,7 @@ export interface GetSourceResult {
      * Indicates whether the data source is synchronized with Grafana.
      */
     readonly synchronizedWithGrafana: boolean;
-    readonly type: string;
+    readonly type?: string;
     /**
      * The date and time the data source was last updated (in RFC 3339 format).
      */
@@ -118,6 +139,21 @@ export interface GetSourceResult {
  *     id: "fr-par/11111111-1111-1111-1111-111111111111",
  * });
  * ```
+ *
+ * ### Retrieve a data source by filters
+ *
+ * You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const filtered = scaleway.observability.getSource({
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ *     region: "fr-par",
+ *     name: "my-data-source",
+ * });
+ * ```
  */
 export function getSourceOutput(args?: GetSourceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSourceResult> {
     args = args || {};
@@ -127,6 +163,7 @@ export function getSourceOutput(args?: GetSourceOutputArgs, opts?: pulumi.Invoke
         "name": args.name,
         "origin": args.origin,
         "projectId": args.projectId,
+        "region": args.region,
         "type": args.type,
     }, opts);
 }
@@ -151,6 +188,10 @@ export interface GetSourceOutputArgs {
      * The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * The region where the data source is located. Defaults to the region specified in the provider configuration.
+     */
+    region?: pulumi.Input<string>;
     /**
      * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */

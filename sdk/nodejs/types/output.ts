@@ -43,6 +43,116 @@ export interface AppleSiliconServerPrivateNetwork {
     vlan: number;
 }
 
+export interface AutoscalingInstanceGroupCapacity {
+    /**
+     * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+     */
+    cooldownDelay?: number;
+    /**
+     * The maximum count of Instances for the Instance group.
+     */
+    maxReplicas?: number;
+    /**
+     * The minimum count of Instances for the Instance group.
+     */
+    minReplicas?: number;
+}
+
+export interface AutoscalingInstanceGroupLoadBalancer {
+    /**
+     * The Load Balancer backend IDs.
+     */
+    backendIds?: string[];
+    /**
+     * The ID of the Load Balancer.
+     */
+    id?: string;
+    /**
+     * The ID of the Private Network attached to the Load Balancer.
+     */
+    privateNetworkId?: string;
+}
+
+export interface AutoscalingInstancePolicyMetric {
+    /**
+     * How the values sampled for the `metric` should be aggregated.
+     */
+    aggregate: string;
+    /**
+     * The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+     */
+    cockpitMetricName?: string;
+    /**
+     * The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+     */
+    managedMetric?: string;
+    /**
+     * Name or description of the metric policy.
+     */
+    name: string;
+    /**
+     * Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+     */
+    operator: string;
+    /**
+     * The Interval of time, in minutes, during which metric is sampled.
+     */
+    samplingRangeMin?: number;
+    /**
+     * The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+     */
+    threshold?: number;
+}
+
+export interface AutoscalingInstanceTemplateVolume {
+    /**
+     * Force the Instance to boot on this volume.
+     */
+    boot?: boolean;
+    /**
+     * Volume instance template from empty
+     */
+    fromEmpty?: outputs.AutoscalingInstanceTemplateVolumeFromEmpty;
+    /**
+     * Volume instance template from snapshot
+     */
+    fromSnapshot?: outputs.AutoscalingInstanceTemplateVolumeFromSnapshot;
+    /**
+     * The name of the volume.
+     */
+    name: string;
+    /**
+     * The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+     */
+    perfIops?: number;
+    /**
+     * The list of tags assigned to the volume.
+     */
+    tags?: string[];
+    /**
+     * The type of the volume.
+     */
+    volumeType: string;
+}
+
+export interface AutoscalingInstanceTemplateVolumeFromEmpty {
+    /**
+     * Size in GB of the new empty volume
+     */
+    size: number;
+}
+
+export interface AutoscalingInstanceTemplateVolumeFromSnapshot {
+    /**
+     * Override size (in GB) of the cloned volume
+     */
+    size?: number;
+    /**
+     * ID of the snapshot to clone
+     */
+    snapshotId: string;
+}
+
 export interface BaremetalServerIp {
     /**
      * The address of the IPv6.
@@ -1943,6 +2053,10 @@ export interface GetLbAclsAclMatch {
      * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
      */
     ipSubnets: string[];
+    /**
+     * Defines whether Edge Services IPs should be matched.
+     */
+    ipsEdgeServices: boolean;
 }
 
 export interface GetLbBackendHealthCheckHttp {
@@ -2179,6 +2293,10 @@ export interface GetLbFrontendAclMatch {
      * A list of IPs or CIDR v4/v6 addresses of the client of the session to match
      */
     ipSubnets: string[];
+    /**
+     * Defines whether Edge Services IPs should be matched
+     */
+    ipsEdgeServices: boolean;
 }
 
 export interface GetLbFrontendsFrontend {
@@ -3790,9 +3908,13 @@ export interface LoadbalancerAclMatch {
      */
     invert?: boolean;
     /**
-     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
      */
     ipSubnets?: string[];
+    /**
+     * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+     */
+    ipsEdgeServices?: boolean;
 }
 
 export interface LoadbalancerBackendHealthCheckHttp {
@@ -3872,7 +3994,7 @@ export interface LoadbalancerFrontendAcl {
      */
     description?: string;
     /**
-     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
     match: outputs.LoadbalancerFrontendAclMatch;
     /**
@@ -3932,9 +4054,13 @@ export interface LoadbalancerFrontendAclMatch {
      */
     invert?: boolean;
     /**
-     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+     * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
      */
     ipSubnets?: string[];
+    /**
+     * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+     */
+    ipsEdgeServices?: boolean;
 }
 
 export interface LoadbalancerPrivateIp {
@@ -4083,11 +4209,15 @@ export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
     /**
      * The `region`, `bucket` and `acl` separated by (`/`).
      */
-    id: string;
+    id?: string;
     /**
-     * Type of grantee. Valid values: `CanonicalUser`
+     * Type of grantee. Valid values: `CanonicalUser`, `Group`
      */
-    type: string;
+    type?: string;
+    /**
+     * The uri of the grantee if you are granting permissions to a predefined group.
+     */
+    uri?: string;
 }
 
 export interface ObjectBucketAclAccessControlPolicyOwner {
@@ -7796,9 +7926,13 @@ export namespace loadbalancers {
          */
         invert?: boolean;
         /**
-         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
          */
         ipSubnets?: string[];
+        /**
+         * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+         */
+        ipsEdgeServices?: boolean;
     }
 
     export interface BackendHealthCheckHttp {
@@ -7878,7 +8012,7 @@ export namespace loadbalancers {
          */
         description?: string;
         /**
-         * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+         * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
          */
         match: outputs.loadbalancers.FrontendAclMatch;
         /**
@@ -7938,9 +8072,13 @@ export namespace loadbalancers {
          */
         invert?: boolean;
         /**
-         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+         * A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
          */
         ipSubnets?: string[];
+        /**
+         * Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+         */
+        ipsEdgeServices?: boolean;
     }
 
     export interface GetAclsAcl {
@@ -8031,6 +8169,10 @@ export namespace loadbalancers {
          * A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
          */
         ipSubnets: string[];
+        /**
+         * Defines whether Edge Services IPs should be matched.
+         */
+        ipsEdgeServices: boolean;
     }
 
     export interface GetBackendHealthCheckHttp {
@@ -8285,6 +8427,10 @@ export namespace loadbalancers {
          * A list of IPs or CIDR v4/v6 addresses of the client of the session to match
          */
         ipSubnets: string[];
+        /**
+         * Defines whether Edge Services IPs should be matched
+         */
+        ipsEdgeServices: boolean;
     }
 
     export interface GetFrontendsFrontend {
@@ -9068,11 +9214,15 @@ export namespace object {
         /**
          * The `region`, `bucket` and `acl` separated by (`/`).
          */
-        id: string;
+        id?: string;
         /**
-         * Type of grantee. Valid values: `CanonicalUser`
+         * Type of grantee. Valid values: `CanonicalUser`, `Group`
          */
-        type: string;
+        type?: string;
+        /**
+         * The uri of the grantee if you are granting permissions to a predefined group.
+         */
+        uri?: string;
     }
 
     export interface BucketAclAccessControlPolicyOwner {

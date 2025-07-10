@@ -126,6 +126,12 @@ export class Pool extends pulumi.CustomResource {
      */
     public readonly rootVolumeType!: pulumi.Output<string>;
     /**
+     * The ID of the security group
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    public readonly securityGroupId!: pulumi.Output<string>;
+    /**
      * The size of the pool.
      *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -194,6 +200,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["rootVolumeSizeInGb"] = state ? state.rootVolumeSizeInGb : undefined;
             resourceInputs["rootVolumeType"] = state ? state.rootVolumeType : undefined;
+            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -227,6 +234,7 @@ export class Pool extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["rootVolumeSizeInGb"] = args ? args.rootVolumeSizeInGb : undefined;
             resourceInputs["rootVolumeType"] = args ? args.rootVolumeType : undefined;
+            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["upgradePolicy"] = args ? args.upgradePolicy : undefined;
@@ -330,6 +338,12 @@ export interface PoolState {
      * System volume type of the nodes composing the pool
      */
     rootVolumeType?: pulumi.Input<string>;
+    /**
+     * The ID of the security group
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    securityGroupId?: pulumi.Input<string>;
     /**
      * The size of the pool.
      *
@@ -442,6 +456,12 @@ export interface PoolArgs {
      * System volume type of the nodes composing the pool
      */
     rootVolumeType?: pulumi.Input<string>;
+    /**
+     * The ID of the security group
+     *
+     * > **Important:** Updates to this field will recreate a new resource.
+     */
+    securityGroupId?: pulumi.Input<string>;
     /**
      * The size of the pool.
      *

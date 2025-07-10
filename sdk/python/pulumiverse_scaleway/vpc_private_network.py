@@ -22,6 +22,7 @@ __all__ = ['VpcPrivateNetworkArgs', 'VpcPrivateNetwork']
 @pulumi.input_type
 class VpcPrivateNetworkArgs:
     def __init__(__self__, *,
+                 enable_default_route_propagation: Optional[pulumi.Input[builtins.bool]] = None,
                  ipv4_subnet: Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']] = None,
                  ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]] = None,
                  is_regional: Optional[pulumi.Input[builtins.bool]] = None,
@@ -33,6 +34,7 @@ class VpcPrivateNetworkArgs:
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a VpcPrivateNetwork resource.
+        :param pulumi.Input[builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[builtins.bool] is_regional: Private Networks are now all necessarily regional.
@@ -43,6 +45,8 @@ class VpcPrivateNetworkArgs:
         :param pulumi.Input[builtins.str] vpc_id: The VPC in which to create the Private Network.
         :param pulumi.Input[builtins.str] zone: Use `region` instead.
         """
+        if enable_default_route_propagation is not None:
+            pulumi.set(__self__, "enable_default_route_propagation", enable_default_route_propagation)
         if ipv4_subnet is not None:
             pulumi.set(__self__, "ipv4_subnet", ipv4_subnet)
         if ipv6_subnets is not None:
@@ -67,6 +71,18 @@ class VpcPrivateNetworkArgs:
             pulumi.log.warn("""zone is deprecated: This field is deprecated and will be removed in the next major version, please use `region` instead""")
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter(name="enableDefaultRoutePropagation")
+    def enable_default_route_propagation(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether default v4 and v6 routes are propagated for this Private Network.
+        """
+        return pulumi.get(self, "enable_default_route_propagation")
+
+    @enable_default_route_propagation.setter
+    def enable_default_route_propagation(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enable_default_route_propagation", value)
 
     @property
     @pulumi.getter(name="ipv4Subnet")
@@ -183,6 +199,7 @@ class VpcPrivateNetworkArgs:
 class _VpcPrivateNetworkState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[builtins.str]] = None,
+                 enable_default_route_propagation: Optional[pulumi.Input[builtins.bool]] = None,
                  ipv4_subnet: Optional[pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs']] = None,
                  ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]]] = None,
                  is_regional: Optional[pulumi.Input[builtins.bool]] = None,
@@ -197,6 +214,7 @@ class _VpcPrivateNetworkState:
         """
         Input properties used for looking up and filtering VpcPrivateNetwork resources.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the subnet.
+        :param pulumi.Input[builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input['VpcPrivateNetworkIpv4SubnetArgs'] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input['VpcPrivateNetworkIpv6SubnetArgs']]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[builtins.bool] is_regional: Private Networks are now all necessarily regional.
@@ -211,6 +229,8 @@ class _VpcPrivateNetworkState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if enable_default_route_propagation is not None:
+            pulumi.set(__self__, "enable_default_route_propagation", enable_default_route_propagation)
         if ipv4_subnet is not None:
             pulumi.set(__self__, "ipv4_subnet", ipv4_subnet)
         if ipv6_subnets is not None:
@@ -251,6 +271,18 @@ class _VpcPrivateNetworkState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="enableDefaultRoutePropagation")
+    def enable_default_route_propagation(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether default v4 and v6 routes are propagated for this Private Network.
+        """
+        return pulumi.get(self, "enable_default_route_propagation")
+
+    @enable_default_route_propagation.setter
+    def enable_default_route_propagation(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enable_default_route_propagation", value)
 
     @property
     @pulumi.getter(name="ipv4Subnet")
@@ -398,6 +430,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_default_route_propagation: Optional[pulumi.Input[builtins.bool]] = None,
                  ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
                  ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
                  is_regional: Optional[pulumi.Input[builtins.bool]] = None,
@@ -465,6 +498,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[builtins.bool] is_regional: Private Networks are now all necessarily regional.
@@ -551,6 +585,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 enable_default_route_propagation: Optional[pulumi.Input[builtins.bool]] = None,
                  ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
                  ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
                  is_regional: Optional[pulumi.Input[builtins.bool]] = None,
@@ -570,6 +605,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcPrivateNetworkArgs.__new__(VpcPrivateNetworkArgs)
 
+            __props__.__dict__["enable_default_route_propagation"] = enable_default_route_propagation
             __props__.__dict__["ipv4_subnet"] = ipv4_subnet
             __props__.__dict__["ipv6_subnets"] = ipv6_subnets
             __props__.__dict__["is_regional"] = is_regional
@@ -593,6 +629,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[builtins.str]] = None,
+            enable_default_route_propagation: Optional[pulumi.Input[builtins.bool]] = None,
             ipv4_subnet: Optional[pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']]] = None,
             ipv6_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]]] = None,
             is_regional: Optional[pulumi.Input[builtins.bool]] = None,
@@ -612,6 +649,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the subnet.
+        :param pulumi.Input[builtins.bool] enable_default_route_propagation: Defines whether default v4 and v6 routes are propagated for this Private Network.
         :param pulumi.Input[Union['VpcPrivateNetworkIpv4SubnetArgs', 'VpcPrivateNetworkIpv4SubnetArgsDict']] ipv4_subnet: The IPv4 subnet to associate with the Private Network.
         :param pulumi.Input[Sequence[pulumi.Input[Union['VpcPrivateNetworkIpv6SubnetArgs', 'VpcPrivateNetworkIpv6SubnetArgsDict']]]] ipv6_subnets: The IPv6 subnets to associate with the private network.
         :param pulumi.Input[builtins.bool] is_regional: Private Networks are now all necessarily regional.
@@ -629,6 +667,7 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         __props__ = _VpcPrivateNetworkState.__new__(_VpcPrivateNetworkState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enable_default_route_propagation"] = enable_default_route_propagation
         __props__.__dict__["ipv4_subnet"] = ipv4_subnet
         __props__.__dict__["ipv6_subnets"] = ipv6_subnets
         __props__.__dict__["is_regional"] = is_regional
@@ -649,6 +688,14 @@ class VpcPrivateNetwork(pulumi.CustomResource):
         The date and time of the creation of the subnet.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableDefaultRoutePropagation")
+    def enable_default_route_propagation(self) -> pulumi.Output[builtins.bool]:
+        """
+        Defines whether default v4 and v6 routes are propagated for this Private Network.
+        """
+        return pulumi.get(self, "enable_default_route_propagation")
 
     @property
     @pulumi.getter(name="ipv4Subnet")
