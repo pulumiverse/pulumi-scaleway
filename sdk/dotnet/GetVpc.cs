@@ -213,6 +213,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetVpcResult
     {
         public readonly string CreatedAt;
+        public readonly bool EnableCustomRoutesPropagation;
         public readonly bool EnableRouting;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -230,6 +231,8 @@ namespace Pulumiverse.Scaleway
         [OutputConstructor]
         private GetVpcResult(
             string createdAt,
+
+            bool enableCustomRoutesPropagation,
 
             bool enableRouting,
 
@@ -252,6 +255,7 @@ namespace Pulumiverse.Scaleway
             string? vpcId)
         {
             CreatedAt = createdAt;
+            EnableCustomRoutesPropagation = enableCustomRoutesPropagation;
             EnableRouting = enableRouting;
             Id = id;
             IsDefault = isDefault;

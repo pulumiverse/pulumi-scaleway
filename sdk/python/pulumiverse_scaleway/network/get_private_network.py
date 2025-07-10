@@ -28,10 +28,13 @@ class GetPrivateNetworkResult:
     """
     A collection of values returned by getPrivateNetwork.
     """
-    def __init__(__self__, created_at=None, id=None, ipv4_subnets=None, ipv6_subnets=None, is_regional=None, name=None, organization_id=None, private_network_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None, zone=None):
+    def __init__(__self__, created_at=None, enable_default_route_propagation=None, id=None, ipv4_subnets=None, ipv6_subnets=None, is_regional=None, name=None, organization_id=None, private_network_id=None, project_id=None, region=None, tags=None, updated_at=None, vpc_id=None, zone=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if enable_default_route_propagation and not isinstance(enable_default_route_propagation, bool):
+            raise TypeError("Expected argument 'enable_default_route_propagation' to be a bool")
+        pulumi.set(__self__, "enable_default_route_propagation", enable_default_route_propagation)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -76,6 +79,11 @@ class GetPrivateNetworkResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> builtins.str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableDefaultRoutePropagation")
+    def enable_default_route_propagation(self) -> builtins.bool:
+        return pulumi.get(self, "enable_default_route_propagation")
 
     @property
     @pulumi.getter
@@ -159,6 +167,7 @@ class AwaitableGetPrivateNetworkResult(GetPrivateNetworkResult):
             yield self
         return GetPrivateNetworkResult(
             created_at=self.created_at,
+            enable_default_route_propagation=self.enable_default_route_propagation,
             id=self.id,
             ipv4_subnets=self.ipv4_subnets,
             ipv6_subnets=self.ipv6_subnets,
@@ -215,6 +224,7 @@ def get_private_network(name: Optional[builtins.str] = None,
 
     return AwaitableGetPrivateNetworkResult(
         created_at=pulumi.get(__ret__, 'created_at'),
+        enable_default_route_propagation=pulumi.get(__ret__, 'enable_default_route_propagation'),
         id=pulumi.get(__ret__, 'id'),
         ipv4_subnets=pulumi.get(__ret__, 'ipv4_subnets'),
         ipv6_subnets=pulumi.get(__ret__, 'ipv6_subnets'),
@@ -268,6 +278,7 @@ def get_private_network_output(name: Optional[pulumi.Input[Optional[builtins.str
     __ret__ = pulumi.runtime.invoke_output('scaleway:network/getPrivateNetwork:getPrivateNetwork', __args__, opts=opts, typ=GetPrivateNetworkResult)
     return __ret__.apply(lambda __response__: GetPrivateNetworkResult(
         created_at=pulumi.get(__response__, 'created_at'),
+        enable_default_route_propagation=pulumi.get(__response__, 'enable_default_route_propagation'),
         id=pulumi.get(__response__, 'id'),
         ipv4_subnets=pulumi.get(__response__, 'ipv4_subnets'),
         ipv6_subnets=pulumi.get(__response__, 'ipv6_subnets'),

@@ -66,6 +66,12 @@ namespace Pulumiverse.Scaleway
         public Output<int?> FallbackTtl { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether responses to requests with cookies must be stored in the cache.
+        /// </summary>
+        [Output("includeCookies")]
+        public Output<bool?> IncludeCookies { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the pipeline.
         /// </summary>
         [Output("pipelineId")]
@@ -167,6 +173,12 @@ namespace Pulumiverse.Scaleway
         public Input<int>? FallbackTtl { get; set; }
 
         /// <summary>
+        /// Defines whether responses to requests with cookies must be stored in the cache.
+        /// </summary>
+        [Input("includeCookies")]
+        public Input<bool>? IncludeCookies { get; set; }
+
+        /// <summary>
         /// The ID of the pipeline.
         /// </summary>
         [Input("pipelineId", required: true)]
@@ -233,6 +245,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("fallbackTtl")]
         public Input<int>? FallbackTtl { get; set; }
+
+        /// <summary>
+        /// Defines whether responses to requests with cookies must be stored in the cache.
+        /// </summary>
+        [Input("includeCookies")]
+        public Input<bool>? IncludeCookies { get; set; }
 
         /// <summary>
         /// The ID of the pipeline.

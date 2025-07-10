@@ -113,21 +113,32 @@ class BucketAclAccessControlPolicyGrantGrantee(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 id: builtins.str,
-                 type: builtins.str,
-                 display_name: Optional[builtins.str] = None):
+                 display_name: Optional[builtins.str] = None,
+                 id: Optional[builtins.str] = None,
+                 type: Optional[builtins.str] = None,
+                 uri: Optional[builtins.str] = None):
         """
         :param builtins.str id: The `region`, `bucket` and `acl` separated by (`/`).
-        :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`
+        :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`, `Group`
+        :param builtins.str uri: The uri of the grantee if you are granting permissions to a predefined group.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "type", type)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> Optional[builtins.str]:
+        return pulumi.get(self, "display_name")
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.str:
+    def id(self) -> Optional[builtins.str]:
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
@@ -135,16 +146,19 @@ class BucketAclAccessControlPolicyGrantGrantee(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> builtins.str:
+    def type(self) -> Optional[builtins.str]:
         """
-        Type of grantee. Valid values: `CanonicalUser`
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
         return pulumi.get(self, "type")
 
     @property
-    @pulumi.getter(name="displayName")
-    def display_name(self) -> Optional[builtins.str]:
-        return pulumi.get(self, "display_name")
+    @pulumi.getter
+    def uri(self) -> Optional[builtins.str]:
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
+        return pulumi.get(self, "uri")
 
 
 @pulumi.output_type

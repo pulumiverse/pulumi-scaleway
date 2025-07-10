@@ -38,6 +38,28 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         /// });
         /// ```
+        /// 
+        /// ### Retrieve a data source by filters
+        /// 
+        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var filtered = Scaleway.Observability.GetSource.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///         Region = "fr-par",
+        ///         Name = "my-data-source",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetSourceResult> InvokeAsync(GetSourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSourceResult>("scaleway:observability/getSource:getSource", args ?? new GetSourceArgs(), options.WithDefaults());
@@ -68,6 +90,28 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         /// });
         /// ```
+        /// 
+        /// ### Retrieve a data source by filters
+        /// 
+        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var filtered = Scaleway.Observability.GetSource.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///         Region = "fr-par",
+        ///         Name = "my-data-source",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetSourceResult> Invoke(GetSourceInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSourceResult>("scaleway:observability/getSource:getSource", args ?? new GetSourceInvokeArgs(), options.WithDefaults());
@@ -94,6 +138,28 @@ namespace Pulumiverse.Scaleway.Observability
         ///     var example = Scaleway.Observability.GetSource.Invoke(new()
         ///     {
         ///         Id = "fr-par/11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ### Retrieve a data source by filters
+        /// 
+        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var filtered = Scaleway.Observability.GetSource.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///         Region = "fr-par",
+        ///         Name = "my-data-source",
         ///     });
         /// 
         /// });
@@ -129,6 +195,12 @@ namespace Pulumiverse.Scaleway.Observability
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// The region where the data source is located. Defaults to the region specified in the provider configuration.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
 
         /// <summary>
         /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
@@ -169,6 +241,12 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// The region where the data source is located. Defaults to the region specified in the provider configuration.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
         /// </summary>
         [Input("type")]
@@ -191,14 +269,15 @@ namespace Pulumiverse.Scaleway.Observability
         /// <summary>
         /// The unique identifier of the data source in the `{region}/{id}` format.
         /// </summary>
-        public readonly string Id;
-        public readonly string Name;
+        public readonly string? Id;
+        public readonly string? Name;
         /// <summary>
         /// The origin of the data source.
         /// </summary>
-        public readonly string Origin;
-        public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? Origin;
+        public readonly string? ProjectId;
+        public readonly string PushUrl;
+        public readonly string? Region;
         /// <summary>
         /// The number of days the data is retained in the data source.
         /// </summary>
@@ -207,7 +286,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// Indicates whether the data source is synchronized with Grafana.
         /// </summary>
         public readonly bool SynchronizedWithGrafana;
-        public readonly string Type;
+        public readonly string? Type;
         /// <summary>
         /// The date and time the data source was last updated (in RFC 3339 format).
         /// </summary>
@@ -221,21 +300,23 @@ namespace Pulumiverse.Scaleway.Observability
         private GetSourceResult(
             string createdAt,
 
-            string id,
+            string? id,
 
-            string name,
+            string? name,
 
-            string origin,
+            string? origin,
 
-            string projectId,
+            string? projectId,
 
-            string region,
+            string pushUrl,
+
+            string? region,
 
             int retentionDays,
 
             bool synchronizedWithGrafana,
 
-            string type,
+            string? type,
 
             string updatedAt,
 
@@ -246,6 +327,7 @@ namespace Pulumiverse.Scaleway.Observability
             Name = name;
             Origin = origin;
             ProjectId = projectId;
+            PushUrl = pushUrl;
             Region = region;
             RetentionDays = retentionDays;
             SynchronizedWithGrafana = synchronizedWithGrafana;

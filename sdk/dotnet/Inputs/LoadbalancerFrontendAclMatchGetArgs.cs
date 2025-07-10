@@ -50,13 +50,19 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _ipSubnets;
 
         /// <summary>
-        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         /// </summary>
         public InputList<string> IpSubnets
         {
             get => _ipSubnets ?? (_ipSubnets = new InputList<string>());
             set => _ipSubnets = value;
         }
+
+        /// <summary>
+        /// Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        /// </summary>
+        [Input("ipsEdgeServices")]
+        public Input<bool>? IpsEdgeServices { get; set; }
 
         public LoadbalancerFrontendAclMatchGetArgs()
         {

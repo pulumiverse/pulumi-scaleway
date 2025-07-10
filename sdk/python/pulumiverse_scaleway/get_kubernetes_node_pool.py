@@ -30,7 +30,7 @@ class GetKubernetesNodePoolResult:
     """
     A collection of values returned by getKubernetesNodePool.
     """
-    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
+    def __init__(__self__, autohealing=None, autoscaling=None, cluster_id=None, container_runtime=None, created_at=None, current_size=None, id=None, kubelet_args=None, max_size=None, min_size=None, name=None, node_type=None, nodes=None, placement_group_id=None, pool_id=None, public_ip_disabled=None, region=None, root_volume_size_in_gb=None, root_volume_type=None, security_group_id=None, size=None, status=None, tags=None, updated_at=None, upgrade_policies=None, version=None, wait_for_pool_ready=None, zone=None):
         if autohealing and not isinstance(autohealing, bool):
             raise TypeError("Expected argument 'autohealing' to be a bool")
         pulumi.set(__self__, "autohealing", autohealing)
@@ -88,6 +88,9 @@ class GetKubernetesNodePoolResult:
         if root_volume_type and not isinstance(root_volume_type, str):
             raise TypeError("Expected argument 'root_volume_type' to be a str")
         pulumi.set(__self__, "root_volume_type", root_volume_type)
+        if security_group_id and not isinstance(security_group_id, str):
+            raise TypeError("Expected argument 'security_group_id' to be a str")
+        pulumi.set(__self__, "security_group_id", security_group_id)
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
@@ -242,6 +245,11 @@ class GetKubernetesNodePoolResult:
         return pulumi.get(self, "root_volume_type")
 
     @property
+    @pulumi.getter(name="securityGroupId")
+    def security_group_id(self) -> builtins.str:
+        return pulumi.get(self, "security_group_id")
+
+    @property
     @pulumi.getter
     def size(self) -> Optional[builtins.int]:
         """
@@ -322,6 +330,7 @@ class AwaitableGetKubernetesNodePoolResult(GetKubernetesNodePoolResult):
             region=self.region,
             root_volume_size_in_gb=self.root_volume_size_in_gb,
             root_volume_type=self.root_volume_type,
+            security_group_id=self.security_group_id,
             size=self.size,
             status=self.status,
             tags=self.tags,
@@ -378,6 +387,7 @@ def get_kubernetes_node_pool(cluster_id: Optional[builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         root_volume_size_in_gb=pulumi.get(__ret__, 'root_volume_size_in_gb'),
         root_volume_type=pulumi.get(__ret__, 'root_volume_type'),
+        security_group_id=pulumi.get(__ret__, 'security_group_id'),
         size=pulumi.get(__ret__, 'size'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -431,6 +441,7 @@ def get_kubernetes_node_pool_output(cluster_id: Optional[pulumi.Input[Optional[b
         region=pulumi.get(__response__, 'region'),
         root_volume_size_in_gb=pulumi.get(__response__, 'root_volume_size_in_gb'),
         root_volume_type=pulumi.get(__response__, 'root_volume_type'),
+        security_group_id=pulumi.get(__response__, 'security_group_id'),
         size=pulumi.get(__response__, 'size'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),

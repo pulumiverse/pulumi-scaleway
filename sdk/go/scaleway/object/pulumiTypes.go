@@ -274,9 +274,11 @@ func (o BucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntInput) B
 type BucketAclAccessControlPolicyGrantGrantee struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id string `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type string `pulumi:"type"`
+	Id *string `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type *string `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri *string `pulumi:"uri"`
 }
 
 // BucketAclAccessControlPolicyGrantGranteeInput is an input type that accepts BucketAclAccessControlPolicyGrantGranteeArgs and BucketAclAccessControlPolicyGrantGranteeOutput values.
@@ -293,9 +295,11 @@ type BucketAclAccessControlPolicyGrantGranteeInput interface {
 type BucketAclAccessControlPolicyGrantGranteeArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id pulumi.StringInput `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type pulumi.StringInput `pulumi:"type"`
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri pulumi.StringPtrInput `pulumi:"uri"`
 }
 
 func (BucketAclAccessControlPolicyGrantGranteeArgs) ElementType() reflect.Type {
@@ -380,13 +384,18 @@ func (o BucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulumi.Str
 }
 
 // The `region`, `bucket` and `acl` separated by (`/`).
-func (o BucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
+func (o BucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
-func (o BucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) string { return v.Type }).(pulumi.StringOutput)
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
+func (o BucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o BucketAclAccessControlPolicyGrantGranteeOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) *string { return v.Uri }).(pulumi.StringPtrOutput)
 }
 
 type BucketAclAccessControlPolicyGrantGranteePtrOutput struct{ *pulumi.OutputState }
@@ -428,17 +437,27 @@ func (o BucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.StringPtr
 		if v == nil {
 			return nil
 		}
-		return &v.Id
+		return v.Id
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
 func (o BucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Type
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o BucketAclAccessControlPolicyGrantGranteePtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uri
 	}).(pulumi.StringPtrOutput)
 }
 

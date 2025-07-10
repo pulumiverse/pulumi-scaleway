@@ -96,7 +96,7 @@ export class Acl extends pulumi.CustomResource {
      */
     public readonly index!: pulumi.Output<number>;
     /**
-     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
     public readonly match!: pulumi.Output<outputs.loadbalancers.AclMatch | undefined>;
     /**
@@ -181,7 +181,7 @@ export interface AclState {
      */
     index?: pulumi.Input<number>;
     /**
-     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
     match?: pulumi.Input<inputs.loadbalancers.AclMatch>;
     /**
@@ -215,7 +215,7 @@ export interface AclArgs {
      */
     index: pulumi.Input<number>;
     /**
-     * The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+     * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
     match?: pulumi.Input<inputs.loadbalancers.AclMatch>;
     /**

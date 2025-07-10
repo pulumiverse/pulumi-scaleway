@@ -70,6 +70,7 @@ export interface GetPrivateNetworkArgs {
  */
 export interface GetPrivateNetworkResult {
     readonly createdAt: string;
+    readonly enableDefaultRoutePropagation: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

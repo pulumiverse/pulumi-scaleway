@@ -203,6 +203,7 @@ namespace Pulumiverse.Scaleway.Network
     public sealed class GetPrivateNetworkResult
     {
         public readonly string CreatedAt;
+        public readonly bool EnableDefaultRoutePropagation;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -229,6 +230,8 @@ namespace Pulumiverse.Scaleway.Network
         [OutputConstructor]
         private GetPrivateNetworkResult(
             string createdAt,
+
+            bool enableDefaultRoutePropagation,
 
             string id,
 
@@ -257,6 +260,7 @@ namespace Pulumiverse.Scaleway.Network
             string zone)
         {
             CreatedAt = createdAt;
+            EnableDefaultRoutePropagation = enableDefaultRoutePropagation;
             Id = id;
             Ipv4Subnets = ipv4Subnets;
             Ipv6Subnets = ipv6Subnets;

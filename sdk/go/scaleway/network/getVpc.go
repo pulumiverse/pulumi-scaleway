@@ -80,8 +80,9 @@ type LookupVpcArgs struct {
 
 // A collection of values returned by getVpc.
 type LookupVpcResult struct {
-	CreatedAt     string `pulumi:"createdAt"`
-	EnableRouting bool   `pulumi:"enableRouting"`
+	CreatedAt                     string `pulumi:"createdAt"`
+	EnableCustomRoutesPropagation bool   `pulumi:"enableCustomRoutesPropagation"`
+	EnableRouting                 bool   `pulumi:"enableRouting"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string   `pulumi:"id"`
 	IsDefault      *bool    `pulumi:"isDefault"`
@@ -139,6 +140,10 @@ func (o LookupVpcResultOutput) ToLookupVpcResultOutputWithContext(ctx context.Co
 
 func (o LookupVpcResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupVpcResultOutput) EnableCustomRoutesPropagation() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcResult) bool { return v.EnableCustomRoutesPropagation }).(pulumi.BoolOutput)
 }
 
 func (o LookupVpcResultOutput) EnableRouting() pulumi.BoolOutput {

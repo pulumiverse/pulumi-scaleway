@@ -85,6 +85,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Output("enableCustomRoutesPropagation")]
+        public Output<bool?> EnableCustomRoutesPropagation { get; private set; } = null!;
+
+        /// <summary>
         /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         /// </summary>
         [Output("enableRouting")]
@@ -180,6 +186,12 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Input("enableCustomRoutesPropagation")]
+        public Input<bool>? EnableCustomRoutesPropagation { get; set; }
+
+        /// <summary>
         /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
         /// </summary>
         [Input("enableRouting")]
@@ -228,6 +240,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+        /// </summary>
+        [Input("enableCustomRoutesPropagation")]
+        public Input<bool>? EnableCustomRoutesPropagation { get; set; }
 
         /// <summary>
         /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.

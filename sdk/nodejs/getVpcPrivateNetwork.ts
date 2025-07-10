@@ -72,6 +72,7 @@ export interface GetVpcPrivateNetworkArgs {
  */
 export interface GetVpcPrivateNetworkResult {
     readonly createdAt: string;
+    readonly enableDefaultRoutePropagation: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

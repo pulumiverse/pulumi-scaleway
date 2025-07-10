@@ -117,6 +117,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        /// </summary>
+        [Output("publicBandwidth")]
+        public Output<int> PublicBandwidth { get; private set; } = null!;
+
+        /// <summary>
         /// The state of the server.
         /// </summary>
         [Output("state")]
@@ -262,6 +268,12 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
+        /// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        /// </summary>
+        [Input("publicBandwidth")]
+        public Input<int>? PublicBandwidth { get; set; }
+
+        /// <summary>
         /// The commercial type of the server. You find all the available types on
         /// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
         /// resource.
@@ -372,6 +384,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        /// </summary>
+        [Input("publicBandwidth")]
+        public Input<int>? PublicBandwidth { get; set; }
 
         /// <summary>
         /// The state of the server.

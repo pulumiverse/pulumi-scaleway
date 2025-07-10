@@ -11986,8 +11986,10 @@ type LoadbalancerAclMatch struct {
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices *bool `pulumi:"ipsEdgeServices"`
 }
 
 // LoadbalancerAclMatchInput is an input type that accepts LoadbalancerAclMatchArgs and LoadbalancerAclMatchOutput values.
@@ -12013,8 +12015,10 @@ type LoadbalancerAclMatchArgs struct {
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices pulumi.BoolPtrInput `pulumi:"ipsEdgeServices"`
 }
 
 func (LoadbalancerAclMatchArgs) ElementType() reflect.Type {
@@ -12117,9 +12121,14 @@ func (o LoadbalancerAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerAclMatchOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerAclMatch) *bool { return v.IpsEdgeServices }).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerAclMatchPtrOutput struct{ *pulumi.OutputState }
@@ -12189,7 +12198,7 @@ func (o LoadbalancerAclMatchPtrOutput) Invert() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *LoadbalancerAclMatch) []string {
 		if v == nil {
@@ -12197,6 +12206,16 @@ func (o LoadbalancerAclMatchPtrOutput) IpSubnets() pulumi.StringArrayOutput {
 		}
 		return v.IpSubnets
 	}).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerAclMatchPtrOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerAclMatch) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IpsEdgeServices
+	}).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerBackendHealthCheckHttp struct {
@@ -13024,7 +13043,7 @@ type LoadbalancerFrontendAcl struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -13050,7 +13069,7 @@ type LoadbalancerFrontendAclArgs struct {
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+	// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 	Match LoadbalancerFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
@@ -13124,7 +13143,7 @@ func (o LoadbalancerFrontendAclOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The ACL match rule. At least `ipSubnet` or `httpFilter` and `httpFilterValue` are required.
+// The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
 func (o LoadbalancerFrontendAclOutput) Match() LoadbalancerFrontendAclMatchOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) LoadbalancerFrontendAclMatch { return v.Match }).(LoadbalancerFrontendAclMatchOutput)
 }
@@ -13347,8 +13366,10 @@ type LoadbalancerFrontendAclMatch struct {
 	HttpFilterValues []string `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert *bool `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices *bool `pulumi:"ipsEdgeServices"`
 }
 
 // LoadbalancerFrontendAclMatchInput is an input type that accepts LoadbalancerFrontendAclMatchArgs and LoadbalancerFrontendAclMatchOutput values.
@@ -13374,8 +13395,10 @@ type LoadbalancerFrontendAclMatchArgs struct {
 	HttpFilterValues pulumi.StringArrayInput `pulumi:"httpFilterValues"`
 	// If set to `true`, the condition will be of type "unless".
 	Invert pulumi.BoolPtrInput `pulumi:"invert"`
-	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+	IpsEdgeServices pulumi.BoolPtrInput `pulumi:"ipsEdgeServices"`
 }
 
 func (LoadbalancerFrontendAclMatchArgs) ElementType() reflect.Type {
@@ -13427,9 +13450,14 @@ func (o LoadbalancerFrontendAclMatchOutput) Invert() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) *bool { return v.Invert }).(pulumi.BoolPtrOutput)
 }
 
-// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
 func (o LoadbalancerFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched. Only one of `ipSubnet` and `ipsEdgeServices` should be specified.
+func (o LoadbalancerFrontendAclMatchOutput) IpsEdgeServices() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LoadbalancerFrontendAclMatch) *bool { return v.IpsEdgeServices }).(pulumi.BoolPtrOutput)
 }
 
 type LoadbalancerPrivateIp struct {
@@ -14802,9 +14830,11 @@ func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntIn
 type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
 	DisplayName *string `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id string `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type string `pulumi:"type"`
+	Id *string `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type *string `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri *string `pulumi:"uri"`
 }
 
 // ObjectBucketAclAccessControlPolicyGrantGranteeInput is an input type that accepts ObjectBucketAclAccessControlPolicyGrantGranteeArgs and ObjectBucketAclAccessControlPolicyGrantGranteeOutput values.
@@ -14821,9 +14851,11 @@ type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
 type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
-	Id pulumi.StringInput `pulumi:"id"`
-	// Type of grantee. Valid values: `CanonicalUser`
-	Type pulumi.StringInput `pulumi:"type"`
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Type of grantee. Valid values: `CanonicalUser`, `Group`
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// The uri of the grantee if you are granting permissions to a predefined group.
+	Uri pulumi.StringPtrInput `pulumi:"uri"`
 }
 
 func (ObjectBucketAclAccessControlPolicyGrantGranteeArgs) ElementType() reflect.Type {
@@ -14908,13 +14940,18 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulu
 }
 
 // The `region`, `bucket` and `acl` separated by (`/`).
-func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Id }).(pulumi.StringOutput)
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
-func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) string { return v.Type }).(pulumi.StringOutput)
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.Uri }).(pulumi.StringPtrOutput)
 }
 
 type ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput struct{ *pulumi.OutputState }
@@ -14956,17 +14993,27 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Id() pulumi.Str
 		if v == nil {
 			return nil
 		}
-		return &v.Id
+		return v.Id
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of grantee. Valid values: `CanonicalUser`
+// Type of grantee. Valid values: `CanonicalUser`, `Group`
 func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
 			return nil
 		}
-		return &v.Type
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+// The uri of the grantee if you are granting permissions to a predefined group.
+func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Uri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Uri
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -26002,6 +26049,8 @@ type GetLbAclsAclMatch struct {
 	Invert bool `pulumi:"invert"`
 	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched.
+	IpsEdgeServices bool `pulumi:"ipsEdgeServices"`
 }
 
 // GetLbAclsAclMatchInput is an input type that accepts GetLbAclsAclMatchArgs and GetLbAclsAclMatchOutput values.
@@ -26026,6 +26075,8 @@ type GetLbAclsAclMatchArgs struct {
 	Invert pulumi.BoolInput `pulumi:"invert"`
 	// A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched.
+	IpsEdgeServices pulumi.BoolInput `pulumi:"ipsEdgeServices"`
 }
 
 func (GetLbAclsAclMatchArgs) ElementType() reflect.Type {
@@ -26102,6 +26153,11 @@ func (o GetLbAclsAclMatchOutput) Invert() pulumi.BoolOutput {
 // A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
 func (o GetLbAclsAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbAclsAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched.
+func (o GetLbAclsAclMatchOutput) IpsEdgeServices() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbAclsAclMatch) bool { return v.IpsEdgeServices }).(pulumi.BoolOutput)
 }
 
 type GetLbAclsAclMatchArrayOutput struct{ *pulumi.OutputState }
@@ -27265,6 +27321,8 @@ type GetLbFrontendAclMatch struct {
 	Invert bool `pulumi:"invert"`
 	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 	IpSubnets []string `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched
+	IpsEdgeServices bool `pulumi:"ipsEdgeServices"`
 }
 
 // GetLbFrontendAclMatchInput is an input type that accepts GetLbFrontendAclMatchArgs and GetLbFrontendAclMatchOutput values.
@@ -27289,6 +27347,8 @@ type GetLbFrontendAclMatchArgs struct {
 	Invert pulumi.BoolInput `pulumi:"invert"`
 	// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 	IpSubnets pulumi.StringArrayInput `pulumi:"ipSubnets"`
+	// Defines whether Edge Services IPs should be matched
+	IpsEdgeServices pulumi.BoolInput `pulumi:"ipsEdgeServices"`
 }
 
 func (GetLbFrontendAclMatchArgs) ElementType() reflect.Type {
@@ -27365,6 +27425,11 @@ func (o GetLbFrontendAclMatchOutput) Invert() pulumi.BoolOutput {
 // A list of IPs or CIDR v4/v6 addresses of the client of the session to match
 func (o GetLbFrontendAclMatchOutput) IpSubnets() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetLbFrontendAclMatch) []string { return v.IpSubnets }).(pulumi.StringArrayOutput)
+}
+
+// Defines whether Edge Services IPs should be matched
+func (o GetLbFrontendAclMatchOutput) IpsEdgeServices() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendAclMatch) bool { return v.IpsEdgeServices }).(pulumi.BoolOutput)
 }
 
 type GetLbFrontendAclMatchArrayOutput struct{ *pulumi.OutputState }

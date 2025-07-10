@@ -61,6 +61,8 @@ type EdgeServicesCacheStage struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl pulumi.IntPtrOutput `pulumi:"fallbackTtl"`
+	// Defines whether responses to requests with cookies must be stored in the cache.
+	IncludeCookies pulumi.BoolPtrOutput `pulumi:"includeCookies"`
 	// The ID of the pipeline.
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the cache stage is associated with.
@@ -116,6 +118,8 @@ type edgeServicesCacheStageState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl *int `pulumi:"fallbackTtl"`
+	// Defines whether responses to requests with cookies must be stored in the cache.
+	IncludeCookies *bool `pulumi:"includeCookies"`
 	// The ID of the pipeline.
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the cache stage is associated with.
@@ -139,6 +143,8 @@ type EdgeServicesCacheStageState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl pulumi.IntPtrInput
+	// Defines whether responses to requests with cookies must be stored in the cache.
+	IncludeCookies pulumi.BoolPtrInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the cache stage is associated with.
@@ -164,6 +170,8 @@ type edgeServicesCacheStageArgs struct {
 	BackendStageId *string `pulumi:"backendStageId"`
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl *int `pulumi:"fallbackTtl"`
+	// Defines whether responses to requests with cookies must be stored in the cache.
+	IncludeCookies *bool `pulumi:"includeCookies"`
 	// The ID of the pipeline.
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the cache stage is associated with.
@@ -184,6 +192,8 @@ type EdgeServicesCacheStageArgs struct {
 	BackendStageId pulumi.StringPtrInput
 	// The Time To Live (TTL) in seconds. Defines how long content is cached.
 	FallbackTtl pulumi.IntPtrInput
+	// Defines whether responses to requests with cookies must be stored in the cache.
+	IncludeCookies pulumi.BoolPtrInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the cache stage is associated with.
@@ -298,6 +308,11 @@ func (o EdgeServicesCacheStageOutput) CreatedAt() pulumi.StringOutput {
 // The Time To Live (TTL) in seconds. Defines how long content is cached.
 func (o EdgeServicesCacheStageOutput) FallbackTtl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.IntPtrOutput { return v.FallbackTtl }).(pulumi.IntPtrOutput)
+}
+
+// Defines whether responses to requests with cookies must be stored in the cache.
+func (o EdgeServicesCacheStageOutput) IncludeCookies() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesCacheStage) pulumi.BoolPtrOutput { return v.IncludeCookies }).(pulumi.BoolPtrOutput)
 }
 
 // The ID of the pipeline.

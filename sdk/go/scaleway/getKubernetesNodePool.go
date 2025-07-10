@@ -70,6 +70,7 @@ type LookupKubernetesNodePoolResult struct {
 	Region             *string `pulumi:"region"`
 	RootVolumeSizeInGb int     `pulumi:"rootVolumeSizeInGb"`
 	RootVolumeType     string  `pulumi:"rootVolumeType"`
+	SecurityGroupId    string  `pulumi:"securityGroupId"`
 	// The size of the pool.
 	Size *int `pulumi:"size"`
 	// The status of the node.
@@ -212,6 +213,10 @@ func (o LookupKubernetesNodePoolResultOutput) RootVolumeSizeInGb() pulumi.IntOut
 
 func (o LookupKubernetesNodePoolResultOutput) RootVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesNodePoolResult) string { return v.RootVolumeType }).(pulumi.StringOutput)
+}
+
+func (o LookupKubernetesNodePoolResultOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesNodePoolResult) string { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

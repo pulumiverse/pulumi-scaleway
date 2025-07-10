@@ -7134,7 +7134,11 @@ if not MYPY:
         """
         ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        ips_edge_services: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
 elif False:
     LoadbalancerAclMatchArgsDict: TypeAlias = Mapping[str, Any]
@@ -7146,7 +7150,8 @@ class LoadbalancerAclMatchArgs:
                  http_filter_option: Optional[pulumi.Input[builtins.str]] = None,
                  http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  invert: Optional[pulumi.Input[builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 ips_edge_services: Optional[pulumi.Input[builtins.bool]] = None):
         """
         :param pulumi.Input[builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -7155,7 +7160,8 @@ class LoadbalancerAclMatchArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[builtins.bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param pulumi.Input[builtins.bool] ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -7167,6 +7173,8 @@ class LoadbalancerAclMatchArgs:
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -7223,13 +7231,25 @@ class LoadbalancerAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
     def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
+
+    @ips_edge_services.setter
+    def ips_edge_services(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ips_edge_services", value)
 
 
 if not MYPY:
@@ -7536,7 +7556,7 @@ if not MYPY:
         """
         match: pulumi.Input['LoadbalancerFrontendAclMatchArgsDict']
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         created_at: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -7568,7 +7588,7 @@ class LoadbalancerFrontendAclArgs:
                  updated_at: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input['LoadbalancerFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
-        :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         :param pulumi.Input[builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
         :param pulumi.Input[builtins.str] description: Description of the ACL
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
@@ -7601,7 +7621,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter
     def match(self) -> pulumi.Input['LoadbalancerFrontendAclMatchArgs']:
         """
-        The ACL match rule. At least `ip_subnet` or `http_filter` and `http_filter_value` are required.
+        The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
         """
         return pulumi.get(self, "match")
 
@@ -7804,7 +7824,11 @@ if not MYPY:
         """
         ip_subnets: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        ips_edge_services: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
 elif False:
     LoadbalancerFrontendAclMatchArgsDict: TypeAlias = Mapping[str, Any]
@@ -7816,7 +7840,8 @@ class LoadbalancerFrontendAclMatchArgs:
                  http_filter_option: Optional[pulumi.Input[builtins.str]] = None,
                  http_filter_values: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  invert: Optional[pulumi.Input[builtins.bool]] = None,
-                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None):
+                 ip_subnets: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 ips_edge_services: Optional[pulumi.Input[builtins.bool]] = None):
         """
         :param pulumi.Input[builtins.str] http_filter: The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
                It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
@@ -7825,7 +7850,8 @@ class LoadbalancerFrontendAclMatchArgs:
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] http_filter_values: A list of possible values to match for the given HTTP filter.
                Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
         :param pulumi.Input[builtins.bool] invert: If set to `true`, the condition will be of type "unless".
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ip_subnets: A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        :param pulumi.Input[builtins.bool] ips_edge_services: Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         if http_filter is not None:
             pulumi.set(__self__, "http_filter", http_filter)
@@ -7837,6 +7863,8 @@ class LoadbalancerFrontendAclMatchArgs:
             pulumi.set(__self__, "invert", invert)
         if ip_subnets is not None:
             pulumi.set(__self__, "ip_subnets", ip_subnets)
+        if ips_edge_services is not None:
+            pulumi.set(__self__, "ips_edge_services", ips_edge_services)
 
     @property
     @pulumi.getter(name="httpFilter")
@@ -7893,13 +7921,25 @@ class LoadbalancerFrontendAclMatchArgs:
     @pulumi.getter(name="ipSubnets")
     def ip_subnets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        A list of IPs, or CIDR v4/v6 addresses of the session client, to match.
+        A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
         """
         return pulumi.get(self, "ip_subnets")
 
     @ip_subnets.setter
     def ip_subnets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "ip_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipsEdgeServices")
+    def ips_edge_services(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        """
+        return pulumi.get(self, "ips_edge_services")
+
+    @ips_edge_services.setter
+    def ips_edge_services(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "ips_edge_services", value)
 
 
 if not MYPY:
@@ -8572,56 +8612,42 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
 
 if not MYPY:
     class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
-        id: pulumi.Input[builtins.str]
+        display_name: NotRequired[pulumi.Input[builtins.str]]
+        id: NotRequired[pulumi.Input[builtins.str]]
         """
         The `region`, `bucket` and `acl` separated by (`/`).
         """
-        type: pulumi.Input[builtins.str]
+        type: NotRequired[pulumi.Input[builtins.str]]
         """
-        Type of grantee. Valid values: `CanonicalUser`
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
         """
-        display_name: NotRequired[pulumi.Input[builtins.str]]
+        uri: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
 elif False:
     ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     def __init__(__self__, *,
-                 id: pulumi.Input[builtins.str],
-                 type: pulumi.Input[builtins.str],
-                 display_name: Optional[pulumi.Input[builtins.str]] = None):
+                 display_name: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 type: Optional[pulumi.Input[builtins.str]] = None,
+                 uri: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
-        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`
+        :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`, `Group`
+        :param pulumi.Input[builtins.str] uri: The uri of the grantee if you are granting permissions to a predefined group.
         """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "type", type)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Input[builtins.str]:
-        """
-        The `region`, `bucket` and `acl` separated by (`/`).
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "id", value)
-
-    @property
-    @pulumi.getter
-    def type(self) -> pulumi.Input[builtins.str]:
-        """
-        Type of grantee. Valid values: `CanonicalUser`
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "type", value)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
 
     @property
     @pulumi.getter(name="displayName")
@@ -8631,6 +8657,42 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The `region`, `bucket` and `acl` separated by (`/`).
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of grantee. Valid values: `CanonicalUser`, `Group`
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The uri of the grantee if you are granting permissions to a predefined group.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "uri", value)
 
 
 if not MYPY:

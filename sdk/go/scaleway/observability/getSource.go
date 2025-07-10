@@ -44,6 +44,36 @@ import (
 //	}
 //
 // ```
+//
+// ### Retrieve a data source by filters
+//
+// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := observability.LookupSource(ctx, &observability.LookupSourceArgs{
+//				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//				Region:    pulumi.StringRef("fr-par"),
+//				Name:      pulumi.StringRef("my-data-source"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupSource(ctx *pulumi.Context, args *LookupSourceArgs, opts ...pulumi.InvokeOption) (*LookupSourceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSourceResult
@@ -64,6 +94,8 @@ type LookupSourceArgs struct {
 	Origin *string `pulumi:"origin"`
 	// The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
 	ProjectId *string `pulumi:"projectId"`
+	// The region where the data source is located. Defaults to the region specified in the provider configuration.
+	Region *string `pulumi:"region"`
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type *string `pulumi:"type"`
 }
@@ -73,17 +105,18 @@ type LookupSourceResult struct {
 	// The date and time the data source was created (in RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
 	// The unique identifier of the data source in the `{region}/{id}` format.
-	Id   string `pulumi:"id"`
-	Name string `pulumi:"name"`
+	Id   *string `pulumi:"id"`
+	Name *string `pulumi:"name"`
 	// The origin of the data source.
-	Origin    string `pulumi:"origin"`
-	ProjectId string `pulumi:"projectId"`
-	Region    string `pulumi:"region"`
+	Origin    *string `pulumi:"origin"`
+	ProjectId *string `pulumi:"projectId"`
+	PushUrl   string  `pulumi:"pushUrl"`
+	Region    *string `pulumi:"region"`
 	// The number of days the data is retained in the data source.
 	RetentionDays int `pulumi:"retentionDays"`
 	// Indicates whether the data source is synchronized with Grafana.
-	SynchronizedWithGrafana bool   `pulumi:"synchronizedWithGrafana"`
-	Type                    string `pulumi:"type"`
+	SynchronizedWithGrafana bool    `pulumi:"synchronizedWithGrafana"`
+	Type                    *string `pulumi:"type"`
 	// The date and time the data source was last updated (in RFC 3339 format).
 	UpdatedAt string `pulumi:"updatedAt"`
 	// The URL of the Cockpit data source.
@@ -109,6 +142,8 @@ type LookupSourceOutputArgs struct {
 	Origin pulumi.StringPtrInput `pulumi:"origin"`
 	// The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// The region where the data source is located. Defaults to the region specified in the provider configuration.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
 	Type pulumi.StringPtrInput `pulumi:"type"`
 }
@@ -138,25 +173,29 @@ func (o LookupSourceResultOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // The unique identifier of the data source in the `{region}/{id}` format.
-func (o LookupSourceResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupSourceResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // The origin of the data source.
-func (o LookupSourceResultOutput) Origin() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.Origin }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) Origin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.Origin }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupSourceResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupSourceResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) PushUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSourceResult) string { return v.PushUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupSourceResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The number of days the data is retained in the data source.
@@ -169,8 +208,8 @@ func (o LookupSourceResultOutput) SynchronizedWithGrafana() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupSourceResult) bool { return v.SynchronizedWithGrafana }).(pulumi.BoolOutput)
 }
 
-func (o LookupSourceResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupSourceResult) string { return v.Type }).(pulumi.StringOutput)
+func (o LookupSourceResultOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSourceResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
 // The date and time the data source was last updated (in RFC 3339 format).

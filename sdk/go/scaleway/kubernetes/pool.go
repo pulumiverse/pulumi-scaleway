@@ -70,6 +70,10 @@ type Pool struct {
 	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringOutput `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -185,6 +189,10 @@ type poolState struct {
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -256,6 +264,10 @@ type PoolState struct {
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -325,6 +337,10 @@ type poolArgs struct {
 	RootVolumeSizeInGb *int `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -385,6 +401,10 @@ type PoolArgs struct {
 	RootVolumeSizeInGb pulumi.IntPtrInput
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
+	// The ID of the security group
+	//
+	// > **Important:** Updates to this field will recreate a new resource.
+	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
 	// > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -585,6 +605,13 @@ func (o PoolOutput) RootVolumeSizeInGb() pulumi.IntOutput {
 // System volume type of the nodes composing the pool
 func (o PoolOutput) RootVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.RootVolumeType }).(pulumi.StringOutput)
+}
+
+// The ID of the security group
+//
+// > **Important:** Updates to this field will recreate a new resource.
+func (o PoolOutput) SecurityGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }
 
 // The size of the pool.

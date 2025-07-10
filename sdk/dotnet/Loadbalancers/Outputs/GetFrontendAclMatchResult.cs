@@ -34,6 +34,10 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// A list of IPs or CIDR v4/v6 addresses of the client of the session to match
         /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
+        /// <summary>
+        /// Defines whether Edge Services IPs should be matched
+        /// </summary>
+        public readonly bool IpsEdgeServices;
 
         [OutputConstructor]
         private GetFrontendAclMatchResult(
@@ -45,13 +49,16 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
 
             bool invert,
 
-            ImmutableArray<string> ipSubnets)
+            ImmutableArray<string> ipSubnets,
+
+            bool ipsEdgeServices)
         {
             HttpFilter = httpFilter;
             HttpFilterOption = httpFilterOption;
             HttpFilterValues = httpFilterValues;
             Invert = invert;
             IpSubnets = ipSubnets;
+            IpsEdgeServices = ipsEdgeServices;
         }
     }
 }

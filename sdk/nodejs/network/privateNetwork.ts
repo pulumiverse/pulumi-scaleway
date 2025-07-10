@@ -96,6 +96,10 @@ export class PrivateNetwork extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Defines whether default v4 and v6 routes are propagated for this Private Network.
+     */
+    public readonly enableDefaultRoutePropagation!: pulumi.Output<boolean>;
+    /**
      * The IPv4 subnet to associate with the Private Network.
      */
     public readonly ipv4Subnet!: pulumi.Output<outputs.network.PrivateNetworkIpv4Subnet>;
@@ -158,6 +162,7 @@ export class PrivateNetwork extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as PrivateNetworkState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["enableDefaultRoutePropagation"] = state ? state.enableDefaultRoutePropagation : undefined;
             resourceInputs["ipv4Subnet"] = state ? state.ipv4Subnet : undefined;
             resourceInputs["ipv6Subnets"] = state ? state.ipv6Subnets : undefined;
             resourceInputs["isRegional"] = state ? state.isRegional : undefined;
@@ -171,6 +176,7 @@ export class PrivateNetwork extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as PrivateNetworkArgs | undefined;
+            resourceInputs["enableDefaultRoutePropagation"] = args ? args.enableDefaultRoutePropagation : undefined;
             resourceInputs["ipv4Subnet"] = args ? args.ipv4Subnet : undefined;
             resourceInputs["ipv6Subnets"] = args ? args.ipv6Subnets : undefined;
             resourceInputs["isRegional"] = args ? args.isRegional : undefined;
@@ -199,6 +205,10 @@ export interface PrivateNetworkState {
      * The date and time of the creation of the subnet.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Defines whether default v4 and v6 routes are propagated for this Private Network.
+     */
+    enableDefaultRoutePropagation?: pulumi.Input<boolean>;
     /**
      * The IPv4 subnet to associate with the Private Network.
      */
@@ -253,6 +263,10 @@ export interface PrivateNetworkState {
  * The set of arguments for constructing a PrivateNetwork resource.
  */
 export interface PrivateNetworkArgs {
+    /**
+     * Defines whether default v4 and v6 routes are propagated for this Private Network.
+     */
+    enableDefaultRoutePropagation?: pulumi.Input<boolean>;
     /**
      * The IPv4 subnet to associate with the Private Network.
      */

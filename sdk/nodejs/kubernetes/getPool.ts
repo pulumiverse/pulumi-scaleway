@@ -103,6 +103,7 @@ export interface GetPoolResult {
     readonly region?: string;
     readonly rootVolumeSizeInGb: number;
     readonly rootVolumeType: string;
+    readonly securityGroupId: string;
     /**
      * The size of the pool.
      */

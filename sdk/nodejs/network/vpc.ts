@@ -85,6 +85,10 @@ export class Vpc extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     */
+    public readonly enableCustomRoutesPropagation!: pulumi.Output<boolean | undefined>;
+    /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
     public readonly enableRouting!: pulumi.Output<boolean>;
@@ -131,6 +135,7 @@ export class Vpc extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpcState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["enableCustomRoutesPropagation"] = state ? state.enableCustomRoutesPropagation : undefined;
             resourceInputs["enableRouting"] = state ? state.enableRouting : undefined;
             resourceInputs["isDefault"] = state ? state.isDefault : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -141,6 +146,7 @@ export class Vpc extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as VpcArgs | undefined;
+            resourceInputs["enableCustomRoutesPropagation"] = args ? args.enableCustomRoutesPropagation : undefined;
             resourceInputs["enableRouting"] = args ? args.enableRouting : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -166,6 +172,10 @@ export interface VpcState {
      * Date and time of VPC's creation (RFC 3339 format).
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     */
+    enableCustomRoutesPropagation?: pulumi.Input<boolean>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
@@ -204,6 +214,10 @@ export interface VpcState {
  * The set of arguments for constructing a Vpc resource.
  */
 export interface VpcArgs {
+    /**
+     * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
+     */
+    enableCustomRoutesPropagation?: pulumi.Input<boolean>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */

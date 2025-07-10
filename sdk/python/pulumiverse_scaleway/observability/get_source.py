@@ -27,7 +27,7 @@ class GetSourceResult:
     """
     A collection of values returned by getSource.
     """
-    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, region=None, retention_days=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
+    def __init__(__self__, created_at=None, id=None, name=None, origin=None, project_id=None, push_url=None, region=None, retention_days=None, synchronized_with_grafana=None, type=None, updated_at=None, url=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -43,6 +43,9 @@ class GetSourceResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if push_url and not isinstance(push_url, str):
+            raise TypeError("Expected argument 'push_url' to be a str")
+        pulumi.set(__self__, "push_url", push_url)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -72,7 +75,7 @@ class GetSourceResult:
 
     @property
     @pulumi.getter
-    def id(self) -> builtins.str:
+    def id(self) -> Optional[builtins.str]:
         """
         The unique identifier of the data source in the `{region}/{id}` format.
         """
@@ -80,12 +83,12 @@ class GetSourceResult:
 
     @property
     @pulumi.getter
-    def name(self) -> builtins.str:
+    def name(self) -> Optional[builtins.str]:
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
-    def origin(self) -> builtins.str:
+    def origin(self) -> Optional[builtins.str]:
         """
         The origin of the data source.
         """
@@ -93,12 +96,17 @@ class GetSourceResult:
 
     @property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> builtins.str:
+    def project_id(self) -> Optional[builtins.str]:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter(name="pushUrl")
+    def push_url(self) -> builtins.str:
+        return pulumi.get(self, "push_url")
+
+    @property
     @pulumi.getter
-    def region(self) -> builtins.str:
+    def region(self) -> Optional[builtins.str]:
         return pulumi.get(self, "region")
 
     @property
@@ -119,7 +127,7 @@ class GetSourceResult:
 
     @property
     @pulumi.getter
-    def type(self) -> builtins.str:
+    def type(self) -> Optional[builtins.str]:
         return pulumi.get(self, "type")
 
     @property
@@ -150,6 +158,7 @@ class AwaitableGetSourceResult(GetSourceResult):
             name=self.name,
             origin=self.origin,
             project_id=self.project_id,
+            push_url=self.push_url,
             region=self.region,
             retention_days=self.retention_days,
             synchronized_with_grafana=self.synchronized_with_grafana,
@@ -162,6 +171,7 @@ def get_source(id: Optional[builtins.str] = None,
                name: Optional[builtins.str] = None,
                origin: Optional[builtins.str] = None,
                project_id: Optional[builtins.str] = None,
+               region: Optional[builtins.str] = None,
                type: Optional[builtins.str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSourceResult:
     """
@@ -182,11 +192,25 @@ def get_source(id: Optional[builtins.str] = None,
     example = scaleway.observability.get_source(id="fr-par/11111111-1111-1111-1111-111111111111")
     ```
 
+    ### Retrieve a data source by filters
+
+    You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    filtered = scaleway.observability.get_source(project_id="11111111-1111-1111-1111-111111111111",
+        region="fr-par",
+        name="my-data-source")
+    ```
+
 
     :param builtins.str id: The unique identifier of the Cockpit data source in the `{region}/{id}` format. If specified, other filters are ignored.
     :param builtins.str name: The name of the data source.
     :param builtins.str origin: The origin of the data source. Possible values are:
     :param builtins.str project_id: The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
+    :param builtins.str region: The region where the data source is located. Defaults to the region specified in the provider configuration.
     :param builtins.str type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
     """
     __args__ = dict()
@@ -194,6 +218,7 @@ def get_source(id: Optional[builtins.str] = None,
     __args__['name'] = name
     __args__['origin'] = origin
     __args__['projectId'] = project_id
+    __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:observability/getSource:getSource', __args__, opts=opts, typ=GetSourceResult).value
@@ -204,6 +229,7 @@ def get_source(id: Optional[builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         origin=pulumi.get(__ret__, 'origin'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        push_url=pulumi.get(__ret__, 'push_url'),
         region=pulumi.get(__ret__, 'region'),
         retention_days=pulumi.get(__ret__, 'retention_days'),
         synchronized_with_grafana=pulumi.get(__ret__, 'synchronized_with_grafana'),
@@ -214,6 +240,7 @@ def get_source_output(id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       origin: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       project_id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
+                      region: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       type: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSourceResult]:
     """
@@ -234,11 +261,25 @@ def get_source_output(id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
     example = scaleway.observability.get_source(id="fr-par/11111111-1111-1111-1111-111111111111")
     ```
 
+    ### Retrieve a data source by filters
+
+    You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    filtered = scaleway.observability.get_source(project_id="11111111-1111-1111-1111-111111111111",
+        region="fr-par",
+        name="my-data-source")
+    ```
+
 
     :param builtins.str id: The unique identifier of the Cockpit data source in the `{region}/{id}` format. If specified, other filters are ignored.
     :param builtins.str name: The name of the data source.
     :param builtins.str origin: The origin of the data source. Possible values are:
     :param builtins.str project_id: The ID of the Project the data source is associated with. Defaults to the Project ID specified in the provider configuration.
+    :param builtins.str region: The region where the data source is located. Defaults to the region specified in the provider configuration.
     :param builtins.str type: The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
     """
     __args__ = dict()
@@ -246,6 +287,7 @@ def get_source_output(id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
     __args__['name'] = name
     __args__['origin'] = origin
     __args__['projectId'] = project_id
+    __args__['region'] = region
     __args__['type'] = type
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:observability/getSource:getSource', __args__, opts=opts, typ=GetSourceResult)
@@ -255,6 +297,7 @@ def get_source_output(id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
         name=pulumi.get(__response__, 'name'),
         origin=pulumi.get(__response__, 'origin'),
         project_id=pulumi.get(__response__, 'project_id'),
+        push_url=pulumi.get(__response__, 'push_url'),
         region=pulumi.get(__response__, 'region'),
         retention_days=pulumi.get(__response__, 'retention_days'),
         synchronized_with_grafana=pulumi.get(__response__, 'synchronized_with_grafana'),

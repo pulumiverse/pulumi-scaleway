@@ -46,6 +46,62 @@
                     }
                 }
             },
+            "scaleway_autoscaling_instance_group": {
+                "current": "scaleway:autoscaling/instanceGroup:InstanceGroup",
+                "fields": {
+                    "capacity": {
+                        "maxItemsOne": false
+                    },
+                    "load_balancer": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "backend_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_autoscaling_instance_policy": {
+                "current": "scaleway:autoscaling/instancePolicy:InstancePolicy",
+                "fields": {
+                    "metric": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_autoscaling_instance_template": {
+                "current": "scaleway:autoscaling/instanceTemplate:InstanceTemplate",
+                "fields": {
+                    "private_network_ids": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "volumes": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "from_empty": {
+                                    "maxItemsOne": true
+                                },
+                                "from_snapshot": {
+                                    "maxItemsOne": true
+                                },
+                                "tags": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_baremetal_server": {
                 "current": "scaleway:elasticmetal/server:Server",
                 "past": [
