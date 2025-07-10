@@ -43,116 +43,6 @@ export interface AppleSiliconServerPrivateNetwork {
     vlan: number;
 }
 
-export interface AutoscalingInstanceGroupCapacity {
-    /**
-     * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
-     */
-    cooldownDelay?: number;
-    /**
-     * The maximum count of Instances for the Instance group.
-     */
-    maxReplicas?: number;
-    /**
-     * The minimum count of Instances for the Instance group.
-     */
-    minReplicas?: number;
-}
-
-export interface AutoscalingInstanceGroupLoadBalancer {
-    /**
-     * The Load Balancer backend IDs.
-     */
-    backendIds?: string[];
-    /**
-     * The ID of the Load Balancer.
-     */
-    id?: string;
-    /**
-     * The ID of the Private Network attached to the Load Balancer.
-     */
-    privateNetworkId?: string;
-}
-
-export interface AutoscalingInstancePolicyMetric {
-    /**
-     * How the values sampled for the `metric` should be aggregated.
-     */
-    aggregate: string;
-    /**
-     * The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
-     */
-    cockpitMetricName?: string;
-    /**
-     * The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
-     */
-    managedMetric?: string;
-    /**
-     * Name or description of the metric policy.
-     */
-    name: string;
-    /**
-     * Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
-     */
-    operator: string;
-    /**
-     * The Interval of time, in minutes, during which metric is sampled.
-     */
-    samplingRangeMin?: number;
-    /**
-     * The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
-     */
-    threshold?: number;
-}
-
-export interface AutoscalingInstanceTemplateVolume {
-    /**
-     * Force the Instance to boot on this volume.
-     */
-    boot?: boolean;
-    /**
-     * Volume instance template from empty
-     */
-    fromEmpty?: outputs.AutoscalingInstanceTemplateVolumeFromEmpty;
-    /**
-     * Volume instance template from snapshot
-     */
-    fromSnapshot?: outputs.AutoscalingInstanceTemplateVolumeFromSnapshot;
-    /**
-     * The name of the volume.
-     */
-    name: string;
-    /**
-     * The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
-     */
-    perfIops?: number;
-    /**
-     * The list of tags assigned to the volume.
-     */
-    tags?: string[];
-    /**
-     * The type of the volume.
-     */
-    volumeType: string;
-}
-
-export interface AutoscalingInstanceTemplateVolumeFromEmpty {
-    /**
-     * Size in GB of the new empty volume
-     */
-    size: number;
-}
-
-export interface AutoscalingInstanceTemplateVolumeFromSnapshot {
-    /**
-     * Override size (in GB) of the cloned volume
-     */
-    size?: number;
-    /**
-     * ID of the snapshot to clone
-     */
-    snapshotId: string;
-}
-
 export interface BaremetalServerIp {
     /**
      * The address of the IPv6.
@@ -4708,6 +4598,119 @@ export namespace applesilicon {
          * The VLAN ID associated to the private network
          */
         vlan: number;
+    }
+
+}
+
+export namespace autoscaling {
+    export interface InstanceGroupCapacity {
+        /**
+         * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
+         */
+        cooldownDelay?: number;
+        /**
+         * The maximum count of Instances for the Instance group.
+         */
+        maxReplicas?: number;
+        /**
+         * The minimum count of Instances for the Instance group.
+         */
+        minReplicas?: number;
+    }
+
+    export interface InstanceGroupLoadBalancer {
+        /**
+         * The Load Balancer backend IDs.
+         */
+        backendIds?: string[];
+        /**
+         * The ID of the Load Balancer.
+         */
+        id?: string;
+        /**
+         * The ID of the Private Network attached to the Load Balancer.
+         */
+        privateNetworkId?: string;
+    }
+
+    export interface InstancePolicyMetric {
+        /**
+         * How the values sampled for the `metric` should be aggregated.
+         */
+        aggregate: string;
+        /**
+         * The custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+         */
+        cockpitMetricName?: string;
+        /**
+         * The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+         */
+        managedMetric?: string;
+        /**
+         * Name or description of the metric policy.
+         */
+        name: string;
+        /**
+         * Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+         */
+        operator: string;
+        /**
+         * The Interval of time, in minutes, during which metric is sampled.
+         */
+        samplingRangeMin?: number;
+        /**
+         * The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+         */
+        threshold?: number;
+    }
+
+    export interface InstanceTemplateVolume {
+        /**
+         * Force the Instance to boot on this volume.
+         */
+        boot?: boolean;
+        /**
+         * Volume instance template from empty
+         */
+        fromEmpty?: outputs.autoscaling.InstanceTemplateVolumeFromEmpty;
+        /**
+         * Volume instance template from snapshot
+         */
+        fromSnapshot?: outputs.autoscaling.InstanceTemplateVolumeFromSnapshot;
+        /**
+         * The name of the volume.
+         */
+        name: string;
+        /**
+         * The maximum IO/s expected, according to the different options available in stock (`5000 | 15000`).
+         */
+        perfIops?: number;
+        /**
+         * The list of tags assigned to the volume.
+         */
+        tags?: string[];
+        /**
+         * The type of the volume.
+         */
+        volumeType: string;
+    }
+
+    export interface InstanceTemplateVolumeFromEmpty {
+        /**
+         * Size in GB of the new empty volume
+         */
+        size: number;
+    }
+
+    export interface InstanceTemplateVolumeFromSnapshot {
+        /**
+         * Override size (in GB) of the cloned volume
+         */
+        size?: number;
+        /**
+         * ID of the snapshot to clone
+         */
+        snapshotId: string;
     }
 
 }

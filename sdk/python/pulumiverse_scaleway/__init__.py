@@ -9,9 +9,6 @@ import typing
 from .account_project import *
 from .account_ssh_key import *
 from .apple_silicon_server import *
-from .autoscaling_instance_group import *
-from .autoscaling_instance_policy import *
-from .autoscaling_instance_template import *
 from .baremetal_server import *
 from .block_snapshot import *
 from .block_volume import *
@@ -220,6 +217,8 @@ if typing.TYPE_CHECKING:
     account = __account
     import pulumiverse_scaleway.applesilicon as __applesilicon
     applesilicon = __applesilicon
+    import pulumiverse_scaleway.autoscaling as __autoscaling
+    autoscaling = __autoscaling
     import pulumiverse_scaleway.billing as __billing
     billing = __billing
     import pulumiverse_scaleway.block as __block
@@ -275,6 +274,7 @@ if typing.TYPE_CHECKING:
 else:
     account = _utilities.lazy_import('pulumiverse_scaleway.account')
     applesilicon = _utilities.lazy_import('pulumiverse_scaleway.applesilicon')
+    autoscaling = _utilities.lazy_import('pulumiverse_scaleway.autoscaling')
     billing = _utilities.lazy_import('pulumiverse_scaleway.billing')
     block = _utilities.lazy_import('pulumiverse_scaleway.block')
     config = _utilities.lazy_import('pulumiverse_scaleway.config')
@@ -327,6 +327,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.applesilicon",
   "classes": {
    "scaleway:applesilicon/server:Server": "Server"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "autoscaling/instanceGroup",
+  "fqn": "pulumiverse_scaleway.autoscaling",
+  "classes": {
+   "scaleway:autoscaling/instanceGroup:InstanceGroup": "InstanceGroup"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "autoscaling/instancePolicy",
+  "fqn": "pulumiverse_scaleway.autoscaling",
+  "classes": {
+   "scaleway:autoscaling/instancePolicy:InstancePolicy": "InstancePolicy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "autoscaling/instanceTemplate",
+  "fqn": "pulumiverse_scaleway.autoscaling",
+  "classes": {
+   "scaleway:autoscaling/instanceTemplate:InstanceTemplate": "InstanceTemplate"
   }
  },
  {
@@ -647,30 +671,6 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/appleSiliconServer:AppleSiliconServer": "AppleSiliconServer"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/autoscalingInstanceGroup",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/autoscalingInstanceGroup:AutoscalingInstanceGroup": "AutoscalingInstanceGroup"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/autoscalingInstancePolicy",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/autoscalingInstancePolicy:AutoscalingInstancePolicy": "AutoscalingInstancePolicy"
-  }
- },
- {
-  "pkg": "scaleway",
-  "mod": "index/autoscalingInstanceTemplate",
-  "fqn": "pulumiverse_scaleway",
-  "classes": {
-   "scaleway:index/autoscalingInstanceTemplate:AutoscalingInstanceTemplate": "AutoscalingInstanceTemplate"
   }
  },
  {

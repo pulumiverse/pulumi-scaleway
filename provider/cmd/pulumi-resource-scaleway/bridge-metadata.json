@@ -47,7 +47,7 @@
                 }
             },
             "scaleway_autoscaling_instance_group": {
-                "current": "scaleway:index/autoscalingInstanceGroup:AutoscalingInstanceGroup",
+                "current": "scaleway:autoscaling/instanceGroup:InstanceGroup",
                 "fields": {
                     "capacity": {
                         "maxItemsOne": false
@@ -68,7 +68,7 @@
                 }
             },
             "scaleway_autoscaling_instance_policy": {
-                "current": "scaleway:index/autoscalingInstancePolicy:AutoscalingInstancePolicy",
+                "current": "scaleway:autoscaling/instancePolicy:InstancePolicy",
                 "fields": {
                     "metric": {
                         "maxItemsOne": false
@@ -76,7 +76,7 @@
                 }
             },
             "scaleway_autoscaling_instance_template": {
-                "current": "scaleway:index/autoscalingInstanceTemplate:AutoscalingInstanceTemplate",
+                "current": "scaleway:autoscaling/instanceTemplate:InstanceTemplate",
                 "fields": {
                     "private_network_ids": {
                         "maxItemsOne": false

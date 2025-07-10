@@ -42,6 +42,7 @@ const (
 	// https://registry.terraform.io/providers/scaleway/scaleway/latest/docs
 	accountMod       = "account"
 	appleSiliconMod  = "applesilicon"
+	autoscalingMod   = "autoscaling"
 	billingMod       = "billing"
 	blockMod         = "block"
 	cockpitMod       = "observability"
@@ -320,6 +321,7 @@ func Provider() tfbridge.ProviderInfo {
 			map[string]string{
 				"account":       accountMod,
 				"apple_silicon": appleSiliconMod,
+				"autoscaling":   autoscalingMod,
 				"billing":       billingMod,
 				"block":         blockMod,
 				"cockpit":       cockpitMod,

@@ -20,21 +20,6 @@ export type AppleSiliconServer = import("./appleSiliconServer").AppleSiliconServ
 export const AppleSiliconServer: typeof import("./appleSiliconServer").AppleSiliconServer = null as any;
 utilities.lazyLoad(exports, ["AppleSiliconServer"], () => require("./appleSiliconServer"));
 
-export { AutoscalingInstanceGroupArgs, AutoscalingInstanceGroupState } from "./autoscalingInstanceGroup";
-export type AutoscalingInstanceGroup = import("./autoscalingInstanceGroup").AutoscalingInstanceGroup;
-export const AutoscalingInstanceGroup: typeof import("./autoscalingInstanceGroup").AutoscalingInstanceGroup = null as any;
-utilities.lazyLoad(exports, ["AutoscalingInstanceGroup"], () => require("./autoscalingInstanceGroup"));
-
-export { AutoscalingInstancePolicyArgs, AutoscalingInstancePolicyState } from "./autoscalingInstancePolicy";
-export type AutoscalingInstancePolicy = import("./autoscalingInstancePolicy").AutoscalingInstancePolicy;
-export const AutoscalingInstancePolicy: typeof import("./autoscalingInstancePolicy").AutoscalingInstancePolicy = null as any;
-utilities.lazyLoad(exports, ["AutoscalingInstancePolicy"], () => require("./autoscalingInstancePolicy"));
-
-export { AutoscalingInstanceTemplateArgs, AutoscalingInstanceTemplateState } from "./autoscalingInstanceTemplate";
-export type AutoscalingInstanceTemplate = import("./autoscalingInstanceTemplate").AutoscalingInstanceTemplate;
-export const AutoscalingInstanceTemplate: typeof import("./autoscalingInstanceTemplate").AutoscalingInstanceTemplate = null as any;
-utilities.lazyLoad(exports, ["AutoscalingInstanceTemplate"], () => require("./autoscalingInstanceTemplate"));
-
 export { BaremetalServerArgs, BaremetalServerState } from "./baremetalServer";
 export type BaremetalServer = import("./baremetalServer").BaremetalServer;
 export const BaremetalServer: typeof import("./baremetalServer").BaremetalServer = null as any;
@@ -1032,6 +1017,7 @@ utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 // Export sub-modules:
 import * as account from "./account";
 import * as applesilicon from "./applesilicon";
+import * as autoscaling from "./autoscaling";
 import * as billing from "./billing";
 import * as block from "./block";
 import * as config from "./config";
@@ -1063,6 +1049,7 @@ import * as types from "./types";
 export {
     account,
     applesilicon,
+    autoscaling,
     billing,
     block,
     config,
@@ -1102,12 +1089,6 @@ const _module = {
                 return new AccountSshKey(name, <any>undefined, { urn })
             case "scaleway:index/appleSiliconServer:AppleSiliconServer":
                 return new AppleSiliconServer(name, <any>undefined, { urn })
-            case "scaleway:index/autoscalingInstanceGroup:AutoscalingInstanceGroup":
-                return new AutoscalingInstanceGroup(name, <any>undefined, { urn })
-            case "scaleway:index/autoscalingInstancePolicy:AutoscalingInstancePolicy":
-                return new AutoscalingInstancePolicy(name, <any>undefined, { urn })
-            case "scaleway:index/autoscalingInstanceTemplate:AutoscalingInstanceTemplate":
-                return new AutoscalingInstanceTemplate(name, <any>undefined, { urn })
             case "scaleway:index/baremetalServer:BaremetalServer":
                 return new BaremetalServer(name, <any>undefined, { urn })
             case "scaleway:index/blockSnapshot:BlockSnapshot":
@@ -1342,9 +1323,6 @@ const _module = {
 pulumi.runtime.registerResourceModule("scaleway", "index/accountProject", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/accountSshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/appleSiliconServer", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/autoscalingInstanceGroup", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/autoscalingInstancePolicy", _module)
-pulumi.runtime.registerResourceModule("scaleway", "index/autoscalingInstanceTemplate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/baremetalServer", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/blockVolume", _module)
