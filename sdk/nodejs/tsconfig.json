@@ -108,6 +108,7 @@
         "elasticmetal/ip.ts",
         "elasticmetal/ipMacAddress.ts",
         "elasticmetal/server.ts",
+        "fileFilesystem.ts",
         "flexibleIp.ts",
         "flexibleIpMacAddress.ts",
         "function.ts",
