@@ -155,6 +155,9 @@
                     }
                 ],
                 "fields": {
+                    "export": {
+                        "maxItemsOne": true
+                    },
                     "import": {
                         "maxItemsOne": true
                     },
@@ -1325,6 +1328,17 @@
                     }
                 }
             },
+            "scaleway_key_manager_key": {
+                "current": "scaleway:index/keyManagerKey:KeyManagerKey",
+                "fields": {
+                    "rotation_policy": {
+                        "maxItemsOne": true
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_lb": {
                 "current": "scaleway:loadbalancers/loadBalancer:LoadBalancer",
                 "past": [
@@ -2410,6 +2424,9 @@
                     }
                 ],
                 "fields": {
+                    "export": {
+                        "maxItemsOne": false
+                    },
                     "import": {
                         "maxItemsOne": false
                     },
@@ -4278,7 +4295,10 @@
             "scaleway_lb": {
                 "aliases": [
                     "scaleway:index/loadbalancer:Loadbalancer"
-                ]
+                ],
+                "maxItemsOneOverrides": {
+                    "private_network.$.static_config": true
+                }
             },
             "scaleway_lb_acl": {
                 "aliases": [
