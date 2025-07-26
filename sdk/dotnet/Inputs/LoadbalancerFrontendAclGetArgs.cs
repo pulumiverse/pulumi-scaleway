@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<Inputs.LoadbalancerFrontendAclActionGetArgs> Action { get; set; } = null!;
 
         /// <summary>
-        /// IsDate and time of ACL's creation (RFC 3339 format)
+        /// The date and time the frontend was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// IsDate and time of ACL's update (RFC 3339 format)
+        /// The date and time the frontend resource was updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

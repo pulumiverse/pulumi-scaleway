@@ -22,6 +22,7 @@ __all__ = ['SnapshotArgs', 'Snapshot']
 @pulumi.input_type
 class SnapshotArgs:
     def __init__(__self__, *,
+                 export: Optional[pulumi.Input['SnapshotExportArgs']] = None,
                  import_: Optional[pulumi.Input['SnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -30,13 +31,16 @@ class SnapshotArgs:
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
         The set of arguments for constructing a Snapshot resource.
-        :param pulumi.Input['SnapshotImportArgs'] import_: Import snapshot from a qcow
+        :param pulumi.Input['SnapshotExportArgs'] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input['SnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[builtins.str] zone: ). The zone in which the snapshot should be created.
         """
+        if export is not None:
+            pulumi.set(__self__, "export", export)
         if import_ is not None:
             pulumi.set(__self__, "import_", import_)
         if name is not None:
@@ -51,10 +55,22 @@ class SnapshotArgs:
             pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter
+    def export(self) -> Optional[pulumi.Input['SnapshotExportArgs']]:
+        """
+        Use this block to export the volume as a QCOW file to Object Storage.
+        """
+        return pulumi.get(self, "export")
+
+    @export.setter
+    def export(self, value: Optional[pulumi.Input['SnapshotExportArgs']]):
+        pulumi.set(self, "export", value)
+
+    @property
     @pulumi.getter(name="import")
     def import_(self) -> Optional[pulumi.Input['SnapshotImportArgs']]:
         """
-        Import snapshot from a qcow
+        Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
 
@@ -126,6 +142,7 @@ class SnapshotArgs:
 @pulumi.input_type
 class _SnapshotState:
     def __init__(__self__, *,
+                 export: Optional[pulumi.Input['SnapshotExportArgs']] = None,
                  import_: Optional[pulumi.Input['SnapshotImportArgs']] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -134,13 +151,16 @@ class _SnapshotState:
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering Snapshot resources.
-        :param pulumi.Input['SnapshotImportArgs'] import_: Import snapshot from a qcow
+        :param pulumi.Input['SnapshotExportArgs'] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input['SnapshotImportArgs'] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags to apply to the snapshot.
         :param pulumi.Input[builtins.str] volume_id: The ID of the volume to take a snapshot from.
         :param pulumi.Input[builtins.str] zone: ). The zone in which the snapshot should be created.
         """
+        if export is not None:
+            pulumi.set(__self__, "export", export)
         if import_ is not None:
             pulumi.set(__self__, "import_", import_)
         if name is not None:
@@ -155,10 +175,22 @@ class _SnapshotState:
             pulumi.set(__self__, "zone", zone)
 
     @property
+    @pulumi.getter
+    def export(self) -> Optional[pulumi.Input['SnapshotExportArgs']]:
+        """
+        Use this block to export the volume as a QCOW file to Object Storage.
+        """
+        return pulumi.get(self, "export")
+
+    @export.setter
+    def export(self, value: Optional[pulumi.Input['SnapshotExportArgs']]):
+        pulumi.set(self, "export", value)
+
+    @property
     @pulumi.getter(name="import")
     def import_(self) -> Optional[pulumi.Input['SnapshotImportArgs']]:
         """
-        Import snapshot from a qcow
+        Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
 
@@ -233,6 +265,7 @@ class Snapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 export: Optional[pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
                  import_: Optional[pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -276,7 +309,8 @@ class Snapshot(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Import snapshot from a qcow
+        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags to apply to the snapshot.
@@ -338,6 +372,7 @@ class Snapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 export: Optional[pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
                  import_: Optional[pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -353,6 +388,7 @@ class Snapshot(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SnapshotArgs.__new__(SnapshotArgs)
 
+            __props__.__dict__["export"] = export
             __props__.__dict__["import_"] = import_
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
@@ -371,6 +407,7 @@ class Snapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            export: Optional[pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']]] = None,
             import_: Optional[pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -384,7 +421,8 @@ class Snapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Import snapshot from a qcow
+        :param pulumi.Input[Union['SnapshotExportArgs', 'SnapshotExportArgsDict']] export: Use this block to export the volume as a QCOW file to Object Storage.
+        :param pulumi.Input[Union['SnapshotImportArgs', 'SnapshotImportArgsDict']] import_: Use this block to import a QCOW image from Object Storage to create a volume.
         :param pulumi.Input[builtins.str] name: The name of the snapshot. If not provided, a name will be randomly generated.
         :param pulumi.Input[builtins.str] project_id: ). The ID of the Scaleway Project the snapshot is associated with.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: A list of tags to apply to the snapshot.
@@ -395,6 +433,7 @@ class Snapshot(pulumi.CustomResource):
 
         __props__ = _SnapshotState.__new__(_SnapshotState)
 
+        __props__.__dict__["export"] = export
         __props__.__dict__["import_"] = import_
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
@@ -404,10 +443,18 @@ class Snapshot(pulumi.CustomResource):
         return Snapshot(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter
+    def export(self) -> pulumi.Output[Optional['outputs.SnapshotExport']]:
+        """
+        Use this block to export the volume as a QCOW file to Object Storage.
+        """
+        return pulumi.get(self, "export")
+
+    @property
     @pulumi.getter(name="import")
     def import_(self) -> pulumi.Output[Optional['outputs.SnapshotImport']]:
         """
-        Import snapshot from a qcow
+        Use this block to import a QCOW image from Object Storage to create a volume.
         """
         return pulumi.get(self, "import_")
 

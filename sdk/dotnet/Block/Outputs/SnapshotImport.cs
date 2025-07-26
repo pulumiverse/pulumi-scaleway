@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Block.Outputs
     public sealed class SnapshotImport
     {
         /// <summary>
-        /// Bucket containing qcow
+        /// The name of the bucket containing the QCOW file.
         /// </summary>
         public readonly string Bucket;
         /// <summary>
-        /// Key of the qcow file in the specified bucket
+        /// The key of the QCOW file within the bucket.
         /// </summary>
         public readonly string Key;
 

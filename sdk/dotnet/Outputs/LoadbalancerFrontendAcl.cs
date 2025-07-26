@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly Outputs.LoadbalancerFrontendAclAction Action;
         /// <summary>
-        /// IsDate and time of ACL's creation (RFC 3339 format)
+        /// The date and time the frontend was created.
         /// </summary>
         public readonly string? CreatedAt;
         /// <summary>
@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// IsDate and time of ACL's update (RFC 3339 format)
+        /// The date and time the frontend resource was updated.
         /// </summary>
         public readonly string? UpdatedAt;
 

@@ -181,6 +181,14 @@ export class Frontend extends pulumi.CustomResource {
      */
     public readonly connectionRateLimit!: pulumi.Output<number | undefined>;
     /**
+     * The date and time the frontend was created.
+     */
+    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Defines whether to enable access logs on the frontend.
+     */
+    public readonly enableAccessLogs!: pulumi.Output<boolean | undefined>;
+    /**
      * Activates HTTP/3 protocol.
      */
     public readonly enableHttp3!: pulumi.Output<boolean | undefined>;
@@ -205,6 +213,10 @@ export class Frontend extends pulumi.CustomResource {
      * Maximum inactivity time on the client side. (e.g. `1s`)
      */
     public readonly timeoutClient!: pulumi.Output<string | undefined>;
+    /**
+     * The date and time the frontend resource was updated.
+     */
+    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
 
     /**
      * Create a Frontend resource with the given unique name, arguments, and options.
@@ -224,12 +236,15 @@ export class Frontend extends pulumi.CustomResource {
             resourceInputs["certificateId"] = state ? state.certificateId : undefined;
             resourceInputs["certificateIds"] = state ? state.certificateIds : undefined;
             resourceInputs["connectionRateLimit"] = state ? state.connectionRateLimit : undefined;
+            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["enableAccessLogs"] = state ? state.enableAccessLogs : undefined;
             resourceInputs["enableHttp3"] = state ? state.enableHttp3 : undefined;
             resourceInputs["externalAcls"] = state ? state.externalAcls : undefined;
             resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
             resourceInputs["lbId"] = state ? state.lbId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["timeoutClient"] = state ? state.timeoutClient : undefined;
+            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
         } else {
             const args = argsOrState as FrontendArgs | undefined;
             if ((!args || args.backendId === undefined) && !opts.urn) {
@@ -245,6 +260,7 @@ export class Frontend extends pulumi.CustomResource {
             resourceInputs["backendId"] = args ? args.backendId : undefined;
             resourceInputs["certificateIds"] = args ? args.certificateIds : undefined;
             resourceInputs["connectionRateLimit"] = args ? args.connectionRateLimit : undefined;
+            resourceInputs["enableAccessLogs"] = args ? args.enableAccessLogs : undefined;
             resourceInputs["enableHttp3"] = args ? args.enableHttp3 : undefined;
             resourceInputs["externalAcls"] = args ? args.externalAcls : undefined;
             resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
@@ -252,6 +268,8 @@ export class Frontend extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["timeoutClient"] = args ? args.timeoutClient : undefined;
             resourceInputs["certificateId"] = undefined /*out*/;
+            resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend" }] };
@@ -291,6 +309,14 @@ export interface FrontendState {
      */
     connectionRateLimit?: pulumi.Input<number>;
     /**
+     * The date and time the frontend was created.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * Defines whether to enable access logs on the frontend.
+     */
+    enableAccessLogs?: pulumi.Input<boolean>;
+    /**
      * Activates HTTP/3 protocol.
      */
     enableHttp3?: pulumi.Input<boolean>;
@@ -315,6 +341,10 @@ export interface FrontendState {
      * Maximum inactivity time on the client side. (e.g. `1s`)
      */
     timeoutClient?: pulumi.Input<string>;
+    /**
+     * The date and time the frontend resource was updated.
+     */
+    updatedAt?: pulumi.Input<string>;
 }
 
 /**
@@ -341,6 +371,10 @@ export interface FrontendArgs {
      * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
      */
     connectionRateLimit?: pulumi.Input<number>;
+    /**
+     * Defines whether to enable access logs on the frontend.
+     */
+    enableAccessLogs?: pulumi.Input<boolean>;
     /**
      * Activates HTTP/3 protocol.
      */

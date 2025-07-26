@@ -22,50 +22,28 @@ __all__ = ['AclArgs', 'Acl']
 @pulumi.input_type
 class AclArgs:
     def __init__(__self__, *,
-                 default_policy: pulumi.Input[builtins.str],
-                 rules: pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]],
                  vpc_id: pulumi.Input[builtins.str],
+                 default_policy: Optional[pulumi.Input[builtins.str]] = None,
                  is_ipv6: Optional[pulumi.Input[builtins.bool]] = None,
-                 region: Optional[pulumi.Input[builtins.str]] = None):
+                 region: Optional[pulumi.Input[builtins.str]] = None,
+                 rules: Optional[pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]] = None):
         """
         The set of arguments for constructing a Acl resource.
-        :param pulumi.Input[builtins.str] default_policy: The action to take for packets which do not match any rules.
-        :param pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]] rules: The list of Network ACL rules.
         :param pulumi.Input[builtins.str] vpc_id: The VPC ID the ACL belongs to.
+        :param pulumi.Input[builtins.str] default_policy: The action to take for packets which do not match any rules.
         :param pulumi.Input[builtins.bool] is_ipv6: Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
         :param pulumi.Input[builtins.str] region: `region`) The region of the ACL.
+        :param pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]] rules: The list of Network ACL rules.
         """
-        pulumi.set(__self__, "default_policy", default_policy)
-        pulumi.set(__self__, "rules", rules)
         pulumi.set(__self__, "vpc_id", vpc_id)
+        if default_policy is not None:
+            pulumi.set(__self__, "default_policy", default_policy)
         if is_ipv6 is not None:
             pulumi.set(__self__, "is_ipv6", is_ipv6)
         if region is not None:
             pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter(name="defaultPolicy")
-    def default_policy(self) -> pulumi.Input[builtins.str]:
-        """
-        The action to take for packets which do not match any rules.
-        """
-        return pulumi.get(self, "default_policy")
-
-    @default_policy.setter
-    def default_policy(self, value: pulumi.Input[builtins.str]):
-        pulumi.set(self, "default_policy", value)
-
-    @property
-    @pulumi.getter
-    def rules(self) -> pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]:
-        """
-        The list of Network ACL rules.
-        """
-        return pulumi.get(self, "rules")
-
-    @rules.setter
-    def rules(self, value: pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]):
-        pulumi.set(self, "rules", value)
+        if rules is not None:
+            pulumi.set(__self__, "rules", rules)
 
     @property
     @pulumi.getter(name="vpcId")
@@ -78,6 +56,18 @@ class AclArgs:
     @vpc_id.setter
     def vpc_id(self, value: pulumi.Input[builtins.str]):
         pulumi.set(self, "vpc_id", value)
+
+    @property
+    @pulumi.getter(name="defaultPolicy")
+    def default_policy(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The action to take for packets which do not match any rules.
+        """
+        return pulumi.get(self, "default_policy")
+
+    @default_policy.setter
+    def default_policy(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "default_policy", value)
 
     @property
     @pulumi.getter(name="isIpv6")
@@ -102,6 +92,18 @@ class AclArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]]:
+        """
+        The list of Network ACL rules.
+        """
+        return pulumi.get(self, "rules")
+
+    @rules.setter
+    def rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AclRuleArgs']]]]):
+        pulumi.set(self, "rules", value)
 
 
 @pulumi.input_type
@@ -325,13 +327,9 @@ class Acl(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AclArgs.__new__(AclArgs)
 
-            if default_policy is None and not opts.urn:
-                raise TypeError("Missing required property 'default_policy'")
             __props__.__dict__["default_policy"] = default_policy
             __props__.__dict__["is_ipv6"] = is_ipv6
             __props__.__dict__["region"] = region
-            if rules is None and not opts.urn:
-                raise TypeError("Missing required property 'rules'")
             __props__.__dict__["rules"] = rules
             if vpc_id is None and not opts.urn:
                 raise TypeError("Missing required property 'vpc_id'")
@@ -377,7 +375,7 @@ class Acl(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="defaultPolicy")
-    def default_policy(self) -> pulumi.Output[builtins.str]:
+    def default_policy(self) -> pulumi.Output[Optional[builtins.str]]:
         """
         The action to take for packets which do not match any rules.
         """
@@ -401,7 +399,7 @@ class Acl(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def rules(self) -> pulumi.Output[Sequence['outputs.AclRule']]:
+    def rules(self) -> pulumi.Output[Optional[Sequence['outputs.AclRule']]]:
         """
         The list of Network ACL rules.
         """

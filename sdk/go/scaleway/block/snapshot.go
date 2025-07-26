@@ -66,7 +66,9 @@ import (
 type Snapshot struct {
 	pulumi.CustomResourceState
 
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export SnapshotExportPtrOutput `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import SnapshotImportPtrOutput `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -116,7 +118,9 @@ func GetSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Snapshot resources.
 type snapshotState struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export *SnapshotExport `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import *SnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -131,7 +135,9 @@ type snapshotState struct {
 }
 
 type SnapshotState struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export SnapshotExportPtrInput
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import SnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -150,7 +156,9 @@ func (SnapshotState) ElementType() reflect.Type {
 }
 
 type snapshotArgs struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export *SnapshotExport `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import *SnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -166,7 +174,9 @@ type snapshotArgs struct {
 
 // The set of arguments for constructing a Snapshot resource.
 type SnapshotArgs struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export SnapshotExportPtrInput
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import SnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -267,7 +277,12 @@ func (o SnapshotOutput) ToSnapshotOutputWithContext(ctx context.Context) Snapsho
 	return o
 }
 
-// Import snapshot from a qcow
+// Use this block to export the volume as a QCOW file to Object Storage.
+func (o SnapshotOutput) Export() SnapshotExportPtrOutput {
+	return o.ApplyT(func(v *Snapshot) SnapshotExportPtrOutput { return v.Export }).(SnapshotExportPtrOutput)
+}
+
+// Use this block to import a QCOW image from Object Storage to create a volume.
 func (o SnapshotOutput) Import() SnapshotImportPtrOutput {
 	return o.ApplyT(func(v *Snapshot) SnapshotImportPtrOutput { return v.Import }).(SnapshotImportPtrOutput)
 }

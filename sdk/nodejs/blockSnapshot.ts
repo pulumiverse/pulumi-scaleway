@@ -74,7 +74,11 @@ export class BlockSnapshot extends pulumi.CustomResource {
     }
 
     /**
-     * Import snapshot from a qcow
+     * Use this block to export the volume as a QCOW file to Object Storage.
+     */
+    public readonly export!: pulumi.Output<outputs.BlockSnapshotExport | undefined>;
+    /**
+     * Use this block to import a QCOW image from Object Storage to create a volume.
      */
     public readonly import!: pulumi.Output<outputs.BlockSnapshotImport | undefined>;
     /**
@@ -114,6 +118,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BlockSnapshotState | undefined;
+            resourceInputs["export"] = state ? state.export : undefined;
             resourceInputs["import"] = state ? state.import : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -122,6 +127,7 @@ export class BlockSnapshot extends pulumi.CustomResource {
             resourceInputs["zone"] = state ? state.zone : undefined;
         } else {
             const args = argsOrState as BlockSnapshotArgs | undefined;
+            resourceInputs["export"] = args ? args.export : undefined;
             resourceInputs["import"] = args ? args.import : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -139,7 +145,11 @@ export class BlockSnapshot extends pulumi.CustomResource {
  */
 export interface BlockSnapshotState {
     /**
-     * Import snapshot from a qcow
+     * Use this block to export the volume as a QCOW file to Object Storage.
+     */
+    export?: pulumi.Input<inputs.BlockSnapshotExport>;
+    /**
+     * Use this block to import a QCOW image from Object Storage to create a volume.
      */
     import?: pulumi.Input<inputs.BlockSnapshotImport>;
     /**
@@ -169,7 +179,11 @@ export interface BlockSnapshotState {
  */
 export interface BlockSnapshotArgs {
     /**
-     * Import snapshot from a qcow
+     * Use this block to export the volume as a QCOW file to Object Storage.
+     */
+    export?: pulumi.Input<inputs.BlockSnapshotExport>;
+    /**
+     * Use this block to import a QCOW image from Object Storage to create a volume.
      */
     import?: pulumi.Input<inputs.BlockSnapshotImport>;
     /**

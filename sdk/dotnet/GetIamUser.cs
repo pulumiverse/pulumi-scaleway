@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the IAM user.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `email` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public string? UserId { get; set; }
@@ -182,7 +182,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the IAM user.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `email` and/or `user_id`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

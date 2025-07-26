@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
     public sealed class LoadBalancerPrivateNetwork
     {
         /// <summary>
-        /// Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        /// Set to true if you want to let DHCP assign IP addresses
         /// </summary>
         public readonly bool? DhcpConfig;
         /// <summary>
@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
-        /// Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        /// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         /// </summary>
         public readonly string? StaticConfig;
         /// <summary>

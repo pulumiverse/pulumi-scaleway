@@ -37,7 +37,7 @@ import (
 //			}
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
-//				Version:                   pulumi.String("1.29.1"),
+//				Version:                   pulumi.String("1.32.3"),
 //				Cni:                       pulumi.String("cilium"),
 //				PrivateNetworkId:          pn.ID(),
 //				DeleteAdditionalResources: pulumi.Bool(false),
@@ -77,7 +77,7 @@ import (
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:                      pulumi.String("tf-cluster"),
 //				Type:                      pulumi.String("multicloud"),
-//				Version:                   pulumi.String("1.29.1"),
+//				Version:                   pulumi.String("1.32.3"),
 //				Cni:                       pulumi.String("kilo"),
 //				DeleteAdditionalResources: pulumi.Bool(false),
 //			})
@@ -124,7 +124,7 @@ import (
 //			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
 //				Name:        pulumi.String("tf-cluster"),
 //				Description: pulumi.String("cluster made in terraform"),
-//				Version:     pulumi.String("1.29.1"),
+//				Version:     pulumi.String("1.32.3"),
 //				Cni:         pulumi.String("calico"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("terraform"),

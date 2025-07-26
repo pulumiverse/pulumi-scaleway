@@ -68,7 +68,9 @@ import (
 type BlockSnapshot struct {
 	pulumi.CustomResourceState
 
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export BlockSnapshotExportPtrOutput `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import BlockSnapshotImportPtrOutput `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -112,7 +114,9 @@ func GetBlockSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BlockSnapshot resources.
 type blockSnapshotState struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export *BlockSnapshotExport `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import *BlockSnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -127,7 +131,9 @@ type blockSnapshotState struct {
 }
 
 type BlockSnapshotState struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export BlockSnapshotExportPtrInput
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import BlockSnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -146,7 +152,9 @@ func (BlockSnapshotState) ElementType() reflect.Type {
 }
 
 type blockSnapshotArgs struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export *BlockSnapshotExport `pulumi:"export"`
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import *BlockSnapshotImport `pulumi:"import"`
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -162,7 +170,9 @@ type blockSnapshotArgs struct {
 
 // The set of arguments for constructing a BlockSnapshot resource.
 type BlockSnapshotArgs struct {
-	// Import snapshot from a qcow
+	// Use this block to export the volume as a QCOW file to Object Storage.
+	Export BlockSnapshotExportPtrInput
+	// Use this block to import a QCOW image from Object Storage to create a volume.
 	Import BlockSnapshotImportPtrInput
 	// The name of the snapshot. If not provided, a name will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -263,7 +273,12 @@ func (o BlockSnapshotOutput) ToBlockSnapshotOutputWithContext(ctx context.Contex
 	return o
 }
 
-// Import snapshot from a qcow
+// Use this block to export the volume as a QCOW file to Object Storage.
+func (o BlockSnapshotOutput) Export() BlockSnapshotExportPtrOutput {
+	return o.ApplyT(func(v *BlockSnapshot) BlockSnapshotExportPtrOutput { return v.Export }).(BlockSnapshotExportPtrOutput)
+}
+
+// Use this block to import a QCOW image from Object Storage to create a volume.
 func (o BlockSnapshotOutput) Import() BlockSnapshotImportPtrOutput {
 	return o.ApplyT(func(v *BlockSnapshot) BlockSnapshotImportPtrOutput { return v.Import }).(BlockSnapshotImportPtrOutput)
 }

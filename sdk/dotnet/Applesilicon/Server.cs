@@ -35,6 +35,44 @@ namespace Pulumiverse.Scaleway.Applesilicon
     /// });
     /// ```
     /// 
+    /// ### Enable VPC and attach private network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpc_apple_silicon = new Scaleway.Network.Vpc("vpc-apple-silicon", new()
+    ///     {
+    ///         Name = "vpc-apple-silicon",
+    ///     });
+    /// 
+    ///     var pn_apple_silicon = new Scaleway.Network.PrivateNetwork("pn-apple-silicon", new()
+    ///     {
+    ///         Name = "pn-apple-silicon",
+    ///         VpcId = vpc_apple_silicon.Id,
+    ///     });
+    /// 
+    ///     var my_server = new Scaleway.Applesilicon.Server("my-server", new()
+    ///     {
+    ///         Name = "TestAccServerEnableVPC",
+    ///         Type = "M2-M",
+    ///         EnableVpc = true,
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             new Scaleway.Applesilicon.Inputs.ServerPrivateNetworkArgs
+    ///             {
+    ///                 Id = pn_apple_silicon.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -55,7 +93,7 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Output<string?> Commitment { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the creation of the Apple Silicon server.
+        /// The date and time the private network was created.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
@@ -136,7 +174,7 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date and time of the last update of the Apple Silicon server.
+        /// The date and time the private network was last updated.
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -306,7 +344,7 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Input<string>? Commitment { get; set; }
 
         /// <summary>
-        /// The date and time of the creation of the Apple Silicon server.
+        /// The date and time the private network was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
@@ -409,7 +447,7 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the Apple Silicon server.
+        /// The date and time the private network was last updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

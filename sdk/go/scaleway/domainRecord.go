@@ -321,8 +321,6 @@ type DomainRecord struct {
 	GeoIp DomainRecordGeoIpPtrOutput `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrOutput `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-	KeepEmptyZone pulumi.BoolPtrOutput `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record).
@@ -390,8 +388,6 @@ type domainRecordState struct {
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name *string `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record).
@@ -421,8 +417,6 @@ type DomainRecordState struct {
 	GeoIp DomainRecordGeoIpPtrInput
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrInput
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-	KeepEmptyZone pulumi.BoolPtrInput
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringPtrInput
 	// The priority of the record (mostly used with an `MX` record).
@@ -454,8 +448,6 @@ type domainRecordArgs struct {
 	GeoIp *DomainRecordGeoIp `pulumi:"geoIp"`
 	// Return record based on client localisation
 	HttpService *DomainRecordHttpService `pulumi:"httpService"`
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-	KeepEmptyZone *bool `pulumi:"keepEmptyZone"`
 	// The name of the record (can be an empty string for a root record).
 	Name *string `pulumi:"name"`
 	// The priority of the record (mostly used with an `MX` record).
@@ -482,8 +474,6 @@ type DomainRecordArgs struct {
 	GeoIp DomainRecordGeoIpPtrInput
 	// Return record based on client localisation
 	HttpService DomainRecordHttpServicePtrInput
-	// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-	KeepEmptyZone pulumi.BoolPtrInput
 	// The name of the record (can be an empty string for a root record).
 	Name pulumi.StringPtrInput
 	// The priority of the record (mostly used with an `MX` record).
@@ -610,11 +600,6 @@ func (o DomainRecordOutput) GeoIp() DomainRecordGeoIpPtrOutput {
 // Return record based on client localisation
 func (o DomainRecordOutput) HttpService() DomainRecordHttpServicePtrOutput {
 	return o.ApplyT(func(v *DomainRecord) DomainRecordHttpServicePtrOutput { return v.HttpService }).(DomainRecordHttpServicePtrOutput)
-}
-
-// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-func (o DomainRecordOutput) KeepEmptyZone() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *DomainRecord) pulumi.BoolPtrOutput { return v.KeepEmptyZone }).(pulumi.BoolPtrOutput)
 }
 
 // The name of the record (can be an empty string for a root record).

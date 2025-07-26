@@ -44,6 +44,53 @@ import (
 //
 // ```
 //
+// ### Enable VPC and attach private network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			vpc_apple_silicon, err := network.NewVpc(ctx, "vpc-apple-silicon", &network.VpcArgs{
+//				Name: pulumi.String("vpc-apple-silicon"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn_apple_silicon, err := network.NewPrivateNetwork(ctx, "pn-apple-silicon", &network.PrivateNetworkArgs{
+//				Name:  pulumi.String("pn-apple-silicon"),
+//				VpcId: vpc_apple_silicon.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = applesilicon.NewServer(ctx, "my-server", &applesilicon.ServerArgs{
+//				Name:      pulumi.String("TestAccServerEnableVPC"),
+//				Type:      pulumi.String("M2-M"),
+//				EnableVpc: pulumi.Bool(true),
+//				PrivateNetworks: applesilicon.ServerPrivateNetworkArray{
+//					&applesilicon.ServerPrivateNetworkArgs{
+//						Id: pn_apple_silicon.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -58,7 +105,7 @@ type Server struct {
 
 	// The commitment period of the server
 	Commitment pulumi.StringPtrOutput `pulumi:"commitment"`
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringOutput `pulumi:"deletableAt"`
@@ -87,7 +134,7 @@ type Server struct {
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The username of the server
 	Username pulumi.StringOutput `pulumi:"username"`
@@ -145,7 +192,7 @@ func GetServer(ctx *pulumi.Context,
 type serverState struct {
 	// The commitment period of the server
 	Commitment *string `pulumi:"commitment"`
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt *string `pulumi:"deletableAt"`
@@ -174,7 +221,7 @@ type serverState struct {
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type *string `pulumi:"type"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The username of the server
 	Username *string `pulumi:"username"`
@@ -190,7 +237,7 @@ type serverState struct {
 type ServerState struct {
 	// The commitment period of the server
 	Commitment pulumi.StringPtrInput
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt pulumi.StringPtrInput
 	// The minimal date and time on which you can delete this server due to Apple licence
 	DeletableAt pulumi.StringPtrInput
@@ -219,7 +266,7 @@ type ServerState struct {
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
 	Type pulumi.StringPtrInput
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt pulumi.StringPtrInput
 	// The username of the server
 	Username pulumi.StringPtrInput
@@ -379,7 +426,7 @@ func (o ServerOutput) Commitment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Commitment }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the creation of the Apple Silicon server.
+// The date and time the private network was created.
 func (o ServerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -447,7 +494,7 @@ func (o ServerOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
-// The date and time of the last update of the Apple Silicon server.
+// The date and time the private network was last updated.
 func (o ServerOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }

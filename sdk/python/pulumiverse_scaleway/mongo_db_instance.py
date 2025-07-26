@@ -299,6 +299,7 @@ class _MongoDbInstanceState:
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
                  snapshot_id: Optional[pulumi.Input[builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 tls_certificate: Optional[pulumi.Input[builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[builtins.str]] = None,
                  user_name: Optional[pulumi.Input[builtins.str]] = None,
                  version: Optional[pulumi.Input[builtins.str]] = None,
@@ -320,6 +321,7 @@ class _MongoDbInstanceState:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
+        :param pulumi.Input[builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
         :param pulumi.Input[builtins.str] user_name: Name of the user created when the intance is created.
         :param pulumi.Input[builtins.str] version: MongoDB® version of the instance.
@@ -352,6 +354,8 @@ class _MongoDbInstanceState:
             pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if tls_certificate is not None:
+            pulumi.set(__self__, "tls_certificate", tls_certificate)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
         if user_name is not None:
@@ -519,6 +523,18 @@ class _MongoDbInstanceState:
     @tags.setter
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
         pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+        """
+        return pulumi.get(self, "tls_certificate")
+
+    @tls_certificate.setter
+    def tls_certificate(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "tls_certificate", value)
 
     @property
     @pulumi.getter(name="updatedAt")
@@ -877,6 +893,7 @@ class MongoDbInstance(pulumi.CustomResource):
             __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
             __props__.__dict__["volume_type"] = volume_type
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["tls_certificate"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -903,6 +920,7 @@ class MongoDbInstance(pulumi.CustomResource):
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]]] = None,
             snapshot_id: Optional[pulumi.Input[builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+            tls_certificate: Optional[pulumi.Input[builtins.str]] = None,
             updated_at: Optional[pulumi.Input[builtins.str]] = None,
             user_name: Optional[pulumi.Input[builtins.str]] = None,
             version: Optional[pulumi.Input[builtins.str]] = None,
@@ -929,6 +947,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
+        :param pulumi.Input[builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
         :param pulumi.Input[builtins.str] user_name: Name of the user created when the intance is created.
         :param pulumi.Input[builtins.str] version: MongoDB® version of the instance.
@@ -952,6 +971,7 @@ class MongoDbInstance(pulumi.CustomResource):
         __props__.__dict__["settings"] = settings
         __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["tls_certificate"] = tls_certificate
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["version"] = version
@@ -1063,6 +1083,14 @@ class MongoDbInstance(pulumi.CustomResource):
         List of tags attached to the MongoDB® instance.
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> pulumi.Output[builtins.str]:
+        """
+        The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+        """
+        return pulumi.get(self, "tls_certificate")
 
     @property
     @pulumi.getter(name="updatedAt")

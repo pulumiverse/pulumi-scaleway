@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class BlockSnapshotImportGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Bucket containing qcow
+        /// The name of the bucket containing the QCOW file.
         /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// Key of the qcow file in the specified bucket
+        /// The key of the QCOW file within the bucket.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;

@@ -60,7 +60,13 @@ namespace Pulumiverse.Scaleway
     public partial class BlockSnapshot : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Import snapshot from a qcow
+        /// Use this block to export the volume as a QCOW file to Object Storage.
+        /// </summary>
+        [Output("export")]
+        public Output<Outputs.BlockSnapshotExport?> Export { get; private set; } = null!;
+
+        /// <summary>
+        /// Use this block to import a QCOW image from Object Storage to create a volume.
         /// </summary>
         [Output("import")]
         public Output<Outputs.BlockSnapshotImport?> Import { get; private set; } = null!;
@@ -143,7 +149,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockSnapshotArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Import snapshot from a qcow
+        /// Use this block to export the volume as a QCOW file to Object Storage.
+        /// </summary>
+        [Input("export")]
+        public Input<Inputs.BlockSnapshotExportArgs>? Export { get; set; }
+
+        /// <summary>
+        /// Use this block to import a QCOW image from Object Storage to create a volume.
         /// </summary>
         [Input("import")]
         public Input<Inputs.BlockSnapshotImportArgs>? Import { get; set; }
@@ -193,7 +205,13 @@ namespace Pulumiverse.Scaleway
     public sealed class BlockSnapshotState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Import snapshot from a qcow
+        /// Use this block to export the volume as a QCOW file to Object Storage.
+        /// </summary>
+        [Input("export")]
+        public Input<Inputs.BlockSnapshotExportGetArgs>? Export { get; set; }
+
+        /// <summary>
+        /// Use this block to import a QCOW image from Object Storage to create a volume.
         /// </summary>
         [Input("import")]
         public Input<Inputs.BlockSnapshotImportGetArgs>? Import { get; set; }

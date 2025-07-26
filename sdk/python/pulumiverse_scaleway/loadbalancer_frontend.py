@@ -28,6 +28,7 @@ class LoadbalancerFrontendArgs:
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  connection_rate_limit: Optional[pulumi.Input[builtins.int]] = None,
+                 enable_access_logs: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_http3: Optional[pulumi.Input[builtins.bool]] = None,
                  external_acls: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
@@ -44,6 +45,7 @@ class LoadbalancerFrontendArgs:
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[builtins.int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        :param pulumi.Input[builtins.bool] enable_access_logs: Defines whether to enable access logs on the frontend.
         :param pulumi.Input[builtins.bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[builtins.bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -59,6 +61,8 @@ class LoadbalancerFrontendArgs:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
         if connection_rate_limit is not None:
             pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
+        if enable_access_logs is not None:
+            pulumi.set(__self__, "enable_access_logs", enable_access_logs)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
@@ -145,6 +149,18 @@ class LoadbalancerFrontendArgs:
         pulumi.set(self, "connection_rate_limit", value)
 
     @property
+    @pulumi.getter(name="enableAccessLogs")
+    def enable_access_logs(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether to enable access logs on the frontend.
+        """
+        return pulumi.get(self, "enable_access_logs")
+
+    @enable_access_logs.setter
+    def enable_access_logs(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enable_access_logs", value)
+
+    @property
     @pulumi.getter(name="enableHttp3")
     def enable_http3(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -202,12 +218,15 @@ class _LoadbalancerFrontendState:
                  certificate_id: Optional[pulumi.Input[builtins.str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  connection_rate_limit: Optional[pulumi.Input[builtins.int]] = None,
+                 created_at: Optional[pulumi.Input[builtins.str]] = None,
+                 enable_access_logs: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_http3: Optional[pulumi.Input[builtins.bool]] = None,
                  external_acls: Optional[pulumi.Input[builtins.bool]] = None,
                  inbound_port: Optional[pulumi.Input[builtins.int]] = None,
                  lb_id: Optional[pulumi.Input[builtins.str]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
-                 timeout_client: Optional[pulumi.Input[builtins.str]] = None):
+                 timeout_client: Optional[pulumi.Input[builtins.str]] = None,
+                 updated_at: Optional[pulumi.Input[builtins.str]] = None):
         """
         Input properties used for looking up and filtering LoadbalancerFrontend resources.
         :param pulumi.Input[Sequence[pulumi.Input['LoadbalancerFrontendAclArgs']]] acls: A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
@@ -219,6 +238,8 @@ class _LoadbalancerFrontendState:
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[builtins.int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        :param pulumi.Input[builtins.str] created_at: The date and time the frontend was created.
+        :param pulumi.Input[builtins.bool] enable_access_logs: Defines whether to enable access logs on the frontend.
         :param pulumi.Input[builtins.bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[builtins.bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -226,6 +247,7 @@ class _LoadbalancerFrontendState:
         :param pulumi.Input[builtins.str] lb_id: The ID of the Load Balancer this frontend is attached to.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[builtins.str] timeout_client: Maximum inactivity time on the client side. (e.g. `1s`)
+        :param pulumi.Input[builtins.str] updated_at: The date and time the frontend resource was updated.
         """
         if acls is not None:
             pulumi.set(__self__, "acls", acls)
@@ -240,6 +262,10 @@ class _LoadbalancerFrontendState:
             pulumi.set(__self__, "certificate_ids", certificate_ids)
         if connection_rate_limit is not None:
             pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if enable_access_logs is not None:
+            pulumi.set(__self__, "enable_access_logs", enable_access_logs)
         if enable_http3 is not None:
             pulumi.set(__self__, "enable_http3", enable_http3)
         if external_acls is not None:
@@ -252,6 +278,8 @@ class _LoadbalancerFrontendState:
             pulumi.set(__self__, "name", name)
         if timeout_client is not None:
             pulumi.set(__self__, "timeout_client", timeout_client)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -317,6 +345,30 @@ class _LoadbalancerFrontendState:
     @connection_rate_limit.setter
     def connection_rate_limit(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "connection_rate_limit", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The date and time the frontend was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="enableAccessLogs")
+    def enable_access_logs(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Defines whether to enable access logs on the frontend.
+        """
+        return pulumi.get(self, "enable_access_logs")
+
+    @enable_access_logs.setter
+    def enable_access_logs(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "enable_access_logs", value)
 
     @property
     @pulumi.getter(name="enableHttp3")
@@ -391,6 +443,18 @@ class _LoadbalancerFrontendState:
     def timeout_client(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "timeout_client", value)
 
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The date and time the frontend resource was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "updated_at", value)
+
 
 warnings.warn("""scaleway.index/loadbalancerfrontend.LoadbalancerFrontend has been deprecated in favor of scaleway.loadbalancers/frontend.Frontend""", DeprecationWarning)
 
@@ -407,6 +471,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[builtins.str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  connection_rate_limit: Optional[pulumi.Input[builtins.int]] = None,
+                 enable_access_logs: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_http3: Optional[pulumi.Input[builtins.bool]] = None,
                  external_acls: Optional[pulumi.Input[builtins.bool]] = None,
                  inbound_port: Optional[pulumi.Input[builtins.int]] = None,
@@ -542,6 +607,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[builtins.int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        :param pulumi.Input[builtins.bool] enable_access_logs: Defines whether to enable access logs on the frontend.
         :param pulumi.Input[builtins.bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[builtins.bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -693,6 +759,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                  backend_id: Optional[pulumi.Input[builtins.str]] = None,
                  certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  connection_rate_limit: Optional[pulumi.Input[builtins.int]] = None,
+                 enable_access_logs: Optional[pulumi.Input[builtins.bool]] = None,
                  enable_http3: Optional[pulumi.Input[builtins.bool]] = None,
                  external_acls: Optional[pulumi.Input[builtins.bool]] = None,
                  inbound_port: Optional[pulumi.Input[builtins.int]] = None,
@@ -715,6 +782,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             __props__.__dict__["backend_id"] = backend_id
             __props__.__dict__["certificate_ids"] = certificate_ids
             __props__.__dict__["connection_rate_limit"] = connection_rate_limit
+            __props__.__dict__["enable_access_logs"] = enable_access_logs
             __props__.__dict__["enable_http3"] = enable_http3
             __props__.__dict__["external_acls"] = external_acls
             if inbound_port is None and not opts.urn:
@@ -726,6 +794,8 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["timeout_client"] = timeout_client
             __props__.__dict__["certificate_id"] = None
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["updated_at"] = None
         super(LoadbalancerFrontend, __self__).__init__(
             'scaleway:index/loadbalancerFrontend:LoadbalancerFrontend',
             resource_name,
@@ -741,12 +811,15 @@ class LoadbalancerFrontend(pulumi.CustomResource):
             certificate_id: Optional[pulumi.Input[builtins.str]] = None,
             certificate_ids: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
             connection_rate_limit: Optional[pulumi.Input[builtins.int]] = None,
+            created_at: Optional[pulumi.Input[builtins.str]] = None,
+            enable_access_logs: Optional[pulumi.Input[builtins.bool]] = None,
             enable_http3: Optional[pulumi.Input[builtins.bool]] = None,
             external_acls: Optional[pulumi.Input[builtins.bool]] = None,
             inbound_port: Optional[pulumi.Input[builtins.int]] = None,
             lb_id: Optional[pulumi.Input[builtins.str]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
-            timeout_client: Optional[pulumi.Input[builtins.str]] = None) -> 'LoadbalancerFrontend':
+            timeout_client: Optional[pulumi.Input[builtins.str]] = None,
+            updated_at: Optional[pulumi.Input[builtins.str]] = None) -> 'LoadbalancerFrontend':
         """
         Get an existing LoadbalancerFrontend resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -763,6 +836,8 @@ class LoadbalancerFrontend(pulumi.CustomResource):
                
                > **Important:** Certificates are not allowed on port 80.
         :param pulumi.Input[builtins.int] connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        :param pulumi.Input[builtins.str] created_at: The date and time the frontend was created.
+        :param pulumi.Input[builtins.bool] enable_access_logs: Defines whether to enable access logs on the frontend.
         :param pulumi.Input[builtins.bool] enable_http3: Activates HTTP/3 protocol.
         :param pulumi.Input[builtins.bool] external_acls: A boolean to specify whether to use lb_acl.
                If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
@@ -770,6 +845,7 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] lb_id: The ID of the Load Balancer this frontend is attached to.
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
         :param pulumi.Input[builtins.str] timeout_client: Maximum inactivity time on the client side. (e.g. `1s`)
+        :param pulumi.Input[builtins.str] updated_at: The date and time the frontend resource was updated.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -780,12 +856,15 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         __props__.__dict__["certificate_id"] = certificate_id
         __props__.__dict__["certificate_ids"] = certificate_ids
         __props__.__dict__["connection_rate_limit"] = connection_rate_limit
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["enable_access_logs"] = enable_access_logs
         __props__.__dict__["enable_http3"] = enable_http3
         __props__.__dict__["external_acls"] = external_acls
         __props__.__dict__["inbound_port"] = inbound_port
         __props__.__dict__["lb_id"] = lb_id
         __props__.__dict__["name"] = name
         __props__.__dict__["timeout_client"] = timeout_client
+        __props__.__dict__["updated_at"] = updated_at
         return LoadbalancerFrontend(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -832,6 +911,22 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         """
         return pulumi.get(self, "connection_rate_limit")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[builtins.str]:
+        """
+        The date and time the frontend was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableAccessLogs")
+    def enable_access_logs(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Defines whether to enable access logs on the frontend.
+        """
+        return pulumi.get(self, "enable_access_logs")
 
     @property
     @pulumi.getter(name="enableHttp3")
@@ -881,4 +976,12 @@ class LoadbalancerFrontend(pulumi.CustomResource):
         Maximum inactivity time on the client side. (e.g. `1s`)
         """
         return pulumi.get(self, "timeout_client")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> pulumi.Output[builtins.str]:
+        """
+        The date and time the frontend resource was updated.
+        """
+        return pulumi.get(self, "updated_at")
 

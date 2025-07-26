@@ -53,6 +53,7 @@ export interface GetSnapshotArgs {
  * A collection of values returned by getSnapshot.
  */
 export interface GetSnapshotResult {
+    readonly exports: outputs.block.GetSnapshotExport[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

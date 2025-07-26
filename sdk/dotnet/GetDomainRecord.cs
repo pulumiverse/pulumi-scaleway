@@ -251,7 +251,6 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        public readonly bool KeepEmptyZone;
         public readonly string? Name;
         /// <summary>
         /// The priority of the record, mainly used with `MX` records.
@@ -288,8 +287,6 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
-            bool keepEmptyZone,
-
             string? name,
 
             int priority,
@@ -314,7 +311,6 @@ namespace Pulumiverse.Scaleway
             GeoIps = geoIps;
             HttpServices = httpServices;
             Id = id;
-            KeepEmptyZone = keepEmptyZone;
             Name = name;
             Priority = priority;
             ProjectId = projectId;

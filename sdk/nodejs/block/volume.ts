@@ -103,11 +103,11 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
-     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes.
      */
     public readonly sizeInGb!: pulumi.Output<number>;
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
     /**
@@ -182,11 +182,11 @@ export interface VolumeState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot.
      */
     snapshotId?: pulumi.Input<string>;
     /**
@@ -220,11 +220,11 @@ export interface VolumeArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+     * The size of the volume in gigabytes.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
-     * If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+     * If set, the new volume will be created from this snapshot.
      */
     snapshotId?: pulumi.Input<string>;
     /**

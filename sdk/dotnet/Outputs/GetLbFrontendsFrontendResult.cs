@@ -24,9 +24,17 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> CertificateIds;
         /// <summary>
+        /// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        /// </summary>
+        public readonly int ConnectionRateLimit;
+        /// <summary>
         /// The date on which the frontend was created (RFC 3339 format).
         /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Defines whether to enable access logs on the frontend.
+        /// </summary>
+        public readonly bool EnableAccessLogs;
         /// <summary>
         /// Whether HTTP/3 protocol is activated.
         /// </summary>
@@ -53,7 +61,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string TimeoutClient;
         /// <summary>
-        /// The date aont which the frontend was last updated (RFC 3339 format).
+        /// The date on which the frontend was last updated (RFC 3339 format).
         /// </summary>
         public readonly string UpdateAt;
 
@@ -63,7 +71,11 @@ namespace Pulumiverse.Scaleway.Outputs
 
             ImmutableArray<string> certificateIds,
 
+            int connectionRateLimit,
+
             string createdAt,
+
+            bool enableAccessLogs,
 
             bool enableHttp3,
 
@@ -81,7 +93,9 @@ namespace Pulumiverse.Scaleway.Outputs
         {
             BackendId = backendId;
             CertificateIds = certificateIds;
+            ConnectionRateLimit = connectionRateLimit;
             CreatedAt = createdAt;
+            EnableAccessLogs = enableAccessLogs;
             EnableHttp3 = enableHttp3;
             Id = id;
             InboundPort = inboundPort;

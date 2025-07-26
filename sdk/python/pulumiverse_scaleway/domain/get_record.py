@@ -28,7 +28,7 @@ class GetRecordResult:
     """
     A collection of values returned by getRecord.
     """
-    def __init__(__self__, data=None, dns_zone=None, fqdn=None, geo_ips=None, http_services=None, id=None, keep_empty_zone=None, name=None, priority=None, project_id=None, record_id=None, root_zone=None, ttl=None, type=None, views=None, weighteds=None):
+    def __init__(__self__, data=None, dns_zone=None, fqdn=None, geo_ips=None, http_services=None, id=None, name=None, priority=None, project_id=None, record_id=None, root_zone=None, ttl=None, type=None, views=None, weighteds=None):
         if data and not isinstance(data, str):
             raise TypeError("Expected argument 'data' to be a str")
         pulumi.set(__self__, "data", data)
@@ -47,9 +47,6 @@ class GetRecordResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
-        if keep_empty_zone and not isinstance(keep_empty_zone, bool):
-            raise TypeError("Expected argument 'keep_empty_zone' to be a bool")
-        pulumi.set(__self__, "keep_empty_zone", keep_empty_zone)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -116,11 +113,6 @@ class GetRecordResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
-
-    @property
-    @pulumi.getter(name="keepEmptyZone")
-    def keep_empty_zone(self) -> builtins.bool:
-        return pulumi.get(self, "keep_empty_zone")
 
     @property
     @pulumi.getter
@@ -192,7 +184,6 @@ class AwaitableGetRecordResult(GetRecordResult):
             geo_ips=self.geo_ips,
             http_services=self.http_services,
             id=self.id,
-            keep_empty_zone=self.keep_empty_zone,
             name=self.name,
             priority=self.priority,
             project_id=self.project_id,
@@ -262,7 +253,6 @@ def get_record(data: Optional[builtins.str] = None,
         geo_ips=pulumi.get(__ret__, 'geo_ips'),
         http_services=pulumi.get(__ret__, 'http_services'),
         id=pulumi.get(__ret__, 'id'),
-        keep_empty_zone=pulumi.get(__ret__, 'keep_empty_zone'),
         name=pulumi.get(__ret__, 'name'),
         priority=pulumi.get(__ret__, 'priority'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -329,7 +319,6 @@ def get_record_output(data: Optional[pulumi.Input[Optional[builtins.str]]] = Non
         geo_ips=pulumi.get(__response__, 'geo_ips'),
         http_services=pulumi.get(__response__, 'http_services'),
         id=pulumi.get(__response__, 'id'),
-        keep_empty_zone=pulumi.get(__response__, 'keep_empty_zone'),
         name=pulumi.get(__response__, 'name'),
         priority=pulumi.get(__response__, 'priority'),
         project_id=pulumi.get(__response__, 'project_id'),

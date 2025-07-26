@@ -89,6 +89,7 @@ export interface GetInstanceResult {
      * A list of tags attached to the MongoDB® instance.
      */
     readonly tags: string[];
+    readonly tlsCertificate: string;
     readonly updatedAt: string;
     readonly userName: string;
     /**

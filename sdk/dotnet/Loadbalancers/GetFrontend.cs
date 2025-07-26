@@ -250,6 +250,8 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly string CertificateId;
         public readonly ImmutableArray<string> CertificateIds;
         public readonly int ConnectionRateLimit;
+        public readonly string CreatedAt;
+        public readonly bool EnableAccessLogs;
         public readonly bool EnableHttp3;
         public readonly bool ExternalAcls;
         public readonly string? FrontendId;
@@ -261,6 +263,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly string? LbId;
         public readonly string? Name;
         public readonly string TimeoutClient;
+        public readonly string UpdatedAt;
 
         [OutputConstructor]
         private GetFrontendResult(
@@ -273,6 +276,10 @@ namespace Pulumiverse.Scaleway.Loadbalancers
             ImmutableArray<string> certificateIds,
 
             int connectionRateLimit,
+
+            string createdAt,
+
+            bool enableAccessLogs,
 
             bool enableHttp3,
 
@@ -288,13 +295,17 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             string? name,
 
-            string timeoutClient)
+            string timeoutClient,
+
+            string updatedAt)
         {
             Acls = acls;
             BackendId = backendId;
             CertificateId = certificateId;
             CertificateIds = certificateIds;
             ConnectionRateLimit = connectionRateLimit;
+            CreatedAt = createdAt;
+            EnableAccessLogs = enableAccessLogs;
             EnableHttp3 = enableHttp3;
             ExternalAcls = externalAcls;
             FrontendId = frontendId;
@@ -303,6 +314,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
             LbId = lbId;
             Name = name;
             TimeoutClient = timeoutClient;
+            UpdatedAt = updatedAt;
         }
     }
 }

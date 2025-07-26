@@ -30,7 +30,10 @@ class GetBlockSnapshotResult:
     """
     A collection of values returned by getBlockSnapshot.
     """
-    def __init__(__self__, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, exports=None, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+        if exports and not isinstance(exports, list):
+            raise TypeError("Expected argument 'exports' to be a list")
+        pulumi.set(__self__, "exports", exports)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -55,6 +58,11 @@ class GetBlockSnapshotResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def exports(self) -> Sequence['outputs.GetBlockSnapshotExportResult']:
+        return pulumi.get(self, "exports")
 
     @property
     @pulumi.getter
@@ -106,6 +114,7 @@ class AwaitableGetBlockSnapshotResult(GetBlockSnapshotResult):
         if False:
             yield self
         return GetBlockSnapshotResult(
+            exports=self.exports,
             id=self.id,
             imports=self.imports,
             name=self.name,
@@ -145,6 +154,7 @@ def get_block_snapshot(name: Optional[builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult).value
 
     return AwaitableGetBlockSnapshotResult(
+        exports=pulumi.get(__ret__, 'exports'),
         id=pulumi.get(__ret__, 'id'),
         imports=pulumi.get(__ret__, 'imports'),
         name=pulumi.get(__ret__, 'name'),
@@ -181,6 +191,7 @@ def get_block_snapshot_output(name: Optional[pulumi.Input[Optional[builtins.str]
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBlockSnapshot:getBlockSnapshot', __args__, opts=opts, typ=GetBlockSnapshotResult)
     return __ret__.apply(lambda __response__: GetBlockSnapshotResult(
+        exports=pulumi.get(__response__, 'exports'),
         id=pulumi.get(__response__, 'id'),
         imports=pulumi.get(__response__, 'imports'),
         name=pulumi.get(__response__, 'name'),

@@ -24,6 +24,27 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Enable VPC and attach private network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const vpc_apple_silicon = new scaleway.network.Vpc("vpc-apple-silicon", {name: "vpc-apple-silicon"});
+ * const pn_apple_silicon = new scaleway.network.PrivateNetwork("pn-apple-silicon", {
+ *     name: "pn-apple-silicon",
+ *     vpcId: vpc_apple_silicon.id,
+ * });
+ * const my_server = new scaleway.applesilicon.Server("my-server", {
+ *     name: "TestAccServerEnableVPC",
+ *     type: "M2-M",
+ *     enableVpc: true,
+ *     privateNetworks: [{
+ *         id: pn_apple_silicon.id,
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -67,7 +88,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly commitment!: pulumi.Output<string | undefined>;
     /**
-     * The date and time of the creation of the Apple Silicon server.
+     * The date and time the private network was created.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
@@ -122,7 +143,7 @@ export class Server extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The date and time of the last update of the Apple Silicon server.
+     * The date and time the private network was last updated.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -218,7 +239,7 @@ export interface ServerState {
      */
     commitment?: pulumi.Input<string>;
     /**
-     * The date and time of the creation of the Apple Silicon server.
+     * The date and time the private network was created.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -273,7 +294,7 @@ export interface ServerState {
      */
     type?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the Apple Silicon server.
+     * The date and time the private network was last updated.
      */
     updatedAt?: pulumi.Input<string>;
     /**

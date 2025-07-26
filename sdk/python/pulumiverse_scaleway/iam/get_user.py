@@ -117,7 +117,7 @@ def get_user(email: Optional[builtins.str] = None,
     :param Sequence[builtins.str] tags: The tags associated with the user.
     :param builtins.str user_id: The ID of the IAM user.
            
-           > **Note** You must specify at least one: `name` and/or `user_id`.
+           > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     __args__ = dict()
     __args__['email'] = email
@@ -161,7 +161,7 @@ def get_user_output(email: Optional[pulumi.Input[Optional[builtins.str]]] = None
     :param Sequence[builtins.str] tags: The tags associated with the user.
     :param builtins.str user_id: The ID of the IAM user.
            
-           > **Note** You must specify at least one: `name` and/or `user_id`.
+           > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     __args__ = dict()
     __args__['email'] = email

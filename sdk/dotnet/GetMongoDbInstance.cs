@@ -150,6 +150,7 @@ namespace Pulumiverse.Scaleway
         /// A list of tags attached to the MongoDB® instance.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
+        public readonly string TlsCertificate;
         public readonly string UpdatedAt;
         public readonly string UserName;
         /// <summary>
@@ -197,6 +198,8 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags,
 
+            string tlsCertificate,
+
             string updatedAt,
 
             string userName,
@@ -222,6 +225,7 @@ namespace Pulumiverse.Scaleway
             Settings = settings;
             SnapshotId = snapshotId;
             Tags = tags;
+            TlsCertificate = tlsCertificate;
             UpdatedAt = updatedAt;
             UserName = userName;
             Version = version;

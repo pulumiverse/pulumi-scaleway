@@ -93,9 +93,8 @@ type LookupRecordResult struct {
 	// Information about dynamic records based on URL resolution. Find out more about dynamic records.
 	HttpServices []GetRecordHttpService `pulumi:"httpServices"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string  `pulumi:"id"`
-	KeepEmptyZone bool    `pulumi:"keepEmptyZone"`
-	Name          *string `pulumi:"name"`
+	Id   string  `pulumi:"id"`
+	Name *string `pulumi:"name"`
 	// The priority of the record, mainly used with `MX` records.
 	Priority  int     `pulumi:"priority"`
 	ProjectId *string `pulumi:"projectId"`
@@ -179,10 +178,6 @@ func (o LookupRecordResultOutput) HttpServices() GetRecordHttpServiceArrayOutput
 // The provider-assigned unique ID for this managed resource.
 func (o LookupRecordResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRecordResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-func (o LookupRecordResultOutput) KeepEmptyZone() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupRecordResult) bool { return v.KeepEmptyZone }).(pulumi.BoolOutput)
 }
 
 func (o LookupRecordResultOutput) Name() pulumi.StringPtrOutput {

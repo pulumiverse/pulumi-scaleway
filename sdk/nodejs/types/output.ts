@@ -18,27 +18,27 @@ export interface AppleSiliconServerPrivateIp {
 
 export interface AppleSiliconServerPrivateNetwork {
     /**
-     * The date and time of the creation of the Apple Silicon server.
+     * The date and time the private network was created.
      */
     createdAt: string;
     /**
-     * The ID of the IP address resource.
+     * The private network ID
      */
     id: string;
     /**
-     * List of IPAM IP IDs to attach to the server
+     * A list of IPAM IP IDs to attach to the server.
      */
     ipamIpIds: string[];
     /**
-     * The private network status
+     * The current status of the private network.
      */
     status: string;
     /**
-     * The date and time of the last update of the Apple Silicon server.
+     * The date and time the private network was last updated.
      */
     updatedAt: string;
     /**
-     * The VLAN ID associated to the private network
+     * The VLAN ID associated with the private network.
      */
     vlan: number;
 }
@@ -157,13 +157,24 @@ export interface BaremetalServerPrivateNetwork {
     vlan: number;
 }
 
-export interface BlockSnapshotImport {
+export interface BlockSnapshotExport {
     /**
-     * Bucket containing qcow
+     * The name of the bucket where the QCOW file will be saved.
      */
     bucket: string;
     /**
-     * Key of the qcow file in the specified bucket
+     * The desired key (path) for the QCOW file within the bucket.
+     */
+    key: string;
+}
+
+export interface BlockSnapshotImport {
+    /**
+     * The name of the bucket containing the QCOW file.
+     */
+    bucket: string;
+    /**
+     * The key of the QCOW file within the bucket.
      */
     key: string;
 }
@@ -969,6 +980,17 @@ export interface GetBillingInvoicesInvoice {
      * The total amount, untaxed.
      */
     totalUntaxed: string;
+}
+
+export interface GetBlockSnapshotExport {
+    /**
+     * Bucket containing qcow
+     */
+    bucket: string;
+    /**
+     * Key of the qcow file in the specified bucket
+     */
+    key: string;
 }
 
 export interface GetBlockSnapshotImport {
@@ -2200,9 +2222,17 @@ export interface GetLbFrontendsFrontend {
      */
     certificateIds: string[];
     /**
+     * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+     */
+    connectionRateLimit: number;
+    /**
      * The date on which the frontend was created (RFC 3339 format).
      */
     createdAt: string;
+    /**
+     * Defines whether to enable access logs on the frontend.
+     */
+    enableAccessLogs: boolean;
     /**
      * Whether HTTP/3 protocol is activated.
      */
@@ -2229,7 +2259,7 @@ export interface GetLbFrontendsFrontend {
      */
     timeoutClient: string;
     /**
-     * The date aont which the frontend was last updated (RFC 3339 format).
+     * The date on which the frontend was last updated (RFC 3339 format).
      */
     updateAt: string;
 }
@@ -3587,6 +3617,17 @@ export interface JobDefinitionSecretReference {
     secretVersion?: string;
 }
 
+export interface KeyManagerKeyRotationPolicy {
+    /**
+     * The date and time of the next scheduled rotation.
+     */
+    nextRotationAt: string;
+    /**
+     * – The period between key rotations (e.g., `"720h"` for 30 days).
+     */
+    rotationPeriod?: string;
+}
+
 export interface KubernetesClusterAutoUpgrade {
     /**
      * Set to `true` to enable Kubernetes patch version auto upgrades.
@@ -3876,7 +3917,7 @@ export interface LoadbalancerFrontendAcl {
      */
     action: outputs.LoadbalancerFrontendAclAction;
     /**
-     * IsDate and time of ACL's creation (RFC 3339 format)
+     * The date and time the frontend was created.
      */
     createdAt: string;
     /**
@@ -3892,7 +3933,7 @@ export interface LoadbalancerFrontendAcl {
      */
     name: string;
     /**
-     * IsDate and time of ACL's update (RFC 3339 format)
+     * The date and time the frontend resource was updated.
      */
     updatedAt: string;
 }
@@ -3966,7 +4007,7 @@ export interface LoadbalancerPrivateIp {
 
 export interface LoadbalancerPrivateNetwork {
     /**
-     * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+     * Set to true if you want to let DHCP assign IP addresses
      *
      * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
@@ -3981,11 +4022,11 @@ export interface LoadbalancerPrivateNetwork {
      */
     privateNetworkId: string;
     /**
-     * Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+     * Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
      *
      * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
-    staticConfig?: string;
+    staticConfig: string;
     /**
      * The status of the private network connection.
      */
@@ -4575,27 +4616,27 @@ export namespace applesilicon {
 
     export interface ServerPrivateNetwork {
         /**
-         * The date and time of the creation of the Apple Silicon server.
+         * The date and time the private network was created.
          */
         createdAt: string;
         /**
-         * The ID of the IP address resource.
+         * The private network ID
          */
         id: string;
         /**
-         * List of IPAM IP IDs to attach to the server
+         * A list of IPAM IP IDs to attach to the server.
          */
         ipamIpIds: string[];
         /**
-         * The private network status
+         * The current status of the private network.
          */
         status: string;
         /**
-         * The date and time of the last update of the Apple Silicon server.
+         * The date and time the private network was last updated.
          */
         updatedAt: string;
         /**
-         * The VLAN ID associated to the private network
+         * The VLAN ID associated with the private network.
          */
         vlan: number;
     }
@@ -4817,6 +4858,17 @@ export namespace billing {
 }
 
 export namespace block {
+    export interface GetSnapshotExport {
+        /**
+         * Bucket containing qcow
+         */
+        bucket: string;
+        /**
+         * Key of the qcow file in the specified bucket
+         */
+        key: string;
+    }
+
     export interface GetSnapshotImport {
         /**
          * Bucket containing qcow
@@ -4828,13 +4880,24 @@ export namespace block {
         key: string;
     }
 
-    export interface SnapshotImport {
+    export interface SnapshotExport {
         /**
-         * Bucket containing qcow
+         * The name of the bucket where the QCOW file will be saved.
          */
         bucket: string;
         /**
-         * Key of the qcow file in the specified bucket
+         * The desired key (path) for the QCOW file within the bucket.
+         */
+        key: string;
+    }
+
+    export interface SnapshotImport {
+        /**
+         * The name of the bucket containing the QCOW file.
+         */
+        bucket: string;
+        /**
+         * The key of the QCOW file within the bucket.
          */
         key: string;
     }
@@ -8007,7 +8070,7 @@ export namespace loadbalancers {
          */
         action: outputs.loadbalancers.FrontendAclAction;
         /**
-         * IsDate and time of ACL's creation (RFC 3339 format)
+         * The date and time the frontend was created.
          */
         createdAt: string;
         /**
@@ -8023,7 +8086,7 @@ export namespace loadbalancers {
          */
         name: string;
         /**
-         * IsDate and time of ACL's update (RFC 3339 format)
+         * The date and time the frontend resource was updated.
          */
         updatedAt: string;
     }
@@ -8447,9 +8510,17 @@ export namespace loadbalancers {
          */
         certificateIds: string[];
         /**
+         * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+         */
+        connectionRateLimit: number;
+        /**
          * The date on which the frontend was created (RFC 3339 format).
          */
         createdAt: string;
+        /**
+         * Defines whether to enable access logs on the frontend.
+         */
+        enableAccessLogs: boolean;
         /**
          * Whether HTTP/3 protocol is activated.
          */
@@ -8476,7 +8547,7 @@ export namespace loadbalancers {
          */
         timeoutClient: string;
         /**
-         * The date aont which the frontend was last updated (RFC 3339 format).
+         * The date on which the frontend was last updated (RFC 3339 format).
          */
         updateAt: string;
     }
@@ -8727,7 +8798,7 @@ export namespace loadbalancers {
 
     export interface LoadBalancerPrivateNetwork {
         /**
-         * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+         * Set to true if you want to let DHCP assign IP addresses
          *
          * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */
@@ -8742,11 +8813,11 @@ export namespace loadbalancers {
          */
         privateNetworkId: string;
         /**
-         * Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+         * Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
          *
          * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */
-        staticConfig?: string;
+        staticConfig: string;
         /**
          * The status of the private network connection.
          */

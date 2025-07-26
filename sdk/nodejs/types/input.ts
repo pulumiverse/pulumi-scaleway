@@ -18,27 +18,27 @@ export interface AppleSiliconServerPrivateIp {
 
 export interface AppleSiliconServerPrivateNetwork {
     /**
-     * The date and time of the creation of the Apple Silicon server.
+     * The date and time the private network was created.
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The ID of the IP address resource.
+     * The private network ID
      */
     id: pulumi.Input<string>;
     /**
-     * List of IPAM IP IDs to attach to the server
+     * A list of IPAM IP IDs to attach to the server.
      */
     ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The private network status
+     * The current status of the private network.
      */
     status?: pulumi.Input<string>;
     /**
-     * The date and time of the last update of the Apple Silicon server.
+     * The date and time the private network was last updated.
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The VLAN ID associated to the private network
+     * The VLAN ID associated with the private network.
      */
     vlan?: pulumi.Input<number>;
 }
@@ -157,13 +157,24 @@ export interface BaremetalServerPrivateNetwork {
     vlan?: pulumi.Input<number>;
 }
 
-export interface BlockSnapshotImport {
+export interface BlockSnapshotExport {
     /**
-     * Bucket containing qcow
+     * The name of the bucket where the QCOW file will be saved.
      */
     bucket: pulumi.Input<string>;
     /**
-     * Key of the qcow file in the specified bucket
+     * The desired key (path) for the QCOW file within the bucket.
+     */
+    key: pulumi.Input<string>;
+}
+
+export interface BlockSnapshotImport {
+    /**
+     * The name of the bucket containing the QCOW file.
+     */
+    bucket: pulumi.Input<string>;
+    /**
+     * The key of the QCOW file within the bucket.
      */
     key: pulumi.Input<string>;
 }
@@ -1321,6 +1332,17 @@ export interface JobDefinitionSecretReference {
     secretVersion?: pulumi.Input<string>;
 }
 
+export interface KeyManagerKeyRotationPolicy {
+    /**
+     * The date and time of the next scheduled rotation.
+     */
+    nextRotationAt?: pulumi.Input<string>;
+    /**
+     * – The period between key rotations (e.g., `"720h"` for 30 days).
+     */
+    rotationPeriod?: pulumi.Input<string>;
+}
+
 export interface KubernetesClusterAutoUpgrade {
     /**
      * Set to `true` to enable Kubernetes patch version auto upgrades.
@@ -1610,7 +1632,7 @@ export interface LoadbalancerFrontendAcl {
      */
     action: pulumi.Input<inputs.LoadbalancerFrontendAclAction>;
     /**
-     * IsDate and time of ACL's creation (RFC 3339 format)
+     * The date and time the frontend was created.
      */
     createdAt?: pulumi.Input<string>;
     /**
@@ -1626,7 +1648,7 @@ export interface LoadbalancerFrontendAcl {
      */
     name?: pulumi.Input<string>;
     /**
-     * IsDate and time of ACL's update (RFC 3339 format)
+     * The date and time the frontend resource was updated.
      */
     updatedAt?: pulumi.Input<string>;
 }
@@ -1700,7 +1722,7 @@ export interface LoadbalancerPrivateIp {
 
 export interface LoadbalancerPrivateNetwork {
     /**
-     * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+     * Set to true if you want to let DHCP assign IP addresses
      *
      * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
@@ -1715,7 +1737,7 @@ export interface LoadbalancerPrivateNetwork {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+     * Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
      *
      * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
@@ -2280,27 +2302,27 @@ export namespace applesilicon {
 
     export interface ServerPrivateNetwork {
         /**
-         * The date and time of the creation of the Apple Silicon server.
+         * The date and time the private network was created.
          */
         createdAt?: pulumi.Input<string>;
         /**
-         * The ID of the IP address resource.
+         * The private network ID
          */
         id: pulumi.Input<string>;
         /**
-         * List of IPAM IP IDs to attach to the server
+         * A list of IPAM IP IDs to attach to the server.
          */
         ipamIpIds?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The private network status
+         * The current status of the private network.
          */
         status?: pulumi.Input<string>;
         /**
-         * The date and time of the last update of the Apple Silicon server.
+         * The date and time the private network was last updated.
          */
         updatedAt?: pulumi.Input<string>;
         /**
-         * The VLAN ID associated to the private network
+         * The VLAN ID associated with the private network.
          */
         vlan?: pulumi.Input<number>;
     }
@@ -2422,13 +2444,24 @@ export namespace billing {
 }
 
 export namespace block {
-    export interface SnapshotImport {
+    export interface SnapshotExport {
         /**
-         * Bucket containing qcow
+         * The name of the bucket where the QCOW file will be saved.
          */
         bucket: pulumi.Input<string>;
         /**
-         * Key of the qcow file in the specified bucket
+         * The desired key (path) for the QCOW file within the bucket.
+         */
+        key: pulumi.Input<string>;
+    }
+
+    export interface SnapshotImport {
+        /**
+         * The name of the bucket containing the QCOW file.
+         */
+        bucket: pulumi.Input<string>;
+        /**
+         * The key of the QCOW file within the bucket.
          */
         key: pulumi.Input<string>;
     }
@@ -4481,7 +4514,7 @@ export namespace loadbalancers {
          */
         action: pulumi.Input<inputs.loadbalancers.FrontendAclAction>;
         /**
-         * IsDate and time of ACL's creation (RFC 3339 format)
+         * The date and time the frontend was created.
          */
         createdAt?: pulumi.Input<string>;
         /**
@@ -4497,7 +4530,7 @@ export namespace loadbalancers {
          */
         name?: pulumi.Input<string>;
         /**
-         * IsDate and time of ACL's update (RFC 3339 format)
+         * The date and time the frontend resource was updated.
          */
         updatedAt?: pulumi.Input<string>;
     }
@@ -4571,7 +4604,7 @@ export namespace loadbalancers {
 
     export interface LoadBalancerPrivateNetwork {
         /**
-         * Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+         * Set to true if you want to let DHCP assign IP addresses
          *
          * @deprecated dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */
@@ -4586,7 +4619,7 @@ export namespace loadbalancers {
          */
         privateNetworkId: pulumi.Input<string>;
         /**
-         * Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+         * Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
          *
          * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */

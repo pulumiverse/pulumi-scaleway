@@ -30,7 +30,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
     ///     {
     ///         Name = "tf-cluster",
-    ///         Version = "1.29.1",
+    ///         Version = "1.32.3",
     ///         Cni = "cilium",
     ///         PrivateNetworkId = pn.Id,
     ///         DeleteAdditionalResources = false,
@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///     {
     ///         Name = "tf-cluster",
     ///         Type = "multicloud",
-    ///         Version = "1.29.1",
+    ///         Version = "1.32.3",
     ///         Cni = "kilo",
     ///         DeleteAdditionalResources = false,
     ///     });
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     ///     {
     ///         Name = "tf-cluster",
     ///         Description = "cluster made in terraform",
-    ///         Version = "1.29.1",
+    ///         Version = "1.32.3",
     ///         Cni = "calico",
     ///         Tags = new[]
     ///         {

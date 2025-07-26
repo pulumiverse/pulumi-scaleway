@@ -161,6 +161,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IpamIpReverseDns{}
 	case "scaleway:index/jobDefinition:JobDefinition":
 		r = &JobDefinition{}
+	case "scaleway:index/keyManagerKey:KeyManagerKey":
+		r = &KeyManagerKey{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -632,6 +634,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/jobDefinition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/keyManagerKey",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

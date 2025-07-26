@@ -16,12 +16,72 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'SnapshotExport',
     'SnapshotImport',
+    'GetSnapshotExportResult',
     'GetSnapshotImportResult',
 ]
 
 @pulumi.output_type
+class SnapshotExport(dict):
+    def __init__(__self__, *,
+                 bucket: builtins.str,
+                 key: builtins.str):
+        """
+        :param builtins.str bucket: The name of the bucket where the QCOW file will be saved.
+        :param builtins.str key: The desired key (path) for the QCOW file within the bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> builtins.str:
+        """
+        The name of the bucket where the QCOW file will be saved.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> builtins.str:
+        """
+        The desired key (path) for the QCOW file within the bucket.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
 class SnapshotImport(dict):
+    def __init__(__self__, *,
+                 bucket: builtins.str,
+                 key: builtins.str):
+        """
+        :param builtins.str bucket: The name of the bucket containing the QCOW file.
+        :param builtins.str key: The key of the QCOW file within the bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> builtins.str:
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> builtins.str:
+        """
+        The key of the QCOW file within the bucket.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class GetSnapshotExportResult(dict):
     def __init__(__self__, *,
                  bucket: builtins.str,
                  key: builtins.str):

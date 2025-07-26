@@ -76,7 +76,7 @@ type Acl struct {
 	pulumi.CustomResourceState
 
 	// The action to take for packets which do not match any rules.
-	DefaultPolicy pulumi.StringOutput `pulumi:"defaultPolicy"`
+	DefaultPolicy pulumi.StringPtrOutput `pulumi:"defaultPolicy"`
 	// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
 	// `region`) The region of the ACL.
@@ -94,12 +94,6 @@ func NewAcl(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DefaultPolicy == nil {
-		return nil, errors.New("invalid value for required argument 'DefaultPolicy'")
-	}
-	if args.Rules == nil {
-		return nil, errors.New("invalid value for required argument 'Rules'")
-	}
 	if args.VpcId == nil {
 		return nil, errors.New("invalid value for required argument 'VpcId'")
 	}
@@ -157,7 +151,7 @@ func (AclState) ElementType() reflect.Type {
 
 type aclArgs struct {
 	// The action to take for packets which do not match any rules.
-	DefaultPolicy string `pulumi:"defaultPolicy"`
+	DefaultPolicy *string `pulumi:"defaultPolicy"`
 	// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
 	IsIpv6 *bool `pulumi:"isIpv6"`
 	// `region`) The region of the ACL.
@@ -171,7 +165,7 @@ type aclArgs struct {
 // The set of arguments for constructing a Acl resource.
 type AclArgs struct {
 	// The action to take for packets which do not match any rules.
-	DefaultPolicy pulumi.StringInput
+	DefaultPolicy pulumi.StringPtrInput
 	// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
 	IsIpv6 pulumi.BoolPtrInput
 	// `region`) The region of the ACL.
@@ -270,8 +264,8 @@ func (o AclOutput) ToAclOutputWithContext(ctx context.Context) AclOutput {
 }
 
 // The action to take for packets which do not match any rules.
-func (o AclOutput) DefaultPolicy() pulumi.StringOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.DefaultPolicy }).(pulumi.StringOutput)
+func (o AclOutput) DefaultPolicy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.DefaultPolicy }).(pulumi.StringPtrOutput)
 }
 
 // Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.

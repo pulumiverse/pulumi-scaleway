@@ -765,7 +765,7 @@ class Cluster(pulumi.CustomResource):
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.32.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
@@ -785,7 +785,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
-            version="1.29.1",
+            version="1.32.3",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
@@ -808,7 +808,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
-            version="1.29.1",
+            version="1.32.3",
             cni="calico",
             tags=["terraform"],
             private_network_id=pn.id,
@@ -984,7 +984,7 @@ class Cluster(pulumi.CustomResource):
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
-            version="1.29.1",
+            version="1.32.3",
             cni="cilium",
             private_network_id=pn.id,
             delete_additional_resources=False)
@@ -1004,7 +1004,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             type="multicloud",
-            version="1.29.1",
+            version="1.32.3",
             cni="kilo",
             delete_additional_resources=False)
         pool = scaleway.kubernetes.Pool("pool",
@@ -1027,7 +1027,7 @@ class Cluster(pulumi.CustomResource):
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
             description="cluster made in terraform",
-            version="1.29.1",
+            version="1.32.3",
             cni="calico",
             tags=["terraform"],
             private_network_id=pn.id,

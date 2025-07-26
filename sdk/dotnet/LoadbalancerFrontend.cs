@@ -221,6 +221,18 @@ namespace Pulumiverse.Scaleway
         public Output<int?> ConnectionRateLimit { get; private set; } = null!;
 
         /// <summary>
+        /// The date and time the frontend was created.
+        /// </summary>
+        [Output("createdAt")]
+        public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines whether to enable access logs on the frontend.
+        /// </summary>
+        [Output("enableAccessLogs")]
+        public Output<bool?> EnableAccessLogs { get; private set; } = null!;
+
+        /// <summary>
         /// Activates HTTP/3 protocol.
         /// </summary>
         [Output("enableHttp3")]
@@ -256,6 +268,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("timeoutClient")]
         public Output<string?> TimeoutClient { get; private set; } = null!;
+
+        /// <summary>
+        /// The date and time the frontend resource was updated.
+        /// </summary>
+        [Output("updatedAt")]
+        public Output<string> UpdatedAt { get; private set; } = null!;
 
 
         /// <summary>
@@ -343,6 +361,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("connectionRateLimit")]
         public Input<int>? ConnectionRateLimit { get; set; }
+
+        /// <summary>
+        /// Defines whether to enable access logs on the frontend.
+        /// </summary>
+        [Input("enableAccessLogs")]
+        public Input<bool>? EnableAccessLogs { get; set; }
 
         /// <summary>
         /// Activates HTTP/3 protocol.
@@ -436,6 +460,18 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ConnectionRateLimit { get; set; }
 
         /// <summary>
+        /// The date and time the frontend was created.
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Defines whether to enable access logs on the frontend.
+        /// </summary>
+        [Input("enableAccessLogs")]
+        public Input<bool>? EnableAccessLogs { get; set; }
+
+        /// <summary>
         /// Activates HTTP/3 protocol.
         /// </summary>
         [Input("enableHttp3")]
@@ -471,6 +507,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("timeoutClient")]
         public Input<string>? TimeoutClient { get; set; }
+
+        /// <summary>
+        /// The date and time the frontend resource was updated.
+        /// </summary>
+        [Input("updatedAt")]
+        public Input<string>? UpdatedAt { get; set; }
 
         public LoadbalancerFrontendState()
         {

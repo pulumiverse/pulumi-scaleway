@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway.Applesilicon.Inputs
     public sealed class ServerPrivateNetworkGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The date and time of the creation of the Apple Silicon server.
+        /// The date and time the private network was created.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the IP address resource.
+        /// The private network ID
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway.Applesilicon.Inputs
         private InputList<string>? _ipamIpIds;
 
         /// <summary>
-        /// List of IPAM IP IDs to attach to the server
+        /// A list of IPAM IP IDs to attach to the server.
         /// </summary>
         public InputList<string> IpamIpIds
         {
@@ -38,19 +38,19 @@ namespace Pulumiverse.Scaleway.Applesilicon.Inputs
         }
 
         /// <summary>
-        /// The private network status
+        /// The current status of the private network.
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// The date and time of the last update of the Apple Silicon server.
+        /// The date and time the private network was last updated.
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The VLAN ID associated to the private network
+        /// The VLAN ID associated with the private network.
         /// </summary>
         [Input("vlan")]
         public Input<int>? Vlan { get; set; }

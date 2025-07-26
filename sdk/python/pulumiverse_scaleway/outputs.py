@@ -25,6 +25,7 @@ __all__ = [
     'BaremetalServerOption',
     'BaremetalServerPrivateIp',
     'BaremetalServerPrivateNetwork',
+    'BlockSnapshotExport',
     'BlockSnapshotImport',
     'CockpitAlertManagerContactPoint',
     'CockpitEndpoint',
@@ -86,6 +87,7 @@ __all__ = [
     'IpamIpSource',
     'JobDefinitionCron',
     'JobDefinitionSecretReference',
+    'KeyManagerKeyRotationPolicy',
     'KubernetesClusterAutoUpgrade',
     'KubernetesClusterAutoscalerConfig',
     'KubernetesClusterKubeconfig',
@@ -151,6 +153,7 @@ __all__ = [
     'GetBaremetalServerPrivateNetworkResult',
     'GetBillingConsumptionsConsumptionResult',
     'GetBillingInvoicesInvoiceResult',
+    'GetBlockSnapshotExportResult',
     'GetBlockSnapshotImportResult',
     'GetCockpitEndpointResult',
     'GetCockpitPushUrlResult',
@@ -310,12 +313,12 @@ class AppleSiliconServerPrivateNetwork(dict):
                  updated_at: Optional[builtins.str] = None,
                  vlan: Optional[builtins.int] = None):
         """
-        :param builtins.str id: The ID of the IP address resource.
-        :param builtins.str created_at: The date and time of the creation of the Apple Silicon server.
-        :param Sequence[builtins.str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
-        :param builtins.str status: The private network status
-        :param builtins.str updated_at: The date and time of the last update of the Apple Silicon server.
-        :param builtins.int vlan: The VLAN ID associated to the private network
+        :param builtins.str id: The private network ID
+        :param builtins.str created_at: The date and time the private network was created.
+        :param Sequence[builtins.str] ipam_ip_ids: A list of IPAM IP IDs to attach to the server.
+        :param builtins.str status: The current status of the private network.
+        :param builtins.str updated_at: The date and time the private network was last updated.
+        :param builtins.int vlan: The VLAN ID associated with the private network.
         """
         pulumi.set(__self__, "id", id)
         if created_at is not None:
@@ -333,7 +336,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The ID of the IP address resource.
+        The private network ID
         """
         return pulumi.get(self, "id")
 
@@ -341,7 +344,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[builtins.str]:
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -349,7 +352,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter(name="ipamIpIds")
     def ipam_ip_ids(self) -> Optional[Sequence[builtins.str]]:
         """
-        List of IPAM IP IDs to attach to the server
+        A list of IPAM IP IDs to attach to the server.
         """
         return pulumi.get(self, "ipam_ip_ids")
 
@@ -357,7 +360,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter
     def status(self) -> Optional[builtins.str]:
         """
-        The private network status
+        The current status of the private network.
         """
         return pulumi.get(self, "status")
 
@@ -365,7 +368,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[builtins.str]:
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -373,7 +376,7 @@ class AppleSiliconServerPrivateNetwork(dict):
     @pulumi.getter
     def vlan(self) -> Optional[builtins.int]:
         """
-        The VLAN ID associated to the private network
+        The VLAN ID associated with the private network.
         """
         return pulumi.get(self, "vlan")
 
@@ -747,13 +750,13 @@ class BaremetalServerPrivateNetwork(dict):
 
 
 @pulumi.output_type
-class BlockSnapshotImport(dict):
+class BlockSnapshotExport(dict):
     def __init__(__self__, *,
                  bucket: builtins.str,
                  key: builtins.str):
         """
-        :param builtins.str bucket: Bucket containing qcow
-        :param builtins.str key: Key of the qcow file in the specified bucket
+        :param builtins.str bucket: The name of the bucket where the QCOW file will be saved.
+        :param builtins.str key: The desired key (path) for the QCOW file within the bucket.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -762,7 +765,7 @@ class BlockSnapshotImport(dict):
     @pulumi.getter
     def bucket(self) -> builtins.str:
         """
-        Bucket containing qcow
+        The name of the bucket where the QCOW file will be saved.
         """
         return pulumi.get(self, "bucket")
 
@@ -770,7 +773,36 @@ class BlockSnapshotImport(dict):
     @pulumi.getter
     def key(self) -> builtins.str:
         """
-        Key of the qcow file in the specified bucket
+        The desired key (path) for the QCOW file within the bucket.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class BlockSnapshotImport(dict):
+    def __init__(__self__, *,
+                 bucket: builtins.str,
+                 key: builtins.str):
+        """
+        :param builtins.str bucket: The name of the bucket containing the QCOW file.
+        :param builtins.str key: The key of the QCOW file within the bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> builtins.str:
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> builtins.str:
+        """
+        The key of the QCOW file within the bucket.
         """
         return pulumi.get(self, "key")
 
@@ -4592,6 +4624,56 @@ class JobDefinitionSecretReference(dict):
 
 
 @pulumi.output_type
+class KeyManagerKeyRotationPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "nextRotationAt":
+            suggest = "next_rotation_at"
+        elif key == "rotationPeriod":
+            suggest = "rotation_period"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KeyManagerKeyRotationPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KeyManagerKeyRotationPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KeyManagerKeyRotationPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 next_rotation_at: Optional[builtins.str] = None,
+                 rotation_period: Optional[builtins.str] = None):
+        """
+        :param builtins.str next_rotation_at: The date and time of the next scheduled rotation.
+        :param builtins.str rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        if next_rotation_at is not None:
+            pulumi.set(__self__, "next_rotation_at", next_rotation_at)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @property
+    @pulumi.getter(name="nextRotationAt")
+    def next_rotation_at(self) -> Optional[builtins.str]:
+        """
+        The date and time of the next scheduled rotation.
+        """
+        return pulumi.get(self, "next_rotation_at")
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[builtins.str]:
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        return pulumi.get(self, "rotation_period")
+
+
+@pulumi.output_type
 class KubernetesClusterAutoUpgrade(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -5647,10 +5729,10 @@ class LoadbalancerFrontendAcl(dict):
         """
         :param 'LoadbalancerFrontendAclActionArgs' action: Action to undertake when an ACL filter matches.
         :param 'LoadbalancerFrontendAclMatchArgs' match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
-        :param builtins.str created_at: IsDate and time of ACL's creation (RFC 3339 format)
+        :param builtins.str created_at: The date and time the frontend was created.
         :param builtins.str description: Description of the ACL
         :param builtins.str name: The ACL name. If not provided it will be randomly generated.
-        :param builtins.str updated_at: IsDate and time of ACL's update (RFC 3339 format)
+        :param builtins.str updated_at: The date and time the frontend resource was updated.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -5683,7 +5765,7 @@ class LoadbalancerFrontendAcl(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[builtins.str]:
         """
-        IsDate and time of ACL's creation (RFC 3339 format)
+        The date and time the frontend was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -5707,7 +5789,7 @@ class LoadbalancerFrontendAcl(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[builtins.str]:
         """
-        IsDate and time of ACL's update (RFC 3339 format)
+        The date and time the frontend resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -5961,9 +6043,9 @@ class LoadbalancerPrivateNetwork(dict):
         """
         :param builtins.str private_network_id: The ID of the Private Network to attach to.
                - > **Important:** Updates to `private_network` will recreate the attachment.
-        :param builtins.bool dhcp_config: Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        :param builtins.bool dhcp_config: Set to true if you want to let DHCP assign IP addresses
         :param builtins.str ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        :param builtins.str static_config: Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        :param builtins.str static_config: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param builtins.str status: The status of the private network connection.
         :param builtins.str zone: `zone`) The zone of the Load Balancer.
         """
@@ -5993,7 +6075,7 @@ class LoadbalancerPrivateNetwork(dict):
     @_utilities.deprecated("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def dhcp_config(self) -> Optional[builtins.bool]:
         """
-        Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        Set to true if you want to let DHCP assign IP addresses
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -6010,7 +6092,7 @@ class LoadbalancerPrivateNetwork(dict):
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def static_config(self) -> Optional[builtins.str]:
         """
-        Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
         return pulumi.get(self, "static_config")
 
@@ -8606,6 +8688,35 @@ class GetBillingInvoicesInvoiceResult(dict):
         The total amount, untaxed.
         """
         return pulumi.get(self, "total_untaxed")
+
+
+@pulumi.output_type
+class GetBlockSnapshotExportResult(dict):
+    def __init__(__self__, *,
+                 bucket: builtins.str,
+                 key: builtins.str):
+        """
+        :param builtins.str bucket: Bucket containing qcow
+        :param builtins.str key: Key of the qcow file in the specified bucket
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> builtins.str:
+        """
+        Bucket containing qcow
+        """
+        return pulumi.get(self, "bucket")
+
+    @property
+    @pulumi.getter
+    def key(self) -> builtins.str:
+        """
+        Key of the qcow file in the specified bucket
+        """
+        return pulumi.get(self, "key")
 
 
 @pulumi.output_type
@@ -11889,7 +12000,9 @@ class GetLbFrontendsFrontendResult(dict):
     def __init__(__self__, *,
                  backend_id: builtins.str,
                  certificate_ids: Sequence[builtins.str],
+                 connection_rate_limit: builtins.int,
                  created_at: builtins.str,
+                 enable_access_logs: builtins.bool,
                  enable_http3: builtins.bool,
                  id: builtins.str,
                  inbound_port: builtins.int,
@@ -11901,7 +12014,9 @@ class GetLbFrontendsFrontendResult(dict):
         :param builtins.str backend_id: The Load Balancer backend ID this frontend is attached to.
                > **Important:** Load Balancer backend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
         :param Sequence[builtins.str] certificate_ids: List of certificate IDs that are used by the frontend.
+        :param builtins.int connection_rate_limit: The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
         :param builtins.str created_at: The date on which the frontend was created (RFC 3339 format).
+        :param builtins.bool enable_access_logs: Defines whether to enable access logs on the frontend.
         :param builtins.bool enable_http3: Whether HTTP/3 protocol is activated.
         :param builtins.str id: The ID of the associated frontend.
                > **Important:** LB frontend IDs are zoned, which means they are of the form `{zone}/{id}`, e.g. `fr-par-1/11111111-1111-1111-1111-111111111111`
@@ -11909,11 +12024,13 @@ class GetLbFrontendsFrontendResult(dict):
         :param builtins.str lb_id: The Load Balancer ID this frontend is attached to. Frontends with a matching ID are listed.
         :param builtins.str name: The frontend name to filter for. Frontends with a matching name are listed.
         :param builtins.str timeout_client: Maximum inactivity time on the client side.
-        :param builtins.str update_at: The date aont which the frontend was last updated (RFC 3339 format).
+        :param builtins.str update_at: The date on which the frontend was last updated (RFC 3339 format).
         """
         pulumi.set(__self__, "backend_id", backend_id)
         pulumi.set(__self__, "certificate_ids", certificate_ids)
+        pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
         pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "enable_access_logs", enable_access_logs)
         pulumi.set(__self__, "enable_http3", enable_http3)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "inbound_port", inbound_port)
@@ -11940,12 +12057,28 @@ class GetLbFrontendsFrontendResult(dict):
         return pulumi.get(self, "certificate_ids")
 
     @property
+    @pulumi.getter(name="connectionRateLimit")
+    def connection_rate_limit(self) -> builtins.int:
+        """
+        The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+        """
+        return pulumi.get(self, "connection_rate_limit")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> builtins.str:
         """
         The date on which the frontend was created (RFC 3339 format).
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableAccessLogs")
+    def enable_access_logs(self) -> builtins.bool:
+        """
+        Defines whether to enable access logs on the frontend.
+        """
+        return pulumi.get(self, "enable_access_logs")
 
     @property
     @pulumi.getter(name="enableHttp3")
@@ -12000,7 +12133,7 @@ class GetLbFrontendsFrontendResult(dict):
     @pulumi.getter(name="updateAt")
     def update_at(self) -> builtins.str:
         """
-        The date aont which the frontend was last updated (RFC 3339 format).
+        The date on which the frontend was last updated (RFC 3339 format).
         """
         return pulumi.get(self, "update_at")
 

@@ -55,7 +55,7 @@ export interface GetUserArgs {
     /**
      * The ID of the IAM user.
      *
-     * > **Note** You must specify at least one: `name` and/or `userId`.
+     * > **Note** You must specify at least one: `email` and/or `userId`.
      */
     userId?: string;
 }
@@ -127,7 +127,7 @@ export interface GetUserOutputArgs {
     /**
      * The ID of the IAM user.
      *
-     * > **Note** You must specify at least one: `name` and/or `userId`.
+     * > **Note** You must specify at least one: `email` and/or `userId`.
      */
     userId?: pulumi.Input<string>;
 }
