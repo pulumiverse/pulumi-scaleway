@@ -780,6 +780,11 @@ export type JobDefinition = import("./jobDefinition").JobDefinition;
 export const JobDefinition: typeof import("./jobDefinition").JobDefinition = null as any;
 utilities.lazyLoad(exports, ["JobDefinition"], () => require("./jobDefinition"));
 
+export { KeyManagerKeyArgs, KeyManagerKeyState } from "./keyManagerKey";
+export type KeyManagerKey = import("./keyManagerKey").KeyManagerKey;
+export const KeyManagerKey: typeof import("./keyManagerKey").KeyManagerKey = null as any;
+utilities.lazyLoad(exports, ["KeyManagerKey"], () => require("./keyManagerKey"));
+
 export { KubernetesClusterArgs, KubernetesClusterState } from "./kubernetesCluster";
 export type KubernetesCluster = import("./kubernetesCluster").KubernetesCluster;
 export const KubernetesCluster: typeof import("./kubernetesCluster").KubernetesCluster = null as any;
@@ -1223,6 +1228,8 @@ const _module = {
                 return new IpamIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/jobDefinition:JobDefinition":
                 return new JobDefinition(name, <any>undefined, { urn })
+            case "scaleway:index/keyManagerKey:KeyManagerKey":
+                return new KeyManagerKey(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesCluster:KubernetesCluster":
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesNodePool:KubernetesNodePool":
@@ -1390,6 +1397,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/jobDefinition", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/keyManagerKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/loadbalancer", _module)

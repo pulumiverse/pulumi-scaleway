@@ -30,7 +30,7 @@ class GetMongoDbInstanceResult:
     """
     A collection of values returned by getMongoDbInstance.
     """
-    def __init__(__self__, created_at=None, id=None, instance_id=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, tags=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, created_at=None, id=None, instance_id=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, tags=None, tls_certificate=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -76,6 +76,9 @@ class GetMongoDbInstanceResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if tls_certificate and not isinstance(tls_certificate, str):
+            raise TypeError("Expected argument 'tls_certificate' to be a str")
+        pulumi.set(__self__, "tls_certificate", tls_certificate)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -192,6 +195,11 @@ class GetMongoDbInstanceResult:
         return pulumi.get(self, "tags")
 
     @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> builtins.str:
+        return pulumi.get(self, "tls_certificate")
+
+    @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> builtins.str:
         return pulumi.get(self, "updated_at")
@@ -247,6 +255,7 @@ class AwaitableGetMongoDbInstanceResult(GetMongoDbInstanceResult):
             settings=self.settings,
             snapshot_id=self.snapshot_id,
             tags=self.tags,
+            tls_certificate=self.tls_certificate,
             updated_at=self.updated_at,
             user_name=self.user_name,
             version=self.version,
@@ -297,6 +306,7 @@ def get_mongo_db_instance(instance_id: Optional[builtins.str] = None,
         settings=pulumi.get(__ret__, 'settings'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         tags=pulumi.get(__ret__, 'tags'),
+        tls_certificate=pulumi.get(__ret__, 'tls_certificate'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
         user_name=pulumi.get(__ret__, 'user_name'),
         version=pulumi.get(__ret__, 'version'),
@@ -344,6 +354,7 @@ def get_mongo_db_instance_output(instance_id: Optional[pulumi.Input[Optional[bui
         settings=pulumi.get(__response__, 'settings'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),
         tags=pulumi.get(__response__, 'tags'),
+        tls_certificate=pulumi.get(__response__, 'tls_certificate'),
         updated_at=pulumi.get(__response__, 'updated_at'),
         user_name=pulumi.get(__response__, 'user_name'),
         version=pulumi.get(__response__, 'version'),

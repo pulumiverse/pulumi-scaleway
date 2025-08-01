@@ -82,6 +82,8 @@ export interface GetFrontendResult {
     readonly certificateId: string;
     readonly certificateIds: string[];
     readonly connectionRateLimit: number;
+    readonly createdAt: string;
+    readonly enableAccessLogs: boolean;
     readonly enableHttp3: boolean;
     readonly externalAcls: boolean;
     readonly frontendId?: string;
@@ -93,6 +95,7 @@ export interface GetFrontendResult {
     readonly lbId?: string;
     readonly name?: string;
     readonly timeoutClient: string;
+    readonly updatedAt: string;
 }
 /**
  * Get information about Scaleway Load Balancer frontends.

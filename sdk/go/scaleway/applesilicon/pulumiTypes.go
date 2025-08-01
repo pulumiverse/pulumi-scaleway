@@ -120,17 +120,17 @@ func (o ServerPrivateIpArrayOutput) Index(i pulumi.IntInput) ServerPrivateIpOutp
 }
 
 type ServerPrivateNetwork struct {
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the IP address resource.
+	// The private network ID
 	Id string `pulumi:"id"`
-	// List of IPAM IP IDs to attach to the server
+	// A list of IPAM IP IDs to attach to the server.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
-	// The private network status
+	// The current status of the private network.
 	Status *string `pulumi:"status"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The VLAN ID associated to the private network
+	// The VLAN ID associated with the private network.
 	Vlan *int `pulumi:"vlan"`
 }
 
@@ -146,17 +146,17 @@ type ServerPrivateNetworkInput interface {
 }
 
 type ServerPrivateNetworkArgs struct {
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
-	// The ID of the IP address resource.
+	// The private network ID
 	Id pulumi.StringInput `pulumi:"id"`
-	// List of IPAM IP IDs to attach to the server
+	// A list of IPAM IP IDs to attach to the server.
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
-	// The private network status
+	// The current status of the private network.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
-	// The VLAN ID associated to the private network
+	// The VLAN ID associated with the private network.
 	Vlan pulumi.IntPtrInput `pulumi:"vlan"`
 }
 
@@ -211,32 +211,32 @@ func (o ServerPrivateNetworkOutput) ToServerPrivateNetworkOutputWithContext(ctx 
 	return o
 }
 
-// The date and time of the creation of the Apple Silicon server.
+// The date and time the private network was created.
 func (o ServerPrivateNetworkOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP address resource.
+// The private network ID
 func (o ServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of IPAM IP IDs to attach to the server
+// A list of IPAM IP IDs to attach to the server.
 func (o ServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
-// The private network status
+// The current status of the private network.
 func (o ServerPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the last update of the Apple Silicon server.
+// The date and time the private network was last updated.
 func (o ServerPrivateNetworkOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The VLAN ID associated to the private network
+// The VLAN ID associated with the private network.
 func (o ServerPrivateNetworkOutput) Vlan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerPrivateNetwork) *int { return v.Vlan }).(pulumi.IntPtrOutput)
 }

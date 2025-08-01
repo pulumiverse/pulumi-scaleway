@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway.Network
         /// The action to take for packets which do not match any rules.
         /// </summary>
         [Output("defaultPolicy")]
-        public Output<string> DefaultPolicy { get; private set; } = null!;
+        public Output<string?> DefaultPolicy { get; private set; } = null!;
 
         /// <summary>
         /// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
@@ -148,8 +148,8 @@ namespace Pulumiverse.Scaleway.Network
         /// <summary>
         /// The action to take for packets which do not match any rules.
         /// </summary>
-        [Input("defaultPolicy", required: true)]
-        public Input<string> DefaultPolicy { get; set; } = null!;
+        [Input("defaultPolicy")]
+        public Input<string>? DefaultPolicy { get; set; }
 
         /// <summary>
         /// Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Network
         [Input("region")]
         public Input<string>? Region { get; set; }
 
-        [Input("rules", required: true)]
+        [Input("rules")]
         private InputList<Inputs.AclRuleArgs>? _rules;
 
         /// <summary>

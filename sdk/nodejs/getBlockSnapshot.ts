@@ -55,6 +55,7 @@ export interface GetBlockSnapshotArgs {
  * A collection of values returned by getBlockSnapshot.
  */
 export interface GetBlockSnapshotResult {
+    readonly exports: outputs.GetBlockSnapshotExport[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */

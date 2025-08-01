@@ -119,7 +119,7 @@ def get_iam_user(email: Optional[builtins.str] = None,
     :param Sequence[builtins.str] tags: The tags associated with the user.
     :param builtins.str user_id: The ID of the IAM user.
            
-           > **Note** You must specify at least one: `name` and/or `user_id`.
+           > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")
     __args__ = dict()
@@ -164,7 +164,7 @@ def get_iam_user_output(email: Optional[pulumi.Input[Optional[builtins.str]]] = 
     :param Sequence[builtins.str] tags: The tags associated with the user.
     :param builtins.str user_id: The ID of the IAM user.
            
-           > **Note** You must specify at least one: `name` and/or `user_id`.
+           > **Note** You must specify at least one: `email` and/or `user_id`.
     """
     pulumi.log.warn("""get_iam_user is deprecated: scaleway.index/getiamuser.getIamUser has been deprecated in favor of scaleway.iam/getuser.getUser""")
     __args__ = dict()

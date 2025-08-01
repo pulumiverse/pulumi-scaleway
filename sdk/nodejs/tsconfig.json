@@ -298,6 +298,7 @@
         "job/definition.ts",
         "job/index.ts",
         "jobDefinition.ts",
+        "keyManagerKey.ts",
         "kubernetes/acl.ts",
         "kubernetes/cluster.ts",
         "kubernetes/getCluster.ts",

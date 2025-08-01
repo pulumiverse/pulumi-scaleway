@@ -32,6 +32,8 @@ __all__ = [
     'BaremetalServerPrivateIpArgsDict',
     'BaremetalServerPrivateNetworkArgs',
     'BaremetalServerPrivateNetworkArgsDict',
+    'BlockSnapshotExportArgs',
+    'BlockSnapshotExportArgsDict',
     'BlockSnapshotImportArgs',
     'BlockSnapshotImportArgsDict',
     'CockpitAlertManagerContactPointArgs',
@@ -154,6 +156,8 @@ __all__ = [
     'JobDefinitionCronArgsDict',
     'JobDefinitionSecretReferenceArgs',
     'JobDefinitionSecretReferenceArgsDict',
+    'KeyManagerKeyRotationPolicyArgs',
+    'KeyManagerKeyRotationPolicyArgsDict',
     'KubernetesClusterAutoUpgradeArgs',
     'KubernetesClusterAutoUpgradeArgsDict',
     'KubernetesClusterAutoscalerConfigArgs',
@@ -326,27 +330,27 @@ if not MYPY:
     class AppleSiliconServerPrivateNetworkArgsDict(TypedDict):
         id: pulumi.Input[builtins.str]
         """
-        The ID of the IP address resource.
+        The private network ID
         """
         created_at: NotRequired[pulumi.Input[builtins.str]]
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         ipam_ip_ids: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        List of IPAM IP IDs to attach to the server
+        A list of IPAM IP IDs to attach to the server.
         """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
-        The private network status
+        The current status of the private network.
         """
         updated_at: NotRequired[pulumi.Input[builtins.str]]
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         vlan: NotRequired[pulumi.Input[builtins.int]]
         """
-        The VLAN ID associated to the private network
+        The VLAN ID associated with the private network.
         """
 elif False:
     AppleSiliconServerPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
@@ -361,12 +365,12 @@ class AppleSiliconServerPrivateNetworkArgs:
                  updated_at: Optional[pulumi.Input[builtins.str]] = None,
                  vlan: Optional[pulumi.Input[builtins.int]] = None):
         """
-        :param pulumi.Input[builtins.str] id: The ID of the IP address resource.
-        :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the Apple Silicon server.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipam_ip_ids: List of IPAM IP IDs to attach to the server
-        :param pulumi.Input[builtins.str] status: The private network status
-        :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the Apple Silicon server.
-        :param pulumi.Input[builtins.int] vlan: The VLAN ID associated to the private network
+        :param pulumi.Input[builtins.str] id: The private network ID
+        :param pulumi.Input[builtins.str] created_at: The date and time the private network was created.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ipam_ip_ids: A list of IPAM IP IDs to attach to the server.
+        :param pulumi.Input[builtins.str] status: The current status of the private network.
+        :param pulumi.Input[builtins.str] updated_at: The date and time the private network was last updated.
+        :param pulumi.Input[builtins.int] vlan: The VLAN ID associated with the private network.
         """
         pulumi.set(__self__, "id", id)
         if created_at is not None:
@@ -384,7 +388,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[builtins.str]:
         """
-        The ID of the IP address resource.
+        The private network ID
         """
         return pulumi.get(self, "id")
 
@@ -396,7 +400,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -408,7 +412,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter(name="ipamIpIds")
     def ipam_ip_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        List of IPAM IP IDs to attach to the server
+        A list of IPAM IP IDs to attach to the server.
         """
         return pulumi.get(self, "ipam_ip_ids")
 
@@ -420,7 +424,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The private network status
+        The current status of the private network.
         """
         return pulumi.get(self, "status")
 
@@ -432,7 +436,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -444,7 +448,7 @@ class AppleSiliconServerPrivateNetworkArgs:
     @pulumi.getter
     def vlan(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        The VLAN ID associated to the private network
+        The VLAN ID associated with the private network.
         """
         return pulumi.get(self, "vlan")
 
@@ -1004,26 +1008,26 @@ class BaremetalServerPrivateNetworkArgs:
 
 
 if not MYPY:
-    class BlockSnapshotImportArgsDict(TypedDict):
+    class BlockSnapshotExportArgsDict(TypedDict):
         bucket: pulumi.Input[builtins.str]
         """
-        Bucket containing qcow
+        The name of the bucket where the QCOW file will be saved.
         """
         key: pulumi.Input[builtins.str]
         """
-        Key of the qcow file in the specified bucket
+        The desired key (path) for the QCOW file within the bucket.
         """
 elif False:
-    BlockSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+    BlockSnapshotExportArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class BlockSnapshotImportArgs:
+class BlockSnapshotExportArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[builtins.str],
                  key: pulumi.Input[builtins.str]):
         """
-        :param pulumi.Input[builtins.str] bucket: Bucket containing qcow
-        :param pulumi.Input[builtins.str] key: Key of the qcow file in the specified bucket
+        :param pulumi.Input[builtins.str] bucket: The name of the bucket where the QCOW file will be saved.
+        :param pulumi.Input[builtins.str] key: The desired key (path) for the QCOW file within the bucket.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -1032,7 +1036,7 @@ class BlockSnapshotImportArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[builtins.str]:
         """
-        Bucket containing qcow
+        The name of the bucket where the QCOW file will be saved.
         """
         return pulumi.get(self, "bucket")
 
@@ -1044,7 +1048,57 @@ class BlockSnapshotImportArgs:
     @pulumi.getter
     def key(self) -> pulumi.Input[builtins.str]:
         """
-        Key of the qcow file in the specified bucket
+        The desired key (path) for the QCOW file within the bucket.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "key", value)
+
+
+if not MYPY:
+    class BlockSnapshotImportArgsDict(TypedDict):
+        bucket: pulumi.Input[builtins.str]
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        key: pulumi.Input[builtins.str]
+        """
+        The key of the QCOW file within the bucket.
+        """
+elif False:
+    BlockSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BlockSnapshotImportArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[builtins.str],
+                 key: pulumi.Input[builtins.str]):
+        """
+        :param pulumi.Input[builtins.str] bucket: The name of the bucket containing the QCOW file.
+        :param pulumi.Input[builtins.str] key: The key of the QCOW file within the bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[builtins.str]:
+        """
+        The key of the QCOW file within the bucket.
         """
         return pulumi.get(self, "key")
 
@@ -6213,6 +6267,58 @@ class JobDefinitionSecretReferenceArgs:
 
 
 if not MYPY:
+    class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
+        next_rotation_at: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The date and time of the next scheduled rotation.
+        """
+        rotation_period: NotRequired[pulumi.Input[builtins.str]]
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+elif False:
+    KeyManagerKeyRotationPolicyArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class KeyManagerKeyRotationPolicyArgs:
+    def __init__(__self__, *,
+                 next_rotation_at: Optional[pulumi.Input[builtins.str]] = None,
+                 rotation_period: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.str] next_rotation_at: The date and time of the next scheduled rotation.
+        :param pulumi.Input[builtins.str] rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        if next_rotation_at is not None:
+            pulumi.set(__self__, "next_rotation_at", next_rotation_at)
+        if rotation_period is not None:
+            pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @property
+    @pulumi.getter(name="nextRotationAt")
+    def next_rotation_at(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The date and time of the next scheduled rotation.
+        """
+        return pulumi.get(self, "next_rotation_at")
+
+    @next_rotation_at.setter
+    def next_rotation_at(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "next_rotation_at", value)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "rotation_period", value)
+
+
+if not MYPY:
     class KubernetesClusterAutoUpgradeArgsDict(TypedDict):
         enable: pulumi.Input[builtins.bool]
         """
@@ -7560,7 +7666,7 @@ if not MYPY:
         """
         created_at: NotRequired[pulumi.Input[builtins.str]]
         """
-        IsDate and time of ACL's creation (RFC 3339 format)
+        The date and time the frontend was created.
         """
         description: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -7572,7 +7678,7 @@ if not MYPY:
         """
         updated_at: NotRequired[pulumi.Input[builtins.str]]
         """
-        IsDate and time of ACL's update (RFC 3339 format)
+        The date and time the frontend resource was updated.
         """
 elif False:
     LoadbalancerFrontendAclArgsDict: TypeAlias = Mapping[str, Any]
@@ -7589,10 +7695,10 @@ class LoadbalancerFrontendAclArgs:
         """
         :param pulumi.Input['LoadbalancerFrontendAclActionArgs'] action: Action to undertake when an ACL filter matches.
         :param pulumi.Input['LoadbalancerFrontendAclMatchArgs'] match: The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
-        :param pulumi.Input[builtins.str] created_at: IsDate and time of ACL's creation (RFC 3339 format)
+        :param pulumi.Input[builtins.str] created_at: The date and time the frontend was created.
         :param pulumi.Input[builtins.str] description: Description of the ACL
         :param pulumi.Input[builtins.str] name: The ACL name. If not provided it will be randomly generated.
-        :param pulumi.Input[builtins.str] updated_at: IsDate and time of ACL's update (RFC 3339 format)
+        :param pulumi.Input[builtins.str] updated_at: The date and time the frontend resource was updated.
         """
         pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "match", match)
@@ -7633,7 +7739,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        IsDate and time of ACL's creation (RFC 3339 format)
+        The date and time the frontend was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -7669,7 +7775,7 @@ class LoadbalancerFrontendAclArgs:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        IsDate and time of ACL's update (RFC 3339 format)
+        The date and time the frontend resource was updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -8003,7 +8109,7 @@ if not MYPY:
         """
         dhcp_config: NotRequired[pulumi.Input[builtins.bool]]
         """
-        Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        Set to true if you want to let DHCP assign IP addresses
         """
         ipam_ids: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -8011,7 +8117,7 @@ if not MYPY:
         """
         static_config: NotRequired[pulumi.Input[builtins.str]]
         """
-        Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -8036,9 +8142,9 @@ class LoadbalancerPrivateNetworkArgs:
         """
         :param pulumi.Input[builtins.str] private_network_id: The ID of the Private Network to attach to.
                - > **Important:** Updates to `private_network` will recreate the attachment.
-        :param pulumi.Input[builtins.bool] dhcp_config: Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        :param pulumi.Input[builtins.bool] dhcp_config: Set to true if you want to let DHCP assign IP addresses
         :param pulumi.Input[builtins.str] ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        :param pulumi.Input[builtins.str] static_config: Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        :param pulumi.Input[builtins.str] static_config: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param pulumi.Input[builtins.str] status: The status of the private network connection.
         :param pulumi.Input[builtins.str] zone: `zone`) The zone of the Load Balancer.
         """
@@ -8078,7 +8184,7 @@ class LoadbalancerPrivateNetworkArgs:
     @_utilities.deprecated("""dhcp_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def dhcp_config(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Please use `ipam_ids`. Set to `true` if you want to let DHCP assign IP addresses.
+        Set to true if you want to let DHCP assign IP addresses
         """
         return pulumi.get(self, "dhcp_config")
 
@@ -8103,7 +8209,7 @@ class LoadbalancerPrivateNetworkArgs:
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
     def static_config(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        Please use `ipam_ids`. Define a local ip address of your choice for the load balancer instance.
+        Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
         return pulumi.get(self, "static_config")
 

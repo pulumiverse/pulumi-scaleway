@@ -113,9 +113,9 @@ type BlockVolume struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -164,9 +164,9 @@ type blockVolumeState struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -183,9 +183,9 @@ type BlockVolumeState struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntPtrInput
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -206,9 +206,9 @@ type blockVolumeArgs struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -226,9 +226,9 @@ type BlockVolumeArgs struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntPtrInput
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -343,12 +343,12 @@ func (o BlockVolumeOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+// The size of the volume in gigabytes.
 func (o BlockVolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
 
-// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+// If set, the new volume will be created from this snapshot.
 func (o BlockVolumeOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BlockVolume) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }

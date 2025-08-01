@@ -28,7 +28,10 @@ class GetSnapshotResult:
     """
     A collection of values returned by getSnapshot.
     """
-    def __init__(__self__, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+    def __init__(__self__, exports=None, id=None, imports=None, name=None, project_id=None, snapshot_id=None, tags=None, volume_id=None, zone=None):
+        if exports and not isinstance(exports, list):
+            raise TypeError("Expected argument 'exports' to be a list")
+        pulumi.set(__self__, "exports", exports)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -53,6 +56,11 @@ class GetSnapshotResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def exports(self) -> Sequence['outputs.GetSnapshotExportResult']:
+        return pulumi.get(self, "exports")
 
     @property
     @pulumi.getter
@@ -104,6 +112,7 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
         if False:
             yield self
         return GetSnapshotResult(
+            exports=self.exports,
             id=self.id,
             imports=self.imports,
             name=self.name,
@@ -142,6 +151,7 @@ def get_snapshot(name: Optional[builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:block/getSnapshot:getSnapshot', __args__, opts=opts, typ=GetSnapshotResult).value
 
     return AwaitableGetSnapshotResult(
+        exports=pulumi.get(__ret__, 'exports'),
         id=pulumi.get(__ret__, 'id'),
         imports=pulumi.get(__ret__, 'imports'),
         name=pulumi.get(__ret__, 'name'),
@@ -177,6 +187,7 @@ def get_snapshot_output(name: Optional[pulumi.Input[Optional[builtins.str]]] = N
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:block/getSnapshot:getSnapshot', __args__, opts=opts, typ=GetSnapshotResult)
     return __ret__.apply(lambda __response__: GetSnapshotResult(
+        exports=pulumi.get(__response__, 'exports'),
         id=pulumi.get(__response__, 'id'),
         imports=pulumi.get(__response__, 'imports'),
         name=pulumi.get(__response__, 'name'),

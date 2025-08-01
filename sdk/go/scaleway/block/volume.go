@@ -111,9 +111,9 @@ type Volume struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -168,9 +168,9 @@ type volumeState struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -187,9 +187,9 @@ type VolumeState struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntPtrInput
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -210,9 +210,9 @@ type volumeArgs struct {
 	Name *string `pulumi:"name"`
 	// ). The ID of the Project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb *int `pulumi:"sizeInGb"`
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId *string `pulumi:"snapshotId"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -230,9 +230,9 @@ type VolumeArgs struct {
 	Name pulumi.StringPtrInput
 	// ). The ID of the Project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+	// The size of the volume in gigabytes.
 	SizeInGb pulumi.IntPtrInput
-	// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+	// If set, the new volume will be created from this snapshot.
 	SnapshotId pulumi.StringPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -347,12 +347,12 @@ func (o VolumeOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The size of the volume in gigabytes. Only one of `sizeInGb`, and `snapshotId` should be specified.
+// The size of the volume in gigabytes.
 func (o VolumeOutput) SizeInGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
 
-// If set, the new volume will be created from this snapshot. Only one of `sizeInGb`, `snapshotId` should be specified.
+// If set, the new volume will be created from this snapshot.
 func (o VolumeOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }

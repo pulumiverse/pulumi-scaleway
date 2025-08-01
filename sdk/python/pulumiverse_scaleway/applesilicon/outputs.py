@@ -82,12 +82,12 @@ class ServerPrivateNetwork(dict):
                  updated_at: Optional[builtins.str] = None,
                  vlan: Optional[builtins.int] = None):
         """
-        :param builtins.str id: The ID of the IP address resource.
-        :param builtins.str created_at: The date and time of the creation of the Apple Silicon server.
-        :param Sequence[builtins.str] ipam_ip_ids: List of IPAM IP IDs to attach to the server
-        :param builtins.str status: The private network status
-        :param builtins.str updated_at: The date and time of the last update of the Apple Silicon server.
-        :param builtins.int vlan: The VLAN ID associated to the private network
+        :param builtins.str id: The private network ID
+        :param builtins.str created_at: The date and time the private network was created.
+        :param Sequence[builtins.str] ipam_ip_ids: A list of IPAM IP IDs to attach to the server.
+        :param builtins.str status: The current status of the private network.
+        :param builtins.str updated_at: The date and time the private network was last updated.
+        :param builtins.int vlan: The VLAN ID associated with the private network.
         """
         pulumi.set(__self__, "id", id)
         if created_at is not None:
@@ -105,7 +105,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter
     def id(self) -> builtins.str:
         """
-        The ID of the IP address resource.
+        The private network ID
         """
         return pulumi.get(self, "id")
 
@@ -113,7 +113,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[builtins.str]:
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -121,7 +121,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter(name="ipamIpIds")
     def ipam_ip_ids(self) -> Optional[Sequence[builtins.str]]:
         """
-        List of IPAM IP IDs to attach to the server
+        A list of IPAM IP IDs to attach to the server.
         """
         return pulumi.get(self, "ipam_ip_ids")
 
@@ -129,7 +129,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter
     def status(self) -> Optional[builtins.str]:
         """
-        The private network status
+        The current status of the private network.
         """
         return pulumi.get(self, "status")
 
@@ -137,7 +137,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[builtins.str]:
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -145,7 +145,7 @@ class ServerPrivateNetwork(dict):
     @pulumi.getter
     def vlan(self) -> Optional[builtins.int]:
         """
-        The VLAN ID associated to the private network
+        The VLAN ID associated with the private network.
         """
         return pulumi.get(self, "vlan")
 

@@ -77,7 +77,7 @@ export class Acl extends pulumi.CustomResource {
     /**
      * The action to take for packets which do not match any rules.
      */
-    public readonly defaultPolicy!: pulumi.Output<string>;
+    public readonly defaultPolicy!: pulumi.Output<string | undefined>;
     /**
      * Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
      */
@@ -89,7 +89,7 @@ export class Acl extends pulumi.CustomResource {
     /**
      * The list of Network ACL rules.
      */
-    public readonly rules!: pulumi.Output<outputs.network.AclRule[]>;
+    public readonly rules!: pulumi.Output<outputs.network.AclRule[] | undefined>;
     /**
      * The VPC ID the ACL belongs to.
      */
@@ -115,12 +115,6 @@ export class Acl extends pulumi.CustomResource {
             resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as AclArgs | undefined;
-            if ((!args || args.defaultPolicy === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'defaultPolicy'");
-            }
-            if ((!args || args.rules === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'rules'");
-            }
             if ((!args || args.vpcId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vpcId'");
             }
@@ -168,7 +162,7 @@ export interface AclArgs {
     /**
      * The action to take for packets which do not match any rules.
      */
-    defaultPolicy: pulumi.Input<string>;
+    defaultPolicy?: pulumi.Input<string>;
     /**
      * Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
      */
@@ -180,7 +174,7 @@ export interface AclArgs {
     /**
      * The list of Network ACL rules.
      */
-    rules: pulumi.Input<pulumi.Input<inputs.network.AclRule>[]>;
+    rules?: pulumi.Input<pulumi.Input<inputs.network.AclRule>[]>;
     /**
      * The VPC ID the ACL belongs to.
      */

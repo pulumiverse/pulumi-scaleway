@@ -267,10 +267,6 @@ export class DomainRecord extends pulumi.CustomResource {
      */
     public readonly httpService!: pulumi.Output<outputs.DomainRecordHttpService | undefined>;
     /**
-     * When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-     */
-    public readonly keepEmptyZone!: pulumi.Output<boolean | undefined>;
-    /**
      * The name of the record (can be an empty string for a root record).
      */
     public readonly name!: pulumi.Output<string>;
@@ -324,7 +320,6 @@ export class DomainRecord extends pulumi.CustomResource {
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["geoIp"] = state ? state.geoIp : undefined;
             resourceInputs["httpService"] = state ? state.httpService : undefined;
-            resourceInputs["keepEmptyZone"] = state ? state.keepEmptyZone : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
@@ -348,7 +343,6 @@ export class DomainRecord extends pulumi.CustomResource {
             resourceInputs["dnsZone"] = args ? args.dnsZone : undefined;
             resourceInputs["geoIp"] = args ? args.geoIp : undefined;
             resourceInputs["httpService"] = args ? args.httpService : undefined;
-            resourceInputs["keepEmptyZone"] = args ? args.keepEmptyZone : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
@@ -388,10 +382,6 @@ export interface DomainRecordState {
      * Return record based on client localisation
      */
     httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
-    /**
-     * When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-     */
-    keepEmptyZone?: pulumi.Input<boolean>;
     /**
      * The name of the record (can be an empty string for a root record).
      */
@@ -446,10 +436,6 @@ export interface DomainRecordArgs {
      * Return record based on client localisation
      */
     httpService?: pulumi.Input<inputs.DomainRecordHttpService>;
-    /**
-     * When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-     */
-    keepEmptyZone?: pulumi.Input<boolean>;
     /**
      * The name of the record (can be an empty string for a root record).
      */

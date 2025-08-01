@@ -64,9 +64,10 @@ type LookupMongoDbInstanceResult struct {
 	Settings       map[string]string                 `pulumi:"settings"`
 	SnapshotId     string                            `pulumi:"snapshotId"`
 	// A list of tags attached to the MongoDB® instance.
-	Tags      []string `pulumi:"tags"`
-	UpdatedAt string   `pulumi:"updatedAt"`
-	UserName  string   `pulumi:"userName"`
+	Tags           []string `pulumi:"tags"`
+	TlsCertificate string   `pulumi:"tlsCertificate"`
+	UpdatedAt      string   `pulumi:"updatedAt"`
+	UserName       string   `pulumi:"userName"`
 	// The version of MongoDB® running on the instance.
 	Version string `pulumi:"version"`
 	// The size of the attached volume, in GB.
@@ -183,6 +184,10 @@ func (o LookupMongoDbInstanceResultOutput) SnapshotId() pulumi.StringOutput {
 // A list of tags attached to the MongoDB® instance.
 func (o LookupMongoDbInstanceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMongoDbInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupMongoDbInstanceResultOutput) TlsCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoDbInstanceResult) string { return v.TlsCertificate }).(pulumi.StringOutput)
 }
 
 func (o LookupMongoDbInstanceResultOutput) UpdatedAt() pulumi.StringOutput {

@@ -30,7 +30,7 @@ class GetLbFrontendResult:
     """
     A collection of values returned by getLbFrontend.
     """
-    def __init__(__self__, acls=None, backend_id=None, certificate_id=None, certificate_ids=None, connection_rate_limit=None, enable_http3=None, external_acls=None, frontend_id=None, id=None, inbound_port=None, lb_id=None, name=None, timeout_client=None):
+    def __init__(__self__, acls=None, backend_id=None, certificate_id=None, certificate_ids=None, connection_rate_limit=None, created_at=None, enable_access_logs=None, enable_http3=None, external_acls=None, frontend_id=None, id=None, inbound_port=None, lb_id=None, name=None, timeout_client=None, updated_at=None):
         if acls and not isinstance(acls, list):
             raise TypeError("Expected argument 'acls' to be a list")
         pulumi.set(__self__, "acls", acls)
@@ -46,6 +46,12 @@ class GetLbFrontendResult:
         if connection_rate_limit and not isinstance(connection_rate_limit, int):
             raise TypeError("Expected argument 'connection_rate_limit' to be a int")
         pulumi.set(__self__, "connection_rate_limit", connection_rate_limit)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if enable_access_logs and not isinstance(enable_access_logs, bool):
+            raise TypeError("Expected argument 'enable_access_logs' to be a bool")
+        pulumi.set(__self__, "enable_access_logs", enable_access_logs)
         if enable_http3 and not isinstance(enable_http3, bool):
             raise TypeError("Expected argument 'enable_http3' to be a bool")
         pulumi.set(__self__, "enable_http3", enable_http3)
@@ -70,6 +76,9 @@ class GetLbFrontendResult:
         if timeout_client and not isinstance(timeout_client, str):
             raise TypeError("Expected argument 'timeout_client' to be a str")
         pulumi.set(__self__, "timeout_client", timeout_client)
+        if updated_at and not isinstance(updated_at, str):
+            raise TypeError("Expected argument 'updated_at' to be a str")
+        pulumi.set(__self__, "updated_at", updated_at)
 
     @property
     @pulumi.getter
@@ -95,6 +104,16 @@ class GetLbFrontendResult:
     @pulumi.getter(name="connectionRateLimit")
     def connection_rate_limit(self) -> builtins.int:
         return pulumi.get(self, "connection_rate_limit")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> builtins.str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="enableAccessLogs")
+    def enable_access_logs(self) -> builtins.bool:
+        return pulumi.get(self, "enable_access_logs")
 
     @property
     @pulumi.getter(name="enableHttp3")
@@ -139,6 +158,11 @@ class GetLbFrontendResult:
     def timeout_client(self) -> builtins.str:
         return pulumi.get(self, "timeout_client")
 
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> builtins.str:
+        return pulumi.get(self, "updated_at")
+
 
 class AwaitableGetLbFrontendResult(GetLbFrontendResult):
     # pylint: disable=using-constant-test
@@ -151,6 +175,8 @@ class AwaitableGetLbFrontendResult(GetLbFrontendResult):
             certificate_id=self.certificate_id,
             certificate_ids=self.certificate_ids,
             connection_rate_limit=self.connection_rate_limit,
+            created_at=self.created_at,
+            enable_access_logs=self.enable_access_logs,
             enable_http3=self.enable_http3,
             external_acls=self.external_acls,
             frontend_id=self.frontend_id,
@@ -158,7 +184,8 @@ class AwaitableGetLbFrontendResult(GetLbFrontendResult):
             inbound_port=self.inbound_port,
             lb_id=self.lb_id,
             name=self.name,
-            timeout_client=self.timeout_client)
+            timeout_client=self.timeout_client,
+            updated_at=self.updated_at)
 
 
 def get_lb_frontend(frontend_id: Optional[builtins.str] = None,
@@ -217,6 +244,8 @@ def get_lb_frontend(frontend_id: Optional[builtins.str] = None,
         certificate_id=pulumi.get(__ret__, 'certificate_id'),
         certificate_ids=pulumi.get(__ret__, 'certificate_ids'),
         connection_rate_limit=pulumi.get(__ret__, 'connection_rate_limit'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        enable_access_logs=pulumi.get(__ret__, 'enable_access_logs'),
         enable_http3=pulumi.get(__ret__, 'enable_http3'),
         external_acls=pulumi.get(__ret__, 'external_acls'),
         frontend_id=pulumi.get(__ret__, 'frontend_id'),
@@ -224,7 +253,8 @@ def get_lb_frontend(frontend_id: Optional[builtins.str] = None,
         inbound_port=pulumi.get(__ret__, 'inbound_port'),
         lb_id=pulumi.get(__ret__, 'lb_id'),
         name=pulumi.get(__ret__, 'name'),
-        timeout_client=pulumi.get(__ret__, 'timeout_client'))
+        timeout_client=pulumi.get(__ret__, 'timeout_client'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                            lb_id: Optional[pulumi.Input[Optional[builtins.str]]] = None,
                            name: Optional[pulumi.Input[Optional[builtins.str]]] = None,
@@ -280,6 +310,8 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[builtins.
         certificate_id=pulumi.get(__response__, 'certificate_id'),
         certificate_ids=pulumi.get(__response__, 'certificate_ids'),
         connection_rate_limit=pulumi.get(__response__, 'connection_rate_limit'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        enable_access_logs=pulumi.get(__response__, 'enable_access_logs'),
         enable_http3=pulumi.get(__response__, 'enable_http3'),
         external_acls=pulumi.get(__response__, 'external_acls'),
         frontend_id=pulumi.get(__response__, 'frontend_id'),
@@ -287,4 +319,5 @@ def get_lb_frontend_output(frontend_id: Optional[pulumi.Input[Optional[builtins.
         inbound_port=pulumi.get(__response__, 'inbound_port'),
         lb_id=pulumi.get(__response__, 'lb_id'),
         name=pulumi.get(__response__, 'name'),
-        timeout_client=pulumi.get(__response__, 'timeout_client')))
+        timeout_client=pulumi.get(__response__, 'timeout_client'),
+        updated_at=pulumi.get(__response__, 'updated_at')))
