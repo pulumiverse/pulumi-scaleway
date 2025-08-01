@@ -161,6 +161,7 @@ from .iot_route import *
 from .ipam_ip import *
 from .ipam_ip_reverse_dns import *
 from .job_definition import *
+from .key_manager_key import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .loadbalancer import *
@@ -1207,6 +1208,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/jobDefinition:JobDefinition": "JobDefinition"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/keyManagerKey",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/keyManagerKey:KeyManagerKey": "KeyManagerKey"
   }
  },
  {

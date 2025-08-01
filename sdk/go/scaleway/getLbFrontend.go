@@ -101,6 +101,8 @@ type GetLbFrontendResult struct {
 	CertificateId       string             `pulumi:"certificateId"`
 	CertificateIds      []string           `pulumi:"certificateIds"`
 	ConnectionRateLimit int                `pulumi:"connectionRateLimit"`
+	CreatedAt           string             `pulumi:"createdAt"`
+	EnableAccessLogs    bool               `pulumi:"enableAccessLogs"`
 	EnableHttp3         bool               `pulumi:"enableHttp3"`
 	ExternalAcls        bool               `pulumi:"externalAcls"`
 	FrontendId          *string            `pulumi:"frontendId"`
@@ -110,6 +112,7 @@ type GetLbFrontendResult struct {
 	LbId          *string `pulumi:"lbId"`
 	Name          *string `pulumi:"name"`
 	TimeoutClient string  `pulumi:"timeoutClient"`
+	UpdatedAt     string  `pulumi:"updatedAt"`
 }
 
 func GetLbFrontendOutput(ctx *pulumi.Context, args GetLbFrontendOutputArgs, opts ...pulumi.InvokeOption) GetLbFrontendResultOutput {
@@ -172,6 +175,14 @@ func (o GetLbFrontendResultOutput) ConnectionRateLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLbFrontendResult) int { return v.ConnectionRateLimit }).(pulumi.IntOutput)
 }
 
+func (o GetLbFrontendResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendResultOutput) EnableAccessLogs() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendResult) bool { return v.EnableAccessLogs }).(pulumi.BoolOutput)
+}
+
 func (o GetLbFrontendResultOutput) EnableHttp3() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetLbFrontendResult) bool { return v.EnableHttp3 }).(pulumi.BoolOutput)
 }
@@ -203,6 +214,10 @@ func (o GetLbFrontendResultOutput) Name() pulumi.StringPtrOutput {
 
 func (o GetLbFrontendResultOutput) TimeoutClient() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendResult) string { return v.TimeoutClient }).(pulumi.StringOutput)
+}
+
+func (o GetLbFrontendResultOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLbFrontendResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 func init() {

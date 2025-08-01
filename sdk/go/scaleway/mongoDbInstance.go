@@ -206,6 +206,8 @@ type MongoDbInstance struct {
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+	TlsCertificate pulumi.StringOutput `pulumi:"tlsCertificate"`
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Name of the user created when the intance is created.
@@ -288,6 +290,8 @@ type mongoDbInstanceState struct {
 	SnapshotId *string `pulumi:"snapshotId"`
 	// List of tags attached to the MongoDB® instance.
 	Tags []string `pulumi:"tags"`
+	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+	TlsCertificate *string `pulumi:"tlsCertificate"`
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Name of the user created when the intance is created.
@@ -328,6 +332,8 @@ type MongoDbInstanceState struct {
 	SnapshotId pulumi.StringPtrInput
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayInput
+	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+	TlsCertificate pulumi.StringPtrInput
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt pulumi.StringPtrInput
 	// Name of the user created when the intance is created.
@@ -568,6 +574,11 @@ func (o MongoDbInstanceOutput) SnapshotId() pulumi.StringPtrOutput {
 // List of tags attached to the MongoDB® instance.
 func (o MongoDbInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+func (o MongoDbInstanceOutput) TlsCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringOutput { return v.TlsCertificate }).(pulumi.StringOutput)
 }
 
 // The date and time of the last update of the MongoDB® instance.

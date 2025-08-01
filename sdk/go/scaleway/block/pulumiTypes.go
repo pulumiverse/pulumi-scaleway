@@ -13,10 +13,166 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type SnapshotImport struct {
-	// Bucket containing qcow
+type SnapshotExport struct {
+	// The name of the bucket where the QCOW file will be saved.
 	Bucket string `pulumi:"bucket"`
-	// Key of the qcow file in the specified bucket
+	// The desired key (path) for the QCOW file within the bucket.
+	Key string `pulumi:"key"`
+}
+
+// SnapshotExportInput is an input type that accepts SnapshotExportArgs and SnapshotExportOutput values.
+// You can construct a concrete instance of `SnapshotExportInput` via:
+//
+//	SnapshotExportArgs{...}
+type SnapshotExportInput interface {
+	pulumi.Input
+
+	ToSnapshotExportOutput() SnapshotExportOutput
+	ToSnapshotExportOutputWithContext(context.Context) SnapshotExportOutput
+}
+
+type SnapshotExportArgs struct {
+	// The name of the bucket where the QCOW file will be saved.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The desired key (path) for the QCOW file within the bucket.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (SnapshotExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotExport)(nil)).Elem()
+}
+
+func (i SnapshotExportArgs) ToSnapshotExportOutput() SnapshotExportOutput {
+	return i.ToSnapshotExportOutputWithContext(context.Background())
+}
+
+func (i SnapshotExportArgs) ToSnapshotExportOutputWithContext(ctx context.Context) SnapshotExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotExportOutput)
+}
+
+func (i SnapshotExportArgs) ToSnapshotExportPtrOutput() SnapshotExportPtrOutput {
+	return i.ToSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (i SnapshotExportArgs) ToSnapshotExportPtrOutputWithContext(ctx context.Context) SnapshotExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotExportOutput).ToSnapshotExportPtrOutputWithContext(ctx)
+}
+
+// SnapshotExportPtrInput is an input type that accepts SnapshotExportArgs, SnapshotExportPtr and SnapshotExportPtrOutput values.
+// You can construct a concrete instance of `SnapshotExportPtrInput` via:
+//
+//	        SnapshotExportArgs{...}
+//
+//	or:
+//
+//	        nil
+type SnapshotExportPtrInput interface {
+	pulumi.Input
+
+	ToSnapshotExportPtrOutput() SnapshotExportPtrOutput
+	ToSnapshotExportPtrOutputWithContext(context.Context) SnapshotExportPtrOutput
+}
+
+type snapshotExportPtrType SnapshotExportArgs
+
+func SnapshotExportPtr(v *SnapshotExportArgs) SnapshotExportPtrInput {
+	return (*snapshotExportPtrType)(v)
+}
+
+func (*snapshotExportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotExport)(nil)).Elem()
+}
+
+func (i *snapshotExportPtrType) ToSnapshotExportPtrOutput() SnapshotExportPtrOutput {
+	return i.ToSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (i *snapshotExportPtrType) ToSnapshotExportPtrOutputWithContext(ctx context.Context) SnapshotExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SnapshotExportPtrOutput)
+}
+
+type SnapshotExportOutput struct{ *pulumi.OutputState }
+
+func (SnapshotExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SnapshotExport)(nil)).Elem()
+}
+
+func (o SnapshotExportOutput) ToSnapshotExportOutput() SnapshotExportOutput {
+	return o
+}
+
+func (o SnapshotExportOutput) ToSnapshotExportOutputWithContext(ctx context.Context) SnapshotExportOutput {
+	return o
+}
+
+func (o SnapshotExportOutput) ToSnapshotExportPtrOutput() SnapshotExportPtrOutput {
+	return o.ToSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (o SnapshotExportOutput) ToSnapshotExportPtrOutputWithContext(ctx context.Context) SnapshotExportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SnapshotExport) *SnapshotExport {
+		return &v
+	}).(SnapshotExportPtrOutput)
+}
+
+// The name of the bucket where the QCOW file will be saved.
+func (o SnapshotExportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotExport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The desired key (path) for the QCOW file within the bucket.
+func (o SnapshotExportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v SnapshotExport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type SnapshotExportPtrOutput struct{ *pulumi.OutputState }
+
+func (SnapshotExportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SnapshotExport)(nil)).Elem()
+}
+
+func (o SnapshotExportPtrOutput) ToSnapshotExportPtrOutput() SnapshotExportPtrOutput {
+	return o
+}
+
+func (o SnapshotExportPtrOutput) ToSnapshotExportPtrOutputWithContext(ctx context.Context) SnapshotExportPtrOutput {
+	return o
+}
+
+func (o SnapshotExportPtrOutput) Elem() SnapshotExportOutput {
+	return o.ApplyT(func(v *SnapshotExport) SnapshotExport {
+		if v != nil {
+			return *v
+		}
+		var ret SnapshotExport
+		return ret
+	}).(SnapshotExportOutput)
+}
+
+// The name of the bucket where the QCOW file will be saved.
+func (o SnapshotExportPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotExport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// The desired key (path) for the QCOW file within the bucket.
+func (o SnapshotExportPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SnapshotExport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+type SnapshotImport struct {
+	// The name of the bucket containing the QCOW file.
+	Bucket string `pulumi:"bucket"`
+	// The key of the QCOW file within the bucket.
 	Key string `pulumi:"key"`
 }
 
@@ -32,9 +188,9 @@ type SnapshotImportInput interface {
 }
 
 type SnapshotImportArgs struct {
-	// Bucket containing qcow
+	// The name of the bucket containing the QCOW file.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Key of the qcow file in the specified bucket
+	// The key of the QCOW file within the bucket.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -115,12 +271,12 @@ func (o SnapshotImportOutput) ToSnapshotImportPtrOutputWithContext(ctx context.C
 	}).(SnapshotImportPtrOutput)
 }
 
-// Bucket containing qcow
+// The name of the bucket containing the QCOW file.
 func (o SnapshotImportOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v SnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Key of the qcow file in the specified bucket
+// The key of the QCOW file within the bucket.
 func (o SnapshotImportOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SnapshotImport) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -149,7 +305,7 @@ func (o SnapshotImportPtrOutput) Elem() SnapshotImportOutput {
 	}).(SnapshotImportOutput)
 }
 
-// Bucket containing qcow
+// The name of the bucket containing the QCOW file.
 func (o SnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnapshotImport) *string {
 		if v == nil {
@@ -159,7 +315,7 @@ func (o SnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Key of the qcow file in the specified bucket
+// The key of the QCOW file within the bucket.
 func (o SnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnapshotImport) *string {
 		if v == nil {
@@ -167,6 +323,112 @@ func (o SnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 		}
 		return &v.Key
 	}).(pulumi.StringPtrOutput)
+}
+
+type GetSnapshotExport struct {
+	// Bucket containing qcow
+	Bucket string `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key string `pulumi:"key"`
+}
+
+// GetSnapshotExportInput is an input type that accepts GetSnapshotExportArgs and GetSnapshotExportOutput values.
+// You can construct a concrete instance of `GetSnapshotExportInput` via:
+//
+//	GetSnapshotExportArgs{...}
+type GetSnapshotExportInput interface {
+	pulumi.Input
+
+	ToGetSnapshotExportOutput() GetSnapshotExportOutput
+	ToGetSnapshotExportOutputWithContext(context.Context) GetSnapshotExportOutput
+}
+
+type GetSnapshotExportArgs struct {
+	// Bucket containing qcow
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetSnapshotExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotExport)(nil)).Elem()
+}
+
+func (i GetSnapshotExportArgs) ToGetSnapshotExportOutput() GetSnapshotExportOutput {
+	return i.ToGetSnapshotExportOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotExportArgs) ToGetSnapshotExportOutputWithContext(ctx context.Context) GetSnapshotExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotExportOutput)
+}
+
+// GetSnapshotExportArrayInput is an input type that accepts GetSnapshotExportArray and GetSnapshotExportArrayOutput values.
+// You can construct a concrete instance of `GetSnapshotExportArrayInput` via:
+//
+//	GetSnapshotExportArray{ GetSnapshotExportArgs{...} }
+type GetSnapshotExportArrayInput interface {
+	pulumi.Input
+
+	ToGetSnapshotExportArrayOutput() GetSnapshotExportArrayOutput
+	ToGetSnapshotExportArrayOutputWithContext(context.Context) GetSnapshotExportArrayOutput
+}
+
+type GetSnapshotExportArray []GetSnapshotExportInput
+
+func (GetSnapshotExportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotExport)(nil)).Elem()
+}
+
+func (i GetSnapshotExportArray) ToGetSnapshotExportArrayOutput() GetSnapshotExportArrayOutput {
+	return i.ToGetSnapshotExportArrayOutputWithContext(context.Background())
+}
+
+func (i GetSnapshotExportArray) ToGetSnapshotExportArrayOutputWithContext(ctx context.Context) GetSnapshotExportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSnapshotExportArrayOutput)
+}
+
+type GetSnapshotExportOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSnapshotExport)(nil)).Elem()
+}
+
+func (o GetSnapshotExportOutput) ToGetSnapshotExportOutput() GetSnapshotExportOutput {
+	return o
+}
+
+func (o GetSnapshotExportOutput) ToGetSnapshotExportOutputWithContext(ctx context.Context) GetSnapshotExportOutput {
+	return o
+}
+
+// Bucket containing qcow
+func (o GetSnapshotExportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotExport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Key of the qcow file in the specified bucket
+func (o GetSnapshotExportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSnapshotExport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetSnapshotExportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSnapshotExportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSnapshotExport)(nil)).Elem()
+}
+
+func (o GetSnapshotExportArrayOutput) ToGetSnapshotExportArrayOutput() GetSnapshotExportArrayOutput {
+	return o
+}
+
+func (o GetSnapshotExportArrayOutput) ToGetSnapshotExportArrayOutputWithContext(ctx context.Context) GetSnapshotExportArrayOutput {
+	return o
+}
+
+func (o GetSnapshotExportArrayOutput) Index(i pulumi.IntInput) GetSnapshotExportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSnapshotExport {
+		return vs[0].([]GetSnapshotExport)[vs[1].(int)]
+	}).(GetSnapshotExportOutput)
 }
 
 type GetSnapshotImport struct {
@@ -276,12 +538,20 @@ func (o GetSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetSnapshotImport
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotExportInput)(nil)).Elem(), SnapshotExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotExportPtrInput)(nil)).Elem(), SnapshotExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportInput)(nil)).Elem(), SnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnapshotImportPtrInput)(nil)).Elem(), SnapshotImportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotExportInput)(nil)).Elem(), GetSnapshotExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotExportArrayInput)(nil)).Elem(), GetSnapshotExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportInput)(nil)).Elem(), GetSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportArrayInput)(nil)).Elem(), GetSnapshotImportArray{})
+	pulumi.RegisterOutputType(SnapshotExportOutput{})
+	pulumi.RegisterOutputType(SnapshotExportPtrOutput{})
 	pulumi.RegisterOutputType(SnapshotImportOutput{})
 	pulumi.RegisterOutputType(SnapshotImportPtrOutput{})
+	pulumi.RegisterOutputType(GetSnapshotExportOutput{})
+	pulumi.RegisterOutputType(GetSnapshotExportArrayOutput{})
 	pulumi.RegisterOutputType(GetSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetSnapshotImportArrayOutput{})
 }

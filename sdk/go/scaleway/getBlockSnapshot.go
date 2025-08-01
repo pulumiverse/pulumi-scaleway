@@ -42,6 +42,7 @@ type LookupBlockSnapshotArgs struct {
 
 // A collection of values returned by getBlockSnapshot.
 type LookupBlockSnapshotResult struct {
+	Exports []GetBlockSnapshotExport `pulumi:"exports"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string                   `pulumi:"id"`
 	Imports    []GetBlockSnapshotImport `pulumi:"imports"`
@@ -93,6 +94,10 @@ func (o LookupBlockSnapshotResultOutput) ToLookupBlockSnapshotResultOutput() Loo
 
 func (o LookupBlockSnapshotResultOutput) ToLookupBlockSnapshotResultOutputWithContext(ctx context.Context) LookupBlockSnapshotResultOutput {
 	return o
+}
+
+func (o LookupBlockSnapshotResultOutput) Exports() GetBlockSnapshotExportArrayOutput {
+	return o.ApplyT(func(v LookupBlockSnapshotResult) []GetBlockSnapshotExport { return v.Exports }).(GetBlockSnapshotExportArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

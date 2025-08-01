@@ -100,7 +100,6 @@ export interface GetDomainRecordResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    readonly keepEmptyZone: boolean;
     readonly name?: string;
     /**
      * The priority of the record, mainly used with `MX` records.

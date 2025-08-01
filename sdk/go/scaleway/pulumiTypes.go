@@ -120,17 +120,17 @@ func (o AppleSiliconServerPrivateIpArrayOutput) Index(i pulumi.IntInput) AppleSi
 }
 
 type AppleSiliconServerPrivateNetwork struct {
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt *string `pulumi:"createdAt"`
-	// The ID of the IP address resource.
+	// The private network ID
 	Id string `pulumi:"id"`
-	// List of IPAM IP IDs to attach to the server
+	// A list of IPAM IP IDs to attach to the server.
 	IpamIpIds []string `pulumi:"ipamIpIds"`
-	// The private network status
+	// The current status of the private network.
 	Status *string `pulumi:"status"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The VLAN ID associated to the private network
+	// The VLAN ID associated with the private network.
 	Vlan *int `pulumi:"vlan"`
 }
 
@@ -146,17 +146,17 @@ type AppleSiliconServerPrivateNetworkInput interface {
 }
 
 type AppleSiliconServerPrivateNetworkArgs struct {
-	// The date and time of the creation of the Apple Silicon server.
+	// The date and time the private network was created.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
-	// The ID of the IP address resource.
+	// The private network ID
 	Id pulumi.StringInput `pulumi:"id"`
-	// List of IPAM IP IDs to attach to the server
+	// A list of IPAM IP IDs to attach to the server.
 	IpamIpIds pulumi.StringArrayInput `pulumi:"ipamIpIds"`
-	// The private network status
+	// The current status of the private network.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	// The date and time of the last update of the Apple Silicon server.
+	// The date and time the private network was last updated.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
-	// The VLAN ID associated to the private network
+	// The VLAN ID associated with the private network.
 	Vlan pulumi.IntPtrInput `pulumi:"vlan"`
 }
 
@@ -211,32 +211,32 @@ func (o AppleSiliconServerPrivateNetworkOutput) ToAppleSiliconServerPrivateNetwo
 	return o
 }
 
-// The date and time of the creation of the Apple Silicon server.
+// The date and time the private network was created.
 func (o AppleSiliconServerPrivateNetworkOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP address resource.
+// The private network ID
 func (o AppleSiliconServerPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// List of IPAM IP IDs to attach to the server
+// A list of IPAM IP IDs to attach to the server.
 func (o AppleSiliconServerPrivateNetworkOutput) IpamIpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) []string { return v.IpamIpIds }).(pulumi.StringArrayOutput)
 }
 
-// The private network status
+// The current status of the private network.
 func (o AppleSiliconServerPrivateNetworkOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// The date and time of the last update of the Apple Silicon server.
+// The date and time the private network was last updated.
 func (o AppleSiliconServerPrivateNetworkOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The VLAN ID associated to the private network
+// The VLAN ID associated with the private network.
 func (o AppleSiliconServerPrivateNetworkOutput) Vlan() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AppleSiliconServerPrivateNetwork) *int { return v.Vlan }).(pulumi.IntPtrOutput)
 }
@@ -1005,10 +1005,166 @@ func (o BaremetalServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Barem
 	}).(BaremetalServerPrivateNetworkOutput)
 }
 
-type BlockSnapshotImport struct {
-	// Bucket containing qcow
+type BlockSnapshotExport struct {
+	// The name of the bucket where the QCOW file will be saved.
 	Bucket string `pulumi:"bucket"`
-	// Key of the qcow file in the specified bucket
+	// The desired key (path) for the QCOW file within the bucket.
+	Key string `pulumi:"key"`
+}
+
+// BlockSnapshotExportInput is an input type that accepts BlockSnapshotExportArgs and BlockSnapshotExportOutput values.
+// You can construct a concrete instance of `BlockSnapshotExportInput` via:
+//
+//	BlockSnapshotExportArgs{...}
+type BlockSnapshotExportInput interface {
+	pulumi.Input
+
+	ToBlockSnapshotExportOutput() BlockSnapshotExportOutput
+	ToBlockSnapshotExportOutputWithContext(context.Context) BlockSnapshotExportOutput
+}
+
+type BlockSnapshotExportArgs struct {
+	// The name of the bucket where the QCOW file will be saved.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// The desired key (path) for the QCOW file within the bucket.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (BlockSnapshotExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BlockSnapshotExport)(nil)).Elem()
+}
+
+func (i BlockSnapshotExportArgs) ToBlockSnapshotExportOutput() BlockSnapshotExportOutput {
+	return i.ToBlockSnapshotExportOutputWithContext(context.Background())
+}
+
+func (i BlockSnapshotExportArgs) ToBlockSnapshotExportOutputWithContext(ctx context.Context) BlockSnapshotExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotExportOutput)
+}
+
+func (i BlockSnapshotExportArgs) ToBlockSnapshotExportPtrOutput() BlockSnapshotExportPtrOutput {
+	return i.ToBlockSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (i BlockSnapshotExportArgs) ToBlockSnapshotExportPtrOutputWithContext(ctx context.Context) BlockSnapshotExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotExportOutput).ToBlockSnapshotExportPtrOutputWithContext(ctx)
+}
+
+// BlockSnapshotExportPtrInput is an input type that accepts BlockSnapshotExportArgs, BlockSnapshotExportPtr and BlockSnapshotExportPtrOutput values.
+// You can construct a concrete instance of `BlockSnapshotExportPtrInput` via:
+//
+//	        BlockSnapshotExportArgs{...}
+//
+//	or:
+//
+//	        nil
+type BlockSnapshotExportPtrInput interface {
+	pulumi.Input
+
+	ToBlockSnapshotExportPtrOutput() BlockSnapshotExportPtrOutput
+	ToBlockSnapshotExportPtrOutputWithContext(context.Context) BlockSnapshotExportPtrOutput
+}
+
+type blockSnapshotExportPtrType BlockSnapshotExportArgs
+
+func BlockSnapshotExportPtr(v *BlockSnapshotExportArgs) BlockSnapshotExportPtrInput {
+	return (*blockSnapshotExportPtrType)(v)
+}
+
+func (*blockSnapshotExportPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BlockSnapshotExport)(nil)).Elem()
+}
+
+func (i *blockSnapshotExportPtrType) ToBlockSnapshotExportPtrOutput() BlockSnapshotExportPtrOutput {
+	return i.ToBlockSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (i *blockSnapshotExportPtrType) ToBlockSnapshotExportPtrOutputWithContext(ctx context.Context) BlockSnapshotExportPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BlockSnapshotExportPtrOutput)
+}
+
+type BlockSnapshotExportOutput struct{ *pulumi.OutputState }
+
+func (BlockSnapshotExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BlockSnapshotExport)(nil)).Elem()
+}
+
+func (o BlockSnapshotExportOutput) ToBlockSnapshotExportOutput() BlockSnapshotExportOutput {
+	return o
+}
+
+func (o BlockSnapshotExportOutput) ToBlockSnapshotExportOutputWithContext(ctx context.Context) BlockSnapshotExportOutput {
+	return o
+}
+
+func (o BlockSnapshotExportOutput) ToBlockSnapshotExportPtrOutput() BlockSnapshotExportPtrOutput {
+	return o.ToBlockSnapshotExportPtrOutputWithContext(context.Background())
+}
+
+func (o BlockSnapshotExportOutput) ToBlockSnapshotExportPtrOutputWithContext(ctx context.Context) BlockSnapshotExportPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BlockSnapshotExport) *BlockSnapshotExport {
+		return &v
+	}).(BlockSnapshotExportPtrOutput)
+}
+
+// The name of the bucket where the QCOW file will be saved.
+func (o BlockSnapshotExportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v BlockSnapshotExport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// The desired key (path) for the QCOW file within the bucket.
+func (o BlockSnapshotExportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v BlockSnapshotExport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type BlockSnapshotExportPtrOutput struct{ *pulumi.OutputState }
+
+func (BlockSnapshotExportPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BlockSnapshotExport)(nil)).Elem()
+}
+
+func (o BlockSnapshotExportPtrOutput) ToBlockSnapshotExportPtrOutput() BlockSnapshotExportPtrOutput {
+	return o
+}
+
+func (o BlockSnapshotExportPtrOutput) ToBlockSnapshotExportPtrOutputWithContext(ctx context.Context) BlockSnapshotExportPtrOutput {
+	return o
+}
+
+func (o BlockSnapshotExportPtrOutput) Elem() BlockSnapshotExportOutput {
+	return o.ApplyT(func(v *BlockSnapshotExport) BlockSnapshotExport {
+		if v != nil {
+			return *v
+		}
+		var ret BlockSnapshotExport
+		return ret
+	}).(BlockSnapshotExportOutput)
+}
+
+// The name of the bucket where the QCOW file will be saved.
+func (o BlockSnapshotExportPtrOutput) Bucket() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BlockSnapshotExport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Bucket
+	}).(pulumi.StringPtrOutput)
+}
+
+// The desired key (path) for the QCOW file within the bucket.
+func (o BlockSnapshotExportPtrOutput) Key() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BlockSnapshotExport) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Key
+	}).(pulumi.StringPtrOutput)
+}
+
+type BlockSnapshotImport struct {
+	// The name of the bucket containing the QCOW file.
+	Bucket string `pulumi:"bucket"`
+	// The key of the QCOW file within the bucket.
 	Key string `pulumi:"key"`
 }
 
@@ -1024,9 +1180,9 @@ type BlockSnapshotImportInput interface {
 }
 
 type BlockSnapshotImportArgs struct {
-	// Bucket containing qcow
+	// The name of the bucket containing the QCOW file.
 	Bucket pulumi.StringInput `pulumi:"bucket"`
-	// Key of the qcow file in the specified bucket
+	// The key of the QCOW file within the bucket.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -1107,12 +1263,12 @@ func (o BlockSnapshotImportOutput) ToBlockSnapshotImportPtrOutputWithContext(ctx
 	}).(BlockSnapshotImportPtrOutput)
 }
 
-// Bucket containing qcow
+// The name of the bucket containing the QCOW file.
 func (o BlockSnapshotImportOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v BlockSnapshotImport) string { return v.Bucket }).(pulumi.StringOutput)
 }
 
-// Key of the qcow file in the specified bucket
+// The key of the QCOW file within the bucket.
 func (o BlockSnapshotImportOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v BlockSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1141,7 +1297,7 @@ func (o BlockSnapshotImportPtrOutput) Elem() BlockSnapshotImportOutput {
 	}).(BlockSnapshotImportOutput)
 }
 
-// Bucket containing qcow
+// The name of the bucket containing the QCOW file.
 func (o BlockSnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BlockSnapshotImport) *string {
 		if v == nil {
@@ -1151,7 +1307,7 @@ func (o BlockSnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Key of the qcow file in the specified bucket
+// The key of the QCOW file within the bucket.
 func (o BlockSnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BlockSnapshotImport) *string {
 		if v == nil {
@@ -10419,6 +10575,162 @@ func (o JobDefinitionSecretReferenceArrayOutput) Index(i pulumi.IntInput) JobDef
 	}).(JobDefinitionSecretReferenceOutput)
 }
 
+type KeyManagerKeyRotationPolicy struct {
+	// The date and time of the next scheduled rotation.
+	NextRotationAt *string `pulumi:"nextRotationAt"`
+	// – The period between key rotations (e.g., `"720h"` for 30 days).
+	RotationPeriod *string `pulumi:"rotationPeriod"`
+}
+
+// KeyManagerKeyRotationPolicyInput is an input type that accepts KeyManagerKeyRotationPolicyArgs and KeyManagerKeyRotationPolicyOutput values.
+// You can construct a concrete instance of `KeyManagerKeyRotationPolicyInput` via:
+//
+//	KeyManagerKeyRotationPolicyArgs{...}
+type KeyManagerKeyRotationPolicyInput interface {
+	pulumi.Input
+
+	ToKeyManagerKeyRotationPolicyOutput() KeyManagerKeyRotationPolicyOutput
+	ToKeyManagerKeyRotationPolicyOutputWithContext(context.Context) KeyManagerKeyRotationPolicyOutput
+}
+
+type KeyManagerKeyRotationPolicyArgs struct {
+	// The date and time of the next scheduled rotation.
+	NextRotationAt pulumi.StringPtrInput `pulumi:"nextRotationAt"`
+	// – The period between key rotations (e.g., `"720h"` for 30 days).
+	RotationPeriod pulumi.StringPtrInput `pulumi:"rotationPeriod"`
+}
+
+func (KeyManagerKeyRotationPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i KeyManagerKeyRotationPolicyArgs) ToKeyManagerKeyRotationPolicyOutput() KeyManagerKeyRotationPolicyOutput {
+	return i.ToKeyManagerKeyRotationPolicyOutputWithContext(context.Background())
+}
+
+func (i KeyManagerKeyRotationPolicyArgs) ToKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyManagerKeyRotationPolicyOutput)
+}
+
+func (i KeyManagerKeyRotationPolicyArgs) ToKeyManagerKeyRotationPolicyPtrOutput() KeyManagerKeyRotationPolicyPtrOutput {
+	return i.ToKeyManagerKeyRotationPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i KeyManagerKeyRotationPolicyArgs) ToKeyManagerKeyRotationPolicyPtrOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyManagerKeyRotationPolicyOutput).ToKeyManagerKeyRotationPolicyPtrOutputWithContext(ctx)
+}
+
+// KeyManagerKeyRotationPolicyPtrInput is an input type that accepts KeyManagerKeyRotationPolicyArgs, KeyManagerKeyRotationPolicyPtr and KeyManagerKeyRotationPolicyPtrOutput values.
+// You can construct a concrete instance of `KeyManagerKeyRotationPolicyPtrInput` via:
+//
+//	        KeyManagerKeyRotationPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type KeyManagerKeyRotationPolicyPtrInput interface {
+	pulumi.Input
+
+	ToKeyManagerKeyRotationPolicyPtrOutput() KeyManagerKeyRotationPolicyPtrOutput
+	ToKeyManagerKeyRotationPolicyPtrOutputWithContext(context.Context) KeyManagerKeyRotationPolicyPtrOutput
+}
+
+type keyManagerKeyRotationPolicyPtrType KeyManagerKeyRotationPolicyArgs
+
+func KeyManagerKeyRotationPolicyPtr(v *KeyManagerKeyRotationPolicyArgs) KeyManagerKeyRotationPolicyPtrInput {
+	return (*keyManagerKeyRotationPolicyPtrType)(v)
+}
+
+func (*keyManagerKeyRotationPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i *keyManagerKeyRotationPolicyPtrType) ToKeyManagerKeyRotationPolicyPtrOutput() KeyManagerKeyRotationPolicyPtrOutput {
+	return i.ToKeyManagerKeyRotationPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *keyManagerKeyRotationPolicyPtrType) ToKeyManagerKeyRotationPolicyPtrOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KeyManagerKeyRotationPolicyPtrOutput)
+}
+
+type KeyManagerKeyRotationPolicyOutput struct{ *pulumi.OutputState }
+
+func (KeyManagerKeyRotationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o KeyManagerKeyRotationPolicyOutput) ToKeyManagerKeyRotationPolicyOutput() KeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+func (o KeyManagerKeyRotationPolicyOutput) ToKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+func (o KeyManagerKeyRotationPolicyOutput) ToKeyManagerKeyRotationPolicyPtrOutput() KeyManagerKeyRotationPolicyPtrOutput {
+	return o.ToKeyManagerKeyRotationPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o KeyManagerKeyRotationPolicyOutput) ToKeyManagerKeyRotationPolicyPtrOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KeyManagerKeyRotationPolicy) *KeyManagerKeyRotationPolicy {
+		return &v
+	}).(KeyManagerKeyRotationPolicyPtrOutput)
+}
+
+// The date and time of the next scheduled rotation.
+func (o KeyManagerKeyRotationPolicyOutput) NextRotationAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeyManagerKeyRotationPolicy) *string { return v.NextRotationAt }).(pulumi.StringPtrOutput)
+}
+
+// – The period between key rotations (e.g., `"720h"` for 30 days).
+func (o KeyManagerKeyRotationPolicyOutput) RotationPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KeyManagerKeyRotationPolicy) *string { return v.RotationPeriod }).(pulumi.StringPtrOutput)
+}
+
+type KeyManagerKeyRotationPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (KeyManagerKeyRotationPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o KeyManagerKeyRotationPolicyPtrOutput) ToKeyManagerKeyRotationPolicyPtrOutput() KeyManagerKeyRotationPolicyPtrOutput {
+	return o
+}
+
+func (o KeyManagerKeyRotationPolicyPtrOutput) ToKeyManagerKeyRotationPolicyPtrOutputWithContext(ctx context.Context) KeyManagerKeyRotationPolicyPtrOutput {
+	return o
+}
+
+func (o KeyManagerKeyRotationPolicyPtrOutput) Elem() KeyManagerKeyRotationPolicyOutput {
+	return o.ApplyT(func(v *KeyManagerKeyRotationPolicy) KeyManagerKeyRotationPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret KeyManagerKeyRotationPolicy
+		return ret
+	}).(KeyManagerKeyRotationPolicyOutput)
+}
+
+// The date and time of the next scheduled rotation.
+func (o KeyManagerKeyRotationPolicyPtrOutput) NextRotationAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KeyManagerKeyRotationPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NextRotationAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// – The period between key rotations (e.g., `"720h"` for 30 days).
+func (o KeyManagerKeyRotationPolicyPtrOutput) RotationPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KeyManagerKeyRotationPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RotationPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
 type KubernetesClusterAutoUpgrade struct {
 	// Set to `true` to enable Kubernetes patch version auto upgrades.
 	// > **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
@@ -13039,7 +13351,7 @@ func (o LoadbalancerCertificateLetsencryptPtrOutput) SubjectAlternativeNames() p
 type LoadbalancerFrontendAcl struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerFrontendAclAction `pulumi:"action"`
-	// IsDate and time of ACL's creation (RFC 3339 format)
+	// The date and time the frontend was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
@@ -13047,7 +13359,7 @@ type LoadbalancerFrontendAcl struct {
 	Match LoadbalancerFrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// IsDate and time of ACL's update (RFC 3339 format)
+	// The date and time the frontend resource was updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -13065,7 +13377,7 @@ type LoadbalancerFrontendAclInput interface {
 type LoadbalancerFrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches.
 	Action LoadbalancerFrontendAclActionInput `pulumi:"action"`
-	// IsDate and time of ACL's creation (RFC 3339 format)
+	// The date and time the frontend was created.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
@@ -13073,7 +13385,7 @@ type LoadbalancerFrontendAclArgs struct {
 	Match LoadbalancerFrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// IsDate and time of ACL's update (RFC 3339 format)
+	// The date and time the frontend resource was updated.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -13133,7 +13445,7 @@ func (o LoadbalancerFrontendAclOutput) Action() LoadbalancerFrontendAclActionOut
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) LoadbalancerFrontendAclAction { return v.Action }).(LoadbalancerFrontendAclActionOutput)
 }
 
-// IsDate and time of ACL's creation (RFC 3339 format)
+// The date and time the frontend was created.
 func (o LoadbalancerFrontendAclOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
@@ -13153,7 +13465,7 @@ func (o LoadbalancerFrontendAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// IsDate and time of ACL's update (RFC 3339 format)
+// The date and time the frontend resource was updated.
 func (o LoadbalancerFrontendAclOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LoadbalancerFrontendAcl) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -13567,7 +13879,7 @@ func (o LoadbalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) LoadbalancerP
 }
 
 type LoadbalancerPrivateNetwork struct {
-	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+	// Set to true if you want to let DHCP assign IP addresses
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
@@ -13576,7 +13888,7 @@ type LoadbalancerPrivateNetwork struct {
 	// The ID of the Private Network to attach to.
 	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig *string `pulumi:"staticConfig"`
@@ -13598,7 +13910,7 @@ type LoadbalancerPrivateNetworkInput interface {
 }
 
 type LoadbalancerPrivateNetworkArgs struct {
-	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+	// Set to true if you want to let DHCP assign IP addresses
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
@@ -13607,7 +13919,7 @@ type LoadbalancerPrivateNetworkArgs struct {
 	// The ID of the Private Network to attach to.
 	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
@@ -13668,7 +13980,7 @@ func (o LoadbalancerPrivateNetworkOutput) ToLoadbalancerPrivateNetworkOutputWith
 	return o
 }
 
-// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+// Set to true if you want to let DHCP assign IP addresses
 //
 // Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
@@ -13686,7 +13998,7 @@ func (o LoadbalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput
 	return o.ApplyT(func(v LoadbalancerPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 //
 // Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadbalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
@@ -19944,6 +20256,112 @@ func (o GetBillingInvoicesInvoiceArrayOutput) Index(i pulumi.IntInput) GetBillin
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBillingInvoicesInvoice {
 		return vs[0].([]GetBillingInvoicesInvoice)[vs[1].(int)]
 	}).(GetBillingInvoicesInvoiceOutput)
+}
+
+type GetBlockSnapshotExport struct {
+	// Bucket containing qcow
+	Bucket string `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key string `pulumi:"key"`
+}
+
+// GetBlockSnapshotExportInput is an input type that accepts GetBlockSnapshotExportArgs and GetBlockSnapshotExportOutput values.
+// You can construct a concrete instance of `GetBlockSnapshotExportInput` via:
+//
+//	GetBlockSnapshotExportArgs{...}
+type GetBlockSnapshotExportInput interface {
+	pulumi.Input
+
+	ToGetBlockSnapshotExportOutput() GetBlockSnapshotExportOutput
+	ToGetBlockSnapshotExportOutputWithContext(context.Context) GetBlockSnapshotExportOutput
+}
+
+type GetBlockSnapshotExportArgs struct {
+	// Bucket containing qcow
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Key of the qcow file in the specified bucket
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetBlockSnapshotExportArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlockSnapshotExport)(nil)).Elem()
+}
+
+func (i GetBlockSnapshotExportArgs) ToGetBlockSnapshotExportOutput() GetBlockSnapshotExportOutput {
+	return i.ToGetBlockSnapshotExportOutputWithContext(context.Background())
+}
+
+func (i GetBlockSnapshotExportArgs) ToGetBlockSnapshotExportOutputWithContext(ctx context.Context) GetBlockSnapshotExportOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlockSnapshotExportOutput)
+}
+
+// GetBlockSnapshotExportArrayInput is an input type that accepts GetBlockSnapshotExportArray and GetBlockSnapshotExportArrayOutput values.
+// You can construct a concrete instance of `GetBlockSnapshotExportArrayInput` via:
+//
+//	GetBlockSnapshotExportArray{ GetBlockSnapshotExportArgs{...} }
+type GetBlockSnapshotExportArrayInput interface {
+	pulumi.Input
+
+	ToGetBlockSnapshotExportArrayOutput() GetBlockSnapshotExportArrayOutput
+	ToGetBlockSnapshotExportArrayOutputWithContext(context.Context) GetBlockSnapshotExportArrayOutput
+}
+
+type GetBlockSnapshotExportArray []GetBlockSnapshotExportInput
+
+func (GetBlockSnapshotExportArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBlockSnapshotExport)(nil)).Elem()
+}
+
+func (i GetBlockSnapshotExportArray) ToGetBlockSnapshotExportArrayOutput() GetBlockSnapshotExportArrayOutput {
+	return i.ToGetBlockSnapshotExportArrayOutputWithContext(context.Background())
+}
+
+func (i GetBlockSnapshotExportArray) ToGetBlockSnapshotExportArrayOutputWithContext(ctx context.Context) GetBlockSnapshotExportArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlockSnapshotExportArrayOutput)
+}
+
+type GetBlockSnapshotExportOutput struct{ *pulumi.OutputState }
+
+func (GetBlockSnapshotExportOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlockSnapshotExport)(nil)).Elem()
+}
+
+func (o GetBlockSnapshotExportOutput) ToGetBlockSnapshotExportOutput() GetBlockSnapshotExportOutput {
+	return o
+}
+
+func (o GetBlockSnapshotExportOutput) ToGetBlockSnapshotExportOutputWithContext(ctx context.Context) GetBlockSnapshotExportOutput {
+	return o
+}
+
+// Bucket containing qcow
+func (o GetBlockSnapshotExportOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlockSnapshotExport) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Key of the qcow file in the specified bucket
+func (o GetBlockSnapshotExportOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBlockSnapshotExport) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetBlockSnapshotExportArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBlockSnapshotExportArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBlockSnapshotExport)(nil)).Elem()
+}
+
+func (o GetBlockSnapshotExportArrayOutput) ToGetBlockSnapshotExportArrayOutput() GetBlockSnapshotExportArrayOutput {
+	return o
+}
+
+func (o GetBlockSnapshotExportArrayOutput) ToGetBlockSnapshotExportArrayOutputWithContext(ctx context.Context) GetBlockSnapshotExportArrayOutput {
+	return o
+}
+
+func (o GetBlockSnapshotExportArrayOutput) Index(i pulumi.IntInput) GetBlockSnapshotExportOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBlockSnapshotExport {
+		return vs[0].([]GetBlockSnapshotExport)[vs[1].(int)]
+	}).(GetBlockSnapshotExportOutput)
 }
 
 type GetBlockSnapshotImport struct {
@@ -27458,8 +27876,12 @@ type GetLbFrontendsFrontend struct {
 	BackendId string `pulumi:"backendId"`
 	// List of certificate IDs that are used by the frontend.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit int `pulumi:"connectionRateLimit"`
 	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs bool `pulumi:"enableAccessLogs"`
 	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 bool `pulumi:"enableHttp3"`
 	// The ID of the associated frontend.
@@ -27473,7 +27895,7 @@ type GetLbFrontendsFrontend struct {
 	Name string `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient string `pulumi:"timeoutClient"`
-	// The date aont which the frontend was last updated (RFC 3339 format).
+	// The date on which the frontend was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -27494,8 +27916,12 @@ type GetLbFrontendsFrontendArgs struct {
 	BackendId pulumi.StringInput `pulumi:"backendId"`
 	// List of certificate IDs that are used by the frontend.
 	CertificateIds pulumi.StringArrayInput `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit pulumi.IntInput `pulumi:"connectionRateLimit"`
 	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs pulumi.BoolInput `pulumi:"enableAccessLogs"`
 	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 pulumi.BoolInput `pulumi:"enableHttp3"`
 	// The ID of the associated frontend.
@@ -27509,7 +27935,7 @@ type GetLbFrontendsFrontendArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient pulumi.StringInput `pulumi:"timeoutClient"`
-	// The date aont which the frontend was last updated (RFC 3339 format).
+	// The date on which the frontend was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -27575,9 +28001,19 @@ func (o GetLbFrontendsFrontendOutput) CertificateIds() pulumi.StringArrayOutput 
 	return o.ApplyT(func(v GetLbFrontendsFrontend) []string { return v.CertificateIds }).(pulumi.StringArrayOutput)
 }
 
+// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+func (o GetLbFrontendsFrontendOutput) ConnectionRateLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) int { return v.ConnectionRateLimit }).(pulumi.IntOutput)
+}
+
 // The date on which the frontend was created (RFC 3339 format).
 func (o GetLbFrontendsFrontendOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Defines whether to enable access logs on the frontend.
+func (o GetLbFrontendsFrontendOutput) EnableAccessLogs() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetLbFrontendsFrontend) bool { return v.EnableAccessLogs }).(pulumi.BoolOutput)
 }
 
 // Whether HTTP/3 protocol is activated.
@@ -27611,7 +28047,7 @@ func (o GetLbFrontendsFrontendOutput) TimeoutClient() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.TimeoutClient }).(pulumi.StringOutput)
 }
 
-// The date aont which the frontend was last updated (RFC 3339 format).
+// The date on which the frontend was last updated (RFC 3339 format).
 func (o GetLbFrontendsFrontendOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsFrontend) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -32556,6 +32992,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateIpArrayInput)(nil)).Elem(), BaremetalServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkInput)(nil)).Elem(), BaremetalServerPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BaremetalServerPrivateNetworkArrayInput)(nil)).Elem(), BaremetalServerPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotExportInput)(nil)).Elem(), BlockSnapshotExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotExportPtrInput)(nil)).Elem(), BlockSnapshotExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotImportInput)(nil)).Elem(), BlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BlockSnapshotImportPtrInput)(nil)).Elem(), BlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitAlertManagerContactPointInput)(nil)).Elem(), CockpitAlertManagerContactPointArgs{})
@@ -32678,6 +33116,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronPtrInput)(nil)).Elem(), JobDefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceInput)(nil)).Elem(), JobDefinitionSecretReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceArrayInput)(nil)).Elem(), JobDefinitionSecretReferenceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyManagerKeyRotationPolicyInput)(nil)).Elem(), KeyManagerKeyRotationPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KeyManagerKeyRotationPolicyPtrInput)(nil)).Elem(), KeyManagerKeyRotationPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradeInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradePtrInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoscalerConfigInput)(nil)).Elem(), KubernetesClusterAutoscalerConfigArgs{})
@@ -32805,6 +33245,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingConsumptionsConsumptionArrayInput)(nil)).Elem(), GetBillingConsumptionsConsumptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceInput)(nil)).Elem(), GetBillingInvoicesInvoiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBillingInvoicesInvoiceArrayInput)(nil)).Elem(), GetBillingInvoicesInvoiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotExportInput)(nil)).Elem(), GetBlockSnapshotExportArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotExportArrayInput)(nil)).Elem(), GetBlockSnapshotExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportInput)(nil)).Elem(), GetBlockSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBlockSnapshotImportArrayInput)(nil)).Elem(), GetBlockSnapshotImportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCockpitEndpointInput)(nil)).Elem(), GetCockpitEndpointArgs{})
@@ -33011,6 +33453,8 @@ func init() {
 	pulumi.RegisterOutputType(BaremetalServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(BaremetalServerPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(BlockSnapshotExportOutput{})
+	pulumi.RegisterOutputType(BlockSnapshotExportPtrOutput{})
 	pulumi.RegisterOutputType(BlockSnapshotImportOutput{})
 	pulumi.RegisterOutputType(BlockSnapshotImportPtrOutput{})
 	pulumi.RegisterOutputType(CockpitAlertManagerContactPointOutput{})
@@ -33133,6 +33577,8 @@ func init() {
 	pulumi.RegisterOutputType(JobDefinitionCronPtrOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceArrayOutput{})
+	pulumi.RegisterOutputType(KeyManagerKeyRotationPolicyOutput{})
+	pulumi.RegisterOutputType(KeyManagerKeyRotationPolicyPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradePtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoscalerConfigOutput{})
@@ -33260,6 +33706,8 @@ func init() {
 	pulumi.RegisterOutputType(GetBillingConsumptionsConsumptionArrayOutput{})
 	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceOutput{})
 	pulumi.RegisterOutputType(GetBillingInvoicesInvoiceArrayOutput{})
+	pulumi.RegisterOutputType(GetBlockSnapshotExportOutput{})
+	pulumi.RegisterOutputType(GetBlockSnapshotExportArrayOutput{})
 	pulumi.RegisterOutputType(GetBlockSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetBlockSnapshotImportArrayOutput{})
 	pulumi.RegisterOutputType(GetCockpitEndpointOutput{})

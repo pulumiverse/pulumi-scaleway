@@ -1349,7 +1349,7 @@ func (o CertificateLetsencryptPtrOutput) SubjectAlternativeNames() pulumi.String
 type FrontendAcl struct {
 	// Action to undertake when an ACL filter matches.
 	Action FrontendAclAction `pulumi:"action"`
-	// IsDate and time of ACL's creation (RFC 3339 format)
+	// The date and time the frontend was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the ACL
 	Description *string `pulumi:"description"`
@@ -1357,7 +1357,7 @@ type FrontendAcl struct {
 	Match FrontendAclMatch `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// IsDate and time of ACL's update (RFC 3339 format)
+	// The date and time the frontend resource was updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
@@ -1375,7 +1375,7 @@ type FrontendAclInput interface {
 type FrontendAclArgs struct {
 	// Action to undertake when an ACL filter matches.
 	Action FrontendAclActionInput `pulumi:"action"`
-	// IsDate and time of ACL's creation (RFC 3339 format)
+	// The date and time the frontend was created.
 	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// Description of the ACL
 	Description pulumi.StringPtrInput `pulumi:"description"`
@@ -1383,7 +1383,7 @@ type FrontendAclArgs struct {
 	Match FrontendAclMatchInput `pulumi:"match"`
 	// The ACL name. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// IsDate and time of ACL's update (RFC 3339 format)
+	// The date and time the frontend resource was updated.
 	UpdatedAt pulumi.StringPtrInput `pulumi:"updatedAt"`
 }
 
@@ -1443,7 +1443,7 @@ func (o FrontendAclOutput) Action() FrontendAclActionOutput {
 	return o.ApplyT(func(v FrontendAcl) FrontendAclAction { return v.Action }).(FrontendAclActionOutput)
 }
 
-// IsDate and time of ACL's creation (RFC 3339 format)
+// The date and time the frontend was created.
 func (o FrontendAclOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FrontendAcl) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
@@ -1463,7 +1463,7 @@ func (o FrontendAclOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FrontendAcl) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// IsDate and time of ACL's update (RFC 3339 format)
+// The date and time the frontend resource was updated.
 func (o FrontendAclOutput) UpdatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FrontendAcl) *string { return v.UpdatedAt }).(pulumi.StringPtrOutput)
 }
@@ -1877,7 +1877,7 @@ func (o LoadBalancerPrivateIpArrayOutput) Index(i pulumi.IntInput) LoadBalancerP
 }
 
 type LoadBalancerPrivateNetwork struct {
-	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+	// Set to true if you want to let DHCP assign IP addresses
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig *bool `pulumi:"dhcpConfig"`
@@ -1886,7 +1886,7 @@ type LoadBalancerPrivateNetwork struct {
 	// The ID of the Private Network to attach to.
 	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
-	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig *string `pulumi:"staticConfig"`
@@ -1908,7 +1908,7 @@ type LoadBalancerPrivateNetworkInput interface {
 }
 
 type LoadBalancerPrivateNetworkArgs struct {
-	// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+	// Set to true if you want to let DHCP assign IP addresses
 	//
 	// Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	DhcpConfig pulumi.BoolPtrInput `pulumi:"dhcpConfig"`
@@ -1917,7 +1917,7 @@ type LoadBalancerPrivateNetworkArgs struct {
 	// The ID of the Private Network to attach to.
 	// - > **Important:** Updates to `privateNetwork` will recreate the attachment.
 	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
-	// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
@@ -1978,7 +1978,7 @@ func (o LoadBalancerPrivateNetworkOutput) ToLoadBalancerPrivateNetworkOutputWith
 	return o
 }
 
-// Please use `ipamIds`. Set to `true` if you want to let DHCP assign IP addresses.
+// Set to true if you want to let DHCP assign IP addresses
 //
 // Deprecated: dhcp_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadBalancerPrivateNetworkOutput) DhcpConfig() pulumi.BoolPtrOutput {
@@ -1996,7 +1996,7 @@ func (o LoadBalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput
 	return o.ApplyT(func(v LoadBalancerPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
 }
 
-// Please use `ipamIds`. Define a local ip address of your choice for the load balancer instance.
+// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 //
 // Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
 func (o LoadBalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
@@ -4052,8 +4052,12 @@ type GetFrontendsFrontend struct {
 	BackendId string `pulumi:"backendId"`
 	// List of certificate IDs that are used by the frontend.
 	CertificateIds []string `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit int `pulumi:"connectionRateLimit"`
 	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt string `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs bool `pulumi:"enableAccessLogs"`
 	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 bool `pulumi:"enableHttp3"`
 	// The ID of the associated frontend.
@@ -4067,7 +4071,7 @@ type GetFrontendsFrontend struct {
 	Name string `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient string `pulumi:"timeoutClient"`
-	// The date aont which the frontend was last updated (RFC 3339 format).
+	// The date on which the frontend was last updated (RFC 3339 format).
 	UpdateAt string `pulumi:"updateAt"`
 }
 
@@ -4088,8 +4092,12 @@ type GetFrontendsFrontendArgs struct {
 	BackendId pulumi.StringInput `pulumi:"backendId"`
 	// List of certificate IDs that are used by the frontend.
 	CertificateIds pulumi.StringArrayInput `pulumi:"certificateIds"`
+	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+	ConnectionRateLimit pulumi.IntInput `pulumi:"connectionRateLimit"`
 	// The date on which the frontend was created (RFC 3339 format).
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs pulumi.BoolInput `pulumi:"enableAccessLogs"`
 	// Whether HTTP/3 protocol is activated.
 	EnableHttp3 pulumi.BoolInput `pulumi:"enableHttp3"`
 	// The ID of the associated frontend.
@@ -4103,7 +4111,7 @@ type GetFrontendsFrontendArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Maximum inactivity time on the client side.
 	TimeoutClient pulumi.StringInput `pulumi:"timeoutClient"`
-	// The date aont which the frontend was last updated (RFC 3339 format).
+	// The date on which the frontend was last updated (RFC 3339 format).
 	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
@@ -4169,9 +4177,19 @@ func (o GetFrontendsFrontendOutput) CertificateIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetFrontendsFrontend) []string { return v.CertificateIds }).(pulumi.StringArrayOutput)
 }
 
+// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
+func (o GetFrontendsFrontendOutput) ConnectionRateLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetFrontendsFrontend) int { return v.ConnectionRateLimit }).(pulumi.IntOutput)
+}
+
 // The date on which the frontend was created (RFC 3339 format).
 func (o GetFrontendsFrontendOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFrontendsFrontend) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Defines whether to enable access logs on the frontend.
+func (o GetFrontendsFrontendOutput) EnableAccessLogs() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetFrontendsFrontend) bool { return v.EnableAccessLogs }).(pulumi.BoolOutput)
 }
 
 // Whether HTTP/3 protocol is activated.
@@ -4205,7 +4223,7 @@ func (o GetFrontendsFrontendOutput) TimeoutClient() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFrontendsFrontend) string { return v.TimeoutClient }).(pulumi.StringOutput)
 }
 
-// The date aont which the frontend was last updated (RFC 3339 format).
+// The date on which the frontend was last updated (RFC 3339 format).
 func (o GetFrontendsFrontendOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFrontendsFrontend) string { return v.UpdateAt }).(pulumi.StringOutput)
 }

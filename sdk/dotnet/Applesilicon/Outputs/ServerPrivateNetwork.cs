@@ -15,27 +15,27 @@ namespace Pulumiverse.Scaleway.Applesilicon.Outputs
     public sealed class ServerPrivateNetwork
     {
         /// <summary>
-        /// The date and time of the creation of the Apple Silicon server.
+        /// The date and time the private network was created.
         /// </summary>
         public readonly string? CreatedAt;
         /// <summary>
-        /// The ID of the IP address resource.
+        /// The private network ID
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// List of IPAM IP IDs to attach to the server
+        /// A list of IPAM IP IDs to attach to the server.
         /// </summary>
         public readonly ImmutableArray<string> IpamIpIds;
         /// <summary>
-        /// The private network status
+        /// The current status of the private network.
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// The date and time of the last update of the Apple Silicon server.
+        /// The date and time the private network was last updated.
         /// </summary>
         public readonly string? UpdatedAt;
         /// <summary>
-        /// The VLAN ID associated to the private network
+        /// The VLAN ID associated with the private network.
         /// </summary>
         public readonly int? Vlan;
 

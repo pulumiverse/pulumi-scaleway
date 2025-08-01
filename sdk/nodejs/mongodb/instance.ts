@@ -184,6 +184,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
+     * The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+     */
+    public /*out*/ readonly tlsCertificate!: pulumi.Output<string>;
+    /**
      * The date and time of the last update of the MongoDB® instance.
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
@@ -230,6 +234,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["settings"] = state ? state.settings : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
             resourceInputs["userName"] = state ? state.userName : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
@@ -260,6 +265,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
             resourceInputs["volumeType"] = args ? args.volumeType : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["tlsCertificate"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -328,6 +334,10 @@ export interface InstanceState {
      * List of tags attached to the MongoDB® instance.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+     */
+    tlsCertificate?: pulumi.Input<string>;
     /**
      * The date and time of the last update of the MongoDB® instance.
      */

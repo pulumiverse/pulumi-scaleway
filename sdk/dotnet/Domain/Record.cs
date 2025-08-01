@@ -319,12 +319,6 @@ namespace Pulumiverse.Scaleway.Domain
         public Output<Outputs.RecordHttpService?> HttpService { get; private set; } = null!;
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        /// </summary>
-        [Output("keepEmptyZone")]
-        public Output<bool?> KeepEmptyZone { get; private set; } = null!;
-
-        /// <summary>
         /// The name of the record (can be an empty string for a root record).
         /// </summary>
         [Output("name")]
@@ -448,12 +442,6 @@ namespace Pulumiverse.Scaleway.Domain
         public Input<Inputs.RecordHttpServiceArgs>? HttpService { get; set; }
 
         /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        /// </summary>
-        [Input("keepEmptyZone")]
-        public Input<bool>? KeepEmptyZone { get; set; }
-
-        /// <summary>
         /// The name of the record (can be an empty string for a root record).
         /// </summary>
         [Input("name")]
@@ -544,12 +532,6 @@ namespace Pulumiverse.Scaleway.Domain
         /// </summary>
         [Input("httpService")]
         public Input<Inputs.RecordHttpServiceGetArgs>? HttpService { get; set; }
-
-        /// <summary>
-        /// When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        /// </summary>
-        [Input("keepEmptyZone")]
-        public Input<bool>? KeepEmptyZone { get; set; }
 
         /// <summary>
         /// The name of the record (can be an empty string for a root record).

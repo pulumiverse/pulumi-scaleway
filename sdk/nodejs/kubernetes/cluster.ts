@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
- *     version: "1.29.1",
+ *     version: "1.32.3",
  *     cni: "cilium",
  *     privateNetworkId: pn.id,
  *     deleteAdditionalResources: false,
@@ -42,7 +42,7 @@ import * as utilities from "../utilities";
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     type: "multicloud",
- *     version: "1.29.1",
+ *     version: "1.32.3",
  *     cni: "kilo",
  *     deleteAdditionalResources: false,
  * });
@@ -67,7 +67,7 @@ import * as utilities from "../utilities";
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
  *     description: "cluster made in terraform",
- *     version: "1.29.1",
+ *     version: "1.32.3",
  *     cni: "calico",
  *     tags: ["terraform"],
  *     privateNetworkId: pn.id,

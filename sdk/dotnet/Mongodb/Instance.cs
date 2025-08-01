@@ -223,6 +223,12 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+        /// </summary>
+        [Output("tlsCertificate")]
+        public Output<string> TlsCertificate { get; private set; } = null!;
+
+        /// <summary>
         /// The date and time of the last update of the MongoDB® instance.
         /// </summary>
         [Output("updatedAt")]
@@ -546,6 +552,12 @@ namespace Pulumiverse.Scaleway.Mongodb
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
+        /// </summary>
+        [Input("tlsCertificate")]
+        public Input<string>? TlsCertificate { get; set; }
 
         /// <summary>
         /// The date and time of the last update of the MongoDB® instance.

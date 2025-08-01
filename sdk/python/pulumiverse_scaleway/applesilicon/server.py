@@ -203,7 +203,7 @@ class _ServerState:
         """
         Input properties used for looking up and filtering Server resources.
         :param pulumi.Input[builtins.str] commitment: The commitment period of the server
-        :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the Apple Silicon server.
+        :param pulumi.Input[builtins.str] created_at: The date and time the private network was created.
         :param pulumi.Input[builtins.str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
         :param pulumi.Input[builtins.bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[builtins.str] ip: IPv4 address of the server (IPv4 address).
@@ -219,7 +219,7 @@ class _ServerState:
         :param pulumi.Input[builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
-        :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[builtins.str] updated_at: The date and time the private network was last updated.
         :param pulumi.Input[builtins.str] username: The username of the server
         :param pulumi.Input[builtins.str] vnc_url: URL of the VNC.
         :param pulumi.Input[builtins.str] vpc_status: The current status of the VPC option.
@@ -281,7 +281,7 @@ class _ServerState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -440,7 +440,7 @@ class _ServerState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 
@@ -531,6 +531,25 @@ class Server(pulumi.CustomResource):
             type="M1-M")
         ```
 
+        ### Enable VPC and attach private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc_apple_silicon = scaleway.network.Vpc("vpc-apple-silicon", name="vpc-apple-silicon")
+        pn_apple_silicon = scaleway.network.PrivateNetwork("pn-apple-silicon",
+            name="pn-apple-silicon",
+            vpc_id=vpc_apple_silicon.id)
+        my_server = scaleway.applesilicon.Server("my-server",
+            name="TestAccServerEnableVPC",
+            type="M2-M",
+            enable_vpc=True,
+            private_networks=[{
+                "id": pn_apple_silicon.id,
+            }])
+        ```
+
         ## Import
 
         Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -578,6 +597,25 @@ class Server(pulumi.CustomResource):
         server = scaleway.applesilicon.Server("server",
             name="test-m1",
             type="M1-M")
+        ```
+
+        ### Enable VPC and attach private network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        vpc_apple_silicon = scaleway.network.Vpc("vpc-apple-silicon", name="vpc-apple-silicon")
+        pn_apple_silicon = scaleway.network.PrivateNetwork("pn-apple-silicon",
+            name="pn-apple-silicon",
+            vpc_id=vpc_apple_silicon.id)
+        my_server = scaleway.applesilicon.Server("my-server",
+            name="TestAccServerEnableVPC",
+            type="M2-M",
+            enable_vpc=True,
+            private_networks=[{
+                "id": pn_apple_silicon.id,
+            }])
         ```
 
         ## Import
@@ -685,7 +723,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] commitment: The commitment period of the server
-        :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the Apple Silicon server.
+        :param pulumi.Input[builtins.str] created_at: The date and time the private network was created.
         :param pulumi.Input[builtins.str] deletable_at: The minimal date and time on which you can delete this server due to Apple licence
         :param pulumi.Input[builtins.bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[builtins.str] ip: IPv4 address of the server (IPv4 address).
@@ -701,7 +739,7 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
-        :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the Apple Silicon server.
+        :param pulumi.Input[builtins.str] updated_at: The date and time the private network was last updated.
         :param pulumi.Input[builtins.str] username: The username of the server
         :param pulumi.Input[builtins.str] vnc_url: URL of the VNC.
         :param pulumi.Input[builtins.str] vpc_status: The current status of the VPC option.
@@ -745,7 +783,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[builtins.str]:
         """
-        The date and time of the creation of the Apple Silicon server.
+        The date and time the private network was created.
         """
         return pulumi.get(self, "created_at")
 
@@ -852,7 +890,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[builtins.str]:
         """
-        The date and time of the last update of the Apple Silicon server.
+        The date and time the private network was last updated.
         """
         return pulumi.get(self, "updated_at")
 

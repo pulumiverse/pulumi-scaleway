@@ -16,6 +16,8 @@ else:
 from .. import _utilities
 
 __all__ = [
+    'SnapshotExportArgs',
+    'SnapshotExportArgsDict',
     'SnapshotImportArgs',
     'SnapshotImportArgsDict',
 ]
@@ -23,26 +25,26 @@ __all__ = [
 MYPY = False
 
 if not MYPY:
-    class SnapshotImportArgsDict(TypedDict):
+    class SnapshotExportArgsDict(TypedDict):
         bucket: pulumi.Input[builtins.str]
         """
-        Bucket containing qcow
+        The name of the bucket where the QCOW file will be saved.
         """
         key: pulumi.Input[builtins.str]
         """
-        Key of the qcow file in the specified bucket
+        The desired key (path) for the QCOW file within the bucket.
         """
 elif False:
-    SnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+    SnapshotExportArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
-class SnapshotImportArgs:
+class SnapshotExportArgs:
     def __init__(__self__, *,
                  bucket: pulumi.Input[builtins.str],
                  key: pulumi.Input[builtins.str]):
         """
-        :param pulumi.Input[builtins.str] bucket: Bucket containing qcow
-        :param pulumi.Input[builtins.str] key: Key of the qcow file in the specified bucket
+        :param pulumi.Input[builtins.str] bucket: The name of the bucket where the QCOW file will be saved.
+        :param pulumi.Input[builtins.str] key: The desired key (path) for the QCOW file within the bucket.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -51,7 +53,7 @@ class SnapshotImportArgs:
     @pulumi.getter
     def bucket(self) -> pulumi.Input[builtins.str]:
         """
-        Bucket containing qcow
+        The name of the bucket where the QCOW file will be saved.
         """
         return pulumi.get(self, "bucket")
 
@@ -63,7 +65,57 @@ class SnapshotImportArgs:
     @pulumi.getter
     def key(self) -> pulumi.Input[builtins.str]:
         """
-        Key of the qcow file in the specified bucket
+        The desired key (path) for the QCOW file within the bucket.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "key", value)
+
+
+if not MYPY:
+    class SnapshotImportArgsDict(TypedDict):
+        bucket: pulumi.Input[builtins.str]
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        key: pulumi.Input[builtins.str]
+        """
+        The key of the QCOW file within the bucket.
+        """
+elif False:
+    SnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SnapshotImportArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[builtins.str],
+                 key: pulumi.Input[builtins.str]):
+        """
+        :param pulumi.Input[builtins.str] bucket: The name of the bucket containing the QCOW file.
+        :param pulumi.Input[builtins.str] key: The key of the QCOW file within the bucket.
+        """
+        pulumi.set(__self__, "bucket", bucket)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[builtins.str]:
+        """
+        The name of the bucket containing the QCOW file.
+        """
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "bucket", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[builtins.str]:
+        """
+        The key of the QCOW file within the bucket.
         """
         return pulumi.get(self, "key")
 

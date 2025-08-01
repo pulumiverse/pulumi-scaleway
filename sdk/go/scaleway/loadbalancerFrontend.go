@@ -191,6 +191,10 @@ type LoadbalancerFrontend struct {
 	CertificateIds pulumi.StringArrayOutput `pulumi:"certificateIds"`
 	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
 	ConnectionRateLimit pulumi.IntPtrOutput `pulumi:"connectionRateLimit"`
+	// The date and time the frontend was created.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs pulumi.BoolPtrOutput `pulumi:"enableAccessLogs"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrOutput `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -204,6 +208,8 @@ type LoadbalancerFrontend struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient pulumi.StringPtrOutput `pulumi:"timeoutClient"`
+	// The date and time the frontend resource was updated.
+	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
 
 // NewLoadbalancerFrontend registers a new resource with the given unique name, arguments, and options.
@@ -261,6 +267,10 @@ type loadbalancerFrontendState struct {
 	CertificateIds []string `pulumi:"certificateIds"`
 	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
 	ConnectionRateLimit *int `pulumi:"connectionRateLimit"`
+	// The date and time the frontend was created.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs *bool `pulumi:"enableAccessLogs"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -274,6 +284,8 @@ type loadbalancerFrontendState struct {
 	Name *string `pulumi:"name"`
 	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient *string `pulumi:"timeoutClient"`
+	// The date and time the frontend resource was updated.
+	UpdatedAt *string `pulumi:"updatedAt"`
 }
 
 type LoadbalancerFrontendState struct {
@@ -293,6 +305,10 @@ type LoadbalancerFrontendState struct {
 	CertificateIds pulumi.StringArrayInput
 	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
 	ConnectionRateLimit pulumi.IntPtrInput
+	// The date and time the frontend was created.
+	CreatedAt pulumi.StringPtrInput
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs pulumi.BoolPtrInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
@@ -306,6 +322,8 @@ type LoadbalancerFrontendState struct {
 	Name pulumi.StringPtrInput
 	// Maximum inactivity time on the client side. (e.g. `1s`)
 	TimeoutClient pulumi.StringPtrInput
+	// The date and time the frontend resource was updated.
+	UpdatedAt pulumi.StringPtrInput
 }
 
 func (LoadbalancerFrontendState) ElementType() reflect.Type {
@@ -325,6 +343,8 @@ type loadbalancerFrontendArgs struct {
 	CertificateIds []string `pulumi:"certificateIds"`
 	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
 	ConnectionRateLimit *int `pulumi:"connectionRateLimit"`
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs *bool `pulumi:"enableAccessLogs"`
 	// Activates HTTP/3 protocol.
 	EnableHttp3 *bool `pulumi:"enableHttp3"`
 	// A boolean to specify whether to use lb_acl.
@@ -354,6 +374,8 @@ type LoadbalancerFrontendArgs struct {
 	CertificateIds pulumi.StringArrayInput
 	// The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
 	ConnectionRateLimit pulumi.IntPtrInput
+	// Defines whether to enable access logs on the frontend.
+	EnableAccessLogs pulumi.BoolPtrInput
 	// Activates HTTP/3 protocol.
 	EnableHttp3 pulumi.BoolPtrInput
 	// A boolean to specify whether to use lb_acl.
@@ -487,6 +509,16 @@ func (o LoadbalancerFrontendOutput) ConnectionRateLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.IntPtrOutput { return v.ConnectionRateLimit }).(pulumi.IntPtrOutput)
 }
 
+// The date and time the frontend was created.
+func (o LoadbalancerFrontendOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Defines whether to enable access logs on the frontend.
+func (o LoadbalancerFrontendOutput) EnableAccessLogs() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.BoolPtrOutput { return v.EnableAccessLogs }).(pulumi.BoolPtrOutput)
+}
+
 // Activates HTTP/3 protocol.
 func (o LoadbalancerFrontendOutput) EnableHttp3() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.BoolPtrOutput { return v.EnableHttp3 }).(pulumi.BoolPtrOutput)
@@ -516,6 +548,11 @@ func (o LoadbalancerFrontendOutput) Name() pulumi.StringOutput {
 // Maximum inactivity time on the client side. (e.g. `1s`)
 func (o LoadbalancerFrontendOutput) TimeoutClient() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringPtrOutput { return v.TimeoutClient }).(pulumi.StringPtrOutput)
+}
+
+// The date and time the frontend resource was updated.
+func (o LoadbalancerFrontendOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadbalancerFrontend) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
 type LoadbalancerFrontendArrayOutput struct{ *pulumi.OutputState }

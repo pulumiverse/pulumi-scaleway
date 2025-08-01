@@ -110,13 +110,13 @@ namespace Pulumiverse.Scaleway.Block
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int> SizeInGb { get; private set; } = null!;
 
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot.
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
@@ -209,13 +209,13 @@ namespace Pulumiverse.Scaleway.Block
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
@@ -271,13 +271,13 @@ namespace Pulumiverse.Scaleway.Block
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume in gigabytes. Only one of `size_in_gb`, and `snapshot_id` should be specified.
+        /// The size of the volume in gigabytes.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
 
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb`, `snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }

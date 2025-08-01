@@ -27,7 +27,6 @@ class RecordArgs:
                  type: pulumi.Input[builtins.str],
                  geo_ip: Optional[pulumi.Input['RecordGeoIpArgs']] = None,
                  http_service: Optional[pulumi.Input['RecordHttpServiceArgs']] = None,
-                 keep_empty_zone: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  priority: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -41,7 +40,6 @@ class RecordArgs:
         :param pulumi.Input[builtins.str] type: The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
         :param pulumi.Input['RecordGeoIpArgs'] geo_ip: Return record based on client localisation
         :param pulumi.Input['RecordHttpServiceArgs'] http_service: Return record based on client localisation
-        :param pulumi.Input[builtins.bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[builtins.str] project_id: The project_id you want to attach the resource to
@@ -56,8 +54,6 @@ class RecordArgs:
             pulumi.set(__self__, "geo_ip", geo_ip)
         if http_service is not None:
             pulumi.set(__self__, "http_service", http_service)
-        if keep_empty_zone is not None:
-            pulumi.set(__self__, "keep_empty_zone", keep_empty_zone)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -130,18 +126,6 @@ class RecordArgs:
     @http_service.setter
     def http_service(self, value: Optional[pulumi.Input['RecordHttpServiceArgs']]):
         pulumi.set(self, "http_service", value)
-
-    @property
-    @pulumi.getter(name="keepEmptyZone")
-    def keep_empty_zone(self) -> Optional[pulumi.Input[builtins.bool]]:
-        """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        """
-        return pulumi.get(self, "keep_empty_zone")
-
-    @keep_empty_zone.setter
-    def keep_empty_zone(self, value: Optional[pulumi.Input[builtins.bool]]):
-        pulumi.set(self, "keep_empty_zone", value)
 
     @property
     @pulumi.getter
@@ -224,7 +208,6 @@ class _RecordState:
                  fqdn: Optional[pulumi.Input[builtins.str]] = None,
                  geo_ip: Optional[pulumi.Input['RecordGeoIpArgs']] = None,
                  http_service: Optional[pulumi.Input['RecordHttpServiceArgs']] = None,
-                 keep_empty_zone: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  priority: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -240,7 +223,6 @@ class _RecordState:
         :param pulumi.Input[builtins.str] fqdn: The FQDN of the record.
         :param pulumi.Input['RecordGeoIpArgs'] geo_ip: Return record based on client localisation
         :param pulumi.Input['RecordHttpServiceArgs'] http_service: Return record based on client localisation
-        :param pulumi.Input[builtins.bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[builtins.str] project_id: The project_id you want to attach the resource to
@@ -260,8 +242,6 @@ class _RecordState:
             pulumi.set(__self__, "geo_ip", geo_ip)
         if http_service is not None:
             pulumi.set(__self__, "http_service", http_service)
-        if keep_empty_zone is not None:
-            pulumi.set(__self__, "keep_empty_zone", keep_empty_zone)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -338,18 +318,6 @@ class _RecordState:
     @http_service.setter
     def http_service(self, value: Optional[pulumi.Input['RecordHttpServiceArgs']]):
         pulumi.set(self, "http_service", value)
-
-    @property
-    @pulumi.getter(name="keepEmptyZone")
-    def keep_empty_zone(self) -> Optional[pulumi.Input[builtins.bool]]:
-        """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        """
-        return pulumi.get(self, "keep_empty_zone")
-
-    @keep_empty_zone.setter
-    def keep_empty_zone(self, value: Optional[pulumi.Input[builtins.bool]]):
-        pulumi.set(self, "keep_empty_zone", value)
 
     @property
     @pulumi.getter
@@ -458,7 +426,6 @@ class Record(pulumi.CustomResource):
                  dns_zone: Optional[pulumi.Input[builtins.str]] = None,
                  geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
                  http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-                 keep_empty_zone: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  priority: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -670,7 +637,6 @@ class Record(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] dns_zone: The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
         :param pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
         :param pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']] http_service: Return record based on client localisation
-        :param pulumi.Input[builtins.bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[builtins.str] project_id: The project_id you want to attach the resource to
@@ -901,7 +867,6 @@ class Record(pulumi.CustomResource):
                  dns_zone: Optional[pulumi.Input[builtins.str]] = None,
                  geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
                  http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-                 keep_empty_zone: Optional[pulumi.Input[builtins.bool]] = None,
                  name: Optional[pulumi.Input[builtins.str]] = None,
                  priority: Optional[pulumi.Input[builtins.int]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -926,7 +891,6 @@ class Record(pulumi.CustomResource):
             __props__.__dict__["dns_zone"] = dns_zone
             __props__.__dict__["geo_ip"] = geo_ip
             __props__.__dict__["http_service"] = http_service
-            __props__.__dict__["keep_empty_zone"] = keep_empty_zone
             __props__.__dict__["name"] = name
             __props__.__dict__["priority"] = priority
             __props__.__dict__["project_id"] = project_id
@@ -955,7 +919,6 @@ class Record(pulumi.CustomResource):
             fqdn: Optional[pulumi.Input[builtins.str]] = None,
             geo_ip: Optional[pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']]] = None,
             http_service: Optional[pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']]] = None,
-            keep_empty_zone: Optional[pulumi.Input[builtins.bool]] = None,
             name: Optional[pulumi.Input[builtins.str]] = None,
             priority: Optional[pulumi.Input[builtins.int]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
@@ -976,7 +939,6 @@ class Record(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] fqdn: The FQDN of the record.
         :param pulumi.Input[Union['RecordGeoIpArgs', 'RecordGeoIpArgsDict']] geo_ip: Return record based on client localisation
         :param pulumi.Input[Union['RecordHttpServiceArgs', 'RecordHttpServiceArgsDict']] http_service: Return record based on client localisation
-        :param pulumi.Input[builtins.bool] keep_empty_zone: When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
         :param pulumi.Input[builtins.str] name: The name of the record (can be an empty string for a root record).
         :param pulumi.Input[builtins.int] priority: The priority of the record (mostly used with an `MX` record).
         :param pulumi.Input[builtins.str] project_id: The project_id you want to attach the resource to
@@ -995,7 +957,6 @@ class Record(pulumi.CustomResource):
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["geo_ip"] = geo_ip
         __props__.__dict__["http_service"] = http_service
-        __props__.__dict__["keep_empty_zone"] = keep_empty_zone
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["project_id"] = project_id
@@ -1045,14 +1006,6 @@ class Record(pulumi.CustomResource):
         Return record based on client localisation
         """
         return pulumi.get(self, "http_service")
-
-    @property
-    @pulumi.getter(name="keepEmptyZone")
-    def keep_empty_zone(self) -> pulumi.Output[Optional[builtins.bool]]:
-        """
-        When destroying a resource, if only NS records remain and this is set to `false`, the zone will be deleted. Note that each zone not deleted will [be billed](https://www.scaleway.com/en/dns/).
-        """
-        return pulumi.get(self, "keep_empty_zone")
 
     @property
     @pulumi.getter
