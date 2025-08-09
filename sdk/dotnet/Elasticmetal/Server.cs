@@ -303,6 +303,12 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Output("protected")]
+        public Output<bool?> Protected { get; private set; } = null!;
+
+        /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.
         /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         /// </summary>
@@ -506,6 +512,12 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
 
         /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.
@@ -751,6 +763,12 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// Set to true to activate server protection option.
+        /// </summary>
+        [Input("protected")]
+        public Input<bool>? Protected { get; set; }
 
         /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.

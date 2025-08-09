@@ -7109,11 +7109,15 @@ class RedisClusterPrivateNetwork(dict):
     def __init__(__self__, *,
                  id: builtins.str,
                  endpoint_id: Optional[builtins.str] = None,
+                 ips: Optional[Sequence[builtins.str]] = None,
+                 port: Optional[builtins.int] = None,
                  service_ips: Optional[Sequence[builtins.str]] = None,
                  zone: Optional[builtins.str] = None):
         """
         :param builtins.str id: The UUID of the Private Network resource.
         :param builtins.str endpoint_id: The ID of the endpoint.
+        :param Sequence[builtins.str] ips: List of IPv4 addresses of the endpoint.
+        :param builtins.int port: TCP port of the endpoint.
         :param Sequence[builtins.str] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -7140,6 +7144,10 @@ class RedisClusterPrivateNetwork(dict):
         pulumi.set(__self__, "id", id)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
         if service_ips is not None:
             pulumi.set(__self__, "service_ips", service_ips)
         if zone is not None:
@@ -7160,6 +7168,22 @@ class RedisClusterPrivateNetwork(dict):
         The ID of the endpoint.
         """
         return pulumi.get(self, "endpoint_id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[Sequence[builtins.str]]:
+        """
+        List of IPv4 addresses of the endpoint.
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[builtins.int]:
+        """
+        TCP port of the endpoint.
+        """
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="serviceIps")
@@ -7206,7 +7230,7 @@ class RedisClusterPublicNetwork(dict):
                  port: Optional[builtins.int] = None):
         """
         :param builtins.str id: The ID of the IPv4 address resource.
-        :param Sequence[builtins.str] ips: Lis of IPv4 address of the endpoint (IP address).
+        :param Sequence[builtins.str] ips: List of IPv4 addresses of the endpoint.
         :param builtins.int port: TCP port of the endpoint.
         """
         if id is not None:
@@ -7228,7 +7252,7 @@ class RedisClusterPublicNetwork(dict):
     @pulumi.getter
     def ips(self) -> Optional[Sequence[builtins.str]]:
         """
-        Lis of IPv4 address of the endpoint (IP address).
+        List of IPv4 addresses of the endpoint.
         """
         return pulumi.get(self, "ips")
 
@@ -13228,16 +13252,22 @@ class GetRedisClusterPrivateNetworkResult(dict):
     def __init__(__self__, *,
                  endpoint_id: builtins.str,
                  id: builtins.str,
+                 ips: Sequence[builtins.str],
+                 port: builtins.int,
                  service_ips: Sequence[builtins.str],
                  zone: builtins.str):
         """
         :param builtins.str endpoint_id: The ID of the endpoint.
         :param builtins.str id: The ID of the Redis cluster.
+        :param Sequence[builtins.str] ips: List of IPv4 addresses of the endpoint.
+        :param builtins.int port: TCP port of the endpoint.
         :param Sequence[builtins.str] service_ips: List of IPv4 addresses of the private network with a CIDR notation
         :param builtins.str zone: `region`) The zone in which the server exists.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "ips", ips)
+        pulumi.set(__self__, "port", port)
         pulumi.set(__self__, "service_ips", service_ips)
         pulumi.set(__self__, "zone", zone)
 
@@ -13256,6 +13286,22 @@ class GetRedisClusterPrivateNetworkResult(dict):
         The ID of the Redis cluster.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Sequence[builtins.str]:
+        """
+        List of IPv4 addresses of the endpoint.
+        """
+        return pulumi.get(self, "ips")
+
+    @property
+    @pulumi.getter
+    def port(self) -> builtins.int:
+        """
+        TCP port of the endpoint.
+        """
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="serviceIps")
@@ -13282,7 +13328,8 @@ class GetRedisClusterPublicNetworkResult(dict):
                  port: builtins.int):
         """
         :param builtins.str id: The ID of the Redis cluster.
-        :param builtins.int port: TCP port of the endpoint
+        :param Sequence[builtins.str] ips: List of IPv4 addresses of the endpoint.
+        :param builtins.int port: TCP port of the endpoint.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ips", ips)
@@ -13299,13 +13346,16 @@ class GetRedisClusterPublicNetworkResult(dict):
     @property
     @pulumi.getter
     def ips(self) -> Sequence[builtins.str]:
+        """
+        List of IPv4 addresses of the endpoint.
+        """
         return pulumi.get(self, "ips")
 
     @property
     @pulumi.getter
     def port(self) -> builtins.int:
         """
-        TCP port of the endpoint
+        TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
 

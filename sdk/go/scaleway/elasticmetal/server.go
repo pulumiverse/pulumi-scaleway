@@ -259,6 +259,8 @@ type Server struct {
 	PrivateNetworks ServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrOutput `pulumi:"reinstallOnConfigChanges"`
@@ -372,6 +374,8 @@ type serverState struct {
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
@@ -436,6 +440,8 @@ type ServerState struct {
 	PrivateNetworks ServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
@@ -488,6 +494,8 @@ type serverArgs struct {
 	PrivateNetworks []ServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
@@ -537,6 +545,8 @@ type ServerArgs struct {
 	PrivateNetworks ServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
@@ -745,6 +755,11 @@ func (o ServerOutput) PrivateNetworks() ServerPrivateNetworkArrayOutput {
 // `projectId`) The ID of the project the server is associated with.
 func (o ServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Set to true to activate server protection option.
+func (o ServerOutput) Protected() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.BoolPtrOutput { return v.Protected }).(pulumi.BoolPtrOutput)
 }
 
 // If True, this boolean allows to reinstall the server on install config changes.

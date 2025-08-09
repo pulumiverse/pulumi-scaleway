@@ -18,9 +18,12 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
         /// The ID of the Redis cluster.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// List of IPv4 addresses of the endpoint.
+        /// </summary>
         public readonly ImmutableArray<string> Ips;
         /// <summary>
-        /// TCP port of the endpoint
+        /// TCP port of the endpoint.
         /// </summary>
         public readonly int Port;
 

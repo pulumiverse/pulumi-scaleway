@@ -2043,6 +2043,14 @@ export interface RedisClusterPrivateNetwork {
      */
     id: pulumi.Input<string>;
     /**
+     * List of IPv4 addresses of the endpoint.
+     */
+    ips?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP port of the endpoint.
+     */
+    port?: pulumi.Input<number>;
+    /**
      * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
      * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
      * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -2078,7 +2086,7 @@ export interface RedisClusterPublicNetwork {
      */
     id?: pulumi.Input<string>;
     /**
-     * Lis of IPv4 address of the endpoint (IP address).
+     * List of IPv4 addresses of the endpoint.
      */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -5141,6 +5149,14 @@ export namespace redis {
          */
         id: pulumi.Input<string>;
         /**
+         * List of IPv4 addresses of the endpoint.
+         */
+        ips?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * TCP port of the endpoint.
+         */
+        port?: pulumi.Input<number>;
+        /**
          * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
          * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
          * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -5176,7 +5192,7 @@ export namespace redis {
          */
         id?: pulumi.Input<string>;
         /**
-         * Lis of IPv4 address of the endpoint (IP address).
+         * List of IPv4 addresses of the endpoint.
          */
         ips?: pulumi.Input<pulumi.Input<string>[]>;
         /**
