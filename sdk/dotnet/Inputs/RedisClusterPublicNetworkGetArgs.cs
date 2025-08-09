@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _ips;
 
         /// <summary>
-        /// Lis of IPv4 address of the endpoint (IP address).
+        /// List of IPv4 addresses of the endpoint.
         /// </summary>
         public InputList<string> Ips
         {

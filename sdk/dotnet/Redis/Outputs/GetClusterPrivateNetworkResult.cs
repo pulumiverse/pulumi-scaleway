@@ -23,6 +23,14 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// List of IPv4 addresses of the endpoint.
+        /// </summary>
+        public readonly ImmutableArray<string> Ips;
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
+        public readonly int Port;
+        /// <summary>
         /// List of IPv4 addresses of the private network with a CIDR notation
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
@@ -37,12 +45,18 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
 
             string id,
 
+            ImmutableArray<string> ips,
+
+            int port,
+
             ImmutableArray<string> serviceIps,
 
             string zone)
         {
             EndpointId = endpointId;
             Id = id;
+            Ips = ips;
+            Port = port;
             ServiceIps = serviceIps;
             Zone = zone;
         }

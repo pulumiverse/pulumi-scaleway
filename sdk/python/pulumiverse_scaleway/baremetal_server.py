@@ -34,6 +34,7 @@ class BaremetalServerArgs:
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected: Optional[pulumi.Input[builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[builtins.str]] = None,
                  service_user: Optional[pulumi.Input[builtins.str]] = None,
@@ -61,6 +62,7 @@ class BaremetalServerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[builtins.str] service_password: Password used for the service to install. May be required depending on used os.
@@ -93,6 +95,8 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protected is not None:
+            pulumi.set(__self__, "protected", protected)
         if reinstall_on_config_changes is not None:
             pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
@@ -259,6 +263,18 @@ class BaremetalServerArgs:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter
+    def protected(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Set to true to activate server protection option.
+        """
+        return pulumi.get(self, "protected")
+
+    @protected.setter
+    def protected(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "protected", value)
+
+    @property
     @pulumi.getter(name="reinstallOnConfigChanges")
     def reinstall_on_config_changes(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -367,6 +383,7 @@ class _BaremetalServerState:
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected: Optional[pulumi.Input[builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[builtins.str]] = None,
                  service_user: Optional[pulumi.Input[builtins.str]] = None,
@@ -402,6 +419,7 @@ class _BaremetalServerState:
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[builtins.str] service_password: Password used for the service to install. May be required depending on used os.
@@ -451,6 +469,8 @@ class _BaremetalServerState:
             pulumi.set(__self__, "private_networks", private_networks)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if protected is not None:
+            pulumi.set(__self__, "protected", protected)
         if reinstall_on_config_changes is not None:
             pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
@@ -713,6 +733,18 @@ class _BaremetalServerState:
         pulumi.set(self, "project_id", value)
 
     @property
+    @pulumi.getter
+    def protected(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Set to true to activate server protection option.
+        """
+        return pulumi.get(self, "protected")
+
+    @protected.setter
+    def protected(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "protected", value)
+
+    @property
     @pulumi.getter(name="reinstallOnConfigChanges")
     def reinstall_on_config_changes(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
@@ -821,6 +853,7 @@ class BaremetalServer(pulumi.CustomResource):
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected: Optional[pulumi.Input[builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[builtins.str]] = None,
                  service_user: Optional[pulumi.Input[builtins.str]] = None,
@@ -955,6 +988,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[builtins.str] service_password: Password used for the service to install. May be required depending on used os.
@@ -1103,6 +1137,7 @@ class BaremetalServer(pulumi.CustomResource):
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[builtins.str]] = None,
+                 protected: Optional[pulumi.Input[builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[builtins.str]] = None,
                  service_user: Optional[pulumi.Input[builtins.str]] = None,
@@ -1134,6 +1169,7 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
+            __props__.__dict__["protected"] = protected
             __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
             __props__.__dict__["service_password"] = None if service_password is None else pulumi.Output.secret(service_password)
             __props__.__dict__["service_user"] = service_user
@@ -1181,6 +1217,7 @@ class BaremetalServer(pulumi.CustomResource):
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[builtins.str]] = None,
+            protected: Optional[pulumi.Input[builtins.bool]] = None,
             reinstall_on_config_changes: Optional[pulumi.Input[builtins.bool]] = None,
             service_password: Optional[pulumi.Input[builtins.str]] = None,
             service_user: Optional[pulumi.Input[builtins.str]] = None,
@@ -1221,6 +1258,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
+        :param pulumi.Input[builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         :param pulumi.Input[builtins.str] service_password: Password used for the service to install. May be required depending on used os.
@@ -1254,6 +1292,7 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["protected"] = protected
         __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
         __props__.__dict__["service_password"] = service_password
         __props__.__dict__["service_user"] = service_user
@@ -1428,6 +1467,14 @@ class BaremetalServer(pulumi.CustomResource):
         `project_id`) The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def protected(self) -> pulumi.Output[Optional[builtins.bool]]:
+        """
+        Set to true to activate server protection option.
+        """
+        return pulumi.get(self, "protected")
 
     @property
     @pulumi.getter(name="reinstallOnConfigChanges")
