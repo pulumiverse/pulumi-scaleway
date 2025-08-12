@@ -1946,6 +1946,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "ips": {
+                                    "maxItemsOne": false
+                                },
                                 "service_ips": {
                                     "maxItemsOne": false
                                 }
@@ -3675,6 +3678,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "ips": {
+                                    "maxItemsOne": false
+                                },
                                 "service_ips": {
                                     "maxItemsOne": false
                                 }
