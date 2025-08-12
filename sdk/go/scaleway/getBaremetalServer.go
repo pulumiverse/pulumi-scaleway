@@ -95,6 +95,7 @@ type LookupBaremetalServerResult struct {
 	PrivateIps               []GetBaremetalServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                            `pulumi:"projectId"`
+	Protected                bool                               `pulumi:"protected"`
 	ReinstallOnConfigChanges bool                               `pulumi:"reinstallOnConfigChanges"`
 	ServerId                 *string                            `pulumi:"serverId"`
 	ServicePassword          string                             `pulumi:"servicePassword"`
@@ -227,6 +228,10 @@ func (o LookupBaremetalServerResultOutput) PrivateNetworks() GetBaremetalServerP
 
 func (o LookupBaremetalServerResultOutput) ProjectId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) Protected() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) bool { return v.Protected }).(pulumi.BoolOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) ReinstallOnConfigChanges() pulumi.BoolOutput {

@@ -87,6 +87,7 @@ export interface GetBaremetalServerResult {
     readonly privateIps: outputs.GetBaremetalServerPrivateIp[];
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
     readonly projectId?: string;
+    readonly protected: boolean;
     readonly reinstallOnConfigChanges: boolean;
     readonly serverId?: string;
     readonly servicePassword: string;

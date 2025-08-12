@@ -23,6 +23,14 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
+        /// List of IPv4 addresses of the endpoint.
+        /// </summary>
+        public readonly ImmutableArray<string> Ips;
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
+        public readonly int? Port;
+        /// <summary>
         /// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
         /// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         /// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -57,12 +65,18 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string id,
 
+            ImmutableArray<string> ips,
+
+            int? port,
+
             ImmutableArray<string> serviceIps,
 
             string? zone)
         {
             EndpointId = endpointId;
             Id = id;
+            Ips = ips;
+            Port = port;
             ServiceIps = serviceIps;
             Zone = zone;
         }

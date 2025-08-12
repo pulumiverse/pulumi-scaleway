@@ -87,7 +87,7 @@ export class Vpc extends pulumi.CustomResource {
     /**
      * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
      */
-    public readonly enableCustomRoutesPropagation!: pulumi.Output<boolean | undefined>;
+    public readonly enableCustomRoutesPropagation!: pulumi.Output<boolean>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */

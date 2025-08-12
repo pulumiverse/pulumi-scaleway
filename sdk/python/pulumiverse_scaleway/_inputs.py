@@ -9569,6 +9569,14 @@ if not MYPY:
         """
         The ID of the endpoint.
         """
+        ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
+        """
+        List of IPv4 addresses of the endpoint.
+        """
+        port: NotRequired[pulumi.Input[builtins.int]]
+        """
+        TCP port of the endpoint.
+        """
         service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
         Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
@@ -9605,11 +9613,15 @@ class RedisClusterPrivateNetworkArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[builtins.str],
                  endpoint_id: Optional[pulumi.Input[builtins.str]] = None,
+                 ips: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
+                 port: Optional[pulumi.Input[builtins.int]] = None,
                  service_ips: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]] = None,
                  zone: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] id: The UUID of the Private Network resource.
         :param pulumi.Input[builtins.str] endpoint_id: The ID of the endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ips: List of IPv4 addresses of the endpoint.
+        :param pulumi.Input[builtins.int] port: TCP port of the endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -9636,6 +9648,10 @@ class RedisClusterPrivateNetworkArgs:
         pulumi.set(__self__, "id", id)
         if endpoint_id is not None:
             pulumi.set(__self__, "endpoint_id", endpoint_id)
+        if ips is not None:
+            pulumi.set(__self__, "ips", ips)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
         if service_ips is not None:
             pulumi.set(__self__, "service_ips", service_ips)
         if zone is not None:
@@ -9664,6 +9680,30 @@ class RedisClusterPrivateNetworkArgs:
     @endpoint_id.setter
     def endpoint_id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
+
+    @property
+    @pulumi.getter
+    def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
+        """
+        List of IPv4 addresses of the endpoint.
+        """
+        return pulumi.get(self, "ips")
+
+    @ips.setter
+    def ips(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]):
+        pulumi.set(self, "ips", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        TCP port of the endpoint.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[builtins.int]]):
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter(name="serviceIps")
@@ -9718,7 +9758,7 @@ if not MYPY:
         """
         ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]
         """
-        Lis of IPv4 address of the endpoint (IP address).
+        List of IPv4 addresses of the endpoint.
         """
         port: NotRequired[pulumi.Input[builtins.int]]
         """
@@ -9735,7 +9775,7 @@ class RedisClusterPublicNetworkArgs:
                  port: Optional[pulumi.Input[builtins.int]] = None):
         """
         :param pulumi.Input[builtins.str] id: The ID of the IPv4 address resource.
-        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ips: Lis of IPv4 address of the endpoint (IP address).
+        :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] ips: List of IPv4 addresses of the endpoint.
         :param pulumi.Input[builtins.int] port: TCP port of the endpoint.
         """
         if id is not None:
@@ -9761,7 +9801,7 @@ class RedisClusterPublicNetworkArgs:
     @pulumi.getter
     def ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[builtins.str]]]]:
         """
-        Lis of IPv4 address of the endpoint (IP address).
+        List of IPv4 addresses of the endpoint.
         """
         return pulumi.get(self, "ips")
 

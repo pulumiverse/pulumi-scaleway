@@ -515,7 +515,7 @@ class Vpc(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="enableCustomRoutesPropagation")
-    def enable_custom_routes_propagation(self) -> pulumi.Output[Optional[builtins.bool]]:
+    def enable_custom_routes_propagation(self) -> pulumi.Output[builtins.bool]:
         """
         Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         """

@@ -261,6 +261,8 @@ type BaremetalServer struct {
 	PrivateNetworks BaremetalServerPrivateNetworkArrayOutput `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrOutput `pulumi:"reinstallOnConfigChanges"`
@@ -368,6 +370,8 @@ type baremetalServerState struct {
 	PrivateNetworks []BaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
@@ -432,6 +436,8 @@ type BaremetalServerState struct {
 	PrivateNetworks BaremetalServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
@@ -484,6 +490,8 @@ type baremetalServerArgs struct {
 	PrivateNetworks []BaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId *string `pulumi:"projectId"`
+	// Set to true to activate server protection option.
+	Protected *bool `pulumi:"protected"`
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
@@ -533,6 +541,8 @@ type BaremetalServerArgs struct {
 	PrivateNetworks BaremetalServerPrivateNetworkArrayInput
 	// `projectId`) The ID of the project the server is associated with.
 	ProjectId pulumi.StringPtrInput
+	// Set to true to activate server protection option.
+	Protected pulumi.BoolPtrInput
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
@@ -741,6 +751,11 @@ func (o BaremetalServerOutput) PrivateNetworks() BaremetalServerPrivateNetworkAr
 // `projectId`) The ID of the project the server is associated with.
 func (o BaremetalServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Set to true to activate server protection option.
+func (o BaremetalServerOutput) Protected() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.BoolPtrOutput { return v.Protected }).(pulumi.BoolPtrOutput)
 }
 
 // If True, this boolean allows to reinstall the server on install config changes.

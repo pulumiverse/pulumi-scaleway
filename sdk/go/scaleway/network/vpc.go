@@ -93,7 +93,7 @@ type Vpc struct {
 	// Date and time of VPC's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-	EnableCustomRoutesPropagation pulumi.BoolPtrOutput `pulumi:"enableCustomRoutesPropagation"`
+	EnableCustomRoutesPropagation pulumi.BoolOutput `pulumi:"enableCustomRoutesPropagation"`
 	// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
 	EnableRouting pulumi.BoolOutput `pulumi:"enableRouting"`
 	// Defines whether the VPC is the default one for its Project.
@@ -321,8 +321,8 @@ func (o VpcOutput) CreatedAt() pulumi.StringOutput {
 }
 
 // Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
-func (o VpcOutput) EnableCustomRoutesPropagation() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *Vpc) pulumi.BoolPtrOutput { return v.EnableCustomRoutesPropagation }).(pulumi.BoolPtrOutput)
+func (o VpcOutput) EnableCustomRoutesPropagation() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.BoolOutput { return v.EnableCustomRoutesPropagation }).(pulumi.BoolOutput)
 }
 
 // Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.

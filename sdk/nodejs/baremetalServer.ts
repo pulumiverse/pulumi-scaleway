@@ -239,6 +239,10 @@ export class BaremetalServer extends pulumi.CustomResource {
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
+     * Set to true to activate server protection option.
+     */
+    public readonly protected!: pulumi.Output<boolean | undefined>;
+    /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
      */
@@ -304,6 +308,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["privateIps"] = state ? state.privateIps : undefined;
             resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
             resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["protected"] = state ? state.protected : undefined;
             resourceInputs["reinstallOnConfigChanges"] = state ? state.reinstallOnConfigChanges : undefined;
             resourceInputs["servicePassword"] = state ? state.servicePassword : undefined;
             resourceInputs["serviceUser"] = state ? state.serviceUser : undefined;
@@ -328,6 +333,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             resourceInputs["privateIps"] = args ? args.privateIps : undefined;
             resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
             resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["protected"] = args ? args.protected : undefined;
             resourceInputs["reinstallOnConfigChanges"] = args ? args.reinstallOnConfigChanges : undefined;
             resourceInputs["servicePassword"] = args?.servicePassword ? pulumi.secret(args.servicePassword) : undefined;
             resourceInputs["serviceUser"] = args ? args.serviceUser : undefined;
@@ -442,6 +448,10 @@ export interface BaremetalServerState {
      */
     projectId?: pulumi.Input<string>;
     /**
+     * Set to true to activate server protection option.
+     */
+    protected?: pulumi.Input<boolean>;
+    /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
      */
@@ -530,6 +540,10 @@ export interface BaremetalServerArgs {
      * `projectId`) The ID of the project the server is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * Set to true to activate server protection option.
+     */
+    protected?: pulumi.Input<boolean>;
     /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.

@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Lis of IPv4 address of the endpoint (IP address).
+        /// List of IPv4 addresses of the endpoint.
         /// </summary>
         public readonly ImmutableArray<string> Ips;
         /// <summary>
