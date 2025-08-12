@@ -200,6 +200,7 @@ namespace Pulumiverse.Scaleway
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
+        public readonly bool Protected;
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
         public readonly string ServicePassword;
@@ -253,6 +254,8 @@ namespace Pulumiverse.Scaleway
 
             string? projectId,
 
+            bool @protected,
+
             bool reinstallOnConfigChanges,
 
             string? serverId,
@@ -290,6 +293,7 @@ namespace Pulumiverse.Scaleway
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
+            Protected = @protected;
             ReinstallOnConfigChanges = reinstallOnConfigChanges;
             ServerId = serverId;
             ServicePassword = servicePassword;

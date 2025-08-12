@@ -25,6 +25,24 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        [Input("ips")]
+        private InputList<string>? _ips;
+
+        /// <summary>
+        /// List of IPv4 addresses of the endpoint.
+        /// </summary>
+        public InputList<string> Ips
+        {
+            get => _ips ?? (_ips = new InputList<string>());
+            set => _ips = value;
+        }
+
+        /// <summary>
+        /// TCP port of the endpoint.
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
+
         [Input("serviceIps")]
         private InputList<string>? _serviceIps;
 

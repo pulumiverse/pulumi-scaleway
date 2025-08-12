@@ -248,6 +248,10 @@ type ClusterPrivateNetwork struct {
 	EndpointId *string `pulumi:"endpointId"`
 	// The UUID of the Private Network resource.
 	Id string `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
+	Ips []string `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port *int `pulumi:"port"`
 	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -290,6 +294,10 @@ type ClusterPrivateNetworkArgs struct {
 	EndpointId pulumi.StringPtrInput `pulumi:"endpointId"`
 	// The UUID of the Private Network resource.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port pulumi.IntPtrInput `pulumi:"port"`
 	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -377,6 +385,16 @@ func (o ClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of IPv4 addresses of the endpoint.
+func (o ClusterPrivateNetworkOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ClusterPrivateNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+// TCP port of the endpoint.
+func (o ClusterPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ClusterPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
 // Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
 // Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 // scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -430,7 +448,7 @@ func (o ClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) ClusterPrivat
 type ClusterPublicNetwork struct {
 	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
-	// Lis of IPv4 address of the endpoint (IP address).
+	// List of IPv4 addresses of the endpoint.
 	Ips []string `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port *int `pulumi:"port"`
@@ -450,7 +468,7 @@ type ClusterPublicNetworkInput interface {
 type ClusterPublicNetworkArgs struct {
 	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Lis of IPv4 address of the endpoint (IP address).
+	// List of IPv4 addresses of the endpoint.
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port pulumi.IntPtrInput `pulumi:"port"`
@@ -538,7 +556,7 @@ func (o ClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Lis of IPv4 address of the endpoint (IP address).
+// List of IPv4 addresses of the endpoint.
 func (o ClusterPublicNetworkOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ClusterPublicNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
@@ -582,7 +600,7 @@ func (o ClusterPublicNetworkPtrOutput) Id() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Lis of IPv4 address of the endpoint (IP address).
+// List of IPv4 addresses of the endpoint.
 func (o ClusterPublicNetworkPtrOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ClusterPublicNetwork) []string {
 		if v == nil {
@@ -828,6 +846,10 @@ type GetClusterPrivateNetwork struct {
 	EndpointId string `pulumi:"endpointId"`
 	// The ID of the Redis cluster.
 	Id string `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
+	Ips []string `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port int `pulumi:"port"`
 	// List of IPv4 addresses of the private network with a CIDR notation
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
@@ -850,6 +872,10 @@ type GetClusterPrivateNetworkArgs struct {
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// The ID of the Redis cluster.
 	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
+	Ips pulumi.StringArrayInput `pulumi:"ips"`
+	// TCP port of the endpoint.
+	Port pulumi.IntInput `pulumi:"port"`
 	// List of IPv4 addresses of the private network with a CIDR notation
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
@@ -917,6 +943,16 @@ func (o GetClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of IPv4 addresses of the endpoint.
+func (o GetClusterPrivateNetworkOutput) Ips() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetClusterPrivateNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
+}
+
+// TCP port of the endpoint.
+func (o GetClusterPrivateNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetClusterPrivateNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
 // List of IPv4 addresses of the private network with a CIDR notation
 func (o GetClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
@@ -949,9 +985,10 @@ func (o GetClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetCluster
 
 type GetClusterPublicNetwork struct {
 	// The ID of the Redis cluster.
-	Id  string   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
 	Ips []string `pulumi:"ips"`
-	// TCP port of the endpoint
+	// TCP port of the endpoint.
 	Port int `pulumi:"port"`
 }
 
@@ -968,9 +1005,10 @@ type GetClusterPublicNetworkInput interface {
 
 type GetClusterPublicNetworkArgs struct {
 	// The ID of the Redis cluster.
-	Id  pulumi.StringInput      `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// List of IPv4 addresses of the endpoint.
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
-	// TCP port of the endpoint
+	// TCP port of the endpoint.
 	Port pulumi.IntInput `pulumi:"port"`
 }
 
@@ -1030,11 +1068,12 @@ func (o GetClusterPublicNetworkOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterPublicNetwork) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// List of IPv4 addresses of the endpoint.
 func (o GetClusterPublicNetworkOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClusterPublicNetwork) []string { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-// TCP port of the endpoint
+// TCP port of the endpoint.
 func (o GetClusterPublicNetworkOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterPublicNetwork) int { return v.Port }).(pulumi.IntOutput)
 }

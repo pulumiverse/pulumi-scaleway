@@ -87,7 +87,7 @@ namespace Pulumiverse.Scaleway.Network
         /// Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
         /// </summary>
         [Output("enableCustomRoutesPropagation")]
-        public Output<bool?> EnableCustomRoutesPropagation { get; private set; } = null!;
+        public Output<bool> EnableCustomRoutesPropagation { get; private set; } = null!;
 
         /// <summary>
         /// Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.

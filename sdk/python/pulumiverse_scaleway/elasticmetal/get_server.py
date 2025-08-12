@@ -28,7 +28,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, protected=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -92,6 +92,9 @@ class GetServerResult:
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
+        if protected and not isinstance(protected, bool):
+            raise TypeError("Expected argument 'protected' to be a bool")
+        pulumi.set(__self__, "protected", protected)
         if reinstall_on_config_changes and not isinstance(reinstall_on_config_changes, bool):
             raise TypeError("Expected argument 'reinstall_on_config_changes' to be a bool")
         pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
@@ -226,6 +229,11 @@ class GetServerResult:
         return pulumi.get(self, "project_id")
 
     @property
+    @pulumi.getter
+    def protected(self) -> builtins.bool:
+        return pulumi.get(self, "protected")
+
+    @property
     @pulumi.getter(name="reinstallOnConfigChanges")
     def reinstall_on_config_changes(self) -> builtins.bool:
         return pulumi.get(self, "reinstall_on_config_changes")
@@ -293,6 +301,7 @@ class AwaitableGetServerResult(GetServerResult):
             private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
+            protected=self.protected,
             reinstall_on_config_changes=self.reinstall_on_config_changes,
             server_id=self.server_id,
             service_password=self.service_password,
@@ -360,6 +369,7 @@ def get_server(name: Optional[builtins.str] = None,
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
+        protected=pulumi.get(__ret__, 'protected'),
         reinstall_on_config_changes=pulumi.get(__ret__, 'reinstall_on_config_changes'),
         server_id=pulumi.get(__ret__, 'server_id'),
         service_password=pulumi.get(__ret__, 'service_password'),
@@ -424,6 +434,7 @@ def get_server_output(name: Optional[pulumi.Input[Optional[builtins.str]]] = Non
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
+        protected=pulumi.get(__response__, 'protected'),
         reinstall_on_config_changes=pulumi.get(__response__, 'reinstall_on_config_changes'),
         server_id=pulumi.get(__response__, 'server_id'),
         service_password=pulumi.get(__response__, 'service_password'),

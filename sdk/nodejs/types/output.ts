@@ -2664,6 +2664,14 @@ export interface GetRedisClusterPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPv4 addresses of the endpoint.
+     */
+    ips: string[];
+    /**
+     * TCP port of the endpoint.
+     */
+    port: number;
+    /**
      * List of IPv4 addresses of the private network with a CIDR notation
      */
     serviceIps: string[];
@@ -2678,9 +2686,12 @@ export interface GetRedisClusterPublicNetwork {
      * The ID of the Redis cluster.
      */
     id: string;
+    /**
+     * List of IPv4 addresses of the endpoint.
+     */
     ips: string[];
     /**
-     * TCP port of the endpoint
+     * TCP port of the endpoint.
      */
     port: number;
 }
@@ -4328,6 +4339,14 @@ export interface RedisClusterPrivateNetwork {
      */
     id: string;
     /**
+     * List of IPv4 addresses of the endpoint.
+     */
+    ips: string[];
+    /**
+     * TCP port of the endpoint.
+     */
+    port: number;
+    /**
      * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
      * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
      * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -4363,7 +4382,7 @@ export interface RedisClusterPublicNetwork {
      */
     id: string;
     /**
-     * Lis of IPv4 address of the endpoint (IP address).
+     * List of IPv4 addresses of the endpoint.
      */
     ips: string[];
     /**
@@ -9660,6 +9679,14 @@ export namespace redis {
          */
         id: string;
         /**
+         * List of IPv4 addresses of the endpoint.
+         */
+        ips: string[];
+        /**
+         * TCP port of the endpoint.
+         */
+        port: number;
+        /**
          * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
          * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
          * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
@@ -9695,7 +9722,7 @@ export namespace redis {
          */
         id: string;
         /**
-         * Lis of IPv4 address of the endpoint (IP address).
+         * List of IPv4 addresses of the endpoint.
          */
         ips: string[];
         /**
@@ -9740,6 +9767,14 @@ export namespace redis {
          */
         id: string;
         /**
+         * List of IPv4 addresses of the endpoint.
+         */
+        ips: string[];
+        /**
+         * TCP port of the endpoint.
+         */
+        port: number;
+        /**
          * List of IPv4 addresses of the private network with a CIDR notation
          */
         serviceIps: string[];
@@ -9754,9 +9789,12 @@ export namespace redis {
          * The ID of the Redis cluster.
          */
         id: string;
+        /**
+         * List of IPv4 addresses of the endpoint.
+         */
         ips: string[];
         /**
-         * TCP port of the endpoint
+         * TCP port of the endpoint.
          */
         port: number;
     }
