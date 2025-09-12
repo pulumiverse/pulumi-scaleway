@@ -32,7 +32,7 @@ class NamespaceArgs:
         The set of arguments for constructing a Namespace resource.
         :param pulumi.Input[builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
-               > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[builtins.str] name: The unique name of the Functions namespace.
@@ -43,6 +43,9 @@ class NamespaceArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: The list of tags associated with the namespace.
         """
+        if activate_vpc_integration is not None:
+            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
+            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
         if activate_vpc_integration is not None:
             pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
@@ -62,11 +65,12 @@ class NamespaceArgs:
 
     @property
     @pulumi.getter(name="activateVpcIntegration")
+    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
     def activate_vpc_integration(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
         Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 
-        > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         """
         return pulumi.get(self, "activate_vpc_integration")
 
@@ -179,7 +183,7 @@ class _NamespaceState:
         Input properties used for looking up and filtering Namespace resources.
         :param pulumi.Input[builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
-               > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[builtins.str] name: The unique name of the Functions namespace.
@@ -193,6 +197,9 @@ class _NamespaceState:
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] secret_environment_variables: The secret environment variables of the namespace.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: The list of tags associated with the namespace.
         """
+        if activate_vpc_integration is not None:
+            warnings.warn("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""", DeprecationWarning)
+            pulumi.log.warn("""activate_vpc_integration is deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
         if activate_vpc_integration is not None:
             pulumi.set(__self__, "activate_vpc_integration", activate_vpc_integration)
         if description is not None:
@@ -218,11 +225,12 @@ class _NamespaceState:
 
     @property
     @pulumi.getter(name="activateVpcIntegration")
+    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
     def activate_vpc_integration(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
         Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 
-        > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         """
         return pulumi.get(self, "activate_vpc_integration")
 
@@ -403,7 +411,7 @@ class Namespace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
-               > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[builtins.str] name: The unique name of the Functions namespace.
@@ -528,7 +536,7 @@ class Namespace(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.bool] activate_vpc_integration: Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
                
-               > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+               > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         :param pulumi.Input[builtins.str] description: The description of the namespace.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] environment_variables: The environment variables of the namespace.
         :param pulumi.Input[builtins.str] name: The unique name of the Functions namespace.
@@ -561,11 +569,12 @@ class Namespace(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="activateVpcIntegration")
+    @_utilities.deprecated("""VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be \"true\".""")
     def activate_vpc_integration(self) -> pulumi.Output[Optional[builtins.bool]]:
         """
         Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 
-        > **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         """
         return pulumi.get(self, "activate_vpc_integration")
 

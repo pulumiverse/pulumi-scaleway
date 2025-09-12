@@ -21,13 +21,13 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// – The period between key rotations (e.g., `"720h"` for 30 days).
         /// </summary>
-        public readonly string? RotationPeriod;
+        public readonly string RotationPeriod;
 
         [OutputConstructor]
         private KeyManagerKeyRotationPolicy(
             string? nextRotationAt,
 
-            string? rotationPeriod)
+            string rotationPeriod)
         {
             NextRotationAt = nextRotationAt;
             RotationPeriod = rotationPeriod;

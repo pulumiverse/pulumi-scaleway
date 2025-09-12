@@ -1073,11 +1073,31 @@ if not MYPY:
     class ServerPublicIpArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[builtins.str]]
         """
-        The address of the IP
+        The address of the IP.
+        """
+        dynamic: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the IP is dynamic.
+        """
+        family: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The IP address' family.
+        """
+        gateway: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The IP of the Gateway associated with the IP.
         """
         id: NotRequired[pulumi.Input[builtins.str]]
         """
-        The ID of the IP
+        The ID of the IP.
+        """
+        netmask: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The CIDR netmask of the IP.
+        """
+        provisioning_mode: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The provisioning mode of the IP
         """
 elif False:
     ServerPublicIpArgsDict: TypeAlias = Mapping[str, Any]
@@ -1086,21 +1106,41 @@ elif False:
 class ServerPublicIpArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[builtins.str]] = None,
-                 id: Optional[pulumi.Input[builtins.str]] = None):
+                 dynamic: Optional[pulumi.Input[builtins.bool]] = None,
+                 family: Optional[pulumi.Input[builtins.str]] = None,
+                 gateway: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 netmask: Optional[pulumi.Input[builtins.str]] = None,
+                 provisioning_mode: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] address: The address of the IP
-        :param pulumi.Input[builtins.str] id: The ID of the IP
+        :param pulumi.Input[builtins.str] address: The address of the IP.
+        :param pulumi.Input[builtins.bool] dynamic: Whether the IP is dynamic.
+        :param pulumi.Input[builtins.str] family: The IP address' family.
+        :param pulumi.Input[builtins.str] gateway: The IP of the Gateway associated with the IP.
+        :param pulumi.Input[builtins.str] id: The ID of the IP.
+        :param pulumi.Input[builtins.str] netmask: The CIDR netmask of the IP.
+        :param pulumi.Input[builtins.str] provisioning_mode: The provisioning mode of the IP
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if dynamic is not None:
+            pulumi.set(__self__, "dynamic", dynamic)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if gateway is not None:
+            pulumi.set(__self__, "gateway", gateway)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if netmask is not None:
+            pulumi.set(__self__, "netmask", netmask)
+        if provisioning_mode is not None:
+            pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The address of the IP
+        The address of the IP.
         """
         return pulumi.get(self, "address")
 
@@ -1110,15 +1150,75 @@ class ServerPublicIpArgs:
 
     @property
     @pulumi.getter
+    def dynamic(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @dynamic.setter
+    def dynamic(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "dynamic", value)
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The IP address' family.
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "family", value)
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The IP of the Gateway associated with the IP.
+        """
+        return pulumi.get(self, "gateway")
+
+    @gateway.setter
+    def gateway(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter
     def id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The ID of the IP
+        The ID of the IP.
         """
         return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The CIDR netmask of the IP.
+        """
+        return pulumi.get(self, "netmask")
+
+    @netmask.setter
+    def netmask(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "netmask", value)
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The provisioning mode of the IP
+        """
+        return pulumi.get(self, "provisioning_mode")
+
+    @provisioning_mode.setter
+    def provisioning_mode(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "provisioning_mode", value)
 
 
 if not MYPY:
@@ -1297,8 +1397,6 @@ if not MYPY:
         key: pulumi.Input[builtins.str]
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
 elif False:
     SnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
@@ -1311,8 +1409,6 @@ class SnapshotImportArgs:
         """
         :param pulumi.Input[builtins.str] bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
         :param pulumi.Input[builtins.str] key: Key of the object to import
-               
-               > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -1334,8 +1430,6 @@ class SnapshotImportArgs:
     def key(self) -> pulumi.Input[builtins.str]:
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         return pulumi.get(self, "key")
 

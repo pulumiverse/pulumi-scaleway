@@ -1916,6 +1916,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "mongodb/user",
+  "fqn": "pulumiverse_scaleway.mongodb",
+  "classes": {
+   "scaleway:mongodb/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "network/acl",
   "fqn": "pulumiverse_scaleway.network",
   "classes": {

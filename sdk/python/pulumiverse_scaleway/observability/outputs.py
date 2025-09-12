@@ -22,6 +22,7 @@ __all__ = [
     'TokenScopes',
     'GetInstanceEndpointResult',
     'GetInstancePushUrlResult',
+    'GetSourcesSourceResult',
 ]
 
 @pulumi.output_type
@@ -422,5 +423,144 @@ class GetInstancePushUrlResult(dict):
         Push URL for metrics (Grafana Mimir)
         """
         return pulumi.get(self, "push_metrics_url")
+
+
+@pulumi.output_type
+class GetSourcesSourceResult(dict):
+    def __init__(__self__, *,
+                 created_at: builtins.str,
+                 id: builtins.str,
+                 name: builtins.str,
+                 origin: builtins.str,
+                 project_id: builtins.str,
+                 push_url: builtins.str,
+                 region: builtins.str,
+                 retention_days: builtins.int,
+                 synchronized_with_grafana: builtins.bool,
+                 type: builtins.str,
+                 updated_at: builtins.str,
+                 url: builtins.str):
+        """
+        :param builtins.str created_at: The date and time of the creation of the cockpit datasource.
+        :param builtins.str id: The ID of the data source.
+        :param builtins.str name: Filter sources by name.
+        :param builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        :param builtins.str project_id: The project ID the cockpit sources are associated with.
+        :param builtins.str push_url: The URL endpoint used for pushing data to the cockpit data source.
+        :param builtins.str region: The region in which the cockpit sources are located.
+        :param builtins.int retention_days: The number of days to retain data.
+        :param builtins.bool synchronized_with_grafana: Indicates whether the data source is synchronized with Grafana.
+        :param builtins.str type: Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+        :param builtins.str updated_at: The date and time of the last update of the cockpit datasource.
+        :param builtins.str url: The URL of the datasource.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "origin", origin)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "push_url", push_url)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "retention_days", retention_days)
+        pulumi.set(__self__, "synchronized_with_grafana", synchronized_with_grafana)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> builtins.str:
+        """
+        The date and time of the creation of the cockpit datasource.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        """
+        The ID of the data source.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> builtins.str:
+        """
+        Filter sources by name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def origin(self) -> builtins.str:
+        """
+        Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        """
+        return pulumi.get(self, "origin")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> builtins.str:
+        """
+        The project ID the cockpit sources are associated with.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter(name="pushUrl")
+    def push_url(self) -> builtins.str:
+        """
+        The URL endpoint used for pushing data to the cockpit data source.
+        """
+        return pulumi.get(self, "push_url")
+
+    @property
+    @pulumi.getter
+    def region(self) -> builtins.str:
+        """
+        The region in which the cockpit sources are located.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="retentionDays")
+    def retention_days(self) -> builtins.int:
+        """
+        The number of days to retain data.
+        """
+        return pulumi.get(self, "retention_days")
+
+    @property
+    @pulumi.getter(name="synchronizedWithGrafana")
+    def synchronized_with_grafana(self) -> builtins.bool:
+        """
+        Indicates whether the data source is synchronized with Grafana.
+        """
+        return pulumi.get(self, "synchronized_with_grafana")
+
+    @property
+    @pulumi.getter
+    def type(self) -> builtins.str:
+        """
+        Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> builtins.str:
+        """
+        The date and time of the last update of the cockpit datasource.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def url(self) -> builtins.str:
+        """
+        The URL of the datasource.
+        """
+        return pulumi.get(self, "url")
 
 

@@ -40,8 +40,16 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var dbPassword = new Random.RandomPassword("db_password", new()
     ///     {
-    ///         Length = 16,
+    ///         Length = 20,
     ///         Special = true,
+    ///         Upper = true,
+    ///         Lower = true,
+    ///         Numeric = true,
+    ///         MinUpper = 1,
+    ///         MinLower = 1,
+    ///         MinNumeric = 1,
+    ///         MinSpecial = 1,
+    ///         OverrideSpecial = "!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?",
     ///     });
     /// 
     ///     var dbAdmin = new Scaleway.Databases.User("db_admin", new()
@@ -92,7 +100,15 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// database user password.
+        /// database user password. The password must meet the following requirements based on ISO27001 standards:
+        /// - **Length**: 8-128 characters
+        /// - **Character types required**:
+        /// - At least 1 lowercase letter (a-z)
+        /// - At least 1 uppercase letter (A-Z)
+        /// - At least 1 digit (0-9)
+        /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
+        /// 
+        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -180,7 +196,15 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// database user password.
+        /// database user password. The password must meet the following requirements based on ISO27001 standards:
+        /// - **Length**: 8-128 characters
+        /// - **Character types required**:
+        /// - At least 1 lowercase letter (a-z)
+        /// - At least 1 uppercase letter (A-Z)
+        /// - At least 1 digit (0-9)
+        /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
+        /// 
+        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
         /// </summary>
         public Input<string>? Password
         {
@@ -232,7 +256,15 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// database user password.
+        /// database user password. The password must meet the following requirements based on ISO27001 standards:
+        /// - **Length**: 8-128 characters
+        /// - **Character types required**:
+        /// - At least 1 lowercase letter (a-z)
+        /// - At least 1 uppercase letter (A-Z)
+        /// - At least 1 digit (0-9)
+        /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
+        /// 
+        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
         /// </summary>
         public Input<string>? Password
         {

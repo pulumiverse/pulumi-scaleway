@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetWebhostingOptionResult
     {
+        /// <summary>
+        /// ID of the active option
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Name of the option
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

@@ -18,6 +18,7 @@ from .. import _utilities
 __all__ = [
     'SnsCredentialsPermissions',
     'SqsCredentialsPermissions',
+    'SqsQueueDeadLetterQueue',
 ]
 
 @pulumi.output_type
@@ -146,5 +147,51 @@ class SqsCredentialsPermissions(dict):
         . Defines whether the user can receive messages from the service.
         """
         return pulumi.get(self, "can_receive")
+
+
+@pulumi.output_type
+class SqsQueueDeadLetterQueue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxReceiveCount":
+            suggest = "max_receive_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SqsQueueDeadLetterQueue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SqsQueueDeadLetterQueue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SqsQueueDeadLetterQueue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: builtins.str,
+                 max_receive_count: builtins.int):
+        """
+        :param builtins.str id: The ID of the queue with format `{region/{project-id}/{queue-name}`
+        :param builtins.int max_receive_count: The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> builtins.int:
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        return pulumi.get(self, "max_receive_count")
 
 

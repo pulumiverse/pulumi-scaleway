@@ -22,8 +22,8 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// – The period between key rotations (e.g., `"720h"` for 30 days).
         /// </summary>
-        [Input("rotationPeriod")]
-        public Input<string>? RotationPeriod { get; set; }
+        [Input("rotationPeriod", required: true)]
+        public Input<string> RotationPeriod { get; set; } = null!;
 
         public KeyManagerKeyRotationPolicyGetArgs()
         {

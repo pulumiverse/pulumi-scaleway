@@ -14,6 +14,7 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type BucketAclAccessControlPolicy struct {
+	// Grant
 	Grants []BucketAclAccessControlPolicyGrant `pulumi:"grants"`
 	// Configuration block of the bucket project owner's display organization ID.
 	Owner BucketAclAccessControlPolicyOwner `pulumi:"owner"`
@@ -31,6 +32,7 @@ type BucketAclAccessControlPolicyInput interface {
 }
 
 type BucketAclAccessControlPolicyArgs struct {
+	// Grant
 	Grants BucketAclAccessControlPolicyGrantArrayInput `pulumi:"grants"`
 	// Configuration block of the bucket project owner's display organization ID.
 	Owner BucketAclAccessControlPolicyOwnerInput `pulumi:"owner"`
@@ -113,6 +115,7 @@ func (o BucketAclAccessControlPolicyOutput) ToBucketAclAccessControlPolicyPtrOut
 	}).(BucketAclAccessControlPolicyPtrOutput)
 }
 
+// Grant
 func (o BucketAclAccessControlPolicyOutput) Grants() BucketAclAccessControlPolicyGrantArrayOutput {
 	return o.ApplyT(func(v BucketAclAccessControlPolicy) []BucketAclAccessControlPolicyGrant { return v.Grants }).(BucketAclAccessControlPolicyGrantArrayOutput)
 }
@@ -146,6 +149,7 @@ func (o BucketAclAccessControlPolicyPtrOutput) Elem() BucketAclAccessControlPoli
 	}).(BucketAclAccessControlPolicyOutput)
 }
 
+// Grant
 func (o BucketAclAccessControlPolicyPtrOutput) Grants() BucketAclAccessControlPolicyGrantArrayOutput {
 	return o.ApplyT(func(v *BucketAclAccessControlPolicy) []BucketAclAccessControlPolicyGrant {
 		if v == nil {
@@ -272,6 +276,7 @@ func (o BucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntInput) B
 }
 
 type BucketAclAccessControlPolicyGrantGrantee struct {
+	// Display name of the grantee to grant access to.
 	DisplayName *string `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id *string `pulumi:"id"`
@@ -293,6 +298,7 @@ type BucketAclAccessControlPolicyGrantGranteeInput interface {
 }
 
 type BucketAclAccessControlPolicyGrantGranteeArgs struct {
+	// Display name of the grantee to grant access to.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -379,6 +385,7 @@ func (o BucketAclAccessControlPolicyGrantGranteeOutput) ToBucketAclAccessControl
 	}).(BucketAclAccessControlPolicyGrantGranteePtrOutput)
 }
 
+// Display name of the grantee to grant access to.
 func (o BucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BucketAclAccessControlPolicyGrantGrantee) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
@@ -422,6 +429,7 @@ func (o BucketAclAccessControlPolicyGrantGranteePtrOutput) Elem() BucketAclAcces
 	}).(BucketAclAccessControlPolicyGrantGranteeOutput)
 }
 
+// Display name of the grantee to grant access to.
 func (o BucketAclAccessControlPolicyGrantGranteePtrOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
@@ -1902,11 +1910,16 @@ func (o BucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.String
 }
 
 type GetBucketCorsRule struct {
+	// Allowed headers in the CORS rule
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
+	// Allowed HTTP methods allowed in the CORS rule
 	AllowedMethods []string `pulumi:"allowedMethods"`
+	// Allowed origins allowed in the CORS rule
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
-	ExposeHeaders  []string `pulumi:"exposeHeaders"`
-	MaxAgeSeconds  int      `pulumi:"maxAgeSeconds"`
+	// Exposed headers in the CORS rule
+	ExposeHeaders []string `pulumi:"exposeHeaders"`
+	// Max age of the CORS rule
+	MaxAgeSeconds int `pulumi:"maxAgeSeconds"`
 }
 
 // GetBucketCorsRuleInput is an input type that accepts GetBucketCorsRuleArgs and GetBucketCorsRuleOutput values.
@@ -1921,11 +1934,16 @@ type GetBucketCorsRuleInput interface {
 }
 
 type GetBucketCorsRuleArgs struct {
+	// Allowed headers in the CORS rule
 	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
+	// Allowed HTTP methods allowed in the CORS rule
 	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
+	// Allowed origins allowed in the CORS rule
 	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
-	ExposeHeaders  pulumi.StringArrayInput `pulumi:"exposeHeaders"`
-	MaxAgeSeconds  pulumi.IntInput         `pulumi:"maxAgeSeconds"`
+	// Exposed headers in the CORS rule
+	ExposeHeaders pulumi.StringArrayInput `pulumi:"exposeHeaders"`
+	// Max age of the CORS rule
+	MaxAgeSeconds pulumi.IntInput `pulumi:"maxAgeSeconds"`
 }
 
 func (GetBucketCorsRuleArgs) ElementType() reflect.Type {
@@ -1979,22 +1997,27 @@ func (o GetBucketCorsRuleOutput) ToGetBucketCorsRuleOutputWithContext(ctx contex
 	return o
 }
 
+// Allowed headers in the CORS rule
 func (o GetBucketCorsRuleOutput) AllowedHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetBucketCorsRule) []string { return v.AllowedHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Allowed HTTP methods allowed in the CORS rule
 func (o GetBucketCorsRuleOutput) AllowedMethods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetBucketCorsRule) []string { return v.AllowedMethods }).(pulumi.StringArrayOutput)
 }
 
+// Allowed origins allowed in the CORS rule
 func (o GetBucketCorsRuleOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetBucketCorsRule) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
 }
 
+// Exposed headers in the CORS rule
 func (o GetBucketCorsRuleOutput) ExposeHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetBucketCorsRule) []string { return v.ExposeHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Max age of the CORS rule
 func (o GetBucketCorsRuleOutput) MaxAgeSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetBucketCorsRule) int { return v.MaxAgeSeconds }).(pulumi.IntOutput)
 }

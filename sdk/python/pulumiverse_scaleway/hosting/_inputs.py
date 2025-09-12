@@ -83,7 +83,13 @@ class HostingCpanelUrlArgs:
 if not MYPY:
     class HostingNameServerArgsDict(TypedDict):
         hostname: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Hostname of the server
+        """
         is_default: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether or not the webhosting is the default one
+        """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
         The hosting status.
@@ -98,6 +104,8 @@ class HostingNameServerArgs:
                  is_default: Optional[pulumi.Input[builtins.bool]] = None,
                  status: Optional[pulumi.Input[builtins.str]] = None):
         """
+        :param pulumi.Input[builtins.str] hostname: Hostname of the server
+        :param pulumi.Input[builtins.bool] is_default: Whether or not the webhosting is the default one
         :param pulumi.Input[builtins.str] status: The hosting status.
         """
         if hostname is not None:
@@ -110,6 +118,9 @@ class HostingNameServerArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -119,6 +130,9 @@ class HostingNameServerArgs:
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @is_default.setter
@@ -197,13 +211,25 @@ if not MYPY:
         The option name.
         """
         priority: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
         The hosting status.
         """
         ttl: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Time to live in seconds of the record
+        """
         type: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Type of the DNS record
+        """
         value: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Value of the DNS record
+        """
 elif False:
     HostingRecordArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -218,7 +244,11 @@ class HostingRecordArgs:
                  value: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] name: The option name.
+        :param pulumi.Input[builtins.int] priority: Priority of DNS records associated with the webhosting.
         :param pulumi.Input[builtins.str] status: The hosting status.
+        :param pulumi.Input[builtins.int] ttl: Time to live in seconds of the record
+        :param pulumi.Input[builtins.str] type: Type of the DNS record
+        :param pulumi.Input[builtins.str] value: Value of the DNS record
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -248,6 +278,9 @@ class HostingRecordArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -269,6 +302,9 @@ class HostingRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -278,6 +314,9 @@ class HostingRecordArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -287,6 +326,9 @@ class HostingRecordArgs:
     @property
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
     @value.setter

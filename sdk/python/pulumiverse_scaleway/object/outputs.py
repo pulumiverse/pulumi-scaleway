@@ -44,6 +44,7 @@ class BucketAclAccessControlPolicy(dict):
                  grants: Optional[Sequence['outputs.BucketAclAccessControlPolicyGrant']] = None):
         """
         :param 'BucketAclAccessControlPolicyOwnerArgs' owner: Configuration block of the bucket project owner's display organization ID.
+        :param Sequence['BucketAclAccessControlPolicyGrantArgs'] grants: Grant
         """
         pulumi.set(__self__, "owner", owner)
         if grants is not None:
@@ -60,6 +61,9 @@ class BucketAclAccessControlPolicy(dict):
     @property
     @pulumi.getter
     def grants(self) -> Optional[Sequence['outputs.BucketAclAccessControlPolicyGrant']]:
+        """
+        Grant
+        """
         return pulumi.get(self, "grants")
 
 
@@ -118,6 +122,7 @@ class BucketAclAccessControlPolicyGrantGrantee(dict):
                  type: Optional[builtins.str] = None,
                  uri: Optional[builtins.str] = None):
         """
+        :param builtins.str display_name: Display name of the grantee to grant access to.
         :param builtins.str id: The `region`, `bucket` and `acl` separated by (`/`).
         :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`, `Group`
         :param builtins.str uri: The uri of the grantee if you are granting permissions to a predefined group.
@@ -134,6 +139,9 @@ class BucketAclAccessControlPolicyGrantGrantee(dict):
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[builtins.str]:
+        """
+        Display name of the grantee to grant access to.
+        """
         return pulumi.get(self, "display_name")
 
     @property
@@ -634,6 +642,13 @@ class GetBucketCorsRuleResult(dict):
                  allowed_origins: Sequence[builtins.str],
                  expose_headers: Sequence[builtins.str],
                  max_age_seconds: builtins.int):
+        """
+        :param Sequence[builtins.str] allowed_headers: Allowed headers in the CORS rule
+        :param Sequence[builtins.str] allowed_methods: Allowed HTTP methods allowed in the CORS rule
+        :param Sequence[builtins.str] allowed_origins: Allowed origins allowed in the CORS rule
+        :param Sequence[builtins.str] expose_headers: Exposed headers in the CORS rule
+        :param builtins.int max_age_seconds: Max age of the CORS rule
+        """
         pulumi.set(__self__, "allowed_headers", allowed_headers)
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -643,26 +658,41 @@ class GetBucketCorsRuleResult(dict):
     @property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> Sequence[builtins.str]:
+        """
+        Allowed headers in the CORS rule
+        """
         return pulumi.get(self, "allowed_headers")
 
     @property
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> Sequence[builtins.str]:
+        """
+        Allowed HTTP methods allowed in the CORS rule
+        """
         return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="allowedOrigins")
     def allowed_origins(self) -> Sequence[builtins.str]:
+        """
+        Allowed origins allowed in the CORS rule
+        """
         return pulumi.get(self, "allowed_origins")
 
     @property
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Sequence[builtins.str]:
+        """
+        Exposed headers in the CORS rule
+        """
         return pulumi.get(self, "expose_headers")
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> builtins.int:
+        """
+        Max age of the CORS rule
+        """
         return pulumi.get(self, "max_age_seconds")
 
 

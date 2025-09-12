@@ -14,16 +14,46 @@ namespace Pulumiverse.Scaleway.Instance.Inputs
     public sealed class ServerPublicIpGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The address of the IP
+        /// The address of the IP.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The ID of the IP
+        /// Whether the IP is dynamic.
+        /// </summary>
+        [Input("dynamic")]
+        public Input<bool>? Dynamic { get; set; }
+
+        /// <summary>
+        /// The IP address' family.
+        /// </summary>
+        [Input("family")]
+        public Input<string>? Family { get; set; }
+
+        /// <summary>
+        /// The IP of the Gateway associated with the IP.
+        /// </summary>
+        [Input("gateway")]
+        public Input<string>? Gateway { get; set; }
+
+        /// <summary>
+        /// The ID of the IP.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The CIDR netmask of the IP.
+        /// </summary>
+        [Input("netmask")]
+        public Input<string>? Netmask { get; set; }
+
+        /// <summary>
+        /// The provisioning mode of the IP
+        /// </summary>
+        [Input("provisioningMode")]
+        public Input<string>? ProvisioningMode { get; set; }
 
         public ServerPublicIpGetArgs()
         {

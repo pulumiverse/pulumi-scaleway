@@ -59,6 +59,7 @@ export interface GetInstanceResult {
      */
     readonly id: string;
     readonly instanceId?: string;
+    readonly isSnapshotScheduleEnabled: boolean;
     /**
      * The name of the MongoDB® instance.
      */
@@ -85,6 +86,8 @@ export interface GetInstanceResult {
     readonly region?: string;
     readonly settings: {[key: string]: string};
     readonly snapshotId: string;
+    readonly snapshotScheduleFrequencyHours: number;
+    readonly snapshotScheduleRetentionDays: number;
     /**
      * A list of tags attached to the MongoDB® instance.
      */

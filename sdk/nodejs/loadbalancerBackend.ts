@@ -107,7 +107,13 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * Interval between two HC requests
      */
     public readonly healthCheckDelay!: pulumi.Output<string | undefined>;
+    /**
+     * HTTP Health check
+     */
     public readonly healthCheckHttp!: pulumi.Output<outputs.LoadbalancerBackendHealthCheckHttp | undefined>;
+    /**
+     * HTTPS Health check
+     */
     public readonly healthCheckHttps!: pulumi.Output<outputs.LoadbalancerBackendHealthCheckHttps | undefined>;
     /**
      * Number of allowed failed HC requests before the backend server is marked down
@@ -121,6 +127,9 @@ export class LoadbalancerBackend extends pulumi.CustomResource {
      * Defines whether proxy protocol should be activated for the health check
      */
     public readonly healthCheckSendProxy!: pulumi.Output<boolean | undefined>;
+    /**
+     * TCP Health check
+     */
     public readonly healthCheckTcp!: pulumi.Output<outputs.LoadbalancerBackendHealthCheckTcp>;
     /**
      * Timeout before we consider a HC request failed
@@ -320,7 +329,13 @@ export interface LoadbalancerBackendState {
      * Interval between two HC requests
      */
     healthCheckDelay?: pulumi.Input<string>;
+    /**
+     * HTTP Health check
+     */
     healthCheckHttp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckHttp>;
+    /**
+     * HTTPS Health check
+     */
     healthCheckHttps?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckHttps>;
     /**
      * Number of allowed failed HC requests before the backend server is marked down
@@ -334,6 +349,9 @@ export interface LoadbalancerBackendState {
      * Defines whether proxy protocol should be activated for the health check
      */
     healthCheckSendProxy?: pulumi.Input<boolean>;
+    /**
+     * TCP Health check
+     */
     healthCheckTcp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckTcp>;
     /**
      * Timeout before we consider a HC request failed
@@ -441,7 +459,13 @@ export interface LoadbalancerBackendArgs {
      * Interval between two HC requests
      */
     healthCheckDelay?: pulumi.Input<string>;
+    /**
+     * HTTP Health check
+     */
     healthCheckHttp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckHttp>;
+    /**
+     * HTTPS Health check
+     */
     healthCheckHttps?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckHttps>;
     /**
      * Number of allowed failed HC requests before the backend server is marked down
@@ -455,6 +479,9 @@ export interface LoadbalancerBackendArgs {
      * Defines whether proxy protocol should be activated for the health check
      */
     healthCheckSendProxy?: pulumi.Input<boolean>;
+    /**
+     * TCP Health check
+     */
     healthCheckTcp?: pulumi.Input<inputs.LoadbalancerBackendHealthCheckTcp>;
     /**
      * Timeout before we consider a HC request failed

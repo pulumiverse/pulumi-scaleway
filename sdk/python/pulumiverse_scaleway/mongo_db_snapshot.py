@@ -302,7 +302,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -343,7 +343,7 @@ class MongoDbSnapshot(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

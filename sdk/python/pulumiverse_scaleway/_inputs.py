@@ -204,6 +204,8 @@ __all__ = [
     'MnqSnsCredentialsPermissionsArgsDict',
     'MnqSqsCredentialsPermissionsArgs',
     'MnqSqsCredentialsPermissionsArgsDict',
+    'MnqSqsQueueDeadLetterQueueArgs',
+    'MnqSqsQueueDeadLetterQueueArgsDict',
     'MongoDbInstancePrivateIpArgs',
     'MongoDbInstancePrivateIpArgsDict',
     'MongoDbInstancePrivateNetworkArgs',
@@ -5063,11 +5065,31 @@ if not MYPY:
     class InstanceServerPublicIpArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[builtins.str]]
         """
-        The address of the IP
+        The address of the IP.
+        """
+        dynamic: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether the IP is dynamic.
+        """
+        family: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The IP address' family.
+        """
+        gateway: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The IP of the Gateway associated with the IP.
         """
         id: NotRequired[pulumi.Input[builtins.str]]
         """
-        The ID of the IP
+        The ID of the IP.
+        """
+        netmask: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The CIDR netmask of the IP.
+        """
+        provisioning_mode: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The provisioning mode of the IP
         """
 elif False:
     InstanceServerPublicIpArgsDict: TypeAlias = Mapping[str, Any]
@@ -5076,21 +5098,41 @@ elif False:
 class InstanceServerPublicIpArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[builtins.str]] = None,
-                 id: Optional[pulumi.Input[builtins.str]] = None):
+                 dynamic: Optional[pulumi.Input[builtins.bool]] = None,
+                 family: Optional[pulumi.Input[builtins.str]] = None,
+                 gateway: Optional[pulumi.Input[builtins.str]] = None,
+                 id: Optional[pulumi.Input[builtins.str]] = None,
+                 netmask: Optional[pulumi.Input[builtins.str]] = None,
+                 provisioning_mode: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] address: The address of the IP
-        :param pulumi.Input[builtins.str] id: The ID of the IP
+        :param pulumi.Input[builtins.str] address: The address of the IP.
+        :param pulumi.Input[builtins.bool] dynamic: Whether the IP is dynamic.
+        :param pulumi.Input[builtins.str] family: The IP address' family.
+        :param pulumi.Input[builtins.str] gateway: The IP of the Gateway associated with the IP.
+        :param pulumi.Input[builtins.str] id: The ID of the IP.
+        :param pulumi.Input[builtins.str] netmask: The CIDR netmask of the IP.
+        :param pulumi.Input[builtins.str] provisioning_mode: The provisioning mode of the IP
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if dynamic is not None:
+            pulumi.set(__self__, "dynamic", dynamic)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if gateway is not None:
+            pulumi.set(__self__, "gateway", gateway)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if netmask is not None:
+            pulumi.set(__self__, "netmask", netmask)
+        if provisioning_mode is not None:
+            pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The address of the IP
+        The address of the IP.
         """
         return pulumi.get(self, "address")
 
@@ -5100,15 +5142,75 @@ class InstanceServerPublicIpArgs:
 
     @property
     @pulumi.getter
+    def dynamic(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @dynamic.setter
+    def dynamic(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "dynamic", value)
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The IP address' family.
+        """
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "family", value)
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The IP of the Gateway associated with the IP.
+        """
+        return pulumi.get(self, "gateway")
+
+    @gateway.setter
+    def gateway(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter
     def id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        The ID of the IP
+        The ID of the IP.
         """
         return pulumi.get(self, "id")
 
     @id.setter
     def id(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The CIDR netmask of the IP.
+        """
+        return pulumi.get(self, "netmask")
+
+    @netmask.setter
+    def netmask(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "netmask", value)
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The provisioning mode of the IP
+        """
+        return pulumi.get(self, "provisioning_mode")
+
+    @provisioning_mode.setter
+    def provisioning_mode(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "provisioning_mode", value)
 
 
 if not MYPY:
@@ -5287,8 +5389,6 @@ if not MYPY:
         key: pulumi.Input[builtins.str]
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
 elif False:
     InstanceSnapshotImportArgsDict: TypeAlias = Mapping[str, Any]
@@ -5301,8 +5401,6 @@ class InstanceSnapshotImportArgs:
         """
         :param pulumi.Input[builtins.str] bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
         :param pulumi.Input[builtins.str] key: Key of the object to import
-               
-               > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -5324,8 +5422,6 @@ class InstanceSnapshotImportArgs:
     def key(self) -> pulumi.Input[builtins.str]:
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         return pulumi.get(self, "key")
 
@@ -6268,13 +6364,13 @@ class JobDefinitionSecretReferenceArgs:
 
 if not MYPY:
     class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
+        rotation_period: pulumi.Input[builtins.str]
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
         next_rotation_at: NotRequired[pulumi.Input[builtins.str]]
         """
         The date and time of the next scheduled rotation.
-        """
-        rotation_period: NotRequired[pulumi.Input[builtins.str]]
-        """
-        – The period between key rotations (e.g., `"720h"` for 30 days).
         """
 elif False:
     KeyManagerKeyRotationPolicyArgsDict: TypeAlias = Mapping[str, Any]
@@ -6282,16 +6378,27 @@ elif False:
 @pulumi.input_type
 class KeyManagerKeyRotationPolicyArgs:
     def __init__(__self__, *,
-                 next_rotation_at: Optional[pulumi.Input[builtins.str]] = None,
-                 rotation_period: Optional[pulumi.Input[builtins.str]] = None):
+                 rotation_period: pulumi.Input[builtins.str],
+                 next_rotation_at: Optional[pulumi.Input[builtins.str]] = None):
         """
-        :param pulumi.Input[builtins.str] next_rotation_at: The date and time of the next scheduled rotation.
         :param pulumi.Input[builtins.str] rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
+        :param pulumi.Input[builtins.str] next_rotation_at: The date and time of the next scheduled rotation.
         """
+        pulumi.set(__self__, "rotation_period", rotation_period)
         if next_rotation_at is not None:
             pulumi.set(__self__, "next_rotation_at", next_rotation_at)
-        if rotation_period is not None:
-            pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> pulumi.Input[builtins.str]:
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        return pulumi.get(self, "rotation_period")
+
+    @rotation_period.setter
+    def rotation_period(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "rotation_period", value)
 
     @property
     @pulumi.getter(name="nextRotationAt")
@@ -6304,18 +6411,6 @@ class KeyManagerKeyRotationPolicyArgs:
     @next_rotation_at.setter
     def next_rotation_at(self, value: Optional[pulumi.Input[builtins.str]]):
         pulumi.set(self, "next_rotation_at", value)
-
-    @property
-    @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[pulumi.Input[builtins.str]]:
-        """
-        – The period between key rotations (e.g., `"720h"` for 30 days).
-        """
-        return pulumi.get(self, "rotation_period")
-
-    @rotation_period.setter
-    def rotation_period(self, value: Optional[pulumi.Input[builtins.str]]):
-        pulumi.set(self, "rotation_period", value)
 
 
 if not MYPY:
@@ -8387,6 +8482,56 @@ class MnqSqsCredentialsPermissionsArgs:
 
 
 if not MYPY:
+    class MnqSqsQueueDeadLetterQueueArgsDict(TypedDict):
+        id: pulumi.Input[builtins.str]
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        max_receive_count: pulumi.Input[builtins.int]
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+elif False:
+    MnqSqsQueueDeadLetterQueueArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class MnqSqsQueueDeadLetterQueueArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[builtins.str],
+                 max_receive_count: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] id: The ID of the queue with format `{region/{project-id}/{queue-name}`
+        :param pulumi.Input[builtins.int] max_receive_count: The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[builtins.str]:
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> pulumi.Input[builtins.int]:
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        return pulumi.get(self, "max_receive_count")
+
+    @max_receive_count.setter
+    def max_receive_count(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "max_receive_count", value)
+
+
+if not MYPY:
     class MongoDbInstancePrivateIpArgsDict(TypedDict):
         address: NotRequired[pulumi.Input[builtins.str]]
         """
@@ -8628,6 +8773,9 @@ if not MYPY:
         Configuration block of the bucket project owner's display organization ID.
         """
         grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgsDict']]]]
+        """
+        Grant
+        """
 elif False:
     ObjectBucketAclAccessControlPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -8638,6 +8786,7 @@ class ObjectBucketAclAccessControlPolicyArgs:
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]] = None):
         """
         :param pulumi.Input['ObjectBucketAclAccessControlPolicyOwnerArgs'] owner: Configuration block of the bucket project owner's display organization ID.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]] grants: Grant
         """
         pulumi.set(__self__, "owner", owner)
         if grants is not None:
@@ -8658,6 +8807,9 @@ class ObjectBucketAclAccessControlPolicyArgs:
     @property
     @pulumi.getter
     def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketAclAccessControlPolicyGrantArgs']]]]:
+        """
+        Grant
+        """
         return pulumi.get(self, "grants")
 
     @grants.setter
@@ -8719,6 +8871,9 @@ class ObjectBucketAclAccessControlPolicyGrantArgs:
 if not MYPY:
     class ObjectBucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
         display_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Display name of the grantee to grant access to.
+        """
         id: NotRequired[pulumi.Input[builtins.str]]
         """
         The `region`, `bucket` and `acl` separated by (`/`).
@@ -8742,6 +8897,7 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  uri: Optional[pulumi.Input[builtins.str]] = None):
         """
+        :param pulumi.Input[builtins.str] display_name: Display name of the grantee to grant access to.
         :param pulumi.Input[builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
         :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`, `Group`
         :param pulumi.Input[builtins.str] uri: The uri of the grantee if you are granting permissions to a predefined group.
@@ -8758,6 +8914,9 @@ class ObjectBucketAclAccessControlPolicyGrantGranteeArgs:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Display name of the grantee to grant access to.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter
@@ -10620,7 +10779,13 @@ class WebhostingCpanelUrlArgs:
 if not MYPY:
     class WebhostingNameServerArgsDict(TypedDict):
         hostname: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Hostname of the server
+        """
         is_default: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Whether or not the webhosting is the default one
+        """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
         The hosting status.
@@ -10635,6 +10800,8 @@ class WebhostingNameServerArgs:
                  is_default: Optional[pulumi.Input[builtins.bool]] = None,
                  status: Optional[pulumi.Input[builtins.str]] = None):
         """
+        :param pulumi.Input[builtins.str] hostname: Hostname of the server
+        :param pulumi.Input[builtins.bool] is_default: Whether or not the webhosting is the default one
         :param pulumi.Input[builtins.str] status: The hosting status.
         """
         if hostname is not None:
@@ -10647,6 +10814,9 @@ class WebhostingNameServerArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -10656,6 +10826,9 @@ class WebhostingNameServerArgs:
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @is_default.setter
@@ -10734,13 +10907,25 @@ if not MYPY:
         The option name.
         """
         priority: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         status: NotRequired[pulumi.Input[builtins.str]]
         """
         The hosting status.
         """
         ttl: NotRequired[pulumi.Input[builtins.int]]
+        """
+        Time to live in seconds of the record
+        """
         type: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Type of the DNS record
+        """
         value: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Value of the DNS record
+        """
 elif False:
     WebhostingRecordArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -10755,7 +10940,11 @@ class WebhostingRecordArgs:
                  value: Optional[pulumi.Input[builtins.str]] = None):
         """
         :param pulumi.Input[builtins.str] name: The option name.
+        :param pulumi.Input[builtins.int] priority: Priority of DNS records associated with the webhosting.
         :param pulumi.Input[builtins.str] status: The hosting status.
+        :param pulumi.Input[builtins.int] ttl: Time to live in seconds of the record
+        :param pulumi.Input[builtins.str] type: Type of the DNS record
+        :param pulumi.Input[builtins.str] value: Value of the DNS record
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -10785,6 +10974,9 @@ class WebhostingRecordArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -10806,6 +10998,9 @@ class WebhostingRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[builtins.int]]:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -10815,6 +11010,9 @@ class WebhostingRecordArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -10824,6 +11022,9 @@ class WebhostingRecordArgs:
     @property
     @pulumi.getter
     def value(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
     @value.setter

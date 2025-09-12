@@ -15,6 +15,10 @@ namespace Pulumiverse.Scaleway.Inputs
     {
         [Input("grants")]
         private InputList<Inputs.ObjectBucketAclAccessControlPolicyGrantGetArgs>? _grants;
+
+        /// <summary>
+        /// Grant
+        /// </summary>
         public InputList<Inputs.ObjectBucketAclAccessControlPolicyGrantGetArgs> Grants
         {
             get => _grants ?? (_grants = new InputList<Inputs.ObjectBucketAclAccessControlPolicyGrantGetArgs>());

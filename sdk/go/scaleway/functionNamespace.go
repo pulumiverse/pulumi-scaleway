@@ -63,7 +63,9 @@ type FunctionNamespace struct {
 
 	// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 	//
-	// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+	//
+	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 	ActivateVpcIntegration pulumi.BoolPtrOutput `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -128,7 +130,9 @@ func GetFunctionNamespace(ctx *pulumi.Context,
 type functionNamespaceState struct {
 	// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 	//
-	// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+	//
+	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 	ActivateVpcIntegration *bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
@@ -157,7 +161,9 @@ type functionNamespaceState struct {
 type FunctionNamespaceState struct {
 	// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 	//
-	// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+	//
+	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 	ActivateVpcIntegration pulumi.BoolPtrInput
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
@@ -190,7 +196,9 @@ func (FunctionNamespaceState) ElementType() reflect.Type {
 type functionNamespaceArgs struct {
 	// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 	//
-	// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+	//
+	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 	ActivateVpcIntegration *bool `pulumi:"activateVpcIntegration"`
 	// The description of the namespace.
 	Description *string `pulumi:"description"`
@@ -214,7 +222,9 @@ type functionNamespaceArgs struct {
 type FunctionNamespaceArgs struct {
 	// Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 	//
-	// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+	// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+	//
+	// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 	ActivateVpcIntegration pulumi.BoolPtrInput
 	// The description of the namespace.
 	Description pulumi.StringPtrInput
@@ -323,7 +333,9 @@ func (o FunctionNamespaceOutput) ToFunctionNamespaceOutputWithContext(ctx contex
 
 // Activates VPC integration for the namespace. Functions of a namespace with VPC integration activated will be able to connect to a Private Network.
 //
-// > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+// > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+//
+// Deprecated: VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
 func (o FunctionNamespaceOutput) ActivateVpcIntegration() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *FunctionNamespace) pulumi.BoolPtrOutput { return v.ActivateVpcIntegration }).(pulumi.BoolPtrOutput)
 }

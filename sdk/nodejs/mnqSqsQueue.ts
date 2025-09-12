@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -35,6 +37,50 @@ import * as utilities from "./utilities";
  *     secretKey: mainSqsCredentials.secretKey,
  * });
  * ```
+ *
+ * ### With Dead Letter Queue
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.mnq.Sqs("main", {});
+ * const mainSqsCredentials = new scaleway.mnq.SqsCredentials("main", {
+ *     projectId: main.projectId,
+ *     name: "sqs-credentials",
+ *     permissions: {
+ *         canManage: true,
+ *         canReceive: false,
+ *         canPublish: false,
+ *     },
+ * });
+ * const deadLetter = new scaleway.mnq.SqsQueue("dead_letter", {
+ *     projectId: main.projectId,
+ *     name: "dead-letter-queue",
+ *     sqsEndpoint: main.endpoint,
+ *     accessKey: mainSqsCredentials.accessKey,
+ *     secretKey: mainSqsCredentials.secretKey,
+ * });
+ * const mainSqsQueue = new scaleway.mnq.SqsQueue("main", {
+ *     projectId: main.projectId,
+ *     name: "my-queue",
+ *     sqsEndpoint: main.endpoint,
+ *     accessKey: mainSqsCredentials.accessKey,
+ *     secretKey: mainSqsCredentials.secretKey,
+ *     deadLetterQueue: {
+ *         id: deadLetter.id,
+ *         maxReceiveCount: 3,
+ *     },
+ * });
+ * ```
+ *
+ * ## Dead Letter Queue
+ *
+ * The `deadLetterQueue` block supports the following:
+ *
+ * - `id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
+ *
+ * - `maxReceiveCount` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
  *
  * @deprecated scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue
  */
@@ -72,9 +118,17 @@ export class MnqSqsQueue extends pulumi.CustomResource {
      */
     public readonly accessKey!: pulumi.Output<string>;
     /**
+     * The ARN of the queue
+     */
+    public /*out*/ readonly arn!: pulumi.Output<string>;
+    /**
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
     public readonly contentBasedDeduplication!: pulumi.Output<boolean>;
+    /**
+     * Configuration for the dead letter queue. See Dead Letter Queue below for details.
+     */
+    public readonly deadLetterQueue!: pulumi.Output<outputs.MnqSqsQueueDeadLetterQueue | undefined>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
@@ -141,7 +195,9 @@ export class MnqSqsQueue extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MnqSqsQueueState | undefined;
             resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["arn"] = state ? state.arn : undefined;
             resourceInputs["contentBasedDeduplication"] = state ? state.contentBasedDeduplication : undefined;
+            resourceInputs["deadLetterQueue"] = state ? state.deadLetterQueue : undefined;
             resourceInputs["fifoQueue"] = state ? state.fifoQueue : undefined;
             resourceInputs["messageMaxAge"] = state ? state.messageMaxAge : undefined;
             resourceInputs["messageMaxSize"] = state ? state.messageMaxSize : undefined;
@@ -164,6 +220,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
             resourceInputs["contentBasedDeduplication"] = args ? args.contentBasedDeduplication : undefined;
+            resourceInputs["deadLetterQueue"] = args ? args.deadLetterQueue : undefined;
             resourceInputs["fifoQueue"] = args ? args.fifoQueue : undefined;
             resourceInputs["messageMaxAge"] = args ? args.messageMaxAge : undefined;
             resourceInputs["messageMaxSize"] = args ? args.messageMaxSize : undefined;
@@ -175,6 +232,7 @@ export class MnqSqsQueue extends pulumi.CustomResource {
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["sqsEndpoint"] = args ? args.sqsEndpoint : undefined;
             resourceInputs["visibilityTimeoutSeconds"] = args ? args.visibilityTimeoutSeconds : undefined;
+            resourceInputs["arn"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -193,9 +251,17 @@ export interface MnqSqsQueueState {
      */
     accessKey?: pulumi.Input<string>;
     /**
+     * The ARN of the queue
+     */
+    arn?: pulumi.Input<string>;
+    /**
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
+    /**
+     * Configuration for the dead letter queue. See Dead Letter Queue below for details.
+     */
+    deadLetterQueue?: pulumi.Input<inputs.MnqSqsQueueDeadLetterQueue>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
@@ -258,6 +324,10 @@ export interface MnqSqsQueueArgs {
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
     contentBasedDeduplication?: pulumi.Input<boolean>;
+    /**
+     * Configuration for the dead letter queue. See Dead Letter Queue below for details.
+     */
+    deadLetterQueue?: pulumi.Input<inputs.MnqSqsQueueDeadLetterQueue>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */

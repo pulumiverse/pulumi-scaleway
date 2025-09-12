@@ -13,9 +13,15 @@ namespace Pulumiverse.Scaleway.Hosting.Inputs
 
     public sealed class HostingNameServerGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Hostname of the server
+        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
+        /// <summary>
+        /// Whether or not the webhosting is the default one
+        /// </summary>
         [Input("isDefault")]
         public Input<bool>? IsDefault { get; set; }
 

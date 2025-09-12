@@ -186,14 +186,14 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         trusted = [
-            "1.2.3.4",
-            "4.5.6.7",
-            "7.8.9.10",
+            "1.2.3.4/32",
+            "4.5.6.7/32",
+            "7.8.9.10/24",
         ]
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip": entry["value"],
+                "ip_range": entry["value"],
                 "port": 80,
             } for entry in [{"key": k, "value": v} for k, v in trusted]],
             security_group_id=main.id)
@@ -213,22 +213,22 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             outbound_default_policy="accept")
         trusted = [
             {
-                "ip": "1.2.3.4",
+                "ipRange": "1.2.3.4/32",
                 "port": "80",
             },
             {
-                "ip": "5.6.7.8",
+                "ipRange": "5.6.7.8/32",
                 "port": "81",
             },
             {
-                "ip": "9.10.11.12",
+                "ipRange": "9.10.11.12/32",
                 "port": "81",
             },
         ]
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip": entry["value"]["ip"],
+                "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
             } for entry in [{"key": k, "value": v} for k, v in trusted]],
             security_group_id=main.id)
@@ -297,14 +297,14 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             inbound_default_policy="drop",
             outbound_default_policy="accept")
         trusted = [
-            "1.2.3.4",
-            "4.5.6.7",
-            "7.8.9.10",
+            "1.2.3.4/32",
+            "4.5.6.7/32",
+            "7.8.9.10/24",
         ]
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip": entry["value"],
+                "ip_range": entry["value"],
                 "port": 80,
             } for entry in [{"key": k, "value": v} for k, v in trusted]],
             security_group_id=main.id)
@@ -324,22 +324,22 @@ class InstanceSecurityGroupRules(pulumi.CustomResource):
             outbound_default_policy="accept")
         trusted = [
             {
-                "ip": "1.2.3.4",
+                "ipRange": "1.2.3.4/32",
                 "port": "80",
             },
             {
-                "ip": "5.6.7.8",
+                "ipRange": "5.6.7.8/32",
                 "port": "81",
             },
             {
-                "ip": "9.10.11.12",
+                "ipRange": "9.10.11.12/32",
                 "port": "81",
             },
         ]
         main_security_group_rules = scaleway.instance.SecurityGroupRules("main",
             inbound_rules=[{
                 "action": "accept",
-                "ip": entry["value"]["ip"],
+                "ip_range": entry["value"]["ipRange"],
                 "port": entry["value"]["port"],
             } for entry in [{"key": k, "value": v} for k, v in trusted]],
             security_group_id=main.id)

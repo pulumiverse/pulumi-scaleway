@@ -13,6 +13,9 @@ namespace Pulumiverse.Scaleway.Inputs
 
     public sealed class ObjectBucketAclAccessControlPolicyGrantGranteeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Display name of the grantee to grant access to.
+        /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
 

@@ -4919,7 +4919,8 @@ type GetLoadBalancersLbInstance struct {
 	// Date on which the Load Balancer was created.
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the Load Balancer.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address of the instance
 	IpAddress string `pulumi:"ipAddress"`
 	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status string `pulumi:"status"`
@@ -4944,7 +4945,8 @@ type GetLoadBalancersLbInstanceArgs struct {
 	// Date on which the Load Balancer was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the Load Balancer.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address of the instance
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status pulumi.StringInput `pulumi:"status"`
@@ -5015,6 +5017,7 @@ func (o GetLoadBalancersLbInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbInstance) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address of the instance
 func (o GetLoadBalancersLbInstanceOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbInstance) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -5056,14 +5059,17 @@ func (o GetLoadBalancersLbInstanceArrayOutput) Index(i pulumi.IntInput) GetLoadB
 
 type GetLoadBalancersLbIp struct {
 	// The ID of the Load Balancer.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address
 	IpAddress string `pulumi:"ipAddress"`
-	LbId      string `pulumi:"lbId"`
+	// UUID of the load balancer attached to the IP
+	LbId string `pulumi:"lbId"`
 	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
-	Reverse   string `pulumi:"reverse"`
+	// Reverse DNS attached to the IP
+	Reverse string `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
 	Zone string `pulumi:"zone"`
 }
@@ -5081,14 +5087,17 @@ type GetLoadBalancersLbIpInput interface {
 
 type GetLoadBalancersLbIpArgs struct {
 	// The ID of the Load Balancer.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	LbId      pulumi.StringInput `pulumi:"lbId"`
+	// UUID of the load balancer attached to the IP
+	LbId pulumi.StringInput `pulumi:"lbId"`
 	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	Reverse   pulumi.StringInput `pulumi:"reverse"`
+	// Reverse DNS attached to the IP
+	Reverse pulumi.StringInput `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
@@ -5149,10 +5158,12 @@ func (o GetLoadBalancersLbIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address
 func (o GetLoadBalancersLbIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// UUID of the load balancer attached to the IP
 func (o GetLoadBalancersLbIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.LbId }).(pulumi.StringOutput)
 }
@@ -5167,6 +5178,7 @@ func (o GetLoadBalancersLbIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Reverse DNS attached to the IP
 func (o GetLoadBalancersLbIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.Reverse }).(pulumi.StringOutput)
 }

@@ -8054,10 +8054,20 @@ func (o InstanceServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Instan
 }
 
 type InstanceServerPublicIp struct {
-	// The address of the IP
+	// The address of the IP.
 	Address *string `pulumi:"address"`
-	// The ID of the IP
+	// Whether the IP is dynamic.
+	Dynamic *bool `pulumi:"dynamic"`
+	// The IP address' family.
+	Family *string `pulumi:"family"`
+	// The IP of the Gateway associated with the IP.
+	Gateway *string `pulumi:"gateway"`
+	// The ID of the IP.
 	Id *string `pulumi:"id"`
+	// The CIDR netmask of the IP.
+	Netmask *string `pulumi:"netmask"`
+	// The provisioning mode of the IP
+	ProvisioningMode *string `pulumi:"provisioningMode"`
 }
 
 // InstanceServerPublicIpInput is an input type that accepts InstanceServerPublicIpArgs and InstanceServerPublicIpOutput values.
@@ -8072,10 +8082,20 @@ type InstanceServerPublicIpInput interface {
 }
 
 type InstanceServerPublicIpArgs struct {
-	// The address of the IP
+	// The address of the IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IP
+	// Whether the IP is dynamic.
+	Dynamic pulumi.BoolPtrInput `pulumi:"dynamic"`
+	// The IP address' family.
+	Family pulumi.StringPtrInput `pulumi:"family"`
+	// The IP of the Gateway associated with the IP.
+	Gateway pulumi.StringPtrInput `pulumi:"gateway"`
+	// The ID of the IP.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The CIDR netmask of the IP.
+	Netmask pulumi.StringPtrInput `pulumi:"netmask"`
+	// The provisioning mode of the IP
+	ProvisioningMode pulumi.StringPtrInput `pulumi:"provisioningMode"`
 }
 
 func (InstanceServerPublicIpArgs) ElementType() reflect.Type {
@@ -8129,14 +8149,39 @@ func (o InstanceServerPublicIpOutput) ToInstanceServerPublicIpOutputWithContext(
 	return o
 }
 
-// The address of the IP
+// The address of the IP.
 func (o InstanceServerPublicIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP
+// Whether the IP is dynamic.
+func (o InstanceServerPublicIpOutput) Dynamic() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v InstanceServerPublicIp) *bool { return v.Dynamic }).(pulumi.BoolPtrOutput)
+}
+
+// The IP address' family.
+func (o InstanceServerPublicIpOutput) Family() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.Family }).(pulumi.StringPtrOutput)
+}
+
+// The IP of the Gateway associated with the IP.
+func (o InstanceServerPublicIpOutput) Gateway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.Gateway }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP.
 func (o InstanceServerPublicIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The CIDR netmask of the IP.
+func (o InstanceServerPublicIpOutput) Netmask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.Netmask }).(pulumi.StringPtrOutput)
+}
+
+// The provisioning mode of the IP
+func (o InstanceServerPublicIpOutput) ProvisioningMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerPublicIp) *string { return v.ProvisioningMode }).(pulumi.StringPtrOutput)
 }
 
 type InstanceServerPublicIpArrayOutput struct{ *pulumi.OutputState }
@@ -8434,8 +8479,6 @@ type InstanceSnapshotImport struct {
 	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
 	Bucket string `pulumi:"bucket"`
 	// Key of the object to import
-	//
-	// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 	Key string `pulumi:"key"`
 }
 
@@ -8454,8 +8497,6 @@ type InstanceSnapshotImportArgs struct {
 	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
 	Bucket pulumi.StringInput `pulumi:"bucket"`
 	// Key of the object to import
-	//
-	// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -8542,8 +8583,6 @@ func (o InstanceSnapshotImportOutput) Bucket() pulumi.StringOutput {
 }
 
 // Key of the object to import
-//
-// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 func (o InstanceSnapshotImportOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v InstanceSnapshotImport) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -8583,8 +8622,6 @@ func (o InstanceSnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 }
 
 // Key of the object to import
-//
-// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 func (o InstanceSnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceSnapshotImport) *string {
 		if v == nil {
@@ -10579,7 +10616,7 @@ type KeyManagerKeyRotationPolicy struct {
 	// The date and time of the next scheduled rotation.
 	NextRotationAt *string `pulumi:"nextRotationAt"`
 	// – The period between key rotations (e.g., `"720h"` for 30 days).
-	RotationPeriod *string `pulumi:"rotationPeriod"`
+	RotationPeriod string `pulumi:"rotationPeriod"`
 }
 
 // KeyManagerKeyRotationPolicyInput is an input type that accepts KeyManagerKeyRotationPolicyArgs and KeyManagerKeyRotationPolicyOutput values.
@@ -10597,7 +10634,7 @@ type KeyManagerKeyRotationPolicyArgs struct {
 	// The date and time of the next scheduled rotation.
 	NextRotationAt pulumi.StringPtrInput `pulumi:"nextRotationAt"`
 	// – The period between key rotations (e.g., `"720h"` for 30 days).
-	RotationPeriod pulumi.StringPtrInput `pulumi:"rotationPeriod"`
+	RotationPeriod pulumi.StringInput `pulumi:"rotationPeriod"`
 }
 
 func (KeyManagerKeyRotationPolicyArgs) ElementType() reflect.Type {
@@ -10683,8 +10720,8 @@ func (o KeyManagerKeyRotationPolicyOutput) NextRotationAt() pulumi.StringPtrOutp
 }
 
 // – The period between key rotations (e.g., `"720h"` for 30 days).
-func (o KeyManagerKeyRotationPolicyOutput) RotationPeriod() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KeyManagerKeyRotationPolicy) *string { return v.RotationPeriod }).(pulumi.StringPtrOutput)
+func (o KeyManagerKeyRotationPolicyOutput) RotationPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v KeyManagerKeyRotationPolicy) string { return v.RotationPeriod }).(pulumi.StringOutput)
 }
 
 type KeyManagerKeyRotationPolicyPtrOutput struct{ *pulumi.OutputState }
@@ -10727,7 +10764,7 @@ func (o KeyManagerKeyRotationPolicyPtrOutput) RotationPeriod() pulumi.StringPtrO
 		if v == nil {
 			return nil
 		}
-		return v.RotationPeriod
+		return &v.RotationPeriod
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -14385,6 +14422,162 @@ func (o MnqSqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput
 	}).(pulumi.BoolPtrOutput)
 }
 
+type MnqSqsQueueDeadLetterQueue struct {
+	// The ID of the queue with format `{region/{project-id}/{queue-name}`
+	Id string `pulumi:"id"`
+	// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+	MaxReceiveCount int `pulumi:"maxReceiveCount"`
+}
+
+// MnqSqsQueueDeadLetterQueueInput is an input type that accepts MnqSqsQueueDeadLetterQueueArgs and MnqSqsQueueDeadLetterQueueOutput values.
+// You can construct a concrete instance of `MnqSqsQueueDeadLetterQueueInput` via:
+//
+//	MnqSqsQueueDeadLetterQueueArgs{...}
+type MnqSqsQueueDeadLetterQueueInput interface {
+	pulumi.Input
+
+	ToMnqSqsQueueDeadLetterQueueOutput() MnqSqsQueueDeadLetterQueueOutput
+	ToMnqSqsQueueDeadLetterQueueOutputWithContext(context.Context) MnqSqsQueueDeadLetterQueueOutput
+}
+
+type MnqSqsQueueDeadLetterQueueArgs struct {
+	// The ID of the queue with format `{region/{project-id}/{queue-name}`
+	Id pulumi.StringInput `pulumi:"id"`
+	// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+	MaxReceiveCount pulumi.IntInput `pulumi:"maxReceiveCount"`
+}
+
+func (MnqSqsQueueDeadLetterQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (i MnqSqsQueueDeadLetterQueueArgs) ToMnqSqsQueueDeadLetterQueueOutput() MnqSqsQueueDeadLetterQueueOutput {
+	return i.ToMnqSqsQueueDeadLetterQueueOutputWithContext(context.Background())
+}
+
+func (i MnqSqsQueueDeadLetterQueueArgs) ToMnqSqsQueueDeadLetterQueueOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueDeadLetterQueueOutput)
+}
+
+func (i MnqSqsQueueDeadLetterQueueArgs) ToMnqSqsQueueDeadLetterQueuePtrOutput() MnqSqsQueueDeadLetterQueuePtrOutput {
+	return i.ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (i MnqSqsQueueDeadLetterQueueArgs) ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueDeadLetterQueueOutput).ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(ctx)
+}
+
+// MnqSqsQueueDeadLetterQueuePtrInput is an input type that accepts MnqSqsQueueDeadLetterQueueArgs, MnqSqsQueueDeadLetterQueuePtr and MnqSqsQueueDeadLetterQueuePtrOutput values.
+// You can construct a concrete instance of `MnqSqsQueueDeadLetterQueuePtrInput` via:
+//
+//	        MnqSqsQueueDeadLetterQueueArgs{...}
+//
+//	or:
+//
+//	        nil
+type MnqSqsQueueDeadLetterQueuePtrInput interface {
+	pulumi.Input
+
+	ToMnqSqsQueueDeadLetterQueuePtrOutput() MnqSqsQueueDeadLetterQueuePtrOutput
+	ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(context.Context) MnqSqsQueueDeadLetterQueuePtrOutput
+}
+
+type mnqSqsQueueDeadLetterQueuePtrType MnqSqsQueueDeadLetterQueueArgs
+
+func MnqSqsQueueDeadLetterQueuePtr(v *MnqSqsQueueDeadLetterQueueArgs) MnqSqsQueueDeadLetterQueuePtrInput {
+	return (*mnqSqsQueueDeadLetterQueuePtrType)(v)
+}
+
+func (*mnqSqsQueueDeadLetterQueuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (i *mnqSqsQueueDeadLetterQueuePtrType) ToMnqSqsQueueDeadLetterQueuePtrOutput() MnqSqsQueueDeadLetterQueuePtrOutput {
+	return i.ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (i *mnqSqsQueueDeadLetterQueuePtrType) ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MnqSqsQueueDeadLetterQueuePtrOutput)
+}
+
+type MnqSqsQueueDeadLetterQueueOutput struct{ *pulumi.OutputState }
+
+func (MnqSqsQueueDeadLetterQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MnqSqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (o MnqSqsQueueDeadLetterQueueOutput) ToMnqSqsQueueDeadLetterQueueOutput() MnqSqsQueueDeadLetterQueueOutput {
+	return o
+}
+
+func (o MnqSqsQueueDeadLetterQueueOutput) ToMnqSqsQueueDeadLetterQueueOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueueOutput {
+	return o
+}
+
+func (o MnqSqsQueueDeadLetterQueueOutput) ToMnqSqsQueueDeadLetterQueuePtrOutput() MnqSqsQueueDeadLetterQueuePtrOutput {
+	return o.ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (o MnqSqsQueueDeadLetterQueueOutput) ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MnqSqsQueueDeadLetterQueue) *MnqSqsQueueDeadLetterQueue {
+		return &v
+	}).(MnqSqsQueueDeadLetterQueuePtrOutput)
+}
+
+// The ID of the queue with format `{region/{project-id}/{queue-name}`
+func (o MnqSqsQueueDeadLetterQueueOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v MnqSqsQueueDeadLetterQueue) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+func (o MnqSqsQueueDeadLetterQueueOutput) MaxReceiveCount() pulumi.IntOutput {
+	return o.ApplyT(func(v MnqSqsQueueDeadLetterQueue) int { return v.MaxReceiveCount }).(pulumi.IntOutput)
+}
+
+type MnqSqsQueueDeadLetterQueuePtrOutput struct{ *pulumi.OutputState }
+
+func (MnqSqsQueueDeadLetterQueuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MnqSqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (o MnqSqsQueueDeadLetterQueuePtrOutput) ToMnqSqsQueueDeadLetterQueuePtrOutput() MnqSqsQueueDeadLetterQueuePtrOutput {
+	return o
+}
+
+func (o MnqSqsQueueDeadLetterQueuePtrOutput) ToMnqSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) MnqSqsQueueDeadLetterQueuePtrOutput {
+	return o
+}
+
+func (o MnqSqsQueueDeadLetterQueuePtrOutput) Elem() MnqSqsQueueDeadLetterQueueOutput {
+	return o.ApplyT(func(v *MnqSqsQueueDeadLetterQueue) MnqSqsQueueDeadLetterQueue {
+		if v != nil {
+			return *v
+		}
+		var ret MnqSqsQueueDeadLetterQueue
+		return ret
+	}).(MnqSqsQueueDeadLetterQueueOutput)
+}
+
+// The ID of the queue with format `{region/{project-id}/{queue-name}`
+func (o MnqSqsQueueDeadLetterQueuePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MnqSqsQueueDeadLetterQueue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+func (o MnqSqsQueueDeadLetterQueuePtrOutput) MaxReceiveCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MnqSqsQueueDeadLetterQueue) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxReceiveCount
+	}).(pulumi.IntPtrOutput)
+}
+
 type MongoDbInstancePrivateIp struct {
 	// The private IPv4 address.
 	Address *string `pulumi:"address"`
@@ -14880,6 +15073,7 @@ func (o MongoDbInstancePublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 }
 
 type ObjectBucketAclAccessControlPolicy struct {
+	// Grant
 	Grants []ObjectBucketAclAccessControlPolicyGrant `pulumi:"grants"`
 	// Configuration block of the bucket project owner's display organization ID.
 	Owner ObjectBucketAclAccessControlPolicyOwner `pulumi:"owner"`
@@ -14897,6 +15091,7 @@ type ObjectBucketAclAccessControlPolicyInput interface {
 }
 
 type ObjectBucketAclAccessControlPolicyArgs struct {
+	// Grant
 	Grants ObjectBucketAclAccessControlPolicyGrantArrayInput `pulumi:"grants"`
 	// Configuration block of the bucket project owner's display organization ID.
 	Owner ObjectBucketAclAccessControlPolicyOwnerInput `pulumi:"owner"`
@@ -14979,6 +15174,7 @@ func (o ObjectBucketAclAccessControlPolicyOutput) ToObjectBucketAclAccessControl
 	}).(ObjectBucketAclAccessControlPolicyPtrOutput)
 }
 
+// Grant
 func (o ObjectBucketAclAccessControlPolicyOutput) Grants() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicy) []ObjectBucketAclAccessControlPolicyGrant { return v.Grants }).(ObjectBucketAclAccessControlPolicyGrantArrayOutput)
 }
@@ -15012,6 +15208,7 @@ func (o ObjectBucketAclAccessControlPolicyPtrOutput) Elem() ObjectBucketAclAcces
 	}).(ObjectBucketAclAccessControlPolicyOutput)
 }
 
+// Grant
 func (o ObjectBucketAclAccessControlPolicyPtrOutput) Grants() ObjectBucketAclAccessControlPolicyGrantArrayOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicy) []ObjectBucketAclAccessControlPolicyGrant {
 		if v == nil {
@@ -15140,6 +15337,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantArrayOutput) Index(i pulumi.IntIn
 }
 
 type ObjectBucketAclAccessControlPolicyGrantGrantee struct {
+	// Display name of the grantee to grant access to.
 	DisplayName *string `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id *string `pulumi:"id"`
@@ -15161,6 +15359,7 @@ type ObjectBucketAclAccessControlPolicyGrantGranteeInput interface {
 }
 
 type ObjectBucketAclAccessControlPolicyGrantGranteeArgs struct {
+	// Display name of the grantee to grant access to.
 	DisplayName pulumi.StringPtrInput `pulumi:"displayName"`
 	// The `region`, `bucket` and `acl` separated by (`/`).
 	Id pulumi.StringPtrInput `pulumi:"id"`
@@ -15247,6 +15446,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) ToObjectBucketAclA
 	}).(ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput)
 }
 
+// Display name of the grantee to grant access to.
 func (o ObjectBucketAclAccessControlPolicyGrantGranteeOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ObjectBucketAclAccessControlPolicyGrantGrantee) *string { return v.DisplayName }).(pulumi.StringPtrOutput)
 }
@@ -15290,6 +15490,7 @@ func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) Elem() ObjectBu
 	}).(ObjectBucketAclAccessControlPolicyGrantGranteeOutput)
 }
 
+// Display name of the grantee to grant access to.
 func (o ObjectBucketAclAccessControlPolicyGrantGranteePtrOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ObjectBucketAclAccessControlPolicyGrantGrantee) *string {
 		if v == nil {
@@ -18496,8 +18697,10 @@ func (o WebhostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) WebhostingCpane
 }
 
 type WebhostingNameServer struct {
-	Hostname  *string `pulumi:"hostname"`
-	IsDefault *bool   `pulumi:"isDefault"`
+	// Hostname of the server
+	Hostname *string `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault *bool `pulumi:"isDefault"`
 	// The hosting status.
 	Status *string `pulumi:"status"`
 }
@@ -18514,8 +18717,10 @@ type WebhostingNameServerInput interface {
 }
 
 type WebhostingNameServerArgs struct {
-	Hostname  pulumi.StringPtrInput `pulumi:"hostname"`
-	IsDefault pulumi.BoolPtrInput   `pulumi:"isDefault"`
+	// Hostname of the server
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The hosting status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
@@ -18571,10 +18776,12 @@ func (o WebhostingNameServerOutput) ToWebhostingNameServerOutputWithContext(ctx 
 	return o
 }
 
+// Hostname of the server
 func (o WebhostingNameServerOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebhostingNameServer) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// Whether or not the webhosting is the default one
 func (o WebhostingNameServerOutput) IsDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v WebhostingNameServer) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
 }
@@ -18712,13 +18919,17 @@ func (o WebhostingOptionArrayOutput) Index(i pulumi.IntInput) WebhostingOptionOu
 
 type WebhostingRecord struct {
 	// The option name.
-	Name     *string `pulumi:"name"`
-	Priority *int    `pulumi:"priority"`
+	Name *string `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority *int `pulumi:"priority"`
 	// The hosting status.
 	Status *string `pulumi:"status"`
-	Ttl    *int    `pulumi:"ttl"`
-	Type   *string `pulumi:"type"`
-	Value  *string `pulumi:"value"`
+	// Time to live in seconds of the record
+	Ttl *int `pulumi:"ttl"`
+	// Type of the DNS record
+	Type *string `pulumi:"type"`
+	// Value of the DNS record
+	Value *string `pulumi:"value"`
 }
 
 // WebhostingRecordInput is an input type that accepts WebhostingRecordArgs and WebhostingRecordOutput values.
@@ -18734,13 +18945,17 @@ type WebhostingRecordInput interface {
 
 type WebhostingRecordArgs struct {
 	// The option name.
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	Priority pulumi.IntPtrInput    `pulumi:"priority"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The hosting status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	Ttl    pulumi.IntPtrInput    `pulumi:"ttl"`
-	Type   pulumi.StringPtrInput `pulumi:"type"`
-	Value  pulumi.StringPtrInput `pulumi:"value"`
+	// Time to live in seconds of the record
+	Ttl pulumi.IntPtrInput `pulumi:"ttl"`
+	// Type of the DNS record
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Value of the DNS record
+	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
 func (WebhostingRecordArgs) ElementType() reflect.Type {
@@ -18799,6 +19014,7 @@ func (o WebhostingRecordOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Priority of DNS records associated with the webhosting.
 func (o WebhostingRecordOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -18808,14 +19024,17 @@ func (o WebhostingRecordOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Time to live in seconds of the record
 func (o WebhostingRecordOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *int { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
+// Type of the DNS record
 func (o WebhostingRecordOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// Value of the DNS record
 func (o WebhostingRecordOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WebhostingRecord) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -22352,7 +22571,8 @@ type GetFlexibleIpsIp struct {
 	// The description of the flexible IP.
 	Description string `pulumi:"description"`
 	// The MAC address ID.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address of the flexible IP
 	IpAddress string `pulumi:"ipAddress"`
 	// The MAC address of the Virtual MAC.
 	MacAddresses []GetFlexibleIpsIpMacAddress `pulumi:"macAddresses"`
@@ -22389,7 +22609,8 @@ type GetFlexibleIpsIpArgs struct {
 	// The description of the flexible IP.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The MAC address ID.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address of the flexible IP
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// The MAC address of the Virtual MAC.
 	MacAddresses GetFlexibleIpsIpMacAddressArrayInput `pulumi:"macAddresses"`
@@ -22475,6 +22696,7 @@ func (o GetFlexibleIpsIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address of the flexible IP
 func (o GetFlexibleIpsIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexibleIpsIp) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -23334,8 +23556,18 @@ func (o GetInstanceServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Get
 type GetInstanceServerPublicIp struct {
 	// The address of the IP
 	Address string `pulumi:"address"`
+	// Whether the IP is dynamic
+	Dynamic bool `pulumi:"dynamic"`
+	// IP address family (inet or inet6)
+	Family string `pulumi:"family"`
+	// Gateway's IP address
+	Gateway string `pulumi:"gateway"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
+	// CIDR netmask
+	Netmask string `pulumi:"netmask"`
+	// Provisioning mode of the IP address
+	ProvisioningMode string `pulumi:"provisioningMode"`
 }
 
 // GetInstanceServerPublicIpInput is an input type that accepts GetInstanceServerPublicIpArgs and GetInstanceServerPublicIpOutput values.
@@ -23352,8 +23584,18 @@ type GetInstanceServerPublicIpInput interface {
 type GetInstanceServerPublicIpArgs struct {
 	// The address of the IP
 	Address pulumi.StringInput `pulumi:"address"`
+	// Whether the IP is dynamic
+	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
+	// IP address family (inet or inet6)
+	Family pulumi.StringInput `pulumi:"family"`
+	// Gateway's IP address
+	Gateway pulumi.StringInput `pulumi:"gateway"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
+	// CIDR netmask
+	Netmask pulumi.StringInput `pulumi:"netmask"`
+	// Provisioning mode of the IP address
+	ProvisioningMode pulumi.StringInput `pulumi:"provisioningMode"`
 }
 
 func (GetInstanceServerPublicIpArgs) ElementType() reflect.Type {
@@ -23412,9 +23654,34 @@ func (o GetInstanceServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Whether the IP is dynamic
+func (o GetInstanceServerPublicIpOutput) Dynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceServerPublicIp) bool { return v.Dynamic }).(pulumi.BoolOutput)
+}
+
+// IP address family (inet or inet6)
+func (o GetInstanceServerPublicIpOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// Gateway's IP address
+func (o GetInstanceServerPublicIpOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
 // The ID of the IP
 func (o GetInstanceServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// CIDR netmask
+func (o GetInstanceServerPublicIpOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Netmask }).(pulumi.StringOutput)
+}
+
+// Provisioning mode of the IP address
+func (o GetInstanceServerPublicIpOutput) ProvisioningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.ProvisioningMode }).(pulumi.StringOutput)
 }
 
 type GetInstanceServerPublicIpArrayOutput struct{ *pulumi.OutputState }
@@ -23591,6 +23858,8 @@ func (o GetInstanceServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetInst
 type GetInstanceServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
+	// UUID of the bootscript
+	//
 	// Deprecated: bootscript are not supported
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -23612,10 +23881,13 @@ type GetInstanceServersServer struct {
 	// The organization ID the server is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
-	PlacementGroupId              string `pulumi:"placementGroupId"`
-	PlacementGroupPolicyRespected bool   `pulumi:"placementGroupPolicyRespected"`
+	PlacementGroupId string `pulumi:"placementGroupId"`
+	// Whether the placement group policy respected or not
+	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp string `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the server.
+	PrivateIps []GetInstanceServersServerPrivateIp `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IP address of the server.
@@ -23650,6 +23922,8 @@ type GetInstanceServersServerInput interface {
 type GetInstanceServersServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringInput `pulumi:"bootType"`
+	// UUID of the bootscript
+	//
 	// Deprecated: bootscript are not supported
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -23671,10 +23945,13 @@ type GetInstanceServersServerArgs struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
-	PlacementGroupId              pulumi.StringInput `pulumi:"placementGroupId"`
-	PlacementGroupPolicyRespected pulumi.BoolInput   `pulumi:"placementGroupPolicyRespected"`
+	PlacementGroupId pulumi.StringInput `pulumi:"placementGroupId"`
+	// Whether the placement group policy respected or not
+	PlacementGroupPolicyRespected pulumi.BoolInput `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the server.
+	PrivateIps GetInstanceServersServerPrivateIpArrayInput `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The public IP address of the server.
@@ -23751,6 +24028,8 @@ func (o GetInstanceServersServerOutput) BootType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootType }).(pulumi.StringOutput)
 }
 
+// UUID of the bootscript
+//
 // Deprecated: bootscript are not supported
 func (o GetInstanceServersServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.BootscriptId }).(pulumi.StringOutput)
@@ -23806,6 +24085,7 @@ func (o GetInstanceServersServerOutput) PlacementGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PlacementGroupId }).(pulumi.StringOutput)
 }
 
+// Whether the placement group policy respected or not
 func (o GetInstanceServersServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) bool { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
@@ -23813,6 +24093,11 @@ func (o GetInstanceServersServerOutput) PlacementGroupPolicyRespected() pulumi.B
 // The Scaleway internal IP address of the server.
 func (o GetInstanceServersServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the server.
+func (o GetInstanceServersServerOutput) PrivateIps() GetInstanceServersServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v GetInstanceServersServer) []GetInstanceServersServerPrivateIp { return v.PrivateIps }).(GetInstanceServersServerPrivateIpArrayOutput)
 }
 
 // The ID of the project the server is associated with.
@@ -23875,6 +24160,112 @@ func (o GetInstanceServersServerArrayOutput) Index(i pulumi.IntInput) GetInstanc
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceServersServer {
 		return vs[0].([]GetInstanceServersServer)[vs[1].(int)]
 	}).(GetInstanceServersServerOutput)
+}
+
+type GetInstanceServersServerPrivateIp struct {
+	// The address of the IP
+	Address string `pulumi:"address"`
+	// The ID of the IP
+	Id string `pulumi:"id"`
+}
+
+// GetInstanceServersServerPrivateIpInput is an input type that accepts GetInstanceServersServerPrivateIpArgs and GetInstanceServersServerPrivateIpOutput values.
+// You can construct a concrete instance of `GetInstanceServersServerPrivateIpInput` via:
+//
+//	GetInstanceServersServerPrivateIpArgs{...}
+type GetInstanceServersServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetInstanceServersServerPrivateIpOutput() GetInstanceServersServerPrivateIpOutput
+	ToGetInstanceServersServerPrivateIpOutputWithContext(context.Context) GetInstanceServersServerPrivateIpOutput
+}
+
+type GetInstanceServersServerPrivateIpArgs struct {
+	// The address of the IP
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IP
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetInstanceServersServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServersServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstanceServersServerPrivateIpArgs) ToGetInstanceServersServerPrivateIpOutput() GetInstanceServersServerPrivateIpOutput {
+	return i.ToGetInstanceServersServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServersServerPrivateIpArgs) ToGetInstanceServersServerPrivateIpOutputWithContext(ctx context.Context) GetInstanceServersServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServersServerPrivateIpOutput)
+}
+
+// GetInstanceServersServerPrivateIpArrayInput is an input type that accepts GetInstanceServersServerPrivateIpArray and GetInstanceServersServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetInstanceServersServerPrivateIpArrayInput` via:
+//
+//	GetInstanceServersServerPrivateIpArray{ GetInstanceServersServerPrivateIpArgs{...} }
+type GetInstanceServersServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceServersServerPrivateIpArrayOutput() GetInstanceServersServerPrivateIpArrayOutput
+	ToGetInstanceServersServerPrivateIpArrayOutputWithContext(context.Context) GetInstanceServersServerPrivateIpArrayOutput
+}
+
+type GetInstanceServersServerPrivateIpArray []GetInstanceServersServerPrivateIpInput
+
+func (GetInstanceServersServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServersServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetInstanceServersServerPrivateIpArray) ToGetInstanceServersServerPrivateIpArrayOutput() GetInstanceServersServerPrivateIpArrayOutput {
+	return i.ToGetInstanceServersServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServersServerPrivateIpArray) ToGetInstanceServersServerPrivateIpArrayOutputWithContext(ctx context.Context) GetInstanceServersServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServersServerPrivateIpArrayOutput)
+}
+
+type GetInstanceServersServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServersServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServersServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstanceServersServerPrivateIpOutput) ToGetInstanceServersServerPrivateIpOutput() GetInstanceServersServerPrivateIpOutput {
+	return o
+}
+
+func (o GetInstanceServersServerPrivateIpOutput) ToGetInstanceServersServerPrivateIpOutputWithContext(ctx context.Context) GetInstanceServersServerPrivateIpOutput {
+	return o
+}
+
+// The address of the IP
+func (o GetInstanceServersServerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IP
+func (o GetInstanceServersServerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetInstanceServersServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServersServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServersServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetInstanceServersServerPrivateIpArrayOutput) ToGetInstanceServersServerPrivateIpArrayOutput() GetInstanceServersServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstanceServersServerPrivateIpArrayOutput) ToGetInstanceServersServerPrivateIpArrayOutputWithContext(ctx context.Context) GetInstanceServersServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetInstanceServersServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetInstanceServersServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceServersServerPrivateIp {
+		return vs[0].([]GetInstanceServersServerPrivateIp)[vs[1].(int)]
+	}).(GetInstanceServersServerPrivateIpOutput)
 }
 
 type GetInstanceServersServerPublicIp struct {
@@ -28673,7 +29064,8 @@ type GetLbsLbInstance struct {
 	// Date on which the Load Balancer was created.
 	CreatedAt string `pulumi:"createdAt"`
 	// The ID of the Load Balancer.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address of the instance
 	IpAddress string `pulumi:"ipAddress"`
 	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status string `pulumi:"status"`
@@ -28698,7 +29090,8 @@ type GetLbsLbInstanceArgs struct {
 	// Date on which the Load Balancer was created.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The ID of the Load Balancer.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address of the instance
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
 	Status pulumi.StringInput `pulumi:"status"`
@@ -28769,6 +29162,7 @@ func (o GetLbsLbInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address of the instance
 func (o GetLbsLbInstanceOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbInstance) string { return v.IpAddress }).(pulumi.StringOutput)
 }
@@ -28810,14 +29204,17 @@ func (o GetLbsLbInstanceArrayOutput) Index(i pulumi.IntInput) GetLbsLbInstanceOu
 
 type GetLbsLbIp struct {
 	// The ID of the Load Balancer.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address
 	IpAddress string `pulumi:"ipAddress"`
-	LbId      string `pulumi:"lbId"`
+	// UUID of the load balancer attached to the IP
+	LbId string `pulumi:"lbId"`
 	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId string `pulumi:"projectId"`
-	Reverse   string `pulumi:"reverse"`
+	// Reverse DNS attached to the IP
+	Reverse string `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
 	Zone string `pulumi:"zone"`
 }
@@ -28835,14 +29232,17 @@ type GetLbsLbIpInput interface {
 
 type GetLbsLbIpArgs struct {
 	// The ID of the Load Balancer.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	LbId      pulumi.StringInput `pulumi:"lbId"`
+	// UUID of the load balancer attached to the IP
+	LbId pulumi.StringInput `pulumi:"lbId"`
 	// The ID of the Organization the Load Balancer is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
 	// The ID of the Project the Load Balancer is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	Reverse   pulumi.StringInput `pulumi:"reverse"`
+	// Reverse DNS attached to the IP
+	Reverse pulumi.StringInput `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
 	Zone pulumi.StringInput `pulumi:"zone"`
 }
@@ -28903,10 +29303,12 @@ func (o GetLbsLbIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address
 func (o GetLbsLbIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
+// UUID of the load balancer attached to the IP
 func (o GetLbsLbIpOutput) LbId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.LbId }).(pulumi.StringOutput)
 }
@@ -28921,6 +29323,7 @@ func (o GetLbsLbIpOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
+// Reverse DNS attached to the IP
 func (o GetLbsLbIpOutput) Reverse() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbsLbIp) string { return v.Reverse }).(pulumi.StringOutput)
 }
@@ -29756,11 +30159,16 @@ func (o GetMongoDbInstancePublicNetworkArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetObjectBucketCorsRule struct {
+	// Allowed headers in the CORS rule
 	AllowedHeaders []string `pulumi:"allowedHeaders"`
+	// Allowed HTTP methods allowed in the CORS rule
 	AllowedMethods []string `pulumi:"allowedMethods"`
+	// Allowed origins allowed in the CORS rule
 	AllowedOrigins []string `pulumi:"allowedOrigins"`
-	ExposeHeaders  []string `pulumi:"exposeHeaders"`
-	MaxAgeSeconds  int      `pulumi:"maxAgeSeconds"`
+	// Exposed headers in the CORS rule
+	ExposeHeaders []string `pulumi:"exposeHeaders"`
+	// Max age of the CORS rule
+	MaxAgeSeconds int `pulumi:"maxAgeSeconds"`
 }
 
 // GetObjectBucketCorsRuleInput is an input type that accepts GetObjectBucketCorsRuleArgs and GetObjectBucketCorsRuleOutput values.
@@ -29775,11 +30183,16 @@ type GetObjectBucketCorsRuleInput interface {
 }
 
 type GetObjectBucketCorsRuleArgs struct {
+	// Allowed headers in the CORS rule
 	AllowedHeaders pulumi.StringArrayInput `pulumi:"allowedHeaders"`
+	// Allowed HTTP methods allowed in the CORS rule
 	AllowedMethods pulumi.StringArrayInput `pulumi:"allowedMethods"`
+	// Allowed origins allowed in the CORS rule
 	AllowedOrigins pulumi.StringArrayInput `pulumi:"allowedOrigins"`
-	ExposeHeaders  pulumi.StringArrayInput `pulumi:"exposeHeaders"`
-	MaxAgeSeconds  pulumi.IntInput         `pulumi:"maxAgeSeconds"`
+	// Exposed headers in the CORS rule
+	ExposeHeaders pulumi.StringArrayInput `pulumi:"exposeHeaders"`
+	// Max age of the CORS rule
+	MaxAgeSeconds pulumi.IntInput `pulumi:"maxAgeSeconds"`
 }
 
 func (GetObjectBucketCorsRuleArgs) ElementType() reflect.Type {
@@ -29833,22 +30246,27 @@ func (o GetObjectBucketCorsRuleOutput) ToGetObjectBucketCorsRuleOutputWithContex
 	return o
 }
 
+// Allowed headers in the CORS rule
 func (o GetObjectBucketCorsRuleOutput) AllowedHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetObjectBucketCorsRule) []string { return v.AllowedHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Allowed HTTP methods allowed in the CORS rule
 func (o GetObjectBucketCorsRuleOutput) AllowedMethods() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetObjectBucketCorsRule) []string { return v.AllowedMethods }).(pulumi.StringArrayOutput)
 }
 
+// Allowed origins allowed in the CORS rule
 func (o GetObjectBucketCorsRuleOutput) AllowedOrigins() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetObjectBucketCorsRule) []string { return v.AllowedOrigins }).(pulumi.StringArrayOutput)
 }
 
+// Exposed headers in the CORS rule
 func (o GetObjectBucketCorsRuleOutput) ExposeHeaders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetObjectBucketCorsRule) []string { return v.ExposeHeaders }).(pulumi.StringArrayOutput)
 }
 
+// Max age of the CORS rule
 func (o GetObjectBucketCorsRuleOutput) MaxAgeSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetObjectBucketCorsRule) int { return v.MaxAgeSeconds }).(pulumi.IntOutput)
 }
@@ -31934,8 +32352,9 @@ type GetVpcsVpc struct {
 	// `region`). The region in which the VPCs exist.
 	Region string `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
-	Tags     []string `pulumi:"tags"`
-	UpdateAt string   `pulumi:"updateAt"`
+	Tags []string `pulumi:"tags"`
+	// Date on which the VPC was last updated (RFC 3339 format)
+	UpdateAt string `pulumi:"updateAt"`
 }
 
 // GetVpcsVpcInput is an input type that accepts GetVpcsVpcArgs and GetVpcsVpcOutput values.
@@ -31966,8 +32385,9 @@ type GetVpcsVpcArgs struct {
 	// `region`). The region in which the VPCs exist.
 	Region pulumi.StringInput `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
-	UpdateAt pulumi.StringInput      `pulumi:"updateAt"`
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// Date on which the VPC was last updated (RFC 3339 format)
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
 func (GetVpcsVpcArgs) ElementType() reflect.Type {
@@ -32062,6 +32482,7 @@ func (o GetVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// Date on which the VPC was last updated (RFC 3339 format)
 func (o GetVpcsVpcOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.UpdateAt }).(pulumi.StringOutput)
 }
@@ -32585,8 +33006,10 @@ func (o GetWebHostOfferProductArrayOutput) Index(i pulumi.IntInput) GetWebHostOf
 }
 
 type GetWebhostingCpanelUrl struct {
+	// URL to connect to dashboard interface
 	Dashboard string `pulumi:"dashboard"`
-	Webmail   string `pulumi:"webmail"`
+	// URL to connect to Webmail interface
+	Webmail string `pulumi:"webmail"`
 }
 
 // GetWebhostingCpanelUrlInput is an input type that accepts GetWebhostingCpanelUrlArgs and GetWebhostingCpanelUrlOutput values.
@@ -32601,8 +33024,10 @@ type GetWebhostingCpanelUrlInput interface {
 }
 
 type GetWebhostingCpanelUrlArgs struct {
+	// URL to connect to dashboard interface
 	Dashboard pulumi.StringInput `pulumi:"dashboard"`
-	Webmail   pulumi.StringInput `pulumi:"webmail"`
+	// URL to connect to Webmail interface
+	Webmail pulumi.StringInput `pulumi:"webmail"`
 }
 
 func (GetWebhostingCpanelUrlArgs) ElementType() reflect.Type {
@@ -32656,10 +33081,12 @@ func (o GetWebhostingCpanelUrlOutput) ToGetWebhostingCpanelUrlOutputWithContext(
 	return o
 }
 
+// URL to connect to dashboard interface
 func (o GetWebhostingCpanelUrlOutput) Dashboard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingCpanelUrl) string { return v.Dashboard }).(pulumi.StringOutput)
 }
 
+// URL to connect to Webmail interface
 func (o GetWebhostingCpanelUrlOutput) Webmail() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingCpanelUrl) string { return v.Webmail }).(pulumi.StringOutput)
 }
@@ -32685,9 +33112,12 @@ func (o GetWebhostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) GetWebhostin
 }
 
 type GetWebhostingNameServer struct {
-	Hostname  string `pulumi:"hostname"`
-	IsDefault bool   `pulumi:"isDefault"`
-	Status    string `pulumi:"status"`
+	// Hostname of the server
+	Hostname string `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault bool `pulumi:"isDefault"`
+	// Status of the nameserver
+	Status string `pulumi:"status"`
 }
 
 // GetWebhostingNameServerInput is an input type that accepts GetWebhostingNameServerArgs and GetWebhostingNameServerOutput values.
@@ -32702,9 +33132,12 @@ type GetWebhostingNameServerInput interface {
 }
 
 type GetWebhostingNameServerArgs struct {
-	Hostname  pulumi.StringInput `pulumi:"hostname"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
-	Status    pulumi.StringInput `pulumi:"status"`
+	// Hostname of the server
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Status of the nameserver
+	Status pulumi.StringInput `pulumi:"status"`
 }
 
 func (GetWebhostingNameServerArgs) ElementType() reflect.Type {
@@ -32758,14 +33191,17 @@ func (o GetWebhostingNameServerOutput) ToGetWebhostingNameServerOutputWithContex
 	return o
 }
 
+// Hostname of the server
 func (o GetWebhostingNameServerOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingNameServer) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
+// Whether or not the webhosting is the default one
 func (o GetWebhostingNameServerOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetWebhostingNameServer) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Status of the nameserver
 func (o GetWebhostingNameServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingNameServer) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -32791,7 +33227,9 @@ func (o GetWebhostingNameServerArrayOutput) Index(i pulumi.IntInput) GetWebhosti
 }
 
 type GetWebhostingOption struct {
-	Id   string `pulumi:"id"`
+	// ID of the active option
+	Id string `pulumi:"id"`
+	// Name of the option
 	Name string `pulumi:"name"`
 }
 
@@ -32807,7 +33245,9 @@ type GetWebhostingOptionInput interface {
 }
 
 type GetWebhostingOptionArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
+	// ID of the active option
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of the option
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -32862,10 +33302,12 @@ func (o GetWebhostingOptionOutput) ToGetWebhostingOptionOutputWithContext(ctx co
 	return o
 }
 
+// ID of the active option
 func (o GetWebhostingOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingOption) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of the option
 func (o GetWebhostingOptionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingOption) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -32891,12 +33333,18 @@ func (o GetWebhostingOptionArrayOutput) Index(i pulumi.IntInput) GetWebhostingOp
 }
 
 type GetWebhostingRecord struct {
-	Name     string `pulumi:"name"`
-	Priority int    `pulumi:"priority"`
-	Status   string `pulumi:"status"`
-	Ttl      int    `pulumi:"ttl"`
-	Type     string `pulumi:"type"`
-	Value    string `pulumi:"value"`
+	// Name of the DNS record
+	Name string `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority int `pulumi:"priority"`
+	// Status of the hosting record
+	Status string `pulumi:"status"`
+	// Time to live in seconds of the record
+	Ttl int `pulumi:"ttl"`
+	// Type of the DNS record
+	Type string `pulumi:"type"`
+	// Value of the DNS record
+	Value string `pulumi:"value"`
 }
 
 // GetWebhostingRecordInput is an input type that accepts GetWebhostingRecordArgs and GetWebhostingRecordOutput values.
@@ -32911,12 +33359,18 @@ type GetWebhostingRecordInput interface {
 }
 
 type GetWebhostingRecordArgs struct {
-	Name     pulumi.StringInput `pulumi:"name"`
-	Priority pulumi.IntInput    `pulumi:"priority"`
-	Status   pulumi.StringInput `pulumi:"status"`
-	Ttl      pulumi.IntInput    `pulumi:"ttl"`
-	Type     pulumi.StringInput `pulumi:"type"`
-	Value    pulumi.StringInput `pulumi:"value"`
+	// Name of the DNS record
+	Name pulumi.StringInput `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Status of the hosting record
+	Status pulumi.StringInput `pulumi:"status"`
+	// Time to live in seconds of the record
+	Ttl pulumi.IntInput `pulumi:"ttl"`
+	// Type of the DNS record
+	Type pulumi.StringInput `pulumi:"type"`
+	// Value of the DNS record
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (GetWebhostingRecordArgs) ElementType() reflect.Type {
@@ -32970,26 +33424,32 @@ func (o GetWebhostingRecordOutput) ToGetWebhostingRecordOutputWithContext(ctx co
 	return o
 }
 
+// Name of the DNS record
 func (o GetWebhostingRecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority of DNS records associated with the webhosting.
 func (o GetWebhostingRecordOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// Status of the hosting record
 func (o GetWebhostingRecordOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Time to live in seconds of the record
 func (o GetWebhostingRecordOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// Type of the DNS record
 func (o GetWebhostingRecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Value of the DNS record
 func (o GetWebhostingRecordOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetWebhostingRecord) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -33201,6 +33661,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSnsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsCredentialsPermissionsPtrInput)(nil)).Elem(), MnqSqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsQueueDeadLetterQueueInput)(nil)).Elem(), MnqSqsQueueDeadLetterQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MnqSqsQueueDeadLetterQueuePtrInput)(nil)).Elem(), MnqSqsQueueDeadLetterQueueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateIpInput)(nil)).Elem(), MongoDbInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateIpArrayInput)(nil)).Elem(), MongoDbInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MongoDbInstancePrivateNetworkInput)(nil)).Elem(), MongoDbInstancePrivateNetworkArgs{})
@@ -33340,6 +33802,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerRootVolumeArrayInput)(nil)).Elem(), GetInstanceServerRootVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerInput)(nil)).Elem(), GetInstanceServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerArrayInput)(nil)).Elem(), GetInstanceServersServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPrivateIpInput)(nil)).Elem(), GetInstanceServersServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPrivateIpArrayInput)(nil)).Elem(), GetInstanceServersServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPublicIpInput)(nil)).Elem(), GetInstanceServersServerPublicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPublicIpArrayInput)(nil)).Elem(), GetInstanceServersServerPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportInput)(nil)).Elem(), GetInstanceSnapshotImportArgs{})
@@ -33662,6 +34126,8 @@ func init() {
 	pulumi.RegisterOutputType(MnqSnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(MnqSqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(MnqSqsQueueDeadLetterQueueOutput{})
+	pulumi.RegisterOutputType(MnqSqsQueueDeadLetterQueuePtrOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(MongoDbInstancePrivateNetworkOutput{})
@@ -33801,6 +34267,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceServerRootVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceServersServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetInstanceServersServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerPublicIpOutput{})
 	pulumi.RegisterOutputType(GetInstanceServersServerPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSnapshotImportOutput{})

@@ -50,7 +50,7 @@ import (
 // bash
 //
 // ```sh
-// $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+// $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type Snapshot struct {
 	pulumi.CustomResourceState

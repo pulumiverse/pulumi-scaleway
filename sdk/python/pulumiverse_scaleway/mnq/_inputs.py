@@ -20,6 +20,8 @@ __all__ = [
     'SnsCredentialsPermissionsArgsDict',
     'SqsCredentialsPermissionsArgs',
     'SqsCredentialsPermissionsArgsDict',
+    'SqsQueueDeadLetterQueueArgs',
+    'SqsQueueDeadLetterQueueArgsDict',
 ]
 
 MYPY = False
@@ -166,5 +168,55 @@ class SqsCredentialsPermissionsArgs:
     @can_receive.setter
     def can_receive(self, value: Optional[pulumi.Input[builtins.bool]]):
         pulumi.set(self, "can_receive", value)
+
+
+if not MYPY:
+    class SqsQueueDeadLetterQueueArgsDict(TypedDict):
+        id: pulumi.Input[builtins.str]
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        max_receive_count: pulumi.Input[builtins.int]
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+elif False:
+    SqsQueueDeadLetterQueueArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SqsQueueDeadLetterQueueArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[builtins.str],
+                 max_receive_count: pulumi.Input[builtins.int]):
+        """
+        :param pulumi.Input[builtins.str] id: The ID of the queue with format `{region/{project-id}/{queue-name}`
+        :param pulumi.Input[builtins.int] max_receive_count: The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[builtins.str]:
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> pulumi.Input[builtins.int]:
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        return pulumi.get(self, "max_receive_count")
+
+    @max_receive_count.setter
+    def max_receive_count(self, value: pulumi.Input[builtins.int]):
+        pulumi.set(self, "max_receive_count", value)
 
 

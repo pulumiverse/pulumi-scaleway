@@ -67,7 +67,9 @@ export class Namespace extends pulumi.CustomResource {
     /**
      * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
      *
-     * > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+     *
+     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
     public readonly activateVpcIntegration!: pulumi.Output<boolean | undefined>;
     /**
@@ -175,7 +177,9 @@ export interface NamespaceState {
     /**
      * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
      *
-     * > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+     *
+     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
     activateVpcIntegration?: pulumi.Input<boolean>;
     /**
@@ -235,7 +239,9 @@ export interface NamespaceArgs {
     /**
      * Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
      *
-     * > **Important** Updates to `activateVpcIntegration` will recreate the namespace.
+     * > **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
+     *
+     * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
     activateVpcIntegration?: pulumi.Input<boolean>;
     /**

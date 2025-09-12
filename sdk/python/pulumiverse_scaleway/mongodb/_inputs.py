@@ -22,6 +22,8 @@ __all__ = [
     'InstancePrivateNetworkArgsDict',
     'InstancePublicNetworkArgs',
     'InstancePublicNetworkArgsDict',
+    'UserRoleArgs',
+    'UserRoleArgsDict',
 ]
 
 MYPY = False
@@ -259,5 +261,76 @@ class InstancePublicNetworkArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[builtins.int]]):
         pulumi.set(self, "port", value)
+
+
+if not MYPY:
+    class UserRoleArgsDict(TypedDict):
+        role: pulumi.Input[builtins.str]
+        """
+        The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        """
+        any_database: NotRequired[pulumi.Input[builtins.bool]]
+        """
+        Apply the role to all databases. Cannot be used with `database_name`.
+        """
+        database_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        The database name for the role. Cannot be used with `any_database`.
+        """
+elif False:
+    UserRoleArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class UserRoleArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[builtins.str],
+                 any_database: Optional[pulumi.Input[builtins.bool]] = None,
+                 database_name: Optional[pulumi.Input[builtins.str]] = None):
+        """
+        :param pulumi.Input[builtins.str] role: The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        :param pulumi.Input[builtins.bool] any_database: Apply the role to all databases. Cannot be used with `database_name`.
+        :param pulumi.Input[builtins.str] database_name: The database name for the role. Cannot be used with `any_database`.
+        """
+        pulumi.set(__self__, "role", role)
+        if any_database is not None:
+            pulumi.set(__self__, "any_database", any_database)
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[builtins.str]:
+        """
+        The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[builtins.str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="anyDatabase")
+    def any_database(self) -> Optional[pulumi.Input[builtins.bool]]:
+        """
+        Apply the role to all databases. Cannot be used with `database_name`.
+        """
+        return pulumi.get(self, "any_database")
+
+    @any_database.setter
+    def any_database(self, value: Optional[pulumi.Input[builtins.bool]]):
+        pulumi.set(self, "any_database", value)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        The database name for the role. Cannot be used with `any_database`.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: Optional[pulumi.Input[builtins.str]]):
+        pulumi.set(self, "database_name", value)
 
 

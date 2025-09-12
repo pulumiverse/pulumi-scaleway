@@ -20,8 +20,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         public readonly string Bucket;
         /// <summary>
         /// Key of the object to import
-        /// 
-        /// &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         /// </summary>
         public readonly string Key;
 

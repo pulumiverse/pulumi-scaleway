@@ -172,13 +172,15 @@ import (
 // bash
 //
 // ```sh
-// $ pulumi import scaleway:mongodb/instance:Instance main fr-par-1/11111111-1111-1111-1111-111111111111
+// $ pulumi import scaleway:mongodb/instance:Instance main fr-par/11111111-1111-1111-1111-111111111111
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
 
 	// The date and time of the creation of the MongoDB® instance.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Enable or disable automatic snapshot scheduling
+	IsSnapshotScheduleEnabled pulumi.BoolOutput `pulumi:"isSnapshotScheduleEnabled"`
 	// Name of the MongoDB® instance.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of nodes in the instance
@@ -191,17 +193,22 @@ type Instance struct {
 	PrivateIps InstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork InstancePrivateNetworkPtrOutput `pulumi:"privateNetwork"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the MongoDB® instance is associated with.
+	//
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Public network endpoint configuration (no arguments).
-	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork InstancePublicNetworkOutput `pulumi:"publicNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Map of settings to define for the instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
+	// Snapshot schedule frequency in hours
+	SnapshotScheduleFrequencyHours pulumi.IntOutput `pulumi:"snapshotScheduleFrequencyHours"`
+	// Snapshot schedule retention in days
+	SnapshotScheduleRetentionDays pulumi.IntOutput `pulumi:"snapshotScheduleRetentionDays"`
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
@@ -269,6 +276,8 @@ func GetInstance(ctx *pulumi.Context,
 type instanceState struct {
 	// The date and time of the creation of the MongoDB® instance.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Enable or disable automatic snapshot scheduling
+	IsSnapshotScheduleEnabled *bool `pulumi:"isSnapshotScheduleEnabled"`
 	// Name of the MongoDB® instance.
 	Name *string `pulumi:"name"`
 	// Number of nodes in the instance
@@ -281,17 +290,22 @@ type instanceState struct {
 	PrivateIps []InstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork *InstancePrivateNetwork `pulumi:"privateNetwork"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the MongoDB® instance is associated with.
+	//
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	ProjectId *string `pulumi:"projectId"`
 	// Public network endpoint configuration (no arguments).
-	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork *InstancePublicNetwork `pulumi:"publicNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the MongoDB® instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of settings to define for the instance.
 	Settings map[string]string `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId *string `pulumi:"snapshotId"`
+	// Snapshot schedule frequency in hours
+	SnapshotScheduleFrequencyHours *int `pulumi:"snapshotScheduleFrequencyHours"`
+	// Snapshot schedule retention in days
+	SnapshotScheduleRetentionDays *int `pulumi:"snapshotScheduleRetentionDays"`
 	// List of tags attached to the MongoDB® instance.
 	Tags []string `pulumi:"tags"`
 	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
@@ -311,6 +325,8 @@ type instanceState struct {
 type InstanceState struct {
 	// The date and time of the creation of the MongoDB® instance.
 	CreatedAt pulumi.StringPtrInput
+	// Enable or disable automatic snapshot scheduling
+	IsSnapshotScheduleEnabled pulumi.BoolPtrInput
 	// Name of the MongoDB® instance.
 	Name pulumi.StringPtrInput
 	// Number of nodes in the instance
@@ -323,17 +339,22 @@ type InstanceState struct {
 	PrivateIps InstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork InstancePrivateNetworkPtrInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the MongoDB® instance is associated with.
+	//
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	ProjectId pulumi.StringPtrInput
 	// Public network endpoint configuration (no arguments).
-	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork InstancePublicNetworkPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of settings to define for the instance.
 	Settings pulumi.StringMapInput
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrInput
+	// Snapshot schedule frequency in hours
+	SnapshotScheduleFrequencyHours pulumi.IntPtrInput
+	// Snapshot schedule retention in days
+	SnapshotScheduleRetentionDays pulumi.IntPtrInput
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayInput
 	// The PEM-encoded TLS certificate for the MongoDB® instance, if available.
@@ -355,6 +376,8 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
+	// Enable or disable automatic snapshot scheduling
+	IsSnapshotScheduleEnabled *bool `pulumi:"isSnapshotScheduleEnabled"`
 	// Name of the MongoDB® instance.
 	Name *string `pulumi:"name"`
 	// Number of nodes in the instance
@@ -367,17 +390,22 @@ type instanceArgs struct {
 	PrivateIps []InstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork *InstancePrivateNetwork `pulumi:"privateNetwork"`
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the MongoDB® instance is associated with.
+	//
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	ProjectId *string `pulumi:"projectId"`
 	// Public network endpoint configuration (no arguments).
-	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork *InstancePublicNetwork `pulumi:"publicNetwork"`
-	// The region you want to attach the resource to
+	// `region`) The region in which the MongoDB® instance should be created.
 	Region *string `pulumi:"region"`
 	// Map of settings to define for the instance.
 	Settings map[string]string `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId *string `pulumi:"snapshotId"`
+	// Snapshot schedule frequency in hours
+	SnapshotScheduleFrequencyHours *int `pulumi:"snapshotScheduleFrequencyHours"`
+	// Snapshot schedule retention in days
+	SnapshotScheduleRetentionDays *int `pulumi:"snapshotScheduleRetentionDays"`
 	// List of tags attached to the MongoDB® instance.
 	Tags []string `pulumi:"tags"`
 	// Name of the user created when the intance is created.
@@ -392,6 +420,8 @@ type instanceArgs struct {
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
+	// Enable or disable automatic snapshot scheduling
+	IsSnapshotScheduleEnabled pulumi.BoolPtrInput
 	// Name of the MongoDB® instance.
 	Name pulumi.StringPtrInput
 	// Number of nodes in the instance
@@ -404,17 +434,22 @@ type InstanceArgs struct {
 	PrivateIps InstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
 	PrivateNetwork InstancePrivateNetworkPtrInput
-	// The projectId you want to attach the resource to
+	// `projectId`) The ID of the project the MongoDB® instance is associated with.
+	//
+	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	ProjectId pulumi.StringPtrInput
 	// Public network endpoint configuration (no arguments).
-	// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 	PublicNetwork InstancePublicNetworkPtrInput
-	// The region you want to attach the resource to
+	// `region`) The region in which the MongoDB® instance should be created.
 	Region pulumi.StringPtrInput
 	// Map of settings to define for the instance.
 	Settings pulumi.StringMapInput
 	// Snapshot ID to restore the MongoDB® instance from.
 	SnapshotId pulumi.StringPtrInput
+	// Snapshot schedule frequency in hours
+	SnapshotScheduleFrequencyHours pulumi.IntPtrInput
+	// Snapshot schedule retention in days
+	SnapshotScheduleRetentionDays pulumi.IntPtrInput
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayInput
 	// Name of the user created when the intance is created.
@@ -519,6 +554,11 @@ func (o InstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Enable or disable automatic snapshot scheduling
+func (o InstanceOutput) IsSnapshotScheduleEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolOutput { return v.IsSnapshotScheduleEnabled }).(pulumi.BoolOutput)
+}
+
 // Name of the MongoDB® instance.
 func (o InstanceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
@@ -549,18 +589,19 @@ func (o InstanceOutput) PrivateNetwork() InstancePrivateNetworkPtrOutput {
 	return o.ApplyT(func(v *Instance) InstancePrivateNetworkPtrOutput { return v.PrivateNetwork }).(InstancePrivateNetworkPtrOutput)
 }
 
-// The projectId you want to attach the resource to
+// `projectId`) The ID of the project the MongoDB® instance is associated with.
+//
+// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 func (o InstanceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
 // Public network endpoint configuration (no arguments).
-// > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
 func (o InstanceOutput) PublicNetwork() InstancePublicNetworkOutput {
 	return o.ApplyT(func(v *Instance) InstancePublicNetworkOutput { return v.PublicNetwork }).(InstancePublicNetworkOutput)
 }
 
-// The region you want to attach the resource to
+// `region`) The region in which the MongoDB® instance should be created.
 func (o InstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -573,6 +614,16 @@ func (o InstanceOutput) Settings() pulumi.StringMapOutput {
 // Snapshot ID to restore the MongoDB® instance from.
 func (o InstanceOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
+}
+
+// Snapshot schedule frequency in hours
+func (o InstanceOutput) SnapshotScheduleFrequencyHours() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.SnapshotScheduleFrequencyHours }).(pulumi.IntOutput)
+}
+
+// Snapshot schedule retention in days
+func (o InstanceOutput) SnapshotScheduleRetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.SnapshotScheduleRetentionDays }).(pulumi.IntOutput)
 }
 
 // List of tags attached to the MongoDB® instance.

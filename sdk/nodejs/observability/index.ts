@@ -25,6 +25,11 @@ export const getSource: typeof import("./getSource").getSource = null as any;
 export const getSourceOutput: typeof import("./getSource").getSourceOutput = null as any;
 utilities.lazyLoad(exports, ["getSource","getSourceOutput"], () => require("./getSource"));
 
+export { GetSourcesArgs, GetSourcesResult, GetSourcesOutputArgs } from "./getSources";
+export const getSources: typeof import("./getSources").getSources = null as any;
+export const getSourcesOutput: typeof import("./getSources").getSourcesOutput = null as any;
+utilities.lazyLoad(exports, ["getSources","getSourcesOutput"], () => require("./getSources"));
+
 export { GrafanaUserArgs, GrafanaUserState } from "./grafanaUser";
 export type GrafanaUser = import("./grafanaUser").GrafanaUser;
 export const GrafanaUser: typeof import("./grafanaUser").GrafanaUser = null as any;

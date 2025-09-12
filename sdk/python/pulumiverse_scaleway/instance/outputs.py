@@ -36,6 +36,7 @@ __all__ = [
     'GetServerPublicIpResult',
     'GetServerRootVolumeResult',
     'GetServersServerResult',
+    'GetServersServerPrivateIpResult',
     'GetServersServerPublicIpResult',
     'GetSnapshotImportResult',
 ]
@@ -769,33 +770,110 @@ class ServerPrivateNetwork(dict):
 
 @pulumi.output_type
 class ServerPublicIp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "provisioningMode":
+            suggest = "provisioning_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ServerPublicIp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ServerPublicIp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ServerPublicIp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: Optional[builtins.str] = None,
-                 id: Optional[builtins.str] = None):
+                 dynamic: Optional[builtins.bool] = None,
+                 family: Optional[builtins.str] = None,
+                 gateway: Optional[builtins.str] = None,
+                 id: Optional[builtins.str] = None,
+                 netmask: Optional[builtins.str] = None,
+                 provisioning_mode: Optional[builtins.str] = None):
         """
-        :param builtins.str address: The address of the IP
-        :param builtins.str id: The ID of the IP
+        :param builtins.str address: The address of the IP.
+        :param builtins.bool dynamic: Whether the IP is dynamic.
+        :param builtins.str family: The IP address' family.
+        :param builtins.str gateway: The IP of the Gateway associated with the IP.
+        :param builtins.str id: The ID of the IP.
+        :param builtins.str netmask: The CIDR netmask of the IP.
+        :param builtins.str provisioning_mode: The provisioning mode of the IP
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if dynamic is not None:
+            pulumi.set(__self__, "dynamic", dynamic)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if gateway is not None:
+            pulumi.set(__self__, "gateway", gateway)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if netmask is not None:
+            pulumi.set(__self__, "netmask", netmask)
+        if provisioning_mode is not None:
+            pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[builtins.str]:
         """
-        The address of the IP
+        The address of the IP.
         """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
+    def dynamic(self) -> Optional[builtins.bool]:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[builtins.str]:
+        """
+        The IP address' family.
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> Optional[builtins.str]:
+        """
+        The IP of the Gateway associated with the IP.
+        """
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter
     def id(self) -> Optional[builtins.str]:
         """
-        The ID of the IP
+        The ID of the IP.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> Optional[builtins.str]:
+        """
+        The CIDR netmask of the IP.
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> Optional[builtins.str]:
+        """
+        The provisioning mode of the IP
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type
@@ -932,8 +1010,6 @@ class SnapshotImport(dict):
         """
         :param builtins.str bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
         :param builtins.str key: Key of the object to import
-               
-               > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -951,8 +1027,6 @@ class SnapshotImport(dict):
     def key(self) -> builtins.str:
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         return pulumi.get(self, "key")
 
@@ -1235,13 +1309,28 @@ class GetServerPrivateNetworkResult(dict):
 class GetServerPublicIpResult(dict):
     def __init__(__self__, *,
                  address: builtins.str,
-                 id: builtins.str):
+                 dynamic: builtins.bool,
+                 family: builtins.str,
+                 gateway: builtins.str,
+                 id: builtins.str,
+                 netmask: builtins.str,
+                 provisioning_mode: builtins.str):
         """
         :param builtins.str address: The address of the IP
+        :param builtins.bool dynamic: Whether the IP is dynamic
+        :param builtins.str family: IP address family (inet or inet6)
+        :param builtins.str gateway: Gateway's IP address
         :param builtins.str id: The ID of the IP
+        :param builtins.str netmask: CIDR netmask
+        :param builtins.str provisioning_mode: Provisioning mode of the IP address
         """
         pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "dynamic", dynamic)
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "netmask", netmask)
+        pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
@@ -1253,11 +1342,51 @@ class GetServerPublicIpResult(dict):
 
     @property
     @pulumi.getter
+    def dynamic(self) -> builtins.bool:
+        """
+        Whether the IP is dynamic
+        """
+        return pulumi.get(self, "dynamic")
+
+    @property
+    @pulumi.getter
+    def family(self) -> builtins.str:
+        """
+        IP address family (inet or inet6)
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> builtins.str:
+        """
+        Gateway's IP address
+        """
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter
     def id(self) -> builtins.str:
         """
         The ID of the IP
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> builtins.str:
+        """
+        CIDR netmask
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> builtins.str:
+        """
+        Provisioning mode of the IP address
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type
@@ -1361,6 +1490,7 @@ class GetServersServerResult(dict):
                  placement_group_id: builtins.str,
                  placement_group_policy_respected: builtins.bool,
                  private_ip: builtins.str,
+                 private_ips: Sequence['outputs.GetServersServerPrivateIpResult'],
                  project_id: builtins.str,
                  public_ip: builtins.str,
                  public_ips: Sequence['outputs.GetServersServerPublicIpResult'],
@@ -1371,6 +1501,7 @@ class GetServersServerResult(dict):
                  zone: builtins.str):
         """
         :param builtins.str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param builtins.str bootscript_id: UUID of the bootscript
         :param builtins.bool enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param builtins.bool enable_ipv6: Determines if IPv6 is enabled for the server.
         :param builtins.str id: The ID of the IP
@@ -1381,7 +1512,9 @@ class GetServersServerResult(dict):
         :param builtins.str name: The server name used as filter. Servers with a name like it are listed.
         :param builtins.str organization_id: The organization ID the server is associated with.
         :param builtins.str placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param builtins.bool placement_group_policy_respected: Whether the placement group policy respected or not
         :param builtins.str private_ip: The Scaleway internal IP address of the server.
+        :param Sequence['GetServersServerPrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param builtins.str project_id: The ID of the project the server is associated with.
         :param builtins.str public_ip: The public IP address of the server.
         :param Sequence['GetServersServerPublicIpArgs'] public_ips: The list of public IPs of the server
@@ -1405,6 +1538,7 @@ class GetServersServerResult(dict):
         pulumi.set(__self__, "placement_group_id", placement_group_id)
         pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
         pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ips", public_ips)
@@ -1426,6 +1560,9 @@ class GetServersServerResult(dict):
     @pulumi.getter(name="bootscriptId")
     @_utilities.deprecated("""bootscript are not supported""")
     def bootscript_id(self) -> builtins.str:
+        """
+        UUID of the bootscript
+        """
         return pulumi.get(self, "bootscript_id")
 
     @property
@@ -1511,6 +1648,9 @@ class GetServersServerResult(dict):
     @property
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> builtins.bool:
+        """
+        Whether the placement group policy respected or not
+        """
         return pulumi.get(self, "placement_group_policy_respected")
 
     @property
@@ -1520,6 +1660,14 @@ class GetServersServerResult(dict):
         The Scaleway internal IP address of the server.
         """
         return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetServersServerPrivateIpResult']:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the server.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="projectId")
@@ -1585,6 +1733,35 @@ class GetServersServerResult(dict):
         `zone`) The zone in which servers exist.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetServersServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: builtins.str,
+                 id: builtins.str):
+        """
+        :param builtins.str address: The address of the IP
+        :param builtins.str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> builtins.str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type

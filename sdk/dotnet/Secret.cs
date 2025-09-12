@@ -104,6 +104,9 @@ namespace Pulumiverse.Scaleway
         [Output("versionCount")]
         public Output<int> VersionCount { get; private set; } = null!;
 
+        /// <summary>
+        /// List of the versions of the secret
+        /// </summary>
         [Output("versions")]
         public Output<ImmutableArray<Outputs.SecretVersion>> Versions { get; private set; } = null!;
 
@@ -322,6 +325,10 @@ namespace Pulumiverse.Scaleway
 
         [Input("versions")]
         private InputList<Inputs.SecretVersionGetArgs>? _versions;
+
+        /// <summary>
+        /// List of the versions of the secret
+        /// </summary>
         public InputList<Inputs.SecretVersionGetArgs> Versions
         {
             get => _versions ?? (_versions = new InputList<Inputs.SecretVersionGetArgs>());

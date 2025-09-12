@@ -1265,6 +1265,9 @@ export interface GetFlexibleIpsIp {
      * The MAC address ID.
      */
     id: string;
+    /**
+     * IP address of the flexible IP
+     */
     ipAddress: string;
     /**
      * The MAC address of the Virtual MAC.
@@ -1440,9 +1443,29 @@ export interface GetInstanceServerPublicIp {
      */
     address: string;
     /**
+     * Whether the IP is dynamic
+     */
+    dynamic: boolean;
+    /**
+     * IP address family (inet or inet6)
+     */
+    family: string;
+    /**
+     * Gateway's IP address
+     */
+    gateway: string;
+    /**
      * The ID of the IP
      */
     id: string;
+    /**
+     * CIDR netmask
+     */
+    netmask: string;
+    /**
+     * Provisioning mode of the IP address
+     */
+    provisioningMode: string;
 }
 
 export interface GetInstanceServerRootVolume {
@@ -1482,6 +1505,8 @@ export interface GetInstanceServersServer {
      */
     bootType: string;
     /**
+     * UUID of the bootscript
+     *
      * @deprecated bootscript are not supported
      */
     bootscriptId: string;
@@ -1525,11 +1550,18 @@ export interface GetInstanceServersServer {
      * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
      */
     placementGroupId: string;
+    /**
+     * Whether the placement group policy respected or not
+     */
     placementGroupPolicyRespected: boolean;
     /**
      * The Scaleway internal IP address of the server.
      */
     privateIp: string;
+    /**
+     * The list of private IPv4 and IPv6 addresses associated with the server.
+     */
+    privateIps: outputs.GetInstanceServersServerPrivateIp[];
     /**
      * The ID of the project the server is associated with.
      */
@@ -1564,6 +1596,17 @@ export interface GetInstanceServersServer {
      * `zone`) The zone in which servers exist.
      */
     zone: string;
+}
+
+export interface GetInstanceServersServerPrivateIp {
+    /**
+     * The address of the IP
+     */
+    address: string;
+    /**
+     * The ID of the IP
+     */
+    id: string;
 }
 
 export interface GetInstanceServersServerPublicIp {
@@ -2422,6 +2465,9 @@ export interface GetLbsLbInstance {
      * The ID of the Load Balancer.
      */
     id: string;
+    /**
+     * IP address of the instance
+     */
     ipAddress: string;
     /**
      * The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
@@ -2442,7 +2488,13 @@ export interface GetLbsLbIp {
      * The ID of the Load Balancer.
      */
     id: string;
+    /**
+     * IP address
+     */
     ipAddress: string;
+    /**
+     * UUID of the load balancer attached to the IP
+     */
     lbId: string;
     /**
      * The ID of the Organization the Load Balancer is associated with.
@@ -2452,6 +2504,9 @@ export interface GetLbsLbIp {
      * The ID of the Project the Load Balancer is associated with.
      */
     projectId: string;
+    /**
+     * Reverse DNS attached to the IP
+     */
     reverse: string;
     /**
      * `zone`) The zone in which the Load Balancers exist.
@@ -2565,10 +2620,25 @@ export interface GetMongoDbInstancePublicNetwork {
 }
 
 export interface GetObjectBucketCorsRule {
+    /**
+     * Allowed headers in the CORS rule
+     */
     allowedHeaders: string[];
+    /**
+     * Allowed HTTP methods allowed in the CORS rule
+     */
     allowedMethods: string[];
+    /**
+     * Allowed origins allowed in the CORS rule
+     */
     allowedOrigins: string[];
+    /**
+     * Exposed headers in the CORS rule
+     */
     exposeHeaders: string[];
+    /**
+     * Max age of the CORS rule
+     */
     maxAgeSeconds: number;
 }
 
@@ -2936,6 +3006,9 @@ export interface GetVpcsVpc {
      * List of tags to filter for. VPCs with these exact tags are listed.
      */
     tags: string[];
+    /**
+     * Date on which the VPC was last updated (RFC 3339 format)
+     */
     updateAt: string;
 }
 
@@ -3053,27 +3126,66 @@ export interface GetWebHostOfferProduct {
 }
 
 export interface GetWebhostingCpanelUrl {
+    /**
+     * URL to connect to dashboard interface
+     */
     dashboard: string;
+    /**
+     * URL to connect to Webmail interface
+     */
     webmail: string;
 }
 
 export interface GetWebhostingNameServer {
+    /**
+     * Hostname of the server
+     */
     hostname: string;
+    /**
+     * Whether or not the webhosting is the default one
+     */
     isDefault: boolean;
+    /**
+     * Status of the nameserver
+     */
     status: string;
 }
 
 export interface GetWebhostingOption {
+    /**
+     * ID of the active option
+     */
     id: string;
+    /**
+     * Name of the option
+     */
     name: string;
 }
 
 export interface GetWebhostingRecord {
+    /**
+     * Name of the DNS record
+     */
     name: string;
+    /**
+     * Priority of DNS records associated with the webhosting.
+     */
     priority: number;
+    /**
+     * Status of the hosting record
+     */
     status: string;
+    /**
+     * Time to live in seconds of the record
+     */
     ttl: number;
+    /**
+     * Type of the DNS record
+     */
     type: string;
+    /**
+     * Value of the DNS record
+     */
     value: string;
 }
 
@@ -3371,13 +3483,33 @@ export interface InstanceServerPrivateNetwork {
 
 export interface InstanceServerPublicIp {
     /**
-     * The address of the IP
+     * The address of the IP.
      */
     address: string;
     /**
-     * The ID of the IP
+     * Whether the IP is dynamic.
+     */
+    dynamic: boolean;
+    /**
+     * The IP address' family.
+     */
+    family: string;
+    /**
+     * The IP of the Gateway associated with the IP.
+     */
+    gateway: string;
+    /**
+     * The ID of the IP.
      */
     id: string;
+    /**
+     * The CIDR netmask of the IP.
+     */
+    netmask: string;
+    /**
+     * The provisioning mode of the IP
+     */
+    provisioningMode: string;
 }
 
 export interface InstanceServerRootVolume {
@@ -3423,8 +3555,6 @@ export interface InstanceSnapshotImport {
     bucket: string;
     /**
      * Key of the object to import
-     *
-     * > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
      */
     key: string;
 }
@@ -3632,11 +3762,11 @@ export interface KeyManagerKeyRotationPolicy {
     /**
      * The date and time of the next scheduled rotation.
      */
-    nextRotationAt: string;
+    nextRotationAt?: string;
     /**
      * – The period between key rotations (e.g., `"720h"` for 30 days).
      */
-    rotationPeriod?: string;
+    rotationPeriod: string;
 }
 
 export interface KubernetesClusterAutoUpgrade {
@@ -4078,6 +4208,17 @@ export interface MnqSqsCredentialsPermissions {
     canReceive: boolean;
 }
 
+export interface MnqSqsQueueDeadLetterQueue {
+    /**
+     * The ID of the queue with format `{region/{project-id}/{queue-name}`
+     */
+    id: string;
+    /**
+     * The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+     */
+    maxReceiveCount: number;
+}
+
 export interface MongoDbInstancePrivateIp {
     /**
      * The private IPv4 address.
@@ -4128,6 +4269,9 @@ export interface MongoDbInstancePublicNetwork {
 }
 
 export interface ObjectBucketAclAccessControlPolicy {
+    /**
+     * Grant
+     */
     grants?: outputs.ObjectBucketAclAccessControlPolicyGrant[];
     /**
      * Configuration block of the bucket project owner's display organization ID.
@@ -4147,6 +4291,9 @@ export interface ObjectBucketAclAccessControlPolicyGrant {
 }
 
 export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
+    /**
+     * Display name of the grantee to grant access to.
+     */
     displayName: string;
     /**
      * The `region`, `bucket` and `acl` separated by (`/`).
@@ -4556,7 +4703,13 @@ export interface WebhostingCpanelUrl {
 }
 
 export interface WebhostingNameServer {
+    /**
+     * Hostname of the server
+     */
     hostname: string;
+    /**
+     * Whether or not the webhosting is the default one
+     */
     isDefault: boolean;
     /**
      * The hosting status.
@@ -4580,13 +4733,25 @@ export interface WebhostingRecord {
      * The option name.
      */
     name: string;
+    /**
+     * Priority of DNS records associated with the webhosting.
+     */
     priority: number;
     /**
      * The hosting status.
      */
     status: string;
+    /**
+     * Time to live in seconds of the record
+     */
     ttl: number;
+    /**
+     * Type of the DNS record
+     */
     type: string;
+    /**
+     * Value of the DNS record
+     */
     value: string;
 }
 
@@ -6030,6 +6195,9 @@ export namespace elasticmetal {
          * The MAC address ID.
          */
         id: string;
+        /**
+         * IP address of the flexible IP
+         */
         ipAddress: string;
         /**
          * The MAC address of the Virtual MAC.
@@ -6420,27 +6588,66 @@ export namespace functions {
 
 export namespace hosting {
     export interface GetHostingCpanelUrl {
+        /**
+         * URL to connect to dashboard interface
+         */
         dashboard: string;
+        /**
+         * URL to connect to Webmail interface
+         */
         webmail: string;
     }
 
     export interface GetHostingNameServer {
+        /**
+         * Hostname of the server
+         */
         hostname: string;
+        /**
+         * Whether or not the webhosting is the default one
+         */
         isDefault: boolean;
+        /**
+         * Status of the nameserver
+         */
         status: string;
     }
 
     export interface GetHostingOption {
+        /**
+         * ID of the active option
+         */
         id: string;
+        /**
+         * Name of the option
+         */
         name: string;
     }
 
     export interface GetHostingRecord {
+        /**
+         * Name of the DNS record
+         */
         name: string;
+        /**
+         * Priority of DNS records associated with the webhosting.
+         */
         priority: number;
+        /**
+         * Status of the hosting record
+         */
         status: string;
+        /**
+         * Time to live in seconds of the record
+         */
         ttl: number;
+        /**
+         * Type of the DNS record
+         */
         type: string;
+        /**
+         * Value of the DNS record
+         */
         value: string;
     }
 
@@ -6569,7 +6776,13 @@ export namespace hosting {
     }
 
     export interface HostingNameServer {
+        /**
+         * Hostname of the server
+         */
         hostname: string;
+        /**
+         * Whether or not the webhosting is the default one
+         */
         isDefault: boolean;
         /**
          * The hosting status.
@@ -6593,13 +6806,25 @@ export namespace hosting {
          * The option name.
          */
         name: string;
+        /**
+         * Priority of DNS records associated with the webhosting.
+         */
         priority: number;
         /**
          * The hosting status.
          */
         status: string;
+        /**
+         * Time to live in seconds of the record
+         */
         ttl: number;
+        /**
+         * Type of the DNS record
+         */
         type: string;
+        /**
+         * Value of the DNS record
+         */
         value: string;
     }
 
@@ -6849,9 +7074,29 @@ export namespace instance {
          */
         address: string;
         /**
+         * Whether the IP is dynamic
+         */
+        dynamic: boolean;
+        /**
+         * IP address family (inet or inet6)
+         */
+        family: string;
+        /**
+         * Gateway's IP address
+         */
+        gateway: string;
+        /**
          * The ID of the IP
          */
         id: string;
+        /**
+         * CIDR netmask
+         */
+        netmask: string;
+        /**
+         * Provisioning mode of the IP address
+         */
+        provisioningMode: string;
     }
 
     export interface GetServerRootVolume {
@@ -6891,6 +7136,8 @@ export namespace instance {
          */
         bootType: string;
         /**
+         * UUID of the bootscript
+         *
          * @deprecated bootscript are not supported
          */
         bootscriptId: string;
@@ -6934,11 +7181,18 @@ export namespace instance {
          * The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
          */
         placementGroupId: string;
+        /**
+         * Whether the placement group policy respected or not
+         */
         placementGroupPolicyRespected: boolean;
         /**
          * The Scaleway internal IP address of the server.
          */
         privateIp: string;
+        /**
+         * The list of private IPv4 and IPv6 addresses associated with the server.
+         */
+        privateIps: outputs.instance.GetServersServerPrivateIp[];
         /**
          * The ID of the project the server is associated with.
          */
@@ -6973,6 +7227,17 @@ export namespace instance {
          * `zone`) The zone in which servers exist.
          */
         zone: string;
+    }
+
+    export interface GetServersServerPrivateIp {
+        /**
+         * The address of the IP
+         */
+        address: string;
+        /**
+         * The ID of the IP
+         */
+        id: string;
     }
 
     export interface GetServersServerPublicIp {
@@ -7215,13 +7480,33 @@ export namespace instance {
 
     export interface ServerPublicIp {
         /**
-         * The address of the IP
+         * The address of the IP.
          */
         address: string;
         /**
-         * The ID of the IP
+         * Whether the IP is dynamic.
+         */
+        dynamic: boolean;
+        /**
+         * The IP address' family.
+         */
+        family: string;
+        /**
+         * The IP of the Gateway associated with the IP.
+         */
+        gateway: string;
+        /**
+         * The ID of the IP.
          */
         id: string;
+        /**
+         * The CIDR netmask of the IP.
+         */
+        netmask: string;
+        /**
+         * The provisioning mode of the IP
+         */
+        provisioningMode: string;
     }
 
     export interface ServerRootVolume {
@@ -7267,8 +7552,6 @@ export namespace instance {
         bucket: string;
         /**
          * Key of the object to import
-         *
-         * > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
          */
         key: string;
     }
@@ -8732,6 +9015,9 @@ export namespace loadbalancers {
          * The ID of the Load Balancer.
          */
         id: string;
+        /**
+         * IP address of the instance
+         */
         ipAddress: string;
         /**
          * The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
@@ -8752,7 +9038,13 @@ export namespace loadbalancers {
          * The ID of the Load Balancer.
          */
         id: string;
+        /**
+         * IP address
+         */
         ipAddress: string;
+        /**
+         * UUID of the load balancer attached to the IP
+         */
         lbId: string;
         /**
          * The ID of the Organization the Load Balancer is associated with.
@@ -8762,6 +9054,9 @@ export namespace loadbalancers {
          * The ID of the Project the Load Balancer is associated with.
          */
         projectId: string;
+        /**
+         * Reverse DNS attached to the IP
+         */
         reverse: string;
         /**
          * `zone`) The zone in which the Load Balancers exist.
@@ -8880,6 +9175,17 @@ export namespace mnq {
         canReceive: boolean;
     }
 
+    export interface SqsQueueDeadLetterQueue {
+        /**
+         * The ID of the queue with format `{region/{project-id}/{queue-name}`
+         */
+        id: string;
+        /**
+         * The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+         */
+        maxReceiveCount: number;
+    }
+
 }
 
 export namespace mongodb {
@@ -8979,6 +9285,21 @@ export namespace mongodb {
          * TCP port of the endpoint.
          */
         port: number;
+    }
+
+    export interface UserRole {
+        /**
+         * Apply the role to all databases. Cannot be used with `databaseName`.
+         */
+        anyDatabase?: boolean;
+        /**
+         * The database name for the role. Cannot be used with `anyDatabase`.
+         */
+        databaseName?: string;
+        /**
+         * The role name. Valid values are `read`, `readWrite`, `dbAdmin`, `sync`.
+         */
+        role: string;
     }
 
 }
@@ -9215,6 +9536,9 @@ export namespace network {
          * List of tags to filter for. VPCs with these exact tags are listed.
          */
         tags: string[];
+        /**
+         * Date on which the VPC was last updated (RFC 3339 format)
+         */
         updateAt: string;
     }
 
@@ -9284,6 +9608,9 @@ export namespace network {
 
 export namespace object {
     export interface BucketAclAccessControlPolicy {
+        /**
+         * Grant
+         */
         grants?: outputs.object.BucketAclAccessControlPolicyGrant[];
         /**
          * Configuration block of the bucket project owner's display organization ID.
@@ -9303,6 +9630,9 @@ export namespace object {
     }
 
     export interface BucketAclAccessControlPolicyGrantGrantee {
+        /**
+         * Display name of the grantee to grant access to.
+         */
         displayName: string;
         /**
          * The `region`, `bucket` and `acl` separated by (`/`).
@@ -9457,10 +9787,25 @@ export namespace object {
     }
 
     export interface GetBucketCorsRule {
+        /**
+         * Allowed headers in the CORS rule
+         */
         allowedHeaders: string[];
+        /**
+         * Allowed HTTP methods allowed in the CORS rule
+         */
         allowedMethods: string[];
+        /**
+         * Allowed origins allowed in the CORS rule
+         */
         allowedOrigins: string[];
+        /**
+         * Exposed headers in the CORS rule
+         */
         exposeHeaders: string[];
+        /**
+         * Max age of the CORS rule
+         */
         maxAgeSeconds: number;
     }
 
@@ -9596,6 +9941,57 @@ export namespace observability {
          * Push URL for metrics (Grafana Mimir)
          */
         pushMetricsUrl: string;
+    }
+
+    export interface GetSourcesSource {
+        /**
+         * The date and time of the creation of the cockpit datasource.
+         */
+        createdAt: string;
+        /**
+         * The ID of the data source.
+         */
+        id: string;
+        /**
+         * Filter sources by name.
+         */
+        name: string;
+        /**
+         * Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+         */
+        origin: string;
+        /**
+         * The project ID the cockpit sources are associated with.
+         */
+        projectId: string;
+        /**
+         * The URL endpoint used for pushing data to the cockpit data source.
+         */
+        pushUrl: string;
+        /**
+         * The region in which the cockpit sources are located.
+         */
+        region: string;
+        /**
+         * The number of days to retain data.
+         */
+        retentionDays: number;
+        /**
+         * Indicates whether the data source is synchronized with Grafana.
+         */
+        synchronizedWithGrafana: boolean;
+        /**
+         * Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+         */
+        type: string;
+        /**
+         * The date and time of the last update of the cockpit datasource.
+         */
+        updatedAt: string;
+        /**
+         * The URL of the datasource.
+         */
+        url: string;
     }
 
     export interface TokenScopes {
