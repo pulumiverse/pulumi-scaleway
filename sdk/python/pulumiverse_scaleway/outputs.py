@@ -111,6 +111,7 @@ __all__ = [
     'LoadbalancerPrivateNetwork',
     'MnqSnsCredentialsPermissions',
     'MnqSqsCredentialsPermissions',
+    'MnqSqsQueueDeadLetterQueue',
     'MongoDbInstancePrivateIp',
     'MongoDbInstancePrivateNetwork',
     'MongoDbInstancePublicNetwork',
@@ -181,6 +182,7 @@ __all__ = [
     'GetInstanceServerPublicIpResult',
     'GetInstanceServerRootVolumeResult',
     'GetInstanceServersServerResult',
+    'GetInstanceServersServerPrivateIpResult',
     'GetInstanceServersServerPublicIpResult',
     'GetInstanceSnapshotImportResult',
     'GetIotDeviceCertificateResult',
@@ -3789,33 +3791,110 @@ class InstanceServerPrivateNetwork(dict):
 
 @pulumi.output_type
 class InstanceServerPublicIp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "provisioningMode":
+            suggest = "provisioning_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceServerPublicIp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceServerPublicIp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceServerPublicIp.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  address: Optional[builtins.str] = None,
-                 id: Optional[builtins.str] = None):
+                 dynamic: Optional[builtins.bool] = None,
+                 family: Optional[builtins.str] = None,
+                 gateway: Optional[builtins.str] = None,
+                 id: Optional[builtins.str] = None,
+                 netmask: Optional[builtins.str] = None,
+                 provisioning_mode: Optional[builtins.str] = None):
         """
-        :param builtins.str address: The address of the IP
-        :param builtins.str id: The ID of the IP
+        :param builtins.str address: The address of the IP.
+        :param builtins.bool dynamic: Whether the IP is dynamic.
+        :param builtins.str family: The IP address' family.
+        :param builtins.str gateway: The IP of the Gateway associated with the IP.
+        :param builtins.str id: The ID of the IP.
+        :param builtins.str netmask: The CIDR netmask of the IP.
+        :param builtins.str provisioning_mode: The provisioning mode of the IP
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if dynamic is not None:
+            pulumi.set(__self__, "dynamic", dynamic)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if gateway is not None:
+            pulumi.set(__self__, "gateway", gateway)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if netmask is not None:
+            pulumi.set(__self__, "netmask", netmask)
+        if provisioning_mode is not None:
+            pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[builtins.str]:
         """
-        The address of the IP
+        The address of the IP.
         """
         return pulumi.get(self, "address")
 
     @property
     @pulumi.getter
+    def dynamic(self) -> Optional[builtins.bool]:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[builtins.str]:
+        """
+        The IP address' family.
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> Optional[builtins.str]:
+        """
+        The IP of the Gateway associated with the IP.
+        """
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter
     def id(self) -> Optional[builtins.str]:
         """
-        The ID of the IP
+        The ID of the IP.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> Optional[builtins.str]:
+        """
+        The CIDR netmask of the IP.
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> Optional[builtins.str]:
+        """
+        The provisioning mode of the IP
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type
@@ -3952,8 +4031,6 @@ class InstanceSnapshotImport(dict):
         """
         :param builtins.str bucket: Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
         :param builtins.str key: Key of the object to import
-               
-               > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -3971,8 +4048,6 @@ class InstanceSnapshotImport(dict):
     def key(self) -> builtins.str:
         """
         Key of the object to import
-
-        > **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         """
         return pulumi.get(self, "key")
 
@@ -4628,10 +4703,10 @@ class KeyManagerKeyRotationPolicy(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "nextRotationAt":
-            suggest = "next_rotation_at"
-        elif key == "rotationPeriod":
+        if key == "rotationPeriod":
             suggest = "rotation_period"
+        elif key == "nextRotationAt":
+            suggest = "next_rotation_at"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in KeyManagerKeyRotationPolicy. Access the value via the '{suggest}' property getter instead.")
@@ -4645,16 +4720,23 @@ class KeyManagerKeyRotationPolicy(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 next_rotation_at: Optional[builtins.str] = None,
-                 rotation_period: Optional[builtins.str] = None):
+                 rotation_period: builtins.str,
+                 next_rotation_at: Optional[builtins.str] = None):
         """
-        :param builtins.str next_rotation_at: The date and time of the next scheduled rotation.
         :param builtins.str rotation_period: – The period between key rotations (e.g., `"720h"` for 30 days).
+        :param builtins.str next_rotation_at: The date and time of the next scheduled rotation.
         """
+        pulumi.set(__self__, "rotation_period", rotation_period)
         if next_rotation_at is not None:
             pulumi.set(__self__, "next_rotation_at", next_rotation_at)
-        if rotation_period is not None:
-            pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> builtins.str:
+        """
+        – The period between key rotations (e.g., `"720h"` for 30 days).
+        """
+        return pulumi.get(self, "rotation_period")
 
     @property
     @pulumi.getter(name="nextRotationAt")
@@ -4663,14 +4745,6 @@ class KeyManagerKeyRotationPolicy(dict):
         The date and time of the next scheduled rotation.
         """
         return pulumi.get(self, "next_rotation_at")
-
-    @property
-    @pulumi.getter(name="rotationPeriod")
-    def rotation_period(self) -> Optional[builtins.str]:
-        """
-        – The period between key rotations (e.g., `"720h"` for 30 days).
-        """
-        return pulumi.get(self, "rotation_period")
 
 
 @pulumi.output_type
@@ -6242,6 +6316,52 @@ class MnqSqsCredentialsPermissions(dict):
 
 
 @pulumi.output_type
+class MnqSqsQueueDeadLetterQueue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxReceiveCount":
+            suggest = "max_receive_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MnqSqsQueueDeadLetterQueue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MnqSqsQueueDeadLetterQueue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MnqSqsQueueDeadLetterQueue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: builtins.str,
+                 max_receive_count: builtins.int):
+        """
+        :param builtins.str id: The ID of the queue with format `{region/{project-id}/{queue-name}`
+        :param builtins.int max_receive_count: The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        """
+        The ID of the queue with format `{region/{project-id}/{queue-name}`
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> builtins.int:
+        """
+        The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+        """
+        return pulumi.get(self, "max_receive_count")
+
+
+@pulumi.output_type
 class MongoDbInstancePrivateIp(dict):
     def __init__(__self__, *,
                  address: Optional[builtins.str] = None,
@@ -6424,6 +6544,7 @@ class ObjectBucketAclAccessControlPolicy(dict):
                  grants: Optional[Sequence['outputs.ObjectBucketAclAccessControlPolicyGrant']] = None):
         """
         :param 'ObjectBucketAclAccessControlPolicyOwnerArgs' owner: Configuration block of the bucket project owner's display organization ID.
+        :param Sequence['ObjectBucketAclAccessControlPolicyGrantArgs'] grants: Grant
         """
         pulumi.set(__self__, "owner", owner)
         if grants is not None:
@@ -6440,6 +6561,9 @@ class ObjectBucketAclAccessControlPolicy(dict):
     @property
     @pulumi.getter
     def grants(self) -> Optional[Sequence['outputs.ObjectBucketAclAccessControlPolicyGrant']]:
+        """
+        Grant
+        """
         return pulumi.get(self, "grants")
 
 
@@ -6498,6 +6622,7 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
                  type: Optional[builtins.str] = None,
                  uri: Optional[builtins.str] = None):
         """
+        :param builtins.str display_name: Display name of the grantee to grant access to.
         :param builtins.str id: The `region`, `bucket` and `acl` separated by (`/`).
         :param builtins.str type: Type of grantee. Valid values: `CanonicalUser`, `Group`
         :param builtins.str uri: The uri of the grantee if you are granting permissions to a predefined group.
@@ -6514,6 +6639,9 @@ class ObjectBucketAclAccessControlPolicyGrantGrantee(dict):
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[builtins.str]:
+        """
+        Display name of the grantee to grant access to.
+        """
         return pulumi.get(self, "display_name")
 
     @property
@@ -7888,6 +8016,8 @@ class WebhostingNameServer(dict):
                  is_default: Optional[builtins.bool] = None,
                  status: Optional[builtins.str] = None):
         """
+        :param builtins.str hostname: Hostname of the server
+        :param builtins.bool is_default: Whether or not the webhosting is the default one
         :param builtins.str status: The hosting status.
         """
         if hostname is not None:
@@ -7900,11 +8030,17 @@ class WebhostingNameServer(dict):
     @property
     @pulumi.getter
     def hostname(self) -> Optional[builtins.str]:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> Optional[builtins.bool]:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @property
@@ -7958,7 +8094,11 @@ class WebhostingRecord(dict):
                  value: Optional[builtins.str] = None):
         """
         :param builtins.str name: The option name.
+        :param builtins.int priority: Priority of DNS records associated with the webhosting.
         :param builtins.str status: The hosting status.
+        :param builtins.int ttl: Time to live in seconds of the record
+        :param builtins.str type: Type of the DNS record
+        :param builtins.str value: Value of the DNS record
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -7984,6 +8124,9 @@ class WebhostingRecord(dict):
     @property
     @pulumi.getter
     def priority(self) -> Optional[builtins.int]:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @property
@@ -7997,16 +8140,25 @@ class WebhostingRecord(dict):
     @property
     @pulumi.getter
     def ttl(self) -> Optional[builtins.int]:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[builtins.str]:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[builtins.str]:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
 
@@ -9453,6 +9605,7 @@ class GetFlexibleIpsIpResult(dict):
         :param builtins.str created_at: The date on which the flexible IP was created (RFC 3339 format).
         :param builtins.str description: The description of the flexible IP.
         :param builtins.str id: The MAC address ID.
+        :param builtins.str ip_address: IP address of the flexible IP
         :param Sequence['GetFlexibleIpsIpMacAddressArgs'] mac_addresses: The MAC address of the Virtual MAC.
         :param builtins.str organization_id: (Defaults to provider `organization_id`) The ID of the organization the IP is in.
         :param builtins.str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
@@ -9502,6 +9655,9 @@ class GetFlexibleIpsIpResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address of the flexible IP
+        """
         return pulumi.get(self, "ip_address")
 
     @property
@@ -9931,13 +10087,28 @@ class GetInstanceServerPrivateNetworkResult(dict):
 class GetInstanceServerPublicIpResult(dict):
     def __init__(__self__, *,
                  address: builtins.str,
-                 id: builtins.str):
+                 dynamic: builtins.bool,
+                 family: builtins.str,
+                 gateway: builtins.str,
+                 id: builtins.str,
+                 netmask: builtins.str,
+                 provisioning_mode: builtins.str):
         """
         :param builtins.str address: The address of the IP
+        :param builtins.bool dynamic: Whether the IP is dynamic
+        :param builtins.str family: IP address family (inet or inet6)
+        :param builtins.str gateway: Gateway's IP address
         :param builtins.str id: The ID of the IP
+        :param builtins.str netmask: CIDR netmask
+        :param builtins.str provisioning_mode: Provisioning mode of the IP address
         """
         pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "dynamic", dynamic)
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "netmask", netmask)
+        pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @property
     @pulumi.getter
@@ -9949,11 +10120,51 @@ class GetInstanceServerPublicIpResult(dict):
 
     @property
     @pulumi.getter
+    def dynamic(self) -> builtins.bool:
+        """
+        Whether the IP is dynamic
+        """
+        return pulumi.get(self, "dynamic")
+
+    @property
+    @pulumi.getter
+    def family(self) -> builtins.str:
+        """
+        IP address family (inet or inet6)
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def gateway(self) -> builtins.str:
+        """
+        Gateway's IP address
+        """
+        return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter
     def id(self) -> builtins.str:
         """
         The ID of the IP
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def netmask(self) -> builtins.str:
+        """
+        CIDR netmask
+        """
+        return pulumi.get(self, "netmask")
+
+    @property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> builtins.str:
+        """
+        Provisioning mode of the IP address
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type
@@ -10057,6 +10268,7 @@ class GetInstanceServersServerResult(dict):
                  placement_group_id: builtins.str,
                  placement_group_policy_respected: builtins.bool,
                  private_ip: builtins.str,
+                 private_ips: Sequence['outputs.GetInstanceServersServerPrivateIpResult'],
                  project_id: builtins.str,
                  public_ip: builtins.str,
                  public_ips: Sequence['outputs.GetInstanceServersServerPublicIpResult'],
@@ -10067,6 +10279,7 @@ class GetInstanceServersServerResult(dict):
                  zone: builtins.str):
         """
         :param builtins.str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        :param builtins.str bootscript_id: UUID of the bootscript
         :param builtins.bool enable_dynamic_ip: If true a dynamic IP will be attached to the server.
         :param builtins.bool enable_ipv6: Determines if IPv6 is enabled for the server.
         :param builtins.str id: The ID of the IP
@@ -10077,7 +10290,9 @@ class GetInstanceServersServerResult(dict):
         :param builtins.str name: The server name used as filter. Servers with a name like it are listed.
         :param builtins.str organization_id: The organization ID the server is associated with.
         :param builtins.str placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
+        :param builtins.bool placement_group_policy_respected: Whether the placement group policy respected or not
         :param builtins.str private_ip: The Scaleway internal IP address of the server.
+        :param Sequence['GetInstanceServersServerPrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param builtins.str project_id: The ID of the project the server is associated with.
         :param builtins.str public_ip: The public IP address of the server.
         :param Sequence['GetInstanceServersServerPublicIpArgs'] public_ips: The list of public IPs of the server
@@ -10101,6 +10316,7 @@ class GetInstanceServersServerResult(dict):
         pulumi.set(__self__, "placement_group_id", placement_group_id)
         pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
         pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "project_id", project_id)
         pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ips", public_ips)
@@ -10122,6 +10338,9 @@ class GetInstanceServersServerResult(dict):
     @pulumi.getter(name="bootscriptId")
     @_utilities.deprecated("""bootscript are not supported""")
     def bootscript_id(self) -> builtins.str:
+        """
+        UUID of the bootscript
+        """
         return pulumi.get(self, "bootscript_id")
 
     @property
@@ -10207,6 +10426,9 @@ class GetInstanceServersServerResult(dict):
     @property
     @pulumi.getter(name="placementGroupPolicyRespected")
     def placement_group_policy_respected(self) -> builtins.bool:
+        """
+        Whether the placement group policy respected or not
+        """
         return pulumi.get(self, "placement_group_policy_respected")
 
     @property
@@ -10216,6 +10438,14 @@ class GetInstanceServersServerResult(dict):
         The Scaleway internal IP address of the server.
         """
         return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="privateIps")
+    def private_ips(self) -> Sequence['outputs.GetInstanceServersServerPrivateIpResult']:
+        """
+        The list of private IPv4 and IPv6 addresses associated with the server.
+        """
+        return pulumi.get(self, "private_ips")
 
     @property
     @pulumi.getter(name="projectId")
@@ -10281,6 +10511,35 @@ class GetInstanceServersServerResult(dict):
         `zone`) The zone in which servers exist.
         """
         return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetInstanceServersServerPrivateIpResult(dict):
+    def __init__(__self__, *,
+                 address: builtins.str,
+                 id: builtins.str):
+        """
+        :param builtins.str address: The address of the IP
+        :param builtins.str id: The ID of the IP
+        """
+        pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def address(self) -> builtins.str:
+        """
+        The address of the IP
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> builtins.str:
+        """
+        The ID of the IP
+        """
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -12580,6 +12839,7 @@ class GetLbsLbInstanceResult(dict):
         """
         :param builtins.str created_at: Date on which the Load Balancer was created.
         :param builtins.str id: The ID of the Load Balancer.
+        :param builtins.str ip_address: IP address of the instance
         :param builtins.str status: The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         :param builtins.str updated_at: Date on which the Load Balancer was updated.
         :param builtins.str zone: `zone`) The zone in which the Load Balancers exist.
@@ -12610,6 +12870,9 @@ class GetLbsLbInstanceResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address of the instance
+        """
         return pulumi.get(self, "ip_address")
 
     @property
@@ -12649,8 +12912,11 @@ class GetLbsLbIpResult(dict):
                  zone: builtins.str):
         """
         :param builtins.str id: The ID of the Load Balancer.
+        :param builtins.str ip_address: IP address
+        :param builtins.str lb_id: UUID of the load balancer attached to the IP
         :param builtins.str organization_id: The ID of the Organization the Load Balancer is associated with.
         :param builtins.str project_id: The ID of the Project the Load Balancer is associated with.
+        :param builtins.str reverse: Reverse DNS attached to the IP
         :param builtins.str zone: `zone`) The zone in which the Load Balancers exist.
         """
         pulumi.set(__self__, "id", id)
@@ -12672,11 +12938,17 @@ class GetLbsLbIpResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address
+        """
         return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter(name="lbId")
     def lb_id(self) -> builtins.str:
+        """
+        UUID of the load balancer attached to the IP
+        """
         return pulumi.get(self, "lb_id")
 
     @property
@@ -12698,6 +12970,9 @@ class GetLbsLbIpResult(dict):
     @property
     @pulumi.getter
     def reverse(self) -> builtins.str:
+        """
+        Reverse DNS attached to the IP
+        """
         return pulumi.get(self, "reverse")
 
     @property
@@ -12997,6 +13272,13 @@ class GetObjectBucketCorsRuleResult(dict):
                  allowed_origins: Sequence[builtins.str],
                  expose_headers: Sequence[builtins.str],
                  max_age_seconds: builtins.int):
+        """
+        :param Sequence[builtins.str] allowed_headers: Allowed headers in the CORS rule
+        :param Sequence[builtins.str] allowed_methods: Allowed HTTP methods allowed in the CORS rule
+        :param Sequence[builtins.str] allowed_origins: Allowed origins allowed in the CORS rule
+        :param Sequence[builtins.str] expose_headers: Exposed headers in the CORS rule
+        :param builtins.int max_age_seconds: Max age of the CORS rule
+        """
         pulumi.set(__self__, "allowed_headers", allowed_headers)
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
@@ -13006,26 +13288,41 @@ class GetObjectBucketCorsRuleResult(dict):
     @property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> Sequence[builtins.str]:
+        """
+        Allowed headers in the CORS rule
+        """
         return pulumi.get(self, "allowed_headers")
 
     @property
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> Sequence[builtins.str]:
+        """
+        Allowed HTTP methods allowed in the CORS rule
+        """
         return pulumi.get(self, "allowed_methods")
 
     @property
     @pulumi.getter(name="allowedOrigins")
     def allowed_origins(self) -> Sequence[builtins.str]:
+        """
+        Allowed origins allowed in the CORS rule
+        """
         return pulumi.get(self, "allowed_origins")
 
     @property
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Sequence[builtins.str]:
+        """
+        Exposed headers in the CORS rule
+        """
         return pulumi.get(self, "expose_headers")
 
     @property
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> builtins.int:
+        """
+        Max age of the CORS rule
+        """
         return pulumi.get(self, "max_age_seconds")
 
 
@@ -13937,6 +14234,7 @@ class GetVpcsVpcResult(dict):
         :param builtins.str project_id: The ID of the Project the VPC is associated with.
         :param builtins.str region: `region`). The region in which the VPCs exist.
         :param Sequence[builtins.str] tags: List of tags to filter for. VPCs with these exact tags are listed.
+        :param builtins.str update_at: Date on which the VPC was last updated (RFC 3339 format)
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -14016,6 +14314,9 @@ class GetVpcsVpcResult(dict):
     @property
     @pulumi.getter(name="updateAt")
     def update_at(self) -> builtins.str:
+        """
+        Date on which the VPC was last updated (RFC 3339 format)
+        """
         return pulumi.get(self, "update_at")
 
 
@@ -14331,17 +14632,27 @@ class GetWebhostingCpanelUrlResult(dict):
     def __init__(__self__, *,
                  dashboard: builtins.str,
                  webmail: builtins.str):
+        """
+        :param builtins.str dashboard: URL to connect to dashboard interface
+        :param builtins.str webmail: URL to connect to Webmail interface
+        """
         pulumi.set(__self__, "dashboard", dashboard)
         pulumi.set(__self__, "webmail", webmail)
 
     @property
     @pulumi.getter
     def dashboard(self) -> builtins.str:
+        """
+        URL to connect to dashboard interface
+        """
         return pulumi.get(self, "dashboard")
 
     @property
     @pulumi.getter
     def webmail(self) -> builtins.str:
+        """
+        URL to connect to Webmail interface
+        """
         return pulumi.get(self, "webmail")
 
 
@@ -14351,6 +14662,11 @@ class GetWebhostingNameServerResult(dict):
                  hostname: builtins.str,
                  is_default: builtins.bool,
                  status: builtins.str):
+        """
+        :param builtins.str hostname: Hostname of the server
+        :param builtins.bool is_default: Whether or not the webhosting is the default one
+        :param builtins.str status: Status of the nameserver
+        """
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "is_default", is_default)
         pulumi.set(__self__, "status", status)
@@ -14358,16 +14674,25 @@ class GetWebhostingNameServerResult(dict):
     @property
     @pulumi.getter
     def hostname(self) -> builtins.str:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> builtins.bool:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
     def status(self) -> builtins.str:
+        """
+        Status of the nameserver
+        """
         return pulumi.get(self, "status")
 
 
@@ -14376,17 +14701,27 @@ class GetWebhostingOptionResult(dict):
     def __init__(__self__, *,
                  id: builtins.str,
                  name: builtins.str):
+        """
+        :param builtins.str id: ID of the active option
+        :param builtins.str name: Name of the option
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> builtins.str:
+        """
+        ID of the active option
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> builtins.str:
+        """
+        Name of the option
+        """
         return pulumi.get(self, "name")
 
 
@@ -14399,6 +14734,14 @@ class GetWebhostingRecordResult(dict):
                  ttl: builtins.int,
                  type: builtins.str,
                  value: builtins.str):
+        """
+        :param builtins.str name: Name of the DNS record
+        :param builtins.int priority: Priority of DNS records associated with the webhosting.
+        :param builtins.str status: Status of the hosting record
+        :param builtins.int ttl: Time to live in seconds of the record
+        :param builtins.str type: Type of the DNS record
+        :param builtins.str value: Value of the DNS record
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "status", status)
@@ -14409,31 +14752,49 @@ class GetWebhostingRecordResult(dict):
     @property
     @pulumi.getter
     def name(self) -> builtins.str:
+        """
+        Name of the DNS record
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> builtins.int:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def status(self) -> builtins.str:
+        """
+        Status of the hosting record
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def ttl(self) -> builtins.int:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> builtins.str:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> builtins.str:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
 

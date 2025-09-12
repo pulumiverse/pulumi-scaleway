@@ -1075,13 +1075,33 @@ export interface InstanceServerPrivateNetwork {
 
 export interface InstanceServerPublicIp {
     /**
-     * The address of the IP
+     * The address of the IP.
      */
     address?: pulumi.Input<string>;
     /**
-     * The ID of the IP
+     * Whether the IP is dynamic.
+     */
+    dynamic?: pulumi.Input<boolean>;
+    /**
+     * The IP address' family.
+     */
+    family?: pulumi.Input<string>;
+    /**
+     * The IP of the Gateway associated with the IP.
+     */
+    gateway?: pulumi.Input<string>;
+    /**
+     * The ID of the IP.
      */
     id?: pulumi.Input<string>;
+    /**
+     * The CIDR netmask of the IP.
+     */
+    netmask?: pulumi.Input<string>;
+    /**
+     * The provisioning mode of the IP
+     */
+    provisioningMode?: pulumi.Input<string>;
 }
 
 export interface InstanceServerRootVolume {
@@ -1127,8 +1147,6 @@ export interface InstanceSnapshotImport {
     bucket: pulumi.Input<string>;
     /**
      * Key of the object to import
-     *
-     * > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
      */
     key: pulumi.Input<string>;
 }
@@ -1340,7 +1358,7 @@ export interface KeyManagerKeyRotationPolicy {
     /**
      * – The period between key rotations (e.g., `"720h"` for 30 days).
      */
-    rotationPeriod?: pulumi.Input<string>;
+    rotationPeriod: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterAutoUpgrade {
@@ -1782,6 +1800,17 @@ export interface MnqSqsCredentialsPermissions {
     canReceive?: pulumi.Input<boolean>;
 }
 
+export interface MnqSqsQueueDeadLetterQueue {
+    /**
+     * The ID of the queue with format `{region/{project-id}/{queue-name}`
+     */
+    id: pulumi.Input<string>;
+    /**
+     * The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+     */
+    maxReceiveCount: pulumi.Input<number>;
+}
+
 export interface MongoDbInstancePrivateIp {
     /**
      * The private IPv4 address.
@@ -1832,6 +1861,9 @@ export interface MongoDbInstancePublicNetwork {
 }
 
 export interface ObjectBucketAclAccessControlPolicy {
+    /**
+     * Grant
+     */
     grants?: pulumi.Input<pulumi.Input<inputs.ObjectBucketAclAccessControlPolicyGrant>[]>;
     /**
      * Configuration block of the bucket project owner's display organization ID.
@@ -1851,6 +1883,9 @@ export interface ObjectBucketAclAccessControlPolicyGrant {
 }
 
 export interface ObjectBucketAclAccessControlPolicyGrantGrantee {
+    /**
+     * Display name of the grantee to grant access to.
+     */
     displayName?: pulumi.Input<string>;
     /**
      * The `region`, `bucket` and `acl` separated by (`/`).
@@ -2260,7 +2295,13 @@ export interface WebhostingCpanelUrl {
 }
 
 export interface WebhostingNameServer {
+    /**
+     * Hostname of the server
+     */
     hostname?: pulumi.Input<string>;
+    /**
+     * Whether or not the webhosting is the default one
+     */
     isDefault?: pulumi.Input<boolean>;
     /**
      * The hosting status.
@@ -2284,13 +2325,25 @@ export interface WebhostingRecord {
      * The option name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Priority of DNS records associated with the webhosting.
+     */
     priority?: pulumi.Input<number>;
     /**
      * The hosting status.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Time to live in seconds of the record
+     */
     ttl?: pulumi.Input<number>;
+    /**
+     * Type of the DNS record
+     */
     type?: pulumi.Input<string>;
+    /**
+     * Value of the DNS record
+     */
     value?: pulumi.Input<string>;
 }
 export namespace account {
@@ -3522,7 +3575,13 @@ export namespace hosting {
     }
 
     export interface HostingNameServer {
+        /**
+         * Hostname of the server
+         */
         hostname?: pulumi.Input<string>;
+        /**
+         * Whether or not the webhosting is the default one
+         */
         isDefault?: pulumi.Input<boolean>;
         /**
          * The hosting status.
@@ -3546,13 +3605,25 @@ export namespace hosting {
          * The option name.
          */
         name?: pulumi.Input<string>;
+        /**
+         * Priority of DNS records associated with the webhosting.
+         */
         priority?: pulumi.Input<number>;
         /**
          * The hosting status.
          */
         status?: pulumi.Input<string>;
+        /**
+         * Time to live in seconds of the record
+         */
         ttl?: pulumi.Input<number>;
+        /**
+         * Type of the DNS record
+         */
         type?: pulumi.Input<string>;
+        /**
+         * Value of the DNS record
+         */
         value?: pulumi.Input<string>;
     }
 }
@@ -3882,13 +3953,33 @@ export namespace instance {
 
     export interface ServerPublicIp {
         /**
-         * The address of the IP
+         * The address of the IP.
          */
         address?: pulumi.Input<string>;
         /**
-         * The ID of the IP
+         * Whether the IP is dynamic.
+         */
+        dynamic?: pulumi.Input<boolean>;
+        /**
+         * The IP address' family.
+         */
+        family?: pulumi.Input<string>;
+        /**
+         * The IP of the Gateway associated with the IP.
+         */
+        gateway?: pulumi.Input<string>;
+        /**
+         * The ID of the IP.
          */
         id?: pulumi.Input<string>;
+        /**
+         * The CIDR netmask of the IP.
+         */
+        netmask?: pulumi.Input<string>;
+        /**
+         * The provisioning mode of the IP
+         */
+        provisioningMode?: pulumi.Input<string>;
     }
 
     export interface ServerRootVolume {
@@ -3934,8 +4025,6 @@ export namespace instance {
         bucket: pulumi.Input<string>;
         /**
          * Key of the object to import
-         *
-         * > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
          */
         key: pulumi.Input<string>;
     }
@@ -4673,6 +4762,17 @@ export namespace mnq {
          */
         canReceive?: pulumi.Input<boolean>;
     }
+
+    export interface SqsQueueDeadLetterQueue {
+        /**
+         * The ID of the queue with format `{region/{project-id}/{queue-name}`
+         */
+        id: pulumi.Input<string>;
+        /**
+         * The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+         */
+        maxReceiveCount: pulumi.Input<number>;
+    }
 }
 
 export namespace mongodb {
@@ -4723,6 +4823,21 @@ export namespace mongodb {
          * TCP port of the endpoint.
          */
         port?: pulumi.Input<number>;
+    }
+
+    export interface UserRole {
+        /**
+         * Apply the role to all databases. Cannot be used with `databaseName`.
+         */
+        anyDatabase?: pulumi.Input<boolean>;
+        /**
+         * The database name for the role. Cannot be used with `anyDatabase`.
+         */
+        databaseName?: pulumi.Input<string>;
+        /**
+         * The role name. Valid values are `read`, `readWrite`, `dbAdmin`, `sync`.
+         */
+        role: pulumi.Input<string>;
     }
 }
 
@@ -4853,6 +4968,9 @@ export namespace network {
 
 export namespace object {
     export interface BucketAclAccessControlPolicy {
+        /**
+         * Grant
+         */
         grants?: pulumi.Input<pulumi.Input<inputs.object.BucketAclAccessControlPolicyGrant>[]>;
         /**
          * Configuration block of the bucket project owner's display organization ID.
@@ -4872,6 +4990,9 @@ export namespace object {
     }
 
     export interface BucketAclAccessControlPolicyGrantGrantee {
+        /**
+         * Display name of the grantee to grant access to.
+         */
         displayName?: pulumi.Input<string>;
         /**
          * The `region`, `bucket` and `acl` separated by (`/`).

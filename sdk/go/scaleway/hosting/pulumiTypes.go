@@ -120,8 +120,10 @@ func (o HostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) HostingCpanelUrlOu
 }
 
 type HostingNameServer struct {
-	Hostname  *string `pulumi:"hostname"`
-	IsDefault *bool   `pulumi:"isDefault"`
+	// Hostname of the server
+	Hostname *string `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault *bool `pulumi:"isDefault"`
 	// The hosting status.
 	Status *string `pulumi:"status"`
 }
@@ -138,8 +140,10 @@ type HostingNameServerInput interface {
 }
 
 type HostingNameServerArgs struct {
-	Hostname  pulumi.StringPtrInput `pulumi:"hostname"`
-	IsDefault pulumi.BoolPtrInput   `pulumi:"isDefault"`
+	// Hostname of the server
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault pulumi.BoolPtrInput `pulumi:"isDefault"`
 	// The hosting status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
@@ -195,10 +199,12 @@ func (o HostingNameServerOutput) ToHostingNameServerOutputWithContext(ctx contex
 	return o
 }
 
+// Hostname of the server
 func (o HostingNameServerOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostingNameServer) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// Whether or not the webhosting is the default one
 func (o HostingNameServerOutput) IsDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v HostingNameServer) *bool { return v.IsDefault }).(pulumi.BoolPtrOutput)
 }
@@ -336,13 +342,17 @@ func (o HostingOptionArrayOutput) Index(i pulumi.IntInput) HostingOptionOutput {
 
 type HostingRecord struct {
 	// The option name.
-	Name     *string `pulumi:"name"`
-	Priority *int    `pulumi:"priority"`
+	Name *string `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority *int `pulumi:"priority"`
 	// The hosting status.
 	Status *string `pulumi:"status"`
-	Ttl    *int    `pulumi:"ttl"`
-	Type   *string `pulumi:"type"`
-	Value  *string `pulumi:"value"`
+	// Time to live in seconds of the record
+	Ttl *int `pulumi:"ttl"`
+	// Type of the DNS record
+	Type *string `pulumi:"type"`
+	// Value of the DNS record
+	Value *string `pulumi:"value"`
 }
 
 // HostingRecordInput is an input type that accepts HostingRecordArgs and HostingRecordOutput values.
@@ -358,13 +368,17 @@ type HostingRecordInput interface {
 
 type HostingRecordArgs struct {
 	// The option name.
-	Name     pulumi.StringPtrInput `pulumi:"name"`
-	Priority pulumi.IntPtrInput    `pulumi:"priority"`
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// The hosting status.
 	Status pulumi.StringPtrInput `pulumi:"status"`
-	Ttl    pulumi.IntPtrInput    `pulumi:"ttl"`
-	Type   pulumi.StringPtrInput `pulumi:"type"`
-	Value  pulumi.StringPtrInput `pulumi:"value"`
+	// Time to live in seconds of the record
+	Ttl pulumi.IntPtrInput `pulumi:"ttl"`
+	// Type of the DNS record
+	Type pulumi.StringPtrInput `pulumi:"type"`
+	// Value of the DNS record
+	Value pulumi.StringPtrInput `pulumi:"value"`
 }
 
 func (HostingRecordArgs) ElementType() reflect.Type {
@@ -423,6 +437,7 @@ func (o HostingRecordOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Priority of DNS records associated with the webhosting.
 func (o HostingRecordOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *int { return v.Priority }).(pulumi.IntPtrOutput)
 }
@@ -432,14 +447,17 @@ func (o HostingRecordOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Time to live in seconds of the record
 func (o HostingRecordOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *int { return v.Ttl }).(pulumi.IntPtrOutput)
 }
 
+// Type of the DNS record
 func (o HostingRecordOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// Value of the DNS record
 func (o HostingRecordOutput) Value() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HostingRecord) *string { return v.Value }).(pulumi.StringPtrOutput)
 }
@@ -465,8 +483,10 @@ func (o HostingRecordArrayOutput) Index(i pulumi.IntInput) HostingRecordOutput {
 }
 
 type GetHostingCpanelUrl struct {
+	// URL to connect to dashboard interface
 	Dashboard string `pulumi:"dashboard"`
-	Webmail   string `pulumi:"webmail"`
+	// URL to connect to Webmail interface
+	Webmail string `pulumi:"webmail"`
 }
 
 // GetHostingCpanelUrlInput is an input type that accepts GetHostingCpanelUrlArgs and GetHostingCpanelUrlOutput values.
@@ -481,8 +501,10 @@ type GetHostingCpanelUrlInput interface {
 }
 
 type GetHostingCpanelUrlArgs struct {
+	// URL to connect to dashboard interface
 	Dashboard pulumi.StringInput `pulumi:"dashboard"`
-	Webmail   pulumi.StringInput `pulumi:"webmail"`
+	// URL to connect to Webmail interface
+	Webmail pulumi.StringInput `pulumi:"webmail"`
 }
 
 func (GetHostingCpanelUrlArgs) ElementType() reflect.Type {
@@ -536,10 +558,12 @@ func (o GetHostingCpanelUrlOutput) ToGetHostingCpanelUrlOutputWithContext(ctx co
 	return o
 }
 
+// URL to connect to dashboard interface
 func (o GetHostingCpanelUrlOutput) Dashboard() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingCpanelUrl) string { return v.Dashboard }).(pulumi.StringOutput)
 }
 
+// URL to connect to Webmail interface
 func (o GetHostingCpanelUrlOutput) Webmail() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingCpanelUrl) string { return v.Webmail }).(pulumi.StringOutput)
 }
@@ -565,9 +589,12 @@ func (o GetHostingCpanelUrlArrayOutput) Index(i pulumi.IntInput) GetHostingCpane
 }
 
 type GetHostingNameServer struct {
-	Hostname  string `pulumi:"hostname"`
-	IsDefault bool   `pulumi:"isDefault"`
-	Status    string `pulumi:"status"`
+	// Hostname of the server
+	Hostname string `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault bool `pulumi:"isDefault"`
+	// Status of the nameserver
+	Status string `pulumi:"status"`
 }
 
 // GetHostingNameServerInput is an input type that accepts GetHostingNameServerArgs and GetHostingNameServerOutput values.
@@ -582,9 +609,12 @@ type GetHostingNameServerInput interface {
 }
 
 type GetHostingNameServerArgs struct {
-	Hostname  pulumi.StringInput `pulumi:"hostname"`
-	IsDefault pulumi.BoolInput   `pulumi:"isDefault"`
-	Status    pulumi.StringInput `pulumi:"status"`
+	// Hostname of the server
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// Whether or not the webhosting is the default one
+	IsDefault pulumi.BoolInput `pulumi:"isDefault"`
+	// Status of the nameserver
+	Status pulumi.StringInput `pulumi:"status"`
 }
 
 func (GetHostingNameServerArgs) ElementType() reflect.Type {
@@ -638,14 +668,17 @@ func (o GetHostingNameServerOutput) ToGetHostingNameServerOutputWithContext(ctx 
 	return o
 }
 
+// Hostname of the server
 func (o GetHostingNameServerOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingNameServer) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
+// Whether or not the webhosting is the default one
 func (o GetHostingNameServerOutput) IsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetHostingNameServer) bool { return v.IsDefault }).(pulumi.BoolOutput)
 }
 
+// Status of the nameserver
 func (o GetHostingNameServerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingNameServer) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -671,7 +704,9 @@ func (o GetHostingNameServerArrayOutput) Index(i pulumi.IntInput) GetHostingName
 }
 
 type GetHostingOption struct {
-	Id   string `pulumi:"id"`
+	// ID of the active option
+	Id string `pulumi:"id"`
+	// Name of the option
 	Name string `pulumi:"name"`
 }
 
@@ -687,7 +722,9 @@ type GetHostingOptionInput interface {
 }
 
 type GetHostingOptionArgs struct {
-	Id   pulumi.StringInput `pulumi:"id"`
+	// ID of the active option
+	Id pulumi.StringInput `pulumi:"id"`
+	// Name of the option
 	Name pulumi.StringInput `pulumi:"name"`
 }
 
@@ -742,10 +779,12 @@ func (o GetHostingOptionOutput) ToGetHostingOptionOutputWithContext(ctx context.
 	return o
 }
 
+// ID of the active option
 func (o GetHostingOptionOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingOption) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Name of the option
 func (o GetHostingOptionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingOption) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -771,12 +810,18 @@ func (o GetHostingOptionArrayOutput) Index(i pulumi.IntInput) GetHostingOptionOu
 }
 
 type GetHostingRecord struct {
-	Name     string `pulumi:"name"`
-	Priority int    `pulumi:"priority"`
-	Status   string `pulumi:"status"`
-	Ttl      int    `pulumi:"ttl"`
-	Type     string `pulumi:"type"`
-	Value    string `pulumi:"value"`
+	// Name of the DNS record
+	Name string `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority int `pulumi:"priority"`
+	// Status of the hosting record
+	Status string `pulumi:"status"`
+	// Time to live in seconds of the record
+	Ttl int `pulumi:"ttl"`
+	// Type of the DNS record
+	Type string `pulumi:"type"`
+	// Value of the DNS record
+	Value string `pulumi:"value"`
 }
 
 // GetHostingRecordInput is an input type that accepts GetHostingRecordArgs and GetHostingRecordOutput values.
@@ -791,12 +836,18 @@ type GetHostingRecordInput interface {
 }
 
 type GetHostingRecordArgs struct {
-	Name     pulumi.StringInput `pulumi:"name"`
-	Priority pulumi.IntInput    `pulumi:"priority"`
-	Status   pulumi.StringInput `pulumi:"status"`
-	Ttl      pulumi.IntInput    `pulumi:"ttl"`
-	Type     pulumi.StringInput `pulumi:"type"`
-	Value    pulumi.StringInput `pulumi:"value"`
+	// Name of the DNS record
+	Name pulumi.StringInput `pulumi:"name"`
+	// Priority of DNS records associated with the webhosting.
+	Priority pulumi.IntInput `pulumi:"priority"`
+	// Status of the hosting record
+	Status pulumi.StringInput `pulumi:"status"`
+	// Time to live in seconds of the record
+	Ttl pulumi.IntInput `pulumi:"ttl"`
+	// Type of the DNS record
+	Type pulumi.StringInput `pulumi:"type"`
+	// Value of the DNS record
+	Value pulumi.StringInput `pulumi:"value"`
 }
 
 func (GetHostingRecordArgs) ElementType() reflect.Type {
@@ -850,26 +901,32 @@ func (o GetHostingRecordOutput) ToGetHostingRecordOutputWithContext(ctx context.
 	return o
 }
 
+// Name of the DNS record
 func (o GetHostingRecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingRecord) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Priority of DNS records associated with the webhosting.
 func (o GetHostingRecordOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v GetHostingRecord) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// Status of the hosting record
 func (o GetHostingRecordOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingRecord) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Time to live in seconds of the record
 func (o GetHostingRecordOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v GetHostingRecord) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// Type of the DNS record
 func (o GetHostingRecordOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingRecord) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// Value of the DNS record
 func (o GetHostingRecordOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v GetHostingRecord) string { return v.Value }).(pulumi.StringOutput)
 }

@@ -206,6 +206,7 @@ class _SecretState:
         :param pulumi.Input[builtins.str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
         :param pulumi.Input[builtins.str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
         :param pulumi.Input[builtins.int] version_count: The amount of secret versions.
+        :param pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]] versions: List of the versions of the secret
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -396,6 +397,9 @@ class _SecretState:
     @property
     @pulumi.getter
     def versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SecretVersionArgs']]]]:
+        """
+        List of the versions of the secret
+        """
         return pulumi.get(self, "versions")
 
     @versions.setter
@@ -554,6 +558,7 @@ class Secret(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] type: Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
         :param pulumi.Input[builtins.str] updated_at: Date and time of the secret's last update (in RFC 3339 format).
         :param pulumi.Input[builtins.int] version_count: The amount of secret versions.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SecretVersionArgs', 'SecretVersionArgsDict']]]] versions: List of the versions of the secret
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -683,5 +688,8 @@ class Secret(pulumi.CustomResource):
     @property
     @pulumi.getter
     def versions(self) -> pulumi.Output[Sequence['outputs.SecretVersion']]:
+        """
+        List of the versions of the secret
+        """
         return pulumi.get(self, "versions")
 

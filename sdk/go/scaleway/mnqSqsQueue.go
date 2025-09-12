@@ -64,14 +64,86 @@ import (
 //
 // ```
 //
+// ### With Dead Letter Queue
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mnq"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := mnq.NewSqs(ctx, "main", nil)
+//			if err != nil {
+//				return err
+//			}
+//			mainSqsCredentials, err := mnq.NewSqsCredentials(ctx, "main", &mnq.SqsCredentialsArgs{
+//				ProjectId: main.ProjectId,
+//				Name:      pulumi.String("sqs-credentials"),
+//				Permissions: &mnq.SqsCredentialsPermissionsArgs{
+//					CanManage:  pulumi.Bool(true),
+//					CanReceive: pulumi.Bool(false),
+//					CanPublish: pulumi.Bool(false),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			deadLetter, err := mnq.NewSqsQueue(ctx, "dead_letter", &mnq.SqsQueueArgs{
+//				ProjectId:   main.ProjectId,
+//				Name:        pulumi.String("dead-letter-queue"),
+//				SqsEndpoint: main.Endpoint,
+//				AccessKey:   mainSqsCredentials.AccessKey,
+//				SecretKey:   mainSqsCredentials.SecretKey,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mnq.NewSqsQueue(ctx, "main", &mnq.SqsQueueArgs{
+//				ProjectId:   main.ProjectId,
+//				Name:        pulumi.String("my-queue"),
+//				SqsEndpoint: main.Endpoint,
+//				AccessKey:   mainSqsCredentials.AccessKey,
+//				SecretKey:   mainSqsCredentials.SecretKey,
+//				DeadLetterQueue: &mnq.SqsQueueDeadLetterQueueArgs{
+//					Id:              deadLetter.ID(),
+//					MaxReceiveCount: pulumi.Int(3),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Dead Letter Queue
+//
+// The `deadLetterQueue` block supports the following:
+//
+// - `id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
+//
+// - `maxReceiveCount` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
+//
 // Deprecated: scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue
 type MnqSqsQueue struct {
 	pulumi.CustomResourceState
 
 	// The access key of the SQS queue.
 	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
+	// The ARN of the queue
+	Arn pulumi.StringOutput `pulumi:"arn"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolOutput `pulumi:"contentBasedDeduplication"`
+	// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+	DeadLetterQueue MnqSqsQueueDeadLetterQueuePtrOutput `pulumi:"deadLetterQueue"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolOutput `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -147,8 +219,12 @@ func GetMnqSqsQueue(ctx *pulumi.Context,
 type mnqSqsQueueState struct {
 	// The access key of the SQS queue.
 	AccessKey *string `pulumi:"accessKey"`
+	// The ARN of the queue
+	Arn *string `pulumi:"arn"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
+	// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+	DeadLetterQueue *MnqSqsQueueDeadLetterQueue `pulumi:"deadLetterQueue"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue *bool `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -178,8 +254,12 @@ type mnqSqsQueueState struct {
 type MnqSqsQueueState struct {
 	// The access key of the SQS queue.
 	AccessKey pulumi.StringPtrInput
+	// The ARN of the queue
+	Arn pulumi.StringPtrInput
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolPtrInput
+	// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+	DeadLetterQueue MnqSqsQueueDeadLetterQueuePtrInput
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolPtrInput
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -215,6 +295,8 @@ type mnqSqsQueueArgs struct {
 	AccessKey string `pulumi:"accessKey"`
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication *bool `pulumi:"contentBasedDeduplication"`
+	// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+	DeadLetterQueue *MnqSqsQueueDeadLetterQueue `pulumi:"deadLetterQueue"`
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue *bool `pulumi:"fifoQueue"`
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -245,6 +327,8 @@ type MnqSqsQueueArgs struct {
 	AccessKey pulumi.StringInput
 	// Specifies whether to enable content-based deduplication. Defaults to `false`.
 	ContentBasedDeduplication pulumi.BoolPtrInput
+	// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+	DeadLetterQueue MnqSqsQueueDeadLetterQueuePtrInput
 	// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
 	FifoQueue pulumi.BoolPtrInput
 	// The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
@@ -361,9 +445,19 @@ func (o MnqSqsQueueOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// The ARN of the queue
+func (o MnqSqsQueueOutput) Arn() pulumi.StringOutput {
+	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.Arn }).(pulumi.StringOutput)
+}
+
 // Specifies whether to enable content-based deduplication. Defaults to `false`.
 func (o MnqSqsQueueOutput) ContentBasedDeduplication() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MnqSqsQueue) pulumi.BoolOutput { return v.ContentBasedDeduplication }).(pulumi.BoolOutput)
+}
+
+// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+func (o MnqSqsQueueOutput) DeadLetterQueue() MnqSqsQueueDeadLetterQueuePtrOutput {
+	return o.ApplyT(func(v *MnqSqsQueue) MnqSqsQueueDeadLetterQueuePtrOutput { return v.DeadLetterQueue }).(MnqSqsQueueDeadLetterQueuePtrOutput)
 }
 
 // Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.

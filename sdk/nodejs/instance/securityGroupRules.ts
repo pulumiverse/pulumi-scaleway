@@ -49,14 +49,14 @@ import * as utilities from "../utilities";
  *     outboundDefaultPolicy: "accept",
  * });
  * const trusted = [
- *     "1.2.3.4",
- *     "4.5.6.7",
- *     "7.8.9.10",
+ *     "1.2.3.4/32",
+ *     "4.5.6.7/32",
+ *     "7.8.9.10/24",
  * ];
  * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
  *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
  *         action: "accept",
- *         ip: entry.value,
+ *         ipRange: entry.value,
  *         port: 80,
  *     })),
  *     securityGroupId: main.id,
@@ -78,22 +78,22 @@ import * as utilities from "../utilities";
  * });
  * const trusted = [
  *     {
- *         ip: "1.2.3.4",
+ *         ipRange: "1.2.3.4/32",
  *         port: "80",
  *     },
  *     {
- *         ip: "5.6.7.8",
+ *         ipRange: "5.6.7.8/32",
  *         port: "81",
  *     },
  *     {
- *         ip: "9.10.11.12",
+ *         ipRange: "9.10.11.12/32",
  *         port: "81",
  *     },
  * ];
  * const mainSecurityGroupRules = new scaleway.instance.SecurityGroupRules("main", {
  *     inboundRules: trusted.map((v, k) => ({key: k, value: v})).map(entry => ({
  *         action: "accept",
- *         ip: entry.value.ip,
+ *         ipRange: entry.value.ipRange,
  *         port: entry.value.port,
  *     })),
  *     securityGroupId: main.id,

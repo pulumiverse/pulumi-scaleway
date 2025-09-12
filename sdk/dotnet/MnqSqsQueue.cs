@@ -52,6 +52,64 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
+    /// 
+    /// ### With Dead Letter Queue
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Mnq.Sqs("main");
+    /// 
+    ///     var mainSqsCredentials = new Scaleway.Mnq.SqsCredentials("main", new()
+    ///     {
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "sqs-credentials",
+    ///         Permissions = new Scaleway.Mnq.Inputs.SqsCredentialsPermissionsArgs
+    ///         {
+    ///             CanManage = true,
+    ///             CanReceive = false,
+    ///             CanPublish = false,
+    ///         },
+    ///     });
+    /// 
+    ///     var deadLetter = new Scaleway.Mnq.SqsQueue("dead_letter", new()
+    ///     {
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "dead-letter-queue",
+    ///         SqsEndpoint = main.Endpoint,
+    ///         AccessKey = mainSqsCredentials.AccessKey,
+    ///         SecretKey = mainSqsCredentials.SecretKey,
+    ///     });
+    /// 
+    ///     var mainSqsQueue = new Scaleway.Mnq.SqsQueue("main", new()
+    ///     {
+    ///         ProjectId = main.ProjectId,
+    ///         Name = "my-queue",
+    ///         SqsEndpoint = main.Endpoint,
+    ///         AccessKey = mainSqsCredentials.AccessKey,
+    ///         SecretKey = mainSqsCredentials.SecretKey,
+    ///         DeadLetterQueue = new Scaleway.Mnq.Inputs.SqsQueueDeadLetterQueueArgs
+    ///         {
+    ///             Id = deadLetter.Id,
+    ///             MaxReceiveCount = 3,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Dead Letter Queue
+    /// 
+    /// The `dead_letter_queue` block supports the following:
+    /// 
+    /// - `id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
+    /// 
+    /// - `max_receive_count` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
     /// </summary>
     [Obsolete(@"scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue")]
     [ScalewayResourceType("scaleway:index/mnqSqsQueue:MnqSqsQueue")]
@@ -64,10 +122,22 @@ namespace Pulumiverse.Scaleway
         public Output<string> AccessKey { get; private set; } = null!;
 
         /// <summary>
+        /// The ARN of the queue
+        /// </summary>
+        [Output("arn")]
+        public Output<string> Arn { get; private set; } = null!;
+
+        /// <summary>
         /// Specifies whether to enable content-based deduplication. Defaults to `false`.
         /// </summary>
         [Output("contentBasedDeduplication")]
         public Output<bool> ContentBasedDeduplication { get; private set; } = null!;
+
+        /// <summary>
+        /// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+        /// </summary>
+        [Output("deadLetterQueue")]
+        public Output<Outputs.MnqSqsQueueDeadLetterQueue?> DeadLetterQueue { get; private set; } = null!;
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
@@ -216,6 +286,12 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
         /// <summary>
+        /// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+        /// </summary>
+        [Input("deadLetterQueue")]
+        public Input<Inputs.MnqSqsQueueDeadLetterQueueArgs>? DeadLetterQueue { get; set; }
+
+        /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
         /// </summary>
         [Input("fifoQueue")]
@@ -316,10 +392,22 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
+        /// The ARN of the queue
+        /// </summary>
+        [Input("arn")]
+        public Input<string>? Arn { get; set; }
+
+        /// <summary>
         /// Specifies whether to enable content-based deduplication. Defaults to `false`.
         /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
+
+        /// <summary>
+        /// Configuration for the dead letter queue. See Dead Letter Queue below for details.
+        /// </summary>
+        [Input("deadLetterQueue")]
+        public Input<Inputs.MnqSqsQueueDeadLetterQueueGetArgs>? DeadLetterQueue { get; set; }
 
         /// <summary>
         /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.

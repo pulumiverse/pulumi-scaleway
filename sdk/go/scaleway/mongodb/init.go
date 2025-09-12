@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Instance{}
 	case "scaleway:mongodb/snapshot:Snapshot":
 		r = &Snapshot{}
+	case "scaleway:mongodb/user:User":
+		r = &User{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -46,6 +48,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"mongodb/snapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"mongodb/user",
 		&module{version},
 	)
 }

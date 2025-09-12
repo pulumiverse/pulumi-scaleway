@@ -1156,10 +1156,20 @@ func (o ServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) ServerPrivateN
 }
 
 type ServerPublicIp struct {
-	// The address of the IP
+	// The address of the IP.
 	Address *string `pulumi:"address"`
-	// The ID of the IP
+	// Whether the IP is dynamic.
+	Dynamic *bool `pulumi:"dynamic"`
+	// The IP address' family.
+	Family *string `pulumi:"family"`
+	// The IP of the Gateway associated with the IP.
+	Gateway *string `pulumi:"gateway"`
+	// The ID of the IP.
 	Id *string `pulumi:"id"`
+	// The CIDR netmask of the IP.
+	Netmask *string `pulumi:"netmask"`
+	// The provisioning mode of the IP
+	ProvisioningMode *string `pulumi:"provisioningMode"`
 }
 
 // ServerPublicIpInput is an input type that accepts ServerPublicIpArgs and ServerPublicIpOutput values.
@@ -1174,10 +1184,20 @@ type ServerPublicIpInput interface {
 }
 
 type ServerPublicIpArgs struct {
-	// The address of the IP
+	// The address of the IP.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IP
+	// Whether the IP is dynamic.
+	Dynamic pulumi.BoolPtrInput `pulumi:"dynamic"`
+	// The IP address' family.
+	Family pulumi.StringPtrInput `pulumi:"family"`
+	// The IP of the Gateway associated with the IP.
+	Gateway pulumi.StringPtrInput `pulumi:"gateway"`
+	// The ID of the IP.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The CIDR netmask of the IP.
+	Netmask pulumi.StringPtrInput `pulumi:"netmask"`
+	// The provisioning mode of the IP
+	ProvisioningMode pulumi.StringPtrInput `pulumi:"provisioningMode"`
 }
 
 func (ServerPublicIpArgs) ElementType() reflect.Type {
@@ -1231,14 +1251,39 @@ func (o ServerPublicIpOutput) ToServerPublicIpOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The address of the IP
+// The address of the IP.
 func (o ServerPublicIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerPublicIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IP
+// Whether the IP is dynamic.
+func (o ServerPublicIpOutput) Dynamic() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerPublicIp) *bool { return v.Dynamic }).(pulumi.BoolPtrOutput)
+}
+
+// The IP address' family.
+func (o ServerPublicIpOutput) Family() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPublicIp) *string { return v.Family }).(pulumi.StringPtrOutput)
+}
+
+// The IP of the Gateway associated with the IP.
+func (o ServerPublicIpOutput) Gateway() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPublicIp) *string { return v.Gateway }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IP.
 func (o ServerPublicIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerPublicIp) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The CIDR netmask of the IP.
+func (o ServerPublicIpOutput) Netmask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPublicIp) *string { return v.Netmask }).(pulumi.StringPtrOutput)
+}
+
+// The provisioning mode of the IP
+func (o ServerPublicIpOutput) ProvisioningMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerPublicIp) *string { return v.ProvisioningMode }).(pulumi.StringPtrOutput)
 }
 
 type ServerPublicIpArrayOutput struct{ *pulumi.OutputState }
@@ -1536,8 +1581,6 @@ type SnapshotImport struct {
 	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
 	Bucket string `pulumi:"bucket"`
 	// Key of the object to import
-	//
-	// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 	Key string `pulumi:"key"`
 }
 
@@ -1556,8 +1599,6 @@ type SnapshotImportArgs struct {
 	// Bucket name containing [qcow2](https://en.wikipedia.org/wiki/Qcow) to import
 	Bucket pulumi.StringInput `pulumi:"bucket"`
 	// Key of the object to import
-	//
-	// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -1644,8 +1685,6 @@ func (o SnapshotImportOutput) Bucket() pulumi.StringOutput {
 }
 
 // Key of the object to import
-//
-// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 func (o SnapshotImportOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v SnapshotImport) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1685,8 +1724,6 @@ func (o SnapshotImportPtrOutput) Bucket() pulumi.StringPtrOutput {
 }
 
 // Key of the object to import
-//
-// > **Note:** The type `unified` could be instantiated on both `lSsd` and `bSsd` volumes.
 func (o SnapshotImportPtrOutput) Key() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SnapshotImport) *string {
 		if v == nil {
@@ -2340,8 +2377,18 @@ func (o GetServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetServerPr
 type GetServerPublicIp struct {
 	// The address of the IP
 	Address string `pulumi:"address"`
+	// Whether the IP is dynamic
+	Dynamic bool `pulumi:"dynamic"`
+	// IP address family (inet or inet6)
+	Family string `pulumi:"family"`
+	// Gateway's IP address
+	Gateway string `pulumi:"gateway"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
+	// CIDR netmask
+	Netmask string `pulumi:"netmask"`
+	// Provisioning mode of the IP address
+	ProvisioningMode string `pulumi:"provisioningMode"`
 }
 
 // GetServerPublicIpInput is an input type that accepts GetServerPublicIpArgs and GetServerPublicIpOutput values.
@@ -2358,8 +2405,18 @@ type GetServerPublicIpInput interface {
 type GetServerPublicIpArgs struct {
 	// The address of the IP
 	Address pulumi.StringInput `pulumi:"address"`
+	// Whether the IP is dynamic
+	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
+	// IP address family (inet or inet6)
+	Family pulumi.StringInput `pulumi:"family"`
+	// Gateway's IP address
+	Gateway pulumi.StringInput `pulumi:"gateway"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
+	// CIDR netmask
+	Netmask pulumi.StringInput `pulumi:"netmask"`
+	// Provisioning mode of the IP address
+	ProvisioningMode pulumi.StringInput `pulumi:"provisioningMode"`
 }
 
 func (GetServerPublicIpArgs) ElementType() reflect.Type {
@@ -2418,9 +2475,34 @@ func (o GetServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Whether the IP is dynamic
+func (o GetServerPublicIpOutput) Dynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerPublicIp) bool { return v.Dynamic }).(pulumi.BoolOutput)
+}
+
+// IP address family (inet or inet6)
+func (o GetServerPublicIpOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPublicIp) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// Gateway's IP address
+func (o GetServerPublicIpOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
 // The ID of the IP
 func (o GetServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// CIDR netmask
+func (o GetServerPublicIpOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPublicIp) string { return v.Netmask }).(pulumi.StringOutput)
+}
+
+// Provisioning mode of the IP address
+func (o GetServerPublicIpOutput) ProvisioningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerPublicIp) string { return v.ProvisioningMode }).(pulumi.StringOutput)
 }
 
 type GetServerPublicIpArrayOutput struct{ *pulumi.OutputState }
@@ -2597,6 +2679,8 @@ func (o GetServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetServerRootVo
 type GetServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
+	// UUID of the bootscript
+	//
 	// Deprecated: bootscript are not supported
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -2618,10 +2702,13 @@ type GetServersServer struct {
 	// The organization ID the server is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
-	PlacementGroupId              string `pulumi:"placementGroupId"`
-	PlacementGroupPolicyRespected bool   `pulumi:"placementGroupPolicyRespected"`
+	PlacementGroupId string `pulumi:"placementGroupId"`
+	// Whether the placement group policy respected or not
+	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp string `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the server.
+	PrivateIps []GetServersServerPrivateIp `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The public IP address of the server.
@@ -2656,6 +2743,8 @@ type GetServersServerInput interface {
 type GetServersServerArgs struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType pulumi.StringInput `pulumi:"bootType"`
+	// UUID of the bootscript
+	//
 	// Deprecated: bootscript are not supported
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
@@ -2677,10 +2766,13 @@ type GetServersServerArgs struct {
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
-	PlacementGroupId              pulumi.StringInput `pulumi:"placementGroupId"`
-	PlacementGroupPolicyRespected pulumi.BoolInput   `pulumi:"placementGroupPolicyRespected"`
+	PlacementGroupId pulumi.StringInput `pulumi:"placementGroupId"`
+	// Whether the placement group policy respected or not
+	PlacementGroupPolicyRespected pulumi.BoolInput `pulumi:"placementGroupPolicyRespected"`
 	// The Scaleway internal IP address of the server.
 	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The list of private IPv4 and IPv6 addresses associated with the server.
+	PrivateIps GetServersServerPrivateIpArrayInput `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// The public IP address of the server.
@@ -2757,6 +2849,8 @@ func (o GetServersServerOutput) BootType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.BootType }).(pulumi.StringOutput)
 }
 
+// UUID of the bootscript
+//
 // Deprecated: bootscript are not supported
 func (o GetServersServerOutput) BootscriptId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.BootscriptId }).(pulumi.StringOutput)
@@ -2812,6 +2906,7 @@ func (o GetServersServerOutput) PlacementGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.PlacementGroupId }).(pulumi.StringOutput)
 }
 
+// Whether the placement group policy respected or not
 func (o GetServersServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServersServer) bool { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
@@ -2819,6 +2914,11 @@ func (o GetServersServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutpu
 // The Scaleway internal IP address of the server.
 func (o GetServersServerOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The list of private IPv4 and IPv6 addresses associated with the server.
+func (o GetServersServerOutput) PrivateIps() GetServersServerPrivateIpArrayOutput {
+	return o.ApplyT(func(v GetServersServer) []GetServersServerPrivateIp { return v.PrivateIps }).(GetServersServerPrivateIpArrayOutput)
 }
 
 // The ID of the project the server is associated with.
@@ -2881,6 +2981,112 @@ func (o GetServersServerArrayOutput) Index(i pulumi.IntInput) GetServersServerOu
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServer {
 		return vs[0].([]GetServersServer)[vs[1].(int)]
 	}).(GetServersServerOutput)
+}
+
+type GetServersServerPrivateIp struct {
+	// The address of the IP
+	Address string `pulumi:"address"`
+	// The ID of the IP
+	Id string `pulumi:"id"`
+}
+
+// GetServersServerPrivateIpInput is an input type that accepts GetServersServerPrivateIpArgs and GetServersServerPrivateIpOutput values.
+// You can construct a concrete instance of `GetServersServerPrivateIpInput` via:
+//
+//	GetServersServerPrivateIpArgs{...}
+type GetServersServerPrivateIpInput interface {
+	pulumi.Input
+
+	ToGetServersServerPrivateIpOutput() GetServersServerPrivateIpOutput
+	ToGetServersServerPrivateIpOutputWithContext(context.Context) GetServersServerPrivateIpOutput
+}
+
+type GetServersServerPrivateIpArgs struct {
+	// The address of the IP
+	Address pulumi.StringInput `pulumi:"address"`
+	// The ID of the IP
+	Id pulumi.StringInput `pulumi:"id"`
+}
+
+func (GetServersServerPrivateIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetServersServerPrivateIpArgs) ToGetServersServerPrivateIpOutput() GetServersServerPrivateIpOutput {
+	return i.ToGetServersServerPrivateIpOutputWithContext(context.Background())
+}
+
+func (i GetServersServerPrivateIpArgs) ToGetServersServerPrivateIpOutputWithContext(ctx context.Context) GetServersServerPrivateIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerPrivateIpOutput)
+}
+
+// GetServersServerPrivateIpArrayInput is an input type that accepts GetServersServerPrivateIpArray and GetServersServerPrivateIpArrayOutput values.
+// You can construct a concrete instance of `GetServersServerPrivateIpArrayInput` via:
+//
+//	GetServersServerPrivateIpArray{ GetServersServerPrivateIpArgs{...} }
+type GetServersServerPrivateIpArrayInput interface {
+	pulumi.Input
+
+	ToGetServersServerPrivateIpArrayOutput() GetServersServerPrivateIpArrayOutput
+	ToGetServersServerPrivateIpArrayOutputWithContext(context.Context) GetServersServerPrivateIpArrayOutput
+}
+
+type GetServersServerPrivateIpArray []GetServersServerPrivateIpInput
+
+func (GetServersServerPrivateIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerPrivateIp)(nil)).Elem()
+}
+
+func (i GetServersServerPrivateIpArray) ToGetServersServerPrivateIpArrayOutput() GetServersServerPrivateIpArrayOutput {
+	return i.ToGetServersServerPrivateIpArrayOutputWithContext(context.Background())
+}
+
+func (i GetServersServerPrivateIpArray) ToGetServersServerPrivateIpArrayOutputWithContext(ctx context.Context) GetServersServerPrivateIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServersServerPrivateIpArrayOutput)
+}
+
+type GetServersServerPrivateIpOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerPrivateIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServersServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetServersServerPrivateIpOutput) ToGetServersServerPrivateIpOutput() GetServersServerPrivateIpOutput {
+	return o
+}
+
+func (o GetServersServerPrivateIpOutput) ToGetServersServerPrivateIpOutputWithContext(ctx context.Context) GetServersServerPrivateIpOutput {
+	return o
+}
+
+// The address of the IP
+func (o GetServersServerPrivateIpOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The ID of the IP
+func (o GetServersServerPrivateIpOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+type GetServersServerPrivateIpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServersServerPrivateIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServersServerPrivateIp)(nil)).Elem()
+}
+
+func (o GetServersServerPrivateIpArrayOutput) ToGetServersServerPrivateIpArrayOutput() GetServersServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetServersServerPrivateIpArrayOutput) ToGetServersServerPrivateIpArrayOutputWithContext(ctx context.Context) GetServersServerPrivateIpArrayOutput {
+	return o
+}
+
+func (o GetServersServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetServersServerPrivateIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServersServerPrivateIp {
+		return vs[0].([]GetServersServerPrivateIp)[vs[1].(int)]
+	}).(GetServersServerPrivateIpOutput)
 }
 
 type GetServersServerPublicIp struct {
@@ -3134,6 +3340,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerRootVolumeArrayInput)(nil)).Elem(), GetServerRootVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerInput)(nil)).Elem(), GetServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerArrayInput)(nil)).Elem(), GetServersServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerPrivateIpInput)(nil)).Elem(), GetServersServerPrivateIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerPrivateIpArrayInput)(nil)).Elem(), GetServersServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerPublicIpInput)(nil)).Elem(), GetServersServerPublicIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerPublicIpArrayInput)(nil)).Elem(), GetServersServerPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportInput)(nil)).Elem(), GetSnapshotImportArgs{})
@@ -3176,6 +3384,8 @@ func init() {
 	pulumi.RegisterOutputType(GetServerRootVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetServersServerOutput{})
 	pulumi.RegisterOutputType(GetServersServerArrayOutput{})
+	pulumi.RegisterOutputType(GetServersServerPrivateIpOutput{})
+	pulumi.RegisterOutputType(GetServersServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetServersServerPublicIpOutput{})
 	pulumi.RegisterOutputType(GetServersServerPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(GetSnapshotImportOutput{})

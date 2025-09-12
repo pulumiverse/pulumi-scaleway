@@ -62,9 +62,12 @@ class LoadbalancerBackendArgs:
                is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         :param pulumi.Input[builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[builtins.str] health_check_delay: Interval between two HC requests
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs'] health_check_http: HTTP Health check
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs'] health_check_https: HTTPS Health check
         :param pulumi.Input[builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
+        :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: TCP Health check
         :param pulumi.Input[builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
@@ -222,6 +225,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs']]:
+        """
+        HTTP Health check
+        """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
@@ -231,6 +237,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs']]:
+        """
+        HTTPS Health check
+        """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
@@ -276,6 +285,9 @@ class LoadbalancerBackendArgs:
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']]:
+        """
+        TCP Health check
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
@@ -542,9 +554,12 @@ class _LoadbalancerBackendState:
         :param pulumi.Input[builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[builtins.str] health_check_delay: Interval between two HC requests
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs'] health_check_http: HTTP Health check
+        :param pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs'] health_check_https: HTTPS Health check
         :param pulumi.Input[builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
+        :param pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs'] health_check_tcp: TCP Health check
         :param pulumi.Input[builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
@@ -694,6 +709,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpArgs']]:
+        """
+        HTTP Health check
+        """
         return pulumi.get(self, "health_check_http")
 
     @health_check_http.setter
@@ -703,6 +721,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckHttpsArgs']]:
+        """
+        HTTPS Health check
+        """
         return pulumi.get(self, "health_check_https")
 
     @health_check_https.setter
@@ -748,6 +769,9 @@ class _LoadbalancerBackendState:
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> Optional[pulumi.Input['LoadbalancerBackendHealthCheckTcpArgs']]:
+        """
+        TCP Health check
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @health_check_tcp.setter
@@ -1081,9 +1105,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[builtins.str] health_check_delay: Interval between two HC requests
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpArgs', 'LoadbalancerBackendHealthCheckHttpArgsDict']] health_check_http: HTTP Health check
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpsArgs', 'LoadbalancerBackendHealthCheckHttpsArgsDict']] health_check_https: HTTPS Health check
         :param pulumi.Input[builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
         :param pulumi.Input[builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
@@ -1301,9 +1328,12 @@ class LoadbalancerBackend(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] forward_port_algorithm: Load balancing algorithm
         :param pulumi.Input[builtins.str] forward_protocol: Backend protocol
         :param pulumi.Input[builtins.str] health_check_delay: Interval between two HC requests
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpArgs', 'LoadbalancerBackendHealthCheckHttpArgsDict']] health_check_http: HTTP Health check
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckHttpsArgs', 'LoadbalancerBackendHealthCheckHttpsArgsDict']] health_check_https: HTTPS Health check
         :param pulumi.Input[builtins.int] health_check_max_retries: Number of allowed failed HC requests before the backend server is marked down
         :param pulumi.Input[builtins.int] health_check_port: Port the HC requests will be send to. Default to `forward_port`
         :param pulumi.Input[builtins.bool] health_check_send_proxy: Defines whether proxy protocol should be activated for the health check
+        :param pulumi.Input[Union['LoadbalancerBackendHealthCheckTcpArgs', 'LoadbalancerBackendHealthCheckTcpArgsDict']] health_check_tcp: TCP Health check
         :param pulumi.Input[builtins.str] health_check_timeout: Timeout before we consider a HC request failed
         :param pulumi.Input[builtins.str] health_check_transient_delay: Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
         :param pulumi.Input[builtins.bool] ignore_ssl_server_verify: Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
@@ -1405,11 +1435,17 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @property
     @pulumi.getter(name="healthCheckHttp")
     def health_check_http(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendHealthCheckHttp']]:
+        """
+        HTTP Health check
+        """
         return pulumi.get(self, "health_check_http")
 
     @property
     @pulumi.getter(name="healthCheckHttps")
     def health_check_https(self) -> pulumi.Output[Optional['outputs.LoadbalancerBackendHealthCheckHttps']]:
+        """
+        HTTPS Health check
+        """
         return pulumi.get(self, "health_check_https")
 
     @property
@@ -1439,6 +1475,9 @@ class LoadbalancerBackend(pulumi.CustomResource):
     @property
     @pulumi.getter(name="healthCheckTcp")
     def health_check_tcp(self) -> pulumi.Output['outputs.LoadbalancerBackendHealthCheckTcp']:
+        """
+        TCP Health check
+        """
         return pulumi.get(self, "health_check_tcp")
 
     @property

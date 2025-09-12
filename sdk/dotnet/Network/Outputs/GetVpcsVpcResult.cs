@@ -47,6 +47,9 @@ namespace Pulumiverse.Scaleway.Network.Outputs
         /// List of tags to filter for. VPCs with these exact tags are listed.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// Date on which the VPC was last updated (RFC 3339 format)
+        /// </summary>
         public readonly string UpdateAt;
 
         [OutputConstructor]

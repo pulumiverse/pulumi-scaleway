@@ -180,8 +180,9 @@ type Bucket struct {
 	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl pulumi.StringPtrOutput `pulumi:"acl"`
 	// API URL of the bucket
-	ApiEndpoint pulumi.StringOutput       `pulumi:"apiEndpoint"`
-	CorsRules   BucketCorsRuleArrayOutput `pulumi:"corsRules"`
+	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
+	// List of CORS rules
+	CorsRules BucketCorsRuleArrayOutput `pulumi:"corsRules"`
 	// The endpoint URL of the bucket.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -248,8 +249,9 @@ type bucketState struct {
 	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
 	Acl *string `pulumi:"acl"`
 	// API URL of the bucket
-	ApiEndpoint *string          `pulumi:"apiEndpoint"`
-	CorsRules   []BucketCorsRule `pulumi:"corsRules"`
+	ApiEndpoint *string `pulumi:"apiEndpoint"`
+	// List of CORS rules
+	CorsRules []BucketCorsRule `pulumi:"corsRules"`
 	// The endpoint URL of the bucket.
 	Endpoint *string `pulumi:"endpoint"`
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -282,7 +284,8 @@ type BucketState struct {
 	Acl pulumi.StringPtrInput
 	// API URL of the bucket
 	ApiEndpoint pulumi.StringPtrInput
-	CorsRules   BucketCorsRuleArrayInput
+	// List of CORS rules
+	CorsRules BucketCorsRuleArrayInput
 	// The endpoint URL of the bucket.
 	Endpoint pulumi.StringPtrInput
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
@@ -316,7 +319,8 @@ type bucketArgs struct {
 	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
 	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
-	Acl       *string          `pulumi:"acl"`
+	Acl *string `pulumi:"acl"`
+	// List of CORS rules
 	CorsRules []BucketCorsRule `pulumi:"corsRules"`
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
 	ForceDestroy *bool `pulumi:"forceDestroy"`
@@ -346,7 +350,8 @@ type BucketArgs struct {
 	// > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
 	//
 	// Deprecated: ACL attribute is deprecated. Please use the resource object.BucketAcl instead.
-	Acl       pulumi.StringPtrInput
+	Acl pulumi.StringPtrInput
+	// List of CORS rules
 	CorsRules BucketCorsRuleArrayInput
 	// Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
 	ForceDestroy pulumi.BoolPtrInput
@@ -470,6 +475,7 @@ func (o BucketOutput) ApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *Bucket) pulumi.StringOutput { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
+// List of CORS rules
 func (o BucketOutput) CorsRules() BucketCorsRuleArrayOutput {
 	return o.ApplyT(func(v *Bucket) BucketCorsRuleArrayOutput { return v.CorsRules }).(BucketCorsRuleArrayOutput)
 }

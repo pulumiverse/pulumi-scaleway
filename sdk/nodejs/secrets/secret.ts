@@ -98,6 +98,9 @@ export class Secret extends pulumi.CustomResource {
      * The amount of secret versions.
      */
     public /*out*/ readonly versionCount!: pulumi.Output<number>;
+    /**
+     * List of the versions of the secret
+     */
     public /*out*/ readonly versions!: pulumi.Output<outputs.secrets.SecretVersion[]>;
 
     /**
@@ -208,6 +211,9 @@ export interface SecretState {
      * The amount of secret versions.
      */
     versionCount?: pulumi.Input<number>;
+    /**
+     * List of the versions of the secret
+     */
     versions?: pulumi.Input<pulumi.Input<inputs.secrets.SecretVersion>[]>;
 }
 

@@ -30,7 +30,15 @@ class DatabaseUserArgs:
         :param pulumi.Input[builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
-        :param pulumi.Input[builtins.str] password: database user password.
+        :param pulumi.Input[builtins.str] password: database user password. The password must meet the following requirements based on ISO27001 standards:
+               - **Length**: 8-128 characters
+               - **Character types required**:
+               - At least 1 lowercase letter (a-z)
+               - At least 1 uppercase letter (A-Z)
+               - At least 1 digit (0-9)
+               - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+               
+               For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[builtins.bool] is_admin: Grant admin permissions to the database user.
         :param pulumi.Input[builtins.str] name: database user name.
                
@@ -64,7 +72,15 @@ class DatabaseUserArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[builtins.str]:
         """
-        database user password.
+        database user password. The password must meet the following requirements based on ISO27001 standards:
+        - **Length**: 8-128 characters
+        - **Character types required**:
+        - At least 1 lowercase letter (a-z)
+        - At least 1 uppercase letter (A-Z)
+        - At least 1 digit (0-9)
+        - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+
+        For secure password generation, consider using the `random_password` resource with appropriate parameters.
         """
         return pulumi.get(self, "password")
 
@@ -128,7 +144,15 @@ class _DatabaseUserState:
         :param pulumi.Input[builtins.str] name: database user name.
                
                > **Important:** Updates to `name` will recreate the database user.
-        :param pulumi.Input[builtins.str] password: database user password.
+        :param pulumi.Input[builtins.str] password: database user password. The password must meet the following requirements based on ISO27001 standards:
+               - **Length**: 8-128 characters
+               - **Character types required**:
+               - At least 1 lowercase letter (a-z)
+               - At least 1 uppercase letter (A-Z)
+               - At least 1 digit (0-9)
+               - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+               
+               For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[builtins.str] region: The Scaleway region this resource resides in.
         """
         if instance_id is not None:
@@ -186,7 +210,15 @@ class _DatabaseUserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[builtins.str]]:
         """
-        database user password.
+        database user password. The password must meet the following requirements based on ISO27001 standards:
+        - **Length**: 8-128 characters
+        - **Character types required**:
+        - At least 1 lowercase letter (a-z)
+        - At least 1 uppercase letter (A-Z)
+        - At least 1 digit (0-9)
+        - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+
+        For secure password generation, consider using the `random_password` resource with appropriate parameters.
         """
         return pulumi.get(self, "password")
 
@@ -246,8 +278,16 @@ class DatabaseUser(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
         db_password = random.RandomPassword("db_password",
-            length=16,
-            special=True)
+            length=20,
+            special=True,
+            upper=True,
+            lower=True,
+            numeric=True,
+            min_upper=1,
+            min_lower=1,
+            min_numeric=1,
+            min_special=1,
+            override_special="!@#$%^&*()_+-=[]{}|;:,.<>?")
         db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
@@ -274,7 +314,15 @@ class DatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] name: database user name.
                
                > **Important:** Updates to `name` will recreate the database user.
-        :param pulumi.Input[builtins.str] password: database user password.
+        :param pulumi.Input[builtins.str] password: database user password. The password must meet the following requirements based on ISO27001 standards:
+               - **Length**: 8-128 characters
+               - **Character types required**:
+               - At least 1 lowercase letter (a-z)
+               - At least 1 uppercase letter (A-Z)
+               - At least 1 digit (0-9)
+               - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+               
+               For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[builtins.str] region: The Scaleway region this resource resides in.
         """
         ...
@@ -305,8 +353,16 @@ class DatabaseUser(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
         db_password = random.RandomPassword("db_password",
-            length=16,
-            special=True)
+            length=20,
+            special=True,
+            upper=True,
+            lower=True,
+            numeric=True,
+            min_upper=1,
+            min_lower=1,
+            min_numeric=1,
+            min_special=1,
+            override_special="!@#$%^&*()_+-=[]{}|;:,.<>?")
         db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
@@ -394,7 +450,15 @@ class DatabaseUser(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] name: database user name.
                
                > **Important:** Updates to `name` will recreate the database user.
-        :param pulumi.Input[builtins.str] password: database user password.
+        :param pulumi.Input[builtins.str] password: database user password. The password must meet the following requirements based on ISO27001 standards:
+               - **Length**: 8-128 characters
+               - **Character types required**:
+               - At least 1 lowercase letter (a-z)
+               - At least 1 uppercase letter (A-Z)
+               - At least 1 digit (0-9)
+               - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+               
+               For secure password generation, consider using the `random_password` resource with appropriate parameters.
         :param pulumi.Input[builtins.str] region: The Scaleway region this resource resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -440,7 +504,15 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[builtins.str]:
         """
-        database user password.
+        database user password. The password must meet the following requirements based on ISO27001 standards:
+        - **Length**: 8-128 characters
+        - **Character types required**:
+        - At least 1 lowercase letter (a-z)
+        - At least 1 uppercase letter (A-Z)
+        - At least 1 digit (0-9)
+        - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+
+        For secure password generation, consider using the `random_password` resource with appropriate parameters.
         """
         return pulumi.get(self, "password")
 

@@ -18,7 +18,13 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// The ID of the Load Balancer.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// IP address
+        /// </summary>
         public readonly string IpAddress;
+        /// <summary>
+        /// UUID of the load balancer attached to the IP
+        /// </summary>
         public readonly string LbId;
         /// <summary>
         /// The ID of the Organization the Load Balancer is associated with.
@@ -28,6 +34,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// The ID of the Project the Load Balancer is associated with.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// Reverse DNS attached to the IP
+        /// </summary>
         public readonly string Reverse;
         /// <summary>
         /// `zone`) The zone in which the Load Balancers exist.

@@ -18,6 +18,9 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         /// </summary>
         public readonly string BootType;
+        /// <summary>
+        /// UUID of the bootscript
+        /// </summary>
         public readonly string BootscriptId;
         /// <summary>
         /// If true a dynamic IP will be attached to the server.
@@ -59,11 +62,18 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         /// </summary>
         public readonly string PlacementGroupId;
+        /// <summary>
+        /// Whether the placement group policy respected or not
+        /// </summary>
         public readonly bool PlacementGroupPolicyRespected;
         /// <summary>
         /// The Scaleway internal IP address of the server.
         /// </summary>
         public readonly string PrivateIp;
+        /// <summary>
+        /// The list of private IPv4 and IPv6 addresses associated with the server.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetServersServerPrivateIpResult> PrivateIps;
         /// <summary>
         /// The ID of the project the server is associated with.
         /// </summary>
@@ -127,6 +137,8 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
 
             string privateIp,
 
+            ImmutableArray<Outputs.GetServersServerPrivateIpResult> privateIps,
+
             string projectId,
 
             string publicIp,
@@ -157,6 +169,7 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
             PlacementGroupId = placementGroupId;
             PlacementGroupPolicyRespected = placementGroupPolicyRespected;
             PrivateIp = privateIp;
+            PrivateIps = privateIps;
             ProjectId = projectId;
             PublicIp = publicIp;
             PublicIps = publicIps;

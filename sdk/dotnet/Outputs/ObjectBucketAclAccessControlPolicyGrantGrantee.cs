@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class ObjectBucketAclAccessControlPolicyGrantGrantee
     {
+        /// <summary>
+        /// Display name of the grantee to grant access to.
+        /// </summary>
         public readonly string? DisplayName;
         /// <summary>
         /// The `region`, `bucket` and `acl` separated by (`/`).

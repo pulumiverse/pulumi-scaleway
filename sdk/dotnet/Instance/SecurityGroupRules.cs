@@ -75,9 +75,9 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     ///     var trusted = new[]
     ///     {
-    ///         "1.2.3.4",
-    ///         "4.5.6.7",
-    ///         "7.8.9.10",
+    ///         "1.2.3.4/32",
+    ///         "4.5.6.7/32",
+    ///         "7.8.9.10/24",
     ///     };
     /// 
     ///     var mainSecurityGroupRules = new Scaleway.Instance.SecurityGroupRules("main", new()
@@ -87,7 +87,7 @@ namespace Pulumiverse.Scaleway.Instance
     ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
-    ///                 Ip = entry.Value,
+    ///                 IpRange = entry.Value,
     ///                 Port = 80,
     ///             };
     ///         }).ToList(),
@@ -120,17 +120,17 @@ namespace Pulumiverse.Scaleway.Instance
     ///     {
     ///         
     ///         {
-    ///             { "ip", "1.2.3.4" },
+    ///             { "ipRange", "1.2.3.4/32" },
     ///             { "port", "80" },
     ///         },
     ///         
     ///         {
-    ///             { "ip", "5.6.7.8" },
+    ///             { "ipRange", "5.6.7.8/32" },
     ///             { "port", "81" },
     ///         },
     ///         
     ///         {
-    ///             { "ip", "9.10.11.12" },
+    ///             { "ipRange", "9.10.11.12/32" },
     ///             { "port", "81" },
     ///         },
     ///     };
@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway.Instance
     ///             return new Scaleway.Instance.Inputs.SecurityGroupRulesInboundRuleArgs
     ///             {
     ///                 Action = "accept",
-    ///                 Ip = entry.Value.Ip,
+    ///                 IpRange = entry.Value.IpRange,
     ///                 Port = entry.Value.Port,
     ///             };
     ///         }).ToList(),

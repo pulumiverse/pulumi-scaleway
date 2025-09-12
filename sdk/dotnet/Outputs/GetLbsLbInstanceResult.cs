@@ -22,6 +22,9 @@ namespace Pulumiverse.Scaleway.Outputs
         /// The ID of the Load Balancer.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// IP address of the instance
+        /// </summary>
         public readonly string IpAddress;
         /// <summary>
         /// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.

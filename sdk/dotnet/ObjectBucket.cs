@@ -181,6 +181,9 @@ namespace Pulumiverse.Scaleway
         [Output("apiEndpoint")]
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
+        /// <summary>
+        /// List of CORS rules
+        /// </summary>
         [Output("corsRules")]
         public Output<ImmutableArray<Outputs.ObjectBucketCorsRule>> CorsRules { get; private set; } = null!;
 
@@ -298,6 +301,10 @@ namespace Pulumiverse.Scaleway
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleArgs>? _corsRules;
+
+        /// <summary>
+        /// List of CORS rules
+        /// </summary>
         public InputList<Inputs.ObjectBucketCorsRuleArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.ObjectBucketCorsRuleArgs>());
@@ -391,6 +398,10 @@ namespace Pulumiverse.Scaleway
 
         [Input("corsRules")]
         private InputList<Inputs.ObjectBucketCorsRuleGetArgs>? _corsRules;
+
+        /// <summary>
+        /// List of CORS rules
+        /// </summary>
         public InputList<Inputs.ObjectBucketCorsRuleGetArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.ObjectBucketCorsRuleGetArgs>());

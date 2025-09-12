@@ -19,6 +19,9 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Priority of DNS records associated with the webhosting.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
@@ -28,12 +31,21 @@ namespace Pulumiverse.Scaleway.Inputs
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// Time to live in seconds of the record
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
+        /// <summary>
+        /// Type of the DNS record
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// Value of the DNS record
+        /// </summary>
         [Input("value")]
         public Input<string>? Value { get; set; }
 

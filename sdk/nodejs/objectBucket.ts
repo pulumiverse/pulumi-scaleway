@@ -161,6 +161,9 @@ export class ObjectBucket extends pulumi.CustomResource {
      * API URL of the bucket
      */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
+    /**
+     * List of CORS rules
+     */
     public readonly corsRules!: pulumi.Output<outputs.ObjectBucketCorsRule[]>;
     /**
      * The endpoint URL of the bucket.
@@ -266,6 +269,9 @@ export interface ObjectBucketState {
      * API URL of the bucket
      */
     apiEndpoint?: pulumi.Input<string>;
+    /**
+     * List of CORS rules
+     */
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
      * The endpoint URL of the bucket.
@@ -320,6 +326,9 @@ export interface ObjectBucketArgs {
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
     acl?: pulumi.Input<string>;
+    /**
+     * List of CORS rules
+     */
     corsRules?: pulumi.Input<pulumi.Input<inputs.ObjectBucketCorsRule>[]>;
     /**
      * Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.

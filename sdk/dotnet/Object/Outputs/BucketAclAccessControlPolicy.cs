@@ -14,6 +14,9 @@ namespace Pulumiverse.Scaleway.Object.Outputs
     [OutputType]
     public sealed class BucketAclAccessControlPolicy
     {
+        /// <summary>
+        /// Grant
+        /// </summary>
         public readonly ImmutableArray<Outputs.BucketAclAccessControlPolicyGrant> Grants;
         /// <summary>
         /// Configuration block of the bucket project owner's display organization ID.

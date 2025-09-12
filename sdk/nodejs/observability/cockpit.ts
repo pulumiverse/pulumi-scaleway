@@ -55,6 +55,8 @@ export class Cockpit extends pulumi.CustomResource {
      * Name of the plan to use. Available plans are: free, premium, and custom.
      * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
      *
+     * > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
+     *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     public readonly plan!: pulumi.Output<string | undefined>;
@@ -122,6 +124,8 @@ export interface CockpitState {
      * Name of the plan to use. Available plans are: free, premium, and custom.
      * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
      *
+     * > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
+     *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
     plan?: pulumi.Input<string>;
@@ -150,6 +154,8 @@ export interface CockpitArgs {
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
      * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+     *
+     * > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */

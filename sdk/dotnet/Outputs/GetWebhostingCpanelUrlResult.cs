@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetWebhostingCpanelUrlResult
     {
+        /// <summary>
+        /// URL to connect to dashboard interface
+        /// </summary>
         public readonly string Dashboard;
+        /// <summary>
+        /// URL to connect to Webmail interface
+        /// </summary>
         public readonly string Webmail;
 
         [OutputConstructor]

@@ -19,6 +19,7 @@ __all__ = [
     'InstancePrivateIp',
     'InstancePrivateNetwork',
     'InstancePublicNetwork',
+    'UserRole',
     'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstancePublicNetworkResult',
@@ -198,6 +199,67 @@ class InstancePublicNetwork(dict):
         TCP port of the endpoint.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class UserRole(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "anyDatabase":
+            suggest = "any_database"
+        elif key == "databaseName":
+            suggest = "database_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserRole. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserRole.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserRole.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role: builtins.str,
+                 any_database: Optional[builtins.bool] = None,
+                 database_name: Optional[builtins.str] = None):
+        """
+        :param builtins.str role: The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        :param builtins.bool any_database: Apply the role to all databases. Cannot be used with `database_name`.
+        :param builtins.str database_name: The database name for the role. Cannot be used with `any_database`.
+        """
+        pulumi.set(__self__, "role", role)
+        if any_database is not None:
+            pulumi.set(__self__, "any_database", any_database)
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter
+    def role(self) -> builtins.str:
+        """
+        The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="anyDatabase")
+    def any_database(self) -> Optional[builtins.bool]:
+        """
+        Apply the role to all databases. Cannot be used with `database_name`.
+        """
+        return pulumi.get(self, "any_database")
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[builtins.str]:
+        """
+        The database name for the role. Cannot be used with `any_database`.
+        """
+        return pulumi.get(self, "database_name")
 
 
 @pulumi.output_type

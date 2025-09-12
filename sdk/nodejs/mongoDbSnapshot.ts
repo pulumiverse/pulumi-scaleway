@@ -28,7 +28,7 @@ import * as utilities from "./utilities";
  * bash
  *
  * ```sh
- * $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/mongoDbSnapshot:MongoDbSnapshot main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  *
  * @deprecated scaleway.index/mongodbsnapshot.MongoDbSnapshot has been deprecated in favor of scaleway.mongodb/snapshot.Snapshot

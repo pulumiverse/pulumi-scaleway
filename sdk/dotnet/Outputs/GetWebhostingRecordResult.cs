@@ -14,11 +14,29 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetWebhostingRecordResult
     {
+        /// <summary>
+        /// Name of the DNS record
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Priority of DNS records associated with the webhosting.
+        /// </summary>
         public readonly int Priority;
+        /// <summary>
+        /// Status of the hosting record
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Time to live in seconds of the record
+        /// </summary>
         public readonly int Ttl;
+        /// <summary>
+        /// Type of the DNS record
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// Value of the DNS record
+        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

@@ -423,6 +423,7 @@ class GetIpsIpResult(dict):
         :param builtins.str created_at: The date on which the flexible IP was created (RFC 3339 format).
         :param builtins.str description: The description of the flexible IP.
         :param builtins.str id: The MAC address ID.
+        :param builtins.str ip_address: IP address of the flexible IP
         :param Sequence['GetIpsIpMacAddressArgs'] mac_addresses: The MAC address of the Virtual MAC.
         :param builtins.str organization_id: (Defaults to provider `organization_id`) The ID of the organization the IP is in.
         :param builtins.str project_id: (Defaults to provider `project_id`) The ID of the project the IP is in.
@@ -472,6 +473,9 @@ class GetIpsIpResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address of the flexible IP
+        """
         return pulumi.get(self, "ip_address")
 
     @property

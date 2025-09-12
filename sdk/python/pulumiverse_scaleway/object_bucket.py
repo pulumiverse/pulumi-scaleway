@@ -37,6 +37,7 @@ class ObjectBucketArgs:
         :param pulumi.Input[builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: List of CORS rules
         :param pulumi.Input[builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[builtins.str] name: The name of the bucket.
@@ -91,6 +92,9 @@ class ObjectBucketArgs:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]]:
+        """
+        List of CORS rules
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -218,6 +222,7 @@ class _ObjectBucketState:
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[builtins.str] api_endpoint: API URL of the bucket
+        :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]] cors_rules: List of CORS rules
         :param pulumi.Input[builtins.str] endpoint: The endpoint URL of the bucket.
         :param pulumi.Input[builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input['ObjectBucketLifecycleRuleArgs']]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
@@ -289,6 +294,9 @@ class _ObjectBucketState:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ObjectBucketCorsRuleArgs']]]]:
+        """
+        List of CORS rules
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -543,6 +551,7 @@ class ObjectBucket(pulumi.CustomResource):
         :param pulumi.Input[builtins.str] acl: (Deprecated) The canned ACL you want to apply to the bucket.
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: List of CORS rules
         :param pulumi.Input[builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
         :param pulumi.Input[builtins.str] name: The name of the bucket.
@@ -750,6 +759,7 @@ class ObjectBucket(pulumi.CustomResource):
                
                > **Note:** The `acl` attribute is deprecated. See object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         :param pulumi.Input[builtins.str] api_endpoint: API URL of the bucket
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketCorsRuleArgs', 'ObjectBucketCorsRuleArgsDict']]]] cors_rules: List of CORS rules
         :param pulumi.Input[builtins.str] endpoint: The endpoint URL of the bucket.
         :param pulumi.Input[builtins.bool] force_destroy: Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ObjectBucketLifecycleRuleArgs', 'ObjectBucketLifecycleRuleArgsDict']]]] lifecycle_rules: Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
@@ -803,6 +813,9 @@ class ObjectBucket(pulumi.CustomResource):
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> pulumi.Output[Sequence['outputs.ObjectBucketCorsRule']]:
+        """
+        List of CORS rules
+        """
         return pulumi.get(self, "cors_rules")
 
     @property

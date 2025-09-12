@@ -865,6 +865,7 @@ class GetVpcsVpcResult(dict):
         :param builtins.str project_id: The ID of the Project the VPC is associated with.
         :param builtins.str region: `region`). The region in which the VPCs exist.
         :param Sequence[builtins.str] tags: List of tags to filter for. VPCs with these exact tags are listed.
+        :param builtins.str update_at: Date on which the VPC was last updated (RFC 3339 format)
         """
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "id", id)
@@ -944,6 +945,9 @@ class GetVpcsVpcResult(dict):
     @property
     @pulumi.getter(name="updateAt")
     def update_at(self) -> builtins.str:
+        """
+        Date on which the VPC was last updated (RFC 3339 format)
+        """
         return pulumi.get(self, "update_at")
 
 

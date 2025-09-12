@@ -21,8 +21,6 @@ namespace Pulumiverse.Scaleway.Instance.Inputs
 
         /// <summary>
         /// Key of the object to import
-        /// 
-        /// &gt; **Note:** The type `unified` could be instantiated on both `l_ssd` and `b_ssd` volumes.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;

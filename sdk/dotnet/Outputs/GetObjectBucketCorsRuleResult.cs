@@ -14,10 +14,25 @@ namespace Pulumiverse.Scaleway.Outputs
     [OutputType]
     public sealed class GetObjectBucketCorsRuleResult
     {
+        /// <summary>
+        /// Allowed headers in the CORS rule
+        /// </summary>
         public readonly ImmutableArray<string> AllowedHeaders;
+        /// <summary>
+        /// Allowed HTTP methods allowed in the CORS rule
+        /// </summary>
         public readonly ImmutableArray<string> AllowedMethods;
+        /// <summary>
+        /// Allowed origins allowed in the CORS rule
+        /// </summary>
         public readonly ImmutableArray<string> AllowedOrigins;
+        /// <summary>
+        /// Exposed headers in the CORS rule
+        /// </summary>
         public readonly ImmutableArray<string> ExposeHeaders;
+        /// <summary>
+        /// Max age of the CORS rule
+        /// </summary>
         public readonly int MaxAgeSeconds;
 
         [OutputConstructor]

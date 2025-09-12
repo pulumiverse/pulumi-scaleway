@@ -108,9 +108,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Output("healthCheckDelay")]
         public Output<string?> HealthCheckDelay { get; private set; } = null!;
 
+        /// <summary>
+        /// HTTP Health check
+        /// </summary>
         [Output("healthCheckHttp")]
         public Output<Outputs.BackendHealthCheckHttp?> HealthCheckHttp { get; private set; } = null!;
 
+        /// <summary>
+        /// HTTPS Health check
+        /// </summary>
         [Output("healthCheckHttps")]
         public Output<Outputs.BackendHealthCheckHttps?> HealthCheckHttps { get; private set; } = null!;
 
@@ -132,6 +138,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Output("healthCheckSendProxy")]
         public Output<bool?> HealthCheckSendProxy { get; private set; } = null!;
 
+        /// <summary>
+        /// TCP Health check
+        /// </summary>
         [Output("healthCheckTcp")]
         public Output<Outputs.BackendHealthCheckTcp> HealthCheckTcp { get; private set; } = null!;
 
@@ -332,9 +341,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Input("healthCheckDelay")]
         public Input<string>? HealthCheckDelay { get; set; }
 
+        /// <summary>
+        /// HTTP Health check
+        /// </summary>
         [Input("healthCheckHttp")]
         public Input<Inputs.BackendHealthCheckHttpArgs>? HealthCheckHttp { get; set; }
 
+        /// <summary>
+        /// HTTPS Health check
+        /// </summary>
         [Input("healthCheckHttps")]
         public Input<Inputs.BackendHealthCheckHttpsArgs>? HealthCheckHttps { get; set; }
 
@@ -356,6 +371,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Input("healthCheckSendProxy")]
         public Input<bool>? HealthCheckSendProxy { get; set; }
 
+        /// <summary>
+        /// TCP Health check
+        /// </summary>
         [Input("healthCheckTcp")]
         public Input<Inputs.BackendHealthCheckTcpArgs>? HealthCheckTcp { get; set; }
 
@@ -519,9 +537,15 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Input("healthCheckDelay")]
         public Input<string>? HealthCheckDelay { get; set; }
 
+        /// <summary>
+        /// HTTP Health check
+        /// </summary>
         [Input("healthCheckHttp")]
         public Input<Inputs.BackendHealthCheckHttpGetArgs>? HealthCheckHttp { get; set; }
 
+        /// <summary>
+        /// HTTPS Health check
+        /// </summary>
         [Input("healthCheckHttps")]
         public Input<Inputs.BackendHealthCheckHttpsGetArgs>? HealthCheckHttps { get; set; }
 
@@ -543,6 +567,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         [Input("healthCheckSendProxy")]
         public Input<bool>? HealthCheckSendProxy { get; set; }
 
+        /// <summary>
+        /// TCP Health check
+        /// </summary>
         [Input("healthCheckTcp")]
         public Input<Inputs.BackendHealthCheckTcpGetArgs>? HealthCheckTcp { get; set; }
 

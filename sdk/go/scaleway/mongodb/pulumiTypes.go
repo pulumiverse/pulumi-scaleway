@@ -507,6 +507,121 @@ func (o InstancePublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type UserRole struct {
+	// Apply the role to all databases. Cannot be used with `databaseName`.
+	AnyDatabase *bool `pulumi:"anyDatabase"`
+	// The database name for the role. Cannot be used with `anyDatabase`.
+	DatabaseName *string `pulumi:"databaseName"`
+	// The role name. Valid values are `read`, `readWrite`, `dbAdmin`, `sync`.
+	Role string `pulumi:"role"`
+}
+
+// UserRoleInput is an input type that accepts UserRoleArgs and UserRoleOutput values.
+// You can construct a concrete instance of `UserRoleInput` via:
+//
+//	UserRoleArgs{...}
+type UserRoleInput interface {
+	pulumi.Input
+
+	ToUserRoleOutput() UserRoleOutput
+	ToUserRoleOutputWithContext(context.Context) UserRoleOutput
+}
+
+type UserRoleArgs struct {
+	// Apply the role to all databases. Cannot be used with `databaseName`.
+	AnyDatabase pulumi.BoolPtrInput `pulumi:"anyDatabase"`
+	// The database name for the role. Cannot be used with `anyDatabase`.
+	DatabaseName pulumi.StringPtrInput `pulumi:"databaseName"`
+	// The role name. Valid values are `read`, `readWrite`, `dbAdmin`, `sync`.
+	Role pulumi.StringInput `pulumi:"role"`
+}
+
+func (UserRoleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRole)(nil)).Elem()
+}
+
+func (i UserRoleArgs) ToUserRoleOutput() UserRoleOutput {
+	return i.ToUserRoleOutputWithContext(context.Background())
+}
+
+func (i UserRoleArgs) ToUserRoleOutputWithContext(ctx context.Context) UserRoleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRoleOutput)
+}
+
+// UserRoleArrayInput is an input type that accepts UserRoleArray and UserRoleArrayOutput values.
+// You can construct a concrete instance of `UserRoleArrayInput` via:
+//
+//	UserRoleArray{ UserRoleArgs{...} }
+type UserRoleArrayInput interface {
+	pulumi.Input
+
+	ToUserRoleArrayOutput() UserRoleArrayOutput
+	ToUserRoleArrayOutputWithContext(context.Context) UserRoleArrayOutput
+}
+
+type UserRoleArray []UserRoleInput
+
+func (UserRoleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRole)(nil)).Elem()
+}
+
+func (i UserRoleArray) ToUserRoleArrayOutput() UserRoleArrayOutput {
+	return i.ToUserRoleArrayOutputWithContext(context.Background())
+}
+
+func (i UserRoleArray) ToUserRoleArrayOutputWithContext(ctx context.Context) UserRoleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRoleArrayOutput)
+}
+
+type UserRoleOutput struct{ *pulumi.OutputState }
+
+func (UserRoleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRole)(nil)).Elem()
+}
+
+func (o UserRoleOutput) ToUserRoleOutput() UserRoleOutput {
+	return o
+}
+
+func (o UserRoleOutput) ToUserRoleOutputWithContext(ctx context.Context) UserRoleOutput {
+	return o
+}
+
+// Apply the role to all databases. Cannot be used with `databaseName`.
+func (o UserRoleOutput) AnyDatabase() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v UserRole) *bool { return v.AnyDatabase }).(pulumi.BoolPtrOutput)
+}
+
+// The database name for the role. Cannot be used with `anyDatabase`.
+func (o UserRoleOutput) DatabaseName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRole) *string { return v.DatabaseName }).(pulumi.StringPtrOutput)
+}
+
+// The role name. Valid values are `read`, `readWrite`, `dbAdmin`, `sync`.
+func (o UserRoleOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v UserRole) string { return v.Role }).(pulumi.StringOutput)
+}
+
+type UserRoleArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRoleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRole)(nil)).Elem()
+}
+
+func (o UserRoleArrayOutput) ToUserRoleArrayOutput() UserRoleArrayOutput {
+	return o
+}
+
+func (o UserRoleArrayOutput) ToUserRoleArrayOutputWithContext(ctx context.Context) UserRoleArrayOutput {
+	return o
+}
+
+func (o UserRoleArrayOutput) Index(i pulumi.IntInput) UserRoleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRole {
+		return vs[0].([]UserRole)[vs[1].(int)]
+	}).(UserRoleOutput)
+}
+
 type GetInstancePrivateIp struct {
 	// The private IPv4 address
 	Address string `pulumi:"address"`
@@ -868,6 +983,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNetworkPtrInput)(nil)).Elem(), InstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePublicNetworkInput)(nil)).Elem(), InstancePublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePublicNetworkPtrInput)(nil)).Elem(), InstancePublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRoleInput)(nil)).Elem(), UserRoleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRoleArrayInput)(nil)).Elem(), UserRoleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpInput)(nil)).Elem(), GetInstancePrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateIpArrayInput)(nil)).Elem(), GetInstancePrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNetworkInput)(nil)).Elem(), GetInstancePrivateNetworkArgs{})
@@ -880,6 +997,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(InstancePublicNetworkOutput{})
 	pulumi.RegisterOutputType(InstancePublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(UserRoleOutput{})
+	pulumi.RegisterOutputType(UserRoleArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePrivateNetworkOutput{})

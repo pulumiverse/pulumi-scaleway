@@ -45,8 +45,16 @@ import (
 //				return err
 //			}
 //			dbPassword, err := random.NewRandomPassword(ctx, "db_password", &random.RandomPasswordArgs{
-//				Length:  pulumi.Int(16),
-//				Special: pulumi.Bool(true),
+//				Length:          pulumi.Int(20),
+//				Special:         pulumi.Bool(true),
+//				Upper:           pulumi.Bool(true),
+//				Lower:           pulumi.Bool(true),
+//				Numeric:         pulumi.Bool(true),
+//				MinUpper:        pulumi.Int(1),
+//				MinLower:        pulumi.Int(1),
+//				MinNumeric:      pulumi.Int(1),
+//				MinSpecial:      pulumi.Int(1),
+//				OverrideSpecial: pulumi.String("!@#$%^&*()_+-=[]{}|;:,.<>?"),
 //			})
 //			if err != nil {
 //				return err
@@ -88,7 +96,15 @@ type User struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// database user password.
+	// database user password. The password must meet the following requirements based on ISO27001 standards:
+	// - **Length**: 8-128 characters
+	// - **Character types required**:
+	// - At least 1 lowercase letter (a-z)
+	// - At least 1 uppercase letter (A-Z)
+	// - At least 1 digit (0-9)
+	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+	//
+	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -153,7 +169,15 @@ type userState struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database user.
 	Name *string `pulumi:"name"`
-	// database user password.
+	// database user password. The password must meet the following requirements based on ISO27001 standards:
+	// - **Length**: 8-128 characters
+	// - **Character types required**:
+	// - At least 1 lowercase letter (a-z)
+	// - At least 1 uppercase letter (A-Z)
+	// - At least 1 digit (0-9)
+	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+	//
+	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password *string `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
@@ -170,7 +194,15 @@ type UserState struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringPtrInput
-	// database user password.
+	// database user password. The password must meet the following requirements based on ISO27001 standards:
+	// - **Length**: 8-128 characters
+	// - **Character types required**:
+	// - At least 1 lowercase letter (a-z)
+	// - At least 1 uppercase letter (A-Z)
+	// - At least 1 digit (0-9)
+	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+	//
+	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringPtrInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
@@ -191,7 +223,15 @@ type userArgs struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database user.
 	Name *string `pulumi:"name"`
-	// database user password.
+	// database user password. The password must meet the following requirements based on ISO27001 standards:
+	// - **Length**: 8-128 characters
+	// - **Character types required**:
+	// - At least 1 lowercase letter (a-z)
+	// - At least 1 uppercase letter (A-Z)
+	// - At least 1 digit (0-9)
+	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+	//
+	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password string `pulumi:"password"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
@@ -209,7 +249,15 @@ type UserArgs struct {
 	//
 	// > **Important:** Updates to `name` will recreate the database user.
 	Name pulumi.StringPtrInput
-	// database user password.
+	// database user password. The password must meet the following requirements based on ISO27001 standards:
+	// - **Length**: 8-128 characters
+	// - **Character types required**:
+	// - At least 1 lowercase letter (a-z)
+	// - At least 1 uppercase letter (A-Z)
+	// - At least 1 digit (0-9)
+	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+	//
+	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
@@ -321,7 +369,15 @@ func (o UserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// database user password.
+// database user password. The password must meet the following requirements based on ISO27001 standards:
+// - **Length**: 8-128 characters
+// - **Character types required**:
+// - At least 1 lowercase letter (a-z)
+// - At least 1 uppercase letter (A-Z)
+// - At least 1 digit (0-9)
+// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+//
+// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 func (o UserOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
 }

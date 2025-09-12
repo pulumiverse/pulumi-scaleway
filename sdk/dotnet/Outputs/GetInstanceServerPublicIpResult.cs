@@ -19,18 +19,53 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Address;
         /// <summary>
+        /// Whether the IP is dynamic
+        /// </summary>
+        public readonly bool Dynamic;
+        /// <summary>
+        /// IP address family (inet or inet6)
+        /// </summary>
+        public readonly string Family;
+        /// <summary>
+        /// Gateway's IP address
+        /// </summary>
+        public readonly string Gateway;
+        /// <summary>
         /// The ID of the IP
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// CIDR netmask
+        /// </summary>
+        public readonly string Netmask;
+        /// <summary>
+        /// Provisioning mode of the IP address
+        /// </summary>
+        public readonly string ProvisioningMode;
 
         [OutputConstructor]
         private GetInstanceServerPublicIpResult(
             string address,
 
-            string id)
+            bool dynamic,
+
+            string family,
+
+            string gateway,
+
+            string id,
+
+            string netmask,
+
+            string provisioningMode)
         {
             Address = address;
+            Dynamic = dynamic;
+            Family = family;
+            Gateway = gateway;
             Id = id;
+            Netmask = netmask;
+            ProvisioningMode = provisioningMode;
         }
     }
 }

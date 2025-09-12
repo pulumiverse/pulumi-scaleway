@@ -33,6 +33,8 @@ namespace Pulumiverse.Scaleway.Observability
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+        /// 
+        /// &gt; **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
         /// </summary>
         [Output("plan")]
         public Output<string?> Plan { get; private set; } = null!;
@@ -109,6 +111,8 @@ namespace Pulumiverse.Scaleway.Observability
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+        /// 
+        /// &gt; **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }
@@ -143,6 +147,8 @@ namespace Pulumiverse.Scaleway.Observability
         /// <summary>
         /// Name of the plan to use. Available plans are: free, premium, and custom.
         /// &gt; **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+        /// 
+        /// &gt; **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
         /// </summary>
         [Input("plan")]
         public Input<string>? Plan { get; set; }

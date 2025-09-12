@@ -9,5 +9,6 @@ import typing
 from .get_instance import *
 from .instance import *
 from .snapshot import *
+from .user import *
 from ._inputs import *
 from . import outputs

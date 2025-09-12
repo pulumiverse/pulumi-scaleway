@@ -763,7 +763,8 @@ type GetIpsIp struct {
 	// The description of the flexible IP.
 	Description string `pulumi:"description"`
 	// The MAC address ID.
-	Id        string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// IP address of the flexible IP
 	IpAddress string `pulumi:"ipAddress"`
 	// The MAC address of the Virtual MAC.
 	MacAddresses []GetIpsIpMacAddress `pulumi:"macAddresses"`
@@ -800,7 +801,8 @@ type GetIpsIpArgs struct {
 	// The description of the flexible IP.
 	Description pulumi.StringInput `pulumi:"description"`
 	// The MAC address ID.
-	Id        pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// IP address of the flexible IP
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
 	// The MAC address of the Virtual MAC.
 	MacAddresses GetIpsIpMacAddressArrayInput `pulumi:"macAddresses"`
@@ -886,6 +888,7 @@ func (o GetIpsIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsIp) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// IP address of the flexible IP
 func (o GetIpsIpOutput) IpAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpsIp) string { return v.IpAddress }).(pulumi.StringOutput)
 }

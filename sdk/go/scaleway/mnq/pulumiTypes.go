@@ -363,13 +363,173 @@ func (o SqsCredentialsPermissionsPtrOutput) CanReceive() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type SqsQueueDeadLetterQueue struct {
+	// The ID of the queue with format `{region/{project-id}/{queue-name}`
+	Id string `pulumi:"id"`
+	// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+	MaxReceiveCount int `pulumi:"maxReceiveCount"`
+}
+
+// SqsQueueDeadLetterQueueInput is an input type that accepts SqsQueueDeadLetterQueueArgs and SqsQueueDeadLetterQueueOutput values.
+// You can construct a concrete instance of `SqsQueueDeadLetterQueueInput` via:
+//
+//	SqsQueueDeadLetterQueueArgs{...}
+type SqsQueueDeadLetterQueueInput interface {
+	pulumi.Input
+
+	ToSqsQueueDeadLetterQueueOutput() SqsQueueDeadLetterQueueOutput
+	ToSqsQueueDeadLetterQueueOutputWithContext(context.Context) SqsQueueDeadLetterQueueOutput
+}
+
+type SqsQueueDeadLetterQueueArgs struct {
+	// The ID of the queue with format `{region/{project-id}/{queue-name}`
+	Id pulumi.StringInput `pulumi:"id"`
+	// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+	MaxReceiveCount pulumi.IntInput `pulumi:"maxReceiveCount"`
+}
+
+func (SqsQueueDeadLetterQueueArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (i SqsQueueDeadLetterQueueArgs) ToSqsQueueDeadLetterQueueOutput() SqsQueueDeadLetterQueueOutput {
+	return i.ToSqsQueueDeadLetterQueueOutputWithContext(context.Background())
+}
+
+func (i SqsQueueDeadLetterQueueArgs) ToSqsQueueDeadLetterQueueOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueueOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SqsQueueDeadLetterQueueOutput)
+}
+
+func (i SqsQueueDeadLetterQueueArgs) ToSqsQueueDeadLetterQueuePtrOutput() SqsQueueDeadLetterQueuePtrOutput {
+	return i.ToSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (i SqsQueueDeadLetterQueueArgs) ToSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SqsQueueDeadLetterQueueOutput).ToSqsQueueDeadLetterQueuePtrOutputWithContext(ctx)
+}
+
+// SqsQueueDeadLetterQueuePtrInput is an input type that accepts SqsQueueDeadLetterQueueArgs, SqsQueueDeadLetterQueuePtr and SqsQueueDeadLetterQueuePtrOutput values.
+// You can construct a concrete instance of `SqsQueueDeadLetterQueuePtrInput` via:
+//
+//	        SqsQueueDeadLetterQueueArgs{...}
+//
+//	or:
+//
+//	        nil
+type SqsQueueDeadLetterQueuePtrInput interface {
+	pulumi.Input
+
+	ToSqsQueueDeadLetterQueuePtrOutput() SqsQueueDeadLetterQueuePtrOutput
+	ToSqsQueueDeadLetterQueuePtrOutputWithContext(context.Context) SqsQueueDeadLetterQueuePtrOutput
+}
+
+type sqsQueueDeadLetterQueuePtrType SqsQueueDeadLetterQueueArgs
+
+func SqsQueueDeadLetterQueuePtr(v *SqsQueueDeadLetterQueueArgs) SqsQueueDeadLetterQueuePtrInput {
+	return (*sqsQueueDeadLetterQueuePtrType)(v)
+}
+
+func (*sqsQueueDeadLetterQueuePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (i *sqsQueueDeadLetterQueuePtrType) ToSqsQueueDeadLetterQueuePtrOutput() SqsQueueDeadLetterQueuePtrOutput {
+	return i.ToSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (i *sqsQueueDeadLetterQueuePtrType) ToSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueuePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SqsQueueDeadLetterQueuePtrOutput)
+}
+
+type SqsQueueDeadLetterQueueOutput struct{ *pulumi.OutputState }
+
+func (SqsQueueDeadLetterQueueOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (o SqsQueueDeadLetterQueueOutput) ToSqsQueueDeadLetterQueueOutput() SqsQueueDeadLetterQueueOutput {
+	return o
+}
+
+func (o SqsQueueDeadLetterQueueOutput) ToSqsQueueDeadLetterQueueOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueueOutput {
+	return o
+}
+
+func (o SqsQueueDeadLetterQueueOutput) ToSqsQueueDeadLetterQueuePtrOutput() SqsQueueDeadLetterQueuePtrOutput {
+	return o.ToSqsQueueDeadLetterQueuePtrOutputWithContext(context.Background())
+}
+
+func (o SqsQueueDeadLetterQueueOutput) ToSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueuePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SqsQueueDeadLetterQueue) *SqsQueueDeadLetterQueue {
+		return &v
+	}).(SqsQueueDeadLetterQueuePtrOutput)
+}
+
+// The ID of the queue with format `{region/{project-id}/{queue-name}`
+func (o SqsQueueDeadLetterQueueOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v SqsQueueDeadLetterQueue) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+func (o SqsQueueDeadLetterQueueOutput) MaxReceiveCount() pulumi.IntOutput {
+	return o.ApplyT(func(v SqsQueueDeadLetterQueue) int { return v.MaxReceiveCount }).(pulumi.IntOutput)
+}
+
+type SqsQueueDeadLetterQueuePtrOutput struct{ *pulumi.OutputState }
+
+func (SqsQueueDeadLetterQueuePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SqsQueueDeadLetterQueue)(nil)).Elem()
+}
+
+func (o SqsQueueDeadLetterQueuePtrOutput) ToSqsQueueDeadLetterQueuePtrOutput() SqsQueueDeadLetterQueuePtrOutput {
+	return o
+}
+
+func (o SqsQueueDeadLetterQueuePtrOutput) ToSqsQueueDeadLetterQueuePtrOutputWithContext(ctx context.Context) SqsQueueDeadLetterQueuePtrOutput {
+	return o
+}
+
+func (o SqsQueueDeadLetterQueuePtrOutput) Elem() SqsQueueDeadLetterQueueOutput {
+	return o.ApplyT(func(v *SqsQueueDeadLetterQueue) SqsQueueDeadLetterQueue {
+		if v != nil {
+			return *v
+		}
+		var ret SqsQueueDeadLetterQueue
+		return ret
+	}).(SqsQueueDeadLetterQueueOutput)
+}
+
+// The ID of the queue with format `{region/{project-id}/{queue-name}`
+func (o SqsQueueDeadLetterQueuePtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SqsQueueDeadLetterQueue) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The number of times a message is delivered to the source queue before being sent to the dead-letter queue. Must be between 1 and 1,000.
+func (o SqsQueueDeadLetterQueuePtrOutput) MaxReceiveCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *SqsQueueDeadLetterQueue) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxReceiveCount
+	}).(pulumi.IntPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SnsCredentialsPermissionsInput)(nil)).Elem(), SnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SnsCredentialsPermissionsPtrInput)(nil)).Elem(), SnsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SqsCredentialsPermissionsInput)(nil)).Elem(), SqsCredentialsPermissionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SqsCredentialsPermissionsPtrInput)(nil)).Elem(), SqsCredentialsPermissionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SqsQueueDeadLetterQueueInput)(nil)).Elem(), SqsQueueDeadLetterQueueArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SqsQueueDeadLetterQueuePtrInput)(nil)).Elem(), SqsQueueDeadLetterQueueArgs{})
 	pulumi.RegisterOutputType(SnsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(SnsCredentialsPermissionsPtrOutput{})
 	pulumi.RegisterOutputType(SqsCredentialsPermissionsOutput{})
 	pulumi.RegisterOutputType(SqsCredentialsPermissionsPtrOutput{})
+	pulumi.RegisterOutputType(SqsQueueDeadLetterQueueOutput{})
+	pulumi.RegisterOutputType(SqsQueueDeadLetterQueuePtrOutput{})
 }

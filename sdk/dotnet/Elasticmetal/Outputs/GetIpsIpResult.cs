@@ -26,6 +26,9 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// The MAC address ID.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// IP address of the flexible IP
+        /// </summary>
         public readonly string IpAddress;
         /// <summary>
         /// The MAC address of the Virtual MAC.

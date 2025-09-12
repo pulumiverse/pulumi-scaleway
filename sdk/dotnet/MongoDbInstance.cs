@@ -137,7 +137,7 @@ namespace Pulumiverse.Scaleway
     /// bash
     /// 
     /// ```sh
-    /// $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par-1/11111111-1111-1111-1111-111111111111
+    /// $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par/11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
     [Obsolete(@"scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance")]
@@ -149,6 +149,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Enable or disable automatic snapshot scheduling
+        /// </summary>
+        [Output("isSnapshotScheduleEnabled")]
+        public Output<bool> IsSnapshotScheduleEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Name of the MongoDB® instance.
@@ -187,20 +193,21 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.MongoDbInstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// 
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
         /// Public network endpoint configuration (no arguments).
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Output("publicNetwork")]
         public Output<Outputs.MongoDbInstancePublicNetwork> PublicNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -216,6 +223,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("snapshotId")]
         public Output<string?> SnapshotId { get; private set; } = null!;
+
+        /// <summary>
+        /// Snapshot schedule frequency in hours
+        /// </summary>
+        [Output("snapshotScheduleFrequencyHours")]
+        public Output<int> SnapshotScheduleFrequencyHours { get; private set; } = null!;
+
+        /// <summary>
+        /// Snapshot schedule retention in days
+        /// </summary>
+        [Output("snapshotScheduleRetentionDays")]
+        public Output<int> SnapshotScheduleRetentionDays { get; private set; } = null!;
 
         /// <summary>
         /// List of tags attached to the MongoDB® instance.
@@ -311,6 +330,12 @@ namespace Pulumiverse.Scaleway
     public sealed class MongoDbInstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Enable or disable automatic snapshot scheduling
+        /// </summary>
+        [Input("isSnapshotScheduleEnabled")]
+        public Input<bool>? IsSnapshotScheduleEnabled { get; set; }
+
+        /// <summary>
         /// Name of the MongoDB® instance.
         /// </summary>
         [Input("name")]
@@ -363,20 +388,21 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MongoDbInstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// 
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Public network endpoint configuration (no arguments).
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.MongoDbInstancePublicNetworkArgs>? PublicNetwork { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -398,6 +424,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
+
+        /// <summary>
+        /// Snapshot schedule frequency in hours
+        /// </summary>
+        [Input("snapshotScheduleFrequencyHours")]
+        public Input<int>? SnapshotScheduleFrequencyHours { get; set; }
+
+        /// <summary>
+        /// Snapshot schedule retention in days
+        /// </summary>
+        [Input("snapshotScheduleRetentionDays")]
+        public Input<int>? SnapshotScheduleRetentionDays { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -448,6 +486,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Enable or disable automatic snapshot scheduling
+        /// </summary>
+        [Input("isSnapshotScheduleEnabled")]
+        public Input<bool>? IsSnapshotScheduleEnabled { get; set; }
 
         /// <summary>
         /// Name of the MongoDB® instance.
@@ -502,20 +546,21 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MongoDbInstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// 
+        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// Public network endpoint configuration (no arguments).
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.MongoDbInstancePublicNetworkGetArgs>? PublicNetwork { get; set; }
 
         /// <summary>
-        /// The region you want to attach the resource to
+        /// `region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -537,6 +582,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
+
+        /// <summary>
+        /// Snapshot schedule frequency in hours
+        /// </summary>
+        [Input("snapshotScheduleFrequencyHours")]
+        public Input<int>? SnapshotScheduleFrequencyHours { get; set; }
+
+        /// <summary>
+        /// Snapshot schedule retention in days
+        /// </summary>
+        [Input("snapshotScheduleRetentionDays")]
+        public Input<int>? SnapshotScheduleRetentionDays { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;

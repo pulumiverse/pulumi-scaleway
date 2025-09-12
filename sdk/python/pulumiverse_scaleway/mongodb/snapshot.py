@@ -297,7 +297,7 @@ class Snapshot(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.
@@ -338,7 +338,7 @@ class Snapshot(pulumi.CustomResource):
         bash
 
         ```sh
-        $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par-1/11111111-1111-1111-1111-111111111111
+        $ pulumi import scaleway:mongodb/snapshot:Snapshot main fr-par/11111111-1111-1111-1111-111111111111
         ```
 
         :param str resource_name: The name of the resource.

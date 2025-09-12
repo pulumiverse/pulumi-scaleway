@@ -120,6 +120,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string? InstanceId;
+        public readonly bool IsSnapshotScheduleEnabled;
         /// <summary>
         /// The name of the MongoDB® instance.
         /// </summary>
@@ -146,6 +147,8 @@ namespace Pulumiverse.Scaleway
         public readonly string? Region;
         public readonly ImmutableDictionary<string, string> Settings;
         public readonly string SnapshotId;
+        public readonly int SnapshotScheduleFrequencyHours;
+        public readonly int SnapshotScheduleRetentionDays;
         /// <summary>
         /// A list of tags attached to the MongoDB® instance.
         /// </summary>
@@ -174,6 +177,8 @@ namespace Pulumiverse.Scaleway
 
             string? instanceId,
 
+            bool isSnapshotScheduleEnabled,
+
             string? name,
 
             int nodeNumber,
@@ -196,6 +201,10 @@ namespace Pulumiverse.Scaleway
 
             string snapshotId,
 
+            int snapshotScheduleFrequencyHours,
+
+            int snapshotScheduleRetentionDays,
+
             ImmutableArray<string> tags,
 
             string tlsCertificate,
@@ -213,6 +222,7 @@ namespace Pulumiverse.Scaleway
             CreatedAt = createdAt;
             Id = id;
             InstanceId = instanceId;
+            IsSnapshotScheduleEnabled = isSnapshotScheduleEnabled;
             Name = name;
             NodeNumber = nodeNumber;
             NodeType = nodeType;
@@ -224,6 +234,8 @@ namespace Pulumiverse.Scaleway
             Region = region;
             Settings = settings;
             SnapshotId = snapshotId;
+            SnapshotScheduleFrequencyHours = snapshotScheduleFrequencyHours;
+            SnapshotScheduleRetentionDays = snapshotScheduleRetentionDays;
             Tags = tags;
             TlsCertificate = tlsCertificate;
             UpdatedAt = updatedAt;

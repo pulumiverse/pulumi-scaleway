@@ -85,6 +85,8 @@ class HostingNameServer(dict):
                  is_default: Optional[builtins.bool] = None,
                  status: Optional[builtins.str] = None):
         """
+        :param builtins.str hostname: Hostname of the server
+        :param builtins.bool is_default: Whether or not the webhosting is the default one
         :param builtins.str status: The hosting status.
         """
         if hostname is not None:
@@ -97,11 +99,17 @@ class HostingNameServer(dict):
     @property
     @pulumi.getter
     def hostname(self) -> Optional[builtins.str]:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> Optional[builtins.bool]:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @property
@@ -155,7 +163,11 @@ class HostingRecord(dict):
                  value: Optional[builtins.str] = None):
         """
         :param builtins.str name: The option name.
+        :param builtins.int priority: Priority of DNS records associated with the webhosting.
         :param builtins.str status: The hosting status.
+        :param builtins.int ttl: Time to live in seconds of the record
+        :param builtins.str type: Type of the DNS record
+        :param builtins.str value: Value of the DNS record
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -181,6 +193,9 @@ class HostingRecord(dict):
     @property
     @pulumi.getter
     def priority(self) -> Optional[builtins.int]:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @property
@@ -194,16 +209,25 @@ class HostingRecord(dict):
     @property
     @pulumi.getter
     def ttl(self) -> Optional[builtins.int]:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> Optional[builtins.str]:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> Optional[builtins.str]:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
 
@@ -212,17 +236,27 @@ class GetHostingCpanelUrlResult(dict):
     def __init__(__self__, *,
                  dashboard: builtins.str,
                  webmail: builtins.str):
+        """
+        :param builtins.str dashboard: URL to connect to dashboard interface
+        :param builtins.str webmail: URL to connect to Webmail interface
+        """
         pulumi.set(__self__, "dashboard", dashboard)
         pulumi.set(__self__, "webmail", webmail)
 
     @property
     @pulumi.getter
     def dashboard(self) -> builtins.str:
+        """
+        URL to connect to dashboard interface
+        """
         return pulumi.get(self, "dashboard")
 
     @property
     @pulumi.getter
     def webmail(self) -> builtins.str:
+        """
+        URL to connect to Webmail interface
+        """
         return pulumi.get(self, "webmail")
 
 
@@ -232,6 +266,11 @@ class GetHostingNameServerResult(dict):
                  hostname: builtins.str,
                  is_default: builtins.bool,
                  status: builtins.str):
+        """
+        :param builtins.str hostname: Hostname of the server
+        :param builtins.bool is_default: Whether or not the webhosting is the default one
+        :param builtins.str status: Status of the nameserver
+        """
         pulumi.set(__self__, "hostname", hostname)
         pulumi.set(__self__, "is_default", is_default)
         pulumi.set(__self__, "status", status)
@@ -239,16 +278,25 @@ class GetHostingNameServerResult(dict):
     @property
     @pulumi.getter
     def hostname(self) -> builtins.str:
+        """
+        Hostname of the server
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="isDefault")
     def is_default(self) -> builtins.bool:
+        """
+        Whether or not the webhosting is the default one
+        """
         return pulumi.get(self, "is_default")
 
     @property
     @pulumi.getter
     def status(self) -> builtins.str:
+        """
+        Status of the nameserver
+        """
         return pulumi.get(self, "status")
 
 
@@ -257,17 +305,27 @@ class GetHostingOptionResult(dict):
     def __init__(__self__, *,
                  id: builtins.str,
                  name: builtins.str):
+        """
+        :param builtins.str id: ID of the active option
+        :param builtins.str name: Name of the option
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def id(self) -> builtins.str:
+        """
+        ID of the active option
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> builtins.str:
+        """
+        Name of the option
+        """
         return pulumi.get(self, "name")
 
 
@@ -280,6 +338,14 @@ class GetHostingRecordResult(dict):
                  ttl: builtins.int,
                  type: builtins.str,
                  value: builtins.str):
+        """
+        :param builtins.str name: Name of the DNS record
+        :param builtins.int priority: Priority of DNS records associated with the webhosting.
+        :param builtins.str status: Status of the hosting record
+        :param builtins.int ttl: Time to live in seconds of the record
+        :param builtins.str type: Type of the DNS record
+        :param builtins.str value: Value of the DNS record
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "status", status)
@@ -290,31 +356,49 @@ class GetHostingRecordResult(dict):
     @property
     @pulumi.getter
     def name(self) -> builtins.str:
+        """
+        Name of the DNS record
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> builtins.int:
+        """
+        Priority of DNS records associated with the webhosting.
+        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def status(self) -> builtins.str:
+        """
+        Status of the hosting record
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def ttl(self) -> builtins.int:
+        """
+        Time to live in seconds of the record
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> builtins.str:
+        """
+        Type of the DNS record
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def value(self) -> builtins.str:
+        """
+        Value of the DNS record
+        """
         return pulumi.get(self, "value")
 
 

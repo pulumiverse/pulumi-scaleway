@@ -1526,8 +1526,9 @@ type GetVpcsVpc struct {
 	// `region`). The region in which the VPCs exist.
 	Region string `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
-	Tags     []string `pulumi:"tags"`
-	UpdateAt string   `pulumi:"updateAt"`
+	Tags []string `pulumi:"tags"`
+	// Date on which the VPC was last updated (RFC 3339 format)
+	UpdateAt string `pulumi:"updateAt"`
 }
 
 // GetVpcsVpcInput is an input type that accepts GetVpcsVpcArgs and GetVpcsVpcOutput values.
@@ -1558,8 +1559,9 @@ type GetVpcsVpcArgs struct {
 	// `region`). The region in which the VPCs exist.
 	Region pulumi.StringInput `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
-	UpdateAt pulumi.StringInput      `pulumi:"updateAt"`
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	// Date on which the VPC was last updated (RFC 3339 format)
+	UpdateAt pulumi.StringInput `pulumi:"updateAt"`
 }
 
 func (GetVpcsVpcArgs) ElementType() reflect.Type {
@@ -1654,6 +1656,7 @@ func (o GetVpcsVpcOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetVpcsVpc) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// Date on which the VPC was last updated (RFC 3339 format)
 func (o GetVpcsVpcOutput) UpdateAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsVpc) string { return v.UpdateAt }).(pulumi.StringOutput)
 }

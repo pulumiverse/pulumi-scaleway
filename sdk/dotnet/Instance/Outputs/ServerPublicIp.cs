@@ -15,22 +15,57 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
     public sealed class ServerPublicIp
     {
         /// <summary>
-        /// The address of the IP
+        /// The address of the IP.
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// The ID of the IP
+        /// Whether the IP is dynamic.
+        /// </summary>
+        public readonly bool? Dynamic;
+        /// <summary>
+        /// The IP address' family.
+        /// </summary>
+        public readonly string? Family;
+        /// <summary>
+        /// The IP of the Gateway associated with the IP.
+        /// </summary>
+        public readonly string? Gateway;
+        /// <summary>
+        /// The ID of the IP.
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The CIDR netmask of the IP.
+        /// </summary>
+        public readonly string? Netmask;
+        /// <summary>
+        /// The provisioning mode of the IP
+        /// </summary>
+        public readonly string? ProvisioningMode;
 
         [OutputConstructor]
         private ServerPublicIp(
             string? address,
 
-            string? id)
+            bool? dynamic,
+
+            string? family,
+
+            string? gateway,
+
+            string? id,
+
+            string? netmask,
+
+            string? provisioningMode)
         {
             Address = address;
+            Dynamic = dynamic;
+            Family = family;
+            Gateway = gateway;
             Id = id;
+            Netmask = netmask;
+            ProvisioningMode = provisioningMode;
         }
     }
 }

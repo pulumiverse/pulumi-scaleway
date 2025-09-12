@@ -27,8 +27,16 @@ import * as utilities from "./utilities";
  *     password: "thiZ_is_v&ry_s3cret",
  * });
  * const dbPassword = new random.RandomPassword("db_password", {
- *     length: 16,
+ *     length: 20,
  *     special: true,
+ *     upper: true,
+ *     lower: true,
+ *     numeric: true,
+ *     minUpper: 1,
+ *     minLower: 1,
+ *     minNumeric: 1,
+ *     minSpecial: 1,
+ *     overrideSpecial: "!@#$%^&*()_+-=[]{}|;:,.<>?",
  * });
  * const dbAdmin = new scaleway.databases.User("db_admin", {
  *     instanceId: main.id,
@@ -96,7 +104,15 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * database user password.
+     * database user password. The password must meet the following requirements based on ISO27001 standards:
+     * - **Length**: 8-128 characters
+     * - **Character types required**:
+     * - At least 1 lowercase letter (a-z)
+     * - At least 1 uppercase letter (A-Z)
+     * - At least 1 digit (0-9)
+     * - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+     *
+     * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
     public readonly password!: pulumi.Output<string>;
     /**
@@ -167,7 +183,15 @@ export interface DatabaseUserState {
      */
     name?: pulumi.Input<string>;
     /**
-     * database user password.
+     * database user password. The password must meet the following requirements based on ISO27001 standards:
+     * - **Length**: 8-128 characters
+     * - **Character types required**:
+     * - At least 1 lowercase letter (a-z)
+     * - At least 1 uppercase letter (A-Z)
+     * - At least 1 digit (0-9)
+     * - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+     *
+     * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
     password?: pulumi.Input<string>;
     /**
@@ -197,7 +221,15 @@ export interface DatabaseUserArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * database user password.
+     * database user password. The password must meet the following requirements based on ISO27001 standards:
+     * - **Length**: 8-128 characters
+     * - **Character types required**:
+     * - At least 1 lowercase letter (a-z)
+     * - At least 1 uppercase letter (A-Z)
+     * - At least 1 digit (0-9)
+     * - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+     *
+     * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
     password: pulumi.Input<string>;
     /**

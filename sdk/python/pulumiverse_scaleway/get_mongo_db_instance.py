@@ -30,7 +30,7 @@ class GetMongoDbInstanceResult:
     """
     A collection of values returned by getMongoDbInstance.
     """
-    def __init__(__self__, created_at=None, id=None, instance_id=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, tags=None, tls_certificate=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, created_at=None, id=None, instance_id=None, is_snapshot_schedule_enabled=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, snapshot_schedule_frequency_hours=None, snapshot_schedule_retention_days=None, tags=None, tls_certificate=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -40,6 +40,9 @@ class GetMongoDbInstanceResult:
         if instance_id and not isinstance(instance_id, str):
             raise TypeError("Expected argument 'instance_id' to be a str")
         pulumi.set(__self__, "instance_id", instance_id)
+        if is_snapshot_schedule_enabled and not isinstance(is_snapshot_schedule_enabled, bool):
+            raise TypeError("Expected argument 'is_snapshot_schedule_enabled' to be a bool")
+        pulumi.set(__self__, "is_snapshot_schedule_enabled", is_snapshot_schedule_enabled)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -73,6 +76,12 @@ class GetMongoDbInstanceResult:
         if snapshot_id and not isinstance(snapshot_id, str):
             raise TypeError("Expected argument 'snapshot_id' to be a str")
         pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if snapshot_schedule_frequency_hours and not isinstance(snapshot_schedule_frequency_hours, int):
+            raise TypeError("Expected argument 'snapshot_schedule_frequency_hours' to be a int")
+        pulumi.set(__self__, "snapshot_schedule_frequency_hours", snapshot_schedule_frequency_hours)
+        if snapshot_schedule_retention_days and not isinstance(snapshot_schedule_retention_days, int):
+            raise TypeError("Expected argument 'snapshot_schedule_retention_days' to be a int")
+        pulumi.set(__self__, "snapshot_schedule_retention_days", snapshot_schedule_retention_days)
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
@@ -115,6 +124,11 @@ class GetMongoDbInstanceResult:
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[builtins.str]:
         return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isSnapshotScheduleEnabled")
+    def is_snapshot_schedule_enabled(self) -> builtins.bool:
+        return pulumi.get(self, "is_snapshot_schedule_enabled")
 
     @property
     @pulumi.getter
@@ -187,6 +201,16 @@ class GetMongoDbInstanceResult:
         return pulumi.get(self, "snapshot_id")
 
     @property
+    @pulumi.getter(name="snapshotScheduleFrequencyHours")
+    def snapshot_schedule_frequency_hours(self) -> builtins.int:
+        return pulumi.get(self, "snapshot_schedule_frequency_hours")
+
+    @property
+    @pulumi.getter(name="snapshotScheduleRetentionDays")
+    def snapshot_schedule_retention_days(self) -> builtins.int:
+        return pulumi.get(self, "snapshot_schedule_retention_days")
+
+    @property
     @pulumi.getter
     def tags(self) -> Sequence[builtins.str]:
         """
@@ -243,6 +267,7 @@ class AwaitableGetMongoDbInstanceResult(GetMongoDbInstanceResult):
             created_at=self.created_at,
             id=self.id,
             instance_id=self.instance_id,
+            is_snapshot_schedule_enabled=self.is_snapshot_schedule_enabled,
             name=self.name,
             node_number=self.node_number,
             node_type=self.node_type,
@@ -254,6 +279,8 @@ class AwaitableGetMongoDbInstanceResult(GetMongoDbInstanceResult):
             region=self.region,
             settings=self.settings,
             snapshot_id=self.snapshot_id,
+            snapshot_schedule_frequency_hours=self.snapshot_schedule_frequency_hours,
+            snapshot_schedule_retention_days=self.snapshot_schedule_retention_days,
             tags=self.tags,
             tls_certificate=self.tls_certificate,
             updated_at=self.updated_at,
@@ -294,6 +321,7 @@ def get_mongo_db_instance(instance_id: Optional[builtins.str] = None,
         created_at=pulumi.get(__ret__, 'created_at'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
+        is_snapshot_schedule_enabled=pulumi.get(__ret__, 'is_snapshot_schedule_enabled'),
         name=pulumi.get(__ret__, 'name'),
         node_number=pulumi.get(__ret__, 'node_number'),
         node_type=pulumi.get(__ret__, 'node_type'),
@@ -305,6 +333,8 @@ def get_mongo_db_instance(instance_id: Optional[builtins.str] = None,
         region=pulumi.get(__ret__, 'region'),
         settings=pulumi.get(__ret__, 'settings'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
+        snapshot_schedule_frequency_hours=pulumi.get(__ret__, 'snapshot_schedule_frequency_hours'),
+        snapshot_schedule_retention_days=pulumi.get(__ret__, 'snapshot_schedule_retention_days'),
         tags=pulumi.get(__ret__, 'tags'),
         tls_certificate=pulumi.get(__ret__, 'tls_certificate'),
         updated_at=pulumi.get(__ret__, 'updated_at'),
@@ -342,6 +372,7 @@ def get_mongo_db_instance_output(instance_id: Optional[pulumi.Input[Optional[bui
         created_at=pulumi.get(__response__, 'created_at'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
+        is_snapshot_schedule_enabled=pulumi.get(__response__, 'is_snapshot_schedule_enabled'),
         name=pulumi.get(__response__, 'name'),
         node_number=pulumi.get(__response__, 'node_number'),
         node_type=pulumi.get(__response__, 'node_type'),
@@ -353,6 +384,8 @@ def get_mongo_db_instance_output(instance_id: Optional[pulumi.Input[Optional[bui
         region=pulumi.get(__response__, 'region'),
         settings=pulumi.get(__response__, 'settings'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),
+        snapshot_schedule_frequency_hours=pulumi.get(__response__, 'snapshot_schedule_frequency_hours'),
+        snapshot_schedule_retention_days=pulumi.get(__response__, 'snapshot_schedule_retention_days'),
         tags=pulumi.get(__response__, 'tags'),
         tls_certificate=pulumi.get(__response__, 'tls_certificate'),
         updated_at=pulumi.get(__response__, 'updated_at'),

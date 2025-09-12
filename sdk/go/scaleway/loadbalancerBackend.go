@@ -104,16 +104,19 @@ type LoadbalancerBackend struct {
 	// Backend protocol
 	ForwardProtocol pulumi.StringOutput `pulumi:"forwardProtocol"`
 	// Interval between two HC requests
-	HealthCheckDelay pulumi.StringPtrOutput                       `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  LoadbalancerBackendHealthCheckHttpPtrOutput  `pulumi:"healthCheckHttp"`
+	HealthCheckDelay pulumi.StringPtrOutput `pulumi:"healthCheckDelay"`
+	// HTTP Health check
+	HealthCheckHttp LoadbalancerBackendHealthCheckHttpPtrOutput `pulumi:"healthCheckHttp"`
+	// HTTPS Health check
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrOutput `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrOutput `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort pulumi.IntOutput `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
-	HealthCheckSendProxy pulumi.BoolPtrOutput                    `pulumi:"healthCheckSendProxy"`
-	HealthCheckTcp       LoadbalancerBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
+	HealthCheckSendProxy pulumi.BoolPtrOutput `pulumi:"healthCheckSendProxy"`
+	// TCP Health check
+	HealthCheckTcp LoadbalancerBackendHealthCheckTcpOutput `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed
 	HealthCheckTimeout pulumi.StringPtrOutput `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
@@ -206,16 +209,19 @@ type loadbalancerBackendState struct {
 	// Backend protocol
 	ForwardProtocol *string `pulumi:"forwardProtocol"`
 	// Interval between two HC requests
-	HealthCheckDelay *string                              `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  *LoadbalancerBackendHealthCheckHttp  `pulumi:"healthCheckHttp"`
+	HealthCheckDelay *string `pulumi:"healthCheckDelay"`
+	// HTTP Health check
+	HealthCheckHttp *LoadbalancerBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
+	// HTTPS Health check
 	HealthCheckHttps *LoadbalancerBackendHealthCheckHttps `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
-	HealthCheckSendProxy *bool                              `pulumi:"healthCheckSendProxy"`
-	HealthCheckTcp       *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
+	// TCP Health check
+	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
@@ -271,7 +277,9 @@ type LoadbalancerBackendState struct {
 	ForwardProtocol pulumi.StringPtrInput
 	// Interval between two HC requests
 	HealthCheckDelay pulumi.StringPtrInput
-	HealthCheckHttp  LoadbalancerBackendHealthCheckHttpPtrInput
+	// HTTP Health check
+	HealthCheckHttp LoadbalancerBackendHealthCheckHttpPtrInput
+	// HTTPS Health check
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrInput
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrInput
@@ -279,7 +287,8 @@ type LoadbalancerBackendState struct {
 	HealthCheckPort pulumi.IntPtrInput
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy pulumi.BoolPtrInput
-	HealthCheckTcp       LoadbalancerBackendHealthCheckTcpPtrInput
+	// TCP Health check
+	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed
 	HealthCheckTimeout pulumi.StringPtrInput
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
@@ -338,16 +347,19 @@ type loadbalancerBackendArgs struct {
 	// Backend protocol
 	ForwardProtocol string `pulumi:"forwardProtocol"`
 	// Interval between two HC requests
-	HealthCheckDelay *string                              `pulumi:"healthCheckDelay"`
-	HealthCheckHttp  *LoadbalancerBackendHealthCheckHttp  `pulumi:"healthCheckHttp"`
+	HealthCheckDelay *string `pulumi:"healthCheckDelay"`
+	// HTTP Health check
+	HealthCheckHttp *LoadbalancerBackendHealthCheckHttp `pulumi:"healthCheckHttp"`
+	// HTTPS Health check
 	HealthCheckHttps *LoadbalancerBackendHealthCheckHttps `pulumi:"healthCheckHttps"`
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries *int `pulumi:"healthCheckMaxRetries"`
 	// Port the HC requests will be send to. Default to `forwardPort`
 	HealthCheckPort *int `pulumi:"healthCheckPort"`
 	// Defines whether proxy protocol should be activated for the health check
-	HealthCheckSendProxy *bool                              `pulumi:"healthCheckSendProxy"`
-	HealthCheckTcp       *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
+	HealthCheckSendProxy *bool `pulumi:"healthCheckSendProxy"`
+	// TCP Health check
+	HealthCheckTcp *LoadbalancerBackendHealthCheckTcp `pulumi:"healthCheckTcp"`
 	// Timeout before we consider a HC request failed
 	HealthCheckTimeout *string `pulumi:"healthCheckTimeout"`
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
@@ -404,7 +416,9 @@ type LoadbalancerBackendArgs struct {
 	ForwardProtocol pulumi.StringInput
 	// Interval between two HC requests
 	HealthCheckDelay pulumi.StringPtrInput
-	HealthCheckHttp  LoadbalancerBackendHealthCheckHttpPtrInput
+	// HTTP Health check
+	HealthCheckHttp LoadbalancerBackendHealthCheckHttpPtrInput
+	// HTTPS Health check
 	HealthCheckHttps LoadbalancerBackendHealthCheckHttpsPtrInput
 	// Number of allowed failed HC requests before the backend server is marked down
 	HealthCheckMaxRetries pulumi.IntPtrInput
@@ -412,7 +426,8 @@ type LoadbalancerBackendArgs struct {
 	HealthCheckPort pulumi.IntPtrInput
 	// Defines whether proxy protocol should be activated for the health check
 	HealthCheckSendProxy pulumi.BoolPtrInput
-	HealthCheckTcp       LoadbalancerBackendHealthCheckTcpPtrInput
+	// TCP Health check
+	HealthCheckTcp LoadbalancerBackendHealthCheckTcpPtrInput
 	// Timeout before we consider a HC request failed
 	HealthCheckTimeout pulumi.StringPtrInput
 	// Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
@@ -569,10 +584,12 @@ func (o LoadbalancerBackendOutput) HealthCheckDelay() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.StringPtrOutput { return v.HealthCheckDelay }).(pulumi.StringPtrOutput)
 }
 
+// HTTP Health check
 func (o LoadbalancerBackendOutput) HealthCheckHttp() LoadbalancerBackendHealthCheckHttpPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendHealthCheckHttpPtrOutput { return v.HealthCheckHttp }).(LoadbalancerBackendHealthCheckHttpPtrOutput)
 }
 
+// HTTPS Health check
 func (o LoadbalancerBackendOutput) HealthCheckHttps() LoadbalancerBackendHealthCheckHttpsPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendHealthCheckHttpsPtrOutput { return v.HealthCheckHttps }).(LoadbalancerBackendHealthCheckHttpsPtrOutput)
 }
@@ -592,6 +609,7 @@ func (o LoadbalancerBackendOutput) HealthCheckSendProxy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) pulumi.BoolPtrOutput { return v.HealthCheckSendProxy }).(pulumi.BoolPtrOutput)
 }
 
+// TCP Health check
 func (o LoadbalancerBackendOutput) HealthCheckTcp() LoadbalancerBackendHealthCheckTcpOutput {
 	return o.ApplyT(func(v *LoadbalancerBackend) LoadbalancerBackendHealthCheckTcpOutput { return v.HealthCheckTcp }).(LoadbalancerBackendHealthCheckTcpOutput)
 }

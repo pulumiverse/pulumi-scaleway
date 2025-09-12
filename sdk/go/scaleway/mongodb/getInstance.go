@@ -43,8 +43,9 @@ type LookupInstanceResult struct {
 	// The date and time the MongoDB® instance was created.
 	CreatedAt string `pulumi:"createdAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string  `pulumi:"id"`
-	InstanceId *string `pulumi:"instanceId"`
+	Id                        string  `pulumi:"id"`
+	InstanceId                *string `pulumi:"instanceId"`
+	IsSnapshotScheduleEnabled bool    `pulumi:"isSnapshotScheduleEnabled"`
 	// The name of the MongoDB® instance.
 	Name *string `pulumi:"name"`
 	// The number of nodes in the MongoDB® cluster.
@@ -57,10 +58,12 @@ type LookupInstanceResult struct {
 	// The ID of the project the instance belongs to.
 	ProjectId *string `pulumi:"projectId"`
 	// The details of the public network configuration, if applicable.
-	PublicNetworks []GetInstancePublicNetwork `pulumi:"publicNetworks"`
-	Region         *string                    `pulumi:"region"`
-	Settings       map[string]string          `pulumi:"settings"`
-	SnapshotId     string                     `pulumi:"snapshotId"`
+	PublicNetworks                 []GetInstancePublicNetwork `pulumi:"publicNetworks"`
+	Region                         *string                    `pulumi:"region"`
+	Settings                       map[string]string          `pulumi:"settings"`
+	SnapshotId                     string                     `pulumi:"snapshotId"`
+	SnapshotScheduleFrequencyHours int                        `pulumi:"snapshotScheduleFrequencyHours"`
+	SnapshotScheduleRetentionDays  int                        `pulumi:"snapshotScheduleRetentionDays"`
 	// A list of tags attached to the MongoDB® instance.
 	Tags           []string `pulumi:"tags"`
 	TlsCertificate string   `pulumi:"tlsCertificate"`
@@ -130,6 +133,10 @@ func (o LookupInstanceResultOutput) InstanceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceResult) *string { return v.InstanceId }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupInstanceResultOutput) IsSnapshotScheduleEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupInstanceResult) bool { return v.IsSnapshotScheduleEnabled }).(pulumi.BoolOutput)
+}
+
 // The name of the MongoDB® instance.
 func (o LookupInstanceResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
@@ -177,6 +184,14 @@ func (o LookupInstanceResultOutput) Settings() pulumi.StringMapOutput {
 
 func (o LookupInstanceResultOutput) SnapshotId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+func (o LookupInstanceResultOutput) SnapshotScheduleFrequencyHours() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupInstanceResult) int { return v.SnapshotScheduleFrequencyHours }).(pulumi.IntOutput)
+}
+
+func (o LookupInstanceResultOutput) SnapshotScheduleRetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupInstanceResult) int { return v.SnapshotScheduleRetentionDays }).(pulumi.IntOutput)
 }
 
 // A list of tags attached to the MongoDB® instance.

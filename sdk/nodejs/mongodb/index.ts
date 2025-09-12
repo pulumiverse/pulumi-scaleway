@@ -20,6 +20,11 @@ export type Snapshot = import("./snapshot").Snapshot;
 export const Snapshot: typeof import("./snapshot").Snapshot = null as any;
 utilities.lazyLoad(exports, ["Snapshot"], () => require("./snapshot"));
 
+export { UserArgs, UserState } from "./user";
+export type User = import("./user").User;
+export const User: typeof import("./user").User = null as any;
+utilities.lazyLoad(exports, ["User"], () => require("./user"));
+
 
 const _module = {
     version: utilities.getVersion(),
@@ -29,6 +34,8 @@ const _module = {
                 return new Instance(name, <any>undefined, { urn })
             case "scaleway:mongodb/snapshot:Snapshot":
                 return new Snapshot(name, <any>undefined, { urn })
+            case "scaleway:mongodb/user:User":
+                return new User(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
@@ -36,3 +43,4 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("scaleway", "mongodb/instance", _module)
 pulumi.runtime.registerResourceModule("scaleway", "mongodb/snapshot", _module)
+pulumi.runtime.registerResourceModule("scaleway", "mongodb/user", _module)

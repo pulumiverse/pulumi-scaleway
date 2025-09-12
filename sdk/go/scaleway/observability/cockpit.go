@@ -30,6 +30,8 @@ type Cockpit struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
 	// > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
 	//
+	// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
+	//
 	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrOutput `pulumi:"plan"`
 	// (Deprecated) The ID of the current pricing plan.
@@ -87,6 +89,8 @@ type cockpitState struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
 	// > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
 	//
+	// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
+	//
 	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan *string `pulumi:"plan"`
 	// (Deprecated) The ID of the current pricing plan.
@@ -108,6 +112,8 @@ type CockpitState struct {
 	Endpoints CockpitEndpointArrayInput
 	// Name of the plan to use. Available plans are: free, premium, and custom.
 	// > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+	//
+	// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
 	//
 	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrInput
@@ -131,6 +137,8 @@ type cockpitArgs struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
 	// > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
 	//
+	// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
+	//
 	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan *string `pulumi:"plan"`
 	// ) The ID of the Project the Cockpit is associated with.
@@ -141,6 +149,8 @@ type cockpitArgs struct {
 type CockpitArgs struct {
 	// Name of the plan to use. Available plans are: free, premium, and custom.
 	// > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+	//
+	// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
 	//
 	// Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 	Plan pulumi.StringPtrInput
@@ -244,6 +254,8 @@ func (o CockpitOutput) Endpoints() CockpitEndpointArrayOutput {
 
 // Name of the plan to use. Available plans are: free, premium, and custom.
 // > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
+//
+// > **Warning:** This entire resource is deprecated and will be removed after January 1st, 2025. Please migrate to the new specialized resources as described in the Cockpit Migration Guide.
 //
 // Deprecated: The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
 func (o CockpitOutput) Plan() pulumi.StringPtrOutput {

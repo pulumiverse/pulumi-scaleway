@@ -14,7 +14,13 @@ namespace Pulumiverse.Scaleway.Hosting.Outputs
     [OutputType]
     public sealed class HostingNameServer
     {
+        /// <summary>
+        /// Hostname of the server
+        /// </summary>
         public readonly string? Hostname;
+        /// <summary>
+        /// Whether or not the webhosting is the default one
+        /// </summary>
         public readonly bool? IsDefault;
         /// <summary>
         /// The hosting status.

@@ -53,6 +53,9 @@ if not MYPY:
         Configuration block of the bucket project owner's display organization ID.
         """
         grants: NotRequired[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgsDict']]]]
+        """
+        Grant
+        """
 elif False:
     BucketAclAccessControlPolicyArgsDict: TypeAlias = Mapping[str, Any]
 
@@ -63,6 +66,7 @@ class BucketAclAccessControlPolicyArgs:
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]] = None):
         """
         :param pulumi.Input['BucketAclAccessControlPolicyOwnerArgs'] owner: Configuration block of the bucket project owner's display organization ID.
+        :param pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]] grants: Grant
         """
         pulumi.set(__self__, "owner", owner)
         if grants is not None:
@@ -83,6 +87,9 @@ class BucketAclAccessControlPolicyArgs:
     @property
     @pulumi.getter
     def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BucketAclAccessControlPolicyGrantArgs']]]]:
+        """
+        Grant
+        """
         return pulumi.get(self, "grants")
 
     @grants.setter
@@ -144,6 +151,9 @@ class BucketAclAccessControlPolicyGrantArgs:
 if not MYPY:
     class BucketAclAccessControlPolicyGrantGranteeArgsDict(TypedDict):
         display_name: NotRequired[pulumi.Input[builtins.str]]
+        """
+        Display name of the grantee to grant access to.
+        """
         id: NotRequired[pulumi.Input[builtins.str]]
         """
         The `region`, `bucket` and `acl` separated by (`/`).
@@ -167,6 +177,7 @@ class BucketAclAccessControlPolicyGrantGranteeArgs:
                  type: Optional[pulumi.Input[builtins.str]] = None,
                  uri: Optional[pulumi.Input[builtins.str]] = None):
         """
+        :param pulumi.Input[builtins.str] display_name: Display name of the grantee to grant access to.
         :param pulumi.Input[builtins.str] id: The `region`, `bucket` and `acl` separated by (`/`).
         :param pulumi.Input[builtins.str] type: Type of grantee. Valid values: `CanonicalUser`, `Group`
         :param pulumi.Input[builtins.str] uri: The uri of the grantee if you are granting permissions to a predefined group.
@@ -183,6 +194,9 @@ class BucketAclAccessControlPolicyGrantGranteeArgs:
     @property
     @pulumi.getter(name="displayName")
     def display_name(self) -> Optional[pulumi.Input[builtins.str]]:
+        """
+        Display name of the grantee to grant access to.
+        """
         return pulumi.get(self, "display_name")
 
     @display_name.setter

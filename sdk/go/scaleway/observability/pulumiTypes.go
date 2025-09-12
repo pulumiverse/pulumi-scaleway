@@ -877,6 +877,202 @@ func (o GetInstancePushUrlArrayOutput) Index(i pulumi.IntInput) GetInstancePushU
 	}).(GetInstancePushUrlOutput)
 }
 
+type GetSourcesSource struct {
+	// The date and time of the creation of the cockpit datasource.
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of the data source.
+	Id string `pulumi:"id"`
+	// Filter sources by name.
+	Name string `pulumi:"name"`
+	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	Origin string `pulumi:"origin"`
+	// The project ID the cockpit sources are associated with.
+	ProjectId string `pulumi:"projectId"`
+	// The URL endpoint used for pushing data to the cockpit data source.
+	PushUrl string `pulumi:"pushUrl"`
+	// The region in which the cockpit sources are located.
+	Region string `pulumi:"region"`
+	// The number of days to retain data.
+	RetentionDays int `pulumi:"retentionDays"`
+	// Indicates whether the data source is synchronized with Grafana.
+	SynchronizedWithGrafana bool `pulumi:"synchronizedWithGrafana"`
+	// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+	Type string `pulumi:"type"`
+	// The date and time of the last update of the cockpit datasource.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// The URL of the datasource.
+	Url string `pulumi:"url"`
+}
+
+// GetSourcesSourceInput is an input type that accepts GetSourcesSourceArgs and GetSourcesSourceOutput values.
+// You can construct a concrete instance of `GetSourcesSourceInput` via:
+//
+//	GetSourcesSourceArgs{...}
+type GetSourcesSourceInput interface {
+	pulumi.Input
+
+	ToGetSourcesSourceOutput() GetSourcesSourceOutput
+	ToGetSourcesSourceOutputWithContext(context.Context) GetSourcesSourceOutput
+}
+
+type GetSourcesSourceArgs struct {
+	// The date and time of the creation of the cockpit datasource.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The ID of the data source.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Filter sources by name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	Origin pulumi.StringInput `pulumi:"origin"`
+	// The project ID the cockpit sources are associated with.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The URL endpoint used for pushing data to the cockpit data source.
+	PushUrl pulumi.StringInput `pulumi:"pushUrl"`
+	// The region in which the cockpit sources are located.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The number of days to retain data.
+	RetentionDays pulumi.IntInput `pulumi:"retentionDays"`
+	// Indicates whether the data source is synchronized with Grafana.
+	SynchronizedWithGrafana pulumi.BoolInput `pulumi:"synchronizedWithGrafana"`
+	// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The date and time of the last update of the cockpit datasource.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// The URL of the datasource.
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetSourcesSourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcesSource)(nil)).Elem()
+}
+
+func (i GetSourcesSourceArgs) ToGetSourcesSourceOutput() GetSourcesSourceOutput {
+	return i.ToGetSourcesSourceOutputWithContext(context.Background())
+}
+
+func (i GetSourcesSourceArgs) ToGetSourcesSourceOutputWithContext(ctx context.Context) GetSourcesSourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcesSourceOutput)
+}
+
+// GetSourcesSourceArrayInput is an input type that accepts GetSourcesSourceArray and GetSourcesSourceArrayOutput values.
+// You can construct a concrete instance of `GetSourcesSourceArrayInput` via:
+//
+//	GetSourcesSourceArray{ GetSourcesSourceArgs{...} }
+type GetSourcesSourceArrayInput interface {
+	pulumi.Input
+
+	ToGetSourcesSourceArrayOutput() GetSourcesSourceArrayOutput
+	ToGetSourcesSourceArrayOutputWithContext(context.Context) GetSourcesSourceArrayOutput
+}
+
+type GetSourcesSourceArray []GetSourcesSourceInput
+
+func (GetSourcesSourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSourcesSource)(nil)).Elem()
+}
+
+func (i GetSourcesSourceArray) ToGetSourcesSourceArrayOutput() GetSourcesSourceArrayOutput {
+	return i.ToGetSourcesSourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetSourcesSourceArray) ToGetSourcesSourceArrayOutputWithContext(ctx context.Context) GetSourcesSourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSourcesSourceArrayOutput)
+}
+
+type GetSourcesSourceOutput struct{ *pulumi.OutputState }
+
+func (GetSourcesSourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSourcesSource)(nil)).Elem()
+}
+
+func (o GetSourcesSourceOutput) ToGetSourcesSourceOutput() GetSourcesSourceOutput {
+	return o
+}
+
+func (o GetSourcesSourceOutput) ToGetSourcesSourceOutputWithContext(ctx context.Context) GetSourcesSourceOutput {
+	return o
+}
+
+// The date and time of the creation of the cockpit datasource.
+func (o GetSourcesSourceOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The ID of the data source.
+func (o GetSourcesSourceOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Filter sources by name.
+func (o GetSourcesSourceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+func (o GetSourcesSourceOutput) Origin() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Origin }).(pulumi.StringOutput)
+}
+
+// The project ID the cockpit sources are associated with.
+func (o GetSourcesSourceOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The URL endpoint used for pushing data to the cockpit data source.
+func (o GetSourcesSourceOutput) PushUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.PushUrl }).(pulumi.StringOutput)
+}
+
+// The region in which the cockpit sources are located.
+func (o GetSourcesSourceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The number of days to retain data.
+func (o GetSourcesSourceOutput) RetentionDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSourcesSource) int { return v.RetentionDays }).(pulumi.IntOutput)
+}
+
+// Indicates whether the data source is synchronized with Grafana.
+func (o GetSourcesSourceOutput) SynchronizedWithGrafana() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSourcesSource) bool { return v.SynchronizedWithGrafana }).(pulumi.BoolOutput)
+}
+
+// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+func (o GetSourcesSourceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The date and time of the last update of the cockpit datasource.
+func (o GetSourcesSourceOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The URL of the datasource.
+func (o GetSourcesSourceOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSourcesSource) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetSourcesSourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSourcesSourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSourcesSource)(nil)).Elem()
+}
+
+func (o GetSourcesSourceArrayOutput) ToGetSourcesSourceArrayOutput() GetSourcesSourceArrayOutput {
+	return o
+}
+
+func (o GetSourcesSourceArrayOutput) ToGetSourcesSourceArrayOutputWithContext(ctx context.Context) GetSourcesSourceArrayOutput {
+	return o
+}
+
+func (o GetSourcesSourceArrayOutput) Index(i pulumi.IntInput) GetSourcesSourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSourcesSource {
+		return vs[0].([]GetSourcesSource)[vs[1].(int)]
+	}).(GetSourcesSourceOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertManagerContactPointInput)(nil)).Elem(), AlertManagerContactPointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AlertManagerContactPointArrayInput)(nil)).Elem(), AlertManagerContactPointArray{})
@@ -890,6 +1086,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointArrayInput)(nil)).Elem(), GetInstanceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlInput)(nil)).Elem(), GetInstancePushUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlArrayInput)(nil)).Elem(), GetInstancePushUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceInput)(nil)).Elem(), GetSourcesSourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceArrayInput)(nil)).Elem(), GetSourcesSourceArray{})
 	pulumi.RegisterOutputType(AlertManagerContactPointOutput{})
 	pulumi.RegisterOutputType(AlertManagerContactPointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitEndpointOutput{})
@@ -902,4 +1100,6 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlArrayOutput{})
+	pulumi.RegisterOutputType(GetSourcesSourceOutput{})
+	pulumi.RegisterOutputType(GetSourcesSourceArrayOutput{})
 }

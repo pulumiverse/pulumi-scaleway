@@ -2411,6 +2411,7 @@ class GetLoadBalancersLbInstanceResult(dict):
         """
         :param builtins.str created_at: Date on which the Load Balancer was created.
         :param builtins.str id: The ID of the Load Balancer.
+        :param builtins.str ip_address: IP address of the instance
         :param builtins.str status: The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
         :param builtins.str updated_at: Date on which the Load Balancer was updated.
         :param builtins.str zone: `zone`) The zone in which the Load Balancers exist.
@@ -2441,6 +2442,9 @@ class GetLoadBalancersLbInstanceResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address of the instance
+        """
         return pulumi.get(self, "ip_address")
 
     @property
@@ -2480,8 +2484,11 @@ class GetLoadBalancersLbIpResult(dict):
                  zone: builtins.str):
         """
         :param builtins.str id: The ID of the Load Balancer.
+        :param builtins.str ip_address: IP address
+        :param builtins.str lb_id: UUID of the load balancer attached to the IP
         :param builtins.str organization_id: The ID of the Organization the Load Balancer is associated with.
         :param builtins.str project_id: The ID of the Project the Load Balancer is associated with.
+        :param builtins.str reverse: Reverse DNS attached to the IP
         :param builtins.str zone: `zone`) The zone in which the Load Balancers exist.
         """
         pulumi.set(__self__, "id", id)
@@ -2503,11 +2510,17 @@ class GetLoadBalancersLbIpResult(dict):
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> builtins.str:
+        """
+        IP address
+        """
         return pulumi.get(self, "ip_address")
 
     @property
     @pulumi.getter(name="lbId")
     def lb_id(self) -> builtins.str:
+        """
+        UUID of the load balancer attached to the IP
+        """
         return pulumi.get(self, "lb_id")
 
     @property
@@ -2529,6 +2542,9 @@ class GetLoadBalancersLbIpResult(dict):
     @property
     @pulumi.getter
     def reverse(self) -> builtins.str:
+        """
+        Reverse DNS attached to the IP
+        """
         return pulumi.get(self, "reverse")
 
     @property

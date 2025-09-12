@@ -99,7 +99,7 @@ import * as utilities from "./utilities";
  * bash
  *
  * ```sh
- * $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par-1/11111111-1111-1111-1111-111111111111
+ * $ pulumi import scaleway:index/mongoDbInstance:MongoDbInstance main fr-par/11111111-1111-1111-1111-111111111111
  * ```
  *
  * @deprecated scaleway.index/mongodbinstance.MongoDbInstance has been deprecated in favor of scaleway.mongodb/instance.Instance
@@ -138,6 +138,10 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Enable or disable automatic snapshot scheduling
+     */
+    public readonly isSnapshotScheduleEnabled!: pulumi.Output<boolean>;
+    /**
      * Name of the MongoDB® instance.
      */
     public readonly name!: pulumi.Output<string>;
@@ -162,16 +166,17 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public readonly privateNetwork!: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the MongoDB® instance is associated with.
+     *
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
      * Public network endpoint configuration (no arguments).
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     public readonly publicNetwork!: pulumi.Output<outputs.MongoDbInstancePublicNetwork>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the MongoDB® instance should be created.
      */
     public readonly region!: pulumi.Output<string>;
     /**
@@ -182,6 +187,14 @@ export class MongoDbInstance extends pulumi.CustomResource {
      * Snapshot ID to restore the MongoDB® instance from.
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
+    /**
+     * Snapshot schedule frequency in hours
+     */
+    public readonly snapshotScheduleFrequencyHours!: pulumi.Output<number>;
+    /**
+     * Snapshot schedule retention in days
+     */
+    public readonly snapshotScheduleRetentionDays!: pulumi.Output<number>;
     /**
      * List of tags attached to the MongoDB® instance.
      */
@@ -228,6 +241,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MongoDbInstanceState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["isSnapshotScheduleEnabled"] = state ? state.isSnapshotScheduleEnabled : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
             resourceInputs["nodeType"] = state ? state.nodeType : undefined;
@@ -239,6 +253,8 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["settings"] = state ? state.settings : undefined;
             resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
+            resourceInputs["snapshotScheduleFrequencyHours"] = state ? state.snapshotScheduleFrequencyHours : undefined;
+            resourceInputs["snapshotScheduleRetentionDays"] = state ? state.snapshotScheduleRetentionDays : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
             resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
@@ -254,6 +270,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
             if ((!args || args.nodeType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
+            resourceInputs["isSnapshotScheduleEnabled"] = args ? args.isSnapshotScheduleEnabled : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
             resourceInputs["nodeType"] = args ? args.nodeType : undefined;
@@ -265,6 +282,8 @@ export class MongoDbInstance extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["settings"] = args ? args.settings : undefined;
             resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
+            resourceInputs["snapshotScheduleFrequencyHours"] = args ? args.snapshotScheduleFrequencyHours : undefined;
+            resourceInputs["snapshotScheduleRetentionDays"] = args ? args.snapshotScheduleRetentionDays : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["userName"] = args ? args.userName : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
@@ -290,6 +309,10 @@ export interface MongoDbInstanceState {
      */
     createdAt?: pulumi.Input<string>;
     /**
+     * Enable or disable automatic snapshot scheduling
+     */
+    isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
+    /**
      * Name of the MongoDB® instance.
      */
     name?: pulumi.Input<string>;
@@ -314,16 +337,17 @@ export interface MongoDbInstanceState {
      */
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the MongoDB® instance is associated with.
+     *
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     projectId?: pulumi.Input<string>;
     /**
      * Public network endpoint configuration (no arguments).
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the MongoDB® instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -334,6 +358,14 @@ export interface MongoDbInstanceState {
      * Snapshot ID to restore the MongoDB® instance from.
      */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Snapshot schedule frequency in hours
+     */
+    snapshotScheduleFrequencyHours?: pulumi.Input<number>;
+    /**
+     * Snapshot schedule retention in days
+     */
+    snapshotScheduleRetentionDays?: pulumi.Input<number>;
     /**
      * List of tags attached to the MongoDB® instance.
      */
@@ -369,6 +401,10 @@ export interface MongoDbInstanceState {
  */
 export interface MongoDbInstanceArgs {
     /**
+     * Enable or disable automatic snapshot scheduling
+     */
+    isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
+    /**
      * Name of the MongoDB® instance.
      */
     name?: pulumi.Input<string>;
@@ -393,16 +429,17 @@ export interface MongoDbInstanceArgs {
      */
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
-     * The projectId you want to attach the resource to
+     * `projectId`) The ID of the project the MongoDB® instance is associated with.
+     *
+     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     projectId?: pulumi.Input<string>;
     /**
      * Public network endpoint configuration (no arguments).
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     publicNetwork?: pulumi.Input<inputs.MongoDbInstancePublicNetwork>;
     /**
-     * The region you want to attach the resource to
+     * `region`) The region in which the MongoDB® instance should be created.
      */
     region?: pulumi.Input<string>;
     /**
@@ -413,6 +450,14 @@ export interface MongoDbInstanceArgs {
      * Snapshot ID to restore the MongoDB® instance from.
      */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Snapshot schedule frequency in hours
+     */
+    snapshotScheduleFrequencyHours?: pulumi.Input<number>;
+    /**
+     * Snapshot schedule retention in days
+     */
+    snapshotScheduleRetentionDays?: pulumi.Input<number>;
     /**
      * List of tags attached to the MongoDB® instance.
      */

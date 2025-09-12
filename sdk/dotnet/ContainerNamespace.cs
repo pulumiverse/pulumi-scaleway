@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
         /// 
-        /// &gt; **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         /// </summary>
         [Output("activateVpcIntegration")]
         public Output<bool?> ActivateVpcIntegration { get; private set; } = null!;
@@ -184,7 +184,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
         /// 
-        /// &gt; **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         /// </summary>
         [Input("activateVpcIntegration")]
         public Input<bool>? ActivateVpcIntegration { get; set; }
@@ -272,7 +272,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Activates VPC integration for the namespace. Containers of a namespace with VPC integration activated will be able to connect to a Private Network.
         /// 
-        /// &gt; **Important** Updates to `activate_vpc_integration` will recreate the namespace.
+        /// &gt; **Important:** VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
         /// </summary>
         [Input("activateVpcIntegration")]
         public Input<bool>? ActivateVpcIntegration { get; set; }
