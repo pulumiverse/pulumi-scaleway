@@ -1628,7 +1628,12 @@
                         "inCodegen": true,
                         "majorVersion": 0
                     }
-                ]
+                ],
+                "fields": {
+                    "dead_letter_queue": {
+                        "maxItemsOne": true
+                    }
+                }
             },
             "scaleway_mongodb_instance": {
                 "current": "scaleway:mongodb/instance:Instance",
@@ -1673,6 +1678,14 @@
                         "majorVersion": 0
                     }
                 ]
+            },
+            "scaleway_mongodb_user": {
+                "current": "scaleway:mongodb/user:User",
+                "fields": {
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_object": {
                 "current": "scaleway:object/item:Item",
@@ -2481,6 +2494,14 @@
                     }
                 ]
             },
+            "scaleway_cockpit_sources": {
+                "current": "scaleway:observability/getSources:getSources",
+                "fields": {
+                    "sources": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_config": {
                 "current": "scaleway:index/getConfig:getConfig"
             },
@@ -2904,6 +2925,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "private_ips": {
+                                    "maxItemsOne": false
+                                },
                                 "public_ips": {
                                     "maxItemsOne": false
                                 },
@@ -4439,7 +4463,10 @@
             "scaleway_rdb_instance": {
                 "aliases": [
                     "scaleway:index/databaseInstance:DatabaseInstance"
-                ]
+                ],
+                "maxItemsOneOverrides": {
+                    "load_balancer": false
+                }
             },
             "scaleway_rdb_privilege": {
                 "aliases": [
