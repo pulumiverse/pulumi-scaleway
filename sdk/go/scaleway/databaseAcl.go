@@ -61,6 +61,46 @@ import (
 //
 // ```
 //
+// ### Multiple ACL Rules
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := databases.NewAcl(ctx, "main", &databases.AclArgs{
+//				InstanceId: pulumi.Any(mainScalewayRdbInstance.Id),
+//				AclRules: databases.AclAclRuleArray{
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("1.2.3.4/32"),
+//						Description: pulumi.String("Office IP"),
+//					},
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("5.6.7.8/32"),
+//						Description: pulumi.String("Home IP"),
+//					},
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("10.0.0.0/24"),
+//						Description: pulumi.String("Internal network"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -76,6 +116,8 @@ type DatabaseAcl struct {
 	pulumi.CustomResourceState
 
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules DatabaseAclAclRuleArrayOutput `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -122,6 +164,8 @@ func GetDatabaseAcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering DatabaseAcl resources.
 type databaseAclState struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -133,6 +177,8 @@ type databaseAclState struct {
 
 type DatabaseAclState struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules DatabaseAclAclRuleArrayInput
 	// UUID of the Database Instance.
 	//
@@ -148,6 +194,8 @@ func (DatabaseAclState) ElementType() reflect.Type {
 
 type databaseAclArgs struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules []DatabaseAclAclRule `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -160,6 +208,8 @@ type databaseAclArgs struct {
 // The set of arguments for constructing a DatabaseAcl resource.
 type DatabaseAclArgs struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules DatabaseAclAclRuleArrayInput
 	// UUID of the Database Instance.
 	//
@@ -257,6 +307,8 @@ func (o DatabaseAclOutput) ToDatabaseAclOutputWithContext(ctx context.Context) D
 }
 
 // A list of ACLs (structure is described below)
+//
+// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 func (o DatabaseAclOutput) AclRules() DatabaseAclAclRuleArrayOutput {
 	return o.ApplyT(func(v *DatabaseAcl) DatabaseAclAclRuleArrayOutput { return v.AclRules }).(DatabaseAclAclRuleArrayOutput)
 }

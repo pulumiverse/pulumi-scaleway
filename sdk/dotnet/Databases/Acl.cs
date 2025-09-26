@@ -53,6 +53,76 @@ namespace Pulumiverse.Scaleway.Databases
     /// });
     /// ```
     /// 
+    /// ### Multiple ACL Rules
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Databases.Acl("main", new()
+    ///     {
+    ///         InstanceId = mainScalewayRdbInstance.Id,
+    ///         AclRules = new[]
+    ///         {
+    ///             new Scaleway.Databases.Inputs.AclAclRuleArgs
+    ///             {
+    ///                 Ip = "1.2.3.4/32",
+    ///                 Description = "Office IP",
+    ///             },
+    ///             new Scaleway.Databases.Inputs.AclAclRuleArgs
+    ///             {
+    ///                 Ip = "5.6.7.8/32",
+    ///                 Description = "Home IP",
+    ///             },
+    ///             new Scaleway.Databases.Inputs.AclAclRuleArgs
+    ///             {
+    ///                 Ip = "10.0.0.0/24",
+    ///                 Description = "Internal network",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Dynamic ACL Rules with Variables
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     // Map of allowed IPs with descriptions
+    ///     var allowedIps = config.GetObject&lt;Dictionary&lt;string, string&gt;&gt;("allowedIps") ?? 
+    ///     {
+    ///         { "1.2.3.4/32", "Office IP" },
+    ///         { "10.0.0.0/24", "Internal network" },
+    ///         { "5.6.7.8/32", "Home IP" },
+    ///     };
+    ///     var main = new Scaleway.Databases.Acl("main", new()
+    ///     {
+    ///         AclRules = allowedIps.Select(pair =&gt; new { pair.Key, pair.Value }).Select(entry =&gt; 
+    ///         {
+    ///             return new Scaleway.Databases.Inputs.AclAclRuleArgs
+    ///             {
+    ///                 Ip = entry.Key,
+    ///                 Description = entry.Value,
+    ///             };
+    ///         }).ToList(),
+    ///         InstanceId = mainScalewayRdbInstance.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -68,6 +138,8 @@ namespace Pulumiverse.Scaleway.Databases
     {
         /// <summary>
         /// A list of ACLs (structure is described below)
+        /// 
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         /// </summary>
         [Output("aclRules")]
         public Output<ImmutableArray<Outputs.AclAclRule>> AclRules { get; private set; } = null!;
@@ -142,6 +214,8 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// A list of ACLs (structure is described below)
+        /// 
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         /// </summary>
         public InputList<Inputs.AclAclRuleArgs> AclRules
         {
@@ -176,6 +250,8 @@ namespace Pulumiverse.Scaleway.Databases
 
         /// <summary>
         /// A list of ACLs (structure is described below)
+        /// 
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         /// </summary>
         public InputList<Inputs.AclAclRuleGetArgs> AclRules
         {

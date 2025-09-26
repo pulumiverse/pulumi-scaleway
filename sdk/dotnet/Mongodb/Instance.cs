@@ -109,6 +109,33 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// });
     /// ```
     /// 
+    /// ### With Snapshot Scheduling
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Mongodb.Instance("main", new()
+    ///     {
+    ///         Name = "test-mongodb-with-snapshots",
+    ///         Version = "7.0.12",
+    ///         NodeType = "MGDB-PLAY2-NANO",
+    ///         NodeNumber = 1,
+    ///         UserName = "my_initial_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         VolumeSizeInGb = 5,
+    ///         SnapshotScheduleFrequencyHours = 24,
+    ///         SnapshotScheduleRetentionDays = 7,
+    ///         IsSnapshotScheduleEnabled = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Restore From Snapshot
     /// 
     /// ```csharp
@@ -150,7 +177,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Enable or disable automatic snapshot scheduling
+        /// Whether automatic snapshot scheduling is enabled.
         /// </summary>
         [Output("isSnapshotScheduleEnabled")]
         public Output<bool> IsSnapshotScheduleEnabled { get; private set; } = null!;
@@ -193,8 +220,6 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// `project_id`) The ID of the project the MongoDB® instance is associated with.
-        /// 
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -224,13 +249,13 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string?> SnapshotId { get; private set; } = null!;
 
         /// <summary>
-        /// Snapshot schedule frequency in hours
+        /// Snapshot schedule frequency in hours.
         /// </summary>
         [Output("snapshotScheduleFrequencyHours")]
         public Output<int> SnapshotScheduleFrequencyHours { get; private set; } = null!;
 
         /// <summary>
-        /// Snapshot schedule retention in days
+        /// Snapshot schedule retention in days.
         /// </summary>
         [Output("snapshotScheduleRetentionDays")]
         public Output<int> SnapshotScheduleRetentionDays { get; private set; } = null!;
@@ -333,7 +358,7 @@ namespace Pulumiverse.Scaleway.Mongodb
     public sealed class InstanceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Enable or disable automatic snapshot scheduling
+        /// Whether automatic snapshot scheduling is enabled.
         /// </summary>
         [Input("isSnapshotScheduleEnabled")]
         public Input<bool>? IsSnapshotScheduleEnabled { get; set; }
@@ -392,8 +417,6 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// `project_id`) The ID of the project the MongoDB® instance is associated with.
-        /// 
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -429,13 +452,13 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
-        /// Snapshot schedule frequency in hours
+        /// Snapshot schedule frequency in hours.
         /// </summary>
         [Input("snapshotScheduleFrequencyHours")]
         public Input<int>? SnapshotScheduleFrequencyHours { get; set; }
 
         /// <summary>
-        /// Snapshot schedule retention in days
+        /// Snapshot schedule retention in days.
         /// </summary>
         [Input("snapshotScheduleRetentionDays")]
         public Input<int>? SnapshotScheduleRetentionDays { get; set; }
@@ -491,7 +514,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Enable or disable automatic snapshot scheduling
+        /// Whether automatic snapshot scheduling is enabled.
         /// </summary>
         [Input("isSnapshotScheduleEnabled")]
         public Input<bool>? IsSnapshotScheduleEnabled { get; set; }
@@ -550,8 +573,6 @@ namespace Pulumiverse.Scaleway.Mongodb
 
         /// <summary>
         /// `project_id`) The ID of the project the MongoDB® instance is associated with.
-        /// 
-        /// &gt; **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -587,13 +608,13 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
-        /// Snapshot schedule frequency in hours
+        /// Snapshot schedule frequency in hours.
         /// </summary>
         [Input("snapshotScheduleFrequencyHours")]
         public Input<int>? SnapshotScheduleFrequencyHours { get; set; }
 
         /// <summary>
-        /// Snapshot schedule retention in days
+        /// Snapshot schedule retention in days.
         /// </summary>
         [Input("snapshotScheduleRetentionDays")]
         public Input<int>? SnapshotScheduleRetentionDays { get; set; }
