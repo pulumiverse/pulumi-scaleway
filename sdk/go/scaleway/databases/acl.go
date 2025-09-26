@@ -61,6 +61,46 @@ import (
 //
 // ```
 //
+// ### Multiple ACL Rules
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := databases.NewAcl(ctx, "main", &databases.AclArgs{
+//				InstanceId: pulumi.Any(mainScalewayRdbInstance.Id),
+//				AclRules: databases.AclAclRuleArray{
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("1.2.3.4/32"),
+//						Description: pulumi.String("Office IP"),
+//					},
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("5.6.7.8/32"),
+//						Description: pulumi.String("Home IP"),
+//					},
+//					&databases.AclAclRuleArgs{
+//						Ip:          pulumi.String("10.0.0.0/24"),
+//						Description: pulumi.String("Internal network"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -74,6 +114,8 @@ type Acl struct {
 	pulumi.CustomResourceState
 
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules AclAclRuleArrayOutput `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -126,6 +168,8 @@ func GetAcl(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Acl resources.
 type aclState struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules []AclAclRule `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -137,6 +181,8 @@ type aclState struct {
 
 type AclState struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules AclAclRuleArrayInput
 	// UUID of the Database Instance.
 	//
@@ -152,6 +198,8 @@ func (AclState) ElementType() reflect.Type {
 
 type aclArgs struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules []AclAclRule `pulumi:"aclRules"`
 	// UUID of the Database Instance.
 	//
@@ -164,6 +212,8 @@ type aclArgs struct {
 // The set of arguments for constructing a Acl resource.
 type AclArgs struct {
 	// A list of ACLs (structure is described below)
+	//
+	// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 	AclRules AclAclRuleArrayInput
 	// UUID of the Database Instance.
 	//
@@ -261,6 +311,8 @@ func (o AclOutput) ToAclOutputWithContext(ctx context.Context) AclOutput {
 }
 
 // A list of ACLs (structure is described below)
+//
+// > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
 func (o AclOutput) AclRules() AclAclRuleArrayOutput {
 	return o.ApplyT(func(v *Acl) AclAclRuleArrayOutput { return v.AclRules }).(AclAclRuleArrayOutput)
 }

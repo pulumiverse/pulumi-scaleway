@@ -28,6 +28,8 @@ class AclArgs:
         """
         The set of arguments for constructing a Acl resource.
         :param pulumi.Input[Sequence[pulumi.Input['AclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
+               
+               > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -43,6 +45,8 @@ class AclArgs:
     def acl_rules(self) -> pulumi.Input[Sequence[pulumi.Input['AclAclRuleArgs']]]:
         """
         A list of ACLs (structure is described below)
+
+        > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         """
         return pulumi.get(self, "acl_rules")
 
@@ -86,6 +90,8 @@ class _AclState:
         """
         Input properties used for looking up and filtering Acl resources.
         :param pulumi.Input[Sequence[pulumi.Input['AclAclRuleArgs']]] acl_rules: A list of ACLs (structure is described below)
+               
+               > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -103,6 +109,8 @@ class _AclState:
     def acl_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AclAclRuleArgs']]]]:
         """
         A list of ACLs (structure is described below)
+
+        > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         """
         return pulumi.get(self, "acl_rules")
 
@@ -175,6 +183,53 @@ class Acl(pulumi.CustomResource):
             }])
         ```
 
+        ### Multiple ACL Rules
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.databases.Acl("main",
+            instance_id=main_scaleway_rdb_instance["id"],
+            acl_rules=[
+                {
+                    "ip": "1.2.3.4/32",
+                    "description": "Office IP",
+                },
+                {
+                    "ip": "5.6.7.8/32",
+                    "description": "Home IP",
+                },
+                {
+                    "ip": "10.0.0.0/24",
+                    "description": "Internal network",
+                },
+            ])
+        ```
+
+        ### Dynamic ACL Rules with Variables
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        # Map of allowed IPs with descriptions
+        allowed_ips = config.get_object("allowedIps")
+        if allowed_ips is None:
+            allowed_ips = {
+                "1.2.3.4/32": "Office IP",
+                "10.0.0.0/24": "Internal network",
+                "5.6.7.8/32": "Home IP",
+            }
+        main = scaleway.databases.Acl("main",
+            acl_rules=[{
+                "ip": entry["key"],
+                "description": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            instance_id=main_scaleway_rdb_instance["id"])
+        ```
+
         ## Import
 
         Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -188,6 +243,8 @@ class Acl(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+               
+               > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -225,6 +282,53 @@ class Acl(pulumi.CustomResource):
                 "ip": "1.2.3.4/32",
                 "description": "foo",
             }])
+        ```
+
+        ### Multiple ACL Rules
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.databases.Acl("main",
+            instance_id=main_scaleway_rdb_instance["id"],
+            acl_rules=[
+                {
+                    "ip": "1.2.3.4/32",
+                    "description": "Office IP",
+                },
+                {
+                    "ip": "5.6.7.8/32",
+                    "description": "Home IP",
+                },
+                {
+                    "ip": "10.0.0.0/24",
+                    "description": "Internal network",
+                },
+            ])
+        ```
+
+        ### Dynamic ACL Rules with Variables
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        config = pulumi.Config()
+        # Map of allowed IPs with descriptions
+        allowed_ips = config.get_object("allowedIps")
+        if allowed_ips is None:
+            allowed_ips = {
+                "1.2.3.4/32": "Office IP",
+                "10.0.0.0/24": "Internal network",
+                "5.6.7.8/32": "Home IP",
+            }
+        main = scaleway.databases.Acl("main",
+            acl_rules=[{
+                "ip": entry["key"],
+                "description": entry["value"],
+            } for entry in [{"key": k, "value": v} for k, v in allowed_ips]],
+            instance_id=main_scaleway_rdb_instance["id"])
         ```
 
         ## Import
@@ -294,6 +398,8 @@ class Acl(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['AclAclRuleArgs', 'AclAclRuleArgsDict']]]] acl_rules: A list of ACLs (structure is described below)
+               
+               > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         :param pulumi.Input[builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the Database ACL.
@@ -313,6 +419,8 @@ class Acl(pulumi.CustomResource):
     def acl_rules(self) -> pulumi.Output[Sequence['outputs.AclAclRule']]:
         """
         A list of ACLs (structure is described below)
+
+        > **Important:** The `databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
         """
         return pulumi.get(self, "acl_rules")
 

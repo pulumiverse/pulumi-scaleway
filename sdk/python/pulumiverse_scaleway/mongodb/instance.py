@@ -45,20 +45,18 @@ class InstanceArgs:
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[builtins.str] node_type: The type of MongoDB® intance to create.
-        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Enable or disable automatic snapshot scheduling
+        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[builtins.str] password: Password of the user.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-               
-               > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         :param pulumi.Input['InstancePublicNetworkArgs'] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
-        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours
-        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days
+        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
+        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[builtins.str] user_name: Name of the user created when the intance is created.
         :param pulumi.Input[builtins.str] version: MongoDB® version of the instance.
@@ -130,7 +128,7 @@ class InstanceArgs:
     @pulumi.getter(name="isSnapshotScheduleEnabled")
     def is_snapshot_schedule_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Enable or disable automatic snapshot scheduling
+        Whether automatic snapshot scheduling is enabled.
         """
         return pulumi.get(self, "is_snapshot_schedule_enabled")
 
@@ -191,8 +189,6 @@ class InstanceArgs:
     def project_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         `project_id`) The ID of the project the MongoDB® instance is associated with.
-
-        > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         """
         return pulumi.get(self, "project_id")
 
@@ -252,7 +248,7 @@ class InstanceArgs:
     @pulumi.getter(name="snapshotScheduleFrequencyHours")
     def snapshot_schedule_frequency_hours(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Snapshot schedule frequency in hours
+        Snapshot schedule frequency in hours.
         """
         return pulumi.get(self, "snapshot_schedule_frequency_hours")
 
@@ -264,7 +260,7 @@ class InstanceArgs:
     @pulumi.getter(name="snapshotScheduleRetentionDays")
     def snapshot_schedule_retention_days(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Snapshot schedule retention in days
+        Snapshot schedule retention in days.
         """
         return pulumi.get(self, "snapshot_schedule_retention_days")
 
@@ -361,7 +357,7 @@ class _InstanceState:
         """
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the MongoDB® instance.
-        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Enable or disable automatic snapshot scheduling
+        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[builtins.str] node_type: The type of MongoDB® intance to create.
@@ -369,14 +365,12 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-               
-               > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         :param pulumi.Input['InstancePublicNetworkArgs'] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
-        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours
-        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days
+        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
+        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
@@ -446,7 +440,7 @@ class _InstanceState:
     @pulumi.getter(name="isSnapshotScheduleEnabled")
     def is_snapshot_schedule_enabled(self) -> Optional[pulumi.Input[builtins.bool]]:
         """
-        Enable or disable automatic snapshot scheduling
+        Whether automatic snapshot scheduling is enabled.
         """
         return pulumi.get(self, "is_snapshot_schedule_enabled")
 
@@ -531,8 +525,6 @@ class _InstanceState:
     def project_id(self) -> Optional[pulumi.Input[builtins.str]]:
         """
         `project_id`) The ID of the project the MongoDB® instance is associated with.
-
-        > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         """
         return pulumi.get(self, "project_id")
 
@@ -592,7 +584,7 @@ class _InstanceState:
     @pulumi.getter(name="snapshotScheduleFrequencyHours")
     def snapshot_schedule_frequency_hours(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Snapshot schedule frequency in hours
+        Snapshot schedule frequency in hours.
         """
         return pulumi.get(self, "snapshot_schedule_frequency_hours")
 
@@ -604,7 +596,7 @@ class _InstanceState:
     @pulumi.getter(name="snapshotScheduleRetentionDays")
     def snapshot_schedule_retention_days(self) -> Optional[pulumi.Input[builtins.int]]:
         """
-        Snapshot schedule retention in days
+        Snapshot schedule retention in days.
         """
         return pulumi.get(self, "snapshot_schedule_retention_days")
 
@@ -790,6 +782,25 @@ class Instance(pulumi.CustomResource):
             public_network={})
         ```
 
+        ### With Snapshot Scheduling
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.mongodb.Instance("main",
+            name="test-mongodb-with-snapshots",
+            version="7.0.12",
+            node_type="MGDB-PLAY2-NANO",
+            node_number=1,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=5,
+            snapshot_schedule_frequency_hours=24,
+            snapshot_schedule_retention_days=7,
+            is_snapshot_schedule_enabled=True)
+        ```
+
         ### Restore From Snapshot
 
         ```python
@@ -815,7 +826,7 @@ class Instance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Enable or disable automatic snapshot scheduling
+        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[builtins.str] node_type: The type of MongoDB® intance to create.
@@ -823,14 +834,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-               
-               > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
-        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours
-        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days
+        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
+        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[builtins.str] user_name: Name of the user created when the intance is created.
         :param pulumi.Input[builtins.str] version: MongoDB® version of the instance.
@@ -908,6 +917,25 @@ class Instance(pulumi.CustomResource):
                 "pn_id": pn02["id"],
             },
             public_network={})
+        ```
+
+        ### With Snapshot Scheduling
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.mongodb.Instance("main",
+            name="test-mongodb-with-snapshots",
+            version="7.0.12",
+            node_type="MGDB-PLAY2-NANO",
+            node_number=1,
+            user_name="my_initial_user",
+            password="thiZ_is_v&ry_s3cret",
+            volume_size_in_gb=5,
+            snapshot_schedule_frequency_hours=24,
+            snapshot_schedule_retention_days=7,
+            is_snapshot_schedule_enabled=True)
         ```
 
         ### Restore From Snapshot
@@ -1046,7 +1074,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[builtins.str] created_at: The date and time of the creation of the MongoDB® instance.
-        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Enable or disable automatic snapshot scheduling
+        :param pulumi.Input[builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[builtins.str] node_type: The type of MongoDB® intance to create.
@@ -1054,14 +1082,12 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
-               
-               > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         :param pulumi.Input[Union['InstancePublicNetworkArgs', 'InstancePublicNetworkArgsDict']] public_network: Public network endpoint configuration (no arguments).
         :param pulumi.Input[builtins.str] region: `region`) The region in which the MongoDB® instance should be created.
         :param pulumi.Input[Mapping[str, pulumi.Input[builtins.str]]] settings: Map of settings to define for the instance.
         :param pulumi.Input[builtins.str] snapshot_id: Snapshot ID to restore the MongoDB® instance from.
-        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours
-        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days
+        :param pulumi.Input[builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
+        :param pulumi.Input[builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
@@ -1110,7 +1136,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="isSnapshotScheduleEnabled")
     def is_snapshot_schedule_enabled(self) -> pulumi.Output[builtins.bool]:
         """
-        Enable or disable automatic snapshot scheduling
+        Whether automatic snapshot scheduling is enabled.
         """
         return pulumi.get(self, "is_snapshot_schedule_enabled")
 
@@ -1167,8 +1193,6 @@ class Instance(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[builtins.str]:
         """
         `project_id`) The ID of the project the MongoDB® instance is associated with.
-
-        > **Important** If neither private_network nor public_network is specified, a public network endpoint is created by default.
         """
         return pulumi.get(self, "project_id")
 
@@ -1208,7 +1232,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="snapshotScheduleFrequencyHours")
     def snapshot_schedule_frequency_hours(self) -> pulumi.Output[builtins.int]:
         """
-        Snapshot schedule frequency in hours
+        Snapshot schedule frequency in hours.
         """
         return pulumi.get(self, "snapshot_schedule_frequency_hours")
 
@@ -1216,7 +1240,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="snapshotScheduleRetentionDays")
     def snapshot_schedule_retention_days(self) -> pulumi.Output[builtins.int]:
         """
-        Snapshot schedule retention in days
+        Snapshot schedule retention in days.
         """
         return pulumi.get(self, "snapshot_schedule_retention_days")
 

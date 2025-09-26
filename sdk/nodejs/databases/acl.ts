@@ -36,6 +36,53 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Multiple ACL Rules
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.databases.Acl("main", {
+ *     instanceId: mainScalewayRdbInstance.id,
+ *     aclRules: [
+ *         {
+ *             ip: "1.2.3.4/32",
+ *             description: "Office IP",
+ *         },
+ *         {
+ *             ip: "5.6.7.8/32",
+ *             description: "Home IP",
+ *         },
+ *         {
+ *             ip: "10.0.0.0/24",
+ *             description: "Internal network",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Dynamic ACL Rules with Variables
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const config = new pulumi.Config();
+ * // Map of allowed IPs with descriptions
+ * const allowedIps = config.getObject<Record<string, string>>("allowedIps") || {
+ *     "1.2.3.4/32": "Office IP",
+ *     "10.0.0.0/24": "Internal network",
+ *     "5.6.7.8/32": "Home IP",
+ * };
+ * const main = new scaleway.databases.Acl("main", {
+ *     aclRules: Object.entries(allowedIps).map(([k, v]) => ({key: k, value: v})).map(entry => ({
+ *         ip: entry.key,
+ *         description: entry.value,
+ *     })),
+ *     instanceId: mainScalewayRdbInstance.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Database Instance can be imported using the `{region}/{id}`, e.g.
@@ -76,6 +123,8 @@ export class Acl extends pulumi.CustomResource {
 
     /**
      * A list of ACLs (structure is described below)
+     *
+     * > **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
      */
     public readonly aclRules!: pulumi.Output<outputs.databases.AclAclRule[]>;
     /**
@@ -130,6 +179,8 @@ export class Acl extends pulumi.CustomResource {
 export interface AclState {
     /**
      * A list of ACLs (structure is described below)
+     *
+     * > **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
      */
     aclRules?: pulumi.Input<pulumi.Input<inputs.databases.AclAclRule>[]>;
     /**
@@ -150,6 +201,8 @@ export interface AclState {
 export interface AclArgs {
     /**
      * A list of ACLs (structure is described below)
+     *
+     * > **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
      */
     aclRules: pulumi.Input<pulumi.Input<inputs.databases.AclAclRule>[]>;
     /**

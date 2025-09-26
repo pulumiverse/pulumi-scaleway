@@ -1080,6 +1080,8 @@ class Instance(pulumi.CustomResource):
 
         > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
 
+        > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
+
         ## Limitations
 
         The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
@@ -1274,6 +1276,8 @@ class Instance(pulumi.CustomResource):
         ```
 
         > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
+
+        > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
 
         ## Limitations
 

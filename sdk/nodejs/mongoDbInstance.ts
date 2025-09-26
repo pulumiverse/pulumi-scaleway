@@ -78,6 +78,26 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With Snapshot Scheduling
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.mongodb.Instance("main", {
+ *     name: "test-mongodb-with-snapshots",
+ *     version: "7.0.12",
+ *     nodeType: "MGDB-PLAY2-NANO",
+ *     nodeNumber: 1,
+ *     userName: "my_initial_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     volumeSizeInGb: 5,
+ *     snapshotScheduleFrequencyHours: 24,
+ *     snapshotScheduleRetentionDays: 7,
+ *     isSnapshotScheduleEnabled: true,
+ * });
+ * ```
+ *
  * ### Restore From Snapshot
  *
  * ```typescript
@@ -138,7 +158,7 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Enable or disable automatic snapshot scheduling
+     * Whether automatic snapshot scheduling is enabled.
      */
     public readonly isSnapshotScheduleEnabled!: pulumi.Output<boolean>;
     /**
@@ -167,8 +187,6 @@ export class MongoDbInstance extends pulumi.CustomResource {
     public readonly privateNetwork!: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
-     *
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     public readonly projectId!: pulumi.Output<string>;
     /**
@@ -188,11 +206,11 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     public readonly snapshotId!: pulumi.Output<string | undefined>;
     /**
-     * Snapshot schedule frequency in hours
+     * Snapshot schedule frequency in hours.
      */
     public readonly snapshotScheduleFrequencyHours!: pulumi.Output<number>;
     /**
-     * Snapshot schedule retention in days
+     * Snapshot schedule retention in days.
      */
     public readonly snapshotScheduleRetentionDays!: pulumi.Output<number>;
     /**
@@ -309,7 +327,7 @@ export interface MongoDbInstanceState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Enable or disable automatic snapshot scheduling
+     * Whether automatic snapshot scheduling is enabled.
      */
     isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
     /**
@@ -338,8 +356,6 @@ export interface MongoDbInstanceState {
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
-     *
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -359,11 +375,11 @@ export interface MongoDbInstanceState {
      */
     snapshotId?: pulumi.Input<string>;
     /**
-     * Snapshot schedule frequency in hours
+     * Snapshot schedule frequency in hours.
      */
     snapshotScheduleFrequencyHours?: pulumi.Input<number>;
     /**
-     * Snapshot schedule retention in days
+     * Snapshot schedule retention in days.
      */
     snapshotScheduleRetentionDays?: pulumi.Input<number>;
     /**
@@ -401,7 +417,7 @@ export interface MongoDbInstanceState {
  */
 export interface MongoDbInstanceArgs {
     /**
-     * Enable or disable automatic snapshot scheduling
+     * Whether automatic snapshot scheduling is enabled.
      */
     isSnapshotScheduleEnabled?: pulumi.Input<boolean>;
     /**
@@ -430,8 +446,6 @@ export interface MongoDbInstanceArgs {
     privateNetwork?: pulumi.Input<inputs.MongoDbInstancePrivateNetwork>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
-     *
-     * > **Important** If neither privateNetwork nor publicNetwork is specified, a public network endpoint is created by default.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -451,11 +465,11 @@ export interface MongoDbInstanceArgs {
      */
     snapshotId?: pulumi.Input<string>;
     /**
-     * Snapshot schedule frequency in hours
+     * Snapshot schedule frequency in hours.
      */
     snapshotScheduleFrequencyHours?: pulumi.Input<number>;
     /**
-     * Snapshot schedule retention in days
+     * Snapshot schedule retention in days.
      */
     snapshotScheduleRetentionDays?: pulumi.Input<number>;
     /**
