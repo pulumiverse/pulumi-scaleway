@@ -176,7 +176,7 @@ require (
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
 	github.com/santhosh-tekuri/jsonschema/v5 v5.0.0 // indirect
 	github.com/scaleway/scaleway-sdk-go v1.0.0-beta.34.0.20250721082157-a9b7a7bd9686 // indirect
-	github.com/scaleway/terraform-provider-scaleway/v2 v2.60.1 // indirect
+	github.com/scaleway/terraform-provider-scaleway/v2 v2.60.2 // indirect
 	github.com/segmentio/asm v1.1.3 // indirect
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
