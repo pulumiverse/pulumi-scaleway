@@ -77,27 +77,27 @@ export class EdgeServicesRouteStage extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the route stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the route stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
      */
-    public readonly rules!: pulumi.Output<outputs.EdgeServicesRouteStageRule[] | undefined>;
+    declare public readonly rules: pulumi.Output<outputs.EdgeServicesRouteStageRule[] | undefined>;
     /**
      * The date and time of the last update of the route stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
      */
-    public readonly wafStageId!: pulumi.Output<string | undefined>;
+    declare public readonly wafStageId: pulumi.Output<string | undefined>;
 
     /**
      * Create a EdgeServicesRouteStage resource with the given unique name, arguments, and options.
@@ -112,21 +112,21 @@ export class EdgeServicesRouteStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesRouteStageState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["wafStageId"] = state ? state.wafStageId : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["rules"] = state?.rules;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["wafStageId"] = state?.wafStageId;
         } else {
             const args = argsOrState as EdgeServicesRouteStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
-            resourceInputs["wafStageId"] = args ? args.wafStageId : undefined;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["rules"] = args?.rules;
+            resourceInputs["wafStageId"] = args?.wafStageId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

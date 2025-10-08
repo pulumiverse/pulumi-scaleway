@@ -109,7 +109,7 @@ type DatabaseUser struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The Scaleway region this resource resides in.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewDatabaseUser registers a new resource with the given unique name, arguments, and options.
@@ -379,8 +379,8 @@ func (o DatabaseUserOutput) Password() pulumi.StringOutput {
 }
 
 // The Scaleway region this resource resides in.
-func (o DatabaseUserOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabaseUserOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type DatabaseUserArrayOutput struct{ *pulumi.OutputState }

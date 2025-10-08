@@ -70,7 +70,7 @@ type ServerlessDatabase struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewServerlessDatabase registers a new resource with the given unique name, arguments, and options.
@@ -292,8 +292,8 @@ func (o ServerlessDatabaseOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o ServerlessDatabaseOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ServerlessDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ServerlessDatabaseOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerlessDatabase) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type ServerlessDatabaseArrayOutput struct{ *pulumi.OutputState }

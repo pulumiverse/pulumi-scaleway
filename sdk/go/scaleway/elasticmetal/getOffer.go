@@ -56,7 +56,7 @@ type GetOfferResult struct {
 	// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
 	Stock              string  `pulumi:"stock"`
 	SubscriptionPeriod *string `pulumi:"subscriptionPeriod"`
-	Zone               string  `pulumi:"zone"`
+	Zone               *string `pulumi:"zone"`
 }
 
 func GetOfferOutput(ctx *pulumi.Context, args GetOfferOutputArgs, opts ...pulumi.InvokeOption) GetOfferResultOutput {
@@ -152,8 +152,8 @@ func (o GetOfferResultOutput) SubscriptionPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetOfferResult) *string { return v.SubscriptionPeriod }).(pulumi.StringPtrOutput)
 }
 
-func (o GetOfferResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOfferResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetOfferResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOfferResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

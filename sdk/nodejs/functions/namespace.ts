@@ -71,49 +71,49 @@ export class Namespace extends pulumi.CustomResource {
      *
      * @deprecated VPC integration is now available on all namespaces, so this field is not configurable anymore and its value will always be "true".
      */
-    public readonly activateVpcIntegration!: pulumi.Output<boolean | undefined>;
+    declare public readonly activateVpcIntegration: pulumi.Output<boolean | undefined>;
     /**
      * The description of the namespace.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The environment variables of the namespace.
      */
-    public readonly environmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly environmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The unique name of the Functions namespace.
      *
      * > **Important** Updates to the `name` argument will recreate the namespace.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID with which the namespace is associated.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The unique identifier of the project that contains the namespace.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The registry endpoint of the namespace.
      */
-    public /*out*/ readonly registryEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly registryEndpoint: pulumi.Output<string>;
     /**
      * The registry namespace ID of the namespace.
      */
-    public /*out*/ readonly registryNamespaceId!: pulumi.Output<string>;
+    declare public /*out*/ readonly registryNamespaceId: pulumi.Output<string>;
     /**
      * The secret environment variables of the namespace.
      */
-    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly secretEnvironmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The list of tags associated with the namespace.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a Namespace resource with the given unique name, arguments, and options.
@@ -128,27 +128,27 @@ export class Namespace extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NamespaceState | undefined;
-            resourceInputs["activateVpcIntegration"] = state ? state.activateVpcIntegration : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["registryEndpoint"] = state ? state.registryEndpoint : undefined;
-            resourceInputs["registryNamespaceId"] = state ? state.registryNamespaceId : undefined;
-            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["activateVpcIntegration"] = state?.activateVpcIntegration;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["environmentVariables"] = state?.environmentVariables;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["registryEndpoint"] = state?.registryEndpoint;
+            resourceInputs["registryNamespaceId"] = state?.registryNamespaceId;
+            resourceInputs["secretEnvironmentVariables"] = state?.secretEnvironmentVariables;
+            resourceInputs["tags"] = state?.tags;
         } else {
             const args = argsOrState as NamespaceArgs | undefined;
-            resourceInputs["activateVpcIntegration"] = args ? args.activateVpcIntegration : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["activateVpcIntegration"] = args?.activateVpcIntegration;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["environmentVariables"] = args?.environmentVariables;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["registryEndpoint"] = undefined /*out*/;
             resourceInputs["registryNamespaceId"] = undefined /*out*/;

@@ -92,31 +92,31 @@ export class Token extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the Cockpit Token (Format ISO 8601)
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The name of the token.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * ) The region where the Cockpit token is located.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Scopes allowed, each with default values:
      */
-    public readonly scopes!: pulumi.Output<outputs.observability.TokenScopes>;
+    declare public readonly scopes: pulumi.Output<outputs.observability.TokenScopes>;
     /**
      * The secret key of the token.
      */
-    public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly secretKey: pulumi.Output<string>;
     /**
      * The date and time of the last update of the Cockpit Token (Format ISO 8601)
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Token resource with the given unique name, arguments, and options.
@@ -131,19 +131,19 @@ export class Token extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TokenState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["scopes"] = state ? state.scopes : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["scopes"] = state?.scopes;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as TokenArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["scopes"] = args ? args.scopes : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["scopes"] = args?.scopes;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["secretKey"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

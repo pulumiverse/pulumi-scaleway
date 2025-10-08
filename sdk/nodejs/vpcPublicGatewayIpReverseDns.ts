@@ -73,15 +73,15 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
     /**
      * The Public Gateway IP ID
      */
-    public readonly gatewayIpId!: pulumi.Output<string>;
+    declare public readonly gatewayIpId: pulumi.Output<string>;
     /**
      * The reverse domain name for this IP address
      */
-    public readonly reverse!: pulumi.Output<string>;
+    declare public readonly reverse: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a VpcPublicGatewayIpReverseDns resource with the given unique name, arguments, and options.
@@ -99,20 +99,20 @@ export class VpcPublicGatewayIpReverseDns extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcPublicGatewayIpReverseDnsState | undefined;
-            resourceInputs["gatewayIpId"] = state ? state.gatewayIpId : undefined;
-            resourceInputs["reverse"] = state ? state.reverse : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["gatewayIpId"] = state?.gatewayIpId;
+            resourceInputs["reverse"] = state?.reverse;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as VpcPublicGatewayIpReverseDnsArgs | undefined;
-            if ((!args || args.gatewayIpId === undefined) && !opts.urn) {
+            if (args?.gatewayIpId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'gatewayIpId'");
             }
-            if ((!args || args.reverse === undefined) && !opts.urn) {
+            if (args?.reverse === undefined && !opts.urn) {
                 throw new Error("Missing required property 'reverse'");
             }
-            resourceInputs["gatewayIpId"] = args ? args.gatewayIpId : undefined;
-            resourceInputs["reverse"] = args ? args.reverse : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["gatewayIpId"] = args?.gatewayIpId;
+            resourceInputs["reverse"] = args?.reverse;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VpcPublicGatewayIpReverseDns.__pulumiType, name, resourceInputs, opts);

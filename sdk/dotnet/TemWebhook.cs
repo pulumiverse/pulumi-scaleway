@@ -189,7 +189,7 @@ namespace Pulumiverse.Scaleway
         /// . The region in which the webhook should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The Amazon Resource Name (ARN) of the SNS topic.

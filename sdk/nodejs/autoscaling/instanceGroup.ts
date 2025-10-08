@@ -184,43 +184,43 @@ export class InstanceGroup extends pulumi.CustomResource {
     /**
      * The specification of the minimum and maximum replicas for the Instance group, and the cooldown interval between two scaling events.
      */
-    public readonly capacities!: pulumi.Output<outputs.autoscaling.InstanceGroupCapacity[]>;
+    declare public readonly capacities: pulumi.Output<outputs.autoscaling.InstanceGroupCapacity[]>;
     /**
      * Date and time of Instance group's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
      */
-    public readonly deleteServersOnDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly deleteServersOnDestroy: pulumi.Output<boolean | undefined>;
     /**
      * The specification of the Load Balancer to link to the Instance group.
      */
-    public readonly loadBalancers!: pulumi.Output<outputs.autoscaling.InstanceGroupLoadBalancer[]>;
+    declare public readonly loadBalancers: pulumi.Output<outputs.autoscaling.InstanceGroupLoadBalancer[]>;
     /**
      * The Instance group name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the Instance group is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The tags associated with the Instance group.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The ID of the Instance template to attach to the Instance group.
      */
-    public readonly templateId!: pulumi.Output<string>;
+    declare public readonly templateId: pulumi.Output<string>;
     /**
      * Date and time of Instance group's last update (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the Instance group exists.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceGroup resource with the given unique name, arguments, and options.
@@ -235,29 +235,29 @@ export class InstanceGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceGroupState | undefined;
-            resourceInputs["capacities"] = state ? state.capacities : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deleteServersOnDestroy"] = state ? state.deleteServersOnDestroy : undefined;
-            resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["templateId"] = state ? state.templateId : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["capacities"] = state?.capacities;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deleteServersOnDestroy"] = state?.deleteServersOnDestroy;
+            resourceInputs["loadBalancers"] = state?.loadBalancers;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["templateId"] = state?.templateId;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceGroupArgs | undefined;
-            if ((!args || args.templateId === undefined) && !opts.urn) {
+            if (args?.templateId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'templateId'");
             }
-            resourceInputs["capacities"] = args ? args.capacities : undefined;
-            resourceInputs["deleteServersOnDestroy"] = args ? args.deleteServersOnDestroy : undefined;
-            resourceInputs["loadBalancers"] = args ? args.loadBalancers : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["templateId"] = args ? args.templateId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["capacities"] = args?.capacities;
+            resourceInputs["deleteServersOnDestroy"] = args?.deleteServersOnDestroy;
+            resourceInputs["loadBalancers"] = args?.loadBalancers;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["templateId"] = args?.templateId;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

@@ -94,59 +94,59 @@ export class PrivateNetwork extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the subnet.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Defines whether default v4 and v6 routes are propagated for this Private Network.
      */
-    public readonly enableDefaultRoutePropagation!: pulumi.Output<boolean>;
+    declare public readonly enableDefaultRoutePropagation: pulumi.Output<boolean>;
     /**
      * The IPv4 subnet to associate with the Private Network.
      */
-    public readonly ipv4Subnet!: pulumi.Output<outputs.network.PrivateNetworkIpv4Subnet>;
+    declare public readonly ipv4Subnet: pulumi.Output<outputs.network.PrivateNetworkIpv4Subnet>;
     /**
      * The IPv6 subnets to associate with the private network.
      */
-    public readonly ipv6Subnets!: pulumi.Output<outputs.network.PrivateNetworkIpv6Subnet[]>;
+    declare public readonly ipv6Subnets: pulumi.Output<outputs.network.PrivateNetworkIpv6Subnet[]>;
     /**
      * Private Networks are now all necessarily regional.
      *
      * @deprecated This field is deprecated and will be removed in the next major version
      */
-    public readonly isRegional!: pulumi.Output<boolean>;
+    declare public readonly isRegional: pulumi.Output<boolean>;
     /**
      * The name of the Private Network. If not provided, it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID the Private Network is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the private network is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region of the Private Network.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The tags associated with the Private Network.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the subnet.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The VPC in which to create the Private Network.
      */
-    public readonly vpcId!: pulumi.Output<string>;
+    declare public readonly vpcId: pulumi.Output<string>;
     /**
      * Use `region` instead.
      *
      * @deprecated This field is deprecated and will be removed in the next major version, please use `region` instead
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string>;
 
     /**
      * Create a PrivateNetwork resource with the given unique name, arguments, and options.
@@ -161,31 +161,31 @@ export class PrivateNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivateNetworkState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["enableDefaultRoutePropagation"] = state ? state.enableDefaultRoutePropagation : undefined;
-            resourceInputs["ipv4Subnet"] = state ? state.ipv4Subnet : undefined;
-            resourceInputs["ipv6Subnets"] = state ? state.ipv6Subnets : undefined;
-            resourceInputs["isRegional"] = state ? state.isRegional : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["enableDefaultRoutePropagation"] = state?.enableDefaultRoutePropagation;
+            resourceInputs["ipv4Subnet"] = state?.ipv4Subnet;
+            resourceInputs["ipv6Subnets"] = state?.ipv6Subnets;
+            resourceInputs["isRegional"] = state?.isRegional;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["vpcId"] = state?.vpcId;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PrivateNetworkArgs | undefined;
-            resourceInputs["enableDefaultRoutePropagation"] = args ? args.enableDefaultRoutePropagation : undefined;
-            resourceInputs["ipv4Subnet"] = args ? args.ipv4Subnet : undefined;
-            resourceInputs["ipv6Subnets"] = args ? args.ipv6Subnets : undefined;
-            resourceInputs["isRegional"] = args ? args.isRegional : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["enableDefaultRoutePropagation"] = args?.enableDefaultRoutePropagation;
+            resourceInputs["ipv4Subnet"] = args?.ipv4Subnet;
+            resourceInputs["ipv6Subnets"] = args?.ipv6Subnets;
+            resourceInputs["isRegional"] = args?.isRegional;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["vpcId"] = args?.vpcId;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

@@ -52,6 +52,7 @@ export interface GetDomainResult {
     readonly autoconfig: boolean;
     readonly createdAt: string;
     readonly dkimConfig: string;
+    readonly dkimName: string;
     readonly dmarcConfig: string;
     readonly dmarcName: string;
     readonly domainId?: string;
@@ -62,6 +63,7 @@ export interface GetDomainResult {
     readonly lastError: string;
     readonly lastValidAt: string;
     readonly mxBlackhole: string;
+    readonly mxConfig: string;
     readonly name?: string;
     readonly nextCheckAt: string;
     readonly projectId?: string;
@@ -76,6 +78,7 @@ export interface GetDomainResult {
     readonly smtpsPort: number;
     readonly smtpsPortAlternative: number;
     readonly spfConfig: string;
+    readonly spfValue: string;
     readonly status: string;
 }
 /**

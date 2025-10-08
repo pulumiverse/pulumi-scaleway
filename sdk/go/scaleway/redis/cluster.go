@@ -216,7 +216,7 @@ type Cluster struct {
 	Version pulumi.StringOutput `pulumi:"version"`
 	// `zone`) The zone in which the
 	// Redis™ cluster should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewCluster registers a new resource with the given unique name, arguments, and options.
@@ -735,8 +735,8 @@ func (o ClusterOutput) Version() pulumi.StringOutput {
 
 // `zone`) The zone in which the
 // Redis™ cluster should be created.
-func (o ClusterOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o ClusterOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ClusterArrayOutput struct{ *pulumi.OutputState }

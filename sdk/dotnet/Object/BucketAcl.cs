@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway.Object
         /// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

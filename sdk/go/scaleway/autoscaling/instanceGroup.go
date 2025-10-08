@@ -266,7 +266,7 @@ type InstanceGroup struct {
 	// Date and time of Instance group's last update (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Instance group exists.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceGroup registers a new resource with the given unique name, arguments, and options.
@@ -523,8 +523,8 @@ func (o InstanceGroupOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Instance group exists.
-func (o InstanceGroupOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceGroupOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceGroupArrayOutput struct{ *pulumi.OutputState }

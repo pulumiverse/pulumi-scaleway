@@ -107,7 +107,7 @@ type Cron struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region
 	// in which the function was created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
 	// The CRON status.
@@ -327,8 +327,8 @@ func (o CronOutput) Name() pulumi.StringOutput {
 
 // `region`) The region
 // in which the function was created.
-func (o CronOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cron) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o CronOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cron) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/functions/reference-content/cron-schedules/) for more information).

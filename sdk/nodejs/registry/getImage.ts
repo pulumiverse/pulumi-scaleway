@@ -68,7 +68,7 @@ export interface GetImageResult {
      */
     readonly organizationId: string;
     readonly projectId: string;
-    readonly region: string;
+    readonly region?: string;
     /**
      * The size of the registry image.
      */

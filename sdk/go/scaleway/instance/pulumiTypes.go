@@ -2676,6 +2676,369 @@ func (o GetServerRootVolumeArrayOutput) Index(i pulumi.IntInput) GetServerRootVo
 	}).(GetServerRootVolumeOutput)
 }
 
+type GetServerTypeCapability struct {
+	// The boot types allowed for the server type.
+	BootTypes []string `pulumi:"bootTypes"`
+	// The maximum number of file systems that can be attached on the server type.
+	MaxFileSystems int `pulumi:"maxFileSystems"`
+}
+
+// GetServerTypeCapabilityInput is an input type that accepts GetServerTypeCapabilityArgs and GetServerTypeCapabilityOutput values.
+// You can construct a concrete instance of `GetServerTypeCapabilityInput` via:
+//
+//	GetServerTypeCapabilityArgs{...}
+type GetServerTypeCapabilityInput interface {
+	pulumi.Input
+
+	ToGetServerTypeCapabilityOutput() GetServerTypeCapabilityOutput
+	ToGetServerTypeCapabilityOutputWithContext(context.Context) GetServerTypeCapabilityOutput
+}
+
+type GetServerTypeCapabilityArgs struct {
+	// The boot types allowed for the server type.
+	BootTypes pulumi.StringArrayInput `pulumi:"bootTypes"`
+	// The maximum number of file systems that can be attached on the server type.
+	MaxFileSystems pulumi.IntInput `pulumi:"maxFileSystems"`
+}
+
+func (GetServerTypeCapabilityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeCapability)(nil)).Elem()
+}
+
+func (i GetServerTypeCapabilityArgs) ToGetServerTypeCapabilityOutput() GetServerTypeCapabilityOutput {
+	return i.ToGetServerTypeCapabilityOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeCapabilityArgs) ToGetServerTypeCapabilityOutputWithContext(ctx context.Context) GetServerTypeCapabilityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeCapabilityOutput)
+}
+
+// GetServerTypeCapabilityArrayInput is an input type that accepts GetServerTypeCapabilityArray and GetServerTypeCapabilityArrayOutput values.
+// You can construct a concrete instance of `GetServerTypeCapabilityArrayInput` via:
+//
+//	GetServerTypeCapabilityArray{ GetServerTypeCapabilityArgs{...} }
+type GetServerTypeCapabilityArrayInput interface {
+	pulumi.Input
+
+	ToGetServerTypeCapabilityArrayOutput() GetServerTypeCapabilityArrayOutput
+	ToGetServerTypeCapabilityArrayOutputWithContext(context.Context) GetServerTypeCapabilityArrayOutput
+}
+
+type GetServerTypeCapabilityArray []GetServerTypeCapabilityInput
+
+func (GetServerTypeCapabilityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeCapability)(nil)).Elem()
+}
+
+func (i GetServerTypeCapabilityArray) ToGetServerTypeCapabilityArrayOutput() GetServerTypeCapabilityArrayOutput {
+	return i.ToGetServerTypeCapabilityArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeCapabilityArray) ToGetServerTypeCapabilityArrayOutputWithContext(ctx context.Context) GetServerTypeCapabilityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeCapabilityArrayOutput)
+}
+
+type GetServerTypeCapabilityOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeCapabilityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeCapability)(nil)).Elem()
+}
+
+func (o GetServerTypeCapabilityOutput) ToGetServerTypeCapabilityOutput() GetServerTypeCapabilityOutput {
+	return o
+}
+
+func (o GetServerTypeCapabilityOutput) ToGetServerTypeCapabilityOutputWithContext(ctx context.Context) GetServerTypeCapabilityOutput {
+	return o
+}
+
+// The boot types allowed for the server type.
+func (o GetServerTypeCapabilityOutput) BootTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServerTypeCapability) []string { return v.BootTypes }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of file systems that can be attached on the server type.
+func (o GetServerTypeCapabilityOutput) MaxFileSystems() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeCapability) int { return v.MaxFileSystems }).(pulumi.IntOutput)
+}
+
+type GetServerTypeCapabilityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeCapabilityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeCapability)(nil)).Elem()
+}
+
+func (o GetServerTypeCapabilityArrayOutput) ToGetServerTypeCapabilityArrayOutput() GetServerTypeCapabilityArrayOutput {
+	return o
+}
+
+func (o GetServerTypeCapabilityArrayOutput) ToGetServerTypeCapabilityArrayOutputWithContext(ctx context.Context) GetServerTypeCapabilityArrayOutput {
+	return o
+}
+
+func (o GetServerTypeCapabilityArrayOutput) Index(i pulumi.IntInput) GetServerTypeCapabilityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerTypeCapability {
+		return vs[0].([]GetServerTypeCapability)[vs[1].(int)]
+	}).(GetServerTypeCapabilityOutput)
+}
+
+type GetServerTypeNetwork struct {
+	// The block bandwidth of the server type (in bytes/second).
+	BlockBandwidth int `pulumi:"blockBandwidth"`
+	// The internal bandwidth of the server type (in bytes/second).
+	InternalBandwidth int `pulumi:"internalBandwidth"`
+	// The public bandwidth of the server type (in bytes/second).
+	PublicBandwidth int `pulumi:"publicBandwidth"`
+}
+
+// GetServerTypeNetworkInput is an input type that accepts GetServerTypeNetworkArgs and GetServerTypeNetworkOutput values.
+// You can construct a concrete instance of `GetServerTypeNetworkInput` via:
+//
+//	GetServerTypeNetworkArgs{...}
+type GetServerTypeNetworkInput interface {
+	pulumi.Input
+
+	ToGetServerTypeNetworkOutput() GetServerTypeNetworkOutput
+	ToGetServerTypeNetworkOutputWithContext(context.Context) GetServerTypeNetworkOutput
+}
+
+type GetServerTypeNetworkArgs struct {
+	// The block bandwidth of the server type (in bytes/second).
+	BlockBandwidth pulumi.IntInput `pulumi:"blockBandwidth"`
+	// The internal bandwidth of the server type (in bytes/second).
+	InternalBandwidth pulumi.IntInput `pulumi:"internalBandwidth"`
+	// The public bandwidth of the server type (in bytes/second).
+	PublicBandwidth pulumi.IntInput `pulumi:"publicBandwidth"`
+}
+
+func (GetServerTypeNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeNetwork)(nil)).Elem()
+}
+
+func (i GetServerTypeNetworkArgs) ToGetServerTypeNetworkOutput() GetServerTypeNetworkOutput {
+	return i.ToGetServerTypeNetworkOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeNetworkArgs) ToGetServerTypeNetworkOutputWithContext(ctx context.Context) GetServerTypeNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeNetworkOutput)
+}
+
+// GetServerTypeNetworkArrayInput is an input type that accepts GetServerTypeNetworkArray and GetServerTypeNetworkArrayOutput values.
+// You can construct a concrete instance of `GetServerTypeNetworkArrayInput` via:
+//
+//	GetServerTypeNetworkArray{ GetServerTypeNetworkArgs{...} }
+type GetServerTypeNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetServerTypeNetworkArrayOutput() GetServerTypeNetworkArrayOutput
+	ToGetServerTypeNetworkArrayOutputWithContext(context.Context) GetServerTypeNetworkArrayOutput
+}
+
+type GetServerTypeNetworkArray []GetServerTypeNetworkInput
+
+func (GetServerTypeNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeNetwork)(nil)).Elem()
+}
+
+func (i GetServerTypeNetworkArray) ToGetServerTypeNetworkArrayOutput() GetServerTypeNetworkArrayOutput {
+	return i.ToGetServerTypeNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeNetworkArray) ToGetServerTypeNetworkArrayOutputWithContext(ctx context.Context) GetServerTypeNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeNetworkArrayOutput)
+}
+
+type GetServerTypeNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeNetwork)(nil)).Elem()
+}
+
+func (o GetServerTypeNetworkOutput) ToGetServerTypeNetworkOutput() GetServerTypeNetworkOutput {
+	return o
+}
+
+func (o GetServerTypeNetworkOutput) ToGetServerTypeNetworkOutputWithContext(ctx context.Context) GetServerTypeNetworkOutput {
+	return o
+}
+
+// The block bandwidth of the server type (in bytes/second).
+func (o GetServerTypeNetworkOutput) BlockBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeNetwork) int { return v.BlockBandwidth }).(pulumi.IntOutput)
+}
+
+// The internal bandwidth of the server type (in bytes/second).
+func (o GetServerTypeNetworkOutput) InternalBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeNetwork) int { return v.InternalBandwidth }).(pulumi.IntOutput)
+}
+
+// The public bandwidth of the server type (in bytes/second).
+func (o GetServerTypeNetworkOutput) PublicBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeNetwork) int { return v.PublicBandwidth }).(pulumi.IntOutput)
+}
+
+type GetServerTypeNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeNetwork)(nil)).Elem()
+}
+
+func (o GetServerTypeNetworkArrayOutput) ToGetServerTypeNetworkArrayOutput() GetServerTypeNetworkArrayOutput {
+	return o
+}
+
+func (o GetServerTypeNetworkArrayOutput) ToGetServerTypeNetworkArrayOutputWithContext(ctx context.Context) GetServerTypeNetworkArrayOutput {
+	return o
+}
+
+func (o GetServerTypeNetworkArrayOutput) Index(i pulumi.IntInput) GetServerTypeNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerTypeNetwork {
+		return vs[0].([]GetServerTypeNetwork)[vs[1].(int)]
+	}).(GetServerTypeNetworkOutput)
+}
+
+type GetServerTypeVolume struct {
+	// Whether block storage is allowed on the server type.
+	BlockStorage bool `pulumi:"blockStorage"`
+	// The maximum size in bytes per local volume allowed on the server type.
+	MaxSizePerLocalVolume int `pulumi:"maxSizePerLocalVolume"`
+	// The maximum total size in bytes of volumes allowed on the server type.
+	MaxSizeTotal int `pulumi:"maxSizeTotal"`
+	// The minimum size in bytes per local volume allowed on the server type.
+	MinSizePerLocalVolume int `pulumi:"minSizePerLocalVolume"`
+	// The minimum total size in bytes of volumes allowed on the server type.
+	MinSizeTotal int `pulumi:"minSizeTotal"`
+	// The maximum size in bytes of the scratch volume allowed on the server type.
+	ScratchStorageMaxSize int `pulumi:"scratchStorageMaxSize"`
+}
+
+// GetServerTypeVolumeInput is an input type that accepts GetServerTypeVolumeArgs and GetServerTypeVolumeOutput values.
+// You can construct a concrete instance of `GetServerTypeVolumeInput` via:
+//
+//	GetServerTypeVolumeArgs{...}
+type GetServerTypeVolumeInput interface {
+	pulumi.Input
+
+	ToGetServerTypeVolumeOutput() GetServerTypeVolumeOutput
+	ToGetServerTypeVolumeOutputWithContext(context.Context) GetServerTypeVolumeOutput
+}
+
+type GetServerTypeVolumeArgs struct {
+	// Whether block storage is allowed on the server type.
+	BlockStorage pulumi.BoolInput `pulumi:"blockStorage"`
+	// The maximum size in bytes per local volume allowed on the server type.
+	MaxSizePerLocalVolume pulumi.IntInput `pulumi:"maxSizePerLocalVolume"`
+	// The maximum total size in bytes of volumes allowed on the server type.
+	MaxSizeTotal pulumi.IntInput `pulumi:"maxSizeTotal"`
+	// The minimum size in bytes per local volume allowed on the server type.
+	MinSizePerLocalVolume pulumi.IntInput `pulumi:"minSizePerLocalVolume"`
+	// The minimum total size in bytes of volumes allowed on the server type.
+	MinSizeTotal pulumi.IntInput `pulumi:"minSizeTotal"`
+	// The maximum size in bytes of the scratch volume allowed on the server type.
+	ScratchStorageMaxSize pulumi.IntInput `pulumi:"scratchStorageMaxSize"`
+}
+
+func (GetServerTypeVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeVolume)(nil)).Elem()
+}
+
+func (i GetServerTypeVolumeArgs) ToGetServerTypeVolumeOutput() GetServerTypeVolumeOutput {
+	return i.ToGetServerTypeVolumeOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeVolumeArgs) ToGetServerTypeVolumeOutputWithContext(ctx context.Context) GetServerTypeVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeVolumeOutput)
+}
+
+// GetServerTypeVolumeArrayInput is an input type that accepts GetServerTypeVolumeArray and GetServerTypeVolumeArrayOutput values.
+// You can construct a concrete instance of `GetServerTypeVolumeArrayInput` via:
+//
+//	GetServerTypeVolumeArray{ GetServerTypeVolumeArgs{...} }
+type GetServerTypeVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetServerTypeVolumeArrayOutput() GetServerTypeVolumeArrayOutput
+	ToGetServerTypeVolumeArrayOutputWithContext(context.Context) GetServerTypeVolumeArrayOutput
+}
+
+type GetServerTypeVolumeArray []GetServerTypeVolumeInput
+
+func (GetServerTypeVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeVolume)(nil)).Elem()
+}
+
+func (i GetServerTypeVolumeArray) ToGetServerTypeVolumeArrayOutput() GetServerTypeVolumeArrayOutput {
+	return i.ToGetServerTypeVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerTypeVolumeArray) ToGetServerTypeVolumeArrayOutputWithContext(ctx context.Context) GetServerTypeVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerTypeVolumeArrayOutput)
+}
+
+type GetServerTypeVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerTypeVolume)(nil)).Elem()
+}
+
+func (o GetServerTypeVolumeOutput) ToGetServerTypeVolumeOutput() GetServerTypeVolumeOutput {
+	return o
+}
+
+func (o GetServerTypeVolumeOutput) ToGetServerTypeVolumeOutputWithContext(ctx context.Context) GetServerTypeVolumeOutput {
+	return o
+}
+
+// Whether block storage is allowed on the server type.
+func (o GetServerTypeVolumeOutput) BlockStorage() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) bool { return v.BlockStorage }).(pulumi.BoolOutput)
+}
+
+// The maximum size in bytes per local volume allowed on the server type.
+func (o GetServerTypeVolumeOutput) MaxSizePerLocalVolume() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) int { return v.MaxSizePerLocalVolume }).(pulumi.IntOutput)
+}
+
+// The maximum total size in bytes of volumes allowed on the server type.
+func (o GetServerTypeVolumeOutput) MaxSizeTotal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) int { return v.MaxSizeTotal }).(pulumi.IntOutput)
+}
+
+// The minimum size in bytes per local volume allowed on the server type.
+func (o GetServerTypeVolumeOutput) MinSizePerLocalVolume() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) int { return v.MinSizePerLocalVolume }).(pulumi.IntOutput)
+}
+
+// The minimum total size in bytes of volumes allowed on the server type.
+func (o GetServerTypeVolumeOutput) MinSizeTotal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) int { return v.MinSizeTotal }).(pulumi.IntOutput)
+}
+
+// The maximum size in bytes of the scratch volume allowed on the server type.
+func (o GetServerTypeVolumeOutput) ScratchStorageMaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServerTypeVolume) int { return v.ScratchStorageMaxSize }).(pulumi.IntOutput)
+}
+
+type GetServerTypeVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerTypeVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerTypeVolume)(nil)).Elem()
+}
+
+func (o GetServerTypeVolumeArrayOutput) ToGetServerTypeVolumeArrayOutput() GetServerTypeVolumeArrayOutput {
+	return o
+}
+
+func (o GetServerTypeVolumeArrayOutput) ToGetServerTypeVolumeArrayOutputWithContext(ctx context.Context) GetServerTypeVolumeArrayOutput {
+	return o
+}
+
+func (o GetServerTypeVolumeArrayOutput) Index(i pulumi.IntInput) GetServerTypeVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerTypeVolume {
+		return vs[0].([]GetServerTypeVolume)[vs[1].(int)]
+	}).(GetServerTypeVolumeOutput)
+}
+
 type GetServersServer struct {
 	// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
 	BootType string `pulumi:"bootType"`
@@ -2726,7 +3089,7 @@ type GetServersServer struct {
 	// The commercial type of the server.
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetServersServerInput is an input type that accepts GetServersServerArgs and GetServersServerOutput values.
@@ -2790,7 +3153,7 @@ type GetServersServerArgs struct {
 	// The commercial type of the server.
 	Type pulumi.StringInput `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetServersServerArgs) ElementType() reflect.Type {
@@ -2959,8 +3322,8 @@ func (o GetServersServerOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which servers exist.
-func (o GetServersServerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersServer) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetServersServerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServersServer) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetServersServerArrayOutput struct{ *pulumi.OutputState }
@@ -3338,6 +3701,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPublicIpArrayInput)(nil)).Elem(), GetServerPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerRootVolumeInput)(nil)).Elem(), GetServerRootVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerRootVolumeArrayInput)(nil)).Elem(), GetServerRootVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeCapabilityInput)(nil)).Elem(), GetServerTypeCapabilityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeCapabilityArrayInput)(nil)).Elem(), GetServerTypeCapabilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeNetworkInput)(nil)).Elem(), GetServerTypeNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeNetworkArrayInput)(nil)).Elem(), GetServerTypeNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeVolumeInput)(nil)).Elem(), GetServerTypeVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerTypeVolumeArrayInput)(nil)).Elem(), GetServerTypeVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerInput)(nil)).Elem(), GetServersServerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerArrayInput)(nil)).Elem(), GetServersServerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServersServerPrivateIpInput)(nil)).Elem(), GetServersServerPrivateIpArgs{})
@@ -3382,6 +3751,12 @@ func init() {
 	pulumi.RegisterOutputType(GetServerPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(GetServerRootVolumeOutput{})
 	pulumi.RegisterOutputType(GetServerRootVolumeArrayOutput{})
+	pulumi.RegisterOutputType(GetServerTypeCapabilityOutput{})
+	pulumi.RegisterOutputType(GetServerTypeCapabilityArrayOutput{})
+	pulumi.RegisterOutputType(GetServerTypeNetworkOutput{})
+	pulumi.RegisterOutputType(GetServerTypeNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetServerTypeVolumeOutput{})
+	pulumi.RegisterOutputType(GetServerTypeVolumeArrayOutput{})
 	pulumi.RegisterOutputType(GetServersServerOutput{})
 	pulumi.RegisterOutputType(GetServersServerArrayOutput{})
 	pulumi.RegisterOutputType(GetServersServerPrivateIpOutput{})

@@ -64,47 +64,47 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
     /**
      * The backend stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly backendStageId!: pulumi.Output<string>;
+    declare public readonly backendStageId: pulumi.Output<string>;
     /**
      * The date and time of the creation of the cache stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The Time To Live (TTL) in seconds. Defines how long content is cached.
      */
-    public readonly fallbackTtl!: pulumi.Output<number | undefined>;
+    declare public readonly fallbackTtl: pulumi.Output<number | undefined>;
     /**
      * Defines whether responses to requests with cookies must be stored in the cache.
      */
-    public readonly includeCookies!: pulumi.Output<boolean | undefined>;
+    declare public readonly includeCookies: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the cache stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    public readonly purgeRequests!: pulumi.Output<outputs.EdgeServicesCacheStagePurgeRequest[] | undefined>;
+    declare public readonly purgeRequests: pulumi.Output<outputs.EdgeServicesCacheStagePurgeRequest[] | undefined>;
     /**
      * Trigger a refresh of the cache by changing this field's value.
      */
-    public readonly refreshCache!: pulumi.Output<string | undefined>;
+    declare public readonly refreshCache: pulumi.Output<string | undefined>;
     /**
      * The route stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly routeStageId!: pulumi.Output<string>;
+    declare public readonly routeStageId: pulumi.Output<string>;
     /**
      * The date and time of the last update of the cache stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The WAF stage ID the cache stage will be linked to. Only one of `backendStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly wafStageId!: pulumi.Output<string>;
+    declare public readonly wafStageId: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesCacheStage resource with the given unique name, arguments, and options.
@@ -119,31 +119,31 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesCacheStageState | undefined;
-            resourceInputs["backendStageId"] = state ? state.backendStageId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["fallbackTtl"] = state ? state.fallbackTtl : undefined;
-            resourceInputs["includeCookies"] = state ? state.includeCookies : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["purgeRequests"] = state ? state.purgeRequests : undefined;
-            resourceInputs["refreshCache"] = state ? state.refreshCache : undefined;
-            resourceInputs["routeStageId"] = state ? state.routeStageId : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["wafStageId"] = state ? state.wafStageId : undefined;
+            resourceInputs["backendStageId"] = state?.backendStageId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["fallbackTtl"] = state?.fallbackTtl;
+            resourceInputs["includeCookies"] = state?.includeCookies;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["purgeRequests"] = state?.purgeRequests;
+            resourceInputs["refreshCache"] = state?.refreshCache;
+            resourceInputs["routeStageId"] = state?.routeStageId;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["wafStageId"] = state?.wafStageId;
         } else {
             const args = argsOrState as EdgeServicesCacheStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["backendStageId"] = args ? args.backendStageId : undefined;
-            resourceInputs["fallbackTtl"] = args ? args.fallbackTtl : undefined;
-            resourceInputs["includeCookies"] = args ? args.includeCookies : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["purgeRequests"] = args ? args.purgeRequests : undefined;
-            resourceInputs["refreshCache"] = args ? args.refreshCache : undefined;
-            resourceInputs["routeStageId"] = args ? args.routeStageId : undefined;
-            resourceInputs["wafStageId"] = args ? args.wafStageId : undefined;
+            resourceInputs["backendStageId"] = args?.backendStageId;
+            resourceInputs["fallbackTtl"] = args?.fallbackTtl;
+            resourceInputs["includeCookies"] = args?.includeCookies;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["purgeRequests"] = args?.purgeRequests;
+            resourceInputs["refreshCache"] = args?.refreshCache;
+            resourceInputs["routeStageId"] = args?.routeStageId;
+            resourceInputs["wafStageId"] = args?.wafStageId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

@@ -92,43 +92,43 @@ export class DatabaseBackup extends pulumi.CustomResource {
     /**
      * Creation date (Format ISO 8601).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Name of the database of this backup.
      */
-    public readonly databaseName!: pulumi.Output<string>;
+    declare public readonly databaseName: pulumi.Output<string>;
     /**
      * Expiration date (Format ISO 8601).
      *
      * > **Important:** `expiresAt` cannot be removed after being set.
      */
-    public readonly expiresAt!: pulumi.Output<string | undefined>;
+    declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
      * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the backup.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * Name of the instance of the backup.
      */
-    public /*out*/ readonly instanceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly instanceName: pulumi.Output<string>;
     /**
      * Name of the database (e.g. `my-database`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `region`) The region in which the resource exists.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Size of the backup (in bytes).
      */
-    public /*out*/ readonly size!: pulumi.Output<number>;
+    declare public /*out*/ readonly size: pulumi.Output<number>;
     /**
      * Updated date (Format ISO 8601).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a DatabaseBackup resource with the given unique name, arguments, and options.
@@ -146,28 +146,28 @@ export class DatabaseBackup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseBackupState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["databaseName"] = state ? state.databaseName : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["databaseName"] = state?.databaseName;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["size"] = state?.size;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as DatabaseBackupArgs | undefined;
-            if ((!args || args.databaseName === undefined) && !opts.urn) {
+            if (args?.databaseName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'databaseName'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["databaseName"] = args ? args.databaseName : undefined;
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["databaseName"] = args?.databaseName;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["instanceName"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;

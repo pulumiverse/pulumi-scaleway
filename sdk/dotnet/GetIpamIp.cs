@@ -525,11 +525,11 @@ namespace Pulumiverse.Scaleway
         public readonly string OrganizationId;
         public readonly string? PrivateNetworkId;
         public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? Region;
         public readonly Outputs.GetIpamIpResourceResult? Resource;
         public readonly ImmutableArray<string> Tags;
         public readonly string? Type;
-        public readonly string Zonal;
+        public readonly string? Zonal;
 
         [OutputConstructor]
         private GetIpamIpResult(
@@ -551,7 +551,7 @@ namespace Pulumiverse.Scaleway
 
             string projectId,
 
-            string region,
+            string? region,
 
             Outputs.GetIpamIpResourceResult? resource,
 
@@ -559,7 +559,7 @@ namespace Pulumiverse.Scaleway
 
             string? type,
 
-            string zonal)
+            string? zonal)
         {
             Address = address;
             AddressCidr = addressCidr;

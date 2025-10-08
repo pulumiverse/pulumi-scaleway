@@ -64,7 +64,7 @@ type PlacementGroup struct {
 	// A list of tags to apply to the placement group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the placement group should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPlacementGroup registers a new resource with the given unique name, arguments, and options.
@@ -298,8 +298,8 @@ func (o PlacementGroupOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the placement group should be created.
-func (o PlacementGroupOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PlacementGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PlacementGroupOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PlacementGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PlacementGroupArrayOutput struct{ *pulumi.OutputState }

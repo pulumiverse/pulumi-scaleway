@@ -235,7 +235,7 @@ type Ip struct {
 	// `projectId`) The ID of the Project the IP is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the IP.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The IP resource.
 	Resources IpResourceArrayOutput `pulumi:"resources"`
 	// The reverse DNS for this IP.
@@ -494,8 +494,8 @@ func (o IpOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the IP.
-func (o IpOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o IpOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Ip) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The IP resource.

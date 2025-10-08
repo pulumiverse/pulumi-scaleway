@@ -354,7 +354,7 @@ namespace Pulumiverse.Scaleway
         /// (Defaults to provider `region`) The region in which the container was created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)

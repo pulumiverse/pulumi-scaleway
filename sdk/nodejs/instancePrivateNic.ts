@@ -121,35 +121,35 @@ export class InstancePrivateNic extends pulumi.CustomResource {
     /**
      * IPAM ip list, should be for internal use only
      */
-    public readonly ipIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipIds: pulumi.Output<string[] | undefined>;
     /**
      * IPAM IDs of a pre-reserved IP addresses to assign to the Instance in the requested private network.
      */
-    public readonly ipamIpIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipamIpIds: pulumi.Output<string[] | undefined>;
     /**
      * The MAC address of the private NIC.
      */
-    public /*out*/ readonly macAddress!: pulumi.Output<string>;
+    declare public /*out*/ readonly macAddress: pulumi.Output<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.InstancePrivateNicPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.InstancePrivateNicPrivateIp[]>;
     /**
      * The ID of the private network attached to.
      */
-    public readonly privateNetworkId!: pulumi.Output<string>;
+    declare public readonly privateNetworkId: pulumi.Output<string>;
     /**
      * The ID of the server associated with.
      */
-    public readonly serverId!: pulumi.Output<string>;
+    declare public readonly serverId: pulumi.Output<string>;
     /**
      * The tags associated with the private NIC.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * `zone`) The zone in which the server must be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstancePrivateNic resource with the given unique name, arguments, and options.
@@ -167,29 +167,29 @@ export class InstancePrivateNic extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstancePrivateNicState | undefined;
-            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
-            resourceInputs["ipamIpIds"] = state ? state.ipamIpIds : undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipIds"] = state?.ipIds;
+            resourceInputs["ipamIpIds"] = state?.ipamIpIds;
+            resourceInputs["macAddress"] = state?.macAddress;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstancePrivateNicArgs | undefined;
-            if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
+            if (args?.privateNetworkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateNetworkId'");
             }
-            if ((!args || args.serverId === undefined) && !opts.urn) {
+            if (args?.serverId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serverId'");
             }
-            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
-            resourceInputs["ipamIpIds"] = args ? args.ipamIpIds : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            resourceInputs["serverId"] = args ? args.serverId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipIds"] = args?.ipIds;
+            resourceInputs["ipamIpIds"] = args?.ipamIpIds;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworkId"] = args?.privateNetworkId;
+            resourceInputs["serverId"] = args?.serverId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["macAddress"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

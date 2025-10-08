@@ -73,7 +73,7 @@ export interface GetFrontendsResult {
     readonly name?: string;
     readonly organizationId: string;
     readonly projectId: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about multiple Load Balancer frontends.

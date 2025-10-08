@@ -143,7 +143,7 @@ type ContainerDomain struct {
 	// The hostname with a CNAME record.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// `region`) The region in which the container exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The URL used to query the container.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -326,8 +326,8 @@ func (o ContainerDomainOutput) Hostname() pulumi.StringOutput {
 }
 
 // `region`) The region in which the container exists.
-func (o ContainerDomainOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ContainerDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ContainerDomainOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerDomain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The URL used to query the container.

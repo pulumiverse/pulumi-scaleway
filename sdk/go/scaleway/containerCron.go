@@ -96,7 +96,7 @@ type ContainerCron struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Defaults to provider `region`) The region
 	// in which the CRON trigger is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
 	// The CRON status.
@@ -310,8 +310,8 @@ func (o ContainerCronOutput) Name() pulumi.StringOutput {
 
 // (Defaults to provider `region`) The region
 // in which the CRON trigger is created.
-func (o ContainerCronOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ContainerCron) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ContainerCronOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerCron) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).

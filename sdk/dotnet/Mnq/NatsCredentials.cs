@@ -76,7 +76,7 @@ namespace Pulumiverse.Scaleway.Mnq
         /// in which the account exists.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

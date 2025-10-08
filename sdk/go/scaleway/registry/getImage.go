@@ -48,9 +48,9 @@ type GetImageResult struct {
 	Name        *string `pulumi:"name"`
 	NamespaceId string  `pulumi:"namespaceId"`
 	// The organization ID the image is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	Region         string `pulumi:"region"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      string  `pulumi:"projectId"`
+	Region         *string `pulumi:"region"`
 	// The size of the registry image.
 	Size int `pulumi:"size"`
 	// The tags associated with the registry image
@@ -133,8 +133,8 @@ func (o GetImageResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetImageResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetImageResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetImageResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the registry image.

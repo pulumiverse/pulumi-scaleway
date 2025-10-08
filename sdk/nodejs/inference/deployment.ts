@@ -53,75 +53,75 @@ export class Deployment extends pulumi.CustomResource {
     /**
      * Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
      */
-    public readonly acceptEula!: pulumi.Output<boolean | undefined>;
+    declare public readonly acceptEula: pulumi.Output<boolean | undefined>;
     /**
      * The date and time of the creation of the deployment.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The maximum size of the pool.
      */
-    public readonly maxSize!: pulumi.Output<number | undefined>;
+    declare public readonly maxSize: pulumi.Output<number | undefined>;
     /**
      * The minimum size of the pool.
      */
-    public readonly minSize!: pulumi.Output<number | undefined>;
+    declare public readonly minSize: pulumi.Output<number | undefined>;
     /**
      * The model id used for the deployment.
      */
-    public readonly modelId!: pulumi.Output<string>;
+    declare public readonly modelId: pulumi.Output<string>;
     /**
      * The model name used for the deployment. Model names can be found in Console or using Scaleway's CLI (`scw inference model list`)
      */
-    public /*out*/ readonly modelName!: pulumi.Output<string>;
+    declare public /*out*/ readonly modelName: pulumi.Output<string>;
     /**
      * The deployment name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The node type to use for the deployment. Node types can be found using Scaleway's CLI (`scw inference node-type list`)
      */
-    public readonly nodeType!: pulumi.Output<string>;
+    declare public readonly nodeType: pulumi.Output<string>;
     /**
      * Configuration of the deployment's private endpoint.
      */
-    public readonly privateEndpoint!: pulumi.Output<outputs.inference.DeploymentPrivateEndpoint | undefined>;
+    declare public readonly privateEndpoint: pulumi.Output<outputs.inference.DeploymentPrivateEndpoint | undefined>;
     /**
      * The private IPv4 address associated with the deployment.
      */
-    public readonly privateIps!: pulumi.Output<outputs.inference.DeploymentPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.inference.DeploymentPrivateIp[]>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Configuration of the deployment's public endpoint.
      */
-    public readonly publicEndpoint!: pulumi.Output<outputs.inference.DeploymentPublicEndpoint | undefined>;
+    declare public readonly publicEndpoint: pulumi.Output<outputs.inference.DeploymentPublicEndpoint | undefined>;
     /**
      * The number of bits each model parameter should be quantized to
      */
-    public readonly quantization!: pulumi.Output<number | undefined>;
+    declare public readonly quantization: pulumi.Output<number | undefined>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The size of the pool.
      */
-    public /*out*/ readonly size!: pulumi.Output<number>;
+    declare public /*out*/ readonly size: pulumi.Output<number>;
     /**
      * The status of the deployment.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the deployment.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the deployment.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Deployment resource with the given unique name, arguments, and options.
@@ -136,45 +136,45 @@ export class Deployment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeploymentState | undefined;
-            resourceInputs["acceptEula"] = state ? state.acceptEula : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["maxSize"] = state ? state.maxSize : undefined;
-            resourceInputs["minSize"] = state ? state.minSize : undefined;
-            resourceInputs["modelId"] = state ? state.modelId : undefined;
-            resourceInputs["modelName"] = state ? state.modelName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["privateEndpoint"] = state ? state.privateEndpoint : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicEndpoint"] = state ? state.publicEndpoint : undefined;
-            resourceInputs["quantization"] = state ? state.quantization : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["acceptEula"] = state?.acceptEula;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["maxSize"] = state?.maxSize;
+            resourceInputs["minSize"] = state?.minSize;
+            resourceInputs["modelId"] = state?.modelId;
+            resourceInputs["modelName"] = state?.modelName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["privateEndpoint"] = state?.privateEndpoint;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicEndpoint"] = state?.publicEndpoint;
+            resourceInputs["quantization"] = state?.quantization;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["size"] = state?.size;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as DeploymentArgs | undefined;
-            if ((!args || args.modelId === undefined) && !opts.urn) {
+            if (args?.modelId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'modelId'");
             }
-            if ((!args || args.nodeType === undefined) && !opts.urn) {
+            if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            resourceInputs["acceptEula"] = args ? args.acceptEula : undefined;
-            resourceInputs["maxSize"] = args ? args.maxSize : undefined;
-            resourceInputs["minSize"] = args ? args.minSize : undefined;
-            resourceInputs["modelId"] = args ? args.modelId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
-            resourceInputs["privateEndpoint"] = args ? args.privateEndpoint : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["publicEndpoint"] = args ? args.publicEndpoint : undefined;
-            resourceInputs["quantization"] = args ? args.quantization : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["acceptEula"] = args?.acceptEula;
+            resourceInputs["maxSize"] = args?.maxSize;
+            resourceInputs["minSize"] = args?.minSize;
+            resourceInputs["modelId"] = args?.modelId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodeType"] = args?.nodeType;
+            resourceInputs["privateEndpoint"] = args?.privateEndpoint;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicEndpoint"] = args?.publicEndpoint;
+            resourceInputs["quantization"] = args?.quantization;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["modelName"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;

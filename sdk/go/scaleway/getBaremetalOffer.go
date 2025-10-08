@@ -58,7 +58,7 @@ type GetBaremetalOfferResult struct {
 	// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
 	Stock              string  `pulumi:"stock"`
 	SubscriptionPeriod *string `pulumi:"subscriptionPeriod"`
-	Zone               string  `pulumi:"zone"`
+	Zone               *string `pulumi:"zone"`
 }
 
 func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOfferResultOutput {
@@ -154,8 +154,8 @@ func (o GetBaremetalOfferResultOutput) SubscriptionPeriod() pulumi.StringPtrOutp
 	return o.ApplyT(func(v GetBaremetalOfferResult) *string { return v.SubscriptionPeriod }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBaremetalOfferResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOfferResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetBaremetalOfferResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBaremetalOfferResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

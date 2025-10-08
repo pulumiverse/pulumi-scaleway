@@ -84,7 +84,7 @@ type ContainerNamespace struct {
 	// `projectId`) The unique identifier of the project that contains the namespace.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The registry endpoint of the namespace.
 	RegistryEndpoint pulumi.StringOutput `pulumi:"registryEndpoint"`
 	// The registry namespace ID of the namespace.
@@ -395,8 +395,8 @@ func (o ContainerNamespaceOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the namespace is created.
-func (o ContainerNamespaceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ContainerNamespaceOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ContainerNamespace) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The registry endpoint of the namespace.

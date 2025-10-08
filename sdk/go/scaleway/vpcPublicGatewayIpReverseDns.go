@@ -77,7 +77,7 @@ type VpcPublicGatewayIpReverseDns struct {
 	// The reverse domain name for this IP address
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// `zone`) The zone in which the IP should be reserved.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewVpcPublicGatewayIpReverseDns registers a new resource with the given unique name, arguments, and options.
@@ -254,8 +254,8 @@ func (o VpcPublicGatewayIpReverseDnsOutput) Reverse() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the IP should be reserved.
-func (o VpcPublicGatewayIpReverseDnsOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *VpcPublicGatewayIpReverseDns) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o VpcPublicGatewayIpReverseDnsOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayIpReverseDns) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type VpcPublicGatewayIpReverseDnsArrayOutput struct{ *pulumi.OutputState }

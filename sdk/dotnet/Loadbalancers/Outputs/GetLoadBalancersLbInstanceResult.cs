@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// <summary>
         /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLoadBalancersLbInstanceResult(
@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
 
             string updatedAt,
 
-            string zone)
+            string? zone)
         {
             CreatedAt = createdAt;
             Id = id;

@@ -58,7 +58,7 @@ type InferenceDeployment struct {
 	// The number of bits each model parameter should be quantized to
 	Quantization pulumi.IntPtrOutput `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the pool.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The status of the deployment.
@@ -398,8 +398,8 @@ func (o InferenceDeploymentOutput) Quantization() pulumi.IntPtrOutput {
 }
 
 // `region`) The region in which the deployment is created.
-func (o InferenceDeploymentOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o InferenceDeploymentOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InferenceDeployment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the pool.

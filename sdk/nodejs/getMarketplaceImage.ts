@@ -63,7 +63,7 @@ export interface GetMarketplaceImageResult {
     readonly imageType?: string;
     readonly instanceType?: string;
     readonly label: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets local image ID of an image from its label name.

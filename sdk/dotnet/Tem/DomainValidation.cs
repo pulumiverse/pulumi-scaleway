@@ -52,7 +52,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.

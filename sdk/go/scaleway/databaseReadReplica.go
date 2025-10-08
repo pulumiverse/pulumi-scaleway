@@ -179,7 +179,7 @@ type DatabaseReadReplica struct {
 	PrivateNetwork DatabaseReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Read Replica should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
 }
@@ -391,8 +391,8 @@ func (o DatabaseReadReplicaOutput) PrivateNetwork() DatabaseReadReplicaPrivateNe
 
 // `region`) The region
 // in which the Read Replica should be created.
-func (o DatabaseReadReplicaOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabaseReadReplicaOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseReadReplica) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Defines whether to create the replica in the same availability zone as the main instance nodes or not.

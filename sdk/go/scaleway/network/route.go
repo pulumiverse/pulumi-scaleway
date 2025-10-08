@@ -207,7 +207,7 @@ type Route struct {
 	// The ID of the nexthop resource.
 	NexthopResourceId pulumi.StringPtrOutput `pulumi:"nexthopResourceId"`
 	// `region`) The region of the route.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The tags to associate with the route.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the creation of the route (RFC 3339 format).
@@ -448,8 +448,8 @@ func (o RouteOutput) NexthopResourceId() pulumi.StringPtrOutput {
 }
 
 // `region`) The region of the route.
-func (o RouteOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Route) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o RouteOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Route) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The tags to associate with the route.

@@ -57,35 +57,35 @@ export class PlacementGroup extends pulumi.CustomResource {
     /**
      * The name of the placement group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the placement group is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
      */
-    public readonly policyMode!: pulumi.Output<string | undefined>;
+    declare public readonly policyMode: pulumi.Output<string | undefined>;
     /**
      * Is true when the policy is respected.
      */
-    public /*out*/ readonly policyRespected!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly policyRespected: pulumi.Output<boolean>;
     /**
      * The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `lowLatency` or `maxAvailability`.
      */
-    public readonly policyType!: pulumi.Output<string | undefined>;
+    declare public readonly policyType: pulumi.Output<string | undefined>;
     /**
      * `projectId`) The ID of the project the placement group is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * A list of tags to apply to the placement group.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * `zone`) The zone in which the placement group should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a PlacementGroup resource with the given unique name, arguments, and options.
@@ -100,22 +100,22 @@ export class PlacementGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PlacementGroupState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["policyMode"] = state ? state.policyMode : undefined;
-            resourceInputs["policyRespected"] = state ? state.policyRespected : undefined;
-            resourceInputs["policyType"] = state ? state.policyType : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["policyMode"] = state?.policyMode;
+            resourceInputs["policyRespected"] = state?.policyRespected;
+            resourceInputs["policyType"] = state?.policyType;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PlacementGroupArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["policyMode"] = args ? args.policyMode : undefined;
-            resourceInputs["policyType"] = args ? args.policyType : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["policyMode"] = args?.policyMode;
+            resourceInputs["policyType"] = args?.policyType;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["policyRespected"] = undefined /*out*/;
         }

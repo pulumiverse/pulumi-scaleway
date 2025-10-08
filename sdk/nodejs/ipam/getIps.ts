@@ -141,7 +141,7 @@ export interface GetIpsResult {
     /**
      * The region of the IP.
      */
-    readonly region: string;
+    readonly region?: string;
     /**
      * The list of public IPs attached to the resource.
      */
@@ -154,7 +154,7 @@ export interface GetIpsResult {
      * The type of resource.
      */
     readonly type?: string;
-    readonly zonal: string;
+    readonly zonal?: string;
 }
 /**
  * Gets information about multiple IP addresses managed by Scaleway's IP Address Management (IPAM) service.

@@ -6,5 +6,5 @@ import (
 )
 
 func NewProvider() plugin.ProviderFunc {
-	return scaleway.Provider(scaleway.DefaultConfig())
+	return scaleway.SDKProvider(scaleway.DefaultConfig())
 }

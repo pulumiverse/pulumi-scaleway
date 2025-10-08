@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway.Network
         public readonly string? NexthopPrivateNetworkId;
         public readonly string? NexthopResourceId;
         public readonly string? NexthopResourceType;
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// List of retrieved routes
         /// </summary>
@@ -176,7 +176,7 @@ namespace Pulumiverse.Scaleway.Network
 
             string? nexthopResourceType,
 
-            string region,
+            string? region,
 
             ImmutableArray<Outputs.GetRoutesRouteResult> routes,
 

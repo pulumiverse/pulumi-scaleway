@@ -28,35 +28,35 @@ export class Provider extends pulumi.ProviderResource {
     /**
      * The Scaleway access key.
      */
-    public readonly accessKey!: pulumi.Output<string | undefined>;
+    declare public readonly accessKey: pulumi.Output<string | undefined>;
     /**
      * The Scaleway API URL to use.
      */
-    public readonly apiUrl!: pulumi.Output<string | undefined>;
+    declare public readonly apiUrl: pulumi.Output<string | undefined>;
     /**
      * The Scaleway organization ID.
      */
-    public readonly organizationId!: pulumi.Output<string | undefined>;
+    declare public readonly organizationId: pulumi.Output<string | undefined>;
     /**
      * The Scaleway profile to use.
      */
-    public readonly profile!: pulumi.Output<string | undefined>;
+    declare public readonly profile: pulumi.Output<string | undefined>;
     /**
      * The Scaleway project ID.
      */
-    public readonly projectId!: pulumi.Output<string | undefined>;
+    declare public readonly projectId: pulumi.Output<string | undefined>;
     /**
      * The region you want to attach the resource to
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The Scaleway secret Key.
      */
-    public readonly secretKey!: pulumi.Output<string | undefined>;
+    declare public readonly secretKey: pulumi.Output<string | undefined>;
     /**
      * The zone you want to attach the resource to
      */
-    public readonly zone!: pulumi.Output<string | undefined>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -69,14 +69,14 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            resourceInputs["accessKey"] = (args ? args.accessKey : undefined) ?? utilities.getEnv("SCW_ACCESS_KEY");
-            resourceInputs["apiUrl"] = args ? args.apiUrl : undefined;
-            resourceInputs["organizationId"] = (args ? args.organizationId : undefined) ?? utilities.getEnv("SCW_ORGANIZATION_ID");
-            resourceInputs["profile"] = args ? args.profile : undefined;
-            resourceInputs["projectId"] = (args ? args.projectId : undefined) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
-            resourceInputs["region"] = (args ? args.region : undefined) ?? utilities.getEnv("SCW_DEFAULT_REGION");
-            resourceInputs["secretKey"] = (args ? args.secretKey : undefined) ?? utilities.getEnv("SCW_SECRET_KEY");
-            resourceInputs["zone"] = (args ? args.zone : undefined) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
+            resourceInputs["accessKey"] = (args?.accessKey) ?? utilities.getEnv("SCW_ACCESS_KEY");
+            resourceInputs["apiUrl"] = args?.apiUrl;
+            resourceInputs["organizationId"] = (args?.organizationId) ?? utilities.getEnv("SCW_ORGANIZATION_ID");
+            resourceInputs["profile"] = args?.profile;
+            resourceInputs["projectId"] = (args?.projectId) ?? utilities.getEnv("SCW_DEFAULT_PROJECT_ID");
+            resourceInputs["region"] = (args?.region) ?? utilities.getEnv("SCW_DEFAULT_REGION");
+            resourceInputs["secretKey"] = (args?.secretKey) ?? utilities.getEnv("SCW_SECRET_KEY");
+            resourceInputs["zone"] = (args?.zone) ?? utilities.getEnv("SCW_DEFAULT_ZONE");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);

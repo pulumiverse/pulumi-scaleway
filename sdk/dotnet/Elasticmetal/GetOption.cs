@@ -179,7 +179,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         public readonly string? Name;
         public readonly string? OptionId;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetOptionResult(
@@ -191,7 +191,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string? optionId,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Manageable = manageable;

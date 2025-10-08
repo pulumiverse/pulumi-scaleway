@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `region`) The region of the Private Network.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the Private Network.

@@ -22775,7 +22775,7 @@ type GetFlexibleIpsIpMacAddress struct {
 	// The date on which the flexible IP was last updated (RFC 3339 format).
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which IPs exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetFlexibleIpsIpMacAddressInput is an input type that accepts GetFlexibleIpsIpMacAddressArgs and GetFlexibleIpsIpMacAddressOutput values.
@@ -22803,7 +22803,7 @@ type GetFlexibleIpsIpMacAddressArgs struct {
 	// The date on which the flexible IP was last updated (RFC 3339 format).
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which IPs exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetFlexibleIpsIpMacAddressArgs) ElementType() reflect.Type {
@@ -22888,8 +22888,8 @@ func (o GetFlexibleIpsIpMacAddressOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which IPs exist.
-func (o GetFlexibleIpsIpMacAddressOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetFlexibleIpsIpMacAddressOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlexibleIpsIpMacAddress) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetFlexibleIpsIpMacAddressArrayOutput struct{ *pulumi.OutputState }
@@ -23905,7 +23905,7 @@ type GetInstanceServersServer struct {
 	// The commercial type of the server.
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetInstanceServersServerInput is an input type that accepts GetInstanceServersServerArgs and GetInstanceServersServerOutput values.
@@ -23969,7 +23969,7 @@ type GetInstanceServersServerArgs struct {
 	// The commercial type of the server.
 	Type pulumi.StringInput `pulumi:"type"`
 	// `zone`) The zone in which servers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetInstanceServersServerArgs) ElementType() reflect.Type {
@@ -24138,8 +24138,8 @@ func (o GetInstanceServersServerOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which servers exist.
-func (o GetInstanceServersServerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetInstanceServersServerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstanceServersServer) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetInstanceServersServerArrayOutput struct{ *pulumi.OutputState }
@@ -28497,7 +28497,7 @@ type GetLbIpsIp struct {
 	// List of tags used as filter. IPs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLbIpsIpInput is an input type that accepts GetLbIpsIpArgs and GetLbIpsIpOutput values.
@@ -28527,7 +28527,7 @@ type GetLbIpsIpArgs struct {
 	// List of tags used as filter. IPs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLbIpsIpArgs) ElementType() reflect.Type {
@@ -28617,8 +28617,8 @@ func (o GetLbIpsIpOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the IPs exist.
-func (o GetLbIpsIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbIpsIp) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbIpsIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbIpsIp) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLbIpsIpArrayOutput struct{ *pulumi.OutputState }
@@ -28839,7 +28839,7 @@ type GetLbsLb struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLbsLbInput is an input type that accepts GetLbsLbArgs and GetLbsLbOutput values.
@@ -28891,7 +28891,7 @@ type GetLbsLbArgs struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLbsLbArgs) ElementType() reflect.Type {
@@ -29036,8 +29036,8 @@ func (o GetLbsLbOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLbsLbOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbsLb) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbsLbOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbsLb) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLbsLbArrayOutput struct{ *pulumi.OutputState }
@@ -29072,7 +29072,7 @@ type GetLbsLbInstance struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLbsLbInstanceInput is an input type that accepts GetLbsLbInstanceArgs and GetLbsLbInstanceOutput values.
@@ -29098,7 +29098,7 @@ type GetLbsLbInstanceArgs struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLbsLbInstanceArgs) ElementType() reflect.Type {
@@ -29178,8 +29178,8 @@ func (o GetLbsLbInstanceOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLbsLbInstanceOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbsLbInstance) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbsLbInstanceOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbsLbInstance) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLbsLbInstanceArrayOutput struct{ *pulumi.OutputState }
@@ -29216,7 +29216,7 @@ type GetLbsLbIp struct {
 	// Reverse DNS attached to the IP
 	Reverse string `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLbsLbIpInput is an input type that accepts GetLbsLbIpArgs and GetLbsLbIpOutput values.
@@ -29244,7 +29244,7 @@ type GetLbsLbIpArgs struct {
 	// Reverse DNS attached to the IP
 	Reverse pulumi.StringInput `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLbsLbIpArgs) ElementType() reflect.Type {
@@ -29329,8 +29329,8 @@ func (o GetLbsLbIpOutput) Reverse() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLbsLbIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbsLbIp) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbsLbIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbsLbIp) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLbsLbIpArrayOutput struct{ *pulumi.OutputState }
@@ -32157,7 +32157,7 @@ type GetVpcRoutesRoute struct {
 	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
 	NexthopResourceType string `pulumi:"nexthopResourceType"`
 	// `region`). The region in which the routes exist.
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// List of tags to filter for. routes with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// The VPC ID to filter for. routes with a similar VPC ID are listed.
@@ -32196,7 +32196,7 @@ type GetVpcRoutesRouteArgs struct {
 	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
 	NexthopResourceType pulumi.StringInput `pulumi:"nexthopResourceType"`
 	// `region`). The region in which the routes exist.
-	Region pulumi.StringInput `pulumi:"region"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// List of tags to filter for. routes with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The VPC ID to filter for. routes with a similar VPC ID are listed.
@@ -32301,8 +32301,8 @@ func (o GetVpcRoutesRouteOutput) NexthopResourceType() pulumi.StringOutput {
 }
 
 // `region`). The region in which the routes exist.
-func (o GetVpcRoutesRouteOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpcRoutesRoute) string { return v.Region }).(pulumi.StringOutput)
+func (o GetVpcRoutesRouteOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpcRoutesRoute) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of tags to filter for. routes with these exact tags are listed.
@@ -32350,7 +32350,7 @@ type GetVpcsVpc struct {
 	// The ID of the Project the VPC is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// `region`). The region in which the VPCs exist.
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// Date on which the VPC was last updated (RFC 3339 format)
@@ -32383,7 +32383,7 @@ type GetVpcsVpcArgs struct {
 	// The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// `region`). The region in which the VPCs exist.
-	Region pulumi.StringInput `pulumi:"region"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// Date on which the VPC was last updated (RFC 3339 format)
@@ -32473,8 +32473,8 @@ func (o GetVpcsVpcOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the VPCs exist.
-func (o GetVpcsVpcOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
+func (o GetVpcsVpcOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpcsVpc) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of tags to filter for. VPCs with these exact tags are listed.

@@ -72,9 +72,9 @@ type GetOfferSubscriptionResult struct {
 	// The maximum number of webhooks that can be associated with the offer subscription per domain.
 	MaxWebhooksPerDomain int `pulumi:"maxWebhooksPerDomain"`
 	// The name of the offer associated with the subscription (e.g., `scale`).
-	OfferName string `pulumi:"offerName"`
-	ProjectId string `pulumi:"projectId"`
-	Region    string `pulumi:"region"`
+	OfferName string  `pulumi:"offerName"`
+	ProjectId string  `pulumi:"projectId"`
+	Region    *string `pulumi:"region"`
 	// The Service Level Agreement (SLA) percentage of the offer subscription.
 	Sla float64 `pulumi:"sla"`
 	// The date and time of the subscription.
@@ -161,8 +161,8 @@ func (o GetOfferSubscriptionResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetOfferSubscriptionResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOfferSubscriptionResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetOfferSubscriptionResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOfferSubscriptionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The Service Level Agreement (SLA) percentage of the offer subscription.

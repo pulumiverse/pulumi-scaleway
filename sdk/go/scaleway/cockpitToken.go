@@ -118,7 +118,7 @@ type CockpitToken struct {
 	// ) The ID of the Project the Cockpit is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// ) The region where the Cockpit token is located.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Scopes allowed, each with default values:
 	Scopes CockpitTokenScopesOutput `pulumi:"scopes"`
 	// The secret key of the token.
@@ -324,8 +324,8 @@ func (o CockpitTokenOutput) ProjectId() pulumi.StringOutput {
 }
 
 // ) The region where the Cockpit token is located.
-func (o CockpitTokenOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *CockpitToken) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o CockpitTokenOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CockpitToken) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Scopes allowed, each with default values:

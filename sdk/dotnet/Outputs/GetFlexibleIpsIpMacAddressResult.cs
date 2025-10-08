@@ -41,7 +41,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// `zone`) The zone in which IPs exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetFlexibleIpsIpMacAddressResult(
@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string updatedAt,
 
-            string zone)
+            string? zone)
         {
             CreatedAt = createdAt;
             Id = id;

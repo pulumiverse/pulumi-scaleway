@@ -93,49 +93,49 @@ export class IamApiKey extends pulumi.CustomResource {
     /**
      * The access key of the IAM API key.
      */
-    public /*out*/ readonly accessKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessKey: pulumi.Output<string>;
     /**
      * ID of the application attached to the API key.
      */
-    public readonly applicationId!: pulumi.Output<string | undefined>;
+    declare public readonly applicationId: pulumi.Output<string | undefined>;
     /**
      * The date and time of the creation of the IAM API key.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The IP Address of the device which created the API key.
      */
-    public /*out*/ readonly creationIp!: pulumi.Output<string>;
+    declare public /*out*/ readonly creationIp: pulumi.Output<string>;
     /**
      * The default Project ID to use with Object Storage.
      */
-    public readonly defaultProjectId!: pulumi.Output<string>;
+    declare public readonly defaultProjectId: pulumi.Output<string>;
     /**
      * The description of the API key.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Whether the IAM API key is editable.
      */
-    public /*out*/ readonly editable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly editable: pulumi.Output<boolean>;
     /**
      * The date and time of the expiration of the IAM API key. Please note that in case of any changes,
      * the resource will be recreated.
      */
-    public readonly expiresAt!: pulumi.Output<string | undefined>;
+    declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
      * The secret Key of the IAM API key.
      */
-    public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly secretKey: pulumi.Output<string>;
     /**
      * The date and time of the last update of the IAM API key.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * ID of the user attached to the API key.
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    public readonly userId!: pulumi.Output<string | undefined>;
+    declare public readonly userId: pulumi.Output<string | undefined>;
 
     /**
      * Create a IamApiKey resource with the given unique name, arguments, and options.
@@ -153,24 +153,24 @@ export class IamApiKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IamApiKeyState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["applicationId"] = state ? state.applicationId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["creationIp"] = state ? state.creationIp : undefined;
-            resourceInputs["defaultProjectId"] = state ? state.defaultProjectId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["editable"] = state ? state.editable : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["applicationId"] = state?.applicationId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["creationIp"] = state?.creationIp;
+            resourceInputs["defaultProjectId"] = state?.defaultProjectId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["editable"] = state?.editable;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as IamApiKeyArgs | undefined;
-            resourceInputs["applicationId"] = args ? args.applicationId : undefined;
-            resourceInputs["defaultProjectId"] = args ? args.defaultProjectId : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["applicationId"] = args?.applicationId;
+            resourceInputs["defaultProjectId"] = args?.defaultProjectId;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["userId"] = args?.userId;
             resourceInputs["accessKey"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["creationIp"] = undefined /*out*/;

@@ -76,85 +76,85 @@ export class Webhosting extends pulumi.CustomResource {
     /**
      * The URL to connect to cPanel Dashboard and to Webmail interface.
      */
-    public /*out*/ readonly cpanelUrls!: pulumi.Output<outputs.WebhostingCpanelUrl[]>;
+    declare public /*out*/ readonly cpanelUrls: pulumi.Output<outputs.WebhostingCpanelUrl[]>;
     /**
      * Date and time of hosting's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The DNS status of the hosting.
      */
-    public /*out*/ readonly dnsStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly dnsStatus: pulumi.Output<string>;
     /**
      * The domain name of the hosting.
      */
-    public readonly domain!: pulumi.Output<string>;
+    declare public readonly domain: pulumi.Output<string>;
     /**
      * The contact email of the client for the hosting.
      */
-    public readonly email!: pulumi.Output<string>;
+    declare public readonly email: pulumi.Output<string>;
     /**
      * List of nameservers associated with the webhosting.
      */
-    public /*out*/ readonly nameServers!: pulumi.Output<outputs.WebhostingNameServer[]>;
+    declare public /*out*/ readonly nameServers: pulumi.Output<outputs.WebhostingNameServer[]>;
     /**
      * The ID of the selected offer for the hosting.
      */
-    public readonly offerId!: pulumi.Output<string>;
+    declare public readonly offerId: pulumi.Output<string>;
     /**
      * The name of the active offer.
      */
-    public /*out*/ readonly offerName!: pulumi.Output<string>;
+    declare public /*out*/ readonly offerName: pulumi.Output<string>;
     /**
      * The IDs of the selected options for the hosting.
      */
-    public readonly optionIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly optionIds: pulumi.Output<string[] | undefined>;
     /**
      * The active options of the hosting.
      */
-    public /*out*/ readonly options!: pulumi.Output<outputs.WebhostingOption[]>;
+    declare public /*out*/ readonly options: pulumi.Output<outputs.WebhostingOption[]>;
     /**
      * (Deprecated) The organization ID the hosting is associated with.
      *
      * @deprecated The organizationId field is deprecated and will be removed in the next major version.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The hostname of the host platform.
      */
-    public /*out*/ readonly platformHostname!: pulumi.Output<string>;
+    declare public /*out*/ readonly platformHostname: pulumi.Output<string>;
     /**
      * The number of the host platform.
      */
-    public /*out*/ readonly platformNumber!: pulumi.Output<number>;
+    declare public /*out*/ readonly platformNumber: pulumi.Output<number>;
     /**
      * `projectId`) The ID of the project the VPC is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * List of DNS records associated with the webhosting.
      */
-    public /*out*/ readonly records!: pulumi.Output<outputs.WebhostingRecord[]>;
+    declare public /*out*/ readonly records: pulumi.Output<outputs.WebhostingRecord[]>;
     /**
      * `region`) The region of the Hosting.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The hosting status.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the hosting.
      */
-    public readonly tags!: pulumi.Output<string[]>;
+    declare public readonly tags: pulumi.Output<string[]>;
     /**
      * Date and time of hosting's last update (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The main hosting cPanel username.
      */
-    public /*out*/ readonly username!: pulumi.Output<string>;
+    declare public /*out*/ readonly username: pulumi.Output<string>;
 
     /**
      * Create a Webhosting resource with the given unique name, arguments, and options.
@@ -172,44 +172,44 @@ export class Webhosting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebhostingState | undefined;
-            resourceInputs["cpanelUrls"] = state ? state.cpanelUrls : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["dnsStatus"] = state ? state.dnsStatus : undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["nameServers"] = state ? state.nameServers : undefined;
-            resourceInputs["offerId"] = state ? state.offerId : undefined;
-            resourceInputs["offerName"] = state ? state.offerName : undefined;
-            resourceInputs["optionIds"] = state ? state.optionIds : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["platformHostname"] = state ? state.platformHostname : undefined;
-            resourceInputs["platformNumber"] = state ? state.platformNumber : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["records"] = state ? state.records : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["cpanelUrls"] = state?.cpanelUrls;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["dnsStatus"] = state?.dnsStatus;
+            resourceInputs["domain"] = state?.domain;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["nameServers"] = state?.nameServers;
+            resourceInputs["offerId"] = state?.offerId;
+            resourceInputs["offerName"] = state?.offerName;
+            resourceInputs["optionIds"] = state?.optionIds;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["platformHostname"] = state?.platformHostname;
+            resourceInputs["platformNumber"] = state?.platformNumber;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["records"] = state?.records;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as WebhostingArgs | undefined;
-            if ((!args || args.domain === undefined) && !opts.urn) {
+            if (args?.domain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            if ((!args || args.offerId === undefined) && !opts.urn) {
+            if (args?.offerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'offerId'");
             }
-            resourceInputs["domain"] = args ? args.domain : undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["offerId"] = args ? args.offerId : undefined;
-            resourceInputs["optionIds"] = args ? args.optionIds : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["domain"] = args?.domain;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["offerId"] = args?.offerId;
+            resourceInputs["optionIds"] = args?.optionIds;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["cpanelUrls"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dnsStatus"] = undefined /*out*/;

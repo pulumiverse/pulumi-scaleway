@@ -105,7 +105,7 @@ type InstanceTemplate struct {
 	// The template of Instance volume.
 	Volumes InstanceTemplateVolumeArrayOutput `pulumi:"volumes"`
 	// `zone`) The zone in which the Instance template exists.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceTemplate registers a new resource with the given unique name, arguments, and options.
@@ -436,8 +436,8 @@ func (o InstanceTemplateOutput) Volumes() InstanceTemplateVolumeArrayOutput {
 }
 
 // `zone`) The zone in which the Instance template exists.
-func (o InstanceTemplateOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceTemplate) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceTemplateOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceTemplate) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceTemplateArrayOutput struct{ *pulumi.OutputState }

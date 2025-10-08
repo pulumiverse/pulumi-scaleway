@@ -94,67 +94,67 @@ export class KeyManagerKey extends pulumi.CustomResource {
     /**
      * The date and time when the key was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * – A description for the key.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Whether the key is locked.
      */
-    public /*out*/ readonly locked!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly locked: pulumi.Output<boolean>;
     /**
      * The name of the key.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * – The origin of the key. Valid values are:
      */
-    public readonly origin!: pulumi.Output<string | undefined>;
+    declare public readonly origin: pulumi.Output<string | undefined>;
     /**
      * – The ID of the project the key belongs to.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Whether the key is protected from deletion.
      */
-    public /*out*/ readonly protected!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly protected: pulumi.Output<boolean>;
     /**
      * The region in which to create the key (e.g., `fr-par`).
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The date and time when the key was last rotated.
      */
-    public /*out*/ readonly rotatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly rotatedAt: pulumi.Output<string>;
     /**
      * The number of times the key has been rotated.
      */
-    public /*out*/ readonly rotationCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly rotationCount: pulumi.Output<number>;
     /**
      * – Rotation policy for the key:
      */
-    public readonly rotationPolicy!: pulumi.Output<outputs.KeyManagerKeyRotationPolicy | undefined>;
+    declare public readonly rotationPolicy: pulumi.Output<outputs.KeyManagerKeyRotationPolicy | undefined>;
     /**
      * The state of the key (e.g., `enabled`).
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * – A list of tags to assign to the key.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * – If `true`, the key can be deleted. Defaults to `false` (protected).
      */
-    public readonly unprotected!: pulumi.Output<boolean | undefined>;
+    declare public readonly unprotected: pulumi.Output<boolean | undefined>;
     /**
      * The date and time when the key was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * – The usage of the key. Valid values are:
      */
-    public readonly usage!: pulumi.Output<string>;
+    declare public readonly usage: pulumi.Output<string>;
 
     /**
      * Create a KeyManagerKey resource with the given unique name, arguments, and options.
@@ -169,36 +169,36 @@ export class KeyManagerKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KeyManagerKeyState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["locked"] = state ? state.locked : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["origin"] = state ? state.origin : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protected"] = state ? state.protected : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rotatedAt"] = state ? state.rotatedAt : undefined;
-            resourceInputs["rotationCount"] = state ? state.rotationCount : undefined;
-            resourceInputs["rotationPolicy"] = state ? state.rotationPolicy : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["unprotected"] = state ? state.unprotected : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["usage"] = state ? state.usage : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["locked"] = state?.locked;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["origin"] = state?.origin;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protected"] = state?.protected;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rotatedAt"] = state?.rotatedAt;
+            resourceInputs["rotationCount"] = state?.rotationCount;
+            resourceInputs["rotationPolicy"] = state?.rotationPolicy;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["unprotected"] = state?.unprotected;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["usage"] = state?.usage;
         } else {
             const args = argsOrState as KeyManagerKeyArgs | undefined;
-            if ((!args || args.usage === undefined) && !opts.urn) {
+            if (args?.usage === undefined && !opts.urn) {
                 throw new Error("Missing required property 'usage'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["origin"] = args ? args.origin : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rotationPolicy"] = args ? args.rotationPolicy : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["unprotected"] = args ? args.unprotected : undefined;
-            resourceInputs["usage"] = args ? args.usage : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["origin"] = args?.origin;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rotationPolicy"] = args?.rotationPolicy;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["unprotected"] = args?.unprotected;
+            resourceInputs["usage"] = args?.usage;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["locked"] = undefined /*out*/;
             resourceInputs["protected"] = undefined /*out*/;

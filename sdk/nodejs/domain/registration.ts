@@ -158,47 +158,47 @@ export class Registration extends pulumi.CustomResource {
     /**
      * : Administrative contact information.
      */
-    public /*out*/ readonly administrativeContacts!: pulumi.Output<outputs.domain.RegistrationAdministrativeContact[]>;
+    declare public /*out*/ readonly administrativeContacts: pulumi.Output<outputs.domain.RegistrationAdministrativeContact[]>;
     /**
      * : Enables or disables auto-renewal.
      */
-    public readonly autoRenew!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoRenew: pulumi.Output<boolean | undefined>;
     /**
      * : Enables or disables DNSSEC.
      */
-    public readonly dnssec!: pulumi.Output<boolean | undefined>;
+    declare public readonly dnssec: pulumi.Output<boolean | undefined>;
     /**
      * : A list of domain names to be registered.
      */
-    public readonly domainNames!: pulumi.Output<string[]>;
+    declare public readonly domainNames: pulumi.Output<string[]>;
     /**
      * DNSSEC DS record configuration.
      */
-    public /*out*/ readonly dsRecords!: pulumi.Output<outputs.domain.RegistrationDsRecord[]>;
+    declare public /*out*/ readonly dsRecords: pulumi.Output<outputs.domain.RegistrationDsRecord[]>;
     /**
      * : The registration period in years.
      */
-    public readonly durationInYears!: pulumi.Output<number | undefined>;
+    declare public readonly durationInYears: pulumi.Output<number | undefined>;
     /**
      * : Details of the owner contact.
      */
-    public readonly ownerContact!: pulumi.Output<outputs.domain.RegistrationOwnerContact>;
+    declare public readonly ownerContact: pulumi.Output<outputs.domain.RegistrationOwnerContact>;
     /**
      * : The ID of an existing owner contact.
      */
-    public readonly ownerContactId!: pulumi.Output<string>;
+    declare public readonly ownerContactId: pulumi.Output<string>;
     /**
      * : The Scaleway project ID.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * ID of the task that created the domain.
      */
-    public /*out*/ readonly taskId!: pulumi.Output<string>;
+    declare public /*out*/ readonly taskId: pulumi.Output<string>;
     /**
      * : Technical contact information.
      */
-    public /*out*/ readonly technicalContacts!: pulumi.Output<outputs.domain.RegistrationTechnicalContact[]>;
+    declare public /*out*/ readonly technicalContacts: pulumi.Output<outputs.domain.RegistrationTechnicalContact[]>;
 
     /**
      * Create a Registration resource with the given unique name, arguments, and options.
@@ -213,29 +213,29 @@ export class Registration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RegistrationState | undefined;
-            resourceInputs["administrativeContacts"] = state ? state.administrativeContacts : undefined;
-            resourceInputs["autoRenew"] = state ? state.autoRenew : undefined;
-            resourceInputs["dnssec"] = state ? state.dnssec : undefined;
-            resourceInputs["domainNames"] = state ? state.domainNames : undefined;
-            resourceInputs["dsRecords"] = state ? state.dsRecords : undefined;
-            resourceInputs["durationInYears"] = state ? state.durationInYears : undefined;
-            resourceInputs["ownerContact"] = state ? state.ownerContact : undefined;
-            resourceInputs["ownerContactId"] = state ? state.ownerContactId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["taskId"] = state ? state.taskId : undefined;
-            resourceInputs["technicalContacts"] = state ? state.technicalContacts : undefined;
+            resourceInputs["administrativeContacts"] = state?.administrativeContacts;
+            resourceInputs["autoRenew"] = state?.autoRenew;
+            resourceInputs["dnssec"] = state?.dnssec;
+            resourceInputs["domainNames"] = state?.domainNames;
+            resourceInputs["dsRecords"] = state?.dsRecords;
+            resourceInputs["durationInYears"] = state?.durationInYears;
+            resourceInputs["ownerContact"] = state?.ownerContact;
+            resourceInputs["ownerContactId"] = state?.ownerContactId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["taskId"] = state?.taskId;
+            resourceInputs["technicalContacts"] = state?.technicalContacts;
         } else {
             const args = argsOrState as RegistrationArgs | undefined;
-            if ((!args || args.domainNames === undefined) && !opts.urn) {
+            if (args?.domainNames === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domainNames'");
             }
-            resourceInputs["autoRenew"] = args ? args.autoRenew : undefined;
-            resourceInputs["dnssec"] = args ? args.dnssec : undefined;
-            resourceInputs["domainNames"] = args ? args.domainNames : undefined;
-            resourceInputs["durationInYears"] = args ? args.durationInYears : undefined;
-            resourceInputs["ownerContact"] = args ? args.ownerContact : undefined;
-            resourceInputs["ownerContactId"] = args ? args.ownerContactId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["autoRenew"] = args?.autoRenew;
+            resourceInputs["dnssec"] = args?.dnssec;
+            resourceInputs["domainNames"] = args?.domainNames;
+            resourceInputs["durationInYears"] = args?.durationInYears;
+            resourceInputs["ownerContact"] = args?.ownerContact;
+            resourceInputs["ownerContactId"] = args?.ownerContactId;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["administrativeContacts"] = undefined /*out*/;
             resourceInputs["dsRecords"] = undefined /*out*/;
             resourceInputs["taskId"] = undefined /*out*/;

@@ -113,67 +113,67 @@ export class SqsQueue extends pulumi.CustomResource {
     /**
      * The access key of the SQS queue.
      */
-    public readonly accessKey!: pulumi.Output<string>;
+    declare public readonly accessKey: pulumi.Output<string>;
     /**
      * The ARN of the queue
      */
-    public /*out*/ readonly arn!: pulumi.Output<string>;
+    declare public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Specifies whether to enable content-based deduplication. Defaults to `false`.
      */
-    public readonly contentBasedDeduplication!: pulumi.Output<boolean>;
+    declare public readonly contentBasedDeduplication: pulumi.Output<boolean>;
     /**
      * Configuration for the dead letter queue. See Dead Letter Queue below for details.
      */
-    public readonly deadLetterQueue!: pulumi.Output<outputs.mnq.SqsQueueDeadLetterQueue | undefined>;
+    declare public readonly deadLetterQueue: pulumi.Output<outputs.mnq.SqsQueueDeadLetterQueue | undefined>;
     /**
      * Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
      */
-    public readonly fifoQueue!: pulumi.Output<boolean>;
+    declare public readonly fifoQueue: pulumi.Output<boolean>;
     /**
      * The number of seconds the queue retains a message. Must be between 60 and 1_209_600. Defaults to 345_600.
      */
-    public readonly messageMaxAge!: pulumi.Output<number | undefined>;
+    declare public readonly messageMaxAge: pulumi.Output<number | undefined>;
     /**
      * The maximum size of a message. Should be in bytes. Must be between 1024 and 262_144. Defaults to 262_144.
      */
-    public readonly messageMaxSize!: pulumi.Output<number | undefined>;
+    declare public readonly messageMaxSize: pulumi.Output<number | undefined>;
     /**
      * The unique name of the SQS queue. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    public readonly namePrefix!: pulumi.Output<string>;
+    declare public readonly namePrefix: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project in which SQS is enabled.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
      */
-    public readonly receiveWaitTimeSeconds!: pulumi.Output<number | undefined>;
+    declare public readonly receiveWaitTimeSeconds: pulumi.Output<number | undefined>;
     /**
      * `region`). The region in which SQS is enabled.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The secret key of the SQS queue.
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    declare public readonly secretKey: pulumi.Output<string>;
     /**
      * The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
      */
-    public readonly sqsEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly sqsEndpoint: pulumi.Output<string | undefined>;
     /**
      * The URL of the queue.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
     /**
      * The number of seconds a message is hidden from other consumers. Must be between 0 and 43_200. Defaults to 30.
      */
-    public readonly visibilityTimeoutSeconds!: pulumi.Output<number | undefined>;
+    declare public readonly visibilityTimeoutSeconds: pulumi.Output<number | undefined>;
 
     /**
      * Create a SqsQueue resource with the given unique name, arguments, and options.
@@ -188,44 +188,44 @@ export class SqsQueue extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SqsQueueState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["arn"] = state ? state.arn : undefined;
-            resourceInputs["contentBasedDeduplication"] = state ? state.contentBasedDeduplication : undefined;
-            resourceInputs["deadLetterQueue"] = state ? state.deadLetterQueue : undefined;
-            resourceInputs["fifoQueue"] = state ? state.fifoQueue : undefined;
-            resourceInputs["messageMaxAge"] = state ? state.messageMaxAge : undefined;
-            resourceInputs["messageMaxSize"] = state ? state.messageMaxSize : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namePrefix"] = state ? state.namePrefix : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["receiveWaitTimeSeconds"] = state ? state.receiveWaitTimeSeconds : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["sqsEndpoint"] = state ? state.sqsEndpoint : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
-            resourceInputs["visibilityTimeoutSeconds"] = state ? state.visibilityTimeoutSeconds : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["arn"] = state?.arn;
+            resourceInputs["contentBasedDeduplication"] = state?.contentBasedDeduplication;
+            resourceInputs["deadLetterQueue"] = state?.deadLetterQueue;
+            resourceInputs["fifoQueue"] = state?.fifoQueue;
+            resourceInputs["messageMaxAge"] = state?.messageMaxAge;
+            resourceInputs["messageMaxSize"] = state?.messageMaxSize;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namePrefix"] = state?.namePrefix;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["receiveWaitTimeSeconds"] = state?.receiveWaitTimeSeconds;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["sqsEndpoint"] = state?.sqsEndpoint;
+            resourceInputs["url"] = state?.url;
+            resourceInputs["visibilityTimeoutSeconds"] = state?.visibilityTimeoutSeconds;
         } else {
             const args = argsOrState as SqsQueueArgs | undefined;
-            if ((!args || args.accessKey === undefined) && !opts.urn) {
+            if (args?.accessKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessKey'");
             }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
+            if (args?.secretKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
-            resourceInputs["contentBasedDeduplication"] = args ? args.contentBasedDeduplication : undefined;
-            resourceInputs["deadLetterQueue"] = args ? args.deadLetterQueue : undefined;
-            resourceInputs["fifoQueue"] = args ? args.fifoQueue : undefined;
-            resourceInputs["messageMaxAge"] = args ? args.messageMaxAge : undefined;
-            resourceInputs["messageMaxSize"] = args ? args.messageMaxSize : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namePrefix"] = args ? args.namePrefix : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["receiveWaitTimeSeconds"] = args ? args.receiveWaitTimeSeconds : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["contentBasedDeduplication"] = args?.contentBasedDeduplication;
+            resourceInputs["deadLetterQueue"] = args?.deadLetterQueue;
+            resourceInputs["fifoQueue"] = args?.fifoQueue;
+            resourceInputs["messageMaxAge"] = args?.messageMaxAge;
+            resourceInputs["messageMaxSize"] = args?.messageMaxSize;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namePrefix"] = args?.namePrefix;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["receiveWaitTimeSeconds"] = args?.receiveWaitTimeSeconds;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["sqsEndpoint"] = args ? args.sqsEndpoint : undefined;
-            resourceInputs["visibilityTimeoutSeconds"] = args ? args.visibilityTimeoutSeconds : undefined;
+            resourceInputs["sqsEndpoint"] = args?.sqsEndpoint;
+            resourceInputs["visibilityTimeoutSeconds"] = args?.visibilityTimeoutSeconds;
             resourceInputs["arn"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }

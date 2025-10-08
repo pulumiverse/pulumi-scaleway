@@ -79,7 +79,7 @@ type PublicGatewayIp struct {
 	// The date and time of the last update of the Public Gateway IP.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Public Gateway IP should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPublicGatewayIp registers a new resource with the given unique name, arguments, and options.
@@ -305,8 +305,8 @@ func (o PublicGatewayIpOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Public Gateway IP should be created.
-func (o PublicGatewayIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PublicGatewayIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PublicGatewayIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PublicGatewayIpArrayOutput struct{ *pulumi.OutputState }

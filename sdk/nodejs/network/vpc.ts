@@ -83,43 +83,43 @@ export class Vpc extends pulumi.CustomResource {
     /**
      * Date and time of VPC's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Defines whether the VPC advertises custom routes between its Private Networks. Note that you will not be able to deactivate it afterwards.
      */
-    public readonly enableCustomRoutesPropagation!: pulumi.Output<boolean>;
+    declare public readonly enableCustomRoutesPropagation: pulumi.Output<boolean>;
     /**
      * Enable routing between Private Networks in the VPC. Note that you will not be able to deactivate it afterwards.
      */
-    public readonly enableRouting!: pulumi.Output<boolean>;
+    declare public readonly enableRouting: pulumi.Output<boolean>;
     /**
      * Defines whether the VPC is the default one for its Project.
      */
-    public /*out*/ readonly isDefault!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly isDefault: pulumi.Output<boolean>;
     /**
      * The name for the VPC. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID the VPC is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the VPC is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region of the VPC.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The tags to associate with the VPC.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Date and time of VPC's last update (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Vpc resource with the given unique name, arguments, and options.
@@ -134,24 +134,24 @@ export class Vpc extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpcState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["enableCustomRoutesPropagation"] = state ? state.enableCustomRoutesPropagation : undefined;
-            resourceInputs["enableRouting"] = state ? state.enableRouting : undefined;
-            resourceInputs["isDefault"] = state ? state.isDefault : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["enableCustomRoutesPropagation"] = state?.enableCustomRoutesPropagation;
+            resourceInputs["enableRouting"] = state?.enableRouting;
+            resourceInputs["isDefault"] = state?.isDefault;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as VpcArgs | undefined;
-            resourceInputs["enableCustomRoutesPropagation"] = args ? args.enableCustomRoutesPropagation : undefined;
-            resourceInputs["enableRouting"] = args ? args.enableRouting : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["enableCustomRoutesPropagation"] = args?.enableCustomRoutesPropagation;
+            resourceInputs["enableRouting"] = args?.enableRouting;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["isDefault"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;

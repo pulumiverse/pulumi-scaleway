@@ -89,83 +89,83 @@ export class AppleSiliconServer extends pulumi.CustomResource {
     /**
      * The commitment period of the server
      */
-    public readonly commitment!: pulumi.Output<string | undefined>;
+    declare public readonly commitment: pulumi.Output<string | undefined>;
     /**
      * The date and time the private network was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The minimal date and time on which you can delete this server due to Apple licence
      */
-    public /*out*/ readonly deletableAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly deletableAt: pulumi.Output<string>;
     /**
      * : Enables the VPC option when set to true.
      */
-    public readonly enableVpc!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableVpc: pulumi.Output<boolean | undefined>;
     /**
      * IPv4 address of the server (IPv4 address).
      */
-    public /*out*/ readonly ip!: pulumi.Output<string>;
+    declare public /*out*/ readonly ip: pulumi.Output<string>;
     /**
      * The name of the server.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the server is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The password of the server
      */
-    public /*out*/ readonly password!: pulumi.Output<string>;
+    declare public /*out*/ readonly password: pulumi.Output<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the server.
      */
-    public readonly privateIps!: pulumi.Output<outputs.AppleSiliconServerPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.AppleSiliconServerPrivateIp[]>;
     /**
      * The private networks to attach to the server
      */
-    public readonly privateNetworks!: pulumi.Output<outputs.AppleSiliconServerPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.AppleSiliconServerPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is
      * associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
-    public readonly publicBandwidth!: pulumi.Output<number>;
+    declare public readonly publicBandwidth: pulumi.Output<number>;
     /**
      * The state of the server.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * The commercial type of the server. You find all the available types on
      * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
      * resource.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The date and time the private network was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The username of the server
      */
-    public /*out*/ readonly username!: pulumi.Output<string>;
+    declare public /*out*/ readonly username: pulumi.Output<string>;
     /**
      * URL of the VNC.
      */
-    public /*out*/ readonly vncUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly vncUrl: pulumi.Output<string>;
     /**
      * The current status of the VPC option.
      */
-    public /*out*/ readonly vpcStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly vpcStatus: pulumi.Output<string>;
     /**
      * `zone`) The zone in which
      * the server should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a AppleSiliconServer resource with the given unique name, arguments, and options.
@@ -183,39 +183,39 @@ export class AppleSiliconServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AppleSiliconServerState | undefined;
-            resourceInputs["commitment"] = state ? state.commitment : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deletableAt"] = state ? state.deletableAt : undefined;
-            resourceInputs["enableVpc"] = state ? state.enableVpc : undefined;
-            resourceInputs["ip"] = state ? state.ip : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicBandwidth"] = state ? state.publicBandwidth : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
-            resourceInputs["vncUrl"] = state ? state.vncUrl : undefined;
-            resourceInputs["vpcStatus"] = state ? state.vpcStatus : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["commitment"] = state?.commitment;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deletableAt"] = state?.deletableAt;
+            resourceInputs["enableVpc"] = state?.enableVpc;
+            resourceInputs["ip"] = state?.ip;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworks"] = state?.privateNetworks;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicBandwidth"] = state?.publicBandwidth;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["username"] = state?.username;
+            resourceInputs["vncUrl"] = state?.vncUrl;
+            resourceInputs["vpcStatus"] = state?.vpcStatus;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as AppleSiliconServerArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["commitment"] = args ? args.commitment : undefined;
-            resourceInputs["enableVpc"] = args ? args.enableVpc : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["publicBandwidth"] = args ? args.publicBandwidth : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["commitment"] = args?.commitment;
+            resourceInputs["enableVpc"] = args?.enableVpc;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworks"] = args?.privateNetworks;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicBandwidth"] = args?.publicBandwidth;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deletableAt"] = undefined /*out*/;
             resourceInputs["ip"] = undefined /*out*/;

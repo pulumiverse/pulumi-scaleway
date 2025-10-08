@@ -157,7 +157,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// </summary>
         public readonly string OfferName;
         public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// The Service Level Agreement (SLA) percentage of the offer subscription.
         /// </summary>
@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.Tem
 
             string projectId,
 
-            string region,
+            string? region,
 
             double sla,
 

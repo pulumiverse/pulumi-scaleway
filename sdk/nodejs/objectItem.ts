@@ -63,61 +63,61 @@ export class ObjectItem extends pulumi.CustomResource {
     /**
      * The bucket's name or regional ID.
      */
-    public readonly bucket!: pulumi.Output<string>;
+    declare public readonly bucket: pulumi.Output<string>;
     /**
      * The content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    public readonly content!: pulumi.Output<string | undefined>;
+    declare public readonly content: pulumi.Output<string | undefined>;
     /**
      * The base64-encoded content of the file to upload. Only one of `file`, `content` or `contentBase64` can be defined.
      *
      * > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
      */
-    public readonly contentBase64!: pulumi.Output<string | undefined>;
+    declare public readonly contentBase64: pulumi.Output<string | undefined>;
     /**
      * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
      */
-    public readonly contentType!: pulumi.Output<string>;
+    declare public readonly contentType: pulumi.Output<string>;
     /**
      * The name of the file to upload, defaults to an empty file.
      */
-    public readonly file!: pulumi.Output<string | undefined>;
+    declare public readonly file: pulumi.Output<string | undefined>;
     /**
      * Hash of the file, used to trigger the upload on file change.
      */
-    public readonly hash!: pulumi.Output<string | undefined>;
+    declare public readonly hash: pulumi.Output<string | undefined>;
     /**
      * The path to the object.
      */
-    public readonly key!: pulumi.Output<string>;
+    declare public readonly key: pulumi.Output<string>;
     /**
      * Map of metadata used for the object (keys must be lowercase).
      */
-    public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly metadata: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The Scaleway region the bucket resides in.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Customer's encryption keys to encrypt data (SSE-C)
      */
-    public readonly sseCustomerKey!: pulumi.Output<string | undefined>;
+    declare public readonly sseCustomerKey: pulumi.Output<string | undefined>;
     /**
      * Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
      */
-    public readonly storageClass!: pulumi.Output<string | undefined>;
+    declare public readonly storageClass: pulumi.Output<string | undefined>;
     /**
      * Map of tags.
      */
-    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Visibility of the object, `public-read` or `private`.
      */
-    public readonly visibility!: pulumi.Output<string>;
+    declare public readonly visibility: pulumi.Output<string>;
 
     /**
      * Create a ObjectItem resource with the given unique name, arguments, and options.
@@ -135,42 +135,42 @@ export class ObjectItem extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectItemState | undefined;
-            resourceInputs["bucket"] = state ? state.bucket : undefined;
-            resourceInputs["content"] = state ? state.content : undefined;
-            resourceInputs["contentBase64"] = state ? state.contentBase64 : undefined;
-            resourceInputs["contentType"] = state ? state.contentType : undefined;
-            resourceInputs["file"] = state ? state.file : undefined;
-            resourceInputs["hash"] = state ? state.hash : undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["metadata"] = state ? state.metadata : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["sseCustomerKey"] = state ? state.sseCustomerKey : undefined;
-            resourceInputs["storageClass"] = state ? state.storageClass : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["content"] = state?.content;
+            resourceInputs["contentBase64"] = state?.contentBase64;
+            resourceInputs["contentType"] = state?.contentType;
+            resourceInputs["file"] = state?.file;
+            resourceInputs["hash"] = state?.hash;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["metadata"] = state?.metadata;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["sseCustomerKey"] = state?.sseCustomerKey;
+            resourceInputs["storageClass"] = state?.storageClass;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["visibility"] = state?.visibility;
         } else {
             const args = argsOrState as ObjectItemArgs | undefined;
-            if ((!args || args.bucket === undefined) && !opts.urn) {
+            if (args?.bucket === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucket'");
             }
-            if ((!args || args.key === undefined) && !opts.urn) {
+            if (args?.key === undefined && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            resourceInputs["bucket"] = args ? args.bucket : undefined;
-            resourceInputs["content"] = args ? args.content : undefined;
-            resourceInputs["contentBase64"] = args ? args.contentBase64 : undefined;
-            resourceInputs["contentType"] = args ? args.contentType : undefined;
-            resourceInputs["file"] = args ? args.file : undefined;
-            resourceInputs["hash"] = args ? args.hash : undefined;
-            resourceInputs["key"] = args ? args.key : undefined;
-            resourceInputs["metadata"] = args ? args.metadata : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["content"] = args?.content;
+            resourceInputs["contentBase64"] = args?.contentBase64;
+            resourceInputs["contentType"] = args?.contentType;
+            resourceInputs["file"] = args?.file;
+            resourceInputs["hash"] = args?.hash;
+            resourceInputs["key"] = args?.key;
+            resourceInputs["metadata"] = args?.metadata;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["sseCustomerKey"] = args?.sseCustomerKey ? pulumi.secret(args.sseCustomerKey) : undefined;
-            resourceInputs["storageClass"] = args ? args.storageClass : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["storageClass"] = args?.storageClass;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["visibility"] = args?.visibility;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["sseCustomerKey"] };

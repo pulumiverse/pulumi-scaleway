@@ -88,27 +88,27 @@ export class Trigger extends pulumi.CustomResource {
     /**
      * The description of the trigger.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the function to create a trigger for.
      */
-    public readonly functionId!: pulumi.Output<string>;
+    declare public readonly functionId: pulumi.Output<string>;
     /**
      * The unique name of the trigger. If not provided, a random name is generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The configuration for the Scaleway NATS account used by the trigger
      */
-    public readonly nats!: pulumi.Output<outputs.functions.TriggerNats | undefined>;
+    declare public readonly nats: pulumi.Output<outputs.functions.TriggerNats | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The configuration of the Scaleway SQS queue used by the trigger
      */
-    public readonly sqs!: pulumi.Output<outputs.functions.TriggerSqs | undefined>;
+    declare public readonly sqs: pulumi.Output<outputs.functions.TriggerSqs | undefined>;
 
     /**
      * Create a Trigger resource with the given unique name, arguments, and options.
@@ -123,23 +123,23 @@ export class Trigger extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TriggerState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["functionId"] = state ? state.functionId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nats"] = state ? state.nats : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["sqs"] = state ? state.sqs : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["functionId"] = state?.functionId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nats"] = state?.nats;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["sqs"] = state?.sqs;
         } else {
             const args = argsOrState as TriggerArgs | undefined;
-            if ((!args || args.functionId === undefined) && !opts.urn) {
+            if (args?.functionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'functionId'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["functionId"] = args ? args.functionId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nats"] = args ? args.nats : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["sqs"] = args ? args.sqs : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["functionId"] = args?.functionId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nats"] = args?.nats;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["sqs"] = args?.sqs;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/functionTrigger:FunctionTrigger" }] };

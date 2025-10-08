@@ -195,7 +195,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string? OsId;
         public readonly string? Version;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetBaremetalOsResult(
@@ -207,7 +207,7 @@ namespace Pulumiverse.Scaleway
 
             string? version,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Name = name;

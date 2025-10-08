@@ -74,12 +74,9 @@ type InstanceVolume struct {
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-	//
-	// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-	// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceVolume registers a new resource with the given unique name, arguments, and options.
@@ -132,9 +129,6 @@ type instanceVolumeState struct {
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-	//
-	// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-	// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type *string `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
@@ -158,9 +152,6 @@ type InstanceVolumeState struct {
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-	//
-	// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-	// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringPtrInput
 	// `zone`) The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
@@ -184,9 +175,6 @@ type instanceVolumeArgs struct {
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-	//
-	// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-	// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type string `pulumi:"type"`
 	// `zone`) The zone in which the volume should be created.
 	Zone *string `pulumi:"zone"`
@@ -207,9 +195,6 @@ type InstanceVolumeArgs struct {
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
 	// The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-	//
-	// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-	// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 	Type pulumi.StringInput
 	// `zone`) The zone in which the volume should be created.
 	Zone pulumi.StringPtrInput
@@ -343,16 +328,13 @@ func (o InstanceVolumeOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-//
-// > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Volume` resource anymore. Please use the `block.Volume` resource instead.
-// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
 func (o InstanceVolumeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
 // `zone`) The zone in which the volume should be created.
-func (o InstanceVolumeOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceVolume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceVolumeOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceVolume) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceVolumeArrayOutput struct{ *pulumi.OutputState }

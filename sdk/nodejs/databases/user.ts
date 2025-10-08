@@ -89,17 +89,17 @@ export class User extends pulumi.CustomResource {
      *
      * > **Important:** Updates to `instanceId` will recreate the database user.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * Grant admin permissions to the database user.
      */
-    public readonly isAdmin!: pulumi.Output<boolean | undefined>;
+    declare public readonly isAdmin: pulumi.Output<boolean | undefined>;
     /**
      * database user name.
      *
      * > **Important:** Updates to `name` will recreate the database user.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * database user password. The password must meet the following requirements based on ISO27001 standards:
      * - **Length**: 8-128 characters
@@ -111,11 +111,11 @@ export class User extends pulumi.CustomResource {
      *
      * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * The Scaleway region this resource resides in.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -130,24 +130,24 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["isAdmin"] = state ? state.isAdmin : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["isAdmin"] = state?.isAdmin;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["isAdmin"] = args ? args.isAdmin : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["isAdmin"] = args?.isAdmin;
+            resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/databaseUser:DatabaseUser" }] };

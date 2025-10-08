@@ -1331,7 +1331,7 @@ type GetRoutesRoute struct {
 	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
 	NexthopResourceType string `pulumi:"nexthopResourceType"`
 	// `region`). The region in which the routes exist.
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// List of tags to filter for. routes with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// The VPC ID to filter for. routes with a similar VPC ID are listed.
@@ -1370,7 +1370,7 @@ type GetRoutesRouteArgs struct {
 	// The next hop resource type to filter for. routes with a similar next hop resource type are listed.
 	NexthopResourceType pulumi.StringInput `pulumi:"nexthopResourceType"`
 	// `region`). The region in which the routes exist.
-	Region pulumi.StringInput `pulumi:"region"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// List of tags to filter for. routes with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// The VPC ID to filter for. routes with a similar VPC ID are listed.
@@ -1475,8 +1475,8 @@ func (o GetRoutesRouteOutput) NexthopResourceType() pulumi.StringOutput {
 }
 
 // `region`). The region in which the routes exist.
-func (o GetRoutesRouteOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetRoutesRoute) string { return v.Region }).(pulumi.StringOutput)
+func (o GetRoutesRouteOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRoutesRoute) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of tags to filter for. routes with these exact tags are listed.
@@ -1524,7 +1524,7 @@ type GetVpcsVpc struct {
 	// The ID of the Project the VPC is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// `region`). The region in which the VPCs exist.
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// Date on which the VPC was last updated (RFC 3339 format)
@@ -1557,7 +1557,7 @@ type GetVpcsVpcArgs struct {
 	// The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// `region`). The region in which the VPCs exist.
-	Region pulumi.StringInput `pulumi:"region"`
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// List of tags to filter for. VPCs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// Date on which the VPC was last updated (RFC 3339 format)
@@ -1647,8 +1647,8 @@ func (o GetVpcsVpcOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the VPCs exist.
-func (o GetVpcsVpcOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpcsVpc) string { return v.Region }).(pulumi.StringOutput)
+func (o GetVpcsVpcOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpcsVpc) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of tags to filter for. VPCs with these exact tags are listed.

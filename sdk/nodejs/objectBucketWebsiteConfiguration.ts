@@ -125,31 +125,31 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
     /**
      * The name of the bucket.
      */
-    public readonly bucket!: pulumi.Output<string>;
+    declare public readonly bucket: pulumi.Output<string>;
     /**
      * The name of the error file for the website detailed below.
      */
-    public readonly errorDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
+    declare public readonly errorDocument: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationErrorDocument | undefined>;
     /**
      * The name of the index file for the website detailed below.
      */
-    public readonly indexDocument!: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
+    declare public readonly indexDocument: pulumi.Output<outputs.ObjectBucketWebsiteConfigurationIndexDocument>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The region you want to attach the resource to
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
      */
-    public /*out*/ readonly websiteDomain!: pulumi.Output<string>;
+    declare public /*out*/ readonly websiteDomain: pulumi.Output<string>;
     /**
      * The website endpoint.
      */
-    public /*out*/ readonly websiteEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly websiteEndpoint: pulumi.Output<string>;
 
     /**
      * Create a ObjectBucketWebsiteConfiguration resource with the given unique name, arguments, and options.
@@ -167,26 +167,26 @@ export class ObjectBucketWebsiteConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectBucketWebsiteConfigurationState | undefined;
-            resourceInputs["bucket"] = state ? state.bucket : undefined;
-            resourceInputs["errorDocument"] = state ? state.errorDocument : undefined;
-            resourceInputs["indexDocument"] = state ? state.indexDocument : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["websiteDomain"] = state ? state.websiteDomain : undefined;
-            resourceInputs["websiteEndpoint"] = state ? state.websiteEndpoint : undefined;
+            resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["errorDocument"] = state?.errorDocument;
+            resourceInputs["indexDocument"] = state?.indexDocument;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["websiteDomain"] = state?.websiteDomain;
+            resourceInputs["websiteEndpoint"] = state?.websiteEndpoint;
         } else {
             const args = argsOrState as ObjectBucketWebsiteConfigurationArgs | undefined;
-            if ((!args || args.bucket === undefined) && !opts.urn) {
+            if (args?.bucket === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucket'");
             }
-            if ((!args || args.indexDocument === undefined) && !opts.urn) {
+            if (args?.indexDocument === undefined && !opts.urn) {
                 throw new Error("Missing required property 'indexDocument'");
             }
-            resourceInputs["bucket"] = args ? args.bucket : undefined;
-            resourceInputs["errorDocument"] = args ? args.errorDocument : undefined;
-            resourceInputs["indexDocument"] = args ? args.indexDocument : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["errorDocument"] = args?.errorDocument;
+            resourceInputs["indexDocument"] = args?.indexDocument;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["websiteDomain"] = undefined /*out*/;
             resourceInputs["websiteEndpoint"] = undefined /*out*/;
         }

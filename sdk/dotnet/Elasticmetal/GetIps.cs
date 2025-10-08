@@ -340,7 +340,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// <summary>
         /// (Defaults to provider `zone`) The zone in which the MAC address exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetIpsResult(
@@ -356,7 +356,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Ips = ips;

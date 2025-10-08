@@ -53,19 +53,19 @@ export class IpamIpReverseDns extends pulumi.CustomResource {
     /**
      * The IP corresponding to the hostname.
      */
-    public readonly address!: pulumi.Output<string>;
+    declare public readonly address: pulumi.Output<string>;
     /**
      * The reverse domain name.
      */
-    public readonly hostname!: pulumi.Output<string>;
+    declare public readonly hostname: pulumi.Output<string>;
     /**
      * The IPAM IP ID.
      */
-    public readonly ipamIpId!: pulumi.Output<string>;
+    declare public readonly ipamIpId: pulumi.Output<string>;
     /**
      * `region`) The region of the IP reverse DNS.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a IpamIpReverseDns resource with the given unique name, arguments, and options.
@@ -83,25 +83,25 @@ export class IpamIpReverseDns extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpamIpReverseDnsState | undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["ipamIpId"] = state ? state.ipamIpId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["address"] = state?.address;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["ipamIpId"] = state?.ipamIpId;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as IpamIpReverseDnsArgs | undefined;
-            if ((!args || args.address === undefined) && !opts.urn) {
+            if (args?.address === undefined && !opts.urn) {
                 throw new Error("Missing required property 'address'");
             }
-            if ((!args || args.hostname === undefined) && !opts.urn) {
+            if (args?.hostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if ((!args || args.ipamIpId === undefined) && !opts.urn) {
+            if (args?.ipamIpId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ipamIpId'");
             }
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["ipamIpId"] = args ? args.ipamIpId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["ipamIpId"] = args?.ipamIpId;
+            resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(IpamIpReverseDns.__pulumiType, name, resourceInputs, opts);

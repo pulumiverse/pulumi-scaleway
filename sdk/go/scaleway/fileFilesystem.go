@@ -69,7 +69,7 @@ type FileFilesystem struct {
 	// associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
@@ -317,8 +317,8 @@ func (o FileFilesystemOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-func (o FileFilesystemOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *FileFilesystem) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o FileFilesystemOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FileFilesystem) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).

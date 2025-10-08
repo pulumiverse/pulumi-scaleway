@@ -53,7 +53,7 @@ type GetLbsResult struct {
 	// The tags associated with the Load Balancer.
 	Tags []string `pulumi:"tags"`
 	// The zone of the Load Balancer.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 func GetLbsOutput(ctx *pulumi.Context, args GetLbsOutputArgs, opts ...pulumi.InvokeOption) GetLbsResultOutput {
@@ -127,8 +127,8 @@ func (o GetLbsResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone of the Load Balancer.
-func (o GetLbsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

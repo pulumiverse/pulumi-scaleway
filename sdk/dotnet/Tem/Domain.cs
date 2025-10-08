@@ -57,13 +57,13 @@ namespace Pulumiverse.Scaleway.Tem
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "TXT",
-    ///         Data = main.SpfConfig.Apply(spfConfig =&gt; $"v=spf1 {spfConfig} -all"),
+    ///         Data = main.SpfValue,
     ///     });
     /// 
     ///     var dkim = new Scaleway.Domain.Record("dkim", new()
     ///     {
     ///         DnsZone = domainName,
-    ///         Name = main.ProjectId.Apply(projectId =&gt; $"{projectId}._domainkey"),
+    ///         Name = main.DkimName,
     ///         Type = "TXT",
     ///         Data = main.DkimConfig,
     ///     });
@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway.Tem
     ///     {
     ///         DnsZone = domainName,
     ///         Type = "MX",
-    ///         Data = ".",
+    ///         Data = main.MxConfig,
     ///     });
     /// 
     ///     var dmarc = new Scaleway.Domain.Record("dmarc", new()
@@ -147,6 +147,12 @@ namespace Pulumiverse.Scaleway.Tem
         public Output<string> DkimConfig { get; private set; } = null!;
 
         /// <summary>
+        /// DKIM name for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Output("dkimName")]
+        public Output<string> DkimName { get; private set; } = null!;
+
+        /// <summary>
         /// DMARC record for the domain, as should be recorded in the DNS zone.
         /// </summary>
         [Output("dmarcConfig")]
@@ -177,6 +183,12 @@ namespace Pulumiverse.Scaleway.Tem
         public Output<string> MxBlackhole { get; private set; } = null!;
 
         /// <summary>
+        /// MX record configuration for the domain blackhole.
+        /// </summary>
+        [Output("mxConfig")]
+        public Output<string> MxConfig { get; private set; } = null!;
+
+        /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
         /// &gt; **Important:** Updates to `name` will recreate the domain.
         /// </summary>
@@ -200,7 +212,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The domain's reputation.
@@ -261,6 +273,12 @@ namespace Pulumiverse.Scaleway.Tem
         /// </summary>
         [Output("spfConfig")]
         public Output<string> SpfConfig { get; private set; } = null!;
+
+        /// <summary>
+        /// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Output("spfValue")]
+        public Output<string> SpfValue { get; private set; } = null!;
 
         /// <summary>
         /// The status of the domain's reputation.
@@ -386,6 +404,12 @@ namespace Pulumiverse.Scaleway.Tem
         public Input<string>? DkimConfig { get; set; }
 
         /// <summary>
+        /// DKIM name for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Input("dkimName")]
+        public Input<string>? DkimName { get; set; }
+
+        /// <summary>
         /// DMARC record for the domain, as should be recorded in the DNS zone.
         /// </summary>
         [Input("dmarcConfig")]
@@ -414,6 +438,12 @@ namespace Pulumiverse.Scaleway.Tem
         /// </summary>
         [Input("mxBlackhole")]
         public Input<string>? MxBlackhole { get; set; }
+
+        /// <summary>
+        /// MX record configuration for the domain blackhole.
+        /// </summary>
+        [Input("mxConfig")]
+        public Input<string>? MxConfig { get; set; }
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
@@ -506,6 +536,12 @@ namespace Pulumiverse.Scaleway.Tem
         /// </summary>
         [Input("spfConfig")]
         public Input<string>? SpfConfig { get; set; }
+
+        /// <summary>
+        /// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+        /// </summary>
+        [Input("spfValue")]
+        public Input<string>? SpfValue { get; set; }
 
         /// <summary>
         /// The status of the domain's reputation.

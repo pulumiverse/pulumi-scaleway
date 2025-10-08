@@ -124,7 +124,7 @@ type DatabaseAcl struct {
 	// > **Important:** Updates to `instanceId` will recreate the Database ACL.
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// `region`) The region in which the Database Instance should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewDatabaseAcl registers a new resource with the given unique name, arguments, and options.
@@ -321,8 +321,8 @@ func (o DatabaseAclOutput) InstanceId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the Database Instance should be created.
-func (o DatabaseAclOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabaseAclOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseAcl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type DatabaseAclArrayOutput struct{ *pulumi.OutputState }

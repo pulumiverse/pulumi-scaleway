@@ -71,7 +71,7 @@ type Namespace struct {
 	// `projectId`) The ID of the project the namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewNamespace registers a new resource with the given unique name, arguments, and options.
@@ -302,8 +302,8 @@ func (o NamespaceOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the namespace should be created.
-func (o NamespaceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Namespace) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o NamespaceOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Namespace) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type NamespaceArrayOutput struct{ *pulumi.OutputState }

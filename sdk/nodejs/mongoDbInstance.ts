@@ -156,91 +156,91 @@ export class MongoDbInstance extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the MongoDB® instance.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Whether automatic snapshot scheduling is enabled.
      */
-    public readonly isSnapshotScheduleEnabled!: pulumi.Output<boolean>;
+    declare public readonly isSnapshotScheduleEnabled: pulumi.Output<boolean>;
     /**
      * Name of the MongoDB® instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Number of nodes in the instance
      */
-    public readonly nodeNumber!: pulumi.Output<number>;
+    declare public readonly nodeNumber: pulumi.Output<number>;
     /**
      * The type of MongoDB® intance to create.
      */
-    public readonly nodeType!: pulumi.Output<string>;
+    declare public readonly nodeType: pulumi.Output<string>;
     /**
      * Password of the user.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The private IPv4 address associated with the instance.
      */
-    public readonly privateIps!: pulumi.Output<outputs.MongoDbInstancePrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.MongoDbInstancePrivateIp[]>;
     /**
      * Private Network endpoints of the Database Instance.
      */
-    public readonly privateNetwork!: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
+    declare public readonly privateNetwork: pulumi.Output<outputs.MongoDbInstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the MongoDB® instance is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Public network endpoint configuration (no arguments).
      */
-    public readonly publicNetwork!: pulumi.Output<outputs.MongoDbInstancePublicNetwork>;
+    declare public readonly publicNetwork: pulumi.Output<outputs.MongoDbInstancePublicNetwork>;
     /**
      * `region`) The region in which the MongoDB® instance should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Map of settings to define for the instance.
      */
-    public readonly settings!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly settings: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Snapshot ID to restore the MongoDB® instance from.
      */
-    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    declare public readonly snapshotId: pulumi.Output<string | undefined>;
     /**
      * Snapshot schedule frequency in hours.
      */
-    public readonly snapshotScheduleFrequencyHours!: pulumi.Output<number>;
+    declare public readonly snapshotScheduleFrequencyHours: pulumi.Output<number>;
     /**
      * Snapshot schedule retention in days.
      */
-    public readonly snapshotScheduleRetentionDays!: pulumi.Output<number>;
+    declare public readonly snapshotScheduleRetentionDays: pulumi.Output<number>;
     /**
      * List of tags attached to the MongoDB® instance.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The PEM-encoded TLS certificate for the MongoDB® instance, if available.
      */
-    public /*out*/ readonly tlsCertificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly tlsCertificate: pulumi.Output<string>;
     /**
      * The date and time of the last update of the MongoDB® instance.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * Name of the user created when the intance is created.
      */
-    public readonly userName!: pulumi.Output<string | undefined>;
+    declare public readonly userName: pulumi.Output<string | undefined>;
     /**
      * MongoDB® version of the instance.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
     /**
      * Volume size in GB.
      */
-    public readonly volumeSizeInGb!: pulumi.Output<number>;
+    declare public readonly volumeSizeInGb: pulumi.Output<number>;
     /**
      * Volume type of the instance.
      */
-    public readonly volumeType!: pulumi.Output<string | undefined>;
+    declare public readonly volumeType: pulumi.Output<string | undefined>;
 
     /**
      * Create a MongoDbInstance resource with the given unique name, arguments, and options.
@@ -258,55 +258,55 @@ export class MongoDbInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MongoDbInstanceState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["isSnapshotScheduleEnabled"] = state ? state.isSnapshotScheduleEnabled : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeNumber"] = state ? state.nodeNumber : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["snapshotScheduleFrequencyHours"] = state ? state.snapshotScheduleFrequencyHours : undefined;
-            resourceInputs["snapshotScheduleRetentionDays"] = state ? state.snapshotScheduleRetentionDays : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
-            resourceInputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["isSnapshotScheduleEnabled"] = state?.isSnapshotScheduleEnabled;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeNumber"] = state?.nodeNumber;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetwork"] = state?.privateNetwork;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicNetwork"] = state?.publicNetwork;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["snapshotScheduleFrequencyHours"] = state?.snapshotScheduleFrequencyHours;
+            resourceInputs["snapshotScheduleRetentionDays"] = state?.snapshotScheduleRetentionDays;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["tlsCertificate"] = state?.tlsCertificate;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["userName"] = state?.userName;
+            resourceInputs["version"] = state?.version;
+            resourceInputs["volumeSizeInGb"] = state?.volumeSizeInGb;
+            resourceInputs["volumeType"] = state?.volumeType;
         } else {
             const args = argsOrState as MongoDbInstanceArgs | undefined;
-            if ((!args || args.nodeNumber === undefined) && !opts.urn) {
+            if (args?.nodeNumber === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeNumber'");
             }
-            if ((!args || args.nodeType === undefined) && !opts.urn) {
+            if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            resourceInputs["isSnapshotScheduleEnabled"] = args ? args.isSnapshotScheduleEnabled : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeNumber"] = args ? args.nodeNumber : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
+            resourceInputs["isSnapshotScheduleEnabled"] = args?.isSnapshotScheduleEnabled;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodeNumber"] = args?.nodeNumber;
+            resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
-            resourceInputs["snapshotScheduleFrequencyHours"] = args ? args.snapshotScheduleFrequencyHours : undefined;
-            resourceInputs["snapshotScheduleRetentionDays"] = args ? args.snapshotScheduleRetentionDays : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
-            resourceInputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = args ? args.volumeType : undefined;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetwork"] = args?.privateNetwork;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicNetwork"] = args?.publicNetwork;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["snapshotId"] = args?.snapshotId;
+            resourceInputs["snapshotScheduleFrequencyHours"] = args?.snapshotScheduleFrequencyHours;
+            resourceInputs["snapshotScheduleRetentionDays"] = args?.snapshotScheduleRetentionDays;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["userName"] = args?.userName;
+            resourceInputs["version"] = args?.version;
+            resourceInputs["volumeSizeInGb"] = args?.volumeSizeInGb;
+            resourceInputs["volumeType"] = args?.volumeType;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["tlsCertificate"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

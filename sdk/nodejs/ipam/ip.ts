@@ -138,51 +138,51 @@ export class Ip extends pulumi.CustomResource {
     /**
      * Request a specific IP in the requested source pool
      */
-    public readonly address!: pulumi.Output<string>;
+    declare public readonly address: pulumi.Output<string>;
     /**
      * Date and time of IP's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The custom resource in which to book the IP
      */
-    public readonly customResources!: pulumi.Output<outputs.ipam.IpCustomResource[] | undefined>;
+    declare public readonly customResources: pulumi.Output<outputs.ipam.IpCustomResource[] | undefined>;
     /**
      * Defines whether to request an IPv6 address instead of IPv4.
      */
-    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly isIpv6: pulumi.Output<boolean | undefined>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region of the IP.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The IP resource.
      */
-    public /*out*/ readonly resources!: pulumi.Output<outputs.ipam.IpResource[]>;
+    declare public /*out*/ readonly resources: pulumi.Output<outputs.ipam.IpResource[]>;
     /**
      * The reverse DNS for this IP.
      */
-    public /*out*/ readonly reverses!: pulumi.Output<outputs.ipam.IpReverse[]>;
+    declare public /*out*/ readonly reverses: pulumi.Output<outputs.ipam.IpReverse[]>;
     /**
      * The source in which to book the IP.
      */
-    public readonly sources!: pulumi.Output<outputs.ipam.IpSource[]>;
+    declare public readonly sources: pulumi.Output<outputs.ipam.IpSource[]>;
     /**
      * The tags associated with the IP.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Date and time of IP's last update (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The zone of the IP.
      */
-    public /*out*/ readonly zone!: pulumi.Output<string>;
+    declare public /*out*/ readonly zone: pulumi.Output<string>;
 
     /**
      * Create a Ip resource with the given unique name, arguments, and options.
@@ -197,30 +197,30 @@ export class Ip extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpState | undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["customResources"] = state ? state.customResources : undefined;
-            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["resources"] = state ? state.resources : undefined;
-            resourceInputs["reverses"] = state ? state.reverses : undefined;
-            resourceInputs["sources"] = state ? state.sources : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state?.address;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["customResources"] = state?.customResources;
+            resourceInputs["isIpv6"] = state?.isIpv6;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["resources"] = state?.resources;
+            resourceInputs["reverses"] = state?.reverses;
+            resourceInputs["sources"] = state?.sources;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as IpArgs | undefined;
-            if ((!args || args.sources === undefined) && !opts.urn) {
+            if (args?.sources === undefined && !opts.urn) {
                 throw new Error("Missing required property 'sources'");
             }
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["customResources"] = args ? args.customResources : undefined;
-            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["sources"] = args ? args.sources : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["customResources"] = args?.customResources;
+            resourceInputs["isIpv6"] = args?.isIpv6;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["sources"] = args?.sources;
+            resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["resources"] = undefined /*out*/;
             resourceInputs["reverses"] = undefined /*out*/;

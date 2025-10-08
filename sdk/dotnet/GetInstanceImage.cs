@@ -173,7 +173,7 @@ namespace Pulumiverse.Scaleway
         /// State of the image. Possible values are: `available`, `creating` or `error`.
         /// </summary>
         public readonly string State;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetInstanceImageResult(
@@ -207,7 +207,7 @@ namespace Pulumiverse.Scaleway
 
             string state,
 
-            string zone)
+            string? zone)
         {
             AdditionalVolumeIds = additionalVolumeIds;
             Architecture = architecture;

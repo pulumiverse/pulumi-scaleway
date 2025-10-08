@@ -87,59 +87,59 @@ export class Model extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the model
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * A textual description of the model (if available).
      */
-    public /*out*/ readonly description!: pulumi.Output<string>;
+    declare public /*out*/ readonly description: pulumi.Output<string>;
     /**
      * Whether the model requires end-user license agreement acceptance before use.
      */
-    public /*out*/ readonly hasEula!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly hasEula: pulumi.Output<boolean>;
     /**
      * The name of the model. This must be unique within the project.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * List of supported node types and their quantization options. Each entry contains:
      */
-    public /*out*/ readonly nodesSupports!: pulumi.Output<outputs.inference.ModelNodesSupport[]>;
+    declare public /*out*/ readonly nodesSupports: pulumi.Output<outputs.inference.ModelNodesSupport[]>;
     /**
      * Size, in bits, of the model parameters.
      */
-    public /*out*/ readonly parameterSizeBits!: pulumi.Output<number>;
+    declare public /*out*/ readonly parameterSizeBits: pulumi.Output<number>;
     /**
      * `projectId`) The ID of the project the deployment is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region in which the deployment is created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
      */
-    public readonly secret!: pulumi.Output<string | undefined>;
+    declare public readonly secret: pulumi.Output<string | undefined>;
     /**
      * Total size, in bytes, of the model archive.
      */
-    public /*out*/ readonly sizeBytes!: pulumi.Output<number>;
+    declare public /*out*/ readonly sizeBytes: pulumi.Output<number>;
     /**
      * The current status of the model (e.g., ready, error, etc.).
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Tags associated with the model.
      */
-    public /*out*/ readonly tags!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly tags: pulumi.Output<string[]>;
     /**
      * The date and time of the last update of the model
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
      */
-    public readonly url!: pulumi.Output<string>;
+    declare public readonly url: pulumi.Output<string>;
 
     /**
      * Create a Model resource with the given unique name, arguments, and options.
@@ -154,30 +154,30 @@ export class Model extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ModelState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["hasEula"] = state ? state.hasEula : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodesSupports"] = state ? state.nodesSupports : undefined;
-            resourceInputs["parameterSizeBits"] = state ? state.parameterSizeBits : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["sizeBytes"] = state ? state.sizeBytes : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["hasEula"] = state?.hasEula;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodesSupports"] = state?.nodesSupports;
+            resourceInputs["parameterSizeBits"] = state?.parameterSizeBits;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secret"] = state?.secret;
+            resourceInputs["sizeBytes"] = state?.sizeBytes;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as ModelArgs | undefined;
-            if ((!args || args.url === undefined) && !opts.urn) {
+            if (args?.url === undefined && !opts.urn) {
                 throw new Error("Missing required property 'url'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
-            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["url"] = args?.url;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["description"] = undefined /*out*/;
             resourceInputs["hasEula"] = undefined /*out*/;

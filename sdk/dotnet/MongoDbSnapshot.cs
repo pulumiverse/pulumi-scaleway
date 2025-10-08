@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         /// `region`) The region in which the MongoDB® snapshot should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the MongoDB® snapshot in bytes.

@@ -70,39 +70,39 @@ export class Ip extends pulumi.CustomResource {
     /**
      * The IP address
      */
-    public /*out*/ readonly ipAddress!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipAddress: pulumi.Output<string>;
     /**
      * If true, creates a flexible IP with an IPv6 address.
      */
-    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly isIpv6: pulumi.Output<boolean | undefined>;
     /**
      * The associated Load Balancer ID if any
      */
-    public /*out*/ readonly lbId!: pulumi.Output<string>;
+    declare public /*out*/ readonly lbId: pulumi.Output<string>;
     /**
      * The organizationId you want to attach the resource to
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the IP is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The region of the resource
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    declare public /*out*/ readonly region: pulumi.Output<string>;
     /**
      * The reverse domain associated with this IP.
      */
-    public readonly reverse!: pulumi.Output<string>;
+    declare public readonly reverse: pulumi.Output<string>;
     /**
      * The tags associated with this IP.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Ip resource with the given unique name, arguments, and options.
@@ -117,22 +117,22 @@ export class Ip extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpState | undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["reverse"] = state ? state.reverse : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["isIpv6"] = state?.isIpv6;
+            resourceInputs["lbId"] = state?.lbId;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["reverse"] = state?.reverse;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as IpArgs | undefined;
-            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["reverse"] = args ? args.reverse : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["isIpv6"] = args?.isIpv6;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["reverse"] = args?.reverse;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["lbId"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;

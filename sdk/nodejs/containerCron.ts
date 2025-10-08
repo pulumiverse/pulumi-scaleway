@@ -83,28 +83,28 @@ export class ContainerCron extends pulumi.CustomResource {
     /**
      * The key-value mapping to define arguments that will be passed to your container’s event object
      */
-    public readonly args!: pulumi.Output<string>;
+    declare public readonly args: pulumi.Output<string>;
     /**
      * The unique identifier of the container to link to your CRON trigger.
      */
-    public readonly containerId!: pulumi.Output<string>;
+    declare public readonly containerId: pulumi.Output<string>;
     /**
      * The name of the container CRON trigger. If not provided, a random name is generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * (Defaults to provider `region`) The region
      * in which the CRON trigger is created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * CRON format string (refer to the [CRON schedule reference](https://www.scaleway.com/en/docs/serverless/containers/reference-content/cron-schedules/) for more information).
      */
-    public readonly schedule!: pulumi.Output<string>;
+    declare public readonly schedule: pulumi.Output<string>;
     /**
      * The CRON status.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
      * Create a ContainerCron resource with the given unique name, arguments, and options.
@@ -122,28 +122,28 @@ export class ContainerCron extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContainerCronState | undefined;
-            resourceInputs["args"] = state ? state.args : undefined;
-            resourceInputs["containerId"] = state ? state.containerId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["schedule"] = state ? state.schedule : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["args"] = state?.args;
+            resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["schedule"] = state?.schedule;
+            resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as ContainerCronArgs | undefined;
-            if ((!args || args.args === undefined) && !opts.urn) {
+            if (args?.args === undefined && !opts.urn) {
                 throw new Error("Missing required property 'args'");
             }
-            if ((!args || args.containerId === undefined) && !opts.urn) {
+            if (args?.containerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'containerId'");
             }
-            if ((!args || args.schedule === undefined) && !opts.urn) {
+            if (args?.schedule === undefined && !opts.urn) {
                 throw new Error("Missing required property 'schedule'");
             }
-            resourceInputs["args"] = args ? args.args : undefined;
-            resourceInputs["containerId"] = args ? args.containerId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["args"] = args?.args;
+            resourceInputs["containerId"] = args?.containerId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["schedule"] = args?.schedule;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

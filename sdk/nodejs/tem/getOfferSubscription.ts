@@ -77,7 +77,7 @@ export interface GetOfferSubscriptionResult {
      */
     readonly offerName: string;
     readonly projectId: string;
-    readonly region: string;
+    readonly region?: string;
     /**
      * The Service Level Agreement (SLA) percentage of the offer subscription.
      */

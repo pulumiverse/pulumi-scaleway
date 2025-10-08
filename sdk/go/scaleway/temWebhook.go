@@ -191,7 +191,7 @@ type TemWebhook struct {
 	// The ID of the project the webhook is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// . The region in which the webhook should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The Amazon Resource Name (ARN) of the SNS topic.
 	SnsArn pulumi.StringOutput `pulumi:"snsArn"`
 	// The date and time of the webhook's last update (RFC 3339 format).
@@ -431,8 +431,8 @@ func (o TemWebhookOutput) ProjectId() pulumi.StringOutput {
 }
 
 // . The region in which the webhook should be created.
-func (o TemWebhookOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *TemWebhook) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o TemWebhookOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TemWebhook) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The Amazon Resource Name (ARN) of the SNS topic.

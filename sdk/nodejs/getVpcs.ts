@@ -61,7 +61,7 @@ export interface GetVpcsResult {
      * The ID of the Project the VPC is associated with.
      */
     readonly projectId: string;
-    readonly region: string;
+    readonly region?: string;
     readonly tags?: string[];
     /**
      * List of retrieved VPCs

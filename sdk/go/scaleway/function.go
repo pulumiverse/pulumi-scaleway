@@ -62,7 +62,7 @@ type Function struct {
 	// `projectId`) The ID of the project the functions namespace is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the namespace should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)
 	Runtime pulumi.StringOutput `pulumi:"runtime"`
 	// Execution environment of the function.
@@ -507,8 +507,8 @@ func (o FunctionOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`). The region in which the namespace should be created.
-func (o FunctionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o FunctionOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Runtime of the function. Runtimes can be fetched using [specific route](https://www.scaleway.com/en/developers/api/serverless-functions/#path-functions-get-a-function)

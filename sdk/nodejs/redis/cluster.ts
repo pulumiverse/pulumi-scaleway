@@ -120,11 +120,11 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * List of acl rules, this is cluster's authorized IPs. More details on the ACL section.
      */
-    public readonly acls!: pulumi.Output<outputs.redis.ClusterAcl[] | undefined>;
+    declare public readonly acls: pulumi.Output<outputs.redis.ClusterAcl[] | undefined>;
     /**
      * The PEM of the certificate used by redis, only when `tlsEnabled` is true
      */
-    public /*out*/ readonly certificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificate: pulumi.Output<string>;
     /**
      * The number of nodes in the Redis™ cluster.
      *
@@ -143,80 +143,80 @@ export class Cluster extends pulumi.CustomResource {
      * > **Important:** If you are using the Standalone mode (1 node), setting a bigger `clusterSize` will destroy and
      * recreate your cluster as you will be switching to the cluster mode.
      */
-    public readonly clusterSize!: pulumi.Output<number>;
+    declare public readonly clusterSize: pulumi.Output<number>;
     /**
      * The date and time of creation of the Redis™ cluster.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The name of the Redis™ cluster.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The type of Redis™ cluster you want to create (e.g. `RED1-M`).
      *
      * > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
      * you cannot downgrade a Redis™ cluster.
      */
-    public readonly nodeType!: pulumi.Output<string>;
+    declare public readonly nodeType: pulumi.Output<string>;
     /**
      * Password for the first user of the Redis™ cluster.
      */
-    public readonly password!: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.redis.ClusterPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.redis.ClusterPrivateIp[]>;
     /**
      * Describes the Private Network you want to connect to your cluster. If not set, a public
      * network will be provided. More details on the Private Network section
      */
-    public readonly privateNetworks!: pulumi.Output<outputs.redis.ClusterPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.redis.ClusterPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the project the Redis™ cluster is
      * associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * (Optional) Public network details. Only one of `privateNetwork` and `publicNetwork` may be set.
      * > The `publicNetwork` block exports:
      */
-    public readonly publicNetwork!: pulumi.Output<outputs.redis.ClusterPublicNetwork>;
+    declare public readonly publicNetwork: pulumi.Output<outputs.redis.ClusterPublicNetwork>;
     /**
      * Map of settings for Redis™ cluster. Available settings can be found by listing Redis™ versions
      * with scaleway API or CLI
      */
-    public readonly settings!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly settings: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The tags associated with the Redis™ cluster.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Whether TLS is enabled or not.
      *
      * > The changes on `tlsEnabled` will force the resource creation.
      */
-    public readonly tlsEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly tlsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The date and time of the last update of the Redis™ cluster.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * Identifier for the first user of the Redis™ cluster.
      */
-    public readonly userName!: pulumi.Output<string>;
+    declare public readonly userName: pulumi.Output<string>;
     /**
      * Redis™ cluster's version (e.g. `6.2.7`).
      *
      * > **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
      * cannot downgrade a Redis™ cluster.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the
      * Redis™ cluster should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -231,53 +231,53 @@ export class Cluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
-            resourceInputs["acls"] = state ? state.acls : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["clusterSize"] = state ? state.clusterSize : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicNetwork"] = state ? state.publicNetwork : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["tlsEnabled"] = state ? state.tlsEnabled : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["acls"] = state?.acls;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["clusterSize"] = state?.clusterSize;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworks"] = state?.privateNetworks;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicNetwork"] = state?.publicNetwork;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["tlsEnabled"] = state?.tlsEnabled;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["userName"] = state?.userName;
+            resourceInputs["version"] = state?.version;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
-            if ((!args || args.nodeType === undefined) && !opts.urn) {
+            if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            if ((!args || args.password === undefined) && !opts.urn) {
+            if (args?.password === undefined && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            if ((!args || args.userName === undefined) && !opts.urn) {
+            if (args?.userName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userName'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["acls"] = args ? args.acls : undefined;
-            resourceInputs["clusterSize"] = args ? args.clusterSize : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
+            resourceInputs["acls"] = args?.acls;
+            resourceInputs["clusterSize"] = args?.clusterSize;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["publicNetwork"] = args ? args.publicNetwork : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["tlsEnabled"] = args ? args.tlsEnabled : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworks"] = args?.privateNetworks;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicNetwork"] = args?.publicNetwork;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["tlsEnabled"] = args?.tlsEnabled;
+            resourceInputs["userName"] = args?.userName;
+            resourceInputs["version"] = args?.version;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

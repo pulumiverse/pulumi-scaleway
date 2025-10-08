@@ -43,7 +43,7 @@ type GetVpcsResult struct {
 	OrganizationId string `pulumi:"organizationId"`
 	// The ID of the Project the VPC is associated with.
 	ProjectId string   `pulumi:"projectId"`
-	Region    string   `pulumi:"region"`
+	Region    *string  `pulumi:"region"`
 	Tags      []string `pulumi:"tags"`
 	// List of retrieved VPCs
 	Vpcs []GetVpcsVpc `pulumi:"vpcs"`
@@ -108,8 +108,8 @@ func (o GetVpcsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpcsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetVpcsResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetVpcsResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetVpcsResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetVpcsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o GetVpcsResultOutput) Tags() pulumi.StringArrayOutput {

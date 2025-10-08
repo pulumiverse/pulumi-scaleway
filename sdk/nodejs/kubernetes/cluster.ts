@@ -231,62 +231,62 @@ export class Cluster extends pulumi.CustomResource {
     /**
      * The list of [admission plugins](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/) to enable on the cluster.
      */
-    public readonly admissionPlugins!: pulumi.Output<string[] | undefined>;
+    declare public readonly admissionPlugins: pulumi.Output<string[] | undefined>;
     /**
      * Additional Subject Alternative Names for the Kubernetes API server certificate
      */
-    public readonly apiserverCertSans!: pulumi.Output<string[] | undefined>;
+    declare public readonly apiserverCertSans: pulumi.Output<string[] | undefined>;
     /**
      * The URL of the Kubernetes API server.
      */
-    public /*out*/ readonly apiserverUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly apiserverUrl: pulumi.Output<string>;
     /**
      * The auto upgrade configuration.
      */
-    public readonly autoUpgrade!: pulumi.Output<outputs.kubernetes.ClusterAutoUpgrade>;
+    declare public readonly autoUpgrade: pulumi.Output<outputs.kubernetes.ClusterAutoUpgrade>;
     /**
      * The configuration options for the [Kubernetes cluster autoscaler](https://github.com/kubernetes/autoscaler/tree/master/cluster-autoscaler).
      */
-    public readonly autoscalerConfig!: pulumi.Output<outputs.kubernetes.ClusterAutoscalerConfig>;
+    declare public readonly autoscalerConfig: pulumi.Output<outputs.kubernetes.ClusterAutoscalerConfig>;
     /**
      * The Container Network Interface (CNI) for the Kubernetes cluster.
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly cni!: pulumi.Output<string>;
+    declare public readonly cni: pulumi.Output<string>;
     /**
      * The creation date of the cluster.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
      * > **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
      * If you prefer keeping it, you should instead set it as `false`.
      */
-    public readonly deleteAdditionalResources!: pulumi.Output<boolean>;
+    declare public readonly deleteAdditionalResources: pulumi.Output<boolean>;
     /**
      * A description for the Kubernetes cluster.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
      */
-    public readonly featureGates!: pulumi.Output<string[] | undefined>;
+    declare public readonly featureGates: pulumi.Output<string[] | undefined>;
     /**
      * The kubeconfig configuration file of the Kubernetes cluster
      */
-    public /*out*/ readonly kubeconfigs!: pulumi.Output<outputs.kubernetes.ClusterKubeconfig[]>;
+    declare public /*out*/ readonly kubeconfigs: pulumi.Output<outputs.kubernetes.ClusterKubeconfig[]>;
     /**
      * The name for the Kubernetes cluster.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The OpenID Connect configuration of the cluster
      */
-    public readonly openIdConnectConfig!: pulumi.Output<outputs.kubernetes.ClusterOpenIdConnectConfig>;
+    declare public readonly openIdConnectConfig: pulumi.Output<outputs.kubernetes.ClusterOpenIdConnectConfig>;
     /**
      * The organization ID the cluster is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The ID of the private network of the cluster.
      *
@@ -295,23 +295,23 @@ export class Cluster extends pulumi.CustomResource {
      * > **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `privateNetworkId` set),
      * you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
      */
-    public readonly privateNetworkId!: pulumi.Output<string | undefined>;
+    declare public readonly privateNetworkId: pulumi.Output<string | undefined>;
     /**
      * `projectId`) The ID of the project the cluster is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region in which the cluster should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The status of the Kubernetes cluster.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the Kubernetes cluster.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The type of Kubernetes cluster. Possible values are:
      *
@@ -321,23 +321,23 @@ export class Cluster extends pulumi.CustomResource {
      *
      * - for dedicated Kosmos clusters: `multicloud-dedicated-4`, `multicloud-dedicated-8` or `multicloud-dedicated-16`.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The last update date of the cluster.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * Set to `true` if a newer Kubernetes version is available.
      */
-    public /*out*/ readonly upgradeAvailable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly upgradeAvailable: pulumi.Output<boolean>;
     /**
      * The version of the Kubernetes cluster.
      */
-    public readonly version!: pulumi.Output<string>;
+    declare public readonly version: pulumi.Output<string>;
     /**
      * The DNS wildcard that points to all ready nodes.
      */
-    public /*out*/ readonly wildcardDns!: pulumi.Output<string>;
+    declare public /*out*/ readonly wildcardDns: pulumi.Output<string>;
 
     /**
      * Create a Cluster resource with the given unique name, arguments, and options.
@@ -352,57 +352,57 @@ export class Cluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ClusterState | undefined;
-            resourceInputs["admissionPlugins"] = state ? state.admissionPlugins : undefined;
-            resourceInputs["apiserverCertSans"] = state ? state.apiserverCertSans : undefined;
-            resourceInputs["apiserverUrl"] = state ? state.apiserverUrl : undefined;
-            resourceInputs["autoUpgrade"] = state ? state.autoUpgrade : undefined;
-            resourceInputs["autoscalerConfig"] = state ? state.autoscalerConfig : undefined;
-            resourceInputs["cni"] = state ? state.cni : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deleteAdditionalResources"] = state ? state.deleteAdditionalResources : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["featureGates"] = state ? state.featureGates : undefined;
-            resourceInputs["kubeconfigs"] = state ? state.kubeconfigs : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["openIdConnectConfig"] = state ? state.openIdConnectConfig : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["upgradeAvailable"] = state ? state.upgradeAvailable : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
-            resourceInputs["wildcardDns"] = state ? state.wildcardDns : undefined;
+            resourceInputs["admissionPlugins"] = state?.admissionPlugins;
+            resourceInputs["apiserverCertSans"] = state?.apiserverCertSans;
+            resourceInputs["apiserverUrl"] = state?.apiserverUrl;
+            resourceInputs["autoUpgrade"] = state?.autoUpgrade;
+            resourceInputs["autoscalerConfig"] = state?.autoscalerConfig;
+            resourceInputs["cni"] = state?.cni;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deleteAdditionalResources"] = state?.deleteAdditionalResources;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["featureGates"] = state?.featureGates;
+            resourceInputs["kubeconfigs"] = state?.kubeconfigs;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["openIdConnectConfig"] = state?.openIdConnectConfig;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["upgradeAvailable"] = state?.upgradeAvailable;
+            resourceInputs["version"] = state?.version;
+            resourceInputs["wildcardDns"] = state?.wildcardDns;
         } else {
             const args = argsOrState as ClusterArgs | undefined;
-            if ((!args || args.cni === undefined) && !opts.urn) {
+            if (args?.cni === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cni'");
             }
-            if ((!args || args.deleteAdditionalResources === undefined) && !opts.urn) {
+            if (args?.deleteAdditionalResources === undefined && !opts.urn) {
                 throw new Error("Missing required property 'deleteAdditionalResources'");
             }
-            if ((!args || args.version === undefined) && !opts.urn) {
+            if (args?.version === undefined && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
-            resourceInputs["admissionPlugins"] = args ? args.admissionPlugins : undefined;
-            resourceInputs["apiserverCertSans"] = args ? args.apiserverCertSans : undefined;
-            resourceInputs["autoUpgrade"] = args ? args.autoUpgrade : undefined;
-            resourceInputs["autoscalerConfig"] = args ? args.autoscalerConfig : undefined;
-            resourceInputs["cni"] = args ? args.cni : undefined;
-            resourceInputs["deleteAdditionalResources"] = args ? args.deleteAdditionalResources : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["featureGates"] = args ? args.featureGates : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["openIdConnectConfig"] = args ? args.openIdConnectConfig : undefined;
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["admissionPlugins"] = args?.admissionPlugins;
+            resourceInputs["apiserverCertSans"] = args?.apiserverCertSans;
+            resourceInputs["autoUpgrade"] = args?.autoUpgrade;
+            resourceInputs["autoscalerConfig"] = args?.autoscalerConfig;
+            resourceInputs["cni"] = args?.cni;
+            resourceInputs["deleteAdditionalResources"] = args?.deleteAdditionalResources;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["featureGates"] = args?.featureGates;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["openIdConnectConfig"] = args?.openIdConnectConfig;
+            resourceInputs["privateNetworkId"] = args?.privateNetworkId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["version"] = args?.version;
             resourceInputs["apiserverUrl"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["kubeconfigs"] = undefined /*out*/;

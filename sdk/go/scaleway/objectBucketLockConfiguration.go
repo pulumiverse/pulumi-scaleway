@@ -93,7 +93,7 @@ type ObjectBucketLockConfiguration struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Specifies the object lock rule for the specified object.
 	Rule ObjectBucketLockConfigurationRuleOutput `pulumi:"rule"`
 }
@@ -280,8 +280,8 @@ func (o ObjectBucketLockConfigurationOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o ObjectBucketLockConfigurationOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ObjectBucketLockConfigurationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketLockConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Specifies the object lock rule for the specified object.

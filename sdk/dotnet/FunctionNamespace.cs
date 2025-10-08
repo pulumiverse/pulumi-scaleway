@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway
         /// `region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The registry endpoint of the namespace.

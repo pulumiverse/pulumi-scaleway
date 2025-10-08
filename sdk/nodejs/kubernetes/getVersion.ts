@@ -77,7 +77,7 @@ export interface GetVersionResult {
      */
     readonly id: string;
     readonly name: string;
-    readonly region: string;
+    readonly region?: string;
 }
 /**
  * Gets information about a Kubernetes version.

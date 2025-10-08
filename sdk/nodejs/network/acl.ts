@@ -77,23 +77,23 @@ export class Acl extends pulumi.CustomResource {
     /**
      * The action to take for packets which do not match any rules.
      */
-    public readonly defaultPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly defaultPolicy: pulumi.Output<string | undefined>;
     /**
      * Defines whether this set of ACL rules is for IPv6 (false = IPv4). Each Network ACL can have rules for only one IP type.
      */
-    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly isIpv6: pulumi.Output<boolean | undefined>;
     /**
      * `region`) The region of the ACL.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The list of Network ACL rules.
      */
-    public readonly rules!: pulumi.Output<outputs.network.AclRule[] | undefined>;
+    declare public readonly rules: pulumi.Output<outputs.network.AclRule[] | undefined>;
     /**
      * The VPC ID the ACL belongs to.
      */
-    public readonly vpcId!: pulumi.Output<string>;
+    declare public readonly vpcId: pulumi.Output<string>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -108,21 +108,21 @@ export class Acl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclState | undefined;
-            resourceInputs["defaultPolicy"] = state ? state.defaultPolicy : undefined;
-            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["defaultPolicy"] = state?.defaultPolicy;
+            resourceInputs["isIpv6"] = state?.isIpv6;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rules"] = state?.rules;
+            resourceInputs["vpcId"] = state?.vpcId;
         } else {
             const args = argsOrState as AclArgs | undefined;
-            if ((!args || args.vpcId === undefined) && !opts.urn) {
+            if (args?.vpcId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vpcId'");
             }
-            resourceInputs["defaultPolicy"] = args ? args.defaultPolicy : undefined;
-            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["defaultPolicy"] = args?.defaultPolicy;
+            resourceInputs["isIpv6"] = args?.isIpv6;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rules"] = args?.rules;
+            resourceInputs["vpcId"] = args?.vpcId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);

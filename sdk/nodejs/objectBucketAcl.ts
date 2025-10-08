@@ -150,27 +150,27 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
     /**
      * A configuration block that sets the ACL permissions for an object per grantee documented below.
      */
-    public readonly accessControlPolicy!: pulumi.Output<outputs.ObjectBucketAclAccessControlPolicy>;
+    declare public readonly accessControlPolicy: pulumi.Output<outputs.ObjectBucketAclAccessControlPolicy>;
     /**
      * The canned ACL you want to apply to the bucket. Refer to the [AWS Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) documentation page to find a list of all the supported canned ACLs.
      */
-    public readonly acl!: pulumi.Output<string | undefined>;
+    declare public readonly acl: pulumi.Output<string | undefined>;
     /**
      * The bucket's name or regional ID.
      */
-    public readonly bucket!: pulumi.Output<string>;
+    declare public readonly bucket: pulumi.Output<string>;
     /**
      * The project ID of the expected bucket owner.
      */
-    public readonly expectedBucketOwner!: pulumi.Output<string | undefined>;
+    declare public readonly expectedBucketOwner: pulumi.Output<string | undefined>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a ObjectBucketAcl resource with the given unique name, arguments, and options.
@@ -188,23 +188,23 @@ export class ObjectBucketAcl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectBucketAclState | undefined;
-            resourceInputs["accessControlPolicy"] = state ? state.accessControlPolicy : undefined;
-            resourceInputs["acl"] = state ? state.acl : undefined;
-            resourceInputs["bucket"] = state ? state.bucket : undefined;
-            resourceInputs["expectedBucketOwner"] = state ? state.expectedBucketOwner : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["accessControlPolicy"] = state?.accessControlPolicy;
+            resourceInputs["acl"] = state?.acl;
+            resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["expectedBucketOwner"] = state?.expectedBucketOwner;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as ObjectBucketAclArgs | undefined;
-            if ((!args || args.bucket === undefined) && !opts.urn) {
+            if (args?.bucket === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucket'");
             }
-            resourceInputs["accessControlPolicy"] = args ? args.accessControlPolicy : undefined;
-            resourceInputs["acl"] = args ? args.acl : undefined;
-            resourceInputs["bucket"] = args ? args.bucket : undefined;
-            resourceInputs["expectedBucketOwner"] = args ? args.expectedBucketOwner : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["accessControlPolicy"] = args?.accessControlPolicy;
+            resourceInputs["acl"] = args?.acl;
+            resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["expectedBucketOwner"] = args?.expectedBucketOwner;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ObjectBucketAcl.__pulumiType, name, resourceInputs, opts);

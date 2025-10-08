@@ -87,7 +87,7 @@ type GetOfferResult struct {
 	//
 	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetOfferProduct `pulumi:"products"`
-	Region   string            `pulumi:"region"`
+	Region   *string           `pulumi:"region"`
 }
 
 func GetOfferOutput(ctx *pulumi.Context, args GetOfferOutputArgs, opts ...pulumi.InvokeOption) GetOfferResultOutput {
@@ -170,8 +170,8 @@ func (o GetOfferResultOutput) Products() GetOfferProductArrayOutput {
 	return o.ApplyT(func(v GetOfferResult) []GetOfferProduct { return v.Products }).(GetOfferProductArrayOutput)
 }
 
-func (o GetOfferResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOfferResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetOfferResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetOfferResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func init() {

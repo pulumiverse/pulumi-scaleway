@@ -45,7 +45,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// `zone`) The zone in which the IPs exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLbIpsIpResult(
@@ -63,7 +63,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             IpAddress = ipAddress;

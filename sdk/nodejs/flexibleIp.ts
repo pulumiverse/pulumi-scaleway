@@ -115,51 +115,51 @@ export class FlexibleIp extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the Flexible IP (Format ISO 8601).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * A description of the flexible IP.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The IP address of the Flexible IP.
      */
-    public /*out*/ readonly ipAddress!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipAddress: pulumi.Output<string>;
     /**
      * Defines whether the flexible IP has an IPv6 address.
      */
-    public readonly isIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly isIpv6: pulumi.Output<boolean | undefined>;
     /**
      * The organization of the Flexible IP.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the Flexible IP is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The reverse domain associated with this flexible IP.
      */
-    public readonly reverse!: pulumi.Output<string>;
+    declare public readonly reverse: pulumi.Output<string>;
     /**
      * The ID of the associated server.
      */
-    public readonly serverId!: pulumi.Output<string | undefined>;
+    declare public readonly serverId: pulumi.Output<string | undefined>;
     /**
      * The status of the flexible IP.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * A list of tags to apply to the flexible IP.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the Flexible IP (Format ISO 8601).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone of the Flexible IP.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a FlexibleIp resource with the given unique name, arguments, and options.
@@ -177,27 +177,27 @@ export class FlexibleIp extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FlexibleIpState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["isIpv6"] = state ? state.isIpv6 : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["reverse"] = state ? state.reverse : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["isIpv6"] = state?.isIpv6;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["reverse"] = state?.reverse;
+            resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as FlexibleIpArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["isIpv6"] = args ? args.isIpv6 : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["reverse"] = args ? args.reverse : undefined;
-            resourceInputs["serverId"] = args ? args.serverId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["isIpv6"] = args?.isIpv6;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["reverse"] = args?.reverse;
+            resourceInputs["serverId"] = args?.serverId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;

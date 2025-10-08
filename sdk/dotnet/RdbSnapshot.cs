@@ -171,7 +171,7 @@ namespace Pulumiverse.Scaleway
         /// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the snapshot in bytes.

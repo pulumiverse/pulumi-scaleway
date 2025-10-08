@@ -145,7 +145,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// <summary>
         /// The zone of the Load Balancer.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLoadBalancersResult(
@@ -161,7 +161,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Lbs = lbs;

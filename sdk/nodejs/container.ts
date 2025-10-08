@@ -198,87 +198,87 @@ export class Container extends pulumi.CustomResource {
     /**
      * Arguments passed to the command specified in the "command" field. These override the default arguments from the container image, and behave like command-line parameters.
      */
-    public readonly args!: pulumi.Output<string[] | undefined>;
+    declare public readonly args: pulumi.Output<string[] | undefined>;
     /**
      * Command executed when the container starts. This overrides the default command defined in the container image. This is usually the main executable, or entry point script to run.
      */
-    public readonly commands!: pulumi.Output<string[] | undefined>;
+    declare public readonly commands: pulumi.Output<string[] | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container.
      */
-    public readonly cpuLimit!: pulumi.Output<number>;
+    declare public readonly cpuLimit: pulumi.Output<number>;
     /**
      * The cron status of the container.
      */
-    public /*out*/ readonly cronStatus!: pulumi.Output<string>;
+    declare public /*out*/ readonly cronStatus: pulumi.Output<string>;
     /**
      * Boolean indicating whether the container is in a production environment.
      */
-    public readonly deploy!: pulumi.Output<boolean | undefined>;
+    declare public readonly deploy: pulumi.Output<boolean | undefined>;
     /**
      * The description of the container.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The native domain name of the container
      */
-    public /*out*/ readonly domainName!: pulumi.Output<string>;
+    declare public /*out*/ readonly domainName: pulumi.Output<string>;
     /**
      * The [environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#environment-variables) of the container.
      */
-    public readonly environmentVariables!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly environmentVariables: pulumi.Output<{[key: string]: string}>;
     /**
      * The error message of the container.
      */
-    public /*out*/ readonly errorMessage!: pulumi.Output<string>;
+    declare public /*out*/ readonly errorMessage: pulumi.Output<string>;
     /**
      * Health check configuration block of the container.
      */
-    public readonly healthChecks!: pulumi.Output<outputs.ContainerHealthCheck[]>;
+    declare public readonly healthChecks: pulumi.Output<outputs.ContainerHealthCheck[]>;
     /**
      * Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
      */
-    public readonly httpOption!: pulumi.Output<string | undefined>;
+    declare public readonly httpOption: pulumi.Output<string | undefined>;
     /**
      * Local storage limit of the container (in MB)
      */
-    public readonly localStorageLimit!: pulumi.Output<number>;
+    declare public readonly localStorageLimit: pulumi.Output<number>;
     /**
      * The maximum number of simultaneous requests your container can handle at the same time. Use `scaling_option.concurrent_requests_threshold` instead.
      *
      * @deprecated Use scaling_option.concurrent_requests_threshold instead. This attribute will be removed.
      */
-    public readonly maxConcurrency!: pulumi.Output<number>;
+    declare public readonly maxConcurrency: pulumi.Output<number>;
     /**
      * The maximum number of instances this container can scale to.
      */
-    public readonly maxScale!: pulumi.Output<number>;
+    declare public readonly maxScale: pulumi.Output<number>;
     /**
      * The memory resources in MB to allocate to each container.
      */
-    public readonly memoryLimit!: pulumi.Output<number>;
+    declare public readonly memoryLimit: pulumi.Output<number>;
     /**
      * The minimum number of container instances running continuously.
      */
-    public readonly minScale!: pulumi.Output<number>;
+    declare public readonly minScale: pulumi.Output<number>;
     /**
      * The unique name of the container name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Containers namespace ID of the container.
      *
      * > **Important** Updating the `name` argument will recreate the container.
      */
-    public readonly namespaceId!: pulumi.Output<string>;
+    declare public readonly namespaceId: pulumi.Output<string>;
     /**
      * The port to expose the container.
      */
-    public readonly port!: pulumi.Output<number>;
+    declare public readonly port: pulumi.Output<number>;
     /**
      * The privacy type defines the way to authenticate to your container. Please check our dedicated [section](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8).
      */
-    public readonly privacy!: pulumi.Output<string | undefined>;
+    declare public readonly privacy: pulumi.Output<string | undefined>;
     /**
      * The ID of the Private Network the container is connected to.
      *
@@ -286,47 +286,47 @@ export class Container extends pulumi.CustomResource {
      *
      * Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
      */
-    public readonly privateNetworkId!: pulumi.Output<string | undefined>;
+    declare public readonly privateNetworkId: pulumi.Output<string | undefined>;
     /**
      * The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
      */
-    public readonly protocol!: pulumi.Output<string | undefined>;
+    declare public readonly protocol: pulumi.Output<string | undefined>;
     /**
      * (Defaults to provider `region`) The region in which the container was created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
      */
-    public readonly registryImage!: pulumi.Output<string>;
+    declare public readonly registryImage: pulumi.Output<string>;
     /**
      * The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
      */
-    public readonly registrySha256!: pulumi.Output<string | undefined>;
+    declare public readonly registrySha256: pulumi.Output<string | undefined>;
     /**
      * Execution environment of the container.
      */
-    public readonly sandbox!: pulumi.Output<string>;
+    declare public readonly sandbox: pulumi.Output<string>;
     /**
      * Configuration block used to decide when to scale up or down. Possible values:
      */
-    public readonly scalingOptions!: pulumi.Output<outputs.ContainerScalingOption[]>;
+    declare public readonly scalingOptions: pulumi.Output<outputs.ContainerScalingOption[]>;
     /**
      * The [secret environment variables](https://www.scaleway.com/en/docs/serverless-containers/concepts/#secrets) of the container.
      */
-    public readonly secretEnvironmentVariables!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly secretEnvironmentVariables: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The container status.
      */
-    public readonly status!: pulumi.Output<string>;
+    declare public readonly status: pulumi.Output<string>;
     /**
      * The list of tags associated with the container.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The maximum amount of time in seconds your container can spend processing a request before being stopped. Default to `300` seconds.
      */
-    public readonly timeout!: pulumi.Output<number>;
+    declare public readonly timeout: pulumi.Output<number>;
 
     /**
      * Create a Container resource with the given unique name, arguments, and options.
@@ -344,70 +344,70 @@ export class Container extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ContainerState | undefined;
-            resourceInputs["args"] = state ? state.args : undefined;
-            resourceInputs["commands"] = state ? state.commands : undefined;
-            resourceInputs["cpuLimit"] = state ? state.cpuLimit : undefined;
-            resourceInputs["cronStatus"] = state ? state.cronStatus : undefined;
-            resourceInputs["deploy"] = state ? state.deploy : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["domainName"] = state ? state.domainName : undefined;
-            resourceInputs["environmentVariables"] = state ? state.environmentVariables : undefined;
-            resourceInputs["errorMessage"] = state ? state.errorMessage : undefined;
-            resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
-            resourceInputs["httpOption"] = state ? state.httpOption : undefined;
-            resourceInputs["localStorageLimit"] = state ? state.localStorageLimit : undefined;
-            resourceInputs["maxConcurrency"] = state ? state.maxConcurrency : undefined;
-            resourceInputs["maxScale"] = state ? state.maxScale : undefined;
-            resourceInputs["memoryLimit"] = state ? state.memoryLimit : undefined;
-            resourceInputs["minScale"] = state ? state.minScale : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["port"] = state ? state.port : undefined;
-            resourceInputs["privacy"] = state ? state.privacy : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["registryImage"] = state ? state.registryImage : undefined;
-            resourceInputs["registrySha256"] = state ? state.registrySha256 : undefined;
-            resourceInputs["sandbox"] = state ? state.sandbox : undefined;
-            resourceInputs["scalingOptions"] = state ? state.scalingOptions : undefined;
-            resourceInputs["secretEnvironmentVariables"] = state ? state.secretEnvironmentVariables : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["args"] = state?.args;
+            resourceInputs["commands"] = state?.commands;
+            resourceInputs["cpuLimit"] = state?.cpuLimit;
+            resourceInputs["cronStatus"] = state?.cronStatus;
+            resourceInputs["deploy"] = state?.deploy;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["domainName"] = state?.domainName;
+            resourceInputs["environmentVariables"] = state?.environmentVariables;
+            resourceInputs["errorMessage"] = state?.errorMessage;
+            resourceInputs["healthChecks"] = state?.healthChecks;
+            resourceInputs["httpOption"] = state?.httpOption;
+            resourceInputs["localStorageLimit"] = state?.localStorageLimit;
+            resourceInputs["maxConcurrency"] = state?.maxConcurrency;
+            resourceInputs["maxScale"] = state?.maxScale;
+            resourceInputs["memoryLimit"] = state?.memoryLimit;
+            resourceInputs["minScale"] = state?.minScale;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["port"] = state?.port;
+            resourceInputs["privacy"] = state?.privacy;
+            resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["protocol"] = state?.protocol;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["registryImage"] = state?.registryImage;
+            resourceInputs["registrySha256"] = state?.registrySha256;
+            resourceInputs["sandbox"] = state?.sandbox;
+            resourceInputs["scalingOptions"] = state?.scalingOptions;
+            resourceInputs["secretEnvironmentVariables"] = state?.secretEnvironmentVariables;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as ContainerArgs | undefined;
-            if ((!args || args.namespaceId === undefined) && !opts.urn) {
+            if (args?.namespaceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'namespaceId'");
             }
-            resourceInputs["args"] = args ? args.args : undefined;
-            resourceInputs["commands"] = args ? args.commands : undefined;
-            resourceInputs["cpuLimit"] = args ? args.cpuLimit : undefined;
-            resourceInputs["deploy"] = args ? args.deploy : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["environmentVariables"] = args ? args.environmentVariables : undefined;
-            resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
-            resourceInputs["httpOption"] = args ? args.httpOption : undefined;
-            resourceInputs["localStorageLimit"] = args ? args.localStorageLimit : undefined;
-            resourceInputs["maxConcurrency"] = args ? args.maxConcurrency : undefined;
-            resourceInputs["maxScale"] = args ? args.maxScale : undefined;
-            resourceInputs["memoryLimit"] = args ? args.memoryLimit : undefined;
-            resourceInputs["minScale"] = args ? args.minScale : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namespaceId"] = args ? args.namespaceId : undefined;
-            resourceInputs["port"] = args ? args.port : undefined;
-            resourceInputs["privacy"] = args ? args.privacy : undefined;
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["registryImage"] = args ? args.registryImage : undefined;
-            resourceInputs["registrySha256"] = args ? args.registrySha256 : undefined;
-            resourceInputs["sandbox"] = args ? args.sandbox : undefined;
-            resourceInputs["scalingOptions"] = args ? args.scalingOptions : undefined;
+            resourceInputs["args"] = args?.args;
+            resourceInputs["commands"] = args?.commands;
+            resourceInputs["cpuLimit"] = args?.cpuLimit;
+            resourceInputs["deploy"] = args?.deploy;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["environmentVariables"] = args?.environmentVariables;
+            resourceInputs["healthChecks"] = args?.healthChecks;
+            resourceInputs["httpOption"] = args?.httpOption;
+            resourceInputs["localStorageLimit"] = args?.localStorageLimit;
+            resourceInputs["maxConcurrency"] = args?.maxConcurrency;
+            resourceInputs["maxScale"] = args?.maxScale;
+            resourceInputs["memoryLimit"] = args?.memoryLimit;
+            resourceInputs["minScale"] = args?.minScale;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namespaceId"] = args?.namespaceId;
+            resourceInputs["port"] = args?.port;
+            resourceInputs["privacy"] = args?.privacy;
+            resourceInputs["privateNetworkId"] = args?.privateNetworkId;
+            resourceInputs["protocol"] = args?.protocol;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["registryImage"] = args?.registryImage;
+            resourceInputs["registrySha256"] = args?.registrySha256;
+            resourceInputs["sandbox"] = args?.sandbox;
+            resourceInputs["scalingOptions"] = args?.scalingOptions;
             resourceInputs["secretEnvironmentVariables"] = args?.secretEnvironmentVariables ? pulumi.secret(args.secretEnvironmentVariables) : undefined;
-            resourceInputs["status"] = args ? args.status : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["status"] = args?.status;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["cronStatus"] = undefined /*out*/;
             resourceInputs["domainName"] = undefined /*out*/;
             resourceInputs["errorMessage"] = undefined /*out*/;

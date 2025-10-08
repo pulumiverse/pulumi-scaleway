@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// `zone`) The zone of the Flexible IP.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

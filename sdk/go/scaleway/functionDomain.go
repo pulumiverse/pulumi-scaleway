@@ -85,7 +85,7 @@ type FunctionDomain struct {
 	// > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// (Defaults to provider `region`) The region in which the domain was created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The URL used to query the function.
 	Url pulumi.StringOutput `pulumi:"url"`
 }
@@ -288,8 +288,8 @@ func (o FunctionDomainOutput) Hostname() pulumi.StringOutput {
 }
 
 // (Defaults to provider `region`) The region in which the domain was created.
-func (o FunctionDomainOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *FunctionDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o FunctionDomainOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionDomain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The URL used to query the function.

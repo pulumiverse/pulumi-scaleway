@@ -300,7 +300,7 @@ import (
 //				Namespace:  "kube-system",
 //				Repository: "https://kubernetes.github.io/ingress-nginx",
 //				Chart:      "ingress-nginx",
-//				Set: []map[string]interface{}{
+//				Set: []interface{}{
 //					map[string]interface{}{
 //						"name":  "controller.service.loadBalancerIP",
 //						"value": nginxIp.IpAddress,
@@ -385,7 +385,7 @@ type Cluster struct {
 	// `projectId`) The ID of the project the cluster is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The status of the Kubernetes cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -865,8 +865,8 @@ func (o ClusterOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the cluster should be created.
-func (o ClusterOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ClusterOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The status of the Kubernetes cluster.

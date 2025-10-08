@@ -181,7 +181,7 @@ type PrivateNic struct {
 	// The tags associated with the private NIC.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the server must be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPrivateNic registers a new resource with the given unique name, arguments, and options.
@@ -425,8 +425,8 @@ func (o PrivateNicOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the server must be created.
-func (o PrivateNicOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateNic) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PrivateNicOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateNic) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PrivateNicArrayOutput struct{ *pulumi.OutputState }

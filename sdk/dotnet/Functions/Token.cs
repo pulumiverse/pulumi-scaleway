@@ -99,7 +99,7 @@ namespace Pulumiverse.Scaleway.Functions
         /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The token.

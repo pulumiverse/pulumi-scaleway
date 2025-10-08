@@ -967,7 +967,7 @@ type GetIpsIpMacAddress struct {
 	// The date on which the flexible IP was last updated (RFC 3339 format).
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which IPs exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetIpsIpMacAddressInput is an input type that accepts GetIpsIpMacAddressArgs and GetIpsIpMacAddressOutput values.
@@ -995,7 +995,7 @@ type GetIpsIpMacAddressArgs struct {
 	// The date on which the flexible IP was last updated (RFC 3339 format).
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which IPs exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetIpsIpMacAddressArgs) ElementType() reflect.Type {
@@ -1080,8 +1080,8 @@ func (o GetIpsIpMacAddressOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which IPs exist.
-func (o GetIpsIpMacAddressOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpsIpMacAddress) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetIpsIpMacAddressOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpsIpMacAddress) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetIpsIpMacAddressArrayOutput struct{ *pulumi.OutputState }

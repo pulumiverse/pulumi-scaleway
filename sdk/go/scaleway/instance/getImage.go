@@ -65,8 +65,8 @@ type LookupImageResult struct {
 	// ID of the root volume in this image.
 	RootVolumeId string `pulumi:"rootVolumeId"`
 	// State of the image. Possible values are: `available`, `creating` or `error`.
-	State string `pulumi:"state"`
-	Zone  string `pulumi:"zone"`
+	State string  `pulumi:"state"`
+	Zone  *string `pulumi:"zone"`
 }
 
 func LookupImageOutput(ctx *pulumi.Context, args LookupImageOutputArgs, opts ...pulumi.InvokeOption) LookupImageResultOutput {
@@ -184,8 +184,8 @@ func (o LookupImageResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupImageResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-func (o LookupImageResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupImageResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupImageResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupImageResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

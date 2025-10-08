@@ -126,7 +126,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// `region`) The region in which the ACL rule should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

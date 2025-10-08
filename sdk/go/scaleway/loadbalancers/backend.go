@@ -91,9 +91,10 @@ import (
 type Backend struct {
 	pulumi.CustomResourceState
 
-	// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-	// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-	// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	// Scaleway S3 bucket website to be served in case all backend servers are down
+	//
+	// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+	// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 	FailoverHost pulumi.StringPtrOutput `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers
 	ForwardPort pulumi.IntOutput `pulumi:"forwardPort"`
@@ -202,9 +203,10 @@ func GetBackend(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Backend resources.
 type backendState struct {
-	// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-	// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-	// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	// Scaleway S3 bucket website to be served in case all backend servers are down
+	//
+	// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+	// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 	FailoverHost *string `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers
 	ForwardPort *int `pulumi:"forwardPort"`
@@ -269,9 +271,10 @@ type backendState struct {
 }
 
 type BackendState struct {
-	// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-	// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-	// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	// Scaleway S3 bucket website to be served in case all backend servers are down
+	//
+	// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+	// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 	FailoverHost pulumi.StringPtrInput
 	// User sessions will be forwarded to this port of backend servers
 	ForwardPort pulumi.IntPtrInput
@@ -340,9 +343,10 @@ func (BackendState) ElementType() reflect.Type {
 }
 
 type backendArgs struct {
-	// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-	// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-	// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	// Scaleway S3 bucket website to be served in case all backend servers are down
+	//
+	// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+	// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 	FailoverHost *string `pulumi:"failoverHost"`
 	// User sessions will be forwarded to this port of backend servers
 	ForwardPort int `pulumi:"forwardPort"`
@@ -408,9 +412,10 @@ type backendArgs struct {
 
 // The set of arguments for constructing a Backend resource.
 type BackendArgs struct {
-	// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-	// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-	// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+	// Scaleway S3 bucket website to be served in case all backend servers are down
+	//
+	// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+	// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 	FailoverHost pulumi.StringPtrInput
 	// User sessions will be forwarded to this port of backend servers
 	ForwardPort pulumi.IntInput
@@ -561,9 +566,10 @@ func (o BackendOutput) ToBackendOutputWithContext(ctx context.Context) BackendOu
 	return o
 }
 
-// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+// Scaleway S3 bucket website to be served in case all backend servers are down
+//
+// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
 func (o BackendOutput) FailoverHost() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Backend) pulumi.StringPtrOutput { return v.FailoverHost }).(pulumi.StringPtrOutput)
 }

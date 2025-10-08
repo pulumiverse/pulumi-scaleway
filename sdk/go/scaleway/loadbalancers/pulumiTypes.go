@@ -4264,7 +4264,7 @@ type GetIpsIp struct {
 	// List of tags used as filter. IPs with these exact tags are listed.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetIpsIpInput is an input type that accepts GetIpsIpArgs and GetIpsIpOutput values.
@@ -4294,7 +4294,7 @@ type GetIpsIpArgs struct {
 	// List of tags used as filter. IPs with these exact tags are listed.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
 	// `zone`) The zone in which the IPs exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetIpsIpArgs) ElementType() reflect.Type {
@@ -4384,8 +4384,8 @@ func (o GetIpsIpOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the IPs exist.
-func (o GetIpsIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpsIp) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetIpsIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpsIp) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetIpsIpArrayOutput struct{ *pulumi.OutputState }
@@ -4694,7 +4694,7 @@ type GetLoadBalancersLb struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLoadBalancersLbInput is an input type that accepts GetLoadBalancersLbArgs and GetLoadBalancersLbOutput values.
@@ -4746,7 +4746,7 @@ type GetLoadBalancersLbArgs struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLoadBalancersLbArgs) ElementType() reflect.Type {
@@ -4891,8 +4891,8 @@ func (o GetLoadBalancersLbOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLoadBalancersLbOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoadBalancersLb) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLoadBalancersLbOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadBalancersLb) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLoadBalancersLbArrayOutput struct{ *pulumi.OutputState }
@@ -4927,7 +4927,7 @@ type GetLoadBalancersLbInstance struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt string `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLoadBalancersLbInstanceInput is an input type that accepts GetLoadBalancersLbInstanceArgs and GetLoadBalancersLbInstanceOutput values.
@@ -4953,7 +4953,7 @@ type GetLoadBalancersLbInstanceArgs struct {
 	// Date on which the Load Balancer was updated.
 	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLoadBalancersLbInstanceArgs) ElementType() reflect.Type {
@@ -5033,8 +5033,8 @@ func (o GetLoadBalancersLbInstanceOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLoadBalancersLbInstanceOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoadBalancersLbInstance) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLoadBalancersLbInstanceOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadBalancersLbInstance) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLoadBalancersLbInstanceArrayOutput struct{ *pulumi.OutputState }
@@ -5071,7 +5071,7 @@ type GetLoadBalancersLbIp struct {
 	// Reverse DNS attached to the IP
 	Reverse string `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 // GetLoadBalancersLbIpInput is an input type that accepts GetLoadBalancersLbIpArgs and GetLoadBalancersLbIpOutput values.
@@ -5099,7 +5099,7 @@ type GetLoadBalancersLbIpArgs struct {
 	// Reverse DNS attached to the IP
 	Reverse pulumi.StringInput `pulumi:"reverse"`
 	// `zone`) The zone in which the Load Balancers exist.
-	Zone pulumi.StringInput `pulumi:"zone"`
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (GetLoadBalancersLbIpArgs) ElementType() reflect.Type {
@@ -5184,8 +5184,8 @@ func (o GetLoadBalancersLbIpOutput) Reverse() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Load Balancers exist.
-func (o GetLoadBalancersLbIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLoadBalancersLbIp) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLoadBalancersLbIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLoadBalancersLbIp) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GetLoadBalancersLbIpArrayOutput struct{ *pulumi.OutputState }

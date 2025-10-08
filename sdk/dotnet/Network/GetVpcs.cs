@@ -125,7 +125,7 @@ namespace Pulumiverse.Scaleway.Network
         /// The ID of the Project the VPC is associated with.
         /// </summary>
         public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? Region;
         public readonly ImmutableArray<string> Tags;
         /// <summary>
         /// List of retrieved VPCs
@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway.Network
 
             string projectId,
 
-            string region,
+            string? region,
 
             ImmutableArray<string> tags,
 

@@ -81,23 +81,23 @@ export class AlertManager extends pulumi.CustomResource {
     /**
      * The URL of the alert manager.
      */
-    public /*out*/ readonly alertManagerUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly alertManagerUrl: pulumi.Output<string>;
     /**
      * A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
      */
-    public readonly contactPoints!: pulumi.Output<outputs.observability.AlertManagerContactPoint[] | undefined>;
+    declare public readonly contactPoints: pulumi.Output<outputs.observability.AlertManagerContactPoint[] | undefined>;
     /**
      * Specifies whether the alert manager should be enabled. Defaults to true.
      */
-    public readonly enableManagedAlerts!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableManagedAlerts: pulumi.Output<boolean | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * ) The region where the [alert manager](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#alert-manager) should be enabled.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a AlertManager resource with the given unique name, arguments, and options.
@@ -112,17 +112,17 @@ export class AlertManager extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AlertManagerState | undefined;
-            resourceInputs["alertManagerUrl"] = state ? state.alertManagerUrl : undefined;
-            resourceInputs["contactPoints"] = state ? state.contactPoints : undefined;
-            resourceInputs["enableManagedAlerts"] = state ? state.enableManagedAlerts : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["alertManagerUrl"] = state?.alertManagerUrl;
+            resourceInputs["contactPoints"] = state?.contactPoints;
+            resourceInputs["enableManagedAlerts"] = state?.enableManagedAlerts;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as AlertManagerArgs | undefined;
-            resourceInputs["contactPoints"] = args ? args.contactPoints : undefined;
-            resourceInputs["enableManagedAlerts"] = args ? args.enableManagedAlerts : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["contactPoints"] = args?.contactPoints;
+            resourceInputs["enableManagedAlerts"] = args?.enableManagedAlerts;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["alertManagerUrl"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

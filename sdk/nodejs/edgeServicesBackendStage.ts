@@ -106,27 +106,27 @@ export class EdgeServicesBackendStage extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the backend stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The Scaleway Load Balancer linked to the backend stage.
      */
-    public readonly lbBackendConfigs!: pulumi.Output<outputs.EdgeServicesBackendStageLbBackendConfig[] | undefined>;
+    declare public readonly lbBackendConfigs: pulumi.Output<outputs.EdgeServicesBackendStageLbBackendConfig[] | undefined>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the backend stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The Scaleway Object Storage origin bucket (S3) linked to the backend stage.
      */
-    public readonly s3BackendConfig!: pulumi.Output<outputs.EdgeServicesBackendStageS3BackendConfig | undefined>;
+    declare public readonly s3BackendConfig: pulumi.Output<outputs.EdgeServicesBackendStageS3BackendConfig | undefined>;
     /**
      * The date and time of the last update of the backend stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesBackendStage resource with the given unique name, arguments, and options.
@@ -141,21 +141,21 @@ export class EdgeServicesBackendStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesBackendStageState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["lbBackendConfigs"] = state ? state.lbBackendConfigs : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["s3BackendConfig"] = state ? state.s3BackendConfig : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["lbBackendConfigs"] = state?.lbBackendConfigs;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["s3BackendConfig"] = state?.s3BackendConfig;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as EdgeServicesBackendStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["lbBackendConfigs"] = args ? args.lbBackendConfigs : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["s3BackendConfig"] = args ? args.s3BackendConfig : undefined;
+            resourceInputs["lbBackendConfigs"] = args?.lbBackendConfigs;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["s3BackendConfig"] = args?.s3BackendConfig;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

@@ -71,23 +71,23 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
     /**
      * URL for Grafana.
      */
-    public /*out*/ readonly grafanaUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly grafanaUrl: pulumi.Output<string>;
     /**
      * The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
      */
-    public readonly login!: pulumi.Output<string>;
+    declare public readonly login: pulumi.Output<string>;
     /**
      * The password of the Grafana user.
      */
-    public /*out*/ readonly password!: pulumi.Output<string>;
+    declare public /*out*/ readonly password: pulumi.Output<string>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The role assigned to the Grafana user. Must be `editor` or `viewer`.
      */
-    public readonly role!: pulumi.Output<string>;
+    declare public readonly role: pulumi.Output<string>;
 
     /**
      * Create a CockpitGrafanaUser resource with the given unique name, arguments, and options.
@@ -105,22 +105,22 @@ export class CockpitGrafanaUser extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CockpitGrafanaUserState | undefined;
-            resourceInputs["grafanaUrl"] = state ? state.grafanaUrl : undefined;
-            resourceInputs["login"] = state ? state.login : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["grafanaUrl"] = state?.grafanaUrl;
+            resourceInputs["login"] = state?.login;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["role"] = state?.role;
         } else {
             const args = argsOrState as CockpitGrafanaUserArgs | undefined;
-            if ((!args || args.login === undefined) && !opts.urn) {
+            if (args?.login === undefined && !opts.urn) {
                 throw new Error("Missing required property 'login'");
             }
-            if ((!args || args.role === undefined) && !opts.urn) {
+            if (args?.role === undefined && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            resourceInputs["login"] = args ? args.login : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["login"] = args?.login;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["role"] = args?.role;
             resourceInputs["grafanaUrl"] = undefined /*out*/;
             resourceInputs["password"] = undefined /*out*/;
         }

@@ -178,7 +178,7 @@ namespace Pulumiverse.Scaleway
         /// List of retrieved routes
         /// </summary>
         public readonly ImmutableArray<Outputs.GetLbRoutesRouteResult> Routes;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLbRoutesResult(
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetLbRoutesRouteResult> routes,
 
-            string zone)
+            string? zone)
         {
             FrontendId = frontendId;
             Id = id;

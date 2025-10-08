@@ -70,7 +70,7 @@ export interface GetLbRoutesResult {
      * List of retrieved routes
      */
     readonly routes: outputs.GetLbRoutesRoute[];
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about multiple Load Balancer routes.

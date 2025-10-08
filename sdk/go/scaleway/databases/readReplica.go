@@ -177,7 +177,7 @@ type ReadReplica struct {
 	PrivateNetwork ReadReplicaPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `region`) The region
 	// in which the Read Replica should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Defines whether to create the replica in the same availability zone as the main instance nodes or not.
 	SameZone pulumi.BoolPtrOutput `pulumi:"sameZone"`
 }
@@ -395,8 +395,8 @@ func (o ReadReplicaOutput) PrivateNetwork() ReadReplicaPrivateNetworkPtrOutput {
 
 // `region`) The region
 // in which the Read Replica should be created.
-func (o ReadReplicaOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ReadReplica) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ReadReplicaOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReadReplica) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Defines whether to create the replica in the same availability zone as the main instance nodes or not.

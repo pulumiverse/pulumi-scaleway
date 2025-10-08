@@ -81,7 +81,7 @@ type GetAclsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           string  `pulumi:"zone"`
+	Zone           *string `pulumi:"zone"`
 }
 
 func GetAclsOutput(ctx *pulumi.Context, args GetAclsOutputArgs, opts ...pulumi.InvokeOption) GetAclsResultOutput {
@@ -150,8 +150,8 @@ func (o GetAclsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetAclsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetAclsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetAclsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetAclsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

@@ -67,7 +67,7 @@ type KubernetesNodePool struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	PublicIpDisabled pulumi.BoolPtrOutput `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
 	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
@@ -97,7 +97,7 @@ type KubernetesNodePool struct {
 	// `zone`) The zone in which the pool should be created.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewKubernetesNodePool registers a new resource with the given unique name, arguments, and options.
@@ -589,8 +589,8 @@ func (o KubernetesNodePoolOutput) PublicIpDisabled() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region in which the pool should be created.
-func (o KubernetesNodePoolOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o KubernetesNodePoolOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the system volume of the nodes in gigabyte
@@ -652,8 +652,8 @@ func (o KubernetesNodePoolOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
 // `zone`) The zone in which the pool should be created.
 //
 // > **Important:** Updates to this field will recreate a new resource.
-func (o KubernetesNodePoolOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o KubernetesNodePoolOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type KubernetesNodePoolArrayOutput struct{ *pulumi.OutputState }

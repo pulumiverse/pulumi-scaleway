@@ -92,39 +92,39 @@ export class InstancePolicy extends pulumi.CustomResource {
     /**
      * The action to execute when the metric-based condition is met.
      */
-    public readonly action!: pulumi.Output<string>;
+    declare public readonly action: pulumi.Output<string>;
     /**
      * The ID of the Instance group related to this policy.
      */
-    public readonly instanceGroupId!: pulumi.Output<string>;
+    declare public readonly instanceGroupId: pulumi.Output<string>;
     /**
      * Cockpit metric to use when determining whether to trigger a scale up/down action.
      */
-    public readonly metrics!: pulumi.Output<outputs.autoscaling.InstancePolicyMetric[]>;
+    declare public readonly metrics: pulumi.Output<outputs.autoscaling.InstancePolicyMetric[]>;
     /**
      * The Instance policy name.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The priority of this policy compared to all other scaling policies. This determines the processing order. The lower the number, the higher the priority.
      */
-    public readonly priority!: pulumi.Output<number>;
+    declare public readonly priority: pulumi.Output<number>;
     /**
      * `projectId`) The ID of the Project the Instance policy is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * How to use the number defined in `value` when determining by how many Instances to scale up/down.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
      */
-    public readonly value!: pulumi.Output<number>;
+    declare public readonly value: pulumi.Output<number>;
     /**
      * `zone`) The zone in which the Instance policy exists.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstancePolicy resource with the given unique name, arguments, and options.
@@ -139,41 +139,41 @@ export class InstancePolicy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstancePolicyState | undefined;
-            resourceInputs["action"] = state ? state.action : undefined;
-            resourceInputs["instanceGroupId"] = state ? state.instanceGroupId : undefined;
-            resourceInputs["metrics"] = state ? state.metrics : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["value"] = state ? state.value : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["action"] = state?.action;
+            resourceInputs["instanceGroupId"] = state?.instanceGroupId;
+            resourceInputs["metrics"] = state?.metrics;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["value"] = state?.value;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstancePolicyArgs | undefined;
-            if ((!args || args.action === undefined) && !opts.urn) {
+            if (args?.action === undefined && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
-            if ((!args || args.instanceGroupId === undefined) && !opts.urn) {
+            if (args?.instanceGroupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceGroupId'");
             }
-            if ((!args || args.priority === undefined) && !opts.urn) {
+            if (args?.priority === undefined && !opts.urn) {
                 throw new Error("Missing required property 'priority'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            if ((!args || args.value === undefined) && !opts.urn) {
+            if (args?.value === undefined && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            resourceInputs["action"] = args ? args.action : undefined;
-            resourceInputs["instanceGroupId"] = args ? args.instanceGroupId : undefined;
-            resourceInputs["metrics"] = args ? args.metrics : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["action"] = args?.action;
+            resourceInputs["instanceGroupId"] = args?.instanceGroupId;
+            resourceInputs["metrics"] = args?.metrics;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["value"] = args?.value;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstancePolicy.__pulumiType, name, resourceInputs, opts);

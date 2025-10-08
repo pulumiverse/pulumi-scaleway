@@ -89,7 +89,7 @@ type GetWebHostOfferResult struct {
 	//
 	// Deprecated: The product field is deprecated. Please use the offer field instead.
 	Products []GetWebHostOfferProduct `pulumi:"products"`
-	Region   string                   `pulumi:"region"`
+	Region   *string                  `pulumi:"region"`
 }
 
 func GetWebHostOfferOutput(ctx *pulumi.Context, args GetWebHostOfferOutputArgs, opts ...pulumi.InvokeOption) GetWebHostOfferResultOutput {
@@ -172,8 +172,8 @@ func (o GetWebHostOfferResultOutput) Products() GetWebHostOfferProductArrayOutpu
 	return o.ApplyT(func(v GetWebHostOfferResult) []GetWebHostOfferProduct { return v.Products }).(GetWebHostOfferProductArrayOutput)
 }
 
-func (o GetWebHostOfferResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetWebHostOfferResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetWebHostOfferResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetWebHostOfferResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func init() {

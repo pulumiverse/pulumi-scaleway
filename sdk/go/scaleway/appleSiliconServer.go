@@ -146,7 +146,7 @@ type AppleSiliconServer struct {
 	VpcStatus pulumi.StringOutput `pulumi:"vpcStatus"`
 	// `zone`) The zone in which
 	// the server should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewAppleSiliconServer registers a new resource with the given unique name, arguments, and options.
@@ -512,8 +512,8 @@ func (o AppleSiliconServerOutput) VpcStatus() pulumi.StringOutput {
 
 // `zone`) The zone in which
 // the server should be created.
-func (o AppleSiliconServerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o AppleSiliconServerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type AppleSiliconServerArrayOutput struct{ *pulumi.OutputState }

@@ -138,7 +138,7 @@ type Image struct {
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The zone in which the image should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewImage registers a new resource with the given unique name, arguments, and options.
@@ -447,8 +447,8 @@ func (o ImageOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone in which the image should be created.
-func (o ImageOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o ImageOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Image) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ImageArrayOutput struct{ *pulumi.OutputState }

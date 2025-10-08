@@ -107,7 +107,7 @@ type InstancePolicy struct {
 	// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
 	Value pulumi.IntOutput `pulumi:"value"`
 	// `zone`) The zone in which the Instance policy exists.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstancePolicy registers a new resource with the given unique name, arguments, and options.
@@ -371,8 +371,8 @@ func (o InstancePolicyOutput) Value() pulumi.IntOutput {
 }
 
 // `zone`) The zone in which the Instance policy exists.
-func (o InstancePolicyOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstancePolicy) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstancePolicyOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstancePolicy) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstancePolicyArrayOutput struct{ *pulumi.OutputState }

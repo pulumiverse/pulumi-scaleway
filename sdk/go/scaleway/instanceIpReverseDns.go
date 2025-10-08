@@ -78,7 +78,7 @@ type InstanceIpReverseDns struct {
 	// The reverse DNS for this IP.
 	Reverse pulumi.StringOutput `pulumi:"reverse"`
 	// `zone`) The zone in which the IP should be reserved.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceIpReverseDns registers a new resource with the given unique name, arguments, and options.
@@ -255,8 +255,8 @@ func (o InstanceIpReverseDnsOutput) Reverse() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the IP should be reserved.
-func (o InstanceIpReverseDnsOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceIpReverseDns) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceIpReverseDnsOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceIpReverseDns) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceIpReverseDnsArrayOutput struct{ *pulumi.OutputState }

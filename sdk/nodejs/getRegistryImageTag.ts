@@ -69,7 +69,7 @@ export interface GetRegistryImageTagResult {
      */
     readonly organizationId: string;
     readonly projectId: string;
-    readonly region: string;
+    readonly region?: string;
     /**
      * The status of the registry image tag.
      */

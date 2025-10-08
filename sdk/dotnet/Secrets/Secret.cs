@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway.Secrets
         /// in which the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of the secret.

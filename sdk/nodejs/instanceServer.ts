@@ -238,38 +238,38 @@ export class InstanceServer extends pulumi.CustomResource {
      *
      * > **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
      */
-    public readonly additionalVolumeIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly additionalVolumeIds: pulumi.Output<string[] | undefined>;
     /**
      * The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
      * Mandatory for Windows OS. The publicKey value of this key is used to encrypt the admin password.
      * When set to an empty string, it resets this value and adminPasswordEncryptedValue to an empty string so a new password may be generated.
      */
-    public readonly adminPasswordEncryptionSshKeyId!: pulumi.Output<string | undefined>;
+    declare public readonly adminPasswordEncryptionSshKeyId: pulumi.Output<string | undefined>;
     /**
      * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
      */
-    public readonly bootType!: pulumi.Output<string | undefined>;
+    declare public readonly bootType: pulumi.Output<string | undefined>;
     /**
      * ID of the target bootscript (set bootType to bootscript)
      *
      * @deprecated bootscript is not supported anymore.
      */
-    public readonly bootscriptId!: pulumi.Output<string>;
+    declare public readonly bootscriptId: pulumi.Output<string>;
     /**
      * The cloud init script associated with this server
      */
-    public readonly cloudInit!: pulumi.Output<string>;
+    declare public readonly cloudInit: pulumi.Output<string>;
     /**
      * If true a dynamic IP will be attached to the server.
      */
-    public readonly enableDynamicIp!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableDynamicIp: pulumi.Output<boolean | undefined>;
     /**
      * Determines if IPv6 is enabled for the server.
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
-    public readonly enableIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableIpv6: pulumi.Output<boolean | undefined>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -278,110 +278,110 @@ export class InstanceServer extends pulumi.CustomResource {
      *
      * To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
      */
-    public readonly image!: pulumi.Output<string | undefined>;
+    declare public readonly image: pulumi.Output<string | undefined>;
     /**
      * The ID of the reserved IP that is attached to the server.
      */
-    public readonly ipId!: pulumi.Output<string | undefined>;
+    declare public readonly ipId: pulumi.Output<string | undefined>;
     /**
      * List of ID of reserved IPs that are attached to the server. Cannot be used with `ipId`.
      *
      * > `ipId` to `ipIds` migration: if moving the ip from the old `ipId` field to the new `ipIds`, it should not detach the ip.
      */
-    public readonly ipIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly ipIds: pulumi.Output<string[] | undefined>;
     /**
      * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
-    public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipv6Address: pulumi.Output<string>;
     /**
      * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
-    public /*out*/ readonly ipv6Gateway!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipv6Gateway: pulumi.Output<string>;
     /**
      * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
      * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
      *
      * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
      */
-    public /*out*/ readonly ipv6PrefixLength!: pulumi.Output<number>;
+    declare public /*out*/ readonly ipv6PrefixLength: pulumi.Output<number>;
     /**
      * The name of the server.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the server is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
      *
      *
      * > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
      */
-    public readonly placementGroupId!: pulumi.Output<string | undefined>;
+    declare public readonly placementGroupId: pulumi.Output<string | undefined>;
     /**
      * (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
      */
-    public /*out*/ readonly placementGroupPolicyRespected!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly placementGroupPolicyRespected: pulumi.Output<boolean>;
     /**
      * The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
      *
      * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
      */
-    public /*out*/ readonly privateIp!: pulumi.Output<string>;
+    declare public /*out*/ readonly privateIp: pulumi.Output<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.InstanceServerPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.InstanceServerPrivateIp[]>;
     /**
      * The private network associated with the server.
      * Use the `pnId` key to attach a [privateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
      */
-    public readonly privateNetworks!: pulumi.Output<outputs.InstanceServerPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.InstanceServerPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Set to true to activate server protection option.
      */
-    public readonly protected!: pulumi.Output<boolean | undefined>;
+    declare public readonly protected: pulumi.Output<boolean | undefined>;
     /**
      * The public IP address of the server (Deprecated use `publicIps` instead).
      *
      * @deprecated Use publicIps instead
      */
-    public /*out*/ readonly publicIp!: pulumi.Output<string>;
+    declare public /*out*/ readonly publicIp: pulumi.Output<string>;
     /**
      * The list of public IPs of the server.
      */
-    public readonly publicIps!: pulumi.Output<outputs.InstanceServerPublicIp[]>;
+    declare public readonly publicIps: pulumi.Output<outputs.InstanceServerPublicIp[]>;
     /**
      * If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
      */
-    public readonly replaceOnTypeChange!: pulumi.Output<boolean | undefined>;
+    declare public readonly replaceOnTypeChange: pulumi.Output<boolean | undefined>;
     /**
      * Root [volume](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types) attached to the server on creation.
      */
-    public readonly rootVolume!: pulumi.Output<outputs.InstanceServerRootVolume>;
+    declare public readonly rootVolume: pulumi.Output<outputs.InstanceServerRootVolume>;
     /**
      * The security group the server is attached to
      */
-    public readonly securityGroupId!: pulumi.Output<string>;
+    declare public readonly securityGroupId: pulumi.Output<string>;
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    public readonly state!: pulumi.Output<string | undefined>;
+    declare public readonly state: pulumi.Output<string | undefined>;
     /**
      * The tags associated with the server.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The commercial type of the server.
      * You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
@@ -390,7 +390,7 @@ export class InstanceServer extends pulumi.CustomResource {
      *
      * > **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The user data associated with the server.
      * Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
@@ -399,11 +399,11 @@ export class InstanceServer extends pulumi.CustomResource {
      * - UTF-8 encoded file content using file
      * - Binary files using filebase64.
      */
-    public readonly userData!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly userData: pulumi.Output<{[key: string]: string}>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceServer resource with the given unique name, arguments, and options.
@@ -421,68 +421,68 @@ export class InstanceServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceServerState | undefined;
-            resourceInputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
-            resourceInputs["adminPasswordEncryptionSshKeyId"] = state ? state.adminPasswordEncryptionSshKeyId : undefined;
-            resourceInputs["bootType"] = state ? state.bootType : undefined;
-            resourceInputs["bootscriptId"] = state ? state.bootscriptId : undefined;
-            resourceInputs["cloudInit"] = state ? state.cloudInit : undefined;
-            resourceInputs["enableDynamicIp"] = state ? state.enableDynamicIp : undefined;
-            resourceInputs["enableIpv6"] = state ? state.enableIpv6 : undefined;
-            resourceInputs["image"] = state ? state.image : undefined;
-            resourceInputs["ipId"] = state ? state.ipId : undefined;
-            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
-            resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
-            resourceInputs["ipv6Gateway"] = state ? state.ipv6Gateway : undefined;
-            resourceInputs["ipv6PrefixLength"] = state ? state.ipv6PrefixLength : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            resourceInputs["placementGroupPolicyRespected"] = state ? state.placementGroupPolicyRespected : undefined;
-            resourceInputs["privateIp"] = state ? state.privateIp : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protected"] = state ? state.protected : undefined;
-            resourceInputs["publicIp"] = state ? state.publicIp : undefined;
-            resourceInputs["publicIps"] = state ? state.publicIps : undefined;
-            resourceInputs["replaceOnTypeChange"] = state ? state.replaceOnTypeChange : undefined;
-            resourceInputs["rootVolume"] = state ? state.rootVolume : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["userData"] = state ? state.userData : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["additionalVolumeIds"] = state?.additionalVolumeIds;
+            resourceInputs["adminPasswordEncryptionSshKeyId"] = state?.adminPasswordEncryptionSshKeyId;
+            resourceInputs["bootType"] = state?.bootType;
+            resourceInputs["bootscriptId"] = state?.bootscriptId;
+            resourceInputs["cloudInit"] = state?.cloudInit;
+            resourceInputs["enableDynamicIp"] = state?.enableDynamicIp;
+            resourceInputs["enableIpv6"] = state?.enableIpv6;
+            resourceInputs["image"] = state?.image;
+            resourceInputs["ipId"] = state?.ipId;
+            resourceInputs["ipIds"] = state?.ipIds;
+            resourceInputs["ipv6Address"] = state?.ipv6Address;
+            resourceInputs["ipv6Gateway"] = state?.ipv6Gateway;
+            resourceInputs["ipv6PrefixLength"] = state?.ipv6PrefixLength;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["placementGroupId"] = state?.placementGroupId;
+            resourceInputs["placementGroupPolicyRespected"] = state?.placementGroupPolicyRespected;
+            resourceInputs["privateIp"] = state?.privateIp;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworks"] = state?.privateNetworks;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protected"] = state?.protected;
+            resourceInputs["publicIp"] = state?.publicIp;
+            resourceInputs["publicIps"] = state?.publicIps;
+            resourceInputs["replaceOnTypeChange"] = state?.replaceOnTypeChange;
+            resourceInputs["rootVolume"] = state?.rootVolume;
+            resourceInputs["securityGroupId"] = state?.securityGroupId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["userData"] = state?.userData;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceServerArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
-            resourceInputs["adminPasswordEncryptionSshKeyId"] = args ? args.adminPasswordEncryptionSshKeyId : undefined;
-            resourceInputs["bootType"] = args ? args.bootType : undefined;
-            resourceInputs["bootscriptId"] = args ? args.bootscriptId : undefined;
-            resourceInputs["cloudInit"] = args ? args.cloudInit : undefined;
-            resourceInputs["enableDynamicIp"] = args ? args.enableDynamicIp : undefined;
-            resourceInputs["enableIpv6"] = args ? args.enableIpv6 : undefined;
-            resourceInputs["image"] = args ? args.image : undefined;
-            resourceInputs["ipId"] = args ? args.ipId : undefined;
-            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protected"] = args ? args.protected : undefined;
-            resourceInputs["publicIps"] = args ? args.publicIps : undefined;
-            resourceInputs["replaceOnTypeChange"] = args ? args.replaceOnTypeChange : undefined;
-            resourceInputs["rootVolume"] = args ? args.rootVolume : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
-            resourceInputs["state"] = args ? args.state : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["userData"] = args ? args.userData : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["additionalVolumeIds"] = args?.additionalVolumeIds;
+            resourceInputs["adminPasswordEncryptionSshKeyId"] = args?.adminPasswordEncryptionSshKeyId;
+            resourceInputs["bootType"] = args?.bootType;
+            resourceInputs["bootscriptId"] = args?.bootscriptId;
+            resourceInputs["cloudInit"] = args?.cloudInit;
+            resourceInputs["enableDynamicIp"] = args?.enableDynamicIp;
+            resourceInputs["enableIpv6"] = args?.enableIpv6;
+            resourceInputs["image"] = args?.image;
+            resourceInputs["ipId"] = args?.ipId;
+            resourceInputs["ipIds"] = args?.ipIds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["placementGroupId"] = args?.placementGroupId;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworks"] = args?.privateNetworks;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protected"] = args?.protected;
+            resourceInputs["publicIps"] = args?.publicIps;
+            resourceInputs["replaceOnTypeChange"] = args?.replaceOnTypeChange;
+            resourceInputs["rootVolume"] = args?.rootVolume;
+            resourceInputs["securityGroupId"] = args?.securityGroupId;
+            resourceInputs["state"] = args?.state;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["userData"] = args?.userData;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["ipv6Address"] = undefined /*out*/;
             resourceInputs["ipv6Gateway"] = undefined /*out*/;
             resourceInputs["ipv6PrefixLength"] = undefined /*out*/;

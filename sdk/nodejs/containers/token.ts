@@ -69,29 +69,29 @@ export class Token extends pulumi.CustomResource {
      *
      * > Only one of `namespaceId` or `containerId` must be set.
      */
-    public readonly containerId!: pulumi.Output<string | undefined>;
+    declare public readonly containerId: pulumi.Output<string | undefined>;
     /**
      * The description of the token.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The expiration date of the token.
      */
-    public readonly expiresAt!: pulumi.Output<string | undefined>;
+    declare public readonly expiresAt: pulumi.Output<string | undefined>;
     /**
      * The unique identifier of the Containers namespace.
      */
-    public readonly namespaceId!: pulumi.Output<string | undefined>;
+    declare public readonly namespaceId: pulumi.Output<string | undefined>;
     /**
      * `region`). The region in which the namespace is created.
      *
      * > **Important** Updating any of the arguments above will recreate the token.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The token.
      */
-    public /*out*/ readonly value!: pulumi.Output<string>;
+    declare public /*out*/ readonly value: pulumi.Output<string>;
 
     /**
      * Create a Token resource with the given unique name, arguments, and options.
@@ -106,19 +106,19 @@ export class Token extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as TokenState | undefined;
-            resourceInputs["containerId"] = state ? state.containerId : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["namespaceId"] = state ? state.namespaceId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["namespaceId"] = state?.namespaceId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["value"] = state?.value;
         } else {
             const args = argsOrState as TokenArgs | undefined;
-            resourceInputs["containerId"] = args ? args.containerId : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["namespaceId"] = args ? args.namespaceId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["containerId"] = args?.containerId;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["namespaceId"] = args?.namespaceId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["value"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

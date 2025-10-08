@@ -56,7 +56,7 @@ type Deployment struct {
 	// The number of bits each model parameter should be quantized to
 	Quantization pulumi.IntPtrOutput `pulumi:"quantization"`
 	// `region`) The region in which the deployment is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the pool.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The status of the deployment.
@@ -402,8 +402,8 @@ func (o DeploymentOutput) Quantization() pulumi.IntPtrOutput {
 }
 
 // `region`) The region in which the deployment is created.
-func (o DeploymentOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DeploymentOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the pool.

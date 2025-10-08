@@ -428,7 +428,7 @@ export interface DatabaseInstancePrivateNetwork {
     /**
      * The zone you want to attach the resource to
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface DatabaseInstanceReadReplica {
@@ -604,7 +604,7 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface EdgeServicesBackendStageS3BackendConfig {
@@ -674,7 +674,7 @@ export interface EdgeServicesTlsStageSecret {
     /**
      * The region of the secret.
      */
-    region: string;
+    region?: string;
     /**
      * The ID of the Secret
      */
@@ -1331,7 +1331,7 @@ export interface GetFlexibleIpsIpMacAddress {
     /**
      * `zone`) The zone in which IPs exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetInstancePrivateNicPrivateIp {
@@ -1595,7 +1595,7 @@ export interface GetInstanceServersServer {
     /**
      * `zone`) The zone in which servers exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetInstanceServersServerPrivateIp {
@@ -2339,7 +2339,7 @@ export interface GetLbIpsIp {
     /**
      * `zone`) The zone in which the IPs exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetLbRoutesRoute {
@@ -2453,7 +2453,7 @@ export interface GetLbsLb {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetLbsLbInstance {
@@ -2480,7 +2480,7 @@ export interface GetLbsLbInstance {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetLbsLbIp {
@@ -2511,7 +2511,7 @@ export interface GetLbsLbIp {
     /**
      * `zone`) The zone in which the Load Balancers exist.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetLoadbalancerCertificateCustomCertificate {
@@ -2961,7 +2961,7 @@ export interface GetVpcRoutesRoute {
     /**
      * `region`). The region in which the routes exist.
      */
-    region: string;
+    region?: string;
     /**
      * List of tags to filter for. routes with these exact tags are listed.
      */
@@ -3001,7 +3001,7 @@ export interface GetVpcsVpc {
     /**
      * `region`). The region in which the VPCs exist.
      */
-    region: string;
+    region?: string;
     /**
      * List of tags to filter for. VPCs with these exact tags are listed.
      */
@@ -3478,7 +3478,7 @@ export interface InstanceServerPrivateNetwork {
     /**
      * `zone`) The zone in which the server should be created.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface InstanceServerPublicIp {
@@ -5408,7 +5408,7 @@ export namespace databases {
         /**
          * The zone you want to attach the resource to
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface InstanceReadReplica {
@@ -6261,7 +6261,7 @@ export namespace elasticmetal {
         /**
          * `zone`) The zone in which IPs exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetOfferCpu {
@@ -7130,6 +7130,59 @@ export namespace instance {
         volumeType: string;
     }
 
+    export interface GetServerTypeCapability {
+        /**
+         * The boot types allowed for the server type.
+         */
+        bootTypes: string[];
+        /**
+         * The maximum number of file systems that can be attached on the server type.
+         */
+        maxFileSystems: number;
+    }
+
+    export interface GetServerTypeNetwork {
+        /**
+         * The block bandwidth of the server type (in bytes/second).
+         */
+        blockBandwidth: number;
+        /**
+         * The internal bandwidth of the server type (in bytes/second).
+         */
+        internalBandwidth: number;
+        /**
+         * The public bandwidth of the server type (in bytes/second).
+         */
+        publicBandwidth: number;
+    }
+
+    export interface GetServerTypeVolume {
+        /**
+         * Whether block storage is allowed on the server type.
+         */
+        blockStorage: boolean;
+        /**
+         * The maximum size in bytes per local volume allowed on the server type.
+         */
+        maxSizePerLocalVolume: number;
+        /**
+         * The maximum total size in bytes of volumes allowed on the server type.
+         */
+        maxSizeTotal: number;
+        /**
+         * The minimum size in bytes per local volume allowed on the server type.
+         */
+        minSizePerLocalVolume: number;
+        /**
+         * The minimum total size in bytes of volumes allowed on the server type.
+         */
+        minSizeTotal: number;
+        /**
+         * The maximum size in bytes of the scratch volume allowed on the server type.
+         */
+        scratchStorageMaxSize: number;
+    }
+
     export interface GetServersServer {
         /**
          * The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
@@ -7226,7 +7279,7 @@ export namespace instance {
         /**
          * `zone`) The zone in which servers exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetServersServerPrivateIp {
@@ -7475,7 +7528,7 @@ export namespace instance {
         /**
          * `zone`) The zone in which the server should be created.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface ServerPublicIp {
@@ -8886,7 +8939,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the IPs exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetLoadBalancerPrivateIp {
@@ -9003,7 +9056,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetLoadBalancersLbInstance {
@@ -9030,7 +9083,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetLoadBalancersLbIp {
@@ -9061,7 +9114,7 @@ export namespace loadbalancers {
         /**
          * `zone`) The zone in which the Load Balancers exist.
          */
-        zone: string;
+        zone?: string;
     }
 
     export interface GetRoutesRoute {
@@ -9491,7 +9544,7 @@ export namespace network {
         /**
          * `region`). The region in which the routes exist.
          */
-        region: string;
+        region?: string;
         /**
          * List of tags to filter for. routes with these exact tags are listed.
          */
@@ -9531,7 +9584,7 @@ export namespace network {
         /**
          * `region`). The region in which the VPCs exist.
          */
-        region: string;
+        region?: string;
         /**
          * List of tags to filter for. VPCs with these exact tags are listed.
          */

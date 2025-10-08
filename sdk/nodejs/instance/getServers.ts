@@ -75,7 +75,7 @@ export interface GetServersResult {
     /**
      * The zone in which the server is.
      */
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about multiple instance servers.

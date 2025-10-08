@@ -48,56 +48,56 @@ export class SecurityGroup extends pulumi.CustomResource {
     /**
      * The description of the security group.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Whether to block SMTP on IPv4/IPv6 (Port 25, 465, 587). Set to false will unblock SMTP if your account is authorized to. If your organization is not yet authorized to send SMTP traffic, [open a support ticket](https://console.scaleway.com/support/tickets).
      */
-    public readonly enableDefaultSecurity!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableDefaultSecurity: pulumi.Output<boolean | undefined>;
     /**
      * A boolean to specify whether to use instance_security_group_rules.
      * If `externalRules` is set to `true`, `inboundRule` and `outboundRule` can not be set directly in the security group.
      */
-    public readonly externalRules!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalRules: pulumi.Output<boolean | undefined>;
     /**
      * The default policy on incoming traffic. Possible values are: `accept` or `drop`.
      */
-    public readonly inboundDefaultPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly inboundDefaultPolicy: pulumi.Output<string | undefined>;
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    public readonly inboundRules!: pulumi.Output<outputs.instance.SecurityGroupInboundRule[] | undefined>;
+    declare public readonly inboundRules: pulumi.Output<outputs.instance.SecurityGroupInboundRule[] | undefined>;
     /**
      * The name of the security group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the security group is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
      */
-    public readonly outboundDefaultPolicy!: pulumi.Output<string | undefined>;
+    declare public readonly outboundDefaultPolicy: pulumi.Output<string | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    public readonly outboundRules!: pulumi.Output<outputs.instance.SecurityGroupOutboundRule[] | undefined>;
+    declare public readonly outboundRules: pulumi.Output<outputs.instance.SecurityGroupOutboundRule[] | undefined>;
     /**
      * `projectId`) The ID of the project the security group is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * A boolean to specify whether the security group should be stateful or not.
      */
-    public readonly stateful!: pulumi.Output<boolean | undefined>;
+    declare public readonly stateful: pulumi.Output<boolean | undefined>;
     /**
      * The tags associated with the security group
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * `zone`) The zone in which the security group should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a SecurityGroup resource with the given unique name, arguments, and options.
@@ -112,33 +112,33 @@ export class SecurityGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecurityGroupState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["enableDefaultSecurity"] = state ? state.enableDefaultSecurity : undefined;
-            resourceInputs["externalRules"] = state ? state.externalRules : undefined;
-            resourceInputs["inboundDefaultPolicy"] = state ? state.inboundDefaultPolicy : undefined;
-            resourceInputs["inboundRules"] = state ? state.inboundRules : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["outboundDefaultPolicy"] = state ? state.outboundDefaultPolicy : undefined;
-            resourceInputs["outboundRules"] = state ? state.outboundRules : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["stateful"] = state ? state.stateful : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["enableDefaultSecurity"] = state?.enableDefaultSecurity;
+            resourceInputs["externalRules"] = state?.externalRules;
+            resourceInputs["inboundDefaultPolicy"] = state?.inboundDefaultPolicy;
+            resourceInputs["inboundRules"] = state?.inboundRules;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["outboundDefaultPolicy"] = state?.outboundDefaultPolicy;
+            resourceInputs["outboundRules"] = state?.outboundRules;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["stateful"] = state?.stateful;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as SecurityGroupArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["enableDefaultSecurity"] = args ? args.enableDefaultSecurity : undefined;
-            resourceInputs["externalRules"] = args ? args.externalRules : undefined;
-            resourceInputs["inboundDefaultPolicy"] = args ? args.inboundDefaultPolicy : undefined;
-            resourceInputs["inboundRules"] = args ? args.inboundRules : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["outboundDefaultPolicy"] = args ? args.outboundDefaultPolicy : undefined;
-            resourceInputs["outboundRules"] = args ? args.outboundRules : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["stateful"] = args ? args.stateful : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["enableDefaultSecurity"] = args?.enableDefaultSecurity;
+            resourceInputs["externalRules"] = args?.externalRules;
+            resourceInputs["inboundDefaultPolicy"] = args?.inboundDefaultPolicy;
+            resourceInputs["inboundRules"] = args?.inboundRules;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["outboundDefaultPolicy"] = args?.outboundDefaultPolicy;
+            resourceInputs["outboundRules"] = args?.outboundRules;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["stateful"] = args?.stateful;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

@@ -118,7 +118,7 @@ type Volume struct {
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// ). The zone in which the volume should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewVolume registers a new resource with the given unique name, arguments, and options.
@@ -363,8 +363,8 @@ func (o VolumeOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // ). The zone in which the volume should be created.
-func (o VolumeOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o VolumeOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }

@@ -39,7 +39,7 @@ type Secret struct {
 	Protected pulumi.BoolPtrOutput `pulumi:"protected"`
 	// `region`) The region
 	// in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The status of the secret.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Tags of the secret (e.g. `["tag", "secret"]`).
@@ -326,8 +326,8 @@ func (o SecretOutput) Protected() pulumi.BoolPtrOutput {
 
 // `region`) The region
 // in which the resource exists.
-func (o SecretOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Secret) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SecretOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Secret) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The status of the secret.

@@ -157,66 +157,66 @@ export class Frontend extends pulumi.CustomResource {
     /**
      * A list of ACL rules to apply to the Load Balancer frontend.  Defined below.
      */
-    public readonly acls!: pulumi.Output<outputs.loadbalancers.FrontendAcl[] | undefined>;
+    declare public readonly acls: pulumi.Output<outputs.loadbalancers.FrontendAcl[] | undefined>;
     /**
      * The ID of the Load Balancer backend this frontend is attached to.
      *
      * > **Important:** Updates to `lbId` or `backendId` will recreate the frontend.
      */
-    public readonly backendId!: pulumi.Output<string>;
+    declare public readonly backendId: pulumi.Output<string>;
     /**
      * (Deprecated, use `certificateIds` instead) First certificate ID used by the frontend.
      *
      * @deprecated Please use certificate_ids
      */
-    public /*out*/ readonly certificateId!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificateId: pulumi.Output<string>;
     /**
      * List of certificate IDs that should be used by the frontend.
      *
      * > **Important:** Certificates are not allowed on port 80.
      */
-    public readonly certificateIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly certificateIds: pulumi.Output<string[] | undefined>;
     /**
      * The rate limit for new connections established on this frontend. Use 0 value to disable, else value is connections per second.
      */
-    public readonly connectionRateLimit!: pulumi.Output<number | undefined>;
+    declare public readonly connectionRateLimit: pulumi.Output<number | undefined>;
     /**
      * The date and time the frontend was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Defines whether to enable access logs on the frontend.
      */
-    public readonly enableAccessLogs!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableAccessLogs: pulumi.Output<boolean | undefined>;
     /**
      * Activates HTTP/3 protocol.
      */
-    public readonly enableHttp3!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableHttp3: pulumi.Output<boolean | undefined>;
     /**
      * A boolean to specify whether to use lb_acl.
      * If `externalAcls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
      */
-    public readonly externalAcls!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalAcls: pulumi.Output<boolean | undefined>;
     /**
      * TCP port to listen to on the front side.
      */
-    public readonly inboundPort!: pulumi.Output<number>;
+    declare public readonly inboundPort: pulumi.Output<number>;
     /**
      * The ID of the Load Balancer this frontend is attached to.
      */
-    public readonly lbId!: pulumi.Output<string>;
+    declare public readonly lbId: pulumi.Output<string>;
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Maximum inactivity time on the client side. (e.g. `1s`)
      */
-    public readonly timeoutClient!: pulumi.Output<string | undefined>;
+    declare public readonly timeoutClient: pulumi.Output<string | undefined>;
     /**
      * The date and time the frontend resource was updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Frontend resource with the given unique name, arguments, and options.
@@ -231,42 +231,42 @@ export class Frontend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FrontendState | undefined;
-            resourceInputs["acls"] = state ? state.acls : undefined;
-            resourceInputs["backendId"] = state ? state.backendId : undefined;
-            resourceInputs["certificateId"] = state ? state.certificateId : undefined;
-            resourceInputs["certificateIds"] = state ? state.certificateIds : undefined;
-            resourceInputs["connectionRateLimit"] = state ? state.connectionRateLimit : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["enableAccessLogs"] = state ? state.enableAccessLogs : undefined;
-            resourceInputs["enableHttp3"] = state ? state.enableHttp3 : undefined;
-            resourceInputs["externalAcls"] = state ? state.externalAcls : undefined;
-            resourceInputs["inboundPort"] = state ? state.inboundPort : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["timeoutClient"] = state ? state.timeoutClient : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["acls"] = state?.acls;
+            resourceInputs["backendId"] = state?.backendId;
+            resourceInputs["certificateId"] = state?.certificateId;
+            resourceInputs["certificateIds"] = state?.certificateIds;
+            resourceInputs["connectionRateLimit"] = state?.connectionRateLimit;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["enableAccessLogs"] = state?.enableAccessLogs;
+            resourceInputs["enableHttp3"] = state?.enableHttp3;
+            resourceInputs["externalAcls"] = state?.externalAcls;
+            resourceInputs["inboundPort"] = state?.inboundPort;
+            resourceInputs["lbId"] = state?.lbId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["timeoutClient"] = state?.timeoutClient;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as FrontendArgs | undefined;
-            if ((!args || args.backendId === undefined) && !opts.urn) {
+            if (args?.backendId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backendId'");
             }
-            if ((!args || args.inboundPort === undefined) && !opts.urn) {
+            if (args?.inboundPort === undefined && !opts.urn) {
                 throw new Error("Missing required property 'inboundPort'");
             }
-            if ((!args || args.lbId === undefined) && !opts.urn) {
+            if (args?.lbId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            resourceInputs["acls"] = args ? args.acls : undefined;
-            resourceInputs["backendId"] = args ? args.backendId : undefined;
-            resourceInputs["certificateIds"] = args ? args.certificateIds : undefined;
-            resourceInputs["connectionRateLimit"] = args ? args.connectionRateLimit : undefined;
-            resourceInputs["enableAccessLogs"] = args ? args.enableAccessLogs : undefined;
-            resourceInputs["enableHttp3"] = args ? args.enableHttp3 : undefined;
-            resourceInputs["externalAcls"] = args ? args.externalAcls : undefined;
-            resourceInputs["inboundPort"] = args ? args.inboundPort : undefined;
-            resourceInputs["lbId"] = args ? args.lbId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["timeoutClient"] = args ? args.timeoutClient : undefined;
+            resourceInputs["acls"] = args?.acls;
+            resourceInputs["backendId"] = args?.backendId;
+            resourceInputs["certificateIds"] = args?.certificateIds;
+            resourceInputs["connectionRateLimit"] = args?.connectionRateLimit;
+            resourceInputs["enableAccessLogs"] = args?.enableAccessLogs;
+            resourceInputs["enableHttp3"] = args?.enableHttp3;
+            resourceInputs["externalAcls"] = args?.externalAcls;
+            resourceInputs["inboundPort"] = args?.inboundPort;
+            resourceInputs["lbId"] = args?.lbId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["timeoutClient"] = args?.timeoutClient;
             resourceInputs["certificateId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

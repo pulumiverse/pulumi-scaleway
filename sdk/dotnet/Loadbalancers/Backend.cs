@@ -77,9 +77,10 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     public partial class Backend : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-        /// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-        /// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        /// Scaleway S3 bucket website to be served in case all backend servers are down
+        /// 
+        /// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+        /// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         /// </summary>
         [Output("failoverHost")]
         public Output<string?> FailoverHost { get; private set; } = null!;
@@ -310,9 +311,10 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     public sealed class BackendArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-        /// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-        /// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        /// Scaleway S3 bucket website to be served in case all backend servers are down
+        /// 
+        /// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+        /// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         /// </summary>
         [Input("failoverHost")]
         public Input<string>? FailoverHost { get; set; }
@@ -506,9 +508,10 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     public sealed class BackendState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-        /// Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-        /// is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+        /// Scaleway S3 bucket website to be served in case all backend servers are down
+        /// 
+        /// **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+        /// E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
         /// </summary>
         [Input("failoverHost")]
         public Input<string>? FailoverHost { get; set; }

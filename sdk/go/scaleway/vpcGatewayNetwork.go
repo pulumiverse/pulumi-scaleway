@@ -197,7 +197,7 @@ type VpcGatewayNetwork struct {
 	// > **Important:**
 	// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
 	// For more information, please refer to the dedicated guide.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewVpcGatewayNetwork registers a new resource with the given unique name, arguments, and options.
@@ -561,8 +561,8 @@ func (o VpcGatewayNetworkOutput) UpdatedAt() pulumi.StringOutput {
 // > **Important:**
 // In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
 // For more information, please refer to the dedicated guide.
-func (o VpcGatewayNetworkOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o VpcGatewayNetworkOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type VpcGatewayNetworkArrayOutput struct{ *pulumi.OutputState }

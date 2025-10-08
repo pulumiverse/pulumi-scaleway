@@ -101,35 +101,35 @@ export class PublicGatewayDhcpReservation extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the Public Gateway DHCP configuration.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the owning GatewayNetwork.
      */
-    public readonly gatewayNetworkId!: pulumi.Output<string>;
+    declare public readonly gatewayNetworkId: pulumi.Output<string>;
     /**
      * The hostname of the client machine.
      */
-    public /*out*/ readonly hostname!: pulumi.Output<string>;
+    declare public /*out*/ readonly hostname: pulumi.Output<string>;
     /**
      * The IP address to give to the machine.
      */
-    public readonly ipAddress!: pulumi.Output<string>;
+    declare public readonly ipAddress: pulumi.Output<string>;
     /**
      * The MAC address for the static entry.
      */
-    public readonly macAddress!: pulumi.Output<string>;
+    declare public readonly macAddress: pulumi.Output<string>;
     /**
      * The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * The date and time of the last update of the Public Gateway DHCP configuration.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the public gateway DHCP config should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a PublicGatewayDhcpReservation resource with the given unique name, arguments, and options.
@@ -144,29 +144,29 @@ export class PublicGatewayDhcpReservation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PublicGatewayDhcpReservationState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["gatewayNetworkId"] = state ? state.gatewayNetworkId : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["gatewayNetworkId"] = state?.gatewayNetworkId;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["macAddress"] = state?.macAddress;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PublicGatewayDhcpReservationArgs | undefined;
-            if ((!args || args.gatewayNetworkId === undefined) && !opts.urn) {
+            if (args?.gatewayNetworkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'gatewayNetworkId'");
             }
-            if ((!args || args.ipAddress === undefined) && !opts.urn) {
+            if (args?.ipAddress === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ipAddress'");
             }
-            if ((!args || args.macAddress === undefined) && !opts.urn) {
+            if (args?.macAddress === undefined && !opts.urn) {
                 throw new Error("Missing required property 'macAddress'");
             }
-            resourceInputs["gatewayNetworkId"] = args ? args.gatewayNetworkId : undefined;
-            resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
-            resourceInputs["macAddress"] = args ? args.macAddress : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["gatewayNetworkId"] = args?.gatewayNetworkId;
+            resourceInputs["ipAddress"] = args?.ipAddress;
+            resourceInputs["macAddress"] = args?.macAddress;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["hostname"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;

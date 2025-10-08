@@ -193,7 +193,7 @@ type FlexibleIp struct {
 	// The date and time of the last update of the Flexible IP (Format ISO 8601).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone of the Flexible IP.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewFlexibleIp registers a new resource with the given unique name, arguments, and options.
@@ -461,8 +461,8 @@ func (o FlexibleIpOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone of the Flexible IP.
-func (o FlexibleIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *FlexibleIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o FlexibleIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FlexibleIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type FlexibleIpArrayOutput struct{ *pulumi.OutputState }

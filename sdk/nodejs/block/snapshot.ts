@@ -73,31 +73,31 @@ export class Snapshot extends pulumi.CustomResource {
     /**
      * Use this block to export the volume as a QCOW file to Object Storage.
      */
-    public readonly export!: pulumi.Output<outputs.block.SnapshotExport | undefined>;
+    declare public readonly export: pulumi.Output<outputs.block.SnapshotExport | undefined>;
     /**
      * Use this block to import a QCOW image from Object Storage to create a volume.
      */
-    public readonly import!: pulumi.Output<outputs.block.SnapshotImport | undefined>;
+    declare public readonly import: pulumi.Output<outputs.block.SnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided, a name will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ). The ID of the Scaleway Project the snapshot is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    public readonly volumeId!: pulumi.Output<string | undefined>;
+    declare public readonly volumeId: pulumi.Output<string | undefined>;
     /**
      * ). The zone in which the snapshot should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Snapshot resource with the given unique name, arguments, and options.
@@ -112,22 +112,22 @@ export class Snapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnapshotState | undefined;
-            resourceInputs["export"] = state ? state.export : undefined;
-            resourceInputs["import"] = state ? state.import : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["export"] = state?.export;
+            resourceInputs["import"] = state?.import;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["volumeId"] = state?.volumeId;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as SnapshotArgs | undefined;
-            resourceInputs["export"] = args ? args.export : undefined;
-            resourceInputs["import"] = args ? args.import : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["export"] = args?.export;
+            resourceInputs["import"] = args?.import;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["volumeId"] = args?.volumeId;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/blockSnapshot:BlockSnapshot" }] };

@@ -162,7 +162,7 @@ type RdbSnapshot struct {
 	// The type of the database instance for which the snapshot was created.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The region where the snapshot is stored. Defaults to the region set in the provider configuration.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the snapshot in bytes.
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The current status of the snapshot (e.g., `ready`, `creating`, `error`).
@@ -391,8 +391,8 @@ func (o RdbSnapshotOutput) NodeType() pulumi.StringOutput {
 }
 
 // The region where the snapshot is stored. Defaults to the region set in the provider configuration.
-func (o RdbSnapshotOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *RdbSnapshot) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o RdbSnapshotOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RdbSnapshot) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the snapshot in bytes.

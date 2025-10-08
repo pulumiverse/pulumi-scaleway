@@ -72,7 +72,7 @@ type SdbDatabase struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewSdbDatabase registers a new resource with the given unique name, arguments, and options.
@@ -288,8 +288,8 @@ func (o SdbDatabaseOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o SdbDatabaseOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *SdbDatabase) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SdbDatabaseOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SdbDatabase) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type SdbDatabaseArrayOutput struct{ *pulumi.OutputState }

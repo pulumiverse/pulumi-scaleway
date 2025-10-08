@@ -113,7 +113,7 @@ namespace Pulumiverse.Scaleway.Observability
         /// ) The region where the Cockpit token is located.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Scopes allowed, each with default values:

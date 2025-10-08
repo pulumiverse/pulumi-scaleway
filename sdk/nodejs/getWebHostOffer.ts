@@ -93,7 +93,7 @@ export interface GetWebHostOfferResult {
      * @deprecated The product field is deprecated. Please use the offer field instead.
      */
     readonly products: outputs.GetWebHostOfferProduct[];
-    readonly region: string;
+    readonly region?: string;
 }
 /**
  * Gets information about a webhosting offer.

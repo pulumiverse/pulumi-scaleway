@@ -144,15 +144,15 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
     /**
      * A list of inbound rule to add to the security group. (Structure is documented below.)
      */
-    public readonly inboundRules!: pulumi.Output<outputs.InstanceSecurityGroupRulesInboundRule[] | undefined>;
+    declare public readonly inboundRules: pulumi.Output<outputs.InstanceSecurityGroupRulesInboundRule[] | undefined>;
     /**
      * A list of outbound rule to add to the security group. (Structure is documented below.)
      */
-    public readonly outboundRules!: pulumi.Output<outputs.InstanceSecurityGroupRulesOutboundRule[] | undefined>;
+    declare public readonly outboundRules: pulumi.Output<outputs.InstanceSecurityGroupRulesOutboundRule[] | undefined>;
     /**
      * The ID of the security group.
      */
-    public readonly securityGroupId!: pulumi.Output<string>;
+    declare public readonly securityGroupId: pulumi.Output<string>;
 
     /**
      * Create a InstanceSecurityGroupRules resource with the given unique name, arguments, and options.
@@ -170,17 +170,17 @@ export class InstanceSecurityGroupRules extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSecurityGroupRulesState | undefined;
-            resourceInputs["inboundRules"] = state ? state.inboundRules : undefined;
-            resourceInputs["outboundRules"] = state ? state.outboundRules : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
+            resourceInputs["inboundRules"] = state?.inboundRules;
+            resourceInputs["outboundRules"] = state?.outboundRules;
+            resourceInputs["securityGroupId"] = state?.securityGroupId;
         } else {
             const args = argsOrState as InstanceSecurityGroupRulesArgs | undefined;
-            if ((!args || args.securityGroupId === undefined) && !opts.urn) {
+            if (args?.securityGroupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'securityGroupId'");
             }
-            resourceInputs["inboundRules"] = args ? args.inboundRules : undefined;
-            resourceInputs["outboundRules"] = args ? args.outboundRules : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
+            resourceInputs["inboundRules"] = args?.inboundRules;
+            resourceInputs["outboundRules"] = args?.outboundRules;
+            resourceInputs["securityGroupId"] = args?.securityGroupId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceSecurityGroupRules.__pulumiType, name, resourceInputs, opts);

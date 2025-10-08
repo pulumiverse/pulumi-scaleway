@@ -177,7 +177,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// List of retrieved routes
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRoutesRouteResult> Routes;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetRoutesResult(
@@ -191,7 +191,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             ImmutableArray<Outputs.GetRoutesRouteResult> routes,
 
-            string zone)
+            string? zone)
         {
             FrontendId = frontendId;
             Id = id;

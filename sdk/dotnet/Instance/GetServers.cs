@@ -145,7 +145,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// <summary>
         /// The zone in which the server is.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetServersResult(
@@ -161,7 +161,7 @@ namespace Pulumiverse.Scaleway.Instance
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Name = name;

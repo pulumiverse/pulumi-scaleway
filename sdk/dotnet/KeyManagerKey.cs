@@ -132,7 +132,7 @@ namespace Pulumiverse.Scaleway
         /// The region in which to create the key (e.g., `fr-par`).
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The date and time when the key was last rotated.

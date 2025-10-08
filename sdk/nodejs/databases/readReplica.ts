@@ -129,26 +129,26 @@ export class ReadReplica extends pulumi.CustomResource {
     /**
      * Creates a direct access endpoint to rdb replica.
      */
-    public readonly directAccess!: pulumi.Output<outputs.databases.ReadReplicaDirectAccess | undefined>;
+    declare public readonly directAccess: pulumi.Output<outputs.databases.ReadReplicaDirectAccess | undefined>;
     /**
      * UUID of the rdb instance.
      *
      * > **Important:** The replica musts contains at least one `directAccess` or `privateNetwork`. It can contain both.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * Create an endpoint in a Private Netork.
      */
-    public readonly privateNetwork!: pulumi.Output<outputs.databases.ReadReplicaPrivateNetwork | undefined>;
+    declare public readonly privateNetwork: pulumi.Output<outputs.databases.ReadReplicaPrivateNetwork | undefined>;
     /**
      * `region`) The region
      * in which the Read Replica should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Defines whether to create the replica in the same availability zone as the main instance nodes or not.
      */
-    public readonly sameZone!: pulumi.Output<boolean | undefined>;
+    declare public readonly sameZone: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a ReadReplica resource with the given unique name, arguments, and options.
@@ -163,21 +163,21 @@ export class ReadReplica extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReadReplicaState | undefined;
-            resourceInputs["directAccess"] = state ? state.directAccess : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["sameZone"] = state ? state.sameZone : undefined;
+            resourceInputs["directAccess"] = state?.directAccess;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["privateNetwork"] = state?.privateNetwork;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["sameZone"] = state?.sameZone;
         } else {
             const args = argsOrState as ReadReplicaArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["directAccess"] = args ? args.directAccess : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["sameZone"] = args ? args.sameZone : undefined;
+            resourceInputs["directAccess"] = args?.directAccess;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["privateNetwork"] = args?.privateNetwork;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["sameZone"] = args?.sameZone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/databaseReadReplica:DatabaseReadReplica" }] };

@@ -466,7 +466,7 @@ type Server struct {
 	// - Binary files using filebase64.
 	UserData pulumi.StringMapOutput `pulumi:"userData"`
 	// `zone`) The zone in which the server should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewServer registers a new resource with the given unique name, arguments, and options.
@@ -1194,8 +1194,8 @@ func (o ServerOutput) UserData() pulumi.StringMapOutput {
 }
 
 // `zone`) The zone in which the server should be created.
-func (o ServerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o ServerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ServerArrayOutput struct{ *pulumi.OutputState }

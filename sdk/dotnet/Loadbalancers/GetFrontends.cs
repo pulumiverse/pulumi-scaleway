@@ -190,7 +190,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string ProjectId;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetFrontendsResult(
@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             string projectId,
 
-            string zone)
+            string? zone)
         {
             Frontends = frontends;
             Id = id;

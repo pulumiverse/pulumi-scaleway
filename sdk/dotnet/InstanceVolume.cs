@@ -98,9 +98,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
-        /// 
-        /// &gt; **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-        /// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -109,7 +106,7 @@ namespace Pulumiverse.Scaleway
         /// `zone`) The zone in which the volume should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>
@@ -202,9 +199,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
-        /// 
-        /// &gt; **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-        /// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -279,9 +273,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
-        /// 
-        /// &gt; **Important:** Volumes with type `b_ssd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-        /// If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
