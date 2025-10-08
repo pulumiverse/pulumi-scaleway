@@ -2911,6 +2911,27 @@
                     }
                 }
             },
+            "scaleway_instance_server_type": {
+                "current": "scaleway:instance/getServerType:getServerType",
+                "fields": {
+                    "capabilities": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "boot_types": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "network": {
+                        "maxItemsOne": false
+                    },
+                    "volumes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_instance_servers": {
                 "current": "scaleway:instance/getServers:getServers",
                 "past": [
