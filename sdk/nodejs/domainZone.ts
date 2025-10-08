@@ -49,39 +49,39 @@ export class DomainZone extends pulumi.CustomResource {
     /**
      * The main domain where the DNS zone will be created.
      */
-    public readonly domain!: pulumi.Output<string>;
+    declare public readonly domain: pulumi.Output<string>;
     /**
      * Message.
      */
-    public /*out*/ readonly message!: pulumi.Output<string>;
+    declare public /*out*/ readonly message: pulumi.Output<string>;
     /**
      * The list of same servers for the zone.
      */
-    public /*out*/ readonly ns!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly ns: pulumi.Output<string[]>;
     /**
      * The default list of same servers for the zone.
      */
-    public /*out*/ readonly nsDefaults!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly nsDefaults: pulumi.Output<string[]>;
     /**
      * The master list of same servers for the zone.
      */
-    public /*out*/ readonly nsMasters!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly nsMasters: pulumi.Output<string[]>;
     /**
      * `projectId`) The ID of the Project associated with the domain.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The status of the domain zone.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The name of the subdomain (zone name) to create within the domain.
      */
-    public readonly subdomain!: pulumi.Output<string>;
+    declare public readonly subdomain: pulumi.Output<string>;
     /**
      * The date and time at which the DNS zone was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a DomainZone resource with the given unique name, arguments, and options.
@@ -99,26 +99,26 @@ export class DomainZone extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainZoneState | undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["message"] = state ? state.message : undefined;
-            resourceInputs["ns"] = state ? state.ns : undefined;
-            resourceInputs["nsDefaults"] = state ? state.nsDefaults : undefined;
-            resourceInputs["nsMasters"] = state ? state.nsMasters : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["subdomain"] = state ? state.subdomain : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["domain"] = state?.domain;
+            resourceInputs["message"] = state?.message;
+            resourceInputs["ns"] = state?.ns;
+            resourceInputs["nsDefaults"] = state?.nsDefaults;
+            resourceInputs["nsMasters"] = state?.nsMasters;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["subdomain"] = state?.subdomain;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as DomainZoneArgs | undefined;
-            if ((!args || args.domain === undefined) && !opts.urn) {
+            if (args?.domain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domain'");
             }
-            if ((!args || args.subdomain === undefined) && !opts.urn) {
+            if (args?.subdomain === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subdomain'");
             }
-            resourceInputs["domain"] = args ? args.domain : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["subdomain"] = args ? args.subdomain : undefined;
+            resourceInputs["domain"] = args?.domain;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["subdomain"] = args?.subdomain;
             resourceInputs["message"] = undefined /*out*/;
             resourceInputs["ns"] = undefined /*out*/;
             resourceInputs["nsDefaults"] = undefined /*out*/;

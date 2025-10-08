@@ -91,59 +91,59 @@ export class Device extends pulumi.CustomResource {
      *
      * > **Important:** Updates to `allowInsecure` can disconnect eventually connected devices.
      */
-    public readonly allowInsecure!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowInsecure: pulumi.Output<boolean | undefined>;
     /**
      * Allow more than one simultaneous connection using the same device credentials.
      *
      * > **Important:** Updates to `allowMultipleConnections` can disconnect eventually connected devices.
      */
-    public readonly allowMultipleConnections!: pulumi.Output<boolean | undefined>;
+    declare public readonly allowMultipleConnections: pulumi.Output<boolean | undefined>;
     /**
      * The certificate bundle of the device.
      */
-    public readonly certificate!: pulumi.Output<outputs.iot.DeviceCertificate>;
+    declare public readonly certificate: pulumi.Output<outputs.iot.DeviceCertificate>;
     /**
      * The date and time the device was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The description of the IoT device (e.g. `living room`).
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The ID of the hub on which this device will be created.
      */
-    public readonly hubId!: pulumi.Output<string>;
+    declare public readonly hubId: pulumi.Output<string>;
     /**
      * The current connection status of the device.
      */
-    public /*out*/ readonly isConnected!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly isConnected: pulumi.Output<boolean>;
     /**
      * The last MQTT activity of the device.
      */
-    public /*out*/ readonly lastActivityAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastActivityAt: pulumi.Output<string>;
     /**
      * Rules that define which messages are authorized or denied based on their topic.
      */
-    public readonly messageFilters!: pulumi.Output<outputs.iot.DeviceMessageFilters | undefined>;
+    declare public readonly messageFilters: pulumi.Output<outputs.iot.DeviceMessageFilters | undefined>;
     /**
      * The name of the IoT device you want to create (e.g. `my-device`).
      *
      * > **Important:** Updates to `name` will destroy and recreate a new resource.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The region you want to attach the resource to
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The current status of the device.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The date and time the device resource was updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Device resource with the given unique name, arguments, and options.
@@ -158,32 +158,32 @@ export class Device extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DeviceState | undefined;
-            resourceInputs["allowInsecure"] = state ? state.allowInsecure : undefined;
-            resourceInputs["allowMultipleConnections"] = state ? state.allowMultipleConnections : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["hubId"] = state ? state.hubId : undefined;
-            resourceInputs["isConnected"] = state ? state.isConnected : undefined;
-            resourceInputs["lastActivityAt"] = state ? state.lastActivityAt : undefined;
-            resourceInputs["messageFilters"] = state ? state.messageFilters : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["allowInsecure"] = state?.allowInsecure;
+            resourceInputs["allowMultipleConnections"] = state?.allowMultipleConnections;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["hubId"] = state?.hubId;
+            resourceInputs["isConnected"] = state?.isConnected;
+            resourceInputs["lastActivityAt"] = state?.lastActivityAt;
+            resourceInputs["messageFilters"] = state?.messageFilters;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as DeviceArgs | undefined;
-            if ((!args || args.hubId === undefined) && !opts.urn) {
+            if (args?.hubId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
-            resourceInputs["allowInsecure"] = args ? args.allowInsecure : undefined;
-            resourceInputs["allowMultipleConnections"] = args ? args.allowMultipleConnections : undefined;
-            resourceInputs["certificate"] = args ? args.certificate : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["hubId"] = args ? args.hubId : undefined;
-            resourceInputs["messageFilters"] = args ? args.messageFilters : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["allowInsecure"] = args?.allowInsecure;
+            resourceInputs["allowMultipleConnections"] = args?.allowMultipleConnections;
+            resourceInputs["certificate"] = args?.certificate;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["hubId"] = args?.hubId;
+            resourceInputs["messageFilters"] = args?.messageFilters;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["isConnected"] = undefined /*out*/;
             resourceInputs["lastActivityAt"] = undefined /*out*/;

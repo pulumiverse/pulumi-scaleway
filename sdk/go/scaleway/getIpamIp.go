@@ -188,11 +188,11 @@ type LookupIpamIpResult struct {
 	OrganizationId   string             `pulumi:"organizationId"`
 	PrivateNetworkId *string            `pulumi:"privateNetworkId"`
 	ProjectId        string             `pulumi:"projectId"`
-	Region           string             `pulumi:"region"`
+	Region           *string            `pulumi:"region"`
 	Resource         *GetIpamIpResource `pulumi:"resource"`
 	Tags             []string           `pulumi:"tags"`
 	Type             *string            `pulumi:"type"`
-	Zonal            string             `pulumi:"zonal"`
+	Zonal            *string            `pulumi:"zonal"`
 }
 
 func LookupIpamIpOutput(ctx *pulumi.Context, args LookupIpamIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpamIpResultOutput {
@@ -288,8 +288,8 @@ func (o LookupIpamIpResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o LookupIpamIpResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Region }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func (o LookupIpamIpResultOutput) Resource() GetIpamIpResourcePtrOutput {
@@ -304,8 +304,8 @@ func (o LookupIpamIpResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupIpamIpResultOutput) Zonal() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpamIpResult) string { return v.Zonal }).(pulumi.StringOutput)
+func (o LookupIpamIpResultOutput) Zonal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpamIpResult) *string { return v.Zonal }).(pulumi.StringPtrOutput)
 }
 
 func init() {

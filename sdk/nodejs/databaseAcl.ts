@@ -129,17 +129,17 @@ export class DatabaseAcl extends pulumi.CustomResource {
      *
      * > **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instanceId` will conflict with each other. Use multiple `aclRules` blocks within a single resource instead.
      */
-    public readonly aclRules!: pulumi.Output<outputs.DatabaseAclAclRule[]>;
+    declare public readonly aclRules: pulumi.Output<outputs.DatabaseAclAclRule[]>;
     /**
      * UUID of the Database Instance.
      *
      * > **Important:** Updates to `instanceId` will recreate the Database ACL.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a DatabaseAcl resource with the given unique name, arguments, and options.
@@ -157,20 +157,20 @@ export class DatabaseAcl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseAclState | undefined;
-            resourceInputs["aclRules"] = state ? state.aclRules : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["aclRules"] = state?.aclRules;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as DatabaseAclArgs | undefined;
-            if ((!args || args.aclRules === undefined) && !opts.urn) {
+            if (args?.aclRules === undefined && !opts.urn) {
                 throw new Error("Missing required property 'aclRules'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["aclRules"] = args ? args.aclRules : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["aclRules"] = args?.aclRules;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DatabaseAcl.__pulumiType, name, resourceInputs, opts);

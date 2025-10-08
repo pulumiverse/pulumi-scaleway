@@ -72,27 +72,27 @@ export class SnsCredentials extends pulumi.CustomResource {
     /**
      * The ID of the key.
      */
-    public /*out*/ readonly accessKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly accessKey: pulumi.Output<string>;
     /**
      * The unique name of the SNS credentials.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * . List of permissions associated with these credentials.
      */
-    public readonly permissions!: pulumi.Output<outputs.mnq.SnsCredentialsPermissions>;
+    declare public readonly permissions: pulumi.Output<outputs.mnq.SnsCredentialsPermissions>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`). The region in which SNS is enabled.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The secret value of the key.
      */
-    public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    declare public /*out*/ readonly secretKey: pulumi.Output<string>;
 
     /**
      * Create a SnsCredentials resource with the given unique name, arguments, and options.
@@ -107,18 +107,18 @@ export class SnsCredentials extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SnsCredentialsState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["permissions"] = state ? state.permissions : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["permissions"] = state?.permissions;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretKey"] = state?.secretKey;
         } else {
             const args = argsOrState as SnsCredentialsArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["permissions"] = args ? args.permissions : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["permissions"] = args?.permissions;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["accessKey"] = undefined /*out*/;
             resourceInputs["secretKey"] = undefined /*out*/;
         }

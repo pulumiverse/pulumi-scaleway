@@ -72,47 +72,47 @@ export class CockpitSource extends pulumi.CustomResource {
     /**
      * The date and time the data source was created (in RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The name of the data source.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The origin of the Cockpit data source.
      */
-    public /*out*/ readonly origin!: pulumi.Output<string>;
+    declare public /*out*/ readonly origin: pulumi.Output<string>;
     /**
      * ) The ID of the Project the data source is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The URL endpoint used for pushing data to the Cockpit data source.
      */
-    public /*out*/ readonly pushUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly pushUrl: pulumi.Output<string>;
     /**
      * ) The region where the data source is located.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
      */
-    public readonly retentionDays!: pulumi.Output<number>;
+    declare public readonly retentionDays: pulumi.Output<number>;
     /**
      * Indicates whether the data source is synchronized with Grafana.
      */
-    public /*out*/ readonly synchronizedWithGrafana!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly synchronizedWithGrafana: pulumi.Output<boolean>;
     /**
      * The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
     /**
      * The date and time the data source was last updated (in RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The URL of the Cockpit data source.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
 
     /**
      * Create a CockpitSource resource with the given unique name, arguments, and options.
@@ -130,27 +130,27 @@ export class CockpitSource extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CockpitSourceState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["origin"] = state ? state.origin : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["pushUrl"] = state ? state.pushUrl : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["retentionDays"] = state ? state.retentionDays : undefined;
-            resourceInputs["synchronizedWithGrafana"] = state ? state.synchronizedWithGrafana : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["origin"] = state?.origin;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["pushUrl"] = state?.pushUrl;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["retentionDays"] = state?.retentionDays;
+            resourceInputs["synchronizedWithGrafana"] = state?.synchronizedWithGrafana;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as CockpitSourceArgs | undefined;
-            if ((!args || args.retentionDays === undefined) && !opts.urn) {
+            if (args?.retentionDays === undefined && !opts.urn) {
                 throw new Error("Missing required property 'retentionDays'");
             }
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["retentionDays"] = args ? args.retentionDays : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["retentionDays"] = args?.retentionDays;
+            resourceInputs["type"] = args?.type;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["origin"] = undefined /*out*/;
             resourceInputs["pushUrl"] = undefined /*out*/;

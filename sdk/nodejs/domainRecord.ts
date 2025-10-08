@@ -249,55 +249,55 @@ export class DomainRecord extends pulumi.CustomResource {
     /**
      * The content of the record (an IPv4 for an `A` record, a string for a `TXT` record, etc.).
      */
-    public readonly data!: pulumi.Output<string>;
+    declare public readonly data: pulumi.Output<string>;
     /**
      * The DNS zone of the domain. If the domain has no DNS zone, one will be automatically created.
      */
-    public readonly dnsZone!: pulumi.Output<string>;
+    declare public readonly dnsZone: pulumi.Output<string>;
     /**
      * The FQDN of the record.
      */
-    public /*out*/ readonly fqdn!: pulumi.Output<string>;
+    declare public /*out*/ readonly fqdn: pulumi.Output<string>;
     /**
      * Return record based on client localisation
      */
-    public readonly geoIp!: pulumi.Output<outputs.DomainRecordGeoIp | undefined>;
+    declare public readonly geoIp: pulumi.Output<outputs.DomainRecordGeoIp | undefined>;
     /**
      * Return record based on client localisation
      */
-    public readonly httpService!: pulumi.Output<outputs.DomainRecordHttpService | undefined>;
+    declare public readonly httpService: pulumi.Output<outputs.DomainRecordHttpService | undefined>;
     /**
      * The name of the record (can be an empty string for a root record).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The priority of the record (mostly used with an `MX` record).
      */
-    public readonly priority!: pulumi.Output<number>;
+    declare public readonly priority: pulumi.Output<number>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Does the DNS zone is the root zone or not
      */
-    public /*out*/ readonly rootZone!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly rootZone: pulumi.Output<boolean>;
     /**
      * Time To Live of the record in seconds.
      */
-    public readonly ttl!: pulumi.Output<number | undefined>;
+    declare public readonly ttl: pulumi.Output<number | undefined>;
     /**
      * The type of the record (`A`, `AAAA`, `MX`, `CNAME`, `DNAME`, `ALIAS`, `NS`, `PTR`, `SRV`, `TXT`, `TLSA`, or `CAA`).
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * Return record based on client subnet
      */
-    public readonly views!: pulumi.Output<outputs.DomainRecordView[] | undefined>;
+    declare public readonly views: pulumi.Output<outputs.DomainRecordView[] | undefined>;
     /**
      * Return record based on weight
      */
-    public readonly weighteds!: pulumi.Output<outputs.DomainRecordWeighted[] | undefined>;
+    declare public readonly weighteds: pulumi.Output<outputs.DomainRecordWeighted[] | undefined>;
 
     /**
      * Create a DomainRecord resource with the given unique name, arguments, and options.
@@ -315,41 +315,41 @@ export class DomainRecord extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainRecordState | undefined;
-            resourceInputs["data"] = state ? state.data : undefined;
-            resourceInputs["dnsZone"] = state ? state.dnsZone : undefined;
-            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
-            resourceInputs["geoIp"] = state ? state.geoIp : undefined;
-            resourceInputs["httpService"] = state ? state.httpService : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["priority"] = state ? state.priority : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["rootZone"] = state ? state.rootZone : undefined;
-            resourceInputs["ttl"] = state ? state.ttl : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["views"] = state ? state.views : undefined;
-            resourceInputs["weighteds"] = state ? state.weighteds : undefined;
+            resourceInputs["data"] = state?.data;
+            resourceInputs["dnsZone"] = state?.dnsZone;
+            resourceInputs["fqdn"] = state?.fqdn;
+            resourceInputs["geoIp"] = state?.geoIp;
+            resourceInputs["httpService"] = state?.httpService;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["priority"] = state?.priority;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["rootZone"] = state?.rootZone;
+            resourceInputs["ttl"] = state?.ttl;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["views"] = state?.views;
+            resourceInputs["weighteds"] = state?.weighteds;
         } else {
             const args = argsOrState as DomainRecordArgs | undefined;
-            if ((!args || args.data === undefined) && !opts.urn) {
+            if (args?.data === undefined && !opts.urn) {
                 throw new Error("Missing required property 'data'");
             }
-            if ((!args || args.dnsZone === undefined) && !opts.urn) {
+            if (args?.dnsZone === undefined && !opts.urn) {
                 throw new Error("Missing required property 'dnsZone'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["data"] = args ? args.data : undefined;
-            resourceInputs["dnsZone"] = args ? args.dnsZone : undefined;
-            resourceInputs["geoIp"] = args ? args.geoIp : undefined;
-            resourceInputs["httpService"] = args ? args.httpService : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["priority"] = args ? args.priority : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["ttl"] = args ? args.ttl : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["views"] = args ? args.views : undefined;
-            resourceInputs["weighteds"] = args ? args.weighteds : undefined;
+            resourceInputs["data"] = args?.data;
+            resourceInputs["dnsZone"] = args?.dnsZone;
+            resourceInputs["geoIp"] = args?.geoIp;
+            resourceInputs["httpService"] = args?.httpService;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["priority"] = args?.priority;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["ttl"] = args?.ttl;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["views"] = args?.views;
+            resourceInputs["weighteds"] = args?.weighteds;
             resourceInputs["fqdn"] = undefined /*out*/;
             resourceInputs["rootZone"] = undefined /*out*/;
         }

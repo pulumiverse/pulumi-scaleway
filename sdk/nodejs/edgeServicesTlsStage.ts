@@ -79,47 +79,47 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
     /**
      * The backend stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly backendStageId!: pulumi.Output<string>;
+    declare public readonly backendStageId: pulumi.Output<string>;
     /**
      * The cache stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly cacheStageId!: pulumi.Output<string>;
+    declare public readonly cacheStageId: pulumi.Output<string>;
     /**
      * The expiration date of the certificate.
      */
-    public /*out*/ readonly certificateExpiresAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificateExpiresAt: pulumi.Output<string>;
     /**
      * The date and time of the creation of the TLS stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Set to true when Scaleway generates and manages a Let's Encrypt certificate for the TLS stage/custom endpoint.
      */
-    public readonly managedCertificate!: pulumi.Output<boolean>;
+    declare public readonly managedCertificate: pulumi.Output<boolean>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the TLS stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The route stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly routeStageId!: pulumi.Output<string>;
+    declare public readonly routeStageId: pulumi.Output<string>;
     /**
      * The TLS secrets.
      */
-    public readonly secrets!: pulumi.Output<outputs.EdgeServicesTlsStageSecret[]>;
+    declare public readonly secrets: pulumi.Output<outputs.EdgeServicesTlsStageSecret[]>;
     /**
      * The date and time of the last update of the TLS stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The WAF stage ID the TLS stage will be linked to. Only one of `backendStageId`, `cacheStageId`, `routeStageId` and `wafStageId` should be specified.
      */
-    public readonly wafStageId!: pulumi.Output<string>;
+    declare public readonly wafStageId: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesTlsStage resource with the given unique name, arguments, and options.
@@ -134,30 +134,30 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesTlsStageState | undefined;
-            resourceInputs["backendStageId"] = state ? state.backendStageId : undefined;
-            resourceInputs["cacheStageId"] = state ? state.cacheStageId : undefined;
-            resourceInputs["certificateExpiresAt"] = state ? state.certificateExpiresAt : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["managedCertificate"] = state ? state.managedCertificate : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["routeStageId"] = state ? state.routeStageId : undefined;
-            resourceInputs["secrets"] = state ? state.secrets : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["wafStageId"] = state ? state.wafStageId : undefined;
+            resourceInputs["backendStageId"] = state?.backendStageId;
+            resourceInputs["cacheStageId"] = state?.cacheStageId;
+            resourceInputs["certificateExpiresAt"] = state?.certificateExpiresAt;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["managedCertificate"] = state?.managedCertificate;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["routeStageId"] = state?.routeStageId;
+            resourceInputs["secrets"] = state?.secrets;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["wafStageId"] = state?.wafStageId;
         } else {
             const args = argsOrState as EdgeServicesTlsStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["backendStageId"] = args ? args.backendStageId : undefined;
-            resourceInputs["cacheStageId"] = args ? args.cacheStageId : undefined;
-            resourceInputs["managedCertificate"] = args ? args.managedCertificate : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["routeStageId"] = args ? args.routeStageId : undefined;
-            resourceInputs["secrets"] = args ? args.secrets : undefined;
-            resourceInputs["wafStageId"] = args ? args.wafStageId : undefined;
+            resourceInputs["backendStageId"] = args?.backendStageId;
+            resourceInputs["cacheStageId"] = args?.cacheStageId;
+            resourceInputs["managedCertificate"] = args?.managedCertificate;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["routeStageId"] = args?.routeStageId;
+            resourceInputs["secrets"] = args?.secrets;
+            resourceInputs["wafStageId"] = args?.wafStageId;
             resourceInputs["certificateExpiresAt"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

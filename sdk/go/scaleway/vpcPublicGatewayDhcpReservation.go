@@ -136,7 +136,7 @@ type VpcPublicGatewayDhcpReservation struct {
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewVpcPublicGatewayDhcpReservation registers a new resource with the given unique name, arguments, and options.
@@ -365,8 +365,8 @@ func (o VpcPublicGatewayDhcpReservationOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the public gateway DHCP config should be created.
-func (o VpcPublicGatewayDhcpReservationOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o VpcPublicGatewayDhcpReservationOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayDhcpReservation) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type VpcPublicGatewayDhcpReservationArrayOutput struct{ *pulumi.OutputState }

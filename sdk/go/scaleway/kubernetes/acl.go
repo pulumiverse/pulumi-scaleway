@@ -132,7 +132,7 @@ type Acl struct {
 	// > **Important:** This field cannot be set to true if the `aclRules` block is defined.
 	NoIpAllowed pulumi.BoolPtrOutput `pulumi:"noIpAllowed"`
 	// `region`) The region in which the ACL rule should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewAcl registers a new resource with the given unique name, arguments, and options.
@@ -349,8 +349,8 @@ func (o AclOutput) NoIpAllowed() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region in which the ACL rule should be created.
-func (o AclOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Acl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o AclOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Acl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type AclArrayOutput struct{ *pulumi.OutputState }

@@ -100,7 +100,7 @@ type LoadbalancerIp struct {
 	// The tags associated with this IP.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the IP should be reserved.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewLoadbalancerIp registers a new resource with the given unique name, arguments, and options.
@@ -333,8 +333,8 @@ func (o LoadbalancerIpOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the IP should be reserved.
-func (o LoadbalancerIpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *LoadbalancerIp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o LoadbalancerIpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadbalancerIp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type LoadbalancerIpArrayOutput struct{ *pulumi.OutputState }

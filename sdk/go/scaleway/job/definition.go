@@ -131,7 +131,7 @@ type Definition struct {
 	// `projectId`) The ID of the project the Job is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Job.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences DefinitionSecretReferenceArrayOutput `pulumi:"secretReferences"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -425,8 +425,8 @@ func (o DefinitionOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the Job.
-func (o DefinitionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Definition) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DefinitionOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Definition) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // A reference to a secret stored in Secret Manager.

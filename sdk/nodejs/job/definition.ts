@@ -106,51 +106,51 @@ export class Definition extends pulumi.CustomResource {
     /**
      * The command that will be run in the container if specified.
      */
-    public readonly command!: pulumi.Output<string | undefined>;
+    declare public readonly command: pulumi.Output<string | undefined>;
     /**
      * The amount of vCPU computing resources to allocate to each container running the job.
      */
-    public readonly cpuLimit!: pulumi.Output<number>;
+    declare public readonly cpuLimit: pulumi.Output<number>;
     /**
      * The cron configuration
      */
-    public readonly cron!: pulumi.Output<outputs.job.DefinitionCron | undefined>;
+    declare public readonly cron: pulumi.Output<outputs.job.DefinitionCron | undefined>;
     /**
      * The description of the job
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The environment variables of the container.
      */
-    public readonly env!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly env: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The uri of the container image that will be used for the job run.
      */
-    public readonly imageUri!: pulumi.Output<string | undefined>;
+    declare public readonly imageUri: pulumi.Output<string | undefined>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
-    public readonly memoryLimit!: pulumi.Output<number>;
+    declare public readonly memoryLimit: pulumi.Output<number>;
     /**
      * The name of the job.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the Job is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region of the Job.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * A reference to a secret stored in Secret Manager.
      */
-    public readonly secretReferences!: pulumi.Output<outputs.job.DefinitionSecretReference[] | undefined>;
+    declare public readonly secretReferences: pulumi.Output<outputs.job.DefinitionSecretReference[] | undefined>;
     /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
-    public readonly timeout!: pulumi.Output<string>;
+    declare public readonly timeout: pulumi.Output<string>;
 
     /**
      * Create a Definition resource with the given unique name, arguments, and options.
@@ -165,38 +165,38 @@ export class Definition extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DefinitionState | undefined;
-            resourceInputs["command"] = state ? state.command : undefined;
-            resourceInputs["cpuLimit"] = state ? state.cpuLimit : undefined;
-            resourceInputs["cron"] = state ? state.cron : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["env"] = state ? state.env : undefined;
-            resourceInputs["imageUri"] = state ? state.imageUri : undefined;
-            resourceInputs["memoryLimit"] = state ? state.memoryLimit : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretReferences"] = state ? state.secretReferences : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["command"] = state?.command;
+            resourceInputs["cpuLimit"] = state?.cpuLimit;
+            resourceInputs["cron"] = state?.cron;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["env"] = state?.env;
+            resourceInputs["imageUri"] = state?.imageUri;
+            resourceInputs["memoryLimit"] = state?.memoryLimit;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretReferences"] = state?.secretReferences;
+            resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as DefinitionArgs | undefined;
-            if ((!args || args.cpuLimit === undefined) && !opts.urn) {
+            if (args?.cpuLimit === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cpuLimit'");
             }
-            if ((!args || args.memoryLimit === undefined) && !opts.urn) {
+            if (args?.memoryLimit === undefined && !opts.urn) {
                 throw new Error("Missing required property 'memoryLimit'");
             }
-            resourceInputs["command"] = args ? args.command : undefined;
-            resourceInputs["cpuLimit"] = args ? args.cpuLimit : undefined;
-            resourceInputs["cron"] = args ? args.cron : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["env"] = args ? args.env : undefined;
-            resourceInputs["imageUri"] = args ? args.imageUri : undefined;
-            resourceInputs["memoryLimit"] = args ? args.memoryLimit : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["secretReferences"] = args ? args.secretReferences : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["command"] = args?.command;
+            resourceInputs["cpuLimit"] = args?.cpuLimit;
+            resourceInputs["cron"] = args?.cron;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["env"] = args?.env;
+            resourceInputs["imageUri"] = args?.imageUri;
+            resourceInputs["memoryLimit"] = args?.memoryLimit;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["secretReferences"] = args?.secretReferences;
+            resourceInputs["timeout"] = args?.timeout;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/jobDefinition:JobDefinition" }] };

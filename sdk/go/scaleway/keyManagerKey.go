@@ -115,7 +115,7 @@ type KeyManagerKey struct {
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolOutput `pulumi:"protected"`
 	// The region in which to create the key (e.g., `fr-par`).
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The date and time when the key was last rotated.
 	RotatedAt pulumi.StringOutput `pulumi:"rotatedAt"`
 	// The number of times the key has been rotated.
@@ -406,8 +406,8 @@ func (o KeyManagerKeyOutput) Protected() pulumi.BoolOutput {
 }
 
 // The region in which to create the key (e.g., `fr-par`).
-func (o KeyManagerKeyOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o KeyManagerKeyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The date and time when the key was last rotated.

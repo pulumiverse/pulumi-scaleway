@@ -92,35 +92,35 @@ export class BlockVolume extends pulumi.CustomResource {
     /**
      * The instance volume to create the block volume from
      */
-    public readonly instanceVolumeId!: pulumi.Output<string>;
+    declare public readonly instanceVolumeId: pulumi.Output<string>;
     /**
      * The maximum [IOPs](https://www.scaleway.com/en/docs/block-storage/concepts/#iops) expected, must match available options.
      */
-    public readonly iops!: pulumi.Output<number>;
+    declare public readonly iops: pulumi.Output<number>;
     /**
      * The name of the volume. If not provided, a name will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * ). The ID of the Project the volume is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The size of the volume in gigabytes.
      */
-    public readonly sizeInGb!: pulumi.Output<number>;
+    declare public readonly sizeInGb: pulumi.Output<number>;
     /**
      * If set, the new volume will be created from this snapshot.
      */
-    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    declare public readonly snapshotId: pulumi.Output<string | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * ). The zone in which the volume should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a BlockVolume resource with the given unique name, arguments, and options.
@@ -138,27 +138,27 @@ export class BlockVolume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BlockVolumeState | undefined;
-            resourceInputs["instanceVolumeId"] = state ? state.instanceVolumeId : undefined;
-            resourceInputs["iops"] = state ? state.iops : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["sizeInGb"] = state ? state.sizeInGb : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["instanceVolumeId"] = state?.instanceVolumeId;
+            resourceInputs["iops"] = state?.iops;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as BlockVolumeArgs | undefined;
-            if ((!args || args.iops === undefined) && !opts.urn) {
+            if (args?.iops === undefined && !opts.urn) {
                 throw new Error("Missing required property 'iops'");
             }
-            resourceInputs["instanceVolumeId"] = args ? args.instanceVolumeId : undefined;
-            resourceInputs["iops"] = args ? args.iops : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["sizeInGb"] = args ? args.sizeInGb : undefined;
-            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["instanceVolumeId"] = args?.instanceVolumeId;
+            resourceInputs["iops"] = args?.iops;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["sizeInGb"] = args?.sizeInGb;
+            resourceInputs["snapshotId"] = args?.snapshotId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BlockVolume.__pulumiType, name, resourceInputs, opts);

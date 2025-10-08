@@ -149,7 +149,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// `region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The current status of the Hub.

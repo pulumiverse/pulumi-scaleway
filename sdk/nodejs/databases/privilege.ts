@@ -82,23 +82,23 @@ export class Privilege extends pulumi.CustomResource {
     /**
      * Name of the database (e.g. `my-db-name`).
      */
-    public readonly databaseName!: pulumi.Output<string>;
+    declare public readonly databaseName: pulumi.Output<string>;
     /**
      * UUID of the Database Instance.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
      */
-    public readonly permission!: pulumi.Output<string>;
+    declare public readonly permission: pulumi.Output<string>;
     /**
      * `region`) The region in which the resource exists.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Name of the user (e.g. `my-db-user`).
      */
-    public readonly userName!: pulumi.Output<string>;
+    declare public readonly userName: pulumi.Output<string>;
 
     /**
      * Create a Privilege resource with the given unique name, arguments, and options.
@@ -113,30 +113,30 @@ export class Privilege extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PrivilegeState | undefined;
-            resourceInputs["databaseName"] = state ? state.databaseName : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["permission"] = state ? state.permission : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
+            resourceInputs["databaseName"] = state?.databaseName;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["permission"] = state?.permission;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["userName"] = state?.userName;
         } else {
             const args = argsOrState as PrivilegeArgs | undefined;
-            if ((!args || args.databaseName === undefined) && !opts.urn) {
+            if (args?.databaseName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'databaseName'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if ((!args || args.permission === undefined) && !opts.urn) {
+            if (args?.permission === undefined && !opts.urn) {
                 throw new Error("Missing required property 'permission'");
             }
-            if ((!args || args.userName === undefined) && !opts.urn) {
+            if (args?.userName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userName'");
             }
-            resourceInputs["databaseName"] = args ? args.databaseName : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["permission"] = args ? args.permission : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
+            resourceInputs["databaseName"] = args?.databaseName;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["permission"] = args?.permission;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["userName"] = args?.userName;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/databasePrivilege:DatabasePrivilege" }] };

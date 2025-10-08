@@ -79,7 +79,7 @@ type Snapshot struct {
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// ). The zone in which the snapshot should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -308,8 +308,8 @@ func (o SnapshotOutput) VolumeId() pulumi.StringPtrOutput {
 }
 
 // ). The zone in which the snapshot should be created.
-func (o SnapshotOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Snapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o SnapshotOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Snapshot) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type SnapshotArrayOutput struct{ *pulumi.OutputState }

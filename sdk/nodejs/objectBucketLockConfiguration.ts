@@ -95,19 +95,19 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
     /**
      * The bucket's name or regional ID.
      */
-    public readonly bucket!: pulumi.Output<string>;
+    declare public readonly bucket: pulumi.Output<string>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The region you want to attach the resource to
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Specifies the object lock rule for the specified object.
      */
-    public readonly rule!: pulumi.Output<outputs.ObjectBucketLockConfigurationRule>;
+    declare public readonly rule: pulumi.Output<outputs.ObjectBucketLockConfigurationRule>;
 
     /**
      * Create a ObjectBucketLockConfiguration resource with the given unique name, arguments, and options.
@@ -125,22 +125,22 @@ export class ObjectBucketLockConfiguration extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ObjectBucketLockConfigurationState | undefined;
-            resourceInputs["bucket"] = state ? state.bucket : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rule"] = state ? state.rule : undefined;
+            resourceInputs["bucket"] = state?.bucket;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rule"] = state?.rule;
         } else {
             const args = argsOrState as ObjectBucketLockConfigurationArgs | undefined;
-            if ((!args || args.bucket === undefined) && !opts.urn) {
+            if (args?.bucket === undefined && !opts.urn) {
                 throw new Error("Missing required property 'bucket'");
             }
-            if ((!args || args.rule === undefined) && !opts.urn) {
+            if (args?.rule === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rule'");
             }
-            resourceInputs["bucket"] = args ? args.bucket : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rule"] = args ? args.rule : undefined;
+            resourceInputs["bucket"] = args?.bucket;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rule"] = args?.rule;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ObjectBucketLockConfiguration.__pulumiType, name, resourceInputs, opts);

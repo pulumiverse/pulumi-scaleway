@@ -91,83 +91,83 @@ export class User extends pulumi.CustomResource {
     /**
      * The ID of the account root user associated with the user.
      */
-    public /*out*/ readonly accountRootUserId!: pulumi.Output<string>;
+    declare public /*out*/ readonly accountRootUserId: pulumi.Output<string>;
     /**
      * The date and time of the creation of the IAM user.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Whether the IAM user is deletable.
      */
-    public /*out*/ readonly deletable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly deletable: pulumi.Output<boolean>;
     /**
      * The email of the IAM user. For Guest users, this argument is not editable.
      */
-    public readonly email!: pulumi.Output<string>;
+    declare public readonly email: pulumi.Output<string>;
     /**
      * The user's first name.
      */
-    public readonly firstName!: pulumi.Output<string | undefined>;
+    declare public readonly firstName: pulumi.Output<string | undefined>;
     /**
      * The date of the last login.
      */
-    public /*out*/ readonly lastLoginAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastLoginAt: pulumi.Output<string>;
     /**
      * The user's last name.
      */
-    public readonly lastName!: pulumi.Output<string | undefined>;
+    declare public readonly lastName: pulumi.Output<string | undefined>;
     /**
      * The user's locale (e.g., en_US).
      */
-    public readonly locale!: pulumi.Output<string>;
+    declare public readonly locale: pulumi.Output<string>;
     /**
      * Whether the user is locked.
      */
-    public /*out*/ readonly locked!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly locked: pulumi.Output<boolean>;
     /**
      * Whether the MFA is enabled.
      */
-    public /*out*/ readonly mfa!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly mfa: pulumi.Output<boolean>;
     /**
      * `organizationId`) The ID of the organization the user is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    declare public readonly organizationId: pulumi.Output<string>;
     /**
      * The password for first access.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The user's phone number.
      */
-    public readonly phoneNumber!: pulumi.Output<string | undefined>;
+    declare public readonly phoneNumber: pulumi.Output<string | undefined>;
     /**
      * Whether or not to send an email containing the password for first access.
      */
-    public readonly sendPasswordEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly sendPasswordEmail: pulumi.Output<boolean | undefined>;
     /**
      * Whether or not to send a welcome email that includes onboarding information.
      */
-    public readonly sendWelcomeEmail!: pulumi.Output<boolean | undefined>;
+    declare public readonly sendWelcomeEmail: pulumi.Output<boolean | undefined>;
     /**
      * The status of user invitation. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the user.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The type of user. Check the possible values in the [API doc](https://www.scaleway.com/en/developers/api/iam/#path-users-get-a-given-user).
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * The date and time of the last update of the IAM user.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The username of the IAM user.
      */
-    public readonly username!: pulumi.Output<string>;
+    declare public readonly username: pulumi.Output<string>;
 
     /**
      * Create a User resource with the given unique name, arguments, and options.
@@ -182,45 +182,45 @@ export class User extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserState | undefined;
-            resourceInputs["accountRootUserId"] = state ? state.accountRootUserId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deletable"] = state ? state.deletable : undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["firstName"] = state ? state.firstName : undefined;
-            resourceInputs["lastLoginAt"] = state ? state.lastLoginAt : undefined;
-            resourceInputs["lastName"] = state ? state.lastName : undefined;
-            resourceInputs["locale"] = state ? state.locale : undefined;
-            resourceInputs["locked"] = state ? state.locked : undefined;
-            resourceInputs["mfa"] = state ? state.mfa : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["phoneNumber"] = state ? state.phoneNumber : undefined;
-            resourceInputs["sendPasswordEmail"] = state ? state.sendPasswordEmail : undefined;
-            resourceInputs["sendWelcomeEmail"] = state ? state.sendWelcomeEmail : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["accountRootUserId"] = state?.accountRootUserId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deletable"] = state?.deletable;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["firstName"] = state?.firstName;
+            resourceInputs["lastLoginAt"] = state?.lastLoginAt;
+            resourceInputs["lastName"] = state?.lastName;
+            resourceInputs["locale"] = state?.locale;
+            resourceInputs["locked"] = state?.locked;
+            resourceInputs["mfa"] = state?.mfa;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["phoneNumber"] = state?.phoneNumber;
+            resourceInputs["sendPasswordEmail"] = state?.sendPasswordEmail;
+            resourceInputs["sendWelcomeEmail"] = state?.sendWelcomeEmail;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["username"] = state?.username;
         } else {
             const args = argsOrState as UserArgs | undefined;
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            if ((!args || args.username === undefined) && !opts.urn) {
+            if (args?.username === undefined && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["firstName"] = args ? args.firstName : undefined;
-            resourceInputs["lastName"] = args ? args.lastName : undefined;
-            resourceInputs["locale"] = args ? args.locale : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["firstName"] = args?.firstName;
+            resourceInputs["lastName"] = args?.lastName;
+            resourceInputs["locale"] = args?.locale;
+            resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["phoneNumber"] = args ? args.phoneNumber : undefined;
-            resourceInputs["sendPasswordEmail"] = args ? args.sendPasswordEmail : undefined;
-            resourceInputs["sendWelcomeEmail"] = args ? args.sendWelcomeEmail : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["phoneNumber"] = args?.phoneNumber;
+            resourceInputs["sendPasswordEmail"] = args?.sendPasswordEmail;
+            resourceInputs["sendWelcomeEmail"] = args?.sendWelcomeEmail;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["username"] = args?.username;
             resourceInputs["accountRootUserId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deletable"] = undefined /*out*/;

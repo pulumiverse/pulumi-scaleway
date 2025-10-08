@@ -99,7 +99,7 @@ namespace Pulumiverse.Scaleway
         /// The Scaleway region the bucket resides in.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Customer's encryption keys to encrypt data (SSE-C)

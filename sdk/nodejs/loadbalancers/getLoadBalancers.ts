@@ -75,7 +75,7 @@ export interface GetLoadBalancersResult {
     /**
      * The zone of the Load Balancer.
      */
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about multiple Load Balancers.

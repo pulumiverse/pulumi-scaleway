@@ -102,7 +102,7 @@ type MnqSnsTopicSubscription struct {
 	RedrivePolicy pulumi.BoolOutput `pulumi:"redrivePolicy"`
 	// `region`). The region
 	// in which SNS is enabled.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 	// The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
@@ -386,8 +386,8 @@ func (o MnqSnsTopicSubscriptionOutput) RedrivePolicy() pulumi.BoolOutput {
 
 // `region`). The region
 // in which SNS is enabled.
-func (o MnqSnsTopicSubscriptionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o MnqSnsTopicSubscriptionOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MnqSnsTopicSubscription) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The secret key of the SNS credentials.

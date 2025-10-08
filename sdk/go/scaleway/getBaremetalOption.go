@@ -78,7 +78,7 @@ type GetBaremetalOptionResult struct {
 	// The name of the option.
 	Name     *string `pulumi:"name"`
 	OptionId *string `pulumi:"optionId"`
-	Zone     string  `pulumi:"zone"`
+	Zone     *string `pulumi:"zone"`
 }
 
 func GetBaremetalOptionOutput(ctx *pulumi.Context, args GetBaremetalOptionOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOptionResultOutput {
@@ -138,8 +138,8 @@ func (o GetBaremetalOptionResultOutput) OptionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOptionResult) *string { return v.OptionId }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBaremetalOptionResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOptionResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetBaremetalOptionResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBaremetalOptionResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

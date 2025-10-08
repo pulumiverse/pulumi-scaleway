@@ -396,7 +396,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// `region`) The region in which the cluster should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of the Kubernetes cluster.

@@ -62,39 +62,39 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
     /**
      * The backend stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    public readonly backendStageId!: pulumi.Output<string>;
+    declare public readonly backendStageId: pulumi.Output<string>;
     /**
      * The cache stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    public readonly cacheStageId!: pulumi.Output<string>;
+    declare public readonly cacheStageId: pulumi.Output<string>;
     /**
      * The date and time of the creation of the DNS stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
      */
-    public readonly fqdns!: pulumi.Output<string[]>;
+    declare public readonly fqdns: pulumi.Output<string[]>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the DNS stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The TLS stage ID the DNS stage will be linked to. Only one of `backendStageId`, `cacheStageId` and `tlsStageId` should be specified.
      */
-    public readonly tlsStageId!: pulumi.Output<string>;
+    declare public readonly tlsStageId: pulumi.Output<string>;
     /**
      * The type of the stage.
      */
-    public /*out*/ readonly type!: pulumi.Output<string>;
+    declare public /*out*/ readonly type: pulumi.Output<string>;
     /**
      * The date and time of the last update of the DNS stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesDnsStage resource with the given unique name, arguments, and options.
@@ -109,26 +109,26 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesDnsStageState | undefined;
-            resourceInputs["backendStageId"] = state ? state.backendStageId : undefined;
-            resourceInputs["cacheStageId"] = state ? state.cacheStageId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["fqdns"] = state ? state.fqdns : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["tlsStageId"] = state ? state.tlsStageId : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["backendStageId"] = state?.backendStageId;
+            resourceInputs["cacheStageId"] = state?.cacheStageId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["fqdns"] = state?.fqdns;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["tlsStageId"] = state?.tlsStageId;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as EdgeServicesDnsStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["backendStageId"] = args ? args.backendStageId : undefined;
-            resourceInputs["cacheStageId"] = args ? args.cacheStageId : undefined;
-            resourceInputs["fqdns"] = args ? args.fqdns : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tlsStageId"] = args ? args.tlsStageId : undefined;
+            resourceInputs["backendStageId"] = args?.backendStageId;
+            resourceInputs["cacheStageId"] = args?.cacheStageId;
+            resourceInputs["fqdns"] = args?.fqdns;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tlsStageId"] = args?.tlsStageId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

@@ -81,35 +81,35 @@ export class LoadbalancerAcl extends pulumi.CustomResource {
     /**
      * Action to undertake when an ACL filter matches.
      */
-    public readonly action!: pulumi.Output<outputs.LoadbalancerAclAction>;
+    declare public readonly action: pulumi.Output<outputs.LoadbalancerAclAction>;
     /**
      * IsDate and time of ACL's creation (RFC 3339 format)
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ACL description.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The ID of the Load Balancer frontend to attach the ACL to.
      */
-    public readonly frontendId!: pulumi.Output<string>;
+    declare public readonly frontendId: pulumi.Output<string>;
     /**
      * The priority of this ACL (ACLs are applied in ascending order, 0 is the first ACL executed).
      */
-    public readonly index!: pulumi.Output<number>;
+    declare public readonly index: pulumi.Output<number>;
     /**
      * The ACL match rule. At least `ipSubnet` or `ipsEdgeServices` or `httpFilter` and `httpFilterValue` are required.
      */
-    public readonly match!: pulumi.Output<outputs.LoadbalancerAclMatch | undefined>;
+    declare public readonly match: pulumi.Output<outputs.LoadbalancerAclMatch | undefined>;
     /**
      * The ACL name. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * IsDate and time of ACL's update (RFC 3339 format)
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a LoadbalancerAcl resource with the given unique name, arguments, and options.
@@ -127,31 +127,31 @@ export class LoadbalancerAcl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerAclState | undefined;
-            resourceInputs["action"] = state ? state.action : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["frontendId"] = state ? state.frontendId : undefined;
-            resourceInputs["index"] = state ? state.index : undefined;
-            resourceInputs["match"] = state ? state.match : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["action"] = state?.action;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["frontendId"] = state?.frontendId;
+            resourceInputs["index"] = state?.index;
+            resourceInputs["match"] = state?.match;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as LoadbalancerAclArgs | undefined;
-            if ((!args || args.action === undefined) && !opts.urn) {
+            if (args?.action === undefined && !opts.urn) {
                 throw new Error("Missing required property 'action'");
             }
-            if ((!args || args.frontendId === undefined) && !opts.urn) {
+            if (args?.frontendId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'frontendId'");
             }
-            if ((!args || args.index === undefined) && !opts.urn) {
+            if (args?.index === undefined && !opts.urn) {
                 throw new Error("Missing required property 'index'");
             }
-            resourceInputs["action"] = args ? args.action : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["frontendId"] = args ? args.frontendId : undefined;
-            resourceInputs["index"] = args ? args.index : undefined;
-            resourceInputs["match"] = args ? args.match : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["action"] = args?.action;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["frontendId"] = args?.frontendId;
+            resourceInputs["index"] = args?.index;
+            resourceInputs["match"] = args?.match;
+            resourceInputs["name"] = args?.name;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

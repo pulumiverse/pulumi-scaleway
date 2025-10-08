@@ -275,7 +275,7 @@ type Server struct {
 	// User used for the installation.
 	User pulumi.StringOutput `pulumi:"user"`
 	// `zone`) The zone in which the server should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewServer registers a new resource with the given unique name, arguments, and options.
@@ -794,8 +794,8 @@ func (o ServerOutput) User() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the server should be created.
-func (o ServerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o ServerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ServerArrayOutput struct{ *pulumi.OutputState }

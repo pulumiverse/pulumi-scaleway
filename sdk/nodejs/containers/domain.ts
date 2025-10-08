@@ -105,19 +105,19 @@ export class Domain extends pulumi.CustomResource {
     /**
      * The unique identifier of the container.
      */
-    public readonly containerId!: pulumi.Output<string>;
+    declare public readonly containerId: pulumi.Output<string>;
     /**
      * The hostname with a CNAME record.
      */
-    public readonly hostname!: pulumi.Output<string>;
+    declare public readonly hostname: pulumi.Output<string>;
     /**
      * `region`) The region in which the container exists.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The URL used to query the container.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
 
     /**
      * Create a Domain resource with the given unique name, arguments, and options.
@@ -132,21 +132,21 @@ export class Domain extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainState | undefined;
-            resourceInputs["containerId"] = state ? state.containerId : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["containerId"] = state?.containerId;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as DomainArgs | undefined;
-            if ((!args || args.containerId === undefined) && !opts.urn) {
+            if (args?.containerId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'containerId'");
             }
-            if ((!args || args.hostname === undefined) && !opts.urn) {
+            if (args?.hostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            resourceInputs["containerId"] = args ? args.containerId : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["containerId"] = args?.containerId;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["region"] = args?.region;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

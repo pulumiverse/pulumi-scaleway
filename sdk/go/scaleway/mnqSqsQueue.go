@@ -159,7 +159,7 @@ type MnqSqsQueue struct {
 	// The number of seconds to wait for a message to arrive in the queue before returning. Must be between 0 and 20. Defaults to 0.
 	ReceiveWaitTimeSeconds pulumi.IntPtrOutput `pulumi:"receiveWaitTimeSeconds"`
 	// `region`). The region in which SQS is enabled.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The secret key of the SQS queue.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 	// The endpoint of the SQS queue. Can contain a {region} placeholder. Defaults to `https://sqs.mnq.{region}.scaleway.com`.
@@ -496,8 +496,8 @@ func (o MnqSqsQueueOutput) ReceiveWaitTimeSeconds() pulumi.IntPtrOutput {
 }
 
 // `region`). The region in which SQS is enabled.
-func (o MnqSqsQueueOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o MnqSqsQueueOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MnqSqsQueue) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The secret key of the SQS queue.

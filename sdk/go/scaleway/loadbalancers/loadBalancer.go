@@ -255,7 +255,7 @@ type LoadBalancer struct {
 	// The type of the Load Balancer. Please check the migration section to upgrade the type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// `zone`) The zone of the Load Balancer.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewLoadBalancer registers a new resource with the given unique name, arguments, and options.
@@ -650,8 +650,8 @@ func (o LoadBalancerOutput) Type() pulumi.StringOutput {
 }
 
 // `zone`) The zone of the Load Balancer.
-func (o LoadBalancerOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *LoadBalancer) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o LoadBalancerOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoadBalancer) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type LoadBalancerArrayOutput struct{ *pulumi.OutputState }

@@ -44,6 +44,7 @@ type LookupTemDomainResult struct {
 	Autoconfig  bool    `pulumi:"autoconfig"`
 	CreatedAt   string  `pulumi:"createdAt"`
 	DkimConfig  string  `pulumi:"dkimConfig"`
+	DkimName    string  `pulumi:"dkimName"`
 	DmarcConfig string  `pulumi:"dmarcConfig"`
 	DmarcName   string  `pulumi:"dmarcName"`
 	DomainId    *string `pulumi:"domainId"`
@@ -52,6 +53,7 @@ type LookupTemDomainResult struct {
 	LastError            string                   `pulumi:"lastError"`
 	LastValidAt          string                   `pulumi:"lastValidAt"`
 	MxBlackhole          string                   `pulumi:"mxBlackhole"`
+	MxConfig             string                   `pulumi:"mxConfig"`
 	Name                 *string                  `pulumi:"name"`
 	NextCheckAt          string                   `pulumi:"nextCheckAt"`
 	ProjectId            *string                  `pulumi:"projectId"`
@@ -66,6 +68,7 @@ type LookupTemDomainResult struct {
 	SmtpsPort            int                      `pulumi:"smtpsPort"`
 	SmtpsPortAlternative int                      `pulumi:"smtpsPortAlternative"`
 	SpfConfig            string                   `pulumi:"spfConfig"`
+	SpfValue             string                   `pulumi:"spfValue"`
 	Status               string                   `pulumi:"status"`
 }
 
@@ -127,6 +130,10 @@ func (o LookupTemDomainResultOutput) DkimConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DkimConfig }).(pulumi.StringOutput)
 }
 
+func (o LookupTemDomainResultOutput) DkimName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DkimName }).(pulumi.StringOutput)
+}
+
 func (o LookupTemDomainResultOutput) DmarcConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.DmarcConfig }).(pulumi.StringOutput)
 }
@@ -154,6 +161,10 @@ func (o LookupTemDomainResultOutput) LastValidAt() pulumi.StringOutput {
 
 func (o LookupTemDomainResultOutput) MxBlackhole() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.MxBlackhole }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) MxConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.MxConfig }).(pulumi.StringOutput)
 }
 
 func (o LookupTemDomainResultOutput) Name() pulumi.StringPtrOutput {
@@ -210,6 +221,10 @@ func (o LookupTemDomainResultOutput) SmtpsPortAlternative() pulumi.IntOutput {
 
 func (o LookupTemDomainResultOutput) SpfConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SpfConfig }).(pulumi.StringOutput)
+}
+
+func (o LookupTemDomainResultOutput) SpfValue() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupTemDomainResult) string { return v.SpfValue }).(pulumi.StringOutput)
 }
 
 func (o LookupTemDomainResultOutput) Status() pulumi.StringOutput {

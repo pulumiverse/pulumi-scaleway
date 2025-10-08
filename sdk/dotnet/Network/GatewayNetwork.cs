@@ -226,7 +226,7 @@ namespace Pulumiverse.Scaleway.Network
         /// For more information, please refer to the dedicated guide.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

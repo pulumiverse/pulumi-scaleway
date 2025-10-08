@@ -66,35 +66,35 @@ export class IotNetwork extends pulumi.CustomResource {
     /**
      * The date and time the Network was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The endpoint to use when interacting with the network.
      */
-    public /*out*/ readonly endpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpoint: pulumi.Output<string>;
     /**
      * The hub ID to which the Network will be attached to.
      */
-    public readonly hubId!: pulumi.Output<string>;
+    declare public readonly hubId: pulumi.Output<string>;
     /**
      * The name of the IoT Network you want to create (e.g. `my-net`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * (Defaults to provider `region`) The region in which the Network is attached to.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The endpoint key to keep secret.
      */
-    public /*out*/ readonly secret!: pulumi.Output<string>;
+    declare public /*out*/ readonly secret: pulumi.Output<string>;
     /**
      * The prefix that will be prepended to all topics for this Network.
      */
-    public readonly topicPrefix!: pulumi.Output<string | undefined>;
+    declare public readonly topicPrefix: pulumi.Output<string | undefined>;
     /**
      * The network type to create (e.g. `sigfox`).
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a IotNetwork resource with the given unique name, arguments, and options.
@@ -112,27 +112,27 @@ export class IotNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotNetworkState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["hubId"] = state ? state.hubId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secret"] = state ? state.secret : undefined;
-            resourceInputs["topicPrefix"] = state ? state.topicPrefix : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["hubId"] = state?.hubId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secret"] = state?.secret;
+            resourceInputs["topicPrefix"] = state?.topicPrefix;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as IotNetworkArgs | undefined;
-            if ((!args || args.hubId === undefined) && !opts.urn) {
+            if (args?.hubId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["hubId"] = args ? args.hubId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["topicPrefix"] = args ? args.topicPrefix : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["hubId"] = args?.hubId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["topicPrefix"] = args?.topicPrefix;
+            resourceInputs["type"] = args?.type;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["endpoint"] = undefined /*out*/;
             resourceInputs["secret"] = undefined /*out*/;

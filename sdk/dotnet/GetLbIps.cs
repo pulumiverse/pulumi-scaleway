@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The zone of the Load Balancer.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLbIpsResult(
@@ -171,7 +171,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> tags,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             IpCidrRange = ipCidrRange;

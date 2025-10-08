@@ -95,7 +95,7 @@ type PublicGateway struct {
 	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
 	UpstreamDnsServers pulumi.StringArrayOutput `pulumi:"upstreamDnsServers"`
 	// `zone`) The zone in which the Public Gateway should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPublicGateway registers a new resource with the given unique name, arguments, and options.
@@ -446,8 +446,8 @@ func (o PublicGatewayOutput) UpstreamDnsServers() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the Public Gateway should be created.
-func (o PublicGatewayOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PublicGateway) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PublicGatewayOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PublicGateway) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PublicGatewayArrayOutput struct{ *pulumi.OutputState }

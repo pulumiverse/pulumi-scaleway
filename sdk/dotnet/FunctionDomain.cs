@@ -88,7 +88,7 @@ namespace Pulumiverse.Scaleway
         /// (Defaults to provider `region`) The region in which the domain was created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The URL used to query the function.

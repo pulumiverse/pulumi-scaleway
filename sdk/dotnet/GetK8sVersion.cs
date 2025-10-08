@@ -217,7 +217,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         public readonly string Name;
-        public readonly string Region;
+        public readonly string? Region;
 
         [OutputConstructor]
         private GetK8sVersionResult(
@@ -231,7 +231,7 @@ namespace Pulumiverse.Scaleway
 
             string name,
 
-            string region)
+            string? region)
         {
             AvailableCnis = availableCnis;
             AvailableContainerRuntimes = availableContainerRuntimes;

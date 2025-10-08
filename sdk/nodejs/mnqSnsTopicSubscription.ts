@@ -87,48 +87,48 @@ export class MnqSnsTopicSubscription extends pulumi.CustomResource {
     /**
      * The access key of the SNS credentials.
      */
-    public readonly accessKey!: pulumi.Output<string>;
+    declare public readonly accessKey: pulumi.Output<string>;
     /**
      * The ARN of the topic subscription
      */
-    public /*out*/ readonly arn!: pulumi.Output<string>;
+    declare public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Endpoint of the subscription
      */
-    public readonly endpoint!: pulumi.Output<string | undefined>;
+    declare public readonly endpoint: pulumi.Output<string | undefined>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Protocol of the SNS topic subscription.
      */
-    public readonly protocol!: pulumi.Output<string>;
+    declare public readonly protocol: pulumi.Output<string>;
     /**
      * Activate JSON redrive policy.
      */
-    public readonly redrivePolicy!: pulumi.Output<boolean>;
+    declare public readonly redrivePolicy: pulumi.Output<boolean>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    declare public readonly secretKey: pulumi.Output<string>;
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    public readonly snsEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly snsEndpoint: pulumi.Output<string | undefined>;
     /**
      * The ARN of the topic. Either `topicId` or `topicArn` is required.
      */
-    public readonly topicArn!: pulumi.Output<string | undefined>;
+    declare public readonly topicArn: pulumi.Output<string | undefined>;
     /**
      * The ID of the topic. Either `topicId` or `topicArn` is required. Conflicts with `topicArn`.
      */
-    public readonly topicId!: pulumi.Output<string | undefined>;
+    declare public readonly topicId: pulumi.Output<string | undefined>;
 
     /**
      * Create a MnqSnsTopicSubscription resource with the given unique name, arguments, and options.
@@ -146,38 +146,38 @@ export class MnqSnsTopicSubscription extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MnqSnsTopicSubscriptionState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["arn"] = state ? state.arn : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["redrivePolicy"] = state ? state.redrivePolicy : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["snsEndpoint"] = state ? state.snsEndpoint : undefined;
-            resourceInputs["topicArn"] = state ? state.topicArn : undefined;
-            resourceInputs["topicId"] = state ? state.topicId : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["arn"] = state?.arn;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protocol"] = state?.protocol;
+            resourceInputs["redrivePolicy"] = state?.redrivePolicy;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["snsEndpoint"] = state?.snsEndpoint;
+            resourceInputs["topicArn"] = state?.topicArn;
+            resourceInputs["topicId"] = state?.topicId;
         } else {
             const args = argsOrState as MnqSnsTopicSubscriptionArgs | undefined;
-            if ((!args || args.accessKey === undefined) && !opts.urn) {
+            if (args?.accessKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessKey'");
             }
-            if ((!args || args.protocol === undefined) && !opts.urn) {
+            if (args?.protocol === undefined && !opts.urn) {
                 throw new Error("Missing required property 'protocol'");
             }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
+            if (args?.secretKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
-            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["redrivePolicy"] = args ? args.redrivePolicy : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["endpoint"] = args?.endpoint;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protocol"] = args?.protocol;
+            resourceInputs["redrivePolicy"] = args?.redrivePolicy;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["snsEndpoint"] = args ? args.snsEndpoint : undefined;
-            resourceInputs["topicArn"] = args ? args.topicArn : undefined;
-            resourceInputs["topicId"] = args ? args.topicId : undefined;
+            resourceInputs["snsEndpoint"] = args?.snsEndpoint;
+            resourceInputs["topicArn"] = args?.topicArn;
+            resourceInputs["topicId"] = args?.topicId;
             resourceInputs["arn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

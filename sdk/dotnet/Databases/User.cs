@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// The Scaleway region this resource resides in.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

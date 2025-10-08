@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway.Functions
         /// `region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The configuration of the Scaleway SQS queue used by the trigger

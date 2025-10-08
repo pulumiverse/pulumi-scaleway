@@ -91,36 +91,36 @@ export class IpMacAddress extends pulumi.CustomResource {
     /**
      * The Virtual MAC address.
      */
-    public /*out*/ readonly address!: pulumi.Output<string>;
+    declare public /*out*/ readonly address: pulumi.Output<string>;
     /**
      * The date at which the Virtual Mac Address was created (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the flexible IP for which to generate a virtual MAC.
      */
-    public readonly flexibleIpId!: pulumi.Output<string>;
+    declare public readonly flexibleIpId: pulumi.Output<string>;
     /**
      * The IDs of the flexible IPs on which to duplicate the virtual MAC.
      * > **Important:** The flexible IPs need to be attached to the same server for the operation to work.
      */
-    public readonly flexibleIpIdsToDuplicates!: pulumi.Output<string[] | undefined>;
+    declare public readonly flexibleIpIdsToDuplicates: pulumi.Output<string[] | undefined>;
     /**
      * The Virtual MAC status.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The type of the virtual MAC.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The date at which the Virtual Mac Address was last updated (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The zone of the Virtual Mac Address.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a IpMacAddress resource with the given unique name, arguments, and options.
@@ -135,26 +135,26 @@ export class IpMacAddress extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpMacAddressState | undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["flexibleIpId"] = state ? state.flexibleIpId : undefined;
-            resourceInputs["flexibleIpIdsToDuplicates"] = state ? state.flexibleIpIdsToDuplicates : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state?.address;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["flexibleIpId"] = state?.flexibleIpId;
+            resourceInputs["flexibleIpIdsToDuplicates"] = state?.flexibleIpIdsToDuplicates;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as IpMacAddressArgs | undefined;
-            if ((!args || args.flexibleIpId === undefined) && !opts.urn) {
+            if (args?.flexibleIpId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'flexibleIpId'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["flexibleIpId"] = args ? args.flexibleIpId : undefined;
-            resourceInputs["flexibleIpIdsToDuplicates"] = args ? args.flexibleIpIdsToDuplicates : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["flexibleIpId"] = args?.flexibleIpId;
+            resourceInputs["flexibleIpIdsToDuplicates"] = args?.flexibleIpIdsToDuplicates;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["address"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

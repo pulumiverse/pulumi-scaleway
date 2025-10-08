@@ -96,15 +96,15 @@ export class InstanceUserData extends pulumi.CustomResource {
     /**
      * Key of the user data.
      */
-    public readonly key!: pulumi.Output<string>;
+    declare public readonly key: pulumi.Output<string>;
     /**
      * The ID of the server associated with.
      */
-    public readonly serverId!: pulumi.Output<string>;
+    declare public readonly serverId: pulumi.Output<string>;
     /**
      * Value associated with your key
      */
-    public readonly value!: pulumi.Output<string>;
+    declare public readonly value: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the server should be created.
      *
@@ -113,7 +113,7 @@ export class InstanceUserData extends pulumi.CustomResource {
      * - string
      * - UTF-8 encoded file content using file
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceUserData resource with the given unique name, arguments, and options.
@@ -131,25 +131,25 @@ export class InstanceUserData extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceUserDataState | undefined;
-            resourceInputs["key"] = state ? state.key : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["value"] = state ? state.value : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["key"] = state?.key;
+            resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["value"] = state?.value;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceUserDataArgs | undefined;
-            if ((!args || args.key === undefined) && !opts.urn) {
+            if (args?.key === undefined && !opts.urn) {
                 throw new Error("Missing required property 'key'");
             }
-            if ((!args || args.serverId === undefined) && !opts.urn) {
+            if (args?.serverId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'serverId'");
             }
-            if ((!args || args.value === undefined) && !opts.urn) {
+            if (args?.value === undefined && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            resourceInputs["key"] = args ? args.key : undefined;
-            resourceInputs["serverId"] = args ? args.serverId : undefined;
-            resourceInputs["value"] = args ? args.value : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["key"] = args?.key;
+            resourceInputs["serverId"] = args?.serverId;
+            resourceInputs["value"] = args?.value;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceUserData.__pulumiType, name, resourceInputs, opts);

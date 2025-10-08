@@ -134,7 +134,7 @@ type PublicGatewayDhcpReservation struct {
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the public gateway DHCP config should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPublicGatewayDhcpReservation registers a new resource with the given unique name, arguments, and options.
@@ -369,8 +369,8 @@ func (o PublicGatewayDhcpReservationOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the public gateway DHCP config should be created.
-func (o PublicGatewayDhcpReservationOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PublicGatewayDhcpReservation) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PublicGatewayDhcpReservationOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PublicGatewayDhcpReservation) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PublicGatewayDhcpReservationArrayOutput struct{ *pulumi.OutputState }

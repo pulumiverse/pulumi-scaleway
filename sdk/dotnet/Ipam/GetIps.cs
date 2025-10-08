@@ -434,7 +434,7 @@ namespace Pulumiverse.Scaleway.Ipam
         /// <summary>
         /// The region of the IP.
         /// </summary>
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// The list of public IPs attached to the resource.
         /// </summary>
@@ -447,7 +447,7 @@ namespace Pulumiverse.Scaleway.Ipam
         /// The type of resource.
         /// </summary>
         public readonly string? Type;
-        public readonly string Zonal;
+        public readonly string? Zonal;
 
         [OutputConstructor]
         private GetIpsResult(
@@ -465,7 +465,7 @@ namespace Pulumiverse.Scaleway.Ipam
 
             string projectId,
 
-            string region,
+            string? region,
 
             Outputs.GetIpsResourceResult? resource,
 
@@ -473,7 +473,7 @@ namespace Pulumiverse.Scaleway.Ipam
 
             string? type,
 
-            string zonal)
+            string? zonal)
         {
             Attached = attached;
             Id = id;

@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway
         /// ). The region where the resource exists.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The revision number of the secret version.

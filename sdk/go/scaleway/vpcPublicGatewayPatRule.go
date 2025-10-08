@@ -150,7 +150,7 @@ type VpcPublicGatewayPatRule struct {
 	// The date and time of the last update of the PAT rule configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewVpcPublicGatewayPatRule registers a new resource with the given unique name, arguments, and options.
@@ -399,8 +399,8 @@ func (o VpcPublicGatewayPatRuleOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o VpcPublicGatewayPatRuleOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPublicGatewayPatRule) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type VpcPublicGatewayPatRuleArrayOutput struct{ *pulumi.OutputState }

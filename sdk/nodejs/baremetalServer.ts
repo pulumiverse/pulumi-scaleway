@@ -155,122 +155,122 @@ export class BaremetalServer extends pulumi.CustomResource {
     /**
      * A description for the server.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The domain of the server.
      */
-    public /*out*/ readonly domain!: pulumi.Output<string>;
+    declare public /*out*/ readonly domain: pulumi.Output<string>;
     /**
      * The hostname of the server.
      */
-    public readonly hostname!: pulumi.Output<string | undefined>;
+    declare public readonly hostname: pulumi.Output<string | undefined>;
     /**
      * If True, this boolean allows to create a server without the install config if you want to provide it later.
      */
-    public readonly installConfigAfterward!: pulumi.Output<boolean | undefined>;
+    declare public readonly installConfigAfterward: pulumi.Output<boolean | undefined>;
     /**
      * (List of) The IPs of the server.
      */
-    public /*out*/ readonly ips!: pulumi.Output<outputs.BaremetalServerIp[]>;
+    declare public /*out*/ readonly ips: pulumi.Output<outputs.BaremetalServerIp[]>;
     /**
      * (List of) The IPv4 addresses of the server.
      */
-    public /*out*/ readonly ipv4s!: pulumi.Output<outputs.BaremetalServerIpv4[]>;
+    declare public /*out*/ readonly ipv4s: pulumi.Output<outputs.BaremetalServerIpv4[]>;
     /**
      * (List of) The IPv6 addresses of the server.
      */
-    public /*out*/ readonly ipv6s!: pulumi.Output<outputs.BaremetalServerIpv6[]>;
+    declare public /*out*/ readonly ipv6s: pulumi.Output<outputs.BaremetalServerIpv6[]>;
     /**
      * The name of the server.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The offer UUID of the baremetal server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
      */
-    public readonly offer!: pulumi.Output<string>;
+    declare public readonly offer: pulumi.Output<string>;
     /**
      * The ID of the offer.
      */
-    public /*out*/ readonly offerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly offerId: pulumi.Output<string>;
     /**
      * The name of the offer.
      */
-    public /*out*/ readonly offerName!: pulumi.Output<string>;
+    declare public /*out*/ readonly offerName: pulumi.Output<string>;
     /**
      * The options to enable on the server.
      * > The `options` block supports:
      */
-    public readonly options!: pulumi.Output<outputs.BaremetalServerOption[] | undefined>;
+    declare public readonly options: pulumi.Output<outputs.BaremetalServerOption[] | undefined>;
     /**
      * The organization ID the server is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The UUID of the os to install on the server.
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
      * > **Important:** Updates to `os` will reinstall the server.
      */
-    public readonly os!: pulumi.Output<string | undefined>;
+    declare public readonly os: pulumi.Output<string | undefined>;
     /**
      * The name of the os.
      */
-    public /*out*/ readonly osName!: pulumi.Output<string>;
+    declare public /*out*/ readonly osName: pulumi.Output<string>;
     /**
      * The partitioning schema in JSON format
      */
-    public readonly partitioning!: pulumi.Output<string | undefined>;
+    declare public readonly partitioning: pulumi.Output<string | undefined>;
     /**
      * Password used for the installation. May be required depending on used os.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.BaremetalServerPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.BaremetalServerPrivateIp[]>;
     /**
      * The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
      */
-    public readonly privateNetworks!: pulumi.Output<outputs.BaremetalServerPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.BaremetalServerPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the project the server is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Set to true to activate server protection option.
      */
-    public readonly protected!: pulumi.Output<boolean | undefined>;
+    declare public readonly protected: pulumi.Output<boolean | undefined>;
     /**
      * If True, this boolean allows to reinstall the server on install config changes.
      * > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
      */
-    public readonly reinstallOnConfigChanges!: pulumi.Output<boolean | undefined>;
+    declare public readonly reinstallOnConfigChanges: pulumi.Output<boolean | undefined>;
     /**
      * Password used for the service to install. May be required depending on used os.
      */
-    public readonly servicePassword!: pulumi.Output<string | undefined>;
+    declare public readonly servicePassword: pulumi.Output<string | undefined>;
     /**
      * User used for the service to install.
      */
-    public readonly serviceUser!: pulumi.Output<string>;
+    declare public readonly serviceUser: pulumi.Output<string>;
     /**
      * List of SSH keys allowed to connect to the server.
      */
-    public readonly sshKeyIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly sshKeyIds: pulumi.Output<string[] | undefined>;
     /**
      * The tags associated with the server.
      */
-    public readonly tags!: pulumi.Output<string[]>;
+    declare public readonly tags: pulumi.Output<string[]>;
     /**
      * User used for the installation.
      */
-    public readonly user!: pulumi.Output<string>;
+    declare public readonly user: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the server should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a BaremetalServer resource with the given unique name, arguments, and options.
@@ -288,59 +288,59 @@ export class BaremetalServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BaremetalServerState | undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["domain"] = state ? state.domain : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["installConfigAfterward"] = state ? state.installConfigAfterward : undefined;
-            resourceInputs["ips"] = state ? state.ips : undefined;
-            resourceInputs["ipv4s"] = state ? state.ipv4s : undefined;
-            resourceInputs["ipv6s"] = state ? state.ipv6s : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["offer"] = state ? state.offer : undefined;
-            resourceInputs["offerId"] = state ? state.offerId : undefined;
-            resourceInputs["offerName"] = state ? state.offerName : undefined;
-            resourceInputs["options"] = state ? state.options : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["os"] = state ? state.os : undefined;
-            resourceInputs["osName"] = state ? state.osName : undefined;
-            resourceInputs["partitioning"] = state ? state.partitioning : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protected"] = state ? state.protected : undefined;
-            resourceInputs["reinstallOnConfigChanges"] = state ? state.reinstallOnConfigChanges : undefined;
-            resourceInputs["servicePassword"] = state ? state.servicePassword : undefined;
-            resourceInputs["serviceUser"] = state ? state.serviceUser : undefined;
-            resourceInputs["sshKeyIds"] = state ? state.sshKeyIds : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["user"] = state ? state.user : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["domain"] = state?.domain;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["installConfigAfterward"] = state?.installConfigAfterward;
+            resourceInputs["ips"] = state?.ips;
+            resourceInputs["ipv4s"] = state?.ipv4s;
+            resourceInputs["ipv6s"] = state?.ipv6s;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["offer"] = state?.offer;
+            resourceInputs["offerId"] = state?.offerId;
+            resourceInputs["offerName"] = state?.offerName;
+            resourceInputs["options"] = state?.options;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["os"] = state?.os;
+            resourceInputs["osName"] = state?.osName;
+            resourceInputs["partitioning"] = state?.partitioning;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworks"] = state?.privateNetworks;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protected"] = state?.protected;
+            resourceInputs["reinstallOnConfigChanges"] = state?.reinstallOnConfigChanges;
+            resourceInputs["servicePassword"] = state?.servicePassword;
+            resourceInputs["serviceUser"] = state?.serviceUser;
+            resourceInputs["sshKeyIds"] = state?.sshKeyIds;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["user"] = state?.user;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as BaremetalServerArgs | undefined;
-            if ((!args || args.offer === undefined) && !opts.urn) {
+            if (args?.offer === undefined && !opts.urn) {
                 throw new Error("Missing required property 'offer'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["installConfigAfterward"] = args ? args.installConfigAfterward : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["offer"] = args ? args.offer : undefined;
-            resourceInputs["options"] = args ? args.options : undefined;
-            resourceInputs["os"] = args ? args.os : undefined;
-            resourceInputs["partitioning"] = args ? args.partitioning : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["installConfigAfterward"] = args?.installConfigAfterward;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["offer"] = args?.offer;
+            resourceInputs["options"] = args?.options;
+            resourceInputs["os"] = args?.os;
+            resourceInputs["partitioning"] = args?.partitioning;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protected"] = args ? args.protected : undefined;
-            resourceInputs["reinstallOnConfigChanges"] = args ? args.reinstallOnConfigChanges : undefined;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworks"] = args?.privateNetworks;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protected"] = args?.protected;
+            resourceInputs["reinstallOnConfigChanges"] = args?.reinstallOnConfigChanges;
             resourceInputs["servicePassword"] = args?.servicePassword ? pulumi.secret(args.servicePassword) : undefined;
-            resourceInputs["serviceUser"] = args ? args.serviceUser : undefined;
-            resourceInputs["sshKeyIds"] = args ? args.sshKeyIds : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["user"] = args ? args.user : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["serviceUser"] = args?.serviceUser;
+            resourceInputs["sshKeyIds"] = args?.sshKeyIds;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["user"] = args?.user;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["domain"] = undefined /*out*/;
             resourceInputs["ips"] = undefined /*out*/;
             resourceInputs["ipv4s"] = undefined /*out*/;

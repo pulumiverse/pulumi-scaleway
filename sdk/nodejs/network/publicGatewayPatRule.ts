@@ -104,39 +104,39 @@ export class PublicGatewayPatRule extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the PAT rule configuration.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the Public Gateway.
      */
-    public readonly gatewayId!: pulumi.Output<string>;
+    declare public readonly gatewayId: pulumi.Output<string>;
     /**
      * The Organization ID the PAT rule configuration is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The private IP address to forward data to.
      */
-    public readonly privateIp!: pulumi.Output<string>;
+    declare public readonly privateIp: pulumi.Output<string>;
     /**
      * The private port to translate to.
      */
-    public readonly privatePort!: pulumi.Output<number>;
+    declare public readonly privatePort: pulumi.Output<number>;
     /**
      * The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
      */
-    public readonly protocol!: pulumi.Output<string | undefined>;
+    declare public readonly protocol: pulumi.Output<string | undefined>;
     /**
      * The public port to listen on.
      */
-    public readonly publicPort!: pulumi.Output<number>;
+    declare public readonly publicPort: pulumi.Output<number>;
     /**
      * The date and time of the last update of the PAT rule configuration.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a PublicGatewayPatRule resource with the given unique name, arguments, and options.
@@ -151,35 +151,35 @@ export class PublicGatewayPatRule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PublicGatewayPatRuleState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["privateIp"] = state ? state.privateIp : undefined;
-            resourceInputs["privatePort"] = state ? state.privatePort : undefined;
-            resourceInputs["protocol"] = state ? state.protocol : undefined;
-            resourceInputs["publicPort"] = state ? state.publicPort : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["gatewayId"] = state?.gatewayId;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["privateIp"] = state?.privateIp;
+            resourceInputs["privatePort"] = state?.privatePort;
+            resourceInputs["protocol"] = state?.protocol;
+            resourceInputs["publicPort"] = state?.publicPort;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PublicGatewayPatRuleArgs | undefined;
-            if ((!args || args.gatewayId === undefined) && !opts.urn) {
+            if (args?.gatewayId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'gatewayId'");
             }
-            if ((!args || args.privateIp === undefined) && !opts.urn) {
+            if (args?.privateIp === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateIp'");
             }
-            if ((!args || args.privatePort === undefined) && !opts.urn) {
+            if (args?.privatePort === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privatePort'");
             }
-            if ((!args || args.publicPort === undefined) && !opts.urn) {
+            if (args?.publicPort === undefined && !opts.urn) {
                 throw new Error("Missing required property 'publicPort'");
             }
-            resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
-            resourceInputs["privateIp"] = args ? args.privateIp : undefined;
-            resourceInputs["privatePort"] = args ? args.privatePort : undefined;
-            resourceInputs["protocol"] = args ? args.protocol : undefined;
-            resourceInputs["publicPort"] = args ? args.publicPort : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["gatewayId"] = args?.gatewayId;
+            resourceInputs["privateIp"] = args?.privateIp;
+            resourceInputs["privatePort"] = args?.privatePort;
+            resourceInputs["protocol"] = args?.protocol;
+            resourceInputs["publicPort"] = args?.publicPort;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

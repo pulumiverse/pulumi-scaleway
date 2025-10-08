@@ -65,45 +65,45 @@ export class MongoDbSnapshot extends pulumi.CustomResource {
     /**
      * The date and time when the MongoDB® snapshot was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
      *
      * > **Important:** Once set, `expiresAt` cannot be removed.
      */
-    public readonly expiresAt!: pulumi.Output<string>;
+    declare public readonly expiresAt: pulumi.Output<string>;
     /**
      * The ID of the MongoDB® instance from which the snapshot was created.
      */
-    public readonly instanceId!: pulumi.Output<string>;
+    declare public readonly instanceId: pulumi.Output<string>;
     /**
      * The name of the MongoDB® instance from which the snapshot was created.
      */
-    public /*out*/ readonly instanceName!: pulumi.Output<string>;
+    declare public /*out*/ readonly instanceName: pulumi.Output<string>;
     /**
      * The name of the MongoDB® snapshot.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The type of node associated with the MongoDB® snapshot.
      */
-    public /*out*/ readonly nodeType!: pulumi.Output<string>;
+    declare public /*out*/ readonly nodeType: pulumi.Output<string>;
     /**
      * `region`) The region in which the MongoDB® snapshot should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The size of the MongoDB® snapshot in bytes.
      */
-    public /*out*/ readonly size!: pulumi.Output<number>;
+    declare public /*out*/ readonly size: pulumi.Output<number>;
     /**
      * The date and time of the last update of the MongoDB® snapshot.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The type of volume used for the MongoDB® snapshot.
      */
-    public /*out*/ readonly volumeType!: pulumi.Output<string>;
+    declare public /*out*/ readonly volumeType: pulumi.Output<string>;
 
     /**
      * Create a MongoDbSnapshot resource with the given unique name, arguments, and options.
@@ -121,28 +121,28 @@ export class MongoDbSnapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MongoDbSnapshotState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["expiresAt"] = state ? state.expiresAt : undefined;
-            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
-            resourceInputs["instanceName"] = state ? state.instanceName : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["expiresAt"] = state?.expiresAt;
+            resourceInputs["instanceId"] = state?.instanceId;
+            resourceInputs["instanceName"] = state?.instanceName;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["size"] = state?.size;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["volumeType"] = state?.volumeType;
         } else {
             const args = argsOrState as MongoDbSnapshotArgs | undefined;
-            if ((!args || args.expiresAt === undefined) && !opts.urn) {
+            if (args?.expiresAt === undefined && !opts.urn) {
                 throw new Error("Missing required property 'expiresAt'");
             }
-            if ((!args || args.instanceId === undefined) && !opts.urn) {
+            if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            resourceInputs["expiresAt"] = args ? args.expiresAt : undefined;
-            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["expiresAt"] = args?.expiresAt;
+            resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["instanceName"] = undefined /*out*/;
             resourceInputs["nodeType"] = undefined /*out*/;

@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway
         /// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// A list of tags (key/value) for the bucket.

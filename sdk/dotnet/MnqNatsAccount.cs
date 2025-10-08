@@ -74,7 +74,7 @@ namespace Pulumiverse.Scaleway
         /// in which the account should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

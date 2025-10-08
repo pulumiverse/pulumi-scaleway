@@ -94,7 +94,7 @@ type PublicGatewayDhcp struct {
 	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime pulumi.IntOutput `pulumi:"validLifetime"`
 	// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPublicGatewayDhcp registers a new resource with the given unique name, arguments, and options.
@@ -467,8 +467,8 @@ func (o PublicGatewayDhcpOutput) ValidLifetime() pulumi.IntOutput {
 }
 
 // `zone`) The zone in which the Public Gateway DHCP configuration should be created.
-func (o PublicGatewayDhcpOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *PublicGatewayDhcp) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PublicGatewayDhcpOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PublicGatewayDhcp) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PublicGatewayDhcpArrayOutput struct{ *pulumi.OutputState }

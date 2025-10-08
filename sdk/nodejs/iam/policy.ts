@@ -117,53 +117,53 @@ export class Policy extends pulumi.CustomResource {
     /**
      * ID of the application the policy will be linked to
      */
-    public readonly applicationId!: pulumi.Output<string | undefined>;
+    declare public readonly applicationId: pulumi.Output<string | undefined>;
     /**
      * The date and time of the creation of the policy.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The description of the IAM policy.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Whether the policy is editable.
      */
-    public /*out*/ readonly editable!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly editable: pulumi.Output<boolean>;
     /**
      * ID of the group the policy will be linked to
      */
-    public readonly groupId!: pulumi.Output<string | undefined>;
+    declare public readonly groupId: pulumi.Output<string | undefined>;
     /**
      * The name of the IAM policy.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * If the policy doesn't apply to a principal.
      *
      * > **Important** Only one of `userId`, `groupId`, `applicationId` and `noPrincipal` may be set.
      */
-    public readonly noPrincipal!: pulumi.Output<boolean | undefined>;
+    declare public readonly noPrincipal: pulumi.Output<boolean | undefined>;
     /**
      * `organizationId`) The ID of the organization the policy is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    declare public readonly organizationId: pulumi.Output<string>;
     /**
      * List of rules in the policy.
      */
-    public readonly rules!: pulumi.Output<outputs.iam.PolicyRule[]>;
+    declare public readonly rules: pulumi.Output<outputs.iam.PolicyRule[]>;
     /**
      * The tags associated with the IAM policy.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the policy.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * ID of the user the policy will be linked to
      */
-    public readonly userId!: pulumi.Output<string | undefined>;
+    declare public readonly userId: pulumi.Output<string | undefined>;
 
     /**
      * Create a Policy resource with the given unique name, arguments, and options.
@@ -178,32 +178,32 @@ export class Policy extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PolicyState | undefined;
-            resourceInputs["applicationId"] = state ? state.applicationId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["editable"] = state ? state.editable : undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["noPrincipal"] = state ? state.noPrincipal : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["rules"] = state ? state.rules : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["applicationId"] = state?.applicationId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["editable"] = state?.editable;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["noPrincipal"] = state?.noPrincipal;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["rules"] = state?.rules;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as PolicyArgs | undefined;
-            if ((!args || args.rules === undefined) && !opts.urn) {
+            if (args?.rules === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rules'");
             }
-            resourceInputs["applicationId"] = args ? args.applicationId : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["noPrincipal"] = args ? args.noPrincipal : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["rules"] = args ? args.rules : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["applicationId"] = args?.applicationId;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["noPrincipal"] = args?.noPrincipal;
+            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["rules"] = args?.rules;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["userId"] = args?.userId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["editable"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

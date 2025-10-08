@@ -73,7 +73,7 @@ export interface GetBaremetalOsResult {
     readonly name?: string;
     readonly osId?: string;
     readonly version?: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about a baremetal operating system.

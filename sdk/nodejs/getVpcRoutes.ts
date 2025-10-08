@@ -71,7 +71,7 @@ export interface GetVpcRoutesResult {
     readonly nexthopPrivateNetworkId?: string;
     readonly nexthopResourceId?: string;
     readonly nexthopResourceType?: string;
-    readonly region: string;
+    readonly region?: string;
     /**
      * List of retrieved routes
      */

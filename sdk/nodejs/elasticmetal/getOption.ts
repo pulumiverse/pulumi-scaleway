@@ -69,7 +69,7 @@ export interface GetOptionResult {
      */
     readonly name?: string;
     readonly optionId?: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about a baremetal option.

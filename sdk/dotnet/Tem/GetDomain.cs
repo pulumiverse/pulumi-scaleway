@@ -108,6 +108,7 @@ namespace Pulumiverse.Scaleway.Tem
         public readonly bool Autoconfig;
         public readonly string CreatedAt;
         public readonly string DkimConfig;
+        public readonly string DkimName;
         public readonly string DmarcConfig;
         public readonly string DmarcName;
         public readonly string? DomainId;
@@ -118,6 +119,7 @@ namespace Pulumiverse.Scaleway.Tem
         public readonly string LastError;
         public readonly string LastValidAt;
         public readonly string MxBlackhole;
+        public readonly string MxConfig;
         public readonly string? Name;
         public readonly string NextCheckAt;
         public readonly string? ProjectId;
@@ -132,6 +134,7 @@ namespace Pulumiverse.Scaleway.Tem
         public readonly int SmtpsPort;
         public readonly int SmtpsPortAlternative;
         public readonly string SpfConfig;
+        public readonly string SpfValue;
         public readonly string Status;
 
         [OutputConstructor]
@@ -143,6 +146,8 @@ namespace Pulumiverse.Scaleway.Tem
             string createdAt,
 
             string dkimConfig,
+
+            string dkimName,
 
             string dmarcConfig,
 
@@ -157,6 +162,8 @@ namespace Pulumiverse.Scaleway.Tem
             string lastValidAt,
 
             string mxBlackhole,
+
+            string mxConfig,
 
             string? name,
 
@@ -186,12 +193,15 @@ namespace Pulumiverse.Scaleway.Tem
 
             string spfConfig,
 
+            string spfValue,
+
             string status)
         {
             AcceptTos = acceptTos;
             Autoconfig = autoconfig;
             CreatedAt = createdAt;
             DkimConfig = dkimConfig;
+            DkimName = dkimName;
             DmarcConfig = dmarcConfig;
             DmarcName = dmarcName;
             DomainId = domainId;
@@ -199,6 +209,7 @@ namespace Pulumiverse.Scaleway.Tem
             LastError = lastError;
             LastValidAt = lastValidAt;
             MxBlackhole = mxBlackhole;
+            MxConfig = mxConfig;
             Name = name;
             NextCheckAt = nextCheckAt;
             ProjectId = projectId;
@@ -213,6 +224,7 @@ namespace Pulumiverse.Scaleway.Tem
             SmtpsPort = smtpsPort;
             SmtpsPortAlternative = smtpsPortAlternative;
             SpfConfig = spfConfig;
+            SpfValue = spfValue;
             Status = status;
         }
     }

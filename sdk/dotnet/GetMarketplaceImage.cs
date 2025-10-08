@@ -165,7 +165,7 @@ namespace Pulumiverse.Scaleway
         public readonly string? ImageType;
         public readonly string? InstanceType;
         public readonly string Label;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetMarketplaceImageResult(
@@ -177,7 +177,7 @@ namespace Pulumiverse.Scaleway
 
             string label,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             ImageType = imageType;

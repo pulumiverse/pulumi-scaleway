@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway.Network.Outputs
         /// <summary>
         /// `region`). The region in which the VPCs exist.
         /// </summary>
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// List of tags to filter for. VPCs with these exact tags are listed.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Pulumiverse.Scaleway.Network.Outputs
 
             string projectId,
 
-            string region,
+            string? region,
 
             ImmutableArray<string> tags,
 

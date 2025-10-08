@@ -282,7 +282,7 @@ type Container struct {
 	// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
 	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
 	// (Defaults to provider `region`) The region in which the container was created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)
 	RegistryImage pulumi.StringOutput `pulumi:"registryImage"`
 	// The sha256 of your source registry image, changing it will re-apply the deployment. Can be any string.
@@ -837,8 +837,8 @@ func (o ContainerOutput) Protocol() pulumi.StringPtrOutput {
 }
 
 // (Defaults to provider `region`) The region in which the container was created.
-func (o ContainerOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Container) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ContainerOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Container) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The registry image address (e.g., `rg.fr-par.scw.cloud/$NAMESPACE/$IMAGE`)

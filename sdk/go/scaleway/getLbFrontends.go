@@ -82,7 +82,7 @@ type GetLbFrontendsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           string  `pulumi:"zone"`
+	Zone           *string `pulumi:"zone"`
 }
 
 func GetLbFrontendsOutput(ctx *pulumi.Context, args GetLbFrontendsOutputArgs, opts ...pulumi.InvokeOption) GetLbFrontendsResultOutput {
@@ -150,8 +150,8 @@ func (o GetLbFrontendsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLbFrontendsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetLbFrontendsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbFrontendsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbFrontendsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbFrontendsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

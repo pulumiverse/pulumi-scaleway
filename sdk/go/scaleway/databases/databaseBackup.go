@@ -120,7 +120,7 @@ type DatabaseBackup struct {
 	// Name of the database (e.g. `my-database`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Size of the backup (in bytes).
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Updated date (Format ISO 8601).
@@ -379,8 +379,8 @@ func (o DatabaseBackupOutput) Name() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabaseBackupOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabaseBackupOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Size of the backup (in bytes).

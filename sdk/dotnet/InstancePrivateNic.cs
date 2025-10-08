@@ -184,7 +184,7 @@ namespace Pulumiverse.Scaleway
         /// `zone`) The zone in which the server must be created.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

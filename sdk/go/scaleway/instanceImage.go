@@ -140,7 +140,7 @@ type InstanceImage struct {
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The zone in which the image should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceImage registers a new resource with the given unique name, arguments, and options.
@@ -443,8 +443,8 @@ func (o InstanceImageOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone in which the image should be created.
-func (o InstanceImageOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceImage) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceImageOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceImage) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceImageArrayOutput struct{ *pulumi.OutputState }

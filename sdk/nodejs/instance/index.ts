@@ -35,6 +35,11 @@ export const getServer: typeof import("./getServer").getServer = null as any;
 export const getServerOutput: typeof import("./getServer").getServerOutput = null as any;
 utilities.lazyLoad(exports, ["getServer","getServerOutput"], () => require("./getServer"));
 
+export { GetServerTypeArgs, GetServerTypeResult, GetServerTypeOutputArgs } from "./getServerType";
+export const getServerType: typeof import("./getServerType").getServerType = null as any;
+export const getServerTypeOutput: typeof import("./getServerType").getServerTypeOutput = null as any;
+utilities.lazyLoad(exports, ["getServerType","getServerTypeOutput"], () => require("./getServerType"));
+
 export { GetServersArgs, GetServersResult, GetServersOutputArgs } from "./getServers";
 export const getServers: typeof import("./getServers").getServers = null as any;
 export const getServersOutput: typeof import("./getServers").getServersOutput = null as any;

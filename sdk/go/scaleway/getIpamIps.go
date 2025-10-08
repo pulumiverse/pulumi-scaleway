@@ -152,14 +152,14 @@ type GetIpamIpsResult struct {
 	// The ID of the Project the resource is associated with.
 	ProjectId string `pulumi:"projectId"`
 	// The region of the IP.
-	Region string `pulumi:"region"`
+	Region *string `pulumi:"region"`
 	// The list of public IPs attached to the resource.
 	Resource *GetIpamIpsResource `pulumi:"resource"`
 	// The tags associated with the IP.
 	Tags []string `pulumi:"tags"`
 	// The type of resource.
 	Type  *string `pulumi:"type"`
-	Zonal string  `pulumi:"zonal"`
+	Zonal *string `pulumi:"zonal"`
 }
 
 func GetIpamIpsOutput(ctx *pulumi.Context, args GetIpamIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpamIpsResultOutput {
@@ -245,8 +245,8 @@ func (o GetIpamIpsResultOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region of the IP.
-func (o GetIpamIpsResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpsResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetIpamIpsResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpamIpsResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The list of public IPs attached to the resource.
@@ -264,8 +264,8 @@ func (o GetIpamIpsResultOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetIpamIpsResult) *string { return v.Type }).(pulumi.StringPtrOutput)
 }
 
-func (o GetIpamIpsResultOutput) Zonal() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpamIpsResult) string { return v.Zonal }).(pulumi.StringOutput)
+func (o GetIpamIpsResultOutput) Zonal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpamIpsResult) *string { return v.Zonal }).(pulumi.StringPtrOutput)
 }
 
 func init() {

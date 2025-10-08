@@ -120,61 +120,61 @@ export class GatewayNetwork extends pulumi.CustomResource {
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
-    public readonly cleanupDhcp!: pulumi.Output<boolean>;
+    declare public readonly cleanupDhcp: pulumi.Output<boolean>;
     /**
      * The date and time of the creation of the GatewayNetwork.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
-    public readonly dhcpId!: pulumi.Output<string | undefined>;
+    declare public readonly dhcpId: pulumi.Output<string | undefined>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
-    public readonly enableDhcp!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableDhcp: pulumi.Output<boolean | undefined>;
     /**
      * Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
      */
-    public readonly enableMasquerade!: pulumi.Output<boolean | undefined>;
+    declare public readonly enableMasquerade: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the Public Gateway.
      */
-    public readonly gatewayId!: pulumi.Output<string>;
+    declare public readonly gatewayId: pulumi.Output<string>;
     /**
      * Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      */
-    public readonly ipamConfigs!: pulumi.Output<outputs.network.GatewayNetworkIpamConfig[]>;
+    declare public readonly ipamConfigs: pulumi.Output<outputs.network.GatewayNetworkIpamConfig[]>;
     /**
      * The MAC address of the GatewayNetwork.
      */
-    public /*out*/ readonly macAddress!: pulumi.Output<string>;
+    declare public /*out*/ readonly macAddress: pulumi.Output<string>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.network.GatewayNetworkPrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.network.GatewayNetworkPrivateIp[]>;
     /**
      * The ID of the Private Network.
      */
-    public readonly privateNetworkId!: pulumi.Output<string>;
+    declare public readonly privateNetworkId: pulumi.Output<string>;
     /**
      * Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
-    public readonly staticAddress!: pulumi.Output<string>;
+    declare public readonly staticAddress: pulumi.Output<string>;
     /**
      * The status of the Public Gateway's connection to the Private Network.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The date and time of the last update of the GatewayNetwork.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the gateway network should be created.
      *
@@ -182,7 +182,7 @@ export class GatewayNetwork extends pulumi.CustomResource {
      * In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
      * For more information, please refer to the dedicated guide.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a GatewayNetwork resource with the given unique name, arguments, and options.
@@ -197,38 +197,38 @@ export class GatewayNetwork extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GatewayNetworkState | undefined;
-            resourceInputs["cleanupDhcp"] = state ? state.cleanupDhcp : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["dhcpId"] = state ? state.dhcpId : undefined;
-            resourceInputs["enableDhcp"] = state ? state.enableDhcp : undefined;
-            resourceInputs["enableMasquerade"] = state ? state.enableMasquerade : undefined;
-            resourceInputs["gatewayId"] = state ? state.gatewayId : undefined;
-            resourceInputs["ipamConfigs"] = state ? state.ipamConfigs : undefined;
-            resourceInputs["macAddress"] = state ? state.macAddress : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworkId"] = state ? state.privateNetworkId : undefined;
-            resourceInputs["staticAddress"] = state ? state.staticAddress : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["cleanupDhcp"] = state?.cleanupDhcp;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["dhcpId"] = state?.dhcpId;
+            resourceInputs["enableDhcp"] = state?.enableDhcp;
+            resourceInputs["enableMasquerade"] = state?.enableMasquerade;
+            resourceInputs["gatewayId"] = state?.gatewayId;
+            resourceInputs["ipamConfigs"] = state?.ipamConfigs;
+            resourceInputs["macAddress"] = state?.macAddress;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworkId"] = state?.privateNetworkId;
+            resourceInputs["staticAddress"] = state?.staticAddress;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as GatewayNetworkArgs | undefined;
-            if ((!args || args.gatewayId === undefined) && !opts.urn) {
+            if (args?.gatewayId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'gatewayId'");
             }
-            if ((!args || args.privateNetworkId === undefined) && !opts.urn) {
+            if (args?.privateNetworkId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'privateNetworkId'");
             }
-            resourceInputs["cleanupDhcp"] = args ? args.cleanupDhcp : undefined;
-            resourceInputs["dhcpId"] = args ? args.dhcpId : undefined;
-            resourceInputs["enableDhcp"] = args ? args.enableDhcp : undefined;
-            resourceInputs["enableMasquerade"] = args ? args.enableMasquerade : undefined;
-            resourceInputs["gatewayId"] = args ? args.gatewayId : undefined;
-            resourceInputs["ipamConfigs"] = args ? args.ipamConfigs : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
-            resourceInputs["staticAddress"] = args ? args.staticAddress : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["cleanupDhcp"] = args?.cleanupDhcp;
+            resourceInputs["dhcpId"] = args?.dhcpId;
+            resourceInputs["enableDhcp"] = args?.enableDhcp;
+            resourceInputs["enableMasquerade"] = args?.enableMasquerade;
+            resourceInputs["gatewayId"] = args?.gatewayId;
+            resourceInputs["ipamConfigs"] = args?.ipamConfigs;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetworkId"] = args?.privateNetworkId;
+            resourceInputs["staticAddress"] = args?.staticAddress;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["macAddress"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;

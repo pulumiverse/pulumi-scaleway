@@ -120,7 +120,7 @@ type VpcPrivateNetwork struct {
 	// `projectId`) The ID of the Project the private network is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the Private Network.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The tags associated with the Private Network.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the subnet.
@@ -417,8 +417,8 @@ func (o VpcPrivateNetworkOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the Private Network.
-func (o VpcPrivateNetworkOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o VpcPrivateNetworkOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpcPrivateNetwork) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The tags associated with the Private Network.

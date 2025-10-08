@@ -111,7 +111,7 @@ type Model struct {
 	// `projectId`) The ID of the project the deployment is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the deployment is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
 	// Total size, in bytes, of the model archive.
@@ -381,8 +381,8 @@ func (o ModelOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region in which the deployment is created.
-func (o ModelOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ModelOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).

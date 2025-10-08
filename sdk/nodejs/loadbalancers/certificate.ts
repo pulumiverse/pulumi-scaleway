@@ -37,43 +37,43 @@ export class Certificate extends pulumi.CustomResource {
     /**
      * Main domain of the certificate
      */
-    public /*out*/ readonly commonName!: pulumi.Output<string>;
+    declare public /*out*/ readonly commonName: pulumi.Output<string>;
     /**
      * The custom type certificate type configuration
      */
-    public readonly customCertificate!: pulumi.Output<outputs.loadbalancers.CertificateCustomCertificate | undefined>;
+    declare public readonly customCertificate: pulumi.Output<outputs.loadbalancers.CertificateCustomCertificate | undefined>;
     /**
      * The identifier (SHA-1) of the certificate
      */
-    public /*out*/ readonly fingerprint!: pulumi.Output<string>;
+    declare public /*out*/ readonly fingerprint: pulumi.Output<string>;
     /**
      * The load-balancer ID
      */
-    public readonly lbId!: pulumi.Output<string>;
+    declare public readonly lbId: pulumi.Output<string>;
     /**
      * The Let's Encrypt type certificate configuration
      */
-    public readonly letsencrypt!: pulumi.Output<outputs.loadbalancers.CertificateLetsencrypt | undefined>;
+    declare public readonly letsencrypt: pulumi.Output<outputs.loadbalancers.CertificateLetsencrypt | undefined>;
     /**
      * The name of the load-balancer certificate
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The not valid after validity bound timestamp
      */
-    public /*out*/ readonly notValidAfter!: pulumi.Output<string>;
+    declare public /*out*/ readonly notValidAfter: pulumi.Output<string>;
     /**
      * The not valid before validity bound timestamp
      */
-    public /*out*/ readonly notValidBefore!: pulumi.Output<string>;
+    declare public /*out*/ readonly notValidBefore: pulumi.Output<string>;
     /**
      * Certificate status
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The alternative domain names of the certificate
      */
-    public /*out*/ readonly subjectAlternativeNames!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly subjectAlternativeNames: pulumi.Output<string[]>;
 
     /**
      * Create a Certificate resource with the given unique name, arguments, and options.
@@ -88,25 +88,25 @@ export class Certificate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CertificateState | undefined;
-            resourceInputs["commonName"] = state ? state.commonName : undefined;
-            resourceInputs["customCertificate"] = state ? state.customCertificate : undefined;
-            resourceInputs["fingerprint"] = state ? state.fingerprint : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["letsencrypt"] = state ? state.letsencrypt : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["notValidAfter"] = state ? state.notValidAfter : undefined;
-            resourceInputs["notValidBefore"] = state ? state.notValidBefore : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["subjectAlternativeNames"] = state ? state.subjectAlternativeNames : undefined;
+            resourceInputs["commonName"] = state?.commonName;
+            resourceInputs["customCertificate"] = state?.customCertificate;
+            resourceInputs["fingerprint"] = state?.fingerprint;
+            resourceInputs["lbId"] = state?.lbId;
+            resourceInputs["letsencrypt"] = state?.letsencrypt;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["notValidAfter"] = state?.notValidAfter;
+            resourceInputs["notValidBefore"] = state?.notValidBefore;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["subjectAlternativeNames"] = state?.subjectAlternativeNames;
         } else {
             const args = argsOrState as CertificateArgs | undefined;
-            if ((!args || args.lbId === undefined) && !opts.urn) {
+            if (args?.lbId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            resourceInputs["customCertificate"] = args ? args.customCertificate : undefined;
-            resourceInputs["lbId"] = args ? args.lbId : undefined;
-            resourceInputs["letsencrypt"] = args ? args.letsencrypt : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["customCertificate"] = args?.customCertificate;
+            resourceInputs["lbId"] = args?.lbId;
+            resourceInputs["letsencrypt"] = args?.letsencrypt;
+            resourceInputs["name"] = args?.name;
             resourceInputs["commonName"] = undefined /*out*/;
             resourceInputs["fingerprint"] = undefined /*out*/;
             resourceInputs["notValidAfter"] = undefined /*out*/;

@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `region`) The region of the route.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The tags to associate with the route.

@@ -139,7 +139,7 @@ type IpMacAddress struct {
 	// The date at which the Virtual Mac Address was last updated (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The zone of the Virtual Mac Address.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewIpMacAddress registers a new resource with the given unique name, arguments, and options.
@@ -376,8 +376,8 @@ func (o IpMacAddressOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // The zone of the Virtual Mac Address.
-func (o IpMacAddressOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpMacAddress) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o IpMacAddressOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpMacAddress) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type IpMacAddressArrayOutput struct{ *pulumi.OutputState }

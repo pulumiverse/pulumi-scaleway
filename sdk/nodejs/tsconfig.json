@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "outDir": "bin",
-        "target": "es2016",
+        "target": "ES2020",
         "module": "commonjs",
         "moduleResolution": "node",
         "declaration": true,
@@ -251,6 +251,7 @@
         "instance/getPrivateNic.ts",
         "instance/getSecurityGroup.ts",
         "instance/getServer.ts",
+        "instance/getServerType.ts",
         "instance/getServers.ts",
         "instance/getSnapshot.ts",
         "instance/getVolume.ts",

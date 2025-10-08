@@ -149,35 +149,35 @@ export class IotRoute extends pulumi.CustomResource {
     /**
      * The date and time the Route was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Configuration block for the database routes. See  [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    public readonly database!: pulumi.Output<outputs.IotRouteDatabase | undefined>;
+    declare public readonly database: pulumi.Output<outputs.IotRouteDatabase | undefined>;
     /**
      * The hub ID to which the Route will be attached to.
      */
-    public readonly hubId!: pulumi.Output<string>;
+    declare public readonly hubId: pulumi.Output<string>;
     /**
      * The name of the IoT Route you want to create (e.g. `my-route`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * (Defaults to provider `region`) The region in which the Route is attached to.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    public readonly rest!: pulumi.Output<outputs.IotRouteRest | undefined>;
+    declare public readonly rest: pulumi.Output<outputs.IotRouteRest | undefined>;
     /**
      * Configuration block for the S3 routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.
      */
-    public readonly s3!: pulumi.Output<outputs.IotRouteS3 | undefined>;
+    declare public readonly s3: pulumi.Output<outputs.IotRouteS3 | undefined>;
     /**
      * The topic the Route subscribes to, wildcards allowed (e.g. `thelab/+/temperature/#`).
      */
-    public readonly topic!: pulumi.Output<string>;
+    declare public readonly topic: pulumi.Output<string>;
 
     /**
      * Create a IotRoute resource with the given unique name, arguments, and options.
@@ -195,29 +195,29 @@ export class IotRoute extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IotRouteState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["database"] = state ? state.database : undefined;
-            resourceInputs["hubId"] = state ? state.hubId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rest"] = state ? state.rest : undefined;
-            resourceInputs["s3"] = state ? state.s3 : undefined;
-            resourceInputs["topic"] = state ? state.topic : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["database"] = state?.database;
+            resourceInputs["hubId"] = state?.hubId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rest"] = state?.rest;
+            resourceInputs["s3"] = state?.s3;
+            resourceInputs["topic"] = state?.topic;
         } else {
             const args = argsOrState as IotRouteArgs | undefined;
-            if ((!args || args.hubId === undefined) && !opts.urn) {
+            if (args?.hubId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hubId'");
             }
-            if ((!args || args.topic === undefined) && !opts.urn) {
+            if (args?.topic === undefined && !opts.urn) {
                 throw new Error("Missing required property 'topic'");
             }
-            resourceInputs["database"] = args ? args.database : undefined;
-            resourceInputs["hubId"] = args ? args.hubId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rest"] = args ? args.rest : undefined;
-            resourceInputs["s3"] = args ? args.s3 : undefined;
-            resourceInputs["topic"] = args ? args.topic : undefined;
+            resourceInputs["database"] = args?.database;
+            resourceInputs["hubId"] = args?.hubId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rest"] = args?.rest;
+            resourceInputs["s3"] = args?.s3;
+            resourceInputs["topic"] = args?.topic;
             resourceInputs["createdAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

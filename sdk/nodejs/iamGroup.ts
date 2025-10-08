@@ -82,39 +82,39 @@ export class IamGroup extends pulumi.CustomResource {
     /**
      * The list of IDs of the applications attached to the group.
      */
-    public readonly applicationIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly applicationIds: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the creation of the group
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The description of the IAM group.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Manage membership externally. This make the resource ignore userIds and application_ids. Should be used when using iam_group_membership
      */
-    public readonly externalMembership!: pulumi.Output<boolean | undefined>;
+    declare public readonly externalMembership: pulumi.Output<boolean | undefined>;
     /**
      * The name of the IAM group.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `organizationId`) The ID of the organization the group is associated with.
      */
-    public readonly organizationId!: pulumi.Output<string>;
+    declare public readonly organizationId: pulumi.Output<string>;
     /**
      * The tags associated with the group.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the last update of the group
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The list of IDs of the users attached to the group.
      */
-    public readonly userIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly userIds: pulumi.Output<string[] | undefined>;
 
     /**
      * Create a IamGroup resource with the given unique name, arguments, and options.
@@ -132,24 +132,24 @@ export class IamGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IamGroupState | undefined;
-            resourceInputs["applicationIds"] = state ? state.applicationIds : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["externalMembership"] = state ? state.externalMembership : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["userIds"] = state ? state.userIds : undefined;
+            resourceInputs["applicationIds"] = state?.applicationIds;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["externalMembership"] = state?.externalMembership;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["userIds"] = state?.userIds;
         } else {
             const args = argsOrState as IamGroupArgs | undefined;
-            resourceInputs["applicationIds"] = args ? args.applicationIds : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["externalMembership"] = args ? args.externalMembership : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["organizationId"] = args ? args.organizationId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userIds"] = args ? args.userIds : undefined;
+            resourceInputs["applicationIds"] = args?.applicationIds;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["externalMembership"] = args?.externalMembership;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["organizationId"] = args?.organizationId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["userIds"] = args?.userIds;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

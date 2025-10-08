@@ -39,18 +39,18 @@ import * as utilities from "../utilities";
  * const spf = new scaleway.domain.Record("spf", {
  *     dnsZone: domainName,
  *     type: "TXT",
- *     data: pulumi.interpolate`v=spf1 ${main.spfConfig} -all`,
+ *     data: main.spfValue,
  * });
  * const dkim = new scaleway.domain.Record("dkim", {
  *     dnsZone: domainName,
- *     name: pulumi.interpolate`${main.projectId}._domainkey`,
+ *     name: main.dkimName,
  *     type: "TXT",
  *     data: main.dkimConfig,
  * });
  * const mx = new scaleway.domain.Record("mx", {
  *     dnsZone: domainName,
  *     type: "MX",
- *     data: ".",
+ *     data: main.mxConfig,
  * });
  * const dmarc = new scaleway.domain.Record("dmarc", {
  *     dnsZone: domainName,
@@ -117,103 +117,115 @@ export class Domain extends pulumi.CustomResource {
      * Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
      * > **Important:** This attribute must be set to `true`.
      */
-    public readonly acceptTos!: pulumi.Output<boolean>;
+    declare public readonly acceptTos: pulumi.Output<boolean>;
     /**
      * Automatically configures DNS settings for the domain, simplifying the setup process by applying predefined configurations.
      */
-    public readonly autoconfig!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoconfig: pulumi.Output<boolean | undefined>;
     /**
      * The date and time of the Transaction Email Domain's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The DKIM public key, as should be recorded in the DNS zone.
      */
-    public /*out*/ readonly dkimConfig!: pulumi.Output<string>;
+    declare public /*out*/ readonly dkimConfig: pulumi.Output<string>;
+    /**
+     * DKIM name for the domain, as should be recorded in the DNS zone.
+     */
+    declare public /*out*/ readonly dkimName: pulumi.Output<string>;
     /**
      * DMARC record for the domain, as should be recorded in the DNS zone.
      */
-    public /*out*/ readonly dmarcConfig!: pulumi.Output<string>;
+    declare public /*out*/ readonly dmarcConfig: pulumi.Output<string>;
     /**
      * DMARC name for the domain, as should be recorded in the DNS zone.
      */
-    public /*out*/ readonly dmarcName!: pulumi.Output<string>;
+    declare public /*out*/ readonly dmarcName: pulumi.Output<string>;
     /**
      * (Deprecated) The error message if the last check failed.
      *
      * @deprecated last_error is deprecated
      */
-    public /*out*/ readonly lastError!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastError: pulumi.Output<string>;
     /**
      * The date and time the domain was last found to be valid (RFC 3339 format).
      */
-    public /*out*/ readonly lastValidAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly lastValidAt: pulumi.Output<string>;
     /**
      * The Scaleway's blackhole MX server to use if you do not have one.
      */
-    public /*out*/ readonly mxBlackhole!: pulumi.Output<string>;
+    declare public /*out*/ readonly mxBlackhole: pulumi.Output<string>;
+    /**
+     * MX record configuration for the domain blackhole.
+     */
+    declare public /*out*/ readonly mxConfig: pulumi.Output<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The date and time of the next scheduled check (RFC 3339 format).
      */
-    public /*out*/ readonly nextCheckAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly nextCheckAt: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the domain is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`). The region in which the domain should be created.
      * > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The domain's reputation.
      */
-    public /*out*/ readonly reputations!: pulumi.Output<outputs.tem.DomainReputation[]>;
+    declare public /*out*/ readonly reputations: pulumi.Output<outputs.tem.DomainReputation[]>;
     /**
      * The date and time of the revocation of the domain (RFC 3339 format).
      */
-    public /*out*/ readonly revokedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly revokedAt: pulumi.Output<string>;
     /**
      * The SMTP host to use to send emails.
      */
-    public /*out*/ readonly smtpHost!: pulumi.Output<string>;
+    declare public /*out*/ readonly smtpHost: pulumi.Output<string>;
     /**
      * The SMTP port to use to send emails over TLS.
      */
-    public /*out*/ readonly smtpPort!: pulumi.Output<number>;
+    declare public /*out*/ readonly smtpPort: pulumi.Output<number>;
     /**
      * The SMTP port to use to send emails over TLS.
      */
-    public /*out*/ readonly smtpPortAlternative!: pulumi.Output<number>;
+    declare public /*out*/ readonly smtpPortAlternative: pulumi.Output<number>;
     /**
      * The SMTP port to use to send emails.
      */
-    public /*out*/ readonly smtpPortUnsecure!: pulumi.Output<number>;
+    declare public /*out*/ readonly smtpPortUnsecure: pulumi.Output<number>;
     /**
      * SMTPS auth user refers to the identifier for a user authorized to send emails via SMTPS, ensuring secure email transmission.
      */
-    public /*out*/ readonly smtpsAuthUser!: pulumi.Output<string>;
+    declare public /*out*/ readonly smtpsAuthUser: pulumi.Output<string>;
     /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */
-    public /*out*/ readonly smtpsPort!: pulumi.Output<number>;
+    declare public /*out*/ readonly smtpsPort: pulumi.Output<number>;
     /**
      * The SMTPS port to use to send emails over TLS Wrapper.
      */
-    public /*out*/ readonly smtpsPortAlternative!: pulumi.Output<number>;
+    declare public /*out*/ readonly smtpsPortAlternative: pulumi.Output<number>;
     /**
      * The snippet of the SPF record that should be registered in the DNS zone.
      */
-    public /*out*/ readonly spfConfig!: pulumi.Output<string>;
+    declare public /*out*/ readonly spfConfig: pulumi.Output<string>;
+    /**
+     * Complete SPF record value for the domain, as should be recorded in the DNS zone.
+     */
+    declare public /*out*/ readonly spfValue: pulumi.Output<string>;
     /**
      * The status of the domain's reputation.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
 
     /**
      * Create a Domain resource with the given unique name, arguments, and options.
@@ -228,47 +240,52 @@ export class Domain extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainState | undefined;
-            resourceInputs["acceptTos"] = state ? state.acceptTos : undefined;
-            resourceInputs["autoconfig"] = state ? state.autoconfig : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["dkimConfig"] = state ? state.dkimConfig : undefined;
-            resourceInputs["dmarcConfig"] = state ? state.dmarcConfig : undefined;
-            resourceInputs["dmarcName"] = state ? state.dmarcName : undefined;
-            resourceInputs["lastError"] = state ? state.lastError : undefined;
-            resourceInputs["lastValidAt"] = state ? state.lastValidAt : undefined;
-            resourceInputs["mxBlackhole"] = state ? state.mxBlackhole : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nextCheckAt"] = state ? state.nextCheckAt : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["reputations"] = state ? state.reputations : undefined;
-            resourceInputs["revokedAt"] = state ? state.revokedAt : undefined;
-            resourceInputs["smtpHost"] = state ? state.smtpHost : undefined;
-            resourceInputs["smtpPort"] = state ? state.smtpPort : undefined;
-            resourceInputs["smtpPortAlternative"] = state ? state.smtpPortAlternative : undefined;
-            resourceInputs["smtpPortUnsecure"] = state ? state.smtpPortUnsecure : undefined;
-            resourceInputs["smtpsAuthUser"] = state ? state.smtpsAuthUser : undefined;
-            resourceInputs["smtpsPort"] = state ? state.smtpsPort : undefined;
-            resourceInputs["smtpsPortAlternative"] = state ? state.smtpsPortAlternative : undefined;
-            resourceInputs["spfConfig"] = state ? state.spfConfig : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["acceptTos"] = state?.acceptTos;
+            resourceInputs["autoconfig"] = state?.autoconfig;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["dkimConfig"] = state?.dkimConfig;
+            resourceInputs["dkimName"] = state?.dkimName;
+            resourceInputs["dmarcConfig"] = state?.dmarcConfig;
+            resourceInputs["dmarcName"] = state?.dmarcName;
+            resourceInputs["lastError"] = state?.lastError;
+            resourceInputs["lastValidAt"] = state?.lastValidAt;
+            resourceInputs["mxBlackhole"] = state?.mxBlackhole;
+            resourceInputs["mxConfig"] = state?.mxConfig;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nextCheckAt"] = state?.nextCheckAt;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["reputations"] = state?.reputations;
+            resourceInputs["revokedAt"] = state?.revokedAt;
+            resourceInputs["smtpHost"] = state?.smtpHost;
+            resourceInputs["smtpPort"] = state?.smtpPort;
+            resourceInputs["smtpPortAlternative"] = state?.smtpPortAlternative;
+            resourceInputs["smtpPortUnsecure"] = state?.smtpPortUnsecure;
+            resourceInputs["smtpsAuthUser"] = state?.smtpsAuthUser;
+            resourceInputs["smtpsPort"] = state?.smtpsPort;
+            resourceInputs["smtpsPortAlternative"] = state?.smtpsPortAlternative;
+            resourceInputs["spfConfig"] = state?.spfConfig;
+            resourceInputs["spfValue"] = state?.spfValue;
+            resourceInputs["status"] = state?.status;
         } else {
             const args = argsOrState as DomainArgs | undefined;
-            if ((!args || args.acceptTos === undefined) && !opts.urn) {
+            if (args?.acceptTos === undefined && !opts.urn) {
                 throw new Error("Missing required property 'acceptTos'");
             }
-            resourceInputs["acceptTos"] = args ? args.acceptTos : undefined;
-            resourceInputs["autoconfig"] = args ? args.autoconfig : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["acceptTos"] = args?.acceptTos;
+            resourceInputs["autoconfig"] = args?.autoconfig;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dkimConfig"] = undefined /*out*/;
+            resourceInputs["dkimName"] = undefined /*out*/;
             resourceInputs["dmarcConfig"] = undefined /*out*/;
             resourceInputs["dmarcName"] = undefined /*out*/;
             resourceInputs["lastError"] = undefined /*out*/;
             resourceInputs["lastValidAt"] = undefined /*out*/;
             resourceInputs["mxBlackhole"] = undefined /*out*/;
+            resourceInputs["mxConfig"] = undefined /*out*/;
             resourceInputs["nextCheckAt"] = undefined /*out*/;
             resourceInputs["reputations"] = undefined /*out*/;
             resourceInputs["revokedAt"] = undefined /*out*/;
@@ -280,6 +297,7 @@ export class Domain extends pulumi.CustomResource {
             resourceInputs["smtpsPort"] = undefined /*out*/;
             resourceInputs["smtpsPortAlternative"] = undefined /*out*/;
             resourceInputs["spfConfig"] = undefined /*out*/;
+            resourceInputs["spfValue"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -311,6 +329,10 @@ export interface DomainState {
      */
     dkimConfig?: pulumi.Input<string>;
     /**
+     * DKIM name for the domain, as should be recorded in the DNS zone.
+     */
+    dkimName?: pulumi.Input<string>;
+    /**
      * DMARC record for the domain, as should be recorded in the DNS zone.
      */
     dmarcConfig?: pulumi.Input<string>;
@@ -332,6 +354,10 @@ export interface DomainState {
      * The Scaleway's blackhole MX server to use if you do not have one.
      */
     mxBlackhole?: pulumi.Input<string>;
+    /**
+     * MX record configuration for the domain blackhole.
+     */
+    mxConfig?: pulumi.Input<string>;
     /**
      * The domain name, must not be used in another Transactional Email Domain.
      * > **Important:** Updates to `name` will recreate the domain.
@@ -390,6 +416,10 @@ export interface DomainState {
      * The snippet of the SPF record that should be registered in the DNS zone.
      */
     spfConfig?: pulumi.Input<string>;
+    /**
+     * Complete SPF record value for the domain, as should be recorded in the DNS zone.
+     */
+    spfValue?: pulumi.Input<string>;
     /**
      * The status of the domain's reputation.
      */

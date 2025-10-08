@@ -68,7 +68,7 @@ type Network struct {
 	// The name of the IoT Network you want to create (e.g. `my-net`).
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Defaults to provider `region`) The region in which the Network is attached to.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The endpoint key to keep secret.
 	Secret pulumi.StringOutput `pulumi:"secret"`
 	// The prefix that will be prepended to all topics for this Network.
@@ -299,8 +299,8 @@ func (o NetworkOutput) Name() pulumi.StringOutput {
 }
 
 // (Defaults to provider `region`) The region in which the Network is attached to.
-func (o NetworkOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o NetworkOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The endpoint key to keep secret.

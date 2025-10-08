@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// `region`). The region in which the routes exist.
         /// </summary>
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// List of tags to filter for. routes with these exact tags are listed.
         /// </summary>
@@ -84,7 +84,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string nexthopResourceType,
 
-            string region,
+            string? region,
 
             ImmutableArray<string> tags,
 

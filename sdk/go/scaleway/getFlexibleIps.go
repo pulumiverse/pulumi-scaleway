@@ -119,7 +119,7 @@ type GetFlexibleIpsResult struct {
 	// The list of tags which are attached to the flexible IP.
 	Tags []string `pulumi:"tags"`
 	// (Defaults to provider `zone`) The zone in which the MAC address exist.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 func GetFlexibleIpsOutput(ctx *pulumi.Context, args GetFlexibleIpsOutputArgs, opts ...pulumi.InvokeOption) GetFlexibleIpsResultOutput {
@@ -192,8 +192,8 @@ func (o GetFlexibleIpsResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // (Defaults to provider `zone`) The zone in which the MAC address exist.
-func (o GetFlexibleIpsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFlexibleIpsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetFlexibleIpsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFlexibleIpsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

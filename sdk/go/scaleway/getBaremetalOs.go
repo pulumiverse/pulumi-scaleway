@@ -81,7 +81,7 @@ type GetBaremetalOsResult struct {
 	Name    *string `pulumi:"name"`
 	OsId    *string `pulumi:"osId"`
 	Version *string `pulumi:"version"`
-	Zone    string  `pulumi:"zone"`
+	Zone    *string `pulumi:"zone"`
 }
 
 func GetBaremetalOsOutput(ctx *pulumi.Context, args GetBaremetalOsOutputArgs, opts ...pulumi.InvokeOption) GetBaremetalOsResultOutput {
@@ -141,8 +141,8 @@ func (o GetBaremetalOsResultOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetBaremetalOsResult) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
 
-func (o GetBaremetalOsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetBaremetalOsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetBaremetalOsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetBaremetalOsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

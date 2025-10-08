@@ -436,7 +436,7 @@ type BucketPolicy struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region this bucket resides in.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewBucketPolicy registers a new resource with the given unique name, arguments, and options.
@@ -632,8 +632,8 @@ func (o BucketPolicyOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The Scaleway region this bucket resides in.
-func (o BucketPolicyOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *BucketPolicy) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o BucketPolicyOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketPolicy) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type BucketPolicyArrayOutput struct{ *pulumi.OutputState }

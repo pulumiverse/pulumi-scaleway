@@ -72,17 +72,17 @@ export class GroupMembership extends pulumi.CustomResource {
     /**
      * The ID of the application that will be added to the group.
      */
-    public readonly applicationId!: pulumi.Output<string | undefined>;
+    declare public readonly applicationId: pulumi.Output<string | undefined>;
     /**
      * ID of the group to add members to.
      */
-    public readonly groupId!: pulumi.Output<string>;
+    declare public readonly groupId: pulumi.Output<string>;
     /**
      * The ID of the user that will be added to the group
      *
      * > **Note** You must specify at least one: `applicationId` and/or `userId`.
      */
-    public readonly userId!: pulumi.Output<string | undefined>;
+    declare public readonly userId: pulumi.Output<string | undefined>;
 
     /**
      * Create a GroupMembership resource with the given unique name, arguments, and options.
@@ -97,17 +97,17 @@ export class GroupMembership extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as GroupMembershipState | undefined;
-            resourceInputs["applicationId"] = state ? state.applicationId : undefined;
-            resourceInputs["groupId"] = state ? state.groupId : undefined;
-            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["applicationId"] = state?.applicationId;
+            resourceInputs["groupId"] = state?.groupId;
+            resourceInputs["userId"] = state?.userId;
         } else {
             const args = argsOrState as GroupMembershipArgs | undefined;
-            if ((!args || args.groupId === undefined) && !opts.urn) {
+            if (args?.groupId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'groupId'");
             }
-            resourceInputs["applicationId"] = args ? args.applicationId : undefined;
-            resourceInputs["groupId"] = args ? args.groupId : undefined;
-            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["applicationId"] = args?.applicationId;
+            resourceInputs["groupId"] = args?.groupId;
+            resourceInputs["userId"] = args?.userId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/iamGroupMembership:IamGroupMembership" }] };

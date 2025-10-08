@@ -60,83 +60,83 @@ export class Hub extends pulumi.CustomResource {
     /**
      * The current number of connected devices in the Hub.
      */
-    public /*out*/ readonly connectedDeviceCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly connectedDeviceCount: pulumi.Output<number>;
     /**
      * The date and time the Hub was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Wether to enable the device auto provisioning or not
      */
-    public readonly deviceAutoProvisioning!: pulumi.Output<boolean | undefined>;
+    declare public readonly deviceAutoProvisioning: pulumi.Output<boolean | undefined>;
     /**
      * The number of registered devices in the Hub.
      */
-    public /*out*/ readonly deviceCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly deviceCount: pulumi.Output<number>;
     /**
      * Whether to enable the hub events or not
      */
-    public readonly disableEvents!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableEvents: pulumi.Output<boolean | undefined>;
     /**
      * Wether the IoT Hub instance should be enabled or not.
      *
      * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
-    public readonly enabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly enabled: pulumi.Output<boolean | undefined>;
     /**
      * The MQTT network endpoint to connect MQTT devices to.
      */
-    public /*out*/ readonly endpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpoint: pulumi.Output<string>;
     /**
      * Topic prefix for the hub events
      */
-    public readonly eventsTopicPrefix!: pulumi.Output<string | undefined>;
+    declare public readonly eventsTopicPrefix: pulumi.Output<string | undefined>;
     /**
      * Custom user provided certificate authority
      */
-    public readonly hubCa!: pulumi.Output<string | undefined>;
+    declare public readonly hubCa: pulumi.Output<string | undefined>;
     /**
      * Challenge certificate for the user provided hub CA
      */
-    public readonly hubCaChallenge!: pulumi.Output<string | undefined>;
+    declare public readonly hubCaChallenge: pulumi.Output<string | undefined>;
     /**
      * The MQTT certificat content
      */
-    public /*out*/ readonly mqttCa!: pulumi.Output<string>;
+    declare public /*out*/ readonly mqttCa: pulumi.Output<string>;
     /**
      * The MQTT ca url
      */
-    public /*out*/ readonly mqttCaUrl!: pulumi.Output<string>;
+    declare public /*out*/ readonly mqttCaUrl: pulumi.Output<string>;
     /**
      * The name of the IoT Hub instance you want to create (e.g. `my-hub`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organizationId you want to attach the resource to
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * Product plan to create the hub, see documentation for available product plans (e.g. `planShared`)
      *
      * > **Important:** Updates to `productPlan` will recreate the IoT Hub Instance.
      */
-    public readonly productPlan!: pulumi.Output<string>;
+    declare public readonly productPlan: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the IoT Hub Instance is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region in which the Database Instance should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The current status of the Hub.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The date and time the Hub resource was updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Hub resource with the given unique name, arguments, and options.
@@ -151,40 +151,40 @@ export class Hub extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as HubState | undefined;
-            resourceInputs["connectedDeviceCount"] = state ? state.connectedDeviceCount : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["deviceAutoProvisioning"] = state ? state.deviceAutoProvisioning : undefined;
-            resourceInputs["deviceCount"] = state ? state.deviceCount : undefined;
-            resourceInputs["disableEvents"] = state ? state.disableEvents : undefined;
-            resourceInputs["enabled"] = state ? state.enabled : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["eventsTopicPrefix"] = state ? state.eventsTopicPrefix : undefined;
-            resourceInputs["hubCa"] = state ? state.hubCa : undefined;
-            resourceInputs["hubCaChallenge"] = state ? state.hubCaChallenge : undefined;
-            resourceInputs["mqttCa"] = state ? state.mqttCa : undefined;
-            resourceInputs["mqttCaUrl"] = state ? state.mqttCaUrl : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["productPlan"] = state ? state.productPlan : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["connectedDeviceCount"] = state?.connectedDeviceCount;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["deviceAutoProvisioning"] = state?.deviceAutoProvisioning;
+            resourceInputs["deviceCount"] = state?.deviceCount;
+            resourceInputs["disableEvents"] = state?.disableEvents;
+            resourceInputs["enabled"] = state?.enabled;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["eventsTopicPrefix"] = state?.eventsTopicPrefix;
+            resourceInputs["hubCa"] = state?.hubCa;
+            resourceInputs["hubCaChallenge"] = state?.hubCaChallenge;
+            resourceInputs["mqttCa"] = state?.mqttCa;
+            resourceInputs["mqttCaUrl"] = state?.mqttCaUrl;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["productPlan"] = state?.productPlan;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as HubArgs | undefined;
-            if ((!args || args.productPlan === undefined) && !opts.urn) {
+            if (args?.productPlan === undefined && !opts.urn) {
                 throw new Error("Missing required property 'productPlan'");
             }
-            resourceInputs["deviceAutoProvisioning"] = args ? args.deviceAutoProvisioning : undefined;
-            resourceInputs["disableEvents"] = args ? args.disableEvents : undefined;
-            resourceInputs["enabled"] = args ? args.enabled : undefined;
-            resourceInputs["eventsTopicPrefix"] = args ? args.eventsTopicPrefix : undefined;
-            resourceInputs["hubCa"] = args ? args.hubCa : undefined;
-            resourceInputs["hubCaChallenge"] = args ? args.hubCaChallenge : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["productPlan"] = args ? args.productPlan : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["deviceAutoProvisioning"] = args?.deviceAutoProvisioning;
+            resourceInputs["disableEvents"] = args?.disableEvents;
+            resourceInputs["enabled"] = args?.enabled;
+            resourceInputs["eventsTopicPrefix"] = args?.eventsTopicPrefix;
+            resourceInputs["hubCa"] = args?.hubCa;
+            resourceInputs["hubCaChallenge"] = args?.hubCaChallenge;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["productPlan"] = args?.productPlan;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["connectedDeviceCount"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["deviceCount"] = undefined /*out*/;

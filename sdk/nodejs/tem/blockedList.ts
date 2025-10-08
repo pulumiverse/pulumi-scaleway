@@ -66,27 +66,27 @@ export class BlockedList extends pulumi.CustomResource {
     /**
      * The ID of the domain affected by the blocklist. Must be in the format `{region}/{domain_id}`.
      */
-    public readonly domainId!: pulumi.Output<string>;
+    declare public readonly domainId: pulumi.Output<string>;
     /**
      * The email address to block.
      */
-    public readonly email!: pulumi.Output<string>;
+    declare public readonly email: pulumi.Output<string>;
     /**
      * The ID of the project this blocklist belongs to. Defaults to the provider's project ID.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Reason for blocking the email address.
      */
-    public readonly reason!: pulumi.Output<string | undefined>;
+    declare public readonly reason: pulumi.Output<string | undefined>;
     /**
      * The region in which the blocklist is created. Defaults to the provider's region.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Type of the blocklist. Possible values are:
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
 
     /**
      * Create a BlockedList resource with the given unique name, arguments, and options.
@@ -101,29 +101,29 @@ export class BlockedList extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BlockedListState | undefined;
-            resourceInputs["domainId"] = state ? state.domainId : undefined;
-            resourceInputs["email"] = state ? state.email : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["reason"] = state ? state.reason : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["domainId"] = state?.domainId;
+            resourceInputs["email"] = state?.email;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["reason"] = state?.reason;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["type"] = state?.type;
         } else {
             const args = argsOrState as BlockedListArgs | undefined;
-            if ((!args || args.domainId === undefined) && !opts.urn) {
+            if (args?.domainId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domainId'");
             }
-            if ((!args || args.email === undefined) && !opts.urn) {
+            if (args?.email === undefined && !opts.urn) {
                 throw new Error("Missing required property 'email'");
             }
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["domainId"] = args ? args.domainId : undefined;
-            resourceInputs["email"] = args ? args.email : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["reason"] = args ? args.reason : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["domainId"] = args?.domainId;
+            resourceInputs["email"] = args?.email;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["reason"] = args?.reason;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["type"] = args?.type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(BlockedList.__pulumiType, name, resourceInputs, opts);

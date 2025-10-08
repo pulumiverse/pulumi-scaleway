@@ -374,7 +374,7 @@ namespace Pulumiverse.Scaleway
         /// in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Map of engine settings to be set on a running instance.

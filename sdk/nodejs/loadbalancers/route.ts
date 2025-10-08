@@ -153,42 +153,42 @@ export class Route extends pulumi.CustomResource {
     /**
      * The ID of the backend the route is associated with.
      */
-    public readonly backendId!: pulumi.Output<string>;
+    declare public readonly backendId: pulumi.Output<string>;
     /**
      * The date on which the route was created.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The ID of the frontend the route is associated with.
      */
-    public readonly frontendId!: pulumi.Output<string>;
+    declare public readonly frontendId: pulumi.Output<string>;
     /**
      * The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      *
      * > **Important:** This field should be set for routes on HTTP Load Balancers.
      */
-    public readonly matchHostHeader!: pulumi.Output<string | undefined>;
+    declare public readonly matchHostHeader: pulumi.Output<string | undefined>;
     /**
      * The value to match in the URL beginning path from an incoming request.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      */
-    public readonly matchPathBegin!: pulumi.Output<string | undefined>;
+    declare public readonly matchPathBegin: pulumi.Output<string | undefined>;
     /**
      * The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
      * Only one of `matchSni`, `matchHostHeader` and `matchPathBegin` should be specified.
      *
      * > **Important:** This field should be set for routes on TCP Load Balancers.
      */
-    public readonly matchSni!: pulumi.Output<string | undefined>;
+    declare public readonly matchSni: pulumi.Output<string | undefined>;
     /**
      * If true, all subdomains will match.
      */
-    public readonly matchSubdomains!: pulumi.Output<boolean | undefined>;
+    declare public readonly matchSubdomains: pulumi.Output<boolean | undefined>;
     /**
      * The date on which the route was last updated.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a Route resource with the given unique name, arguments, and options.
@@ -203,28 +203,28 @@ export class Route extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouteState | undefined;
-            resourceInputs["backendId"] = state ? state.backendId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["frontendId"] = state ? state.frontendId : undefined;
-            resourceInputs["matchHostHeader"] = state ? state.matchHostHeader : undefined;
-            resourceInputs["matchPathBegin"] = state ? state.matchPathBegin : undefined;
-            resourceInputs["matchSni"] = state ? state.matchSni : undefined;
-            resourceInputs["matchSubdomains"] = state ? state.matchSubdomains : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["backendId"] = state?.backendId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["frontendId"] = state?.frontendId;
+            resourceInputs["matchHostHeader"] = state?.matchHostHeader;
+            resourceInputs["matchPathBegin"] = state?.matchPathBegin;
+            resourceInputs["matchSni"] = state?.matchSni;
+            resourceInputs["matchSubdomains"] = state?.matchSubdomains;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as RouteArgs | undefined;
-            if ((!args || args.backendId === undefined) && !opts.urn) {
+            if (args?.backendId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'backendId'");
             }
-            if ((!args || args.frontendId === undefined) && !opts.urn) {
+            if (args?.frontendId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'frontendId'");
             }
-            resourceInputs["backendId"] = args ? args.backendId : undefined;
-            resourceInputs["frontendId"] = args ? args.frontendId : undefined;
-            resourceInputs["matchHostHeader"] = args ? args.matchHostHeader : undefined;
-            resourceInputs["matchPathBegin"] = args ? args.matchPathBegin : undefined;
-            resourceInputs["matchSni"] = args ? args.matchSni : undefined;
-            resourceInputs["matchSubdomains"] = args ? args.matchSubdomains : undefined;
+            resourceInputs["backendId"] = args?.backendId;
+            resourceInputs["frontendId"] = args?.frontendId;
+            resourceInputs["matchHostHeader"] = args?.matchHostHeader;
+            resourceInputs["matchPathBegin"] = args?.matchPathBegin;
+            resourceInputs["matchSni"] = args?.matchSni;
+            resourceInputs["matchSubdomains"] = args?.matchSubdomains;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

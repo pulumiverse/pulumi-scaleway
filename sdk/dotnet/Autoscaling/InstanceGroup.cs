@@ -298,7 +298,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         /// `zone`) The zone in which the Instance group exists.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

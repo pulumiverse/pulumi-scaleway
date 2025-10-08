@@ -65,7 +65,7 @@ type Pool struct {
 	// > **Important:** Updates to this field will recreate a new resource.
 	PublicIpDisabled pulumi.BoolPtrOutput `pulumi:"publicIpDisabled"`
 	// `region`) The region in which the pool should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The size of the system volume of the nodes in gigabyte
 	RootVolumeSizeInGb pulumi.IntOutput `pulumi:"rootVolumeSizeInGb"`
 	// System volume type of the nodes composing the pool
@@ -95,7 +95,7 @@ type Pool struct {
 	// `zone`) The zone in which the pool should be created.
 	//
 	// > **Important:** Updates to this field will recreate a new resource.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewPool registers a new resource with the given unique name, arguments, and options.
@@ -593,8 +593,8 @@ func (o PoolOutput) PublicIpDisabled() pulumi.BoolPtrOutput {
 }
 
 // `region`) The region in which the pool should be created.
-func (o PoolOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o PoolOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the system volume of the nodes in gigabyte
@@ -656,8 +656,8 @@ func (o PoolOutput) WaitForPoolReady() pulumi.BoolPtrOutput {
 // `zone`) The zone in which the pool should be created.
 //
 // > **Important:** Updates to this field will recreate a new resource.
-func (o PoolOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Pool) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o PoolOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Pool) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type PoolArrayOutput struct{ *pulumi.OutputState }

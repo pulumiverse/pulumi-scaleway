@@ -79,67 +79,67 @@ export class InstanceTemplate extends pulumi.CustomResource {
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    public readonly cloudInit!: pulumi.Output<string | undefined>;
+    declare public readonly cloudInit: pulumi.Output<string | undefined>;
     /**
      * The name of Instance commercial type.
      */
-    public readonly commercialType!: pulumi.Output<string>;
+    declare public readonly commercialType: pulumi.Output<string>;
     /**
      * Date and time of Instance group's creation (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercialType` template.
      */
-    public readonly imageId!: pulumi.Output<string | undefined>;
+    declare public readonly imageId: pulumi.Output<string | undefined>;
     /**
      * The Instance group template.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The instance placement group ID. This is optional, but it is highly recommended to set a preference for Instance location within Availability Zone.
      */
-    public readonly placementGroupId!: pulumi.Output<string | undefined>;
+    declare public readonly placementGroupId: pulumi.Output<string | undefined>;
     /**
      * The private Network IDs to attach to the new Instance.
      */
-    public readonly privateNetworkIds!: pulumi.Output<string[] | undefined>;
+    declare public readonly privateNetworkIds: pulumi.Output<string[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Instance template is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The number of flexible IPv4 addresses to attach to the new Instance.
      */
-    public readonly publicIpsV4Count!: pulumi.Output<number | undefined>;
+    declare public readonly publicIpsV4Count: pulumi.Output<number | undefined>;
     /**
      * The number of flexible IPv6 addresses to attach to the new Instance.
      */
-    public readonly publicIpsV6Count!: pulumi.Output<number | undefined>;
+    declare public readonly publicIpsV6Count: pulumi.Output<number | undefined>;
     /**
      * The instance security group ID.
      */
-    public readonly securityGroupId!: pulumi.Output<string | undefined>;
+    declare public readonly securityGroupId: pulumi.Output<string | undefined>;
     /**
      * The Instance template status
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the Instance template.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Date and time of Instance group's last update (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The template of Instance volume.
      */
-    public readonly volumes!: pulumi.Output<outputs.autoscaling.InstanceTemplateVolume[] | undefined>;
+    declare public readonly volumes: pulumi.Output<outputs.autoscaling.InstanceTemplateVolume[] | undefined>;
     /**
      * `zone`) The zone in which the Instance template exists.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceTemplate resource with the given unique name, arguments, and options.
@@ -154,40 +154,40 @@ export class InstanceTemplate extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceTemplateState | undefined;
-            resourceInputs["cloudInit"] = state ? state.cloudInit : undefined;
-            resourceInputs["commercialType"] = state ? state.commercialType : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["imageId"] = state ? state.imageId : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            resourceInputs["privateNetworkIds"] = state ? state.privateNetworkIds : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["publicIpsV4Count"] = state ? state.publicIpsV4Count : undefined;
-            resourceInputs["publicIpsV6Count"] = state ? state.publicIpsV6Count : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["volumes"] = state ? state.volumes : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["cloudInit"] = state?.cloudInit;
+            resourceInputs["commercialType"] = state?.commercialType;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["imageId"] = state?.imageId;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["placementGroupId"] = state?.placementGroupId;
+            resourceInputs["privateNetworkIds"] = state?.privateNetworkIds;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicIpsV4Count"] = state?.publicIpsV4Count;
+            resourceInputs["publicIpsV6Count"] = state?.publicIpsV6Count;
+            resourceInputs["securityGroupId"] = state?.securityGroupId;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["volumes"] = state?.volumes;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceTemplateArgs | undefined;
-            if ((!args || args.commercialType === undefined) && !opts.urn) {
+            if (args?.commercialType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'commercialType'");
             }
-            resourceInputs["cloudInit"] = args ? args.cloudInit : undefined;
-            resourceInputs["commercialType"] = args ? args.commercialType : undefined;
-            resourceInputs["imageId"] = args ? args.imageId : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            resourceInputs["privateNetworkIds"] = args ? args.privateNetworkIds : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["publicIpsV4Count"] = args ? args.publicIpsV4Count : undefined;
-            resourceInputs["publicIpsV6Count"] = args ? args.publicIpsV6Count : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["volumes"] = args ? args.volumes : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["cloudInit"] = args?.cloudInit;
+            resourceInputs["commercialType"] = args?.commercialType;
+            resourceInputs["imageId"] = args?.imageId;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["placementGroupId"] = args?.placementGroupId;
+            resourceInputs["privateNetworkIds"] = args?.privateNetworkIds;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["publicIpsV4Count"] = args?.publicIpsV4Count;
+            resourceInputs["publicIpsV6Count"] = args?.publicIpsV6Count;
+            resourceInputs["securityGroupId"] = args?.securityGroupId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["volumes"] = args?.volumes;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

@@ -98,9 +98,9 @@ type GetK8sVersionResult struct {
 	// The list of supported feature gates for this version.
 	AvailableFeatureGates []string `pulumi:"availableFeatureGates"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
-	Name   string `pulumi:"name"`
-	Region string `pulumi:"region"`
+	Id     string  `pulumi:"id"`
+	Name   string  `pulumi:"name"`
+	Region *string `pulumi:"region"`
 }
 
 func GetK8sVersionOutput(ctx *pulumi.Context, args GetK8sVersionOutputArgs, opts ...pulumi.InvokeOption) GetK8sVersionResultOutput {
@@ -163,8 +163,8 @@ func (o GetK8sVersionResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetK8sVersionResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetK8sVersionResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetK8sVersionResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetK8sVersionResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetK8sVersionResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 func init() {

@@ -150,7 +150,7 @@ type User struct {
 	// The password of the MongoDB® user.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// `region`) The region in which the MongoDB® user should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// List of roles assigned to the user. Each role block supports:
 	Roles UserRoleArrayOutput `pulumi:"roles"`
 }
@@ -357,8 +357,8 @@ func (o UserOutput) Password() pulumi.StringOutput {
 }
 
 // `region`) The region in which the MongoDB® user should be created.
-func (o UserOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o UserOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of roles assigned to the user. Each role block supports:

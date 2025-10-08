@@ -94,7 +94,7 @@ type Sqs struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which SQS will be enabled.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewSqs registers a new resource with the given unique name, arguments, and options.
@@ -272,8 +272,8 @@ func (o SqsOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which SQS will be enabled.
-func (o SqsOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Sqs) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SqsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sqs) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type SqsArrayOutput struct{ *pulumi.OutputState }

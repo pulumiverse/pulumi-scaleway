@@ -51,127 +51,127 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     /**
      * Enables the autohealing feature for this pool.
      */
-    public readonly autohealing!: pulumi.Output<boolean | undefined>;
+    declare public readonly autohealing: pulumi.Output<boolean | undefined>;
     /**
      * Enables the autoscaling feature for this pool.
      *
      * > **Important:** When enabled, an update of the `size` will not be taken into account.
      */
-    public readonly autoscaling!: pulumi.Output<boolean | undefined>;
+    declare public readonly autoscaling: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the Kubernetes cluster on which this pool will be created.
      */
-    public readonly clusterId!: pulumi.Output<string>;
+    declare public readonly clusterId: pulumi.Output<string>;
     /**
      * The container runtime of the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly containerRuntime!: pulumi.Output<string | undefined>;
+    declare public readonly containerRuntime: pulumi.Output<string | undefined>;
     /**
      * The creation date of the pool.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The actual size of the pool
      */
-    public /*out*/ readonly currentSize!: pulumi.Output<number>;
+    declare public /*out*/ readonly currentSize: pulumi.Output<number>;
     /**
      * The Kubelet arguments to be used by this pool
      */
-    public readonly kubeletArgs!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly kubeletArgs: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * The maximum size of the pool, used by the autoscaling feature.
      */
-    public readonly maxSize!: pulumi.Output<number>;
+    declare public readonly maxSize: pulumi.Output<number>;
     /**
      * The minimum size of the pool, used by the autoscaling feature.
      */
-    public readonly minSize!: pulumi.Output<number | undefined>;
+    declare public readonly minSize: pulumi.Output<number | undefined>;
     /**
      * The name for the pool.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly nodeType!: pulumi.Output<string>;
+    declare public readonly nodeType: pulumi.Output<string>;
     /**
      * (List of) The nodes in the default pool.
      */
-    public /*out*/ readonly nodes!: pulumi.Output<outputs.KubernetesNodePoolNode[]>;
+    declare public /*out*/ readonly nodes: pulumi.Output<outputs.KubernetesNodePoolNode[]>;
     /**
      * The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) the nodes of the pool will be attached to.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly placementGroupId!: pulumi.Output<string | undefined>;
+    declare public readonly placementGroupId: pulumi.Output<string | undefined>;
     /**
      * Defines if the public IP should be removed from Nodes. To use this feature, your Cluster must have an attached Private Network set up with a Public Gateway.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly publicIpDisabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly publicIpDisabled: pulumi.Output<boolean | undefined>;
     /**
      * `region`) The region in which the pool should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The size of the system volume of the nodes in gigabyte
      */
-    public readonly rootVolumeSizeInGb!: pulumi.Output<number>;
+    declare public readonly rootVolumeSizeInGb: pulumi.Output<number>;
     /**
      * System volume type of the nodes composing the pool
      */
-    public readonly rootVolumeType!: pulumi.Output<string>;
+    declare public readonly rootVolumeType: pulumi.Output<string>;
     /**
      * The ID of the security group
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly securityGroupId!: pulumi.Output<string>;
+    declare public readonly securityGroupId: pulumi.Output<string>;
     /**
      * The size of the pool.
      *
      * > **Important:** This field will only be used at creation if autoscaling is enabled.
      */
-    public readonly size!: pulumi.Output<number>;
+    declare public readonly size: pulumi.Output<number>;
     /**
      * The status of the node.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags associated with the pool.
      *
      * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The last update date of the pool.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The Pool upgrade policy
      */
-    public readonly upgradePolicy!: pulumi.Output<outputs.KubernetesNodePoolUpgradePolicy>;
+    declare public readonly upgradePolicy: pulumi.Output<outputs.KubernetesNodePoolUpgradePolicy>;
     /**
      * The version of the pool.
      */
-    public /*out*/ readonly version!: pulumi.Output<string>;
+    declare public /*out*/ readonly version: pulumi.Output<string>;
     /**
      * Whether to wait for the pool to be ready.
      */
-    public readonly waitForPoolReady!: pulumi.Output<boolean | undefined>;
+    declare public readonly waitForPoolReady: pulumi.Output<boolean | undefined>;
     /**
      * `zone`) The zone in which the pool should be created.
      *
      * > **Important:** Updates to this field will recreate a new resource.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a KubernetesNodePool resource with the given unique name, arguments, and options.
@@ -189,63 +189,63 @@ export class KubernetesNodePool extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KubernetesNodePoolState | undefined;
-            resourceInputs["autohealing"] = state ? state.autohealing : undefined;
-            resourceInputs["autoscaling"] = state ? state.autoscaling : undefined;
-            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
-            resourceInputs["containerRuntime"] = state ? state.containerRuntime : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["currentSize"] = state ? state.currentSize : undefined;
-            resourceInputs["kubeletArgs"] = state ? state.kubeletArgs : undefined;
-            resourceInputs["maxSize"] = state ? state.maxSize : undefined;
-            resourceInputs["minSize"] = state ? state.minSize : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["nodes"] = state ? state.nodes : undefined;
-            resourceInputs["placementGroupId"] = state ? state.placementGroupId : undefined;
-            resourceInputs["publicIpDisabled"] = state ? state.publicIpDisabled : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["rootVolumeSizeInGb"] = state ? state.rootVolumeSizeInGb : undefined;
-            resourceInputs["rootVolumeType"] = state ? state.rootVolumeType : undefined;
-            resourceInputs["securityGroupId"] = state ? state.securityGroupId : undefined;
-            resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["upgradePolicy"] = state ? state.upgradePolicy : undefined;
-            resourceInputs["version"] = state ? state.version : undefined;
-            resourceInputs["waitForPoolReady"] = state ? state.waitForPoolReady : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["autohealing"] = state?.autohealing;
+            resourceInputs["autoscaling"] = state?.autoscaling;
+            resourceInputs["clusterId"] = state?.clusterId;
+            resourceInputs["containerRuntime"] = state?.containerRuntime;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["currentSize"] = state?.currentSize;
+            resourceInputs["kubeletArgs"] = state?.kubeletArgs;
+            resourceInputs["maxSize"] = state?.maxSize;
+            resourceInputs["minSize"] = state?.minSize;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["nodes"] = state?.nodes;
+            resourceInputs["placementGroupId"] = state?.placementGroupId;
+            resourceInputs["publicIpDisabled"] = state?.publicIpDisabled;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["rootVolumeSizeInGb"] = state?.rootVolumeSizeInGb;
+            resourceInputs["rootVolumeType"] = state?.rootVolumeType;
+            resourceInputs["securityGroupId"] = state?.securityGroupId;
+            resourceInputs["size"] = state?.size;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["upgradePolicy"] = state?.upgradePolicy;
+            resourceInputs["version"] = state?.version;
+            resourceInputs["waitForPoolReady"] = state?.waitForPoolReady;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as KubernetesNodePoolArgs | undefined;
-            if ((!args || args.clusterId === undefined) && !opts.urn) {
+            if (args?.clusterId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.nodeType === undefined) && !opts.urn) {
+            if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            if ((!args || args.size === undefined) && !opts.urn) {
+            if (args?.size === undefined && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
-            resourceInputs["autohealing"] = args ? args.autohealing : undefined;
-            resourceInputs["autoscaling"] = args ? args.autoscaling : undefined;
-            resourceInputs["clusterId"] = args ? args.clusterId : undefined;
-            resourceInputs["containerRuntime"] = args ? args.containerRuntime : undefined;
-            resourceInputs["kubeletArgs"] = args ? args.kubeletArgs : undefined;
-            resourceInputs["maxSize"] = args ? args.maxSize : undefined;
-            resourceInputs["minSize"] = args ? args.minSize : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
-            resourceInputs["placementGroupId"] = args ? args.placementGroupId : undefined;
-            resourceInputs["publicIpDisabled"] = args ? args.publicIpDisabled : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["rootVolumeSizeInGb"] = args ? args.rootVolumeSizeInGb : undefined;
-            resourceInputs["rootVolumeType"] = args ? args.rootVolumeType : undefined;
-            resourceInputs["securityGroupId"] = args ? args.securityGroupId : undefined;
-            resourceInputs["size"] = args ? args.size : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["upgradePolicy"] = args ? args.upgradePolicy : undefined;
-            resourceInputs["waitForPoolReady"] = args ? args.waitForPoolReady : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["autohealing"] = args?.autohealing;
+            resourceInputs["autoscaling"] = args?.autoscaling;
+            resourceInputs["clusterId"] = args?.clusterId;
+            resourceInputs["containerRuntime"] = args?.containerRuntime;
+            resourceInputs["kubeletArgs"] = args?.kubeletArgs;
+            resourceInputs["maxSize"] = args?.maxSize;
+            resourceInputs["minSize"] = args?.minSize;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodeType"] = args?.nodeType;
+            resourceInputs["placementGroupId"] = args?.placementGroupId;
+            resourceInputs["publicIpDisabled"] = args?.publicIpDisabled;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["rootVolumeSizeInGb"] = args?.rootVolumeSizeInGb;
+            resourceInputs["rootVolumeType"] = args?.rootVolumeType;
+            resourceInputs["securityGroupId"] = args?.securityGroupId;
+            resourceInputs["size"] = args?.size;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["upgradePolicy"] = args?.upgradePolicy;
+            resourceInputs["waitForPoolReady"] = args?.waitForPoolReady;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["currentSize"] = undefined /*out*/;
             resourceInputs["nodes"] = undefined /*out*/;

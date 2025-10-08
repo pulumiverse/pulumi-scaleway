@@ -80,7 +80,7 @@ type GetFrontendsResult struct {
 	Name           *string `pulumi:"name"`
 	OrganizationId string  `pulumi:"organizationId"`
 	ProjectId      string  `pulumi:"projectId"`
-	Zone           string  `pulumi:"zone"`
+	Zone           *string `pulumi:"zone"`
 }
 
 func GetFrontendsOutput(ctx *pulumi.Context, args GetFrontendsOutputArgs, opts ...pulumi.InvokeOption) GetFrontendsResultOutput {
@@ -148,8 +148,8 @@ func (o GetFrontendsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFrontendsResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetFrontendsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFrontendsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetFrontendsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFrontendsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

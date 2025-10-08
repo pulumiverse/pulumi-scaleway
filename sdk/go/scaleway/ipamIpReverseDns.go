@@ -37,7 +37,7 @@ type IpamIpReverseDns struct {
 	// The IPAM IP ID.
 	IpamIpId pulumi.StringOutput `pulumi:"ipamIpId"`
 	// `region`) The region of the IP reverse DNS.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewIpamIpReverseDns registers a new resource with the given unique name, arguments, and options.
@@ -230,8 +230,8 @@ func (o IpamIpReverseDnsOutput) IpamIpId() pulumi.StringOutput {
 }
 
 // `region`) The region of the IP reverse DNS.
-func (o IpamIpReverseDnsOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpamIpReverseDns) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o IpamIpReverseDnsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpamIpReverseDns) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type IpamIpReverseDnsArrayOutput struct{ *pulumi.OutputState }

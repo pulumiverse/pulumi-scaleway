@@ -89,7 +89,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// `zone`) The zone in which the Load Balancers exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetLbsLbResult(
@@ -129,7 +129,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string updatedAt,
 
-            string zone)
+            string? zone)
         {
             BackendCount = backendCount;
             CreatedAt = createdAt;

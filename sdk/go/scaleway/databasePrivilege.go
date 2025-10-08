@@ -93,7 +93,7 @@ type DatabasePrivilege struct {
 	// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
 	Permission pulumi.StringOutput `pulumi:"permission"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Name of the user (e.g. `my-db-user`).
 	UserName pulumi.StringOutput `pulumi:"userName"`
 }
@@ -299,8 +299,8 @@ func (o DatabasePrivilegeOutput) Permission() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabasePrivilegeOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabasePrivilegeOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabasePrivilege) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Name of the user (e.g. `my-db-user`).

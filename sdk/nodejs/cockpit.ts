@@ -53,7 +53,7 @@ export class Cockpit extends pulumi.CustomResource {
      *
      * @deprecated Use 'scaleway_cockpit_source' instead of 'endpoints'. This field will be removed in future releases.
      */
-    public /*out*/ readonly endpoints!: pulumi.Output<outputs.CockpitEndpoint[]>;
+    declare public /*out*/ readonly endpoints: pulumi.Output<outputs.CockpitEndpoint[]>;
     /**
      * Name of the plan to use. Available plans are: free, premium, and custom.
      * > **Important:** The plan field is deprecated. Any modification or selection will have no effect.
@@ -62,23 +62,23 @@ export class Cockpit extends pulumi.CustomResource {
      *
      * @deprecated The 'plan' attribute is deprecated and no longer has any effect. Future updates will remove this attribute entirely.
      */
-    public readonly plan!: pulumi.Output<string | undefined>;
+    declare public readonly plan: pulumi.Output<string | undefined>;
     /**
      * (Deprecated) The ID of the current pricing plan.
      *
      * @deprecated The 'plan_id' attribute is deprecated and will be removed in a future release.
      */
-    public /*out*/ readonly planId!: pulumi.Output<string>;
+    declare public /*out*/ readonly planId: pulumi.Output<string>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * [DEPRECATED] Push_url
      *
      * @deprecated Please use `scaleway.observability.Source` instead
      */
-    public /*out*/ readonly pushUrls!: pulumi.Output<outputs.CockpitPushUrl[]>;
+    declare public /*out*/ readonly pushUrls: pulumi.Output<outputs.CockpitPushUrl[]>;
 
     /**
      * Create a Cockpit resource with the given unique name, arguments, and options.
@@ -96,15 +96,15 @@ export class Cockpit extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CockpitState | undefined;
-            resourceInputs["endpoints"] = state ? state.endpoints : undefined;
-            resourceInputs["plan"] = state ? state.plan : undefined;
-            resourceInputs["planId"] = state ? state.planId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["pushUrls"] = state ? state.pushUrls : undefined;
+            resourceInputs["endpoints"] = state?.endpoints;
+            resourceInputs["plan"] = state?.plan;
+            resourceInputs["planId"] = state?.planId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["pushUrls"] = state?.pushUrls;
         } else {
             const args = argsOrState as CockpitArgs | undefined;
-            resourceInputs["plan"] = args ? args.plan : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["plan"] = args?.plan;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["endpoints"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;
             resourceInputs["pushUrls"] = undefined /*out*/;

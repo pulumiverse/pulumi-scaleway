@@ -88,7 +88,7 @@ namespace Pulumiverse.Scaleway.Mnq
         /// in which SQS will be enabled.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>

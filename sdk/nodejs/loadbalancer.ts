@@ -142,19 +142,19 @@ export class Loadbalancer extends pulumi.CustomResource {
     /**
      * Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
      */
-    public readonly assignFlexibleIp!: pulumi.Output<boolean | undefined>;
+    declare public readonly assignFlexibleIp: pulumi.Output<boolean | undefined>;
     /**
      * Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
      */
-    public readonly assignFlexibleIpv6!: pulumi.Output<boolean | undefined>;
+    declare public readonly assignFlexibleIpv6: pulumi.Output<boolean | undefined>;
     /**
      * The description of the Load Balancer.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The Load Balancer public IPv4 address.
      */
-    public /*out*/ readonly ipAddress!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipAddress: pulumi.Output<string>;
     /**
      * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *
@@ -162,63 +162,63 @@ export class Loadbalancer extends pulumi.CustomResource {
      *
      * @deprecated Please use ip_ids
      */
-    public readonly ipId!: pulumi.Output<string>;
+    declare public readonly ipId: pulumi.Output<string>;
     /**
      * The List of IP IDs to attach to the Load Balancer.
      *
      * > **Important:** Make sure to use a `scaleway.loadbalancers.Ip` resource to create the IPs.
      */
-    public readonly ipIds!: pulumi.Output<string[]>;
+    declare public readonly ipIds: pulumi.Output<string[]>;
     /**
      * The Load Balancer public IPv6 address.
      */
-    public /*out*/ readonly ipv6Address!: pulumi.Output<string>;
+    declare public /*out*/ readonly ipv6Address: pulumi.Output<string>;
     /**
      * The name of the Load Balancer.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The ID of the Organization ID the Load Balancer is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
-    public /*out*/ readonly privateIps!: pulumi.Output<outputs.LoadbalancerPrivateIp[]>;
+    declare public /*out*/ readonly privateIps: pulumi.Output<outputs.LoadbalancerPrivateIp[]>;
     /**
      * List of private network to connect with your load balancer.
      */
-    public readonly privateNetworks!: pulumi.Output<outputs.LoadbalancerPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.LoadbalancerPrivateNetwork[] | undefined>;
     /**
      * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The region of the resource
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    declare public /*out*/ readonly region: pulumi.Output<string>;
     /**
      * The `releaseIp` allow the release of the IP address associated with the Load Balancer.
      *
      * @deprecated The resource ip will be destroyed by it's own resource. Please set this to `false`
      */
-    public readonly releaseIp!: pulumi.Output<boolean | undefined>;
+    declare public readonly releaseIp: pulumi.Output<boolean | undefined>;
     /**
      * Enforces minimal SSL version (in SSL/TLS offloading context). Please check [possible values](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-load-balancer-create-a-load-balancer).
      */
-    public readonly sslCompatibilityLevel!: pulumi.Output<string | undefined>;
+    declare public readonly sslCompatibilityLevel: pulumi.Output<string | undefined>;
     /**
      * The tags associated with the Load Balancer.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The type of the Load Balancer. Please check the migration section to upgrade the type.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * `zone`) The zone of the Load Balancer.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Loadbalancer resource with the given unique name, arguments, and options.
@@ -236,42 +236,42 @@ export class Loadbalancer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LoadbalancerState | undefined;
-            resourceInputs["assignFlexibleIp"] = state ? state.assignFlexibleIp : undefined;
-            resourceInputs["assignFlexibleIpv6"] = state ? state.assignFlexibleIpv6 : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
-            resourceInputs["ipId"] = state ? state.ipId : undefined;
-            resourceInputs["ipIds"] = state ? state.ipIds : undefined;
-            resourceInputs["ipv6Address"] = state ? state.ipv6Address : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetworks"] = state ? state.privateNetworks : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["releaseIp"] = state ? state.releaseIp : undefined;
-            resourceInputs["sslCompatibilityLevel"] = state ? state.sslCompatibilityLevel : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["assignFlexibleIp"] = state?.assignFlexibleIp;
+            resourceInputs["assignFlexibleIpv6"] = state?.assignFlexibleIpv6;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["ipAddress"] = state?.ipAddress;
+            resourceInputs["ipId"] = state?.ipId;
+            resourceInputs["ipIds"] = state?.ipIds;
+            resourceInputs["ipv6Address"] = state?.ipv6Address;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetworks"] = state?.privateNetworks;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["releaseIp"] = state?.releaseIp;
+            resourceInputs["sslCompatibilityLevel"] = state?.sslCompatibilityLevel;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as LoadbalancerArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["assignFlexibleIp"] = args ? args.assignFlexibleIp : undefined;
-            resourceInputs["assignFlexibleIpv6"] = args ? args.assignFlexibleIpv6 : undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["ipId"] = args ? args.ipId : undefined;
-            resourceInputs["ipIds"] = args ? args.ipIds : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["privateNetworks"] = args ? args.privateNetworks : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["releaseIp"] = args ? args.releaseIp : undefined;
-            resourceInputs["sslCompatibilityLevel"] = args ? args.sslCompatibilityLevel : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["assignFlexibleIp"] = args?.assignFlexibleIp;
+            resourceInputs["assignFlexibleIpv6"] = args?.assignFlexibleIpv6;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["ipId"] = args?.ipId;
+            resourceInputs["ipIds"] = args?.ipIds;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["privateNetworks"] = args?.privateNetworks;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["releaseIp"] = args?.releaseIp;
+            resourceInputs["sslCompatibilityLevel"] = args?.sslCompatibilityLevel;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["ipAddress"] = undefined /*out*/;
             resourceInputs["ipv6Address"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;

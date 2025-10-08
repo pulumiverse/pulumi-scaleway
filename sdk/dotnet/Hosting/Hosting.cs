@@ -154,7 +154,7 @@ namespace Pulumiverse.Scaleway.Hosting
         /// `region`) The region of the Hosting.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The hosting status.

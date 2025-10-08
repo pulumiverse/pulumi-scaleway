@@ -166,16 +166,12 @@ type InstanceSnapshot struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
-	//
-	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-	// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrOutput `pulumi:"volumeId"`
 	// `zone`) The zone in which
 	// the snapshot should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewInstanceSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -225,10 +221,6 @@ type instanceSnapshotState struct {
 	Tags []string `pulumi:"tags"`
 	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
-	//
-	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-	// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
@@ -255,10 +247,6 @@ type InstanceSnapshotState struct {
 	Tags pulumi.StringArrayInput
 	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
-	//
-	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-	// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
@@ -283,10 +271,6 @@ type instanceSnapshotArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
-	//
-	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-	// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 	Type *string `pulumi:"type"`
 	// The ID of the volume to take a snapshot from.
 	VolumeId *string `pulumi:"volumeId"`
@@ -308,10 +292,6 @@ type InstanceSnapshotArgs struct {
 	Tags pulumi.StringArrayInput
 	// The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 	// Updates to this field will recreate a new resource.
-	//
-	// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-	// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-	// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 	Type pulumi.StringPtrInput
 	// The ID of the volume to take a snapshot from.
 	VolumeId pulumi.StringPtrInput
@@ -445,10 +425,6 @@ func (o InstanceSnapshotOutput) Tags() pulumi.StringArrayOutput {
 
 // The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
 // Updates to this field will recreate a new resource.
-//
-// > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `instance.Snapshot` resource anymore. Please use the `block.Snapshot` resource instead.
-// If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-// **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
 func (o InstanceSnapshotOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
@@ -460,8 +436,8 @@ func (o InstanceSnapshotOutput) VolumeId() pulumi.StringPtrOutput {
 
 // `zone`) The zone in which
 // the snapshot should be created.
-func (o InstanceSnapshotOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o InstanceSnapshotOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceSnapshot) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceSnapshotArrayOutput struct{ *pulumi.OutputState }

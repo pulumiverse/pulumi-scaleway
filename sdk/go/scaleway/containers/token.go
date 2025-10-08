@@ -87,7 +87,7 @@ type Token struct {
 	// `region`). The region in which the namespace is created.
 	//
 	// > **Important** Updating any of the arguments above will recreate the token.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The token.
 	Value pulumi.StringOutput `pulumi:"value"`
 }
@@ -320,8 +320,8 @@ func (o TokenOutput) NamespaceId() pulumi.StringPtrOutput {
 // `region`). The region in which the namespace is created.
 //
 // > **Important** Updating any of the arguments above will recreate the token.
-func (o TokenOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Token) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o TokenOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Token) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The token.

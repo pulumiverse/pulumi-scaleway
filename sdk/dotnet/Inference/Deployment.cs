@@ -111,7 +111,7 @@ namespace Pulumiverse.Scaleway.Inference
         /// `region`) The region in which the deployment is created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the pool.

@@ -205,7 +205,7 @@ namespace Pulumiverse.Scaleway
         /// (deprecated) The offer product.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetWebHostOfferProductResult> Products;
-        public readonly string Region;
+        public readonly string? Region;
 
         [OutputConstructor]
         private GetWebHostOfferResult(
@@ -225,7 +225,7 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<Outputs.GetWebHostOfferProductResult> products,
 
-            string region)
+            string? region)
         {
             BillingOperationPath = billingOperationPath;
             ControlPanel = controlPanel;

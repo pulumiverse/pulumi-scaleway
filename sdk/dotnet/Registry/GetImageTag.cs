@@ -131,7 +131,7 @@ namespace Pulumiverse.Scaleway.Registry
         /// </summary>
         public readonly string OrganizationId;
         public readonly string ProjectId;
-        public readonly string Region;
+        public readonly string? Region;
         /// <summary>
         /// The status of the registry image tag.
         /// </summary>
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway.Registry
 
             string projectId,
 
-            string region,
+            string? region,
 
             string status,
 

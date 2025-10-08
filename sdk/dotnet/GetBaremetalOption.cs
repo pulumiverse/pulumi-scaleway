@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string? Name;
         public readonly string? OptionId;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetBaremetalOptionResult(
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway
 
             string? optionId,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Manageable = manageable;

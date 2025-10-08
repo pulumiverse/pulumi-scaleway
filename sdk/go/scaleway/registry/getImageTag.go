@@ -47,9 +47,9 @@ type GetImageTagResult struct {
 	ImageId string  `pulumi:"imageId"`
 	Name    *string `pulumi:"name"`
 	// The organization ID the image tag is associated with.
-	OrganizationId string `pulumi:"organizationId"`
-	ProjectId      string `pulumi:"projectId"`
-	Region         string `pulumi:"region"`
+	OrganizationId string  `pulumi:"organizationId"`
+	ProjectId      string  `pulumi:"projectId"`
+	Region         *string `pulumi:"region"`
 	// The status of the registry image tag.
 	Status string  `pulumi:"status"`
 	TagId  *string `pulumi:"tagId"`
@@ -131,8 +131,8 @@ func (o GetImageTagResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetImageTagResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-func (o GetImageTagResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetImageTagResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetImageTagResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetImageTagResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The status of the registry image tag.

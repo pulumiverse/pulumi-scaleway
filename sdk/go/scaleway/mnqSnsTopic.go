@@ -92,7 +92,7 @@ type MnqSnsTopic struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which SNS is enabled.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The secret key of the SNS credentials.
 	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
 	// The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
@@ -375,8 +375,8 @@ func (o MnqSnsTopicOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which SNS is enabled.
-func (o MnqSnsTopicOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o MnqSnsTopicOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MnqSnsTopic) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The secret key of the SNS credentials.

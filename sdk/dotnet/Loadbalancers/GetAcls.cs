@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly string? Name;
         public readonly string OrganizationId;
         public readonly string ProjectId;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetAclsResult(
@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             string projectId,
 
-            string zone)
+            string? zone)
         {
             Acls = acls;
             FrontendId = frontendId;

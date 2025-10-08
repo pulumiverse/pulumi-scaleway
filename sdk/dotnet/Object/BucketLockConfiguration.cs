@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway.Object
         /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Specifies the object lock rule for the specified object.

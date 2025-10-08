@@ -105,7 +105,7 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// <summary>
         /// `zone`) The zone in which servers exist.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetServersServerResult(
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
 
             string type,
 
-            string zone)
+            string? zone)
         {
             BootType = bootType;
             BootscriptId = bootscriptId;

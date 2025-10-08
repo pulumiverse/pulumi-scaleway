@@ -51,7 +51,7 @@ type GetServersResult struct {
 	// The tags associated with the server.
 	Tags []string `pulumi:"tags"`
 	// The zone in which the server is.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 func GetServersOutput(ctx *pulumi.Context, args GetServersOutputArgs, opts ...pulumi.InvokeOption) GetServersResultOutput {
@@ -125,8 +125,8 @@ func (o GetServersResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone in which the server is.
-func (o GetServersResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetServersResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetServersResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

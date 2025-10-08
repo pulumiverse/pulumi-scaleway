@@ -71,11 +71,11 @@ export class EdgeServicesHeadStage extends pulumi.CustomResource {
     /**
      * The ID of head stage of the pipeline.
      */
-    public readonly headStageId!: pulumi.Output<string>;
+    declare public readonly headStageId: pulumi.Output<string>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesHeadStage resource with the given unique name, arguments, and options.
@@ -90,15 +90,15 @@ export class EdgeServicesHeadStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesHeadStageState | undefined;
-            resourceInputs["headStageId"] = state ? state.headStageId : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
+            resourceInputs["headStageId"] = state?.headStageId;
+            resourceInputs["pipelineId"] = state?.pipelineId;
         } else {
             const args = argsOrState as EdgeServicesHeadStageArgs | undefined;
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["headStageId"] = args ? args.headStageId : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
+            resourceInputs["headStageId"] = args?.headStageId;
+            resourceInputs["pipelineId"] = args?.pipelineId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EdgeServicesHeadStage.__pulumiType, name, resourceInputs, opts);

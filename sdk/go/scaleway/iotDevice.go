@@ -133,7 +133,7 @@ type IotDevice struct {
 	// > **Important:** Updates to `name` will destroy and recreate a new resource.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region you want to attach the resource to
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The current status of the device.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The date and time the device resource was updated.
@@ -441,8 +441,8 @@ func (o IotDeviceOutput) Name() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o IotDeviceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *IotDevice) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o IotDeviceOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IotDevice) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The current status of the device.

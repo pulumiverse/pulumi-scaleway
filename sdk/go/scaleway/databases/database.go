@@ -79,7 +79,7 @@ type Database struct {
 	// The name of the owner of the database.
 	Owner pulumi.StringOutput `pulumi:"owner"`
 	// `region`) The region in which the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Size of the database (in bytes).
 	Size pulumi.StringOutput `pulumi:"size"`
 }
@@ -293,8 +293,8 @@ func (o DatabaseOutput) Owner() pulumi.StringOutput {
 }
 
 // `region`) The region in which the resource exists.
-func (o DatabaseOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o DatabaseOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Size of the database (in bytes).

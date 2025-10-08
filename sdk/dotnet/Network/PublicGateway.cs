@@ -159,7 +159,7 @@ namespace Pulumiverse.Scaleway.Network
         /// `zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

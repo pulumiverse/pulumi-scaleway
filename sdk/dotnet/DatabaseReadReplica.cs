@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway
         /// in which the Read Replica should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Defines whether to create the replica in the same availability zone as the main instance nodes or not.

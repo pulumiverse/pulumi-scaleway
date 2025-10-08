@@ -56,7 +56,7 @@ type TemDomainValidation struct {
 	// The ID of the domain name used when sending emails. This ID must correspond to a domain already registered with Scaleway's Transactional Email service.
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
 	// `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
 	Timeout pulumi.IntPtrOutput `pulumi:"timeout"`
 	// Indicates if the domain has been verified for email sending. This is computed after the creation or update of the domain validation resource.
@@ -233,8 +233,8 @@ func (o TemDomainValidationOutput) DomainId() pulumi.StringOutput {
 }
 
 // `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
-func (o TemDomainValidationOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *TemDomainValidation) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o TemDomainValidationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TemDomainValidation) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.

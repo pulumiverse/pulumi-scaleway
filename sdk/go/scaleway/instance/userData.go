@@ -106,7 +106,7 @@ type UserData struct {
 	// You can define values using:
 	// - string
 	// - UTF-8 encoded file content using file
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewUserData registers a new resource with the given unique name, arguments, and options.
@@ -330,8 +330,8 @@ func (o UserDataOutput) Value() pulumi.StringOutput {
 // You can define values using:
 // - string
 // - UTF-8 encoded file content using file
-func (o UserDataOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *UserData) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o UserDataOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserData) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type UserDataArrayOutput struct{ *pulumi.OutputState }

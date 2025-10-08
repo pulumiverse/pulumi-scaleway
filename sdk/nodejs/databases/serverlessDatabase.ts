@@ -65,29 +65,29 @@ export class ServerlessDatabase extends pulumi.CustomResource {
     /**
      * The endpoint of the database.
      */
-    public /*out*/ readonly endpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpoint: pulumi.Output<string>;
     /**
      * The maximum number of CPU units for your database. Defaults to 15.
      */
-    public readonly maxCpu!: pulumi.Output<number | undefined>;
+    declare public readonly maxCpu: pulumi.Output<number | undefined>;
     /**
      * The minimum number of CPU units for your database. Defaults to 0.
      */
-    public readonly minCpu!: pulumi.Output<number | undefined>;
+    declare public readonly minCpu: pulumi.Output<number | undefined>;
     /**
      * The name of the database (e.g. `my-new-database`).
      *
      * > **Important:** Updates to the `name` argument will recreate the database.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The projectId you want to attach the resource to
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`) The region in which the resource exists.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a ServerlessDatabase resource with the given unique name, arguments, and options.
@@ -102,19 +102,19 @@ export class ServerlessDatabase extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ServerlessDatabaseState | undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["maxCpu"] = state ? state.maxCpu : undefined;
-            resourceInputs["minCpu"] = state ? state.minCpu : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["maxCpu"] = state?.maxCpu;
+            resourceInputs["minCpu"] = state?.minCpu;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as ServerlessDatabaseArgs | undefined;
-            resourceInputs["maxCpu"] = args ? args.maxCpu : undefined;
-            resourceInputs["minCpu"] = args ? args.minCpu : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["maxCpu"] = args?.maxCpu;
+            resourceInputs["minCpu"] = args?.minCpu;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["endpoint"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

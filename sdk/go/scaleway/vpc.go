@@ -107,7 +107,7 @@ type Vpc struct {
 	// `projectId`) The ID of the Project the VPC is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region of the VPC.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The tags to associate with the VPC.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// Date and time of VPC's last update (RFC 3339 format).
@@ -347,8 +347,8 @@ func (o VpcOutput) ProjectId() pulumi.StringOutput {
 }
 
 // `region`) The region of the VPC.
-func (o VpcOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Vpc) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o VpcOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vpc) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The tags to associate with the VPC.

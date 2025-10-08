@@ -101,23 +101,23 @@ export class Acl extends pulumi.CustomResource {
      *
      * > **Important:** This block cannot be defined if the `noIpAllowed` field is set to true.
      */
-    public readonly aclRules!: pulumi.Output<outputs.kubernetes.AclAclRule[] | undefined>;
+    declare public readonly aclRules: pulumi.Output<outputs.kubernetes.AclAclRule[] | undefined>;
     /**
      * UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
      *
      * > **Important:** Updates to `clusterId` will recreate the ACL.
      */
-    public readonly clusterId!: pulumi.Output<string>;
+    declare public readonly clusterId: pulumi.Output<string>;
     /**
      * If set to true, no IP will be allowed and the cluster will be in full-isolation.
      *
      * > **Important:** This field cannot be set to true if the `aclRules` block is defined.
      */
-    public readonly noIpAllowed!: pulumi.Output<boolean | undefined>;
+    declare public readonly noIpAllowed: pulumi.Output<boolean | undefined>;
     /**
      * `region`) The region in which the ACL rule should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
 
     /**
      * Create a Acl resource with the given unique name, arguments, and options.
@@ -132,19 +132,19 @@ export class Acl extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AclState | undefined;
-            resourceInputs["aclRules"] = state ? state.aclRules : undefined;
-            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
-            resourceInputs["noIpAllowed"] = state ? state.noIpAllowed : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["aclRules"] = state?.aclRules;
+            resourceInputs["clusterId"] = state?.clusterId;
+            resourceInputs["noIpAllowed"] = state?.noIpAllowed;
+            resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as AclArgs | undefined;
-            if ((!args || args.clusterId === undefined) && !opts.urn) {
+            if (args?.clusterId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            resourceInputs["aclRules"] = args ? args.aclRules : undefined;
-            resourceInputs["clusterId"] = args ? args.clusterId : undefined;
-            resourceInputs["noIpAllowed"] = args ? args.noIpAllowed : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["aclRules"] = args?.aclRules;
+            resourceInputs["clusterId"] = args?.clusterId;
+            resourceInputs["noIpAllowed"] = args?.noIpAllowed;
+            resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Acl.__pulumiType, name, resourceInputs, opts);

@@ -104,7 +104,7 @@ export interface GetInstanceImageResult {
      * State of the image. Possible values are: `available`, `creating` or `error`.
      */
     readonly state: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about an instance image.

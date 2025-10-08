@@ -51,8 +51,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
@@ -74,20 +72,16 @@ import (
 //			_, err = domain.NewRecord(ctx, "spf", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("TXT"),
-//				Data: main.SpfConfig.ApplyT(func(spfConfig string) (string, error) {
-//					return fmt.Sprintf("v=spf1 %v -all", spfConfig), nil
-//				}).(pulumi.StringOutput),
+//				Data:    main.SpfValue,
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = domain.NewRecord(ctx, "dkim", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
-//				Name: main.ProjectId.ApplyT(func(projectId string) (string, error) {
-//					return fmt.Sprintf("%v._domainkey", projectId), nil
-//				}).(pulumi.StringOutput),
-//				Type: pulumi.String("TXT"),
-//				Data: main.DkimConfig,
+//				Name:    main.DkimName,
+//				Type:    pulumi.String("TXT"),
+//				Data:    main.DkimConfig,
 //			})
 //			if err != nil {
 //				return err
@@ -95,7 +89,7 @@ import (
 //			_, err = domain.NewRecord(ctx, "mx", &domain.RecordArgs{
 //				DnsZone: pulumi.String(domainName),
 //				Type:    pulumi.String("MX"),
-//				Data:    pulumi.String("."),
+//				Data:    main.MxConfig,
 //			})
 //			if err != nil {
 //				return err
@@ -169,6 +163,8 @@ type TemDomain struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig pulumi.StringOutput `pulumi:"dkimConfig"`
+	// DKIM name for the domain, as should be recorded in the DNS zone.
+	DkimName pulumi.StringOutput `pulumi:"dkimName"`
 	// DMARC record for the domain, as should be recorded in the DNS zone.
 	DmarcConfig pulumi.StringOutput `pulumi:"dmarcConfig"`
 	// DMARC name for the domain, as should be recorded in the DNS zone.
@@ -181,6 +177,8 @@ type TemDomain struct {
 	LastValidAt pulumi.StringOutput `pulumi:"lastValidAt"`
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole pulumi.StringOutput `pulumi:"mxBlackhole"`
+	// MX record configuration for the domain blackhole.
+	MxConfig pulumi.StringOutput `pulumi:"mxConfig"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -190,7 +188,7 @@ type TemDomain struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region in which the domain should be created.
 	// > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The domain's reputation.
 	Reputations TemDomainReputationArrayOutput `pulumi:"reputations"`
 	// The date and time of the revocation of the domain (RFC 3339 format).
@@ -211,6 +209,8 @@ type TemDomain struct {
 	SmtpsPortAlternative pulumi.IntOutput `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringOutput `pulumi:"spfConfig"`
+	// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+	SpfValue pulumi.StringOutput `pulumi:"spfValue"`
 	// The status of the domain's reputation.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -257,6 +257,8 @@ type temDomainState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig *string `pulumi:"dkimConfig"`
+	// DKIM name for the domain, as should be recorded in the DNS zone.
+	DkimName *string `pulumi:"dkimName"`
 	// DMARC record for the domain, as should be recorded in the DNS zone.
 	DmarcConfig *string `pulumi:"dmarcConfig"`
 	// DMARC name for the domain, as should be recorded in the DNS zone.
@@ -269,6 +271,8 @@ type temDomainState struct {
 	LastValidAt *string `pulumi:"lastValidAt"`
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole *string `pulumi:"mxBlackhole"`
+	// MX record configuration for the domain blackhole.
+	MxConfig *string `pulumi:"mxConfig"`
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name *string `pulumi:"name"`
@@ -299,6 +303,8 @@ type temDomainState struct {
 	SmtpsPortAlternative *int `pulumi:"smtpsPortAlternative"`
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig *string `pulumi:"spfConfig"`
+	// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+	SpfValue *string `pulumi:"spfValue"`
 	// The status of the domain's reputation.
 	Status *string `pulumi:"status"`
 }
@@ -313,6 +319,8 @@ type TemDomainState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The DKIM public key, as should be recorded in the DNS zone.
 	DkimConfig pulumi.StringPtrInput
+	// DKIM name for the domain, as should be recorded in the DNS zone.
+	DkimName pulumi.StringPtrInput
 	// DMARC record for the domain, as should be recorded in the DNS zone.
 	DmarcConfig pulumi.StringPtrInput
 	// DMARC name for the domain, as should be recorded in the DNS zone.
@@ -325,6 +333,8 @@ type TemDomainState struct {
 	LastValidAt pulumi.StringPtrInput
 	// The Scaleway's blackhole MX server to use if you do not have one.
 	MxBlackhole pulumi.StringPtrInput
+	// MX record configuration for the domain blackhole.
+	MxConfig pulumi.StringPtrInput
 	// The domain name, must not be used in another Transactional Email Domain.
 	// > **Important:** Updates to `name` will recreate the domain.
 	Name pulumi.StringPtrInput
@@ -355,6 +365,8 @@ type TemDomainState struct {
 	SmtpsPortAlternative pulumi.IntPtrInput
 	// The snippet of the SPF record that should be registered in the DNS zone.
 	SpfConfig pulumi.StringPtrInput
+	// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+	SpfValue pulumi.StringPtrInput
 	// The status of the domain's reputation.
 	Status pulumi.StringPtrInput
 }
@@ -504,6 +516,11 @@ func (o TemDomainOutput) DkimConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DkimConfig }).(pulumi.StringOutput)
 }
 
+// DKIM name for the domain, as should be recorded in the DNS zone.
+func (o TemDomainOutput) DkimName() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DkimName }).(pulumi.StringOutput)
+}
+
 // DMARC record for the domain, as should be recorded in the DNS zone.
 func (o TemDomainOutput) DmarcConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.DmarcConfig }).(pulumi.StringOutput)
@@ -531,6 +548,11 @@ func (o TemDomainOutput) MxBlackhole() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.MxBlackhole }).(pulumi.StringOutput)
 }
 
+// MX record configuration for the domain blackhole.
+func (o TemDomainOutput) MxConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.MxConfig }).(pulumi.StringOutput)
+}
+
 // The domain name, must not be used in another Transactional Email Domain.
 // > **Important:** Updates to `name` will recreate the domain.
 func (o TemDomainOutput) Name() pulumi.StringOutput {
@@ -549,8 +571,8 @@ func (o TemDomainOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region in which the domain should be created.
 // > **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
-func (o TemDomainOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o TemDomainOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The domain's reputation.
@@ -601,6 +623,11 @@ func (o TemDomainOutput) SmtpsPortAlternative() pulumi.IntOutput {
 // The snippet of the SPF record that should be registered in the DNS zone.
 func (o TemDomainOutput) SpfConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SpfConfig }).(pulumi.StringOutput)
+}
+
+// Complete SPF record value for the domain, as should be recorded in the DNS zone.
+func (o TemDomainOutput) SpfValue() pulumi.StringOutput {
+	return o.ApplyT(func(v *TemDomain) pulumi.StringOutput { return v.SpfValue }).(pulumi.StringOutput)
 }
 
 // The status of the domain's reputation.

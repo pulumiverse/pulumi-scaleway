@@ -109,50 +109,46 @@ export class InstanceSnapshot extends pulumi.CustomResource {
     /**
      * The snapshot creation time.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Import a snapshot from a qcow2 file located in a bucket
      */
-    public readonly import!: pulumi.Output<outputs.InstanceSnapshotImport | undefined>;
+    declare public readonly import: pulumi.Output<outputs.InstanceSnapshotImport | undefined>;
     /**
      * The name of the snapshot. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the snapshot is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the snapshot is
      * associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * (Optional) The size of the snapshot.
      */
-    public /*out*/ readonly sizeInGb!: pulumi.Output<number>;
+    declare public /*out*/ readonly sizeInGb: pulumi.Output<number>;
     /**
      * A list of tags to apply to the snapshot.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
-     *
-     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
-     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-     * > **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The ID of the volume to take a snapshot from.
      */
-    public readonly volumeId!: pulumi.Output<string | undefined>;
+    declare public readonly volumeId: pulumi.Output<string | undefined>;
     /**
      * `zone`) The zone in which
      * the snapshot should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceSnapshot resource with the given unique name, arguments, and options.
@@ -170,25 +166,25 @@ export class InstanceSnapshot extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceSnapshotState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["import"] = state ? state.import : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["sizeInGb"] = state ? state.sizeInGb : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["import"] = state?.import;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["volumeId"] = state?.volumeId;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceSnapshotArgs | undefined;
-            resourceInputs["import"] = args ? args.import : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["import"] = args?.import;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["volumeId"] = args?.volumeId;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["sizeInGb"] = undefined /*out*/;
@@ -234,10 +230,6 @@ export interface InstanceSnapshotState {
     /**
      * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
-     *
-     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
-     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-     * > **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
      */
     type?: pulumi.Input<string>;
     /**
@@ -275,10 +267,6 @@ export interface InstanceSnapshotArgs {
     /**
      * The snapshot's volume type.  The possible values are: `lSsd` (Local SSD).
      * Updates to this field will recreate a new resource.
-     *
-     * > **Important:** Snapshots of volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Snapshot` resource anymore. Please use the `scaleway.block.Snapshot` resource instead.
-     * If you want to migrate existing snapshots, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
-     * > **Important:** Snapshots of volumes with type `unified` (can be used with both Block and Local SSD) are deprecated since the migration to SBS.
      */
     type?: pulumi.Input<string>;
     /**

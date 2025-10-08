@@ -55,19 +55,19 @@ export class DomainValidation extends pulumi.CustomResource {
     /**
      * The ID of the domain name used when sending emails. This ID must correspond to a domain already registered with Scaleway's Transactional Email service.
      */
-    public readonly domainId!: pulumi.Output<string>;
+    declare public readonly domainId: pulumi.Output<string>;
     /**
      * `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The maximum wait time in seconds before returning an error if the domain validation does not complete. The default is 300 seconds.
      */
-    public readonly timeout!: pulumi.Output<number | undefined>;
+    declare public readonly timeout: pulumi.Output<number | undefined>;
     /**
      * Indicates if the domain has been verified for email sending. This is computed after the creation or update of the domain validation resource.
      */
-    public /*out*/ readonly validated!: pulumi.Output<boolean>;
+    declare public /*out*/ readonly validated: pulumi.Output<boolean>;
 
     /**
      * Create a DomainValidation resource with the given unique name, arguments, and options.
@@ -82,18 +82,18 @@ export class DomainValidation extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainValidationState | undefined;
-            resourceInputs["domainId"] = state ? state.domainId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["timeout"] = state ? state.timeout : undefined;
-            resourceInputs["validated"] = state ? state.validated : undefined;
+            resourceInputs["domainId"] = state?.domainId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["timeout"] = state?.timeout;
+            resourceInputs["validated"] = state?.validated;
         } else {
             const args = argsOrState as DomainValidationArgs | undefined;
-            if ((!args || args.domainId === undefined) && !opts.urn) {
+            if (args?.domainId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'domainId'");
             }
-            resourceInputs["domainId"] = args ? args.domainId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["domainId"] = args?.domainId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["timeout"] = args?.timeout;
             resourceInputs["validated"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

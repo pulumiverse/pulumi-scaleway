@@ -75,7 +75,7 @@ export class Domain extends pulumi.CustomResource {
     /**
      * The unique identifier of the function.
      */
-    public readonly functionId!: pulumi.Output<string>;
+    declare public readonly functionId: pulumi.Output<string>;
     /**
      * The hostname with a CNAME record.
      *
@@ -83,15 +83,15 @@ export class Domain extends pulumi.CustomResource {
      *
      * > **Important** Updating the `functionId` or `hostname` arguments will recreate the domain.
      */
-    public readonly hostname!: pulumi.Output<string>;
+    declare public readonly hostname: pulumi.Output<string>;
     /**
      * (Defaults to provider `region`) The region in which the domain was created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The URL used to query the function.
      */
-    public /*out*/ readonly url!: pulumi.Output<string>;
+    declare public /*out*/ readonly url: pulumi.Output<string>;
 
     /**
      * Create a Domain resource with the given unique name, arguments, and options.
@@ -106,21 +106,21 @@ export class Domain extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DomainState | undefined;
-            resourceInputs["functionId"] = state ? state.functionId : undefined;
-            resourceInputs["hostname"] = state ? state.hostname : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["functionId"] = state?.functionId;
+            resourceInputs["hostname"] = state?.hostname;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["url"] = state?.url;
         } else {
             const args = argsOrState as DomainArgs | undefined;
-            if ((!args || args.functionId === undefined) && !opts.urn) {
+            if (args?.functionId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'functionId'");
             }
-            if ((!args || args.hostname === undefined) && !opts.urn) {
+            if (args?.hostname === undefined && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            resourceInputs["functionId"] = args ? args.functionId : undefined;
-            resourceInputs["hostname"] = args ? args.hostname : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["functionId"] = args?.functionId;
+            resourceInputs["hostname"] = args?.hostname;
+            resourceInputs["region"] = args?.region;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);

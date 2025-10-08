@@ -197,67 +197,67 @@ export class DatabaseInstance extends pulumi.CustomResource {
     /**
      * Boolean to store logical backups in the same region as the database instance
      */
-    public readonly backupSameRegion!: pulumi.Output<boolean>;
+    declare public readonly backupSameRegion: pulumi.Output<boolean>;
     /**
      * Backup schedule frequency in hours
      */
-    public readonly backupScheduleFrequency!: pulumi.Output<number>;
+    declare public readonly backupScheduleFrequency: pulumi.Output<number>;
     /**
      * Backup schedule retention in days
      */
-    public readonly backupScheduleRetention!: pulumi.Output<number>;
+    declare public readonly backupScheduleRetention: pulumi.Output<number>;
     /**
      * Certificate of the Database Instance.
      */
-    public /*out*/ readonly certificate!: pulumi.Output<string>;
+    declare public /*out*/ readonly certificate: pulumi.Output<string>;
     /**
      * Disable automated backup for the database instance
      */
-    public readonly disableBackup!: pulumi.Output<boolean | undefined>;
+    declare public readonly disableBackup: pulumi.Output<boolean | undefined>;
     /**
      * Enable or disable encryption at rest for the Database Instance.
      */
-    public readonly encryptionAtRest!: pulumi.Output<boolean | undefined>;
+    declare public readonly encryptionAtRest: pulumi.Output<boolean | undefined>;
     /**
      * (Deprecated) The IP of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
-    public /*out*/ readonly endpointIp!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpointIp: pulumi.Output<string>;
     /**
      * (Deprecated) The port of the Database Instance. Please use the privateNetwork or the loadBalancer attribute.
      *
      * @deprecated Please use the privateNetwork or the loadBalancer attribute
      */
-    public /*out*/ readonly endpointPort!: pulumi.Output<number>;
+    declare public /*out*/ readonly endpointPort: pulumi.Output<number>;
     /**
      * Database Instance's engine version (e.g. `PostgreSQL-11`).
      *
      * > **Important** Updates to `engine` will recreate the Database Instance.
      */
-    public readonly engine!: pulumi.Output<string>;
+    declare public readonly engine: pulumi.Output<string>;
     /**
      * Map of engine settings to be set at database initialisation.
      */
-    public readonly initSettings!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly initSettings: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Enable or disable high availability for the Database Instance.
      *
      * > **Important** Updates to `isHaCluster` will recreate the Database Instance.
      */
-    public readonly isHaCluster!: pulumi.Output<boolean | undefined>;
+    declare public readonly isHaCluster: pulumi.Output<boolean | undefined>;
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    public readonly loadBalancers!: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
+    declare public readonly loadBalancers: pulumi.Output<outputs.DatabaseInstanceLoadBalancer[]>;
     /**
      * Logs policy configuration
      */
-    public readonly logsPolicy!: pulumi.Output<outputs.DatabaseInstanceLogsPolicy>;
+    declare public readonly logsPolicy: pulumi.Output<outputs.DatabaseInstanceLogsPolicy>;
     /**
      * The name of the Database Instance.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The type of Database Instance you want to create (e.g. `db-dev-s`).
      *
@@ -266,65 +266,65 @@ export class DatabaseInstance extends pulumi.CustomResource {
      *
      * > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
      */
-    public readonly nodeType!: pulumi.Output<string>;
+    declare public readonly nodeType: pulumi.Output<string>;
     /**
      * The organization ID the Database Instance is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * Password for the first user of the Database Instance.
      */
-    public readonly password!: pulumi.Output<string | undefined>;
+    declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
-    public readonly privateIps!: pulumi.Output<outputs.DatabaseInstancePrivateIp[]>;
+    declare public readonly privateIps: pulumi.Output<outputs.DatabaseInstancePrivateIp[]>;
     /**
      * List of Private Networks endpoints of the Database Instance.
      */
-    public readonly privateNetwork!: pulumi.Output<outputs.DatabaseInstancePrivateNetwork | undefined>;
+    declare public readonly privateNetwork: pulumi.Output<outputs.DatabaseInstancePrivateNetwork | undefined>;
     /**
      * `projectId`) The ID of the project the Database
      * Instance is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * List of read replicas of the Database Instance.
      */
-    public /*out*/ readonly readReplicas!: pulumi.Output<outputs.DatabaseInstanceReadReplica[]>;
+    declare public /*out*/ readonly readReplicas: pulumi.Output<outputs.DatabaseInstanceReadReplica[]>;
     /**
      * `region`) The region
      * in which the Database Instance should be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * Map of engine settings to be set on a running instance.
      */
-    public readonly settings!: pulumi.Output<{[key: string]: string}>;
+    declare public readonly settings: pulumi.Output<{[key: string]: string}>;
     /**
      * The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
      */
-    public readonly snapshotId!: pulumi.Output<string | undefined>;
+    declare public readonly snapshotId: pulumi.Output<string | undefined>;
     /**
      * The tags associated with the Database Instance.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Identifier for the first user of the Database Instance.
      *
      * > **Important** Updates to `userName` will recreate the Database Instance.
      */
-    public readonly userName!: pulumi.Output<string>;
+    declare public readonly userName: pulumi.Output<string>;
     /**
      * Volume size (in GB). Cannot be used when `volumeType` is set to `lssd`.
      *
      * > **Important** Once your Database Instance reaches `diskFull` status, you should increase the volume size before making any other change to your Database Instance.
      */
-    public readonly volumeSizeInGb!: pulumi.Output<number>;
+    declare public readonly volumeSizeInGb: pulumi.Output<number>;
     /**
      * Type of volume where data are stored (`lssd`, `sbs5k` or `sbs15k`).
      */
-    public readonly volumeType!: pulumi.Output<string | undefined>;
+    declare public readonly volumeType: pulumi.Output<string | undefined>;
 
     /**
      * Create a DatabaseInstance resource with the given unique name, arguments, and options.
@@ -342,62 +342,62 @@ export class DatabaseInstance extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseInstanceState | undefined;
-            resourceInputs["backupSameRegion"] = state ? state.backupSameRegion : undefined;
-            resourceInputs["backupScheduleFrequency"] = state ? state.backupScheduleFrequency : undefined;
-            resourceInputs["backupScheduleRetention"] = state ? state.backupScheduleRetention : undefined;
-            resourceInputs["certificate"] = state ? state.certificate : undefined;
-            resourceInputs["disableBackup"] = state ? state.disableBackup : undefined;
-            resourceInputs["encryptionAtRest"] = state ? state.encryptionAtRest : undefined;
-            resourceInputs["endpointIp"] = state ? state.endpointIp : undefined;
-            resourceInputs["endpointPort"] = state ? state.endpointPort : undefined;
-            resourceInputs["engine"] = state ? state.engine : undefined;
-            resourceInputs["initSettings"] = state ? state.initSettings : undefined;
-            resourceInputs["isHaCluster"] = state ? state.isHaCluster : undefined;
-            resourceInputs["loadBalancers"] = state ? state.loadBalancers : undefined;
-            resourceInputs["logsPolicy"] = state ? state.logsPolicy : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["nodeType"] = state ? state.nodeType : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["password"] = state ? state.password : undefined;
-            resourceInputs["privateIps"] = state ? state.privateIps : undefined;
-            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["readReplicas"] = state ? state.readReplicas : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["settings"] = state ? state.settings : undefined;
-            resourceInputs["snapshotId"] = state ? state.snapshotId : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["userName"] = state ? state.userName : undefined;
-            resourceInputs["volumeSizeInGb"] = state ? state.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
+            resourceInputs["backupSameRegion"] = state?.backupSameRegion;
+            resourceInputs["backupScheduleFrequency"] = state?.backupScheduleFrequency;
+            resourceInputs["backupScheduleRetention"] = state?.backupScheduleRetention;
+            resourceInputs["certificate"] = state?.certificate;
+            resourceInputs["disableBackup"] = state?.disableBackup;
+            resourceInputs["encryptionAtRest"] = state?.encryptionAtRest;
+            resourceInputs["endpointIp"] = state?.endpointIp;
+            resourceInputs["endpointPort"] = state?.endpointPort;
+            resourceInputs["engine"] = state?.engine;
+            resourceInputs["initSettings"] = state?.initSettings;
+            resourceInputs["isHaCluster"] = state?.isHaCluster;
+            resourceInputs["loadBalancers"] = state?.loadBalancers;
+            resourceInputs["logsPolicy"] = state?.logsPolicy;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["nodeType"] = state?.nodeType;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["password"] = state?.password;
+            resourceInputs["privateIps"] = state?.privateIps;
+            resourceInputs["privateNetwork"] = state?.privateNetwork;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["readReplicas"] = state?.readReplicas;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["settings"] = state?.settings;
+            resourceInputs["snapshotId"] = state?.snapshotId;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["userName"] = state?.userName;
+            resourceInputs["volumeSizeInGb"] = state?.volumeSizeInGb;
+            resourceInputs["volumeType"] = state?.volumeType;
         } else {
             const args = argsOrState as DatabaseInstanceArgs | undefined;
-            if ((!args || args.nodeType === undefined) && !opts.urn) {
+            if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            resourceInputs["backupSameRegion"] = args ? args.backupSameRegion : undefined;
-            resourceInputs["backupScheduleFrequency"] = args ? args.backupScheduleFrequency : undefined;
-            resourceInputs["backupScheduleRetention"] = args ? args.backupScheduleRetention : undefined;
-            resourceInputs["disableBackup"] = args ? args.disableBackup : undefined;
-            resourceInputs["encryptionAtRest"] = args ? args.encryptionAtRest : undefined;
-            resourceInputs["engine"] = args ? args.engine : undefined;
-            resourceInputs["initSettings"] = args ? args.initSettings : undefined;
-            resourceInputs["isHaCluster"] = args ? args.isHaCluster : undefined;
-            resourceInputs["loadBalancers"] = args ? args.loadBalancers : undefined;
-            resourceInputs["logsPolicy"] = args ? args.logsPolicy : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["nodeType"] = args ? args.nodeType : undefined;
+            resourceInputs["backupSameRegion"] = args?.backupSameRegion;
+            resourceInputs["backupScheduleFrequency"] = args?.backupScheduleFrequency;
+            resourceInputs["backupScheduleRetention"] = args?.backupScheduleRetention;
+            resourceInputs["disableBackup"] = args?.disableBackup;
+            resourceInputs["encryptionAtRest"] = args?.encryptionAtRest;
+            resourceInputs["engine"] = args?.engine;
+            resourceInputs["initSettings"] = args?.initSettings;
+            resourceInputs["isHaCluster"] = args?.isHaCluster;
+            resourceInputs["loadBalancers"] = args?.loadBalancers;
+            resourceInputs["logsPolicy"] = args?.logsPolicy;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
-            resourceInputs["privateIps"] = args ? args.privateIps : undefined;
-            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["settings"] = args ? args.settings : undefined;
-            resourceInputs["snapshotId"] = args ? args.snapshotId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["userName"] = args ? args.userName : undefined;
-            resourceInputs["volumeSizeInGb"] = args ? args.volumeSizeInGb : undefined;
-            resourceInputs["volumeType"] = args ? args.volumeType : undefined;
+            resourceInputs["privateIps"] = args?.privateIps;
+            resourceInputs["privateNetwork"] = args?.privateNetwork;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["settings"] = args?.settings;
+            resourceInputs["snapshotId"] = args?.snapshotId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["userName"] = args?.userName;
+            resourceInputs["volumeSizeInGb"] = args?.volumeSizeInGb;
+            resourceInputs["volumeType"] = args?.volumeType;
             resourceInputs["certificate"] = undefined /*out*/;
             resourceInputs["endpointIp"] = undefined /*out*/;
             resourceInputs["endpointPort"] = undefined /*out*/;

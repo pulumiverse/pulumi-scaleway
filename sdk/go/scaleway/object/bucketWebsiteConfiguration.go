@@ -162,7 +162,7 @@ type BucketWebsiteConfiguration struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The region you want to attach the resource to
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).
 	WebsiteDomain pulumi.StringOutput `pulumi:"websiteDomain"`
 	// The website endpoint.
@@ -387,8 +387,8 @@ func (o BucketWebsiteConfigurationOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The region you want to attach the resource to
-func (o BucketWebsiteConfigurationOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *BucketWebsiteConfiguration) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o BucketWebsiteConfigurationOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketWebsiteConfiguration) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The domain of the website endpoint. This is used to create DNS alias [records](https://www.scaleway.com/en/docs/network/domains-and-dns/how-to/manage-dns-records/).

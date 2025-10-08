@@ -51,60 +51,60 @@ export class Secret extends pulumi.CustomResource {
     /**
      * Date and time of the secret's creation (in RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Description of the secret (e.g. `my-new-description`).
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * Ephemeral policy of the secret. Policy that defines whether/when a secret's versions expire. By default, the policy is applied to all the secret's versions.
      */
-    public readonly ephemeralPolicies!: pulumi.Output<outputs.SecretEphemeralPolicy[] | undefined>;
+    declare public readonly ephemeralPolicies: pulumi.Output<outputs.SecretEphemeralPolicy[] | undefined>;
     /**
      * Name of the secret (e.g. `my-secret`).
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Path of the secret, defaults to `/`.
      */
-    public readonly path!: pulumi.Output<string | undefined>;
+    declare public readonly path: pulumi.Output<string | undefined>;
     /**
      * The project ID containing is the secret.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * True if secret protection is enabled on a given secret. A protected secret cannot be deleted.
      */
-    public readonly protected!: pulumi.Output<boolean | undefined>;
+    declare public readonly protected: pulumi.Output<boolean | undefined>;
     /**
      * `region`) The region
      * in which the resource exists.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The status of the secret.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Tags of the secret (e.g. `["tag", "secret"]`).
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * Type of the secret. If not specified, the type is Opaque. Available values can be found in [SDK Constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
      */
-    public readonly type!: pulumi.Output<string | undefined>;
+    declare public readonly type: pulumi.Output<string | undefined>;
     /**
      * Date and time of the secret's last update (in RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The amount of secret versions.
      */
-    public /*out*/ readonly versionCount!: pulumi.Output<number>;
+    declare public /*out*/ readonly versionCount: pulumi.Output<number>;
     /**
      * List of the versions of the secret
      */
-    public /*out*/ readonly versions!: pulumi.Output<outputs.SecretVersion[]>;
+    declare public /*out*/ readonly versions: pulumi.Output<outputs.SecretVersion[]>;
 
     /**
      * Create a Secret resource with the given unique name, arguments, and options.
@@ -122,31 +122,31 @@ export class Secret extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SecretState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["ephemeralPolicies"] = state ? state.ephemeralPolicies : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["path"] = state ? state.path : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["protected"] = state ? state.protected : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["versionCount"] = state ? state.versionCount : undefined;
-            resourceInputs["versions"] = state ? state.versions : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["ephemeralPolicies"] = state?.ephemeralPolicies;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["path"] = state?.path;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["protected"] = state?.protected;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["versionCount"] = state?.versionCount;
+            resourceInputs["versions"] = state?.versions;
         } else {
             const args = argsOrState as SecretArgs | undefined;
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["ephemeralPolicies"] = args ? args.ephemeralPolicies : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["path"] = args ? args.path : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["protected"] = args ? args.protected : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["ephemeralPolicies"] = args?.ephemeralPolicies;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["path"] = args?.path;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["protected"] = args?.protected;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

@@ -102,7 +102,7 @@ type Webhosting struct {
 	// List of DNS records associated with the webhosting.
 	Records WebhostingRecordArrayOutput `pulumi:"records"`
 	// `region`) The region of the Hosting.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The hosting status.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the hosting.
@@ -445,8 +445,8 @@ func (o WebhostingOutput) Records() WebhostingRecordArrayOutput {
 }
 
 // `region`) The region of the Hosting.
-func (o WebhostingOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Webhosting) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o WebhostingOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Webhosting) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The hosting status.

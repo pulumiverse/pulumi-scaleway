@@ -63,31 +63,31 @@ export class EdgeServicesWafStage extends pulumi.CustomResource {
     /**
      * The ID of the backend stage to forward requests to after the WAF stage.
      */
-    public readonly backendStageId!: pulumi.Output<string>;
+    declare public readonly backendStageId: pulumi.Output<string>;
     /**
      * The date and time of the creation of the WAF stage.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The mode defining WAF behavior (`disable`/`logOnly`/`enable`).
      */
-    public readonly mode!: pulumi.Output<string>;
+    declare public readonly mode: pulumi.Output<string>;
     /**
      * The sensitivity level (`1`,`2`,`3`,`4`) to use when classifying requests as malicious. With a high level, requests are more likely to be classed as malicious, and false positives are expected. With a lower level, requests are more likely to be classed as benign.
      */
-    public readonly paranoiaLevel!: pulumi.Output<number>;
+    declare public readonly paranoiaLevel: pulumi.Output<number>;
     /**
      * The ID of the pipeline.
      */
-    public readonly pipelineId!: pulumi.Output<string>;
+    declare public readonly pipelineId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the WAF stage is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The date and time of the last update of the WAF stage.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesWafStage resource with the given unique name, arguments, and options.
@@ -102,26 +102,26 @@ export class EdgeServicesWafStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesWafStageState | undefined;
-            resourceInputs["backendStageId"] = state ? state.backendStageId : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["mode"] = state ? state.mode : undefined;
-            resourceInputs["paranoiaLevel"] = state ? state.paranoiaLevel : undefined;
-            resourceInputs["pipelineId"] = state ? state.pipelineId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
+            resourceInputs["backendStageId"] = state?.backendStageId;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["mode"] = state?.mode;
+            resourceInputs["paranoiaLevel"] = state?.paranoiaLevel;
+            resourceInputs["pipelineId"] = state?.pipelineId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as EdgeServicesWafStageArgs | undefined;
-            if ((!args || args.paranoiaLevel === undefined) && !opts.urn) {
+            if (args?.paranoiaLevel === undefined && !opts.urn) {
                 throw new Error("Missing required property 'paranoiaLevel'");
             }
-            if ((!args || args.pipelineId === undefined) && !opts.urn) {
+            if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
-            resourceInputs["backendStageId"] = args ? args.backendStageId : undefined;
-            resourceInputs["mode"] = args ? args.mode : undefined;
-            resourceInputs["paranoiaLevel"] = args ? args.paranoiaLevel : undefined;
-            resourceInputs["pipelineId"] = args ? args.pipelineId : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["backendStageId"] = args?.backendStageId;
+            resourceInputs["mode"] = args?.mode;
+            resourceInputs["paranoiaLevel"] = args?.paranoiaLevel;
+            resourceInputs["pipelineId"] = args?.pipelineId;
+            resourceInputs["projectId"] = args?.projectId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

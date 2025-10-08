@@ -140,39 +140,39 @@ export class Route extends pulumi.CustomResource {
     /**
      * The date and time of the creation of the route (RFC 3339 format).
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * The route description.
      */
-    public readonly description!: pulumi.Output<string | undefined>;
+    declare public readonly description: pulumi.Output<string | undefined>;
     /**
      * The destination of the route.
      */
-    public readonly destination!: pulumi.Output<string | undefined>;
+    declare public readonly destination: pulumi.Output<string | undefined>;
     /**
      * The ID of the nexthop private network.
      */
-    public readonly nexthopPrivateNetworkId!: pulumi.Output<string | undefined>;
+    declare public readonly nexthopPrivateNetworkId: pulumi.Output<string | undefined>;
     /**
      * The ID of the nexthop resource.
      */
-    public readonly nexthopResourceId!: pulumi.Output<string | undefined>;
+    declare public readonly nexthopResourceId: pulumi.Output<string | undefined>;
     /**
      * `region`) The region of the route.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The tags to associate with the route.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The date and time of the creation of the route (RFC 3339 format).
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * The VPC ID the route belongs to.
      */
-    public readonly vpcId!: pulumi.Output<string>;
+    declare public readonly vpcId: pulumi.Output<string>;
 
     /**
      * Create a Route resource with the given unique name, arguments, and options.
@@ -187,27 +187,27 @@ export class Route extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouteState | undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["description"] = state ? state.description : undefined;
-            resourceInputs["destination"] = state ? state.destination : undefined;
-            resourceInputs["nexthopPrivateNetworkId"] = state ? state.nexthopPrivateNetworkId : undefined;
-            resourceInputs["nexthopResourceId"] = state ? state.nexthopResourceId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["description"] = state?.description;
+            resourceInputs["destination"] = state?.destination;
+            resourceInputs["nexthopPrivateNetworkId"] = state?.nexthopPrivateNetworkId;
+            resourceInputs["nexthopResourceId"] = state?.nexthopResourceId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["vpcId"] = state?.vpcId;
         } else {
             const args = argsOrState as RouteArgs | undefined;
-            if ((!args || args.vpcId === undefined) && !opts.urn) {
+            if (args?.vpcId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'vpcId'");
             }
-            resourceInputs["description"] = args ? args.description : undefined;
-            resourceInputs["destination"] = args ? args.destination : undefined;
-            resourceInputs["nexthopPrivateNetworkId"] = args ? args.nexthopPrivateNetworkId : undefined;
-            resourceInputs["nexthopResourceId"] = args ? args.nexthopResourceId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["description"] = args?.description;
+            resourceInputs["destination"] = args?.destination;
+            resourceInputs["nexthopPrivateNetworkId"] = args?.nexthopPrivateNetworkId;
+            resourceInputs["nexthopResourceId"] = args?.nexthopResourceId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["vpcId"] = args?.vpcId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }

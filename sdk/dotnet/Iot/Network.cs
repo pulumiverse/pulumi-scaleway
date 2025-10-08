@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// (Defaults to provider `region`) The region in which the Network is attached to.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The endpoint key to keep secret.

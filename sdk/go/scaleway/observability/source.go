@@ -79,7 +79,7 @@ type Source struct {
 	// The URL endpoint used for pushing data to the Cockpit data source.
 	PushUrl pulumi.StringOutput `pulumi:"pushUrl"`
 	// ) The region where the data source is located.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.
 	RetentionDays pulumi.IntOutput `pulumi:"retentionDays"`
 	// Indicates whether the data source is synchronized with Grafana.
@@ -324,8 +324,8 @@ func (o SourceOutput) PushUrl() pulumi.StringOutput {
 }
 
 // ) The region where the data source is located.
-func (o SourceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Source) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SourceOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Source) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The number of days to retain data in the data source. Must be a value between 1 and 365. For more details on retention policies, please refer to the [Scaleway Retention Documentation](https://www.scaleway.com/en/docs/cockpit/concepts/#retention). Note: Changes to this field will force the creation of a new resource.

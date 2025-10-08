@@ -74,15 +74,15 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
     /**
      * The IP ID
      */
-    public readonly ipId!: pulumi.Output<string>;
+    declare public readonly ipId: pulumi.Output<string>;
     /**
      * The reverse DNS for this IP.
      */
-    public readonly reverse!: pulumi.Output<string>;
+    declare public readonly reverse: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the IP should be reserved.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a InstanceIpReverseDns resource with the given unique name, arguments, and options.
@@ -100,20 +100,20 @@ export class InstanceIpReverseDns extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as InstanceIpReverseDnsState | undefined;
-            resourceInputs["ipId"] = state ? state.ipId : undefined;
-            resourceInputs["reverse"] = state ? state.reverse : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["ipId"] = state?.ipId;
+            resourceInputs["reverse"] = state?.reverse;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as InstanceIpReverseDnsArgs | undefined;
-            if ((!args || args.ipId === undefined) && !opts.urn) {
+            if (args?.ipId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'ipId'");
             }
-            if ((!args || args.reverse === undefined) && !opts.urn) {
+            if (args?.reverse === undefined && !opts.urn) {
                 throw new Error("Missing required property 'reverse'");
             }
-            resourceInputs["ipId"] = args ? args.ipId : undefined;
-            resourceInputs["reverse"] = args ? args.reverse : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["ipId"] = args?.ipId;
+            resourceInputs["reverse"] = args?.reverse;
+            resourceInputs["zone"] = args?.zone;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceIpReverseDns.__pulumiType, name, resourceInputs, opts);

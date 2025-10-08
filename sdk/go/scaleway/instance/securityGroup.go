@@ -49,7 +49,7 @@ type SecurityGroup struct {
 	// The tags associated with the security group
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewSecurityGroup registers a new resource with the given unique name, arguments, and options.
@@ -357,8 +357,8 @@ func (o SecurityGroupOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // `zone`) The zone in which the security group should be created.
-func (o SecurityGroupOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecurityGroup) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o SecurityGroupOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecurityGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type SecurityGroupArrayOutput struct{ *pulumi.OutputState }

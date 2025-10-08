@@ -62,77 +62,77 @@ export class PublicGatewayDhcp extends pulumi.CustomResource {
     /**
      * The IP address of the DHCP server. This will be the gateway's address in the Private Network.
      */
-    public readonly address!: pulumi.Output<string>;
+    declare public readonly address: pulumi.Output<string>;
     /**
      * The date and time of the creation of the Public Gateway DHCP configuration.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
      */
-    public readonly dnsLocalName!: pulumi.Output<string>;
+    declare public readonly dnsLocalName: pulumi.Output<string>;
     /**
      * Additional DNS search paths
      */
-    public readonly dnsSearches!: pulumi.Output<string[]>;
+    declare public readonly dnsSearches: pulumi.Output<string[]>;
     /**
      * Override the DNS server list pushed to DHCP clients, instead of the gateway itself.
      */
-    public readonly dnsServersOverrides!: pulumi.Output<string[]>;
+    declare public readonly dnsServersOverrides: pulumi.Output<string[]>;
     /**
      * Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
      */
-    public readonly enableDynamic!: pulumi.Output<boolean>;
+    declare public readonly enableDynamic: pulumi.Output<boolean>;
     /**
      * The Organization ID the Public Gateway DHCP config is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * High IP (excluded) of the dynamic address pool. Defaults to the last address of the subnet.
      */
-    public readonly poolHigh!: pulumi.Output<string>;
+    declare public readonly poolHigh: pulumi.Output<string>;
     /**
      * Low IP (included) of the dynamic address pool. Defaults to the second address of the subnet.
      */
-    public readonly poolLow!: pulumi.Output<string>;
+    declare public readonly poolLow: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
      *
      * > **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
      */
-    public readonly pushDefaultRoute!: pulumi.Output<boolean>;
+    declare public readonly pushDefaultRoute: pulumi.Output<boolean>;
     /**
      * Whether the gateway should push custom DNS servers to clients. This allows for instance hostname > IP resolution. Defaults to `true`.
      */
-    public readonly pushDnsServer!: pulumi.Output<boolean>;
+    declare public readonly pushDnsServer: pulumi.Output<boolean>;
     /**
      * After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `validLifetime`. Defaults to 51m (3060s).
      */
-    public readonly rebindTimer!: pulumi.Output<number>;
+    declare public readonly rebindTimer: pulumi.Output<number>;
     /**
      * After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
      */
-    public readonly renewTimer!: pulumi.Output<number>;
+    declare public readonly renewTimer: pulumi.Output<number>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
      */
-    public readonly subnet!: pulumi.Output<string>;
+    declare public readonly subnet: pulumi.Output<string>;
     /**
      * The date and time of the last update of the Public Gateway DHCP configuration.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
      */
-    public readonly validLifetime!: pulumi.Output<number>;
+    declare public readonly validLifetime: pulumi.Output<number>;
     /**
      * `zone`) The zone in which the Public Gateway DHCP configuration should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a PublicGatewayDhcp resource with the given unique name, arguments, and options.
@@ -147,44 +147,44 @@ export class PublicGatewayDhcp extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PublicGatewayDhcpState | undefined;
-            resourceInputs["address"] = state ? state.address : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["dnsLocalName"] = state ? state.dnsLocalName : undefined;
-            resourceInputs["dnsSearches"] = state ? state.dnsSearches : undefined;
-            resourceInputs["dnsServersOverrides"] = state ? state.dnsServersOverrides : undefined;
-            resourceInputs["enableDynamic"] = state ? state.enableDynamic : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["poolHigh"] = state ? state.poolHigh : undefined;
-            resourceInputs["poolLow"] = state ? state.poolLow : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["pushDefaultRoute"] = state ? state.pushDefaultRoute : undefined;
-            resourceInputs["pushDnsServer"] = state ? state.pushDnsServer : undefined;
-            resourceInputs["rebindTimer"] = state ? state.rebindTimer : undefined;
-            resourceInputs["renewTimer"] = state ? state.renewTimer : undefined;
-            resourceInputs["subnet"] = state ? state.subnet : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["validLifetime"] = state ? state.validLifetime : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["address"] = state?.address;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["dnsLocalName"] = state?.dnsLocalName;
+            resourceInputs["dnsSearches"] = state?.dnsSearches;
+            resourceInputs["dnsServersOverrides"] = state?.dnsServersOverrides;
+            resourceInputs["enableDynamic"] = state?.enableDynamic;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["poolHigh"] = state?.poolHigh;
+            resourceInputs["poolLow"] = state?.poolLow;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["pushDefaultRoute"] = state?.pushDefaultRoute;
+            resourceInputs["pushDnsServer"] = state?.pushDnsServer;
+            resourceInputs["rebindTimer"] = state?.rebindTimer;
+            resourceInputs["renewTimer"] = state?.renewTimer;
+            resourceInputs["subnet"] = state?.subnet;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["validLifetime"] = state?.validLifetime;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PublicGatewayDhcpArgs | undefined;
-            if ((!args || args.subnet === undefined) && !opts.urn) {
+            if (args?.subnet === undefined && !opts.urn) {
                 throw new Error("Missing required property 'subnet'");
             }
-            resourceInputs["address"] = args ? args.address : undefined;
-            resourceInputs["dnsLocalName"] = args ? args.dnsLocalName : undefined;
-            resourceInputs["dnsSearches"] = args ? args.dnsSearches : undefined;
-            resourceInputs["dnsServersOverrides"] = args ? args.dnsServersOverrides : undefined;
-            resourceInputs["enableDynamic"] = args ? args.enableDynamic : undefined;
-            resourceInputs["poolHigh"] = args ? args.poolHigh : undefined;
-            resourceInputs["poolLow"] = args ? args.poolLow : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["pushDefaultRoute"] = args ? args.pushDefaultRoute : undefined;
-            resourceInputs["pushDnsServer"] = args ? args.pushDnsServer : undefined;
-            resourceInputs["rebindTimer"] = args ? args.rebindTimer : undefined;
-            resourceInputs["renewTimer"] = args ? args.renewTimer : undefined;
-            resourceInputs["subnet"] = args ? args.subnet : undefined;
-            resourceInputs["validLifetime"] = args ? args.validLifetime : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["address"] = args?.address;
+            resourceInputs["dnsLocalName"] = args?.dnsLocalName;
+            resourceInputs["dnsSearches"] = args?.dnsSearches;
+            resourceInputs["dnsServersOverrides"] = args?.dnsServersOverrides;
+            resourceInputs["enableDynamic"] = args?.enableDynamic;
+            resourceInputs["poolHigh"] = args?.poolHigh;
+            resourceInputs["poolLow"] = args?.poolLow;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["pushDefaultRoute"] = args?.pushDefaultRoute;
+            resourceInputs["pushDnsServer"] = args?.pushDnsServer;
+            resourceInputs["rebindTimer"] = args?.rebindTimer;
+            resourceInputs["renewTimer"] = args?.renewTimer;
+            resourceInputs["subnet"] = args?.subnet;
+            resourceInputs["validLifetime"] = args?.validLifetime;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;

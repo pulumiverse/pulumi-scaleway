@@ -89,59 +89,59 @@ export class Image extends pulumi.CustomResource {
      *
      * > **Important:** For now it is only possible to have 1 additional_volume.
      */
-    public readonly additionalVolumeIds!: pulumi.Output<string | undefined>;
+    declare public readonly additionalVolumeIds: pulumi.Output<string | undefined>;
     /**
      * The description of the extra volumes attached to the image.
      */
-    public /*out*/ readonly additionalVolumes!: pulumi.Output<outputs.instance.ImageAdditionalVolume[]>;
+    declare public /*out*/ readonly additionalVolumes: pulumi.Output<outputs.instance.ImageAdditionalVolume[]>;
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */
-    public readonly architecture!: pulumi.Output<string | undefined>;
+    declare public readonly architecture: pulumi.Output<string | undefined>;
     /**
      * Date of the volume creation.
      */
-    public /*out*/ readonly creationDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly creationDate: pulumi.Output<string>;
     /**
      * ID of the server the image is based on (in case it is a backup).
      */
-    public /*out*/ readonly fromServerId!: pulumi.Output<string>;
+    declare public /*out*/ readonly fromServerId: pulumi.Output<string>;
     /**
      * Date of volume latest update.
      */
-    public /*out*/ readonly modificationDate!: pulumi.Output<string>;
+    declare public /*out*/ readonly modificationDate: pulumi.Output<string>;
     /**
      * The name of the image. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the image is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * The ID of the project the image is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Set to `true` if the image is public.
      */
-    public readonly public!: pulumi.Output<boolean | undefined>;
+    declare public readonly public: pulumi.Output<boolean | undefined>;
     /**
      * The ID of the snapshot of the volume to be used as root in the image.
      */
-    public readonly rootVolumeId!: pulumi.Output<string>;
+    declare public readonly rootVolumeId: pulumi.Output<string>;
     /**
      * State of the volume.
      */
-    public /*out*/ readonly state!: pulumi.Output<string>;
+    declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
      * A list of tags to apply to the image.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The zone in which the image should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Image resource with the given unique name, arguments, and options.
@@ -156,33 +156,33 @@ export class Image extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ImageState | undefined;
-            resourceInputs["additionalVolumeIds"] = state ? state.additionalVolumeIds : undefined;
-            resourceInputs["additionalVolumes"] = state ? state.additionalVolumes : undefined;
-            resourceInputs["architecture"] = state ? state.architecture : undefined;
-            resourceInputs["creationDate"] = state ? state.creationDate : undefined;
-            resourceInputs["fromServerId"] = state ? state.fromServerId : undefined;
-            resourceInputs["modificationDate"] = state ? state.modificationDate : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["public"] = state ? state.public : undefined;
-            resourceInputs["rootVolumeId"] = state ? state.rootVolumeId : undefined;
-            resourceInputs["state"] = state ? state.state : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["additionalVolumeIds"] = state?.additionalVolumeIds;
+            resourceInputs["additionalVolumes"] = state?.additionalVolumes;
+            resourceInputs["architecture"] = state?.architecture;
+            resourceInputs["creationDate"] = state?.creationDate;
+            resourceInputs["fromServerId"] = state?.fromServerId;
+            resourceInputs["modificationDate"] = state?.modificationDate;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["public"] = state?.public;
+            resourceInputs["rootVolumeId"] = state?.rootVolumeId;
+            resourceInputs["state"] = state?.state;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as ImageArgs | undefined;
-            if ((!args || args.rootVolumeId === undefined) && !opts.urn) {
+            if (args?.rootVolumeId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'rootVolumeId'");
             }
-            resourceInputs["additionalVolumeIds"] = args ? args.additionalVolumeIds : undefined;
-            resourceInputs["architecture"] = args ? args.architecture : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["public"] = args ? args.public : undefined;
-            resourceInputs["rootVolumeId"] = args ? args.rootVolumeId : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["additionalVolumeIds"] = args?.additionalVolumeIds;
+            resourceInputs["architecture"] = args?.architecture;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["public"] = args?.public;
+            resourceInputs["rootVolumeId"] = args?.rootVolumeId;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["additionalVolumes"] = undefined /*out*/;
             resourceInputs["creationDate"] = undefined /*out*/;
             resourceInputs["fromServerId"] = undefined /*out*/;

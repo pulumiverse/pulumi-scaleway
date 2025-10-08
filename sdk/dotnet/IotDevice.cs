@@ -157,7 +157,7 @@ namespace Pulumiverse.Scaleway
         /// The region you want to attach the resource to
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The current status of the device.

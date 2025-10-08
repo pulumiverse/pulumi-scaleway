@@ -48,7 +48,7 @@ type GetRoutesResult struct {
 	NexthopPrivateNetworkId *string `pulumi:"nexthopPrivateNetworkId"`
 	NexthopResourceId       *string `pulumi:"nexthopResourceId"`
 	NexthopResourceType     *string `pulumi:"nexthopResourceType"`
-	Region                  string  `pulumi:"region"`
+	Region                  *string `pulumi:"region"`
 	// List of retrieved routes
 	Routes []GetRoutesRoute `pulumi:"routes"`
 	Tags   []string         `pulumi:"tags"`
@@ -122,8 +122,8 @@ func (o GetRoutesResultOutput) NexthopResourceType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetRoutesResult) *string { return v.NexthopResourceType }).(pulumi.StringPtrOutput)
 }
 
-func (o GetRoutesResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetRoutesResult) string { return v.Region }).(pulumi.StringOutput)
+func (o GetRoutesResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRoutesResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // List of retrieved routes

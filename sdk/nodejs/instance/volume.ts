@@ -62,46 +62,43 @@ export class Volume extends pulumi.CustomResource {
     /**
      * If set, the new volume will be created from this snapshot. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
-    public readonly fromSnapshotId!: pulumi.Output<string | undefined>;
+    declare public readonly fromSnapshotId: pulumi.Output<string | undefined>;
     /**
      * If true, consider that this volume may have been migrated and no longer exists.
      */
-    public readonly migrateToSbs!: pulumi.Output<boolean | undefined>;
+    declare public readonly migrateToSbs: pulumi.Output<boolean | undefined>;
     /**
      * The name of the volume. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The organization ID the volume is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the volume is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The id of the associated server.
      */
-    public /*out*/ readonly serverId!: pulumi.Output<string>;
+    declare public /*out*/ readonly serverId: pulumi.Output<string>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
      */
-    public readonly sizeInGb!: pulumi.Output<number | undefined>;
+    declare public readonly sizeInGb: pulumi.Output<number | undefined>;
     /**
      * A list of tags to apply to the volume.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-     *
-     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * `zone`) The zone in which the volume should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Volume resource with the given unique name, arguments, and options.
@@ -116,29 +113,29 @@ export class Volume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
-            resourceInputs["fromSnapshotId"] = state ? state.fromSnapshotId : undefined;
-            resourceInputs["migrateToSbs"] = state ? state.migrateToSbs : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["serverId"] = state ? state.serverId : undefined;
-            resourceInputs["sizeInGb"] = state ? state.sizeInGb : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["fromSnapshotId"] = state?.fromSnapshotId;
+            resourceInputs["migrateToSbs"] = state?.migrateToSbs;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["serverId"] = state?.serverId;
+            resourceInputs["sizeInGb"] = state?.sizeInGb;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["fromSnapshotId"] = args ? args.fromSnapshotId : undefined;
-            resourceInputs["migrateToSbs"] = args ? args.migrateToSbs : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["sizeInGb"] = args ? args.sizeInGb : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["fromSnapshotId"] = args?.fromSnapshotId;
+            resourceInputs["migrateToSbs"] = args?.migrateToSbs;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["sizeInGb"] = args?.sizeInGb;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["serverId"] = undefined /*out*/;
         }
@@ -187,9 +184,6 @@ export interface VolumeState {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-     *
-     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type?: pulumi.Input<string>;
     /**
@@ -228,9 +222,6 @@ export interface VolumeArgs {
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The type of the volume. The possible values are: `lSsd` (Local SSD), `scratch` (Local Scratch SSD).
-     *
-     * > **Important:** Volumes with type `bSsd` (Block SSD) are deprecated and cannot be managed using the `scaleway.instance.Volume` resource anymore. Please use the `scaleway.block.Volume` resource instead.
-     * If you want to migrate existing volumes, you can visit [this page](https://www.scaleway.com/en/docs/instances/how-to/migrate-volumes-snapshots-to-sbs/) for more information.
      */
     type: pulumi.Input<string>;
     /**

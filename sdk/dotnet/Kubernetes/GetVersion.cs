@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// </summary>
         public readonly string Id;
         public readonly string Name;
-        public readonly string Region;
+        public readonly string? Region;
 
         [OutputConstructor]
         private GetVersionResult(
@@ -230,7 +230,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             string name,
 
-            string region)
+            string? region)
         {
             AvailableCnis = availableCnis;
             AvailableContainerRuntimes = availableContainerRuntimes;

@@ -107,7 +107,7 @@ type User struct {
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The Scaleway region this resource resides in.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewUser registers a new resource with the given unique name, arguments, and options.
@@ -383,8 +383,8 @@ func (o UserOutput) Password() pulumi.StringOutput {
 }
 
 // The Scaleway region this resource resides in.
-func (o UserOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o UserOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type UserArrayOutput struct{ *pulumi.OutputState }

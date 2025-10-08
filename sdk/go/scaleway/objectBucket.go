@@ -198,7 +198,7 @@ type ObjectBucket struct {
 	// `projectId`) The ID of the project the bucket is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A list of tags (key/value) for the bucket.
 	//
 	// * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
@@ -507,8 +507,8 @@ func (o ObjectBucketOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
-func (o ObjectBucketOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ObjectBucket) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ObjectBucketOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucket) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // A list of tags (key/value) for the bucket.

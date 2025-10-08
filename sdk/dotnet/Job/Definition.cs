@@ -160,7 +160,7 @@ namespace Pulumiverse.Scaleway.Job
         /// `region`) The region of the Job.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// A reference to a secret stored in Secret Manager.

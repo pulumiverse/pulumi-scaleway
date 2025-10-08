@@ -85,7 +85,7 @@ type SecretVersion struct {
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// ). The region where the resource exists.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The revision number of the secret version.
 	Revision pulumi.StringOutput `pulumi:"revision"`
 	// The ID of the secret associated with the version.
@@ -306,8 +306,8 @@ func (o SecretVersionOutput) Description() pulumi.StringPtrOutput {
 }
 
 // ). The region where the resource exists.
-func (o SecretVersionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *SecretVersion) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SecretVersionOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SecretVersion) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The revision number of the secret version.

@@ -176,7 +176,7 @@ type ObjectBucketAcl struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewObjectBucketAcl registers a new resource with the given unique name, arguments, and options.
@@ -389,8 +389,8 @@ func (o ObjectBucketAclOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The [region](https://www.scaleway.com/en/developers/api/#regions-and-zones) in which the bucket should be created.
-func (o ObjectBucketAclOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ObjectBucketAclOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectBucketAcl) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type ObjectBucketAclArrayOutput struct{ *pulumi.OutputState }

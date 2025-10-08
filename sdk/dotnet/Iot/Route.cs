@@ -185,7 +185,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// (Defaults to provider `region`) The region in which the Route is attached to.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Configuration block for the rest routes. See [product documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for a better understanding of the parameters.

@@ -69,7 +69,7 @@ type GetMarketplaceImageResult struct {
 	ImageType    *string `pulumi:"imageType"`
 	InstanceType *string `pulumi:"instanceType"`
 	Label        string  `pulumi:"label"`
-	Zone         string  `pulumi:"zone"`
+	Zone         *string `pulumi:"zone"`
 }
 
 func GetMarketplaceImageOutput(ctx *pulumi.Context, args GetMarketplaceImageOutputArgs, opts ...pulumi.InvokeOption) GetMarketplaceImageResultOutput {
@@ -131,8 +131,8 @@ func (o GetMarketplaceImageResultOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMarketplaceImageResult) string { return v.Label }).(pulumi.StringOutput)
 }
 
-func (o GetMarketplaceImageResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMarketplaceImageResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetMarketplaceImageResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMarketplaceImageResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

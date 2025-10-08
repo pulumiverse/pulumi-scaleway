@@ -194,7 +194,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public readonly string? Name;
         public readonly string? OsId;
         public readonly string? Version;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetOsResult(
@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string? version,
 
-            string zone)
+            string? zone)
         {
             Id = id;
             Name = name;

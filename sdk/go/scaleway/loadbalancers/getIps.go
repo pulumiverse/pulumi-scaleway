@@ -52,7 +52,7 @@ type GetIpsResult struct {
 	ProjectId string   `pulumi:"projectId"`
 	Tags      []string `pulumi:"tags"`
 	// The zone of the Load Balancer.
-	Zone string `pulumi:"zone"`
+	Zone *string `pulumi:"zone"`
 }
 
 func GetIpsOutput(ctx *pulumi.Context, args GetIpsOutputArgs, opts ...pulumi.InvokeOption) GetIpsResultOutput {
@@ -130,8 +130,8 @@ func (o GetIpsResultOutput) Tags() pulumi.StringArrayOutput {
 }
 
 // The zone of the Load Balancer.
-func (o GetIpsResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetIpsResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetIpsResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIpsResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

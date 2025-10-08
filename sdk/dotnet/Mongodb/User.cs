@@ -154,7 +154,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// `region`) The region in which the MongoDB® user should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// List of roles assigned to the user. Each role block supports:

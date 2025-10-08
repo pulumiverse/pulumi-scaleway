@@ -76,48 +76,48 @@ export class MnqSnsTopic extends pulumi.CustomResource {
     /**
      * The access key of the SNS credentials.
      */
-    public readonly accessKey!: pulumi.Output<string>;
+    declare public readonly accessKey: pulumi.Output<string>;
     /**
      * The ARN of the topic
      */
-    public /*out*/ readonly arn!: pulumi.Output<string>;
+    declare public /*out*/ readonly arn: pulumi.Output<string>;
     /**
      * Specifies whether to enable content-based deduplication.
      */
-    public readonly contentBasedDeduplication!: pulumi.Output<boolean>;
+    declare public readonly contentBasedDeduplication: pulumi.Output<boolean>;
     /**
      * Whether the topic is a FIFO topic. If true, the topic name must end with .fifo.
      */
-    public readonly fifoTopic!: pulumi.Output<boolean>;
+    declare public readonly fifoTopic: pulumi.Output<boolean>;
     /**
      * The unique name of the SNS topic. Either `name` or `namePrefix` is required. Conflicts with `namePrefix`.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Creates a unique name beginning with the specified prefix. Conflicts with `name`.
      */
-    public readonly namePrefix!: pulumi.Output<string>;
+    declare public readonly namePrefix: pulumi.Output<string>;
     /**
      * Owner of the SNS topic, should have format 'project-${project_id}'
      */
-    public /*out*/ readonly owner!: pulumi.Output<string>;
+    declare public /*out*/ readonly owner: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the Project in which SNS is enabled.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * `region`). The region
      * in which SNS is enabled.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * The secret key of the SNS credentials.
      */
-    public readonly secretKey!: pulumi.Output<string>;
+    declare public readonly secretKey: pulumi.Output<string>;
     /**
      * The endpoint of the SNS service. Can contain a {region} placeholder. Defaults to `https://sns.mnq.{region}.scaleway.com`.
      */
-    public readonly snsEndpoint!: pulumi.Output<string | undefined>;
+    declare public readonly snsEndpoint: pulumi.Output<string | undefined>;
 
     /**
      * Create a MnqSnsTopic resource with the given unique name, arguments, and options.
@@ -135,34 +135,34 @@ export class MnqSnsTopic extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MnqSnsTopicState | undefined;
-            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
-            resourceInputs["arn"] = state ? state.arn : undefined;
-            resourceInputs["contentBasedDeduplication"] = state ? state.contentBasedDeduplication : undefined;
-            resourceInputs["fifoTopic"] = state ? state.fifoTopic : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["namePrefix"] = state ? state.namePrefix : undefined;
-            resourceInputs["owner"] = state ? state.owner : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
-            resourceInputs["snsEndpoint"] = state ? state.snsEndpoint : undefined;
+            resourceInputs["accessKey"] = state?.accessKey;
+            resourceInputs["arn"] = state?.arn;
+            resourceInputs["contentBasedDeduplication"] = state?.contentBasedDeduplication;
+            resourceInputs["fifoTopic"] = state?.fifoTopic;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["namePrefix"] = state?.namePrefix;
+            resourceInputs["owner"] = state?.owner;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["secretKey"] = state?.secretKey;
+            resourceInputs["snsEndpoint"] = state?.snsEndpoint;
         } else {
             const args = argsOrState as MnqSnsTopicArgs | undefined;
-            if ((!args || args.accessKey === undefined) && !opts.urn) {
+            if (args?.accessKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'accessKey'");
             }
-            if ((!args || args.secretKey === undefined) && !opts.urn) {
+            if (args?.secretKey === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretKey'");
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
-            resourceInputs["contentBasedDeduplication"] = args ? args.contentBasedDeduplication : undefined;
-            resourceInputs["fifoTopic"] = args ? args.fifoTopic : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["namePrefix"] = args ? args.namePrefix : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["contentBasedDeduplication"] = args?.contentBasedDeduplication;
+            resourceInputs["fifoTopic"] = args?.fifoTopic;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["namePrefix"] = args?.namePrefix;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
-            resourceInputs["snsEndpoint"] = args ? args.snsEndpoint : undefined;
+            resourceInputs["snsEndpoint"] = args?.snsEndpoint;
             resourceInputs["arn"] = undefined /*out*/;
             resourceInputs["owner"] = undefined /*out*/;
         }

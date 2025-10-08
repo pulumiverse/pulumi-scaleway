@@ -79,7 +79,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// The region in which the blocklist is created. Defaults to the provider's region.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// Type of the blocklist. Possible values are:

@@ -85,7 +85,7 @@ export interface GetBaremetalOfferResult {
      */
     readonly stock: string;
     readonly subscriptionPeriod?: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).

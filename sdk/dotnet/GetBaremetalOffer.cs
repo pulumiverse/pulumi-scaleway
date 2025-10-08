@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Stock;
         public readonly string? SubscriptionPeriod;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetBaremetalOfferResult(
@@ -168,7 +168,7 @@ namespace Pulumiverse.Scaleway
 
             string? subscriptionPeriod,
 
-            string zone)
+            string? zone)
         {
             Bandwidth = bandwidth;
             CommercialRange = commercialRange;

@@ -125,7 +125,7 @@ namespace Pulumiverse.Scaleway
         /// `region`) The region in which the pool should be created.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The size of the system volume of the nodes in gigabyte
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

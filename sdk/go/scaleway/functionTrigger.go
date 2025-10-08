@@ -105,7 +105,7 @@ type FunctionTrigger struct {
 	// The configuration for the Scaleway NATS account used by the trigger
 	Nats FunctionTriggerNatsPtrOutput `pulumi:"nats"`
 	// `region`). The region in which the namespace is created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The configuration of the Scaleway SQS queue used by the trigger
 	Sqs FunctionTriggerSqsPtrOutput `pulumi:"sqs"`
 }
@@ -315,8 +315,8 @@ func (o FunctionTriggerOutput) Nats() FunctionTriggerNatsPtrOutput {
 }
 
 // `region`). The region in which the namespace is created.
-func (o FunctionTriggerOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o FunctionTriggerOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The configuration of the Scaleway SQS queue used by the trigger

@@ -67,75 +67,75 @@ export class PublicGateway extends pulumi.CustomResource {
     /**
      * Set a definitive list of IP ranges (in CIDR notation) allowed to connect to the SSH bastion.
      */
-    public readonly allowedIpRanges!: pulumi.Output<string[]>;
+    declare public readonly allowedIpRanges: pulumi.Output<string[]>;
     /**
      * The bandwidth available of the gateway
      */
-    public /*out*/ readonly bandwidth!: pulumi.Output<number>;
+    declare public /*out*/ readonly bandwidth: pulumi.Output<number>;
     /**
      * Enable SSH bastion on the gateway.
      */
-    public readonly bastionEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly bastionEnabled: pulumi.Output<boolean | undefined>;
     /**
      * The port on which the SSH bastion will listen.
      */
-    public readonly bastionPort!: pulumi.Output<number>;
+    declare public readonly bastionPort: pulumi.Output<number>;
     /**
      * The date and time of the creation of the Public Gateway.
      */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
      * Enable SMTP on the gateway.
      */
-    public readonly enableSmtp!: pulumi.Output<boolean>;
+    declare public readonly enableSmtp: pulumi.Output<boolean>;
     /**
      * Attach an existing flexible IP to the gateway.
      */
-    public readonly ipId!: pulumi.Output<string>;
+    declare public readonly ipId: pulumi.Output<string>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
      */
-    public readonly moveToIpam!: pulumi.Output<boolean | undefined>;
+    declare public readonly moveToIpam: pulumi.Output<boolean | undefined>;
     /**
      * The name for the Public Gateway. If not provided it will be randomly generated.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * The Organization ID the Public Gateway is associated with.
      */
-    public /*out*/ readonly organizationId!: pulumi.Output<string>;
+    declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the public gateway is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * Trigger a refresh of the SSH keys on the Public Gateway by changing this field's value.
      */
-    public readonly refreshSshKeys!: pulumi.Output<string | undefined>;
+    declare public readonly refreshSshKeys: pulumi.Output<string | undefined>;
     /**
      * The status of the public gateway.
      */
-    public /*out*/ readonly status!: pulumi.Output<string>;
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * The tags to associate with the Public Gateway.
      */
-    public readonly tags!: pulumi.Output<string[] | undefined>;
+    declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
      * The gateway type.
      */
-    public readonly type!: pulumi.Output<string>;
+    declare public readonly type: pulumi.Output<string>;
     /**
      * The date and time of the last update of the Public Gateway.
      */
-    public /*out*/ readonly updatedAt!: pulumi.Output<string>;
+    declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * Override the gateway's default recursive DNS servers, if DNS features are enabled.
      */
-    public /*out*/ readonly upstreamDnsServers!: pulumi.Output<string[]>;
+    declare public /*out*/ readonly upstreamDnsServers: pulumi.Output<string[]>;
     /**
      * `zone`) The zone in which the Public Gateway should be created.
      */
-    public readonly zone!: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a PublicGateway resource with the given unique name, arguments, and options.
@@ -150,41 +150,41 @@ export class PublicGateway extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as PublicGatewayState | undefined;
-            resourceInputs["allowedIpRanges"] = state ? state.allowedIpRanges : undefined;
-            resourceInputs["bandwidth"] = state ? state.bandwidth : undefined;
-            resourceInputs["bastionEnabled"] = state ? state.bastionEnabled : undefined;
-            resourceInputs["bastionPort"] = state ? state.bastionPort : undefined;
-            resourceInputs["createdAt"] = state ? state.createdAt : undefined;
-            resourceInputs["enableSmtp"] = state ? state.enableSmtp : undefined;
-            resourceInputs["ipId"] = state ? state.ipId : undefined;
-            resourceInputs["moveToIpam"] = state ? state.moveToIpam : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["organizationId"] = state ? state.organizationId : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["refreshSshKeys"] = state ? state.refreshSshKeys : undefined;
-            resourceInputs["status"] = state ? state.status : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["type"] = state ? state.type : undefined;
-            resourceInputs["updatedAt"] = state ? state.updatedAt : undefined;
-            resourceInputs["upstreamDnsServers"] = state ? state.upstreamDnsServers : undefined;
-            resourceInputs["zone"] = state ? state.zone : undefined;
+            resourceInputs["allowedIpRanges"] = state?.allowedIpRanges;
+            resourceInputs["bandwidth"] = state?.bandwidth;
+            resourceInputs["bastionEnabled"] = state?.bastionEnabled;
+            resourceInputs["bastionPort"] = state?.bastionPort;
+            resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["enableSmtp"] = state?.enableSmtp;
+            resourceInputs["ipId"] = state?.ipId;
+            resourceInputs["moveToIpam"] = state?.moveToIpam;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["refreshSshKeys"] = state?.refreshSshKeys;
+            resourceInputs["status"] = state?.status;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["type"] = state?.type;
+            resourceInputs["updatedAt"] = state?.updatedAt;
+            resourceInputs["upstreamDnsServers"] = state?.upstreamDnsServers;
+            resourceInputs["zone"] = state?.zone;
         } else {
             const args = argsOrState as PublicGatewayArgs | undefined;
-            if ((!args || args.type === undefined) && !opts.urn) {
+            if (args?.type === undefined && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            resourceInputs["allowedIpRanges"] = args ? args.allowedIpRanges : undefined;
-            resourceInputs["bastionEnabled"] = args ? args.bastionEnabled : undefined;
-            resourceInputs["bastionPort"] = args ? args.bastionPort : undefined;
-            resourceInputs["enableSmtp"] = args ? args.enableSmtp : undefined;
-            resourceInputs["ipId"] = args ? args.ipId : undefined;
-            resourceInputs["moveToIpam"] = args ? args.moveToIpam : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["refreshSshKeys"] = args ? args.refreshSshKeys : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["type"] = args ? args.type : undefined;
-            resourceInputs["zone"] = args ? args.zone : undefined;
+            resourceInputs["allowedIpRanges"] = args?.allowedIpRanges;
+            resourceInputs["bastionEnabled"] = args?.bastionEnabled;
+            resourceInputs["bastionPort"] = args?.bastionPort;
+            resourceInputs["enableSmtp"] = args?.enableSmtp;
+            resourceInputs["ipId"] = args?.ipId;
+            resourceInputs["moveToIpam"] = args?.moveToIpam;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["refreshSshKeys"] = args?.refreshSshKeys;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["type"] = args?.type;
+            resourceInputs["zone"] = args?.zone;
             resourceInputs["bandwidth"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;

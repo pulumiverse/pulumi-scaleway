@@ -59,11 +59,11 @@ export class EdgeServicesPlan extends pulumi.CustomResource {
     /**
      * The name of the plan.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * `projectId`) The ID of the project the plan is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
 
     /**
      * Create a EdgeServicesPlan resource with the given unique name, arguments, and options.
@@ -78,12 +78,12 @@ export class EdgeServicesPlan extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EdgeServicesPlanState | undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["projectId"] = state?.projectId;
         } else {
             const args = argsOrState as EdgeServicesPlanArgs | undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["projectId"] = args?.projectId;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(EdgeServicesPlan.__pulumiType, name, resourceInputs, opts);

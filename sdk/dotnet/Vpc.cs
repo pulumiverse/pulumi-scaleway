@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway
         /// `region`) The region of the VPC.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// The tags to associate with the VPC.

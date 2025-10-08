@@ -153,54 +153,54 @@ export class Bucket extends pulumi.CustomResource {
      *
      * @deprecated ACL attribute is deprecated. Please use the resource scaleway.object.BucketAcl instead.
      */
-    public readonly acl!: pulumi.Output<string | undefined>;
+    declare public readonly acl: pulumi.Output<string | undefined>;
     /**
      * API URL of the bucket
      */
-    public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly apiEndpoint: pulumi.Output<string>;
     /**
      * List of CORS rules
      */
-    public readonly corsRules!: pulumi.Output<outputs.object.BucketCorsRule[]>;
+    declare public readonly corsRules: pulumi.Output<outputs.object.BucketCorsRule[]>;
     /**
      * The endpoint URL of the bucket.
      */
-    public /*out*/ readonly endpoint!: pulumi.Output<string>;
+    declare public /*out*/ readonly endpoint: pulumi.Output<string>;
     /**
      * Boolean that, when set to true, allows the deletion of all objects (including locked objects) when the bucket is destroyed. This operation is irreversible, and the objects cannot be recovered. The default is false.
      */
-    public readonly forceDestroy!: pulumi.Output<boolean | undefined>;
+    declare public readonly forceDestroy: pulumi.Output<boolean | undefined>;
     /**
      * Lifecycle configuration is a set of rules that define actions that Scaleway Object Storage applies to a group of objects
      */
-    public readonly lifecycleRules!: pulumi.Output<outputs.object.BucketLifecycleRule[] | undefined>;
+    declare public readonly lifecycleRules: pulumi.Output<outputs.object.BucketLifecycleRule[] | undefined>;
     /**
      * The name of the bucket.
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Enable object lock
      */
-    public readonly objectLockEnabled!: pulumi.Output<boolean | undefined>;
+    declare public readonly objectLockEnabled: pulumi.Output<boolean | undefined>;
     /**
      * `projectId`) The ID of the project the bucket is associated with.
      */
-    public readonly projectId!: pulumi.Output<string>;
+    declare public readonly projectId: pulumi.Output<string>;
     /**
      * The [region](https://www.scaleway.com/en/developers/api/#region-definition) in which the bucket will be created.
      */
-    public readonly region!: pulumi.Output<string>;
+    declare public readonly region: pulumi.Output<string | undefined>;
     /**
      * A list of tags (key/value) for the bucket.
      *
      * * > **Important:** The Scaleway console does not support `key/value` tags yet, so only the tags' values will be displayed.
      * If you make any change to your bucket's tags using the console, it will overwrite them with the format `value/value`.
      */
-    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
+    declare public readonly tags: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * Allow multiple versions of an object in the same bucket
      */
-    public readonly versioning!: pulumi.Output<outputs.object.BucketVersioning>;
+    declare public readonly versioning: pulumi.Output<outputs.object.BucketVersioning>;
 
     /**
      * Create a Bucket resource with the given unique name, arguments, and options.
@@ -215,30 +215,30 @@ export class Bucket extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BucketState | undefined;
-            resourceInputs["acl"] = state ? state.acl : undefined;
-            resourceInputs["apiEndpoint"] = state ? state.apiEndpoint : undefined;
-            resourceInputs["corsRules"] = state ? state.corsRules : undefined;
-            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
-            resourceInputs["forceDestroy"] = state ? state.forceDestroy : undefined;
-            resourceInputs["lifecycleRules"] = state ? state.lifecycleRules : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["objectLockEnabled"] = state ? state.objectLockEnabled : undefined;
-            resourceInputs["projectId"] = state ? state.projectId : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
-            resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["versioning"] = state ? state.versioning : undefined;
+            resourceInputs["acl"] = state?.acl;
+            resourceInputs["apiEndpoint"] = state?.apiEndpoint;
+            resourceInputs["corsRules"] = state?.corsRules;
+            resourceInputs["endpoint"] = state?.endpoint;
+            resourceInputs["forceDestroy"] = state?.forceDestroy;
+            resourceInputs["lifecycleRules"] = state?.lifecycleRules;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["objectLockEnabled"] = state?.objectLockEnabled;
+            resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["region"] = state?.region;
+            resourceInputs["tags"] = state?.tags;
+            resourceInputs["versioning"] = state?.versioning;
         } else {
             const args = argsOrState as BucketArgs | undefined;
-            resourceInputs["acl"] = args ? args.acl : undefined;
-            resourceInputs["corsRules"] = args ? args.corsRules : undefined;
-            resourceInputs["forceDestroy"] = args ? args.forceDestroy : undefined;
-            resourceInputs["lifecycleRules"] = args ? args.lifecycleRules : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["objectLockEnabled"] = args ? args.objectLockEnabled : undefined;
-            resourceInputs["projectId"] = args ? args.projectId : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
-            resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["versioning"] = args ? args.versioning : undefined;
+            resourceInputs["acl"] = args?.acl;
+            resourceInputs["corsRules"] = args?.corsRules;
+            resourceInputs["forceDestroy"] = args?.forceDestroy;
+            resourceInputs["lifecycleRules"] = args?.lifecycleRules;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["objectLockEnabled"] = args?.objectLockEnabled;
+            resourceInputs["projectId"] = args?.projectId;
+            resourceInputs["region"] = args?.region;
+            resourceInputs["tags"] = args?.tags;
+            resourceInputs["versioning"] = args?.versioning;
             resourceInputs["apiEndpoint"] = undefined /*out*/;
             resourceInputs["endpoint"] = undefined /*out*/;
         }

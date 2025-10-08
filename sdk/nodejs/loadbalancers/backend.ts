@@ -83,129 +83,130 @@ export class Backend extends pulumi.CustomResource {
     }
 
     /**
-     * Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-     * Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-     * is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     * Scaleway S3 bucket website to be served in case all backend servers are down
+     *
+     * **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+     * E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
      */
-    public readonly failoverHost!: pulumi.Output<string | undefined>;
+    declare public readonly failoverHost: pulumi.Output<string | undefined>;
     /**
      * User sessions will be forwarded to this port of backend servers
      */
-    public readonly forwardPort!: pulumi.Output<number>;
+    declare public readonly forwardPort: pulumi.Output<number>;
     /**
      * Load balancing algorithm
      */
-    public readonly forwardPortAlgorithm!: pulumi.Output<string | undefined>;
+    declare public readonly forwardPortAlgorithm: pulumi.Output<string | undefined>;
     /**
      * Backend protocol
      */
-    public readonly forwardProtocol!: pulumi.Output<string>;
+    declare public readonly forwardProtocol: pulumi.Output<string>;
     /**
      * Interval between two HC requests
      */
-    public readonly healthCheckDelay!: pulumi.Output<string | undefined>;
+    declare public readonly healthCheckDelay: pulumi.Output<string | undefined>;
     /**
      * HTTP Health check
      */
-    public readonly healthCheckHttp!: pulumi.Output<outputs.loadbalancers.BackendHealthCheckHttp | undefined>;
+    declare public readonly healthCheckHttp: pulumi.Output<outputs.loadbalancers.BackendHealthCheckHttp | undefined>;
     /**
      * HTTPS Health check
      */
-    public readonly healthCheckHttps!: pulumi.Output<outputs.loadbalancers.BackendHealthCheckHttps | undefined>;
+    declare public readonly healthCheckHttps: pulumi.Output<outputs.loadbalancers.BackendHealthCheckHttps | undefined>;
     /**
      * Number of allowed failed HC requests before the backend server is marked down
      */
-    public readonly healthCheckMaxRetries!: pulumi.Output<number | undefined>;
+    declare public readonly healthCheckMaxRetries: pulumi.Output<number | undefined>;
     /**
      * Port the HC requests will be send to. Default to `forwardPort`
      */
-    public readonly healthCheckPort!: pulumi.Output<number>;
+    declare public readonly healthCheckPort: pulumi.Output<number>;
     /**
      * Defines whether proxy protocol should be activated for the health check
      */
-    public readonly healthCheckSendProxy!: pulumi.Output<boolean | undefined>;
+    declare public readonly healthCheckSendProxy: pulumi.Output<boolean | undefined>;
     /**
      * TCP Health check
      */
-    public readonly healthCheckTcp!: pulumi.Output<outputs.loadbalancers.BackendHealthCheckTcp>;
+    declare public readonly healthCheckTcp: pulumi.Output<outputs.loadbalancers.BackendHealthCheckTcp>;
     /**
      * Timeout before we consider a HC request failed
      */
-    public readonly healthCheckTimeout!: pulumi.Output<string | undefined>;
+    declare public readonly healthCheckTimeout: pulumi.Output<string | undefined>;
     /**
      * Time to wait between two consecutive health checks when a backend server is in a transient state (going UP or DOWN)
      */
-    public readonly healthCheckTransientDelay!: pulumi.Output<string | undefined>;
+    declare public readonly healthCheckTransientDelay: pulumi.Output<string | undefined>;
     /**
      * Specifies whether the Load Balancer should check the backend server’s certificate before initiating a connection
      */
-    public readonly ignoreSslServerVerify!: pulumi.Output<boolean | undefined>;
+    declare public readonly ignoreSslServerVerify: pulumi.Output<boolean | undefined>;
     /**
      * The load-balancer ID
      */
-    public readonly lbId!: pulumi.Output<string>;
+    declare public readonly lbId: pulumi.Output<string>;
     /**
      * Maximum number of connections allowed per backend server
      */
-    public readonly maxConnections!: pulumi.Output<number | undefined>;
+    declare public readonly maxConnections: pulumi.Output<number | undefined>;
     /**
      * Number of retries when a backend server connection failed
      */
-    public readonly maxRetries!: pulumi.Output<number | undefined>;
+    declare public readonly maxRetries: pulumi.Output<number | undefined>;
     /**
      * The name of the backend
      */
-    public readonly name!: pulumi.Output<string>;
+    declare public readonly name: pulumi.Output<string>;
     /**
      * Modify what occurs when a backend server is marked down
      */
-    public readonly onMarkedDownAction!: pulumi.Output<string | undefined>;
+    declare public readonly onMarkedDownAction: pulumi.Output<string | undefined>;
     /**
      * Type of PROXY protocol to enable
      */
-    public readonly proxyProtocol!: pulumi.Output<string | undefined>;
+    declare public readonly proxyProtocol: pulumi.Output<string | undefined>;
     /**
      * Whether to use another backend server on each attempt
      */
-    public readonly redispatchAttemptCount!: pulumi.Output<number | undefined>;
+    declare public readonly redispatchAttemptCount: pulumi.Output<number | undefined>;
     /**
      * Enables PROXY protocol version 2
      *
      * @deprecated Please use proxyProtocol instead
      */
-    public readonly sendProxyV2!: pulumi.Output<boolean>;
+    declare public readonly sendProxyV2: pulumi.Output<boolean>;
     /**
      * Backend server IP addresses list (IPv4 or IPv6)
      */
-    public readonly serverIps!: pulumi.Output<string[] | undefined>;
+    declare public readonly serverIps: pulumi.Output<string[] | undefined>;
     /**
      * Enables SSL between load balancer and backend servers
      */
-    public readonly sslBridging!: pulumi.Output<boolean | undefined>;
+    declare public readonly sslBridging: pulumi.Output<boolean | undefined>;
     /**
      * The type of sticky sessions
      */
-    public readonly stickySessions!: pulumi.Output<string | undefined>;
+    declare public readonly stickySessions: pulumi.Output<string | undefined>;
     /**
      * Cookie name for sticky sessions
      */
-    public readonly stickySessionsCookieName!: pulumi.Output<string | undefined>;
+    declare public readonly stickySessionsCookieName: pulumi.Output<string | undefined>;
     /**
      * Maximum initial server connection establishment time
      */
-    public readonly timeoutConnect!: pulumi.Output<string | undefined>;
+    declare public readonly timeoutConnect: pulumi.Output<string | undefined>;
     /**
      * Maximum time (in seconds) for a request to be left pending in queue when `maxConnections` is reached
      */
-    public readonly timeoutQueue!: pulumi.Output<string | undefined>;
+    declare public readonly timeoutQueue: pulumi.Output<string | undefined>;
     /**
      * Maximum server connection inactivity time
      */
-    public readonly timeoutServer!: pulumi.Output<string | undefined>;
+    declare public readonly timeoutServer: pulumi.Output<string | undefined>;
     /**
      * Maximum tunnel inactivity time
      */
-    public readonly timeoutTunnel!: pulumi.Output<string | undefined>;
+    declare public readonly timeoutTunnel: pulumi.Output<string | undefined>;
 
     /**
      * Create a Backend resource with the given unique name, arguments, and options.
@@ -220,77 +221,77 @@ export class Backend extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BackendState | undefined;
-            resourceInputs["failoverHost"] = state ? state.failoverHost : undefined;
-            resourceInputs["forwardPort"] = state ? state.forwardPort : undefined;
-            resourceInputs["forwardPortAlgorithm"] = state ? state.forwardPortAlgorithm : undefined;
-            resourceInputs["forwardProtocol"] = state ? state.forwardProtocol : undefined;
-            resourceInputs["healthCheckDelay"] = state ? state.healthCheckDelay : undefined;
-            resourceInputs["healthCheckHttp"] = state ? state.healthCheckHttp : undefined;
-            resourceInputs["healthCheckHttps"] = state ? state.healthCheckHttps : undefined;
-            resourceInputs["healthCheckMaxRetries"] = state ? state.healthCheckMaxRetries : undefined;
-            resourceInputs["healthCheckPort"] = state ? state.healthCheckPort : undefined;
-            resourceInputs["healthCheckSendProxy"] = state ? state.healthCheckSendProxy : undefined;
-            resourceInputs["healthCheckTcp"] = state ? state.healthCheckTcp : undefined;
-            resourceInputs["healthCheckTimeout"] = state ? state.healthCheckTimeout : undefined;
-            resourceInputs["healthCheckTransientDelay"] = state ? state.healthCheckTransientDelay : undefined;
-            resourceInputs["ignoreSslServerVerify"] = state ? state.ignoreSslServerVerify : undefined;
-            resourceInputs["lbId"] = state ? state.lbId : undefined;
-            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
-            resourceInputs["maxRetries"] = state ? state.maxRetries : undefined;
-            resourceInputs["name"] = state ? state.name : undefined;
-            resourceInputs["onMarkedDownAction"] = state ? state.onMarkedDownAction : undefined;
-            resourceInputs["proxyProtocol"] = state ? state.proxyProtocol : undefined;
-            resourceInputs["redispatchAttemptCount"] = state ? state.redispatchAttemptCount : undefined;
-            resourceInputs["sendProxyV2"] = state ? state.sendProxyV2 : undefined;
-            resourceInputs["serverIps"] = state ? state.serverIps : undefined;
-            resourceInputs["sslBridging"] = state ? state.sslBridging : undefined;
-            resourceInputs["stickySessions"] = state ? state.stickySessions : undefined;
-            resourceInputs["stickySessionsCookieName"] = state ? state.stickySessionsCookieName : undefined;
-            resourceInputs["timeoutConnect"] = state ? state.timeoutConnect : undefined;
-            resourceInputs["timeoutQueue"] = state ? state.timeoutQueue : undefined;
-            resourceInputs["timeoutServer"] = state ? state.timeoutServer : undefined;
-            resourceInputs["timeoutTunnel"] = state ? state.timeoutTunnel : undefined;
+            resourceInputs["failoverHost"] = state?.failoverHost;
+            resourceInputs["forwardPort"] = state?.forwardPort;
+            resourceInputs["forwardPortAlgorithm"] = state?.forwardPortAlgorithm;
+            resourceInputs["forwardProtocol"] = state?.forwardProtocol;
+            resourceInputs["healthCheckDelay"] = state?.healthCheckDelay;
+            resourceInputs["healthCheckHttp"] = state?.healthCheckHttp;
+            resourceInputs["healthCheckHttps"] = state?.healthCheckHttps;
+            resourceInputs["healthCheckMaxRetries"] = state?.healthCheckMaxRetries;
+            resourceInputs["healthCheckPort"] = state?.healthCheckPort;
+            resourceInputs["healthCheckSendProxy"] = state?.healthCheckSendProxy;
+            resourceInputs["healthCheckTcp"] = state?.healthCheckTcp;
+            resourceInputs["healthCheckTimeout"] = state?.healthCheckTimeout;
+            resourceInputs["healthCheckTransientDelay"] = state?.healthCheckTransientDelay;
+            resourceInputs["ignoreSslServerVerify"] = state?.ignoreSslServerVerify;
+            resourceInputs["lbId"] = state?.lbId;
+            resourceInputs["maxConnections"] = state?.maxConnections;
+            resourceInputs["maxRetries"] = state?.maxRetries;
+            resourceInputs["name"] = state?.name;
+            resourceInputs["onMarkedDownAction"] = state?.onMarkedDownAction;
+            resourceInputs["proxyProtocol"] = state?.proxyProtocol;
+            resourceInputs["redispatchAttemptCount"] = state?.redispatchAttemptCount;
+            resourceInputs["sendProxyV2"] = state?.sendProxyV2;
+            resourceInputs["serverIps"] = state?.serverIps;
+            resourceInputs["sslBridging"] = state?.sslBridging;
+            resourceInputs["stickySessions"] = state?.stickySessions;
+            resourceInputs["stickySessionsCookieName"] = state?.stickySessionsCookieName;
+            resourceInputs["timeoutConnect"] = state?.timeoutConnect;
+            resourceInputs["timeoutQueue"] = state?.timeoutQueue;
+            resourceInputs["timeoutServer"] = state?.timeoutServer;
+            resourceInputs["timeoutTunnel"] = state?.timeoutTunnel;
         } else {
             const args = argsOrState as BackendArgs | undefined;
-            if ((!args || args.forwardPort === undefined) && !opts.urn) {
+            if (args?.forwardPort === undefined && !opts.urn) {
                 throw new Error("Missing required property 'forwardPort'");
             }
-            if ((!args || args.forwardProtocol === undefined) && !opts.urn) {
+            if (args?.forwardProtocol === undefined && !opts.urn) {
                 throw new Error("Missing required property 'forwardProtocol'");
             }
-            if ((!args || args.lbId === undefined) && !opts.urn) {
+            if (args?.lbId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'lbId'");
             }
-            resourceInputs["failoverHost"] = args ? args.failoverHost : undefined;
-            resourceInputs["forwardPort"] = args ? args.forwardPort : undefined;
-            resourceInputs["forwardPortAlgorithm"] = args ? args.forwardPortAlgorithm : undefined;
-            resourceInputs["forwardProtocol"] = args ? args.forwardProtocol : undefined;
-            resourceInputs["healthCheckDelay"] = args ? args.healthCheckDelay : undefined;
-            resourceInputs["healthCheckHttp"] = args ? args.healthCheckHttp : undefined;
-            resourceInputs["healthCheckHttps"] = args ? args.healthCheckHttps : undefined;
-            resourceInputs["healthCheckMaxRetries"] = args ? args.healthCheckMaxRetries : undefined;
-            resourceInputs["healthCheckPort"] = args ? args.healthCheckPort : undefined;
-            resourceInputs["healthCheckSendProxy"] = args ? args.healthCheckSendProxy : undefined;
-            resourceInputs["healthCheckTcp"] = args ? args.healthCheckTcp : undefined;
-            resourceInputs["healthCheckTimeout"] = args ? args.healthCheckTimeout : undefined;
-            resourceInputs["healthCheckTransientDelay"] = args ? args.healthCheckTransientDelay : undefined;
-            resourceInputs["ignoreSslServerVerify"] = args ? args.ignoreSslServerVerify : undefined;
-            resourceInputs["lbId"] = args ? args.lbId : undefined;
-            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
-            resourceInputs["maxRetries"] = args ? args.maxRetries : undefined;
-            resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["onMarkedDownAction"] = args ? args.onMarkedDownAction : undefined;
-            resourceInputs["proxyProtocol"] = args ? args.proxyProtocol : undefined;
-            resourceInputs["redispatchAttemptCount"] = args ? args.redispatchAttemptCount : undefined;
-            resourceInputs["sendProxyV2"] = args ? args.sendProxyV2 : undefined;
-            resourceInputs["serverIps"] = args ? args.serverIps : undefined;
-            resourceInputs["sslBridging"] = args ? args.sslBridging : undefined;
-            resourceInputs["stickySessions"] = args ? args.stickySessions : undefined;
-            resourceInputs["stickySessionsCookieName"] = args ? args.stickySessionsCookieName : undefined;
-            resourceInputs["timeoutConnect"] = args ? args.timeoutConnect : undefined;
-            resourceInputs["timeoutQueue"] = args ? args.timeoutQueue : undefined;
-            resourceInputs["timeoutServer"] = args ? args.timeoutServer : undefined;
-            resourceInputs["timeoutTunnel"] = args ? args.timeoutTunnel : undefined;
+            resourceInputs["failoverHost"] = args?.failoverHost;
+            resourceInputs["forwardPort"] = args?.forwardPort;
+            resourceInputs["forwardPortAlgorithm"] = args?.forwardPortAlgorithm;
+            resourceInputs["forwardProtocol"] = args?.forwardProtocol;
+            resourceInputs["healthCheckDelay"] = args?.healthCheckDelay;
+            resourceInputs["healthCheckHttp"] = args?.healthCheckHttp;
+            resourceInputs["healthCheckHttps"] = args?.healthCheckHttps;
+            resourceInputs["healthCheckMaxRetries"] = args?.healthCheckMaxRetries;
+            resourceInputs["healthCheckPort"] = args?.healthCheckPort;
+            resourceInputs["healthCheckSendProxy"] = args?.healthCheckSendProxy;
+            resourceInputs["healthCheckTcp"] = args?.healthCheckTcp;
+            resourceInputs["healthCheckTimeout"] = args?.healthCheckTimeout;
+            resourceInputs["healthCheckTransientDelay"] = args?.healthCheckTransientDelay;
+            resourceInputs["ignoreSslServerVerify"] = args?.ignoreSslServerVerify;
+            resourceInputs["lbId"] = args?.lbId;
+            resourceInputs["maxConnections"] = args?.maxConnections;
+            resourceInputs["maxRetries"] = args?.maxRetries;
+            resourceInputs["name"] = args?.name;
+            resourceInputs["onMarkedDownAction"] = args?.onMarkedDownAction;
+            resourceInputs["proxyProtocol"] = args?.proxyProtocol;
+            resourceInputs["redispatchAttemptCount"] = args?.redispatchAttemptCount;
+            resourceInputs["sendProxyV2"] = args?.sendProxyV2;
+            resourceInputs["serverIps"] = args?.serverIps;
+            resourceInputs["sslBridging"] = args?.sslBridging;
+            resourceInputs["stickySessions"] = args?.stickySessions;
+            resourceInputs["stickySessionsCookieName"] = args?.stickySessionsCookieName;
+            resourceInputs["timeoutConnect"] = args?.timeoutConnect;
+            resourceInputs["timeoutQueue"] = args?.timeoutQueue;
+            resourceInputs["timeoutServer"] = args?.timeoutServer;
+            resourceInputs["timeoutTunnel"] = args?.timeoutTunnel;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/loadbalancerBackend:LoadbalancerBackend" }] };
@@ -304,9 +305,10 @@ export class Backend extends pulumi.CustomResource {
  */
 export interface BackendState {
     /**
-     * Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-     * Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-     * is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     * Scaleway S3 bucket website to be served in case all backend servers are down
+     *
+     * **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+     * E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
      */
     failoverHost?: pulumi.Input<string>;
     /**
@@ -434,9 +436,10 @@ export interface BackendState {
  */
 export interface BackendArgs {
     /**
-     * Scaleway S3 bucket website to be served in case all backend servers are down **NOTE** : Only the host part of the
-     * Scaleway S3 bucket website is expected. E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL
-     * is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
+     * Scaleway S3 bucket website to be served in case all backend servers are down
+     *
+     * **NOTE** : Only the host part of the Scaleway S3 bucket website is expected.
+     * E.g. 'failover-website.s3-website.fr-par.scw.cloud' if your bucket website URL is 'https://failover-website.s3-website.fr-par.scw.cloud/'.
      */
     failoverHost?: pulumi.Input<string>;
     /**

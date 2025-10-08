@@ -61,7 +61,7 @@ type ObjectItem struct {
 	// The projectId you want to attach the resource to
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The Scaleway region the bucket resides in.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Customer's encryption keys to encrypt data (SSE-C)
 	SseCustomerKey pulumi.StringPtrOutput `pulumi:"sseCustomerKey"`
 	// Specifies the Scaleway [storage class](https://www.scaleway.com/en/docs/object-storage/concepts/#storage-class) (`STANDARD`, `GLACIER`, or `ONEZONE_IA`) used to store the object.
@@ -386,8 +386,8 @@ func (o ObjectItemOutput) ProjectId() pulumi.StringOutput {
 }
 
 // The Scaleway region the bucket resides in.
-func (o ObjectItemOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *ObjectItem) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o ObjectItemOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ObjectItem) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Customer's encryption keys to encrypt data (SSE-C)

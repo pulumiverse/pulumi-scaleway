@@ -95,7 +95,7 @@ type Sns struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`). The region
 	// in which SNS will be enabled.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewSns registers a new resource with the given unique name, arguments, and options.
@@ -273,8 +273,8 @@ func (o SnsOutput) ProjectId() pulumi.StringOutput {
 
 // `region`). The region
 // in which SNS will be enabled.
-func (o SnsOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *Sns) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o SnsOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Sns) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 type SnsArrayOutput struct{ *pulumi.OutputState }

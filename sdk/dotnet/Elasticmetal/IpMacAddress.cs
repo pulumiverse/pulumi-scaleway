@@ -149,7 +149,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// The zone of the Virtual Mac Address.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

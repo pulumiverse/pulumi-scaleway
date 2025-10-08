@@ -174,7 +174,7 @@ namespace Pulumiverse.Scaleway
         /// The zone in which the image should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

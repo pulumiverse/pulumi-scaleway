@@ -235,7 +235,7 @@ type MongoDbInstance struct {
 	// Public network endpoint configuration (no arguments).
 	PublicNetwork MongoDbInstancePublicNetworkOutput `pulumi:"publicNetwork"`
 	// `region`) The region in which the MongoDB® instance should be created.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Map of settings to define for the instance.
 	Settings pulumi.StringMapOutput `pulumi:"settings"`
 	// Snapshot ID to restore the MongoDB® instance from.
@@ -621,8 +621,8 @@ func (o MongoDbInstanceOutput) PublicNetwork() MongoDbInstancePublicNetworkOutpu
 }
 
 // `region`) The region in which the MongoDB® instance should be created.
-func (o MongoDbInstanceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+func (o MongoDbInstanceOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // Map of settings to define for the instance.

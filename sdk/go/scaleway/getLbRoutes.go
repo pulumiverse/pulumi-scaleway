@@ -79,7 +79,7 @@ type GetLbRoutesResult struct {
 	ProjectId      string `pulumi:"projectId"`
 	// List of retrieved routes
 	Routes []GetLbRoutesRoute `pulumi:"routes"`
-	Zone   string             `pulumi:"zone"`
+	Zone   *string            `pulumi:"zone"`
 }
 
 func GetLbRoutesOutput(ctx *pulumi.Context, args GetLbRoutesOutputArgs, opts ...pulumi.InvokeOption) GetLbRoutesResultOutput {
@@ -141,8 +141,8 @@ func (o GetLbRoutesResultOutput) Routes() GetLbRoutesRouteArrayOutput {
 	return o.ApplyT(func(v GetLbRoutesResult) []GetLbRoutesRoute { return v.Routes }).(GetLbRoutesRouteArrayOutput)
 }
 
-func (o GetLbRoutesResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLbRoutesResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o GetLbRoutesResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLbRoutesResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {
