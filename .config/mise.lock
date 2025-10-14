@@ -46,18 +46,13 @@ version = "1.22.22"
 backend = "npm:yarn"
 
 [[tools.pulumi]]
-version = "3.175.0"
+version = "3.190.0"
 backend = "aqua:pulumi/pulumi"
 
 [tools.pulumi.platforms.linux-x64]
-checksum = "sha512:72bd9e201c81554ebf1edc72dc216a912d2c762d474a4c5d7ac0cbf896b7671bb065d7a8202006ef1bddd2f8b9c30cc541d8e3ca5c5d15d636bbabcd2c858664"
-size = 91289993
-url = "https://github.com/pulumi/pulumi/releases/download/v3.175.0/pulumi-v3.175.0-linux-x64.tar.gz"
-
-[tools.pulumi.platforms.macos-arm64]
-checksum = "sha512:46046adba20be73943a890be50167db0fed4f3fca6b27b995ed709cea8be46d95b53f0503801dea8aa342a5cde448706416b53353d22401f1d49a360e8c910df"
-size = 83949838
-url = "https://github.com/pulumi/pulumi/releases/download/v3.175.0/pulumi-v3.175.0-darwin-arm64.tar.gz"
+checksum = "sha512:1847aaa3c3c0202cff9cbd3f547c5965abb2b2f83199b47c36c23121d7c860662b6d817226709fc3eadd24551a30ab656699d2eb992d2085bb90db6c195c2379"
+size = 92837374
+url = "https://github.com/pulumi/pulumi/releases/download/v3.190.0/pulumi-v3.190.0-linux-x64.tar.gz"
 
 [[tools.python]]
 version = "3.11.8"
