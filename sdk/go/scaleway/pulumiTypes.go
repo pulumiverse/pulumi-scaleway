@@ -2820,29 +2820,45 @@ func (i DatabaseInstanceLoadBalancerArgs) ToDatabaseInstanceLoadBalancerOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLoadBalancerOutput)
 }
 
-// DatabaseInstanceLoadBalancerArrayInput is an input type that accepts DatabaseInstanceLoadBalancerArray and DatabaseInstanceLoadBalancerArrayOutput values.
-// You can construct a concrete instance of `DatabaseInstanceLoadBalancerArrayInput` via:
+func (i DatabaseInstanceLoadBalancerArgs) ToDatabaseInstanceLoadBalancerPtrOutput() DatabaseInstanceLoadBalancerPtrOutput {
+	return i.ToDatabaseInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceLoadBalancerArgs) ToDatabaseInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLoadBalancerOutput).ToDatabaseInstanceLoadBalancerPtrOutputWithContext(ctx)
+}
+
+// DatabaseInstanceLoadBalancerPtrInput is an input type that accepts DatabaseInstanceLoadBalancerArgs, DatabaseInstanceLoadBalancerPtr and DatabaseInstanceLoadBalancerPtrOutput values.
+// You can construct a concrete instance of `DatabaseInstanceLoadBalancerPtrInput` via:
 //
-//	DatabaseInstanceLoadBalancerArray{ DatabaseInstanceLoadBalancerArgs{...} }
-type DatabaseInstanceLoadBalancerArrayInput interface {
+//	        DatabaseInstanceLoadBalancerArgs{...}
+//
+//	or:
+//
+//	        nil
+type DatabaseInstanceLoadBalancerPtrInput interface {
 	pulumi.Input
 
-	ToDatabaseInstanceLoadBalancerArrayOutput() DatabaseInstanceLoadBalancerArrayOutput
-	ToDatabaseInstanceLoadBalancerArrayOutputWithContext(context.Context) DatabaseInstanceLoadBalancerArrayOutput
+	ToDatabaseInstanceLoadBalancerPtrOutput() DatabaseInstanceLoadBalancerPtrOutput
+	ToDatabaseInstanceLoadBalancerPtrOutputWithContext(context.Context) DatabaseInstanceLoadBalancerPtrOutput
 }
 
-type DatabaseInstanceLoadBalancerArray []DatabaseInstanceLoadBalancerInput
+type databaseInstanceLoadBalancerPtrType DatabaseInstanceLoadBalancerArgs
 
-func (DatabaseInstanceLoadBalancerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DatabaseInstanceLoadBalancer)(nil)).Elem()
+func DatabaseInstanceLoadBalancerPtr(v *DatabaseInstanceLoadBalancerArgs) DatabaseInstanceLoadBalancerPtrInput {
+	return (*databaseInstanceLoadBalancerPtrType)(v)
 }
 
-func (i DatabaseInstanceLoadBalancerArray) ToDatabaseInstanceLoadBalancerArrayOutput() DatabaseInstanceLoadBalancerArrayOutput {
-	return i.ToDatabaseInstanceLoadBalancerArrayOutputWithContext(context.Background())
+func (*databaseInstanceLoadBalancerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstanceLoadBalancer)(nil)).Elem()
 }
 
-func (i DatabaseInstanceLoadBalancerArray) ToDatabaseInstanceLoadBalancerArrayOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLoadBalancerArrayOutput)
+func (i *databaseInstanceLoadBalancerPtrType) ToDatabaseInstanceLoadBalancerPtrOutput() DatabaseInstanceLoadBalancerPtrOutput {
+	return i.ToDatabaseInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (i *databaseInstanceLoadBalancerPtrType) ToDatabaseInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceLoadBalancerPtrOutput)
 }
 
 type DatabaseInstanceLoadBalancerOutput struct{ *pulumi.OutputState }
@@ -2857,6 +2873,16 @@ func (o DatabaseInstanceLoadBalancerOutput) ToDatabaseInstanceLoadBalancerOutput
 
 func (o DatabaseInstanceLoadBalancerOutput) ToDatabaseInstanceLoadBalancerOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerOutput {
 	return o
+}
+
+func (o DatabaseInstanceLoadBalancerOutput) ToDatabaseInstanceLoadBalancerPtrOutput() DatabaseInstanceLoadBalancerPtrOutput {
+	return o.ToDatabaseInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (o DatabaseInstanceLoadBalancerOutput) ToDatabaseInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DatabaseInstanceLoadBalancer) *DatabaseInstanceLoadBalancer {
+		return &v
+	}).(DatabaseInstanceLoadBalancerPtrOutput)
 }
 
 // The ID of the endpoint.
@@ -2884,24 +2910,78 @@ func (o DatabaseInstanceLoadBalancerOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v DatabaseInstanceLoadBalancer) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-type DatabaseInstanceLoadBalancerArrayOutput struct{ *pulumi.OutputState }
+type DatabaseInstanceLoadBalancerPtrOutput struct{ *pulumi.OutputState }
 
-func (DatabaseInstanceLoadBalancerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DatabaseInstanceLoadBalancer)(nil)).Elem()
+func (DatabaseInstanceLoadBalancerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DatabaseInstanceLoadBalancer)(nil)).Elem()
 }
 
-func (o DatabaseInstanceLoadBalancerArrayOutput) ToDatabaseInstanceLoadBalancerArrayOutput() DatabaseInstanceLoadBalancerArrayOutput {
+func (o DatabaseInstanceLoadBalancerPtrOutput) ToDatabaseInstanceLoadBalancerPtrOutput() DatabaseInstanceLoadBalancerPtrOutput {
 	return o
 }
 
-func (o DatabaseInstanceLoadBalancerArrayOutput) ToDatabaseInstanceLoadBalancerArrayOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerArrayOutput {
+func (o DatabaseInstanceLoadBalancerPtrOutput) ToDatabaseInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) DatabaseInstanceLoadBalancerPtrOutput {
 	return o
 }
 
-func (o DatabaseInstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) DatabaseInstanceLoadBalancerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstanceLoadBalancer {
-		return vs[0].([]DatabaseInstanceLoadBalancer)[vs[1].(int)]
+func (o DatabaseInstanceLoadBalancerPtrOutput) Elem() DatabaseInstanceLoadBalancerOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) DatabaseInstanceLoadBalancer {
+		if v != nil {
+			return *v
+		}
+		var ret DatabaseInstanceLoadBalancer
+		return ret
 	}).(DatabaseInstanceLoadBalancerOutput)
+}
+
+// The ID of the endpoint.
+func (o DatabaseInstanceLoadBalancerPtrOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hostname of the endpoint.
+func (o DatabaseInstanceLoadBalancerPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// IPv4 address on the network.
+func (o DatabaseInstanceLoadBalancerPtrOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ip
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the Database Instance.
+func (o DatabaseInstanceLoadBalancerPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Port in the Private Network.
+func (o DatabaseInstanceLoadBalancerPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstanceLoadBalancer) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
 }
 
 type DatabaseInstanceLogsPolicy struct {
@@ -13989,7 +14069,7 @@ type LoadbalancerPrivateNetwork struct {
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-	StaticConfig *string `pulumi:"staticConfig"`
+	StaticConfigs []string `pulumi:"staticConfigs"`
 	// The status of the private network connection.
 	Status *string `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
@@ -14020,7 +14100,7 @@ type LoadbalancerPrivateNetworkArgs struct {
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
+	StaticConfigs pulumi.StringArrayInput `pulumi:"staticConfigs"`
 	// The status of the private network connection.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
@@ -14099,8 +14179,8 @@ func (o LoadbalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput
 // Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 //
 // Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-func (o LoadbalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LoadbalancerPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
+func (o LoadbalancerPrivateNetworkOutput) StaticConfigs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LoadbalancerPrivateNetwork) []string { return v.StaticConfigs }).(pulumi.StringArrayOutput)
 }
 
 // The status of the private network connection.
@@ -33577,7 +33657,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleInput)(nil)).Elem(), DatabaseAclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseAclAclRuleArrayInput)(nil)).Elem(), DatabaseAclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerArrayInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLoadBalancerPtrInput)(nil)).Elem(), DatabaseInstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceLogsPolicyPtrInput)(nil)).Elem(), DatabaseInstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateIpInput)(nil)).Elem(), DatabaseInstancePrivateIpArgs{})
@@ -34044,7 +34124,7 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseAclAclRuleOutput{})
 	pulumi.RegisterOutputType(DatabaseAclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerOutput{})
-	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceLoadBalancerPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceLogsPolicyPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstancePrivateIpOutput{})

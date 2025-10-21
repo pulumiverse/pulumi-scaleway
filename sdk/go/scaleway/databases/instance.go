@@ -219,15 +219,13 @@ import (
 //				return err
 //			}
 //			_, err = databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				LoadBalancers: databases.InstanceLoadBalancerArray{
-//					&databases.InstanceLoadBalancerArgs{},
-//				},
 //				NodeType: pulumi.String("DB-DEV-S"),
 //				Engine:   pulumi.String("PostgreSQL-15"),
 //				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
 //					PnId:       pn.ID(),
 //					EnableIpam: pulumi.Bool(true),
 //				},
+//				LoadBalancer: &databases.InstanceLoadBalancerArgs{},
 //			})
 //			if err != nil {
 //				return err
@@ -318,7 +316,7 @@ type Instance struct {
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrOutput `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
-	LoadBalancers InstanceLoadBalancerArrayOutput `pulumi:"loadBalancers"`
+	LoadBalancer InstanceLoadBalancerOutput `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy InstanceLogsPolicyOutput `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
@@ -441,7 +439,7 @@ type instanceState struct {
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
-	LoadBalancers []InstanceLoadBalancer `pulumi:"loadBalancers"`
+	LoadBalancer *InstanceLoadBalancer `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy *InstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
@@ -519,7 +517,7 @@ type InstanceState struct {
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// List of Load Balancer endpoints of the Database Instance.
-	LoadBalancers InstanceLoadBalancerArrayInput
+	LoadBalancer InstanceLoadBalancerPtrInput
 	// Logs policy configuration
 	LogsPolicy InstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
@@ -591,7 +589,7 @@ type instanceArgs struct {
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster *bool `pulumi:"isHaCluster"`
 	// List of Load Balancer endpoints of the Database Instance.
-	LoadBalancers []InstanceLoadBalancer `pulumi:"loadBalancers"`
+	LoadBalancer *InstanceLoadBalancer `pulumi:"loadBalancer"`
 	// Logs policy configuration
 	LogsPolicy *InstanceLogsPolicy `pulumi:"logsPolicy"`
 	// The name of the Database Instance.
@@ -656,7 +654,7 @@ type InstanceArgs struct {
 	// > **Important** Updates to `isHaCluster` will recreate the Database Instance.
 	IsHaCluster pulumi.BoolPtrInput
 	// List of Load Balancer endpoints of the Database Instance.
-	LoadBalancers InstanceLoadBalancerArrayInput
+	LoadBalancer InstanceLoadBalancerPtrInput
 	// Logs policy configuration
 	LogsPolicy InstanceLogsPolicyPtrInput
 	// The name of the Database Instance.
@@ -849,8 +847,8 @@ func (o InstanceOutput) IsHaCluster() pulumi.BoolPtrOutput {
 }
 
 // List of Load Balancer endpoints of the Database Instance.
-func (o InstanceOutput) LoadBalancers() InstanceLoadBalancerArrayOutput {
-	return o.ApplyT(func(v *Instance) InstanceLoadBalancerArrayOutput { return v.LoadBalancers }).(InstanceLoadBalancerArrayOutput)
+func (o InstanceOutput) LoadBalancer() InstanceLoadBalancerOutput {
+	return o.ApplyT(func(v *Instance) InstanceLoadBalancerOutput { return v.LoadBalancer }).(InstanceLoadBalancerOutput)
 }
 
 // Logs policy configuration

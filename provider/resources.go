@@ -134,6 +134,7 @@ func Provider() tfbridge.ProviderInfo {
 		Publisher:               "pulumiverse",
 		DisplayName:             "Scaleway",
 		TFProviderModuleVersion: "v2",
+		Version:                 version.Version,
 		Config: map[string]*tfbridge.SchemaInfo{
 			"access_key": {
 				Default: &tfbridge.DefaultInfo{

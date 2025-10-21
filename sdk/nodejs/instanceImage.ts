@@ -65,7 +65,7 @@ import * as utilities from "./utilities";
  * const image = new scaleway.instance.Image("image", {
  *     name: "image_with_extra_volumes",
  *     rootVolumeId: serverSnapshot.id,
- *     additionalVolumeIds: volumeSnapshot.id,
+ *     additionalVolumeIds: [volumeSnapshot.id],
  * });
  * ```
  *
@@ -113,7 +113,7 @@ export class InstanceImage extends pulumi.CustomResource {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      */
-    declare public readonly additionalVolumeIds: pulumi.Output<string | undefined>;
+    declare public readonly additionalVolumeIds: pulumi.Output<string[] | undefined>;
     /**
      * The description of the extra volumes attached to the image.
      */
@@ -235,7 +235,7 @@ export interface InstanceImageState {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      */
-    additionalVolumeIds?: pulumi.Input<string>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The description of the extra volumes attached to the image.
      */
@@ -301,7 +301,7 @@ export interface InstanceImageArgs {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
      */
-    additionalVolumeIds?: pulumi.Input<string>;
+    additionalVolumeIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
      */

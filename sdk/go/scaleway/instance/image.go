@@ -138,9 +138,11 @@ import (
 //				return err
 //			}
 //			_, err = instance.NewImage(ctx, "image", &instance.ImageArgs{
-//				Name:                pulumi.String("image_with_extra_volumes"),
-//				RootVolumeId:        serverSnapshot.ID(),
-//				AdditionalVolumeIds: volumeSnapshot.ID(),
+//				Name:         pulumi.String("image_with_extra_volumes"),
+//				RootVolumeId: serverSnapshot.ID(),
+//				AdditionalVolumeIds: pulumi.StringArray{
+//					volumeSnapshot.ID(),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -164,7 +166,7 @@ type Image struct {
 	pulumi.CustomResourceState
 
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	AdditionalVolumeIds pulumi.StringPtrOutput `pulumi:"additionalVolumeIds"`
+	AdditionalVolumeIds pulumi.StringArrayOutput `pulumi:"additionalVolumeIds"`
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes ImageAdditionalVolumeArrayOutput `pulumi:"additionalVolumes"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
@@ -235,7 +237,7 @@ func GetImage(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Image resources.
 type imageState struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	AdditionalVolumeIds *string `pulumi:"additionalVolumeIds"`
+	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes []ImageAdditionalVolume `pulumi:"additionalVolumes"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
@@ -268,7 +270,7 @@ type imageState struct {
 
 type ImageState struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	AdditionalVolumeIds pulumi.StringPtrInput
+	AdditionalVolumeIds pulumi.StringArrayInput
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes ImageAdditionalVolumeArrayInput
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
@@ -305,7 +307,7 @@ func (ImageState) ElementType() reflect.Type {
 
 type imageArgs struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	AdditionalVolumeIds *string `pulumi:"additionalVolumeIds"`
+	AdditionalVolumeIds []string `pulumi:"additionalVolumeIds"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture *string `pulumi:"architecture"`
 	// The name of the image. If not provided it will be randomly generated.
@@ -325,7 +327,7 @@ type imageArgs struct {
 // The set of arguments for constructing a Image resource.
 type ImageArgs struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	AdditionalVolumeIds pulumi.StringPtrInput
+	AdditionalVolumeIds pulumi.StringArrayInput
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture pulumi.StringPtrInput
 	// The name of the image. If not provided it will be randomly generated.
@@ -430,8 +432,8 @@ func (o ImageOutput) ToImageOutputWithContext(ctx context.Context) ImageOutput {
 }
 
 // List of IDs of the snapshots of the additional volumes to be attached to the image.
-func (o ImageOutput) AdditionalVolumeIds() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Image) pulumi.StringPtrOutput { return v.AdditionalVolumeIds }).(pulumi.StringPtrOutput)
+func (o ImageOutput) AdditionalVolumeIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Image) pulumi.StringArrayOutput { return v.AdditionalVolumeIds }).(pulumi.StringArrayOutput)
 }
 
 // The description of the extra volumes attached to the image.

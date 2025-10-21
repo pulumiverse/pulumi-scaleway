@@ -30,7 +30,7 @@ class DatabaseInstanceArgs:
                  engine: Optional[pulumi.Input[_builtins.str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
+                 load_balancer: Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']] = None,
                  logs_policy: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
@@ -64,7 +64,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input['DatabaseInstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance.
@@ -102,8 +102,8 @@ class DatabaseInstanceArgs:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
-        if load_balancers is not None:
-            pulumi.set(__self__, "load_balancers", load_balancers)
+        if load_balancer is not None:
+            pulumi.set(__self__, "load_balancer", load_balancer)
         if logs_policy is not None:
             pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
@@ -249,16 +249,16 @@ class DatabaseInstanceArgs:
         pulumi.set(self, "is_ha_cluster", value)
 
     @_builtins.property
-    @pulumi.getter(name="loadBalancers")
-    def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]:
+    @pulumi.getter(name="loadBalancer")
+    def load_balancer(self) -> Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]:
         """
         List of Load Balancer endpoints of the Database Instance.
         """
-        return pulumi.get(self, "load_balancers")
+        return pulumi.get(self, "load_balancer")
 
-    @load_balancers.setter
-    def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]):
-        pulumi.set(self, "load_balancers", value)
+    @load_balancer.setter
+    def load_balancer(self, value: Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]):
+        pulumi.set(self, "load_balancer", value)
 
     @_builtins.property
     @pulumi.getter(name="logsPolicy")
@@ -437,7 +437,7 @@ class _DatabaseInstanceState:
                  engine: Optional[pulumi.Input[_builtins.str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]] = None,
+                 load_balancer: Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']] = None,
                  logs_policy: Optional[pulumi.Input['DatabaseInstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -471,7 +471,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input['DatabaseInstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['DatabaseInstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -528,8 +528,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "init_settings", init_settings)
         if is_ha_cluster is not None:
             pulumi.set(__self__, "is_ha_cluster", is_ha_cluster)
-        if load_balancers is not None:
-            pulumi.set(__self__, "load_balancers", load_balancers)
+        if load_balancer is not None:
+            pulumi.set(__self__, "load_balancer", load_balancer)
         if logs_policy is not None:
             pulumi.set(__self__, "logs_policy", logs_policy)
         if name is not None:
@@ -702,16 +702,16 @@ class _DatabaseInstanceState:
         pulumi.set(self, "is_ha_cluster", value)
 
     @_builtins.property
-    @pulumi.getter(name="loadBalancers")
-    def load_balancers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]:
+    @pulumi.getter(name="loadBalancer")
+    def load_balancer(self) -> Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]:
         """
         List of Load Balancer endpoints of the Database Instance.
         """
-        return pulumi.get(self, "load_balancers")
+        return pulumi.get(self, "load_balancer")
 
-    @load_balancers.setter
-    def load_balancers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]]]):
-        pulumi.set(self, "load_balancers", value)
+    @load_balancer.setter
+    def load_balancer(self, value: Optional[pulumi.Input['DatabaseInstanceLoadBalancerArgs']]):
+        pulumi.set(self, "load_balancer", value)
 
     @_builtins.property
     @pulumi.getter(name="logsPolicy")
@@ -936,7 +936,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: Optional[pulumi.Input[_builtins.str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+                 load_balancer: Optional[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
                  logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1062,13 +1062,13 @@ class DatabaseInstance(pulumi.CustomResource):
 
         pn = scaleway.network.PrivateNetwork("pn")
         main = scaleway.databases.Instance("main",
-            load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             private_network={
                 "pn_id": pn.id,
                 "enable_ipam": True,
-            })
+            },
+            load_balancer={})
         ```
 
         ### Default: 1 public endpoint
@@ -1116,7 +1116,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -1259,13 +1259,13 @@ class DatabaseInstance(pulumi.CustomResource):
 
         pn = scaleway.network.PrivateNetwork("pn")
         main = scaleway.databases.Instance("main",
-            load_balancers=[{}],
             node_type="DB-DEV-S",
             engine="PostgreSQL-15",
             private_network={
                 "pn_id": pn.id,
                 "enable_ipam": True,
-            })
+            },
+            load_balancer={})
         ```
 
         ### Default: 1 public endpoint
@@ -1322,7 +1322,7 @@ class DatabaseInstance(pulumi.CustomResource):
                  engine: Optional[pulumi.Input[_builtins.str]] = None,
                  init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+                 load_balancer: Optional[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
                  logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1355,7 +1355,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["engine"] = engine
             __props__.__dict__["init_settings"] = init_settings
             __props__.__dict__["is_ha_cluster"] = is_ha_cluster
-            __props__.__dict__["load_balancers"] = load_balancers
+            __props__.__dict__["load_balancer"] = load_balancer
             __props__.__dict__["logs_policy"] = logs_policy
             __props__.__dict__["name"] = name
             if node_type is None and not opts.urn:
@@ -1400,7 +1400,7 @@ class DatabaseInstance(pulumi.CustomResource):
             engine: Optional[pulumi.Input[_builtins.str]] = None,
             init_settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             is_ha_cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-            load_balancers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]]] = None,
+            load_balancer: Optional[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]] = None,
             logs_policy: Optional[pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             node_type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1439,7 +1439,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
                > **Important** Updates to `is_ha_cluster` will recreate the Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']]]] load_balancers: List of Load Balancer endpoints of the Database Instance.
+        :param pulumi.Input[Union['DatabaseInstanceLoadBalancerArgs', 'DatabaseInstanceLoadBalancerArgsDict']] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input[Union['DatabaseInstanceLogsPolicyArgs', 'DatabaseInstanceLogsPolicyArgsDict']] logs_policy: Logs policy configuration
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
         :param pulumi.Input[_builtins.str] node_type: The type of Database Instance you want to create (e.g. `db-dev-s`).
@@ -1483,7 +1483,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["engine"] = engine
         __props__.__dict__["init_settings"] = init_settings
         __props__.__dict__["is_ha_cluster"] = is_ha_cluster
-        __props__.__dict__["load_balancers"] = load_balancers
+        __props__.__dict__["load_balancer"] = load_balancer
         __props__.__dict__["logs_policy"] = logs_policy
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
@@ -1597,12 +1597,12 @@ class DatabaseInstance(pulumi.CustomResource):
         return pulumi.get(self, "is_ha_cluster")
 
     @_builtins.property
-    @pulumi.getter(name="loadBalancers")
-    def load_balancers(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceLoadBalancer']]:
+    @pulumi.getter(name="loadBalancer")
+    def load_balancer(self) -> pulumi.Output['outputs.DatabaseInstanceLoadBalancer']:
         """
         List of Load Balancer endpoints of the Database Instance.
         """
-        return pulumi.get(self, "load_balancers")
+        return pulumi.get(self, "load_balancer")
 
     @_builtins.property
     @pulumi.getter(name="logsPolicy")

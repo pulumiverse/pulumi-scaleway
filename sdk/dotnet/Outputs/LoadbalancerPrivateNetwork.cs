@@ -30,7 +30,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         /// </summary>
-        public readonly string? StaticConfig;
+        public readonly ImmutableArray<string> StaticConfigs;
         /// <summary>
         /// The status of the private network connection.
         /// </summary>
@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway.Outputs
 
             string privateNetworkId,
 
-            string? staticConfig,
+            ImmutableArray<string> staticConfigs,
 
             string? status,
 
@@ -57,7 +57,7 @@ namespace Pulumiverse.Scaleway.Outputs
             DhcpConfig = dhcpConfig;
             IpamIds = ipamIds;
             PrivateNetworkId = privateNetworkId;
-            StaticConfig = staticConfig;
+            StaticConfigs = staticConfigs;
             Status = status;
             Zone = zone;
         }

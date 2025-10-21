@@ -112,7 +112,10 @@ namespace Pulumiverse.Scaleway
     ///     {
     ///         Name = "image_with_extra_volumes",
     ///         RootVolumeId = serverSnapshot.Id,
-    ///         AdditionalVolumeIds = volumeSnapshot.Id,
+    ///         AdditionalVolumeIds = new[]
+    ///         {
+    ///             volumeSnapshot.Id,
+    ///         },
     ///     });
     /// 
     /// });
@@ -136,7 +139,7 @@ namespace Pulumiverse.Scaleway
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
         /// </summary>
         [Output("additionalVolumeIds")]
-        public Output<string?> AdditionalVolumeIds { get; private set; } = null!;
+        public Output<ImmutableArray<string>> AdditionalVolumeIds { get; private set; } = null!;
 
         /// <summary>
         /// The description of the extra volumes attached to the image.
@@ -269,11 +272,17 @@ namespace Pulumiverse.Scaleway
 
     public sealed class InstanceImageArgs : global::Pulumi.ResourceArgs
     {
+        [Input("additionalVolumeIds")]
+        private InputList<string>? _additionalVolumeIds;
+
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
         /// </summary>
-        [Input("additionalVolumeIds")]
-        public Input<string>? AdditionalVolumeIds { get; set; }
+        public InputList<string> AdditionalVolumeIds
+        {
+            get => _additionalVolumeIds ?? (_additionalVolumeIds = new InputList<string>());
+            set => _additionalVolumeIds = value;
+        }
 
         /// <summary>
         /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
@@ -331,11 +340,17 @@ namespace Pulumiverse.Scaleway
 
     public sealed class InstanceImageState : global::Pulumi.ResourceArgs
     {
+        [Input("additionalVolumeIds")]
+        private InputList<string>? _additionalVolumeIds;
+
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
         /// </summary>
-        [Input("additionalVolumeIds")]
-        public Input<string>? AdditionalVolumeIds { get; set; }
+        public InputList<string> AdditionalVolumeIds
+        {
+            get => _additionalVolumeIds ?? (_additionalVolumeIds = new InputList<string>());
+            set => _additionalVolumeIds = value;
+        }
 
         [Input("additionalVolumes")]
         private InputList<Inputs.InstanceImageAdditionalVolumeGetArgs>? _additionalVolumes;

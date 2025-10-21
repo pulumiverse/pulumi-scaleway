@@ -4158,7 +4158,7 @@ export interface LoadbalancerPrivateNetwork {
      *
      * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
-    staticConfig: string;
+    staticConfigs: string[];
     /**
      * The status of the private network connection.
      */
@@ -9166,7 +9166,7 @@ export namespace loadbalancers {
          *
          * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */
-        staticConfig: string;
+        staticConfigs: string[];
         /**
          * The status of the private network connection.
          */

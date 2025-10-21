@@ -7,9 +7,10 @@
                     {
                         "name": "scaleway:index/accountProject:AccountProject",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_account_ssh_key": {
                 "current": "scaleway:account/sshKey:SshKey",
@@ -17,9 +18,10 @@
                     {
                         "name": "scaleway:index/accountSshKey:AccountSshKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_apple_silicon_server": {
                 "current": "scaleway:applesilicon/server:Server",
@@ -27,9 +29,10 @@
                     {
                         "name": "scaleway:index/appleSiliconServer:AppleSiliconServer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "private_ips": {
                         "maxItemsOne": false
@@ -48,6 +51,7 @@
             },
             "scaleway_autoscaling_instance_group": {
                 "current": "scaleway:autoscaling/instanceGroup:InstanceGroup",
+                "majorVersion": 1,
                 "fields": {
                     "capacity": {
                         "maxItemsOne": false
@@ -69,6 +73,7 @@
             },
             "scaleway_autoscaling_instance_policy": {
                 "current": "scaleway:autoscaling/instancePolicy:InstancePolicy",
+                "majorVersion": 1,
                 "fields": {
                     "metric": {
                         "maxItemsOne": false
@@ -77,6 +82,7 @@
             },
             "scaleway_autoscaling_instance_template": {
                 "current": "scaleway:autoscaling/instanceTemplate:InstanceTemplate",
+                "majorVersion": 1,
                 "fields": {
                     "private_network_ids": {
                         "maxItemsOne": false
@@ -108,9 +114,10 @@
                     {
                         "name": "scaleway:index/baremetalServer:BaremetalServer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ips": {
                         "maxItemsOne": false
@@ -151,9 +158,10 @@
                     {
                         "name": "scaleway:index/blockSnapshot:BlockSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "export": {
                         "maxItemsOne": true
@@ -172,9 +180,10 @@
                     {
                         "name": "scaleway:index/blockVolume:BlockVolume",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -187,9 +196,10 @@
                     {
                         "name": "scaleway:index/cockpit:Cockpit",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "endpoints": {
                         "maxItemsOne": false
@@ -205,9 +215,10 @@
                     {
                         "name": "scaleway:index/cockpitAlertManager:CockpitAlertManager",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "contact_points": {
                         "maxItemsOne": false
@@ -220,9 +231,10 @@
                     {
                         "name": "scaleway:index/cockpitGrafanaUser:CockpitGrafanaUser",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_cockpit_source": {
                 "current": "scaleway:observability/source:Source",
@@ -230,9 +242,10 @@
                     {
                         "name": "scaleway:index/cockpitSource:CockpitSource",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_cockpit_token": {
                 "current": "scaleway:observability/token:Token",
@@ -240,9 +253,10 @@
                     {
                         "name": "scaleway:index/cockpitToken:CockpitToken",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "scopes": {
                         "maxItemsOne": true
@@ -255,9 +269,10 @@
                     {
                         "name": "scaleway:index/container:Container",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "args": {
                         "maxItemsOne": false
@@ -289,9 +304,10 @@
                     {
                         "name": "scaleway:index/containerCron:ContainerCron",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_container_domain": {
                 "current": "scaleway:containers/domain:Domain",
@@ -299,9 +315,10 @@
                     {
                         "name": "scaleway:index/containerDomain:ContainerDomain",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_container_namespace": {
                 "current": "scaleway:containers/namespace:Namespace",
@@ -309,9 +326,10 @@
                     {
                         "name": "scaleway:index/containerNamespace:ContainerNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -324,9 +342,10 @@
                     {
                         "name": "scaleway:index/containerToken:ContainerToken",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_container_trigger": {
                 "current": "scaleway:containers/trigger:Trigger",
@@ -334,9 +353,10 @@
                     {
                         "name": "scaleway:index/containerTrigger:ContainerTrigger",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "nats": {
                         "maxItemsOne": true
@@ -352,9 +372,10 @@
                     {
                         "name": "scaleway:index/domainRecord:DomainRecord",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "geo_ip": {
                         "maxItemsOne": true,
@@ -396,6 +417,7 @@
             },
             "scaleway_domain_registration": {
                 "current": "scaleway:domain/registration:Registration",
+                "majorVersion": 1,
                 "fields": {
                     "administrative_contact": {
                         "maxItemsOne": false,
@@ -533,9 +555,10 @@
                     {
                         "name": "scaleway:index/domainZone:DomainZone",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ns": {
                         "maxItemsOne": false
@@ -550,6 +573,7 @@
             },
             "scaleway_edge_services_backend_stage": {
                 "current": "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage",
+                "majorVersion": 1,
                 "fields": {
                     "lb_backend_config": {
                         "maxItemsOne": false,
@@ -568,6 +592,7 @@
             },
             "scaleway_edge_services_cache_stage": {
                 "current": "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage",
+                "majorVersion": 1,
                 "fields": {
                     "purge_requests": {
                         "maxItemsOne": false,
@@ -583,6 +608,7 @@
             },
             "scaleway_edge_services_dns_stage": {
                 "current": "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage",
+                "majorVersion": 1,
                 "fields": {
                     "fqdns": {
                         "maxItemsOne": false
@@ -590,16 +616,20 @@
                 }
             },
             "scaleway_edge_services_head_stage": {
-                "current": "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage"
+                "current": "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage",
+                "majorVersion": 1
             },
             "scaleway_edge_services_pipeline": {
-                "current": "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline"
+                "current": "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline",
+                "majorVersion": 1
             },
             "scaleway_edge_services_plan": {
-                "current": "scaleway:index/edgeServicesPlan:EdgeServicesPlan"
+                "current": "scaleway:index/edgeServicesPlan:EdgeServicesPlan",
+                "majorVersion": 1
             },
             "scaleway_edge_services_route_stage": {
                 "current": "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage",
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false,
@@ -625,6 +655,7 @@
             },
             "scaleway_edge_services_tls_stage": {
                 "current": "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage",
+                "majorVersion": 1,
                 "fields": {
                     "secrets": {
                         "maxItemsOne": false
@@ -632,10 +663,12 @@
                 }
             },
             "scaleway_edge_services_waf_stage": {
-                "current": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage"
+                "current": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage",
+                "majorVersion": 1
             },
             "scaleway_file_filesystem": {
                 "current": "scaleway:index/fileFilesystem:FileFilesystem",
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -648,9 +681,10 @@
                     {
                         "name": "scaleway:index/flexibleIp:FlexibleIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -663,9 +697,10 @@
                     {
                         "name": "scaleway:index/flexibleIpMacAddress:FlexibleIpMacAddress",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "flexible_ip_ids_to_duplicate": {
                         "maxItemsOne": false
@@ -678,9 +713,10 @@
                     {
                         "name": "scaleway:index/function:Function",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -693,9 +729,10 @@
                     {
                         "name": "scaleway:index/functionCron:FunctionCron",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_function_domain": {
                 "current": "scaleway:functions/domain:Domain",
@@ -703,9 +740,10 @@
                     {
                         "name": "scaleway:index/functionDomain:FunctionDomain",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_function_namespace": {
                 "current": "scaleway:functions/namespace:Namespace",
@@ -713,9 +751,10 @@
                     {
                         "name": "scaleway:index/functionNamespace:FunctionNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -728,9 +767,10 @@
                     {
                         "name": "scaleway:index/functionToken:FunctionToken",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_function_trigger": {
                 "current": "scaleway:functions/trigger:Trigger",
@@ -738,9 +778,10 @@
                     {
                         "name": "scaleway:index/functionTrigger:FunctionTrigger",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "nats": {
                         "maxItemsOne": true
@@ -756,9 +797,10 @@
                     {
                         "name": "scaleway:index/iamApiKey:IamApiKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iam_application": {
                 "current": "scaleway:iam/application:Application",
@@ -766,9 +808,10 @@
                     {
                         "name": "scaleway:index/iamApplication:IamApplication",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -781,9 +824,10 @@
                     {
                         "name": "scaleway:index/iamGroup:IamGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "application_ids": {
                         "maxItemsOne": false
@@ -802,9 +846,10 @@
                     {
                         "name": "scaleway:index/iamGroupMembership:IamGroupMembership",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iam_policy": {
                 "current": "scaleway:iam/policy:Policy",
@@ -812,9 +857,10 @@
                     {
                         "name": "scaleway:index/iamPolicy:IamPolicy",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": false,
@@ -840,9 +886,10 @@
                     {
                         "name": "scaleway:index/iamSshKey:IamSshKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iam_user": {
                 "current": "scaleway:iam/user:User",
@@ -850,9 +897,10 @@
                     {
                         "name": "scaleway:index/iamUser:IamUser",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -865,9 +913,10 @@
                     {
                         "name": "scaleway:index/inferenceDeployment:InferenceDeployment",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "private_endpoint": {
                         "maxItemsOne": true
@@ -885,6 +934,7 @@
             },
             "scaleway_inference_model": {
                 "current": "scaleway:inference/model:Model",
+                "majorVersion": 1,
                 "fields": {
                     "nodes_support": {
                         "maxItemsOne": false,
@@ -907,12 +957,13 @@
                     {
                         "name": "scaleway:index/instanceImage:InstanceImage",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "additional_volume_ids": {
-                        "maxItemsOne": true
+                        "maxItemsOne": false
                     },
                     "additional_volumes": {
                         "maxItemsOne": false,
@@ -938,9 +989,10 @@
                     {
                         "name": "scaleway:index/instanceIp:InstanceIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -953,9 +1005,10 @@
                     {
                         "name": "scaleway:index/instanceIpReverseDns:InstanceIpReverseDns",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_instance_placement_group": {
                 "current": "scaleway:instance/placementGroup:PlacementGroup",
@@ -963,9 +1016,10 @@
                     {
                         "name": "scaleway:index/instancePlacementGroup:InstancePlacementGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -978,9 +1032,10 @@
                     {
                         "name": "scaleway:index/instancePrivateNic:InstancePrivateNic",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ip_ids": {
                         "maxItemsOne": false
@@ -1002,9 +1057,10 @@
                     {
                         "name": "scaleway:index/instanceSecurityGroup:InstanceSecurityGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "inbound_rule": {
                         "maxItemsOne": false
@@ -1023,9 +1079,10 @@
                     {
                         "name": "scaleway:index/instanceSecurityGroupRules:InstanceSecurityGroupRules",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "inbound_rule": {
                         "maxItemsOne": false
@@ -1041,9 +1098,10 @@
                     {
                         "name": "scaleway:index/instanceServer:InstanceServer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "additional_volume_ids": {
                         "maxItemsOne": false
@@ -1074,9 +1132,10 @@
                     {
                         "name": "scaleway:index/instanceSnapshot:InstanceSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "import": {
                         "maxItemsOne": true
@@ -1092,9 +1151,10 @@
                     {
                         "name": "scaleway:index/instanceUserData:InstanceUserData",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_instance_volume": {
                 "current": "scaleway:instance/volume:Volume",
@@ -1102,9 +1162,10 @@
                     {
                         "name": "scaleway:index/instanceVolume:InstanceVolume",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -1117,9 +1178,10 @@
                     {
                         "name": "scaleway:index/iotDevice:IotDevice",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "certificate": {
                         "maxItemsOne": true
@@ -1159,9 +1221,10 @@
                     {
                         "name": "scaleway:index/iotHub:IotHub",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iot_network": {
                 "current": "scaleway:iot/network:Network",
@@ -1169,9 +1232,10 @@
                     {
                         "name": "scaleway:index/iotNetwork:IotNetwork",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iot_route": {
                 "current": "scaleway:iot/route:Route",
@@ -1179,9 +1243,10 @@
                     {
                         "name": "scaleway:index/iotRoute:IotRoute",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "database": {
                         "maxItemsOne": true
@@ -1200,9 +1265,10 @@
                     {
                         "name": "scaleway:index/ipamIp:IpamIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "custom_resource": {
                         "maxItemsOne": false
@@ -1227,9 +1293,10 @@
                     {
                         "name": "scaleway:index/ipamIpReverseDns:IpamIpReverseDns",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_job_definition": {
                 "current": "scaleway:job/definition:Definition",
@@ -1237,9 +1304,10 @@
                     {
                         "name": "scaleway:index/jobDefinition:JobDefinition",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cron": {
                         "maxItemsOne": true
@@ -1251,6 +1319,7 @@
             },
             "scaleway_k8s_acl": {
                 "current": "scaleway:kubernetes/acl:Acl",
+                "majorVersion": 1,
                 "fields": {
                     "acl_rules": {
                         "maxItemsOne": false
@@ -1263,9 +1332,10 @@
                     {
                         "name": "scaleway:index/kubernetesCluster:KubernetesCluster",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "admission_plugins": {
                         "maxItemsOne": false
@@ -1309,9 +1379,10 @@
                     {
                         "name": "scaleway:index/kubernetesNodePool:KubernetesNodePool",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "nodes": {
                         "maxItemsOne": false,
@@ -1333,6 +1404,7 @@
             },
             "scaleway_key_manager_key": {
                 "current": "scaleway:index/keyManagerKey:KeyManagerKey",
+                "majorVersion": 1,
                 "fields": {
                     "rotation_policy": {
                         "maxItemsOne": true
@@ -1348,9 +1420,10 @@
                     {
                         "name": "scaleway:index/loadbalancer:Loadbalancer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ip_ids": {
                         "maxItemsOne": false
@@ -1366,7 +1439,7 @@
                                     "maxItemsOne": true
                                 },
                                 "static_config": {
-                                    "maxItemsOne": true
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -1382,9 +1455,10 @@
                     {
                         "name": "scaleway:index/loadbalancerAcl:LoadbalancerAcl",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "action": {
                         "maxItemsOne": true,
@@ -1417,9 +1491,10 @@
                     {
                         "name": "scaleway:index/loadbalancerBackend:LoadbalancerBackend",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "health_check_http": {
                         "maxItemsOne": true
@@ -1441,9 +1516,10 @@
                     {
                         "name": "scaleway:index/loadbalancerCertificate:LoadbalancerCertificate",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "custom_certificate": {
                         "maxItemsOne": true
@@ -1469,9 +1545,10 @@
                     {
                         "name": "scaleway:index/loadbalancerFrontend:LoadbalancerFrontend",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl": {
                         "maxItemsOne": false,
@@ -1514,9 +1591,10 @@
                     {
                         "name": "scaleway:index/loadbalancerIp:LoadbalancerIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -1529,9 +1607,10 @@
                     {
                         "name": "scaleway:index/loadbalancerRoute:LoadbalancerRoute",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_nats_account": {
                 "current": "scaleway:mnq/natsAccount:NatsAccount",
@@ -1539,9 +1618,10 @@
                     {
                         "name": "scaleway:index/mnqNatsAccount:MnqNatsAccount",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_nats_credentials": {
                 "current": "scaleway:mnq/natsCredentials:NatsCredentials",
@@ -1549,9 +1629,10 @@
                     {
                         "name": "scaleway:index/mnqNatsCredentials:MnqNatsCredentials",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sns": {
                 "current": "scaleway:mnq/sns:Sns",
@@ -1559,9 +1640,10 @@
                     {
                         "name": "scaleway:index/mnqSns:MnqSns",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sns_credentials": {
                 "current": "scaleway:mnq/snsCredentials:SnsCredentials",
@@ -1569,9 +1651,10 @@
                     {
                         "name": "scaleway:index/mnqSnsCredentials:MnqSnsCredentials",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": true
@@ -1584,9 +1667,10 @@
                     {
                         "name": "scaleway:index/mnqSnsTopic:MnqSnsTopic",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sns_topic_subscription": {
                 "current": "scaleway:mnq/snsTopicSubscription:SnsTopicSubscription",
@@ -1594,9 +1678,10 @@
                     {
                         "name": "scaleway:index/mnqSnsTopicSubscription:MnqSnsTopicSubscription",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sqs": {
                 "current": "scaleway:mnq/sqs:Sqs",
@@ -1604,9 +1689,10 @@
                     {
                         "name": "scaleway:index/mnqSqs:MnqSqs",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sqs_credentials": {
                 "current": "scaleway:mnq/sqsCredentials:SqsCredentials",
@@ -1614,9 +1700,10 @@
                     {
                         "name": "scaleway:index/mnqSqsCredentials:MnqSqsCredentials",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "permissions": {
                         "maxItemsOne": true
@@ -1629,9 +1716,10 @@
                     {
                         "name": "scaleway:index/mnqSqsQueue:MnqSqsQueue",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "dead_letter_queue": {
                         "maxItemsOne": true
@@ -1644,9 +1732,10 @@
                     {
                         "name": "scaleway:index/mongoDbInstance:MongoDbInstance",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "private_ip": {
                         "maxItemsOne": false
@@ -1678,12 +1767,14 @@
                     {
                         "name": "scaleway:index/mongoDbSnapshot:MongoDbSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mongodb_user": {
                 "current": "scaleway:mongodb/user:User",
+                "majorVersion": 1,
                 "fields": {
                     "roles": {
                         "maxItemsOne": false
@@ -1696,9 +1787,10 @@
                     {
                         "name": "scaleway:index/objectItem:ObjectItem",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_object_bucket": {
                 "current": "scaleway:object/bucket:Bucket",
@@ -1706,9 +1798,10 @@
                     {
                         "name": "scaleway:index/objectBucket:ObjectBucket",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cors_rule": {
                         "maxItemsOne": false,
@@ -1753,9 +1846,10 @@
                     {
                         "name": "scaleway:index/objectBucketAcl:ObjectBucketAcl",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "access_control_policy": {
                         "maxItemsOne": true,
@@ -1785,9 +1879,10 @@
                     {
                         "name": "scaleway:index/objectBucketLockConfiguration:ObjectBucketLockConfiguration",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "rule": {
                         "maxItemsOne": true,
@@ -1807,9 +1902,10 @@
                     {
                         "name": "scaleway:index/objectBucketPolicy:ObjectBucketPolicy",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_object_bucket_website_configuration": {
                 "current": "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration",
@@ -1817,9 +1913,10 @@
                     {
                         "name": "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "error_document": {
                         "maxItemsOne": true
@@ -1835,9 +1932,10 @@
                     {
                         "name": "scaleway:index/databaseAcl:DatabaseAcl",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl_rules": {
                         "maxItemsOne": false
@@ -1850,9 +1948,10 @@
                     {
                         "name": "scaleway:index/database:Database",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_database_backup": {
                 "current": "scaleway:databases/databaseBackup:DatabaseBackup",
@@ -1860,9 +1959,10 @@
                     {
                         "name": "scaleway:index/databaseBackup:DatabaseBackup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_instance": {
                 "current": "scaleway:databases/instance:Instance",
@@ -1870,12 +1970,13 @@
                     {
                         "name": "scaleway:index/databaseInstance:DatabaseInstance",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "load_balancer": {
-                        "maxItemsOne": false
+                        "maxItemsOne": true
                     },
                     "logs_policy": {
                         "maxItemsOne": true
@@ -1900,9 +2001,10 @@
                     {
                         "name": "scaleway:index/databasePrivilege:DatabasePrivilege",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_read_replica": {
                 "current": "scaleway:databases/readReplica:ReadReplica",
@@ -1910,9 +2012,10 @@
                     {
                         "name": "scaleway:index/databaseReadReplica:DatabaseReadReplica",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "direct_access": {
                         "maxItemsOne": true
@@ -1928,9 +2031,10 @@
                     {
                         "name": "scaleway:index/rdbSnapshot:RdbSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_user": {
                 "current": "scaleway:databases/user:User",
@@ -1938,9 +2042,10 @@
                     {
                         "name": "scaleway:index/databaseUser:DatabaseUser",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_redis_cluster": {
                 "current": "scaleway:redis/cluster:Cluster",
@@ -1948,9 +2053,10 @@
                     {
                         "name": "scaleway:index/redisCluster:RedisCluster",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl": {
                         "maxItemsOne": false
@@ -1992,9 +2098,10 @@
                     {
                         "name": "scaleway:index/registryNamespace:RegistryNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_sdb_sql_database": {
                 "current": "scaleway:databases/serverlessDatabase:ServerlessDatabase",
@@ -2002,9 +2109,10 @@
                     {
                         "name": "scaleway:index/sdbDatabase:SdbDatabase",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_secret": {
                 "current": "scaleway:secrets/secret:Secret",
@@ -2012,9 +2120,10 @@
                     {
                         "name": "scaleway:index/secret:Secret",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ephemeral_policy": {
                         "maxItemsOne": false
@@ -2033,12 +2142,14 @@
                     {
                         "name": "scaleway:index/secretVersion:SecretVersion",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_tem_blocked_list": {
-                "current": "scaleway:tem/blockedList:BlockedList"
+                "current": "scaleway:tem/blockedList:BlockedList",
+                "majorVersion": 1
             },
             "scaleway_tem_domain": {
                 "current": "scaleway:tem/domain:Domain",
@@ -2046,9 +2157,10 @@
                     {
                         "name": "scaleway:index/temDomain:TemDomain",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "reputation": {
                         "maxItemsOne": false
@@ -2061,9 +2173,10 @@
                     {
                         "name": "scaleway:index/temDomainValidation:TemDomainValidation",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_tem_webhook": {
                 "current": "scaleway:tem/webhook:Webhook",
@@ -2071,9 +2184,10 @@
                     {
                         "name": "scaleway:index/temWebhook:TemWebhook",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "event_types": {
                         "maxItemsOne": false
@@ -2086,9 +2200,10 @@
                     {
                         "name": "scaleway:index/vpc:Vpc",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2097,6 +2212,7 @@
             },
             "scaleway_vpc_acl": {
                 "current": "scaleway:network/acl:Acl",
+                "majorVersion": 1,
                 "fields": {
                     "rules": {
                         "maxItemsOne": false
@@ -2109,9 +2225,10 @@
                     {
                         "name": "scaleway:index/vpcGatewayNetwork:VpcGatewayNetwork",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ipam_config": {
                         "maxItemsOne": false
@@ -2127,9 +2244,10 @@
                     {
                         "name": "scaleway:index/vpcPrivateNetwork:VpcPrivateNetwork",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ipv4_subnet": {
                         "maxItemsOne": true
@@ -2148,9 +2266,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGateway:VpcPublicGateway",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "allowed_ip_ranges": {
                         "maxItemsOne": false
@@ -2169,9 +2288,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGatewayDhcp:VpcPublicGatewayDhcp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "dns_search": {
                         "maxItemsOne": false
@@ -2187,9 +2307,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGatewayDhcpReservation:VpcPublicGatewayDhcpReservation",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_vpc_public_gateway_ip": {
                 "current": "scaleway:network/publicGatewayIp:PublicGatewayIp",
@@ -2197,9 +2318,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGatewayIp:VpcPublicGatewayIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2212,9 +2334,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGatewayIpReverseDns:VpcPublicGatewayIpReverseDns",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_vpc_public_gateway_pat_rule": {
                 "current": "scaleway:network/publicGatewayPatRule:PublicGatewayPatRule",
@@ -2222,9 +2345,10 @@
                     {
                         "name": "scaleway:index/vpcPublicGatewayPatRule:VpcPublicGatewayPatRule",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_vpc_route": {
                 "current": "scaleway:network/route:Route",
@@ -2232,9 +2356,10 @@
                     {
                         "name": "scaleway:index/vpcRoute:VpcRoute",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2247,9 +2372,10 @@
                     {
                         "name": "scaleway:index/webhosting:Webhosting",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cpanel_urls": {
                         "maxItemsOne": false
@@ -2279,12 +2405,14 @@
                     {
                         "name": "scaleway:index/getAccountProject:getAccountProject",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_account_projects": {
                 "current": "scaleway:account/getProjects:getProjects",
+                "majorVersion": 1,
                 "fields": {
                     "projects": {
                         "maxItemsOne": false
@@ -2297,9 +2425,10 @@
                     {
                         "name": "scaleway:index/getAccountSshKey:getAccountSshKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_availability_zones": {
                 "current": "scaleway:account/getAvailabilityZones:getAvailabilityZones",
@@ -2307,9 +2436,10 @@
                     {
                         "name": "scaleway:index/getAvailabilityZones:getAvailabilityZones",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "zones": {
                         "maxItemsOne": false
@@ -2322,9 +2452,10 @@
                     {
                         "name": "scaleway:index/getBaremetalOffer:getBaremetalOffer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cpu": {
                         "maxItemsOne": true
@@ -2343,9 +2474,10 @@
                     {
                         "name": "scaleway:index/getBaremetalOption:getBaremetalOption",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_baremetal_os": {
                 "current": "scaleway:elasticmetal/getOs:getOs",
@@ -2353,12 +2485,14 @@
                     {
                         "name": "scaleway:index/getBaremetalOs:getBaremetalOs",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_baremetal_partition_schema": {
-                "current": "scaleway:elasticmetal/getPartitionSchema:getPartitionSchema"
+                "current": "scaleway:elasticmetal/getPartitionSchema:getPartitionSchema",
+                "majorVersion": 1
             },
             "scaleway_baremetal_server": {
                 "current": "scaleway:elasticmetal/getServer:getServer",
@@ -2366,9 +2500,10 @@
                     {
                         "name": "scaleway:index/getBaremetalServer:getBaremetalServer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ips": {
                         "maxItemsOne": false
@@ -2409,9 +2544,10 @@
                     {
                         "name": "scaleway:index/getBillingConsumptions:getBillingConsumptions",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "consumptions": {
                         "maxItemsOne": false
@@ -2424,9 +2560,10 @@
                     {
                         "name": "scaleway:index/getBillingInvoices:getBillingInvoices",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "invoices": {
                         "maxItemsOne": false
@@ -2439,9 +2576,10 @@
                     {
                         "name": "scaleway:index/getBlockSnapshot:getBlockSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "export": {
                         "maxItemsOne": false
@@ -2460,9 +2598,10 @@
                     {
                         "name": "scaleway:index/getBlockVolume:getBlockVolume",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2475,9 +2614,10 @@
                     {
                         "name": "scaleway:index/getCockpit:getCockpit",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "endpoints": {
                         "maxItemsOne": false
@@ -2493,12 +2633,14 @@
                     {
                         "name": "scaleway:index/getCockpitSource:getCockpitSource",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_cockpit_sources": {
                 "current": "scaleway:observability/getSources:getSources",
+                "majorVersion": 1,
                 "fields": {
                     "sources": {
                         "maxItemsOne": false
@@ -2506,7 +2648,8 @@
                 }
             },
             "scaleway_config": {
-                "current": "scaleway:index/getConfig:getConfig"
+                "current": "scaleway:index/getConfig:getConfig",
+                "majorVersion": 1
             },
             "scaleway_container": {
                 "current": "scaleway:containers/getContainer:getContainer",
@@ -2514,9 +2657,10 @@
                     {
                         "name": "scaleway:index/getContainer:getContainer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "args": {
                         "maxItemsOne": false
@@ -2548,9 +2692,10 @@
                     {
                         "name": "scaleway:index/getContainerNamespace:getContainerNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2563,9 +2708,10 @@
                     {
                         "name": "scaleway:index/getDomainRecord:getDomainRecord",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "geo_ip": {
                         "maxItemsOne": false,
@@ -2611,9 +2757,10 @@
                     {
                         "name": "scaleway:index/getDomainZone:getDomainZone",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ns": {
                         "maxItemsOne": false
@@ -2632,9 +2779,10 @@
                     {
                         "name": "scaleway:index/getFlexibleIp:getFlexibleIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2647,9 +2795,10 @@
                     {
                         "name": "scaleway:index/getFlexibleIps:getFlexibleIps",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ips": {
                         "maxItemsOne": false,
@@ -2678,9 +2827,10 @@
                     {
                         "name": "scaleway:index/getFunction:getFunction",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2693,9 +2843,10 @@
                     {
                         "name": "scaleway:index/getFunctionNamespace:getFunctionNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2708,9 +2859,10 @@
                     {
                         "name": "scaleway:index/getIamApiKey:getIamApiKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iam_application": {
                 "current": "scaleway:iam/getApplication:getApplication",
@@ -2718,9 +2870,10 @@
                     {
                         "name": "scaleway:index/getIamApplication:getIamApplication",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2733,9 +2886,10 @@
                     {
                         "name": "scaleway:index/getIamGroup:getIamGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "application_ids": {
                         "maxItemsOne": false
@@ -2754,9 +2908,10 @@
                     {
                         "name": "scaleway:index/getIamSshKey:getIamSshKey",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_iam_user": {
                 "current": "scaleway:iam/getUser:getUser",
@@ -2764,9 +2919,10 @@
                     {
                         "name": "scaleway:index/getIamUser:getIamUser",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2775,6 +2931,7 @@
             },
             "scaleway_inference_model": {
                 "current": "scaleway:inference/getModel:getModel",
+                "majorVersion": 1,
                 "fields": {
                     "nodes_support": {
                         "maxItemsOne": false,
@@ -2797,9 +2954,10 @@
                     {
                         "name": "scaleway:index/getInstanceImage:getInstanceImage",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "additional_volume_ids": {
                         "maxItemsOne": false
@@ -2812,9 +2970,10 @@
                     {
                         "name": "scaleway:index/getInstanceIp:getInstanceIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2827,9 +2986,10 @@
                     {
                         "name": "scaleway:index/getInstancePlacementGroup:getInstancePlacementGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -2842,9 +3002,10 @@
                     {
                         "name": "scaleway:index/getInstancePrivateNic:getInstancePrivateNic",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ip_ids": {
                         "maxItemsOne": false
@@ -2866,9 +3027,10 @@
                     {
                         "name": "scaleway:index/getInstanceSecurityGroup:getInstanceSecurityGroup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "inbound_rule": {
                         "maxItemsOne": false
@@ -2887,9 +3049,10 @@
                     {
                         "name": "scaleway:index/getInstanceServer:getInstanceServer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "additional_volume_ids": {
                         "maxItemsOne": false
@@ -2916,6 +3079,7 @@
             },
             "scaleway_instance_server_type": {
                 "current": "scaleway:instance/getServerType:getServerType",
+                "majorVersion": 1,
                 "fields": {
                     "capabilities": {
                         "maxItemsOne": false,
@@ -2941,9 +3105,10 @@
                     {
                         "name": "scaleway:index/getInstanceServers:getInstanceServers",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "servers": {
                         "maxItemsOne": false,
@@ -2972,9 +3137,10 @@
                     {
                         "name": "scaleway:index/getInstanceSnapshot:getInstanceSnapshot",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "import": {
                         "maxItemsOne": false
@@ -2990,9 +3156,10 @@
                     {
                         "name": "scaleway:index/getInstanceVolume:getInstanceVolume",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -3005,9 +3172,10 @@
                     {
                         "name": "scaleway:index/getIotDevice:getIotDevice",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "certificate": {
                         "maxItemsOne": false
@@ -3047,9 +3215,10 @@
                     {
                         "name": "scaleway:index/getIotHub:getIotHub",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_ipam_ip": {
                 "current": "scaleway:ipam/getIp:getIp",
@@ -3057,9 +3226,10 @@
                     {
                         "name": "scaleway:index/getIpamIp:getIpamIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "resource": {
                         "maxItemsOne": true
@@ -3075,9 +3245,10 @@
                     {
                         "name": "scaleway:index/getIpamIps:getIpamIps",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ips": {
                         "maxItemsOne": false,
@@ -3106,9 +3277,10 @@
                     {
                         "name": "scaleway:index/getKubernetesCluster:getKubernetesCluster",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "admission_plugins": {
                         "maxItemsOne": false
@@ -3152,9 +3324,10 @@
                     {
                         "name": "scaleway:index/getKubernetesNodePool:getKubernetesNodePool",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "nodes": {
                         "maxItemsOne": false,
@@ -3180,9 +3353,10 @@
                     {
                         "name": "scaleway:index/getK8sVersion:getK8sVersion",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "available_cnis": {
                         "maxItemsOne": false
@@ -3201,9 +3375,10 @@
                     {
                         "name": "scaleway:index/getLoadbalancer:getLoadbalancer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ip_ids": {
                         "maxItemsOne": false
@@ -3235,9 +3410,10 @@
                     {
                         "name": "scaleway:index/getLbAcls:getLbAcls",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acls": {
                         "maxItemsOne": false,
@@ -3277,9 +3453,10 @@
                     {
                         "name": "scaleway:index/getLbBackend:getLbBackend",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "health_check_http": {
                         "maxItemsOne": false
@@ -3301,9 +3478,10 @@
                     {
                         "name": "scaleway:index/getLbBackends:getLbBackends",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "backends": {
                         "maxItemsOne": false,
@@ -3332,9 +3510,10 @@
                     {
                         "name": "scaleway:index/getLoadbalancerCertificate:getLoadbalancerCertificate",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "custom_certificate": {
                         "maxItemsOne": false
@@ -3360,9 +3539,10 @@
                     {
                         "name": "scaleway:index/getLbFrontend:getLbFrontend",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl": {
                         "maxItemsOne": false,
@@ -3405,9 +3585,10 @@
                     {
                         "name": "scaleway:index/getLbFrontends:getLbFrontends",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "frontends": {
                         "maxItemsOne": false,
@@ -3427,9 +3608,10 @@
                     {
                         "name": "scaleway:index/getLoadbalancerIp:getLoadbalancerIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -3442,9 +3624,10 @@
                     {
                         "name": "scaleway:index/getLbIps:getLbIps",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ips": {
                         "maxItemsOne": false,
@@ -3467,9 +3650,10 @@
                     {
                         "name": "scaleway:index/getLbRoute:getLbRoute",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_lb_routes": {
                 "current": "scaleway:loadbalancers/getRoutes:getRoutes",
@@ -3477,9 +3661,10 @@
                     {
                         "name": "scaleway:index/getLbRoutes:getLbRoutes",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "routes": {
                         "maxItemsOne": false
@@ -3492,9 +3677,10 @@
                     {
                         "name": "scaleway:index/getLbs:getLbs",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "lbs": {
                         "maxItemsOne": false,
@@ -3518,7 +3704,8 @@
                 }
             },
             "scaleway_marketplace_image": {
-                "current": "scaleway:index/getMarketplaceImage:getMarketplaceImage"
+                "current": "scaleway:index/getMarketplaceImage:getMarketplaceImage",
+                "majorVersion": 1
             },
             "scaleway_mnq_sns": {
                 "current": "scaleway:mnq/getSns:getSns",
@@ -3526,9 +3713,10 @@
                     {
                         "name": "scaleway:index/getMnqSns:getMnqSns",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mnq_sqs": {
                 "current": "scaleway:mnq/getSqs:getSqs",
@@ -3536,9 +3724,10 @@
                     {
                         "name": "scaleway:index/getMnqSqs:getMnqSqs",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_mongodb_instance": {
                 "current": "scaleway:mongodb/getInstance:getInstance",
@@ -3546,9 +3735,10 @@
                     {
                         "name": "scaleway:index/getMongoDbInstance:getMongoDbInstance",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "private_ip": {
                         "maxItemsOne": false
@@ -3580,9 +3770,10 @@
                     {
                         "name": "scaleway:index/getObjectBucket:getObjectBucket",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cors_rule": {
                         "maxItemsOne": false,
@@ -3627,9 +3818,10 @@
                     {
                         "name": "scaleway:index/getObjectBucketPolicy:getObjectBucketPolicy",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_acl": {
                 "current": "scaleway:databases/getAcl:getAcl",
@@ -3637,9 +3829,10 @@
                     {
                         "name": "scaleway:index/getDatabaseAcl:getDatabaseAcl",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl_rules": {
                         "maxItemsOne": false
@@ -3652,9 +3845,10 @@
                     {
                         "name": "scaleway:index/getDatabase:getDatabase",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_database_backup": {
                 "current": "scaleway:databases/getDatabaseBackup:getDatabaseBackup",
@@ -3662,9 +3856,10 @@
                     {
                         "name": "scaleway:index/getDatabaseBackup:getDatabaseBackup",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_rdb_instance": {
                 "current": "scaleway:databases/getInstance:getInstance",
@@ -3672,9 +3867,10 @@
                     {
                         "name": "scaleway:index/getDatabaseInstance:getDatabaseInstance",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "load_balancer": {
                         "maxItemsOne": false
@@ -3702,9 +3898,10 @@
                     {
                         "name": "scaleway:index/getDatabasePrivilege:getDatabasePrivilege",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_redis_cluster": {
                 "current": "scaleway:redis/getCluster:getCluster",
@@ -3712,9 +3909,10 @@
                     {
                         "name": "scaleway:index/getRedisCluster:getRedisCluster",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "acl": {
                         "maxItemsOne": false
@@ -3756,9 +3954,10 @@
                     {
                         "name": "scaleway:index/getRegistryImage:getRegistryImage",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -3771,9 +3970,10 @@
                     {
                         "name": "scaleway:index/getRegistryImageTag:getRegistryImageTag",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_registry_namespace": {
                 "current": "scaleway:registry/getNamespace:getNamespace",
@@ -3781,9 +3981,10 @@
                     {
                         "name": "scaleway:index/getRegistryNamespace:getRegistryNamespace",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_secret": {
                 "current": "scaleway:secrets/getSecret:getSecret",
@@ -3791,9 +3992,10 @@
                     {
                         "name": "scaleway:index/getSecret:getSecret",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ephemeral_policy": {
                         "maxItemsOne": false
@@ -3812,9 +4014,10 @@
                     {
                         "name": "scaleway:index/getSecretVersion:getSecretVersion",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_tem_domain": {
                 "current": "scaleway:tem/getDomain:getDomain",
@@ -3822,9 +4025,10 @@
                     {
                         "name": "scaleway:index/getTemDomain:getTemDomain",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "reputation": {
                         "maxItemsOne": false
@@ -3832,7 +4036,8 @@
                 }
             },
             "scaleway_tem_offer_subscription": {
-                "current": "scaleway:tem/getOfferSubscription:getOfferSubscription"
+                "current": "scaleway:tem/getOfferSubscription:getOfferSubscription",
+                "majorVersion": 1
             },
             "scaleway_vpc": {
                 "current": "scaleway:network/getVpc:getVpc",
@@ -3840,9 +4045,10 @@
                     {
                         "name": "scaleway:index/getVpc:getVpc",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -3855,9 +4061,10 @@
                     {
                         "name": "scaleway:index/getVpcGatewayNetwork:getVpcGatewayNetwork",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ipam_config": {
                         "maxItemsOne": false
@@ -3873,9 +4080,10 @@
                     {
                         "name": "scaleway:index/getVpcPrivateNetwork:getVpcPrivateNetwork",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "ipv4_subnet": {
                         "maxItemsOne": false
@@ -3894,9 +4102,10 @@
                     {
                         "name": "scaleway:index/getVpcPublicGateway:getVpcPublicGateway",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "allowed_ip_ranges": {
                         "maxItemsOne": false
@@ -3915,9 +4124,10 @@
                     {
                         "name": "scaleway:index/getVpcPublicGatewayDhcp:getVpcPublicGatewayDhcp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "dns_search": {
                         "maxItemsOne": false
@@ -3933,9 +4143,10 @@
                     {
                         "name": "scaleway:index/getVpcPublicGatewayDhcpReservation:getVpcPublicGatewayDhcpReservation",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_vpc_public_gateway_ip": {
                 "current": "scaleway:network/getPublicGatewayIp:getPublicGatewayIp",
@@ -3943,9 +4154,10 @@
                     {
                         "name": "scaleway:index/getVpcPublicGatewayIp:getVpcPublicGatewayIp",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -3958,9 +4170,10 @@
                     {
                         "name": "scaleway:index/getVpcPublicPatRule:getVpcPublicPatRule",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
-                ]
+                ],
+                "majorVersion": 1
             },
             "scaleway_vpc_routes": {
                 "current": "scaleway:network/getRoutes:getRoutes",
@@ -3968,9 +4181,10 @@
                     {
                         "name": "scaleway:index/getVpcRoutes:getVpcRoutes",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "routes": {
                         "maxItemsOne": false,
@@ -3993,9 +4207,10 @@
                     {
                         "name": "scaleway:index/getVpcs:getVpcs",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "tags": {
                         "maxItemsOne": false
@@ -4018,9 +4233,10 @@
                     {
                         "name": "scaleway:index/getWebhosting:getWebhosting",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "cpanel_urls": {
                         "maxItemsOne": false
@@ -4048,9 +4264,10 @@
                     {
                         "name": "scaleway:index/getWebHostOffer:getWebHostOffer",
                         "inCodegen": true,
-                        "majorVersion": 0
+                        "majorVersion": 1
                     }
                 ],
+                "majorVersion": 1,
                 "fields": {
                     "offer": {
                         "maxItemsOne": false,
@@ -4249,10 +4466,7 @@
             "scaleway_instance_image": {
                 "aliases": [
                     "scaleway:index/instanceImage:InstanceImage"
-                ],
-                "maxItemsOneOverrides": {
-                    "additional_volume_ids": true
-                }
+                ]
             },
             "scaleway_instance_ip": {
                 "aliases": [
@@ -4352,10 +4566,7 @@
             "scaleway_lb": {
                 "aliases": [
                     "scaleway:index/loadbalancer:Loadbalancer"
-                ],
-                "maxItemsOneOverrides": {
-                    "private_network.$.static_config": true
-                }
+                ]
             },
             "scaleway_lb_acl": {
                 "aliases": [
@@ -4490,10 +4701,7 @@
             "scaleway_rdb_instance": {
                 "aliases": [
                     "scaleway:index/databaseInstance:DatabaseInstance"
-                ],
-                "maxItemsOneOverrides": {
-                    "load_balancer": false
-                }
+                ]
             },
             "scaleway_rdb_privilege": {
                 "aliases": [

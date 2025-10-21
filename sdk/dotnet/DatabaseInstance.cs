@@ -174,10 +174,6 @@ namespace Pulumiverse.Scaleway
     /// 
     ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
-    ///         LoadBalancers = new[]
-    ///         {
-    ///             null,
-    ///         },
     ///         NodeType = "DB-DEV-S",
     ///         Engine = "PostgreSQL-15",
     ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
@@ -185,6 +181,7 @@ namespace Pulumiverse.Scaleway
     ///             PnId = pn.Id,
     ///             EnableIpam = true,
     ///         },
+    ///         LoadBalancer = null,
     ///     });
     /// 
     /// });
@@ -306,8 +303,8 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
-        [Output("loadBalancers")]
-        public Output<ImmutableArray<Outputs.DatabaseInstanceLoadBalancer>> LoadBalancers { get; private set; } = null!;
+        [Output("loadBalancer")]
+        public Output<Outputs.DatabaseInstanceLoadBalancer> LoadBalancer { get; private set; } = null!;
 
         /// <summary>
         /// Logs policy configuration
@@ -525,17 +522,11 @@ namespace Pulumiverse.Scaleway
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
-        [Input("loadBalancers")]
-        private InputList<Inputs.DatabaseInstanceLoadBalancerArgs>? _loadBalancers;
-
         /// <summary>
         /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
-        public InputList<Inputs.DatabaseInstanceLoadBalancerArgs> LoadBalancers
-        {
-            get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.DatabaseInstanceLoadBalancerArgs>());
-            set => _loadBalancers = value;
-        }
+        [Input("loadBalancer")]
+        public Input<Inputs.DatabaseInstanceLoadBalancerArgs>? LoadBalancer { get; set; }
 
         /// <summary>
         /// Logs policy configuration
@@ -744,17 +735,11 @@ namespace Pulumiverse.Scaleway
         [Input("isHaCluster")]
         public Input<bool>? IsHaCluster { get; set; }
 
-        [Input("loadBalancers")]
-        private InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>? _loadBalancers;
-
         /// <summary>
         /// List of Load Balancer endpoints of the Database Instance.
         /// </summary>
-        public InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs> LoadBalancers
-        {
-            get => _loadBalancers ?? (_loadBalancers = new InputList<Inputs.DatabaseInstanceLoadBalancerGetArgs>());
-            set => _loadBalancers = value;
-        }
+        [Input("loadBalancer")]
+        public Input<Inputs.DatabaseInstanceLoadBalancerGetArgs>? LoadBalancer { get; set; }
 
         /// <summary>
         /// Logs policy configuration
