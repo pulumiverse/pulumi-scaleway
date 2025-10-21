@@ -1750,7 +1750,7 @@ export interface LoadbalancerPrivateNetwork {
      *
      * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
      */
-    staticConfig?: pulumi.Input<string>;
+    staticConfigs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The status of the private network connection.
      */
@@ -4702,7 +4702,7 @@ export namespace loadbalancers {
          *
          * @deprecated static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
          */
-        staticConfig?: pulumi.Input<string>;
+        staticConfigs?: pulumi.Input<pulumi.Input<string>[]>;
         /**
          * The status of the private network connection.
          */

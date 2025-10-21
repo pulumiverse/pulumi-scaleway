@@ -168,29 +168,45 @@ func (i InstanceLoadBalancerArgs) ToInstanceLoadBalancerOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceLoadBalancerOutput)
 }
 
-// InstanceLoadBalancerArrayInput is an input type that accepts InstanceLoadBalancerArray and InstanceLoadBalancerArrayOutput values.
-// You can construct a concrete instance of `InstanceLoadBalancerArrayInput` via:
+func (i InstanceLoadBalancerArgs) ToInstanceLoadBalancerPtrOutput() InstanceLoadBalancerPtrOutput {
+	return i.ToInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (i InstanceLoadBalancerArgs) ToInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) InstanceLoadBalancerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceLoadBalancerOutput).ToInstanceLoadBalancerPtrOutputWithContext(ctx)
+}
+
+// InstanceLoadBalancerPtrInput is an input type that accepts InstanceLoadBalancerArgs, InstanceLoadBalancerPtr and InstanceLoadBalancerPtrOutput values.
+// You can construct a concrete instance of `InstanceLoadBalancerPtrInput` via:
 //
-//	InstanceLoadBalancerArray{ InstanceLoadBalancerArgs{...} }
-type InstanceLoadBalancerArrayInput interface {
+//	        InstanceLoadBalancerArgs{...}
+//
+//	or:
+//
+//	        nil
+type InstanceLoadBalancerPtrInput interface {
 	pulumi.Input
 
-	ToInstanceLoadBalancerArrayOutput() InstanceLoadBalancerArrayOutput
-	ToInstanceLoadBalancerArrayOutputWithContext(context.Context) InstanceLoadBalancerArrayOutput
+	ToInstanceLoadBalancerPtrOutput() InstanceLoadBalancerPtrOutput
+	ToInstanceLoadBalancerPtrOutputWithContext(context.Context) InstanceLoadBalancerPtrOutput
 }
 
-type InstanceLoadBalancerArray []InstanceLoadBalancerInput
+type instanceLoadBalancerPtrType InstanceLoadBalancerArgs
 
-func (InstanceLoadBalancerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]InstanceLoadBalancer)(nil)).Elem()
+func InstanceLoadBalancerPtr(v *InstanceLoadBalancerArgs) InstanceLoadBalancerPtrInput {
+	return (*instanceLoadBalancerPtrType)(v)
 }
 
-func (i InstanceLoadBalancerArray) ToInstanceLoadBalancerArrayOutput() InstanceLoadBalancerArrayOutput {
-	return i.ToInstanceLoadBalancerArrayOutputWithContext(context.Background())
+func (*instanceLoadBalancerPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceLoadBalancer)(nil)).Elem()
 }
 
-func (i InstanceLoadBalancerArray) ToInstanceLoadBalancerArrayOutputWithContext(ctx context.Context) InstanceLoadBalancerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(InstanceLoadBalancerArrayOutput)
+func (i *instanceLoadBalancerPtrType) ToInstanceLoadBalancerPtrOutput() InstanceLoadBalancerPtrOutput {
+	return i.ToInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (i *instanceLoadBalancerPtrType) ToInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) InstanceLoadBalancerPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceLoadBalancerPtrOutput)
 }
 
 type InstanceLoadBalancerOutput struct{ *pulumi.OutputState }
@@ -205,6 +221,16 @@ func (o InstanceLoadBalancerOutput) ToInstanceLoadBalancerOutput() InstanceLoadB
 
 func (o InstanceLoadBalancerOutput) ToInstanceLoadBalancerOutputWithContext(ctx context.Context) InstanceLoadBalancerOutput {
 	return o
+}
+
+func (o InstanceLoadBalancerOutput) ToInstanceLoadBalancerPtrOutput() InstanceLoadBalancerPtrOutput {
+	return o.ToInstanceLoadBalancerPtrOutputWithContext(context.Background())
+}
+
+func (o InstanceLoadBalancerOutput) ToInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) InstanceLoadBalancerPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v InstanceLoadBalancer) *InstanceLoadBalancer {
+		return &v
+	}).(InstanceLoadBalancerPtrOutput)
 }
 
 // The ID of the endpoint.
@@ -232,24 +258,78 @@ func (o InstanceLoadBalancerOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceLoadBalancer) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-type InstanceLoadBalancerArrayOutput struct{ *pulumi.OutputState }
+type InstanceLoadBalancerPtrOutput struct{ *pulumi.OutputState }
 
-func (InstanceLoadBalancerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]InstanceLoadBalancer)(nil)).Elem()
+func (InstanceLoadBalancerPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**InstanceLoadBalancer)(nil)).Elem()
 }
 
-func (o InstanceLoadBalancerArrayOutput) ToInstanceLoadBalancerArrayOutput() InstanceLoadBalancerArrayOutput {
+func (o InstanceLoadBalancerPtrOutput) ToInstanceLoadBalancerPtrOutput() InstanceLoadBalancerPtrOutput {
 	return o
 }
 
-func (o InstanceLoadBalancerArrayOutput) ToInstanceLoadBalancerArrayOutputWithContext(ctx context.Context) InstanceLoadBalancerArrayOutput {
+func (o InstanceLoadBalancerPtrOutput) ToInstanceLoadBalancerPtrOutputWithContext(ctx context.Context) InstanceLoadBalancerPtrOutput {
 	return o
 }
 
-func (o InstanceLoadBalancerArrayOutput) Index(i pulumi.IntInput) InstanceLoadBalancerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceLoadBalancer {
-		return vs[0].([]InstanceLoadBalancer)[vs[1].(int)]
+func (o InstanceLoadBalancerPtrOutput) Elem() InstanceLoadBalancerOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) InstanceLoadBalancer {
+		if v != nil {
+			return *v
+		}
+		var ret InstanceLoadBalancer
+		return ret
 	}).(InstanceLoadBalancerOutput)
+}
+
+// The ID of the endpoint.
+func (o InstanceLoadBalancerPtrOutput) EndpointId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.EndpointId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Hostname of the endpoint.
+func (o InstanceLoadBalancerPtrOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Hostname
+	}).(pulumi.StringPtrOutput)
+}
+
+// IPv4 address on the network.
+func (o InstanceLoadBalancerPtrOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Ip
+	}).(pulumi.StringPtrOutput)
+}
+
+// The name of the Database Instance.
+func (o InstanceLoadBalancerPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Port in the Private Network.
+func (o InstanceLoadBalancerPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *InstanceLoadBalancer) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
 }
 
 type InstanceLogsPolicy struct {
@@ -2167,7 +2247,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleInput)(nil)).Elem(), AclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleArrayInput)(nil)).Elem(), AclAclRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLoadBalancerInput)(nil)).Elem(), InstanceLoadBalancerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLoadBalancerArrayInput)(nil)).Elem(), InstanceLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLoadBalancerPtrInput)(nil)).Elem(), InstanceLoadBalancerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLogsPolicyInput)(nil)).Elem(), InstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceLogsPolicyPtrInput)(nil)).Elem(), InstanceLogsPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateIpInput)(nil)).Elem(), InstancePrivateIpArgs{})
@@ -2195,7 +2275,7 @@ func init() {
 	pulumi.RegisterOutputType(AclAclRuleOutput{})
 	pulumi.RegisterOutputType(AclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceLoadBalancerOutput{})
-	pulumi.RegisterOutputType(InstanceLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(InstanceLoadBalancerPtrOutput{})
 	pulumi.RegisterOutputType(InstanceLogsPolicyOutput{})
 	pulumi.RegisterOutputType(InstanceLogsPolicyPtrOutput{})
 	pulumi.RegisterOutputType(InstancePrivateIpOutput{})

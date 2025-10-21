@@ -121,13 +121,13 @@ import * as utilities from "../utilities";
  *
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const main = new scaleway.databases.Instance("main", {
- *     loadBalancers: [{}],
  *     nodeType: "DB-DEV-S",
  *     engine: "PostgreSQL-15",
  *     privateNetwork: {
  *         pnId: pn.id,
  *         enableIpam: true,
  *     },
+ *     loadBalancer: {},
  * });
  * ```
  *
@@ -246,7 +246,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    declare public readonly loadBalancers: pulumi.Output<outputs.databases.InstanceLoadBalancer[]>;
+    declare public readonly loadBalancer: pulumi.Output<outputs.databases.InstanceLoadBalancer>;
     /**
      * Logs policy configuration
      */
@@ -347,7 +347,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["engine"] = state?.engine;
             resourceInputs["initSettings"] = state?.initSettings;
             resourceInputs["isHaCluster"] = state?.isHaCluster;
-            resourceInputs["loadBalancers"] = state?.loadBalancers;
+            resourceInputs["loadBalancer"] = state?.loadBalancer;
             resourceInputs["logsPolicy"] = state?.logsPolicy;
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeType"] = state?.nodeType;
@@ -377,7 +377,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["engine"] = args?.engine;
             resourceInputs["initSettings"] = args?.initSettings;
             resourceInputs["isHaCluster"] = args?.isHaCluster;
-            resourceInputs["loadBalancers"] = args?.loadBalancers;
+            resourceInputs["loadBalancer"] = args?.loadBalancer;
             resourceInputs["logsPolicy"] = args?.logsPolicy;
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeType"] = args?.nodeType;
@@ -466,7 +466,7 @@ export interface InstanceState {
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    loadBalancers?: pulumi.Input<pulumi.Input<inputs.databases.InstanceLoadBalancer>[]>;
+    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer>;
     /**
      * Logs policy configuration
      */
@@ -587,7 +587,7 @@ export interface InstanceArgs {
     /**
      * List of Load Balancer endpoints of the Database Instance.
      */
-    loadBalancers?: pulumi.Input<pulumi.Input<inputs.databases.InstanceLoadBalancer>[]>;
+    loadBalancer?: pulumi.Input<inputs.databases.InstanceLoadBalancer>;
     /**
      * Logs policy configuration
      */

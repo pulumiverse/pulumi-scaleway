@@ -6075,8 +6075,8 @@ class LoadbalancerPrivateNetwork(dict):
             suggest = "dhcp_config"
         elif key == "ipamIds":
             suggest = "ipam_ids"
-        elif key == "staticConfig":
-            suggest = "static_config"
+        elif key == "staticConfigs":
+            suggest = "static_configs"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in LoadbalancerPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
@@ -6093,7 +6093,7 @@ class LoadbalancerPrivateNetwork(dict):
                  private_network_id: _builtins.str,
                  dhcp_config: Optional[_builtins.bool] = None,
                  ipam_ids: Optional[_builtins.str] = None,
-                 static_config: Optional[_builtins.str] = None,
+                 static_configs: Optional[Sequence[_builtins.str]] = None,
                  status: Optional[_builtins.str] = None,
                  zone: Optional[_builtins.str] = None):
         """
@@ -6101,7 +6101,7 @@ class LoadbalancerPrivateNetwork(dict):
                - > **Important:** Updates to `private_network` will recreate the attachment.
         :param _builtins.bool dhcp_config: Set to true if you want to let DHCP assign IP addresses
         :param _builtins.str ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        :param _builtins.str static_config: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+        :param Sequence[_builtins.str] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param _builtins.str status: The status of the private network connection.
         :param _builtins.str zone: `zone`) The zone of the Load Balancer.
         """
@@ -6110,8 +6110,8 @@ class LoadbalancerPrivateNetwork(dict):
             pulumi.set(__self__, "dhcp_config", dhcp_config)
         if ipam_ids is not None:
             pulumi.set(__self__, "ipam_ids", ipam_ids)
-        if static_config is not None:
-            pulumi.set(__self__, "static_config", static_config)
+        if static_configs is not None:
+            pulumi.set(__self__, "static_configs", static_configs)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -6144,13 +6144,13 @@ class LoadbalancerPrivateNetwork(dict):
         return pulumi.get(self, "ipam_ids")
 
     @_builtins.property
-    @pulumi.getter(name="staticConfig")
+    @pulumi.getter(name="staticConfigs")
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
-    def static_config(self) -> Optional[_builtins.str]:
+    def static_configs(self) -> Optional[Sequence[_builtins.str]]:
         """
         Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
-        return pulumi.get(self, "static_config")
+        return pulumi.get(self, "static_configs")
 
     @_builtins.property
     @pulumi.getter
