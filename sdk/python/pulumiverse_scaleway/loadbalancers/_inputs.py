@@ -1068,7 +1068,7 @@ if not MYPY:
         """
         IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
         """
-        static_config: NotRequired[pulumi.Input[_builtins.str]]
+        static_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
@@ -1089,7 +1089,7 @@ class LoadBalancerPrivateNetworkArgs:
                  private_network_id: pulumi.Input[_builtins.str],
                  dhcp_config: Optional[pulumi.Input[_builtins.bool]] = None,
                  ipam_ids: Optional[pulumi.Input[_builtins.str]] = None,
-                 static_config: Optional[pulumi.Input[_builtins.str]] = None,
+                 static_configs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -1097,7 +1097,7 @@ class LoadBalancerPrivateNetworkArgs:
                - > **Important:** Updates to `private_network` will recreate the attachment.
         :param pulumi.Input[_builtins.bool] dhcp_config: Set to true if you want to let DHCP assign IP addresses
         :param pulumi.Input[_builtins.str] ipam_ids: IPAM ID of a pre-reserved IP address to assign to the Load Balancer on this Private Network.
-        :param pulumi.Input[_builtins.str] static_config: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] static_configs: Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         :param pulumi.Input[_builtins.str] status: The status of the private network connection.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone of the Load Balancer.
         """
@@ -1109,11 +1109,11 @@ class LoadBalancerPrivateNetworkArgs:
             pulumi.set(__self__, "dhcp_config", dhcp_config)
         if ipam_ids is not None:
             pulumi.set(__self__, "ipam_ids", ipam_ids)
-        if static_config is not None:
+        if static_configs is not None:
             warnings.warn("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""", DeprecationWarning)
-            pulumi.log.warn("""static_config is deprecated: static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
-        if static_config is not None:
-            pulumi.set(__self__, "static_config", static_config)
+            pulumi.log.warn("""static_configs is deprecated: static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
+        if static_configs is not None:
+            pulumi.set(__self__, "static_configs", static_configs)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if zone is not None:
@@ -1158,17 +1158,17 @@ class LoadBalancerPrivateNetworkArgs:
         pulumi.set(self, "ipam_ids", value)
 
     @_builtins.property
-    @pulumi.getter(name="staticConfig")
+    @pulumi.getter(name="staticConfigs")
     @_utilities.deprecated("""static_config field is deprecated, please use `private_network_id` or `ipam_ids` instead""")
-    def static_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def static_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         """
-        return pulumi.get(self, "static_config")
+        return pulumi.get(self, "static_configs")
 
-    @static_config.setter
-    def static_config(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "static_config", value)
+    @static_configs.setter
+    def static_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "static_configs", value)
 
     @_builtins.property
     @pulumi.getter

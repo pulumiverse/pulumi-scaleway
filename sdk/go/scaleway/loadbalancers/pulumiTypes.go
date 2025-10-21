@@ -1889,7 +1889,7 @@ type LoadBalancerPrivateNetwork struct {
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-	StaticConfig *string `pulumi:"staticConfig"`
+	StaticConfigs []string `pulumi:"staticConfigs"`
 	// The status of the private network connection.
 	Status *string `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
@@ -1920,7 +1920,7 @@ type LoadBalancerPrivateNetworkArgs struct {
 	// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 	//
 	// Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-	StaticConfig pulumi.StringPtrInput `pulumi:"staticConfig"`
+	StaticConfigs pulumi.StringArrayInput `pulumi:"staticConfigs"`
 	// The status of the private network connection.
 	Status pulumi.StringPtrInput `pulumi:"status"`
 	// `zone`) The zone of the Load Balancer.
@@ -1999,8 +1999,8 @@ func (o LoadBalancerPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput
 // Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
 //
 // Deprecated: static_config field is deprecated, please use `privateNetworkId` or `ipamIds` instead
-func (o LoadBalancerPrivateNetworkOutput) StaticConfig() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v LoadBalancerPrivateNetwork) *string { return v.StaticConfig }).(pulumi.StringPtrOutput)
+func (o LoadBalancerPrivateNetworkOutput) StaticConfigs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LoadBalancerPrivateNetwork) []string { return v.StaticConfigs }).(pulumi.StringArrayOutput)
 }
 
 // The status of the private network connection.

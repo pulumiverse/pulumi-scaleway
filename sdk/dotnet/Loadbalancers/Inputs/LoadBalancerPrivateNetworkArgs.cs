@@ -32,11 +32,18 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Inputs
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
+        [Input("staticConfigs")]
+        private InputList<string>? _staticConfigs;
+
         /// <summary>
         /// Define an IP address in the subnet of your private network that will be assigned to your load balancer instance
         /// </summary>
-        [Input("staticConfig")]
-        public Input<string>? StaticConfig { get; set; }
+        [Obsolete(@"static_config field is deprecated, please use `PrivateNetworkId` or `IpamIds` instead")]
+        public InputList<string> StaticConfigs
+        {
+            get => _staticConfigs ?? (_staticConfigs = new InputList<string>());
+            set => _staticConfigs = value;
+        }
 
         /// <summary>
         /// The status of the private network connection.

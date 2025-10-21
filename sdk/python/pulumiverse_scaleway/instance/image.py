@@ -22,7 +22,7 @@ __all__ = ['ImageArgs', 'Image']
 class ImageArgs:
     def __init__(__self__, *,
                  root_volume_id: pulumi.Input[_builtins.str],
-                 additional_volume_ids: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  architecture: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -32,7 +32,7 @@ class ImageArgs:
         """
         The set of arguments for constructing a Image resource.
         :param pulumi.Input[_builtins.str] root_volume_id: The ID of the snapshot of the volume to be used as root in the image.
-        :param pulumi.Input[_builtins.str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project the image is associated with.
@@ -70,14 +70,14 @@ class ImageArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")
-    def additional_volume_ids(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
         """
         return pulumi.get(self, "additional_volume_ids")
 
     @additional_volume_ids.setter
-    def additional_volume_ids(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def additional_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_volume_ids", value)
 
     @_builtins.property
@@ -156,7 +156,7 @@ class ImageArgs:
 @pulumi.input_type
 class _ImageState:
     def __init__(__self__, *,
-                 additional_volume_ids: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  additional_volumes: Optional[pulumi.Input[Sequence[pulumi.Input['ImageAdditionalVolumeArgs']]]] = None,
                  architecture: Optional[pulumi.Input[_builtins.str]] = None,
                  creation_date: Optional[pulumi.Input[_builtins.str]] = None,
@@ -173,7 +173,7 @@ class _ImageState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Image resources.
-        :param pulumi.Input[_builtins.str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[Sequence[pulumi.Input['ImageAdditionalVolumeArgs']]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[_builtins.str] creation_date: Date of the image creation.
@@ -222,14 +222,14 @@ class _ImageState:
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")
-    def additional_volume_ids(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def additional_volume_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
         """
         return pulumi.get(self, "additional_volume_ids")
 
     @additional_volume_ids.setter
-    def additional_volume_ids(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def additional_volume_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_volume_ids", value)
 
     @_builtins.property
@@ -407,7 +407,7 @@ class Image(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_volume_ids: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  architecture: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -469,7 +469,7 @@ class Image(pulumi.CustomResource):
         image = scaleway.instance.Image("image",
             name="image_with_extra_volumes",
             root_volume_id=server_snapshot.id,
-            additional_volume_ids=volume_snapshot.id)
+            additional_volume_ids=[volume_snapshot.id])
         ```
 
         ## Import
@@ -484,7 +484,7 @@ class Image(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: The ID of the project the image is associated with.
@@ -552,7 +552,7 @@ class Image(pulumi.CustomResource):
         image = scaleway.instance.Image("image",
             name="image_with_extra_volumes",
             root_volume_id=server_snapshot.id,
-            additional_volume_ids=volume_snapshot.id)
+            additional_volume_ids=[volume_snapshot.id])
         ```
 
         ## Import
@@ -580,7 +580,7 @@ class Image(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 additional_volume_ids: Optional[pulumi.Input[_builtins.str]] = None,
+                 additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  architecture: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -626,7 +626,7 @@ class Image(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            additional_volume_ids: Optional[pulumi.Input[_builtins.str]] = None,
+            additional_volume_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             additional_volumes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ImageAdditionalVolumeArgs', 'ImageAdditionalVolumeArgsDict']]]]] = None,
             architecture: Optional[pulumi.Input[_builtins.str]] = None,
             creation_date: Optional[pulumi.Input[_builtins.str]] = None,
@@ -648,7 +648,7 @@ class Image(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] additional_volume_ids: List of IDs of the snapshots of the additional volumes to be attached to the image.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ImageAdditionalVolumeArgs', 'ImageAdditionalVolumeArgsDict']]]] additional_volumes: The description of the extra volumes attached to the image.
         :param pulumi.Input[_builtins.str] architecture: The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
         :param pulumi.Input[_builtins.str] creation_date: Date of the image creation.
@@ -687,7 +687,7 @@ class Image(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="additionalVolumeIds")
-    def additional_volume_ids(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def additional_volume_ids(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
         """
         List of IDs of the snapshots of the additional volumes to be attached to the image.
         """
