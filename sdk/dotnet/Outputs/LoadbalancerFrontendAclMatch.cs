@@ -17,28 +17,28 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
         /// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        /// Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        /// Possible values are: `AclHttpFilterNone`, `PathBegin`, `PathEnd`, `HttpHeaderMatch` or `Regex`.
         /// </summary>
         public readonly string? HttpFilter;
         /// <summary>
-        /// If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        /// If you have `HttpFilter` at `HttpHeaderMatch`, you can use this field to filter on the HTTP header's value.
         /// </summary>
         public readonly string? HttpFilterOption;
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.
-        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+        /// Keep in mind that in the case of `HttpHeaderMatch` the HTTP header field name is case insensitive.
         /// </summary>
         public readonly ImmutableArray<string> HttpFilterValues;
         /// <summary>
-        /// If set to `true`, the condition will be of type "unless".
+        /// If set to `True`, the condition will be of type "unless".
         /// </summary>
         public readonly bool? Invert;
         /// <summary>
-        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `IpSubnet` and `IpsEdgeServices` should be specified.
         /// </summary>
         public readonly ImmutableArray<string> IpSubnets;
         /// <summary>
-        /// Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        /// Defines whether Edge Services IPs should be matched. Only one of `IpSubnet` and `IpsEdgeServices` should be specified.
         /// </summary>
         public readonly bool? IpsEdgeServices;
 

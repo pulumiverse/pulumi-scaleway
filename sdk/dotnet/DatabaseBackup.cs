@@ -101,7 +101,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Expiration date (Format ISO 8601).
         /// 
-        /// &gt; **Important:** `expires_at` cannot be removed after being set.
+        /// &gt; **Important:** `ExpiresAt` cannot be removed after being set.
         /// </summary>
         [Output("expiresAt")]
         public Output<string?> ExpiresAt { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the backup.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -127,7 +127,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Expiration date (Format ISO 8601).
         /// 
-        /// &gt; **Important:** `expires_at` cannot be removed after being set.
+        /// &gt; **Important:** `ExpiresAt` cannot be removed after being set.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the backup.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Expiration date (Format ISO 8601).
         /// 
-        /// &gt; **Important:** `expires_at` cannot be removed after being set.
+        /// &gt; **Important:** `ExpiresAt` cannot be removed after being set.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
@@ -256,7 +256,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the backup.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the backup.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -274,7 +274,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

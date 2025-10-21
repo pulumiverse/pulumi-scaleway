@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+        /// The ACL match rule. At least `IpSubnet` or `IpsEdgeServices` or `HttpFilter` and `HttpFilterValue` are required.
         /// </summary>
         [Input("match", required: true)]
         public Input<Inputs.LoadbalancerFrontendAclMatchGetArgs> Match { get; set; } = null!;

@@ -45,6 +45,10 @@ namespace Pulumiverse.Scaleway.Block
     /// });
     /// ```
     /// 
+    /// ### How to import from Object Storage
+    /// 
+    /// ### How to export to Object Storage
+    /// 
     /// ## Import
     /// 
     /// This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).

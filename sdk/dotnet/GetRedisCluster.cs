@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Redis cluster ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `cluster_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ClusterId`.
         /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The zone in which the server exists.
+        /// `Region`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Redis cluster ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `cluster_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ClusterId`.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The zone in which the server exists.
+        /// `Region`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly ImmutableArray<Outputs.GetRedisClusterAclResult> Acls;
         /// <summary>
-        /// The PEM of the certificate used by redis, only when `tls_enabled` is true.
+        /// The PEM of the certificate used by redis, only when `TlsEnabled` is true.
         /// </summary>
         public readonly string Certificate;
         public readonly string? ClusterId;

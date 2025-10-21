@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Mongodb.Outputs
     public sealed class UserRole
     {
         /// <summary>
-        /// Apply the role to all databases. Cannot be used with `database_name`.
+        /// Apply the role to all databases. Cannot be used with `DatabaseName`.
         /// </summary>
         public readonly bool? AnyDatabase;
         /// <summary>
-        /// The database name for the role. Cannot be used with `any_database`.
+        /// The database name for the role. Cannot be used with `AnyDatabase`.
         /// </summary>
         public readonly string? DatabaseName;
         /// <summary>
-        /// The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        /// The role name. Valid values are `Read`, `ReadWrite`, `DbAdmin`, `Sync`.
         /// </summary>
         public readonly string Role;
 

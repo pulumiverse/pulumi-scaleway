@@ -80,13 +80,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> PipelineId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the route stage is associated with.
+        /// `ProjectId`) The ID of the project the route stage is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.EdgeServicesRouteStageRule>> Rules { get; private set; } = null!;
@@ -157,7 +157,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> PipelineId { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the route stage is associated with.
+        /// `ProjectId`) The ID of the project the route stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -166,7 +166,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.EdgeServicesRouteStageRuleArgs>? _rules;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
         /// </summary>
         public InputList<Inputs.EdgeServicesRouteStageRuleArgs> Rules
         {
@@ -201,7 +201,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PipelineId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the route stage is associated with.
+        /// `ProjectId`) The ID of the project the route stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -210,7 +210,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.EdgeServicesRouteStageRuleGetArgs>? _rules;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
         /// </summary>
         public InputList<Inputs.EdgeServicesRouteStageRuleGetArgs> Rules
         {

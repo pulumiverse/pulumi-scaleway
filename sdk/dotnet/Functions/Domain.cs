@@ -76,15 +76,15 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The hostname with a CNAME record.
         /// 
-        /// We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+        /// We recommend you use a CNAME domain record that point to your native function `DomainName` for it.
         /// 
-        /// &gt; **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        /// &gt; **Important** Updating the `FunctionId` or `Hostname` arguments will recreate the domain.
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the domain was created.
+        /// (Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -155,15 +155,15 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The hostname with a CNAME record.
         /// 
-        /// We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+        /// We recommend you use a CNAME domain record that point to your native function `DomainName` for it.
         /// 
-        /// &gt; **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        /// &gt; **Important** Updating the `FunctionId` or `Hostname` arguments will recreate the domain.
         /// </summary>
         [Input("hostname", required: true)]
         public Input<string> Hostname { get; set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the domain was created.
+        /// (Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -185,15 +185,15 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The hostname with a CNAME record.
         /// 
-        /// We recommend you use a CNAME domain record that point to your native function `domain_name` for it.
+        /// We recommend you use a CNAME domain record that point to your native function `DomainName` for it.
         /// 
-        /// &gt; **Important** Updating the `function_id` or `hostname` arguments will recreate the domain.
+        /// &gt; **Important** Updating the `FunctionId` or `Hostname` arguments will recreate the domain.
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the domain was created.
+        /// (Defaults to provider `Region`) The region in which the domain was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -8,6 +8,8 @@ import * as utilities from "./utilities";
 
 /**
  * Gets information about your Consumptions.
+ *
+ * ## Example Usage
  */
 /** @deprecated scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions */
 export function getBillingConsumptions(args?: GetBillingConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetBillingConsumptionsResult> {
@@ -53,6 +55,8 @@ export interface GetBillingConsumptionsResult {
 }
 /**
  * Gets information about your Consumptions.
+ *
+ * ## Example Usage
  */
 /** @deprecated scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions */
 export function getBillingConsumptionsOutput(args?: GetBillingConsumptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBillingConsumptionsResult> {

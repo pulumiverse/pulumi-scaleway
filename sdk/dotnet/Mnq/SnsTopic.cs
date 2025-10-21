@@ -87,13 +87,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Output<bool> FifoTopic { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Output("namePrefix")]
         public Output<string> NamePrefix { get; private set; } = null!;
@@ -105,13 +105,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Output<string> Owner { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Output("region")]
@@ -214,25 +214,25 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<bool>? FifoTopic { get; set; }
 
         /// <summary>
-        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
@@ -303,13 +303,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<bool>? FifoTopic { get; set; }
 
         /// <summary>
-        /// The unique name of the SNS topic. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SNS topic. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
@@ -321,13 +321,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<string>? Owner { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Input("region")]

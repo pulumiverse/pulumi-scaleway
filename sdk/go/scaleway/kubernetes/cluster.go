@@ -332,6 +332,53 @@ import (
 //
 // ```
 //
+// ## Deprecation of defaultPool
+//
+// `defaultPool` is deprecated in favour the `kubernetes.Pool` resource. Here is a migration example.
+//
+// Before:
+//
+// After:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
+//				Name:    pulumi.String("tf-cluster"),
+//				Version: pulumi.String("1.18.0"),
+//				Cni:     pulumi.String("cilium"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewPool(ctx, "default", &kubernetes.PoolArgs{
+//				ClusterId: pulumi.Any(jack.Id),
+//				Name:      pulumi.String("default"),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Once you have moved all the `defaultPool` into their own object, you will need to import them. If your pool had the ID 11111111-1111-1111-1111-111111111111 in the `fr-par` region, you can import it by typing:
+//
+// Then you will only need to type `pulumi up` to have a smooth migration.
+//
 // ## Import
 //
 // Kubernetes clusters can be imported using the `{region}/{id}`, e.g.

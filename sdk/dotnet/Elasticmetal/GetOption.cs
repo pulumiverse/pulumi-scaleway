@@ -113,19 +113,19 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     public sealed class GetOptionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The option name. Only one of `name` and `option_id` should be specified.
+        /// The option name. Only one of `Name` and `OptionId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The option id. Only one of `name` and `option_id` should be specified.
+        /// The option id. Only one of `Name` and `OptionId` should be specified.
         /// </summary>
         [Input("optionId")]
         public string? OptionId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the option exists.
+        /// `Zone`) The zone in which the option exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -139,19 +139,19 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     public sealed class GetOptionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The option name. Only one of `name` and `option_id` should be specified.
+        /// The option name. Only one of `Name` and `OptionId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The option id. Only one of `name` and `option_id` should be specified.
+        /// The option id. Only one of `Name` and `OptionId` should be specified.
         /// </summary>
         [Input("optionId")]
         public Input<string>? OptionId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the option exists.
+        /// `Zone`) The zone in which the option exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

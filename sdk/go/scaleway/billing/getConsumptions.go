@@ -12,6 +12,8 @@ import (
 )
 
 // Gets information about your Consumptions.
+//
+// ## Example Usage
 func GetConsumptions(ctx *pulumi.Context, args *GetConsumptionsArgs, opts ...pulumi.InvokeOption) (*GetConsumptionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetConsumptionsResult

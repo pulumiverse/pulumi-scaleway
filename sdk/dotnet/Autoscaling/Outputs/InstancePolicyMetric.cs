@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Autoscaling.Outputs
     public sealed class InstancePolicyMetric
     {
         /// <summary>
-        /// How the values sampled for the `metric` should be aggregated.
+        /// How the values sampled for the `Metric` should be aggregated.
         /// </summary>
         public readonly string Aggregate;
         /// <summary>
@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Autoscaling.Outputs
         /// </summary>
         public readonly string? CockpitMetricName;
         /// <summary>
-        /// The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
+        /// The managed metric to use for this policy. These are available by default in Cockpit without any configuration or `NodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered.
         /// </summary>
         public readonly string? ManagedMetric;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Autoscaling.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value.
+        /// Operator used when comparing the threshold value of the chosen `Metric` to the actual sampled and aggregated value.
         /// </summary>
         public readonly string Operator;
         /// <summary>
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Autoscaling.Outputs
         /// </summary>
         public readonly int? SamplingRangeMin;
         /// <summary>
-        /// The threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered.
+        /// The threshold value to measure the aggregated sampled `Metric` value against. Combined with the `Operator` field, determines whether a scaling action should be triggered.
         /// </summary>
         public readonly int? Threshold;
 

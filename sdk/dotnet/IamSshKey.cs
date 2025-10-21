@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the SSH key is
+        /// `ProjectId`) The ID of the project the SSH key is
         /// associated with.
         /// </summary>
         [Output("projectId")]
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the SSH key is
+        /// `ProjectId`) The ID of the project the SSH key is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -207,7 +207,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the SSH key is
+        /// `ProjectId`) The ID of the project the SSH key is
         /// associated with.
         /// </summary>
         [Input("projectId")]

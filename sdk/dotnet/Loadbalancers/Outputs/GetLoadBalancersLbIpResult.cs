@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// </summary>
         public readonly string Reverse;
         /// <summary>
-        /// `zone`) The zone in which the Load Balancers exist.
+        /// `Zone`) The zone in which the Load Balancers exist.
         /// </summary>
         public readonly string? Zone;
 

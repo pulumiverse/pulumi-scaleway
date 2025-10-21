@@ -16,6 +16,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Symmetric Encryption Key
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -24,12 +26,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.KeyManagerKey("main", new()
+    ///     var symmetric = new Scaleway.KeyManagerKey("symmetric", new()
     ///     {
     ///         Name = "my-kms-key",
     ///         Region = "fr-par",
     ///         ProjectId = "your-project-id",
     ///         Usage = "symmetric_encryption",
+    ///         Algorithm = "aes_256_gcm",
     ///         Description = "Key for encrypting secrets",
     ///         Tags = new[]
     ///         {
@@ -46,14 +49,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ## Notes
-    /// 
-    /// - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
-    /// - **Rotation Policy**: The `rotation_policy` block allows you to set automatic rotation for your key.
-    /// - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
-    /// - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
-    /// 
-    /// ## Example: Asymmetric Key
+    /// ### Asymmetric Encryption Key with RSA-4096
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -63,17 +59,49 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var asym = new Scaleway.KeyManagerKey("asym", new()
+    ///     var rsa4096 = new Scaleway.KeyManagerKey("rsa_4096", new()
     ///     {
-    ///         Name = "asymmetric-key",
+    ///         Name = "rsa-4096-key",
+    ///         Region = "fr-par",
+    ///         Usage = "asymmetric_encryption",
+    ///         Algorithm = "rsa_oaep_4096_sha256",
+    ///         Description = "Key for encrypting large files with RSA-4096",
+    ///         Unprotected = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Asymmetric Signing Key
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var signing = new Scaleway.KeyManagerKey("signing", new()
+    ///     {
+    ///         Name = "signing-key",
     ///         Region = "fr-par",
     ///         Usage = "asymmetric_signing",
+    ///         Algorithm = "rsa_pss_2048_sha256",
     ///         Description = "Key for signing documents",
     ///         Unprotected = true,
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Notes
+    /// 
+    /// - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
+    /// - **Rotation Policy**: The `RotationPolicy` block allows you to set automatic rotation for your key.
+    /// - **Origin**: The `Origin` argument is optional and defaults to `ScalewayKms`. Use `External` if you want to import an external key (see Scaleway documentation for details).
+    /// - **Project and Region**: If not specified, `ProjectId` and `Region` will default to the provider configuration.
+    /// - **Algorithm Validation**: The provider validates that the specified `Algorithm` is compatible with the `Usage` type at plan time, providing early feedback on configuration errors.
     /// 
     /// ## Import
     /// 
@@ -86,6 +114,13 @@ namespace Pulumiverse.Scaleway
     [ScalewayResourceType("scaleway:index/keyManagerKey:KeyManagerKey")]
     public partial class KeyManagerKey : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// - For `SymmetricEncryption`:
+        /// </summary>
+        [Output("algorithm")]
+        public Output<string> Algorithm { get; private set; } = null!;
+
         /// <summary>
         /// The date and time when the key was created.
         /// </summary>
@@ -118,6 +153,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// – The ID of the project the key belongs to.
+        /// 
+        /// **Key Usage and Algorithm (both required):**
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -153,7 +190,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.KeyManagerKeyRotationPolicy?> RotationPolicy { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the key (e.g., `enabled`).
+        /// The state of the key (e.g., `Enabled`).
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -165,7 +202,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// – If `true`, the key can be deleted. Defaults to `false` (protected).
+        /// – If `True`, the key can be deleted. Defaults to `False` (protected).
         /// </summary>
         [Output("unprotected")]
         public Output<bool?> Unprotected { get; private set; } = null!;
@@ -177,7 +214,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// – The usage of the key. Valid values are:
+        /// – The usage type of the key. Valid values:
         /// </summary>
         [Output("usage")]
         public Output<string> Usage { get; private set; } = null!;
@@ -230,6 +267,13 @@ namespace Pulumiverse.Scaleway
     public sealed class KeyManagerKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// - For `SymmetricEncryption`:
+        /// </summary>
+        [Input("algorithm", required: true)]
+        public Input<string> Algorithm { get; set; } = null!;
+
+        /// <summary>
         /// – A description for the key.
         /// </summary>
         [Input("description")]
@@ -249,6 +293,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// – The ID of the project the key belongs to.
+        /// 
+        /// **Key Usage and Algorithm (both required):**
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -278,13 +324,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// – If `true`, the key can be deleted. Defaults to `false` (protected).
+        /// – If `True`, the key can be deleted. Defaults to `False` (protected).
         /// </summary>
         [Input("unprotected")]
         public Input<bool>? Unprotected { get; set; }
 
         /// <summary>
-        /// – The usage of the key. Valid values are:
+        /// – The usage type of the key. Valid values:
         /// </summary>
         [Input("usage", required: true)]
         public Input<string> Usage { get; set; } = null!;
@@ -297,6 +343,13 @@ namespace Pulumiverse.Scaleway
 
     public sealed class KeyManagerKeyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// – The cryptographic algorithm to use. Valid values depend on the `Usage`:
+        /// - For `SymmetricEncryption`:
+        /// </summary>
+        [Input("algorithm")]
+        public Input<string>? Algorithm { get; set; }
+
         /// <summary>
         /// The date and time when the key was created.
         /// </summary>
@@ -329,6 +382,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// – The ID of the project the key belongs to.
+        /// 
+        /// **Key Usage and Algorithm (both required):**
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -364,7 +419,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.KeyManagerKeyRotationPolicyGetArgs>? RotationPolicy { get; set; }
 
         /// <summary>
-        /// The state of the key (e.g., `enabled`).
+        /// The state of the key (e.g., `Enabled`).
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -382,7 +437,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// – If `true`, the key can be deleted. Defaults to `false` (protected).
+        /// – If `True`, the key can be deleted. Defaults to `False` (protected).
         /// </summary>
         [Input("unprotected")]
         public Input<bool>? Unprotected { get; set; }
@@ -394,7 +449,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// – The usage of the key. Valid values are:
+        /// – The usage type of the key. Valid values:
         /// </summary>
         [Input("usage")]
         public Input<string>? Usage { get; set; }

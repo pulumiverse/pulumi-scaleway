@@ -138,7 +138,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> MacAddress { get; private set; } = null!;
 
         /// <summary>
-        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
+        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `Reservation` and `Lease`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `Zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -225,7 +225,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string> MacAddress { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `Zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -269,7 +269,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `reservation` and `lease`.
+        /// The reservation type, either static (DHCP reservation) or dynamic (DHCP lease). Possible values are `Reservation` and `Lease`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the public gateway DHCP config should be created.
+        /// `Zone`) The zone in which the public gateway DHCP config should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

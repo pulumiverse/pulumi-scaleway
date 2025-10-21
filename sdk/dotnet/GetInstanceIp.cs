@@ -37,14 +37,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The IPv4 address to retrieve
-        /// Only one of `address` and `id` should be specified.
+        /// Only one of `Address` and `Id` should be specified.
         /// </summary>
         [Input("address")]
         public string? Address { get; set; }
 
         /// <summary>
         /// The ID of the IP address to retrieve
-        /// Only one of `address` and `id` should be specified.
+        /// Only one of `Address` and `Id` should be specified.
         /// </summary>
         [Input("id")]
         public string? Id { get; set; }
@@ -59,14 +59,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The IPv4 address to retrieve
-        /// Only one of `address` and `id` should be specified.
+        /// Only one of `Address` and `Id` should be specified.
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
         /// <summary>
         /// The ID of the IP address to retrieve
-        /// Only one of `address` and `id` should be specified.
+        /// Only one of `Address` and `Id` should be specified.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

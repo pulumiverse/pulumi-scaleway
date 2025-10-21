@@ -131,13 +131,13 @@ namespace Pulumiverse.Scaleway.Network
     public sealed class GetPrivateNetworkArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name of the Private Network. Cannot be used with `private_network_id`.
+        /// Name of the Private Network. Cannot be used with `PrivateNetworkId`.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// ID of the Private Network. Cannot be used with `name` or `vpc_id`.
+        /// ID of the Private Network. Cannot be used with `Name` or `VpcId`.
         /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway.Network
         public string? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
+        /// ID of the VPC the Private Network is in. Cannot be used with `PrivateNetworkId`.
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -166,13 +166,13 @@ namespace Pulumiverse.Scaleway.Network
     public sealed class GetPrivateNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name of the Private Network. Cannot be used with `private_network_id`.
+        /// Name of the Private Network. Cannot be used with `PrivateNetworkId`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// ID of the Private Network. Cannot be used with `name` or `vpc_id`.
+        /// ID of the Private Network. Cannot be used with `Name` or `VpcId`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
+        /// ID of the VPC the Private Network is in. Cannot be used with `PrivateNetworkId`.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

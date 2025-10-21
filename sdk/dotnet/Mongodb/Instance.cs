@@ -219,7 +219,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<Outputs.InstancePrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// `ProjectId`) The ID of the project the MongoDB® instance is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -231,7 +231,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<Outputs.InstancePublicNetwork> PublicNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® instance should be created.
+        /// `Region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -416,7 +416,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<Inputs.InstancePrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// `ProjectId`) The ID of the project the MongoDB® instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -428,7 +428,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<Inputs.InstancePublicNetworkArgs>? PublicNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® instance should be created.
+        /// `Region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -572,7 +572,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<Inputs.InstancePrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the MongoDB® instance is associated with.
+        /// `ProjectId`) The ID of the project the MongoDB® instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -584,7 +584,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<Inputs.InstancePublicNetworkGetArgs>? PublicNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® instance should be created.
+        /// `Region`) The region in which the MongoDB® instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

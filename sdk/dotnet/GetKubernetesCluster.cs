@@ -36,13 +36,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetKubernetesClusterArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster ID. Only one of `name` and `cluster_id` should be specified.
+        /// The cluster ID. Only one of `Name` and `ClusterId` should be specified.
         /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
         /// <summary>
-        /// The cluster name. Only one of `name` and `cluster_id` should be specified.
+        /// The cluster name. Only one of `Name` and `ClusterId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster exists.
+        /// `Region`) The region in which the cluster exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -68,13 +68,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetKubernetesClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster ID. Only one of `name` and `cluster_id` should be specified.
+        /// The cluster ID. Only one of `Name` and `ClusterId` should be specified.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// The cluster name. Only one of `name` and `cluster_id` should be specified.
+        /// The cluster name. Only one of `Name` and `ClusterId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -86,7 +86,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster exists.
+        /// `Region`) The region in which the cluster exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

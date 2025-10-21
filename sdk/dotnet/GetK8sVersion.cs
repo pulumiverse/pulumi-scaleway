@@ -165,7 +165,7 @@ namespace Pulumiverse.Scaleway
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the version exists.
+        /// `Region`) The region in which the version exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -185,7 +185,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the version exists.
+        /// `Region`) The region in which the version exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

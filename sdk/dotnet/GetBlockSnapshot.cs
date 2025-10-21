@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBlockSnapshotArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the snapshot. Only one of name or snapshot_id should be specified.
+        /// The name of the snapshot. Only one of name or SnapshotId should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The unique identifier of the snapshot. Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public string? SnapshotId { get; set; }
@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBlockSnapshotInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the snapshot. Only one of name or snapshot_id should be specified.
+        /// The name of the snapshot. Only one of name or SnapshotId should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -92,7 +92,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the snapshot. Only one of `name` and `snapshot_id` should be specified.
+        /// The unique identifier of the snapshot. Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }

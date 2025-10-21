@@ -114,25 +114,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetWebHostOfferArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
+        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `OfferId` is not specified.
         /// </summary>
         [Input("controlPanel")]
         public string? ControlPanel { get; set; }
 
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The offer id. Only one of `name` and `offer_id` should be specified.
+        /// The offer id. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("offerId")]
         public string? OfferId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which offer exists.
+        /// `Region`) The region in which offer exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -146,25 +146,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetWebHostOfferInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `offer_id` is not specified.
+        /// Name of the control panel (Cpanel or Plesk). This argument is only used when `OfferId` is not specified.
         /// </summary>
         [Input("controlPanel")]
         public Input<string>? ControlPanel { get; set; }
 
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The offer id. Only one of `name` and `offer_id` should be specified.
+        /// The offer id. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which offer exists.
+        /// `Region`) The region in which offer exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -329,7 +329,7 @@ namespace Pulumiverse.Scaleway.Observability
         public string? Name { get; set; }
 
         /// <summary>
-        /// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
         /// </summary>
         [Input("origin")]
         public string? Origin { get; set; }
@@ -347,7 +347,7 @@ namespace Pulumiverse.Scaleway.Observability
         public string? Region { get; set; }
 
         /// <summary>
-        /// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+        /// Filter sources by type. Possible values are: `Metrics`, `Logs`, `Traces`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -367,7 +367,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
         /// </summary>
         [Input("origin")]
         public Input<string>? Origin { get; set; }
@@ -385,7 +385,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+        /// Filter sources by type. Possible values are: `Metrics`, `Logs`, `Traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `DirectAccess` or `PrivateNetwork`. It can contain both.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<Outputs.ReadReplicaPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the Read Replica should be created.
         /// </summary>
         [Output("region")]
@@ -230,7 +230,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `DirectAccess` or `PrivateNetwork`. It can contain both.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -242,7 +242,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<Inputs.ReadReplicaPrivateNetworkArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the Read Replica should be created.
         /// </summary>
         [Input("region")]
@@ -271,7 +271,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the rdb instance.
         /// 
-        /// &gt; **Important:** The replica musts contains at least one `direct_access` or `private_network`. It can contain both.
+        /// &gt; **Important:** The replica musts contains at least one `DirectAccess` or `PrivateNetwork`. It can contain both.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<Inputs.ReadReplicaPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the Read Replica should be created.
         /// </summary>
         [Input("region")]

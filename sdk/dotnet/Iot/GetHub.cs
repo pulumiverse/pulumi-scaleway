@@ -36,14 +36,14 @@ namespace Pulumiverse.Scaleway.Iot
     {
         /// <summary>
         /// The Hub ID.
-        /// Only one of the `name` and `hub_id` should be specified.
+        /// Only one of the `Name` and `HubId` should be specified.
         /// </summary>
         [Input("hubId")]
         public string? HubId { get; set; }
 
         /// <summary>
         /// The name of the Hub.
-        /// Only one of the `name` and `hub_id` should be specified.
+        /// Only one of the `Name` and `HubId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -55,7 +55,7 @@ namespace Pulumiverse.Scaleway.Iot
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the hub exists.
+        /// `Region`) The region in which the hub exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -70,14 +70,14 @@ namespace Pulumiverse.Scaleway.Iot
     {
         /// <summary>
         /// The Hub ID.
-        /// Only one of the `name` and `hub_id` should be specified.
+        /// Only one of the `Name` and `HubId` should be specified.
         /// </summary>
         [Input("hubId")]
         public Input<string>? HubId { get; set; }
 
         /// <summary>
         /// The name of the Hub.
-        /// Only one of the `name` and `hub_id` should be specified.
+        /// Only one of the `Name` and `HubId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -89,7 +89,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the hub exists.
+        /// `Region`) The region in which the hub exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -134,7 +134,7 @@ namespace Pulumiverse.Scaleway.Network
         public bool? IsDefault { get; set; }
 
         /// <summary>
-        /// Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+        /// Name of the VPC. A maximum of one of `Name` and `VpcId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway.Network
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the VPC is associated with.
+        /// `ProjectId`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -155,7 +155,7 @@ namespace Pulumiverse.Scaleway.Network
         public string? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+        /// ID of the VPC. A maximum of one of `Name` and `VpcId` should be specified.
         /// </summary>
         [Input("vpcId")]
         public string? VpcId { get; set; }
@@ -175,7 +175,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? IsDefault { get; set; }
 
         /// <summary>
-        /// Name of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+        /// Name of the VPC. A maximum of one of `Name` and `VpcId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the VPC is associated with.
+        /// `ProjectId`) The ID of the Project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -196,7 +196,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// ID of the VPC. A maximum of one of `name` and `vpc_id` should be specified.
+        /// ID of the VPC. A maximum of one of `Name` and `VpcId` should be specified.
         /// </summary>
         [Input("vpcId")]
         public Input<string>? VpcId { get; set; }

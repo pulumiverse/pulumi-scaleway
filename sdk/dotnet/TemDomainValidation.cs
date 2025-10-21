@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> DomainId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
+        /// `Region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -121,7 +121,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> DomainId { get; set; } = null!;
 
         /// <summary>
-        /// `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
+        /// `Region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -147,7 +147,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
-        /// `region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
+        /// `Region`). Specifies the region where the domain is registered. If not specified, it defaults to the provider's region.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

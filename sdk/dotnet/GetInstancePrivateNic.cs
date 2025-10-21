@@ -139,14 +139,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The ID of the private network
-        /// Only one of `private_nic_id` and `private_network_id` should be specified.
+        /// Only one of `PrivateNicId` and `PrivateNetworkId` should be specified.
         /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// The ID of the instance server private nic
-        /// Only one of `private_nic_id` and `private_network_id` should be specified.
+        /// Only one of `PrivateNicId` and `PrivateNetworkId` should be specified.
         /// </summary>
         [Input("privateNicId")]
         public string? PrivateNicId { get; set; }
@@ -171,7 +171,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the private nic exists.
+        /// `Zone`) The zone in which the private nic exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -186,14 +186,14 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The ID of the private network
-        /// Only one of `private_nic_id` and `private_network_id` should be specified.
+        /// Only one of `PrivateNicId` and `PrivateNetworkId` should be specified.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
         /// The ID of the instance server private nic
-        /// Only one of `private_nic_id` and `private_network_id` should be specified.
+        /// Only one of `PrivateNicId` and `PrivateNetworkId` should be specified.
         /// </summary>
         [Input("privateNicId")]
         public Input<string>? PrivateNicId { get; set; }
@@ -218,7 +218,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the private nic exists.
+        /// `Zone`) The zone in which the private nic exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

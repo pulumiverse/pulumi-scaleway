@@ -65,13 +65,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// This section lists the arguments that you can provide to the `scaleway.containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
         /// 
-        /// - `name` - (Required) The unique name of the container.
+        /// - `Name` - (Required) The unique name of the container.
         /// 
-        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// - `NamespaceId` - (Required) The container namespace ID of the container.
         /// 
-        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// - `ProjectId` - (Optional) The unique identifier of the project with which the container is associated.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         public static Task<GetContainerResult> InvokeAsync(GetContainerArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerArgs(), options.WithDefaults());
@@ -128,13 +128,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// This section lists the arguments that you can provide to the `scaleway.containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
         /// 
-        /// - `name` - (Required) The unique name of the container.
+        /// - `Name` - (Required) The unique name of the container.
         /// 
-        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// - `NamespaceId` - (Required) The container namespace ID of the container.
         /// 
-        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// - `ProjectId` - (Optional) The unique identifier of the project with which the container is associated.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
@@ -191,13 +191,13 @@ namespace Pulumiverse.Scaleway
         /// 
         /// This section lists the arguments that you can provide to the `scaleway.containers.Container` data source to filter and retrieve the desired namespace. Each argument has a specific purpose:
         /// 
-        /// - `name` - (Required) The unique name of the container.
+        /// - `Name` - (Required) The unique name of the container.
         /// 
-        /// - `namespace_id` - (Required) The container namespace ID of the container.
+        /// - `NamespaceId` - (Required) The container namespace ID of the container.
         /// 
-        /// - `project_id` - (Optional) The unique identifier of the project with which the container is associated.
+        /// - `ProjectId` - (Optional) The unique identifier of the project with which the container is associated.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         public static Output<GetContainerResult> Invoke(GetContainerInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetContainerResult>("scaleway:index/getContainer:getContainer", args ?? new GetContainerInvokeArgs(), options.WithDefaults());
@@ -219,7 +219,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -245,7 +245,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -330,11 +330,11 @@ namespace Pulumiverse.Scaleway
         public readonly string PrivateNetworkId;
         public readonly string? ProjectId;
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `Http1` or `H2c`. Defaults to `Http1`.
         /// </summary>
         public readonly string Protocol;
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         public readonly string? Region;
         /// <summary>

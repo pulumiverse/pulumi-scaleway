@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Account.Outputs
         public readonly string Name;
         /// <summary>
         /// The unique identifier of the Organization with which the Projects are associated.
-        /// If no default `organization_id` is set, one must be set explicitly in this datasource
+        /// If no default `OrganizationId` is set, one must be set explicitly in this datasource
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>

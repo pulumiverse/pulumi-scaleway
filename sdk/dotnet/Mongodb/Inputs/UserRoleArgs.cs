@@ -14,19 +14,19 @@ namespace Pulumiverse.Scaleway.Mongodb.Inputs
     public sealed class UserRoleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Apply the role to all databases. Cannot be used with `database_name`.
+        /// Apply the role to all databases. Cannot be used with `DatabaseName`.
         /// </summary>
         [Input("anyDatabase")]
         public Input<bool>? AnyDatabase { get; set; }
 
         /// <summary>
-        /// The database name for the role. Cannot be used with `any_database`.
+        /// The database name for the role. Cannot be used with `AnyDatabase`.
         /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
-        /// The role name. Valid values are `read`, `read_write`, `db_admin`, `sync`.
+        /// The role name. Valid values are `Read`, `ReadWrite`, `DbAdmin`, `Sync`.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;

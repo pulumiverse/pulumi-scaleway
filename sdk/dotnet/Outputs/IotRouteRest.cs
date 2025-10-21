@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Uri;
         /// <summary>
-        /// The HTTP Verb used to call Rest URI (e.g. `post`).
+        /// The HTTP Verb used to call Rest URI (e.g. `Post`).
         /// </summary>
         public readonly string Verb;
 

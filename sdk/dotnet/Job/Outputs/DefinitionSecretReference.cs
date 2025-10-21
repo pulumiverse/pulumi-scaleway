@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Job.Outputs
     public sealed class DefinitionSecretReference
     {
         /// <summary>
-        /// An environment variable containing the secret value. Must be specified if `file` is not specified.
+        /// An environment variable containing the secret value. Must be specified if `File` is not specified.
         /// </summary>
         public readonly string? Environment;
         /// <summary>
-        /// The absolute file path where the secret will be mounted. Must be specified if `environment` is not specified.
+        /// The absolute file path where the secret will be mounted. Must be specified if `Environment` is not specified.
         /// </summary>
         public readonly string? File;
         /// <summary>

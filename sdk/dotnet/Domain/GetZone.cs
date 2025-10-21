@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Domain
         public string? Domain { get; set; }
 
         /// <summary>
-        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.
+        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `ProjectId` set in the provider configuration.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -58,7 +58,7 @@ namespace Pulumiverse.Scaleway.Domain
         public Input<string>? Domain { get; set; }
 
         /// <summary>
-        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `project_id` set in the provider configuration.
+        /// ). The ID of the Scaleway Project associated with the domain. If not specified, it defaults to the `ProjectId` set in the provider configuration.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

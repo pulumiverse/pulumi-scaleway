@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// 
-        /// &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowInsecure` can disconnect eventually connected devices.
         /// </summary>
         [Output("allowInsecure")]
         public Output<bool?> AllowInsecure { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow more than one simultaneous connection using the same device credentials.
         /// 
-        /// &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowMultipleConnections` can disconnect eventually connected devices.
         /// </summary>
         [Output("allowMultipleConnections")]
         public Output<bool?> AllowMultipleConnections { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
         /// 
-        /// &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+        /// &gt; **Important:** Updates to `Name` will destroy and recreate a new resource.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -221,7 +221,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// 
-        /// &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowInsecure` can disconnect eventually connected devices.
         /// </summary>
         [Input("allowInsecure")]
         public Input<bool>? AllowInsecure { get; set; }
@@ -229,7 +229,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow more than one simultaneous connection using the same device credentials.
         /// 
-        /// &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowMultipleConnections` can disconnect eventually connected devices.
         /// </summary>
         [Input("allowMultipleConnections")]
         public Input<bool>? AllowMultipleConnections { get; set; }
@@ -261,7 +261,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
         /// 
-        /// &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+        /// &gt; **Important:** Updates to `Name` will destroy and recreate a new resource.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -283,7 +283,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow plain and server-authenticated TLS connections in addition to mutually-authenticated ones.
         /// 
-        /// &gt; **Important:** Updates to `allow_insecure` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowInsecure` can disconnect eventually connected devices.
         /// </summary>
         [Input("allowInsecure")]
         public Input<bool>? AllowInsecure { get; set; }
@@ -291,7 +291,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Allow more than one simultaneous connection using the same device credentials.
         /// 
-        /// &gt; **Important:** Updates to `allow_multiple_connections` can disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `AllowMultipleConnections` can disconnect eventually connected devices.
         /// </summary>
         [Input("allowMultipleConnections")]
         public Input<bool>? AllowMultipleConnections { get; set; }
@@ -341,7 +341,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the IoT device you want to create (e.g. `my-device`).
         /// 
-        /// &gt; **Important:** Updates to `name` will destroy and recreate a new resource.
+        /// &gt; **Important:** Updates to `Name` will destroy and recreate a new resource.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

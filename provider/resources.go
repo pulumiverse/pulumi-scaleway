@@ -16,6 +16,7 @@
 package scaleway
 
 import (
+	"context"
 	"fmt"
 	"path/filepath"
 	"unicode"
@@ -23,8 +24,9 @@ import (
 	// embed is used to embed the schema files in the provider
 	_ "embed"
 
-	shim "github.com/scaleway/terraform-provider-scaleway/v2/shim"
+	scaleway "github.com/scaleway/terraform-provider-scaleway/v2/provider"
 
+	pfbridge "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/pf/tfbridge"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	tks "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
@@ -110,7 +112,11 @@ var metadata []byte
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
-	p := shimv2.NewProvider(shim.NewProvider()())
+	p := pfbridge.MuxShimWithPF(
+		context.Background(),
+		shimv2.NewProvider(scaleway.SDKProvider(nil)()),
+		scaleway.NewFrameworkProvider()(),
+	)
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:                       p,

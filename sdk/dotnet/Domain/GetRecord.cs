@@ -22,7 +22,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         /// The following commands allow you to:
         /// 
-        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`Www`), the record type (`A`), and the record content (`1.2.3.4`).
         /// - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
         /// 
         /// ```csharp
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         /// The following commands allow you to:
         /// 
-        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`Www`), the record type (`A`), and the record content (`1.2.3.4`).
         /// - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
         /// 
         /// ```csharp
@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway.Domain
         /// 
         /// The following commands allow you to:
         /// 
-        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`www`), the record type (`A`), and the record content (`1.2.3.4`).
+        /// - query a domain record specified by the DNS zone (`domain.tld`), the record name (`Www`), the record type (`A`), and the record content (`1.2.3.4`).
         /// - query a domain record specified by the DNS zone (`domain.tld`) and the unique record ID (`11111111-1111-1111-1111-111111111111`).
         /// 
         /// ```csharp
@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway.Domain
     public sealed class GetRecordArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `record_id`.
+        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `RecordId`.
         /// </summary>
         [Input("data")]
         public string? Data { get; set; }
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway.Domain
         public string? DnsZone { get; set; }
 
         /// <summary>
-        /// The name of the record, which can be an empty string for a root record. Cannot be used with `record_id`.
+        /// The name of the record, which can be an empty string for a root record. Cannot be used with `RecordId`.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -170,13 +170,13 @@ namespace Pulumiverse.Scaleway.Domain
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
+        /// The unique identifier of the record. Cannot be used with `Name`, `Type`, and `Data`.
         /// </summary>
         [Input("recordId")]
         public string? RecordId { get; set; }
 
         /// <summary>
-        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
+        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `RecordId`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -190,7 +190,7 @@ namespace Pulumiverse.Scaleway.Domain
     public sealed class GetRecordInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `record_id`.
+        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `RecordId`.
         /// </summary>
         [Input("data")]
         public Input<string>? Data { get; set; }
@@ -202,7 +202,7 @@ namespace Pulumiverse.Scaleway.Domain
         public Input<string>? DnsZone { get; set; }
 
         /// <summary>
-        /// The name of the record, which can be an empty string for a root record. Cannot be used with `record_id`.
+        /// The name of the record, which can be an empty string for a root record. Cannot be used with `RecordId`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -214,13 +214,13 @@ namespace Pulumiverse.Scaleway.Domain
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the record. Cannot be used with `name`, `type`, and `data`.
+        /// The unique identifier of the record. Cannot be used with `Name`, `Type`, and `Data`.
         /// </summary>
         [Input("recordId")]
         public Input<string>? RecordId { get; set; }
 
         /// <summary>
-        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `record_id`.
+        /// The type of the record (`A`, `AAAA`, `MX`, `CNAME`, etc.). Cannot be used with `RecordId`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

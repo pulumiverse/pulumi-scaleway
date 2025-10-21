@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Name;
         /// <summary>
-        /// Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
+        /// Choose IOPS of your sbs volume, has to be used with `SbsVolume` for root volume type.
         /// 
         /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
         /// </summary>
@@ -35,8 +35,8 @@ namespace Pulumiverse.Scaleway.Outputs
         /// <summary>
         /// Size of the root volume in gigabytes.
         /// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
-        /// check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
-        /// Depending on `volume_type`, updates to this field may recreate a new resource.
+        /// check the `volumes_constraint.{min|max}_size` (in bytes) for your `CommercialType`.
+        /// Depending on `VolumeType`, updates to this field may recreate a new resource.
         /// </summary>
         public readonly int? SizeInGb;
         /// <summary>
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? VolumeId;
         /// <summary>
-        /// Volume type of root volume, can be `l_ssd` or `sbs_volume`, default value depends on server type
+        /// Volume type of root volume, can be `LSsd` or `SbsVolume`, default value depends on server type
         /// </summary>
         public readonly string? VolumeType;
 

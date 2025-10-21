@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class EdgeServicesRouteStageRuleRuleHttpMatch
     {
         /// <summary>
-        /// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+        /// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `Get`, `Post`, `Put`, `Patch`, `Delete`, `Head`, `Options`. All methods will match if none is provided.
         /// </summary>
         public readonly ImmutableArray<string> MethodFilters;
         /// <summary>

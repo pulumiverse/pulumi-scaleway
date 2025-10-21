@@ -123,7 +123,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the container exists.
+        /// `Region`) The region in which the container exists.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Hostname { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the container exists.
+        /// `Region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the container exists.
+        /// `Region`) The region in which the container exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

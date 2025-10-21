@@ -55,7 +55,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The certificate ID.
-        /// - Only one of `name` and `certificate_id` should be specified.
+        /// - Only one of `Name` and `CertificateId` should be specified.
         /// </summary>
         [Input("certificateId")]
         public string? CertificateId { get; set; }
@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the Load Balancer certificate.
-        /// - When using a certificate `name` you should specify the `lb-id`
+        /// - When using a certificate `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -83,7 +83,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The certificate ID.
-        /// - Only one of `name` and `certificate_id` should be specified.
+        /// - Only one of `Name` and `CertificateId` should be specified.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
@@ -96,7 +96,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the Load Balancer certificate.
-        /// - When using a certificate `name` you should specify the `lb-id`
+        /// - When using a certificate `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

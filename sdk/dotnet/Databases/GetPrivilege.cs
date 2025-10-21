@@ -110,7 +110,7 @@ namespace Pulumiverse.Scaleway.Databases
         public string InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -170,8 +170,8 @@ namespace Pulumiverse.Scaleway.Databases
         public readonly string Id;
         public readonly string InstanceId;
         /// <summary>
-        /// The permission for this user on the database. Possible values are `readonly`, `readwrite`, `all`
-        /// , `custom` and `none`.
+        /// The permission for this user on the database. Possible values are `Readonly`, `Readwrite`, `All`
+        /// , `Custom` and `None`.
         /// </summary>
         public readonly string Permission;
         public readonly string? Region;

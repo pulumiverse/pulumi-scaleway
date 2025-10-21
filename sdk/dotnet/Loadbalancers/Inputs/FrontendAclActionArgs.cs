@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Inputs
         private InputList<Inputs.FrontendAclActionRedirectArgs>? _redirects;
 
         /// <summary>
-        /// Redirect parameters when using an ACL with `redirect` action.
+        /// Redirect parameters when using an ACL with `Redirect` action.
         /// </summary>
         public InputList<Inputs.FrontendAclActionRedirectArgs> Redirects
         {
@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Inputs
         }
 
         /// <summary>
-        /// The action type. Possible values are: `allow` or `deny` or `redirect`.
+        /// The action type. Possible values are: `Allow` or `Deny` or `Redirect`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;

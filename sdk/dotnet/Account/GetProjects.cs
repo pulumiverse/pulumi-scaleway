@@ -201,7 +201,7 @@ namespace Pulumiverse.Scaleway.Account
     {
         /// <summary>
         /// The unique identifier of the Organization with which the Projects are associated.
-        /// If no default `organization_id` is set, one must be set explicitly in this datasource
+        /// If no default `OrganizationId` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway.Account
     {
         /// <summary>
         /// The unique identifier of the Organization with which the Projects are associated.
-        /// If no default `organization_id` is set, one must be set explicitly in this datasource
+        /// If no default `OrganizationId` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

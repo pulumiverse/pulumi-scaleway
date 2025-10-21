@@ -271,7 +271,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Multiple records
     /// 
-    /// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.domain.Record`  resource with the same `name`, and the records will be added.
+    /// Some record types can have multiple data with the same name (e.g., `A`, `AAAA`, `MX`, `NS`, etc.). You can duplicate a `scaleway.domain.Record`  resource with the same `Name`, and the records will be added.
     /// 
     /// Note however, that some records (e.g., CNAME, multiple dynamic records of different types) must be unique.
     /// 
@@ -332,7 +332,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -451,7 +451,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -543,7 +543,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

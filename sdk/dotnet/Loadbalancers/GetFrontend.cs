@@ -189,7 +189,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     {
         /// <summary>
         /// The frontend ID.
-        /// - Only one of `name` and `frontend_id` should be specified.
+        /// - Only one of `Name` and `FrontendId` should be specified.
         /// </summary>
         [Input("frontendId")]
         public string? FrontendId { get; set; }
@@ -202,7 +202,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
         /// <summary>
         /// The name of the frontend.
-        /// - When using the `name` you should specify the `lb-id`
+        /// - When using the `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -217,7 +217,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     {
         /// <summary>
         /// The frontend ID.
-        /// - Only one of `name` and `frontend_id` should be specified.
+        /// - Only one of `Name` and `FrontendId` should be specified.
         /// </summary>
         [Input("frontendId")]
         public Input<string>? FrontendId { get; set; }
@@ -230,7 +230,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
         /// <summary>
         /// The name of the frontend.
-        /// - When using the `name` you should specify the `lb-id`
+        /// - When using the `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

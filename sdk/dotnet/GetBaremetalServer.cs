@@ -117,7 +117,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBaremetalServerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -132,7 +132,7 @@ namespace Pulumiverse.Scaleway
         public string? ServerId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server exists.
+        /// `Zone`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBaremetalServerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -161,7 +161,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server exists.
+        /// `Zone`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

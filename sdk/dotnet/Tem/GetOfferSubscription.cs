@@ -83,13 +83,13 @@ namespace Pulumiverse.Scaleway.Tem
     public sealed class GetOfferSubscriptionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the offer subscription is associated with.
+        /// `ProjectId`) The ID of the project the offer subscription is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region where the offer subscription exists.
+        /// `Region`) The region where the offer subscription exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -103,13 +103,13 @@ namespace Pulumiverse.Scaleway.Tem
     public sealed class GetOfferSubscriptionInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the offer subscription is associated with.
+        /// `ProjectId`) The ID of the project the offer subscription is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region where the offer subscription exists.
+        /// `Region`) The region where the offer subscription exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway.Tem
         /// </summary>
         public readonly int MaxWebhooksPerDomain;
         /// <summary>
-        /// The name of the offer associated with the subscription (e.g., `scale`).
+        /// The name of the offer associated with the subscription (e.g., `Scale`).
         /// </summary>
         public readonly string OfferName;
         public readonly string ProjectId;

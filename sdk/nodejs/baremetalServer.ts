@@ -11,6 +11,14 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Basic
+ *
+ * ### With option
+ *
+ * ### With private network
+ *
+ * ### With IPAM IP IDs
+ *
  * ### Without install config
  *
  * ```typescript

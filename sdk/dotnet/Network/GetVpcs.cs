@@ -47,7 +47,7 @@ namespace Pulumiverse.Scaleway.Network
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the VPCs exist.
+        /// `Region`). The region in which the VPCs exist.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -85,7 +85,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the VPCs exist.
+        /// `Region`). The region in which the VPCs exist.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

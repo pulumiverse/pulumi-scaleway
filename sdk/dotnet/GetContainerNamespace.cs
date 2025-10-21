@@ -132,25 +132,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetContainerNamespaceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the namespace. Only one of `Name` and `NamespaceId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+        /// The unique identifier of the namespace. Only one of `Name` and `NamespaceId` should be specified.
         /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The unique identifier of the project with which the namespace is associated.
+        /// `ProjectId`) The unique identifier of the project with which the namespace is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the namespace exists.
+        /// `Region`) The region in which the namespace exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -164,25 +164,25 @@ namespace Pulumiverse.Scaleway
     public sealed class GetContainerNamespaceInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the namespace. Only one of `name` and `namespace_id` should be specified.
+        /// The name of the namespace. Only one of `Name` and `NamespaceId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The unique identifier of the namespace. Only one of `name` and `namespace_id` should be specified.
+        /// The unique identifier of the namespace. Only one of `Name` and `NamespaceId` should be specified.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The unique identifier of the project with which the namespace is associated.
+        /// `ProjectId`) The unique identifier of the project with which the namespace is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the namespace exists.
+        /// `Region`) The region in which the namespace exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

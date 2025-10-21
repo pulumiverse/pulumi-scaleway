@@ -21,6 +21,7 @@ __all__ = ['KeyManagerKeyArgs', 'KeyManagerKey']
 @pulumi.input_type
 class KeyManagerKeyArgs:
     def __init__(__self__, *,
+                 algorithm: pulumi.Input[_builtins.str],
                  usage: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -32,16 +33,21 @@ class KeyManagerKeyArgs:
                  unprotected: Optional[pulumi.Input[_builtins.bool]] = None):
         """
         The set of arguments for constructing a KeyManagerKey resource.
-        :param pulumi.Input[_builtins.str] usage: – The usage of the key. Valid values are:
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+               - For `symmetric_encryption`:
+        :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
         :param pulumi.Input[_builtins.str] description: – A description for the key.
         :param pulumi.Input[_builtins.str] name: The name of the key.
         :param pulumi.Input[_builtins.str] origin: – The origin of the key. Valid values are:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
+               
+               **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
         :param pulumi.Input['KeyManagerKeyRotationPolicyArgs'] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
         """
+        pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "usage", usage)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -62,9 +68,22 @@ class KeyManagerKeyArgs:
 
     @_builtins.property
     @pulumi.getter
+    def algorithm(self) -> pulumi.Input[_builtins.str]:
+        """
+        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        - For `symmetric_encryption`:
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter
     def usage(self) -> pulumi.Input[_builtins.str]:
         """
-        – The usage of the key. Valid values are:
+        – The usage type of the key. Valid values:
         """
         return pulumi.get(self, "usage")
 
@@ -113,6 +132,8 @@ class KeyManagerKeyArgs:
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         – The ID of the project the key belongs to.
+
+        **Key Usage and Algorithm (both required):**
         """
         return pulumi.get(self, "project_id")
 
@@ -172,6 +193,7 @@ class KeyManagerKeyArgs:
 @pulumi.input_type
 class _KeyManagerKeyState:
     def __init__(__self__, *,
+                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  locked: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -190,12 +212,16 @@ class _KeyManagerKeyState:
                  usage: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering KeyManagerKey resources.
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+               - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] created_at: The date and time when the key was created.
         :param pulumi.Input[_builtins.str] description: – A description for the key.
         :param pulumi.Input[_builtins.bool] locked: Whether the key is locked.
         :param pulumi.Input[_builtins.str] name: The name of the key.
         :param pulumi.Input[_builtins.str] origin: – The origin of the key. Valid values are:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
+               
+               **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
         :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
@@ -205,8 +231,10 @@ class _KeyManagerKeyState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
         :param pulumi.Input[_builtins.str] updated_at: The date and time when the key was last updated.
-        :param pulumi.Input[_builtins.str] usage: – The usage of the key. Valid values are:
+        :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
         """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
@@ -239,6 +267,19 @@ class _KeyManagerKeyState:
             pulumi.set(__self__, "updated_at", updated_at)
         if usage is not None:
             pulumi.set(__self__, "usage", usage)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        - For `symmetric_encryption`:
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -305,6 +346,8 @@ class _KeyManagerKeyState:
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         – The ID of the project the key belongs to.
+
+        **Key Usage and Algorithm (both required):**
         """
         return pulumi.get(self, "project_id")
 
@@ -424,7 +467,7 @@ class _KeyManagerKeyState:
     @pulumi.getter
     def usage(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        – The usage of the key. Valid values are:
+        – The usage type of the key. Valid values:
         """
         return pulumi.get(self, "usage")
 
@@ -439,6 +482,7 @@ class KeyManagerKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  origin: Optional[pulumi.Input[_builtins.str]] = None,
@@ -455,15 +499,18 @@ class KeyManagerKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Symmetric Encryption Key
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.KeyManagerKey("main",
+        symmetric = scaleway.KeyManagerKey("symmetric",
             name="my-kms-key",
             region="fr-par",
             project_id="your-project-id",
             usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
             description="Key for encrypting secrets",
             tags=[
                 "env:prod",
@@ -475,26 +522,43 @@ class KeyManagerKey(pulumi.CustomResource):
             })
         ```
 
+        ### Asymmetric Encryption Key with RSA-4096
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        rsa4096 = scaleway.KeyManagerKey("rsa_4096",
+            name="rsa-4096-key",
+            region="fr-par",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            description="Key for encrypting large files with RSA-4096",
+            unprotected=True)
+        ```
+
+        ### Asymmetric Signing Key
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        signing = scaleway.KeyManagerKey("signing",
+            name="signing-key",
+            region="fr-par",
+            usage="asymmetric_signing",
+            algorithm="rsa_pss_2048_sha256",
+            description="Key for signing documents",
+            unprotected=True)
+        ```
+
         ## Notes
 
         - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
         - **Rotation Policy**: The `rotation_policy` block allows you to set automatic rotation for your key.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
-
-        ## Example: Asymmetric Key
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        asym = scaleway.KeyManagerKey("asym",
-            name="asymmetric-key",
-            region="fr-par",
-            usage="asymmetric_signing",
-            description="Key for signing documents",
-            unprotected=True)
-        ```
+        - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
 
         ## Import
 
@@ -506,15 +570,19 @@ class KeyManagerKey(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+               - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] description: – A description for the key.
         :param pulumi.Input[_builtins.str] name: The name of the key.
         :param pulumi.Input[_builtins.str] origin: – The origin of the key. Valid values are:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
+               
+               **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
         :param pulumi.Input[Union['KeyManagerKeyRotationPolicyArgs', 'KeyManagerKeyRotationPolicyArgsDict']] rotation_policy: – Rotation policy for the key:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
-        :param pulumi.Input[_builtins.str] usage: – The usage of the key. Valid values are:
+        :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
         """
         ...
     @overload
@@ -528,15 +596,18 @@ class KeyManagerKey(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Symmetric Encryption Key
+
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.KeyManagerKey("main",
+        symmetric = scaleway.KeyManagerKey("symmetric",
             name="my-kms-key",
             region="fr-par",
             project_id="your-project-id",
             usage="symmetric_encryption",
+            algorithm="aes_256_gcm",
             description="Key for encrypting secrets",
             tags=[
                 "env:prod",
@@ -548,26 +619,43 @@ class KeyManagerKey(pulumi.CustomResource):
             })
         ```
 
+        ### Asymmetric Encryption Key with RSA-4096
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        rsa4096 = scaleway.KeyManagerKey("rsa_4096",
+            name="rsa-4096-key",
+            region="fr-par",
+            usage="asymmetric_encryption",
+            algorithm="rsa_oaep_4096_sha256",
+            description="Key for encrypting large files with RSA-4096",
+            unprotected=True)
+        ```
+
+        ### Asymmetric Signing Key
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        signing = scaleway.KeyManagerKey("signing",
+            name="signing-key",
+            region="fr-par",
+            usage="asymmetric_signing",
+            algorithm="rsa_pss_2048_sha256",
+            description="Key for signing documents",
+            unprotected=True)
+        ```
+
         ## Notes
 
         - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
         - **Rotation Policy**: The `rotation_policy` block allows you to set automatic rotation for your key.
         - **Origin**: The `origin` argument is optional and defaults to `scaleway_kms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
         - **Project and Region**: If not specified, `project_id` and `region` will default to the provider configuration.
-
-        ## Example: Asymmetric Key
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        asym = scaleway.KeyManagerKey("asym",
-            name="asymmetric-key",
-            region="fr-par",
-            usage="asymmetric_signing",
-            description="Key for signing documents",
-            unprotected=True)
-        ```
+        - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
 
         ## Import
 
@@ -592,6 +680,7 @@ class KeyManagerKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 algorithm: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  origin: Optional[pulumi.Input[_builtins.str]] = None,
@@ -610,6 +699,9 @@ class KeyManagerKey(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = KeyManagerKeyArgs.__new__(KeyManagerKeyArgs)
 
+            if algorithm is None and not opts.urn:
+                raise TypeError("Missing required property 'algorithm'")
+            __props__.__dict__["algorithm"] = algorithm
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
             __props__.__dict__["origin"] = origin
@@ -638,6 +730,7 @@ class KeyManagerKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            algorithm: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             locked: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -661,12 +754,16 @@ class KeyManagerKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] algorithm: – The cryptographic algorithm to use. Valid values depend on the `usage`:
+               - For `symmetric_encryption`:
         :param pulumi.Input[_builtins.str] created_at: The date and time when the key was created.
         :param pulumi.Input[_builtins.str] description: – A description for the key.
         :param pulumi.Input[_builtins.bool] locked: Whether the key is locked.
         :param pulumi.Input[_builtins.str] name: The name of the key.
         :param pulumi.Input[_builtins.str] origin: – The origin of the key. Valid values are:
         :param pulumi.Input[_builtins.str] project_id: – The ID of the project the key belongs to.
+               
+               **Key Usage and Algorithm (both required):**
         :param pulumi.Input[_builtins.bool] protected: Whether the key is protected from deletion.
         :param pulumi.Input[_builtins.str] region: The region in which to create the key (e.g., `fr-par`).
         :param pulumi.Input[_builtins.str] rotated_at: The date and time when the key was last rotated.
@@ -676,12 +773,13 @@ class KeyManagerKey(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: – A list of tags to assign to the key.
         :param pulumi.Input[_builtins.bool] unprotected: – If `true`, the key can be deleted. Defaults to `false` (protected).
         :param pulumi.Input[_builtins.str] updated_at: The date and time when the key was last updated.
-        :param pulumi.Input[_builtins.str] usage: – The usage of the key. Valid values are:
+        :param pulumi.Input[_builtins.str] usage: – The usage type of the key. Valid values:
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _KeyManagerKeyState.__new__(_KeyManagerKeyState)
 
+        __props__.__dict__["algorithm"] = algorithm
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["locked"] = locked
@@ -699,6 +797,15 @@ class KeyManagerKey(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["usage"] = usage
         return KeyManagerKey(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Output[_builtins.str]:
+        """
+        – The cryptographic algorithm to use. Valid values depend on the `usage`:
+        - For `symmetric_encryption`:
+        """
+        return pulumi.get(self, "algorithm")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -745,6 +852,8 @@ class KeyManagerKey(pulumi.CustomResource):
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
         – The ID of the project the key belongs to.
+
+        **Key Usage and Algorithm (both required):**
         """
         return pulumi.get(self, "project_id")
 
@@ -824,7 +933,7 @@ class KeyManagerKey(pulumi.CustomResource):
     @pulumi.getter
     def usage(self) -> pulumi.Output[_builtins.str]:
         """
-        – The usage of the key. Valid values are:
+        – The usage type of the key. Valid values:
         """
         return pulumi.get(self, "usage")
 

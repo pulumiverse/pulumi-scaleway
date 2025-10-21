@@ -40,13 +40,13 @@ namespace Pulumiverse.Scaleway.Kubernetes.Inputs
         }
 
         /// <summary>
-        /// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        /// The public IPv4. (Deprecated, Please use the official Kubernetes provider and the KubernetesNodes data source)
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the kubernetes_nodes data source)
+        /// The public IPv6. (Deprecated, Please use the official Kubernetes provider and the KubernetesNodes data source)
         /// </summary>
         [Input("publicIpV6")]
         public Input<string>? PublicIpV6 { get; set; }

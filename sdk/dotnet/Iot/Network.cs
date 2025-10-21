@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// (Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -93,7 +93,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<string?> TopicPrefix { get; private set; } = null!;
 
         /// <summary>
-        /// The network type to create (e.g. `sigfox`).
+        /// The network type to create (e.g. `Sigfox`).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -166,7 +166,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// (Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -178,7 +178,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? TopicPrefix { get; set; }
 
         /// <summary>
-        /// The network type to create (e.g. `sigfox`).
+        /// The network type to create (e.g. `Sigfox`).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Network is attached to.
+        /// (Defaults to provider `Region`) The region in which the Network is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -244,7 +244,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? TopicPrefix { get; set; }
 
         /// <summary>
-        /// The network type to create (e.g. `sigfox`).
+        /// The network type to create (e.g. `Sigfox`).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

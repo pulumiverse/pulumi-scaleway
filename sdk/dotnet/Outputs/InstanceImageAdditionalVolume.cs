@@ -15,33 +15,13 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class InstanceImageAdditionalVolume
     {
         /// <summary>
-        /// Date of the volume creation.
-        /// </summary>
-        public readonly string? CreationDate;
-        /// <summary>
-        /// The export URI of the volume.
-        /// </summary>
-        public readonly string? ExportUri;
-        /// <summary>
         /// ID of the server containing the volume.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// Date of volume latest update.
-        /// </summary>
-        public readonly string? ModificationDate;
-        /// <summary>
         /// The name of the image. If not provided it will be randomly generated.
         /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The organization ID the volume is associated with.
-        /// </summary>
-        public readonly string? Organization;
-        /// <summary>
-        /// ID of the project the volume is associated with
-        /// </summary>
-        public readonly string? Project;
         /// <summary>
         /// Description of the server containing the volume (in case the image is a backup from a server).
         /// </summary>
@@ -51,63 +31,34 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? Size;
         /// <summary>
-        /// State of the volume.
-        /// </summary>
-        public readonly string? State;
-        /// <summary>
         /// A list of tags to apply to the image.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// The type of volume, possible values are `l_ssd` and `b_ssd`.
+        /// The type of volume, possible values are `LSsd` and `SbsSnapshot`.
         /// </summary>
         public readonly string? VolumeType;
-        /// <summary>
-        /// The zone in which the image should be created.
-        /// </summary>
-        public readonly string? Zone;
 
         [OutputConstructor]
         private InstanceImageAdditionalVolume(
-            string? creationDate,
-
-            string? exportUri,
-
             string? id,
 
-            string? modificationDate,
-
             string? name,
-
-            string? organization,
-
-            string? project,
 
             ImmutableDictionary<string, string>? server,
 
             int? size,
 
-            string? state,
-
             ImmutableArray<string> tags,
 
-            string? volumeType,
-
-            string? zone)
+            string? volumeType)
         {
-            CreationDate = creationDate;
-            ExportUri = exportUri;
             Id = id;
-            ModificationDate = modificationDate;
             Name = name;
-            Organization = organization;
-            Project = project;
             Server = server;
             Size = size;
-            State = state;
             Tags = tags;
             VolumeType = volumeType;
-            Zone = zone;
         }
     }
 }

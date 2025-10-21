@@ -165,7 +165,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// ID of the user attached to the API key.
-        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `ApplicationId` and/or `UserId`.
         /// </summary>
         [Output("userId")]
         public Output<string?> UserId { get; private set; } = null!;
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// ID of the user attached to the API key.
-        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `ApplicationId` and/or `UserId`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
@@ -334,7 +334,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// ID of the user attached to the API key.
-        /// &gt; **Note** You must specify at least one: `application_id` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `ApplicationId` and/or `UserId`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

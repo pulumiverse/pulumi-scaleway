@@ -23,11 +23,11 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly bool DeleteOnTermination;
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// SBS Volume IOPS, only with volume_type as sbs_volume
+        /// SBS Volume IOPS, only with VolumeType as sbs_volume
         /// </summary>
         public readonly int SbsIops;
         /// <summary>

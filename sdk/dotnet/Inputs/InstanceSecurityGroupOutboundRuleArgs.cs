@@ -20,13 +20,13 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> Action { get; set; } = null!;
 
         /// <summary>
-        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or IpRange should be provided
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
 
         /// <summary>
-        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or IpRange should be provided
         /// </summary>
         [Input("ipRange")]
         public Input<string>? IpRange { get; set; }

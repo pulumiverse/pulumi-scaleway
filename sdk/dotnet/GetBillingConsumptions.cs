@@ -15,18 +15,24 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetBillingConsumptionsResult> InvokeAsync(GetBillingConsumptionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetBillingConsumptionsResult> Invoke(GetBillingConsumptionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetBillingConsumptionsResult> Invoke(GetBillingConsumptionsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetBillingConsumptionsResult>("scaleway:index/getBillingConsumptions:getBillingConsumptions", args ?? new GetBillingConsumptionsInvokeArgs(), options.WithDefaults());
@@ -36,7 +42,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBillingConsumptionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// `ProjectId`) The ID of the project the consumption list is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -50,7 +56,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBillingConsumptionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// `ProjectId`) The ID of the project the consumption list is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

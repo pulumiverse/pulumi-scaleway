@@ -134,7 +134,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public bool? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        /// (Defaults to provider `Zone`) The zone in which the Load Balancer exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -166,7 +166,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<bool>? ReleaseIp { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        /// (Defaults to provider `Zone`) The zone in which the Load Balancer exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -213,7 +213,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the Load Balancer exists.
+        /// (Defaults to provider `Zone`) The zone in which the Load Balancer exists.
         /// </summary>
         public readonly string? Zone;
 

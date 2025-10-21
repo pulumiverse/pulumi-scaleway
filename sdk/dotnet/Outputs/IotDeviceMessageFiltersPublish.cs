@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IotDeviceMessageFiltersPublish
     {
         /// <summary>
-        /// Filtering policy (eg `accept` or `reject`)
+        /// Filtering policy (eg `Accept` or `Reject`)
         /// </summary>
         public readonly string? Policy;
         /// <summary>

@@ -202,9 +202,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string> IpAddress { get; private set; } = null!;
 
         /// <summary>
-        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
+        /// Please use `IpIds`. The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
+        /// &gt; **Important:** Updates to `IpId` will recreate the Load Balancer.
         /// </summary>
         [Output("ipId")]
         public Output<string> IpId { get; private set; } = null!;
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<ImmutableArray<Outputs.LoadBalancerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Load Balancer is associated with.
+        /// `ProjectId`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -260,7 +260,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
+        /// The `ReleaseIp` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Output("releaseIp")]
         public Output<bool?> ReleaseIp { get; private set; } = null!;
@@ -284,7 +284,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -359,9 +359,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
+        /// Please use `IpIds`. The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
+        /// &gt; **Important:** Updates to `IpId` will recreate the Load Balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -399,13 +399,13 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Load Balancer is associated with.
+        /// `ProjectId`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
+        /// The `ReleaseIp` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -435,7 +435,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -473,9 +473,9 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
+        /// Please use `IpIds`. The ID of the associated Load Balancer IP. See below.
         /// 
-        /// &gt; **Important:** Updates to `ip_id` will recreate the Load Balancer.
+        /// &gt; **Important:** Updates to `IpId` will recreate the Load Balancer.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -537,7 +537,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Load Balancer is associated with.
+        /// `ProjectId`) The ID of the Project the Load Balancer is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -549,7 +549,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The `release_ip` allow the release of the IP address associated with the Load Balancer.
+        /// The `ReleaseIp` allow the release of the IP address associated with the Load Balancer.
         /// </summary>
         [Input("releaseIp")]
         public Input<bool>? ReleaseIp { get; set; }
@@ -579,7 +579,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

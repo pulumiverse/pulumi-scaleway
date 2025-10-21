@@ -97,6 +97,60 @@ import (
 //
 // ```
 //
+// ### With additional volumes
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := instance.NewServer(ctx, "server", &instance.ServerArgs{
+//				Image: pulumi.String("ubuntu_jammy"),
+//				Type:  pulumi.String("DEV1-S"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			volume, err := instance.NewVolume(ctx, "volume", &instance.VolumeArgs{
+//				Type:     pulumi.String("b_ssd"),
+//				SizeInGb: pulumi.Int(20),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			volumeSnapshot, err := instance.NewSnapshot(ctx, "volume_snapshot", &instance.SnapshotArgs{
+//				VolumeId: volume.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			serverSnapshot, err := instance.NewSnapshot(ctx, "server_snapshot", &instance.SnapshotArgs{
+//				VolumeId: pulumi.Any(main.RootVolume[0].VolumeId),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = instance.NewImage(ctx, "image", &instance.ImageArgs{
+//				Name:                pulumi.String("image_with_extra_volumes"),
+//				RootVolumeId:        serverSnapshot.ID(),
+//				AdditionalVolumeIds: volumeSnapshot.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Images can be imported using the `{zone}/{id}`, e.g.
@@ -110,18 +164,16 @@ type Image struct {
 	pulumi.CustomResourceState
 
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	//
-	// > **Important:** For now it is only possible to have 1 additional_volume.
 	AdditionalVolumeIds pulumi.StringPtrOutput `pulumi:"additionalVolumeIds"`
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes ImageAdditionalVolumeArrayOutput `pulumi:"additionalVolumes"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture pulumi.StringPtrOutput `pulumi:"architecture"`
-	// Date of the volume creation.
+	// Date of the image creation.
 	CreationDate pulumi.StringOutput `pulumi:"creationDate"`
 	// ID of the server the image is based on (in case it is a backup).
 	FromServerId pulumi.StringOutput `pulumi:"fromServerId"`
-	// Date of volume latest update.
+	// Date of image latest update.
 	ModificationDate pulumi.StringOutput `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -133,7 +185,9 @@ type Image struct {
 	Public pulumi.BoolPtrOutput `pulumi:"public"`
 	// The ID of the snapshot of the volume to be used as root in the image.
 	RootVolumeId pulumi.StringOutput `pulumi:"rootVolumeId"`
-	// State of the volume.
+	// The description of the root volume attached to the image.
+	RootVolumes ImageRootVolumeArrayOutput `pulumi:"rootVolumes"`
+	// State of the image. Possible values are: `available`, `creating` or `error`.
 	State pulumi.StringOutput `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -181,18 +235,16 @@ func GetImage(ctx *pulumi.Context,
 // Input properties used for looking up and filtering Image resources.
 type imageState struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	//
-	// > **Important:** For now it is only possible to have 1 additional_volume.
 	AdditionalVolumeIds *string `pulumi:"additionalVolumeIds"`
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes []ImageAdditionalVolume `pulumi:"additionalVolumes"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture *string `pulumi:"architecture"`
-	// Date of the volume creation.
+	// Date of the image creation.
 	CreationDate *string `pulumi:"creationDate"`
 	// ID of the server the image is based on (in case it is a backup).
 	FromServerId *string `pulumi:"fromServerId"`
-	// Date of volume latest update.
+	// Date of image latest update.
 	ModificationDate *string `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -204,7 +256,9 @@ type imageState struct {
 	Public *bool `pulumi:"public"`
 	// The ID of the snapshot of the volume to be used as root in the image.
 	RootVolumeId *string `pulumi:"rootVolumeId"`
-	// State of the volume.
+	// The description of the root volume attached to the image.
+	RootVolumes []ImageRootVolume `pulumi:"rootVolumes"`
+	// State of the image. Possible values are: `available`, `creating` or `error`.
 	State *string `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags []string `pulumi:"tags"`
@@ -214,18 +268,16 @@ type imageState struct {
 
 type ImageState struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	//
-	// > **Important:** For now it is only possible to have 1 additional_volume.
 	AdditionalVolumeIds pulumi.StringPtrInput
 	// The description of the extra volumes attached to the image.
 	AdditionalVolumes ImageAdditionalVolumeArrayInput
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture pulumi.StringPtrInput
-	// Date of the volume creation.
+	// Date of the image creation.
 	CreationDate pulumi.StringPtrInput
 	// ID of the server the image is based on (in case it is a backup).
 	FromServerId pulumi.StringPtrInput
-	// Date of volume latest update.
+	// Date of image latest update.
 	ModificationDate pulumi.StringPtrInput
 	// The name of the image. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -237,7 +289,9 @@ type ImageState struct {
 	Public pulumi.BoolPtrInput
 	// The ID of the snapshot of the volume to be used as root in the image.
 	RootVolumeId pulumi.StringPtrInput
-	// State of the volume.
+	// The description of the root volume attached to the image.
+	RootVolumes ImageRootVolumeArrayInput
+	// State of the image. Possible values are: `available`, `creating` or `error`.
 	State pulumi.StringPtrInput
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayInput
@@ -251,8 +305,6 @@ func (ImageState) ElementType() reflect.Type {
 
 type imageArgs struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	//
-	// > **Important:** For now it is only possible to have 1 additional_volume.
 	AdditionalVolumeIds *string `pulumi:"additionalVolumeIds"`
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture *string `pulumi:"architecture"`
@@ -273,8 +325,6 @@ type imageArgs struct {
 // The set of arguments for constructing a Image resource.
 type ImageArgs struct {
 	// List of IDs of the snapshots of the additional volumes to be attached to the image.
-	//
-	// > **Important:** For now it is only possible to have 1 additional_volume.
 	AdditionalVolumeIds pulumi.StringPtrInput
 	// The architecture the image is compatible with. Possible values are: `x8664` or `arm`.
 	Architecture pulumi.StringPtrInput
@@ -380,8 +430,6 @@ func (o ImageOutput) ToImageOutputWithContext(ctx context.Context) ImageOutput {
 }
 
 // List of IDs of the snapshots of the additional volumes to be attached to the image.
-//
-// > **Important:** For now it is only possible to have 1 additional_volume.
 func (o ImageOutput) AdditionalVolumeIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringPtrOutput { return v.AdditionalVolumeIds }).(pulumi.StringPtrOutput)
 }
@@ -396,7 +444,7 @@ func (o ImageOutput) Architecture() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringPtrOutput { return v.Architecture }).(pulumi.StringPtrOutput)
 }
 
-// Date of the volume creation.
+// Date of the image creation.
 func (o ImageOutput) CreationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.CreationDate }).(pulumi.StringOutput)
 }
@@ -406,7 +454,7 @@ func (o ImageOutput) FromServerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.FromServerId }).(pulumi.StringOutput)
 }
 
-// Date of volume latest update.
+// Date of image latest update.
 func (o ImageOutput) ModificationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.ModificationDate }).(pulumi.StringOutput)
 }
@@ -436,7 +484,12 @@ func (o ImageOutput) RootVolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.RootVolumeId }).(pulumi.StringOutput)
 }
 
-// State of the volume.
+// The description of the root volume attached to the image.
+func (o ImageOutput) RootVolumes() ImageRootVolumeArrayOutput {
+	return o.ApplyT(func(v *Image) ImageRootVolumeArrayOutput { return v.RootVolumes }).(ImageRootVolumeArrayOutput)
+}
+
+// State of the image. Possible values are: `available`, `creating` or `error`.
 func (o ImageOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *Image) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }

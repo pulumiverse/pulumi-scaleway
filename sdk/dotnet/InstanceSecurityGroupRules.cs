@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway
     /// <summary>
     /// Creates and manages Scaleway compute Instance security group rules. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-list-security-groups).
     /// 
-    /// This resource can be used to externalize rules from a `scaleway.instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `external_rules = true` on the security group.
+    /// This resource can be used to externalize rules from a `scaleway.instance.SecurityGroup` to solve circular dependency problems. When using this resource do not forget to set `ExternalRules = true` on the security group.
     /// 
     /// &gt; **Warning:** In order to guaranty rules order in a given security group only one scaleway.instance.SecurityGroupRules is allowed per security group.
     /// 
@@ -51,11 +51,11 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### Simplify your rules using dynamic block and `for_each` loop
+    /// ### Simplify your rules using dynamic block and `ForEach` loop
     /// 
-    /// You can use `for_each` syntax to simplify the definition of your rules.
+    /// You can use `ForEach` syntax to simplify the definition of your rules.
     /// Let's suppose that your inbound default policy is to drop, but you want to build a list of exceptions to accept.
-    /// Create a local containing your exceptions (`locals.trusted`) and use the `for_each` syntax in a dynamic block:
+    /// Create a local containing your exceptions (`locals.trusted`) and use the `ForEach` syntax in a dynamic block:
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

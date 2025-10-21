@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The mode defining WAF behavior (`disable`/`log_only`/`enable`).
+        /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).
         /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
@@ -79,7 +79,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> PipelineId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the WAF stage is associated with.
+        /// `ProjectId`) The ID of the project the WAF stage is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The mode defining WAF behavior (`disable`/`log_only`/`enable`).
+        /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
@@ -162,7 +162,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> PipelineId { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the WAF stage is associated with.
+        /// `ProjectId`) The ID of the project the WAF stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -188,7 +188,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The mode defining WAF behavior (`disable`/`log_only`/`enable`).
+        /// The mode defining WAF behavior (`Disable`/`LogOnly`/`Enable`).
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PipelineId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the WAF stage is associated with.
+        /// `ProjectId`) The ID of the project the WAF stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

@@ -17,6 +17,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Symmetric Encryption Key
+//
 // ```go
 // package main
 //
@@ -29,11 +31,12 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewKeyManagerKey(ctx, "main", &scaleway.KeyManagerKeyArgs{
+//			_, err := scaleway.NewKeyManagerKey(ctx, "symmetric", &scaleway.KeyManagerKeyArgs{
 //				Name:        pulumi.String("my-kms-key"),
 //				Region:      pulumi.String("fr-par"),
 //				ProjectId:   pulumi.String("your-project-id"),
 //				Usage:       pulumi.String("symmetric_encryption"),
+//				Algorithm:   pulumi.String("aes_256_gcm"),
 //				Description: pulumi.String("Key for encrypting secrets"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("env:prod"),
@@ -53,14 +56,7 @@ import (
 //
 // ```
 //
-// ## Notes
-//
-// - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
-// - **Rotation Policy**: The `rotationPolicy` block allows you to set automatic rotation for your key.
-// - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
-// - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
-//
-// ## Example: Asymmetric Key
+// ### Asymmetric Encryption Key with RSA-4096
 //
 // ```go
 // package main
@@ -74,10 +70,42 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewKeyManagerKey(ctx, "asym", &scaleway.KeyManagerKeyArgs{
-//				Name:        pulumi.String("asymmetric-key"),
+//			_, err := scaleway.NewKeyManagerKey(ctx, "rsa_4096", &scaleway.KeyManagerKeyArgs{
+//				Name:        pulumi.String("rsa-4096-key"),
+//				Region:      pulumi.String("fr-par"),
+//				Usage:       pulumi.String("asymmetric_encryption"),
+//				Algorithm:   pulumi.String("rsa_oaep_4096_sha256"),
+//				Description: pulumi.String("Key for encrypting large files with RSA-4096"),
+//				Unprotected: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Asymmetric Signing Key
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := scaleway.NewKeyManagerKey(ctx, "signing", &scaleway.KeyManagerKeyArgs{
+//				Name:        pulumi.String("signing-key"),
 //				Region:      pulumi.String("fr-par"),
 //				Usage:       pulumi.String("asymmetric_signing"),
+//				Algorithm:   pulumi.String("rsa_pss_2048_sha256"),
 //				Description: pulumi.String("Key for signing documents"),
 //				Unprotected: pulumi.Bool(true),
 //			})
@@ -90,6 +118,14 @@ import (
 //
 // ```
 //
+// ## Notes
+//
+// - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
+// - **Rotation Policy**: The `rotationPolicy` block allows you to set automatic rotation for your key.
+// - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
+// - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
+// - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
+//
 // ## Import
 //
 // You can import a key using its ID and region:
@@ -100,6 +136,9 @@ import (
 type KeyManagerKey struct {
 	pulumi.CustomResourceState
 
+	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// - For `symmetricEncryption`:
+	Algorithm pulumi.StringOutput `pulumi:"algorithm"`
 	// The date and time when the key was created.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// – A description for the key.
@@ -111,6 +150,8 @@ type KeyManagerKey struct {
 	// – The origin of the key. Valid values are:
 	Origin pulumi.StringPtrOutput `pulumi:"origin"`
 	// – The ID of the project the key belongs to.
+	//
+	// **Key Usage and Algorithm (both required):**
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolOutput `pulumi:"protected"`
@@ -130,7 +171,7 @@ type KeyManagerKey struct {
 	Unprotected pulumi.BoolPtrOutput `pulumi:"unprotected"`
 	// The date and time when the key was last updated.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// – The usage of the key. Valid values are:
+	// – The usage type of the key. Valid values:
 	Usage pulumi.StringOutput `pulumi:"usage"`
 }
 
@@ -141,6 +182,9 @@ func NewKeyManagerKey(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Algorithm == nil {
+		return nil, errors.New("invalid value for required argument 'Algorithm'")
+	}
 	if args.Usage == nil {
 		return nil, errors.New("invalid value for required argument 'Usage'")
 	}
@@ -167,6 +211,9 @@ func GetKeyManagerKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KeyManagerKey resources.
 type keyManagerKeyState struct {
+	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// - For `symmetricEncryption`:
+	Algorithm *string `pulumi:"algorithm"`
 	// The date and time when the key was created.
 	CreatedAt *string `pulumi:"createdAt"`
 	// – A description for the key.
@@ -178,6 +225,8 @@ type keyManagerKeyState struct {
 	// – The origin of the key. Valid values are:
 	Origin *string `pulumi:"origin"`
 	// – The ID of the project the key belongs to.
+	//
+	// **Key Usage and Algorithm (both required):**
 	ProjectId *string `pulumi:"projectId"`
 	// Whether the key is protected from deletion.
 	Protected *bool `pulumi:"protected"`
@@ -197,11 +246,14 @@ type keyManagerKeyState struct {
 	Unprotected *bool `pulumi:"unprotected"`
 	// The date and time when the key was last updated.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// – The usage of the key. Valid values are:
+	// – The usage type of the key. Valid values:
 	Usage *string `pulumi:"usage"`
 }
 
 type KeyManagerKeyState struct {
+	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// - For `symmetricEncryption`:
+	Algorithm pulumi.StringPtrInput
 	// The date and time when the key was created.
 	CreatedAt pulumi.StringPtrInput
 	// – A description for the key.
@@ -213,6 +265,8 @@ type KeyManagerKeyState struct {
 	// – The origin of the key. Valid values are:
 	Origin pulumi.StringPtrInput
 	// – The ID of the project the key belongs to.
+	//
+	// **Key Usage and Algorithm (both required):**
 	ProjectId pulumi.StringPtrInput
 	// Whether the key is protected from deletion.
 	Protected pulumi.BoolPtrInput
@@ -232,7 +286,7 @@ type KeyManagerKeyState struct {
 	Unprotected pulumi.BoolPtrInput
 	// The date and time when the key was last updated.
 	UpdatedAt pulumi.StringPtrInput
-	// – The usage of the key. Valid values are:
+	// – The usage type of the key. Valid values:
 	Usage pulumi.StringPtrInput
 }
 
@@ -241,6 +295,9 @@ func (KeyManagerKeyState) ElementType() reflect.Type {
 }
 
 type keyManagerKeyArgs struct {
+	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// - For `symmetricEncryption`:
+	Algorithm string `pulumi:"algorithm"`
 	// – A description for the key.
 	Description *string `pulumi:"description"`
 	// The name of the key.
@@ -248,6 +305,8 @@ type keyManagerKeyArgs struct {
 	// – The origin of the key. Valid values are:
 	Origin *string `pulumi:"origin"`
 	// – The ID of the project the key belongs to.
+	//
+	// **Key Usage and Algorithm (both required):**
 	ProjectId *string `pulumi:"projectId"`
 	// The region in which to create the key (e.g., `fr-par`).
 	Region *string `pulumi:"region"`
@@ -257,12 +316,15 @@ type keyManagerKeyArgs struct {
 	Tags []string `pulumi:"tags"`
 	// – If `true`, the key can be deleted. Defaults to `false` (protected).
 	Unprotected *bool `pulumi:"unprotected"`
-	// – The usage of the key. Valid values are:
+	// – The usage type of the key. Valid values:
 	Usage string `pulumi:"usage"`
 }
 
 // The set of arguments for constructing a KeyManagerKey resource.
 type KeyManagerKeyArgs struct {
+	// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+	// - For `symmetricEncryption`:
+	Algorithm pulumi.StringInput
 	// – A description for the key.
 	Description pulumi.StringPtrInput
 	// The name of the key.
@@ -270,6 +332,8 @@ type KeyManagerKeyArgs struct {
 	// – The origin of the key. Valid values are:
 	Origin pulumi.StringPtrInput
 	// – The ID of the project the key belongs to.
+	//
+	// **Key Usage and Algorithm (both required):**
 	ProjectId pulumi.StringPtrInput
 	// The region in which to create the key (e.g., `fr-par`).
 	Region pulumi.StringPtrInput
@@ -279,7 +343,7 @@ type KeyManagerKeyArgs struct {
 	Tags pulumi.StringArrayInput
 	// – If `true`, the key can be deleted. Defaults to `false` (protected).
 	Unprotected pulumi.BoolPtrInput
-	// – The usage of the key. Valid values are:
+	// – The usage type of the key. Valid values:
 	Usage pulumi.StringInput
 }
 
@@ -370,6 +434,12 @@ func (o KeyManagerKeyOutput) ToKeyManagerKeyOutputWithContext(ctx context.Contex
 	return o
 }
 
+// – The cryptographic algorithm to use. Valid values depend on the `usage`:
+// - For `symmetricEncryption`:
+func (o KeyManagerKeyOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.Algorithm }).(pulumi.StringOutput)
+}
+
 // The date and time when the key was created.
 func (o KeyManagerKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -396,6 +466,8 @@ func (o KeyManagerKeyOutput) Origin() pulumi.StringPtrOutput {
 }
 
 // – The ID of the project the key belongs to.
+//
+// **Key Usage and Algorithm (both required):**
 func (o KeyManagerKeyOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -445,7 +517,7 @@ func (o KeyManagerKeyOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// – The usage of the key. Valid values are:
+// – The usage type of the key. Valid values:
 func (o KeyManagerKeyOutput) Usage() pulumi.StringOutput {
 	return o.ApplyT(func(v *KeyManagerKey) pulumi.StringOutput { return v.Usage }).(pulumi.StringOutput)
 }

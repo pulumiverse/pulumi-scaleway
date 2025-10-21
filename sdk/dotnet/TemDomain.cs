@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:** This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `True`.
         /// </summary>
         [Output("acceptTos")]
         public Output<bool> AcceptTos { get; private set; } = null!;
@@ -191,7 +191,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important:** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `Name` will recreate the domain.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -203,13 +203,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> NextCheckAt { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `ProjectId`) The ID of the project the domain is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the domain should be created.
+        /// `Region`). The region in which the domain should be created.
         /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Output("region")]
@@ -336,7 +336,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:** This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `True`.
         /// </summary>
         [Input("acceptTos", required: true)]
         public Input<bool> AcceptTos { get; set; } = null!;
@@ -349,19 +349,19 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important:** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `Name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `ProjectId`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the domain should be created.
+        /// `Region`). The region in which the domain should be created.
         /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Input("region")]
@@ -377,7 +377,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// Acceptation of the [Term of Service](https://tem.s3.fr-par.scw.cloud/antispam_policy.pdf).
-        /// &gt; **Important:** This attribute must be set to `true`.
+        /// &gt; **Important:** This attribute must be set to `True`.
         /// </summary>
         [Input("acceptTos")]
         public Input<bool>? AcceptTos { get; set; }
@@ -444,7 +444,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The domain name, must not be used in another Transactional Email Domain.
-        /// &gt; **Important:** Updates to `name` will recreate the domain.
+        /// &gt; **Important:** Updates to `Name` will recreate the domain.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -456,13 +456,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NextCheckAt { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `ProjectId`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the domain should be created.
+        /// `Region`). The region in which the domain should be created.
         /// &gt; **Important:** Currently, only fr-par is supported. Specifying any other region will cause an error.
         /// </summary>
         [Input("region")]

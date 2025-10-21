@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which servers exist.
+        /// `Zone`) The zone in which servers exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which servers exist.
+        /// `Zone`) The zone in which servers exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

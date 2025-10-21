@@ -496,7 +496,7 @@ namespace Pulumiverse.Scaleway.Network
         /// <summary>
         /// The ID of the owning GatewayNetwork.
         /// 
-        /// &gt; Only one of `reservation_id` or `mac_address` with `gateway_network_id` should be specified.
+        /// &gt; Only one of `ReservationId` or `MacAddress` with `GatewayNetworkId` should be specified.
         /// </summary>
         [Input("gatewayNetworkId")]
         public string? GatewayNetworkId { get; set; }
@@ -514,13 +514,13 @@ namespace Pulumiverse.Scaleway.Network
         public string? ReservationId { get; set; }
 
         /// <summary>
-        /// Whether to wait for `mac_address` to exist in DHCP.
+        /// Whether to wait for `MacAddress` to exist in DHCP.
         /// </summary>
         [Input("waitForDhcp")]
         public bool? WaitForDhcp { get; set; }
 
         /// <summary>
-        /// `zone`). The zone in which the reservation exists.
+        /// `Zone`). The zone in which the reservation exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -536,7 +536,7 @@ namespace Pulumiverse.Scaleway.Network
         /// <summary>
         /// The ID of the owning GatewayNetwork.
         /// 
-        /// &gt; Only one of `reservation_id` or `mac_address` with `gateway_network_id` should be specified.
+        /// &gt; Only one of `ReservationId` or `MacAddress` with `GatewayNetworkId` should be specified.
         /// </summary>
         [Input("gatewayNetworkId")]
         public Input<string>? GatewayNetworkId { get; set; }
@@ -554,13 +554,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? ReservationId { get; set; }
 
         /// <summary>
-        /// Whether to wait for `mac_address` to exist in DHCP.
+        /// Whether to wait for `MacAddress` to exist in DHCP.
         /// </summary>
         [Input("waitForDhcp")]
         public Input<bool>? WaitForDhcp { get; set; }
 
         /// <summary>
-        /// `zone`). The zone in which the reservation exists.
+        /// `Zone`). The zone in which the reservation exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

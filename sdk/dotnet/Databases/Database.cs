@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -86,7 +86,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<string> Owner { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -179,7 +179,7 @@ namespace Pulumiverse.Scaleway.Databases
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string>? Owner { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

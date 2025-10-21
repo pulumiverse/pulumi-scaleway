@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> Protected { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the resource exists.
         /// </summary>
         [Output("region")]
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Protected { get; set; }
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the resource exists.
         /// </summary>
         [Input("region")]
@@ -281,7 +281,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? Protected { get; set; }
 
         /// <summary>
-        /// `region`) The region
+        /// `Region`) The region
         /// in which the resource exists.
         /// </summary>
         [Input("region")]

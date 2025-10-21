@@ -189,13 +189,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
+        /// &gt; **Important** Only one of `UserId`, `GroupId`, `ApplicationId` and `NoPrincipal` may be set.
         /// </summary>
         [Output("noPrincipal")]
         public Output<bool?> NoPrincipal { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the policy is associated with.
+        /// `OrganizationId`) The ID of the organization the policy is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -298,13 +298,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
+        /// &gt; **Important** Only one of `UserId`, `GroupId`, `ApplicationId` and `NoPrincipal` may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the policy is associated with.
+        /// `OrganizationId`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -386,13 +386,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// If the policy doesn't apply to a principal.
         /// 
-        /// &gt; **Important** Only one of `user_id`, `group_id`, `application_id` and `no_principal` may be set.
+        /// &gt; **Important** Only one of `UserId`, `GroupId`, `ApplicationId` and `NoPrincipal` may be set.
         /// </summary>
         [Input("noPrincipal")]
         public Input<bool>? NoPrincipal { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the policy is associated with.
+        /// `OrganizationId`) The ID of the organization the policy is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

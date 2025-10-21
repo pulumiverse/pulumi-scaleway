@@ -164,7 +164,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Flexible IP is associated with.
+        /// `ProjectId`) The ID of the Project the Flexible IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the Flexible IP.
+        /// `Zone`) The zone of the Flexible IP.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -269,7 +269,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Flexible IP is associated with.
+        /// `ProjectId`) The ID of the Project the Flexible IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -299,7 +299,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         }
 
         /// <summary>
-        /// `zone`) The zone of the Flexible IP.
+        /// `Zone`) The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -343,7 +343,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Flexible IP is associated with.
+        /// `ProjectId`) The ID of the Project the Flexible IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -385,7 +385,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the Flexible IP.
+        /// `Zone`) The zone of the Flexible IP.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -94,17 +94,17 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## The access control policy
     /// 
-    /// The `access_control_policy` configuration block supports the following arguments:
+    /// The `AccessControlPolicy` configuration block supports the following arguments:
     /// 
-    /// * `grant` - (Required) Set of grant configuration blocks documented below.
-    /// * `owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
+    /// * `Grant` - (Required) Set of grant configuration blocks documented below.
+    /// * `Owner` - (Required) Configuration block of the bucket owner's display name and ID documented below.
     /// 
     /// ## The grant
     /// 
-    /// The `grant` configuration block supports the following arguments:
+    /// The `Grant` configuration block supports the following arguments:
     /// 
-    /// * `grantee` - (Required) Configuration block for the project being granted permissions documented below.
-    /// * `permission` - (Required) Logging permissions assigned to the grantee for the bucket.
+    /// * `Grantee` - (Required) Configuration block for the project being granted permissions documented below.
+    /// * `Permission` - (Required) Logging permissions assigned to the grantee for the bucket.
     /// 
     /// ## The permission
     /// 
@@ -116,18 +116,18 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## The owner
     /// 
-    /// The `owner` configuration block supports the following arguments:
+    /// The `Owner` configuration block supports the following arguments:
     /// 
-    /// * `id` - (Required) The ID of the project owner.
-    /// * `display_name` - (Optional) The display name of the owner.
+    /// * `Id` - (Required) The ID of the project owner.
+    /// * `DisplayName` - (Optional) The display name of the owner.
     /// 
     /// ## the grantee
     /// 
-    /// The `grantee` configuration block supports the following arguments:
+    /// The `Grantee` configuration block supports the following arguments:
     /// 
-    /// * `id` - (Optional) The canonical user ID of the grantee.
-    /// * `type` - (Required) Type of grantee. Valid values: CanonicalUser, Group.
-    /// * `uri` - (Optional) The uri of the grantee if type is Group.
+    /// * `Id` - (Optional) The canonical user ID of the grantee.
+    /// * `Type` - (Required) Type of grantee. Valid values: CanonicalUser, Group.
+    /// * `Uri` - (Optional) The uri of the grantee if type is Group.
     /// 
     /// ## Import
     /// 
@@ -178,7 +178,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> ExpectedBucketOwner { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -261,7 +261,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ExpectedBucketOwner { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -305,7 +305,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ExpectedBucketOwner { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

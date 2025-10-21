@@ -1,6 +1,6 @@
 {
     "name": "@pulumiverse/scaleway",
-    "version": "1.0.0-alpha.0+dev",
+    "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing Scaleway cloud resources.",
     "keywords": [
         "pulumi",
@@ -24,7 +24,6 @@
     "pulumi": {
         "resource": true,
         "name": "scaleway",
-        "version": "1.0.0-alpha.0+dev",
         "server": "github://api.github.com/pulumiverse"
     }
 }

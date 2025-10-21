@@ -133,13 +133,13 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the private network is associated with.
+        /// `ProjectId`) The ID of the Project the private network is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the Private Network.
+        /// `Region`) The region of the Private Network.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> VpcId { get; private set; } = null!;
 
         /// <summary>
-        /// Use `region` instead.
+        /// Use `Region` instead.
         /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
@@ -256,13 +256,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the private network is associated with.
+        /// `ProjectId`) The ID of the Project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the Private Network.
+        /// `Region`) The region of the Private Network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -286,7 +286,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// Use `region` instead.
+        /// Use `Region` instead.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -348,13 +348,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the private network is associated with.
+        /// `ProjectId`) The ID of the Project the private network is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the Private Network.
+        /// `Region`) The region of the Private Network.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -384,7 +384,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? VpcId { get; set; }
 
         /// <summary>
-        /// Use `region` instead.
+        /// Use `Region` instead.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

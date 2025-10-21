@@ -323,7 +323,7 @@ namespace Pulumiverse.Scaleway.Ipam
         }
 
         /// <summary>
-        /// The type of IP to filter for (`ipv4` or `ipv6`).
+        /// The type of IP to filter for (`Ipv4` or `Ipv6`).
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -391,7 +391,7 @@ namespace Pulumiverse.Scaleway.Ipam
         }
 
         /// <summary>
-        /// The type of IP to filter for (`ipv4` or `ipv6`).
+        /// The type of IP to filter for (`Ipv4` or `Ipv6`).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

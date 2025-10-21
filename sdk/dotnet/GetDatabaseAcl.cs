@@ -99,7 +99,7 @@ namespace Pulumiverse.Scaleway
         public string InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

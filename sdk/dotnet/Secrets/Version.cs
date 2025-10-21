@@ -21,8 +21,8 @@ namespace Pulumiverse.Scaleway.Secrets
     /// 
     /// The following commands allow you to:
     /// 
-    /// - create a secret named `foo`
-    /// - create a version of this secret containing the `my_new_secret` data
+    /// - create a secret named `Foo`
+    /// - create a version of this secret containing the `MyNewSecret` data
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

@@ -170,7 +170,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `Acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
@@ -218,7 +218,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> ObjectLockEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// `ProjectId`) The ID of the project the bucket is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -294,7 +294,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `Acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -342,7 +342,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ObjectLockEnabled { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// `ProjectId`) The ID of the project the bucket is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -385,7 +385,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// (Deprecated) The canned ACL you want to apply to the bucket.
         /// 
-        /// &gt; **Note:** The `acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
+        /// &gt; **Note:** The `Acl` attribute is deprecated. See scaleway.object.BucketAcl resource documentation. Refer to the [official canned ACL documentation](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl_overview.html#canned-acl) for more information on the different roles.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -445,7 +445,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? ObjectLockEnabled { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the bucket is associated with.
+        /// `ProjectId`) The ID of the project the bucket is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

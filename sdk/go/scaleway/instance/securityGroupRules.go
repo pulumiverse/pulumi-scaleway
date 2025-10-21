@@ -59,6 +59,15 @@ import (
 //
 // ```
 //
+// ### Simplify your rules using dynamic block and `forEach` loop
+//
+// You can use `forEach` syntax to simplify the definition of your rules.
+// Let's suppose that your inbound default policy is to drop, but you want to build a list of exceptions to accept.
+// Create a local containing your exceptions (`locals.trusted`) and use the `forEach` syntax in a dynamic block:
+//
+// You can also use object to assign IP and port in the same time.
+// In your locals, you can use objects to encapsulate several values that will be used later on in the loop:
+//
 // ## Import
 //
 // Instance security group rules can be imported using the `{zone}/{id}`, e.g.

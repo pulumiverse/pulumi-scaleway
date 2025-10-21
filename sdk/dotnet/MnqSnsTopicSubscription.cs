@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -113,7 +113,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool> RedrivePolicy { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Output("region")]
@@ -132,13 +132,13 @@ namespace Pulumiverse.Scaleway
         public Output<string?> SnsEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// The ARN of the topic. Either `topic_id` or `topic_arn` is required.
+        /// The ARN of the topic. Either `TopicId` or `TopicArn` is required.
         /// </summary>
         [Output("topicArn")]
         public Output<string?> TopicArn { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
+        /// The ID of the topic. Either `TopicId` or `TopicArn` is required. Conflicts with `TopicArn`.
         /// </summary>
         [Output("topicId")]
         public Output<string?> TopicId { get; private set; } = null!;
@@ -218,7 +218,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -236,7 +236,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? RedrivePolicy { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
@@ -265,13 +265,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? SnsEndpoint { get; set; }
 
         /// <summary>
-        /// The ARN of the topic. Either `topic_id` or `topic_arn` is required.
+        /// The ARN of the topic. Either `TopicId` or `TopicArn` is required.
         /// </summary>
         [Input("topicArn")]
         public Input<string>? TopicArn { get; set; }
 
         /// <summary>
-        /// The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
+        /// The ID of the topic. Either `TopicId` or `TopicArn` is required. Conflicts with `TopicArn`.
         /// </summary>
         [Input("topicId")]
         public Input<string>? TopicId { get; set; }
@@ -313,7 +313,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SNS is enabled.
+        /// `ProjectId`) The ID of the Project in which SNS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -331,7 +331,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? RedrivePolicy { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SNS is enabled.
         /// </summary>
         [Input("region")]
@@ -360,13 +360,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? SnsEndpoint { get; set; }
 
         /// <summary>
-        /// The ARN of the topic. Either `topic_id` or `topic_arn` is required.
+        /// The ARN of the topic. Either `TopicId` or `TopicArn` is required.
         /// </summary>
         [Input("topicArn")]
         public Input<string>? TopicArn { get; set; }
 
         /// <summary>
-        /// The ID of the topic. Either `topic_id` or `topic_arn` is required. Conflicts with `topic_arn`.
+        /// The ID of the topic. Either `TopicId` or `TopicArn` is required. Conflicts with `TopicArn`.
         /// </summary>
         [Input("topicId")]
         public Input<string>? TopicId { get; set; }

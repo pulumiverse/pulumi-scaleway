@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Iam.Outputs
         /// <summary>
         /// List of project IDs scoped to the rule.
         /// 
-        /// &gt; **Important** One `organization_id` or `project_ids` must be set per rule.
+        /// &gt; **Important** One `OrganizationId` or `ProjectIds` must be set per rule.
         /// </summary>
         public readonly ImmutableArray<string> ProjectIds;
 

@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `foo` with the description `barr`
+        /// - create a secret named `Foo` with the description `Barr`
         /// - retrieve the secret's information using the secret's ID
         /// - retrieve the secret's information using the secret's name
         /// 
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `foo` with the description `barr`
+        /// - create a secret named `Foo` with the description `Barr`
         /// - retrieve the secret's information using the secret's ID
         /// - retrieve the secret's information using the secret's name
         /// 
@@ -122,7 +122,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `foo` with the description `barr`
+        /// - create a secret named `Foo` with the description `Barr`
         /// - retrieve the secret's information using the secret's ID
         /// - retrieve the secret's information using the secret's name
         /// 
@@ -166,20 +166,20 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The name of the secret.
-        /// Only one of `name` and `secret_id` should be specified.
+        /// Only one of `Name` and `SecretId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
+        /// The ID of the Scaleway Organization the Project is associated with. If no default `OrganizationId` is set, it must be set explicitly in this data source.
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
         /// <summary>
         /// The path of the secret.
-        /// Conflicts with `secret_id`.
+        /// Conflicts with `SecretId`.
         /// </summary>
         [Input("path")]
         public string? Path { get; set; }
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the secret.
-        /// Only one of `name` and `secret_id` should be specified.
+        /// Only one of `Name` and `SecretId` should be specified.
         /// </summary>
         [Input("secretId")]
         public string? SecretId { get; set; }
@@ -214,20 +214,20 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The name of the secret.
-        /// Only one of `name` and `secret_id` should be specified.
+        /// Only one of `Name` and `SecretId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the Scaleway Organization the Project is associated with. If no default `organization_id` is set, it must be set explicitly in this data source.
+        /// The ID of the Scaleway Organization the Project is associated with. If no default `OrganizationId` is set, it must be set explicitly in this data source.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The path of the secret.
-        /// Conflicts with `secret_id`.
+        /// Conflicts with `SecretId`.
         /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
@@ -247,7 +247,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the secret.
-        /// Only one of `name` and `secret_id` should be specified.
+        /// Only one of `Name` and `SecretId` should be specified.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }

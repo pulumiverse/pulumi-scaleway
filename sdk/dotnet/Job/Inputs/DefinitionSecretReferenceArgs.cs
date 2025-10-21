@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway.Job.Inputs
     public sealed class DefinitionSecretReferenceArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// An environment variable containing the secret value. Must be specified if `file` is not specified.
+        /// An environment variable containing the secret value. Must be specified if `File` is not specified.
         /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
         /// <summary>
-        /// The absolute file path where the secret will be mounted. Must be specified if `environment` is not specified.
+        /// The absolute file path where the secret will be mounted. Must be specified if `Environment` is not specified.
         /// </summary>
         [Input("file")]
         public Input<string>? File { get; set; }

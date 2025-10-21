@@ -49,7 +49,7 @@ namespace Pulumiverse.Scaleway
     public partial class InstanceVolume : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Output("fromSnapshotId")]
         public Output<string?> FromSnapshotId { get; private set; } = null!;
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// `ProjectId`) The ID of the project the volume is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -85,7 +85,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ServerId { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int?> SizeInGb { get; private set; } = null!;
@@ -97,13 +97,13 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        /// The type of the volume. The possible values are: `LSsd` (Local SSD), `Scratch` (Local Scratch SSD).
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// `Zone`) The zone in which the volume should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway
     public sealed class InstanceVolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
@@ -174,13 +174,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// `ProjectId`) The ID of the project the volume is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -198,13 +198,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        /// The type of the volume. The possible values are: `LSsd` (Local SSD), `Scratch` (Local Scratch SSD).
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// `Zone`) The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -218,7 +218,7 @@ namespace Pulumiverse.Scaleway
     public sealed class InstanceVolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If set, the new volume will be created from this snapshot. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// If set, the new volume will be created from this snapshot. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Input("fromSnapshotId")]
         public Input<string>? FromSnapshotId { get; set; }
@@ -242,7 +242,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the volume is associated with.
+        /// `ProjectId`) The ID of the project the volume is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -254,7 +254,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+        /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -272,13 +272,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
+        /// The type of the volume. The possible values are: `LSsd` (Local SSD), `Scratch` (Local Scratch SSD).
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the volume should be created.
+        /// `Zone`) The zone in which the volume should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

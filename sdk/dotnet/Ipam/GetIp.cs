@@ -353,7 +353,7 @@ namespace Pulumiverse.Scaleway.Ipam
     public sealed class GetIpArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.
+        /// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("attached")]
         public bool? Attached { get; set; }
@@ -365,32 +365,32 @@ namespace Pulumiverse.Scaleway.Ipam
         public string? IpamIpId { get; set; }
 
         /// <summary>
-        /// The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
+        /// The MAC address linked to the IP. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("macAddress")]
         public string? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
+        /// The ID of the Private Network the IP belongs to. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("privateNetworkId")]
         public string? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the IP exists.
+        /// `Region`) The region in which the IP exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
-        /// If specified, `type` is required, and at least one of `id` or `name` must be set.
+        /// Filter by resource ID, type or name. Cannot be used with `IpamIpId`.
+        /// If specified, `Type` is required, and at least one of `Id` or `Name` must be set.
         /// </summary>
         [Input("resource")]
         public Inputs.GetIpResourceArgs? Resource { get; set; }
@@ -399,7 +399,7 @@ namespace Pulumiverse.Scaleway.Ipam
         private List<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the IP. Cannot be used with `ipam_ip_id`.
+        /// The tags associated with the IP. Cannot be used with `IpamIpId`.
         /// As datasource only returns one IP, the search with given tags must return only one result.
         /// </summary>
         public List<string> Tags
@@ -409,7 +409,7 @@ namespace Pulumiverse.Scaleway.Ipam
         }
 
         /// <summary>
-        /// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
+        /// The type of IP to search for (`Ipv4` or `Ipv6`). Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -429,7 +429,7 @@ namespace Pulumiverse.Scaleway.Ipam
     public sealed class GetIpInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `ipam_ip_id`.
+        /// Defines whether to filter only for IPs which are attached to a resource. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("attached")]
         public Input<bool>? Attached { get; set; }
@@ -441,32 +441,32 @@ namespace Pulumiverse.Scaleway.Ipam
         public Input<string>? IpamIpId { get; set; }
 
         /// <summary>
-        /// The MAC address linked to the IP. Cannot be used with `ipam_ip_id`.
+        /// The MAC address linked to the IP. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
         /// <summary>
-        /// The ID of the Private Network the IP belongs to. Cannot be used with `ipam_ip_id`.
+        /// The ID of the Private Network the IP belongs to. Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the IP exists.
+        /// `Region`) The region in which the IP exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Filter by resource ID, type or name. Cannot be used with `ipam_ip_id`.
-        /// If specified, `type` is required, and at least one of `id` or `name` must be set.
+        /// Filter by resource ID, type or name. Cannot be used with `IpamIpId`.
+        /// If specified, `Type` is required, and at least one of `Id` or `Name` must be set.
         /// </summary>
         [Input("resource")]
         public Input<Inputs.GetIpResourceInputArgs>? Resource { get; set; }
@@ -475,7 +475,7 @@ namespace Pulumiverse.Scaleway.Ipam
         private InputList<string>? _tags;
 
         /// <summary>
-        /// The tags associated with the IP. Cannot be used with `ipam_ip_id`.
+        /// The tags associated with the IP. Cannot be used with `IpamIpId`.
         /// As datasource only returns one IP, the search with given tags must return only one result.
         /// </summary>
         public InputList<string> Tags
@@ -485,7 +485,7 @@ namespace Pulumiverse.Scaleway.Ipam
         }
 
         /// <summary>
-        /// The type of IP to search for (`ipv4` or `ipv6`). Cannot be used with `ipam_ip_id`.
+        /// The type of IP to search for (`Ipv4` or `Ipv6`). Cannot be used with `IpamIpId`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetInstanceSecurityGroupOutboundRuleResult
     {
         /// <summary>
-        /// The action to take when rule match. Possible values are: `accept` or `drop`.
+        /// The action to take when rule match. Possible values are: `Accept` or `Drop`.
         /// </summary>
         public readonly string Action;
         /// <summary>
@@ -32,8 +32,8 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly int Port;
         /// <summary>
         /// The port range (e.g `22-23`) this rule applies to.
-        /// If no `port` nor `port_range` are specified, rule will apply to all port.
-        /// Only one of `port` and `port_range` should be specified.
+        /// If no `Port` nor `PortRange` are specified, rule will apply to all port.
+        /// Only one of `Port` and `PortRange` should be specified.
         /// </summary>
         public readonly string PortRange;
         /// <summary>

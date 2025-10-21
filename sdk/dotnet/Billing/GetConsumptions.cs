@@ -14,18 +14,24 @@ namespace Pulumiverse.Scaleway.Billing
     {
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Task<GetConsumptionsResult> InvokeAsync(GetConsumptionsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetConsumptionsResult> Invoke(GetConsumptionsInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsInvokeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Gets information about your Consumptions.
+        /// 
+        /// ## Example Usage
         /// </summary>
         public static Output<GetConsumptionsResult> Invoke(GetConsumptionsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetConsumptionsResult>("scaleway:billing/getConsumptions:getConsumptions", args ?? new GetConsumptionsInvokeArgs(), options.WithDefaults());
@@ -35,7 +41,7 @@ namespace Pulumiverse.Scaleway.Billing
     public sealed class GetConsumptionsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// `ProjectId`) The ID of the project the consumption list is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -49,7 +55,7 @@ namespace Pulumiverse.Scaleway.Billing
     public sealed class GetConsumptionsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// `ProjectId`) The ID of the project the consumption list is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

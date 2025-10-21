@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Functions.Outputs
         /// </summary>
         public readonly string? AccountId;
         /// <summary>
-        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
-        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
+        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `Region`)
         /// </summary>
         public readonly string? Region;
         /// <summary>

@@ -105,11 +105,11 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Dead Letter Queue
     /// 
-    /// The `dead_letter_queue` block supports the following:
+    /// The `DeadLetterQueue` block supports the following:
     /// 
-    /// - `id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
+    /// - `Id` - (Required) The ID of the dead letter queue. Can be either in the format `{region}/{project-id}/{queue-name}` or `arn:scw:sqs:{region}:project-{project-id}:{queue-name}`.
     /// 
-    /// - `max_receive_count` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
+    /// - `MaxReceiveCount` - (Required) The number of times a message is delivered to the source queue before being moved to the dead letter queue. Must be between 1 and 1000.
     /// </summary>
     [Obsolete(@"scaleway.index/mnqsqsqueue.MnqSqsQueue has been deprecated in favor of scaleway.mnq/sqsqueue.SqsQueue")]
     [ScalewayResourceType("scaleway:index/mnqSqsQueue:MnqSqsQueue")]
@@ -128,7 +128,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Arn { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether to enable content-based deduplication. Defaults to `false`.
+        /// Specifies whether to enable content-based deduplication. Defaults to `False`.
         /// </summary>
         [Output("contentBasedDeduplication")]
         public Output<bool> ContentBasedDeduplication { get; private set; } = null!;
@@ -140,7 +140,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.MnqSqsQueueDeadLetterQueue?> DeadLetterQueue { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `False`.
         /// </summary>
         [Output("fifoQueue")]
         public Output<bool> FifoQueue { get; private set; } = null!;
@@ -158,19 +158,19 @@ namespace Pulumiverse.Scaleway
         public Output<int?> MessageMaxSize { get; private set; } = null!;
 
         /// <summary>
-        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Output("namePrefix")]
         public Output<string> NamePrefix { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -182,7 +182,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> ReceiveWaitTimeSeconds { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -280,7 +280,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Specifies whether to enable content-based deduplication. Defaults to `false`.
+        /// Specifies whether to enable content-based deduplication. Defaults to `False`.
         /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
@@ -292,7 +292,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MnqSqsQueueDeadLetterQueueArgs>? DeadLetterQueue { get; set; }
 
         /// <summary>
-        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `False`.
         /// </summary>
         [Input("fifoQueue")]
         public Input<bool>? FifoQueue { get; set; }
@@ -310,19 +310,19 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MessageMaxSize { get; set; }
 
         /// <summary>
-        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -334,7 +334,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -398,7 +398,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Arn { get; set; }
 
         /// <summary>
-        /// Specifies whether to enable content-based deduplication. Defaults to `false`.
+        /// Specifies whether to enable content-based deduplication. Defaults to `False`.
         /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
@@ -410,7 +410,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MnqSqsQueueDeadLetterQueueGetArgs>? DeadLetterQueue { get; set; }
 
         /// <summary>
-        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `false`.
+        /// Whether the queue is a FIFO queue. If true, the queue name must end with .fifo. Defaults to `False`.
         /// </summary>
         [Input("fifoQueue")]
         public Input<bool>? FifoQueue { get; set; }
@@ -428,19 +428,19 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MessageMaxSize { get; set; }
 
         /// <summary>
-        /// The unique name of the SQS queue. Either `name` or `name_prefix` is required. Conflicts with `name_prefix`.
+        /// The unique name of the SQS queue. Either `Name` or `NamePrefix` is required. Conflicts with `NamePrefix`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Creates a unique name beginning with the specified prefix. Conflicts with `name`.
+        /// Creates a unique name beginning with the specified prefix. Conflicts with `Name`.
         /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -452,7 +452,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

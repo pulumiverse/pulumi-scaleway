@@ -72,19 +72,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
+        /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -151,19 +151,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
+        /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -197,19 +197,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The name of the database (e.g. `my-new-database`).
         /// 
-        /// &gt; **Important:** Updates to the `name` argument will recreate the database.
+        /// &gt; **Important:** Updates to the `Name` argument will recreate the database.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

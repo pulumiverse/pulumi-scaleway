@@ -111,20 +111,20 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     {
         /// <summary>
         /// The IP ID.
-        /// Only one of `ip_address` and `flexible_ip_id` should be specified.
+        /// Only one of `IpAddress` and `FlexibleIpId` should be specified.
         /// </summary>
         [Input("flexibleIpId")]
         public string? FlexibleIpId { get; set; }
 
         /// <summary>
         /// The IP address.
-        /// Only one of `ip_address` and `flexible_ip_id` should be specified.
+        /// Only one of `IpAddress` and `FlexibleIpId` should be specified.
         /// </summary>
         [Input("ipAddress")]
         public string? IpAddress { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Flexible IP is associated with.
+        /// `ProjectId`) The ID of the Project the Flexible IP is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -139,20 +139,20 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     {
         /// <summary>
         /// The IP ID.
-        /// Only one of `ip_address` and `flexible_ip_id` should be specified.
+        /// Only one of `IpAddress` and `FlexibleIpId` should be specified.
         /// </summary>
         [Input("flexibleIpId")]
         public Input<string>? FlexibleIpId { get; set; }
 
         /// <summary>
         /// The IP address.
-        /// Only one of `ip_address` and `flexible_ip_id` should be specified.
+        /// Only one of `IpAddress` and `FlexibleIpId` should be specified.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Flexible IP is associated with.
+        /// `ProjectId`) The ID of the Project the Flexible IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

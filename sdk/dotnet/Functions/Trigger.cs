@@ -105,7 +105,7 @@ namespace Pulumiverse.Scaleway.Functions
         public Output<Outputs.TriggerNats?> Nats { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway.Functions
         public Input<Inputs.TriggerNatsArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -236,7 +236,7 @@ namespace Pulumiverse.Scaleway.Functions
         public Input<Inputs.TriggerNatsGetArgs>? Nats { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

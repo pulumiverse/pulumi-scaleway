@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database user.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
@@ -94,7 +94,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database user.
+        /// &gt; **Important:** Updates to `Name` will recreate the database user.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway
         /// - At least 1 digit (0-9)
         /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
         /// 
-        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        /// For secure password generation, consider using the `RandomPassword` resource with appropriate parameters.
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
@@ -173,7 +173,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database user.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
@@ -187,7 +187,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database user.
+        /// &gt; **Important:** Updates to `Name` will recreate the database user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -204,7 +204,7 @@ namespace Pulumiverse.Scaleway
         /// - At least 1 digit (0-9)
         /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
         /// 
-        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        /// For secure password generation, consider using the `RandomPassword` resource with appropriate parameters.
         /// </summary>
         public Input<string>? Password
         {
@@ -233,7 +233,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the database user.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the database user.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -247,7 +247,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// database user name.
         /// 
-        /// &gt; **Important:** Updates to `name` will recreate the database user.
+        /// &gt; **Important:** Updates to `Name` will recreate the database user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -264,7 +264,7 @@ namespace Pulumiverse.Scaleway
         /// - At least 1 digit (0-9)
         /// - At least 1 special character (!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?)
         /// 
-        /// For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        /// For secure password generation, consider using the `RandomPassword` resource with appropriate parameters.
         /// </summary>
         public Input<string>? Password
         {

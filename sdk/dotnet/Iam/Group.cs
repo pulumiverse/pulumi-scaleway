@@ -94,7 +94,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// Manage membership externally. This make the resource ignore UserIds and application_ids. Should be used when using iam_group_membership
         /// </summary>
         [Output("externalMembership")]
         public Output<bool?> ExternalMembership { get; private set; } = null!;
@@ -106,7 +106,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the group is associated with.
+        /// `OrganizationId`) The ID of the organization the group is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// Manage membership externally. This make the resource ignore UserIds and application_ids. Should be used when using iam_group_membership
         /// </summary>
         [Input("externalMembership")]
         public Input<bool>? ExternalMembership { get; set; }
@@ -211,7 +211,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the group is associated with.
+        /// `OrganizationId`) The ID of the organization the group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -273,7 +273,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// Manage membership externally. This make the resource ignore user_ids and application_ids. Should be used when using iam_group_membership
+        /// Manage membership externally. This make the resource ignore UserIds and application_ids. Should be used when using iam_group_membership
         /// </summary>
         [Input("externalMembership")]
         public Input<bool>? ExternalMembership { get; set; }
@@ -285,7 +285,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the group is associated with.
+        /// `OrganizationId`) The ID of the organization the group is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

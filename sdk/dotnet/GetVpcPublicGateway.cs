@@ -147,7 +147,7 @@ namespace Pulumiverse.Scaleway
         public string? PublicGatewayId { get; set; }
 
         /// <summary>
-        /// `zone`) The Public Gateway's zone.
+        /// `Zone`) The Public Gateway's zone.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -176,7 +176,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PublicGatewayId { get; set; }
 
         /// <summary>
-        /// `zone`) The Public Gateway's zone.
+        /// `Zone`) The Public Gateway's zone.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

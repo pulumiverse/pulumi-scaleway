@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? ObjectPrefix { get; set; }
 
         /// <summary>
-        /// How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
+        /// How the S3 route's objects will be created (e.g. `PerTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         /// </summary>
         [Input("strategy", required: true)]
         public Input<string> Strategy { get; set; } = null!;

@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The MongoDB® instance ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` or `instance_id`.
+        /// &gt; **Note** You must specify at least one: `Name` or `InstanceId`.
         /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
@@ -56,13 +56,13 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `name`.
+        /// The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `Name`.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® Instance exists.
+        /// `Region`) The region in which the MongoDB® Instance exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The MongoDB® instance ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` or `instance_id`.
+        /// &gt; **Note** You must specify at least one: `Name` or `InstanceId`.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
@@ -90,13 +90,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `name`.
+        /// The ID of the project the MongoDB® instance is in. Can be used to filter instances when using `Name`.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® Instance exists.
+        /// `Region`) The region in which the MongoDB® Instance exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

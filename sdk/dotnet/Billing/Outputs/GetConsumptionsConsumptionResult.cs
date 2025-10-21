@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Billing.Outputs
         /// </summary>
         public readonly string ProductName;
         /// <summary>
-        /// `project_id`) The ID of the project the consumption list is associated with.
+        /// `ProjectId`) The ID of the project the consumption list is associated with.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

@@ -76,13 +76,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Output<Outputs.SqsCredentialsPermissions> Permissions { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -162,13 +162,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<Inputs.SqsCredentialsPermissionsArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -210,13 +210,13 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<Inputs.SqsCredentialsPermissionsGetArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

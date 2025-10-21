@@ -82,16 +82,16 @@ namespace Pulumiverse.Scaleway
     /// 
     /// The following protocols are supported:
     /// 
-    /// * `h2c`: HTTP/2 over TCP.
-    /// * `http1`: Hypertext Transfer Protocol.
+    /// * `H2c`: HTTP/2 over TCP.
+    /// * `Http1`: Hypertext Transfer Protocol.
     /// 
     /// &gt; **Important:** Refer to the official [Apache documentation](https://httpd.apache.org/docs/2.4/howto/http2.html) for more information.
     /// 
     /// ## Privacy
     /// 
-    /// By default, creating a container will make it `public`, meaning that anybody knowing the endpoint can execute it.
+    /// By default, creating a container will make it `Public`, meaning that anybody knowing the endpoint can execute it.
     /// 
-    /// A container can be made `private` with the privacy parameter.
+    /// A container can be made `Private` with the privacy parameter.
     /// 
     /// Refer to the [technical information](https://www.scaleway.com/en/developers/api/serverless-containers/#protocol-9dd4c8) for more information on container authentication.
     /// 
@@ -101,7 +101,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// You can determine the computing resources to allocate to each container.
     /// 
-    /// The `memory_limit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
+    /// The `MemoryLimit` (in MB) must correspond with the right amount of vCPU. Refer to the table below to determine the right memory/vCPU combination.
     /// 
     /// | Memory (in MB) | vCPU |
     /// |----------------|------|
@@ -167,7 +167,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Scaling option block configuration allows you to choose which parameter will scale up/down containers.
     /// Options are number of concurrent requests, CPU or memory usage.
-    /// It replaces current `max_concurrency` that has been deprecated.
+    /// It replaces current `MaxConcurrency` that has been deprecated.
     /// 
     /// Example:
     /// 
@@ -195,7 +195,7 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ~&gt;**Important**: A maximum of one of these parameters may be set. Also, when `cpu_usage_threshold` or `memory_usage_threshold` are used, `min_scale` can't be set to 0.
+    /// ~&gt;**Important**: A maximum of one of these parameters may be set. Also, when `CpuUsageThreshold` or `MemoryUsageThreshold` are used, `MinScale` can't be set to 0.
     /// Refer to the [API Reference](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-create-a-new-container) for more information.
     /// 
     /// ## Import
@@ -273,7 +273,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.ContainerHealthCheck>> HealthChecks { get; private set; } = null!;
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Output("httpOption")]
         public Output<string?> HttpOption { get; private set; } = null!;
@@ -317,7 +317,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -337,7 +337,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -345,13 +345,13 @@ namespace Pulumiverse.Scaleway
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `Http1` or `H2c`. Defaults to `Http1`.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -522,7 +522,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
@@ -566,7 +566,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -586,7 +586,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -594,13 +594,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `Http1` or `H2c`. Defaults to `Http1`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -768,7 +768,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
@@ -812,7 +812,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Containers namespace ID of the container.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the container.
+        /// &gt; **Important** Updating the `Name` argument will recreate the container.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
@@ -832,7 +832,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the container is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// 
         /// Note that if you want to use your own configuration, you must consult our configuration [restrictions](https://www.scaleway.com/en/docs/serverless-containers/reference-content/containers-limitations/#configuration-restrictions) section.
         /// </summary>
@@ -840,13 +840,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `http1` or `h2c`. Defaults to `http1`.
+        /// The communication [protocol](https://www.scaleway.com/en/developers/api/serverless-containers/#path-containers-update-an-existing-container) `Http1` or `H2c`. Defaults to `Http1`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the container was created.
+        /// (Defaults to provider `Region`) The region in which the container was created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -145,7 +145,7 @@ namespace Pulumiverse.Scaleway.Redis
         public Output<ImmutableArray<Outputs.ClusterAcl>> Acls { get; private set; } = null!;
 
         /// <summary>
-        /// The PEM of the certificate used by redis, only when `tls_enabled` is true
+        /// The PEM of the certificate used by redis, only when `TlsEnabled` is true
         /// </summary>
         [Output("certificate")]
         public Output<string> Certificate { get; private set; } = null!;
@@ -161,11 +161,11 @@ namespace Pulumiverse.Scaleway.Redis
         /// 
         /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
-        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `ClusterSize` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your cluster.
+        /// `ClusterSize` will destroy and recreate your cluster.
         /// 
-        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
+        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `ClusterSize` will destroy and
         /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Output("clusterSize")]
@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// &gt; **Important:** Updates to `NodeType` will migrate the Redis™ cluster to the desired `NodeType`. Keep in mind that
         /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Output("nodeType")]
@@ -212,15 +212,15 @@ namespace Pulumiverse.Scaleway.Redis
         public Output<ImmutableArray<Outputs.ClusterPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis™ cluster is
+        /// `ProjectId`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        /// &gt; The `public_network` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
+        /// &gt; The `PublicNetwork` block exports:
         /// </summary>
         [Output("publicNetwork")]
         public Output<Outputs.ClusterPublicNetwork> PublicNetwork { get; private set; } = null!;
@@ -241,7 +241,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Whether TLS is enabled or not.
         /// 
-        /// &gt; The changes on `tls_enabled` will force the resource creation.
+        /// &gt; The changes on `TlsEnabled` will force the resource creation.
         /// </summary>
         [Output("tlsEnabled")]
         public Output<bool?> TlsEnabled { get; private set; } = null!;
@@ -261,14 +261,14 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// &gt; **Important:** Updates to `Version` will migrate the Redis™ cluster to the desired `Version`. Keep in mind that you
         /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the
+        /// `Zone`) The zone in which the
         /// Redis™ cluster should be created.
         /// </summary>
         [Output("zone")]
@@ -352,11 +352,11 @@ namespace Pulumiverse.Scaleway.Redis
         /// 
         /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
-        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `ClusterSize` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your cluster.
+        /// `ClusterSize` will destroy and recreate your cluster.
         /// 
-        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
+        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `ClusterSize` will destroy and
         /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Input("clusterSize")]
@@ -371,7 +371,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// &gt; **Important:** Updates to `NodeType` will migrate the Redis™ cluster to the desired `NodeType`. Keep in mind that
         /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("nodeType", required: true)]
@@ -419,15 +419,15 @@ namespace Pulumiverse.Scaleway.Redis
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis™ cluster is
+        /// `ProjectId`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        /// &gt; The `public_network` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
+        /// &gt; The `PublicNetwork` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.ClusterPublicNetworkArgs>? PublicNetwork { get; set; }
@@ -460,7 +460,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Whether TLS is enabled or not.
         /// 
-        /// &gt; The changes on `tls_enabled` will force the resource creation.
+        /// &gt; The changes on `TlsEnabled` will force the resource creation.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
@@ -474,14 +474,14 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// &gt; **Important:** Updates to `Version` will migrate the Redis™ cluster to the desired `Version`. Keep in mind that you
         /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the
+        /// `Zone`) The zone in which the
         /// Redis™ cluster should be created.
         /// </summary>
         [Input("zone")]
@@ -508,7 +508,7 @@ namespace Pulumiverse.Scaleway.Redis
         }
 
         /// <summary>
-        /// The PEM of the certificate used by redis, only when `tls_enabled` is true
+        /// The PEM of the certificate used by redis, only when `TlsEnabled` is true
         /// </summary>
         [Input("certificate")]
         public Input<string>? Certificate { get; set; }
@@ -524,11 +524,11 @@ namespace Pulumiverse.Scaleway.Redis
         /// 
         /// - Cluster_size &gt;= 3 for Cluster mode, which requires a minimum of 1 main node and 2 secondary nodes.
         /// 
-        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `cluster_size` than you initially
+        /// &gt; **Important:** If you are using the cluster mode (&gt;=3 nodes), you can set a bigger `ClusterSize` than you initially
         /// did, it will migrate the Redis™ cluster but keep in mind that you cannot downgrade a Redis™ cluster, so setting a smaller
-        /// `cluster_size` will destroy and recreate your cluster.
+        /// `ClusterSize` will destroy and recreate your cluster.
         /// 
-        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
+        /// &gt; **Important:** If you are using the Standalone mode (1 node), setting a bigger `ClusterSize` will destroy and
         /// recreate your cluster as you will be switching to the cluster mode.
         /// </summary>
         [Input("clusterSize")]
@@ -549,7 +549,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// The type of Redis™ cluster you want to create (e.g. `RED1-M`).
         /// 
-        /// &gt; **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
+        /// &gt; **Important:** Updates to `NodeType` will migrate the Redis™ cluster to the desired `NodeType`. Keep in mind that
         /// you cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("nodeType")]
@@ -597,15 +597,15 @@ namespace Pulumiverse.Scaleway.Redis
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the Redis™ cluster is
+        /// `ProjectId`) The ID of the project the Redis™ cluster is
         /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// (Optional) Public network details. Only one of `private_network` and `public_network` may be set.
-        /// &gt; The `public_network` block exports:
+        /// (Optional) Public network details. Only one of `PrivateNetwork` and `PublicNetwork` may be set.
+        /// &gt; The `PublicNetwork` block exports:
         /// </summary>
         [Input("publicNetwork")]
         public Input<Inputs.ClusterPublicNetworkGetArgs>? PublicNetwork { get; set; }
@@ -638,7 +638,7 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Whether TLS is enabled or not.
         /// 
-        /// &gt; The changes on `tls_enabled` will force the resource creation.
+        /// &gt; The changes on `TlsEnabled` will force the resource creation.
         /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
@@ -658,14 +658,14 @@ namespace Pulumiverse.Scaleway.Redis
         /// <summary>
         /// Redis™ cluster's version (e.g. `6.2.7`).
         /// 
-        /// &gt; **Important:** Updates to `version` will migrate the Redis™ cluster to the desired `version`. Keep in mind that you
+        /// &gt; **Important:** Updates to `Version` will migrate the Redis™ cluster to the desired `Version`. Keep in mind that you
         /// cannot downgrade a Redis™ cluster.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the
+        /// `Zone`) The zone in which the
         /// Redis™ cluster should be created.
         /// </summary>
         [Input("zone")]

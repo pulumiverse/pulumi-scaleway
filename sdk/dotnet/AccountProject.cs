@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        /// `OrganizationId`)The organization ID the Project is associated with. Any change made to the `OrganizationId` will recreate the resource.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -115,7 +115,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        /// `OrganizationId`)The organization ID the Project is associated with. Any change made to the `OrganizationId` will recreate the resource.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -147,7 +147,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`)The organization ID the Project is associated with. Any change made to the `organization_id` will recreate the resource.
+        /// `OrganizationId`)The organization ID the Project is associated with. Any change made to the `OrganizationId` will recreate the resource.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

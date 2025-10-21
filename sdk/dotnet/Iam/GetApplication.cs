@@ -112,7 +112,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// <summary>
         /// The ID of the IAM application.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `application_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ApplicationId`.
         /// </summary>
         [Input("applicationId")]
         public string? ApplicationId { get; set; }
@@ -124,7 +124,7 @@ namespace Pulumiverse.Scaleway.Iam
         public string? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// Organization the application is associated with.
         /// </summary>
         [Input("organizationId")]
@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// <summary>
         /// The ID of the IAM application.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `application_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ApplicationId`.
         /// </summary>
         [Input("applicationId")]
         public Input<string>? ApplicationId { get; set; }
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// Organization the application is associated with.
         /// </summary>
         [Input("organizationId")]

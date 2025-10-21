@@ -62,7 +62,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `Priv`.
         /// </summary>
         [Output("dnsLocalName")]
         public Output<string> DnsLocalName { get; private set; } = null!;
@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<ImmutableArray<string>> DnsServersOverrides { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `True`.
         /// </summary>
         [Output("enableDynamic")]
         public Output<bool> EnableDynamic { get; private set; } = null!;
@@ -104,13 +104,13 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> PoolLow { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
+        /// `ProjectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `True`.
         /// 
         /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
@@ -118,19 +118,19 @@ namespace Pulumiverse.Scaleway.Network
         public Output<bool> PushDefaultRoute { get; private set; } = null!;
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `True`.
         /// </summary>
         [Output("pushDnsServer")]
         public Output<bool> PushDnsServer { get; private set; } = null!;
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `ValidLifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Output("rebindTimer")]
         public Output<int> RebindTimer { get; private set; } = null!;
 
         /// <summary>
-        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `RebindTimer`. Defaults to 50m (3000s).
         /// </summary>
         [Output("renewTimer")]
         public Output<int> RenewTimer { get; private set; } = null!;
@@ -154,7 +154,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<int> ValidLifetime { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -217,7 +217,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `Priv`.
         /// </summary>
         [Input("dnsLocalName")]
         public Input<string>? DnsLocalName { get; set; }
@@ -247,7 +247,7 @@ namespace Pulumiverse.Scaleway.Network
         }
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `True`.
         /// </summary>
         [Input("enableDynamic")]
         public Input<bool>? EnableDynamic { get; set; }
@@ -265,13 +265,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
+        /// `ProjectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `True`.
         /// 
         /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
@@ -279,19 +279,19 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? PushDefaultRoute { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `True`.
         /// </summary>
         [Input("pushDnsServer")]
         public Input<bool>? PushDnsServer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `ValidLifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Input("rebindTimer")]
         public Input<int>? RebindTimer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `RebindTimer`. Defaults to 50m (3000s).
         /// </summary>
         [Input("renewTimer")]
         public Input<int>? RenewTimer { get; set; }
@@ -309,7 +309,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -335,7 +335,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `priv`.
+        /// TLD given to hostnames in the Private Network. Allowed characters are `a-z0-9-.`. Defaults to the slugified Private Network name if created along a GatewayNetwork, or else to `Priv`.
         /// </summary>
         [Input("dnsLocalName")]
         public Input<string>? DnsLocalName { get; set; }
@@ -365,7 +365,7 @@ namespace Pulumiverse.Scaleway.Network
         }
 
         /// <summary>
-        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `true`.
+        /// Whether to enable dynamic pooling of IPs. By turning the dynamic pool off, only pre-existing DHCP reservations will be handed out. Defaults to `True`.
         /// </summary>
         [Input("enableDynamic")]
         public Input<bool>? EnableDynamic { get; set; }
@@ -389,13 +389,13 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? PoolLow { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Public Gateway DHCP configuration is associated with.
+        /// `ProjectId`) The ID of the Project the Public Gateway DHCP configuration is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `true`.
+        /// Whether the gateway should push a default route to DHCP clients or only hand out IPs. Defaults to `True`.
         /// 
         /// &gt; **Warning**: If you need to setup a default route, it's recommended to use the `scaleway.network.GatewayNetwork` resource instead.
         /// </summary>
@@ -403,19 +403,19 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? PushDefaultRoute { get; set; }
 
         /// <summary>
-        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `true`.
+        /// Whether the gateway should push custom DNS servers to clients. This allows for instance hostname &gt; IP resolution. Defaults to `True`.
         /// </summary>
         [Input("pushDnsServer")]
         public Input<bool>? PushDnsServer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `valid_lifetime`. Defaults to 51m (3060s).
+        /// After how long, in seconds, a DHCP client will query for a new lease if previous renews fail. Must be 30s lower than `ValidLifetime`. Defaults to 51m (3060s).
         /// </summary>
         [Input("rebindTimer")]
         public Input<int>? RebindTimer { get; set; }
 
         /// <summary>
-        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebind_timer`. Defaults to 50m (3000s).
+        /// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `RebindTimer`. Defaults to 50m (3000s).
         /// </summary>
         [Input("renewTimer")]
         public Input<int>? RenewTimer { get; set; }
@@ -439,7 +439,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<int>? ValidLifetime { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

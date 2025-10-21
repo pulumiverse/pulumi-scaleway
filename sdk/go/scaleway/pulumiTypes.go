@@ -6912,32 +6912,18 @@ func (o InferenceDeploymentPublicEndpointPtrOutput) Url() pulumi.StringPtrOutput
 }
 
 type InstanceImageAdditionalVolume struct {
-	// Date of the volume creation.
-	CreationDate *string `pulumi:"creationDate"`
-	// The export URI of the volume.
-	ExportUri *string `pulumi:"exportUri"`
 	// ID of the server containing the volume.
 	Id *string `pulumi:"id"`
-	// Date of volume latest update.
-	ModificationDate *string `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The organization ID the volume is associated with.
-	Organization *string `pulumi:"organization"`
-	// ID of the project the volume is associated with
-	Project *string `pulumi:"project"`
 	// Description of the server containing the volume (in case the image is a backup from a server).
 	Server map[string]string `pulumi:"server"`
 	// The size of the volume.
 	Size *int `pulumi:"size"`
-	// State of the volume.
-	State *string `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags []string `pulumi:"tags"`
-	// The type of volume, possible values are `lSsd` and `bSsd`.
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 	VolumeType *string `pulumi:"volumeType"`
-	// The zone in which the image should be created.
-	Zone *string `pulumi:"zone"`
 }
 
 // InstanceImageAdditionalVolumeInput is an input type that accepts InstanceImageAdditionalVolumeArgs and InstanceImageAdditionalVolumeOutput values.
@@ -6952,32 +6938,18 @@ type InstanceImageAdditionalVolumeInput interface {
 }
 
 type InstanceImageAdditionalVolumeArgs struct {
-	// Date of the volume creation.
-	CreationDate pulumi.StringPtrInput `pulumi:"creationDate"`
-	// The export URI of the volume.
-	ExportUri pulumi.StringPtrInput `pulumi:"exportUri"`
 	// ID of the server containing the volume.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Date of volume latest update.
-	ModificationDate pulumi.StringPtrInput `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The organization ID the volume is associated with.
-	Organization pulumi.StringPtrInput `pulumi:"organization"`
-	// ID of the project the volume is associated with
-	Project pulumi.StringPtrInput `pulumi:"project"`
 	// Description of the server containing the volume (in case the image is a backup from a server).
 	Server pulumi.StringMapInput `pulumi:"server"`
 	// The size of the volume.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// State of the volume.
-	State pulumi.StringPtrInput `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The type of volume, possible values are `lSsd` and `bSsd`.
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
-	// The zone in which the image should be created.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (InstanceImageAdditionalVolumeArgs) ElementType() reflect.Type {
@@ -7031,39 +7003,14 @@ func (o InstanceImageAdditionalVolumeOutput) ToInstanceImageAdditionalVolumeOutp
 	return o
 }
 
-// Date of the volume creation.
-func (o InstanceImageAdditionalVolumeOutput) CreationDate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.CreationDate }).(pulumi.StringPtrOutput)
-}
-
-// The export URI of the volume.
-func (o InstanceImageAdditionalVolumeOutput) ExportUri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.ExportUri }).(pulumi.StringPtrOutput)
-}
-
 // ID of the server containing the volume.
 func (o InstanceImageAdditionalVolumeOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Date of volume latest update.
-func (o InstanceImageAdditionalVolumeOutput) ModificationDate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.ModificationDate }).(pulumi.StringPtrOutput)
-}
-
 // The name of the image. If not provided it will be randomly generated.
 func (o InstanceImageAdditionalVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// The organization ID the volume is associated with.
-func (o InstanceImageAdditionalVolumeOutput) Organization() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.Organization }).(pulumi.StringPtrOutput)
-}
-
-// ID of the project the volume is associated with
-func (o InstanceImageAdditionalVolumeOutput) Project() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.Project }).(pulumi.StringPtrOutput)
 }
 
 // Description of the server containing the volume (in case the image is a backup from a server).
@@ -7076,24 +7023,14 @@ func (o InstanceImageAdditionalVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceImageAdditionalVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// State of the volume.
-func (o InstanceImageAdditionalVolumeOutput) State() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.State }).(pulumi.StringPtrOutput)
-}
-
 // A list of tags to apply to the image.
 func (o InstanceImageAdditionalVolumeOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v InstanceImageAdditionalVolume) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of volume, possible values are `lSsd` and `bSsd`.
+// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 func (o InstanceImageAdditionalVolumeOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
-}
-
-// The zone in which the image should be created.
-func (o InstanceImageAdditionalVolumeOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v InstanceImageAdditionalVolume) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type InstanceImageAdditionalVolumeArrayOutput struct{ *pulumi.OutputState }
@@ -7114,6 +7051,130 @@ func (o InstanceImageAdditionalVolumeArrayOutput) Index(i pulumi.IntInput) Insta
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceImageAdditionalVolume {
 		return vs[0].([]InstanceImageAdditionalVolume)[vs[1].(int)]
 	}).(InstanceImageAdditionalVolumeOutput)
+}
+
+type InstanceImageRootVolume struct {
+	// ID of the server containing the volume.
+	Id *string `pulumi:"id"`
+	// The name of the image. If not provided it will be randomly generated.
+	Name *string `pulumi:"name"`
+	// The size of the volume.
+	Size *int `pulumi:"size"`
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+	VolumeType *string `pulumi:"volumeType"`
+}
+
+// InstanceImageRootVolumeInput is an input type that accepts InstanceImageRootVolumeArgs and InstanceImageRootVolumeOutput values.
+// You can construct a concrete instance of `InstanceImageRootVolumeInput` via:
+//
+//	InstanceImageRootVolumeArgs{...}
+type InstanceImageRootVolumeInput interface {
+	pulumi.Input
+
+	ToInstanceImageRootVolumeOutput() InstanceImageRootVolumeOutput
+	ToInstanceImageRootVolumeOutputWithContext(context.Context) InstanceImageRootVolumeOutput
+}
+
+type InstanceImageRootVolumeArgs struct {
+	// ID of the server containing the volume.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the image. If not provided it will be randomly generated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The size of the volume.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
+}
+
+func (InstanceImageRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceImageRootVolume)(nil)).Elem()
+}
+
+func (i InstanceImageRootVolumeArgs) ToInstanceImageRootVolumeOutput() InstanceImageRootVolumeOutput {
+	return i.ToInstanceImageRootVolumeOutputWithContext(context.Background())
+}
+
+func (i InstanceImageRootVolumeArgs) ToInstanceImageRootVolumeOutputWithContext(ctx context.Context) InstanceImageRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceImageRootVolumeOutput)
+}
+
+// InstanceImageRootVolumeArrayInput is an input type that accepts InstanceImageRootVolumeArray and InstanceImageRootVolumeArrayOutput values.
+// You can construct a concrete instance of `InstanceImageRootVolumeArrayInput` via:
+//
+//	InstanceImageRootVolumeArray{ InstanceImageRootVolumeArgs{...} }
+type InstanceImageRootVolumeArrayInput interface {
+	pulumi.Input
+
+	ToInstanceImageRootVolumeArrayOutput() InstanceImageRootVolumeArrayOutput
+	ToInstanceImageRootVolumeArrayOutputWithContext(context.Context) InstanceImageRootVolumeArrayOutput
+}
+
+type InstanceImageRootVolumeArray []InstanceImageRootVolumeInput
+
+func (InstanceImageRootVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceImageRootVolume)(nil)).Elem()
+}
+
+func (i InstanceImageRootVolumeArray) ToInstanceImageRootVolumeArrayOutput() InstanceImageRootVolumeArrayOutput {
+	return i.ToInstanceImageRootVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceImageRootVolumeArray) ToInstanceImageRootVolumeArrayOutputWithContext(ctx context.Context) InstanceImageRootVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceImageRootVolumeArrayOutput)
+}
+
+type InstanceImageRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (InstanceImageRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceImageRootVolume)(nil)).Elem()
+}
+
+func (o InstanceImageRootVolumeOutput) ToInstanceImageRootVolumeOutput() InstanceImageRootVolumeOutput {
+	return o
+}
+
+func (o InstanceImageRootVolumeOutput) ToInstanceImageRootVolumeOutputWithContext(ctx context.Context) InstanceImageRootVolumeOutput {
+	return o
+}
+
+// ID of the server containing the volume.
+func (o InstanceImageRootVolumeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceImageRootVolume) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The name of the image. If not provided it will be randomly generated.
+func (o InstanceImageRootVolumeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceImageRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The size of the volume.
+func (o InstanceImageRootVolumeOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v InstanceImageRootVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+func (o InstanceImageRootVolumeOutput) VolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceImageRootVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
+}
+
+type InstanceImageRootVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceImageRootVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceImageRootVolume)(nil)).Elem()
+}
+
+func (o InstanceImageRootVolumeArrayOutput) ToInstanceImageRootVolumeArrayOutput() InstanceImageRootVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceImageRootVolumeArrayOutput) ToInstanceImageRootVolumeArrayOutputWithContext(ctx context.Context) InstanceImageRootVolumeArrayOutput {
+	return o
+}
+
+func (o InstanceImageRootVolumeArrayOutput) Index(i pulumi.IntInput) InstanceImageRootVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceImageRootVolume {
+		return vs[0].([]InstanceImageRootVolume)[vs[1].(int)]
+	}).(InstanceImageRootVolumeOutput)
 }
 
 type InstancePrivateNicPrivateIp struct {
@@ -33569,6 +33630,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InferenceDeploymentPublicEndpointPtrInput)(nil)).Elem(), InferenceDeploymentPublicEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeInput)(nil)).Elem(), InstanceImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageAdditionalVolumeArrayInput)(nil)).Elem(), InstanceImageAdditionalVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageRootVolumeInput)(nil)).Elem(), InstanceImageRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceImageRootVolumeArrayInput)(nil)).Elem(), InstanceImageRootVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicPrivateIpInput)(nil)).Elem(), InstancePrivateNicPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNicPrivateIpArrayInput)(nil)).Elem(), InstancePrivateNicPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupInboundRuleInput)(nil)).Elem(), InstanceSecurityGroupInboundRuleArgs{})
@@ -34034,6 +34097,8 @@ func init() {
 	pulumi.RegisterOutputType(InferenceDeploymentPublicEndpointPtrOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(InstanceImageAdditionalVolumeArrayOutput{})
+	pulumi.RegisterOutputType(InstanceImageRootVolumeOutput{})
+	pulumi.RegisterOutputType(InstanceImageRootVolumeArrayOutput{})
 	pulumi.RegisterOutputType(InstancePrivateNicPrivateIpOutput{})
 	pulumi.RegisterOutputType(InstancePrivateNicPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupInboundRuleOutput{})

@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> NsMasters { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project associated with the domain.
+        /// `ProjectId`) The ID of the Project associated with the domain.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -133,7 +133,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Domain { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project associated with the domain.
+        /// `ProjectId`) The ID of the Project associated with the domain.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -201,7 +201,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the Project associated with the domain.
+        /// `ProjectId`) The ID of the Project associated with the domain.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

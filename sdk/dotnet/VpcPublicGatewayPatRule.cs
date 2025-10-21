@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> PrivatePort { get; private set; } = null!;
 
         /// <summary>
-        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
+        /// The protocol the rule should apply to. Possible values are `Both`, `Tcp` and `Udp`.
         /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
@@ -164,7 +164,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -235,7 +235,7 @@ namespace Pulumiverse.Scaleway
         public Input<int> PrivatePort { get; set; } = null!;
 
         /// <summary>
-        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
+        /// The protocol the rule should apply to. Possible values are `Both`, `Tcp` and `Udp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -247,7 +247,7 @@ namespace Pulumiverse.Scaleway
         public Input<int> PublicPort { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -291,7 +291,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? PrivatePort { get; set; }
 
         /// <summary>
-        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
+        /// The protocol the rule should apply to. Possible values are `Both`, `Tcp` and `Udp`.
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -309,7 +309,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway DHCP configuration should be created.
+        /// `Zone`) The zone in which the Public Gateway DHCP configuration should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

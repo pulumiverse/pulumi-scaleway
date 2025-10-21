@@ -35,25 +35,25 @@ namespace Pulumiverse.Scaleway.Instance
     public sealed class GetPlacementGroupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The placement group name. Only one of `name` and `placement_group_id` should be specified.
+        /// The placement group name. Only one of `Name` and `PlacementGroupId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The placement group id. Only one of `name` and `placement_group_id` should be specified.
+        /// The placement group id. Only one of `Name` and `PlacementGroupId` should be specified.
         /// </summary>
         [Input("placementGroupId")]
         public string? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the placement group is associated with.
+        /// `ProjectId`) The ID of the project the placement group is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the placement group exists.
+        /// `Zone`) The zone in which the placement group exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -67,25 +67,25 @@ namespace Pulumiverse.Scaleway.Instance
     public sealed class GetPlacementGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The placement group name. Only one of `name` and `placement_group_id` should be specified.
+        /// The placement group name. Only one of `Name` and `PlacementGroupId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The placement group id. Only one of `name` and `placement_group_id` should be specified.
+        /// The placement group id. Only one of `Name` and `PlacementGroupId` should be specified.
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the placement group is associated with.
+        /// `ProjectId`) The ID of the project the placement group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the placement group exists.
+        /// `Zone`) The zone in which the placement group exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -155,7 +155,7 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.ObjectBucketWebsiteConfigurationIndexDocument> IndexDocument { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -244,7 +244,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentArgs> IndexDocument { get; set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -282,7 +282,7 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.ObjectBucketWebsiteConfigurationIndexDocumentGetArgs>? IndexDocument { get; set; }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

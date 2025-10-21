@@ -321,7 +321,7 @@ namespace Pulumiverse.Scaleway
         public string PatRuleId { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the rule exists.
         /// </summary>
         [Input("zone")]
@@ -342,7 +342,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> PatRuleId { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the rule exists.
         /// </summary>
         [Input("zone")]
@@ -378,7 +378,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly int PrivatePort;
         /// <summary>
-        /// The protocol the rule should apply to. Possible values are `both`, `tcp` and `udp`.
+        /// The protocol the rule should apply to. Possible values are `Both`, `Tcp` and `Udp`.
         /// </summary>
         public readonly string Protocol;
         /// <summary>

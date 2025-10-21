@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway.Containers
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// (Defaults to provider `Region`) The region
         /// in which the CRON trigger is created.
         /// </summary>
         [Output("region")]
@@ -178,7 +178,7 @@ namespace Pulumiverse.Scaleway.Containers
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// (Defaults to provider `Region`) The region
         /// in which the CRON trigger is created.
         /// </summary>
         [Input("region")]
@@ -217,7 +217,7 @@ namespace Pulumiverse.Scaleway.Containers
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region
+        /// (Defaults to provider `Region`) The region
         /// in which the CRON trigger is created.
         /// </summary>
         [Input("region")]

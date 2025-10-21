@@ -101,7 +101,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
+        /// &gt; **Important:** This block cannot be defined if the `NoIpAllowed` field is set to true.
         /// </summary>
         [Output("aclRules")]
         public Output<ImmutableArray<Outputs.AclAclRule>> AclRules { get; private set; } = null!;
@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
         /// 
-        /// &gt; **Important:** Updates to `cluster_id` will recreate the ACL.
+        /// &gt; **Important:** Updates to `ClusterId` will recreate the ACL.
         /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
@@ -117,13 +117,13 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// If set to true, no IP will be allowed and the cluster will be in full-isolation.
         /// 
-        /// &gt; **Important:** This field cannot be set to true if the `acl_rules` block is defined.
+        /// &gt; **Important:** This field cannot be set to true if the `AclRules` block is defined.
         /// </summary>
         [Output("noIpAllowed")]
         public Output<bool?> NoIpAllowed { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the ACL rule should be created.
+        /// `Region`) The region in which the ACL rule should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -181,7 +181,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
+        /// &gt; **Important:** This block cannot be defined if the `NoIpAllowed` field is set to true.
         /// </summary>
         public InputList<Inputs.AclAclRuleArgs> AclRules
         {
@@ -192,7 +192,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
         /// 
-        /// &gt; **Important:** Updates to `cluster_id` will recreate the ACL.
+        /// &gt; **Important:** Updates to `ClusterId` will recreate the ACL.
         /// </summary>
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
@@ -200,13 +200,13 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// If set to true, no IP will be allowed and the cluster will be in full-isolation.
         /// 
-        /// &gt; **Important:** This field cannot be set to true if the `acl_rules` block is defined.
+        /// &gt; **Important:** This field cannot be set to true if the `AclRules` block is defined.
         /// </summary>
         [Input("noIpAllowed")]
         public Input<bool>? NoIpAllowed { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the ACL rule should be created.
+        /// `Region`) The region in which the ACL rule should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -225,7 +225,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** This block cannot be defined if the `no_ip_allowed` field is set to true.
+        /// &gt; **Important:** This block cannot be defined if the `NoIpAllowed` field is set to true.
         /// </summary>
         public InputList<Inputs.AclAclRuleGetArgs> AclRules
         {
@@ -236,7 +236,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// UUID of the cluster. The ID of the cluster is also the ID of the ACL resource, as there can only be one per cluster.
         /// 
-        /// &gt; **Important:** Updates to `cluster_id` will recreate the ACL.
+        /// &gt; **Important:** Updates to `ClusterId` will recreate the ACL.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
@@ -244,13 +244,13 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// <summary>
         /// If set to true, no IP will be allowed and the cluster will be in full-isolation.
         /// 
-        /// &gt; **Important:** This field cannot be set to true if the `acl_rules` block is defined.
+        /// &gt; **Important:** This field cannot be set to true if the `AclRules` block is defined.
         /// </summary>
         [Input("noIpAllowed")]
         public Input<bool>? NoIpAllowed { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the ACL rule should be created.
+        /// `Region`) The region in which the ACL rule should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

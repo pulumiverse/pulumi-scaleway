@@ -11,7 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages a Scaleway File Storage (NFS) filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for shared, persistent storage.
+    /// &gt; **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
+    /// 
+    /// Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
     /// 
     /// This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
     /// 
@@ -68,20 +70,20 @@ namespace Pulumiverse.Scaleway
         public Output<int> NumberOfAttachments { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the user is associated with.
+        /// `OrganizationId`) The ID of the organization the user is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
+        /// `Region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -166,14 +168,14 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
+        /// `Region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -225,20 +227,20 @@ namespace Pulumiverse.Scaleway
         public Input<int>? NumberOfAttachments { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the user is associated with.
+        /// `OrganizationId`) The ID of the organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
+        /// `Region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

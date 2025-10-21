@@ -43,6 +43,8 @@ import (
 //
 // ```
 //
+// ### Purge request
+//
 // ## Import
 //
 // Cache stages can be imported using the `{id}`, e.g.

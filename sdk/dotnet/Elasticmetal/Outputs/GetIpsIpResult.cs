@@ -35,11 +35,11 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIpsIpMacAddressResult> MacAddresses;
         /// <summary>
-        /// (Defaults to provider `organization_id`) The ID of the organization the IP is in.
+        /// (Defaults to provider `OrganizationId`) The ID of the organization the IP is in.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the IP is in.
+        /// (Defaults to provider `ProjectId`) The ID of the project the IP is in.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
@@ -59,7 +59,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `Zone`) The zone in which IPs exist.
         /// </summary>
         public readonly string Zone;
 

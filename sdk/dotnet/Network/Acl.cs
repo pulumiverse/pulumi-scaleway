@@ -81,7 +81,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the ACL.
+        /// `Region`) The region of the ACL.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `region`) The region of the ACL.
+        /// `Region`) The region of the ACL.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -202,7 +202,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `region`) The region of the ACL.
+        /// `Region`) The region of the ACL.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

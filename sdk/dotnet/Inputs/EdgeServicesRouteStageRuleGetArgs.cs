@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> BackendStageId { get; set; } = null!;
 
         /// <summary>
-        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `BackendStageId` field. Requests that do not match will be checked by the next rule's condition.
         /// </summary>
         [Input("ruleHttpMatch")]
         public Input<Inputs.EdgeServicesRouteStageRuleRuleHttpMatchGetArgs>? RuleHttpMatch { get; set; }

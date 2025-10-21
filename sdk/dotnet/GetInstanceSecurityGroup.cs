@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetInstanceSecurityGroupArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The security group name. Only one of `name` and `security_group_id` should be specified.
+        /// The security group name. Only one of `Name` and `SecurityGroupId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -48,13 +48,13 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The security group id. Only one of `name` and `security_group_id` should be specified.
+        /// The security group id. Only one of `Name` and `SecurityGroupId` should be specified.
         /// </summary>
         [Input("securityGroupId")]
         public string? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the security group exists.
+        /// `Zone`) The zone in which the security group exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetInstanceSecurityGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The security group name. Only one of `name` and `security_group_id` should be specified.
+        /// The security group name. Only one of `Name` and `SecurityGroupId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -80,13 +80,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The security group id. Only one of `name` and `security_group_id` should be specified.
+        /// The security group id. Only one of `Name` and `SecurityGroupId` should be specified.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the security group exists.
+        /// `Zone`) The zone in which the security group exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on incoming traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         public readonly string InboundDefaultPolicy;
         /// <summary>
@@ -122,7 +122,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on outgoing traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         public readonly string OutboundDefaultPolicy;
         /// <summary>

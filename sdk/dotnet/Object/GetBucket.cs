@@ -200,13 +200,13 @@ namespace Pulumiverse.Scaleway.Object
         public string? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project with which the bucket is associated.
+        /// `ProjectId`) The ID of the project with which the bucket is associated.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the bucket exists.
+        /// `Region`) The region in which the bucket exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -223,13 +223,13 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project with which the bucket is associated.
+        /// `ProjectId`) The ID of the project with which the bucket is associated.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the bucket exists.
+        /// `Region`) The region in which the bucket exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

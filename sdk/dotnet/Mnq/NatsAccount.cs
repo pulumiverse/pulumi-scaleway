@@ -62,14 +62,14 @@ namespace Pulumiverse.Scaleway.Mnq
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the
+        /// `ProjectId`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account should be created.
         /// </summary>
         [Output("region")]
@@ -133,14 +133,14 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the
+        /// `ProjectId`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account should be created.
         /// </summary>
         [Input("region")]
@@ -167,14 +167,14 @@ namespace Pulumiverse.Scaleway.Mnq
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the
+        /// `ProjectId`) The ID of the Project the
         /// account is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account should be created.
         /// </summary>
         [Input("region")]

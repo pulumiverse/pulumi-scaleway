@@ -64,7 +64,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Output<string> GrafanaUrl { get; private set; } = null!;
 
         /// <summary>
-        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        /// The username of the Grafana user. The `Admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Output("login")]
         public Output<string> Login { get; private set; } = null!;
@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `Editor` or `Viewer`.
         /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
@@ -143,7 +143,7 @@ namespace Pulumiverse.Scaleway.Observability
     public sealed class GrafanaUserArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        /// The username of the Grafana user. The `Admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Input("login", required: true)]
         public Input<string> Login { get; set; } = null!;
@@ -155,7 +155,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `Editor` or `Viewer`.
         /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
@@ -175,7 +175,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? GrafanaUrl { get; set; }
 
         /// <summary>
-        /// The username of the Grafana user. The `admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
+        /// The username of the Grafana user. The `Admin` user is not yet available for creation. You need your Grafana username to log in to Grafana and access your dashboards.
         /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The role assigned to the Grafana user. Must be `editor` or `viewer`.
+        /// The role assigned to the Grafana user. Must be `Editor` or `Viewer`.
         /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }

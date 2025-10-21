@@ -8,6 +8,8 @@ import * as utilities from "../utilities";
 
 /**
  * Gets information about your Consumptions.
+ *
+ * ## Example Usage
  */
 export function getConsumptions(args?: GetConsumptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetConsumptionsResult> {
     args = args || {};
@@ -51,6 +53,8 @@ export interface GetConsumptionsResult {
 }
 /**
  * Gets information about your Consumptions.
+ *
+ * ## Example Usage
  */
 export function getConsumptionsOutput(args?: GetConsumptionsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetConsumptionsResult> {
     args = args || {};

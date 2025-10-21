@@ -17,6 +17,8 @@ import (
 //
 // ## Example Usage
 //
+// ### Basic
+//
 // ## Import
 //
 // Functions can be imported using, `{region}/{id}`, as shown below:

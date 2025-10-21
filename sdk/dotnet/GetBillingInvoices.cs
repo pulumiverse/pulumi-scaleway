@@ -36,19 +36,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBillingInvoicesArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+        /// Invoices with the given type are listed. Valid values are `Periodic` and `Purchase`.
         /// </summary>
         [Input("invoiceType")]
         public string? InvoiceType { get; set; }
 
         /// <summary>
-        /// Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).
+        /// Invoices with a start date that are greater or equal to `StartedAfter` are listed (RFC 3339 format).
         /// </summary>
         [Input("startedAfter")]
         public string? StartedAfter { get; set; }
 
         /// <summary>
-        /// Invoices with a start date that precedes `started_before` are listed (RFC 3339 format).
+        /// Invoices with a start date that precedes `StartedBefore` are listed (RFC 3339 format).
         /// </summary>
         [Input("startedBefore")]
         public string? StartedBefore { get; set; }
@@ -62,19 +62,19 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBillingInvoicesInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+        /// Invoices with the given type are listed. Valid values are `Periodic` and `Purchase`.
         /// </summary>
         [Input("invoiceType")]
         public Input<string>? InvoiceType { get; set; }
 
         /// <summary>
-        /// Invoices with a start date that are greater or equal to `started_after` are listed (RFC 3339 format).
+        /// Invoices with a start date that are greater or equal to `StartedAfter` are listed (RFC 3339 format).
         /// </summary>
         [Input("startedAfter")]
         public Input<string>? StartedAfter { get; set; }
 
         /// <summary>
-        /// Invoices with a start date that precedes `started_before` are listed (RFC 3339 format).
+        /// Invoices with a start date that precedes `StartedBefore` are listed (RFC 3339 format).
         /// </summary>
         [Input("startedBefore")]
         public Input<string>? StartedBefore { get; set; }

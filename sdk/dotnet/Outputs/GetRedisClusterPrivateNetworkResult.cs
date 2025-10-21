@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>
-        /// `region`) The zone in which the server exists.
+        /// `Region`) The zone in which the server exists.
         /// </summary>
         public readonly string Zone;
 

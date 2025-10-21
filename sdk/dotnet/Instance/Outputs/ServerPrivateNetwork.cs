@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         public readonly string? Zone;
 

@@ -38,25 +38,25 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public bool? IncludeDisabled { get; set; }
 
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The offer id. Only one of `name` and `offer_id` should be specified.
+        /// The offer id. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("offerId")]
         public string? OfferId { get; set; }
 
         /// <summary>
-        /// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+        /// Period of subscription the desired offer. Should be `Hourly` or `Monthly`.
         /// </summary>
         [Input("subscriptionPeriod")]
         public string? SubscriptionPeriod { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the offer should be created.
+        /// `Zone`) The zone in which the offer should be created.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -73,25 +73,25 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public Input<bool>? IncludeDisabled { get; set; }
 
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The offer id. Only one of `name` and `offer_id` should be specified.
+        /// The offer id. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         [Input("offerId")]
         public Input<string>? OfferId { get; set; }
 
         /// <summary>
-        /// Period of subscription the desired offer. Should be `hourly` or `monthly`.
+        /// Period of subscription the desired offer. Should be `Hourly` or `Monthly`.
         /// </summary>
         [Input("subscriptionPeriod")]
         public Input<string>? SubscriptionPeriod { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the offer should be created.
+        /// `Zone`) The zone in which the offer should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -137,7 +137,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public readonly string? Name;
         public readonly string? OfferId;
         /// <summary>
-        /// Stock status for this offer. Possible values are: `empty`, `low` or `available`.
+        /// Stock status for this offer. Possible values are: `Empty`, `Low` or `Available`.
         /// </summary>
         public readonly string Stock;
         public readonly string? SubscriptionPeriod;

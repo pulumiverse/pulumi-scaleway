@@ -70,7 +70,7 @@ namespace Pulumiverse.Scaleway.Registry
         /// <summary>
         /// The unique name of the namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to `Name` will recreate the namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -82,13 +82,13 @@ namespace Pulumiverse.Scaleway.Registry
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `ProjectId`) The ID of the project the namespace is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -159,19 +159,19 @@ namespace Pulumiverse.Scaleway.Registry
         /// <summary>
         /// The unique name of the namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to `Name` will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `ProjectId`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -205,7 +205,7 @@ namespace Pulumiverse.Scaleway.Registry
         /// <summary>
         /// The unique name of the namespace.
         /// 
-        /// &gt; **Important** Updates to `name` will recreate the namespace.
+        /// &gt; **Important** Updates to `Name` will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -217,13 +217,13 @@ namespace Pulumiverse.Scaleway.Registry
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `ProjectId`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

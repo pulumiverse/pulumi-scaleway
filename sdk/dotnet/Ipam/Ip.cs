@@ -220,13 +220,13 @@ namespace Pulumiverse.Scaleway.Ipam
         public Output<bool?> IsIpv6 { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// `Region`) The region of the IP.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -343,13 +343,13 @@ namespace Pulumiverse.Scaleway.Ipam
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// `Region`) The region of the IP.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -417,13 +417,13 @@ namespace Pulumiverse.Scaleway.Ipam
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the IP.
+        /// `Region`) The region of the IP.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

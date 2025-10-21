@@ -83,7 +83,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The unique identifier of the function.
         /// 
-        /// &gt; Only one of `namespace_id` or `function_id` must be set.
+        /// &gt; Only one of `NamespaceId` or `FunctionId` must be set.
         /// </summary>
         [Output("functionId")]
         public Output<string?> FunctionId { get; private set; } = null!;
@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> NamespaceId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// 
         /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
@@ -174,7 +174,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The unique identifier of the function.
         /// 
-        /// &gt; Only one of `namespace_id` or `function_id` must be set.
+        /// &gt; Only one of `NamespaceId` or `FunctionId` must be set.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// 
         /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>
@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The unique identifier of the function.
         /// 
-        /// &gt; Only one of `namespace_id` or `function_id` must be set.
+        /// &gt; Only one of `NamespaceId` or `FunctionId` must be set.
         /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
@@ -228,7 +228,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// 
         /// &gt; **Important** Updating any of the arguments above will recreate the token.
         /// </summary>

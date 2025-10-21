@@ -77,13 +77,13 @@ namespace Pulumiverse.Scaleway
         public Output<Outputs.MnqSqsCredentialsPermissions> Permissions { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -159,13 +159,13 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MnqSqsCredentialsPermissionsArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -207,13 +207,13 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.MnqSqsCredentialsPermissionsGetArgs>? Permissions { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS is enabled.
+        /// `ProjectId`) The ID of the Project in which SQS is enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which SQS is enabled.
+        /// `Region`). The region in which SQS is enabled.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

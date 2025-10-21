@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway.Block
     public sealed class GetVolumeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The name of the volume. Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway.Block
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The unique identifier of the volume. Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
@@ -70,7 +70,7 @@ namespace Pulumiverse.Scaleway.Block
     public sealed class GetVolumeInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The name of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The name of the volume. Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway.Block
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The unique identifier of the volume. Only one of `name` and `volume_id` should be specified.
+        /// The unique identifier of the volume. Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }

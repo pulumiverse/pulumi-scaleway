@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Reverse { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -138,7 +138,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Reverse { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -164,7 +164,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Reverse { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

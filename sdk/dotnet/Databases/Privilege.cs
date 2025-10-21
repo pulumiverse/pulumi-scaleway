@@ -86,13 +86,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -167,13 +167,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -205,13 +205,13 @@ namespace Pulumiverse.Scaleway.Databases
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// Permission to set. Valid values are `readonly`, `readwrite`, `all`, `custom` and `none`.
+        /// Permission to set. Valid values are `Readonly`, `Readwrite`, `All`, `Custom` and `None`.
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the resource exists.
+        /// `Region`) The region in which the resource exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

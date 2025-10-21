@@ -51,13 +51,13 @@ namespace Pulumiverse.Scaleway
     public partial class EdgeServicesDnsStage : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The backend stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Output("backendStageId")]
         public Output<string> BackendStageId { get; private set; } = null!;
 
         /// <summary>
-        /// The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The cache stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Output("cacheStageId")]
         public Output<string> CacheStageId { get; private set; } = null!;
@@ -81,13 +81,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> PipelineId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the DNS stage is associated with.
+        /// `ProjectId`) The ID of the project the DNS stage is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The TLS stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Output("tlsStageId")]
         public Output<string> TlsStageId { get; private set; } = null!;
@@ -152,13 +152,13 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesDnsStageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The backend stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The cache stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("cacheStageId")]
         public Input<string>? CacheStageId { get; set; }
@@ -182,13 +182,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> PipelineId { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the DNS stage is associated with.
+        /// `ProjectId`) The ID of the project the DNS stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The TLS stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("tlsStageId")]
         public Input<string>? TlsStageId { get; set; }
@@ -202,13 +202,13 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesDnsStageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The backend stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The cache stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("cacheStageId")]
         public Input<string>? CacheStageId { get; set; }
@@ -238,13 +238,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PipelineId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the DNS stage is associated with.
+        /// `ProjectId`) The ID of the project the DNS stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The TLS stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
+        /// The TLS stage ID the DNS stage will be linked to. Only one of `BackendStageId`, `CacheStageId` and `TlsStageId` should be specified.
         /// </summary>
         [Input("tlsStageId")]
         public Input<string>? TlsStageId { get; set; }
