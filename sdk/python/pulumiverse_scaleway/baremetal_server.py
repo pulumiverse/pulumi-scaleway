@@ -866,6 +866,14 @@ class BaremetalServer(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
+        ### With option
+
+        ### With private network
+
+        ### With IPAM IP IDs
+
         ### Without install config
 
         ```python
@@ -1007,6 +1015,14 @@ class BaremetalServer(pulumi.CustomResource):
         Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
 
         ## Example Usage
+
+        ### Basic
+
+        ### With option
+
+        ### With private network
+
+        ### With IPAM IP IDs
 
         ### Without install config
 

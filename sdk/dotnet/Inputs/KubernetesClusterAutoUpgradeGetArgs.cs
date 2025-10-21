@@ -14,14 +14,14 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class KubernetesClusterAutoUpgradeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Set to `true` to enable Kubernetes patch version auto upgrades.
-        /// &gt; **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+        /// Set to `True` to enable Kubernetes patch version auto upgrades.
+        /// &gt; **Important:** When enabling auto upgrades, the `Version` field take a minor version like x.y (ie 1.18).
         /// </summary>
         [Input("enable", required: true)]
         public Input<bool> Enable { get; set; } = null!;
 
         /// <summary>
-        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// The day of the auto upgrade maintenance window (`Monday` to `Sunday`, or `Any`).
         /// </summary>
         [Input("maintenanceWindowDay", required: true)]
         public Input<string> MaintenanceWindowDay { get; set; } = null!;

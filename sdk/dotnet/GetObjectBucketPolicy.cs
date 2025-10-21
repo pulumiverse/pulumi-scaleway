@@ -111,7 +111,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Object Storage exists.
+        /// `Region`) The region in which the Object Storage exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -134,7 +134,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Object Storage exists.
+        /// `Region`) The region in which the Object Storage exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

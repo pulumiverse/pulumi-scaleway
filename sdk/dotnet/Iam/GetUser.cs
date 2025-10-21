@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway.Iam
         public string? Email { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
@@ -140,7 +140,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// <summary>
         /// The ID of the IAM user.
         /// 
-        /// &gt; **Note** You must specify at least one: `email` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `Email` and/or `UserId`.
         /// </summary>
         [Input("userId")]
         public string? UserId { get; set; }
@@ -160,7 +160,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Email { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
@@ -181,7 +181,7 @@ namespace Pulumiverse.Scaleway.Iam
         /// <summary>
         /// The ID of the IAM user.
         /// 
-        /// &gt; **Note** You must specify at least one: `email` and/or `user_id`.
+        /// &gt; **Note** You must specify at least one: `Email` and/or `UserId`.
         /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }

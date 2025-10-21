@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         public readonly string Name;
 

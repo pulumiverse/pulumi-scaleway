@@ -93,13 +93,13 @@ namespace Pulumiverse.Scaleway.Instance
     {
         /// <summary>
         /// The name of the server type.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the server type (to check the availability of the server type for example).
+        /// `Zone`) The zone of the server type (to check the availability of the server type for example).
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -114,13 +114,13 @@ namespace Pulumiverse.Scaleway.Instance
     {
         /// <summary>
         /// The name of the server type.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone of the server type (to check the availability of the server type for example).
+        /// `Zone`) The zone of the server type (to check the availability of the server type for example).
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

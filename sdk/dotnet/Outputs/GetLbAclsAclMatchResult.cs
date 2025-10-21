@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly ImmutableArray<string> HttpFilterValues;
         /// <summary>
-        /// The condition will be of type "unless" if invert is set to `true`
+        /// The condition will be of type "unless" if invert is set to `True`
         /// </summary>
         public readonly bool Invert;
         /// <summary>

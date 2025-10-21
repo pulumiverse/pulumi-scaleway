@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
     public sealed class GetAclsAclActionResult
     {
         /// <summary>
-        /// Redirect parameters when using an ACL with `redirect` action.
+        /// Redirect parameters when using an ACL with `Redirect` action.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAclsAclActionRedirectResult> Redirects;
         /// <summary>

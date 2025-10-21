@@ -52,7 +52,7 @@ namespace Pulumiverse.Scaleway.Network.Outputs
         /// </summary>
         public readonly string NexthopResourceType;
         /// <summary>
-        /// `region`). The region in which the routes exist.
+        /// `Region`). The region in which the routes exist.
         /// </summary>
         public readonly string? Region;
         /// <summary>

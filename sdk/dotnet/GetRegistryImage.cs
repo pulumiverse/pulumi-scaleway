@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The image ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ImageId`.
         /// </summary>
         [Input("imageId")]
         public string? ImageId { get; set; }
@@ -56,13 +56,13 @@ namespace Pulumiverse.Scaleway
         public string? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the image is associated with.
+        /// `ProjectId`) The ID of the project the image is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the image exists.
+        /// `Region`) The region in which the image exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The image ID.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ImageId`.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
@@ -108,13 +108,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the image is associated with.
+        /// `ProjectId`) The ID of the project the image is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the image exists.
+        /// `Region`) The region in which the image exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

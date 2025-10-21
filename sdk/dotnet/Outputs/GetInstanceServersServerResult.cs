@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetInstanceServersServerResult
     {
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot Type of the server. Possible values are: `Local`, `Bootscript` or `Rescue`.
         /// </summary>
         public readonly string BootType;
         /// <summary>
@@ -39,15 +39,15 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Image;
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly string Ipv6Address;
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly string Ipv6Gateway;
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly int Ipv6PrefixLength;
         /// <summary>
@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string SecurityGroupId;
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         public readonly string State;
         /// <summary>
@@ -103,7 +103,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Type;
         /// <summary>
-        /// `zone`) The zone in which servers exist.
+        /// `Zone`) The zone in which servers exist.
         /// </summary>
         public readonly string? Zone;
 

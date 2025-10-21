@@ -123,13 +123,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBaremetalOsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The os name. Only one of `name` and `os_id` should be specified.
+        /// The os name. Only one of `Name` and `OsId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The operating system id. Only one of `name` and `os_id` should be specified.
+        /// The operating system id. Only one of `Name` and `OsId` should be specified.
         /// </summary>
         [Input("osId")]
         public string? OsId { get; set; }
@@ -141,7 +141,7 @@ namespace Pulumiverse.Scaleway
         public string? Version { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the os exists.
+        /// `Zone`) The zone in which the os exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -155,13 +155,13 @@ namespace Pulumiverse.Scaleway
     public sealed class GetBaremetalOsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The os name. Only one of `name` and `os_id` should be specified.
+        /// The os name. Only one of `Name` and `OsId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The operating system id. Only one of `name` and `os_id` should be specified.
+        /// The operating system id. Only one of `Name` and `OsId` should be specified.
         /// </summary>
         [Input("osId")]
         public Input<string>? OsId { get; set; }
@@ -173,7 +173,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Version { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the os exists.
+        /// `Zone`) The zone in which the os exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

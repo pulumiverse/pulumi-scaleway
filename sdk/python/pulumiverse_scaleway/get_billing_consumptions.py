@@ -102,6 +102,8 @@ def get_billing_consumptions(project_id: Optional[_builtins.str] = None,
     """
     Gets information about your Consumptions.
 
+    ## Example Usage
+
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
@@ -121,6 +123,8 @@ def get_billing_consumptions_output(project_id: Optional[pulumi.Input[Optional[_
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBillingConsumptionsResult]:
     """
     Gets information about your Consumptions.
+
+    ## Example Usage
 
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.

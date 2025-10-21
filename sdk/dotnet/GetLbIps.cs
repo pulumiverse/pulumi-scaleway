@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the IPs exist.
+        /// `Zone`) The zone in which the IPs exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the IPs exist.
+        /// `Zone`) The zone in which the IPs exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

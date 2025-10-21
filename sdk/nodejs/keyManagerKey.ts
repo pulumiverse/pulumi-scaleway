@@ -12,15 +12,18 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * ### Symmetric Encryption Key
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.KeyManagerKey("main", {
+ * const symmetric = new scaleway.KeyManagerKey("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
  *     projectId: "your-project-id",
  *     usage: "symmetric_encryption",
+ *     algorithm: "aes_256_gcm",
  *     description: "Key for encrypting secrets",
  *     tags: [
  *         "env:prod",
@@ -33,27 +36,45 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Asymmetric Encryption Key with RSA-4096
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const rsa4096 = new scaleway.KeyManagerKey("rsa_4096", {
+ *     name: "rsa-4096-key",
+ *     region: "fr-par",
+ *     usage: "asymmetric_encryption",
+ *     algorithm: "rsa_oaep_4096_sha256",
+ *     description: "Key for encrypting large files with RSA-4096",
+ *     unprotected: true,
+ * });
+ * ```
+ *
+ * ### Asymmetric Signing Key
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const signing = new scaleway.KeyManagerKey("signing", {
+ *     name: "signing-key",
+ *     region: "fr-par",
+ *     usage: "asymmetric_signing",
+ *     algorithm: "rsa_pss_2048_sha256",
+ *     description: "Key for signing documents",
+ *     unprotected: true,
+ * });
+ * ```
+ *
  * ## Notes
  *
  * - **Protection**: By default, keys are protected and cannot be deleted. To allow deletion, set `unprotected = true` when creating the key.
  * - **Rotation Policy**: The `rotationPolicy` block allows you to set automatic rotation for your key.
  * - **Origin**: The `origin` argument is optional and defaults to `scalewayKms`. Use `external` if you want to import an external key (see Scaleway documentation for details).
  * - **Project and Region**: If not specified, `projectId` and `region` will default to the provider configuration.
- *
- * ## Example: Asymmetric Key
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const asym = new scaleway.KeyManagerKey("asym", {
- *     name: "asymmetric-key",
- *     region: "fr-par",
- *     usage: "asymmetric_signing",
- *     description: "Key for signing documents",
- *     unprotected: true,
- * });
- * ```
+ * - **Algorithm Validation**: The provider validates that the specified `algorithm` is compatible with the `usage` type at plan time, providing early feedback on configuration errors.
  *
  * ## Import
  *
@@ -92,6 +113,11 @@ export class KeyManagerKey extends pulumi.CustomResource {
     }
 
     /**
+     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * - For `symmetricEncryption`:
+     */
+    declare public readonly algorithm: pulumi.Output<string>;
+    /**
      * The date and time when the key was created.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
@@ -113,6 +139,8 @@ export class KeyManagerKey extends pulumi.CustomResource {
     declare public readonly origin: pulumi.Output<string | undefined>;
     /**
      * – The ID of the project the key belongs to.
+     *
+     * **Key Usage and Algorithm (both required):**
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -152,7 +180,7 @@ export class KeyManagerKey extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
-     * – The usage of the key. Valid values are:
+     * – The usage type of the key. Valid values:
      */
     declare public readonly usage: pulumi.Output<string>;
 
@@ -169,6 +197,7 @@ export class KeyManagerKey extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as KeyManagerKeyState | undefined;
+            resourceInputs["algorithm"] = state?.algorithm;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["description"] = state?.description;
             resourceInputs["locked"] = state?.locked;
@@ -187,9 +216,13 @@ export class KeyManagerKey extends pulumi.CustomResource {
             resourceInputs["usage"] = state?.usage;
         } else {
             const args = argsOrState as KeyManagerKeyArgs | undefined;
+            if (args?.algorithm === undefined && !opts.urn) {
+                throw new Error("Missing required property 'algorithm'");
+            }
             if (args?.usage === undefined && !opts.urn) {
                 throw new Error("Missing required property 'usage'");
             }
+            resourceInputs["algorithm"] = args?.algorithm;
             resourceInputs["description"] = args?.description;
             resourceInputs["name"] = args?.name;
             resourceInputs["origin"] = args?.origin;
@@ -217,6 +250,11 @@ export class KeyManagerKey extends pulumi.CustomResource {
  */
 export interface KeyManagerKeyState {
     /**
+     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * - For `symmetricEncryption`:
+     */
+    algorithm?: pulumi.Input<string>;
+    /**
      * The date and time when the key was created.
      */
     createdAt?: pulumi.Input<string>;
@@ -238,6 +276,8 @@ export interface KeyManagerKeyState {
     origin?: pulumi.Input<string>;
     /**
      * – The ID of the project the key belongs to.
+     *
+     * **Key Usage and Algorithm (both required):**
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -277,7 +317,7 @@ export interface KeyManagerKeyState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * – The usage of the key. Valid values are:
+     * – The usage type of the key. Valid values:
      */
     usage?: pulumi.Input<string>;
 }
@@ -286,6 +326,11 @@ export interface KeyManagerKeyState {
  * The set of arguments for constructing a KeyManagerKey resource.
  */
 export interface KeyManagerKeyArgs {
+    /**
+     * – The cryptographic algorithm to use. Valid values depend on the `usage`:
+     * - For `symmetricEncryption`:
+     */
+    algorithm: pulumi.Input<string>;
     /**
      * – A description for the key.
      */
@@ -300,6 +345,8 @@ export interface KeyManagerKeyArgs {
     origin?: pulumi.Input<string>;
     /**
      * – The ID of the project the key belongs to.
+     *
+     * **Key Usage and Algorithm (both required):**
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -319,7 +366,7 @@ export interface KeyManagerKeyArgs {
      */
     unprotected?: pulumi.Input<boolean>;
     /**
-     * – The usage of the key. Valid values are:
+     * – The usage type of the key. Valid values:
      */
     usage: pulumi.Input<string>;
 }

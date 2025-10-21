@@ -76,6 +76,48 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### With additional volumes
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var server = new Scaleway.Instance.Server("server", new()
+    ///     {
+    ///         Image = "ubuntu_jammy",
+    ///         Type = "DEV1-S",
+    ///     });
+    /// 
+    ///     var volume = new Scaleway.Instance.Volume("volume", new()
+    ///     {
+    ///         Type = "b_ssd",
+    ///         SizeInGb = 20,
+    ///     });
+    /// 
+    ///     var volumeSnapshot = new Scaleway.Instance.Snapshot("volume_snapshot", new()
+    ///     {
+    ///         VolumeId = volume.Id,
+    ///     });
+    /// 
+    ///     var serverSnapshot = new Scaleway.Instance.Snapshot("server_snapshot", new()
+    ///     {
+    ///         VolumeId = main.RootVolume[0].VolumeId,
+    ///     });
+    /// 
+    ///     var image = new Scaleway.Instance.Image("image", new()
+    ///     {
+    ///         Name = "image_with_extra_volumes",
+    ///         RootVolumeId = serverSnapshot.Id,
+    ///         AdditionalVolumeIds = volumeSnapshot.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Images can be imported using the `{zone}/{id}`, e.g.
@@ -92,8 +134,6 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
-        /// 
-        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Output("additionalVolumeIds")]
         public Output<string?> AdditionalVolumeIds { get; private set; } = null!;
@@ -105,13 +145,13 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.InstanceImageAdditionalVolume>> AdditionalVolumes { get; private set; } = null!;
 
         /// <summary>
-        /// The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+        /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
         /// </summary>
         [Output("architecture")]
         public Output<string?> Architecture { get; private set; } = null!;
 
         /// <summary>
-        /// Date of the volume creation.
+        /// Date of the image creation.
         /// </summary>
         [Output("creationDate")]
         public Output<string> CreationDate { get; private set; } = null!;
@@ -123,7 +163,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> FromServerId { get; private set; } = null!;
 
         /// <summary>
-        /// Date of volume latest update.
+        /// Date of image latest update.
         /// </summary>
         [Output("modificationDate")]
         public Output<string> ModificationDate { get; private set; } = null!;
@@ -147,7 +187,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` if the image is public.
+        /// Set to `True` if the image is public.
         /// </summary>
         [Output("public")]
         public Output<bool?> Public { get; private set; } = null!;
@@ -159,7 +199,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> RootVolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// State of the volume.
+        /// The description of the root volume attached to the image.
+        /// </summary>
+        [Output("rootVolumes")]
+        public Output<ImmutableArray<Outputs.InstanceImageRootVolume>> RootVolumes { get; private set; } = null!;
+
+        /// <summary>
+        /// State of the image. Possible values are: `Available`, `Creating` or `Error`.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -225,14 +271,12 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
-        /// 
-        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Input("additionalVolumeIds")]
         public Input<string>? AdditionalVolumeIds { get; set; }
 
         /// <summary>
-        /// The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+        /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
         /// </summary>
         [Input("architecture")]
         public Input<string>? Architecture { get; set; }
@@ -250,7 +294,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Set to `true` if the image is public.
+        /// Set to `True` if the image is public.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
@@ -289,8 +333,6 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// List of IDs of the snapshots of the additional volumes to be attached to the image.
-        /// 
-        /// &gt; **Important:** For now it is only possible to have 1 additional_volume.
         /// </summary>
         [Input("additionalVolumeIds")]
         public Input<string>? AdditionalVolumeIds { get; set; }
@@ -308,13 +350,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+        /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
         /// </summary>
         [Input("architecture")]
         public Input<string>? Architecture { get; set; }
 
         /// <summary>
-        /// Date of the volume creation.
+        /// Date of the image creation.
         /// </summary>
         [Input("creationDate")]
         public Input<string>? CreationDate { get; set; }
@@ -326,7 +368,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? FromServerId { get; set; }
 
         /// <summary>
-        /// Date of volume latest update.
+        /// Date of image latest update.
         /// </summary>
         [Input("modificationDate")]
         public Input<string>? ModificationDate { get; set; }
@@ -350,7 +392,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Set to `true` if the image is public.
+        /// Set to `True` if the image is public.
         /// </summary>
         [Input("public")]
         public Input<bool>? Public { get; set; }
@@ -361,8 +403,20 @@ namespace Pulumiverse.Scaleway
         [Input("rootVolumeId")]
         public Input<string>? RootVolumeId { get; set; }
 
+        [Input("rootVolumes")]
+        private InputList<Inputs.InstanceImageRootVolumeGetArgs>? _rootVolumes;
+
         /// <summary>
-        /// State of the volume.
+        /// The description of the root volume attached to the image.
+        /// </summary>
+        public InputList<Inputs.InstanceImageRootVolumeGetArgs> RootVolumes
+        {
+            get => _rootVolumes ?? (_rootVolumes = new InputList<Inputs.InstanceImageRootVolumeGetArgs>());
+            set => _rootVolumes = value;
+        }
+
+        /// <summary>
+        /// State of the image. Possible values are: `Available`, `Creating` or `Error`.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }

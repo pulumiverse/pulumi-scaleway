@@ -24,8 +24,8 @@ namespace Pulumiverse.Scaleway.Secrets
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `fooii`
-        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - create a secret named `Fooii`
+        /// - create a new version of `Fooii` containing data (`YourSecret`)
         /// - retrieve the secret version specified by the secret ID and the desired version
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
@@ -102,8 +102,8 @@ namespace Pulumiverse.Scaleway.Secrets
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `fooii`
-        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - create a secret named `Fooii`
+        /// - create a new version of `Fooii` containing data (`YourSecret`)
         /// - retrieve the secret version specified by the secret ID and the desired version
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
@@ -180,8 +180,8 @@ namespace Pulumiverse.Scaleway.Secrets
         /// 
         /// The following commands allow you to:
         /// 
-        /// - create a secret named `fooii`
-        /// - create a new version of `fooii` containing data (`your_secret`)
+        /// - create a secret named `Fooii`
+        /// - create a new version of `Fooii` containing data (`YourSecret`)
         /// - retrieve the secret version specified by the secret ID and the desired version
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
@@ -263,20 +263,20 @@ namespace Pulumiverse.Scaleway.Secrets
         public string? Region { get; set; }
 
         /// <summary>
-        /// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
+        /// The revision for this secret version. Refer to alternative values (ex: `Latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
         /// </summary>
         [Input("revision")]
         public string? Revision { get; set; }
 
         /// <summary>
-        /// The ID of the secret associated with the secret version. Only one of `secret_id` and `secret_name` should be specified.
+        /// The ID of the secret associated with the secret version. Only one of `SecretId` and `SecretName` should be specified.
         /// </summary>
         [Input("secretId")]
         public string? SecretId { get; set; }
 
         /// <summary>
         /// The name of the secret associated with the secret version.
-        /// Only one of `secret_id` and `secret_name` should be specified.
+        /// Only one of `SecretId` and `SecretName` should be specified.
         /// </summary>
         [Input("secretName")]
         public string? SecretName { get; set; }
@@ -302,20 +302,20 @@ namespace Pulumiverse.Scaleway.Secrets
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The revision for this secret version. Refer to alternative values (ex: `latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
+        /// The revision for this secret version. Refer to alternative values (ex: `Latest`) in the [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/#path-secret-versions-access-a-secrets-version-using-the-secrets-id)
         /// </summary>
         [Input("revision")]
         public Input<string>? Revision { get; set; }
 
         /// <summary>
-        /// The ID of the secret associated with the secret version. Only one of `secret_id` and `secret_name` should be specified.
+        /// The ID of the secret associated with the secret version. Only one of `SecretId` and `SecretName` should be specified.
         /// </summary>
         [Input("secretId")]
         public Input<string>? SecretId { get; set; }
 
         /// <summary>
         /// The name of the secret associated with the secret version.
-        /// Only one of `secret_id` and `secret_name` should be specified.
+        /// Only one of `SecretId` and `SecretName` should be specified.
         /// </summary>
         [Input("secretName")]
         public Input<string>? SecretName { get; set; }

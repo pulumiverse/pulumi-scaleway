@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class EdgeServicesRouteStageRuleRuleHttpMatchPathFilter
     {
         /// <summary>
-        /// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        /// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `Regex` type.
         /// </summary>
         public readonly string PathFilterType;
         /// <summary>

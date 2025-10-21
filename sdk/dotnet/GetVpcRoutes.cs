@@ -60,7 +60,7 @@ namespace Pulumiverse.Scaleway
         public string? NexthopResourceType { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the routes exist.
+        /// `Region`). The region in which the routes exist.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NexthopResourceType { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the routes exist.
+        /// `Region`). The region in which the routes exist.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -38,13 +38,13 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// A boolean to specify whether to use instance_security_group_rules.
-        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// If `ExternalRules` is set to `True`, `InboundRule` and `OutboundRule` can not be set directly in the security group.
         /// </summary>
         [Output("externalRules")]
         public Output<bool?> ExternalRules { get; private set; } = null!;
 
         /// <summary>
-        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on incoming traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Output("inboundDefaultPolicy")]
         public Output<string?> InboundDefaultPolicy { get; private set; } = null!;
@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on outgoing traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Output("outboundDefaultPolicy")]
         public Output<string?> OutboundDefaultPolicy { get; private set; } = null!;
@@ -80,7 +80,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<Outputs.SecurityGroupOutboundRule>> OutboundRules { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the security group is associated with.
+        /// `ProjectId`) The ID of the project the security group is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -98,7 +98,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the security group should be created.
+        /// `Zone`) The zone in which the security group should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -168,13 +168,13 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// A boolean to specify whether to use instance_security_group_rules.
-        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// If `ExternalRules` is set to `True`, `InboundRule` and `OutboundRule` can not be set directly in the security group.
         /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
 
         /// <summary>
-        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on incoming traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Input("inboundDefaultPolicy")]
         public Input<string>? InboundDefaultPolicy { get; set; }
@@ -198,7 +198,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on outgoing traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Input("outboundDefaultPolicy")]
         public Input<string>? OutboundDefaultPolicy { get; set; }
@@ -216,7 +216,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the security group is associated with.
+        /// `ProjectId`) The ID of the project the security group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -240,7 +240,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the security group should be created.
+        /// `Zone`) The zone in which the security group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -267,13 +267,13 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// A boolean to specify whether to use instance_security_group_rules.
-        /// If `external_rules` is set to `true`, `inbound_rule` and `outbound_rule` can not be set directly in the security group.
+        /// If `ExternalRules` is set to `True`, `InboundRule` and `OutboundRule` can not be set directly in the security group.
         /// </summary>
         [Input("externalRules")]
         public Input<bool>? ExternalRules { get; set; }
 
         /// <summary>
-        /// The default policy on incoming traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on incoming traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Input("inboundDefaultPolicy")]
         public Input<string>? InboundDefaultPolicy { get; set; }
@@ -303,7 +303,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The default policy on outgoing traffic. Possible values are: `accept` or `drop`.
+        /// The default policy on outgoing traffic. Possible values are: `Accept` or `Drop`.
         /// </summary>
         [Input("outboundDefaultPolicy")]
         public Input<string>? OutboundDefaultPolicy { get; set; }
@@ -321,7 +321,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the security group is associated with.
+        /// `ProjectId`) The ID of the project the security group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -345,7 +345,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the security group should be created.
+        /// `Zone`) The zone in which the security group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

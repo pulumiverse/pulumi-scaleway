@@ -24,7 +24,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         public readonly string? IpamIds;
         /// <summary>
         /// The ID of the Private Network to attach to.
-        /// - &gt; **Important:** Updates to `private_network` will recreate the attachment.
+        /// - &gt; **Important:** Updates to `PrivateNetwork` will recreate the attachment.
         /// </summary>
         public readonly string PrivateNetworkId;
         /// <summary>
@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// </summary>
         public readonly string? Status;
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         public readonly string? Zone;
 

@@ -110,7 +110,7 @@ namespace Pulumiverse.Scaleway.Hosting
     public sealed class GetHostingArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The hosting domain name. Only one of `domain` and `webhosting_id` should be specified.
+        /// The hosting domain name. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("domain")]
         public string? Domain { get; set; }
@@ -122,13 +122,13 @@ namespace Pulumiverse.Scaleway.Hosting
         public string? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the hosting is associated with.
+        /// `ProjectId`) The ID of the project the hosting is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The hosting id. Only one of `domain` and `webhosting_id` should be specified.
+        /// The hosting id. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("webhostingId")]
         public string? WebhostingId { get; set; }
@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway.Hosting
     public sealed class GetHostingInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The hosting domain name. Only one of `domain` and `webhosting_id` should be specified.
+        /// The hosting domain name. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("domain")]
         public Input<string>? Domain { get; set; }
@@ -154,13 +154,13 @@ namespace Pulumiverse.Scaleway.Hosting
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the hosting is associated with.
+        /// `ProjectId`) The ID of the project the hosting is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The hosting id. Only one of `domain` and `webhosting_id` should be specified.
+        /// The hosting id. Only one of `Domain` and `WebhostingId` should be specified.
         /// </summary>
         [Input("webhostingId")]
         public Input<string>? WebhostingId { get; set; }

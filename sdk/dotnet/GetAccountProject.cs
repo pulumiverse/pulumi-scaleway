@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The name of the Project.
-        /// Only one of the `name` and `project_id` should be specified.
+        /// Only one of the `Name` and `ProjectId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -51,14 +51,14 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The unique identifier of the Organization with which the Project is associated.
         /// 
-        /// If no default `organization_id` is set, one must be set explicitly in this datasource
+        /// If no default `OrganizationId` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
         /// <summary>
         /// The unique identifier of the Project.
-        /// Only one of the `name` and `project_id` should be specified.
+        /// Only one of the `Name` and `ProjectId` should be specified.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The name of the Project.
-        /// Only one of the `name` and `project_id` should be specified.
+        /// Only one of the `Name` and `ProjectId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -81,14 +81,14 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The unique identifier of the Organization with which the Project is associated.
         /// 
-        /// If no default `organization_id` is set, one must be set explicitly in this datasource
+        /// If no default `OrganizationId` is set, one must be set explicitly in this datasource
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
         /// The unique identifier of the Project.
-        /// Only one of the `name` and `project_id` should be specified.
+        /// Only one of the `Name` and `ProjectId` should be specified.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }

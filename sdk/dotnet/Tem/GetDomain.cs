@@ -36,26 +36,26 @@ namespace Pulumiverse.Scaleway.Tem
     {
         /// <summary>
         /// The domain id.
-        /// Only one of `name` and `domain_id` should be specified.
+        /// Only one of `Name` and `DomainId` should be specified.
         /// </summary>
         [Input("domainId")]
         public string? DomainId { get; set; }
 
         /// <summary>
         /// The domain name.
-        /// Only one of `name` and `domain_id` should be specified.
+        /// Only one of `Name` and `DomainId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `ProjectId`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the domain exists.
+        /// `Region`) The region in which the domain exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -70,26 +70,26 @@ namespace Pulumiverse.Scaleway.Tem
     {
         /// <summary>
         /// The domain id.
-        /// Only one of `name` and `domain_id` should be specified.
+        /// Only one of `Name` and `DomainId` should be specified.
         /// </summary>
         [Input("domainId")]
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
         /// The domain name.
-        /// Only one of `name` and `domain_id` should be specified.
+        /// Only one of `Name` and `DomainId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the domain is associated with.
+        /// `ProjectId`) The ID of the project the domain is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the domain exists.
+        /// `Region`) The region in which the domain exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

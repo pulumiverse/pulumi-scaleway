@@ -142,7 +142,7 @@ namespace Pulumiverse.Scaleway
     public partial class VpcGatewayNetwork : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `IpamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Output("cleanupDhcp")]
         public Output<bool> CleanupDhcp { get; private set; } = null!;
@@ -154,13 +154,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Output("dhcpId")]
         public Output<string?> DhcpId { get; private set; } = null!;
 
         /// <summary>
-        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `IpamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Output("enableDhcp")]
         public Output<bool?> EnableDhcp { get; private set; } = null!;
@@ -178,7 +178,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> GatewayId { get; private set; } = null!;
 
         /// <summary>
-        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Output("ipamConfigs")]
         public Output<ImmutableArray<Outputs.VpcGatewayNetworkIpamConfig>> IpamConfigs { get; private set; } = null!;
@@ -202,7 +202,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Output("staticAddress")]
         public Output<string> StaticAddress { get; private set; } = null!;
@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the gateway network should be created.
+        /// `Zone`) The zone in which the gateway network should be created.
         /// 
         /// &gt; **Important:**
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
@@ -277,19 +277,19 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcGatewayNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `IpamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
 
         /// <summary>
-        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `IpamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
@@ -310,7 +310,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigArgs> IpamConfigs
         {
@@ -337,13 +337,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the gateway network should be created.
+        /// `Zone`) The zone in which the gateway network should be created.
         /// 
         /// &gt; **Important:**
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.
@@ -361,7 +361,7 @@ namespace Pulumiverse.Scaleway
     public sealed class VpcGatewayNetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
+        /// Please use `IpamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
         /// </summary>
         [Input("cleanupDhcp")]
         public Input<bool>? CleanupDhcp { get; set; }
@@ -373,13 +373,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("dhcpId")]
         public Input<string>? DhcpId { get; set; }
 
         /// <summary>
-        /// Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
+        /// Please use `IpamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
         /// </summary>
         [Input("enableDhcp")]
         public Input<bool>? EnableDhcp { get; set; }
@@ -400,7 +400,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs>? _ipamConfigs;
 
         /// <summary>
-        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         public InputList<Inputs.VpcGatewayNetworkIpamConfigGetArgs> IpamConfigs
         {
@@ -433,7 +433,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
@@ -451,7 +451,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the gateway network should be created.
+        /// `Zone`) The zone in which the gateway network should be created.
         /// 
         /// &gt; **Important:**
         /// In 2023, DHCP functionality was moved from Public Gateways to Private Networks, DHCP fields are now deprecated.

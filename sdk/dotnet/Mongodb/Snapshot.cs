@@ -56,7 +56,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// <summary>
         /// The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
         /// 
-        /// &gt; **Important:** Once set, `expires_at` cannot be removed.
+        /// &gt; **Important:** Once set, `ExpiresAt` cannot be removed.
         /// </summary>
         [Output("expiresAt")]
         public Output<string> ExpiresAt { get; private set; } = null!;
@@ -86,7 +86,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® snapshot should be created.
+        /// `Region`) The region in which the MongoDB® snapshot should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// <summary>
         /// The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
         /// 
-        /// &gt; **Important:** Once set, `expires_at` cannot be removed.
+        /// &gt; **Important:** Once set, `ExpiresAt` cannot be removed.
         /// </summary>
         [Input("expiresAt", required: true)]
         public Input<string> ExpiresAt { get; set; } = null!;
@@ -181,7 +181,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® snapshot should be created.
+        /// `Region`) The region in which the MongoDB® snapshot should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// <summary>
         /// The expiration date of the MongoDB® snapshot in ISO 8601 format (e.g. `2024-12-31T23:59:59Z`).
         /// 
-        /// &gt; **Important:** Once set, `expires_at` cannot be removed.
+        /// &gt; **Important:** Once set, `ExpiresAt` cannot be removed.
         /// </summary>
         [Input("expiresAt")]
         public Input<string>? ExpiresAt { get; set; }
@@ -233,7 +233,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? NodeType { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® snapshot should be created.
+        /// `Region`) The region in which the MongoDB® snapshot should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

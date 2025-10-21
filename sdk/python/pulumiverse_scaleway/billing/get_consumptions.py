@@ -100,6 +100,8 @@ def get_consumptions(project_id: Optional[_builtins.str] = None,
     """
     Gets information about your Consumptions.
 
+    ## Example Usage
+
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.
     """
@@ -118,6 +120,8 @@ def get_consumptions_output(project_id: Optional[pulumi.Input[Optional[_builtins
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetConsumptionsResult]:
     """
     Gets information about your Consumptions.
+
+    ## Example Usage
 
 
     :param _builtins.str project_id: `project_id`) The ID of the project the consumption list is associated with.

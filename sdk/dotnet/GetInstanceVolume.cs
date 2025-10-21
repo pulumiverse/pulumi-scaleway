@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The volume name.
-        /// Only one of `name` and `volume_id` should be specified.
+        /// Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -50,13 +50,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The volume id.
-        /// Only one of `name` and `volume_id` should be specified.
+        /// Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("volumeId")]
         public string? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the volume exists.
+        /// `Zone`) The zone in which the volume exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The volume name.
-        /// Only one of `name` and `volume_id` should be specified.
+        /// Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -84,13 +84,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The volume id.
-        /// Only one of `name` and `volume_id` should be specified.
+        /// Only one of `Name` and `VolumeId` should be specified.
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the volume exists.
+        /// `Zone`) The zone in which the volume exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

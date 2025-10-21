@@ -253,7 +253,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
+        /// Whether to delete all instances in this group when the group is destroyed. Set to `True` to tear them down, `False` (the default) leaves them running.
         /// </summary>
         [Output("deleteServersOnDestroy")]
         public Output<bool?> DeleteServersOnDestroy { get; private set; } = null!;
@@ -271,7 +271,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance group is associated with.
+        /// `ProjectId`) The ID of the Project the Instance group is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -295,7 +295,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Instance group exists.
+        /// `Zone`) The zone in which the Instance group exists.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -360,7 +360,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         }
 
         /// <summary>
-        /// Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
+        /// Whether to delete all instances in this group when the group is destroyed. Set to `True` to tear them down, `False` (the default) leaves them running.
         /// </summary>
         [Input("deleteServersOnDestroy")]
         public Input<bool>? DeleteServersOnDestroy { get; set; }
@@ -384,7 +384,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance group is associated with.
+        /// `ProjectId`) The ID of the Project the Instance group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -408,7 +408,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string> TemplateId { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Instance group exists.
+        /// `Zone`) The zone in which the Instance group exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -440,7 +440,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Whether to delete all instances in this group when the group is destroyed. Set to `true` to tear them down, `false` (the default) leaves them running.
+        /// Whether to delete all instances in this group when the group is destroyed. Set to `True` to tear them down, `False` (the default) leaves them running.
         /// </summary>
         [Input("deleteServersOnDestroy")]
         public Input<bool>? DeleteServersOnDestroy { get; set; }
@@ -464,7 +464,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance group is associated with.
+        /// `ProjectId`) The ID of the Project the Instance group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -494,7 +494,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Instance group exists.
+        /// `Zone`) The zone in which the Instance group exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

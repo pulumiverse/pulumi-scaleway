@@ -148,7 +148,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.AppleSiliconServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Output("projectId")]
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> VpcStatus { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the server should be created.
         /// </summary>
         [Output("zone")]
@@ -299,7 +299,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -320,7 +320,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the server should be created.
         /// </summary>
         [Input("zone")]
@@ -417,7 +417,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is
+        /// `ProjectId`) The ID of the project the server is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -468,7 +468,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? VpcStatus { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the server should be created.
         /// </summary>
         [Input("zone")]

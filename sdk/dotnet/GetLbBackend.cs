@@ -169,7 +169,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The backend ID.
-        /// - Only one of `name` and `backend_id` should be specified.
+        /// - Only one of `Name` and `BackendId` should be specified.
         /// </summary>
         [Input("backendId")]
         public string? BackendId { get; set; }
@@ -182,7 +182,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the backend.
-        /// - When using `name` you should specify the `lb-id`
+        /// - When using `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -197,7 +197,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The backend ID.
-        /// - Only one of `name` and `backend_id` should be specified.
+        /// - Only one of `Name` and `BackendId` should be specified.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
@@ -210,7 +210,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the backend.
-        /// - When using `name` you should specify the `lb-id`
+        /// - When using `Name` you should specify the `lb-id`
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

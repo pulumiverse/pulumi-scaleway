@@ -114,7 +114,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway is associated with.
+        /// `ProjectId`) The ID of the project the public gateway is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -156,7 +156,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<ImmutableArray<string>> UpstreamDnsServers { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway should be created.
+        /// `Zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -261,7 +261,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway is associated with.
+        /// `ProjectId`) The ID of the project the public gateway is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -291,7 +291,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway should be created.
+        /// `Zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -371,7 +371,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the public gateway is associated with.
+        /// `ProjectId`) The ID of the project the public gateway is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -425,7 +425,7 @@ namespace Pulumiverse.Scaleway.Network
         }
 
         /// <summary>
-        /// `zone`) The zone in which the Public Gateway should be created.
+        /// `Zone`) The zone in which the Public Gateway should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

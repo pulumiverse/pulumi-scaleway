@@ -13,7 +13,7 @@ namespace Pulumiverse.Scaleway.Inference
     public static class GetModel
     {
         /// <summary>
-        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `name` or its `model_id`.
+        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `Name` or its `ModelId`.
         /// 
         /// ## Example Usage
         /// 
@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Inference
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetModelResult>("scaleway:inference/getModel:getModel", args ?? new GetModelArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `name` or its `model_id`.
+        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `Name` or its `ModelId`.
         /// 
         /// ## Example Usage
         /// 
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Inference
             => global::Pulumi.Deployment.Instance.Invoke<GetModelResult>("scaleway:inference/getModel:getModel", args ?? new GetModelInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `name` or its `model_id`.
+        /// The `scaleway.inference.Model` data source allows you to retrieve information about an inference model available in the Scaleway Inference API, either by providing the model's `Name` or its `ModelId`.
         /// 
         /// ## Example Usage
         /// 

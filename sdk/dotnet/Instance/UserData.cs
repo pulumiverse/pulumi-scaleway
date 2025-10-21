@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     /// The typical use case is to pass something like a shell script or a configuration file as user data.
     /// 
-    /// For more information about [user_data](https://www.scaleway.com/en/developers/api/instance/#path-user-data-list-user-data) check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
+    /// For more information about [UserData](https://www.scaleway.com/en/developers/api/instance/#path-user-data-list-user-data) check our documentation guide [here](https://www.scaleway.com/en/docs/compute/instances/how-to/use-boot-modes/#how-to-use-cloud-init).
     /// 
     /// About cloud-init documentation please check this [link](https://cloudinit.readthedocs.io/en/latest/).
     /// 
@@ -102,7 +102,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> Value { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// 
         /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:
@@ -182,7 +182,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string> Value { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// 
         /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:
@@ -219,7 +219,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? Value { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// 
         /// &gt; **Important:**   Use the `cloud-init` key to use [cloud-init](https://cloudinit.readthedocs.io/en/latest/) on your instance.
         /// You can define values using:

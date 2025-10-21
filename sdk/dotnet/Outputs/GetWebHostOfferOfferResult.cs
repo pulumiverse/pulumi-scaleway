@@ -35,7 +35,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         public readonly string Name;
         /// <summary>

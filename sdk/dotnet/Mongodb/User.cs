@@ -151,7 +151,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> Password { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® user should be created.
+        /// `Region`) The region in which the MongoDB® user should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -242,7 +242,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® user should be created.
+        /// `Region`) The region in which the MongoDB® user should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -296,7 +296,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         }
 
         /// <summary>
-        /// `region`) The region in which the MongoDB® user should be created.
+        /// `Region`) The region in which the MongoDB® user should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

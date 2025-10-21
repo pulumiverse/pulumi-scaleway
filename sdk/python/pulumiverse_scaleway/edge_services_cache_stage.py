@@ -385,6 +385,8 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"])
         ```
 
+        ### Purge request
+
         ## Import
 
         Cache stages can be imported using the `{id}`, e.g.
@@ -428,6 +430,8 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"])
         ```
+
+        ### Purge request
 
         ## Import
 

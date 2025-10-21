@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class EdgeServicesRouteStageRuleRuleHttpMatchPathFilterGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+        /// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `Regex` type.
         /// </summary>
         [Input("pathFilterType", required: true)]
         public Input<string> PathFilterType { get; set; } = null!;

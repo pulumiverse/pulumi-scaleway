@@ -198,7 +198,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -207,14 +207,14 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The value to match in the URL beginning path from an incoming request.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// </summary>
         [Output("matchPathBegin")]
         public Output<string?> MatchPathBegin { get; private set; } = null!;
 
         /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
@@ -294,7 +294,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -303,14 +303,14 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The value to match in the URL beginning path from an incoming request.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// </summary>
         [Input("matchPathBegin")]
         public Input<string>? MatchPathBegin { get; set; }
 
         /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>
@@ -351,7 +351,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The HTTP host header to match. Value to match in the HTTP Host request header from an incoming connection.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on HTTP Load Balancers.
         /// </summary>
@@ -360,14 +360,14 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The value to match in the URL beginning path from an incoming request.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// </summary>
         [Input("matchPathBegin")]
         public Input<string>? MatchPathBegin { get; set; }
 
         /// <summary>
         /// The Server Name Indication (SNI) value to match. Value to match in the Server Name Indication TLS extension (SNI) field from an incoming connection made via an SSL/TLS transport layer.
-        /// Only one of `match_sni`, `match_host_header` and `match_path_begin` should be specified.
+        /// Only one of `MatchSni`, `MatchHostHeader` and `MatchPathBegin` should be specified.
         /// 
         /// &gt; **Important:** This field should be set for routes on TCP Load Balancers.
         /// </summary>

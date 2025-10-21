@@ -72,7 +72,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
     public partial class InstanceTemplate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Output("cloudInit")]
         public Output<string?> CloudInit { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Output("imageId")]
         public Output<string?> ImageId { get; private set; } = null!;
@@ -114,7 +114,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<ImmutableArray<string>> PrivateNetworkIds { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance template is associated with.
+        /// `ProjectId`) The ID of the Project the Instance template is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -162,7 +162,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<ImmutableArray<Outputs.InstanceTemplateVolume>> Volumes { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Instance template exists.
+        /// `Zone`) The zone in which the Instance template exists.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -215,7 +215,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
     public sealed class InstanceTemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Input("cloudInit")]
         public Input<string>? CloudInit { get; set; }
@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string> CommercialType { get; set; } = null!;
 
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance template is associated with.
+        /// `ProjectId`) The ID of the Project the Instance template is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -305,7 +305,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         }
 
         /// <summary>
-        /// `zone`) The zone in which the Instance template exists.
+        /// `Zone`) The zone in which the Instance template exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -319,7 +319,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
     public sealed class InstanceTemplateState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Input("cloudInit")]
         public Input<string>? CloudInit { get; set; }
@@ -337,7 +337,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `volume` and `commercial_type` template.
+        /// The instance image ID. Can be an ID of a marketplace or personal image. This image must be compatible with `Volume` and `CommercialType` template.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
@@ -367,7 +367,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance template is associated with.
+        /// `ProjectId`) The ID of the Project the Instance template is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -427,7 +427,7 @@ namespace Pulumiverse.Scaleway.Autoscaling
         }
 
         /// <summary>
-        /// `zone`) The zone in which the Instance template exists.
+        /// `Zone`) The zone in which the Instance template exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

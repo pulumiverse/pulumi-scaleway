@@ -34,6 +34,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Purge request
+    /// 
     /// ## Import
     /// 
     /// Cache stages can be imported using the `{id}`, e.g.
@@ -48,7 +50,7 @@ namespace Pulumiverse.Scaleway
     public partial class EdgeServicesCacheStage : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The backend stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Output("backendStageId")]
         public Output<string> BackendStageId { get; private set; } = null!;
@@ -78,7 +80,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> PipelineId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cache stage is associated with.
+        /// `ProjectId`) The ID of the project the cache stage is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -96,7 +98,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> RefreshCache { get; private set; } = null!;
 
         /// <summary>
-        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The route stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Output("routeStageId")]
         public Output<string> RouteStageId { get; private set; } = null!;
@@ -108,7 +110,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The WAF stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Output("wafStageId")]
         public Output<string> WafStageId { get; private set; } = null!;
@@ -161,7 +163,7 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesCacheStageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The backend stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
@@ -185,7 +187,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> PipelineId { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cache stage is associated with.
+        /// `ProjectId`) The ID of the project the cache stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -209,13 +211,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RefreshCache { get; set; }
 
         /// <summary>
-        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The route stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("routeStageId")]
         public Input<string>? RouteStageId { get; set; }
 
         /// <summary>
-        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The WAF stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("wafStageId")]
         public Input<string>? WafStageId { get; set; }
@@ -229,7 +231,7 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesCacheStageState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The backend stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The backend stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("backendStageId")]
         public Input<string>? BackendStageId { get; set; }
@@ -259,7 +261,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? PipelineId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cache stage is associated with.
+        /// `ProjectId`) The ID of the project the cache stage is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -283,7 +285,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? RefreshCache { get; set; }
 
         /// <summary>
-        /// The route stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The route stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("routeStageId")]
         public Input<string>? RouteStageId { get; set; }
@@ -295,7 +297,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The WAF stage ID the cache stage will be linked to. Only one of `backend_stage_id`, `route_stage_id` and `waf_stage_id` should be specified.
+        /// The WAF stage ID the cache stage will be linked to. Only one of `BackendStageId`, `RouteStageId` and `WafStageId` should be specified.
         /// </summary>
         [Input("wafStageId")]
         public Input<string>? WafStageId { get; set; }

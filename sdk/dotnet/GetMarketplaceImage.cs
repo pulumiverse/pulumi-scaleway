@@ -89,7 +89,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMarketplaceImageArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The local image type, `instance_local` or `instance_sbs`.
+        /// The local image type, `InstanceLocal` or `InstanceSbs`.
         /// </summary>
         [Input("imageType")]
         public string? ImageType { get; set; }
@@ -103,13 +103,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
-        /// to find the right `label`.
+        /// to find the right `Label`.
         /// </summary>
         [Input("label", required: true)]
         public string Label { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `Zone`) The zone in which the image exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -123,7 +123,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetMarketplaceImageInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The local image type, `instance_local` or `instance_sbs`.
+        /// The local image type, `InstanceLocal` or `InstanceSbs`.
         /// </summary>
         [Input("imageType")]
         public Input<string>? ImageType { get; set; }
@@ -137,13 +137,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Exact label of the desired image. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
-        /// to find the right `label`.
+        /// to find the right `Label`.
         /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `Zone`) The zone in which the image exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

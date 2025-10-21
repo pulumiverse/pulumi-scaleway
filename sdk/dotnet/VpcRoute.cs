@@ -206,7 +206,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> NexthopResourceId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the route.
+        /// `Region`) The region of the route.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -301,7 +301,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NexthopResourceId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the route.
+        /// `Region`) The region of the route.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -363,7 +363,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? NexthopResourceId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the route.
+        /// `Region`) The region of the route.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

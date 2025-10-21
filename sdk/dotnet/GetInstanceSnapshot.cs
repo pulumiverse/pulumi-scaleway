@@ -112,26 +112,26 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The snapshot name.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// `ProjectId`) The ID of the project the snapshot is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
         /// The snapshot id.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public string? SnapshotId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot exists.
+        /// `Zone`) The zone in which the snapshot exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -146,26 +146,26 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The snapshot name.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is associated with.
+        /// `ProjectId`) The ID of the project the snapshot is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
         /// The snapshot id.
-        /// Only one of `name` and `snapshot_id` should be specified.
+        /// Only one of `Name` and `SnapshotId` should be specified.
         /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the snapshot exists.
+        /// `Zone`) The zone in which the snapshot exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

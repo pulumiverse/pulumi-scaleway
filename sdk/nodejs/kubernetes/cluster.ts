@@ -190,6 +190,35 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ## Deprecation of defaultPool
+ *
+ * `defaultPool` is deprecated in favour the `scaleway.kubernetes.Pool` resource. Here is a migration example.
+ *
+ * Before:
+ *
+ * After:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
+ *     name: "tf-cluster",
+ *     version: "1.18.0",
+ *     cni: "cilium",
+ * });
+ * const _default = new scaleway.kubernetes.Pool("default", {
+ *     clusterId: jack.id,
+ *     name: "default",
+ *     nodeType: "DEV1-M",
+ *     size: 1,
+ * });
+ * ```
+ *
+ * Once you have moved all the `defaultPool` into their own object, you will need to import them. If your pool had the ID 11111111-1111-1111-1111-111111111111 in the `fr-par` region, you can import it by typing:
+ *
+ * Then you will only need to type `pulumi up` to have a smooth migration.
+ *
  * ## Import
  *
  * Kubernetes clusters can be imported using the `{region}/{id}`, e.g.

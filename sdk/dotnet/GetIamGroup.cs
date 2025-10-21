@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the IAM group.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `group_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `GroupId`.
         /// </summary>
         [Input("groupId")]
         public string? GroupId { get; set; }
@@ -131,7 +131,7 @@ namespace Pulumiverse.Scaleway
         public string? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// organization the group is associated with.
         /// </summary>
         [Input("organizationId")]
@@ -148,7 +148,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the IAM group.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `group_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `GroupId`.
         /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
@@ -160,7 +160,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the
+        /// `OrganizationId`) The ID of the
         /// organization the group is associated with.
         /// </summary>
         [Input("organizationId")]

@@ -925,6 +925,33 @@ class KubernetesCluster(pulumi.CustomResource):
             ])
         ```
 
+        ## Deprecation of default_pool
+
+        `default_pool` is deprecated in favour the `kubernetes.Pool` resource. Here is a migration example.
+
+        Before:
+
+        After:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.18.0",
+            cni="cilium")
+        default = scaleway.kubernetes.Pool("default",
+            cluster_id=jack["id"],
+            name="default",
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        Once you have moved all the `default_pool` into their own object, you will need to import them. If your pool had the ID 11111111-1111-1111-1111-111111111111 in the `fr-par` region, you can import it by typing:
+
+        Then you will only need to type `pulumi up` to have a smooth migration.
+
         ## Import
 
         Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
@@ -1143,6 +1170,33 @@ class KubernetesCluster(pulumi.CustomResource):
                 },
             ])
         ```
+
+        ## Deprecation of default_pool
+
+        `default_pool` is deprecated in favour the `kubernetes.Pool` resource. Here is a migration example.
+
+        Before:
+
+        After:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.18.0",
+            cni="cilium")
+        default = scaleway.kubernetes.Pool("default",
+            cluster_id=jack["id"],
+            name="default",
+            node_type="DEV1-M",
+            size=1)
+        ```
+
+        Once you have moved all the `default_pool` into their own object, you will need to import them. If your pool had the ID 11111111-1111-1111-1111-111111111111 in the `fr-par` region, you can import it by typing:
+
+        Then you will only need to type `pulumi up` to have a smooth migration.
 
         ## Import
 

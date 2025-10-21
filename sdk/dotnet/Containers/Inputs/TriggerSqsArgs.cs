@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        /// The ID of the project in which SQS is enabled, (defaults to provider `ProjectId`)
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Containers.Inputs
         public Input<string> Queue { get; set; } = null!;
 
         /// <summary>
-        /// Region where SQS is enabled (defaults to provider `region`)
+        /// Region where SQS is enabled (defaults to provider `Region`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

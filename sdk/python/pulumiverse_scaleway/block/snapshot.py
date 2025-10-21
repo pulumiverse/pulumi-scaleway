@@ -296,6 +296,10 @@ class Snapshot(pulumi.CustomResource):
             volume_id=block_volume.id)
         ```
 
+        ### How to import from Object Storage
+
+        ### How to export to Object Storage
+
         ## Import
 
         This section explains how to import the snapshot of a Block Storage volume using the zoned ID format (`{zone}/{id}`).
@@ -345,6 +349,10 @@ class Snapshot(pulumi.CustomResource):
             name="some-snapshot-name",
             volume_id=block_volume.id)
         ```
+
+        ### How to import from Object Storage
+
+        ### How to export to Object Storage
 
         ## Import
 

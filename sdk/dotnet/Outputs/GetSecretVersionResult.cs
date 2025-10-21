@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Outputs
         public readonly string Revision;
         /// <summary>
         /// The ID of the secret.
-        /// Only one of `name` and `secret_id` should be specified.
+        /// Only one of `Name` and `SecretId` should be specified.
         /// </summary>
         public readonly string SecretId;
         /// <summary>

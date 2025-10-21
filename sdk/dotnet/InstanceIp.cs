@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Prefix { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `ProjectId`) The ID of the project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -85,13 +85,13 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// The type of the IP (`RoutedIpv4`, `RoutedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumiverse.Scaleway
     public sealed class InstanceIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `ProjectId`) The ID of the project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -162,13 +162,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// The type of the IP (`RoutedIpv4`, `RoutedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Prefix { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IP is associated with.
+        /// `ProjectId`) The ID of the project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -230,13 +230,13 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The type of the IP (`routed_ipv4`, `routed_ipv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
+        /// The type of the IP (`RoutedIpv4`, `RoutedIpv6`), more information in [the documentation](https://www.scaleway.com/en/docs/compute/instances/api-cli/using-routed-ips/)
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

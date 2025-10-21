@@ -116,25 +116,25 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Output<int> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance policy is associated with.
+        /// `ProjectId`) The ID of the Project the Instance policy is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// How to use the number defined in `value` when determining by how many Instances to scale up/down.
+        /// How to use the number defined in `Value` when determining by how many Instances to scale up/down.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
+        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `Type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
         /// </summary>
         [Output("value")]
         public Output<int> Value { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Instance policy exists.
+        /// `Zone`) The zone in which the Instance policy exists.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -223,25 +223,25 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<int> Priority { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance policy is associated with.
+        /// `ProjectId`) The ID of the Project the Instance policy is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// How to use the number defined in `value` when determining by how many Instances to scale up/down.
+        /// How to use the number defined in `Value` when determining by how many Instances to scale up/down.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
         /// <summary>
-        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
+        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `Type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
         /// </summary>
         [Input("value", required: true)]
         public Input<int> Value { get; set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the Instance policy exists.
+        /// `Zone`) The zone in which the Instance policy exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -291,25 +291,25 @@ namespace Pulumiverse.Scaleway.Autoscaling
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the Instance policy is associated with.
+        /// `ProjectId`) The ID of the Project the Instance policy is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// How to use the number defined in `value` when determining by how many Instances to scale up/down.
+        /// How to use the number defined in `Value` when determining by how many Instances to scale up/down.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
+        /// The value representing the magnitude of the scaling action to take for the Instance group. Depending on the `Type` parameter, this number could represent a total number of Instances in the group, a number of Instances to add, or a percentage to scale the group by.
         /// </summary>
         [Input("value")]
         public Input<int>? Value { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the Instance policy exists.
+        /// `Zone`) The zone in which the Instance policy exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

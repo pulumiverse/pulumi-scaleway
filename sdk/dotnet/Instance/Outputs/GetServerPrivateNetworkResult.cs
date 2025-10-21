@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly string Status;
         /// <summary>
-        /// `zone`) The zone in which the server exists.
+        /// `Zone`) The zone in which the server exists.
         /// </summary>
         public readonly string Zone;
 

@@ -23,8 +23,8 @@ namespace Pulumiverse.Scaleway.Observability
     /// 
     /// - create a Scaleway Project named `my-project`
     /// - create a Cockpit token named `my-awesome-token` inside the Project
-    /// - assign `read` permissions to the token for metrics and logs
-    /// - disable `write` permissions for metrics and logs
+    /// - assign `Read` permissions to the token for metrics and logs
+    /// - disable `Write` permissions for metrics and logs
     /// 
     /// ```csharp
     /// using System.Collections.Generic;

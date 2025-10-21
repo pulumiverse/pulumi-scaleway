@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool? IsSsl;
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         public readonly string? Zone;
 

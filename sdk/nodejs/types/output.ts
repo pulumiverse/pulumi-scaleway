@@ -3267,33 +3267,13 @@ export interface InferenceDeploymentPublicEndpoint {
 
 export interface InstanceImageAdditionalVolume {
     /**
-     * Date of the volume creation.
-     */
-    creationDate: string;
-    /**
-     * The export URI of the volume.
-     */
-    exportUri: string;
-    /**
      * ID of the server containing the volume.
      */
     id: string;
     /**
-     * Date of volume latest update.
-     */
-    modificationDate: string;
-    /**
      * The name of the image. If not provided it will be randomly generated.
      */
     name: string;
-    /**
-     * The organization ID the volume is associated with.
-     */
-    organization: string;
-    /**
-     * ID of the project the volume is associated with
-     */
-    project: string;
     /**
      * Description of the server containing the volume (in case the image is a backup from a server).
      */
@@ -3303,21 +3283,32 @@ export interface InstanceImageAdditionalVolume {
      */
     size: number;
     /**
-     * State of the volume.
-     */
-    state: string;
-    /**
      * A list of tags to apply to the image.
      */
     tags: string[];
     /**
-     * The type of volume, possible values are `lSsd` and `bSsd`.
+     * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
      */
     volumeType: string;
+}
+
+export interface InstanceImageRootVolume {
     /**
-     * The zone in which the image should be created.
+     * ID of the server containing the volume.
      */
-    zone: string;
+    id: string;
+    /**
+     * The name of the image. If not provided it will be randomly generated.
+     */
+    name: string;
+    /**
+     * The size of the volume.
+     */
+    size: number;
+    /**
+     * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+     */
+    volumeType: string;
 }
 
 export interface InstancePrivateNicPrivateIp {
@@ -7317,33 +7308,13 @@ export namespace instance {
 
     export interface ImageAdditionalVolume {
         /**
-         * Date of the volume creation.
-         */
-        creationDate: string;
-        /**
-         * The export URI of the volume.
-         */
-        exportUri: string;
-        /**
          * ID of the server containing the volume.
          */
         id: string;
         /**
-         * Date of volume latest update.
-         */
-        modificationDate: string;
-        /**
          * The name of the image. If not provided it will be randomly generated.
          */
         name: string;
-        /**
-         * The organization ID the volume is associated with.
-         */
-        organization: string;
-        /**
-         * ID of the project the volume is associated with
-         */
-        project: string;
         /**
          * Description of the server containing the volume (in case the image is a backup from a server).
          */
@@ -7353,21 +7324,32 @@ export namespace instance {
          */
         size: number;
         /**
-         * State of the volume.
-         */
-        state: string;
-        /**
          * A list of tags to apply to the image.
          */
         tags: string[];
         /**
-         * The type of volume, possible values are `lSsd` and `bSsd`.
+         * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
          */
         volumeType: string;
+    }
+
+    export interface ImageRootVolume {
         /**
-         * The zone in which the image should be created.
+         * ID of the server containing the volume.
          */
-        zone: string;
+        id: string;
+        /**
+         * The name of the image. If not provided it will be randomly generated.
+         */
+        name: string;
+        /**
+         * The size of the volume.
+         */
+        size: number;
+        /**
+         * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+         */
+        volumeType: string;
     }
 
     export interface PrivateNicPrivateIp {

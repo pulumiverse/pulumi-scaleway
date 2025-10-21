@@ -14,7 +14,7 @@ namespace Pulumiverse.Scaleway.Iot.Inputs
     public sealed class RouteDatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The database name (e.g. `measurements`).
+        /// The database name (e.g. `Measurements`).
         /// </summary>
         [Input("dbname", required: true)]
         public Input<string> Dbname { get; set; } = null!;

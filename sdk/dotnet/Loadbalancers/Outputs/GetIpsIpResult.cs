@@ -43,7 +43,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// `zone`) The zone in which the IPs exist.
+        /// `Zone`) The zone in which the IPs exist.
         /// </summary>
         public readonly string? Zone;
 

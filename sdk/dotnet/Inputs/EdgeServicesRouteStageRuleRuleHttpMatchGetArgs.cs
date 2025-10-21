@@ -17,7 +17,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _methodFilters;
 
         /// <summary>
-        /// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+        /// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `Get`, `Post`, `Put`, `Patch`, `Delete`, `Head`, `Options`. All methods will match if none is provided.
         /// </summary>
         public InputList<string> MethodFilters
         {

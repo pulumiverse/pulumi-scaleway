@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Action;
         /// <summary>
-        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or ip_range should be provided
+        /// Ip address for this rule (e.g: 1.1.1.1). Only one of ip or IpRange should be provided
         /// </summary>
         public readonly string? Ip;
         /// <summary>
-        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or ip_range should be provided
+        /// Ip range for this rule (e.g: 192.168.1.0/24). Only one of ip or IpRange should be provided
         /// </summary>
         public readonly string? IpRange;
         /// <summary>

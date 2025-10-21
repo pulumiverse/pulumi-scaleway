@@ -20,13 +20,13 @@ namespace Pulumiverse.Scaleway.Functions.Inputs
         public Input<string>? AccountId { get; set; }
 
         /// <summary>
-        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `project_id`)
+        /// THe ID of the project that contains the Messaging and Queuing NATS account (defaults to provider `ProjectId`)
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `region`)
+        /// Region where the Messaging and Queuing NATS account is enabled (defaults to provider `Region`)
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

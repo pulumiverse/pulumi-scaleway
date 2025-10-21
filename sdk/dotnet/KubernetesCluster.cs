@@ -180,8 +180,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
-    /// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+    /// The `NullResource` is needed because when the cluster is created, its status is `PoolRequired`, but the kubeconfig can already be downloaded.
+    /// It leads the `Kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
     /// 
     /// ### With the Helm provider
     /// 
@@ -275,6 +275,44 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ## Deprecation of DefaultPool
+    /// 
+    /// `DefaultPool` is deprecated in favour the `scaleway.kubernetes.Pool` resource. Here is a migration example.
+    /// 
+    /// Before:
+    /// 
+    /// After:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Version = "1.18.0",
+    ///         Cni = "cilium",
+    ///     });
+    /// 
+    ///     var @default = new Scaleway.Kubernetes.Pool("default", new()
+    ///     {
+    ///         ClusterId = jack.Id,
+    ///         Name = "default",
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Once you have moved all the `DefaultPool` into their own object, you will need to import them. If your pool had the ID 11111111-1111-1111-1111-111111111111 in the `fr-par` region, you can import it by typing:
+    /// 
+    /// Then you will only need to type `pulumi up` to have a smooth migration.
+    /// 
     /// ## Import
     /// 
     /// Kubernetes clusters can be imported using the `{region}/{id}`, e.g.
@@ -334,8 +372,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
-        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
-        /// If you prefer keeping it, you should instead set it as `false`.
+        /// &gt; **Important:** Setting this field to `True` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `False`.
         /// </summary>
         [Output("deleteAdditionalResources")]
         public Output<bool> DeleteAdditionalResources { get; private set; } = null!;
@@ -381,20 +419,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `PrivateNetworkId` set),
         /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// `ProjectId`) The ID of the project the cluster is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// `Region`) The region in which the cluster should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -414,7 +452,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The type of Kubernetes cluster. Possible values are:
         /// 
-        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// - for mutualized clusters: `Kapsule` or `Multicloud`
         /// 
         /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
         /// 
@@ -430,7 +468,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Set to `true` if a newer Kubernetes version is available.
+        /// Set to `True` if a newer Kubernetes version is available.
         /// </summary>
         [Output("upgradeAvailable")]
         public Output<bool> UpgradeAvailable { get; private set; } = null!;
@@ -543,8 +581,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
-        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
-        /// If you prefer keeping it, you should instead set it as `false`.
+        /// &gt; **Important:** Setting this field to `True` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `False`.
         /// </summary>
         [Input("deleteAdditionalResources", required: true)]
         public Input<bool> DeleteAdditionalResources { get; set; } = null!;
@@ -584,20 +622,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `PrivateNetworkId` set),
         /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// `ProjectId`) The ID of the project the cluster is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// `Region`) The region in which the cluster should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -617,7 +655,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The type of Kubernetes cluster. Possible values are:
         /// 
-        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// - for mutualized clusters: `Kapsule` or `Multicloud`
         /// 
         /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
         /// 
@@ -697,8 +735,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// Delete additional resources like block volumes, load-balancers and the cluster's private network (if empty) that were created in Kubernetes on cluster deletion.
-        /// &gt; **Important:** Setting this field to `true` means that you will lose all your cluster data and network configuration when you delete your cluster.
-        /// If you prefer keeping it, you should instead set it as `false`.
+        /// &gt; **Important:** Setting this field to `True` means that you will lose all your cluster data and network configuration when you delete your cluster.
+        /// If you prefer keeping it, you should instead set it as `False`.
         /// </summary>
         [Input("deleteAdditionalResources")]
         public Input<bool>? DeleteAdditionalResources { get; set; }
@@ -760,20 +798,20 @@ namespace Pulumiverse.Scaleway
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
         /// 
-        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `private_network_id` set),
+        /// &gt; **Important:** Private Networks are now mandatory with Kapsule Clusters. If you have a legacy cluster (no `PrivateNetworkId` set),
         /// you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the cluster is associated with.
+        /// `ProjectId`) The ID of the project the cluster is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the cluster should be created.
+        /// `Region`) The region in which the cluster should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -799,7 +837,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The type of Kubernetes cluster. Possible values are:
         /// 
-        /// - for mutualized clusters: `kapsule` or `multicloud`
+        /// - for mutualized clusters: `Kapsule` or `Multicloud`
         /// 
         /// - for dedicated Kapsule clusters: `kapsule-dedicated-4`, `kapsule-dedicated-8` or `kapsule-dedicated-16`.
         /// 
@@ -815,7 +853,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Set to `true` if a newer Kubernetes version is available.
+        /// Set to `True` if a newer Kubernetes version is available.
         /// </summary>
         [Input("upgradeAvailable")]
         public Input<bool>? UpgradeAvailable { get; set; }

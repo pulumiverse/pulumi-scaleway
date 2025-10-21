@@ -275,12 +275,12 @@ namespace Pulumiverse.Scaleway.Instance
     /// 
     /// ## Private Network
     /// 
-    /// &gt; **Important:** Updates to `private_network` will recreate a new private network interface.
+    /// &gt; **Important:** Updates to `PrivateNetwork` will recreate a new private network interface.
     /// 
-    /// - `pn_id` - (Required) The private network ID where to connect.
-    /// - `mac_address` The private NIC MAC address.
-    /// - `status` The private NIC state.
-    /// - `zone` - (Defaults to provider `zone`) The zone in which the server must be created.
+    /// - `PnId` - (Required) The private network ID where to connect.
+    /// - `MacAddress` The private NIC MAC address.
+    /// - `Status` The private NIC state.
+    /// - `Zone` - (Defaults to provider `Zone`) The zone in which the server must be created.
     /// 
     /// &gt; **Important:** You can only attach an instance in the same zone as a private network.
     /// **Important:** Instance supports a maximum of 8 different private networks.
@@ -302,7 +302,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
-        /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** If this field contains local volumes, the `State` must be set to `Stopped`, otherwise it will fail.
         /// 
         /// &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         /// </summary>
@@ -311,20 +311,20 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
-        /// Mandatory for Windows OS. The public_key value of this key is used to encrypt the admin password.
-        /// When set to an empty string, it resets this value and admin_password_encrypted_value to an empty string so a new password may be generated.
+        /// Mandatory for Windows OS. The PublicKey value of this key is used to encrypt the admin password.
+        /// When set to an empty string, it resets this value and AdminPasswordEncryptedValue to an empty string so a new password may be generated.
         /// </summary>
         [Output("adminPasswordEncryptionSshKeyId")]
         public Output<string?> AdminPasswordEncryptionSshKeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot Type of the server. Possible values are: `Local`, `Bootscript` or `Rescue`.
         /// </summary>
         [Output("bootType")]
         public Output<string?> BootType { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the target bootscript (set boot_type to bootscript)
+        /// ID of the target bootscript (set BootType to bootscript)
         /// </summary>
         [Output("bootscriptId")]
         public Output<string> BootscriptId { get; private set; } = null!;
@@ -343,14 +343,14 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Output("enableIpv6")]
         public Output<bool?> EnableIpv6 { get; private set; } = null!;
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
-        /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        /// to find either the right `Label` or the right local image `ID` for a given `Type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
@@ -366,30 +366,30 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string?> IpId { get; private set; } = null!;
 
         /// <summary>
-        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `IpId`.
         /// 
-        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+        /// &gt; `IpId` to `IpIds` migration: if moving the ip from the old `IpId` field to the new `IpIds`, it should not detach the ip.
         /// </summary>
         [Output("ipIds")]
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Output("ipv6Address")]
         public Output<string> Ipv6Address { get; private set; } = null!;
 
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Output("ipv6Gateway")]
         public Output<string> Ipv6Gateway { get; private set; } = null!;
 
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Output("ipv6PrefixLength")]
         public Output<int> Ipv6PrefixLength { get; private set; } = null!;
@@ -410,19 +410,19 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
         /// 
         /// 
-        /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>
         [Output("placementGroupId")]
         public Output<string?> PlacementGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
+        /// (Deprecated) Always false, use InstancePlacementGroup ressource to known when the placement group policy is respected.
         /// </summary>
         [Output("placementGroupPolicyRespected")]
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
 
         /// <summary>
-        /// The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
+        /// The Scaleway internal IP address of the server (Deprecated use IpamIp datasource instead).
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
@@ -435,13 +435,13 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
+        /// Use the `PnId` key to attach a [PrivateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         /// </summary>
         [Output("privateNetworks")]
         public Output<ImmutableArray<Outputs.ServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -453,7 +453,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<bool?> Protected { get; private set; } = null!;
 
         /// <summary>
-        /// The public IP address of the server (Deprecated use `public_ips` instead).
+        /// The public IP address of the server (Deprecated use `PublicIps` instead).
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
@@ -465,7 +465,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<Outputs.ServerPublicIp>> PublicIps { get; private set; } = null!;
 
         /// <summary>
-        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// If true, the server will be replaced if `Type` is changed. Otherwise, the server will migrate.
         /// </summary>
         [Output("replaceOnTypeChange")]
         public Output<bool?> ReplaceOnTypeChange { get; private set; } = null!;
@@ -483,7 +483,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> SecurityGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         [Output("state")]
         public Output<string?> State { get; private set; } = null!;
@@ -498,9 +498,9 @@ namespace Pulumiverse.Scaleway.Instance
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
         /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
-        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// Use `ReplaceOnTypeChange` to trigger replacement instead of migration.
         /// 
-        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        /// &gt; **Important:** If `Type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -517,7 +517,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableDictionary<string, string>> UserData { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -580,7 +580,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
-        /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** If this field contains local volumes, the `State` must be set to `Stopped`, otherwise it will fail.
         /// 
         /// &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         /// </summary>
@@ -592,20 +592,20 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
-        /// Mandatory for Windows OS. The public_key value of this key is used to encrypt the admin password.
-        /// When set to an empty string, it resets this value and admin_password_encrypted_value to an empty string so a new password may be generated.
+        /// Mandatory for Windows OS. The PublicKey value of this key is used to encrypt the admin password.
+        /// When set to an empty string, it resets this value and AdminPasswordEncryptedValue to an empty string so a new password may be generated.
         /// </summary>
         [Input("adminPasswordEncryptionSshKeyId")]
         public Input<string>? AdminPasswordEncryptionSshKeyId { get; set; }
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot Type of the server. Possible values are: `Local`, `Bootscript` or `Rescue`.
         /// </summary>
         [Input("bootType")]
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// ID of the target bootscript (set boot_type to bootscript)
+        /// ID of the target bootscript (set BootType to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -624,14 +624,14 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
-        /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        /// to find either the right `Label` or the right local image `ID` for a given `Type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
@@ -650,9 +650,9 @@ namespace Pulumiverse.Scaleway.Instance
         private InputList<string>? _ipIds;
 
         /// <summary>
-        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `IpId`.
         /// 
-        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+        /// &gt; `IpId` to `IpIds` migration: if moving the ip from the old `IpId` field to the new `IpIds`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -670,7 +670,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
         /// 
         /// 
-        /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
@@ -692,7 +692,7 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
+        /// Use the `PnId` key to attach a [PrivateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         /// </summary>
         public InputList<Inputs.ServerPrivateNetworkArgs> PrivateNetworks
         {
@@ -701,7 +701,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -725,7 +725,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// If true, the server will be replaced if `Type` is changed. Otherwise, the server will migrate.
         /// </summary>
         [Input("replaceOnTypeChange")]
         public Input<bool>? ReplaceOnTypeChange { get; set; }
@@ -743,7 +743,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -764,9 +764,9 @@ namespace Pulumiverse.Scaleway.Instance
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
         /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
-        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// Use `ReplaceOnTypeChange` to trigger replacement instead of migration.
         /// 
-        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        /// &gt; **Important:** If `Type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -789,7 +789,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -809,7 +809,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [additional volumes](https://www.scaleway.com/en/developers/api/instance/#path-volume-types-list-volume-types)
         /// attached to the server. Updates to this field will trigger a stop/start of the server.
         /// 
-        /// &gt; **Important:** If this field contains local volumes, the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** If this field contains local volumes, the `State` must be set to `Stopped`, otherwise it will fail.
         /// 
         /// &gt; **Important:** If this field contains local volumes, you have to first detach them, in one apply, and then delete the volume in another apply.
         /// </summary>
@@ -821,20 +821,20 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The ID of the SSH RSA key that will be used to encrypt the initial admin password for OS requiring it.
-        /// Mandatory for Windows OS. The public_key value of this key is used to encrypt the admin password.
-        /// When set to an empty string, it resets this value and admin_password_encrypted_value to an empty string so a new password may be generated.
+        /// Mandatory for Windows OS. The PublicKey value of this key is used to encrypt the admin password.
+        /// When set to an empty string, it resets this value and AdminPasswordEncryptedValue to an empty string so a new password may be generated.
         /// </summary>
         [Input("adminPasswordEncryptionSshKeyId")]
         public Input<string>? AdminPasswordEncryptionSshKeyId { get; set; }
 
         /// <summary>
-        /// The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
+        /// The boot Type of the server. Possible values are: `Local`, `Bootscript` or `Rescue`.
         /// </summary>
         [Input("bootType")]
         public Input<string>? BootType { get; set; }
 
         /// <summary>
-        /// ID of the target bootscript (set boot_type to bootscript)
+        /// ID of the target bootscript (set BootType to bootscript)
         /// </summary>
         [Input("bootscriptId")]
         public Input<string>? BootscriptId { get; set; }
@@ -853,14 +853,14 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Input("enableIpv6")]
         public Input<bool>? EnableIpv6 { get; set; }
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
-        /// to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
+        /// to find either the right `Label` or the right local image `ID` for a given `Type`. Optional when creating an instance with an existing root volume.
         /// 
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
@@ -879,9 +879,9 @@ namespace Pulumiverse.Scaleway.Instance
         private InputList<string>? _ipIds;
 
         /// <summary>
-        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
+        /// List of ID of reserved IPs that are attached to the server. Cannot be used with `IpId`.
         /// 
-        /// &gt; `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
+        /// &gt; `IpId` to `IpIds` migration: if moving the ip from the old `IpId` field to the new `IpIds`, it should not detach the ip.
         /// </summary>
         public InputList<string> IpIds
         {
@@ -890,22 +890,22 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Input("ipv6Gateway")]
         public Input<string>? Ipv6Gateway { get; set; }
 
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `routed_ipv6` type.
+        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
+        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
         /// </summary>
         [Input("ipv6PrefixLength")]
         public Input<int>? Ipv6PrefixLength { get; set; }
@@ -926,19 +926,19 @@ namespace Pulumiverse.Scaleway.Instance
         /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
         /// 
         /// 
-        /// &gt; **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
+        /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// (Deprecated) Always false, use instance_placement_group ressource to known when the placement group policy is respected.
+        /// (Deprecated) Always false, use InstancePlacementGroup ressource to known when the placement group policy is respected.
         /// </summary>
         [Input("placementGroupPolicyRespected")]
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }
 
         /// <summary>
-        /// The Scaleway internal IP address of the server (Deprecated use ipam_ip datasource instead).
+        /// The Scaleway internal IP address of the server (Deprecated use IpamIp datasource instead).
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
@@ -960,7 +960,7 @@ namespace Pulumiverse.Scaleway.Instance
 
         /// <summary>
         /// The private network associated with the server.
-        /// Use the `pn_id` key to attach a [private_network](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
+        /// Use the `PnId` key to attach a [PrivateNetwork](https://www.scaleway.com/en/developers/api/instance/#path-private-nics-list-all-private-nics) on your instance.
         /// </summary>
         public InputList<Inputs.ServerPrivateNetworkGetArgs> PrivateNetworks
         {
@@ -969,7 +969,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -981,7 +981,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<bool>? Protected { get; set; }
 
         /// <summary>
-        /// The public IP address of the server (Deprecated use `public_ips` instead).
+        /// The public IP address of the server (Deprecated use `PublicIps` instead).
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
@@ -999,7 +999,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// If true, the server will be replaced if `type` is changed. Otherwise, the server will migrate.
+        /// If true, the server will be replaced if `Type` is changed. Otherwise, the server will migrate.
         /// </summary>
         [Input("replaceOnTypeChange")]
         public Input<bool>? ReplaceOnTypeChange { get; set; }
@@ -1017,7 +1017,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? SecurityGroupId { get; set; }
 
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -1038,9 +1038,9 @@ namespace Pulumiverse.Scaleway.Instance
         /// The commercial type of the server.
         /// You find all the available types on the [pricing page](https://www.scaleway.com/en/pricing/).
         /// Updates to this field will migrate the server, local storage constraint must be respected. [More info](https://www.scaleway.com/en/docs/compute/instances/api-cli/migrating-instances/).
-        /// Use `replace_on_type_change` to trigger replacement instead of migration.
+        /// Use `ReplaceOnTypeChange` to trigger replacement instead of migration.
         /// 
-        /// &gt; **Important:** If `type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
+        /// &gt; **Important:** If `Type` change and migration occurs, the server will be stopped and changed backed to its original state. It will be started again if it was running.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -1063,7 +1063,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

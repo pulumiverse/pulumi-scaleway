@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// </summary>
         public readonly ImmutableArray<string> Countries;
         /// <summary>
-        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `record_id`.
+        /// The content of the record (e.g., an IPv4 address for an `A` record or a string for a `TXT` record). Cannot be used with `RecordId`.
         /// </summary>
         public readonly string Data;
 

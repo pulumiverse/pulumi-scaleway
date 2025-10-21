@@ -79,13 +79,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Endpoint { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS will be enabled.
+        /// `ProjectId`) The ID of the Project in which SQS will be enabled.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SQS will be enabled.
         /// </summary>
         [Output("region")]
@@ -139,13 +139,13 @@ namespace Pulumiverse.Scaleway
     public sealed class MnqSqsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS will be enabled.
+        /// `ProjectId`) The ID of the Project in which SQS will be enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SQS will be enabled.
         /// </summary>
         [Input("region")]
@@ -166,13 +166,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Endpoint { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project in which SQS will be enabled.
+        /// `ProjectId`) The ID of the Project in which SQS will be enabled.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which SQS will be enabled.
         /// </summary>
         [Input("region")]

@@ -19,11 +19,11 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int? Code;
         /// <summary>
-        /// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `https`, `http`, `ftp`, `git`) will replace the request's original scheme.
+        /// An URL can be used in case of a location redirect (e.g. `https://scaleway.com` will redirect to this same URL). A scheme name (e.g. `Https`, `Http`, `Ftp`, `Git`) will replace the request's original scheme.
         /// </summary>
         public readonly string? Target;
         /// <summary>
-        /// The redirect type. Possible values are: `location` or `scheme`.
+        /// The redirect type. Possible values are: `Location` or `Scheme`.
         /// </summary>
         public readonly string? Type;
 

@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Billing.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Invoices with the given type are listed. Valid values are `periodic` and `purchase`.
+        /// Invoices with the given type are listed. Valid values are `Periodic` and `Purchase`.
         /// </summary>
         public readonly string InvoiceType;
         /// <summary>

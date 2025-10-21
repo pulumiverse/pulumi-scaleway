@@ -36,7 +36,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetInstanceServerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -48,13 +48,13 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// The server id. Only one of `name` and `server_id` should be specified.
+        /// The server id. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("serverId")]
         public string? ServerId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server exists.
+        /// `Zone`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -68,7 +68,7 @@ namespace Pulumiverse.Scaleway
     public sealed class GetInstanceServerInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The server name. Only one of `name` and `server_id` should be specified.
+        /// The server name. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -80,13 +80,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The server id. Only one of `name` and `server_id` should be specified.
+        /// The server id. Only one of `Name` and `ServerId` should be specified.
         /// </summary>
         [Input("serverId")]
         public Input<string>? ServerId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server exists.
+        /// `Zone`) The zone in which the server exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -132,15 +132,15 @@ namespace Pulumiverse.Scaleway
         public readonly string IpId;
         public readonly ImmutableArray<string> IpIds;
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly string Ipv6Address;
         /// <summary>
-        /// The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
+        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly string Ipv6Gateway;
         /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
+        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
         /// </summary>
         public readonly int Ipv6PrefixLength;
         public readonly string? Name;
@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway
         public readonly string SecurityGroupId;
         public readonly string? ServerId;
         /// <summary>
-        /// The state of the server. Possible values are: `started`, `stopped` or `standby`.
+        /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         public readonly string State;
         /// <summary>

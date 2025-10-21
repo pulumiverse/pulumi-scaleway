@@ -86,13 +86,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> LbId { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The OrganizationId you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -116,7 +116,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -175,7 +175,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? IsIpv6 { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -199,7 +199,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -231,13 +231,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? LbId { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The OrganizationId you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the Project the IP is associated with.
+        /// `ProjectId`) The ID of the Project the IP is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -267,7 +267,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `zone`) The zone in which the IP should be reserved.
+        /// `Zone`) The zone in which the IP should be reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

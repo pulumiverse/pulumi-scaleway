@@ -129,7 +129,7 @@ namespace Pulumiverse.Scaleway
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the routes exist.
+        /// `Zone`) The zone in which the routes exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the routes exist.
+        /// `Zone`) The zone in which the routes exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

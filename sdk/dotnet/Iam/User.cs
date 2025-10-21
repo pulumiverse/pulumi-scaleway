@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Output<bool> Mfa { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the user is associated with.
+        /// `OrganizationId`) The ID of the organization the user is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -291,7 +291,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<string>? Locale { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the user is associated with.
+        /// `OrganizationId`) The ID of the organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -417,7 +417,7 @@ namespace Pulumiverse.Scaleway.Iam
         public Input<bool>? Mfa { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the user is associated with.
+        /// `OrganizationId`) The ID of the organization the user is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Inputs
 
         /// <summary>
         /// The ID of the Private Network to attach to.
-        /// - &gt; **Important:** Updates to `private_network` will recreate the attachment.
+        /// - &gt; **Important:** Updates to `PrivateNetwork` will recreate the attachment.
         /// </summary>
         [Input("privateNetworkId", required: true)]
         public Input<string> PrivateNetworkId { get; set; } = null!;
@@ -45,7 +45,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Inputs
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

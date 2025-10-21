@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Object.Inputs
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
-        /// The `region`, `bucket` and `acl` separated by (`/`).
+        /// The `Region`, `Bucket` and `Acl` separated by (`/`).
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;

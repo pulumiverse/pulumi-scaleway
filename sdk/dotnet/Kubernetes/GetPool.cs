@@ -35,25 +35,25 @@ namespace Pulumiverse.Scaleway.Kubernetes
     public sealed class GetPoolArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster ID. Required when `name` is set.
+        /// The cluster ID. Required when `Name` is set.
         /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
         /// <summary>
-        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        /// The pool name. Only one of `Name` and `PoolId` should be specified. `ClusterId` should be specified with `Name`.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The pool's ID. Only one of `name` and `pool_id` should be specified.
+        /// The pool's ID. Only one of `Name` and `PoolId` should be specified.
         /// </summary>
         [Input("poolId")]
         public string? PoolId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the pool exists.
+        /// `Region`) The region in which the pool exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -73,25 +73,25 @@ namespace Pulumiverse.Scaleway.Kubernetes
     public sealed class GetPoolInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The cluster ID. Required when `name` is set.
+        /// The cluster ID. Required when `Name` is set.
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         /// <summary>
-        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        /// The pool name. Only one of `Name` and `PoolId` should be specified. `ClusterId` should be specified with `Name`.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The pool's ID. Only one of `name` and `pool_id` should be specified.
+        /// The pool's ID. Only one of `Name` and `PoolId` should be specified.
         /// </summary>
         [Input("poolId")]
         public Input<string>? PoolId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the pool exists.
+        /// `Region`) The region in which the pool exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

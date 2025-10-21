@@ -76,7 +76,7 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
+        /// &gt; **Important** Updates to the `Name` argument will recreate the namespace.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -88,13 +88,13 @@ namespace Pulumiverse.Scaleway.Functions
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The unique identifier of the project that contains the namespace.
+        /// `ProjectId`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -207,19 +207,19 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
+        /// &gt; **Important** Updates to the `Name` argument will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The unique identifier of the project that contains the namespace.
+        /// `ProjectId`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -289,7 +289,7 @@ namespace Pulumiverse.Scaleway.Functions
         /// <summary>
         /// The unique name of the Functions namespace.
         /// 
-        /// &gt; **Important** Updates to the `name` argument will recreate the namespace.
+        /// &gt; **Important** Updates to the `Name` argument will recreate the namespace.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -301,13 +301,13 @@ namespace Pulumiverse.Scaleway.Functions
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The unique identifier of the project that contains the namespace.
+        /// `ProjectId`) The unique identifier of the project that contains the namespace.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace is created.
+        /// `Region`). The region in which the namespace is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

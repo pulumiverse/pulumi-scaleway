@@ -28,7 +28,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Inputs
         /// <summary>
         /// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
         /// 
-        /// &gt; **Important:** If the `ip` field is set, `scaleway_ranges` cannot be set to true in the same rule.
+        /// &gt; **Important:** If the `Ip` field is set, `ScalewayRanges` cannot be set to true in the same rule.
         /// </summary>
         [Input("ip")]
         public Input<string>? Ip { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Inputs
         /// Allow access to cluster from all Scaleway ranges as defined in [Scaleway Network Information - IP ranges used by Scaleway](https://www.scaleway.com/en/docs/console/account/reference-content/scaleway-network-information/#ip-ranges-used-by-scaleway).
         /// Only one rule with this field set to true can be added.
         /// 
-        /// &gt; **Important:** If the `scaleway_ranges` field is set to true, the `ip` field cannot be set on the same rule.
+        /// &gt; **Important:** If the `ScalewayRanges` field is set to true, the `Ip` field cannot be set on the same rule.
         /// </summary>
         [Input("scalewayRanges")]
         public Input<bool>? ScalewayRanges { get; set; }

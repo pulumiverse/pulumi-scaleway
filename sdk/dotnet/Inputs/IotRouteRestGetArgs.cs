@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string> Uri { get; set; } = null!;
 
         /// <summary>
-        /// The HTTP Verb used to call Rest URI (e.g. `post`).
+        /// The HTTP Verb used to call Rest URI (e.g. `Post`).
         /// </summary>
         [Input("verb", required: true)]
         public Input<string> Verb { get; set; } = null!;

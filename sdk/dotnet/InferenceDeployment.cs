@@ -16,6 +16,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
     /// ## Import
     /// 
     /// Functions can be imported using, `{region}/{id}`, as shown below:
@@ -31,7 +33,7 @@ namespace Pulumiverse.Scaleway
     public partial class InferenceDeployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
+        /// Some models (e.g Meta Llama) require end-user license agreements. Set `True` to accept.
         /// </summary>
         [Output("acceptEula")]
         public Output<bool?> AcceptEula { get; private set; } = null!;
@@ -91,7 +93,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.InferenceDeploymentPrivateIp>> PrivateIps { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the deployment is associated with.
+        /// `ProjectId`) The ID of the project the deployment is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -109,7 +111,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> Quantization { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the deployment is created.
+        /// `Region`) The region in which the deployment is created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -186,7 +188,7 @@ namespace Pulumiverse.Scaleway
     public sealed class InferenceDeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
+        /// Some models (e.g Meta Llama) require end-user license agreements. Set `True` to accept.
         /// </summary>
         [Input("acceptEula")]
         public Input<bool>? AcceptEula { get; set; }
@@ -240,7 +242,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the deployment is associated with.
+        /// `ProjectId`) The ID of the project the deployment is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -258,7 +260,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Quantization { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the deployment is created.
+        /// `Region`) The region in which the deployment is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -284,7 +286,7 @@ namespace Pulumiverse.Scaleway
     public sealed class InferenceDeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Some models (e.g Meta Llama) require end-user license agreements. Set `true` to accept.
+        /// Some models (e.g Meta Llama) require end-user license agreements. Set `True` to accept.
         /// </summary>
         [Input("acceptEula")]
         public Input<bool>? AcceptEula { get; set; }
@@ -350,7 +352,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the deployment is associated with.
+        /// `ProjectId`) The ID of the project the deployment is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -368,7 +370,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Quantization { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the deployment is created.
+        /// `Region`) The region in which the deployment is created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

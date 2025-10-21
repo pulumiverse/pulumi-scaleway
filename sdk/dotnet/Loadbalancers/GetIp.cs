@@ -42,14 +42,14 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     {
         /// <summary>
         /// The IP address.
-        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// Only one of `IpAddress` and `IpId` should be specified.
         /// </summary>
         [Input("ipAddress")]
         public string? IpAddress { get; set; }
 
         /// <summary>
         /// The IP ID.
-        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// Only one of `IpAddress` and `IpId` should be specified.
         /// </summary>
         [Input("ipId")]
         public string? IpId { get; set; }
@@ -61,7 +61,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP was reserved.
+        /// `Zone`) The zone in which the IP was reserved.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -76,14 +76,14 @@ namespace Pulumiverse.Scaleway.Loadbalancers
     {
         /// <summary>
         /// The IP address.
-        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// Only one of `IpAddress` and `IpId` should be specified.
         /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
         /// The IP ID.
-        /// Only one of `ip_address` and `ip_id` should be specified.
+        /// Only one of `IpAddress` and `IpId` should be specified.
         /// </summary>
         [Input("ipId")]
         public Input<string>? IpId { get; set; }
@@ -95,7 +95,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the IP was reserved.
+        /// `Zone`) The zone in which the IP was reserved.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -122,7 +122,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// </summary>
         public readonly string LbId;
         /// <summary>
-        /// (Defaults to provider `organization_id`) The ID of the Organization the Load Balancer IP is associated with.
+        /// (Defaults to provider `OrganizationId`) The ID of the Organization the Load Balancer IP is associated with.
         /// </summary>
         public readonly string OrganizationId;
         public readonly string? ProjectId;

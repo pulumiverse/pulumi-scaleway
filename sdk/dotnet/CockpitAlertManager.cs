@@ -21,7 +21,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// The following commands allow you to:
     /// 
-    /// - enable the alert manager in a Project named `tf_test_project`
+    /// - enable the alert manager in a Project named `TfTestProject`
     /// - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
     /// - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
     /// 

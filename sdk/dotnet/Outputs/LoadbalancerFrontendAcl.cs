@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// The ACL match rule. At least `ip_subnet` or `ips_edge_services` or `http_filter` and `http_filter_value` are required.
+        /// The ACL match rule. At least `IpSubnet` or `IpsEdgeServices` or `HttpFilter` and `HttpFilterValue` are required.
         /// </summary>
         public readonly Outputs.LoadbalancerFrontendAclMatch Match;
         /// <summary>

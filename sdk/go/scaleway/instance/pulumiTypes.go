@@ -14,32 +14,18 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type ImageAdditionalVolume struct {
-	// Date of the volume creation.
-	CreationDate *string `pulumi:"creationDate"`
-	// The export URI of the volume.
-	ExportUri *string `pulumi:"exportUri"`
 	// ID of the server containing the volume.
 	Id *string `pulumi:"id"`
-	// Date of volume latest update.
-	ModificationDate *string `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
-	// The organization ID the volume is associated with.
-	Organization *string `pulumi:"organization"`
-	// ID of the project the volume is associated with
-	Project *string `pulumi:"project"`
 	// Description of the server containing the volume (in case the image is a backup from a server).
 	Server map[string]string `pulumi:"server"`
 	// The size of the volume.
 	Size *int `pulumi:"size"`
-	// State of the volume.
-	State *string `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags []string `pulumi:"tags"`
-	// The type of volume, possible values are `lSsd` and `bSsd`.
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 	VolumeType *string `pulumi:"volumeType"`
-	// The zone in which the image should be created.
-	Zone *string `pulumi:"zone"`
 }
 
 // ImageAdditionalVolumeInput is an input type that accepts ImageAdditionalVolumeArgs and ImageAdditionalVolumeOutput values.
@@ -54,32 +40,18 @@ type ImageAdditionalVolumeInput interface {
 }
 
 type ImageAdditionalVolumeArgs struct {
-	// Date of the volume creation.
-	CreationDate pulumi.StringPtrInput `pulumi:"creationDate"`
-	// The export URI of the volume.
-	ExportUri pulumi.StringPtrInput `pulumi:"exportUri"`
 	// ID of the server containing the volume.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// Date of volume latest update.
-	ModificationDate pulumi.StringPtrInput `pulumi:"modificationDate"`
 	// The name of the image. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The organization ID the volume is associated with.
-	Organization pulumi.StringPtrInput `pulumi:"organization"`
-	// ID of the project the volume is associated with
-	Project pulumi.StringPtrInput `pulumi:"project"`
 	// Description of the server containing the volume (in case the image is a backup from a server).
 	Server pulumi.StringMapInput `pulumi:"server"`
 	// The size of the volume.
 	Size pulumi.IntPtrInput `pulumi:"size"`
-	// State of the volume.
-	State pulumi.StringPtrInput `pulumi:"state"`
 	// A list of tags to apply to the image.
 	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The type of volume, possible values are `lSsd` and `bSsd`.
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
-	// The zone in which the image should be created.
-	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (ImageAdditionalVolumeArgs) ElementType() reflect.Type {
@@ -133,39 +105,14 @@ func (o ImageAdditionalVolumeOutput) ToImageAdditionalVolumeOutputWithContext(ct
 	return o
 }
 
-// Date of the volume creation.
-func (o ImageAdditionalVolumeOutput) CreationDate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.CreationDate }).(pulumi.StringPtrOutput)
-}
-
-// The export URI of the volume.
-func (o ImageAdditionalVolumeOutput) ExportUri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.ExportUri }).(pulumi.StringPtrOutput)
-}
-
 // ID of the server containing the volume.
 func (o ImageAdditionalVolumeOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// Date of volume latest update.
-func (o ImageAdditionalVolumeOutput) ModificationDate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.ModificationDate }).(pulumi.StringPtrOutput)
-}
-
 // The name of the image. If not provided it will be randomly generated.
 func (o ImageAdditionalVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
-}
-
-// The organization ID the volume is associated with.
-func (o ImageAdditionalVolumeOutput) Organization() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.Organization }).(pulumi.StringPtrOutput)
-}
-
-// ID of the project the volume is associated with
-func (o ImageAdditionalVolumeOutput) Project() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.Project }).(pulumi.StringPtrOutput)
 }
 
 // Description of the server containing the volume (in case the image is a backup from a server).
@@ -178,24 +125,14 @@ func (o ImageAdditionalVolumeOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ImageAdditionalVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
 }
 
-// State of the volume.
-func (o ImageAdditionalVolumeOutput) State() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.State }).(pulumi.StringPtrOutput)
-}
-
 // A list of tags to apply to the image.
 func (o ImageAdditionalVolumeOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v ImageAdditionalVolume) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The type of volume, possible values are `lSsd` and `bSsd`.
+// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
 func (o ImageAdditionalVolumeOutput) VolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
-}
-
-// The zone in which the image should be created.
-func (o ImageAdditionalVolumeOutput) Zone() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ImageAdditionalVolume) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type ImageAdditionalVolumeArrayOutput struct{ *pulumi.OutputState }
@@ -216,6 +153,130 @@ func (o ImageAdditionalVolumeArrayOutput) Index(i pulumi.IntInput) ImageAddition
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImageAdditionalVolume {
 		return vs[0].([]ImageAdditionalVolume)[vs[1].(int)]
 	}).(ImageAdditionalVolumeOutput)
+}
+
+type ImageRootVolume struct {
+	// ID of the server containing the volume.
+	Id *string `pulumi:"id"`
+	// The name of the image. If not provided it will be randomly generated.
+	Name *string `pulumi:"name"`
+	// The size of the volume.
+	Size *int `pulumi:"size"`
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+	VolumeType *string `pulumi:"volumeType"`
+}
+
+// ImageRootVolumeInput is an input type that accepts ImageRootVolumeArgs and ImageRootVolumeOutput values.
+// You can construct a concrete instance of `ImageRootVolumeInput` via:
+//
+//	ImageRootVolumeArgs{...}
+type ImageRootVolumeInput interface {
+	pulumi.Input
+
+	ToImageRootVolumeOutput() ImageRootVolumeOutput
+	ToImageRootVolumeOutputWithContext(context.Context) ImageRootVolumeOutput
+}
+
+type ImageRootVolumeArgs struct {
+	// ID of the server containing the volume.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the image. If not provided it will be randomly generated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The size of the volume.
+	Size pulumi.IntPtrInput `pulumi:"size"`
+	// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+	VolumeType pulumi.StringPtrInput `pulumi:"volumeType"`
+}
+
+func (ImageRootVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageRootVolume)(nil)).Elem()
+}
+
+func (i ImageRootVolumeArgs) ToImageRootVolumeOutput() ImageRootVolumeOutput {
+	return i.ToImageRootVolumeOutputWithContext(context.Background())
+}
+
+func (i ImageRootVolumeArgs) ToImageRootVolumeOutputWithContext(ctx context.Context) ImageRootVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageRootVolumeOutput)
+}
+
+// ImageRootVolumeArrayInput is an input type that accepts ImageRootVolumeArray and ImageRootVolumeArrayOutput values.
+// You can construct a concrete instance of `ImageRootVolumeArrayInput` via:
+//
+//	ImageRootVolumeArray{ ImageRootVolumeArgs{...} }
+type ImageRootVolumeArrayInput interface {
+	pulumi.Input
+
+	ToImageRootVolumeArrayOutput() ImageRootVolumeArrayOutput
+	ToImageRootVolumeArrayOutputWithContext(context.Context) ImageRootVolumeArrayOutput
+}
+
+type ImageRootVolumeArray []ImageRootVolumeInput
+
+func (ImageRootVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageRootVolume)(nil)).Elem()
+}
+
+func (i ImageRootVolumeArray) ToImageRootVolumeArrayOutput() ImageRootVolumeArrayOutput {
+	return i.ToImageRootVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i ImageRootVolumeArray) ToImageRootVolumeArrayOutputWithContext(ctx context.Context) ImageRootVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ImageRootVolumeArrayOutput)
+}
+
+type ImageRootVolumeOutput struct{ *pulumi.OutputState }
+
+func (ImageRootVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ImageRootVolume)(nil)).Elem()
+}
+
+func (o ImageRootVolumeOutput) ToImageRootVolumeOutput() ImageRootVolumeOutput {
+	return o
+}
+
+func (o ImageRootVolumeOutput) ToImageRootVolumeOutputWithContext(ctx context.Context) ImageRootVolumeOutput {
+	return o
+}
+
+// ID of the server containing the volume.
+func (o ImageRootVolumeOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImageRootVolume) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The name of the image. If not provided it will be randomly generated.
+func (o ImageRootVolumeOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImageRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// The size of the volume.
+func (o ImageRootVolumeOutput) Size() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ImageRootVolume) *int { return v.Size }).(pulumi.IntPtrOutput)
+}
+
+// The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+func (o ImageRootVolumeOutput) VolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ImageRootVolume) *string { return v.VolumeType }).(pulumi.StringPtrOutput)
+}
+
+type ImageRootVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (ImageRootVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ImageRootVolume)(nil)).Elem()
+}
+
+func (o ImageRootVolumeArrayOutput) ToImageRootVolumeArrayOutput() ImageRootVolumeArrayOutput {
+	return o
+}
+
+func (o ImageRootVolumeArrayOutput) ToImageRootVolumeArrayOutputWithContext(ctx context.Context) ImageRootVolumeArrayOutput {
+	return o
+}
+
+func (o ImageRootVolumeArrayOutput) Index(i pulumi.IntInput) ImageRootVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ImageRootVolume {
+		return vs[0].([]ImageRootVolume)[vs[1].(int)]
+	}).(ImageRootVolumeOutput)
 }
 
 type PrivateNicPrivateIp struct {
@@ -3667,6 +3728,8 @@ func (o GetSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetSnapshotImport
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageAdditionalVolumeInput)(nil)).Elem(), ImageAdditionalVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageAdditionalVolumeArrayInput)(nil)).Elem(), ImageAdditionalVolumeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageRootVolumeInput)(nil)).Elem(), ImageRootVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ImageRootVolumeArrayInput)(nil)).Elem(), ImageRootVolumeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNicPrivateIpInput)(nil)).Elem(), PrivateNicPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateNicPrivateIpArrayInput)(nil)).Elem(), PrivateNicPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupInboundRuleInput)(nil)).Elem(), SecurityGroupInboundRuleArgs{})
@@ -3717,6 +3780,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSnapshotImportArrayInput)(nil)).Elem(), GetSnapshotImportArray{})
 	pulumi.RegisterOutputType(ImageAdditionalVolumeOutput{})
 	pulumi.RegisterOutputType(ImageAdditionalVolumeArrayOutput{})
+	pulumi.RegisterOutputType(ImageRootVolumeOutput{})
+	pulumi.RegisterOutputType(ImageRootVolumeArrayOutput{})
 	pulumi.RegisterOutputType(PrivateNicPrivateIpOutput{})
 	pulumi.RegisterOutputType(PrivateNicPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(SecurityGroupInboundRuleOutput{})

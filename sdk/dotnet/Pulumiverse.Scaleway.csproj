@@ -9,7 +9,6 @@
     <PackageProjectUrl>https://www.scaleway.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pulumiverse/pulumi-scaleway</RepositoryUrl>
     <PackageIcon>logo.png</PackageIcon>
-    <Version>1.0.0-alpha.0+dev</Version>
 
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>

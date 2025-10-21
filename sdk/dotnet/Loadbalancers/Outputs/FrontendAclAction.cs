@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
     public sealed class FrontendAclAction
     {
         /// <summary>
-        /// Redirect parameters when using an ACL with `redirect` action.
+        /// Redirect parameters when using an ACL with `Redirect` action.
         /// </summary>
         public readonly ImmutableArray<Outputs.FrontendAclActionRedirect> Redirects;
         /// <summary>
-        /// The action type. Possible values are: `allow` or `deny` or `redirect`.
+        /// The action type. Possible values are: `Allow` or `Deny` or `Redirect`.
         /// </summary>
         public readonly string Type;
 

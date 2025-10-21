@@ -151,7 +151,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is
+        /// `ProjectId`) The ID of the project the snapshot is
         /// associated with.
         /// </summary>
         [Output("projectId")]
@@ -170,7 +170,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Output("type")]
@@ -183,7 +183,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string?> VolumeId { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the snapshot should be created.
         /// </summary>
         [Output("zone")]
@@ -253,7 +253,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is
+        /// `ProjectId`) The ID of the project the snapshot is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -272,7 +272,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Input("type")]
@@ -285,7 +285,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the snapshot should be created.
         /// </summary>
         [Input("zone")]
@@ -324,7 +324,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the snapshot is
+        /// `ProjectId`) The ID of the project the snapshot is
         /// associated with.
         /// </summary>
         [Input("projectId")]
@@ -349,7 +349,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The snapshot's volume type.  The possible values are: `l_ssd` (Local SSD).
+        /// The snapshot's volume type.  The possible values are: `LSsd` (Local SSD).
         /// Updates to this field will recreate a new resource.
         /// </summary>
         [Input("type")]
@@ -362,7 +362,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? VolumeId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which
+        /// `Zone`) The zone in which
         /// the snapshot should be created.
         /// </summary>
         [Input("zone")]

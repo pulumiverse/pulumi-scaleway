@@ -40,7 +40,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// `region`). The region in which the VPCs exist.
+        /// `Region`). The region in which the VPCs exist.
         /// </summary>
         public readonly string? Region;
         /// <summary>

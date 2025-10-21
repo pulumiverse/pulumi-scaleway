@@ -59,13 +59,13 @@ namespace Pulumiverse.Scaleway
         public Output<string> Handler { get; private set; } = null!;
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Output("httpOption")]
         public Output<string?> HttpOption { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `MaxScale` value.
         /// </summary>
         [Output("maxScale")]
         public Output<int?> MaxScale { get; private set; } = null!;
@@ -77,7 +77,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> MemoryLimit { get; private set; } = null!;
 
         /// <summary>
-        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `MinScale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Output("minScale")]
         public Output<int?> MinScale { get; private set; } = null!;
@@ -91,7 +91,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Functions namespace ID of the function.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the function.
+        /// &gt; **Important** Updating the `Name` argument will recreate the function.
         /// </summary>
         [Output("namespaceId")]
         public Output<string> NamespaceId { get; private set; } = null!;
@@ -111,19 +111,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the function is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the functions namespace is associated with.
+        /// `ProjectId`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -249,13 +249,13 @@ namespace Pulumiverse.Scaleway
         public Input<string> Handler { get; set; } = null!;
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `MaxScale` value.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
@@ -267,7 +267,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `MinScale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
@@ -281,7 +281,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Functions namespace ID of the function.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the function.
+        /// &gt; **Important** Updating the `Name` argument will recreate the function.
         /// </summary>
         [Input("namespaceId", required: true)]
         public Input<string> NamespaceId { get; set; } = null!;
@@ -295,19 +295,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the function is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the functions namespace is associated with.
+        /// `ProjectId`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -418,13 +418,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Handler { get; set; }
 
         /// <summary>
-        /// Allows both HTTP and HTTPS (`enabled`) or redirect HTTP to HTTPS (`redirected`). Defaults to `enabled`.
+        /// Allows both HTTP and HTTPS (`Enabled`) or redirect HTTP to HTTPS (`Redirected`). Defaults to `Enabled`.
         /// </summary>
         [Input("httpOption")]
         public Input<string>? HttpOption { get; set; }
 
         /// <summary>
-        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `max_scale` value.
+        /// The maximum number of instances this function can scale to. Default to 20. Your function will scale automatically based on the incoming workload, but will never exceed the configured `MaxScale` value.
         /// </summary>
         [Input("maxScale")]
         public Input<int>? MaxScale { get; set; }
@@ -436,7 +436,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? MemoryLimit { get; set; }
 
         /// <summary>
-        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `min_scale` greater than 0 will cause your function to run constantly.
+        /// The minimum number of function instances running continuously. Defaults to 0. Functions are billed when executed, and using a `MinScale` greater than 0 will cause your function to run constantly.
         /// </summary>
         [Input("minScale")]
         public Input<int>? MinScale { get; set; }
@@ -450,7 +450,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The Functions namespace ID of the function.
         /// 
-        /// &gt; **Important** Updating the `name` argument will recreate the function.
+        /// &gt; **Important** Updating the `Name` argument will recreate the function.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
@@ -470,19 +470,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Private Network the function is connected to.
         /// 
-        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `activate_vpc_integration` attribute to `true`.
+        /// &gt; **Important** This feature is currently in beta and requires a namespace with VPC integration activated by setting the `ActivateVpcIntegration` attribute to `True`.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the functions namespace is associated with.
+        /// `ProjectId`) The ID of the project the functions namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`). The region in which the namespace should be created.
+        /// `Region`). The region in which the namespace should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -73,7 +73,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account exists.
         /// </summary>
         [Output("region")]
@@ -143,7 +143,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account exists.
         /// </summary>
         [Input("region")]
@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`). The region
+        /// `Region`). The region
         /// in which the account exists.
         /// </summary>
         [Input("region")]

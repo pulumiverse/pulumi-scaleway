@@ -48,7 +48,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> IpamIpId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the IP reverse DNS.
+        /// `Region`) The region of the IP reverse DNS.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -119,7 +119,7 @@ namespace Pulumiverse.Scaleway
         public Input<string> IpamIpId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the IP reverse DNS.
+        /// `Region`) The region of the IP reverse DNS.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -151,7 +151,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? IpamIpId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the IP reverse DNS.
+        /// `Region`) The region of the IP reverse DNS.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

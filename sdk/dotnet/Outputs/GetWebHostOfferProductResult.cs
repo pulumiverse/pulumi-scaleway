@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int HostingStorageQuota;
         /// <summary>
-        /// The offer name. Only one of `name` and `offer_id` should be specified.
+        /// The offer name. Only one of `Name` and `OfferId` should be specified.
         /// </summary>
         public readonly string Name;
         /// <summary>

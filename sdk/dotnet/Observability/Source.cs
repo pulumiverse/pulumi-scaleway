@@ -107,7 +107,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Output<bool> SynchronizedWithGrafana { get; private set; } = null!;
 
         /// <summary>
-        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `Metrics`, `Logs`, or `Traces`.
         /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
@@ -200,7 +200,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<int> RetentionDays { get; set; } = null!;
 
         /// <summary>
-        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `Metrics`, `Logs`, or `Traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -262,7 +262,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<bool>? SynchronizedWithGrafana { get; set; }
 
         /// <summary>
-        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `Metrics`, `Logs`, or `Traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

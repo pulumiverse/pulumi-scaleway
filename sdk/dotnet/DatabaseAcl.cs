@@ -140,7 +140,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `InstanceId` will conflict with each other. Use multiple `AclRules` blocks within a single resource instead.
         /// </summary>
         [Output("aclRules")]
         public Output<ImmutableArray<Outputs.DatabaseAclAclRule>> AclRules { get; private set; } = null!;
@@ -148,13 +148,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the Database ACL.
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -212,7 +212,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `InstanceId` will conflict with each other. Use multiple `AclRules` blocks within a single resource instead.
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleArgs> AclRules
         {
@@ -223,13 +223,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the Database ACL.
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// A list of ACLs (structure is described below)
         /// 
-        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `instance_id` will conflict with each other. Use multiple `acl_rules` blocks within a single resource instead.
+        /// &gt; **Important:** The `scaleway.databases.Acl` resource replaces **all** ACL rules for the given instance. Multiple `scaleway.databases.Acl` resources targeting the same `InstanceId` will conflict with each other. Use multiple `AclRules` blocks within a single resource instead.
         /// </summary>
         public InputList<Inputs.DatabaseAclAclRuleGetArgs> AclRules
         {
@@ -259,13 +259,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// UUID of the Database Instance.
         /// 
-        /// &gt; **Important:** Updates to `instance_id` will recreate the Database ACL.
+        /// &gt; **Important:** Updates to `InstanceId` will recreate the Database ACL.
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

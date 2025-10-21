@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     public sealed class GetIpsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the IP is in.
+        /// (Defaults to provider `ProjectId`) The ID of the project the IP is in.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         }
 
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `Zone`) The zone in which IPs exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -271,7 +271,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     public sealed class GetIpsInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the IP is in.
+        /// (Defaults to provider `ProjectId`) The ID of the project the IP is in.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -301,7 +301,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         }
 
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `Zone`) The zone in which IPs exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -325,11 +325,11 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         public readonly ImmutableArray<Outputs.GetIpsIpResult> Ips;
         /// <summary>
-        /// (Defaults to provider `organization_id`) The ID of the organization the IP is in.
+        /// (Defaults to provider `OrganizationId`) The ID of the organization the IP is in.
         /// </summary>
         public readonly string OrganizationId;
         /// <summary>
-        /// (Defaults to provider `project_id`) The ID of the project the IP is in.
+        /// (Defaults to provider `ProjectId`) The ID of the project the IP is in.
         /// </summary>
         public readonly string ProjectId;
         public readonly ImmutableArray<string> ServerIds;
@@ -338,7 +338,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         /// </summary>
         public readonly ImmutableArray<string> Tags;
         /// <summary>
-        /// (Defaults to provider `zone`) The zone in which the MAC address exist.
+        /// (Defaults to provider `Zone`) The zone in which the MAC address exist.
         /// </summary>
         public readonly string? Zone;
 

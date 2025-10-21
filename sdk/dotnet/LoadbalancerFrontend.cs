@@ -195,13 +195,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
-        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+        /// &gt; **Important:** Updates to `LbId` or `BackendId` will recreate the frontend.
         /// </summary>
         [Output("backendId")]
         public Output<string> BackendId { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
+        /// (Deprecated, use `CertificateIds` instead) First certificate ID used by the frontend.
         /// </summary>
         [Output("certificateId")]
         public Output<string> CertificateId { get; private set; } = null!;
@@ -240,7 +240,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
+        /// If `ExternalAcls` is set to `True`, `Acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Output("externalAcls")]
         public Output<bool?> ExternalAcls { get; private set; } = null!;
@@ -337,7 +337,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
-        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+        /// &gt; **Important:** Updates to `LbId` or `BackendId` will recreate the frontend.
         /// </summary>
         [Input("backendId", required: true)]
         public Input<string> BackendId { get; set; } = null!;
@@ -376,7 +376,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
+        /// If `ExternalAcls` is set to `True`, `Acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Input("externalAcls")]
         public Input<bool>? ExternalAcls { get; set; }
@@ -428,13 +428,13 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The ID of the Load Balancer backend this frontend is attached to.
         /// 
-        /// &gt; **Important:** Updates to `lb_id` or `backend_id` will recreate the frontend.
+        /// &gt; **Important:** Updates to `LbId` or `BackendId` will recreate the frontend.
         /// </summary>
         [Input("backendId")]
         public Input<string>? BackendId { get; set; }
 
         /// <summary>
-        /// (Deprecated, use `certificate_ids` instead) First certificate ID used by the frontend.
+        /// (Deprecated, use `CertificateIds` instead) First certificate ID used by the frontend.
         /// </summary>
         [Input("certificateId")]
         public Input<string>? CertificateId { get; set; }
@@ -479,7 +479,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// A boolean to specify whether to use lb_acl.
-        /// If `external_acls` is set to `true`, `acl` can not be set directly in the Load Balancer frontend.
+        /// If `ExternalAcls` is set to `True`, `Acl` can not be set directly in the Load Balancer frontend.
         /// </summary>
         [Input("externalAcls")]
         public Input<bool>? ExternalAcls { get; set; }

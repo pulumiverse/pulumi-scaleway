@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<bool>? IsSsl { get; set; }
 
         /// <summary>
-        /// `zone`) The zone of the Load Balancer.
+        /// `Zone`) The zone of the Load Balancer.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

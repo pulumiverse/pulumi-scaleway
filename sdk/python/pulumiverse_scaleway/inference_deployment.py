@@ -559,6 +559,8 @@ class InferenceDeployment(pulumi.CustomResource):
 
         ## Example Usage
 
+        ### Basic
+
         ## Import
 
         Functions can be imported using, `{region}/{id}`, as shown below:
@@ -596,6 +598,8 @@ class InferenceDeployment(pulumi.CustomResource):
         For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/inference/).
 
         ## Example Usage
+
+        ### Basic
 
         ## Import
 

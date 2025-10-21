@@ -139,7 +139,7 @@ namespace Pulumiverse.Scaleway.Hosting
         public Output<int> PlatformNumber { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `ProjectId`) The ID of the project the VPC is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -151,7 +151,7 @@ namespace Pulumiverse.Scaleway.Hosting
         public Output<ImmutableArray<Outputs.HostingRecord>> Records { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region of the Hosting.
+        /// `Region`) The region of the Hosting.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -262,13 +262,13 @@ namespace Pulumiverse.Scaleway.Hosting
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `ProjectId`) The ID of the project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region of the Hosting.
+        /// `Region`) The region of the Hosting.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -396,7 +396,7 @@ namespace Pulumiverse.Scaleway.Hosting
         public Input<int>? PlatformNumber { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the VPC is associated with.
+        /// `ProjectId`) The ID of the project the VPC is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -414,7 +414,7 @@ namespace Pulumiverse.Scaleway.Hosting
         }
 
         /// <summary>
-        /// `region`) The region of the Hosting.
+        /// `Region`) The region of the Hosting.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

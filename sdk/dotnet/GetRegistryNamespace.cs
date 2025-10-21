@@ -44,19 +44,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The namespace id.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ImageId`.
         /// </summary>
         [Input("namespaceId")]
         public string? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `ProjectId`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the namespace exists.
+        /// `Region`) The region in which the namespace exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -78,19 +78,19 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The namespace id.
         /// 
-        /// &gt; **Note** You must specify at least one: `name` and/or `image_id`.
+        /// &gt; **Note** You must specify at least one: `Name` and/or `ImageId`.
         /// </summary>
         [Input("namespaceId")]
         public Input<string>? NamespaceId { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the namespace is associated with.
+        /// `ProjectId`) The ID of the project the namespace is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the namespace exists.
+        /// `Region`) The region in which the namespace exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

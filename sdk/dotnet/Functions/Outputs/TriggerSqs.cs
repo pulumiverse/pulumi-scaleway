@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Functions.Outputs
         /// </summary>
         public readonly string? NamespaceId;
         /// <summary>
-        /// The ID of the project in which SQS is enabled, (defaults to provider `project_id`)
+        /// The ID of the project in which SQS is enabled, (defaults to provider `ProjectId`)
         /// </summary>
         public readonly string? ProjectId;
         /// <summary>
@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Functions.Outputs
         /// </summary>
         public readonly string Queue;
         /// <summary>
-        /// Region where SQS is enabled (defaults to provider `region`)
+        /// Region where SQS is enabled (defaults to provider `Region`)
         /// </summary>
         public readonly string? Region;
 

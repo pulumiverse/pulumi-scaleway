@@ -35,13 +35,13 @@ namespace Pulumiverse.Scaleway.Instance
     public sealed class GetImageArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+        /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
         /// </summary>
         [Input("architecture")]
         public string? Architecture { get; set; }
 
         /// <summary>
-        /// The image id. Only one of `name` and `image_id` should be specified.
+        /// The image id. Only one of `Name` and `ImageId` should be specified.
         /// </summary>
         [Input("imageId")]
         public string? ImageId { get; set; }
@@ -53,7 +53,7 @@ namespace Pulumiverse.Scaleway.Instance
         public bool? Latest { get; set; }
 
         /// <summary>
-        /// The image name. Only one of `name` and `image_id` should be specified.
+        /// The image name. Only one of `Name` and `ImageId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
@@ -65,7 +65,7 @@ namespace Pulumiverse.Scaleway.Instance
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `Zone`) The zone in which the image exists.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -79,13 +79,13 @@ namespace Pulumiverse.Scaleway.Instance
     public sealed class GetImageInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The architecture the image is compatible with. Possible values are: `x86_64` or `arm`.
+        /// The architecture the image is compatible with. Possible values are: `X8664` or `Arm`.
         /// </summary>
         [Input("architecture")]
         public Input<string>? Architecture { get; set; }
 
         /// <summary>
-        /// The image id. Only one of `name` and `image_id` should be specified.
+        /// The image id. Only one of `Name` and `ImageId` should be specified.
         /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
@@ -97,7 +97,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<bool>? Latest { get; set; }
 
         /// <summary>
-        /// The image name. Only one of `name` and `image_id` should be specified.
+        /// The image name. Only one of `Name` and `ImageId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -109,7 +109,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the image exists.
+        /// `Zone`) The zone in which the image exists.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -161,7 +161,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// Set to `true` if the image is public.
+        /// Set to `True` if the image is public.
         /// </summary>
         public readonly bool Public;
         /// <summary>
@@ -169,7 +169,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         public readonly string RootVolumeId;
         /// <summary>
-        /// State of the image. Possible values are: `available`, `creating` or `error`.
+        /// State of the image. Possible values are: `Available`, `Creating` or `Error`.
         /// </summary>
         public readonly string State;
         public readonly string? Zone;

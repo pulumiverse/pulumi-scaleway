@@ -38,7 +38,7 @@ namespace Pulumiverse.Scaleway.Domain.Inputs
         public Input<string> Strategy { get; set; } = null!;
 
         /// <summary>
-        /// URL to match the must_contain text to validate an IP
+        /// URL to match the MustContain text to validate an IP
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;

@@ -34,7 +34,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Enables the autoscaling feature for this pool.
         /// 
-        /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
+        /// &gt; **Important:** When enabled, an update of the `Size` will not be taken into account.
         /// </summary>
         [Output("autoscaling")]
         public Output<bool?> Autoscaling { get; private set; } = null!;
@@ -92,7 +92,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `External` is a special node type used to provision from other Cloud providers.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -122,7 +122,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> PublicIpDisabled { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the pool should be created.
+        /// `Region`) The region in which the pool should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -194,7 +194,7 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> WaitForPoolReady { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the pool should be created.
+        /// `Zone`) The zone in which the pool should be created.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Enables the autoscaling feature for this pool.
         /// 
-        /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
+        /// &gt; **Important:** When enabled, an update of the `Size` will not be taken into account.
         /// </summary>
         [Input("autoscaling")]
         public Input<bool>? Autoscaling { get; set; }
@@ -309,7 +309,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `External` is a special node type used to provision from other Cloud providers.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -333,7 +333,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? PublicIpDisabled { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the pool should be created.
+        /// `Region`) The region in which the pool should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -393,7 +393,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? WaitForPoolReady { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the pool should be created.
+        /// `Zone`) The zone in which the pool should be created.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -417,7 +417,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Enables the autoscaling feature for this pool.
         /// 
-        /// &gt; **Important:** When enabled, an update of the `size` will not be taken into account.
+        /// &gt; **Important:** When enabled, an update of the `Size` will not be taken into account.
         /// </summary>
         [Input("autoscaling")]
         public Input<bool>? Autoscaling { get; set; }
@@ -481,7 +481,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `external` is a special node type used to provision from other Cloud providers.
+        /// The commercial type of the pool instances. Instances with insufficient memory are not eligible (DEV1-S, PLAY2-PICO, STARDUST). `External` is a special node type used to provision from other Cloud providers.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
@@ -517,7 +517,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? PublicIpDisabled { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the pool should be created.
+        /// `Region`) The region in which the pool should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -595,7 +595,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? WaitForPoolReady { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the pool should be created.
+        /// `Zone`) The zone in which the pool should be created.
         /// 
         /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>

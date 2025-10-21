@@ -37,7 +37,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The device ID.
-        /// Only one of the `name` and `device_id` should be specified.
+        /// Only one of the `Name` and `DeviceId` should be specified.
         /// </summary>
         [Input("deviceId")]
         public string? DeviceId { get; set; }
@@ -50,13 +50,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the Hub.
-        /// Only one of the `name` and `device_id` should be specified.
+        /// Only one of the `Name` and `DeviceId` should be specified.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the hub exists.
+        /// `Region`) The region in which the hub exists.
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
     {
         /// <summary>
         /// The device ID.
-        /// Only one of the `name` and `device_id` should be specified.
+        /// Only one of the `Name` and `DeviceId` should be specified.
         /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
@@ -84,13 +84,13 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The name of the Hub.
-        /// Only one of the `name` and `device_id` should be specified.
+        /// Only one of the `Name` and `DeviceId` should be specified.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the hub exists.
+        /// `Region`) The region in which the hub exists.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string BackendStageId;
         /// <summary>
-        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `BackendStageId` field. Requests that do not match will be checked by the next rule's condition.
         /// </summary>
         public readonly Outputs.EdgeServicesRouteStageRuleRuleHttpMatch? RuleHttpMatch;
 

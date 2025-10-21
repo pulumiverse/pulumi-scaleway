@@ -67,7 +67,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string SslCompatibilityLevel;
         /// <summary>
-        /// The state of the Load Balancer Instance. Possible values are: `unknown`, `ready`, `pending`, `stopped`, `error`, `locked` and `migrating`.
+        /// The state of the Load Balancer Instance. Possible values are: `Unknown`, `Ready`, `Pending`, `Stopped`, `Error`, `Locked` and `Migrating`.
         /// </summary>
         public readonly string Status;
         /// <summary>
@@ -87,7 +87,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// `zone`) The zone in which the Load Balancers exist.
+        /// `Zone`) The zone in which the Load Balancers exist.
         /// </summary>
         public readonly string? Zone;
 

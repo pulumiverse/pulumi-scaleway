@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IotRouteDatabase
     {
         /// <summary>
-        /// The database name (e.g. `measurements`).
+        /// The database name (e.g. `Measurements`).
         /// </summary>
         public readonly string Dbname;
         /// <summary>

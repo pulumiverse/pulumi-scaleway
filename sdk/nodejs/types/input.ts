@@ -859,33 +859,13 @@ export interface InferenceDeploymentPublicEndpoint {
 
 export interface InstanceImageAdditionalVolume {
     /**
-     * Date of the volume creation.
-     */
-    creationDate?: pulumi.Input<string>;
-    /**
-     * The export URI of the volume.
-     */
-    exportUri?: pulumi.Input<string>;
-    /**
      * ID of the server containing the volume.
      */
     id?: pulumi.Input<string>;
     /**
-     * Date of volume latest update.
-     */
-    modificationDate?: pulumi.Input<string>;
-    /**
      * The name of the image. If not provided it will be randomly generated.
      */
     name?: pulumi.Input<string>;
-    /**
-     * The organization ID the volume is associated with.
-     */
-    organization?: pulumi.Input<string>;
-    /**
-     * ID of the project the volume is associated with
-     */
-    project?: pulumi.Input<string>;
     /**
      * Description of the server containing the volume (in case the image is a backup from a server).
      */
@@ -895,21 +875,32 @@ export interface InstanceImageAdditionalVolume {
      */
     size?: pulumi.Input<number>;
     /**
-     * State of the volume.
-     */
-    state?: pulumi.Input<string>;
-    /**
      * A list of tags to apply to the image.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The type of volume, possible values are `lSsd` and `bSsd`.
+     * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
      */
     volumeType?: pulumi.Input<string>;
+}
+
+export interface InstanceImageRootVolume {
     /**
-     * The zone in which the image should be created.
+     * ID of the server containing the volume.
      */
-    zone?: pulumi.Input<string>;
+    id?: pulumi.Input<string>;
+    /**
+     * The name of the image. If not provided it will be randomly generated.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * The size of the volume.
+     */
+    size?: pulumi.Input<number>;
+    /**
+     * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+     */
+    volumeType?: pulumi.Input<string>;
 }
 
 export interface InstancePrivateNicPrivateIp {
@@ -3737,33 +3728,13 @@ export namespace inference {
 export namespace instance {
     export interface ImageAdditionalVolume {
         /**
-         * Date of the volume creation.
-         */
-        creationDate?: pulumi.Input<string>;
-        /**
-         * The export URI of the volume.
-         */
-        exportUri?: pulumi.Input<string>;
-        /**
          * ID of the server containing the volume.
          */
         id?: pulumi.Input<string>;
         /**
-         * Date of volume latest update.
-         */
-        modificationDate?: pulumi.Input<string>;
-        /**
          * The name of the image. If not provided it will be randomly generated.
          */
         name?: pulumi.Input<string>;
-        /**
-         * The organization ID the volume is associated with.
-         */
-        organization?: pulumi.Input<string>;
-        /**
-         * ID of the project the volume is associated with
-         */
-        project?: pulumi.Input<string>;
         /**
          * Description of the server containing the volume (in case the image is a backup from a server).
          */
@@ -3773,21 +3744,32 @@ export namespace instance {
          */
         size?: pulumi.Input<number>;
         /**
-         * State of the volume.
-         */
-        state?: pulumi.Input<string>;
-        /**
          * A list of tags to apply to the image.
          */
         tags?: pulumi.Input<pulumi.Input<string>[]>;
         /**
-         * The type of volume, possible values are `lSsd` and `bSsd`.
+         * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
          */
         volumeType?: pulumi.Input<string>;
+    }
+
+    export interface ImageRootVolume {
         /**
-         * The zone in which the image should be created.
+         * ID of the server containing the volume.
          */
-        zone?: pulumi.Input<string>;
+        id?: pulumi.Input<string>;
+        /**
+         * The name of the image. If not provided it will be randomly generated.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * The size of the volume.
+         */
+        size?: pulumi.Input<number>;
+        /**
+         * The type of volume, possible values are `lSsd` and `sbsSnapshot`.
+         */
+        volumeType?: pulumi.Input<string>;
     }
 
     export interface PrivateNicPrivateIp {

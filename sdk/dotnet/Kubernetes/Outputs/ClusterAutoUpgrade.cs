@@ -15,12 +15,12 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
     public sealed class ClusterAutoUpgrade
     {
         /// <summary>
-        /// Set to `true` to enable Kubernetes patch version auto upgrades.
-        /// &gt; **Important:** When enabling auto upgrades, the `version` field take a minor version like x.y (ie 1.18).
+        /// Set to `True` to enable Kubernetes patch version auto upgrades.
+        /// &gt; **Important:** When enabling auto upgrades, the `Version` field take a minor version like x.y (ie 1.18).
         /// </summary>
         public readonly bool Enable;
         /// <summary>
-        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// The day of the auto upgrade maintenance window (`Monday` to `Sunday`, or `Any`).
         /// </summary>
         public readonly string MaintenanceWindowDay;
         /// <summary>

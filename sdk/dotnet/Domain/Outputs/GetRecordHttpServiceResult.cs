@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Domain.Outputs
         /// </summary>
         public readonly string Strategy;
         /// <summary>
-        /// URL to match the must_contain text to validate an IP
+        /// URL to match the MustContain text to validate an IP
         /// </summary>
         public readonly string Url;
         /// <summary>

@@ -296,7 +296,9 @@ class FileFilesystem(pulumi.CustomResource):
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
-        Creates and manages a Scaleway File Storage (NFS) filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for shared, persistent storage.
+        > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
+
+        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
 
         This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
 
@@ -341,7 +343,9 @@ class FileFilesystem(pulumi.CustomResource):
                  args: FileFilesystemArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages a Scaleway File Storage (NFS) filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for shared, persistent storage.
+        > **This product is currently in private beta. To request access, please contact your Technical Account Manager.**
+
+        Creates and manages a Scaleway File Storage filesystem in a specific region. A filesystem is a scalable storage resource that can be mounted on Compute instances and is typically used for share persistent storage between multiple instances (RWX).
 
         This resource allows you to define and manage the size, tags, and region of a filesystem, and track its creation and update timestamps, current status, and number of active attachments.
 

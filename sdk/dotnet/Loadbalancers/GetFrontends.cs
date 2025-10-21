@@ -134,7 +134,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public string? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the frontends exist.
+        /// `Zone`) The zone in which the frontends exist.
         /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
@@ -163,7 +163,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the frontends exist.
+        /// `Zone`) The zone in which the frontends exist.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

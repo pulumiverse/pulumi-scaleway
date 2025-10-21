@@ -46,6 +46,29 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With additional volumes
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const server = new scaleway.instance.Server("server", {
+ *     image: "ubuntu_jammy",
+ *     type: "DEV1-S",
+ * });
+ * const volume = new scaleway.instance.Volume("volume", {
+ *     type: "b_ssd",
+ *     sizeInGb: 20,
+ * });
+ * const volumeSnapshot = new scaleway.instance.Snapshot("volume_snapshot", {volumeId: volume.id});
+ * const serverSnapshot = new scaleway.instance.Snapshot("server_snapshot", {volumeId: main.rootVolume[0].volumeId});
+ * const image = new scaleway.instance.Image("image", {
+ *     name: "image_with_extra_volumes",
+ *     rootVolumeId: serverSnapshot.id,
+ *     additionalVolumeIds: volumeSnapshot.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Images can be imported using the `{zone}/{id}`, e.g.
@@ -86,8 +109,6 @@ export class Image extends pulumi.CustomResource {
 
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
-     *
-     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     declare public readonly additionalVolumeIds: pulumi.Output<string | undefined>;
     /**
@@ -99,7 +120,7 @@ export class Image extends pulumi.CustomResource {
      */
     declare public readonly architecture: pulumi.Output<string | undefined>;
     /**
-     * Date of the volume creation.
+     * Date of the image creation.
      */
     declare public /*out*/ readonly creationDate: pulumi.Output<string>;
     /**
@@ -107,7 +128,7 @@ export class Image extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly fromServerId: pulumi.Output<string>;
     /**
-     * Date of volume latest update.
+     * Date of image latest update.
      */
     declare public /*out*/ readonly modificationDate: pulumi.Output<string>;
     /**
@@ -131,7 +152,11 @@ export class Image extends pulumi.CustomResource {
      */
     declare public readonly rootVolumeId: pulumi.Output<string>;
     /**
-     * State of the volume.
+     * The description of the root volume attached to the image.
+     */
+    declare public /*out*/ readonly rootVolumes: pulumi.Output<outputs.instance.ImageRootVolume[]>;
+    /**
+     * State of the image. Possible values are: `available`, `creating` or `error`.
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     /**
@@ -167,6 +192,7 @@ export class Image extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["public"] = state?.public;
             resourceInputs["rootVolumeId"] = state?.rootVolumeId;
+            resourceInputs["rootVolumes"] = state?.rootVolumes;
             resourceInputs["state"] = state?.state;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["zone"] = state?.zone;
@@ -188,6 +214,7 @@ export class Image extends pulumi.CustomResource {
             resourceInputs["fromServerId"] = undefined /*out*/;
             resourceInputs["modificationDate"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
+            resourceInputs["rootVolumes"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -203,8 +230,6 @@ export class Image extends pulumi.CustomResource {
 export interface ImageState {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
-     *
-     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     additionalVolumeIds?: pulumi.Input<string>;
     /**
@@ -216,7 +241,7 @@ export interface ImageState {
      */
     architecture?: pulumi.Input<string>;
     /**
-     * Date of the volume creation.
+     * Date of the image creation.
      */
     creationDate?: pulumi.Input<string>;
     /**
@@ -224,7 +249,7 @@ export interface ImageState {
      */
     fromServerId?: pulumi.Input<string>;
     /**
-     * Date of volume latest update.
+     * Date of image latest update.
      */
     modificationDate?: pulumi.Input<string>;
     /**
@@ -248,7 +273,11 @@ export interface ImageState {
      */
     rootVolumeId?: pulumi.Input<string>;
     /**
-     * State of the volume.
+     * The description of the root volume attached to the image.
+     */
+    rootVolumes?: pulumi.Input<pulumi.Input<inputs.instance.ImageRootVolume>[]>;
+    /**
+     * State of the image. Possible values are: `available`, `creating` or `error`.
      */
     state?: pulumi.Input<string>;
     /**
@@ -267,8 +296,6 @@ export interface ImageState {
 export interface ImageArgs {
     /**
      * List of IDs of the snapshots of the additional volumes to be attached to the image.
-     *
-     * > **Important:** For now it is only possible to have 1 additional_volume.
      */
     additionalVolumeIds?: pulumi.Input<string>;
     /**

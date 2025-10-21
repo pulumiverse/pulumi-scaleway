@@ -78,7 +78,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
         /// 
-        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
         [Output("enabled")]
         public Output<bool?> Enabled { get; private set; } = null!;
@@ -126,27 +126,27 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The OrganizationId you want to attach the resource to
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `PlanShared`)
         /// 
-        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+        /// &gt; **Important:** Updates to `ProductPlan` will recreate the IoT Hub Instance.
         /// </summary>
         [Output("productPlan")]
         public Output<string> ProductPlan { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        /// `ProjectId`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -229,7 +229,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
         /// 
-        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -259,21 +259,21 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `PlanShared`)
         /// 
-        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+        /// &gt; **Important:** Updates to `ProductPlan` will recreate the IoT Hub Instance.
         /// </summary>
         [Input("productPlan", required: true)]
         public Input<string> ProductPlan { get; set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        /// `ProjectId`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -319,7 +319,7 @@ namespace Pulumiverse.Scaleway.Iot
         /// <summary>
         /// Wether the IoT Hub instance should be enabled or not.
         /// 
-        /// &gt; **Important:** Updates to `enabled` will disconnect eventually connected devices.
+        /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
@@ -367,27 +367,27 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The organization_id you want to attach the resource to
+        /// The OrganizationId you want to attach the resource to
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// Product plan to create the hub, see documentation for available product plans (e.g. `plan_shared`)
+        /// Product plan to create the hub, see documentation for available product plans (e.g. `PlanShared`)
         /// 
-        /// &gt; **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
+        /// &gt; **Important:** Updates to `ProductPlan` will recreate the IoT Hub Instance.
         /// </summary>
         [Input("productPlan")]
         public Input<string>? ProductPlan { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the IoT Hub Instance is associated with.
+        /// `ProjectId`) The ID of the project the IoT Hub Instance is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// `region`) The region in which the Database Instance should be created.
+        /// `Region`) The region in which the Database Instance should be created.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

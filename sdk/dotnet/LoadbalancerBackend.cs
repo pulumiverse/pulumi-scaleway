@@ -129,7 +129,7 @@ namespace Pulumiverse.Scaleway
         public Output<int?> HealthCheckMaxRetries { get; private set; } = null!;
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to. Default to `ForwardPort`
         /// </summary>
         [Output("healthCheckPort")]
         public Output<int> HealthCheckPort { get; private set; } = null!;
@@ -243,7 +243,7 @@ namespace Pulumiverse.Scaleway
         public Output<string?> TimeoutConnect { get; private set; } = null!;
 
         /// <summary>
-        /// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+        /// Maximum time (in seconds) for a request to be left pending in queue when `MaxConnections` is reached
         /// </summary>
         [Output("timeoutQueue")]
         public Output<string?> TimeoutQueue { get; private set; } = null!;
@@ -359,7 +359,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? HealthCheckMaxRetries { get; set; }
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to. Default to `ForwardPort`
         /// </summary>
         [Input("healthCheckPort")]
         public Input<int>? HealthCheckPort { get; set; }
@@ -479,7 +479,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? TimeoutConnect { get; set; }
 
         /// <summary>
-        /// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+        /// Maximum time (in seconds) for a request to be left pending in queue when `MaxConnections` is reached
         /// </summary>
         [Input("timeoutQueue")]
         public Input<string>? TimeoutQueue { get; set; }
@@ -556,7 +556,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? HealthCheckMaxRetries { get; set; }
 
         /// <summary>
-        /// Port the HC requests will be send to. Default to `forward_port`
+        /// Port the HC requests will be send to. Default to `ForwardPort`
         /// </summary>
         [Input("healthCheckPort")]
         public Input<int>? HealthCheckPort { get; set; }
@@ -676,7 +676,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? TimeoutConnect { get; set; }
 
         /// <summary>
-        /// Maximum time (in seconds) for a request to be left pending in queue when `max_connections` is reached
+        /// Maximum time (in seconds) for a request to be left pending in queue when `MaxConnections` is reached
         /// </summary>
         [Input("timeoutQueue")]
         public Input<string>? TimeoutQueue { get; set; }

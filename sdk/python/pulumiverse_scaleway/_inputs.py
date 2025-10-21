@@ -109,6 +109,8 @@ __all__ = [
     'InferenceDeploymentPublicEndpointArgsDict',
     'InstanceImageAdditionalVolumeArgs',
     'InstanceImageAdditionalVolumeArgsDict',
+    'InstanceImageRootVolumeArgs',
+    'InstanceImageRootVolumeArgsDict',
     'InstancePrivateNicPrivateIpArgs',
     'InstancePrivateNicPrivateIpArgsDict',
     'InstanceSecurityGroupInboundRuleArgs',
@@ -4035,33 +4037,13 @@ class InferenceDeploymentPublicEndpointArgs:
 
 if not MYPY:
     class InstanceImageAdditionalVolumeArgsDict(TypedDict):
-        creation_date: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date of the volume creation.
-        """
-        export_uri: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The export URI of the volume.
-        """
         id: NotRequired[pulumi.Input[_builtins.str]]
         """
         ID of the server containing the volume.
         """
-        modification_date: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        Date of volume latest update.
-        """
         name: NotRequired[pulumi.Input[_builtins.str]]
         """
         The name of the image. If not provided it will be randomly generated.
-        """
-        organization: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The organization ID the volume is associated with.
-        """
-        project: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        ID of the project the volume is associated with
         """
         server: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
         """
@@ -4071,21 +4053,13 @@ if not MYPY:
         """
         The size of the volume.
         """
-        state: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        State of the volume.
-        """
         tags: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
         A list of tags to apply to the image.
         """
         volume_type: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The type of volume, possible values are `l_ssd` and `b_ssd`.
-        """
-        zone: NotRequired[pulumi.Input[_builtins.str]]
-        """
-        The zone in which the image should be created.
+        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
         """
 elif False:
     InstanceImageAdditionalVolumeArgsDict: TypeAlias = Mapping[str, Any]
@@ -4093,84 +4067,32 @@ elif False:
 @pulumi.input_type
 class InstanceImageAdditionalVolumeArgs:
     def __init__(__self__, *,
-                 creation_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 export_uri: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
-                 modification_date: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
-                 organization: Optional[pulumi.Input[_builtins.str]] = None,
-                 project: Optional[pulumi.Input[_builtins.str]] = None,
                  server: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] creation_date: Date of the volume creation.
-        :param pulumi.Input[_builtins.str] export_uri: The export URI of the volume.
         :param pulumi.Input[_builtins.str] id: ID of the server containing the volume.
-        :param pulumi.Input[_builtins.str] modification_date: Date of volume latest update.
         :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
-        :param pulumi.Input[_builtins.str] organization: The organization ID the volume is associated with.
-        :param pulumi.Input[_builtins.str] project: ID of the project the volume is associated with
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] server: Description of the server containing the volume (in case the image is a backup from a server).
         :param pulumi.Input[_builtins.int] size: The size of the volume.
-        :param pulumi.Input[_builtins.str] state: State of the volume.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the image.
-        :param pulumi.Input[_builtins.str] volume_type: The type of volume, possible values are `l_ssd` and `b_ssd`.
-        :param pulumi.Input[_builtins.str] zone: The zone in which the image should be created.
+        :param pulumi.Input[_builtins.str] volume_type: The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
         """
-        if creation_date is not None:
-            pulumi.set(__self__, "creation_date", creation_date)
-        if export_uri is not None:
-            pulumi.set(__self__, "export_uri", export_uri)
         if id is not None:
             pulumi.set(__self__, "id", id)
-        if modification_date is not None:
-            pulumi.set(__self__, "modification_date", modification_date)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if organization is not None:
-            pulumi.set(__self__, "organization", organization)
-        if project is not None:
-            pulumi.set(__self__, "project", project)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if size is not None:
             pulumi.set(__self__, "size", size)
-        if state is not None:
-            pulumi.set(__self__, "state", state)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if volume_type is not None:
             pulumi.set(__self__, "volume_type", volume_type)
-        if zone is not None:
-            pulumi.set(__self__, "zone", zone)
-
-    @_builtins.property
-    @pulumi.getter(name="creationDate")
-    def creation_date(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Date of the volume creation.
-        """
-        return pulumi.get(self, "creation_date")
-
-    @creation_date.setter
-    def creation_date(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "creation_date", value)
-
-    @_builtins.property
-    @pulumi.getter(name="exportUri")
-    def export_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The export URI of the volume.
-        """
-        return pulumi.get(self, "export_uri")
-
-    @export_uri.setter
-    def export_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "export_uri", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4185,18 +4107,6 @@ class InstanceImageAdditionalVolumeArgs:
         pulumi.set(self, "id", value)
 
     @_builtins.property
-    @pulumi.getter(name="modificationDate")
-    def modification_date(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        Date of volume latest update.
-        """
-        return pulumi.get(self, "modification_date")
-
-    @modification_date.setter
-    def modification_date(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "modification_date", value)
-
-    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -4207,30 +4117,6 @@ class InstanceImageAdditionalVolumeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def organization(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The organization ID the volume is associated with.
-        """
-        return pulumi.get(self, "organization")
-
-    @organization.setter
-    def organization(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "organization", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def project(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        ID of the project the volume is associated with
-        """
-        return pulumi.get(self, "project")
-
-    @project.setter
-    def project(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "project", value)
 
     @_builtins.property
     @pulumi.getter
@@ -4258,18 +4144,6 @@ class InstanceImageAdditionalVolumeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        State of the volume.
-        """
-        return pulumi.get(self, "state")
-
-    @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "state", value)
-
-    @_builtins.property
-    @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         A list of tags to apply to the image.
@@ -4284,7 +4158,7 @@ class InstanceImageAdditionalVolumeArgs:
     @pulumi.getter(name="volumeType")
     def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of volume, possible values are `l_ssd` and `b_ssd`.
+        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
         """
         return pulumi.get(self, "volume_type")
 
@@ -4292,17 +4166,97 @@ class InstanceImageAdditionalVolumeArgs:
     def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "volume_type", value)
 
+
+if not MYPY:
+    class InstanceImageRootVolumeArgsDict(TypedDict):
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        ID of the server containing the volume.
+        """
+        name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The name of the image. If not provided it will be randomly generated.
+        """
+        size: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        The size of the volume.
+        """
+        volume_type: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+        """
+elif False:
+    InstanceImageRootVolumeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class InstanceImageRootVolumeArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 volume_type: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: ID of the server containing the volume.
+        :param pulumi.Input[_builtins.str] name: The name of the image. If not provided it will be randomly generated.
+        :param pulumi.Input[_builtins.int] size: The size of the volume.
+        :param pulumi.Input[_builtins.str] volume_type: The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The zone in which the image should be created.
+        ID of the server containing the volume.
         """
-        return pulumi.get(self, "zone")
+        return pulumi.get(self, "id")
 
-    @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "zone", value)
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the image. If not provided it will be randomly generated.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The size of the volume.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The type of volume, possible values are `l_ssd` and `sbs_snapshot`.
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "volume_type", value)
 
 
 if not MYPY:

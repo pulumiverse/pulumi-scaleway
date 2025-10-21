@@ -13,6 +13,8 @@ import (
 
 // Gets information about your Consumptions.
 //
+// ## Example Usage
+//
 // Deprecated: scaleway.index/getbillingconsumptions.getBillingConsumptions has been deprecated in favor of scaleway.billing/getconsumptions.getConsumptions
 func GetBillingConsumptions(ctx *pulumi.Context, args *GetBillingConsumptionsArgs, opts ...pulumi.InvokeOption) (*GetBillingConsumptionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)

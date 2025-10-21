@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server must be created.
+        /// `Zone`) The zone in which the server must be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -297,7 +297,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server must be created.
+        /// `Zone`) The zone in which the server must be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -377,7 +377,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the server must be created.
+        /// `Zone`) The zone in which the server must be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
         /// </summary>
         public readonly string Origin;
         /// <summary>
@@ -51,7 +51,7 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
         /// </summary>
         public readonly bool SynchronizedWithGrafana;
         /// <summary>
-        /// Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
+        /// Filter sources by type. Possible values are: `Metrics`, `Logs`, `Traces`.
         /// </summary>
         public readonly string Type;
         /// <summary>

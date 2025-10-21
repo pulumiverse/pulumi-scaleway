@@ -139,18 +139,18 @@ namespace Pulumiverse.Scaleway.Domain
     /// 
     /// Each contact block supports the following attributes:
     /// 
-    /// - `legal_form` (Required, String): Legal form of the contact.
-    /// - `firstname` (Required, String): First name.
-    /// - `lastname` (Required, String): Last name.
-    /// - `company_name` (Optional, String): Company name.
-    /// - `email` (Required, String): Primary email.
-    /// - `phone_number` (Required, String): Primary phone number.
-    /// - `address_line_1` (Required, String): Primary address.
-    /// - `zip` (Required, String): Postal code.
-    /// - `city` (Required, String): City.
-    /// - `country` (Required, String): Country code (ISO format).
-    /// - `vat_identification_code` (Required, String): VAT identification code.
-    /// - `company_identification_code` (Required, String): Company identification code.
+    /// - `LegalForm` (Required, String): Legal form of the contact.
+    /// - `Firstname` (Required, String): First name.
+    /// - `Lastname` (Required, String): Last name.
+    /// - `CompanyName` (Optional, String): Company name.
+    /// - `Email` (Required, String): Primary email.
+    /// - `PhoneNumber` (Required, String): Primary phone number.
+    /// - `AddressLine1` (Required, String): Primary address.
+    /// - `Zip` (Required, String): Postal code.
+    /// - `City` (Required, String): City.
+    /// - `Country` (Required, String): Country code (ISO format).
+    /// - `VatIdentificationCode` (Required, String): VAT identification code.
+    /// - `CompanyIdentificationCode` (Required, String): Company identification code.
     /// 
     /// ## Import
     /// 

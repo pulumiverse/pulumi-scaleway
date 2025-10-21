@@ -46,15 +46,15 @@ namespace Pulumiverse.Scaleway
         public Output<string> Bucket { get; private set; } = null!;
 
         /// <summary>
-        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Output("content")]
         public Output<string?> Content { get; private set; } = null!;
 
         /// <summary>
-        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The base64-encoded content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// 
-        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        /// &gt; **Note:** Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Output("contentBase64")]
         public Output<string?> ContentBase64 { get; private set; } = null!;
@@ -90,7 +90,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -120,7 +120,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`.
+        /// Visibility of the object, `public-read` or `Private`.
         /// </summary>
         [Output("visibility")]
         public Output<string> Visibility { get; private set; } = null!;
@@ -183,15 +183,15 @@ namespace Pulumiverse.Scaleway
         public Input<string> Bucket { get; set; } = null!;
 
         /// <summary>
-        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
         /// <summary>
-        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The base64-encoded content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// 
-        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        /// &gt; **Note:** Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
@@ -233,7 +233,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -279,7 +279,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`.
+        /// Visibility of the object, `public-read` or `Private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }
@@ -299,15 +299,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Bucket { get; set; }
 
         /// <summary>
-        /// The content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
         /// <summary>
-        /// The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
+        /// The base64-encoded content of the file to upload. Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// 
-        /// &gt; **Note:** Only one of `file`, `content` or `content_base64` can be defined.
+        /// &gt; **Note:** Only one of `File`, `Content` or `ContentBase64` can be defined.
         /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
@@ -349,7 +349,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The project_id you want to attach the resource to
+        /// The ProjectId you want to attach the resource to
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -395,7 +395,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Visibility of the object, `public-read` or `private`.
+        /// Visibility of the object, `public-read` or `Private`.
         /// </summary>
         [Input("visibility")]
         public Input<string>? Visibility { get; set; }

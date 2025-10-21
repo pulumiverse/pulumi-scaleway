@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers.Outputs
         public readonly ImmutableArray<Outputs.GetFrontendAclMatchResult> Matches;
         /// <summary>
         /// The name of the frontend.
-        /// - When using the `name` you should specify the `lb-id`
+        /// - When using the `Name` you should specify the `lb-id`
         /// </summary>
         public readonly string Name;
         /// <summary>

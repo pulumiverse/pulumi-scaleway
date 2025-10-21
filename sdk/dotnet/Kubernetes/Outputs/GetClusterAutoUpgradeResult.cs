@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly bool Enable;
         /// <summary>
-        /// The day of the auto upgrade maintenance window (`monday` to `sunday`, or `any`).
+        /// The day of the auto upgrade maintenance window (`Monday` to `Sunday`, or `Any`).
         /// </summary>
         public readonly string MaintenanceWindowDay;
         /// <summary>

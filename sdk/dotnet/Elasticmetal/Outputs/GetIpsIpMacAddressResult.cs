@@ -39,7 +39,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal.Outputs
         /// </summary>
         public readonly string UpdatedAt;
         /// <summary>
-        /// `zone`) The zone in which IPs exist.
+        /// `Zone`) The zone in which IPs exist.
         /// </summary>
         public readonly string? Zone;
 

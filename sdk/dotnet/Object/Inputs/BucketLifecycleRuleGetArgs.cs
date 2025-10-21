@@ -16,7 +16,7 @@ namespace Pulumiverse.Scaleway.Object.Inputs
         /// <summary>
         /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
         /// 
-        /// &gt; **Important:** Avoid using `prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
+        /// &gt; **Important:** Avoid using `Prefix` for `AbortIncompleteMultipartUpload`, as any incomplete multipart upload will be billed
         /// </summary>
         [Input("abortIncompleteMultipartUploadDays")]
         public Input<int>? AbortIncompleteMultipartUploadDays { get; set; }

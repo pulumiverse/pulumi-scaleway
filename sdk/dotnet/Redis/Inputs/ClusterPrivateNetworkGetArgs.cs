@@ -53,20 +53,20 @@ namespace Pulumiverse.Scaleway.Redis.Inputs
         /// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
         /// &gt; **Important:** When IPAM is enabled, the IPs specified here will be ignored and should not be provided.
         /// 
-        /// &gt; The `private_network` conflicts with `acl`. Only one should be specified.
+        /// &gt; The `PrivateNetwork` conflicts with `Acl`. Only one should be specified.
         /// 
         /// &gt; **Important:** The way to use Private Networks differs whether you are using Redis™ in Standalone or cluster mode.
         /// 
-        /// - Standalone mode (`cluster_size` = 1) : you can attach as many Private Networks as you want (each must be a separate
+        /// - Standalone mode (`ClusterSize` = 1) : you can attach as many Private Networks as you want (each must be a separate
         /// block). If you detach your only Private Network, your cluster won't be reachable until you define a new Private or
-        /// Public Network. You can modify your `private_network` and its specs, you can have both a Private and Public Network side
+        /// Public Network. You can modify your `PrivateNetwork` and its specs, you can have both a Private and Public Network side
         /// by side.
         /// 
-        /// - Cluster mode (`cluster_size` &gt; 2) : you can define a single Private Network as you create your cluster, you won't be
+        /// - Cluster mode (`ClusterSize` &gt; 2) : you can define a single Private Network as you create your cluster, you won't be
         /// able to edit or detach it afterward, unless you create another cluster. This also means that, if you are using a static
-        /// configuration (`service_ips`), you won't be able to scale your cluster horizontally (add more nodes) since it would
+        /// configuration (`ServiceIps`), you won't be able to scale your cluster horizontally (add more nodes) since it would
         /// require updating the Private Network to add IPs.
-        /// Your `service_ips` must be listed as follows:
+        /// Your `ServiceIps` must be listed as follows:
         /// </summary>
         public InputList<string> ServiceIps
         {
@@ -75,7 +75,7 @@ namespace Pulumiverse.Scaleway.Redis.Inputs
         }
 
         /// <summary>
-        /// `zone`) The zone in which the
+        /// `Zone`) The zone in which the
         /// Redis™ cluster should be created.
         /// </summary>
         [Input("zone")]

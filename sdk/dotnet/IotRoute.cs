@@ -183,7 +183,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Route is attached to.
+        /// (Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
@@ -272,7 +272,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Route is attached to.
+        /// (Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -328,7 +328,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// (Defaults to provider `region`) The region in which the Route is attached to.
+        /// (Defaults to provider `Region`) The region in which the Route is attached to.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

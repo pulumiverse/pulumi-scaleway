@@ -71,7 +71,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the application is associated with.
+        /// `OrganizationId`) The ID of the organization the application is associated with.
         /// </summary>
         [Output("organizationId")]
         public Output<string> OrganizationId { get; private set; } = null!;
@@ -148,7 +148,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the application is associated with.
+        /// `OrganizationId`) The ID of the organization the application is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
@@ -198,7 +198,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// `organization_id`) The ID of the organization the application is associated with.
+        /// `OrganizationId`) The ID of the organization the application is associated with.
         /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }

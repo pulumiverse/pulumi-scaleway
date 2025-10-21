@@ -42,7 +42,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Retrieve a data source by filters
         /// 
-        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// You can also retrieve a data source by specifying filtering criteria such as `Name`, `Type`, and `Origin`.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -94,7 +94,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Retrieve a data source by filters
         /// 
-        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// You can also retrieve a data source by specifying filtering criteria such as `Name`, `Type`, and `Origin`.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -146,7 +146,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// ### Retrieve a data source by filters
         /// 
-        /// You can also retrieve a data source by specifying filtering criteria such as `name`, `type`, and `origin`.
+        /// You can also retrieve a data source by specifying filtering criteria such as `Name`, `Type`, and `Origin`.
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -204,7 +204,7 @@ namespace Pulumiverse.Scaleway
         public string? Region { get; set; }
 
         /// <summary>
-        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `Metrics`, `Logs`, or `Traces`.
         /// </summary>
         [Input("type")]
         public string? Type { get; set; }
@@ -248,7 +248,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `metrics`, `logs`, or `traces`.
+        /// The [type](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#data-types) of data source. Possible values are: `Metrics`, `Logs`, or `Traces`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

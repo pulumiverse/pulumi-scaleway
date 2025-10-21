@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? ObjectPrefix;
         /// <summary>
-        /// How the S3 route's objects will be created (e.g. `per_topic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
+        /// How the S3 route's objects will be created (e.g. `PerTopic`). See [documentation](https://www.scaleway.com/en/docs/iot-hub/how-to/create-route/) for behaviour details.
         /// </summary>
         public readonly string Strategy;
 

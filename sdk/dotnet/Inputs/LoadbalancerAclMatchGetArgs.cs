@@ -16,13 +16,13 @@ namespace Pulumiverse.Scaleway.Inputs
         /// <summary>
         /// The HTTP filter to match. This filter is supported only if your backend protocol has an HTTP forward protocol.
         /// It extracts the request's URL path, which starts at the first slash and ends before the question mark (without the host part).
-        /// Possible values are: `acl_http_filter_none`, `path_begin`, `path_end`, `http_header_match` or `regex`.
+        /// Possible values are: `AclHttpFilterNone`, `PathBegin`, `PathEnd`, `HttpHeaderMatch` or `Regex`.
         /// </summary>
         [Input("httpFilter")]
         public Input<string>? HttpFilter { get; set; }
 
         /// <summary>
-        /// If you have `http_filter` at `http_header_match`, you can use this field to filter on the HTTP header's value.
+        /// If you have `HttpFilter` at `HttpHeaderMatch`, you can use this field to filter on the HTTP header's value.
         /// </summary>
         [Input("httpFilterOption")]
         public Input<string>? HttpFilterOption { get; set; }
@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway.Inputs
 
         /// <summary>
         /// A list of possible values to match for the given HTTP filter.
-        /// Keep in mind that in the case of `http_header_match` the HTTP header field name is case insensitive.
+        /// Keep in mind that in the case of `HttpHeaderMatch` the HTTP header field name is case insensitive.
         /// </summary>
         public InputList<string> HttpFilterValues
         {
@@ -41,7 +41,7 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// If set to `true`, the condition will be of type "unless".
+        /// If set to `True`, the condition will be of type "unless".
         /// </summary>
         [Input("invert")]
         public Input<bool>? Invert { get; set; }
@@ -50,7 +50,7 @@ namespace Pulumiverse.Scaleway.Inputs
         private InputList<string>? _ipSubnets;
 
         /// <summary>
-        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        /// A list of IPs, or CIDR v4/v6 addresses of the session client, to match. Only one of `IpSubnet` and `IpsEdgeServices` should be specified.
         /// </summary>
         public InputList<string> IpSubnets
         {
@@ -59,7 +59,7 @@ namespace Pulumiverse.Scaleway.Inputs
         }
 
         /// <summary>
-        /// Defines whether Edge Services IPs should be matched. Only one of `ip_subnet` and `ips_edge_services` should be specified.
+        /// Defines whether Edge Services IPs should be matched. Only one of `IpSubnet` and `IpsEdgeServices` should be specified.
         /// </summary>
         [Input("ipsEdgeServices")]
         public Input<bool>? IpsEdgeServices { get; set; }

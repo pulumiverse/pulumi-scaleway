@@ -126,8 +126,8 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Notes
     /// 
-    /// - Ensure the `instance_id` corresponds to an existing database instance.
-    /// - Use the `depends_on` argument when creating snapshots right after creating an instance to ensure proper dependency management.
+    /// - Ensure the `InstanceId` corresponds to an existing database instance.
+    /// - Use the `DependsOn` argument when creating snapshots right after creating an instance to ensure proper dependency management.
     /// 
     /// ## Import
     /// 
@@ -180,7 +180,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
-        /// The current status of the snapshot (e.g., `ready`, `creating`, `error`).
+        /// The current status of the snapshot (e.g., `Ready`, `Creating`, `Error`).
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -319,7 +319,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? Size { get; set; }
 
         /// <summary>
-        /// The current status of the snapshot (e.g., `ready`, `creating`, `error`).
+        /// The current status of the snapshot (e.g., `Ready`, `Creating`, `Error`).
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

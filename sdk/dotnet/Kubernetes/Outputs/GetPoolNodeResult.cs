@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Kubernetes.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The pool name. Only one of `name` and `pool_id` should be specified. `cluster_id` should be specified with `name`.
+        /// The pool name. Only one of `Name` and `PoolId` should be specified. `ClusterId` should be specified with `Name`.
         /// </summary>
         public readonly string Name;
         /// <summary>

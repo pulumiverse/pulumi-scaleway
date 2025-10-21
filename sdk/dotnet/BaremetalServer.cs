@@ -15,6 +15,14 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
+    /// ### Basic
+    /// 
+    /// ### With option
+    /// 
+    /// ### With private network
+    /// 
+    /// ### With IPAM IP IDs
+    /// 
     /// ### Without install config
     /// 
     /// ```csharp
@@ -101,7 +109,7 @@ namespace Pulumiverse.Scaleway
     /// ### Migrate from hourly to monthly plan
     /// 
     /// To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
-    /// You cannot directly modify the subscription_period of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
+    /// You cannot directly modify the SubscriptionPeriod of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
     /// 
     /// ### Hourly Plan Example
     /// 
@@ -229,7 +237,7 @@ namespace Pulumiverse.Scaleway
         /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
-        /// &gt; **Important:** Updates to `offer` will recreate the server.
+        /// &gt; **Important:** Updates to `Offer` will recreate the server.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
@@ -248,7 +256,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The options to enable on the server.
-        /// &gt; The `options` block supports:
+        /// &gt; The `Options` block supports:
         /// </summary>
         [Output("options")]
         public Output<ImmutableArray<Outputs.BaremetalServerOption>> Options { get; private set; } = null!;
@@ -262,7 +270,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
-        /// &gt; **Important:** Updates to `os` will reinstall the server.
+        /// &gt; **Important:** Updates to `Os` will reinstall the server.
         /// </summary>
         [Output("os")]
         public Output<string?> Os { get; private set; } = null!;
@@ -298,7 +306,7 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<Outputs.BaremetalServerPrivateNetwork>> PrivateNetworks { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -311,7 +319,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.
-        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// &gt; **Important:** Updates to `SshKeyIds`, `User`, `Password`, `ServiceUser` or `ServicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         /// </summary>
         [Output("reinstallOnConfigChanges")]
         public Output<bool?> ReinstallOnConfigChanges { get; private set; } = null!;
@@ -347,7 +355,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> User { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -432,7 +440,7 @@ namespace Pulumiverse.Scaleway
         /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
-        /// &gt; **Important:** Updates to `offer` will recreate the server.
+        /// &gt; **Important:** Updates to `Offer` will recreate the server.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
@@ -442,7 +450,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The options to enable on the server.
-        /// &gt; The `options` block supports:
+        /// &gt; The `Options` block supports:
         /// </summary>
         public InputList<Inputs.BaremetalServerOptionArgs> Options
         {
@@ -453,7 +461,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
-        /// &gt; **Important:** Updates to `os` will reinstall the server.
+        /// &gt; **Important:** Updates to `Os` will reinstall the server.
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
@@ -505,7 +513,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -518,7 +526,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.
-        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// &gt; **Important:** Updates to `SshKeyIds`, `User`, `Password`, `ServiceUser` or `ServicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         /// </summary>
         [Input("reinstallOnConfigChanges")]
         public Input<bool>? ReinstallOnConfigChanges { get; set; }
@@ -576,7 +584,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? User { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -659,7 +667,7 @@ namespace Pulumiverse.Scaleway
         /// The offer UUID of the baremetal server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
-        /// &gt; **Important:** Updates to `offer` will recreate the server.
+        /// &gt; **Important:** Updates to `Offer` will recreate the server.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }
@@ -681,7 +689,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The options to enable on the server.
-        /// &gt; The `options` block supports:
+        /// &gt; The `Options` block supports:
         /// </summary>
         public InputList<Inputs.BaremetalServerOptionGetArgs> Options
         {
@@ -698,7 +706,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The UUID of the os to install on the server.
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
-        /// &gt; **Important:** Updates to `os` will reinstall the server.
+        /// &gt; **Important:** Updates to `Os` will reinstall the server.
         /// </summary>
         [Input("os")]
         public Input<string>? Os { get; set; }
@@ -756,7 +764,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// `project_id`) The ID of the project the server is associated with.
+        /// `ProjectId`) The ID of the project the server is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -769,7 +777,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// If True, this boolean allows to reinstall the server on install config changes.
-        /// &gt; **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
+        /// &gt; **Important:** Updates to `SshKeyIds`, `User`, `Password`, `ServiceUser` or `ServicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
         /// </summary>
         [Input("reinstallOnConfigChanges")]
         public Input<bool>? ReinstallOnConfigChanges { get; set; }
@@ -827,7 +835,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? User { get; set; }
 
         /// <summary>
-        /// `zone`) The zone in which the server should be created.
+        /// `Zone`) The zone in which the server should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }

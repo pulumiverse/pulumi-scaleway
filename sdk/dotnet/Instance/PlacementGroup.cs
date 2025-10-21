@@ -54,7 +54,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `Optional` or `Enforced`.
         /// </summary>
         [Output("policyMode")]
         public Output<string?> PolicyMode { get; private set; } = null!;
@@ -66,13 +66,13 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<bool> PolicyRespected { get; private set; } = null!;
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `LowLatency` or `MaxAvailability`.
         /// </summary>
         [Output("policyType")]
         public Output<string?> PolicyType { get; private set; } = null!;
 
         /// <summary>
-        /// `project_id`) The ID of the project the placement group is associated with.
+        /// `ProjectId`) The ID of the project the placement group is associated with.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -84,7 +84,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// `zone`) The zone in which the placement group should be created.
+        /// `Zone`) The zone in which the placement group should be created.
         /// </summary>
         [Output("zone")]
         public Output<string?> Zone { get; private set; } = null!;
@@ -147,19 +147,19 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `Optional` or `Enforced`.
         /// </summary>
         [Input("policyMode")]
         public Input<string>? PolicyMode { get; set; }
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `LowLatency` or `MaxAvailability`.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the placement group is associated with.
+        /// `ProjectId`) The ID of the project the placement group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -177,7 +177,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the placement group should be created.
+        /// `Zone`) The zone in which the placement group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `optional` or `enforced`.
+        /// The [policy mode](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-group) of the placement group. Possible values are: `Optional` or `Enforced`.
         /// </summary>
         [Input("policyMode")]
         public Input<string>? PolicyMode { get; set; }
@@ -215,13 +215,13 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<bool>? PolicyRespected { get; set; }
 
         /// <summary>
-        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `low_latency` or `max_availability`.
+        /// The [policy type](https://www.scaleway.com/en/developers/api/instance/#path-placement-groups-create-a-placement-grou) of the placement group. Possible values are: `LowLatency` or `MaxAvailability`.
         /// </summary>
         [Input("policyType")]
         public Input<string>? PolicyType { get; set; }
 
         /// <summary>
-        /// `project_id`) The ID of the project the placement group is associated with.
+        /// `ProjectId`) The ID of the project the placement group is associated with.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -239,7 +239,7 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// `zone`) The zone in which the placement group should be created.
+        /// `Zone`) The zone in which the placement group should be created.
         /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
