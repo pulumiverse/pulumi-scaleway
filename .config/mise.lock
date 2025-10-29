@@ -57,3 +57,27 @@ url = "https://github.com/pulumi/pulumi/releases/download/v3.190.0/pulumi-v3.190
 [[tools.python]]
 version = "3.11.8"
 backend = "core:python"
+
+[[tools."vfox-pulumi:pulumi/pulumi-aws"]]
+version = "7.10.0"
+backend = "vfox-pulumi:pulumi/pulumi-aws"
+
+[[tools."vfox-pulumi:pulumi/pulumi-converter-terraform"]]
+version = "1.2.4"
+backend = "vfox-pulumi:pulumi/pulumi-converter-terraform"
+
+[[tools."vfox-pulumi:pulumi/pulumi-gitlab"]]
+version = "9.4.0"
+backend = "vfox-pulumi:pulumi/pulumi-gitlab"
+
+[[tools."vfox-pulumi:pulumi/pulumi-local"]]
+version = "0.1.6"
+backend = "vfox-pulumi:pulumi/pulumi-local"
+
+[[tools."vfox-pulumi:pulumi/pulumi-null"]]
+version = "0.0.13"
+backend = "vfox-pulumi:pulumi/pulumi-null"
+
+[[tools."vfox-pulumi:pulumi/pulumi-random"]]
+version = "4.18.4"
+backend = "vfox-pulumi:pulumi/pulumi-random"
