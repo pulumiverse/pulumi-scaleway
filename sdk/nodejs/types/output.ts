@@ -387,7 +387,7 @@ export interface DatabaseInstancePrivateIp {
      */
     address: string;
     /**
-     * The ID of the IPv4 address resource.
+     * Version ID to use in upgrade requests.
      */
     id: string;
 }
@@ -444,6 +444,25 @@ export interface DatabaseInstanceReadReplica {
      * Port in the Private Network.
      */
     port: number;
+}
+
+export interface DatabaseInstanceUpgradableVersion {
+    /**
+     * Version ID to use in upgrade requests.
+     */
+    id: string;
+    /**
+     * Minor version string (e.g., `15.5.0`).
+     */
+    minorVersion: string;
+    /**
+     * The name of the Database Instance.
+     */
+    name: string;
+    /**
+     * Version string (e.g., `15.5`).
+     */
+    version: string;
 }
 
 export interface DatabaseReadReplicaDirectAccess {
@@ -1185,6 +1204,25 @@ export interface GetDatabaseInstanceReadReplica {
     port: number;
 }
 
+export interface GetDatabaseInstanceUpgradableVersion {
+    /**
+     * The ID of the Database Instance.
+     */
+    id: string;
+    /**
+     * Minor version string
+     */
+    minorVersion: string;
+    /**
+     * The name of the RDB instance.
+     */
+    name: string;
+    /**
+     * Version string
+     */
+    version: string;
+}
+
 export interface GetDomainRecordGeoIp {
     /**
      * The list of matches
@@ -1403,13 +1441,24 @@ export interface GetInstanceSecurityGroupOutboundRule {
     protocol: string;
 }
 
+export interface GetInstanceServerFilesystem {
+    /**
+     * The filesystem ID attached to the server
+     */
+    filesystemId: string;
+    /**
+     * The state of the filesystem
+     */
+    status: string;
+}
+
 export interface GetInstanceServerPrivateIp {
     /**
-     * The address of the IP
+     * The private IP address.
      */
     address: string;
     /**
-     * The ID of the IP
+     * The ID of the IP address resource.
      */
     id: string;
 }
@@ -1439,7 +1488,7 @@ export interface GetInstanceServerPrivateNetwork {
 
 export interface GetInstanceServerPublicIp {
     /**
-     * The address of the IP
+     * The private IP address.
      */
     address: string;
     /**
@@ -1455,7 +1504,7 @@ export interface GetInstanceServerPublicIp {
      */
     gateway: string;
     /**
-     * The ID of the IP
+     * The ID of the IP address resource.
      */
     id: string;
     /**
@@ -1515,10 +1564,6 @@ export interface GetInstanceServersServer {
      */
     enableDynamicIp: boolean;
     /**
-     * Determines if IPv6 is enabled for the server.
-     */
-    enableIpv6: boolean;
-    /**
      * The ID of the IP
      */
     id: string;
@@ -1526,18 +1571,6 @@ export interface GetInstanceServersServer {
      * The UUID or the label of the base image used by the server.
      */
     image: string;
-    /**
-     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     */
-    ipv6Address: string;
-    /**
-     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     */
-    ipv6Gateway: string;
-    /**
-     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     */
-    ipv6PrefixLength: number;
     /**
      * The server name used as filter. Servers with a name like it are listed.
      */
@@ -1555,10 +1588,6 @@ export interface GetInstanceServersServer {
      */
     placementGroupPolicyRespected: boolean;
     /**
-     * The Scaleway internal IP address of the server.
-     */
-    privateIp: string;
-    /**
      * The list of private IPv4 and IPv6 addresses associated with the server.
      */
     privateIps: outputs.GetInstanceServersServerPrivateIp[];
@@ -1566,12 +1595,6 @@ export interface GetInstanceServersServer {
      * The ID of the project the server is associated with.
      */
     projectId: string;
-    /**
-     * The public IP address of the server.
-     *
-     * @deprecated Use publicIps instead
-     */
-    publicIp: string;
     /**
      * The list of public IPs of the server
      */
@@ -3436,6 +3459,17 @@ export interface InstanceSecurityGroupRulesOutboundRule {
      * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: string;
+}
+
+export interface InstanceServerFilesystem {
+    /**
+     * The unique ID of the filesystem attached to the server.
+     */
+    filesystemId?: string;
+    /**
+     * The state of the filesystem
+     */
+    status: string;
 }
 
 export interface InstanceServerPrivateIp {
@@ -5318,6 +5352,25 @@ export namespace databases {
         port: number;
     }
 
+    export interface GetInstanceUpgradableVersion {
+        /**
+         * The ID of the Database Instance.
+         */
+        id: string;
+        /**
+         * Minor version string
+         */
+        minorVersion: string;
+        /**
+         * The name of the RDB instance.
+         */
+        name: string;
+        /**
+         * Version string
+         */
+        version: string;
+    }
+
     export interface InstanceLoadBalancer {
         /**
          * The ID of the endpoint.
@@ -5358,7 +5411,7 @@ export namespace databases {
          */
         address: string;
         /**
-         * The ID of the IPv4 address resource.
+         * Version ID to use in upgrade requests.
          */
         id: string;
     }
@@ -5415,6 +5468,25 @@ export namespace databases {
          * Port in the Private Network.
          */
         port: number;
+    }
+
+    export interface InstanceUpgradableVersion {
+        /**
+         * Version ID to use in upgrade requests.
+         */
+        id: string;
+        /**
+         * Minor version string (e.g., `15.5.0`).
+         */
+        minorVersion: string;
+        /**
+         * The name of the Database Instance.
+         */
+        name: string;
+        /**
+         * Version string (e.g., `15.5`).
+         */
+        version: string;
     }
 
     export interface ReadReplicaDirectAccess {
@@ -6822,6 +6894,25 @@ export namespace hosting {
 }
 
 export namespace iam {
+    export interface GetPolicyRule {
+        /**
+         * The condition of the rule.
+         */
+        condition: string;
+        /**
+         * ID of organization scoped to the rule.
+         */
+        organizationId: string;
+        /**
+         * Names of permission sets bound to the rule.
+         */
+        permissionSetNames: string[];
+        /**
+         * List of project IDs scoped to the rule.
+         */
+        projectIds: string[];
+    }
+
     export interface PolicyRule {
         /**
          * The condition of the rule.
@@ -7025,13 +7116,24 @@ export namespace instance {
         protocol: string;
     }
 
+    export interface GetServerFilesystem {
+        /**
+         * The filesystem ID attached to the server
+         */
+        filesystemId: string;
+        /**
+         * The state of the filesystem
+         */
+        status: string;
+    }
+
     export interface GetServerPrivateIp {
         /**
-         * The address of the IP
+         * The private IP address.
          */
         address: string;
         /**
-         * The ID of the IP
+         * The ID of the IP address resource.
          */
         id: string;
     }
@@ -7061,7 +7163,7 @@ export namespace instance {
 
     export interface GetServerPublicIp {
         /**
-         * The address of the IP
+         * The private IP address.
          */
         address: string;
         /**
@@ -7077,7 +7179,7 @@ export namespace instance {
          */
         gateway: string;
         /**
-         * The ID of the IP
+         * The ID of the IP address resource.
          */
         id: string;
         /**
@@ -7190,10 +7292,6 @@ export namespace instance {
          */
         enableDynamicIp: boolean;
         /**
-         * Determines if IPv6 is enabled for the server.
-         */
-        enableIpv6: boolean;
-        /**
          * The ID of the IP
          */
         id: string;
@@ -7201,18 +7299,6 @@ export namespace instance {
          * The UUID or the label of the base image used by the server.
          */
         image: string;
-        /**
-         * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-         */
-        ipv6Address: string;
-        /**
-         * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-         */
-        ipv6Gateway: string;
-        /**
-         * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-         */
-        ipv6PrefixLength: number;
         /**
          * The server name used as filter. Servers with a name like it are listed.
          */
@@ -7230,10 +7316,6 @@ export namespace instance {
          */
         placementGroupPolicyRespected: boolean;
         /**
-         * The Scaleway internal IP address of the server.
-         */
-        privateIp: string;
-        /**
          * The list of private IPv4 and IPv6 addresses associated with the server.
          */
         privateIps: outputs.instance.GetServersServerPrivateIp[];
@@ -7241,12 +7323,6 @@ export namespace instance {
          * The ID of the project the server is associated with.
          */
         projectId: string;
-        /**
-         * The public IP address of the server.
-         *
-         * @deprecated Use publicIps instead
-         */
-        publicIp: string;
         /**
          * The list of public IPs of the server
          */
@@ -7477,6 +7553,17 @@ export namespace instance {
          * Protocol for this rule (TCP, UDP, ICMP or ANY)
          */
         protocol?: string;
+    }
+
+    export interface ServerFilesystem {
+        /**
+         * The unique ID of the filesystem attached to the server.
+         */
+        filesystemId?: string;
+        /**
+         * The state of the filesystem
+         */
+        status: string;
     }
 
     export interface ServerPrivateIp {

@@ -90,6 +90,25 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example Engine Upgrade
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Initial creation with PostgreSQL 14
+ * const main = new scaleway.databases.Instance("main", {
+ *     name: "my-database",
+ *     nodeType: "DB-DEV-S",
+ *     engine: "PostgreSQL-14",
+ *     isHaCluster: false,
+ *     disableBackup: true,
+ *     userName: "my_user",
+ *     password: "thiZ_is_v&ry_s3cret",
+ * });
+ * export const upgradableVersions = main.upgradableVersions;
+ * ```
+ *
  * ### Examples of endpoint configuration
  *
  * Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
@@ -231,9 +250,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly endpointPort: pulumi.Output<number>;
     /**
-     * Database Instance's engine version (e.g. `PostgreSQL-11`).
-     *
-     * > **Important** Updates to `engine` will recreate the Database Instance.
+     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
      */
     declare public readonly engine: pulumi.Output<string>;
     /**
@@ -310,6 +327,10 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
+     * List of available engine versions for upgrade. Each version contains:
+     */
+    declare public /*out*/ readonly upgradableVersions: pulumi.Output<outputs.DatabaseInstanceUpgradableVersion[]>;
+    /**
      * Identifier for the first user of the Database Instance.
      *
      * > **Important** Updates to `userName` will recreate the Database Instance.
@@ -367,6 +388,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["settings"] = state?.settings;
             resourceInputs["snapshotId"] = state?.snapshotId;
             resourceInputs["tags"] = state?.tags;
+            resourceInputs["upgradableVersions"] = state?.upgradableVersions;
             resourceInputs["userName"] = state?.userName;
             resourceInputs["volumeSizeInGb"] = state?.volumeSizeInGb;
             resourceInputs["volumeType"] = state?.volumeType;
@@ -403,6 +425,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["endpointPort"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["readReplicas"] = undefined /*out*/;
+            resourceInputs["upgradableVersions"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["password"] };
@@ -452,9 +475,7 @@ export interface DatabaseInstanceState {
      */
     endpointPort?: pulumi.Input<number>;
     /**
-     * Database Instance's engine version (e.g. `PostgreSQL-11`).
-     *
-     * > **Important** Updates to `engine` will recreate the Database Instance.
+     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
      */
     engine?: pulumi.Input<string>;
     /**
@@ -531,6 +552,10 @@ export interface DatabaseInstanceState {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * List of available engine versions for upgrade. Each version contains:
+     */
+    upgradableVersions?: pulumi.Input<pulumi.Input<inputs.DatabaseInstanceUpgradableVersion>[]>;
+    /**
      * Identifier for the first user of the Database Instance.
      *
      * > **Important** Updates to `userName` will recreate the Database Instance.
@@ -573,9 +598,7 @@ export interface DatabaseInstanceArgs {
      */
     encryptionAtRest?: pulumi.Input<boolean>;
     /**
-     * Database Instance's engine version (e.g. `PostgreSQL-11`).
-     *
-     * > **Important** Updates to `engine` will recreate the Database Instance.
+     * Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
      */
     engine?: pulumi.Input<string>;
     /**

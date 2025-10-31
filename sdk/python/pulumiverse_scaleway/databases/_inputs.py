@@ -27,6 +27,8 @@ __all__ = [
     'InstancePrivateNetworkArgsDict',
     'InstanceReadReplicaArgs',
     'InstanceReadReplicaArgsDict',
+    'InstanceUpgradableVersionArgs',
+    'InstanceUpgradableVersionArgsDict',
     'ReadReplicaDirectAccessArgs',
     'ReadReplicaDirectAccessArgsDict',
     'ReadReplicaPrivateNetworkArgs',
@@ -258,7 +260,7 @@ if not MYPY:
         """
         id: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The ID of the IPv4 address resource.
+        Version ID to use in upgrade requests.
         """
 elif False:
     InstancePrivateIpArgsDict: TypeAlias = Mapping[str, Any]
@@ -270,7 +272,7 @@ class InstancePrivateIpArgs:
                  id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] address: The private IPv4 address.
-        :param pulumi.Input[_builtins.str] id: The ID of the IPv4 address resource.
+        :param pulumi.Input[_builtins.str] id: Version ID to use in upgrade requests.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -293,7 +295,7 @@ class InstancePrivateIpArgs:
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the IPv4 address resource.
+        Version ID to use in upgrade requests.
         """
         return pulumi.get(self, "id")
 
@@ -563,6 +565,98 @@ class InstanceReadReplicaArgs:
     @port.setter
     def port(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "port", value)
+
+
+if not MYPY:
+    class InstanceUpgradableVersionArgsDict(TypedDict):
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Version ID to use in upgrade requests.
+        """
+        minor_version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Minor version string (e.g., `15.5.0`).
+        """
+        name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The name of the Database Instance.
+        """
+        version: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Version string (e.g., `15.5`).
+        """
+elif False:
+    InstanceUpgradableVersionArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class InstanceUpgradableVersionArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 minor_version: Optional[pulumi.Input[_builtins.str]] = None,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 version: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: Version ID to use in upgrade requests.
+        :param pulumi.Input[_builtins.str] minor_version: Minor version string (e.g., `15.5.0`).
+        :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
+        :param pulumi.Input[_builtins.str] version: Version string (e.g., `15.5`).
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if minor_version is not None:
+            pulumi.set(__self__, "minor_version", minor_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Version ID to use in upgrade requests.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minorVersion")
+    def minor_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Minor version string (e.g., `15.5.0`).
+        """
+        return pulumi.get(self, "minor_version")
+
+    @minor_version.setter
+    def minor_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "minor_version", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The name of the Database Instance.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Version string (e.g., `15.5`).
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "version", value)
 
 
 if not MYPY:

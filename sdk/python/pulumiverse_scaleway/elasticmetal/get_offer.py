@@ -180,6 +180,7 @@ def get_offer(include_disabled: Optional[_builtins.bool] = None,
     Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
 
+    :param _builtins.bool include_disabled: Include disabled offers.
     :param _builtins.str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param _builtins.str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param _builtins.str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.
@@ -217,6 +218,7 @@ def get_offer_output(include_disabled: Optional[pulumi.Input[Optional[_builtins.
     Gets information about a baremetal offer. For more information, see the [API documentation](https://developers.scaleway.com/en/products/baremetal/api).
 
 
+    :param _builtins.bool include_disabled: Include disabled offers.
     :param _builtins.str name: The offer name. Only one of `name` and `offer_id` should be specified.
     :param _builtins.str offer_id: The offer id. Only one of `name` and `offer_id` should be specified.
     :param _builtins.str subscription_period: Period of subscription the desired offer. Should be `hourly` or `monthly`.

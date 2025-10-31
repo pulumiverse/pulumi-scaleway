@@ -118,7 +118,7 @@ import * as utilities from "../utilities";
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
  *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
  *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
  * }}, {
  *     dependsOn: [pool],
  * });
@@ -152,7 +152,7 @@ import * as utilities from "../utilities";
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
  *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
  *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
  * }}, {
  *     dependsOn: [pool],
  * });
@@ -317,6 +317,13 @@ export class Cluster extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
+     * The subnet used for the Pod CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    declare public readonly podCidr: pulumi.Output<string>;
+    /**
      * The ID of the private network of the cluster.
      *
      * > **Important:** Changes to this field will recreate a new resource.
@@ -333,6 +340,20 @@ export class Cluster extends pulumi.CustomResource {
      * `region`) The region in which the cluster should be created.
      */
     declare public readonly region: pulumi.Output<string | undefined>;
+    /**
+     * The subnet used for the Service CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    declare public readonly serviceCidr: pulumi.Output<string>;
+    /**
+     * The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    declare public readonly serviceDnsIp: pulumi.Output<string>;
     /**
      * The status of the Kubernetes cluster.
      */
@@ -395,9 +416,12 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["openIdConnectConfig"] = state?.openIdConnectConfig;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["podCidr"] = state?.podCidr;
             resourceInputs["privateNetworkId"] = state?.privateNetworkId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
+            resourceInputs["serviceCidr"] = state?.serviceCidr;
+            resourceInputs["serviceDnsIp"] = state?.serviceDnsIp;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["type"] = state?.type;
@@ -426,9 +450,12 @@ export class Cluster extends pulumi.CustomResource {
             resourceInputs["featureGates"] = args?.featureGates;
             resourceInputs["name"] = args?.name;
             resourceInputs["openIdConnectConfig"] = args?.openIdConnectConfig;
+            resourceInputs["podCidr"] = args?.podCidr;
             resourceInputs["privateNetworkId"] = args?.privateNetworkId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
+            resourceInputs["serviceCidr"] = args?.serviceCidr;
+            resourceInputs["serviceDnsIp"] = args?.serviceDnsIp;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["type"] = args?.type;
             resourceInputs["version"] = args?.version;
@@ -514,6 +541,13 @@ export interface ClusterState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The subnet used for the Pod CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    podCidr?: pulumi.Input<string>;
+    /**
      * The ID of the private network of the cluster.
      *
      * > **Important:** Changes to this field will recreate a new resource.
@@ -530,6 +564,20 @@ export interface ClusterState {
      * `region`) The region in which the cluster should be created.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The subnet used for the Service CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    serviceCidr?: pulumi.Input<string>;
+    /**
+     * The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    serviceDnsIp?: pulumi.Input<string>;
     /**
      * The status of the Kubernetes cluster.
      */
@@ -614,6 +662,13 @@ export interface ClusterArgs {
      */
     openIdConnectConfig?: pulumi.Input<inputs.kubernetes.ClusterOpenIdConnectConfig>;
     /**
+     * The subnet used for the Pod CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    podCidr?: pulumi.Input<string>;
+    /**
      * The ID of the private network of the cluster.
      *
      * > **Important:** Changes to this field will recreate a new resource.
@@ -630,6 +685,20 @@ export interface ClusterArgs {
      * `region`) The region in which the cluster should be created.
      */
     region?: pulumi.Input<string>;
+    /**
+     * The subnet used for the Service CIDR.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    serviceCidr?: pulumi.Input<string>;
+    /**
+     * The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+     *
+     * > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+     * unsetting it to go back to the default value will not have any effect.
+     */
+    serviceDnsIp?: pulumi.Input<string>;
     /**
      * The tags associated with the Kubernetes cluster.
      */

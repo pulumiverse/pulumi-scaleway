@@ -52,27 +52,28 @@ type LookupDatabaseInstanceResult struct {
 	EndpointPort            int    `pulumi:"endpointPort"`
 	Engine                  string `pulumi:"engine"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string                              `pulumi:"id"`
-	InitSettings    map[string]string                   `pulumi:"initSettings"`
-	InstanceId      *string                             `pulumi:"instanceId"`
-	IsHaCluster     bool                                `pulumi:"isHaCluster"`
-	LoadBalancers   []GetDatabaseInstanceLoadBalancer   `pulumi:"loadBalancers"`
-	LogsPolicies    []GetDatabaseInstanceLogsPolicy     `pulumi:"logsPolicies"`
-	Name            *string                             `pulumi:"name"`
-	NodeType        string                              `pulumi:"nodeType"`
-	OrganizationId  string                              `pulumi:"organizationId"`
-	Password        string                              `pulumi:"password"`
-	PrivateIps      []GetDatabaseInstancePrivateIp      `pulumi:"privateIps"`
-	PrivateNetworks []GetDatabaseInstancePrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId       *string                             `pulumi:"projectId"`
-	ReadReplicas    []GetDatabaseInstanceReadReplica    `pulumi:"readReplicas"`
-	Region          *string                             `pulumi:"region"`
-	Settings        map[string]string                   `pulumi:"settings"`
-	SnapshotId      string                              `pulumi:"snapshotId"`
-	Tags            []string                            `pulumi:"tags"`
-	UserName        string                              `pulumi:"userName"`
-	VolumeSizeInGb  int                                 `pulumi:"volumeSizeInGb"`
-	VolumeType      string                              `pulumi:"volumeType"`
+	Id                 string                                 `pulumi:"id"`
+	InitSettings       map[string]string                      `pulumi:"initSettings"`
+	InstanceId         *string                                `pulumi:"instanceId"`
+	IsHaCluster        bool                                   `pulumi:"isHaCluster"`
+	LoadBalancers      []GetDatabaseInstanceLoadBalancer      `pulumi:"loadBalancers"`
+	LogsPolicies       []GetDatabaseInstanceLogsPolicy        `pulumi:"logsPolicies"`
+	Name               *string                                `pulumi:"name"`
+	NodeType           string                                 `pulumi:"nodeType"`
+	OrganizationId     string                                 `pulumi:"organizationId"`
+	Password           string                                 `pulumi:"password"`
+	PrivateIps         []GetDatabaseInstancePrivateIp         `pulumi:"privateIps"`
+	PrivateNetworks    []GetDatabaseInstancePrivateNetwork    `pulumi:"privateNetworks"`
+	ProjectId          *string                                `pulumi:"projectId"`
+	ReadReplicas       []GetDatabaseInstanceReadReplica       `pulumi:"readReplicas"`
+	Region             *string                                `pulumi:"region"`
+	Settings           map[string]string                      `pulumi:"settings"`
+	SnapshotId         string                                 `pulumi:"snapshotId"`
+	Tags               []string                               `pulumi:"tags"`
+	UpgradableVersions []GetDatabaseInstanceUpgradableVersion `pulumi:"upgradableVersions"`
+	UserName           string                                 `pulumi:"userName"`
+	VolumeSizeInGb     int                                    `pulumi:"volumeSizeInGb"`
+	VolumeType         string                                 `pulumi:"volumeType"`
 }
 
 func LookupDatabaseInstanceOutput(ctx *pulumi.Context, args LookupDatabaseInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseInstanceResultOutput {
@@ -224,6 +225,12 @@ func (o LookupDatabaseInstanceResultOutput) SnapshotId() pulumi.StringOutput {
 
 func (o LookupDatabaseInstanceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) UpgradableVersions() GetDatabaseInstanceUpgradableVersionArrayOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) []GetDatabaseInstanceUpgradableVersion {
+		return v.UpgradableVersions
+	}).(GetDatabaseInstanceUpgradableVersionArrayOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) UserName() pulumi.StringOutput {

@@ -24,6 +24,7 @@ func GetOffer(ctx *pulumi.Context, args *GetOfferArgs, opts ...pulumi.InvokeOpti
 
 // A collection of arguments for invoking getOffer.
 type GetOfferArgs struct {
+	// Include disabled offers.
 	IncludeDisabled *bool `pulumi:"includeDisabled"`
 	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name *string `pulumi:"name"`
@@ -70,6 +71,7 @@ func GetOfferOutput(ctx *pulumi.Context, args GetOfferOutputArgs, opts ...pulumi
 
 // A collection of arguments for invoking getOffer.
 type GetOfferOutputArgs struct {
+	// Include disabled offers.
 	IncludeDisabled pulumi.BoolPtrInput `pulumi:"includeDisabled"`
 	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`

@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, additional_volume_ids=None, admin_password_encryption_ssh_key_id=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, enable_ipv6=None, id=None, image=None, ip_id=None, ip_ids=None, ipv6_address=None, ipv6_gateway=None, ipv6_prefix_length=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ip=None, private_ips=None, private_networks=None, project_id=None, protected=None, public_ip=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
+    def __init__(__self__, additional_volume_ids=None, admin_password_encryption_ssh_key_id=None, boot_type=None, bootscript_id=None, cloud_init=None, enable_dynamic_ip=None, filesystems=None, id=None, image=None, ip_id=None, ip_ids=None, name=None, organization_id=None, placement_group_id=None, placement_group_policy_respected=None, private_ips=None, private_networks=None, project_id=None, protected=None, public_ips=None, replace_on_type_change=None, root_volumes=None, security_group_id=None, server_id=None, state=None, tags=None, type=None, user_data=None, zone=None):
         if additional_volume_ids and not isinstance(additional_volume_ids, list):
             raise TypeError("Expected argument 'additional_volume_ids' to be a list")
         pulumi.set(__self__, "additional_volume_ids", additional_volume_ids)
@@ -46,9 +46,9 @@ class GetServerResult:
         if enable_dynamic_ip and not isinstance(enable_dynamic_ip, bool):
             raise TypeError("Expected argument 'enable_dynamic_ip' to be a bool")
         pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
-        if enable_ipv6 and not isinstance(enable_ipv6, bool):
-            raise TypeError("Expected argument 'enable_ipv6' to be a bool")
-        pulumi.set(__self__, "enable_ipv6", enable_ipv6)
+        if filesystems and not isinstance(filesystems, list):
+            raise TypeError("Expected argument 'filesystems' to be a list")
+        pulumi.set(__self__, "filesystems", filesystems)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -61,15 +61,6 @@ class GetServerResult:
         if ip_ids and not isinstance(ip_ids, list):
             raise TypeError("Expected argument 'ip_ids' to be a list")
         pulumi.set(__self__, "ip_ids", ip_ids)
-        if ipv6_address and not isinstance(ipv6_address, str):
-            raise TypeError("Expected argument 'ipv6_address' to be a str")
-        pulumi.set(__self__, "ipv6_address", ipv6_address)
-        if ipv6_gateway and not isinstance(ipv6_gateway, str):
-            raise TypeError("Expected argument 'ipv6_gateway' to be a str")
-        pulumi.set(__self__, "ipv6_gateway", ipv6_gateway)
-        if ipv6_prefix_length and not isinstance(ipv6_prefix_length, int):
-            raise TypeError("Expected argument 'ipv6_prefix_length' to be a int")
-        pulumi.set(__self__, "ipv6_prefix_length", ipv6_prefix_length)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -82,9 +73,6 @@ class GetServerResult:
         if placement_group_policy_respected and not isinstance(placement_group_policy_respected, bool):
             raise TypeError("Expected argument 'placement_group_policy_respected' to be a bool")
         pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
-        if private_ip and not isinstance(private_ip, str):
-            raise TypeError("Expected argument 'private_ip' to be a str")
-        pulumi.set(__self__, "private_ip", private_ip)
         if private_ips and not isinstance(private_ips, list):
             raise TypeError("Expected argument 'private_ips' to be a list")
         pulumi.set(__self__, "private_ips", private_ips)
@@ -97,9 +85,6 @@ class GetServerResult:
         if protected and not isinstance(protected, bool):
             raise TypeError("Expected argument 'protected' to be a bool")
         pulumi.set(__self__, "protected", protected)
-        if public_ip and not isinstance(public_ip, str):
-            raise TypeError("Expected argument 'public_ip' to be a str")
-        pulumi.set(__self__, "public_ip", public_ip)
         if public_ips and not isinstance(public_ips, list):
             raise TypeError("Expected argument 'public_ips' to be a list")
         pulumi.set(__self__, "public_ips", public_ips)
@@ -172,12 +157,9 @@ class GetServerResult:
         return pulumi.get(self, "enable_dynamic_ip")
 
     @_builtins.property
-    @pulumi.getter(name="enableIpv6")
-    def enable_ipv6(self) -> _builtins.bool:
-        """
-        Determines if IPv6 is enabled for the server.
-        """
-        return pulumi.get(self, "enable_ipv6")
+    @pulumi.getter
+    def filesystems(self) -> Sequence['outputs.GetServerFilesystemResult']:
+        return pulumi.get(self, "filesystems")
 
     @_builtins.property
     @pulumi.getter
@@ -204,30 +186,6 @@ class GetServerResult:
     @pulumi.getter(name="ipIds")
     def ip_ids(self) -> Sequence[_builtins.str]:
         return pulumi.get(self, "ip_ids")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6Address")
-    def ipv6_address(self) -> _builtins.str:
-        """
-        The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_address")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6Gateway")
-    def ipv6_gateway(self) -> _builtins.str:
-        """
-        The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_gateway")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6PrefixLength")
-    def ipv6_prefix_length(self) -> _builtins.int:
-        """
-        The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_prefix_length")
 
     @_builtins.property
     @pulumi.getter
@@ -259,16 +217,11 @@ class GetServerResult:
         return pulumi.get(self, "placement_group_policy_respected")
 
     @_builtins.property
-    @pulumi.getter(name="privateIp")
-    def private_ip(self) -> _builtins.str:
-        """
-        The Scaleway internal IP address of the server.
-        """
-        return pulumi.get(self, "private_ip")
-
-    @_builtins.property
     @pulumi.getter(name="privateIps")
     def private_ips(self) -> Sequence['outputs.GetServerPrivateIpResult']:
+        """
+        The list of private IPs of the server.
+        """
         return pulumi.get(self, "private_ips")
 
     @_builtins.property
@@ -285,14 +238,6 @@ class GetServerResult:
     @pulumi.getter
     def protected(self) -> _builtins.bool:
         return pulumi.get(self, "protected")
-
-    @_builtins.property
-    @pulumi.getter(name="publicIp")
-    def public_ip(self) -> _builtins.str:
-        """
-        The public IP address of the server.
-        """
-        return pulumi.get(self, "public_ip")
 
     @_builtins.property
     @pulumi.getter(name="publicIps")
@@ -376,24 +321,19 @@ class AwaitableGetServerResult(GetServerResult):
             bootscript_id=self.bootscript_id,
             cloud_init=self.cloud_init,
             enable_dynamic_ip=self.enable_dynamic_ip,
-            enable_ipv6=self.enable_ipv6,
+            filesystems=self.filesystems,
             id=self.id,
             image=self.image,
             ip_id=self.ip_id,
             ip_ids=self.ip_ids,
-            ipv6_address=self.ipv6_address,
-            ipv6_gateway=self.ipv6_gateway,
-            ipv6_prefix_length=self.ipv6_prefix_length,
             name=self.name,
             organization_id=self.organization_id,
             placement_group_id=self.placement_group_id,
             placement_group_policy_respected=self.placement_group_policy_respected,
-            private_ip=self.private_ip,
             private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
             protected=self.protected,
-            public_ip=self.public_ip,
             public_ips=self.public_ips,
             replace_on_type_change=self.replace_on_type_change,
             root_volumes=self.root_volumes,
@@ -435,24 +375,19 @@ def get_server(name: Optional[_builtins.str] = None,
         bootscript_id=pulumi.get(__ret__, 'bootscript_id'),
         cloud_init=pulumi.get(__ret__, 'cloud_init'),
         enable_dynamic_ip=pulumi.get(__ret__, 'enable_dynamic_ip'),
-        enable_ipv6=pulumi.get(__ret__, 'enable_ipv6'),
+        filesystems=pulumi.get(__ret__, 'filesystems'),
         id=pulumi.get(__ret__, 'id'),
         image=pulumi.get(__ret__, 'image'),
         ip_id=pulumi.get(__ret__, 'ip_id'),
         ip_ids=pulumi.get(__ret__, 'ip_ids'),
-        ipv6_address=pulumi.get(__ret__, 'ipv6_address'),
-        ipv6_gateway=pulumi.get(__ret__, 'ipv6_gateway'),
-        ipv6_prefix_length=pulumi.get(__ret__, 'ipv6_prefix_length'),
         name=pulumi.get(__ret__, 'name'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         placement_group_id=pulumi.get(__ret__, 'placement_group_id'),
         placement_group_policy_respected=pulumi.get(__ret__, 'placement_group_policy_respected'),
-        private_ip=pulumi.get(__ret__, 'private_ip'),
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protected=pulumi.get(__ret__, 'protected'),
-        public_ip=pulumi.get(__ret__, 'public_ip'),
         public_ips=pulumi.get(__ret__, 'public_ips'),
         replace_on_type_change=pulumi.get(__ret__, 'replace_on_type_change'),
         root_volumes=pulumi.get(__ret__, 'root_volumes'),
@@ -491,24 +426,19 @@ def get_server_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = No
         bootscript_id=pulumi.get(__response__, 'bootscript_id'),
         cloud_init=pulumi.get(__response__, 'cloud_init'),
         enable_dynamic_ip=pulumi.get(__response__, 'enable_dynamic_ip'),
-        enable_ipv6=pulumi.get(__response__, 'enable_ipv6'),
+        filesystems=pulumi.get(__response__, 'filesystems'),
         id=pulumi.get(__response__, 'id'),
         image=pulumi.get(__response__, 'image'),
         ip_id=pulumi.get(__response__, 'ip_id'),
         ip_ids=pulumi.get(__response__, 'ip_ids'),
-        ipv6_address=pulumi.get(__response__, 'ipv6_address'),
-        ipv6_gateway=pulumi.get(__response__, 'ipv6_gateway'),
-        ipv6_prefix_length=pulumi.get(__response__, 'ipv6_prefix_length'),
         name=pulumi.get(__response__, 'name'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         placement_group_id=pulumi.get(__response__, 'placement_group_id'),
         placement_group_policy_respected=pulumi.get(__response__, 'placement_group_policy_respected'),
-        private_ip=pulumi.get(__response__, 'private_ip'),
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
         protected=pulumi.get(__response__, 'protected'),
-        public_ip=pulumi.get(__response__, 'public_ip'),
         public_ips=pulumi.get(__response__, 'public_ips'),
         replace_on_type_change=pulumi.get(__response__, 'replace_on_type_change'),
         root_volumes=pulumi.get(__response__, 'root_volumes'),

@@ -278,38 +278,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         bucket = scaleway.object.get_bucket(name="some-unique-name")
         ```
 
-        ### Example with AWS provider
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        # Scaleway project ID
-        default = scaleway.account.get_project(name="default")
-        # Object storage configuration
-        bucket = scaleway.object.Bucket("bucket", name="some-unique-name")
-        # AWS data source
-        policy = aws.iam.get_policy_document_output(version="2012-10-17",
-            statements=[{
-                "sid": "Delegate access",
-                "effect": "Allow",
-                "principals": [{
-                    "type": "SCW",
-                    "identifiers": [f"project_id:{default.id}"],
-                }],
-                "actions": ["s3:ListBucket"],
-                "resources": [
-                    bucket.name,
-                    bucket.name.apply(lambda name: f"{name}/*"),
-                ],
-            }])
-        main = scaleway.object.BucketPolicy("main",
-            bucket=bucket.id,
-            policy=policy.json)
-        ```
-
         ### Example with deprecated version 2012-10-17
 
         ```python
@@ -482,38 +450,6 @@ class ObjectBucketPolicy(pulumi.CustomResource):
         reading_app = scaleway.iam.get_application(name="reading-app")
         reading_api_key = scaleway.iam.ApiKey("reading-api-key", application_id=reading_app.id)
         bucket = scaleway.object.get_bucket(name="some-unique-name")
-        ```
-
-        ### Example with AWS provider
-
-        ```python
-        import pulumi
-        import pulumi_aws as aws
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        # Scaleway project ID
-        default = scaleway.account.get_project(name="default")
-        # Object storage configuration
-        bucket = scaleway.object.Bucket("bucket", name="some-unique-name")
-        # AWS data source
-        policy = aws.iam.get_policy_document_output(version="2012-10-17",
-            statements=[{
-                "sid": "Delegate access",
-                "effect": "Allow",
-                "principals": [{
-                    "type": "SCW",
-                    "identifiers": [f"project_id:{default.id}"],
-                }],
-                "actions": ["s3:ListBucket"],
-                "resources": [
-                    bucket.name,
-                    bucket.name.apply(lambda name: f"{name}/*"),
-                ],
-            }])
-        main = scaleway.object.BucketPolicy("main",
-            bucket=bucket.id,
-            policy=policy.json)
         ```
 
         ### Example with deprecated version 2012-10-17

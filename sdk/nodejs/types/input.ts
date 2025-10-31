@@ -387,7 +387,7 @@ export interface DatabaseInstancePrivateIp {
      */
     address?: pulumi.Input<string>;
     /**
-     * The ID of the IPv4 address resource.
+     * Version ID to use in upgrade requests.
      */
     id?: pulumi.Input<string>;
 }
@@ -444,6 +444,25 @@ export interface DatabaseInstanceReadReplica {
      * Port in the Private Network.
      */
     port?: pulumi.Input<number>;
+}
+
+export interface DatabaseInstanceUpgradableVersion {
+    /**
+     * Version ID to use in upgrade requests.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * Minor version string (e.g., `15.5.0`).
+     */
+    minorVersion?: pulumi.Input<string>;
+    /**
+     * The name of the Database Instance.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Version string (e.g., `15.5`).
+     */
+    version?: pulumi.Input<string>;
 }
 
 export interface DatabaseReadReplicaDirectAccess {
@@ -1028,6 +1047,17 @@ export interface InstanceSecurityGroupRulesOutboundRule {
      * Protocol for this rule (TCP, UDP, ICMP or ANY)
      */
     protocol?: pulumi.Input<string>;
+}
+
+export interface InstanceServerFilesystem {
+    /**
+     * The unique ID of the filesystem attached to the server.
+     */
+    filesystemId?: pulumi.Input<string>;
+    /**
+     * The state of the filesystem
+     */
+    status?: pulumi.Input<string>;
 }
 
 export interface InstanceServerPrivateIp {
@@ -2650,7 +2680,7 @@ export namespace databases {
          */
         address?: pulumi.Input<string>;
         /**
-         * The ID of the IPv4 address resource.
+         * Version ID to use in upgrade requests.
          */
         id?: pulumi.Input<string>;
     }
@@ -2707,6 +2737,25 @@ export namespace databases {
          * Port in the Private Network.
          */
         port?: pulumi.Input<number>;
+    }
+
+    export interface InstanceUpgradableVersion {
+        /**
+         * Version ID to use in upgrade requests.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * Minor version string (e.g., `15.5.0`).
+         */
+        minorVersion?: pulumi.Input<string>;
+        /**
+         * The name of the Database Instance.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Version string (e.g., `15.5`).
+         */
+        version?: pulumi.Input<string>;
     }
 
     export interface ReadReplicaDirectAccess {
@@ -3897,6 +3946,17 @@ export namespace instance {
          * Protocol for this rule (TCP, UDP, ICMP or ANY)
          */
         protocol?: pulumi.Input<string>;
+    }
+
+    export interface ServerFilesystem {
+        /**
+         * The unique ID of the filesystem attached to the server.
+         */
+        filesystemId?: pulumi.Input<string>;
+        /**
+         * The state of the filesystem
+         */
+        status?: pulumi.Input<string>;
     }
 
     export interface ServerPrivateIp {

@@ -41,6 +41,7 @@ __all__ = [
     'DatabaseInstancePrivateIp',
     'DatabaseInstancePrivateNetwork',
     'DatabaseInstanceReadReplica',
+    'DatabaseInstanceUpgradableVersion',
     'DatabaseReadReplicaDirectAccess',
     'DatabaseReadReplicaPrivateNetwork',
     'DomainRecordGeoIp',
@@ -69,6 +70,7 @@ __all__ = [
     'InstanceSecurityGroupOutboundRule',
     'InstanceSecurityGroupRulesInboundRule',
     'InstanceSecurityGroupRulesOutboundRule',
+    'InstanceServerFilesystem',
     'InstanceServerPrivateIp',
     'InstanceServerPrivateNetwork',
     'InstanceServerPublicIp',
@@ -167,6 +169,7 @@ __all__ = [
     'GetDatabaseInstancePrivateIpResult',
     'GetDatabaseInstancePrivateNetworkResult',
     'GetDatabaseInstanceReadReplicaResult',
+    'GetDatabaseInstanceUpgradableVersionResult',
     'GetDomainRecordGeoIpResult',
     'GetDomainRecordGeoIpMatchResult',
     'GetDomainRecordHttpServiceResult',
@@ -177,6 +180,7 @@ __all__ = [
     'GetInstancePrivateNicPrivateIpResult',
     'GetInstanceSecurityGroupInboundRuleResult',
     'GetInstanceSecurityGroupOutboundRuleResult',
+    'GetInstanceServerFilesystemResult',
     'GetInstanceServerPrivateIpResult',
     'GetInstanceServerPrivateNetworkResult',
     'GetInstanceServerPublicIpResult',
@@ -1575,7 +1579,7 @@ class DatabaseInstancePrivateIp(dict):
                  id: Optional[_builtins.str] = None):
         """
         :param _builtins.str address: The private IPv4 address.
-        :param _builtins.str id: The ID of the IPv4 address resource.
+        :param _builtins.str id: Version ID to use in upgrade requests.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -1594,7 +1598,7 @@ class DatabaseInstancePrivateIp(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        The ID of the IPv4 address resource.
+        Version ID to use in upgrade requests.
         """
         return pulumi.get(self, "id")
 
@@ -1777,6 +1781,78 @@ class DatabaseInstanceReadReplica(dict):
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class DatabaseInstanceUpgradableVersion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minorVersion":
+            suggest = "minor_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatabaseInstanceUpgradableVersion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatabaseInstanceUpgradableVersion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatabaseInstanceUpgradableVersion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 minor_version: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Version ID to use in upgrade requests.
+        :param _builtins.str minor_version: Minor version string (e.g., `15.5.0`).
+        :param _builtins.str name: The name of the Database Instance.
+        :param _builtins.str version: Version string (e.g., `15.5`).
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if minor_version is not None:
+            pulumi.set(__self__, "minor_version", minor_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Version ID to use in upgrade requests.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="minorVersion")
+    def minor_version(self) -> Optional[_builtins.str]:
+        """
+        Minor version string (e.g., `15.5.0`).
+        """
+        return pulumi.get(self, "minor_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        The name of the Database Instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Version string (e.g., `15.5`).
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -3651,6 +3727,54 @@ class InstanceSecurityGroupRulesOutboundRule(dict):
         Protocol for this rule (TCP, UDP, ICMP or ANY)
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class InstanceServerFilesystem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "filesystemId":
+            suggest = "filesystem_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceServerFilesystem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceServerFilesystem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceServerFilesystem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 filesystem_id: Optional[_builtins.str] = None,
+                 status: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str filesystem_id: The unique ID of the filesystem attached to the server.
+        :param _builtins.str status: The state of the filesystem
+        """
+        if filesystem_id is not None:
+            pulumi.set(__self__, "filesystem_id", filesystem_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="filesystemId")
+    def filesystem_id(self) -> Optional[_builtins.str]:
+        """
+        The unique ID of the filesystem attached to the server.
+        """
+        return pulumi.get(self, "filesystem_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[_builtins.str]:
+        """
+        The state of the filesystem
+        """
+        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -9391,6 +9515,57 @@ class GetDatabaseInstanceReadReplicaResult(dict):
 
 
 @pulumi.output_type
+class GetDatabaseInstanceUpgradableVersionResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 minor_version: _builtins.str,
+                 name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the Database Instance.
+        :param _builtins.str minor_version: Minor version string
+        :param _builtins.str name: The name of the RDB instance.
+        :param _builtins.str version: Version string
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "minor_version", minor_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the Database Instance.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="minorVersion")
+    def minor_version(self) -> _builtins.str:
+        """
+        Minor version string
+        """
+        return pulumi.get(self, "minor_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the RDB instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Version string
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetDomainRecordGeoIpResult(dict):
     def __init__(__self__, *,
                  matches: Sequence['outputs.GetDomainRecordGeoIpMatchResult']):
@@ -9976,13 +10151,42 @@ class GetInstanceSecurityGroupOutboundRuleResult(dict):
 
 
 @pulumi.output_type
+class GetInstanceServerFilesystemResult(dict):
+    def __init__(__self__, *,
+                 filesystem_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str filesystem_id: The filesystem ID attached to the server
+        :param _builtins.str status: The state of the filesystem
+        """
+        pulumi.set(__self__, "filesystem_id", filesystem_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="filesystemId")
+    def filesystem_id(self) -> _builtins.str:
+        """
+        The filesystem ID attached to the server
+        """
+        return pulumi.get(self, "filesystem_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        The state of the filesystem
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class GetInstanceServerPrivateIpResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
                  id: _builtins.str):
         """
-        :param _builtins.str address: The address of the IP
-        :param _builtins.str id: The ID of the IP
+        :param _builtins.str address: The private IP address.
+        :param _builtins.str id: The ID of the IP address resource.
         """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "id", id)
@@ -9991,7 +10195,7 @@ class GetInstanceServerPrivateIpResult(dict):
     @pulumi.getter
     def address(self) -> _builtins.str:
         """
-        The address of the IP
+        The private IP address.
         """
         return pulumi.get(self, "address")
 
@@ -9999,7 +10203,7 @@ class GetInstanceServerPrivateIpResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The ID of the IP
+        The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
@@ -10077,11 +10281,11 @@ class GetInstanceServerPublicIpResult(dict):
                  netmask: _builtins.str,
                  provisioning_mode: _builtins.str):
         """
-        :param _builtins.str address: The address of the IP
+        :param _builtins.str address: The private IP address.
         :param _builtins.bool dynamic: Whether the IP is dynamic
         :param _builtins.str family: IP address family (inet or inet6)
         :param _builtins.str gateway: Gateway's IP address
-        :param _builtins.str id: The ID of the IP
+        :param _builtins.str id: The ID of the IP address resource.
         :param _builtins.str netmask: CIDR netmask
         :param _builtins.str provisioning_mode: Provisioning mode of the IP address
         """
@@ -10097,7 +10301,7 @@ class GetInstanceServerPublicIpResult(dict):
     @pulumi.getter
     def address(self) -> _builtins.str:
         """
-        The address of the IP
+        The private IP address.
         """
         return pulumi.get(self, "address")
 
@@ -10129,7 +10333,7 @@ class GetInstanceServerPublicIpResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        The ID of the IP
+        The ID of the IP address resource.
         """
         return pulumi.get(self, "id")
 
@@ -10240,20 +10444,14 @@ class GetInstanceServersServerResult(dict):
                  boot_type: _builtins.str,
                  bootscript_id: _builtins.str,
                  enable_dynamic_ip: _builtins.bool,
-                 enable_ipv6: _builtins.bool,
                  id: _builtins.str,
                  image: _builtins.str,
-                 ipv6_address: _builtins.str,
-                 ipv6_gateway: _builtins.str,
-                 ipv6_prefix_length: _builtins.int,
                  name: _builtins.str,
                  organization_id: _builtins.str,
                  placement_group_id: _builtins.str,
                  placement_group_policy_respected: _builtins.bool,
-                 private_ip: _builtins.str,
                  private_ips: Sequence['outputs.GetInstanceServersServerPrivateIpResult'],
                  project_id: _builtins.str,
-                 public_ip: _builtins.str,
                  public_ips: Sequence['outputs.GetInstanceServersServerPublicIpResult'],
                  security_group_id: _builtins.str,
                  state: _builtins.str,
@@ -10264,20 +10462,14 @@ class GetInstanceServersServerResult(dict):
         :param _builtins.str boot_type: The boot Type of the server. Possible values are: `local`, `bootscript` or `rescue`.
         :param _builtins.str bootscript_id: UUID of the bootscript
         :param _builtins.bool enable_dynamic_ip: If true a dynamic IP will be attached to the server.
-        :param _builtins.bool enable_ipv6: Determines if IPv6 is enabled for the server.
         :param _builtins.str id: The ID of the IP
         :param _builtins.str image: The UUID or the label of the base image used by the server.
-        :param _builtins.str ipv6_address: The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        :param _builtins.str ipv6_gateway: The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        :param _builtins.int ipv6_prefix_length: The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
         :param _builtins.str name: The server name used as filter. Servers with a name like it are listed.
         :param _builtins.str organization_id: The organization ID the server is associated with.
         :param _builtins.str placement_group_id: The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
         :param _builtins.bool placement_group_policy_respected: Whether the placement group policy respected or not
-        :param _builtins.str private_ip: The Scaleway internal IP address of the server.
         :param Sequence['GetInstanceServersServerPrivateIpArgs'] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param _builtins.str project_id: The ID of the project the server is associated with.
-        :param _builtins.str public_ip: The public IP address of the server.
         :param Sequence['GetInstanceServersServerPublicIpArgs'] public_ips: The list of public IPs of the server
         :param _builtins.str security_group_id: The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
         :param _builtins.str state: The state of the server. Possible values are: `started`, `stopped` or `standby`.
@@ -10288,20 +10480,14 @@ class GetInstanceServersServerResult(dict):
         pulumi.set(__self__, "boot_type", boot_type)
         pulumi.set(__self__, "bootscript_id", bootscript_id)
         pulumi.set(__self__, "enable_dynamic_ip", enable_dynamic_ip)
-        pulumi.set(__self__, "enable_ipv6", enable_ipv6)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "image", image)
-        pulumi.set(__self__, "ipv6_address", ipv6_address)
-        pulumi.set(__self__, "ipv6_gateway", ipv6_gateway)
-        pulumi.set(__self__, "ipv6_prefix_length", ipv6_prefix_length)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "organization_id", organization_id)
         pulumi.set(__self__, "placement_group_id", placement_group_id)
         pulumi.set(__self__, "placement_group_policy_respected", placement_group_policy_respected)
-        pulumi.set(__self__, "private_ip", private_ip)
         pulumi.set(__self__, "private_ips", private_ips)
         pulumi.set(__self__, "project_id", project_id)
-        pulumi.set(__self__, "public_ip", public_ip)
         pulumi.set(__self__, "public_ips", public_ips)
         pulumi.set(__self__, "security_group_id", security_group_id)
         pulumi.set(__self__, "state", state)
@@ -10336,14 +10522,6 @@ class GetInstanceServersServerResult(dict):
         return pulumi.get(self, "enable_dynamic_ip")
 
     @_builtins.property
-    @pulumi.getter(name="enableIpv6")
-    def enable_ipv6(self) -> _builtins.bool:
-        """
-        Determines if IPv6 is enabled for the server.
-        """
-        return pulumi.get(self, "enable_ipv6")
-
-    @_builtins.property
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
@@ -10358,30 +10536,6 @@ class GetInstanceServersServerResult(dict):
         The UUID or the label of the base image used by the server.
         """
         return pulumi.get(self, "image")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6Address")
-    def ipv6_address(self) -> _builtins.str:
-        """
-        The default ipv6 address routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_address")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6Gateway")
-    def ipv6_gateway(self) -> _builtins.str:
-        """
-        The ipv6 gateway address. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_gateway")
-
-    @_builtins.property
-    @pulumi.getter(name="ipv6PrefixLength")
-    def ipv6_prefix_length(self) -> _builtins.int:
-        """
-        The prefix length of the ipv6 subnet routed to the server. ( Only set when enable_ipv6 is set to true )
-        """
-        return pulumi.get(self, "ipv6_prefix_length")
 
     @_builtins.property
     @pulumi.getter
@@ -10416,14 +10570,6 @@ class GetInstanceServersServerResult(dict):
         return pulumi.get(self, "placement_group_policy_respected")
 
     @_builtins.property
-    @pulumi.getter(name="privateIp")
-    def private_ip(self) -> _builtins.str:
-        """
-        The Scaleway internal IP address of the server.
-        """
-        return pulumi.get(self, "private_ip")
-
-    @_builtins.property
     @pulumi.getter(name="privateIps")
     def private_ips(self) -> Sequence['outputs.GetInstanceServersServerPrivateIpResult']:
         """
@@ -10438,15 +10584,6 @@ class GetInstanceServersServerResult(dict):
         The ID of the project the server is associated with.
         """
         return pulumi.get(self, "project_id")
-
-    @_builtins.property
-    @pulumi.getter(name="publicIp")
-    @_utilities.deprecated("""Use public_ips instead""")
-    def public_ip(self) -> _builtins.str:
-        """
-        The public IP address of the server.
-        """
-        return pulumi.get(self, "public_ip")
 
     @_builtins.property
     @pulumi.getter(name="publicIps")

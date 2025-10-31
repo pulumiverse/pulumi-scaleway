@@ -34,6 +34,9 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
     public sealed class GetOfferArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Include disabled offers.
+        /// </summary>
         [Input("includeDisabled")]
         public bool? IncludeDisabled { get; set; }
 
@@ -69,6 +72,9 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
     public sealed class GetOfferInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Include disabled offers.
+        /// </summary>
         [Input("includeDisabled")]
         public Input<bool>? IncludeDisabled { get; set; }
 

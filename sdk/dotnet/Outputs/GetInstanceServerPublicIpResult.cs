@@ -15,7 +15,7 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class GetInstanceServerPublicIpResult
     {
         /// <summary>
-        /// The address of the IP
+        /// The private IP address.
         /// </summary>
         public readonly string Address;
         /// <summary>
@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string Gateway;
         /// <summary>
-        /// The ID of the IP
+        /// The ID of the IP address resource.
         /// </summary>
         public readonly string Id;
         /// <summary>

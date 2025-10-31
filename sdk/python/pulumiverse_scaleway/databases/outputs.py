@@ -21,6 +21,7 @@ __all__ = [
     'InstancePrivateIp',
     'InstancePrivateNetwork',
     'InstanceReadReplica',
+    'InstanceUpgradableVersion',
     'ReadReplicaDirectAccess',
     'ReadReplicaPrivateNetwork',
     'GetAclAclRuleResult',
@@ -29,6 +30,7 @@ __all__ = [
     'GetInstancePrivateIpResult',
     'GetInstancePrivateNetworkResult',
     'GetInstanceReadReplicaResult',
+    'GetInstanceUpgradableVersionResult',
 ]
 
 @pulumi.output_type
@@ -202,7 +204,7 @@ class InstancePrivateIp(dict):
                  id: Optional[_builtins.str] = None):
         """
         :param _builtins.str address: The private IPv4 address.
-        :param _builtins.str id: The ID of the IPv4 address resource.
+        :param _builtins.str id: Version ID to use in upgrade requests.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -221,7 +223,7 @@ class InstancePrivateIp(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        The ID of the IPv4 address resource.
+        Version ID to use in upgrade requests.
         """
         return pulumi.get(self, "id")
 
@@ -404,6 +406,78 @@ class InstanceReadReplica(dict):
         Port in the Private Network.
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class InstanceUpgradableVersion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minorVersion":
+            suggest = "minor_version"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in InstanceUpgradableVersion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        InstanceUpgradableVersion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        InstanceUpgradableVersion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: Optional[_builtins.str] = None,
+                 minor_version: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 version: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str id: Version ID to use in upgrade requests.
+        :param _builtins.str minor_version: Minor version string (e.g., `15.5.0`).
+        :param _builtins.str name: The name of the Database Instance.
+        :param _builtins.str version: Version string (e.g., `15.5`).
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if minor_version is not None:
+            pulumi.set(__self__, "minor_version", minor_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Version ID to use in upgrade requests.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="minorVersion")
+    def minor_version(self) -> Optional[_builtins.str]:
+        """
+        Minor version string (e.g., `15.5.0`).
+        """
+        return pulumi.get(self, "minor_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        The name of the Database Instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> Optional[_builtins.str]:
+        """
+        Version string (e.g., `15.5`).
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
@@ -924,5 +998,56 @@ class GetInstanceReadReplicaResult(dict):
         Port of the replica
         """
         return pulumi.get(self, "port")
+
+
+@pulumi.output_type
+class GetInstanceUpgradableVersionResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 minor_version: _builtins.str,
+                 name: _builtins.str,
+                 version: _builtins.str):
+        """
+        :param _builtins.str id: The ID of the Database Instance.
+        :param _builtins.str minor_version: Minor version string
+        :param _builtins.str name: The name of the RDB instance.
+        :param _builtins.str version: Version string
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "minor_version", minor_version)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the Database Instance.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="minorVersion")
+    def minor_version(self) -> _builtins.str:
+        """
+        Minor version string
+        """
+        return pulumi.get(self, "minor_version")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the RDB instance.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def version(self) -> _builtins.str:
+        """
+        Version string
+        """
+        return pulumi.get(self, "version")
 
 

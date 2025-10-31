@@ -27,7 +27,7 @@ class GetClusterResult:
     """
     A collection of values returned by getCluster.
     """
-    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, private_network_id=None, project_id=None, region=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
+    def __init__(__self__, admission_plugins=None, apiserver_cert_sans=None, apiserver_url=None, auto_upgrades=None, autoscaler_configs=None, cluster_id=None, cni=None, created_at=None, description=None, feature_gates=None, id=None, kubeconfigs=None, name=None, open_id_connect_configs=None, organization_id=None, pod_cidr=None, private_network_id=None, project_id=None, region=None, service_cidr=None, service_dns_ip=None, status=None, tags=None, type=None, updated_at=None, upgrade_available=None, version=None, wildcard_dns=None):
         if admission_plugins and not isinstance(admission_plugins, list):
             raise TypeError("Expected argument 'admission_plugins' to be a list")
         pulumi.set(__self__, "admission_plugins", admission_plugins)
@@ -73,6 +73,9 @@ class GetClusterResult:
         if organization_id and not isinstance(organization_id, str):
             raise TypeError("Expected argument 'organization_id' to be a str")
         pulumi.set(__self__, "organization_id", organization_id)
+        if pod_cidr and not isinstance(pod_cidr, str):
+            raise TypeError("Expected argument 'pod_cidr' to be a str")
+        pulumi.set(__self__, "pod_cidr", pod_cidr)
         if private_network_id and not isinstance(private_network_id, str):
             raise TypeError("Expected argument 'private_network_id' to be a str")
         pulumi.set(__self__, "private_network_id", private_network_id)
@@ -82,6 +85,12 @@ class GetClusterResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if service_cidr and not isinstance(service_cidr, str):
+            raise TypeError("Expected argument 'service_cidr' to be a str")
+        pulumi.set(__self__, "service_cidr", service_cidr)
+        if service_dns_ip and not isinstance(service_dns_ip, str):
+            raise TypeError("Expected argument 'service_dns_ip' to be a str")
+        pulumi.set(__self__, "service_dns_ip", service_dns_ip)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -210,6 +219,11 @@ class GetClusterResult:
         return pulumi.get(self, "organization_id")
 
     @_builtins.property
+    @pulumi.getter(name="podCidr")
+    def pod_cidr(self) -> _builtins.str:
+        return pulumi.get(self, "pod_cidr")
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> _builtins.str:
         """
@@ -229,6 +243,16 @@ class GetClusterResult:
         The region in which the cluster is.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceCidr")
+    def service_cidr(self) -> _builtins.str:
+        return pulumi.get(self, "service_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceDnsIp")
+    def service_dns_ip(self) -> _builtins.str:
+        return pulumi.get(self, "service_dns_ip")
 
     @_builtins.property
     @pulumi.getter
@@ -308,9 +332,12 @@ class AwaitableGetClusterResult(GetClusterResult):
             name=self.name,
             open_id_connect_configs=self.open_id_connect_configs,
             organization_id=self.organization_id,
+            pod_cidr=self.pod_cidr,
             private_network_id=self.private_network_id,
             project_id=self.project_id,
             region=self.region,
+            service_cidr=self.service_cidr,
+            service_dns_ip=self.service_dns_ip,
             status=self.status,
             tags=self.tags,
             type=self.type,
@@ -358,9 +385,12 @@ def get_cluster(cluster_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         open_id_connect_configs=pulumi.get(__ret__, 'open_id_connect_configs'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
+        pod_cidr=pulumi.get(__ret__, 'pod_cidr'),
         private_network_id=pulumi.get(__ret__, 'private_network_id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        service_cidr=pulumi.get(__ret__, 'service_cidr'),
+        service_dns_ip=pulumi.get(__ret__, 'service_dns_ip'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         type=pulumi.get(__ret__, 'type'),
@@ -405,9 +435,12 @@ def get_cluster_output(cluster_id: Optional[pulumi.Input[Optional[_builtins.str]
         name=pulumi.get(__response__, 'name'),
         open_id_connect_configs=pulumi.get(__response__, 'open_id_connect_configs'),
         organization_id=pulumi.get(__response__, 'organization_id'),
+        pod_cidr=pulumi.get(__response__, 'pod_cidr'),
         private_network_id=pulumi.get(__response__, 'private_network_id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        service_cidr=pulumi.get(__response__, 'service_cidr'),
+        service_dns_ip=pulumi.get(__response__, 'service_dns_ip'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),
         type=pulumi.get(__response__, 'type'),

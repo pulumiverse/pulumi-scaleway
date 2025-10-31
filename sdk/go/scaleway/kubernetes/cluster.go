@@ -210,7 +210,7 @@ import (
 //					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
@@ -278,7 +278,7 @@ import (
 //					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
@@ -422,6 +422,11 @@ type Cluster struct {
 	OpenIdConnectConfig ClusterOpenIdConnectConfigOutput `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The subnet used for the Pod CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	PodCidr pulumi.StringOutput `pulumi:"podCidr"`
 	// The ID of the private network of the cluster.
 	//
 	// > **Important:** Changes to this field will recreate a new resource.
@@ -433,6 +438,16 @@ type Cluster struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The subnet used for the Service CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceCidr pulumi.StringOutput `pulumi:"serviceCidr"`
+	// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceDnsIp pulumi.StringOutput `pulumi:"serviceDnsIp"`
 	// The status of the Kubernetes cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -535,6 +550,11 @@ type clusterState struct {
 	OpenIdConnectConfig *ClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
 	// The organization ID the cluster is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The subnet used for the Pod CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	PodCidr *string `pulumi:"podCidr"`
 	// The ID of the private network of the cluster.
 	//
 	// > **Important:** Changes to this field will recreate a new resource.
@@ -546,6 +566,16 @@ type clusterState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
 	Region *string `pulumi:"region"`
+	// The subnet used for the Service CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceCidr *string `pulumi:"serviceCidr"`
+	// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceDnsIp *string `pulumi:"serviceDnsIp"`
 	// The status of the Kubernetes cluster.
 	Status *string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -600,6 +630,11 @@ type ClusterState struct {
 	OpenIdConnectConfig ClusterOpenIdConnectConfigPtrInput
 	// The organization ID the cluster is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The subnet used for the Pod CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	PodCidr pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
 	// > **Important:** Changes to this field will recreate a new resource.
@@ -611,6 +646,16 @@ type ClusterState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringPtrInput
+	// The subnet used for the Service CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceCidr pulumi.StringPtrInput
+	// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceDnsIp pulumi.StringPtrInput
 	// The status of the Kubernetes cluster.
 	Status pulumi.StringPtrInput
 	// The tags associated with the Kubernetes cluster.
@@ -661,6 +706,11 @@ type clusterArgs struct {
 	Name *string `pulumi:"name"`
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig *ClusterOpenIdConnectConfig `pulumi:"openIdConnectConfig"`
+	// The subnet used for the Pod CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	PodCidr *string `pulumi:"podCidr"`
 	// The ID of the private network of the cluster.
 	//
 	// > **Important:** Changes to this field will recreate a new resource.
@@ -672,6 +722,16 @@ type clusterArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the cluster should be created.
 	Region *string `pulumi:"region"`
+	// The subnet used for the Service CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceCidr *string `pulumi:"serviceCidr"`
+	// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceDnsIp *string `pulumi:"serviceDnsIp"`
 	// The tags associated with the Kubernetes cluster.
 	Tags []string `pulumi:"tags"`
 	// The type of Kubernetes cluster. Possible values are:
@@ -711,6 +771,11 @@ type ClusterArgs struct {
 	Name pulumi.StringPtrInput
 	// The OpenID Connect configuration of the cluster
 	OpenIdConnectConfig ClusterOpenIdConnectConfigPtrInput
+	// The subnet used for the Pod CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	PodCidr pulumi.StringPtrInput
 	// The ID of the private network of the cluster.
 	//
 	// > **Important:** Changes to this field will recreate a new resource.
@@ -722,6 +787,16 @@ type ClusterArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the cluster should be created.
 	Region pulumi.StringPtrInput
+	// The subnet used for the Service CIDR.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceCidr pulumi.StringPtrInput
+	// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+	//
+	// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+	// unsetting it to go back to the default value will not have any effect.
+	ServiceDnsIp pulumi.StringPtrInput
 	// The tags associated with the Kubernetes cluster.
 	Tags pulumi.StringArrayInput
 	// The type of Kubernetes cluster. Possible values are:
@@ -896,6 +971,14 @@ func (o ClusterOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The subnet used for the Pod CIDR.
+//
+// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+// unsetting it to go back to the default value will not have any effect.
+func (o ClusterOutput) PodCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.PodCidr }).(pulumi.StringOutput)
+}
+
 // The ID of the private network of the cluster.
 //
 // > **Important:** Changes to this field will recreate a new resource.
@@ -914,6 +997,22 @@ func (o ClusterOutput) ProjectId() pulumi.StringOutput {
 // `region`) The region in which the cluster should be created.
 func (o ClusterOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The subnet used for the Service CIDR.
+//
+// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+// unsetting it to go back to the default value will not have any effect.
+func (o ClusterOutput) ServiceCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ServiceCidr }).(pulumi.StringOutput)
+}
+
+// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+//
+// > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+// unsetting it to go back to the default value will not have any effect.
+func (o ClusterOutput) ServiceDnsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.ServiceDnsIp }).(pulumi.StringOutput)
 }
 
 // The status of the Kubernetes cluster.

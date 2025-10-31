@@ -117,10 +117,7 @@ namespace Pulumiverse.Scaleway
         /// True if dynamic IP in enable on the server.
         /// </summary>
         public readonly bool EnableDynamicIp;
-        /// <summary>
-        /// Determines if IPv6 is enabled for the server.
-        /// </summary>
-        public readonly bool EnableIpv6;
+        public readonly ImmutableArray<Outputs.GetInstanceServerFilesystemResult> Filesystems;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -131,18 +128,6 @@ namespace Pulumiverse.Scaleway
         public readonly string Image;
         public readonly string IpId;
         public readonly ImmutableArray<string> IpIds;
-        /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly string Ipv6Address;
-        /// <summary>
-        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly string Ipv6Gateway;
-        /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly int Ipv6PrefixLength;
         public readonly string? Name;
         /// <summary>
         /// The ID of the organization the server is associated with.
@@ -157,17 +142,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly bool PlacementGroupPolicyRespected;
         /// <summary>
-        /// The Scaleway internal IP address of the server.
+        /// The list of private IPs of the server.
         /// </summary>
-        public readonly string PrivateIp;
         public readonly ImmutableArray<Outputs.GetInstanceServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
         public readonly bool Protected;
-        /// <summary>
-        /// The public IP address of the server.
-        /// </summary>
-        public readonly string PublicIp;
         /// <summary>
         /// The list of public IPs of the server
         /// </summary>
@@ -212,7 +192,7 @@ namespace Pulumiverse.Scaleway
 
             bool enableDynamicIp,
 
-            bool enableIpv6,
+            ImmutableArray<Outputs.GetInstanceServerFilesystemResult> filesystems,
 
             string id,
 
@@ -222,12 +202,6 @@ namespace Pulumiverse.Scaleway
 
             ImmutableArray<string> ipIds,
 
-            string ipv6Address,
-
-            string ipv6Gateway,
-
-            int ipv6PrefixLength,
-
             string? name,
 
             string organizationId,
@@ -236,8 +210,6 @@ namespace Pulumiverse.Scaleway
 
             bool placementGroupPolicyRespected,
 
-            string privateIp,
-
             ImmutableArray<Outputs.GetInstanceServerPrivateIpResult> privateIps,
 
             ImmutableArray<Outputs.GetInstanceServerPrivateNetworkResult> privateNetworks,
@@ -245,8 +217,6 @@ namespace Pulumiverse.Scaleway
             string? projectId,
 
             bool @protected,
-
-            string publicIp,
 
             ImmutableArray<Outputs.GetInstanceServerPublicIpResult> publicIps,
 
@@ -274,24 +244,19 @@ namespace Pulumiverse.Scaleway
             BootscriptId = bootscriptId;
             CloudInit = cloudInit;
             EnableDynamicIp = enableDynamicIp;
-            EnableIpv6 = enableIpv6;
+            Filesystems = filesystems;
             Id = id;
             Image = image;
             IpId = ipId;
             IpIds = ipIds;
-            Ipv6Address = ipv6Address;
-            Ipv6Gateway = ipv6Gateway;
-            Ipv6PrefixLength = ipv6PrefixLength;
             Name = name;
             OrganizationId = organizationId;
             PlacementGroupId = placementGroupId;
             PlacementGroupPolicyRespected = placementGroupPolicyRespected;
-            PrivateIp = privateIp;
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
             Protected = @protected;
-            PublicIp = publicIp;
             PublicIps = publicIps;
             ReplaceOnTypeChange = replaceOnTypeChange;
             RootVolumes = rootVolumes;

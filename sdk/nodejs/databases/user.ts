@@ -26,7 +26,7 @@ import * as utilities from "../utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  * });
- * const dbPassword = new random.RandomPassword("db_password", {
+ * const dbPassword = new random.index.Password("db_password", {
  *     length: 20,
  *     special: true,
  *     upper: true,

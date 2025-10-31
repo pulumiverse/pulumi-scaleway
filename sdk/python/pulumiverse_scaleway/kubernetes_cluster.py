@@ -32,9 +32,12 @@ class KubernetesClusterArgs:
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
+                 pod_cidr: Optional[pulumi.Input[_builtins.str]] = None,
                  private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None):
         """
@@ -53,6 +56,10 @@ class KubernetesClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[_builtins.str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[_builtins.str] pod_cidr: The subnet used for the Pod CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network of the cluster.
                
                > **Important:** Changes to this field will recreate a new resource.
@@ -61,6 +68,14 @@ class KubernetesClusterArgs:
                you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
+        :param pulumi.Input[_builtins.str] service_cidr: The subnet used for the Service CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] service_dns_ip: The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
                
@@ -89,12 +104,18 @@ class KubernetesClusterArgs:
             pulumi.set(__self__, "name", name)
         if open_id_connect_config is not None:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
+        if pod_cidr is not None:
+            pulumi.set(__self__, "pod_cidr", pod_cidr)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if service_cidr is not None:
+            pulumi.set(__self__, "service_cidr", service_cidr)
+        if service_dns_ip is not None:
+            pulumi.set(__self__, "service_dns_ip", service_dns_ip)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if type is not None:
@@ -236,6 +257,21 @@ class KubernetesClusterArgs:
         pulumi.set(self, "open_id_connect_config", value)
 
     @_builtins.property
+    @pulumi.getter(name="podCidr")
+    def pod_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The subnet used for the Pod CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "pod_cidr")
+
+    @pod_cidr.setter
+    def pod_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "pod_cidr", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -275,6 +311,36 @@ class KubernetesClusterArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceCidr")
+    def service_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The subnet used for the Service CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_cidr")
+
+    @service_cidr.setter
+    def service_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceDnsIp")
+    def service_dns_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_dns_ip")
+
+    @service_dns_ip.setter
+    def service_dns_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_dns_ip", value)
 
     @_builtins.property
     @pulumi.getter
@@ -324,9 +390,12 @@ class _KubernetesClusterState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  open_id_connect_config: Optional[pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs']] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 pod_cidr: Optional[pulumi.Input[_builtins.str]] = None,
                  private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -353,6 +422,10 @@ class _KubernetesClusterState:
         :param pulumi.Input[_builtins.str] name: The name for the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterOpenIdConnectConfigArgs'] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[_builtins.str] pod_cidr: The subnet used for the Pod CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network of the cluster.
                
                > **Important:** Changes to this field will recreate a new resource.
@@ -361,6 +434,14 @@ class _KubernetesClusterState:
                you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
+        :param pulumi.Input[_builtins.str] service_cidr: The subnet used for the Service CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] service_dns_ip: The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
@@ -403,12 +484,18 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "open_id_connect_config", open_id_connect_config)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if pod_cidr is not None:
+            pulumi.set(__self__, "pod_cidr", pod_cidr)
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if service_cidr is not None:
+            pulumi.set(__self__, "service_cidr", service_cidr)
+        if service_dns_ip is not None:
+            pulumi.set(__self__, "service_dns_ip", service_dns_ip)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -596,6 +683,21 @@ class _KubernetesClusterState:
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="podCidr")
+    def pod_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The subnet used for the Pod CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "pod_cidr")
+
+    @pod_cidr.setter
+    def pod_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "pod_cidr", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -635,6 +737,36 @@ class _KubernetesClusterState:
     @region.setter
     def region(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceCidr")
+    def service_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The subnet used for the Service CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_cidr")
+
+    @service_cidr.setter
+    def service_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_cidr", value)
+
+    @_builtins.property
+    @pulumi.getter(name="serviceDnsIp")
+    def service_dns_ip(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_dns_ip")
+
+    @service_dns_ip.setter
+    def service_dns_ip(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_dns_ip", value)
 
     @_builtins.property
     @pulumi.getter
@@ -748,9 +880,12 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
+                 pod_cidr: Optional[pulumi.Input[_builtins.str]] = None,
                  private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -859,7 +994,7 @@ class KubernetesCluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
@@ -890,7 +1025,7 @@ class KubernetesCluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
@@ -977,6 +1112,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] feature_gates: The list of [feature gates](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/) to enable on the cluster.
         :param pulumi.Input[_builtins.str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']] open_id_connect_config: The OpenID Connect configuration of the cluster
+        :param pulumi.Input[_builtins.str] pod_cidr: The subnet used for the Pod CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network of the cluster.
                
                > **Important:** Changes to this field will recreate a new resource.
@@ -985,6 +1124,14 @@ class KubernetesCluster(pulumi.CustomResource):
                you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
+        :param pulumi.Input[_builtins.str] service_cidr: The subnet used for the Service CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] service_dns_ip: The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
                
@@ -1105,7 +1252,7 @@ class KubernetesCluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
@@ -1136,7 +1283,7 @@ class KubernetesCluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
@@ -1233,9 +1380,12 @@ class KubernetesCluster(pulumi.CustomResource):
                  feature_gates: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
+                 pod_cidr: Optional[pulumi.Input[_builtins.str]] = None,
                  private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  version: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1263,9 +1413,12 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["feature_gates"] = feature_gates
             __props__.__dict__["name"] = name
             __props__.__dict__["open_id_connect_config"] = open_id_connect_config
+            __props__.__dict__["pod_cidr"] = pod_cidr
             __props__.__dict__["private_network_id"] = private_network_id
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
+            __props__.__dict__["service_cidr"] = service_cidr
+            __props__.__dict__["service_dns_ip"] = service_dns_ip
             __props__.__dict__["tags"] = tags
             __props__.__dict__["type"] = type
             if version is None and not opts.urn:
@@ -1305,9 +1458,12 @@ class KubernetesCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             open_id_connect_config: Optional[pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']]] = None,
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+            pod_cidr: Optional[pulumi.Input[_builtins.str]] = None,
             private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            service_cidr: Optional[pulumi.Input[_builtins.str]] = None,
+            service_dns_ip: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1339,6 +1495,10 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name for the Kubernetes cluster.
         :param pulumi.Input[Union['KubernetesClusterOpenIdConnectConfigArgs', 'KubernetesClusterOpenIdConnectConfigArgsDict']] open_id_connect_config: The OpenID Connect configuration of the cluster
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the cluster is associated with.
+        :param pulumi.Input[_builtins.str] pod_cidr: The subnet used for the Pod CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the private network of the cluster.
                
                > **Important:** Changes to this field will recreate a new resource.
@@ -1347,6 +1507,14 @@ class KubernetesCluster(pulumi.CustomResource):
                you can still set it now. In this case it will not destroy and recreate your cluster but migrate it to the Private Network.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the cluster is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the cluster should be created.
+        :param pulumi.Input[_builtins.str] service_cidr: The subnet used for the Service CIDR.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
+        :param pulumi.Input[_builtins.str] service_dns_ip: The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+               
+               > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+               unsetting it to go back to the default value will not have any effect.
         :param pulumi.Input[_builtins.str] status: The status of the Kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Kubernetes cluster.
         :param pulumi.Input[_builtins.str] type: The type of Kubernetes cluster. Possible values are:
@@ -1379,9 +1547,12 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["open_id_connect_config"] = open_id_connect_config
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["pod_cidr"] = pod_cidr
         __props__.__dict__["private_network_id"] = private_network_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
+        __props__.__dict__["service_cidr"] = service_cidr
+        __props__.__dict__["service_dns_ip"] = service_dns_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["type"] = type
@@ -1507,6 +1678,17 @@ class KubernetesCluster(pulumi.CustomResource):
         return pulumi.get(self, "organization_id")
 
     @_builtins.property
+    @pulumi.getter(name="podCidr")
+    def pod_cidr(self) -> pulumi.Output[_builtins.str]:
+        """
+        The subnet used for the Pod CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "pod_cidr")
+
+    @_builtins.property
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
@@ -1534,6 +1716,28 @@ class KubernetesCluster(pulumi.CustomResource):
         `region`) The region in which the cluster should be created.
         """
         return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceCidr")
+    def service_cidr(self) -> pulumi.Output[_builtins.str]:
+        """
+        The subnet used for the Service CIDR.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_cidr")
+
+    @_builtins.property
+    @pulumi.getter(name="serviceDnsIp")
+    def service_dns_ip(self) -> pulumi.Output[_builtins.str]:
+        """
+        The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+
+        > **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        unsetting it to go back to the default value will not have any effect.
+        """
+        return pulumi.get(self, "service_dns_ip")
 
     @_builtins.property
     @pulumi.getter

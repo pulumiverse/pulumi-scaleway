@@ -93,6 +93,7 @@ export interface GetKubernetesClusterResult {
      * The ID of the organization the cluster is associated with.
      */
     readonly organizationId: string;
+    readonly podCidr: string;
     /**
      * The ID of the private network of the cluster.
      */
@@ -102,6 +103,8 @@ export interface GetKubernetesClusterResult {
      * The region in which the cluster is.
      */
     readonly region?: string;
+    readonly serviceCidr: string;
+    readonly serviceDnsIp: string;
     /**
      * The status of the Kubernetes cluster.
      */

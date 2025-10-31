@@ -35,8 +35,8 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := scaleway.NewFileFilesystem(ctx, "file", &scaleway.FileFilesystemArgs{
-//				Name: pulumi.String("my-nfs-filesystem"),
-//				Size: pulumi.Int(100000000000),
+//				Name:     pulumi.String("my-nfs-filesystem"),
+//				SizeInGb: pulumi.Int(100),
 //			})
 //			if err != nil {
 //				return err
@@ -75,7 +75,7 @@ type FileFilesystem struct {
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
-	Size pulumi.IntOutput `pulumi:"size"`
+	SizeInGb pulumi.IntOutput `pulumi:"sizeInGb"`
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A list of tags associated with the filesystem.
@@ -91,8 +91,8 @@ func NewFileFilesystem(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Size == nil {
-		return nil, errors.New("invalid value for required argument 'Size'")
+	if args.SizeInGb == nil {
+		return nil, errors.New("invalid value for required argument 'SizeInGb'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FileFilesystem
@@ -133,7 +133,7 @@ type fileFilesystemState struct {
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
-	Size *int `pulumi:"size"`
+	SizeInGb *int `pulumi:"sizeInGb"`
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status *string `pulumi:"status"`
 	// A list of tags associated with the filesystem.
@@ -159,7 +159,7 @@ type FileFilesystemState struct {
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
-	Size pulumi.IntPtrInput
+	SizeInGb pulumi.IntPtrInput
 	// The current status of the filesystem. Possible values include creating, available, etc.
 	Status pulumi.StringPtrInput
 	// A list of tags associated with the filesystem.
@@ -183,7 +183,7 @@ type fileFilesystemArgs struct {
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
-	Size int `pulumi:"size"`
+	SizeInGb int `pulumi:"sizeInGb"`
 	// A list of tags associated with the filesystem.
 	Tags []string `pulumi:"tags"`
 }
@@ -200,7 +200,7 @@ type FileFilesystemArgs struct {
 	// The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 	// - Minimum: 100 GB (100000000000 bytes)
 	// - Maximum: 10 TB (10000000000000 bytes)
-	Size pulumi.IntInput
+	SizeInGb pulumi.IntInput
 	// A list of tags associated with the filesystem.
 	Tags pulumi.StringArrayInput
 }
@@ -326,8 +326,8 @@ func (o FileFilesystemOutput) Region() pulumi.StringPtrOutput {
 // The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
 // - Minimum: 100 GB (100000000000 bytes)
 // - Maximum: 10 TB (10000000000000 bytes)
-func (o FileFilesystemOutput) Size() pulumi.IntOutput {
-	return o.ApplyT(func(v *FileFilesystem) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+func (o FileFilesystemOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v *FileFilesystem) pulumi.IntOutput { return v.SizeInGb }).(pulumi.IntOutput)
 }
 
 // The current status of the filesystem. Possible values include creating, available, etc.

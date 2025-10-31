@@ -27,6 +27,9 @@ export function getBaremetalOffer(args?: GetBaremetalOfferArgs, opts?: pulumi.In
  * A collection of arguments for invoking getBaremetalOffer.
  */
 export interface GetBaremetalOfferArgs {
+    /**
+     * Include disabled offers.
+     */
     includeDisabled?: boolean;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
@@ -108,6 +111,9 @@ export function getBaremetalOfferOutput(args?: GetBaremetalOfferOutputArgs, opts
  * A collection of arguments for invoking getBaremetalOffer.
  */
 export interface GetBaremetalOfferOutputArgs {
+    /**
+     * Include disabled offers.
+     */
     includeDisabled?: pulumi.Input<boolean>;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.

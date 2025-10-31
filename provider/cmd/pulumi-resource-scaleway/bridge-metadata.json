@@ -1106,6 +1106,9 @@
                     "additional_volume_ids": {
                         "maxItemsOne": false
                     },
+                    "filesystems": {
+                        "maxItemsOne": false
+                    },
                     "ip_ids": {
                         "maxItemsOne": false
                     },
@@ -1991,6 +1994,9 @@
                         "maxItemsOne": false
                     },
                     "tags": {
+                        "maxItemsOne": false
+                    },
+                    "upgradable_versions": {
                         "maxItemsOne": false
                     }
                 }
@@ -2902,6 +2908,28 @@
                     }
                 }
             },
+            "scaleway_iam_policy": {
+                "current": "scaleway:iam/getPolicy:getPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "permission_set_names": {
+                                    "maxItemsOne": false
+                                },
+                                "project_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_iam_ssh_key": {
                 "current": "scaleway:iam/getSshKey:getSshKey",
                 "past": [
@@ -3055,6 +3083,9 @@
                 "majorVersion": 1,
                 "fields": {
                     "additional_volume_ids": {
+                        "maxItemsOne": false
+                    },
+                    "filesystems": {
                         "maxItemsOne": false
                     },
                     "ip_ids": {
@@ -3888,6 +3919,9 @@
                         "maxItemsOne": false
                     },
                     "tags": {
+                        "maxItemsOne": false
+                    },
+                    "upgradable_versions": {
                         "maxItemsOne": false
                     }
                 }
@@ -5504,6 +5538,7 @@
             "scaleway:iam/getApiKey:getApiKey": 0,
             "scaleway:iam/getApplication:getApplication": 0,
             "scaleway:iam/getGroup:getGroup": 0,
+            "scaleway:iam/getPolicy:getPolicy": 0,
             "scaleway:iam/getSshKey:getSshKey": 0,
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,

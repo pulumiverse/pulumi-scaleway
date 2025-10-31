@@ -44,17 +44,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			dbPassword, err := random.NewRandomPassword(ctx, "db_password", &random.RandomPasswordArgs{
-//				Length:          pulumi.Int(20),
-//				Special:         pulumi.Bool(true),
-//				Upper:           pulumi.Bool(true),
-//				Lower:           pulumi.Bool(true),
-//				Numeric:         pulumi.Bool(true),
-//				MinUpper:        pulumi.Int(1),
-//				MinLower:        pulumi.Int(1),
-//				MinNumeric:      pulumi.Int(1),
-//				MinSpecial:      pulumi.Int(1),
-//				OverrideSpecial: pulumi.String("!@#$%^&*()_+-=[]{}|;:,.<>?"),
+//			dbPassword, err := random.NewPassword(ctx, "db_password", &random.PasswordArgs{
+//				Length:          20,
+//				Special:         true,
+//				Upper:           true,
+//				Lower:           true,
+//				Numeric:         true,
+//				MinUpper:        1,
+//				MinLower:        1,
+//				MinNumeric:      1,
+//				MinSpecial:      1,
+//				OverrideSpecial: "!@#$%^&*()_+-=[]{}|;:,.<>?",
 //			})
 //			if err != nil {
 //				return err

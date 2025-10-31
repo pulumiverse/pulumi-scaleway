@@ -124,6 +124,35 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Example Engine Upgrade
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Initial creation with PostgreSQL 14
+    ///     var main = new Scaleway.Databases.Instance("main", new()
+    ///     {
+    ///         Name = "my-database",
+    ///         NodeType = "DB-DEV-S",
+    ///         Engine = "PostgreSQL-14",
+    ///         IsHaCluster = false,
+    ///         DisableBackup = true,
+    ///         UserName = "my_user",
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["upgradableVersions"] = main.UpgradableVersions,
+    ///     };
+    /// });
+    /// ```
+    /// 
     /// ### Examples of endpoint configuration
     /// 
     /// Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
@@ -279,9 +308,7 @@ namespace Pulumiverse.Scaleway
         public Output<int> EndpointPort { get; private set; } = null!;
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
-        /// 
-        /// &gt; **Important** Updates to `Engine` will recreate the Database Instance.
+        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
@@ -392,6 +419,12 @@ namespace Pulumiverse.Scaleway
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
+        /// List of available engine versions for upgrade. Each version contains:
+        /// </summary>
+        [Output("upgradableVersions")]
+        public Output<ImmutableArray<Outputs.DatabaseInstanceUpgradableVersion>> UpgradableVersions { get; private set; } = null!;
+
+        /// <summary>
         /// Identifier for the first user of the Database Instance.
         /// 
         /// &gt; **Important** Updates to `UserName` will recreate the Database Instance.
@@ -495,9 +528,7 @@ namespace Pulumiverse.Scaleway
         public Input<bool>? EncryptionAtRest { get; set; }
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
-        /// 
-        /// &gt; **Important** Updates to `Engine` will recreate the Database Instance.
+        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -708,9 +739,7 @@ namespace Pulumiverse.Scaleway
         public Input<int>? EndpointPort { get; set; }
 
         /// <summary>
-        /// Database Instance's engine version (e.g. `PostgreSQL-11`).
-        /// 
-        /// &gt; **Important** Updates to `Engine` will recreate the Database Instance.
+        /// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }
@@ -858,6 +887,18 @@ namespace Pulumiverse.Scaleway
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
+        }
+
+        [Input("upgradableVersions")]
+        private InputList<Inputs.DatabaseInstanceUpgradableVersionGetArgs>? _upgradableVersions;
+
+        /// <summary>
+        /// List of available engine versions for upgrade. Each version contains:
+        /// </summary>
+        public InputList<Inputs.DatabaseInstanceUpgradableVersionGetArgs> UpgradableVersions
+        {
+            get => _upgradableVersions ?? (_upgradableVersions = new InputList<Inputs.DatabaseInstanceUpgradableVersionGetArgs>());
+            set => _upgradableVersions = value;
         }
 
         /// <summary>

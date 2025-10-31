@@ -52,20 +52,18 @@ import (
 //				Topic: pulumi.String("#"),
 //				Database: &iot.RouteDatabaseArgs{
 //					Query: pulumi.String(`INSERT INTO measurements(
-//		push_time,
-//		report_time,
-//		station_id,
-//		temperature,
-//		humidity
 //
+// \tpush_time,
+// \treport_time,
+// \tstation_id,
+// \ttemperature,
+// \thumidity
 // ) VALUES (
-//
-//	NOW(),
-//	TIMESTAMP 'epoch' + (($PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
-//	($PAYLOAD::jsonb->'station_id')::uuid,
-//	($PAYLOAD::jsonb->'temperature')::decimal,
-//	($PAYLOAD::jsonb->'humidity'):decimal:
-//
+// \tNOW(),
+// \tTIMESTAMP 'epoch' + (($PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+// \t($PAYLOAD::jsonb->'station_id')::uuid,
+// \t($PAYLOAD::jsonb->'temperature')::decimal,
+// \t($PAYLOAD::jsonb->'humidity'):decimal:
 // );
 // `),
 //

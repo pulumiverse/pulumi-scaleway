@@ -140,6 +140,7 @@ namespace Pulumiverse.Scaleway.Databases
         public readonly ImmutableDictionary<string, string> Settings;
         public readonly string SnapshotId;
         public readonly ImmutableArray<string> Tags;
+        public readonly ImmutableArray<Outputs.GetInstanceUpgradableVersionResult> UpgradableVersions;
         public readonly string UserName;
         public readonly int VolumeSizeInGb;
         public readonly string VolumeType;
@@ -200,6 +201,8 @@ namespace Pulumiverse.Scaleway.Databases
 
             ImmutableArray<string> tags,
 
+            ImmutableArray<Outputs.GetInstanceUpgradableVersionResult> upgradableVersions,
+
             string userName,
 
             int volumeSizeInGb,
@@ -233,6 +236,7 @@ namespace Pulumiverse.Scaleway.Databases
             Settings = settings;
             SnapshotId = snapshotId;
             Tags = tags;
+            UpgradableVersions = upgradableVersions;
             UserName = userName;
             VolumeSizeInGb = volumeSizeInGb;
             VolumeType = volumeType;

@@ -27,10 +27,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly bool EnableDynamicIp;
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
-        /// </summary>
-        public readonly bool EnableIpv6;
-        /// <summary>
         /// The ID of the IP
         /// </summary>
         public readonly string Id;
@@ -38,18 +34,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// The UUID or the label of the base image used by the server.
         /// </summary>
         public readonly string Image;
-        /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly string Ipv6Address;
-        /// <summary>
-        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly string Ipv6Gateway;
-        /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// </summary>
-        public readonly int Ipv6PrefixLength;
         /// <summary>
         /// The server name used as filter. Servers with a name like it are listed.
         /// </summary>
@@ -67,10 +51,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// </summary>
         public readonly bool PlacementGroupPolicyRespected;
         /// <summary>
-        /// The Scaleway internal IP address of the server.
-        /// </summary>
-        public readonly string PrivateIp;
-        /// <summary>
         /// The list of private IPv4 and IPv6 addresses associated with the server.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServersServerPrivateIpResult> PrivateIps;
@@ -78,10 +58,6 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
         /// The ID of the project the server is associated with.
         /// </summary>
         public readonly string ProjectId;
-        /// <summary>
-        /// The public IP address of the server.
-        /// </summary>
-        public readonly string PublicIp;
         /// <summary>
         /// The list of public IPs of the server
         /// </summary>
@@ -115,17 +91,9 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
 
             bool enableDynamicIp,
 
-            bool enableIpv6,
-
             string id,
 
             string image,
-
-            string ipv6Address,
-
-            string ipv6Gateway,
-
-            int ipv6PrefixLength,
 
             string name,
 
@@ -135,13 +103,9 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
 
             bool placementGroupPolicyRespected,
 
-            string privateIp,
-
             ImmutableArray<Outputs.GetServersServerPrivateIpResult> privateIps,
 
             string projectId,
-
-            string publicIp,
 
             ImmutableArray<Outputs.GetServersServerPublicIpResult> publicIps,
 
@@ -158,20 +122,14 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
             BootType = bootType;
             BootscriptId = bootscriptId;
             EnableDynamicIp = enableDynamicIp;
-            EnableIpv6 = enableIpv6;
             Id = id;
             Image = image;
-            Ipv6Address = ipv6Address;
-            Ipv6Gateway = ipv6Gateway;
-            Ipv6PrefixLength = ipv6PrefixLength;
             Name = name;
             OrganizationId = organizationId;
             PlacementGroupId = placementGroupId;
             PlacementGroupPolicyRespected = placementGroupPolicyRespected;
-            PrivateIp = privateIp;
             PrivateIps = privateIps;
             ProjectId = projectId;
-            PublicIp = publicIp;
             PublicIps = publicIps;
             SecurityGroupId = securityGroupId;
             State = state;
