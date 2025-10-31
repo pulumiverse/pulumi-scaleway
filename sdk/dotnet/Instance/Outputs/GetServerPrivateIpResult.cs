@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Instance.Outputs
     public sealed class GetServerPrivateIpResult
     {
         /// <summary>
-        /// The address of the IP
+        /// The private IP address.
         /// </summary>
         public readonly string Address;
         /// <summary>
-        /// The ID of the IP
+        /// The ID of the IP address resource.
         /// </summary>
         public readonly string Id;
 

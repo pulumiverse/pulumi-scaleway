@@ -46,17 +46,17 @@ namespace Pulumiverse.Scaleway.Iot
     ///         Database = new Scaleway.Iot.Inputs.RouteDatabaseArgs
     ///         {
     ///             Query = @"INSERT INTO measurements(
-    /// 	push_time,
-    /// 	report_time,
-    /// 	station_id,
-    /// 	temperature,
-    /// 	humidity
+    /// \tpush_time,
+    /// \treport_time,
+    /// \tstation_id,
+    /// \ttemperature,
+    /// \thumidity
     /// ) VALUES (
-    /// 	NOW(),
-    /// 	TIMESTAMP 'epoch' + (($PAYLOAD::jsonb-&gt;'last_reported')::integer * INTERVAL '1 second'),
-    /// 	($PAYLOAD::jsonb-&gt;'station_id')::uuid,
-    /// 	($PAYLOAD::jsonb-&gt;'temperature')::decimal,
-    /// 	($PAYLOAD::jsonb-&gt;'humidity'):decimal:
+    /// \tNOW(),
+    /// \tTIMESTAMP 'epoch' + (($PAYLOAD::jsonb-&gt;'last_reported')::integer * INTERVAL '1 second'),
+    /// \t($PAYLOAD::jsonb-&gt;'station_id')::uuid,
+    /// \t($PAYLOAD::jsonb-&gt;'temperature')::decimal,
+    /// \t($PAYLOAD::jsonb-&gt;'humidity'):decimal:
     /// );
     /// ",
     ///             Host = iot.EndpointIp,

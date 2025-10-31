@@ -155,6 +155,40 @@ import (
 //
 // ```
 //
+// ### Example Engine Upgrade
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Initial creation with PostgreSQL 14
+//			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
+//				Name:          pulumi.String("my-database"),
+//				NodeType:      pulumi.String("DB-DEV-S"),
+//				Engine:        pulumi.String("PostgreSQL-14"),
+//				IsHaCluster:   pulumi.Bool(false),
+//				DisableBackup: pulumi.Bool(true),
+//				UserName:      pulumi.String("my_user"),
+//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("upgradableVersions", main.UpgradableVersions)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Examples of endpoint configuration
 //
 // Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
@@ -307,9 +341,7 @@ type DatabaseInstance struct {
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntOutput `pulumi:"endpointPort"`
-	// Database Instance's engine version (e.g. `PostgreSQL-11`).
-	//
-	// > **Important** Updates to `engine` will recreate the Database Instance.
+	// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
 	InitSettings pulumi.StringMapOutput `pulumi:"initSettings"`
@@ -352,6 +384,8 @@ type DatabaseInstance struct {
 	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// List of available engine versions for upgrade. Each version contains:
+	UpgradableVersions DatabaseInstanceUpgradableVersionArrayOutput `pulumi:"upgradableVersions"`
 	// Identifier for the first user of the Database Instance.
 	//
 	// > **Important** Updates to `userName` will recreate the Database Instance.
@@ -424,9 +458,7 @@ type databaseInstanceState struct {
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort *int `pulumi:"endpointPort"`
-	// Database Instance's engine version (e.g. `PostgreSQL-11`).
-	//
-	// > **Important** Updates to `engine` will recreate the Database Instance.
+	// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
 	InitSettings map[string]string `pulumi:"initSettings"`
@@ -469,6 +501,8 @@ type databaseInstanceState struct {
 	SnapshotId *string `pulumi:"snapshotId"`
 	// The tags associated with the Database Instance.
 	Tags []string `pulumi:"tags"`
+	// List of available engine versions for upgrade. Each version contains:
+	UpgradableVersions []DatabaseInstanceUpgradableVersion `pulumi:"upgradableVersions"`
 	// Identifier for the first user of the Database Instance.
 	//
 	// > **Important** Updates to `userName` will recreate the Database Instance.
@@ -502,9 +536,7 @@ type DatabaseInstanceState struct {
 	//
 	// Deprecated: Please use the privateNetwork or the loadBalancer attribute
 	EndpointPort pulumi.IntPtrInput
-	// Database Instance's engine version (e.g. `PostgreSQL-11`).
-	//
-	// > **Important** Updates to `engine` will recreate the Database Instance.
+	// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
 	InitSettings pulumi.StringMapInput
@@ -547,6 +579,8 @@ type DatabaseInstanceState struct {
 	SnapshotId pulumi.StringPtrInput
 	// The tags associated with the Database Instance.
 	Tags pulumi.StringArrayInput
+	// List of available engine versions for upgrade. Each version contains:
+	UpgradableVersions DatabaseInstanceUpgradableVersionArrayInput
 	// Identifier for the first user of the Database Instance.
 	//
 	// > **Important** Updates to `userName` will recreate the Database Instance.
@@ -574,9 +608,7 @@ type databaseInstanceArgs struct {
 	DisableBackup *bool `pulumi:"disableBackup"`
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest *bool `pulumi:"encryptionAtRest"`
-	// Database Instance's engine version (e.g. `PostgreSQL-11`).
-	//
-	// > **Important** Updates to `engine` will recreate the Database Instance.
+	// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 	Engine *string `pulumi:"engine"`
 	// Map of engine settings to be set at database initialisation.
 	InitSettings map[string]string `pulumi:"initSettings"`
@@ -639,9 +671,7 @@ type DatabaseInstanceArgs struct {
 	DisableBackup pulumi.BoolPtrInput
 	// Enable or disable encryption at rest for the Database Instance.
 	EncryptionAtRest pulumi.BoolPtrInput
-	// Database Instance's engine version (e.g. `PostgreSQL-11`).
-	//
-	// > **Important** Updates to `engine` will recreate the Database Instance.
+	// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 	Engine pulumi.StringPtrInput
 	// Map of engine settings to be set at database initialisation.
 	InitSettings pulumi.StringMapInput
@@ -823,9 +853,7 @@ func (o DatabaseInstanceOutput) EndpointPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntOutput { return v.EndpointPort }).(pulumi.IntOutput)
 }
 
-// Database Instance's engine version (e.g. `PostgreSQL-11`).
-//
-// > **Important** Updates to `engine` will recreate the Database Instance.
+// Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
 func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
@@ -917,6 +945,11 @@ func (o DatabaseInstanceOutput) SnapshotId() pulumi.StringPtrOutput {
 // The tags associated with the Database Instance.
 func (o DatabaseInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// List of available engine versions for upgrade. Each version contains:
+func (o DatabaseInstanceOutput) UpgradableVersions() DatabaseInstanceUpgradableVersionArrayOutput {
+	return o.ApplyT(func(v *DatabaseInstance) DatabaseInstanceUpgradableVersionArrayOutput { return v.UpgradableVersions }).(DatabaseInstanceUpgradableVersionArrayOutput)
 }
 
 // Identifier for the first user of the Database Instance.

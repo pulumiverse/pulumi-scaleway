@@ -11,6 +11,7 @@ from .application import *
 from .get_api_key import *
 from .get_application import *
 from .get_group import *
+from .get_policy import *
 from .get_ssh_key import *
 from .get_user import *
 from .group import *

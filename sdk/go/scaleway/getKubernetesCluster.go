@@ -63,11 +63,14 @@ type LookupKubernetesClusterResult struct {
 	OpenIdConnectConfigs []GetKubernetesClusterOpenIdConnectConfig `pulumi:"openIdConnectConfigs"`
 	// The ID of the organization the cluster is associated with.
 	OrganizationId string `pulumi:"organizationId"`
+	PodCidr        string `pulumi:"podCidr"`
 	// The ID of the private network of the cluster.
 	PrivateNetworkId string  `pulumi:"privateNetworkId"`
 	ProjectId        *string `pulumi:"projectId"`
 	// The region in which the cluster is.
-	Region *string `pulumi:"region"`
+	Region       *string `pulumi:"region"`
+	ServiceCidr  string  `pulumi:"serviceCidr"`
+	ServiceDnsIp string  `pulumi:"serviceDnsIp"`
 	// The status of the Kubernetes cluster.
 	Status string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -198,6 +201,10 @@ func (o LookupKubernetesClusterResultOutput) OrganizationId() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+func (o LookupKubernetesClusterResultOutput) PodCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.PodCidr }).(pulumi.StringOutput)
+}
+
 // The ID of the private network of the cluster.
 func (o LookupKubernetesClusterResultOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
@@ -210,6 +217,14 @@ func (o LookupKubernetesClusterResultOutput) ProjectId() pulumi.StringPtrOutput 
 // The region in which the cluster is.
 func (o LookupKubernetesClusterResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupKubernetesClusterResultOutput) ServiceCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.ServiceCidr }).(pulumi.StringOutput)
+}
+
+func (o LookupKubernetesClusterResultOutput) ServiceDnsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.ServiceDnsIp }).(pulumi.StringOutput)
 }
 
 // The status of the Kubernetes cluster.

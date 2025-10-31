@@ -19,7 +19,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly string? Address;
         /// <summary>
-        /// The ID of the IPv4 address resource.
+        /// Version ID to use in upgrade requests.
         /// </summary>
         public readonly string? Id;
 

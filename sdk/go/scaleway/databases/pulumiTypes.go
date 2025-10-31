@@ -491,7 +491,7 @@ func (o InstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrOutput {
 type InstancePrivateIp struct {
 	// The private IPv4 address.
 	Address *string `pulumi:"address"`
-	// The ID of the IPv4 address resource.
+	// Version ID to use in upgrade requests.
 	Id *string `pulumi:"id"`
 }
 
@@ -509,7 +509,7 @@ type InstancePrivateIpInput interface {
 type InstancePrivateIpArgs struct {
 	// The private IPv4 address.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IPv4 address resource.
+	// Version ID to use in upgrade requests.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
@@ -569,7 +569,7 @@ func (o InstancePrivateIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IPv4 address resource.
+// Version ID to use in upgrade requests.
 func (o InstancePrivateIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstancePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -996,6 +996,130 @@ func (o InstanceReadReplicaArrayOutput) Index(i pulumi.IntInput) InstanceReadRep
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceReadReplica {
 		return vs[0].([]InstanceReadReplica)[vs[1].(int)]
 	}).(InstanceReadReplicaOutput)
+}
+
+type InstanceUpgradableVersion struct {
+	// Version ID to use in upgrade requests.
+	Id *string `pulumi:"id"`
+	// Minor version string (e.g., `15.5.0`).
+	MinorVersion *string `pulumi:"minorVersion"`
+	// The name of the Database Instance.
+	Name *string `pulumi:"name"`
+	// Version string (e.g., `15.5`).
+	Version *string `pulumi:"version"`
+}
+
+// InstanceUpgradableVersionInput is an input type that accepts InstanceUpgradableVersionArgs and InstanceUpgradableVersionOutput values.
+// You can construct a concrete instance of `InstanceUpgradableVersionInput` via:
+//
+//	InstanceUpgradableVersionArgs{...}
+type InstanceUpgradableVersionInput interface {
+	pulumi.Input
+
+	ToInstanceUpgradableVersionOutput() InstanceUpgradableVersionOutput
+	ToInstanceUpgradableVersionOutputWithContext(context.Context) InstanceUpgradableVersionOutput
+}
+
+type InstanceUpgradableVersionArgs struct {
+	// Version ID to use in upgrade requests.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Minor version string (e.g., `15.5.0`).
+	MinorVersion pulumi.StringPtrInput `pulumi:"minorVersion"`
+	// The name of the Database Instance.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Version string (e.g., `15.5`).
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (InstanceUpgradableVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i InstanceUpgradableVersionArgs) ToInstanceUpgradableVersionOutput() InstanceUpgradableVersionOutput {
+	return i.ToInstanceUpgradableVersionOutputWithContext(context.Background())
+}
+
+func (i InstanceUpgradableVersionArgs) ToInstanceUpgradableVersionOutputWithContext(ctx context.Context) InstanceUpgradableVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceUpgradableVersionOutput)
+}
+
+// InstanceUpgradableVersionArrayInput is an input type that accepts InstanceUpgradableVersionArray and InstanceUpgradableVersionArrayOutput values.
+// You can construct a concrete instance of `InstanceUpgradableVersionArrayInput` via:
+//
+//	InstanceUpgradableVersionArray{ InstanceUpgradableVersionArgs{...} }
+type InstanceUpgradableVersionArrayInput interface {
+	pulumi.Input
+
+	ToInstanceUpgradableVersionArrayOutput() InstanceUpgradableVersionArrayOutput
+	ToInstanceUpgradableVersionArrayOutputWithContext(context.Context) InstanceUpgradableVersionArrayOutput
+}
+
+type InstanceUpgradableVersionArray []InstanceUpgradableVersionInput
+
+func (InstanceUpgradableVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i InstanceUpgradableVersionArray) ToInstanceUpgradableVersionArrayOutput() InstanceUpgradableVersionArrayOutput {
+	return i.ToInstanceUpgradableVersionArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceUpgradableVersionArray) ToInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) InstanceUpgradableVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceUpgradableVersionArrayOutput)
+}
+
+type InstanceUpgradableVersionOutput struct{ *pulumi.OutputState }
+
+func (InstanceUpgradableVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o InstanceUpgradableVersionOutput) ToInstanceUpgradableVersionOutput() InstanceUpgradableVersionOutput {
+	return o
+}
+
+func (o InstanceUpgradableVersionOutput) ToInstanceUpgradableVersionOutputWithContext(ctx context.Context) InstanceUpgradableVersionOutput {
+	return o
+}
+
+// Version ID to use in upgrade requests.
+func (o InstanceUpgradableVersionOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceUpgradableVersion) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Minor version string (e.g., `15.5.0`).
+func (o InstanceUpgradableVersionOutput) MinorVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceUpgradableVersion) *string { return v.MinorVersion }).(pulumi.StringPtrOutput)
+}
+
+// The name of the Database Instance.
+func (o InstanceUpgradableVersionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceUpgradableVersion) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Version string (e.g., `15.5`).
+func (o InstanceUpgradableVersionOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceUpgradableVersion) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type InstanceUpgradableVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceUpgradableVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o InstanceUpgradableVersionArrayOutput) ToInstanceUpgradableVersionArrayOutput() InstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o InstanceUpgradableVersionArrayOutput) ToInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) InstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o InstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput) InstanceUpgradableVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceUpgradableVersion {
+		return vs[0].([]InstanceUpgradableVersion)[vs[1].(int)]
+	}).(InstanceUpgradableVersionOutput)
 }
 
 type ReadReplicaDirectAccess struct {
@@ -2243,6 +2367,130 @@ func (o GetInstanceReadReplicaArrayOutput) Index(i pulumi.IntInput) GetInstanceR
 	}).(GetInstanceReadReplicaOutput)
 }
 
+type GetInstanceUpgradableVersion struct {
+	// The ID of the Database Instance.
+	Id string `pulumi:"id"`
+	// Minor version string
+	MinorVersion string `pulumi:"minorVersion"`
+	// The name of the RDB instance.
+	Name string `pulumi:"name"`
+	// Version string
+	Version string `pulumi:"version"`
+}
+
+// GetInstanceUpgradableVersionInput is an input type that accepts GetInstanceUpgradableVersionArgs and GetInstanceUpgradableVersionOutput values.
+// You can construct a concrete instance of `GetInstanceUpgradableVersionInput` via:
+//
+//	GetInstanceUpgradableVersionArgs{...}
+type GetInstanceUpgradableVersionInput interface {
+	pulumi.Input
+
+	ToGetInstanceUpgradableVersionOutput() GetInstanceUpgradableVersionOutput
+	ToGetInstanceUpgradableVersionOutputWithContext(context.Context) GetInstanceUpgradableVersionOutput
+}
+
+type GetInstanceUpgradableVersionArgs struct {
+	// The ID of the Database Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Minor version string
+	MinorVersion pulumi.StringInput `pulumi:"minorVersion"`
+	// The name of the RDB instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Version string
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetInstanceUpgradableVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i GetInstanceUpgradableVersionArgs) ToGetInstanceUpgradableVersionOutput() GetInstanceUpgradableVersionOutput {
+	return i.ToGetInstanceUpgradableVersionOutputWithContext(context.Background())
+}
+
+func (i GetInstanceUpgradableVersionArgs) ToGetInstanceUpgradableVersionOutputWithContext(ctx context.Context) GetInstanceUpgradableVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceUpgradableVersionOutput)
+}
+
+// GetInstanceUpgradableVersionArrayInput is an input type that accepts GetInstanceUpgradableVersionArray and GetInstanceUpgradableVersionArrayOutput values.
+// You can construct a concrete instance of `GetInstanceUpgradableVersionArrayInput` via:
+//
+//	GetInstanceUpgradableVersionArray{ GetInstanceUpgradableVersionArgs{...} }
+type GetInstanceUpgradableVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceUpgradableVersionArrayOutput() GetInstanceUpgradableVersionArrayOutput
+	ToGetInstanceUpgradableVersionArrayOutputWithContext(context.Context) GetInstanceUpgradableVersionArrayOutput
+}
+
+type GetInstanceUpgradableVersionArray []GetInstanceUpgradableVersionInput
+
+func (GetInstanceUpgradableVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i GetInstanceUpgradableVersionArray) ToGetInstanceUpgradableVersionArrayOutput() GetInstanceUpgradableVersionArrayOutput {
+	return i.ToGetInstanceUpgradableVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceUpgradableVersionArray) ToGetInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) GetInstanceUpgradableVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceUpgradableVersionArrayOutput)
+}
+
+type GetInstanceUpgradableVersionOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceUpgradableVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o GetInstanceUpgradableVersionOutput) ToGetInstanceUpgradableVersionOutput() GetInstanceUpgradableVersionOutput {
+	return o
+}
+
+func (o GetInstanceUpgradableVersionOutput) ToGetInstanceUpgradableVersionOutputWithContext(ctx context.Context) GetInstanceUpgradableVersionOutput {
+	return o
+}
+
+// The ID of the Database Instance.
+func (o GetInstanceUpgradableVersionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceUpgradableVersion) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Minor version string
+func (o GetInstanceUpgradableVersionOutput) MinorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceUpgradableVersion) string { return v.MinorVersion }).(pulumi.StringOutput)
+}
+
+// The name of the RDB instance.
+func (o GetInstanceUpgradableVersionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceUpgradableVersion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Version string
+func (o GetInstanceUpgradableVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceUpgradableVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetInstanceUpgradableVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceUpgradableVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o GetInstanceUpgradableVersionArrayOutput) ToGetInstanceUpgradableVersionArrayOutput() GetInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o GetInstanceUpgradableVersionArrayOutput) ToGetInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) GetInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o GetInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput) GetInstanceUpgradableVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceUpgradableVersion {
+		return vs[0].([]GetInstanceUpgradableVersion)[vs[1].(int)]
+	}).(GetInstanceUpgradableVersionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleInput)(nil)).Elem(), AclAclRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AclAclRuleArrayInput)(nil)).Elem(), AclAclRuleArray{})
@@ -2256,6 +2504,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstancePrivateNetworkPtrInput)(nil)).Elem(), InstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceReadReplicaInput)(nil)).Elem(), InstanceReadReplicaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceReadReplicaArrayInput)(nil)).Elem(), InstanceReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceUpgradableVersionInput)(nil)).Elem(), InstanceUpgradableVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceUpgradableVersionArrayInput)(nil)).Elem(), InstanceUpgradableVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaDirectAccessInput)(nil)).Elem(), ReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaDirectAccessPtrInput)(nil)).Elem(), ReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaPrivateNetworkInput)(nil)).Elem(), ReadReplicaPrivateNetworkArgs{})
@@ -2272,6 +2522,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePrivateNetworkArrayInput)(nil)).Elem(), GetInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceReadReplicaInput)(nil)).Elem(), GetInstanceReadReplicaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceReadReplicaArrayInput)(nil)).Elem(), GetInstanceReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceUpgradableVersionInput)(nil)).Elem(), GetInstanceUpgradableVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceUpgradableVersionArrayInput)(nil)).Elem(), GetInstanceUpgradableVersionArray{})
 	pulumi.RegisterOutputType(AclAclRuleOutput{})
 	pulumi.RegisterOutputType(AclAclRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceLoadBalancerOutput{})
@@ -2284,6 +2536,8 @@ func init() {
 	pulumi.RegisterOutputType(InstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(InstanceReadReplicaOutput{})
 	pulumi.RegisterOutputType(InstanceReadReplicaArrayOutput{})
+	pulumi.RegisterOutputType(InstanceUpgradableVersionOutput{})
+	pulumi.RegisterOutputType(InstanceUpgradableVersionArrayOutput{})
 	pulumi.RegisterOutputType(ReadReplicaDirectAccessOutput{})
 	pulumi.RegisterOutputType(ReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(ReadReplicaPrivateNetworkOutput{})
@@ -2300,4 +2554,6 @@ func init() {
 	pulumi.RegisterOutputType(GetInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceReadReplicaOutput{})
 	pulumi.RegisterOutputType(GetInstanceReadReplicaArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceUpgradableVersionOutput{})
+	pulumi.RegisterOutputType(GetInstanceUpgradableVersionArrayOutput{})
 }

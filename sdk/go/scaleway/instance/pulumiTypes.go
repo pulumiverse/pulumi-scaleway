@@ -977,6 +977,112 @@ func (o SecurityGroupRulesOutboundRuleArrayOutput) Index(i pulumi.IntInput) Secu
 	}).(SecurityGroupRulesOutboundRuleOutput)
 }
 
+type ServerFilesystem struct {
+	// The unique ID of the filesystem attached to the server.
+	FilesystemId *string `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status *string `pulumi:"status"`
+}
+
+// ServerFilesystemInput is an input type that accepts ServerFilesystemArgs and ServerFilesystemOutput values.
+// You can construct a concrete instance of `ServerFilesystemInput` via:
+//
+//	ServerFilesystemArgs{...}
+type ServerFilesystemInput interface {
+	pulumi.Input
+
+	ToServerFilesystemOutput() ServerFilesystemOutput
+	ToServerFilesystemOutputWithContext(context.Context) ServerFilesystemOutput
+}
+
+type ServerFilesystemArgs struct {
+	// The unique ID of the filesystem attached to the server.
+	FilesystemId pulumi.StringPtrInput `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (ServerFilesystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerFilesystem)(nil)).Elem()
+}
+
+func (i ServerFilesystemArgs) ToServerFilesystemOutput() ServerFilesystemOutput {
+	return i.ToServerFilesystemOutputWithContext(context.Background())
+}
+
+func (i ServerFilesystemArgs) ToServerFilesystemOutputWithContext(ctx context.Context) ServerFilesystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerFilesystemOutput)
+}
+
+// ServerFilesystemArrayInput is an input type that accepts ServerFilesystemArray and ServerFilesystemArrayOutput values.
+// You can construct a concrete instance of `ServerFilesystemArrayInput` via:
+//
+//	ServerFilesystemArray{ ServerFilesystemArgs{...} }
+type ServerFilesystemArrayInput interface {
+	pulumi.Input
+
+	ToServerFilesystemArrayOutput() ServerFilesystemArrayOutput
+	ToServerFilesystemArrayOutputWithContext(context.Context) ServerFilesystemArrayOutput
+}
+
+type ServerFilesystemArray []ServerFilesystemInput
+
+func (ServerFilesystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerFilesystem)(nil)).Elem()
+}
+
+func (i ServerFilesystemArray) ToServerFilesystemArrayOutput() ServerFilesystemArrayOutput {
+	return i.ToServerFilesystemArrayOutputWithContext(context.Background())
+}
+
+func (i ServerFilesystemArray) ToServerFilesystemArrayOutputWithContext(ctx context.Context) ServerFilesystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerFilesystemArrayOutput)
+}
+
+type ServerFilesystemOutput struct{ *pulumi.OutputState }
+
+func (ServerFilesystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerFilesystem)(nil)).Elem()
+}
+
+func (o ServerFilesystemOutput) ToServerFilesystemOutput() ServerFilesystemOutput {
+	return o
+}
+
+func (o ServerFilesystemOutput) ToServerFilesystemOutputWithContext(ctx context.Context) ServerFilesystemOutput {
+	return o
+}
+
+// The unique ID of the filesystem attached to the server.
+func (o ServerFilesystemOutput) FilesystemId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerFilesystem) *string { return v.FilesystemId }).(pulumi.StringPtrOutput)
+}
+
+// The state of the filesystem
+func (o ServerFilesystemOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerFilesystem) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type ServerFilesystemArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerFilesystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerFilesystem)(nil)).Elem()
+}
+
+func (o ServerFilesystemArrayOutput) ToServerFilesystemArrayOutput() ServerFilesystemArrayOutput {
+	return o
+}
+
+func (o ServerFilesystemArrayOutput) ToServerFilesystemArrayOutputWithContext(ctx context.Context) ServerFilesystemArrayOutput {
+	return o
+}
+
+func (o ServerFilesystemArrayOutput) Index(i pulumi.IntInput) ServerFilesystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerFilesystem {
+		return vs[0].([]ServerFilesystem)[vs[1].(int)]
+	}).(ServerFilesystemOutput)
+}
+
 type ServerPrivateIp struct {
 	// The private IP address.
 	Address *string `pulumi:"address"`
@@ -2196,10 +2302,116 @@ func (o GetSecurityGroupOutboundRuleArrayOutput) Index(i pulumi.IntInput) GetSec
 	}).(GetSecurityGroupOutboundRuleOutput)
 }
 
+type GetServerFilesystem struct {
+	// The filesystem ID attached to the server
+	FilesystemId string `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status string `pulumi:"status"`
+}
+
+// GetServerFilesystemInput is an input type that accepts GetServerFilesystemArgs and GetServerFilesystemOutput values.
+// You can construct a concrete instance of `GetServerFilesystemInput` via:
+//
+//	GetServerFilesystemArgs{...}
+type GetServerFilesystemInput interface {
+	pulumi.Input
+
+	ToGetServerFilesystemOutput() GetServerFilesystemOutput
+	ToGetServerFilesystemOutputWithContext(context.Context) GetServerFilesystemOutput
+}
+
+type GetServerFilesystemArgs struct {
+	// The filesystem ID attached to the server
+	FilesystemId pulumi.StringInput `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetServerFilesystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerFilesystem)(nil)).Elem()
+}
+
+func (i GetServerFilesystemArgs) ToGetServerFilesystemOutput() GetServerFilesystemOutput {
+	return i.ToGetServerFilesystemOutputWithContext(context.Background())
+}
+
+func (i GetServerFilesystemArgs) ToGetServerFilesystemOutputWithContext(ctx context.Context) GetServerFilesystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerFilesystemOutput)
+}
+
+// GetServerFilesystemArrayInput is an input type that accepts GetServerFilesystemArray and GetServerFilesystemArrayOutput values.
+// You can construct a concrete instance of `GetServerFilesystemArrayInput` via:
+//
+//	GetServerFilesystemArray{ GetServerFilesystemArgs{...} }
+type GetServerFilesystemArrayInput interface {
+	pulumi.Input
+
+	ToGetServerFilesystemArrayOutput() GetServerFilesystemArrayOutput
+	ToGetServerFilesystemArrayOutputWithContext(context.Context) GetServerFilesystemArrayOutput
+}
+
+type GetServerFilesystemArray []GetServerFilesystemInput
+
+func (GetServerFilesystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerFilesystem)(nil)).Elem()
+}
+
+func (i GetServerFilesystemArray) ToGetServerFilesystemArrayOutput() GetServerFilesystemArrayOutput {
+	return i.ToGetServerFilesystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetServerFilesystemArray) ToGetServerFilesystemArrayOutputWithContext(ctx context.Context) GetServerFilesystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerFilesystemArrayOutput)
+}
+
+type GetServerFilesystemOutput struct{ *pulumi.OutputState }
+
+func (GetServerFilesystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerFilesystem)(nil)).Elem()
+}
+
+func (o GetServerFilesystemOutput) ToGetServerFilesystemOutput() GetServerFilesystemOutput {
+	return o
+}
+
+func (o GetServerFilesystemOutput) ToGetServerFilesystemOutputWithContext(ctx context.Context) GetServerFilesystemOutput {
+	return o
+}
+
+// The filesystem ID attached to the server
+func (o GetServerFilesystemOutput) FilesystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerFilesystem) string { return v.FilesystemId }).(pulumi.StringOutput)
+}
+
+// The state of the filesystem
+func (o GetServerFilesystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerFilesystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetServerFilesystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetServerFilesystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetServerFilesystem)(nil)).Elem()
+}
+
+func (o GetServerFilesystemArrayOutput) ToGetServerFilesystemArrayOutput() GetServerFilesystemArrayOutput {
+	return o
+}
+
+func (o GetServerFilesystemArrayOutput) ToGetServerFilesystemArrayOutputWithContext(ctx context.Context) GetServerFilesystemArrayOutput {
+	return o
+}
+
+func (o GetServerFilesystemArrayOutput) Index(i pulumi.IntInput) GetServerFilesystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetServerFilesystem {
+		return vs[0].([]GetServerFilesystem)[vs[1].(int)]
+	}).(GetServerFilesystemOutput)
+}
+
 type GetServerPrivateIp struct {
-	// The address of the IP
+	// The private IP address.
 	Address string `pulumi:"address"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id string `pulumi:"id"`
 }
 
@@ -2215,9 +2427,9 @@ type GetServerPrivateIpInput interface {
 }
 
 type GetServerPrivateIpArgs struct {
-	// The address of the IP
+	// The private IP address.
 	Address pulumi.StringInput `pulumi:"address"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -2272,12 +2484,12 @@ func (o GetServerPrivateIpOutput) ToGetServerPrivateIpOutputWithContext(ctx cont
 	return o
 }
 
-// The address of the IP
+// The private IP address.
 func (o GetServerPrivateIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The ID of the IP
+// The ID of the IP address resource.
 func (o GetServerPrivateIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -2436,7 +2648,7 @@ func (o GetServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetServerPr
 }
 
 type GetServerPublicIp struct {
-	// The address of the IP
+	// The private IP address.
 	Address string `pulumi:"address"`
 	// Whether the IP is dynamic
 	Dynamic bool `pulumi:"dynamic"`
@@ -2444,7 +2656,7 @@ type GetServerPublicIp struct {
 	Family string `pulumi:"family"`
 	// Gateway's IP address
 	Gateway string `pulumi:"gateway"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id string `pulumi:"id"`
 	// CIDR netmask
 	Netmask string `pulumi:"netmask"`
@@ -2464,7 +2676,7 @@ type GetServerPublicIpInput interface {
 }
 
 type GetServerPublicIpArgs struct {
-	// The address of the IP
+	// The private IP address.
 	Address pulumi.StringInput `pulumi:"address"`
 	// Whether the IP is dynamic
 	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
@@ -2472,7 +2684,7 @@ type GetServerPublicIpArgs struct {
 	Family pulumi.StringInput `pulumi:"family"`
 	// Gateway's IP address
 	Gateway pulumi.StringInput `pulumi:"gateway"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id pulumi.StringInput `pulumi:"id"`
 	// CIDR netmask
 	Netmask pulumi.StringInput `pulumi:"netmask"`
@@ -2531,7 +2743,7 @@ func (o GetServerPublicIpOutput) ToGetServerPublicIpOutputWithContext(ctx contex
 	return o
 }
 
-// The address of the IP
+// The private IP address.
 func (o GetServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
@@ -2551,7 +2763,7 @@ func (o GetServerPublicIpOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// The ID of the IP
+// The ID of the IP address resource.
 func (o GetServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3109,18 +3321,10 @@ type GetServersServer struct {
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server.
-	EnableIpv6 bool `pulumi:"enableIpv6"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
 	// The UUID or the label of the base image used by the server.
 	Image string `pulumi:"image"`
-	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6Address string `pulumi:"ipv6Address"`
-	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	Ipv6Gateway string `pulumi:"ipv6Gateway"`
-	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6PrefixLength int `pulumi:"ipv6PrefixLength"`
 	// The server name used as filter. Servers with a name like it are listed.
 	Name string `pulumi:"name"`
 	// The organization ID the server is associated with.
@@ -3129,16 +3333,10 @@ type GetServersServer struct {
 	PlacementGroupId string `pulumi:"placementGroupId"`
 	// Whether the placement group policy respected or not
 	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
-	PrivateIp string `pulumi:"privateIp"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps []GetServersServerPrivateIp `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// The public IP address of the server.
-	//
-	// Deprecated: Use publicIps instead
-	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps []GetServersServerPublicIp `pulumi:"publicIps"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -3173,18 +3371,10 @@ type GetServersServerArgs struct {
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolInput `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server.
-	EnableIpv6 pulumi.BoolInput `pulumi:"enableIpv6"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
 	// The UUID or the label of the base image used by the server.
 	Image pulumi.StringInput `pulumi:"image"`
-	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6Address pulumi.StringInput `pulumi:"ipv6Address"`
-	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	Ipv6Gateway pulumi.StringInput `pulumi:"ipv6Gateway"`
-	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6PrefixLength pulumi.IntInput `pulumi:"ipv6PrefixLength"`
 	// The server name used as filter. Servers with a name like it are listed.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The organization ID the server is associated with.
@@ -3193,16 +3383,10 @@ type GetServersServerArgs struct {
 	PlacementGroupId pulumi.StringInput `pulumi:"placementGroupId"`
 	// Whether the placement group policy respected or not
 	PlacementGroupPolicyRespected pulumi.BoolInput `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
-	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps GetServersServerPrivateIpArrayInput `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The public IP address of the server.
-	//
-	// Deprecated: Use publicIps instead
-	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps GetServersServerPublicIpArrayInput `pulumi:"publicIps"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -3285,11 +3469,6 @@ func (o GetServersServerOutput) EnableDynamicIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetServersServer) bool { return v.EnableDynamicIp }).(pulumi.BoolOutput)
 }
 
-// Determines if IPv6 is enabled for the server.
-func (o GetServersServerOutput) EnableIpv6() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetServersServer) bool { return v.EnableIpv6 }).(pulumi.BoolOutput)
-}
-
 // The ID of the IP
 func (o GetServersServerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.Id }).(pulumi.StringOutput)
@@ -3298,21 +3477,6 @@ func (o GetServersServerOutput) Id() pulumi.StringOutput {
 // The UUID or the label of the base image used by the server.
 func (o GetServersServerOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.Image }).(pulumi.StringOutput)
-}
-
-// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-func (o GetServersServerOutput) Ipv6Address() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersServer) string { return v.Ipv6Address }).(pulumi.StringOutput)
-}
-
-// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-func (o GetServersServerOutput) Ipv6Gateway() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersServer) string { return v.Ipv6Gateway }).(pulumi.StringOutput)
-}
-
-// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-func (o GetServersServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
-	return o.ApplyT(func(v GetServersServer) int { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
 
 // The server name used as filter. Servers with a name like it are listed.
@@ -3335,11 +3499,6 @@ func (o GetServersServerOutput) PlacementGroupPolicyRespected() pulumi.BoolOutpu
 	return o.ApplyT(func(v GetServersServer) bool { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The Scaleway internal IP address of the server.
-func (o GetServersServerOutput) PrivateIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersServer) string { return v.PrivateIp }).(pulumi.StringOutput)
-}
-
 // The list of private IPv4 and IPv6 addresses associated with the server.
 func (o GetServersServerOutput) PrivateIps() GetServersServerPrivateIpArrayOutput {
 	return o.ApplyT(func(v GetServersServer) []GetServersServerPrivateIp { return v.PrivateIps }).(GetServersServerPrivateIpArrayOutput)
@@ -3348,13 +3507,6 @@ func (o GetServersServerOutput) PrivateIps() GetServersServerPrivateIpArrayOutpu
 // The ID of the project the server is associated with.
 func (o GetServersServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// The public IP address of the server.
-//
-// Deprecated: Use publicIps instead
-func (o GetServersServerOutput) PublicIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetServersServer) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
 // The list of public IPs of the server
@@ -3740,6 +3892,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupRulesInboundRuleArrayInput)(nil)).Elem(), SecurityGroupRulesInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupRulesOutboundRuleInput)(nil)).Elem(), SecurityGroupRulesOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecurityGroupRulesOutboundRuleArrayInput)(nil)).Elem(), SecurityGroupRulesOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerFilesystemInput)(nil)).Elem(), ServerFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerFilesystemArrayInput)(nil)).Elem(), ServerFilesystemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateIpInput)(nil)).Elem(), ServerPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateIpArrayInput)(nil)).Elem(), ServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServerPrivateNetworkInput)(nil)).Elem(), ServerPrivateNetworkArgs{})
@@ -3756,6 +3910,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityGroupInboundRuleArrayInput)(nil)).Elem(), GetSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityGroupOutboundRuleInput)(nil)).Elem(), GetSecurityGroupOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSecurityGroupOutboundRuleArrayInput)(nil)).Elem(), GetSecurityGroupOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerFilesystemInput)(nil)).Elem(), GetServerFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerFilesystemArrayInput)(nil)).Elem(), GetServerFilesystemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateIpInput)(nil)).Elem(), GetServerPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateIpArrayInput)(nil)).Elem(), GetServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerPrivateNetworkInput)(nil)).Elem(), GetServerPrivateNetworkArgs{})
@@ -3792,6 +3948,8 @@ func init() {
 	pulumi.RegisterOutputType(SecurityGroupRulesInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(SecurityGroupRulesOutboundRuleOutput{})
 	pulumi.RegisterOutputType(SecurityGroupRulesOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(ServerFilesystemOutput{})
+	pulumi.RegisterOutputType(ServerFilesystemArrayOutput{})
 	pulumi.RegisterOutputType(ServerPrivateIpOutput{})
 	pulumi.RegisterOutputType(ServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(ServerPrivateNetworkOutput{})
@@ -3808,6 +3966,8 @@ func init() {
 	pulumi.RegisterOutputType(GetSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetSecurityGroupOutboundRuleOutput{})
 	pulumi.RegisterOutputType(GetSecurityGroupOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetServerFilesystemOutput{})
+	pulumi.RegisterOutputType(GetServerFilesystemArrayOutput{})
 	pulumi.RegisterOutputType(GetServerPrivateIpOutput{})
 	pulumi.RegisterOutputType(GetServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetServerPrivateNetworkOutput{})

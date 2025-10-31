@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *
  * const file = new scaleway.FileFilesystem("file", {
  *     name: "my-nfs-filesystem",
- *     size: 100000000000,
+ *     sizeInGb: 100,
  * });
  * ```
  *
@@ -93,7 +93,7 @@ export class FileFilesystem extends pulumi.CustomResource {
      * - Minimum: 100 GB (100000000000 bytes)
      * - Maximum: 10 TB (10000000000000 bytes)
      */
-    declare public readonly size: pulumi.Output<number>;
+    declare public readonly sizeInGb: pulumi.Output<number>;
     /**
      * The current status of the filesystem. Possible values include creating, available, etc.
      */
@@ -126,19 +126,19 @@ export class FileFilesystem extends pulumi.CustomResource {
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
-            resourceInputs["size"] = state?.size;
+            resourceInputs["sizeInGb"] = state?.sizeInGb;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as FileFilesystemArgs | undefined;
-            if (args?.size === undefined && !opts.urn) {
-                throw new Error("Missing required property 'size'");
+            if (args?.sizeInGb === undefined && !opts.urn) {
+                throw new Error("Missing required property 'sizeInGb'");
             }
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
-            resourceInputs["size"] = args?.size;
+            resourceInputs["sizeInGb"] = args?.sizeInGb;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["numberOfAttachments"] = undefined /*out*/;
@@ -185,7 +185,7 @@ export interface FileFilesystemState {
      * - Minimum: 100 GB (100000000000 bytes)
      * - Maximum: 10 TB (10000000000000 bytes)
      */
-    size?: pulumi.Input<number>;
+    sizeInGb?: pulumi.Input<number>;
     /**
      * The current status of the filesystem. Possible values include creating, available, etc.
      */
@@ -222,7 +222,7 @@ export interface FileFilesystemArgs {
      * - Minimum: 100 GB (100000000000 bytes)
      * - Maximum: 10 TB (10000000000000 bytes)
      */
-    size: pulumi.Input<number>;
+    sizeInGb: pulumi.Input<number>;
     /**
      * A list of tags associated with the filesystem.
      */

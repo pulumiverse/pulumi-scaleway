@@ -51,6 +51,38 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With filesystem
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const volume = new scaleway.block.Volume("volume", {
+ *     iops: 15000,
+ *     sizeInGb: 15,
+ * });
+ * const terraformInstanceFilesystem = new scaleway.FileFilesystem("terraform_instance_filesystem", {
+ *     name: "filesystem-instance-terraform",
+ *     sizeInGb: 100,
+ * });
+ * const base = new scaleway.instance.Server("base", {
+ *     type: "POP2-HM-2C-16G",
+ *     state: "started",
+ *     tags: [
+ *         "terraform-test",
+ *         "scaleway_instance_server",
+ *         "state",
+ *     ],
+ *     rootVolume: {
+ *         volumeType: "sbs_volume",
+ *         volumeId: volume.id,
+ *     },
+ *     filesystems: [{
+ *         filesystemId: terraformInstanceFilesystem.id,
+ *     }],
+ * });
+ * ```
+ *
  * ### With a reserved IP
  *
  * ```typescript
@@ -264,12 +296,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     declare public readonly enableDynamicIp: pulumi.Output<boolean | undefined>;
     /**
-     * Determines if IPv6 is enabled for the server.
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
+     * List of filesystems attached to the server.
      */
-    declare public readonly enableIpv6: pulumi.Output<boolean | undefined>;
+    declare public readonly filesystems: pulumi.Output<outputs.InstanceServerFilesystem[]>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -290,27 +319,6 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     declare public readonly ipIds: pulumi.Output<string[] | undefined>;
     /**
-     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    declare public /*out*/ readonly ipv6Address: pulumi.Output<string>;
-    /**
-     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    declare public /*out*/ readonly ipv6Gateway: pulumi.Output<string>;
-    /**
-     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    declare public /*out*/ readonly ipv6PrefixLength: pulumi.Output<number>;
-    /**
      * The name of the server.
      */
     declare public readonly name: pulumi.Output<string>;
@@ -326,15 +334,9 @@ export class InstanceServer extends pulumi.CustomResource {
      */
     declare public readonly placementGroupId: pulumi.Output<string | undefined>;
     /**
-     * (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
+     * (Deprecated) Always false, use instancePlacementGroup resource to known when the placement group policy is respected.
      */
     declare public /*out*/ readonly placementGroupPolicyRespected: pulumi.Output<boolean>;
-    /**
-     * The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
-     *
-     * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
-     */
-    declare public /*out*/ readonly privateIp: pulumi.Output<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
@@ -352,12 +354,6 @@ export class InstanceServer extends pulumi.CustomResource {
      * Set to true to activate server protection option.
      */
     declare public readonly protected: pulumi.Output<boolean | undefined>;
-    /**
-     * The public IP address of the server (Deprecated use `publicIps` instead).
-     *
-     * @deprecated Use publicIps instead
-     */
-    declare public /*out*/ readonly publicIp: pulumi.Output<string>;
     /**
      * The list of public IPs of the server.
      */
@@ -427,23 +423,18 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["bootscriptId"] = state?.bootscriptId;
             resourceInputs["cloudInit"] = state?.cloudInit;
             resourceInputs["enableDynamicIp"] = state?.enableDynamicIp;
-            resourceInputs["enableIpv6"] = state?.enableIpv6;
+            resourceInputs["filesystems"] = state?.filesystems;
             resourceInputs["image"] = state?.image;
             resourceInputs["ipId"] = state?.ipId;
             resourceInputs["ipIds"] = state?.ipIds;
-            resourceInputs["ipv6Address"] = state?.ipv6Address;
-            resourceInputs["ipv6Gateway"] = state?.ipv6Gateway;
-            resourceInputs["ipv6PrefixLength"] = state?.ipv6PrefixLength;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["placementGroupId"] = state?.placementGroupId;
             resourceInputs["placementGroupPolicyRespected"] = state?.placementGroupPolicyRespected;
-            resourceInputs["privateIp"] = state?.privateIp;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworks"] = state?.privateNetworks;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["protected"] = state?.protected;
-            resourceInputs["publicIp"] = state?.publicIp;
             resourceInputs["publicIps"] = state?.publicIps;
             resourceInputs["replaceOnTypeChange"] = state?.replaceOnTypeChange;
             resourceInputs["rootVolume"] = state?.rootVolume;
@@ -464,7 +455,7 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["bootscriptId"] = args?.bootscriptId;
             resourceInputs["cloudInit"] = args?.cloudInit;
             resourceInputs["enableDynamicIp"] = args?.enableDynamicIp;
-            resourceInputs["enableIpv6"] = args?.enableIpv6;
+            resourceInputs["filesystems"] = args?.filesystems;
             resourceInputs["image"] = args?.image;
             resourceInputs["ipId"] = args?.ipId;
             resourceInputs["ipIds"] = args?.ipIds;
@@ -483,13 +474,8 @@ export class InstanceServer extends pulumi.CustomResource {
             resourceInputs["type"] = args?.type;
             resourceInputs["userData"] = args?.userData;
             resourceInputs["zone"] = args?.zone;
-            resourceInputs["ipv6Address"] = undefined /*out*/;
-            resourceInputs["ipv6Gateway"] = undefined /*out*/;
-            resourceInputs["ipv6PrefixLength"] = undefined /*out*/;
             resourceInputs["organizationId"] = undefined /*out*/;
             resourceInputs["placementGroupPolicyRespected"] = undefined /*out*/;
-            resourceInputs["privateIp"] = undefined /*out*/;
-            resourceInputs["publicIp"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstanceServer.__pulumiType, name, resourceInputs, opts);
@@ -534,12 +520,9 @@ export interface InstanceServerState {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server.
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
+     * List of filesystems attached to the server.
      */
-    enableIpv6?: pulumi.Input<boolean>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.InstanceServerFilesystem>[]>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.
@@ -560,27 +543,6 @@ export interface InstanceServerState {
      */
     ipIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    ipv6Address?: pulumi.Input<string>;
-    /**
-     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    ipv6Gateway?: pulumi.Input<string>;
-    /**
-     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
-     */
-    ipv6PrefixLength?: pulumi.Input<number>;
-    /**
      * The name of the server.
      */
     name?: pulumi.Input<string>;
@@ -596,15 +558,9 @@ export interface InstanceServerState {
      */
     placementGroupId?: pulumi.Input<string>;
     /**
-     * (Deprecated) Always false, use instancePlacementGroup ressource to known when the placement group policy is respected.
+     * (Deprecated) Always false, use instancePlacementGroup resource to known when the placement group policy is respected.
      */
     placementGroupPolicyRespected?: pulumi.Input<boolean>;
-    /**
-     * The Scaleway internal IP address of the server (Deprecated use ipamIp datasource instead).
-     *
-     * @deprecated Use ipamIp datasource instead to fetch your server's IP in your private network.
-     */
-    privateIp?: pulumi.Input<string>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
@@ -622,12 +578,6 @@ export interface InstanceServerState {
      * Set to true to activate server protection option.
      */
     protected?: pulumi.Input<boolean>;
-    /**
-     * The public IP address of the server (Deprecated use `publicIps` instead).
-     *
-     * @deprecated Use publicIps instead
-     */
-    publicIp?: pulumi.Input<string>;
     /**
      * The list of public IPs of the server.
      */
@@ -714,12 +664,9 @@ export interface InstanceServerArgs {
      */
     enableDynamicIp?: pulumi.Input<boolean>;
     /**
-     * Determines if IPv6 is enabled for the server.
-     * Deprecated: Please use a scaleway.instance.Ip with a `routedIpv6` type.
-     *
-     * @deprecated Please use a scaleway.instance.Ip with a `routedIpv6` type
+     * List of filesystems attached to the server.
      */
-    enableIpv6?: pulumi.Input<boolean>;
+    filesystems?: pulumi.Input<pulumi.Input<inputs.InstanceServerFilesystem>[]>;
     /**
      * The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
      * to find either the right `label` or the right local image `ID` for a given `type`. Optional when creating an instance with an existing root volume.

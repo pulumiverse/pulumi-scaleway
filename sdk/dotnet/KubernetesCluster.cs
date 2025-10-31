@@ -167,7 +167,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
     ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
-    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
     ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
-    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
@@ -415,6 +415,15 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The subnet used for the Pod CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Output("podCidr")]
+        public Output<string> PodCidr { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the private network of the cluster.
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
@@ -436,6 +445,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The subnet used for the Service CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Output("serviceCidr")]
+        public Output<string> ServiceCidr { get; private set; } = null!;
+
+        /// <summary>
+        /// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Output("serviceDnsIp")]
+        public Output<string> ServiceDnsIp { get; private set; } = null!;
 
         /// <summary>
         /// The status of the Kubernetes cluster.
@@ -618,6 +645,15 @@ namespace Pulumiverse.Scaleway
         public Input<Inputs.KubernetesClusterOpenIdConnectConfigArgs>? OpenIdConnectConfig { get; set; }
 
         /// <summary>
+        /// The subnet used for the Pod CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("podCidr")]
+        public Input<string>? PodCidr { get; set; }
+
+        /// <summary>
         /// The ID of the private network of the cluster.
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
@@ -639,6 +675,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The subnet used for the Service CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("serviceCidr")]
+        public Input<string>? ServiceCidr { get; set; }
+
+        /// <summary>
+        /// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("serviceDnsIp")]
+        public Input<string>? ServiceDnsIp { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -794,6 +848,15 @@ namespace Pulumiverse.Scaleway
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
+        /// The subnet used for the Pod CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("podCidr")]
+        public Input<string>? PodCidr { get; set; }
+
+        /// <summary>
         /// The ID of the private network of the cluster.
         /// 
         /// &gt; **Important:** Changes to this field will recreate a new resource.
@@ -815,6 +878,24 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The subnet used for the Service CIDR.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("serviceCidr")]
+        public Input<string>? ServiceCidr { get; set; }
+
+        /// <summary>
+        /// The IP used for the DNS Service. If unset, defaults to Service CIDR's network + 10.
+        /// 
+        /// &gt; **Important:** Changes to this field will recreate a new resource. However once it has been set to a custom value,
+        /// unsetting it to go back to the default value will not have any effect.
+        /// </summary>
+        [Input("serviceDnsIp")]
+        public Input<string>? ServiceDnsIp { get; set; }
 
         /// <summary>
         /// The status of the Kubernetes cluster.

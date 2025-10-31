@@ -45,36 +45,26 @@ type LookupServerResult struct {
 	// The cloud init script associated with this server.
 	CloudInit string `pulumi:"cloudInit"`
 	// True if dynamic IP in enable on the server.
-	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server.
-	EnableIpv6 bool `pulumi:"enableIpv6"`
+	EnableDynamicIp bool                  `pulumi:"enableDynamicIp"`
+	Filesystems     []GetServerFilesystem `pulumi:"filesystems"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The UUID and the label of the base image used by the server.
 	Image string   `pulumi:"image"`
 	IpId  string   `pulumi:"ipId"`
 	IpIds []string `pulumi:"ipIds"`
-	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6Address string `pulumi:"ipv6Address"`
-	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	Ipv6Gateway string `pulumi:"ipv6Gateway"`
-	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6PrefixLength int     `pulumi:"ipv6PrefixLength"`
-	Name             *string `pulumi:"name"`
+	Name  *string  `pulumi:"name"`
 	// The ID of the organization the server is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The [placement group](https://developers.scaleway.com/en/products/instance/api/#placement-groups-d8f653) the server is attached to.
 	PlacementGroupId string `pulumi:"placementGroupId"`
 	// True when the placement group policy is respected.
 	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
-	PrivateIp       string                    `pulumi:"privateIp"`
+	// The list of private IPs of the server.
 	PrivateIps      []GetServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks []GetServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       *string                   `pulumi:"projectId"`
 	Protected       bool                      `pulumi:"protected"`
-	// The public IP address of the server.
-	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps           []GetServerPublicIp   `pulumi:"publicIps"`
 	ReplaceOnTypeChange bool                  `pulumi:"replaceOnTypeChange"`
@@ -162,9 +152,8 @@ func (o LookupServerResultOutput) EnableDynamicIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupServerResult) bool { return v.EnableDynamicIp }).(pulumi.BoolOutput)
 }
 
-// Determines if IPv6 is enabled for the server.
-func (o LookupServerResultOutput) EnableIpv6() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupServerResult) bool { return v.EnableIpv6 }).(pulumi.BoolOutput)
+func (o LookupServerResultOutput) Filesystems() GetServerFilesystemArrayOutput {
+	return o.ApplyT(func(v LookupServerResult) []GetServerFilesystem { return v.Filesystems }).(GetServerFilesystemArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -183,21 +172,6 @@ func (o LookupServerResultOutput) IpId() pulumi.StringOutput {
 
 func (o LookupServerResultOutput) IpIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []string { return v.IpIds }).(pulumi.StringArrayOutput)
-}
-
-// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-func (o LookupServerResultOutput) Ipv6Address() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServerResult) string { return v.Ipv6Address }).(pulumi.StringOutput)
-}
-
-// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-func (o LookupServerResultOutput) Ipv6Gateway() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServerResult) string { return v.Ipv6Gateway }).(pulumi.StringOutput)
-}
-
-// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-func (o LookupServerResultOutput) Ipv6PrefixLength() pulumi.IntOutput {
-	return o.ApplyT(func(v LookupServerResult) int { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
 
 func (o LookupServerResultOutput) Name() pulumi.StringPtrOutput {
@@ -219,11 +193,7 @@ func (o LookupServerResultOutput) PlacementGroupPolicyRespected() pulumi.BoolOut
 	return o.ApplyT(func(v LookupServerResult) bool { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The Scaleway internal IP address of the server.
-func (o LookupServerResultOutput) PrivateIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServerResult) string { return v.PrivateIp }).(pulumi.StringOutput)
-}
-
+// The list of private IPs of the server.
 func (o LookupServerResultOutput) PrivateIps() GetServerPrivateIpArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []GetServerPrivateIp { return v.PrivateIps }).(GetServerPrivateIpArrayOutput)
 }
@@ -238,11 +208,6 @@ func (o LookupServerResultOutput) ProjectId() pulumi.StringPtrOutput {
 
 func (o LookupServerResultOutput) Protected() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupServerResult) bool { return v.Protected }).(pulumi.BoolOutput)
-}
-
-// The public IP address of the server.
-func (o LookupServerResultOutput) PublicIp() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServerResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
 // The list of public IPs of the server

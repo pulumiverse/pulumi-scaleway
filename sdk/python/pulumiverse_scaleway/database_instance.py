@@ -57,9 +57,7 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-               
-               > **Important** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -212,9 +210,7 @@ class DatabaseInstanceArgs:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
-
-        > **Important** Updates to `engine` will recreate the Database Instance.
+        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         """
         return pulumi.get(self, "engine")
 
@@ -451,6 +447,7 @@ class _DatabaseInstanceState:
                  settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 upgradable_versions: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceUpgradableVersionArgs']]]] = None,
                  user_name: Optional[pulumi.Input[_builtins.str]] = None,
                  volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None):
@@ -464,9 +461,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[_builtins.int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
-        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-               
-               > **Important** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -492,6 +487,7 @@ class _DatabaseInstanceState:
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceUpgradableVersionArgs']]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
                
                > **Important** Updates to `user_name` will recreate the Database Instance.
@@ -556,6 +552,8 @@ class _DatabaseInstanceState:
             pulumi.set(__self__, "snapshot_id", snapshot_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if upgradable_versions is not None:
+            pulumi.set(__self__, "upgradable_versions", upgradable_versions)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
         if volume_size_in_gb is not None:
@@ -665,9 +663,7 @@ class _DatabaseInstanceState:
     @pulumi.getter
     def engine(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
-
-        > **Important** Updates to `engine` will recreate the Database Instance.
+        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         """
         return pulumi.get(self, "engine")
 
@@ -877,6 +873,18 @@ class _DatabaseInstanceState:
         pulumi.set(self, "tags", value)
 
     @_builtins.property
+    @pulumi.getter(name="upgradableVersions")
+    def upgradable_versions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceUpgradableVersionArgs']]]]:
+        """
+        List of available engine versions for upgrade. Each version contains:
+        """
+        return pulumi.get(self, "upgradable_versions")
+
+    @upgradable_versions.setter
+    def upgradable_versions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseInstanceUpgradableVersionArgs']]]]):
+        pulumi.set(self, "upgradable_versions", value)
+
+    @_builtins.property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -1032,6 +1040,24 @@ class DatabaseInstance(pulumi.CustomResource):
             backup_schedule_retention=7)
         ```
 
+        ### Example Engine Upgrade
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Initial creation with PostgreSQL 14
+        main = scaleway.databases.Instance("main",
+            name="my-database",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_user",
+            password="thiZ_is_v&ry_s3cret")
+        pulumi.export("upgradableVersions", main.upgradable_versions)
+        ```
+
         ### Examples of endpoint configuration
 
         Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
@@ -1109,9 +1135,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] backup_schedule_retention: Backup schedule retention in days
         :param pulumi.Input[_builtins.bool] disable_backup: Disable automated backup for the database instance
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
-        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-               
-               > **Important** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -1227,6 +1251,24 @@ class DatabaseInstance(pulumi.CustomResource):
             disable_backup=False,
             backup_schedule_frequency=24,
             backup_schedule_retention=7)
+        ```
+
+        ### Example Engine Upgrade
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Initial creation with PostgreSQL 14
+        main = scaleway.databases.Instance("main",
+            name="my-database",
+            node_type="DB-DEV-S",
+            engine="PostgreSQL-14",
+            is_ha_cluster=False,
+            disable_backup=True,
+            user_name="my_user",
+            password="thiZ_is_v&ry_s3cret")
+        pulumi.export("upgradableVersions", main.upgradable_versions)
         ```
 
         ### Examples of endpoint configuration
@@ -1377,6 +1419,7 @@ class DatabaseInstance(pulumi.CustomResource):
             __props__.__dict__["endpoint_port"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["read_replicas"] = None
+            __props__.__dict__["upgradable_versions"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabaseInstance, __self__).__init__(
@@ -1414,6 +1457,7 @@ class DatabaseInstance(pulumi.CustomResource):
             settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            upgradable_versions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict']]]]] = None,
             user_name: Optional[pulumi.Input[_builtins.str]] = None,
             volume_size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
             volume_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatabaseInstance':
@@ -1432,9 +1476,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] encryption_at_rest: Enable or disable encryption at rest for the Database Instance.
         :param pulumi.Input[_builtins.str] endpoint_ip: (Deprecated) The IP of the Database Instance. Please use the private_network or the load_balancer attribute.
         :param pulumi.Input[_builtins.int] endpoint_port: (Deprecated) The port of the Database Instance. Please use the private_network or the load_balancer attribute.
-        :param pulumi.Input[_builtins.str] engine: Database Instance's engine version (e.g. `PostgreSQL-11`).
-               
-               > **Important** Updates to `engine` will recreate the Database Instance.
+        :param pulumi.Input[_builtins.str] engine: Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] init_settings: Map of engine settings to be set at database initialisation.
         :param pulumi.Input[_builtins.bool] is_ha_cluster: Enable or disable high availability for the Database Instance.
                
@@ -1460,6 +1502,7 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] settings: Map of engine settings to be set on a running instance.
         :param pulumi.Input[_builtins.str] snapshot_id: The ID of an existing snapshot to restore or create the Database Instance from. Conflicts with the `engine` parameter and backup settings.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseInstanceUpgradableVersionArgs', 'DatabaseInstanceUpgradableVersionArgsDict']]]] upgradable_versions: List of available engine versions for upgrade. Each version contains:
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Database Instance.
                
                > **Important** Updates to `user_name` will recreate the Database Instance.
@@ -1497,6 +1540,7 @@ class DatabaseInstance(pulumi.CustomResource):
         __props__.__dict__["settings"] = settings
         __props__.__dict__["snapshot_id"] = snapshot_id
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["upgradable_versions"] = upgradable_versions
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["volume_size_in_gb"] = volume_size_in_gb
         __props__.__dict__["volume_type"] = volume_type
@@ -1572,9 +1616,7 @@ class DatabaseInstance(pulumi.CustomResource):
     @pulumi.getter
     def engine(self) -> pulumi.Output[_builtins.str]:
         """
-        Database Instance's engine version (e.g. `PostgreSQL-11`).
-
-        > **Important** Updates to `engine` will recreate the Database Instance.
+        Database's engine version name (e.g., 'PostgreSQL-16', 'MySQL-8'). Changing this value triggers a blue/green upgrade using MajorUpgradeWorkflow with automatic endpoint migration
         """
         return pulumi.get(self, "engine")
 
@@ -1714,6 +1756,14 @@ class DatabaseInstance(pulumi.CustomResource):
         The tags associated with the Database Instance.
         """
         return pulumi.get(self, "tags")
+
+    @_builtins.property
+    @pulumi.getter(name="upgradableVersions")
+    def upgradable_versions(self) -> pulumi.Output[Sequence['outputs.DatabaseInstanceUpgradableVersion']]:
+        """
+        List of available engine versions for upgrade. Each version contains:
+        """
+        return pulumi.get(self, "upgradable_versions")
 
     @_builtins.property
     @pulumi.getter(name="userName")

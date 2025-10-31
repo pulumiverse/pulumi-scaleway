@@ -145,6 +145,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// The ID of the organization the cluster is associated with.
         /// </summary>
         public readonly string OrganizationId;
+        public readonly string PodCidr;
         /// <summary>
         /// The ID of the private network of the cluster.
         /// </summary>
@@ -154,6 +155,8 @@ namespace Pulumiverse.Scaleway.Kubernetes
         /// The region in which the cluster is.
         /// </summary>
         public readonly string? Region;
+        public readonly string ServiceCidr;
+        public readonly string ServiceDnsIp;
         /// <summary>
         /// The status of the Kubernetes cluster.
         /// </summary>
@@ -215,11 +218,17 @@ namespace Pulumiverse.Scaleway.Kubernetes
 
             string organizationId,
 
+            string podCidr,
+
             string privateNetworkId,
 
             string? projectId,
 
             string? region,
+
+            string serviceCidr,
+
+            string serviceDnsIp,
 
             string status,
 
@@ -250,9 +259,12 @@ namespace Pulumiverse.Scaleway.Kubernetes
             Name = name;
             OpenIdConnectConfigs = openIdConnectConfigs;
             OrganizationId = organizationId;
+            PodCidr = podCidr;
             PrivateNetworkId = privateNetworkId;
             ProjectId = projectId;
             Region = region;
+            ServiceCidr = serviceCidr;
+            ServiceDnsIp = serviceDnsIp;
             Status = status;
             Tags = tags;
             Type = type;

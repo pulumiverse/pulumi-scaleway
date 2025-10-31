@@ -77,6 +77,55 @@ namespace Pulumiverse.Scaleway.Instance
     /// });
     /// ```
     /// 
+    /// ### With filesystem
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var volume = new Scaleway.Block.Volume("volume", new()
+    ///     {
+    ///         Iops = 15000,
+    ///         SizeInGb = 15,
+    ///     });
+    /// 
+    ///     var terraformInstanceFilesystem = new Scaleway.FileFilesystem("terraform_instance_filesystem", new()
+    ///     {
+    ///         Name = "filesystem-instance-terraform",
+    ///         SizeInGb = 100,
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.Instance.Server("base", new()
+    ///     {
+    ///         Type = "POP2-HM-2C-16G",
+    ///         State = "started",
+    ///         Tags = new[]
+    ///         {
+    ///             "terraform-test",
+    ///             "scaleway_instance_server",
+    ///             "state",
+    ///         },
+    ///         RootVolume = new Scaleway.Instance.Inputs.ServerRootVolumeArgs
+    ///         {
+    ///             VolumeType = "sbs_volume",
+    ///             VolumeId = volume.Id,
+    ///         },
+    ///         Filesystems = new[]
+    ///         {
+    ///             new Scaleway.Instance.Inputs.ServerFilesystemArgs
+    ///             {
+    ///                 FilesystemId = terraformInstanceFilesystem.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### With a reserved IP
     /// 
     /// ```csharp
@@ -342,11 +391,10 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<bool?> EnableDynamicIp { get; private set; } = null!;
 
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
+        /// List of filesystems attached to the server.
         /// </summary>
-        [Output("enableIpv6")]
-        public Output<bool?> EnableIpv6 { get; private set; } = null!;
+        [Output("filesystems")]
+        public Output<ImmutableArray<Outputs.ServerFilesystem>> Filesystems { get; private set; } = null!;
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
@@ -374,27 +422,6 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<ImmutableArray<string>> IpIds { get; private set; } = null!;
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Output("ipv6Address")]
-        public Output<string> Ipv6Address { get; private set; } = null!;
-
-        /// <summary>
-        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Output("ipv6Gateway")]
-        public Output<string> Ipv6Gateway { get; private set; } = null!;
-
-        /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Output("ipv6PrefixLength")]
-        public Output<int> Ipv6PrefixLength { get; private set; } = null!;
-
-        /// <summary>
         /// The name of the server.
         /// </summary>
         [Output("name")]
@@ -416,16 +443,10 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string?> PlacementGroupId { get; private set; } = null!;
 
         /// <summary>
-        /// (Deprecated) Always false, use InstancePlacementGroup ressource to known when the placement group policy is respected.
+        /// (Deprecated) Always false, use InstancePlacementGroup resource to known when the placement group policy is respected.
         /// </summary>
         [Output("placementGroupPolicyRespected")]
         public Output<bool> PlacementGroupPolicyRespected { get; private set; } = null!;
-
-        /// <summary>
-        /// The Scaleway internal IP address of the server (Deprecated use IpamIp datasource instead).
-        /// </summary>
-        [Output("privateIp")]
-        public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
         /// The list of private IPv4 and IPv6 addresses associated with the resource.
@@ -451,12 +472,6 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Output("protected")]
         public Output<bool?> Protected { get; private set; } = null!;
-
-        /// <summary>
-        /// The public IP address of the server (Deprecated use `PublicIps` instead).
-        /// </summary>
-        [Output("publicIp")]
-        public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
         /// The list of public IPs of the server.
@@ -622,12 +637,17 @@ namespace Pulumiverse.Scaleway.Instance
         [Input("enableDynamicIp")]
         public Input<bool>? EnableDynamicIp { get; set; }
 
+        [Input("filesystems")]
+        private InputList<Inputs.ServerFilesystemArgs>? _filesystems;
+
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
+        /// List of filesystems attached to the server.
         /// </summary>
-        [Input("enableIpv6")]
-        public Input<bool>? EnableIpv6 { get; set; }
+        public InputList<Inputs.ServerFilesystemArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new InputList<Inputs.ServerFilesystemArgs>());
+            set => _filesystems = value;
+        }
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
@@ -851,12 +871,17 @@ namespace Pulumiverse.Scaleway.Instance
         [Input("enableDynamicIp")]
         public Input<bool>? EnableDynamicIp { get; set; }
 
+        [Input("filesystems")]
+        private InputList<Inputs.ServerFilesystemGetArgs>? _filesystems;
+
         /// <summary>
-        /// Determines if IPv6 is enabled for the server.
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
+        /// List of filesystems attached to the server.
         /// </summary>
-        [Input("enableIpv6")]
-        public Input<bool>? EnableIpv6 { get; set; }
+        public InputList<Inputs.ServerFilesystemGetArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new InputList<Inputs.ServerFilesystemGetArgs>());
+            set => _filesystems = value;
+        }
 
         /// <summary>
         /// The UUID or the label of the base image used by the server. You can use [this endpoint](https://www.scaleway.com/en/developers/api/marketplace/#path-marketplace-images-list-marketplace-images)
@@ -890,27 +915,6 @@ namespace Pulumiverse.Scaleway.Instance
         }
 
         /// <summary>
-        /// The default ipv6 address routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Input("ipv6Address")]
-        public Input<string>? Ipv6Address { get; set; }
-
-        /// <summary>
-        /// The ipv6 gateway address. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Input("ipv6Gateway")]
-        public Input<string>? Ipv6Gateway { get; set; }
-
-        /// <summary>
-        /// The prefix length of the ipv6 subnet routed to the server. ( Only set when EnableIpv6 is set to true )
-        /// Deprecated: Please use a scaleway.instance.Ip with a `RoutedIpv6` type.
-        /// </summary>
-        [Input("ipv6PrefixLength")]
-        public Input<int>? Ipv6PrefixLength { get; set; }
-
-        /// <summary>
         /// The name of the server.
         /// </summary>
         [Input("name")]
@@ -932,16 +936,10 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? PlacementGroupId { get; set; }
 
         /// <summary>
-        /// (Deprecated) Always false, use InstancePlacementGroup ressource to known when the placement group policy is respected.
+        /// (Deprecated) Always false, use InstancePlacementGroup resource to known when the placement group policy is respected.
         /// </summary>
         [Input("placementGroupPolicyRespected")]
         public Input<bool>? PlacementGroupPolicyRespected { get; set; }
-
-        /// <summary>
-        /// The Scaleway internal IP address of the server (Deprecated use IpamIp datasource instead).
-        /// </summary>
-        [Input("privateIp")]
-        public Input<string>? PrivateIp { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.ServerPrivateIpGetArgs>? _privateIps;
@@ -979,12 +977,6 @@ namespace Pulumiverse.Scaleway.Instance
         /// </summary>
         [Input("protected")]
         public Input<bool>? Protected { get; set; }
-
-        /// <summary>
-        /// The public IP address of the server (Deprecated use `PublicIps` instead).
-        /// </summary>
-        [Input("publicIp")]
-        public Input<string>? PublicIp { get; set; }
 
         [Input("publicIps")]
         private InputList<Inputs.ServerPublicIpGetArgs>? _publicIps;

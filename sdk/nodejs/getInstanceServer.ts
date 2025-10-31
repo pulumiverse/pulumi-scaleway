@@ -64,10 +64,7 @@ export interface GetInstanceServerResult {
      * True if dynamic IP in enable on the server.
      */
     readonly enableDynamicIp: boolean;
-    /**
-     * Determines if IPv6 is enabled for the server.
-     */
-    readonly enableIpv6: boolean;
+    readonly filesystems: outputs.GetInstanceServerFilesystem[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -78,18 +75,6 @@ export interface GetInstanceServerResult {
     readonly image: string;
     readonly ipId: string;
     readonly ipIds: string[];
-    /**
-     * The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-     */
-    readonly ipv6Address: string;
-    /**
-     * The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-     */
-    readonly ipv6Gateway: string;
-    /**
-     * The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-     */
-    readonly ipv6PrefixLength: number;
     readonly name?: string;
     /**
      * The ID of the organization the server is associated with.
@@ -104,17 +89,12 @@ export interface GetInstanceServerResult {
      */
     readonly placementGroupPolicyRespected: boolean;
     /**
-     * The Scaleway internal IP address of the server.
+     * The list of private IPs of the server.
      */
-    readonly privateIp: string;
     readonly privateIps: outputs.GetInstanceServerPrivateIp[];
     readonly privateNetworks: outputs.GetInstanceServerPrivateNetwork[];
     readonly projectId?: string;
     readonly protected: boolean;
-    /**
-     * The public IP address of the server.
-     */
-    readonly publicIp: string;
     /**
      * The list of public IPs of the server
      */

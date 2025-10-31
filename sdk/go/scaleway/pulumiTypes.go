@@ -3143,7 +3143,7 @@ func (o DatabaseInstanceLogsPolicyPtrOutput) TotalDiskRetention() pulumi.IntPtrO
 type DatabaseInstancePrivateIp struct {
 	// The private IPv4 address.
 	Address *string `pulumi:"address"`
-	// The ID of the IPv4 address resource.
+	// Version ID to use in upgrade requests.
 	Id *string `pulumi:"id"`
 }
 
@@ -3161,7 +3161,7 @@ type DatabaseInstancePrivateIpInput interface {
 type DatabaseInstancePrivateIpArgs struct {
 	// The private IPv4 address.
 	Address pulumi.StringPtrInput `pulumi:"address"`
-	// The ID of the IPv4 address resource.
+	// Version ID to use in upgrade requests.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 }
 
@@ -3221,7 +3221,7 @@ func (o DatabaseInstancePrivateIpOutput) Address() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateIp) *string { return v.Address }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the IPv4 address resource.
+// Version ID to use in upgrade requests.
 func (o DatabaseInstancePrivateIpOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseInstancePrivateIp) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -3648,6 +3648,130 @@ func (o DatabaseInstanceReadReplicaArrayOutput) Index(i pulumi.IntInput) Databas
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstanceReadReplica {
 		return vs[0].([]DatabaseInstanceReadReplica)[vs[1].(int)]
 	}).(DatabaseInstanceReadReplicaOutput)
+}
+
+type DatabaseInstanceUpgradableVersion struct {
+	// Version ID to use in upgrade requests.
+	Id *string `pulumi:"id"`
+	// Minor version string (e.g., `15.5.0`).
+	MinorVersion *string `pulumi:"minorVersion"`
+	// The name of the Database Instance.
+	Name *string `pulumi:"name"`
+	// Version string (e.g., `15.5`).
+	Version *string `pulumi:"version"`
+}
+
+// DatabaseInstanceUpgradableVersionInput is an input type that accepts DatabaseInstanceUpgradableVersionArgs and DatabaseInstanceUpgradableVersionOutput values.
+// You can construct a concrete instance of `DatabaseInstanceUpgradableVersionInput` via:
+//
+//	DatabaseInstanceUpgradableVersionArgs{...}
+type DatabaseInstanceUpgradableVersionInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceUpgradableVersionOutput() DatabaseInstanceUpgradableVersionOutput
+	ToDatabaseInstanceUpgradableVersionOutputWithContext(context.Context) DatabaseInstanceUpgradableVersionOutput
+}
+
+type DatabaseInstanceUpgradableVersionArgs struct {
+	// Version ID to use in upgrade requests.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Minor version string (e.g., `15.5.0`).
+	MinorVersion pulumi.StringPtrInput `pulumi:"minorVersion"`
+	// The name of the Database Instance.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Version string (e.g., `15.5`).
+	Version pulumi.StringPtrInput `pulumi:"version"`
+}
+
+func (DatabaseInstanceUpgradableVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i DatabaseInstanceUpgradableVersionArgs) ToDatabaseInstanceUpgradableVersionOutput() DatabaseInstanceUpgradableVersionOutput {
+	return i.ToDatabaseInstanceUpgradableVersionOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceUpgradableVersionArgs) ToDatabaseInstanceUpgradableVersionOutputWithContext(ctx context.Context) DatabaseInstanceUpgradableVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceUpgradableVersionOutput)
+}
+
+// DatabaseInstanceUpgradableVersionArrayInput is an input type that accepts DatabaseInstanceUpgradableVersionArray and DatabaseInstanceUpgradableVersionArrayOutput values.
+// You can construct a concrete instance of `DatabaseInstanceUpgradableVersionArrayInput` via:
+//
+//	DatabaseInstanceUpgradableVersionArray{ DatabaseInstanceUpgradableVersionArgs{...} }
+type DatabaseInstanceUpgradableVersionArrayInput interface {
+	pulumi.Input
+
+	ToDatabaseInstanceUpgradableVersionArrayOutput() DatabaseInstanceUpgradableVersionArrayOutput
+	ToDatabaseInstanceUpgradableVersionArrayOutputWithContext(context.Context) DatabaseInstanceUpgradableVersionArrayOutput
+}
+
+type DatabaseInstanceUpgradableVersionArray []DatabaseInstanceUpgradableVersionInput
+
+func (DatabaseInstanceUpgradableVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i DatabaseInstanceUpgradableVersionArray) ToDatabaseInstanceUpgradableVersionArrayOutput() DatabaseInstanceUpgradableVersionArrayOutput {
+	return i.ToDatabaseInstanceUpgradableVersionArrayOutputWithContext(context.Background())
+}
+
+func (i DatabaseInstanceUpgradableVersionArray) ToDatabaseInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) DatabaseInstanceUpgradableVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatabaseInstanceUpgradableVersionArrayOutput)
+}
+
+type DatabaseInstanceUpgradableVersionOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceUpgradableVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o DatabaseInstanceUpgradableVersionOutput) ToDatabaseInstanceUpgradableVersionOutput() DatabaseInstanceUpgradableVersionOutput {
+	return o
+}
+
+func (o DatabaseInstanceUpgradableVersionOutput) ToDatabaseInstanceUpgradableVersionOutputWithContext(ctx context.Context) DatabaseInstanceUpgradableVersionOutput {
+	return o
+}
+
+// Version ID to use in upgrade requests.
+func (o DatabaseInstanceUpgradableVersionOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceUpgradableVersion) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Minor version string (e.g., `15.5.0`).
+func (o DatabaseInstanceUpgradableVersionOutput) MinorVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceUpgradableVersion) *string { return v.MinorVersion }).(pulumi.StringPtrOutput)
+}
+
+// The name of the Database Instance.
+func (o DatabaseInstanceUpgradableVersionOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceUpgradableVersion) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Version string (e.g., `15.5`).
+func (o DatabaseInstanceUpgradableVersionOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatabaseInstanceUpgradableVersion) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type DatabaseInstanceUpgradableVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (DatabaseInstanceUpgradableVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o DatabaseInstanceUpgradableVersionArrayOutput) ToDatabaseInstanceUpgradableVersionArrayOutput() DatabaseInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o DatabaseInstanceUpgradableVersionArrayOutput) ToDatabaseInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) DatabaseInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o DatabaseInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput) DatabaseInstanceUpgradableVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatabaseInstanceUpgradableVersion {
+		return vs[0].([]DatabaseInstanceUpgradableVersion)[vs[1].(int)]
+	}).(DatabaseInstanceUpgradableVersionOutput)
 }
 
 type DatabaseReadReplicaDirectAccess struct {
@@ -7953,6 +8077,112 @@ func (o InstanceSecurityGroupRulesOutboundRuleArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceSecurityGroupRulesOutboundRule {
 		return vs[0].([]InstanceSecurityGroupRulesOutboundRule)[vs[1].(int)]
 	}).(InstanceSecurityGroupRulesOutboundRuleOutput)
+}
+
+type InstanceServerFilesystem struct {
+	// The unique ID of the filesystem attached to the server.
+	FilesystemId *string `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status *string `pulumi:"status"`
+}
+
+// InstanceServerFilesystemInput is an input type that accepts InstanceServerFilesystemArgs and InstanceServerFilesystemOutput values.
+// You can construct a concrete instance of `InstanceServerFilesystemInput` via:
+//
+//	InstanceServerFilesystemArgs{...}
+type InstanceServerFilesystemInput interface {
+	pulumi.Input
+
+	ToInstanceServerFilesystemOutput() InstanceServerFilesystemOutput
+	ToInstanceServerFilesystemOutputWithContext(context.Context) InstanceServerFilesystemOutput
+}
+
+type InstanceServerFilesystemArgs struct {
+	// The unique ID of the filesystem attached to the server.
+	FilesystemId pulumi.StringPtrInput `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (InstanceServerFilesystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceServerFilesystem)(nil)).Elem()
+}
+
+func (i InstanceServerFilesystemArgs) ToInstanceServerFilesystemOutput() InstanceServerFilesystemOutput {
+	return i.ToInstanceServerFilesystemOutputWithContext(context.Background())
+}
+
+func (i InstanceServerFilesystemArgs) ToInstanceServerFilesystemOutputWithContext(ctx context.Context) InstanceServerFilesystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerFilesystemOutput)
+}
+
+// InstanceServerFilesystemArrayInput is an input type that accepts InstanceServerFilesystemArray and InstanceServerFilesystemArrayOutput values.
+// You can construct a concrete instance of `InstanceServerFilesystemArrayInput` via:
+//
+//	InstanceServerFilesystemArray{ InstanceServerFilesystemArgs{...} }
+type InstanceServerFilesystemArrayInput interface {
+	pulumi.Input
+
+	ToInstanceServerFilesystemArrayOutput() InstanceServerFilesystemArrayOutput
+	ToInstanceServerFilesystemArrayOutputWithContext(context.Context) InstanceServerFilesystemArrayOutput
+}
+
+type InstanceServerFilesystemArray []InstanceServerFilesystemInput
+
+func (InstanceServerFilesystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceServerFilesystem)(nil)).Elem()
+}
+
+func (i InstanceServerFilesystemArray) ToInstanceServerFilesystemArrayOutput() InstanceServerFilesystemArrayOutput {
+	return i.ToInstanceServerFilesystemArrayOutputWithContext(context.Background())
+}
+
+func (i InstanceServerFilesystemArray) ToInstanceServerFilesystemArrayOutputWithContext(ctx context.Context) InstanceServerFilesystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(InstanceServerFilesystemArrayOutput)
+}
+
+type InstanceServerFilesystemOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerFilesystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*InstanceServerFilesystem)(nil)).Elem()
+}
+
+func (o InstanceServerFilesystemOutput) ToInstanceServerFilesystemOutput() InstanceServerFilesystemOutput {
+	return o
+}
+
+func (o InstanceServerFilesystemOutput) ToInstanceServerFilesystemOutputWithContext(ctx context.Context) InstanceServerFilesystemOutput {
+	return o
+}
+
+// The unique ID of the filesystem attached to the server.
+func (o InstanceServerFilesystemOutput) FilesystemId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerFilesystem) *string { return v.FilesystemId }).(pulumi.StringPtrOutput)
+}
+
+// The state of the filesystem
+func (o InstanceServerFilesystemOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v InstanceServerFilesystem) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type InstanceServerFilesystemArrayOutput struct{ *pulumi.OutputState }
+
+func (InstanceServerFilesystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]InstanceServerFilesystem)(nil)).Elem()
+}
+
+func (o InstanceServerFilesystemArrayOutput) ToInstanceServerFilesystemArrayOutput() InstanceServerFilesystemArrayOutput {
+	return o
+}
+
+func (o InstanceServerFilesystemArrayOutput) ToInstanceServerFilesystemArrayOutputWithContext(ctx context.Context) InstanceServerFilesystemArrayOutput {
+	return o
+}
+
+func (o InstanceServerFilesystemArrayOutput) Index(i pulumi.IntInput) InstanceServerFilesystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) InstanceServerFilesystem {
+		return vs[0].([]InstanceServerFilesystem)[vs[1].(int)]
+	}).(InstanceServerFilesystemOutput)
 }
 
 type InstanceServerPrivateIp struct {
@@ -22149,6 +22379,130 @@ func (o GetDatabaseInstanceReadReplicaArrayOutput) Index(i pulumi.IntInput) GetD
 	}).(GetDatabaseInstanceReadReplicaOutput)
 }
 
+type GetDatabaseInstanceUpgradableVersion struct {
+	// The ID of the Database Instance.
+	Id string `pulumi:"id"`
+	// Minor version string
+	MinorVersion string `pulumi:"minorVersion"`
+	// The name of the RDB instance.
+	Name string `pulumi:"name"`
+	// Version string
+	Version string `pulumi:"version"`
+}
+
+// GetDatabaseInstanceUpgradableVersionInput is an input type that accepts GetDatabaseInstanceUpgradableVersionArgs and GetDatabaseInstanceUpgradableVersionOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceUpgradableVersionInput` via:
+//
+//	GetDatabaseInstanceUpgradableVersionArgs{...}
+type GetDatabaseInstanceUpgradableVersionInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceUpgradableVersionOutput() GetDatabaseInstanceUpgradableVersionOutput
+	ToGetDatabaseInstanceUpgradableVersionOutputWithContext(context.Context) GetDatabaseInstanceUpgradableVersionOutput
+}
+
+type GetDatabaseInstanceUpgradableVersionArgs struct {
+	// The ID of the Database Instance.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Minor version string
+	MinorVersion pulumi.StringInput `pulumi:"minorVersion"`
+	// The name of the RDB instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Version string
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetDatabaseInstanceUpgradableVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceUpgradableVersionArgs) ToGetDatabaseInstanceUpgradableVersionOutput() GetDatabaseInstanceUpgradableVersionOutput {
+	return i.ToGetDatabaseInstanceUpgradableVersionOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceUpgradableVersionArgs) ToGetDatabaseInstanceUpgradableVersionOutputWithContext(ctx context.Context) GetDatabaseInstanceUpgradableVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceUpgradableVersionOutput)
+}
+
+// GetDatabaseInstanceUpgradableVersionArrayInput is an input type that accepts GetDatabaseInstanceUpgradableVersionArray and GetDatabaseInstanceUpgradableVersionArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseInstanceUpgradableVersionArrayInput` via:
+//
+//	GetDatabaseInstanceUpgradableVersionArray{ GetDatabaseInstanceUpgradableVersionArgs{...} }
+type GetDatabaseInstanceUpgradableVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseInstanceUpgradableVersionArrayOutput() GetDatabaseInstanceUpgradableVersionArrayOutput
+	ToGetDatabaseInstanceUpgradableVersionArrayOutputWithContext(context.Context) GetDatabaseInstanceUpgradableVersionArrayOutput
+}
+
+type GetDatabaseInstanceUpgradableVersionArray []GetDatabaseInstanceUpgradableVersionInput
+
+func (GetDatabaseInstanceUpgradableVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseInstanceUpgradableVersionArray) ToGetDatabaseInstanceUpgradableVersionArrayOutput() GetDatabaseInstanceUpgradableVersionArrayOutput {
+	return i.ToGetDatabaseInstanceUpgradableVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseInstanceUpgradableVersionArray) ToGetDatabaseInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceUpgradableVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseInstanceUpgradableVersionArrayOutput)
+}
+
+type GetDatabaseInstanceUpgradableVersionOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceUpgradableVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceUpgradableVersionOutput) ToGetDatabaseInstanceUpgradableVersionOutput() GetDatabaseInstanceUpgradableVersionOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceUpgradableVersionOutput) ToGetDatabaseInstanceUpgradableVersionOutputWithContext(ctx context.Context) GetDatabaseInstanceUpgradableVersionOutput {
+	return o
+}
+
+// The ID of the Database Instance.
+func (o GetDatabaseInstanceUpgradableVersionOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceUpgradableVersion) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Minor version string
+func (o GetDatabaseInstanceUpgradableVersionOutput) MinorVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceUpgradableVersion) string { return v.MinorVersion }).(pulumi.StringOutput)
+}
+
+// The name of the RDB instance.
+func (o GetDatabaseInstanceUpgradableVersionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceUpgradableVersion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Version string
+func (o GetDatabaseInstanceUpgradableVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseInstanceUpgradableVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDatabaseInstanceUpgradableVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseInstanceUpgradableVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseInstanceUpgradableVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseInstanceUpgradableVersionArrayOutput) ToGetDatabaseInstanceUpgradableVersionArrayOutput() GetDatabaseInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceUpgradableVersionArrayOutput) ToGetDatabaseInstanceUpgradableVersionArrayOutputWithContext(ctx context.Context) GetDatabaseInstanceUpgradableVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseInstanceUpgradableVersionArrayOutput) Index(i pulumi.IntInput) GetDatabaseInstanceUpgradableVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseInstanceUpgradableVersion {
+		return vs[0].([]GetDatabaseInstanceUpgradableVersion)[vs[1].(int)]
+	}).(GetDatabaseInstanceUpgradableVersionOutput)
+}
+
 type GetDomainRecordGeoIp struct {
 	// The list of matches
 	Matches []GetDomainRecordGeoIpMatch `pulumi:"matches"`
@@ -23455,10 +23809,116 @@ func (o GetInstanceSecurityGroupOutboundRuleArrayOutput) Index(i pulumi.IntInput
 	}).(GetInstanceSecurityGroupOutboundRuleOutput)
 }
 
+type GetInstanceServerFilesystem struct {
+	// The filesystem ID attached to the server
+	FilesystemId string `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status string `pulumi:"status"`
+}
+
+// GetInstanceServerFilesystemInput is an input type that accepts GetInstanceServerFilesystemArgs and GetInstanceServerFilesystemOutput values.
+// You can construct a concrete instance of `GetInstanceServerFilesystemInput` via:
+//
+//	GetInstanceServerFilesystemArgs{...}
+type GetInstanceServerFilesystemInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerFilesystemOutput() GetInstanceServerFilesystemOutput
+	ToGetInstanceServerFilesystemOutputWithContext(context.Context) GetInstanceServerFilesystemOutput
+}
+
+type GetInstanceServerFilesystemArgs struct {
+	// The filesystem ID attached to the server
+	FilesystemId pulumi.StringInput `pulumi:"filesystemId"`
+	// The state of the filesystem
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetInstanceServerFilesystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerFilesystem)(nil)).Elem()
+}
+
+func (i GetInstanceServerFilesystemArgs) ToGetInstanceServerFilesystemOutput() GetInstanceServerFilesystemOutput {
+	return i.ToGetInstanceServerFilesystemOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerFilesystemArgs) ToGetInstanceServerFilesystemOutputWithContext(ctx context.Context) GetInstanceServerFilesystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerFilesystemOutput)
+}
+
+// GetInstanceServerFilesystemArrayInput is an input type that accepts GetInstanceServerFilesystemArray and GetInstanceServerFilesystemArrayOutput values.
+// You can construct a concrete instance of `GetInstanceServerFilesystemArrayInput` via:
+//
+//	GetInstanceServerFilesystemArray{ GetInstanceServerFilesystemArgs{...} }
+type GetInstanceServerFilesystemArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceServerFilesystemArrayOutput() GetInstanceServerFilesystemArrayOutput
+	ToGetInstanceServerFilesystemArrayOutputWithContext(context.Context) GetInstanceServerFilesystemArrayOutput
+}
+
+type GetInstanceServerFilesystemArray []GetInstanceServerFilesystemInput
+
+func (GetInstanceServerFilesystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerFilesystem)(nil)).Elem()
+}
+
+func (i GetInstanceServerFilesystemArray) ToGetInstanceServerFilesystemArrayOutput() GetInstanceServerFilesystemArrayOutput {
+	return i.ToGetInstanceServerFilesystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceServerFilesystemArray) ToGetInstanceServerFilesystemArrayOutputWithContext(ctx context.Context) GetInstanceServerFilesystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceServerFilesystemArrayOutput)
+}
+
+type GetInstanceServerFilesystemOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServerFilesystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceServerFilesystem)(nil)).Elem()
+}
+
+func (o GetInstanceServerFilesystemOutput) ToGetInstanceServerFilesystemOutput() GetInstanceServerFilesystemOutput {
+	return o
+}
+
+func (o GetInstanceServerFilesystemOutput) ToGetInstanceServerFilesystemOutputWithContext(ctx context.Context) GetInstanceServerFilesystemOutput {
+	return o
+}
+
+// The filesystem ID attached to the server
+func (o GetInstanceServerFilesystemOutput) FilesystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerFilesystem) string { return v.FilesystemId }).(pulumi.StringOutput)
+}
+
+// The state of the filesystem
+func (o GetInstanceServerFilesystemOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServerFilesystem) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetInstanceServerFilesystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceServerFilesystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceServerFilesystem)(nil)).Elem()
+}
+
+func (o GetInstanceServerFilesystemArrayOutput) ToGetInstanceServerFilesystemArrayOutput() GetInstanceServerFilesystemArrayOutput {
+	return o
+}
+
+func (o GetInstanceServerFilesystemArrayOutput) ToGetInstanceServerFilesystemArrayOutputWithContext(ctx context.Context) GetInstanceServerFilesystemArrayOutput {
+	return o
+}
+
+func (o GetInstanceServerFilesystemArrayOutput) Index(i pulumi.IntInput) GetInstanceServerFilesystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceServerFilesystem {
+		return vs[0].([]GetInstanceServerFilesystem)[vs[1].(int)]
+	}).(GetInstanceServerFilesystemOutput)
+}
+
 type GetInstanceServerPrivateIp struct {
-	// The address of the IP
+	// The private IP address.
 	Address string `pulumi:"address"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id string `pulumi:"id"`
 }
 
@@ -23474,9 +23934,9 @@ type GetInstanceServerPrivateIpInput interface {
 }
 
 type GetInstanceServerPrivateIpArgs struct {
-	// The address of the IP
+	// The private IP address.
 	Address pulumi.StringInput `pulumi:"address"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id pulumi.StringInput `pulumi:"id"`
 }
 
@@ -23531,12 +23991,12 @@ func (o GetInstanceServerPrivateIpOutput) ToGetInstanceServerPrivateIpOutputWith
 	return o
 }
 
-// The address of the IP
+// The private IP address.
 func (o GetInstanceServerPrivateIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPrivateIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
-// The ID of the IP
+// The ID of the IP address resource.
 func (o GetInstanceServerPrivateIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPrivateIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -23695,7 +24155,7 @@ func (o GetInstanceServerPrivateNetworkArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetInstanceServerPublicIp struct {
-	// The address of the IP
+	// The private IP address.
 	Address string `pulumi:"address"`
 	// Whether the IP is dynamic
 	Dynamic bool `pulumi:"dynamic"`
@@ -23703,7 +24163,7 @@ type GetInstanceServerPublicIp struct {
 	Family string `pulumi:"family"`
 	// Gateway's IP address
 	Gateway string `pulumi:"gateway"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id string `pulumi:"id"`
 	// CIDR netmask
 	Netmask string `pulumi:"netmask"`
@@ -23723,7 +24183,7 @@ type GetInstanceServerPublicIpInput interface {
 }
 
 type GetInstanceServerPublicIpArgs struct {
-	// The address of the IP
+	// The private IP address.
 	Address pulumi.StringInput `pulumi:"address"`
 	// Whether the IP is dynamic
 	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
@@ -23731,7 +24191,7 @@ type GetInstanceServerPublicIpArgs struct {
 	Family pulumi.StringInput `pulumi:"family"`
 	// Gateway's IP address
 	Gateway pulumi.StringInput `pulumi:"gateway"`
-	// The ID of the IP
+	// The ID of the IP address resource.
 	Id pulumi.StringInput `pulumi:"id"`
 	// CIDR netmask
 	Netmask pulumi.StringInput `pulumi:"netmask"`
@@ -23790,7 +24250,7 @@ func (o GetInstanceServerPublicIpOutput) ToGetInstanceServerPublicIpOutputWithCo
 	return o
 }
 
-// The address of the IP
+// The private IP address.
 func (o GetInstanceServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
@@ -23810,7 +24270,7 @@ func (o GetInstanceServerPublicIpOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
 }
 
-// The ID of the IP
+// The ID of the IP address resource.
 func (o GetInstanceServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -24005,18 +24465,10 @@ type GetInstanceServersServer struct {
 	BootscriptId string `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp bool `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server.
-	EnableIpv6 bool `pulumi:"enableIpv6"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
 	// The UUID or the label of the base image used by the server.
 	Image string `pulumi:"image"`
-	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6Address string `pulumi:"ipv6Address"`
-	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	Ipv6Gateway string `pulumi:"ipv6Gateway"`
-	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6PrefixLength int `pulumi:"ipv6PrefixLength"`
 	// The server name used as filter. Servers with a name like it are listed.
 	Name string `pulumi:"name"`
 	// The organization ID the server is associated with.
@@ -24025,16 +24477,10 @@ type GetInstanceServersServer struct {
 	PlacementGroupId string `pulumi:"placementGroupId"`
 	// Whether the placement group policy respected or not
 	PlacementGroupPolicyRespected bool `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
-	PrivateIp string `pulumi:"privateIp"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps []GetInstanceServersServerPrivateIp `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId string `pulumi:"projectId"`
-	// The public IP address of the server.
-	//
-	// Deprecated: Use publicIps instead
-	PublicIp string `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps []GetInstanceServersServerPublicIp `pulumi:"publicIps"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -24069,18 +24515,10 @@ type GetInstanceServersServerArgs struct {
 	BootscriptId pulumi.StringInput `pulumi:"bootscriptId"`
 	// If true a dynamic IP will be attached to the server.
 	EnableDynamicIp pulumi.BoolInput `pulumi:"enableDynamicIp"`
-	// Determines if IPv6 is enabled for the server.
-	EnableIpv6 pulumi.BoolInput `pulumi:"enableIpv6"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
 	// The UUID or the label of the base image used by the server.
 	Image pulumi.StringInput `pulumi:"image"`
-	// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6Address pulumi.StringInput `pulumi:"ipv6Address"`
-	// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-	Ipv6Gateway pulumi.StringInput `pulumi:"ipv6Gateway"`
-	// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-	Ipv6PrefixLength pulumi.IntInput `pulumi:"ipv6PrefixLength"`
 	// The server name used as filter. Servers with a name like it are listed.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The organization ID the server is associated with.
@@ -24089,16 +24527,10 @@ type GetInstanceServersServerArgs struct {
 	PlacementGroupId pulumi.StringInput `pulumi:"placementGroupId"`
 	// Whether the placement group policy respected or not
 	PlacementGroupPolicyRespected pulumi.BoolInput `pulumi:"placementGroupPolicyRespected"`
-	// The Scaleway internal IP address of the server.
-	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps GetInstanceServersServerPrivateIpArrayInput `pulumi:"privateIps"`
 	// The ID of the project the server is associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The public IP address of the server.
-	//
-	// Deprecated: Use publicIps instead
-	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// The list of public IPs of the server
 	PublicIps GetInstanceServersServerPublicIpArrayInput `pulumi:"publicIps"`
 	// The [security group](https://developers.scaleway.com/en/products/instance/api/#security-groups-8d7f89) the server is attached to.
@@ -24181,11 +24613,6 @@ func (o GetInstanceServersServerOutput) EnableDynamicIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) bool { return v.EnableDynamicIp }).(pulumi.BoolOutput)
 }
 
-// Determines if IPv6 is enabled for the server.
-func (o GetInstanceServersServerOutput) EnableIpv6() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) bool { return v.EnableIpv6 }).(pulumi.BoolOutput)
-}
-
 // The ID of the IP
 func (o GetInstanceServersServerOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.Id }).(pulumi.StringOutput)
@@ -24194,21 +24621,6 @@ func (o GetInstanceServersServerOutput) Id() pulumi.StringOutput {
 // The UUID or the label of the base image used by the server.
 func (o GetInstanceServersServerOutput) Image() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.Image }).(pulumi.StringOutput)
-}
-
-// The default ipv6 address routed to the server. ( Only set when enableIpv6 is set to true )
-func (o GetInstanceServersServerOutput) Ipv6Address() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) string { return v.Ipv6Address }).(pulumi.StringOutput)
-}
-
-// The ipv6 gateway address. ( Only set when enableIpv6 is set to true )
-func (o GetInstanceServersServerOutput) Ipv6Gateway() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) string { return v.Ipv6Gateway }).(pulumi.StringOutput)
-}
-
-// The prefix length of the ipv6 subnet routed to the server. ( Only set when enableIpv6 is set to true )
-func (o GetInstanceServersServerOutput) Ipv6PrefixLength() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) int { return v.Ipv6PrefixLength }).(pulumi.IntOutput)
 }
 
 // The server name used as filter. Servers with a name like it are listed.
@@ -24231,11 +24643,6 @@ func (o GetInstanceServersServerOutput) PlacementGroupPolicyRespected() pulumi.B
 	return o.ApplyT(func(v GetInstanceServersServer) bool { return v.PlacementGroupPolicyRespected }).(pulumi.BoolOutput)
 }
 
-// The Scaleway internal IP address of the server.
-func (o GetInstanceServersServerOutput) PrivateIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PrivateIp }).(pulumi.StringOutput)
-}
-
 // The list of private IPv4 and IPv6 addresses associated with the server.
 func (o GetInstanceServersServerOutput) PrivateIps() GetInstanceServersServerPrivateIpArrayOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) []GetInstanceServersServerPrivateIp { return v.PrivateIps }).(GetInstanceServersServerPrivateIpArrayOutput)
@@ -24244,13 +24651,6 @@ func (o GetInstanceServersServerOutput) PrivateIps() GetInstanceServersServerPri
 // The ID of the project the server is associated with.
 func (o GetInstanceServersServerOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServer) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// The public IP address of the server.
-//
-// Deprecated: Use publicIps instead
-func (o GetInstanceServersServerOutput) PublicIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstanceServersServer) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
 // The list of public IPs of the server
@@ -33666,6 +34066,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstancePrivateNetworkPtrInput)(nil)).Elem(), DatabaseInstancePrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceReadReplicaInput)(nil)).Elem(), DatabaseInstanceReadReplicaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceReadReplicaArrayInput)(nil)).Elem(), DatabaseInstanceReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceUpgradableVersionInput)(nil)).Elem(), DatabaseInstanceUpgradableVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseInstanceUpgradableVersionArrayInput)(nil)).Elem(), DatabaseInstanceUpgradableVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaDirectAccessInput)(nil)).Elem(), DatabaseReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaDirectAccessPtrInput)(nil)).Elem(), DatabaseReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
@@ -33722,6 +34124,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesInboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupRulesInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesOutboundRuleInput)(nil)).Elem(), InstanceSecurityGroupRulesOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceSecurityGroupRulesOutboundRuleArrayInput)(nil)).Elem(), InstanceSecurityGroupRulesOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerFilesystemInput)(nil)).Elem(), InstanceServerFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerFilesystemArrayInput)(nil)).Elem(), InstanceServerFilesystemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateIpInput)(nil)).Elem(), InstanceServerPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateIpArrayInput)(nil)).Elem(), InstanceServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceServerPrivateNetworkInput)(nil)).Elem(), InstanceServerPrivateNetworkArgs{})
@@ -33915,6 +34319,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstancePrivateNetworkArrayInput)(nil)).Elem(), GetDatabaseInstancePrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceReadReplicaArrayInput)(nil)).Elem(), GetDatabaseInstanceReadReplicaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseInstanceUpgradableVersionArrayInput)(nil)).Elem(), GetDatabaseInstanceUpgradableVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpInput)(nil)).Elem(), GetDomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpArrayInput)(nil)).Elem(), GetDomainRecordGeoIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDomainRecordGeoIpMatchInput)(nil)).Elem(), GetDomainRecordGeoIpMatchArgs{})
@@ -33935,6 +34341,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupInboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupInboundRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSecurityGroupOutboundRuleArrayInput)(nil)).Elem(), GetInstanceSecurityGroupOutboundRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerFilesystemInput)(nil)).Elem(), GetInstanceServerFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerFilesystemArrayInput)(nil)).Elem(), GetInstanceServerFilesystemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateIpInput)(nil)).Elem(), GetInstanceServerPrivateIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateIpArrayInput)(nil)).Elem(), GetInstanceServerPrivateIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServerPrivateNetworkInput)(nil)).Elem(), GetInstanceServerPrivateNetworkArgs{})
@@ -34133,6 +34541,8 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseInstancePrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceReadReplicaOutput{})
 	pulumi.RegisterOutputType(DatabaseInstanceReadReplicaArrayOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceUpgradableVersionOutput{})
+	pulumi.RegisterOutputType(DatabaseInstanceUpgradableVersionArrayOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaDirectAccessOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkOutput{})
@@ -34189,6 +34599,8 @@ func init() {
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesOutboundRuleOutput{})
 	pulumi.RegisterOutputType(InstanceSecurityGroupRulesOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(InstanceServerFilesystemOutput{})
+	pulumi.RegisterOutputType(InstanceServerFilesystemArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerPrivateIpOutput{})
 	pulumi.RegisterOutputType(InstanceServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(InstanceServerPrivateNetworkOutput{})
@@ -34382,6 +34794,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDatabaseInstancePrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaOutput{})
 	pulumi.RegisterOutputType(GetDatabaseInstanceReadReplicaArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionOutput{})
+	pulumi.RegisterOutputType(GetDatabaseInstanceUpgradableVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpArrayOutput{})
 	pulumi.RegisterOutputType(GetDomainRecordGeoIpMatchOutput{})
@@ -34402,6 +34816,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupInboundRuleArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleOutput{})
 	pulumi.RegisterOutputType(GetInstanceSecurityGroupOutboundRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceServerFilesystemOutput{})
+	pulumi.RegisterOutputType(GetInstanceServerFilesystemArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPrivateIpOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPrivateIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceServerPrivateNetworkOutput{})

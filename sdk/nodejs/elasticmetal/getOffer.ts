@@ -25,6 +25,9 @@ export function getOffer(args?: GetOfferArgs, opts?: pulumi.InvokeOptions): Prom
  * A collection of arguments for invoking getOffer.
  */
 export interface GetOfferArgs {
+    /**
+     * Include disabled offers.
+     */
     includeDisabled?: boolean;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.
@@ -104,6 +107,9 @@ export function getOfferOutput(args?: GetOfferOutputArgs, opts?: pulumi.InvokeOu
  * A collection of arguments for invoking getOffer.
  */
 export interface GetOfferOutputArgs {
+    /**
+     * Include disabled offers.
+     */
     includeDisabled?: pulumi.Input<boolean>;
     /**
      * The offer name. Only one of `name` and `offerId` should be specified.

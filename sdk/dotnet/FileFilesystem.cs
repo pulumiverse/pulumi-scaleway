@@ -32,7 +32,7 @@ namespace Pulumiverse.Scaleway
     ///     var file = new Scaleway.FileFilesystem("file", new()
     ///     {
     ///         Name = "my-nfs-filesystem",
-    ///         Size = 100000000000,
+    ///         SizeInGb = 100,
     ///     });
     /// 
     /// });
@@ -93,8 +93,8 @@ namespace Pulumiverse.Scaleway
         /// - Minimum: 100 GB (100000000000 bytes)
         /// - Maximum: 10 TB (10000000000000 bytes)
         /// </summary>
-        [Output("size")]
-        public Output<int> Size { get; private set; } = null!;
+        [Output("sizeInGb")]
+        public Output<int> SizeInGb { get; private set; } = null!;
 
         /// <summary>
         /// The current status of the filesystem. Possible values include creating, available, etc.
@@ -185,8 +185,8 @@ namespace Pulumiverse.Scaleway
         /// - Minimum: 100 GB (100000000000 bytes)
         /// - Maximum: 10 TB (10000000000000 bytes)
         /// </summary>
-        [Input("size", required: true)]
-        public Input<int> Size { get; set; } = null!;
+        [Input("sizeInGb", required: true)]
+        public Input<int> SizeInGb { get; set; } = null!;
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -250,8 +250,8 @@ namespace Pulumiverse.Scaleway
         /// - Minimum: 100 GB (100000000000 bytes)
         /// - Maximum: 10 TB (10000000000000 bytes)
         /// </summary>
-        [Input("size")]
-        public Input<int>? Size { get; set; }
+        [Input("sizeInGb")]
+        public Input<int>? SizeInGb { get; set; }
 
         /// <summary>
         /// The current status of the filesystem. Possible values include creating, available, etc.

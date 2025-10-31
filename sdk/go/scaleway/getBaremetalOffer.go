@@ -26,6 +26,7 @@ func GetBaremetalOffer(ctx *pulumi.Context, args *GetBaremetalOfferArgs, opts ..
 
 // A collection of arguments for invoking getBaremetalOffer.
 type GetBaremetalOfferArgs struct {
+	// Include disabled offers.
 	IncludeDisabled *bool `pulumi:"includeDisabled"`
 	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name *string `pulumi:"name"`
@@ -72,6 +73,7 @@ func GetBaremetalOfferOutput(ctx *pulumi.Context, args GetBaremetalOfferOutputAr
 
 // A collection of arguments for invoking getBaremetalOffer.
 type GetBaremetalOfferOutputArgs struct {
+	// Include disabled offers.
 	IncludeDisabled pulumi.BoolPtrInput `pulumi:"includeDisabled"`
 	// The offer name. Only one of `name` and `offerId` should be specified.
 	Name pulumi.StringPtrInput `pulumi:"name"`

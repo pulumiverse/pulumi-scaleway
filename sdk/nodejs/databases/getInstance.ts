@@ -80,6 +80,7 @@ export interface GetInstanceResult {
     readonly settings: {[key: string]: string};
     readonly snapshotId: string;
     readonly tags: string[];
+    readonly upgradableVersions: outputs.databases.GetInstanceUpgradableVersion[];
     readonly userName: string;
     readonly volumeSizeInGb: number;
     readonly volumeType: string;

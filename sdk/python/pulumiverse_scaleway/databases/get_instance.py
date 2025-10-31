@@ -27,7 +27,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -109,6 +109,9 @@ class GetInstanceResult:
         if tags and not isinstance(tags, list):
             raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
+        if upgradable_versions and not isinstance(upgradable_versions, list):
+            raise TypeError("Expected argument 'upgradable_versions' to be a list")
+        pulumi.set(__self__, "upgradable_versions", upgradable_versions)
         if user_name and not isinstance(user_name, str):
             raise TypeError("Expected argument 'user_name' to be a str")
         pulumi.set(__self__, "user_name", user_name)
@@ -258,6 +261,11 @@ class GetInstanceResult:
         return pulumi.get(self, "tags")
 
     @_builtins.property
+    @pulumi.getter(name="upgradableVersions")
+    def upgradable_versions(self) -> Sequence['outputs.GetInstanceUpgradableVersionResult']:
+        return pulumi.get(self, "upgradable_versions")
+
+    @_builtins.property
     @pulumi.getter(name="userName")
     def user_name(self) -> _builtins.str:
         return pulumi.get(self, "user_name")
@@ -306,6 +314,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             settings=self.settings,
             snapshot_id=self.snapshot_id,
             tags=self.tags,
+            upgradable_versions=self.upgradable_versions,
             user_name=self.user_name,
             volume_size_in_gb=self.volume_size_in_gb,
             volume_type=self.volume_type)
@@ -365,6 +374,7 @@ def get_instance(instance_id: Optional[_builtins.str] = None,
         settings=pulumi.get(__ret__, 'settings'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         tags=pulumi.get(__ret__, 'tags'),
+        upgradable_versions=pulumi.get(__ret__, 'upgradable_versions'),
         user_name=pulumi.get(__ret__, 'user_name'),
         volume_size_in_gb=pulumi.get(__ret__, 'volume_size_in_gb'),
         volume_type=pulumi.get(__ret__, 'volume_type'))
@@ -421,6 +431,7 @@ def get_instance_output(instance_id: Optional[pulumi.Input[Optional[_builtins.st
         settings=pulumi.get(__response__, 'settings'),
         snapshot_id=pulumi.get(__response__, 'snapshot_id'),
         tags=pulumi.get(__response__, 'tags'),
+        upgradable_versions=pulumi.get(__response__, 'upgradable_versions'),
         user_name=pulumi.get(__response__, 'user_name'),
         volume_size_in_gb=pulumi.get(__response__, 'volume_size_in_gb'),
         volume_type=pulumi.get(__response__, 'volume_type')))

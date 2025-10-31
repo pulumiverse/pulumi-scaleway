@@ -50,27 +50,28 @@ type LookupInstanceResult struct {
 	EndpointPort            int    `pulumi:"endpointPort"`
 	Engine                  string `pulumi:"engine"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string                      `pulumi:"id"`
-	InitSettings    map[string]string           `pulumi:"initSettings"`
-	InstanceId      *string                     `pulumi:"instanceId"`
-	IsHaCluster     bool                        `pulumi:"isHaCluster"`
-	LoadBalancers   []GetInstanceLoadBalancer   `pulumi:"loadBalancers"`
-	LogsPolicies    []GetInstanceLogsPolicy     `pulumi:"logsPolicies"`
-	Name            *string                     `pulumi:"name"`
-	NodeType        string                      `pulumi:"nodeType"`
-	OrganizationId  string                      `pulumi:"organizationId"`
-	Password        string                      `pulumi:"password"`
-	PrivateIps      []GetInstancePrivateIp      `pulumi:"privateIps"`
-	PrivateNetworks []GetInstancePrivateNetwork `pulumi:"privateNetworks"`
-	ProjectId       *string                     `pulumi:"projectId"`
-	ReadReplicas    []GetInstanceReadReplica    `pulumi:"readReplicas"`
-	Region          *string                     `pulumi:"region"`
-	Settings        map[string]string           `pulumi:"settings"`
-	SnapshotId      string                      `pulumi:"snapshotId"`
-	Tags            []string                    `pulumi:"tags"`
-	UserName        string                      `pulumi:"userName"`
-	VolumeSizeInGb  int                         `pulumi:"volumeSizeInGb"`
-	VolumeType      string                      `pulumi:"volumeType"`
+	Id                 string                         `pulumi:"id"`
+	InitSettings       map[string]string              `pulumi:"initSettings"`
+	InstanceId         *string                        `pulumi:"instanceId"`
+	IsHaCluster        bool                           `pulumi:"isHaCluster"`
+	LoadBalancers      []GetInstanceLoadBalancer      `pulumi:"loadBalancers"`
+	LogsPolicies       []GetInstanceLogsPolicy        `pulumi:"logsPolicies"`
+	Name               *string                        `pulumi:"name"`
+	NodeType           string                         `pulumi:"nodeType"`
+	OrganizationId     string                         `pulumi:"organizationId"`
+	Password           string                         `pulumi:"password"`
+	PrivateIps         []GetInstancePrivateIp         `pulumi:"privateIps"`
+	PrivateNetworks    []GetInstancePrivateNetwork    `pulumi:"privateNetworks"`
+	ProjectId          *string                        `pulumi:"projectId"`
+	ReadReplicas       []GetInstanceReadReplica       `pulumi:"readReplicas"`
+	Region             *string                        `pulumi:"region"`
+	Settings           map[string]string              `pulumi:"settings"`
+	SnapshotId         string                         `pulumi:"snapshotId"`
+	Tags               []string                       `pulumi:"tags"`
+	UpgradableVersions []GetInstanceUpgradableVersion `pulumi:"upgradableVersions"`
+	UserName           string                         `pulumi:"userName"`
+	VolumeSizeInGb     int                            `pulumi:"volumeSizeInGb"`
+	VolumeType         string                         `pulumi:"volumeType"`
 }
 
 func LookupInstanceOutput(ctx *pulumi.Context, args LookupInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceResultOutput {
@@ -222,6 +223,10 @@ func (o LookupInstanceResultOutput) SnapshotId() pulumi.StringOutput {
 
 func (o LookupInstanceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupInstanceResultOutput) UpgradableVersions() GetInstanceUpgradableVersionArrayOutput {
+	return o.ApplyT(func(v LookupInstanceResult) []GetInstanceUpgradableVersion { return v.UpgradableVersions }).(GetInstanceUpgradableVersionArrayOutput)
 }
 
 func (o LookupInstanceResultOutput) UserName() pulumi.StringOutput {

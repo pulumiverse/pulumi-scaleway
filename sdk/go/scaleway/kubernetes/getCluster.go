@@ -61,11 +61,14 @@ type LookupClusterResult struct {
 	OpenIdConnectConfigs []GetClusterOpenIdConnectConfig `pulumi:"openIdConnectConfigs"`
 	// The ID of the organization the cluster is associated with.
 	OrganizationId string `pulumi:"organizationId"`
+	PodCidr        string `pulumi:"podCidr"`
 	// The ID of the private network of the cluster.
 	PrivateNetworkId string  `pulumi:"privateNetworkId"`
 	ProjectId        *string `pulumi:"projectId"`
 	// The region in which the cluster is.
-	Region *string `pulumi:"region"`
+	Region       *string `pulumi:"region"`
+	ServiceCidr  string  `pulumi:"serviceCidr"`
+	ServiceDnsIp string  `pulumi:"serviceDnsIp"`
 	// The status of the Kubernetes cluster.
 	Status string `pulumi:"status"`
 	// The tags associated with the Kubernetes cluster.
@@ -192,6 +195,10 @@ func (o LookupClusterResultOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+func (o LookupClusterResultOutput) PodCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.PodCidr }).(pulumi.StringOutput)
+}
+
 // The ID of the private network of the cluster.
 func (o LookupClusterResultOutput) PrivateNetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupClusterResult) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
@@ -204,6 +211,14 @@ func (o LookupClusterResultOutput) ProjectId() pulumi.StringPtrOutput {
 // The region in which the cluster is.
 func (o LookupClusterResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupClusterResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupClusterResultOutput) ServiceCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.ServiceCidr }).(pulumi.StringOutput)
+}
+
+func (o LookupClusterResultOutput) ServiceDnsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupClusterResult) string { return v.ServiceDnsIp }).(pulumi.StringOutput)
 }
 
 // The status of the Kubernetes cluster.

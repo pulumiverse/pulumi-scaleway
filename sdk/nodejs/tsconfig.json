@@ -224,6 +224,7 @@
         "iam/getApiKey.ts",
         "iam/getApplication.ts",
         "iam/getGroup.ts",
+        "iam/getPolicy.ts",
         "iam/getSshKey.ts",
         "iam/getUser.ts",
         "iam/group.ts",

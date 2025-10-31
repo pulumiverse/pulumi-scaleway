@@ -19,14 +19,14 @@ __all__ = ['FileFilesystemArgs', 'FileFilesystem']
 @pulumi.input_type
 class FileFilesystemArgs:
     def __init__(__self__, *,
-                 size: pulumi.Input[_builtins.int],
+                 size_in_gb: pulumi.Input[_builtins.int],
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FileFilesystem resource.
-        :param pulumi.Input[_builtins.int] size: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
         :param pulumi.Input[_builtins.str] name: The name of the filesystem. If not provided, a random name will be generated.
@@ -35,7 +35,7 @@ class FileFilesystemArgs:
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
         """
-        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -46,18 +46,18 @@ class FileFilesystemArgs:
             pulumi.set(__self__, "tags", tags)
 
     @_builtins.property
-    @pulumi.getter
-    def size(self) -> pulumi.Input[_builtins.int]:
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> pulumi.Input[_builtins.int]:
         """
         The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
         - Minimum: 100 GB (100000000000 bytes)
         - Maximum: 10 TB (10000000000000 bytes)
         """
-        return pulumi.get(self, "size")
+        return pulumi.get(self, "size_in_gb")
 
-    @size.setter
-    def size(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "size", value)
+    @size_in_gb.setter
+    def size_in_gb(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter
@@ -118,7 +118,7 @@ class _FileFilesystemState:
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
@@ -131,7 +131,7 @@ class _FileFilesystemState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
@@ -150,8 +150,8 @@ class _FileFilesystemState:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
+        if size_in_gb is not None:
+            pulumi.set(__self__, "size_in_gb", size_in_gb)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tags is not None:
@@ -233,18 +233,18 @@ class _FileFilesystemState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
-    @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[_builtins.int]]:
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
         - Minimum: 100 GB (100000000000 bytes)
         - Maximum: 10 TB (10000000000000 bytes)
         """
-        return pulumi.get(self, "size")
+        return pulumi.get(self, "size_in_gb")
 
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "size", value)
+    @size_in_gb.setter
+    def size_in_gb(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "size_in_gb", value)
 
     @_builtins.property
     @pulumi.getter
@@ -292,7 +292,7 @@ class FileFilesystem(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -312,7 +312,7 @@ class FileFilesystem(pulumi.CustomResource):
 
         file = scaleway.FileFilesystem("file",
             name="my-nfs-filesystem",
-            size=100000000000)
+            size_in_gb=100)
         ```
 
         ## Import
@@ -331,7 +331,7 @@ class FileFilesystem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags associated with the filesystem.
@@ -359,7 +359,7 @@ class FileFilesystem(pulumi.CustomResource):
 
         file = scaleway.FileFilesystem("file",
             name="my-nfs-filesystem",
-            size=100000000000)
+            size_in_gb=100)
         ```
 
         ## Import
@@ -390,7 +390,7 @@ class FileFilesystem(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 size: Optional[pulumi.Input[_builtins.int]] = None,
+                 size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -404,9 +404,9 @@ class FileFilesystem(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
-            if size is None and not opts.urn:
-                raise TypeError("Missing required property 'size'")
-            __props__.__dict__["size"] = size
+            if size_in_gb is None and not opts.urn:
+                raise TypeError("Missing required property 'size_in_gb'")
+            __props__.__dict__["size_in_gb"] = size_in_gb
             __props__.__dict__["tags"] = tags
             __props__.__dict__["created_at"] = None
             __props__.__dict__["number_of_attachments"] = None
@@ -429,7 +429,7 @@ class FileFilesystem(pulumi.CustomResource):
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
-            size: Optional[pulumi.Input[_builtins.int]] = None,
+            size_in_gb: Optional[pulumi.Input[_builtins.int]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'FileFilesystem':
@@ -447,7 +447,7 @@ class FileFilesystem(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region where the filesystem will be created (e.g., fr-par, nl-ams).
-        :param pulumi.Input[_builtins.int] size: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
+        :param pulumi.Input[_builtins.int] size_in_gb: The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
                - Minimum: 100 GB (100000000000 bytes)
                - Maximum: 10 TB (10000000000000 bytes)
         :param pulumi.Input[_builtins.str] status: The current status of the filesystem. Possible values include creating, available, etc.
@@ -464,7 +464,7 @@ class FileFilesystem(pulumi.CustomResource):
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
-        __props__.__dict__["size"] = size
+        __props__.__dict__["size_in_gb"] = size_in_gb
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["updated_at"] = updated_at
@@ -520,14 +520,14 @@ class FileFilesystem(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @_builtins.property
-    @pulumi.getter
-    def size(self) -> pulumi.Output[_builtins.int]:
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> pulumi.Output[_builtins.int]:
         """
         The size of the filesystem in bytes, with a granularity of 100 GB (10¹¹ bytes).
         - Minimum: 100 GB (100000000000 bytes)
         - Maximum: 10 TB (10000000000000 bytes)
         """
-        return pulumi.get(self, "size")
+        return pulumi.get(self, "size_in_gb")
 
     @_builtins.property
     @pulumi.getter

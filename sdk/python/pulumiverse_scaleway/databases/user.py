@@ -271,7 +271,7 @@ class User(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.RandomPassword("db_password",
+        db_password = random.index.Password("db_password",
             length=20,
             special=True,
             upper=True,
@@ -281,11 +281,11 @@ class User(pulumi.CustomResource):
             min_lower=1,
             min_numeric=1,
             min_special=1,
-            override_special="!@#$%^&*()_+-=[]{}|;:,.<>?")
+            override_special=!@#$%^&*()_+-=[]{}|;:,.<>?)
         db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
-            password=db_password.result,
+            password=db_password["result"],
             is_admin=True)
         ```
 
@@ -346,7 +346,7 @@ class User(pulumi.CustomResource):
             disable_backup=True,
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret")
-        db_password = random.RandomPassword("db_password",
+        db_password = random.index.Password("db_password",
             length=20,
             special=True,
             upper=True,
@@ -356,11 +356,11 @@ class User(pulumi.CustomResource):
             min_lower=1,
             min_numeric=1,
             min_special=1,
-            override_special="!@#$%^&*()_+-=[]{}|;:,.<>?")
+            override_special=!@#$%^&*()_+-=[]{}|;:,.<>?)
         db_admin = scaleway.databases.User("db_admin",
             instance_id=main.id,
             name="devtools",
-            password=db_password.result,
+            password=db_password["result"],
             is_admin=True)
         ```
 

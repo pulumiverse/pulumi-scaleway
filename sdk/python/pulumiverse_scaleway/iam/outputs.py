@@ -16,6 +16,7 @@ from .. import _utilities
 
 __all__ = [
     'PolicyRule',
+    'GetPolicyRuleResult',
 ]
 
 @pulumi.output_type
@@ -105,6 +106,57 @@ class PolicyRule(dict):
         List of project IDs scoped to the rule.
 
         > **Important** One `organization_id` or `project_ids` must be set per rule.
+        """
+        return pulumi.get(self, "project_ids")
+
+
+@pulumi.output_type
+class GetPolicyRuleResult(dict):
+    def __init__(__self__, *,
+                 condition: _builtins.str,
+                 organization_id: _builtins.str,
+                 permission_set_names: Sequence[_builtins.str],
+                 project_ids: Sequence[_builtins.str]):
+        """
+        :param _builtins.str condition: The condition of the rule.
+        :param _builtins.str organization_id: ID of organization scoped to the rule.
+        :param Sequence[_builtins.str] permission_set_names: Names of permission sets bound to the rule.
+        :param Sequence[_builtins.str] project_ids: List of project IDs scoped to the rule.
+        """
+        pulumi.set(__self__, "condition", condition)
+        pulumi.set(__self__, "organization_id", organization_id)
+        pulumi.set(__self__, "permission_set_names", permission_set_names)
+        pulumi.set(__self__, "project_ids", project_ids)
+
+    @_builtins.property
+    @pulumi.getter
+    def condition(self) -> _builtins.str:
+        """
+        The condition of the rule.
+        """
+        return pulumi.get(self, "condition")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> _builtins.str:
+        """
+        ID of organization scoped to the rule.
+        """
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter(name="permissionSetNames")
+    def permission_set_names(self) -> Sequence[_builtins.str]:
+        """
+        Names of permission sets bound to the rule.
+        """
+        return pulumi.get(self, "permission_set_names")
+
+    @_builtins.property
+    @pulumi.getter(name="projectIds")
+    def project_ids(self) -> Sequence[_builtins.str]:
+        """
+        List of project IDs scoped to the rule.
         """
         return pulumi.get(self, "project_ids")
 

@@ -149,9 +149,137 @@ func (o PolicyRuleArrayOutput) Index(i pulumi.IntInput) PolicyRuleOutput {
 	}).(PolicyRuleOutput)
 }
 
+type GetPolicyRule struct {
+	// The condition of the rule.
+	Condition string `pulumi:"condition"`
+	// ID of organization scoped to the rule.
+	OrganizationId string `pulumi:"organizationId"`
+	// Names of permission sets bound to the rule.
+	PermissionSetNames []string `pulumi:"permissionSetNames"`
+	// List of project IDs scoped to the rule.
+	ProjectIds []string `pulumi:"projectIds"`
+}
+
+// GetPolicyRuleInput is an input type that accepts GetPolicyRuleArgs and GetPolicyRuleOutput values.
+// You can construct a concrete instance of `GetPolicyRuleInput` via:
+//
+//	GetPolicyRuleArgs{...}
+type GetPolicyRuleInput interface {
+	pulumi.Input
+
+	ToGetPolicyRuleOutput() GetPolicyRuleOutput
+	ToGetPolicyRuleOutputWithContext(context.Context) GetPolicyRuleOutput
+}
+
+type GetPolicyRuleArgs struct {
+	// The condition of the rule.
+	Condition pulumi.StringInput `pulumi:"condition"`
+	// ID of organization scoped to the rule.
+	OrganizationId pulumi.StringInput `pulumi:"organizationId"`
+	// Names of permission sets bound to the rule.
+	PermissionSetNames pulumi.StringArrayInput `pulumi:"permissionSetNames"`
+	// List of project IDs scoped to the rule.
+	ProjectIds pulumi.StringArrayInput `pulumi:"projectIds"`
+}
+
+func (GetPolicyRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyRule)(nil)).Elem()
+}
+
+func (i GetPolicyRuleArgs) ToGetPolicyRuleOutput() GetPolicyRuleOutput {
+	return i.ToGetPolicyRuleOutputWithContext(context.Background())
+}
+
+func (i GetPolicyRuleArgs) ToGetPolicyRuleOutputWithContext(ctx context.Context) GetPolicyRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyRuleOutput)
+}
+
+// GetPolicyRuleArrayInput is an input type that accepts GetPolicyRuleArray and GetPolicyRuleArrayOutput values.
+// You can construct a concrete instance of `GetPolicyRuleArrayInput` via:
+//
+//	GetPolicyRuleArray{ GetPolicyRuleArgs{...} }
+type GetPolicyRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetPolicyRuleArrayOutput() GetPolicyRuleArrayOutput
+	ToGetPolicyRuleArrayOutputWithContext(context.Context) GetPolicyRuleArrayOutput
+}
+
+type GetPolicyRuleArray []GetPolicyRuleInput
+
+func (GetPolicyRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyRule)(nil)).Elem()
+}
+
+func (i GetPolicyRuleArray) ToGetPolicyRuleArrayOutput() GetPolicyRuleArrayOutput {
+	return i.ToGetPolicyRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetPolicyRuleArray) ToGetPolicyRuleArrayOutputWithContext(ctx context.Context) GetPolicyRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPolicyRuleArrayOutput)
+}
+
+type GetPolicyRuleOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPolicyRule)(nil)).Elem()
+}
+
+func (o GetPolicyRuleOutput) ToGetPolicyRuleOutput() GetPolicyRuleOutput {
+	return o
+}
+
+func (o GetPolicyRuleOutput) ToGetPolicyRuleOutputWithContext(ctx context.Context) GetPolicyRuleOutput {
+	return o
+}
+
+// The condition of the rule.
+func (o GetPolicyRuleOutput) Condition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPolicyRule) string { return v.Condition }).(pulumi.StringOutput)
+}
+
+// ID of organization scoped to the rule.
+func (o GetPolicyRuleOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPolicyRule) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+// Names of permission sets bound to the rule.
+func (o GetPolicyRuleOutput) PermissionSetNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPolicyRule) []string { return v.PermissionSetNames }).(pulumi.StringArrayOutput)
+}
+
+// List of project IDs scoped to the rule.
+func (o GetPolicyRuleOutput) ProjectIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetPolicyRule) []string { return v.ProjectIds }).(pulumi.StringArrayOutput)
+}
+
+type GetPolicyRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPolicyRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPolicyRule)(nil)).Elem()
+}
+
+func (o GetPolicyRuleArrayOutput) ToGetPolicyRuleArrayOutput() GetPolicyRuleArrayOutput {
+	return o
+}
+
+func (o GetPolicyRuleArrayOutput) ToGetPolicyRuleArrayOutputWithContext(ctx context.Context) GetPolicyRuleArrayOutput {
+	return o
+}
+
+func (o GetPolicyRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPolicyRule {
+		return vs[0].([]GetPolicyRule)[vs[1].(int)]
+	}).(GetPolicyRuleOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyRuleInput)(nil)).Elem(), PolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyRuleArrayInput)(nil)).Elem(), PolicyRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyRuleInput)(nil)).Elem(), GetPolicyRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyRuleArrayInput)(nil)).Elem(), GetPolicyRuleArray{})
 	pulumi.RegisterOutputType(PolicyRuleOutput{})
 	pulumi.RegisterOutputType(PolicyRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetPolicyRuleOutput{})
+	pulumi.RegisterOutputType(GetPolicyRuleArrayOutput{})
 }

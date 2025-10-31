@@ -29,6 +29,8 @@ __all__ = [
     'SecurityGroupRulesInboundRuleArgsDict',
     'SecurityGroupRulesOutboundRuleArgs',
     'SecurityGroupRulesOutboundRuleArgsDict',
+    'ServerFilesystemArgs',
+    'ServerFilesystemArgsDict',
     'ServerPrivateIpArgs',
     'ServerPrivateIpArgsDict',
     'ServerPrivateNetworkArgs',
@@ -857,6 +859,58 @@ class SecurityGroupRulesOutboundRuleArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "protocol", value)
+
+
+if not MYPY:
+    class ServerFilesystemArgsDict(TypedDict):
+        filesystem_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The unique ID of the filesystem attached to the server.
+        """
+        status: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The state of the filesystem
+        """
+elif False:
+    ServerFilesystemArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ServerFilesystemArgs:
+    def __init__(__self__, *,
+                 filesystem_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] filesystem_id: The unique ID of the filesystem attached to the server.
+        :param pulumi.Input[_builtins.str] status: The state of the filesystem
+        """
+        if filesystem_id is not None:
+            pulumi.set(__self__, "filesystem_id", filesystem_id)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="filesystemId")
+    def filesystem_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The unique ID of the filesystem attached to the server.
+        """
+        return pulumi.get(self, "filesystem_id")
+
+    @filesystem_id.setter
+    def filesystem_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "filesystem_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The state of the filesystem
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
 
 
 if not MYPY:

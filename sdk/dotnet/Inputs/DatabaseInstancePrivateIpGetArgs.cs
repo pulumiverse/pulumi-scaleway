@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Address { get; set; }
 
         /// <summary>
-        /// The ID of the IPv4 address resource.
+        /// Version ID to use in upgrade requests.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }

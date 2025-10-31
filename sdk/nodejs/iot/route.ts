@@ -32,17 +32,17 @@ import * as utilities from "../utilities";
  *     topic: "#",
  *     database: {
  *         query: `INSERT INTO measurements(
- * \x09push_time,
- * \x09report_time,
- * \x09station_id,
- * \x09temperature,
- * \x09humidity
+ * \\tpush_time,
+ * \\treport_time,
+ * \\tstation_id,
+ * \\ttemperature,
+ * \\thumidity
  * ) VALUES (
- * \x09NOW(),
- * \x09TIMESTAMP 'epoch' + ((PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
- * \x09(PAYLOAD::jsonb->'station_id')::uuid,
- * \x09(PAYLOAD::jsonb->'temperature')::decimal,
- * \x09(PAYLOAD::jsonb->'humidity'):decimal:
+ * \\tNOW(),
+ * \\tTIMESTAMP 'epoch' + ((PAYLOAD::jsonb->'last_reported')::integer * INTERVAL '1 second'),
+ * \\t(PAYLOAD::jsonb->'station_id')::uuid,
+ * \\t(PAYLOAD::jsonb->'temperature')::decimal,
+ * \\t(PAYLOAD::jsonb->'humidity'):decimal:
  * );
  * `,
  *         host: iot.endpointIp,
