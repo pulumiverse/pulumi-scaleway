@@ -65,7 +65,7 @@ type IotHub struct {
 	DeviceCount pulumi.IntOutput `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrOutput `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -77,7 +77,7 @@ type IotHub struct {
 	HubCa pulumi.StringPtrOutput `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrOutput `pulumi:"hubCaChallenge"`
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa pulumi.StringOutput `pulumi:"mqttCa"`
 	// The MQTT ca url
 	MqttCaUrl pulumi.StringOutput `pulumi:"mqttCaUrl"`
@@ -142,7 +142,7 @@ type iotHubState struct {
 	DeviceCount *int `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
@@ -154,7 +154,7 @@ type iotHubState struct {
 	HubCa *string `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa *string `pulumi:"mqttCa"`
 	// The MQTT ca url
 	MqttCaUrl *string `pulumi:"mqttCaUrl"`
@@ -187,7 +187,7 @@ type IotHubState struct {
 	DeviceCount pulumi.IntPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
@@ -199,7 +199,7 @@ type IotHubState struct {
 	HubCa pulumi.StringPtrInput
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrInput
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa pulumi.StringPtrInput
 	// The MQTT ca url
 	MqttCaUrl pulumi.StringPtrInput
@@ -230,7 +230,7 @@ type iotHubArgs struct {
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
@@ -258,7 +258,7 @@ type IotHubArgs struct {
 	DeviceAutoProvisioning pulumi.BoolPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
@@ -392,7 +392,7 @@ func (o IotHubOutput) DisableEvents() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.BoolPtrOutput { return v.DisableEvents }).(pulumi.BoolPtrOutput)
 }
 
-// Wether the IoT Hub instance should be enabled or not.
+// Whether the IoT Hub instance should be enabled or not.
 //
 // > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 func (o IotHubOutput) Enabled() pulumi.BoolPtrOutput {
@@ -419,7 +419,7 @@ func (o IotHubOutput) HubCaChallenge() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringPtrOutput { return v.HubCaChallenge }).(pulumi.StringPtrOutput)
 }
 
-// The MQTT certificat content
+// The MQTT certificate content
 func (o IotHubOutput) MqttCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotHub) pulumi.StringOutput { return v.MqttCa }).(pulumi.StringOutput)
 }

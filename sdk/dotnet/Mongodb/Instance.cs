@@ -195,7 +195,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<int> NodeNumber { get; private set; } = null!;
 
         /// <summary>
-        /// The type of MongoDB® intance to create.
+        /// The type of MongoDB® instance to create.
         /// </summary>
         [Output("nodeType")]
         public Output<string> NodeType { get; private set; } = null!;
@@ -279,7 +279,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the user created when the intance is created.
+        /// Name of the user created when the instance is created.
         /// </summary>
         [Output("userName")]
         public Output<string?> UserName { get; private set; } = null!;
@@ -376,7 +376,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<int> NodeNumber { get; set; } = null!;
 
         /// <summary>
-        /// The type of MongoDB® intance to create.
+        /// The type of MongoDB® instance to create.
         /// </summary>
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
@@ -476,7 +476,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         }
 
         /// <summary>
-        /// Name of the user created when the intance is created.
+        /// Name of the user created when the instance is created.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }
@@ -532,7 +532,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<int>? NodeNumber { get; set; }
 
         /// <summary>
-        /// The type of MongoDB® intance to create.
+        /// The type of MongoDB® instance to create.
         /// </summary>
         [Input("nodeType")]
         public Input<string>? NodeType { get; set; }
@@ -644,7 +644,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// Name of the user created when the intance is created.
+        /// Name of the user created when the instance is created.
         /// </summary>
         [Input("userName")]
         public Input<string>? UserName { get; set; }

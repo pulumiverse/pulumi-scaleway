@@ -165,7 +165,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
      */
     declare public readonly privateNetworkId: pulumi.Output<string>;
     /**
-     * Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
@@ -296,7 +296,7 @@ export interface VpcGatewayNetworkState {
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
@@ -362,7 +362,7 @@ export interface VpcGatewayNetworkArgs {
      */
     privateNetworkId: pulumi.Input<string>;
     /**
-     * Please use `ipamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
+     * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
      * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */

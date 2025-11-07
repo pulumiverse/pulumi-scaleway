@@ -71,6 +71,10 @@ __all__ = [
     'DatabaseReadReplicaDirectAccessArgsDict',
     'DatabaseReadReplicaPrivateNetworkArgs',
     'DatabaseReadReplicaPrivateNetworkArgsDict',
+    'DatawarehouseDeploymentPublicNetworkArgs',
+    'DatawarehouseDeploymentPublicNetworkArgsDict',
+    'DatawarehouseDeploymentPublicNetworkServiceArgs',
+    'DatawarehouseDeploymentPublicNetworkServiceArgsDict',
     'DomainRecordGeoIpArgs',
     'DomainRecordGeoIpArgsDict',
     'DomainRecordGeoIpMatchArgs',
@@ -2789,6 +2793,130 @@ class DatabaseReadReplicaPrivateNetworkArgs:
     @zone.setter
     def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "zone", value)
+
+
+if not MYPY:
+    class DatawarehouseDeploymentPublicNetworkArgsDict(TypedDict):
+        dns_record: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        DNS record for the public endpoint.
+        """
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The ID of the public endpoint.
+        """
+        services: NotRequired[pulumi.Input[Sequence[pulumi.Input['DatawarehouseDeploymentPublicNetworkServiceArgsDict']]]]
+        """
+        List of services exposed on the public endpoint.
+        """
+elif False:
+    DatawarehouseDeploymentPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class DatawarehouseDeploymentPublicNetworkArgs:
+    def __init__(__self__, *,
+                 dns_record: Optional[pulumi.Input[_builtins.str]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input['DatawarehouseDeploymentPublicNetworkServiceArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] dns_record: DNS record for the public endpoint.
+        :param pulumi.Input[_builtins.str] id: The ID of the public endpoint.
+        :param pulumi.Input[Sequence[pulumi.Input['DatawarehouseDeploymentPublicNetworkServiceArgs']]] services: List of services exposed on the public endpoint.
+        """
+        if dns_record is not None:
+            pulumi.set(__self__, "dns_record", dns_record)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsRecord")
+    def dns_record(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        DNS record for the public endpoint.
+        """
+        return pulumi.get(self, "dns_record")
+
+    @dns_record.setter
+    def dns_record(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "dns_record", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the public endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatawarehouseDeploymentPublicNetworkServiceArgs']]]]:
+        """
+        List of services exposed on the public endpoint.
+        """
+        return pulumi.get(self, "services")
+
+    @services.setter
+    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatawarehouseDeploymentPublicNetworkServiceArgs']]]]):
+        pulumi.set(self, "services", value)
+
+
+if not MYPY:
+    class DatawarehouseDeploymentPublicNetworkServiceArgsDict(TypedDict):
+        port: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        TCP port number.
+        """
+        protocol: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Service protocol (e.g., "tcp", "https", "mysql").
+        """
+elif False:
+    DatawarehouseDeploymentPublicNetworkServiceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class DatawarehouseDeploymentPublicNetworkServiceArgs:
+    def __init__(__self__, *,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
+                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] port: TCP port number.
+        :param pulumi.Input[_builtins.str] protocol: Service protocol (e.g., "tcp", "https", "mysql").
+        """
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        TCP port number.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Service protocol (e.g., "tcp", "https", "mysql").
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
 
 
 if not MYPY:
@@ -6039,11 +6167,11 @@ if not MYPY:
     class IpamIpCustomResourceArgsDict(TypedDict):
         mac_address: pulumi.Input[_builtins.str]
         """
-        The MAC address of the resource the IP is attached to.
+        The MAC address of the custom resource.
         """
         name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The name of the resource the IP is attached to.
+        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
 elif False:
     IpamIpCustomResourceArgsDict: TypeAlias = Mapping[str, Any]
@@ -6054,8 +6182,8 @@ class IpamIpCustomResourceArgs:
                  mac_address: pulumi.Input[_builtins.str],
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] mac_address: The MAC address of the resource the IP is attached to.
-        :param pulumi.Input[_builtins.str] name: The name of the resource the IP is attached to.
+        :param pulumi.Input[_builtins.str] mac_address: The MAC address of the custom resource.
+        :param pulumi.Input[_builtins.str] name: When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
         pulumi.set(__self__, "mac_address", mac_address)
         if name is not None:
@@ -6065,7 +6193,7 @@ class IpamIpCustomResourceArgs:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> pulumi.Input[_builtins.str]:
         """
-        The MAC address of the resource the IP is attached to.
+        The MAC address of the custom resource.
         """
         return pulumi.get(self, "mac_address")
 
@@ -6077,7 +6205,7 @@ class IpamIpCustomResourceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the resource the IP is attached to.
+        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
         return pulumi.get(self, "name")
 

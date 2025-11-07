@@ -69,6 +69,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DatabaseReadReplica{}
 	case "scaleway:index/databaseUser:DatabaseUser":
 		r = &DatabaseUser{}
+	case "scaleway:index/datawarehouseDatabase:DatawarehouseDatabase":
+		r = &DatawarehouseDatabase{}
+	case "scaleway:index/datawarehouseDeployment:DatawarehouseDeployment":
+		r = &DatawarehouseDeployment{}
+	case "scaleway:index/datawarehouseUser:DatawarehouseUser":
+		r = &DatawarehouseUser{}
 	case "scaleway:index/domainRecord:DomainRecord":
 		r = &DomainRecord{}
 	case "scaleway:index/domainZone:DomainZone":
@@ -404,6 +410,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/databaseUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/datawarehouseDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/datawarehouseDeployment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/datawarehouseUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -63,7 +63,7 @@ type Hub struct {
 	DeviceCount pulumi.IntOutput `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrOutput `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrOutput `pulumi:"enabled"`
@@ -75,7 +75,7 @@ type Hub struct {
 	HubCa pulumi.StringPtrOutput `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrOutput `pulumi:"hubCaChallenge"`
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa pulumi.StringOutput `pulumi:"mqttCa"`
 	// The MQTT ca url
 	MqttCaUrl pulumi.StringOutput `pulumi:"mqttCaUrl"`
@@ -146,7 +146,7 @@ type hubState struct {
 	DeviceCount *int `pulumi:"deviceCount"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
@@ -158,7 +158,7 @@ type hubState struct {
 	HubCa *string `pulumi:"hubCa"`
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge *string `pulumi:"hubCaChallenge"`
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa *string `pulumi:"mqttCa"`
 	// The MQTT ca url
 	MqttCaUrl *string `pulumi:"mqttCaUrl"`
@@ -191,7 +191,7 @@ type HubState struct {
 	DeviceCount pulumi.IntPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
@@ -203,7 +203,7 @@ type HubState struct {
 	HubCa pulumi.StringPtrInput
 	// Challenge certificate for the user provided hub CA
 	HubCaChallenge pulumi.StringPtrInput
-	// The MQTT certificat content
+	// The MQTT certificate content
 	MqttCa pulumi.StringPtrInput
 	// The MQTT ca url
 	MqttCaUrl pulumi.StringPtrInput
@@ -234,7 +234,7 @@ type hubArgs struct {
 	DeviceAutoProvisioning *bool `pulumi:"deviceAutoProvisioning"`
 	// Whether to enable the hub events or not
 	DisableEvents *bool `pulumi:"disableEvents"`
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled *bool `pulumi:"enabled"`
@@ -262,7 +262,7 @@ type HubArgs struct {
 	DeviceAutoProvisioning pulumi.BoolPtrInput
 	// Whether to enable the hub events or not
 	DisableEvents pulumi.BoolPtrInput
-	// Wether the IoT Hub instance should be enabled or not.
+	// Whether the IoT Hub instance should be enabled or not.
 	//
 	// > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 	Enabled pulumi.BoolPtrInput
@@ -396,7 +396,7 @@ func (o HubOutput) DisableEvents() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Hub) pulumi.BoolPtrOutput { return v.DisableEvents }).(pulumi.BoolPtrOutput)
 }
 
-// Wether the IoT Hub instance should be enabled or not.
+// Whether the IoT Hub instance should be enabled or not.
 //
 // > **Important:** Updates to `enabled` will disconnect eventually connected devices.
 func (o HubOutput) Enabled() pulumi.BoolPtrOutput {
@@ -423,7 +423,7 @@ func (o HubOutput) HubCaChallenge() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Hub) pulumi.StringPtrOutput { return v.HubCaChallenge }).(pulumi.StringPtrOutput)
 }
 
-// The MQTT certificat content
+// The MQTT certificate content
 func (o HubOutput) MqttCa() pulumi.StringOutput {
 	return o.ApplyT(func(v *Hub) pulumi.StringOutput { return v.MqttCa }).(pulumi.StringOutput)
 }

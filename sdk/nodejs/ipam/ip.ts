@@ -144,7 +144,7 @@ export class Ip extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * The custom resource in which to book the IP
+     * The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
      */
     declare public readonly customResources: pulumi.Output<outputs.ipam.IpCustomResource[] | undefined>;
     /**
@@ -247,7 +247,7 @@ export interface IpState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The custom resource in which to book the IP
+     * The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
      */
     customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[]>;
     /**
@@ -297,7 +297,7 @@ export interface IpArgs {
      */
     address?: pulumi.Input<string>;
     /**
-     * The custom resource in which to book the IP
+     * The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
      */
     customResources?: pulumi.Input<pulumi.Input<inputs.ipam.IpCustomResource>[]>;
     /**

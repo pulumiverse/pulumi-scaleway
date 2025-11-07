@@ -228,7 +228,7 @@ type Ip struct {
 	Address pulumi.StringOutput `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The custom resource in which to book the IP
+	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources IpCustomResourceArrayOutput `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrOutput `pulumi:"isIpv6"`
@@ -293,7 +293,7 @@ type ipState struct {
 	Address *string `pulumi:"address"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// The custom resource in which to book the IP
+	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources []IpCustomResource `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
@@ -320,7 +320,7 @@ type IpState struct {
 	Address pulumi.StringPtrInput
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// The custom resource in which to book the IP
+	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources IpCustomResourceArrayInput
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
@@ -349,7 +349,7 @@ func (IpState) ElementType() reflect.Type {
 type ipArgs struct {
 	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
-	// The custom resource in which to book the IP
+	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources []IpCustomResource `pulumi:"customResources"`
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 *bool `pulumi:"isIpv6"`
@@ -367,7 +367,7 @@ type ipArgs struct {
 type IpArgs struct {
 	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
-	// The custom resource in which to book the IP
+	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 	CustomResources IpCustomResourceArrayInput
 	// Defines whether to request an IPv6 address instead of IPv4.
 	IsIpv6 pulumi.BoolPtrInput
@@ -478,7 +478,7 @@ func (o IpOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The custom resource in which to book the IP
+// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
 func (o IpOutput) CustomResources() IpCustomResourceArrayOutput {
 	return o.ApplyT(func(v *Ip) IpCustomResourceArrayOutput { return v.CustomResources }).(IpCustomResourceArrayOutput)
 }

@@ -82,7 +82,7 @@ type Pool struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The tags associated with the pool.
 	//
-	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The last update date of the pool.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -201,7 +201,7 @@ type poolState struct {
 	Status *string `pulumi:"status"`
 	// The tags associated with the pool.
 	//
-	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags []string `pulumi:"tags"`
 	// The last update date of the pool.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -276,7 +276,7 @@ type PoolState struct {
 	Status pulumi.StringPtrInput
 	// The tags associated with the pool.
 	//
-	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayInput
 	// The last update date of the pool.
 	UpdatedAt pulumi.StringPtrInput
@@ -347,7 +347,7 @@ type poolArgs struct {
 	Size int `pulumi:"size"`
 	// The tags associated with the pool.
 	//
-	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags []string `pulumi:"tags"`
 	// The Pool upgrade policy
 	UpgradePolicy *PoolUpgradePolicy `pulumi:"upgradePolicy"`
@@ -411,7 +411,7 @@ type PoolArgs struct {
 	Size pulumi.IntInput
 	// The tags associated with the pool.
 	//
-	// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+	// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 	Tags pulumi.StringArrayInput
 	// The Pool upgrade policy
 	UpgradePolicy PoolUpgradePolicyPtrInput
@@ -628,7 +628,7 @@ func (o PoolOutput) Status() pulumi.StringOutput {
 
 // The tags associated with the pool.
 //
-// > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+// > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
 func (o PoolOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Pool) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

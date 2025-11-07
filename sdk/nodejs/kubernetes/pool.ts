@@ -144,7 +144,7 @@ export class Pool extends pulumi.CustomResource {
     /**
      * The tags associated with the pool.
      *
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+     * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
@@ -357,7 +357,7 @@ export interface PoolState {
     /**
      * The tags associated with the pool.
      *
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+     * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -471,7 +471,7 @@ export interface PoolArgs {
     /**
      * The tags associated with the pool.
      *
-     * > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+     * > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**

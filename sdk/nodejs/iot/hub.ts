@@ -78,7 +78,7 @@ export class Hub extends pulumi.CustomResource {
      */
     declare public readonly disableEvents: pulumi.Output<boolean | undefined>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether the IoT Hub instance should be enabled or not.
      *
      * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
@@ -100,7 +100,7 @@ export class Hub extends pulumi.CustomResource {
      */
     declare public readonly hubCaChallenge: pulumi.Output<string | undefined>;
     /**
-     * The MQTT certificat content
+     * The MQTT certificate content
      */
     declare public /*out*/ readonly mqttCa: pulumi.Output<string>;
     /**
@@ -227,7 +227,7 @@ export interface HubState {
      */
     disableEvents?: pulumi.Input<boolean>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether the IoT Hub instance should be enabled or not.
      *
      * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */
@@ -249,7 +249,7 @@ export interface HubState {
      */
     hubCaChallenge?: pulumi.Input<string>;
     /**
-     * The MQTT certificat content
+     * The MQTT certificate content
      */
     mqttCa?: pulumi.Input<string>;
     /**
@@ -301,7 +301,7 @@ export interface HubArgs {
      */
     disableEvents?: pulumi.Input<boolean>;
     /**
-     * Wether the IoT Hub instance should be enabled or not.
+     * Whether the IoT Hub instance should be enabled or not.
      *
      * > **Important:** Updates to `enabled` will disconnect eventually connected devices.
      */

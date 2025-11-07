@@ -4284,6 +4284,229 @@ func (o DatabaseReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutpu
 	}).(pulumi.StringPtrOutput)
 }
 
+type DatawarehouseDeploymentPublicNetwork struct {
+	// DNS record for the public endpoint.
+	DnsRecord *string `pulumi:"dnsRecord"`
+	// The ID of the public endpoint.
+	Id *string `pulumi:"id"`
+	// List of services exposed on the public endpoint.
+	Services []DatawarehouseDeploymentPublicNetworkService `pulumi:"services"`
+}
+
+// DatawarehouseDeploymentPublicNetworkInput is an input type that accepts DatawarehouseDeploymentPublicNetworkArgs and DatawarehouseDeploymentPublicNetworkOutput values.
+// You can construct a concrete instance of `DatawarehouseDeploymentPublicNetworkInput` via:
+//
+//	DatawarehouseDeploymentPublicNetworkArgs{...}
+type DatawarehouseDeploymentPublicNetworkInput interface {
+	pulumi.Input
+
+	ToDatawarehouseDeploymentPublicNetworkOutput() DatawarehouseDeploymentPublicNetworkOutput
+	ToDatawarehouseDeploymentPublicNetworkOutputWithContext(context.Context) DatawarehouseDeploymentPublicNetworkOutput
+}
+
+type DatawarehouseDeploymentPublicNetworkArgs struct {
+	// DNS record for the public endpoint.
+	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
+	// The ID of the public endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// List of services exposed on the public endpoint.
+	Services DatawarehouseDeploymentPublicNetworkServiceArrayInput `pulumi:"services"`
+}
+
+func (DatawarehouseDeploymentPublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatawarehouseDeploymentPublicNetwork)(nil)).Elem()
+}
+
+func (i DatawarehouseDeploymentPublicNetworkArgs) ToDatawarehouseDeploymentPublicNetworkOutput() DatawarehouseDeploymentPublicNetworkOutput {
+	return i.ToDatawarehouseDeploymentPublicNetworkOutputWithContext(context.Background())
+}
+
+func (i DatawarehouseDeploymentPublicNetworkArgs) ToDatawarehouseDeploymentPublicNetworkOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatawarehouseDeploymentPublicNetworkOutput)
+}
+
+// DatawarehouseDeploymentPublicNetworkArrayInput is an input type that accepts DatawarehouseDeploymentPublicNetworkArray and DatawarehouseDeploymentPublicNetworkArrayOutput values.
+// You can construct a concrete instance of `DatawarehouseDeploymentPublicNetworkArrayInput` via:
+//
+//	DatawarehouseDeploymentPublicNetworkArray{ DatawarehouseDeploymentPublicNetworkArgs{...} }
+type DatawarehouseDeploymentPublicNetworkArrayInput interface {
+	pulumi.Input
+
+	ToDatawarehouseDeploymentPublicNetworkArrayOutput() DatawarehouseDeploymentPublicNetworkArrayOutput
+	ToDatawarehouseDeploymentPublicNetworkArrayOutputWithContext(context.Context) DatawarehouseDeploymentPublicNetworkArrayOutput
+}
+
+type DatawarehouseDeploymentPublicNetworkArray []DatawarehouseDeploymentPublicNetworkInput
+
+func (DatawarehouseDeploymentPublicNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatawarehouseDeploymentPublicNetwork)(nil)).Elem()
+}
+
+func (i DatawarehouseDeploymentPublicNetworkArray) ToDatawarehouseDeploymentPublicNetworkArrayOutput() DatawarehouseDeploymentPublicNetworkArrayOutput {
+	return i.ToDatawarehouseDeploymentPublicNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i DatawarehouseDeploymentPublicNetworkArray) ToDatawarehouseDeploymentPublicNetworkArrayOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatawarehouseDeploymentPublicNetworkArrayOutput)
+}
+
+type DatawarehouseDeploymentPublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (DatawarehouseDeploymentPublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatawarehouseDeploymentPublicNetwork)(nil)).Elem()
+}
+
+func (o DatawarehouseDeploymentPublicNetworkOutput) ToDatawarehouseDeploymentPublicNetworkOutput() DatawarehouseDeploymentPublicNetworkOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkOutput) ToDatawarehouseDeploymentPublicNetworkOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkOutput {
+	return o
+}
+
+// DNS record for the public endpoint.
+func (o DatawarehouseDeploymentPublicNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatawarehouseDeploymentPublicNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the public endpoint.
+func (o DatawarehouseDeploymentPublicNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatawarehouseDeploymentPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// List of services exposed on the public endpoint.
+func (o DatawarehouseDeploymentPublicNetworkOutput) Services() DatawarehouseDeploymentPublicNetworkServiceArrayOutput {
+	return o.ApplyT(func(v DatawarehouseDeploymentPublicNetwork) []DatawarehouseDeploymentPublicNetworkService {
+		return v.Services
+	}).(DatawarehouseDeploymentPublicNetworkServiceArrayOutput)
+}
+
+type DatawarehouseDeploymentPublicNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (DatawarehouseDeploymentPublicNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatawarehouseDeploymentPublicNetwork)(nil)).Elem()
+}
+
+func (o DatawarehouseDeploymentPublicNetworkArrayOutput) ToDatawarehouseDeploymentPublicNetworkArrayOutput() DatawarehouseDeploymentPublicNetworkArrayOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkArrayOutput) ToDatawarehouseDeploymentPublicNetworkArrayOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkArrayOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkArrayOutput) Index(i pulumi.IntInput) DatawarehouseDeploymentPublicNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatawarehouseDeploymentPublicNetwork {
+		return vs[0].([]DatawarehouseDeploymentPublicNetwork)[vs[1].(int)]
+	}).(DatawarehouseDeploymentPublicNetworkOutput)
+}
+
+type DatawarehouseDeploymentPublicNetworkService struct {
+	// TCP port number.
+	Port *int `pulumi:"port"`
+	// Service protocol (e.g., "tcp", "https", "mysql").
+	Protocol *string `pulumi:"protocol"`
+}
+
+// DatawarehouseDeploymentPublicNetworkServiceInput is an input type that accepts DatawarehouseDeploymentPublicNetworkServiceArgs and DatawarehouseDeploymentPublicNetworkServiceOutput values.
+// You can construct a concrete instance of `DatawarehouseDeploymentPublicNetworkServiceInput` via:
+//
+//	DatawarehouseDeploymentPublicNetworkServiceArgs{...}
+type DatawarehouseDeploymentPublicNetworkServiceInput interface {
+	pulumi.Input
+
+	ToDatawarehouseDeploymentPublicNetworkServiceOutput() DatawarehouseDeploymentPublicNetworkServiceOutput
+	ToDatawarehouseDeploymentPublicNetworkServiceOutputWithContext(context.Context) DatawarehouseDeploymentPublicNetworkServiceOutput
+}
+
+type DatawarehouseDeploymentPublicNetworkServiceArgs struct {
+	// TCP port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Service protocol (e.g., "tcp", "https", "mysql").
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (DatawarehouseDeploymentPublicNetworkServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkService)(nil)).Elem()
+}
+
+func (i DatawarehouseDeploymentPublicNetworkServiceArgs) ToDatawarehouseDeploymentPublicNetworkServiceOutput() DatawarehouseDeploymentPublicNetworkServiceOutput {
+	return i.ToDatawarehouseDeploymentPublicNetworkServiceOutputWithContext(context.Background())
+}
+
+func (i DatawarehouseDeploymentPublicNetworkServiceArgs) ToDatawarehouseDeploymentPublicNetworkServiceOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatawarehouseDeploymentPublicNetworkServiceOutput)
+}
+
+// DatawarehouseDeploymentPublicNetworkServiceArrayInput is an input type that accepts DatawarehouseDeploymentPublicNetworkServiceArray and DatawarehouseDeploymentPublicNetworkServiceArrayOutput values.
+// You can construct a concrete instance of `DatawarehouseDeploymentPublicNetworkServiceArrayInput` via:
+//
+//	DatawarehouseDeploymentPublicNetworkServiceArray{ DatawarehouseDeploymentPublicNetworkServiceArgs{...} }
+type DatawarehouseDeploymentPublicNetworkServiceArrayInput interface {
+	pulumi.Input
+
+	ToDatawarehouseDeploymentPublicNetworkServiceArrayOutput() DatawarehouseDeploymentPublicNetworkServiceArrayOutput
+	ToDatawarehouseDeploymentPublicNetworkServiceArrayOutputWithContext(context.Context) DatawarehouseDeploymentPublicNetworkServiceArrayOutput
+}
+
+type DatawarehouseDeploymentPublicNetworkServiceArray []DatawarehouseDeploymentPublicNetworkServiceInput
+
+func (DatawarehouseDeploymentPublicNetworkServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatawarehouseDeploymentPublicNetworkService)(nil)).Elem()
+}
+
+func (i DatawarehouseDeploymentPublicNetworkServiceArray) ToDatawarehouseDeploymentPublicNetworkServiceArrayOutput() DatawarehouseDeploymentPublicNetworkServiceArrayOutput {
+	return i.ToDatawarehouseDeploymentPublicNetworkServiceArrayOutputWithContext(context.Background())
+}
+
+func (i DatawarehouseDeploymentPublicNetworkServiceArray) ToDatawarehouseDeploymentPublicNetworkServiceArrayOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DatawarehouseDeploymentPublicNetworkServiceArrayOutput)
+}
+
+type DatawarehouseDeploymentPublicNetworkServiceOutput struct{ *pulumi.OutputState }
+
+func (DatawarehouseDeploymentPublicNetworkServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkService)(nil)).Elem()
+}
+
+func (o DatawarehouseDeploymentPublicNetworkServiceOutput) ToDatawarehouseDeploymentPublicNetworkServiceOutput() DatawarehouseDeploymentPublicNetworkServiceOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkServiceOutput) ToDatawarehouseDeploymentPublicNetworkServiceOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkServiceOutput {
+	return o
+}
+
+// TCP port number.
+func (o DatawarehouseDeploymentPublicNetworkServiceOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DatawarehouseDeploymentPublicNetworkService) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Service protocol (e.g., "tcp", "https", "mysql").
+func (o DatawarehouseDeploymentPublicNetworkServiceOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DatawarehouseDeploymentPublicNetworkService) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type DatawarehouseDeploymentPublicNetworkServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (DatawarehouseDeploymentPublicNetworkServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DatawarehouseDeploymentPublicNetworkService)(nil)).Elem()
+}
+
+func (o DatawarehouseDeploymentPublicNetworkServiceArrayOutput) ToDatawarehouseDeploymentPublicNetworkServiceArrayOutput() DatawarehouseDeploymentPublicNetworkServiceArrayOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkServiceArrayOutput) ToDatawarehouseDeploymentPublicNetworkServiceArrayOutputWithContext(ctx context.Context) DatawarehouseDeploymentPublicNetworkServiceArrayOutput {
+	return o
+}
+
+func (o DatawarehouseDeploymentPublicNetworkServiceArrayOutput) Index(i pulumi.IntInput) DatawarehouseDeploymentPublicNetworkServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DatawarehouseDeploymentPublicNetworkService {
+		return vs[0].([]DatawarehouseDeploymentPublicNetworkService)[vs[1].(int)]
+	}).(DatawarehouseDeploymentPublicNetworkServiceOutput)
+}
+
 type DomainRecordGeoIp struct {
 	// The list of matches
 	Matches []DomainRecordGeoIpMatch `pulumi:"matches"`
@@ -10244,9 +10467,9 @@ func (o IotRouteS3PtrOutput) Strategy() pulumi.StringPtrOutput {
 }
 
 type IpamIpCustomResource struct {
-	// The MAC address of the resource the IP is attached to.
+	// The MAC address of the custom resource.
 	MacAddress string `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
+	// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 	Name *string `pulumi:"name"`
 }
 
@@ -10262,9 +10485,9 @@ type IpamIpCustomResourceInput interface {
 }
 
 type IpamIpCustomResourceArgs struct {
-	// The MAC address of the resource the IP is attached to.
+	// The MAC address of the custom resource.
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
+	// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -10319,12 +10542,12 @@ func (o IpamIpCustomResourceOutput) ToIpamIpCustomResourceOutputWithContext(ctx 
 	return o
 }
 
-// The MAC address of the resource the IP is attached to.
+// The MAC address of the custom resource.
 func (o IpamIpCustomResourceOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v IpamIpCustomResource) string { return v.MacAddress }).(pulumi.StringOutput)
 }
 
-// The name of the resource the IP is attached to.
+// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 func (o IpamIpCustomResourceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpamIpCustomResource) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -34072,6 +34295,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaDirectAccessPtrInput)(nil)).Elem(), DatabaseReadReplicaDirectAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseReadReplicaPrivateNetworkPtrInput)(nil)).Elem(), DatabaseReadReplicaPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkInput)(nil)).Elem(), DatawarehouseDeploymentPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkArrayInput)(nil)).Elem(), DatawarehouseDeploymentPublicNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkServiceInput)(nil)).Elem(), DatawarehouseDeploymentPublicNetworkServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DatawarehouseDeploymentPublicNetworkServiceArrayInput)(nil)).Elem(), DatawarehouseDeploymentPublicNetworkServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpPtrInput)(nil)).Elem(), DomainRecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DomainRecordGeoIpMatchInput)(nil)).Elem(), DomainRecordGeoIpMatchArgs{})
@@ -34547,6 +34774,10 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseReadReplicaDirectAccessPtrOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkOutput{})
 	pulumi.RegisterOutputType(DatabaseReadReplicaPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(DatawarehouseDeploymentPublicNetworkOutput{})
+	pulumi.RegisterOutputType(DatawarehouseDeploymentPublicNetworkArrayOutput{})
+	pulumi.RegisterOutputType(DatawarehouseDeploymentPublicNetworkServiceOutput{})
+	pulumi.RegisterOutputType(DatawarehouseDeploymentPublicNetworkServiceArrayOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(DomainRecordGeoIpMatchOutput{})

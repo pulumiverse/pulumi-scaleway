@@ -125,6 +125,21 @@ export type DatabaseUser = import("./databaseUser").DatabaseUser;
 export const DatabaseUser: typeof import("./databaseUser").DatabaseUser = null as any;
 utilities.lazyLoad(exports, ["DatabaseUser"], () => require("./databaseUser"));
 
+export { DatawarehouseDatabaseArgs, DatawarehouseDatabaseState } from "./datawarehouseDatabase";
+export type DatawarehouseDatabase = import("./datawarehouseDatabase").DatawarehouseDatabase;
+export const DatawarehouseDatabase: typeof import("./datawarehouseDatabase").DatawarehouseDatabase = null as any;
+utilities.lazyLoad(exports, ["DatawarehouseDatabase"], () => require("./datawarehouseDatabase"));
+
+export { DatawarehouseDeploymentArgs, DatawarehouseDeploymentState } from "./datawarehouseDeployment";
+export type DatawarehouseDeployment = import("./datawarehouseDeployment").DatawarehouseDeployment;
+export const DatawarehouseDeployment: typeof import("./datawarehouseDeployment").DatawarehouseDeployment = null as any;
+utilities.lazyLoad(exports, ["DatawarehouseDeployment"], () => require("./datawarehouseDeployment"));
+
+export { DatawarehouseUserArgs, DatawarehouseUserState } from "./datawarehouseUser";
+export type DatawarehouseUser = import("./datawarehouseUser").DatawarehouseUser;
+export const DatawarehouseUser: typeof import("./datawarehouseUser").DatawarehouseUser = null as any;
+utilities.lazyLoad(exports, ["DatawarehouseUser"], () => require("./datawarehouseUser"));
+
 export { DomainRecordArgs, DomainRecordState } from "./domainRecord";
 export type DomainRecord = import("./domainRecord").DomainRecord;
 export const DomainRecord: typeof import("./domainRecord").DomainRecord = null as any;
@@ -1136,6 +1151,12 @@ const _module = {
                 return new DatabaseReadReplica(name, <any>undefined, { urn })
             case "scaleway:index/databaseUser:DatabaseUser":
                 return new DatabaseUser(name, <any>undefined, { urn })
+            case "scaleway:index/datawarehouseDatabase:DatawarehouseDatabase":
+                return new DatawarehouseDatabase(name, <any>undefined, { urn })
+            case "scaleway:index/datawarehouseDeployment:DatawarehouseDeployment":
+                return new DatawarehouseDeployment(name, <any>undefined, { urn })
+            case "scaleway:index/datawarehouseUser:DatawarehouseUser":
+                return new DatawarehouseUser(name, <any>undefined, { urn })
             case "scaleway:index/domainRecord:DomainRecord":
                 return new DomainRecord(name, <any>undefined, { urn })
             case "scaleway:index/domainZone:DomainZone":
@@ -1351,6 +1372,9 @@ pulumi.runtime.registerResourceModule("scaleway", "index/databaseInstance", _mod
 pulumi.runtime.registerResourceModule("scaleway", "index/databasePrivilege", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseReadReplica", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/databaseUser", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/datawarehouseDatabase", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/datawarehouseDeployment", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/datawarehouseUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainRecord", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/domainZone", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/edgeServicesBackendStage", _module)

@@ -529,6 +529,32 @@ export interface DatabaseReadReplicaPrivateNetwork {
     zone?: pulumi.Input<string>;
 }
 
+export interface DatawarehouseDeploymentPublicNetwork {
+    /**
+     * DNS record for the public endpoint.
+     */
+    dnsRecord?: pulumi.Input<string>;
+    /**
+     * The ID of the public endpoint.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * List of services exposed on the public endpoint.
+     */
+    services?: pulumi.Input<pulumi.Input<inputs.DatawarehouseDeploymentPublicNetworkService>[]>;
+}
+
+export interface DatawarehouseDeploymentPublicNetworkService {
+    /**
+     * TCP port number.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * Service protocol (e.g., "tcp", "https", "mysql").
+     */
+    protocol?: pulumi.Input<string>;
+}
+
 export interface DomainRecordGeoIp {
     /**
      * The list of matches
@@ -1283,11 +1309,11 @@ export interface IotRouteS3 {
 
 export interface IpamIpCustomResource {
     /**
-     * The MAC address of the resource the IP is attached to.
+     * The MAC address of the custom resource.
      */
     macAddress: pulumi.Input<string>;
     /**
-     * The name of the resource the IP is attached to.
+     * When the resource is in a Private Network, a DNS record is available to resolve the resource name.
      */
     name?: pulumi.Input<string>;
 }
@@ -4246,11 +4272,11 @@ export namespace ipam {
 
     export interface IpCustomResource {
         /**
-         * The MAC address of the resource the IP is attached to.
+         * The MAC address of the custom resource.
          */
         macAddress: pulumi.Input<string>;
         /**
-         * The name of the resource the IP is attached to.
+         * When the resource is in a Private Network, a DNS record is available to resolve the resource name.
          */
         name?: pulumi.Input<string>;
     }

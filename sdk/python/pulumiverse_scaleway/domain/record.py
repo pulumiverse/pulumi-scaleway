@@ -442,7 +442,7 @@ class Record(pulumi.CustomResource):
 
         ### Create basic DNS records
 
-        The folllowing commands allow you to:
+        The following commands allow you to:
 
         - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
 
@@ -482,7 +482,7 @@ class Record(pulumi.CustomResource):
 
         ### Create dynamic records
 
-        The folllowing commands allow you to:
+        The following commands allow you to:
 
         - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
 
@@ -659,7 +659,7 @@ class Record(pulumi.CustomResource):
 
         ### Create basic DNS records
 
-        The folllowing commands allow you to:
+        The following commands allow you to:
 
         - create an A record for the `www.domain.tld` domain, pointing to `1.2.3.4` and another one pointing to `1.2.3.5`
 
@@ -699,7 +699,7 @@ class Record(pulumi.CustomResource):
 
         ### Create dynamic records
 
-        The folllowing commands allow you to:
+        The following commands allow you to:
 
         - create a Geo IP record for `images.domain.tld` that points to different IPs based on the user's location: `1.2.3.5` for users in France (EU), and `4.3.2.1` for users in North America (NA)
 

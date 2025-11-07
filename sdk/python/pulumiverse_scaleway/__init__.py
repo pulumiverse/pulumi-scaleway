@@ -30,6 +30,9 @@ from .database_instance import *
 from .database_privilege import *
 from .database_read_replica import *
 from .database_user import *
+from .datawarehouse_database import *
+from .datawarehouse_deployment import *
+from .datawarehouse_user import *
 from .domain_record import *
 from .domain_zone import *
 from .edge_services_backend_stage import *
@@ -840,6 +843,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/databaseUser:DatabaseUser": "DatabaseUser"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/datawarehouseDatabase",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/datawarehouseDatabase:DatawarehouseDatabase": "DatawarehouseDatabase"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/datawarehouseDeployment",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/datawarehouseDeployment:DatawarehouseDeployment": "DatawarehouseDeployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/datawarehouseUser",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/datawarehouseUser:DatawarehouseUser": "DatawarehouseUser"
   }
  },
  {

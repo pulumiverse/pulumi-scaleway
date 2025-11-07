@@ -76,7 +76,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<bool?> DisableEvents { get; private set; } = null!;
 
         /// <summary>
-        /// Wether the IoT Hub instance should be enabled or not.
+        /// Whether the IoT Hub instance should be enabled or not.
         /// 
         /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
@@ -108,7 +108,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Output<string?> HubCaChallenge { get; private set; } = null!;
 
         /// <summary>
-        /// The MQTT certificat content
+        /// The MQTT certificate content
         /// </summary>
         [Output("mqttCa")]
         public Output<string> MqttCa { get; private set; } = null!;
@@ -227,7 +227,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<bool>? DisableEvents { get; set; }
 
         /// <summary>
-        /// Wether the IoT Hub instance should be enabled or not.
+        /// Whether the IoT Hub instance should be enabled or not.
         /// 
         /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
@@ -317,7 +317,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<bool>? DisableEvents { get; set; }
 
         /// <summary>
-        /// Wether the IoT Hub instance should be enabled or not.
+        /// Whether the IoT Hub instance should be enabled or not.
         /// 
         /// &gt; **Important:** Updates to `Enabled` will disconnect eventually connected devices.
         /// </summary>
@@ -349,7 +349,7 @@ namespace Pulumiverse.Scaleway.Iot
         public Input<string>? HubCaChallenge { get; set; }
 
         /// <summary>
-        /// The MQTT certificat content
+        /// The MQTT certificate content
         /// </summary>
         [Input("mqttCa")]
         public Input<string>? MqttCa { get; set; }
