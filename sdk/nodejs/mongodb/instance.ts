@@ -167,7 +167,7 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public readonly nodeNumber: pulumi.Output<number>;
     /**
-     * The type of MongoDB® intance to create.
+     * The type of MongoDB® instance to create.
      */
     declare public readonly nodeType: pulumi.Output<string>;
     /**
@@ -223,7 +223,7 @@ export class Instance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
-     * Name of the user created when the intance is created.
+     * Name of the user created when the instance is created.
      */
     declare public readonly userName: pulumi.Output<string | undefined>;
     /**
@@ -335,7 +335,7 @@ export interface InstanceState {
      */
     nodeNumber?: pulumi.Input<number>;
     /**
-     * The type of MongoDB® intance to create.
+     * The type of MongoDB® instance to create.
      */
     nodeType?: pulumi.Input<string>;
     /**
@@ -391,7 +391,7 @@ export interface InstanceState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * Name of the user created when the intance is created.
+     * Name of the user created when the instance is created.
      */
     userName?: pulumi.Input<string>;
     /**
@@ -425,7 +425,7 @@ export interface InstanceArgs {
      */
     nodeNumber: pulumi.Input<number>;
     /**
-     * The type of MongoDB® intance to create.
+     * The type of MongoDB® instance to create.
      */
     nodeType: pulumi.Input<string>;
     /**
@@ -473,7 +473,7 @@ export interface InstanceArgs {
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the user created when the intance is created.
+     * Name of the user created when the instance is created.
      */
     userName?: pulumi.Input<string>;
     /**

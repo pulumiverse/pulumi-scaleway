@@ -92,7 +92,7 @@ class GetIpResult:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> _builtins.str:
+    def project_id(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "project_id")
 
     @_builtins.property
@@ -123,7 +123,7 @@ class GetIpResult:
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> _builtins.str:
+    def zone(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "zone")
 
 
@@ -147,6 +147,8 @@ class AwaitableGetIpResult(GetIpResult):
 
 def get_ip(address: Optional[_builtins.str] = None,
            id: Optional[_builtins.str] = None,
+           project_id: Optional[_builtins.str] = None,
+           zone: Optional[_builtins.str] = None,
            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIpResult:
     """
     Gets information about an instance IP.
@@ -156,10 +158,14 @@ def get_ip(address: Optional[_builtins.str] = None,
            Only one of `address` and `id` should be specified.
     :param _builtins.str id: The ID of the IP address to retrieve
            Only one of `address` and `id` should be specified.
+    :param _builtins.str project_id: `project_id`) The ID of the project the IP is associated with.
+    :param _builtins.str zone: `zone`) The zone in which the IP should be reserved.
     """
     __args__ = dict()
     __args__['address'] = address
     __args__['id'] = id
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('scaleway:instance/getIp:getIp', __args__, opts=opts, typ=GetIpResult).value
 
@@ -176,6 +182,8 @@ def get_ip(address: Optional[_builtins.str] = None,
         zone=pulumi.get(__ret__, 'zone'))
 def get_ip_output(address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                   id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                  project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+                  zone: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetIpResult]:
     """
     Gets information about an instance IP.
@@ -185,10 +193,14 @@ def get_ip_output(address: Optional[pulumi.Input[Optional[_builtins.str]]] = Non
            Only one of `address` and `id` should be specified.
     :param _builtins.str id: The ID of the IP address to retrieve
            Only one of `address` and `id` should be specified.
+    :param _builtins.str project_id: `project_id`) The ID of the project the IP is associated with.
+    :param _builtins.str zone: `zone`) The zone in which the IP should be reserved.
     """
     __args__ = dict()
     __args__['address'] = address
     __args__['id'] = id
+    __args__['projectId'] = project_id
+    __args__['zone'] = zone
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:instance/getIp:getIp', __args__, opts=opts, typ=GetIpResult)
     return __ret__.apply(lambda __response__: GetIpResult(

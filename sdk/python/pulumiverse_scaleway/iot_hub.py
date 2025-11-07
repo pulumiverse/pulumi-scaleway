@@ -36,7 +36,7 @@ class IotHubArgs:
                > **Important:** Updates to `product_plan` will recreate the IoT Hub Instance.
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[_builtins.bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[_builtins.bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the IoT Hub instance should be enabled or not.
                
                > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[_builtins.str] events_topic_prefix: Topic prefix for the hub events
@@ -108,7 +108,7 @@ class IotHubArgs:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether the IoT Hub instance should be enabled or not.
 
         > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
@@ -220,14 +220,14 @@ class _IotHubState:
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[_builtins.int] device_count: The number of registered devices in the Hub.
         :param pulumi.Input[_builtins.bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[_builtins.bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the IoT Hub instance should be enabled or not.
                
                > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[_builtins.str] endpoint: The MQTT network endpoint to connect MQTT devices to.
         :param pulumi.Input[_builtins.str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[_builtins.str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[_builtins.str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[_builtins.str] mqtt_ca: The MQTT certificat content
+        :param pulumi.Input[_builtins.str] mqtt_ca: The MQTT certificate content
         :param pulumi.Input[_builtins.str] mqtt_ca_url: The MQTT ca url
         :param pulumi.Input[_builtins.str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[_builtins.str] organization_id: The organization_id you want to attach the resource to
@@ -342,7 +342,7 @@ class _IotHubState:
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether the IoT Hub instance should be enabled or not.
 
         > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
@@ -404,7 +404,7 @@ class _IotHubState:
     @pulumi.getter(name="mqttCa")
     def mqtt_ca(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The MQTT certificat content
+        The MQTT certificate content
         """
         return pulumi.get(self, "mqtt_ca")
 
@@ -561,7 +561,7 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[_builtins.bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[_builtins.bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the IoT Hub instance should be enabled or not.
                
                > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[_builtins.str] events_topic_prefix: Topic prefix for the hub events
@@ -701,14 +701,14 @@ class IotHub(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] device_auto_provisioning: Wether to enable the device auto provisioning or not
         :param pulumi.Input[_builtins.int] device_count: The number of registered devices in the Hub.
         :param pulumi.Input[_builtins.bool] disable_events: Whether to enable the hub events or not
-        :param pulumi.Input[_builtins.bool] enabled: Wether the IoT Hub instance should be enabled or not.
+        :param pulumi.Input[_builtins.bool] enabled: Whether the IoT Hub instance should be enabled or not.
                
                > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         :param pulumi.Input[_builtins.str] endpoint: The MQTT network endpoint to connect MQTT devices to.
         :param pulumi.Input[_builtins.str] events_topic_prefix: Topic prefix for the hub events
         :param pulumi.Input[_builtins.str] hub_ca: Custom user provided certificate authority
         :param pulumi.Input[_builtins.str] hub_ca_challenge: Challenge certificate for the user provided hub CA
-        :param pulumi.Input[_builtins.str] mqtt_ca: The MQTT certificat content
+        :param pulumi.Input[_builtins.str] mqtt_ca: The MQTT certificate content
         :param pulumi.Input[_builtins.str] mqtt_ca_url: The MQTT ca url
         :param pulumi.Input[_builtins.str] name: The name of the IoT Hub instance you want to create (e.g. `my-hub`).
         :param pulumi.Input[_builtins.str] organization_id: The organization_id you want to attach the resource to
@@ -789,7 +789,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter
     def enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
-        Wether the IoT Hub instance should be enabled or not.
+        Whether the IoT Hub instance should be enabled or not.
 
         > **Important:** Updates to `enabled` will disconnect eventually connected devices.
         """
@@ -831,7 +831,7 @@ class IotHub(pulumi.CustomResource):
     @pulumi.getter(name="mqttCa")
     def mqtt_ca(self) -> pulumi.Output[_builtins.str]:
         """
-        The MQTT certificat content
+        The MQTT certificate content
         """
         return pulumi.get(self, "mqtt_ca")
 

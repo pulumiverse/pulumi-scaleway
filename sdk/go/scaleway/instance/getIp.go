@@ -30,6 +30,10 @@ type LookupIpArgs struct {
 	// The ID of the IP address to retrieve
 	// Only one of `address` and `id` should be specified.
 	Id *string `pulumi:"id"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId *string `pulumi:"projectId"`
+	// `zone`) The zone in which the IP should be reserved.
+	Zone *string `pulumi:"zone"`
 }
 
 // A collection of values returned by getIp.
@@ -41,15 +45,15 @@ type LookupIpResult struct {
 	// The organization ID the IP is associated with.
 	OrganizationId string `pulumi:"organizationId"`
 	// The IP Prefix.
-	Prefix    string `pulumi:"prefix"`
-	ProjectId string `pulumi:"projectId"`
+	Prefix    string  `pulumi:"prefix"`
+	ProjectId *string `pulumi:"projectId"`
 	// The reverse dns attached to this IP
 	Reverse  string   `pulumi:"reverse"`
 	ServerId string   `pulumi:"serverId"`
 	Tags     []string `pulumi:"tags"`
 	// The type of the IP
-	Type string `pulumi:"type"`
-	Zone string `pulumi:"zone"`
+	Type string  `pulumi:"type"`
+	Zone *string `pulumi:"zone"`
 }
 
 func LookupIpOutput(ctx *pulumi.Context, args LookupIpOutputArgs, opts ...pulumi.InvokeOption) LookupIpResultOutput {
@@ -69,6 +73,10 @@ type LookupIpOutputArgs struct {
 	// The ID of the IP address to retrieve
 	// Only one of `address` and `id` should be specified.
 	Id pulumi.StringPtrInput `pulumi:"id"`
+	// `projectId`) The ID of the project the IP is associated with.
+	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
+	// `zone`) The zone in which the IP should be reserved.
+	Zone pulumi.StringPtrInput `pulumi:"zone"`
 }
 
 func (LookupIpOutputArgs) ElementType() reflect.Type {
@@ -110,8 +118,8 @@ func (o LookupIpResultOutput) Prefix() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpResult) string { return v.Prefix }).(pulumi.StringOutput)
 }
 
-func (o LookupIpResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpResult) string { return v.ProjectId }).(pulumi.StringOutput)
+func (o LookupIpResultOutput) ProjectId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpResult) *string { return v.ProjectId }).(pulumi.StringPtrOutput)
 }
 
 // The reverse dns attached to this IP
@@ -132,8 +140,8 @@ func (o LookupIpResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIpResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
-func (o LookupIpResultOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupIpResult) string { return v.Zone }).(pulumi.StringOutput)
+func (o LookupIpResultOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupIpResult) *string { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 func init() {

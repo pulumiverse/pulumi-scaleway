@@ -6039,11 +6039,11 @@ if not MYPY:
     class IpamIpCustomResourceArgsDict(TypedDict):
         mac_address: pulumi.Input[_builtins.str]
         """
-        The MAC address of the resource the IP is attached to.
+        The MAC address of the custom resource.
         """
         name: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The name of the resource the IP is attached to.
+        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
 elif False:
     IpamIpCustomResourceArgsDict: TypeAlias = Mapping[str, Any]
@@ -6054,8 +6054,8 @@ class IpamIpCustomResourceArgs:
                  mac_address: pulumi.Input[_builtins.str],
                  name: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] mac_address: The MAC address of the resource the IP is attached to.
-        :param pulumi.Input[_builtins.str] name: The name of the resource the IP is attached to.
+        :param pulumi.Input[_builtins.str] mac_address: The MAC address of the custom resource.
+        :param pulumi.Input[_builtins.str] name: When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
         pulumi.set(__self__, "mac_address", mac_address)
         if name is not None:
@@ -6065,7 +6065,7 @@ class IpamIpCustomResourceArgs:
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> pulumi.Input[_builtins.str]:
         """
-        The MAC address of the resource the IP is attached to.
+        The MAC address of the custom resource.
         """
         return pulumi.get(self, "mac_address")
 
@@ -6077,7 +6077,7 @@ class IpamIpCustomResourceArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The name of the resource the IP is attached to.
+        When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         """
         return pulumi.get(self, "name")
 

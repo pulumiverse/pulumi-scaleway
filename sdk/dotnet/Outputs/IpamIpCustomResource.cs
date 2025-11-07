@@ -15,11 +15,11 @@ namespace Pulumiverse.Scaleway.Outputs
     public sealed class IpamIpCustomResource
     {
         /// <summary>
-        /// The MAC address of the resource the IP is attached to.
+        /// The MAC address of the custom resource.
         /// </summary>
         public readonly string MacAddress;
         /// <summary>
-        /// The name of the resource the IP is attached to.
+        /// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
         /// </summary>
         public readonly string? Name;
 

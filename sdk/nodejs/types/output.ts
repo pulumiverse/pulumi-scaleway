@@ -3695,11 +3695,11 @@ export interface IotRouteS3 {
 
 export interface IpamIpCustomResource {
     /**
-     * The MAC address of the resource the IP is attached to.
+     * The MAC address of the custom resource.
      */
     macAddress: string;
     /**
-     * The name of the resource the IP is attached to.
+     * When the resource is in a Private Network, a DNS record is available to resolve the resource name.
      */
     name?: string;
 }
@@ -5551,6 +5551,35 @@ export namespace databases {
          * Private network zone
          */
         zone: string;
+    }
+
+}
+
+export namespace datawarehouse {
+    export interface DeploymentPublicNetwork {
+        /**
+         * DNS record for the public endpoint.
+         */
+        dnsRecord: string;
+        /**
+         * The ID of the public endpoint.
+         */
+        id: string;
+        /**
+         * List of services exposed on the public endpoint.
+         */
+        services: outputs.datawarehouse.DeploymentPublicNetworkService[];
+    }
+
+    export interface DeploymentPublicNetworkService {
+        /**
+         * TCP port number.
+         */
+        port: number;
+        /**
+         * Service protocol (e.g., "tcp", "https", "mysql").
+         */
+        protocol: string;
     }
 
 }
@@ -7927,11 +7956,11 @@ export namespace ipam {
 
     export interface IpCustomResource {
         /**
-         * The MAC address of the resource the IP is attached to.
+         * The MAC address of the custom resource.
          */
         macAddress: string;
         /**
-         * The name of the resource the IP is attached to.
+         * When the resource is in a Private Network, a DNS record is available to resolve the resource name.
          */
         name?: string;
     }

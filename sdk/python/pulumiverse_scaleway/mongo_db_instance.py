@@ -43,7 +43,7 @@ class MongoDbInstanceArgs:
         """
         The set of arguments for constructing a MongoDbInstance resource.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
-        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® intance to create.
+        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] password: Password of the user.
@@ -57,7 +57,7 @@ class MongoDbInstanceArgs:
         :param pulumi.Input[_builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
         :param pulumi.Input[_builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the intance is created.
+        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
@@ -115,7 +115,7 @@ class MongoDbInstanceArgs:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Input[_builtins.str]:
         """
-        The type of MongoDB® intance to create.
+        The type of MongoDB® instance to create.
         """
         return pulumi.get(self, "node_type")
 
@@ -283,7 +283,7 @@ class MongoDbInstanceArgs:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the user created when the intance is created.
+        Name of the user created when the instance is created.
         """
         return pulumi.get(self, "user_name")
 
@@ -359,7 +359,7 @@ class _MongoDbInstanceState:
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
-        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® intance to create.
+        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
         :param pulumi.Input[Sequence[pulumi.Input['MongoDbInstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['MongoDbInstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
@@ -373,7 +373,7 @@ class _MongoDbInstanceState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[_builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the intance is created.
+        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
@@ -475,7 +475,7 @@ class _MongoDbInstanceState:
     @pulumi.getter(name="nodeType")
     def node_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The type of MongoDB® intance to create.
+        The type of MongoDB® instance to create.
         """
         return pulumi.get(self, "node_type")
 
@@ -643,7 +643,7 @@ class _MongoDbInstanceState:
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Name of the user created when the intance is created.
+        Name of the user created when the instance is created.
         """
         return pulumi.get(self, "user_name")
 
@@ -833,7 +833,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
-        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® intance to create.
+        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
@@ -845,7 +845,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] snapshot_schedule_frequency_hours: Snapshot schedule frequency in hours.
         :param pulumi.Input[_builtins.int] snapshot_schedule_retention_days: Snapshot schedule retention in days.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the intance is created.
+        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
@@ -1080,7 +1080,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
-        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® intance to create.
+        :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
@@ -1094,7 +1094,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags attached to the MongoDB® instance.
         :param pulumi.Input[_builtins.str] tls_certificate: The PEM-encoded TLS certificate for the MongoDB® instance, if available.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the intance is created.
+        :param pulumi.Input[_builtins.str] user_name: Name of the user created when the instance is created.
         :param pulumi.Input[_builtins.str] version: MongoDB® version of the instance.
         :param pulumi.Input[_builtins.int] volume_size_in_gb: Volume size in GB.
         :param pulumi.Input[_builtins.str] volume_type: Volume type of the instance.
@@ -1163,7 +1163,7 @@ class MongoDbInstance(pulumi.CustomResource):
     @pulumi.getter(name="nodeType")
     def node_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The type of MongoDB® intance to create.
+        The type of MongoDB® instance to create.
         """
         return pulumi.get(self, "node_type")
 
@@ -1275,7 +1275,7 @@ class MongoDbInstance(pulumi.CustomResource):
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Name of the user created when the intance is created.
+        Name of the user created when the instance is created.
         """
         return pulumi.get(self, "user_name")
 

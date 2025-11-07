@@ -77,7 +77,7 @@ class PoolArgs:
                > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+               > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
@@ -336,7 +336,7 @@ class PoolArgs:
         """
         The tags associated with the pool.
 
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
@@ -452,7 +452,7 @@ class _PoolState:
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+               > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input['PoolUpgradePolicyArgs'] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.str] version: The version of the pool.
@@ -776,7 +776,7 @@ class _PoolState:
         """
         The tags associated with the pool.
 
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
@@ -921,7 +921,7 @@ class Pool(pulumi.CustomResource):
                > **Important:** This field will only be used at creation if autoscaling is enabled.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+               > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.bool] wait_for_pool_ready: Whether to wait for the pool to be ready.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the pool should be created.
@@ -1104,7 +1104,7 @@ class Pool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status: The status of the node.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
-               > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+               > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         :param pulumi.Input[_builtins.str] updated_at: The last update date of the pool.
         :param pulumi.Input[Union['PoolUpgradePolicyArgs', 'PoolUpgradePolicyArgsDict']] upgrade_policy: The Pool upgrade policy
         :param pulumi.Input[_builtins.str] version: The version of the pool.
@@ -1327,7 +1327,7 @@ class Pool(pulumi.CustomResource):
         """
         The tags associated with the pool.
 
-        > Note: As mentionned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
+        > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
         """
         return pulumi.get(self, "tags")
 
