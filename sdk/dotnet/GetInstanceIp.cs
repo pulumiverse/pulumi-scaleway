@@ -49,6 +49,18 @@ namespace Pulumiverse.Scaleway
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// `ProjectId`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public string? ProjectId { get; set; }
+
+        /// <summary>
+        /// `Zone`) The zone in which the IP should be reserved.
+        /// </summary>
+        [Input("zone")]
+        public string? Zone { get; set; }
+
         public GetInstanceIpArgs()
         {
         }
@@ -70,6 +82,18 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// `ProjectId`) The ID of the project the IP is associated with.
+        /// </summary>
+        [Input("projectId")]
+        public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// `Zone`) The zone in which the IP should be reserved.
+        /// </summary>
+        [Input("zone")]
+        public Input<string>? Zone { get; set; }
 
         public GetInstanceIpInvokeArgs()
         {
@@ -97,7 +121,7 @@ namespace Pulumiverse.Scaleway
         /// The IP Prefix.
         /// </summary>
         public readonly string Prefix;
-        public readonly string ProjectId;
+        public readonly string? ProjectId;
         /// <summary>
         /// The reverse dns attached to this IP
         /// </summary>
@@ -108,7 +132,7 @@ namespace Pulumiverse.Scaleway
         /// The type of the IP
         /// </summary>
         public readonly string Type;
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetInstanceIpResult(
@@ -120,7 +144,7 @@ namespace Pulumiverse.Scaleway
 
             string prefix,
 
-            string projectId,
+            string? projectId,
 
             string reverse,
 
@@ -130,7 +154,7 @@ namespace Pulumiverse.Scaleway
 
             string type,
 
-            string zone)
+            string? zone)
         {
             Address = address;
             Id = id;

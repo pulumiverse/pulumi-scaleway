@@ -208,7 +208,7 @@ namespace Pulumiverse.Scaleway.Ipam
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The custom resource in which to book the IP
+        /// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         /// </summary>
         [Output("customResources")]
         public Output<ImmutableArray<Outputs.IpCustomResource>> CustomResources { get; private set; } = null!;
@@ -328,7 +328,7 @@ namespace Pulumiverse.Scaleway.Ipam
         private InputList<Inputs.IpCustomResourceArgs>? _customResources;
 
         /// <summary>
-        /// The custom resource in which to book the IP
+        /// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         /// </summary>
         public InputList<Inputs.IpCustomResourceArgs> CustomResources
         {
@@ -402,7 +402,7 @@ namespace Pulumiverse.Scaleway.Ipam
         private InputList<Inputs.IpCustomResourceGetArgs>? _customResources;
 
         /// <summary>
-        /// The custom resource in which to book the IP
+        /// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         /// </summary>
         public InputList<Inputs.IpCustomResourceGetArgs> CustomResources
         {

@@ -425,6 +425,25 @@ class Device(pulumi.CustomResource):
             name="test-iot")
         ```
 
+        ### With custom certificate
+
+        ```python
+        import pulumi
+        import pulumi_local as local
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.iot.Hub("main",
+            name="test-iot",
+            product_plan="plan_shared")
+        device_cert = local.get_file(filename="device-certificate.pem")
+        main_device = scaleway.iot.Device("main",
+            hub_id=main.id,
+            name="test-iot",
+            certificate={
+                "crt": device_cert.content,
+            })
+        ```
+
         ## Import
 
         IoT devices can be imported using the `{region}/{id}`, e.g.
@@ -473,6 +492,25 @@ class Device(pulumi.CustomResource):
         main_device = scaleway.iot.Device("main",
             hub_id=main.id,
             name="test-iot")
+        ```
+
+        ### With custom certificate
+
+        ```python
+        import pulumi
+        import pulumi_local as local
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.iot.Hub("main",
+            name="test-iot",
+            product_plan="plan_shared")
+        device_cert = local.get_file(filename="device-certificate.pem")
+        main_device = scaleway.iot.Device("main",
+            hub_id=main.id,
+            name="test-iot",
+            certificate={
+                "crt": device_cert.content,
+            })
         ```
 
         ## Import

@@ -13,6 +13,8 @@ export function getIp(args?: GetIpArgs, opts?: pulumi.InvokeOptions): Promise<Ge
     return pulumi.runtime.invoke("scaleway:instance/getIp:getIp", {
         "address": args.address,
         "id": args.id,
+        "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -30,6 +32,14 @@ export interface GetIpArgs {
      * Only one of `address` and `id` should be specified.
      */
     id?: string;
+    /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    projectId?: string;
+    /**
+     * `zone`) The zone in which the IP should be reserved.
+     */
+    zone?: string;
 }
 
 /**
@@ -52,7 +62,7 @@ export interface GetIpResult {
      * The IP Prefix.
      */
     readonly prefix: string;
-    readonly projectId: string;
+    readonly projectId?: string;
     /**
      * The reverse dns attached to this IP
      */
@@ -63,7 +73,7 @@ export interface GetIpResult {
      * The type of the IP
      */
     readonly type: string;
-    readonly zone: string;
+    readonly zone?: string;
 }
 /**
  * Gets information about an instance IP.
@@ -74,6 +84,8 @@ export function getIpOutput(args?: GetIpOutputArgs, opts?: pulumi.InvokeOutputOp
     return pulumi.runtime.invokeOutput("scaleway:instance/getIp:getIp", {
         "address": args.address,
         "id": args.id,
+        "projectId": args.projectId,
+        "zone": args.zone,
     }, opts);
 }
 
@@ -91,4 +103,12 @@ export interface GetIpOutputArgs {
      * Only one of `address` and `id` should be specified.
      */
     id?: pulumi.Input<string>;
+    /**
+     * `projectId`) The ID of the project the IP is associated with.
+     */
+    projectId?: pulumi.Input<string>;
+    /**
+     * `zone`) The zone in which the IP should be reserved.
+     */
+    zone?: pulumi.Input<string>;
 }

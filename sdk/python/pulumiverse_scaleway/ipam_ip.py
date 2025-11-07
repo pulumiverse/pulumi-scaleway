@@ -32,7 +32,7 @@ class IpamIpArgs:
         The set of arguments for constructing a IpamIp resource.
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpSourceArgs']]] sources: The source in which to book the IP.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
-        :param pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]] custom_resources: The custom resource in which to book the IP
+        :param pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
@@ -80,7 +80,7 @@ class IpamIpArgs:
     @pulumi.getter(name="customResources")
     def custom_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]]]:
         """
-        The custom resource in which to book the IP
+        The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         """
         return pulumi.get(self, "custom_resources")
 
@@ -156,7 +156,7 @@ class _IpamIpState:
         Input properties used for looking up and filtering IpamIp resources.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]] custom_resources: The custom resource in which to book the IP
+        :param pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
@@ -220,7 +220,7 @@ class _IpamIpState:
     @pulumi.getter(name="customResources")
     def custom_resources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]]]:
         """
-        The custom resource in which to book the IP
+        The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         """
         return pulumi.get(self, "custom_resources")
 
@@ -453,7 +453,7 @@ class IpamIp(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource in which to book the IP
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
@@ -637,7 +637,7 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource in which to book the IP
+        :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the Project the IP is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the IP.
@@ -686,7 +686,7 @@ class IpamIp(pulumi.CustomResource):
     @pulumi.getter(name="customResources")
     def custom_resources(self) -> pulumi.Output[Optional[Sequence['outputs.IpamIpCustomResource']]]:
         """
-        The custom resource in which to book the IP
+        The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         """
         return pulumi.get(self, "custom_resources")
 

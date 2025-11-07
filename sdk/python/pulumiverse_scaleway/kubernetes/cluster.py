@@ -989,7 +989,7 @@ class Cluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
@@ -1020,7 +1020,7 @@ class Cluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",
@@ -1247,7 +1247,7 @@ class Cluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         ```
@@ -1278,7 +1278,7 @@ class Cluster(pulumi.CustomResource):
         kubeconfig = null.Resource("kubeconfig", triggers={
             "host": cluster.kubeconfigs[0].host,
             "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+            "cluster_ca_certificate": cluster.kubeconfigs[0].cluster_ca_certificate,
         },
         opts = pulumi.ResourceOptions(depends_on=[pool]))
         nginx_ip = scaleway.loadbalancers.Ip("nginx_ip",

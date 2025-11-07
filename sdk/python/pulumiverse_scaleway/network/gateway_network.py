@@ -41,7 +41,7 @@ class GatewayNetworkArgs:
         :param pulumi.Input[_builtins.bool] enable_masquerade: Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkIpamConfigArgs']]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
-        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the gateway network should be created.
                
                > **Important:**
@@ -183,7 +183,7 @@ class GatewayNetworkArgs:
     @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -237,7 +237,7 @@ class _GatewayNetworkState:
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input['GatewayNetworkPrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the GatewayNetwork.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the gateway network should be created.
@@ -415,7 +415,7 @@ class _GatewayNetworkState:
     @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 
@@ -565,7 +565,7 @@ class GatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkIpamConfigArgs', 'GatewayNetworkIpamConfigArgsDict']]]] ipam_configs: Auto-configure the GatewayNetwork using Scaleway's IPAM (IP address management service). Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the gateway network should be created.
                
                > **Important:**
@@ -747,7 +747,7 @@ class GatewayNetwork(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mac_address: The MAC address of the GatewayNetwork.
         :param pulumi.Input[Sequence[pulumi.Input[Union['GatewayNetworkPrivateIpArgs', 'GatewayNetworkPrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[_builtins.str] private_network_id: The ID of the Private Network.
-        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        :param pulumi.Input[_builtins.str] static_address: Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         :param pulumi.Input[_builtins.str] status: The status of the Public Gateway's connection to the Private Network.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the GatewayNetwork.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the gateway network should be created.
@@ -864,7 +864,7 @@ class GatewayNetwork(pulumi.CustomResource):
     @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def static_address(self) -> pulumi.Output[_builtins.str]:
         """
-        Please use `ipam_config`. Enable DHCP configration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
+        Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
         """
         return pulumi.get(self, "static_address")
 

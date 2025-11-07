@@ -1028,6 +1028,7 @@ import * as block from "./block";
 import * as config from "./config";
 import * as containers from "./containers";
 import * as databases from "./databases";
+import * as datawarehouse from "./datawarehouse";
 import * as domain from "./domain";
 import * as elasticmetal from "./elasticmetal";
 import * as functions from "./functions";
@@ -1060,6 +1061,7 @@ export {
     config,
     containers,
     databases,
+    datawarehouse,
     domain,
     elasticmetal,
     functions,

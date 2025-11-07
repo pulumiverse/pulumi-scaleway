@@ -11,6 +11,7 @@ from .bucket_acl import *
 from .bucket_lock_configuration import *
 from .bucket_policy import *
 from .bucket_website_configuration import *
+from .get import *
 from .get_bucket import *
 from .get_bucket_policy import *
 from .item import *

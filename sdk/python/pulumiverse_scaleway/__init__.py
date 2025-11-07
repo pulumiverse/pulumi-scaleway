@@ -230,6 +230,8 @@ if typing.TYPE_CHECKING:
     containers = __containers
     import pulumiverse_scaleway.databases as __databases
     databases = __databases
+    import pulumiverse_scaleway.datawarehouse as __datawarehouse
+    datawarehouse = __datawarehouse
     import pulumiverse_scaleway.domain as __domain
     domain = __domain
     import pulumiverse_scaleway.elasticmetal as __elasticmetal
@@ -281,6 +283,7 @@ else:
     config = _utilities.lazy_import('pulumiverse_scaleway.config')
     containers = _utilities.lazy_import('pulumiverse_scaleway.containers')
     databases = _utilities.lazy_import('pulumiverse_scaleway.databases')
+    datawarehouse = _utilities.lazy_import('pulumiverse_scaleway.datawarehouse')
     domain = _utilities.lazy_import('pulumiverse_scaleway.domain')
     elasticmetal = _utilities.lazy_import('pulumiverse_scaleway.elasticmetal')
     functions = _utilities.lazy_import('pulumiverse_scaleway.functions')
@@ -488,6 +491,30 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.databases",
   "classes": {
    "scaleway:databases/user:User": "User"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "datawarehouse/database",
+  "fqn": "pulumiverse_scaleway.datawarehouse",
+  "classes": {
+   "scaleway:datawarehouse/database:Database": "Database"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "datawarehouse/deployment",
+  "fqn": "pulumiverse_scaleway.datawarehouse",
+  "classes": {
+   "scaleway:datawarehouse/deployment:Deployment": "Deployment"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "datawarehouse/user",
+  "fqn": "pulumiverse_scaleway.datawarehouse",
+  "classes": {
+   "scaleway:datawarehouse/user:User": "User"
   }
  },
  {

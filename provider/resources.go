@@ -50,6 +50,7 @@ const (
 	cockpitMod       = "observability"
 	containersMod    = "containers"
 	databasesMod     = "databases"
+	datawarehouseMod = "datawarehouse"
 	domainMod        = "domain"
 	elasticmetalMod  = "elasticmetal"
 	functionsMod     = "functions"
@@ -333,6 +334,7 @@ func Provider() tfbridge.ProviderInfo {
 				"block":         blockMod,
 				"cockpit":       cockpitMod,
 				"container":     containersMod,
+				"datawarehouse": datawarehouseMod,
 				"domain":        domainMod,
 				"baremetal":     elasticmetalMod,
 				"flexible":      elasticmetalMod,

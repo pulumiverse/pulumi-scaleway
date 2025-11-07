@@ -38,6 +38,41 @@ namespace Pulumiverse.Scaleway.Iot
     /// });
     /// ```
     /// 
+    /// ### With custom certificate
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Local = Pulumi.Local;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Iot.Hub("main", new()
+    ///     {
+    ///         Name = "test-iot",
+    ///         ProductPlan = "plan_shared",
+    ///     });
+    /// 
+    ///     var deviceCert = Local.GetFile.Invoke(new()
+    ///     {
+    ///         Filename = "device-certificate.pem",
+    ///     });
+    /// 
+    ///     var mainDevice = new Scaleway.Iot.Device("main", new()
+    ///     {
+    ///         HubId = main.Id,
+    ///         Name = "test-iot",
+    ///         Certificate = new Scaleway.Iot.Inputs.DeviceCertificateArgs
+    ///         {
+    ///             Crt = deviceCert.Apply(getFileResult =&gt; getFileResult.Content),
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IoT devices can be imported using the `{region}/{id}`, e.g.

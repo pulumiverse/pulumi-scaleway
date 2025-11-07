@@ -201,7 +201,7 @@ namespace Pulumiverse.Scaleway.Network
         public Output<string> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Output("staticAddress")]
         public Output<string> StaticAddress { get; private set; } = null!;
@@ -340,7 +340,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string> PrivateNetworkId { get; set; } = null!;
 
         /// <summary>
-        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }
@@ -436,7 +436,7 @@ namespace Pulumiverse.Scaleway.Network
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// Please use `IpamConfig`. Enable DHCP configration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
+        /// Please use `IpamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `DhcpId`, `StaticAddress` and `IpamConfig` should be specified.
         /// </summary>
         [Input("staticAddress")]
         public Input<string>? StaticAddress { get; set; }

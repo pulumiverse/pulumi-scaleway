@@ -14,9 +14,9 @@ import (
 var _ = internal.GetEnvOrDefault
 
 type IpCustomResource struct {
-	// The MAC address of the resource the IP is attached to.
+	// The MAC address of the custom resource.
 	MacAddress string `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
+	// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 	Name *string `pulumi:"name"`
 }
 
@@ -32,9 +32,9 @@ type IpCustomResourceInput interface {
 }
 
 type IpCustomResourceArgs struct {
-	// The MAC address of the resource the IP is attached to.
+	// The MAC address of the custom resource.
 	MacAddress pulumi.StringInput `pulumi:"macAddress"`
-	// The name of the resource the IP is attached to.
+	// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -89,12 +89,12 @@ func (o IpCustomResourceOutput) ToIpCustomResourceOutputWithContext(ctx context.
 	return o
 }
 
-// The MAC address of the resource the IP is attached to.
+// The MAC address of the custom resource.
 func (o IpCustomResourceOutput) MacAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v IpCustomResource) string { return v.MacAddress }).(pulumi.StringOutput)
 }
 
-// The name of the resource the IP is attached to.
+// When the resource is in a Private Network, a DNS record is available to resolve the resource name.
 func (o IpCustomResourceOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpCustomResource) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

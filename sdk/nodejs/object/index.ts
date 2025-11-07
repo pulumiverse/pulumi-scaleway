@@ -30,6 +30,11 @@ export type BucketWebsiteConfiguration = import("./bucketWebsiteConfiguration").
 export const BucketWebsiteConfiguration: typeof import("./bucketWebsiteConfiguration").BucketWebsiteConfiguration = null as any;
 utilities.lazyLoad(exports, ["BucketWebsiteConfiguration"], () => require("./bucketWebsiteConfiguration"));
 
+export { GetArgs, GetResult, GetOutputArgs } from "./get";
+export const get: typeof import("./get").get = null as any;
+export const getOutput: typeof import("./get").getOutput = null as any;
+utilities.lazyLoad(exports, ["get","getOutput"], () => require("./get"));
+
 export { GetBucketArgs, GetBucketResult, GetBucketOutputArgs } from "./getBucket";
 export const getBucket: typeof import("./getBucket").getBucket = null as any;
 export const getBucketOutput: typeof import("./getBucket").getBucketOutput = null as any;

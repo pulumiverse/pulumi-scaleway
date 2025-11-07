@@ -220,7 +220,7 @@ type Instance struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Number of nodes in the instance
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
-	// The type of MongoDB® intance to create.
+	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password of the user.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
@@ -248,7 +248,7 @@ type Instance struct {
 	TlsCertificate pulumi.StringOutput `pulumi:"tlsCertificate"`
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// Name of the user created when the intance is created.
+	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrOutput `pulumi:"userName"`
 	// MongoDB® version of the instance.
 	Version pulumi.StringOutput `pulumi:"version"`
@@ -315,7 +315,7 @@ type instanceState struct {
 	Name *string `pulumi:"name"`
 	// Number of nodes in the instance
 	NodeNumber *int `pulumi:"nodeNumber"`
-	// The type of MongoDB® intance to create.
+	// The type of MongoDB® instance to create.
 	NodeType *string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
@@ -343,7 +343,7 @@ type instanceState struct {
 	TlsCertificate *string `pulumi:"tlsCertificate"`
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// Name of the user created when the intance is created.
+	// Name of the user created when the instance is created.
 	UserName *string `pulumi:"userName"`
 	// MongoDB® version of the instance.
 	Version *string `pulumi:"version"`
@@ -362,7 +362,7 @@ type InstanceState struct {
 	Name pulumi.StringPtrInput
 	// Number of nodes in the instance
 	NodeNumber pulumi.IntPtrInput
-	// The type of MongoDB® intance to create.
+	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringPtrInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
@@ -390,7 +390,7 @@ type InstanceState struct {
 	TlsCertificate pulumi.StringPtrInput
 	// The date and time of the last update of the MongoDB® instance.
 	UpdatedAt pulumi.StringPtrInput
-	// Name of the user created when the intance is created.
+	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrInput
 	// MongoDB® version of the instance.
 	Version pulumi.StringPtrInput
@@ -411,7 +411,7 @@ type instanceArgs struct {
 	Name *string `pulumi:"name"`
 	// Number of nodes in the instance
 	NodeNumber int `pulumi:"nodeNumber"`
-	// The type of MongoDB® intance to create.
+	// The type of MongoDB® instance to create.
 	NodeType string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
@@ -435,7 +435,7 @@ type instanceArgs struct {
 	SnapshotScheduleRetentionDays *int `pulumi:"snapshotScheduleRetentionDays"`
 	// List of tags attached to the MongoDB® instance.
 	Tags []string `pulumi:"tags"`
-	// Name of the user created when the intance is created.
+	// Name of the user created when the instance is created.
 	UserName *string `pulumi:"userName"`
 	// MongoDB® version of the instance.
 	Version *string `pulumi:"version"`
@@ -453,7 +453,7 @@ type InstanceArgs struct {
 	Name pulumi.StringPtrInput
 	// Number of nodes in the instance
 	NodeNumber pulumi.IntInput
-	// The type of MongoDB® intance to create.
+	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
@@ -477,7 +477,7 @@ type InstanceArgs struct {
 	SnapshotScheduleRetentionDays pulumi.IntPtrInput
 	// List of tags attached to the MongoDB® instance.
 	Tags pulumi.StringArrayInput
-	// Name of the user created when the intance is created.
+	// Name of the user created when the instance is created.
 	UserName pulumi.StringPtrInput
 	// MongoDB® version of the instance.
 	Version pulumi.StringPtrInput
@@ -594,7 +594,7 @@ func (o InstanceOutput) NodeNumber() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.NodeNumber }).(pulumi.IntOutput)
 }
 
-// The type of MongoDB® intance to create.
+// The type of MongoDB® instance to create.
 func (o InstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
@@ -664,7 +664,7 @@ func (o InstanceOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// Name of the user created when the intance is created.
+// Name of the user created when the instance is created.
 func (o InstanceOutput) UserName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.UserName }).(pulumi.StringPtrOutput)
 }
