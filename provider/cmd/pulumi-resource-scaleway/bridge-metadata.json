@@ -366,6 +366,33 @@
                     }
                 }
             },
+            "scaleway_datawarehouse_database": {
+                "current": "scaleway:index/datawarehouseDatabase:DatawarehouseDatabase",
+                "majorVersion": 1
+            },
+            "scaleway_datawarehouse_deployment": {
+                "current": "scaleway:index/datawarehouseDeployment:DatawarehouseDeployment",
+                "majorVersion": 1,
+                "fields": {
+                    "public_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_datawarehouse_user": {
+                "current": "scaleway:index/datawarehouseUser:DatawarehouseUser",
+                "majorVersion": 1
+            },
             "scaleway_domain_record": {
                 "current": "scaleway:domain/record:Record",
                 "past": [
@@ -3795,6 +3822,10 @@
                     }
                 }
             },
+            "scaleway_object": {
+                "current": "scaleway:object/get:get",
+                "majorVersion": 1
+            },
             "scaleway_object_bucket": {
                 "current": "scaleway:object/getBucket:getBucket",
                 "past": [
@@ -5340,6 +5371,9 @@
             "scaleway:index/databasePrivilege:DatabasePrivilege": 0,
             "scaleway:index/databaseReadReplica:DatabaseReadReplica": 0,
             "scaleway:index/databaseUser:DatabaseUser": 0,
+            "scaleway:index/datawarehouseDatabase:DatawarehouseDatabase": 0,
+            "scaleway:index/datawarehouseDeployment:DatawarehouseDeployment": 0,
+            "scaleway:index/datawarehouseUser:DatawarehouseUser": 0,
             "scaleway:index/domainRecord:DomainRecord": 0,
             "scaleway:index/domainZone:DomainZone": 0,
             "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage": 0,
@@ -5669,6 +5703,7 @@
             "scaleway:network/getRoutes:getRoutes": 0,
             "scaleway:network/getVpc:getVpc": 0,
             "scaleway:network/getVpcs:getVpcs": 0,
+            "scaleway:object/get:get": 0,
             "scaleway:object/getBucket:getBucket": 0,
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
             "scaleway:observability/getInstance:getInstance": 0,
