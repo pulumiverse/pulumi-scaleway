@@ -366,6 +366,33 @@
                     }
                 }
             },
+            "scaleway_datawarehouse_database": {
+                "current": "scaleway:datawarehouse/database:Database",
+                "majorVersion": 1
+            },
+            "scaleway_datawarehouse_deployment": {
+                "current": "scaleway:datawarehouse/deployment:Deployment",
+                "majorVersion": 1,
+                "fields": {
+                    "public_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_datawarehouse_user": {
+                "current": "scaleway:datawarehouse/user:User",
+                "majorVersion": 1
+            },
             "scaleway_domain_record": {
                 "current": "scaleway:domain/record:Record",
                 "past": [
@@ -3795,6 +3822,10 @@
                     }
                 }
             },
+            "scaleway_object": {
+                "current": "scaleway:object/get:get",
+                "majorVersion": 1
+            },
             "scaleway_object_bucket": {
                 "current": "scaleway:object/getBucket:getBucket",
                 "past": [
@@ -5296,6 +5327,9 @@
             "scaleway:databases/serverlessDatabase:ServerlessDatabase": 0,
             "scaleway:databases/snapshot:Snapshot": 0,
             "scaleway:databases/user:User": 0,
+            "scaleway:datawarehouse/database:Database": 0,
+            "scaleway:datawarehouse/deployment:Deployment": 0,
+            "scaleway:datawarehouse/user:User": 0,
             "scaleway:domain/record:Record": 0,
             "scaleway:domain/registration:Registration": 0,
             "scaleway:domain/zone:Zone": 0,
@@ -5669,6 +5703,7 @@
             "scaleway:network/getRoutes:getRoutes": 0,
             "scaleway:network/getVpc:getVpc": 0,
             "scaleway:network/getVpcs:getVpcs": 0,
+            "scaleway:object/get:get": 0,
             "scaleway:object/getBucket:getBucket": 0,
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
             "scaleway:observability/getInstance:getInstance": 0,
