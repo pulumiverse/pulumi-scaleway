@@ -216,6 +216,7 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string MajorMinorOnly;
         public readonly string Name;
         public readonly string? Region;
 
@@ -229,6 +230,8 @@ namespace Pulumiverse.Scaleway
 
             string id,
 
+            string majorMinorOnly,
+
             string name,
 
             string? region)
@@ -237,6 +240,7 @@ namespace Pulumiverse.Scaleway
             AvailableContainerRuntimes = availableContainerRuntimes;
             AvailableFeatureGates = availableFeatureGates;
             Id = id;
+            MajorMinorOnly = majorMinorOnly;
             Name = name;
             Region = region;
         }

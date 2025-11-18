@@ -63,6 +63,8 @@ type EdgeServicesDnsStage struct {
 	CacheStageId pulumi.StringOutput `pulumi:"cacheStageId"`
 	// The date and time of the creation of the DNS stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The Default Fully Qualified Domain Name attached to the stage.
+	DefaultFqdn pulumi.StringOutput `pulumi:"defaultFqdn"`
 	// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
 	Fqdns pulumi.StringArrayOutput `pulumi:"fqdns"`
 	// The ID of the pipeline.
@@ -116,6 +118,8 @@ type edgeServicesDnsStageState struct {
 	CacheStageId *string `pulumi:"cacheStageId"`
 	// The date and time of the creation of the DNS stage.
 	CreatedAt *string `pulumi:"createdAt"`
+	// The Default Fully Qualified Domain Name attached to the stage.
+	DefaultFqdn *string `pulumi:"defaultFqdn"`
 	// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
 	Fqdns []string `pulumi:"fqdns"`
 	// The ID of the pipeline.
@@ -137,6 +141,8 @@ type EdgeServicesDnsStageState struct {
 	CacheStageId pulumi.StringPtrInput
 	// The date and time of the creation of the DNS stage.
 	CreatedAt pulumi.StringPtrInput
+	// The Default Fully Qualified Domain Name attached to the stage.
+	DefaultFqdn pulumi.StringPtrInput
 	// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
 	Fqdns pulumi.StringArrayInput
 	// The ID of the pipeline.
@@ -286,6 +292,11 @@ func (o EdgeServicesDnsStageOutput) CacheStageId() pulumi.StringOutput {
 // The date and time of the creation of the DNS stage.
 func (o EdgeServicesDnsStageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The Default Fully Qualified Domain Name attached to the stage.
+func (o EdgeServicesDnsStageOutput) DefaultFqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v *EdgeServicesDnsStage) pulumi.StringOutput { return v.DefaultFqdn }).(pulumi.StringOutput)
 }
 
 // Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.

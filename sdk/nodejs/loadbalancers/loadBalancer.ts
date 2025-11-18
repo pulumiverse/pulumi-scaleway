@@ -149,6 +149,11 @@ export class LoadBalancer extends pulumi.CustomResource {
      */
     declare public readonly description: pulumi.Output<string | undefined>;
     /**
+     * A boolean to specify whether to use lb_private_network.
+     * If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+     */
+    declare public readonly externalPrivateNetworks: pulumi.Output<boolean | undefined>;
+    /**
      * The Load Balancer public IPv4 address.
      */
     declare public /*out*/ readonly ipAddress: pulumi.Output<string>;
@@ -185,7 +190,7 @@ export class LoadBalancer extends pulumi.CustomResource {
     /**
      * List of private network to connect with your load balancer.
      */
-    declare public readonly privateNetworks: pulumi.Output<outputs.loadbalancers.LoadBalancerPrivateNetwork[] | undefined>;
+    declare public readonly privateNetworks: pulumi.Output<outputs.loadbalancers.LoadBalancerPrivateNetwork[]>;
     /**
      * `projectId`) The ID of the Project the Load Balancer is associated with.
      */
@@ -233,6 +238,7 @@ export class LoadBalancer extends pulumi.CustomResource {
             resourceInputs["assignFlexibleIp"] = state?.assignFlexibleIp;
             resourceInputs["assignFlexibleIpv6"] = state?.assignFlexibleIpv6;
             resourceInputs["description"] = state?.description;
+            resourceInputs["externalPrivateNetworks"] = state?.externalPrivateNetworks;
             resourceInputs["ipAddress"] = state?.ipAddress;
             resourceInputs["ipId"] = state?.ipId;
             resourceInputs["ipIds"] = state?.ipIds;
@@ -256,6 +262,7 @@ export class LoadBalancer extends pulumi.CustomResource {
             resourceInputs["assignFlexibleIp"] = args?.assignFlexibleIp;
             resourceInputs["assignFlexibleIpv6"] = args?.assignFlexibleIpv6;
             resourceInputs["description"] = args?.description;
+            resourceInputs["externalPrivateNetworks"] = args?.externalPrivateNetworks;
             resourceInputs["ipId"] = args?.ipId;
             resourceInputs["ipIds"] = args?.ipIds;
             resourceInputs["name"] = args?.name;
@@ -295,6 +302,11 @@ export interface LoadBalancerState {
      * The description of the Load Balancer.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A boolean to specify whether to use lb_private_network.
+     * If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+     */
+    externalPrivateNetworks?: pulumi.Input<boolean>;
     /**
      * The Load Balancer public IPv4 address.
      */
@@ -381,6 +393,11 @@ export interface LoadBalancerArgs {
      * The description of the Load Balancer.
      */
     description?: pulumi.Input<string>;
+    /**
+     * A boolean to specify whether to use lb_private_network.
+     * If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+     */
+    externalPrivateNetworks?: pulumi.Input<boolean>;
     /**
      * Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
      *

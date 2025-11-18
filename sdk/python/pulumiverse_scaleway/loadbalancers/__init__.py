@@ -24,6 +24,7 @@ from .get_route import *
 from .get_routes import *
 from .ip import *
 from .load_balancer import *
+from .private_network import *
 from .route import *
 from ._inputs import *
 from . import outputs

@@ -12,49 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The `observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
-//
-// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-//
-// ## Example Usage
-//
-// ### Create a Grafana user
-//
-// The following command allows you to create a Grafana user within a specific Scaleway Project.
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/observability"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project, err := account.NewProject(ctx, "project", &account.ProjectArgs{
-//				Name: pulumi.String("test project grafana user"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = observability.NewGrafanaUser(ctx, "main", &observability.GrafanaUserArgs{
-//				ProjectId: project.ID(),
-//				Login:     pulumi.String("my-awesome-user"),
-//				Role:      pulumi.String("editor"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.

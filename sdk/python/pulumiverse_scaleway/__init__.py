@@ -1847,6 +1847,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "loadbalancers/privateNetwork",
+  "fqn": "pulumiverse_scaleway.loadbalancers",
+  "classes": {
+   "scaleway:loadbalancers/privateNetwork:PrivateNetwork": "PrivateNetwork"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "loadbalancers/route",
   "fqn": "pulumiverse_scaleway.loadbalancers",
   "classes": {

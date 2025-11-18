@@ -78,6 +78,7 @@ export interface GetK8sVersionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly majorMinorOnly: string;
     readonly name: string;
     readonly region?: string;
 }

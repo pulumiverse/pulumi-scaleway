@@ -8580,11 +8580,12 @@ type InstanceServerRootVolume struct {
 	Boot *bool `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
 	DeleteOnTermination *bool `pulumi:"deleteOnTermination"`
-	// The name of the server.
+	// Name of the root volume.
 	Name *string `pulumi:"name"`
 	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+	// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 	SbsIops *int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -8613,11 +8614,12 @@ type InstanceServerRootVolumeArgs struct {
 	Boot pulumi.BoolPtrInput `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
 	DeleteOnTermination pulumi.BoolPtrInput `pulumi:"deleteOnTermination"`
-	// The name of the server.
+	// Name of the root volume.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+	// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 	SbsIops pulumi.IntPtrInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -8717,14 +8719,15 @@ func (o InstanceServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutp
 	return o.ApplyT(func(v InstanceServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
 }
 
-// The name of the server.
+// Name of the root volume.
 func (o InstanceServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 //
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 func (o InstanceServerRootVolumeOutput) SbsIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstanceServerRootVolume) *int { return v.SbsIops }).(pulumi.IntPtrOutput)
 }
@@ -8791,7 +8794,7 @@ func (o InstanceServerRootVolumePtrOutput) DeleteOnTermination() pulumi.BoolPtrO
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The name of the server.
+// Name of the root volume.
 func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *string {
 		if v == nil {
@@ -8803,7 +8806,8 @@ func (o InstanceServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 
 // Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 //
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 func (o InstanceServerRootVolumePtrOutput) SbsIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstanceServerRootVolume) *int {
 		if v == nil {

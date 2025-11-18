@@ -68,6 +68,8 @@ type Volume struct {
 	// The id of the associated server.
 	ServerId pulumi.StringOutput `pulumi:"serverId"`
 	// The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+	//
+	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb pulumi.IntPtrOutput `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
@@ -129,6 +131,8 @@ type volumeState struct {
 	// The id of the associated server.
 	ServerId *string `pulumi:"serverId"`
 	// The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+	//
+	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -152,6 +156,8 @@ type VolumeState struct {
 	// The id of the associated server.
 	ServerId pulumi.StringPtrInput
 	// The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+	//
+	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -175,6 +181,8 @@ type volumeArgs struct {
 	// `projectId`) The ID of the project the volume is associated with.
 	ProjectId *string `pulumi:"projectId"`
 	// The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+	//
+	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb *int `pulumi:"sizeInGb"`
 	// A list of tags to apply to the volume.
 	Tags []string `pulumi:"tags"`
@@ -195,6 +203,8 @@ type VolumeArgs struct {
 	// `projectId`) The ID of the project the volume is associated with.
 	ProjectId pulumi.StringPtrInput
 	// The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+	//
+	// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 	SizeInGb pulumi.IntPtrInput
 	// A list of tags to apply to the volume.
 	Tags pulumi.StringArrayInput
@@ -322,6 +332,8 @@ func (o VolumeOutput) ServerId() pulumi.StringOutput {
 }
 
 // The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+//
+// > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
 func (o VolumeOutput) SizeInGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntPtrOutput { return v.SizeInGb }).(pulumi.IntPtrOutput)
 }

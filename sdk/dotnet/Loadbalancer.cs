@@ -197,6 +197,13 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// A boolean to specify whether to use lb_private_network.
+        /// If `ExternalPrivateNetworks` is set to `True`, `PrivateNetwork` can not be set directly in the Load Balancer.
+        /// </summary>
+        [Output("externalPrivateNetworks")]
+        public Output<bool?> ExternalPrivateNetworks { get; private set; } = null!;
+
+        /// <summary>
         /// The Load Balancer public IPv4 address.
         /// </summary>
         [Output("ipAddress")]
@@ -356,6 +363,13 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// A boolean to specify whether to use lb_private_network.
+        /// If `ExternalPrivateNetworks` is set to `True`, `PrivateNetwork` can not be set directly in the Load Balancer.
+        /// </summary>
+        [Input("externalPrivateNetworks")]
+        public Input<bool>? ExternalPrivateNetworks { get; set; }
+
+        /// <summary>
         /// Please use `IpIds`. The ID of the associated Load Balancer IP. See below.
         /// 
         /// &gt; **Important:** Updates to `IpId` will recreate the Load Balancer.
@@ -462,6 +476,13 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// A boolean to specify whether to use lb_private_network.
+        /// If `ExternalPrivateNetworks` is set to `True`, `PrivateNetwork` can not be set directly in the Load Balancer.
+        /// </summary>
+        [Input("externalPrivateNetworks")]
+        public Input<bool>? ExternalPrivateNetworks { get; set; }
 
         /// <summary>
         /// The Load Balancer public IPv4 address.

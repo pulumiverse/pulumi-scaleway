@@ -69,6 +69,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// The Default Fully Qualified Domain Name attached to the stage.
+        /// </summary>
+        [Output("defaultFqdn")]
+        public Output<string> DefaultFqdn { get; private set; } = null!;
+
+        /// <summary>
         /// Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         /// </summary>
         [Output("fqdns")]
@@ -218,6 +224,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// The Default Fully Qualified Domain Name attached to the stage.
+        /// </summary>
+        [Input("defaultFqdn")]
+        public Input<string>? DefaultFqdn { get; set; }
 
         [Input("fqdns")]
         private InputList<string>? _fqdns;

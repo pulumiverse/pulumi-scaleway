@@ -11,39 +11,6 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
-    /// 
-    /// Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ### Create a Grafana user
-    /// 
-    /// The following command allows you to create a Grafana user within a specific Scaleway Project.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var project = new Scaleway.Account.Project("project", new()
-    ///     {
-    ///         Name = "test project grafana user",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Observability.GrafanaUser("main", new()
-    ///     {
-    ///         ProjectId = project.Id,
-    ///         Login = "my-awesome-user",
-    ///         Role = "editor",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.

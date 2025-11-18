@@ -949,10 +949,11 @@ class ServerRootVolume(dict):
         """
         :param _builtins.bool boot: Set the volume where the boot the server
         :param _builtins.bool delete_on_termination: Forces deletion of the root volume on instance termination.
-        :param _builtins.str name: The name of the server.
+        :param _builtins.str name: Name of the root volume.
         :param _builtins.int sbs_iops: Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
                
-               > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+               > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
+               It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
         :param _builtins.int size_in_gb: Size of the root volume in gigabytes.
                To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
                check the `volumes_constraint.{min|max}_size` (in bytes) for your `commercial_type`.
@@ -995,7 +996,7 @@ class ServerRootVolume(dict):
     @pulumi.getter
     def name(self) -> Optional[_builtins.str]:
         """
-        The name of the server.
+        Name of the root volume.
         """
         return pulumi.get(self, "name")
 
@@ -1005,7 +1006,8 @@ class ServerRootVolume(dict):
         """
         Choose IOPS of your sbs volume, has to be used with `sbs_volume` for root volume type.
 
-        > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+        > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`l_ssd`). Changes to this field will recreate the server.
+        It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
         """
         return pulumi.get(self, "sbs_iops")
 

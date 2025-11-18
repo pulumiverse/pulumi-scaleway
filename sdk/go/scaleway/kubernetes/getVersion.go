@@ -96,9 +96,10 @@ type GetVersionResult struct {
 	// The list of supported feature gates for this version.
 	AvailableFeatureGates []string `pulumi:"availableFeatureGates"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string  `pulumi:"id"`
-	Name   string  `pulumi:"name"`
-	Region *string `pulumi:"region"`
+	Id             string  `pulumi:"id"`
+	MajorMinorOnly string  `pulumi:"majorMinorOnly"`
+	Name           string  `pulumi:"name"`
+	Region         *string `pulumi:"region"`
 }
 
 func GetVersionOutput(ctx *pulumi.Context, args GetVersionOutputArgs, opts ...pulumi.InvokeOption) GetVersionResultOutput {
@@ -155,6 +156,10 @@ func (o GetVersionResultOutput) AvailableFeatureGates() pulumi.StringArrayOutput
 // The provider-assigned unique ID for this managed resource.
 func (o GetVersionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVersionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetVersionResultOutput) MajorMinorOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVersionResult) string { return v.MajorMinorOnly }).(pulumi.StringOutput)
 }
 
 func (o GetVersionResultOutput) Name() pulumi.StringOutput {

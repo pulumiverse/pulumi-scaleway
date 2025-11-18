@@ -76,6 +76,7 @@ export interface GetVersionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly majorMinorOnly: string;
     readonly name: string;
     readonly region?: string;
 }

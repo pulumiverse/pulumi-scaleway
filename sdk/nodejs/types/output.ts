@@ -3547,13 +3547,14 @@ export interface InstanceServerRootVolume {
      */
     deleteOnTermination?: boolean;
     /**
-     * The name of the server.
+     * Name of the root volume.
      */
     name: string;
     /**
      * Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
      *
-     * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+     * > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+     * It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
      */
     sbsIops: number;
     /**
@@ -7670,13 +7671,14 @@ export namespace instance {
          */
         deleteOnTermination?: boolean;
         /**
-         * The name of the server.
+         * Name of the root volume.
          */
         name: string;
         /**
          * Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
          *
-         * > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+         * > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+         * It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
          */
         sbsIops: number;
         /**

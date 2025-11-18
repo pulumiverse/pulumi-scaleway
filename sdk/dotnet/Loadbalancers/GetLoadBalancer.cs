@@ -184,6 +184,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         public readonly bool AssignFlexibleIp;
         public readonly bool AssignFlexibleIpv6;
         public readonly string Description;
+        public readonly bool ExternalPrivateNetworks;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -225,6 +226,8 @@ namespace Pulumiverse.Scaleway.Loadbalancers
 
             string description,
 
+            bool externalPrivateNetworks,
+
             string id,
 
             string ipAddress,
@@ -262,6 +265,7 @@ namespace Pulumiverse.Scaleway.Loadbalancers
             AssignFlexibleIp = assignFlexibleIp;
             AssignFlexibleIpv6 = assignFlexibleIpv6;
             Description = description;
+            ExternalPrivateNetworks = externalPrivateNetworks;
             Id = id;
             IpAddress = ipAddress;
             IpId = ipId;

@@ -25,6 +25,7 @@ class LoadbalancerArgs:
                  assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
                  assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -40,6 +41,8 @@ class LoadbalancerArgs:
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         :param pulumi.Input[_builtins.str] description: The description of the Load Balancer.
+        :param pulumi.Input[_builtins.bool] external_private_networks: A boolean to specify whether to use lb_private_network.
+               If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
         :param pulumi.Input[_builtins.str] ip_id: Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
                
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
@@ -61,6 +64,8 @@ class LoadbalancerArgs:
             pulumi.set(__self__, "assign_flexible_ipv6", assign_flexible_ipv6)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if external_private_networks is not None:
+            pulumi.set(__self__, "external_private_networks", external_private_networks)
         if ip_id is not None:
             warnings.warn("""Please use ip_ids""", DeprecationWarning)
             pulumi.log.warn("""ip_id is deprecated: Please use ip_ids""")
@@ -133,6 +138,19 @@ class LoadbalancerArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="externalPrivateNetworks")
+    def external_private_networks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        A boolean to specify whether to use lb_private_network.
+        If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
+        """
+        return pulumi.get(self, "external_private_networks")
+
+    @external_private_networks.setter
+    def external_private_networks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "external_private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="ipId")
@@ -255,6 +273,7 @@ class _LoadbalancerState:
                  assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
                  assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip_address: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -275,6 +294,8 @@ class _LoadbalancerState:
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         :param pulumi.Input[_builtins.str] description: The description of the Load Balancer.
+        :param pulumi.Input[_builtins.bool] external_private_networks: A boolean to specify whether to use lb_private_network.
+               If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
         :param pulumi.Input[_builtins.str] ip_address: The Load Balancer public IPv4 address.
         :param pulumi.Input[_builtins.str] ip_id: Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
                
@@ -301,6 +322,8 @@ class _LoadbalancerState:
             pulumi.set(__self__, "assign_flexible_ipv6", assign_flexible_ipv6)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if external_private_networks is not None:
+            pulumi.set(__self__, "external_private_networks", external_private_networks)
         if ip_address is not None:
             pulumi.set(__self__, "ip_address", ip_address)
         if ip_id is not None:
@@ -373,6 +396,19 @@ class _LoadbalancerState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter(name="externalPrivateNetworks")
+    def external_private_networks(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        A boolean to specify whether to use lb_private_network.
+        If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
+        """
+        return pulumi.get(self, "external_private_networks")
+
+    @external_private_networks.setter
+    def external_private_networks(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "external_private_networks", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
@@ -575,6 +611,7 @@ class Loadbalancer(pulumi.CustomResource):
                  assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
                  assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -687,6 +724,8 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         :param pulumi.Input[_builtins.str] description: The description of the Load Balancer.
+        :param pulumi.Input[_builtins.bool] external_private_networks: A boolean to specify whether to use lb_private_network.
+               If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
         :param pulumi.Input[_builtins.str] ip_id: Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
                
                > **Important:** Updates to `ip_id` will recreate the Load Balancer.
@@ -822,6 +861,7 @@ class Loadbalancer(pulumi.CustomResource):
                  assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
                  assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
+                 external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
                  ip_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -845,6 +885,7 @@ class Loadbalancer(pulumi.CustomResource):
             __props__.__dict__["assign_flexible_ip"] = assign_flexible_ip
             __props__.__dict__["assign_flexible_ipv6"] = assign_flexible_ipv6
             __props__.__dict__["description"] = description
+            __props__.__dict__["external_private_networks"] = external_private_networks
             __props__.__dict__["ip_id"] = ip_id
             __props__.__dict__["ip_ids"] = ip_ids
             __props__.__dict__["name"] = name
@@ -875,6 +916,7 @@ class Loadbalancer(pulumi.CustomResource):
             assign_flexible_ip: Optional[pulumi.Input[_builtins.bool]] = None,
             assign_flexible_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
+            external_private_networks: Optional[pulumi.Input[_builtins.bool]] = None,
             ip_address: Optional[pulumi.Input[_builtins.str]] = None,
             ip_id: Optional[pulumi.Input[_builtins.str]] = None,
             ip_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -900,6 +942,8 @@ class Loadbalancer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] assign_flexible_ip: Defines whether to automatically assign a flexible public IPv4 to the Load Balancer.
         :param pulumi.Input[_builtins.bool] assign_flexible_ipv6: Defines whether to automatically assign a flexible public IPv6 to the Load Balancer.
         :param pulumi.Input[_builtins.str] description: The description of the Load Balancer.
+        :param pulumi.Input[_builtins.bool] external_private_networks: A boolean to specify whether to use lb_private_network.
+               If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
         :param pulumi.Input[_builtins.str] ip_address: The Load Balancer public IPv4 address.
         :param pulumi.Input[_builtins.str] ip_id: Please use `ip_ids`. The ID of the associated Load Balancer IP. See below.
                
@@ -927,6 +971,7 @@ class Loadbalancer(pulumi.CustomResource):
         __props__.__dict__["assign_flexible_ip"] = assign_flexible_ip
         __props__.__dict__["assign_flexible_ipv6"] = assign_flexible_ipv6
         __props__.__dict__["description"] = description
+        __props__.__dict__["external_private_networks"] = external_private_networks
         __props__.__dict__["ip_address"] = ip_address
         __props__.__dict__["ip_id"] = ip_id
         __props__.__dict__["ip_ids"] = ip_ids
@@ -967,6 +1012,15 @@ class Loadbalancer(pulumi.CustomResource):
         The description of the Load Balancer.
         """
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="externalPrivateNetworks")
+    def external_private_networks(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        A boolean to specify whether to use lb_private_network.
+        If `external_private_networks` is set to `true`, `private_network` can not be set directly in the Load Balancer.
+        """
+        return pulumi.get(self, "external_private_networks")
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
@@ -1031,7 +1085,7 @@ class Loadbalancer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="privateNetworks")
-    def private_networks(self) -> pulumi.Output[Optional[Sequence['outputs.LoadbalancerPrivateNetwork']]]:
+    def private_networks(self) -> pulumi.Output[Sequence['outputs.LoadbalancerPrivateNetwork']]:
         """
         List of private network to connect with your load balancer.
         """
