@@ -1478,11 +1478,12 @@ type ServerRootVolume struct {
 	Boot *bool `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
 	DeleteOnTermination *bool `pulumi:"deleteOnTermination"`
-	// The name of the server.
+	// Name of the root volume.
 	Name *string `pulumi:"name"`
 	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+	// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 	SbsIops *int `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -1511,11 +1512,12 @@ type ServerRootVolumeArgs struct {
 	Boot pulumi.BoolPtrInput `pulumi:"boot"`
 	// Forces deletion of the root volume on instance termination.
 	DeleteOnTermination pulumi.BoolPtrInput `pulumi:"deleteOnTermination"`
-	// The name of the server.
+	// Name of the root volume.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 	//
-	// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+	// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+	// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 	SbsIops pulumi.IntPtrInput `pulumi:"sbsIops"`
 	// Size of the root volume in gigabytes.
 	// To find the right size use [this endpoint](https://www.scaleway.com/en/developers/api/instance/#path-instances-list-all-instances) and
@@ -1615,14 +1617,15 @@ func (o ServerRootVolumeOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ServerRootVolume) *bool { return v.DeleteOnTermination }).(pulumi.BoolPtrOutput)
 }
 
-// The name of the server.
+// Name of the root volume.
 func (o ServerRootVolumeOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ServerRootVolume) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
 // Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 //
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 func (o ServerRootVolumeOutput) SbsIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ServerRootVolume) *int { return v.SbsIops }).(pulumi.IntPtrOutput)
 }
@@ -1689,7 +1692,7 @@ func (o ServerRootVolumePtrOutput) DeleteOnTermination() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// The name of the server.
+// Name of the root volume.
 func (o ServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerRootVolume) *string {
 		if v == nil {
@@ -1701,7 +1704,8 @@ func (o ServerRootVolumePtrOutput) Name() pulumi.StringPtrOutput {
 
 // Choose IOPS of your sbs volume, has to be used with `sbsVolume` for root volume type.
 //
-// > **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+// > **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`lSsd`). Changes to this field will recreate the server.
+// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
 func (o ServerRootVolumePtrOutput) SbsIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServerRootVolume) *int {
 		if v == nil {

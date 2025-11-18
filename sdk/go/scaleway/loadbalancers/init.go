@@ -33,6 +33,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Ip{}
 	case "scaleway:loadbalancers/loadBalancer:LoadBalancer":
 		r = &LoadBalancer{}
+	case "scaleway:loadbalancers/privateNetwork:PrivateNetwork":
+		r = &PrivateNetwork{}
 	case "scaleway:loadbalancers/route:Route":
 		r = &Route{}
 	default:
@@ -76,6 +78,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"loadbalancers/loadBalancer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"loadbalancers/privateNetwork",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

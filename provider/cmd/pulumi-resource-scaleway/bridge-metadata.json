@@ -1631,6 +1631,15 @@
                     }
                 }
             },
+            "scaleway_lb_private_network": {
+                "current": "scaleway:loadbalancers/privateNetwork:PrivateNetwork",
+                "majorVersion": 1,
+                "fields": {
+                    "ipam_ip_ids": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
             "scaleway_lb_route": {
                 "current": "scaleway:loadbalancers/route:Route",
                 "past": [
@@ -2659,6 +2668,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_cockpit_grafana": {
+                "current": "scaleway:observability/getGrafana:getGrafana",
+                "majorVersion": 1
             },
             "scaleway_cockpit_source": {
                 "current": "scaleway:observability/getSource:getSource",
@@ -5496,6 +5509,7 @@
             "scaleway:loadbalancers/frontend:Frontend": 0,
             "scaleway:loadbalancers/ip:Ip": 0,
             "scaleway:loadbalancers/loadBalancer:LoadBalancer": 0,
+            "scaleway:loadbalancers/privateNetwork:PrivateNetwork": 0,
             "scaleway:loadbalancers/route:Route": 0,
             "scaleway:mnq/natsAccount:NatsAccount": 0,
             "scaleway:mnq/natsCredentials:NatsCredentials": 0,
@@ -5706,6 +5720,7 @@
             "scaleway:object/get:get": 0,
             "scaleway:object/getBucket:getBucket": 0,
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
+            "scaleway:observability/getGrafana:getGrafana": 0,
             "scaleway:observability/getInstance:getInstance": 0,
             "scaleway:observability/getSource:getSource": 0,
             "scaleway:observability/getSources:getSources": 0,

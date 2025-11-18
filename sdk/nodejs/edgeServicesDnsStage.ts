@@ -72,6 +72,10 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
+     * The Default Fully Qualified Domain Name attached to the stage.
+     */
+    declare public /*out*/ readonly defaultFqdn: pulumi.Output<string>;
+    /**
      * Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
      */
     declare public readonly fqdns: pulumi.Output<string[]>;
@@ -112,6 +116,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
             resourceInputs["backendStageId"] = state?.backendStageId;
             resourceInputs["cacheStageId"] = state?.cacheStageId;
             resourceInputs["createdAt"] = state?.createdAt;
+            resourceInputs["defaultFqdn"] = state?.defaultFqdn;
             resourceInputs["fqdns"] = state?.fqdns;
             resourceInputs["pipelineId"] = state?.pipelineId;
             resourceInputs["projectId"] = state?.projectId;
@@ -130,6 +135,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["tlsStageId"] = args?.tlsStageId;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["defaultFqdn"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -154,6 +160,10 @@ export interface EdgeServicesDnsStageState {
      * The date and time of the creation of the DNS stage.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * The Default Fully Qualified Domain Name attached to the stage.
+     */
+    defaultFqdn?: pulumi.Input<string>;
     /**
      * Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
      */

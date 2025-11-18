@@ -210,7 +210,7 @@ import (
 //					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},
@@ -278,7 +278,7 @@ import (
 //					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].Token, nil
 //					}).(pulumi.StringPtrOutput)),
-//					"cluster_ca_certificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
 //						return &kubeconfigs[0].ClusterCaCertificate, nil
 //					}).(pulumi.StringPtrOutput)),
 //				},

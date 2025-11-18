@@ -28,7 +28,7 @@ class GetK8sVersionResult:
     """
     A collection of values returned by getK8sVersion.
     """
-    def __init__(__self__, available_cnis=None, available_container_runtimes=None, available_feature_gates=None, id=None, name=None, region=None):
+    def __init__(__self__, available_cnis=None, available_container_runtimes=None, available_feature_gates=None, id=None, major_minor_only=None, name=None, region=None):
         if available_cnis and not isinstance(available_cnis, list):
             raise TypeError("Expected argument 'available_cnis' to be a list")
         pulumi.set(__self__, "available_cnis", available_cnis)
@@ -41,6 +41,9 @@ class GetK8sVersionResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if major_minor_only and not isinstance(major_minor_only, str):
+            raise TypeError("Expected argument 'major_minor_only' to be a str")
+        pulumi.set(__self__, "major_minor_only", major_minor_only)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -81,6 +84,11 @@ class GetK8sVersionResult:
         return pulumi.get(self, "id")
 
     @_builtins.property
+    @pulumi.getter(name="majorMinorOnly")
+    def major_minor_only(self) -> _builtins.str:
+        return pulumi.get(self, "major_minor_only")
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> _builtins.str:
         return pulumi.get(self, "name")
@@ -101,6 +109,7 @@ class AwaitableGetK8sVersionResult(GetK8sVersionResult):
             available_container_runtimes=self.available_container_runtimes,
             available_feature_gates=self.available_feature_gates,
             id=self.id,
+            major_minor_only=self.major_minor_only,
             name=self.name,
             region=self.region)
 
@@ -150,6 +159,7 @@ def get_k8s_version(name: Optional[_builtins.str] = None,
         available_container_runtimes=pulumi.get(__ret__, 'available_container_runtimes'),
         available_feature_gates=pulumi.get(__ret__, 'available_feature_gates'),
         id=pulumi.get(__ret__, 'id'),
+        major_minor_only=pulumi.get(__ret__, 'major_minor_only'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
 def get_k8s_version_output(name: Optional[pulumi.Input[_builtins.str]] = None,
@@ -196,5 +206,6 @@ def get_k8s_version_output(name: Optional[pulumi.Input[_builtins.str]] = None,
         available_container_runtimes=pulumi.get(__response__, 'available_container_runtimes'),
         available_feature_gates=pulumi.get(__response__, 'available_feature_gates'),
         id=pulumi.get(__response__, 'id'),
+        major_minor_only=pulumi.get(__response__, 'major_minor_only'),
         name=pulumi.get(__response__, 'name'),
         region=pulumi.get(__response__, 'region')))

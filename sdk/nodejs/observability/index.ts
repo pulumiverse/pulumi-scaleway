@@ -15,6 +15,11 @@ export type Cockpit = import("./cockpit").Cockpit;
 export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
 utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
 
+export { GetGrafanaArgs, GetGrafanaResult, GetGrafanaOutputArgs } from "./getGrafana";
+export const getGrafana: typeof import("./getGrafana").getGrafana = null as any;
+export const getGrafanaOutput: typeof import("./getGrafana").getGrafanaOutput = null as any;
+utilities.lazyLoad(exports, ["getGrafana","getGrafanaOutput"], () => require("./getGrafana"));
+
 export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
 export const getInstance: typeof import("./getInstance").getInstance = null as any;
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;

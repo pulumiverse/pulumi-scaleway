@@ -34,8 +34,13 @@ version = "7.6.6"
 backend = "aqua:gradle/gradle"
 
 [[tools.java]]
-version = "corretto-11.0.28.6.1"
+version = "corretto-11.0.29.7.1"
 backend = "core:java"
+
+[tools.java.platforms.linux-x64]
+checksum = "sha256:279c6d3124f8b0251b16297b16687fe8b3946410b05ed27de1259b5e5cea02ba"
+size = 195379320
+url = "https://corretto.aws/downloads/resources/11.0.29.7.1/amazon-corretto-11.0.29.7.1-linux-x64.tar.gz"
 
 [[tools.node]]
 version = "20.19.5"
@@ -59,7 +64,7 @@ version = "3.11.8"
 backend = "core:python"
 
 [[tools."vfox-pulumi:pulumi/pulumi-aws"]]
-version = "7.10.0"
+version = "7.11.1"
 backend = "vfox-pulumi:pulumi/pulumi-aws"
 
 [[tools."vfox-pulumi:pulumi/pulumi-converter-terraform"]]

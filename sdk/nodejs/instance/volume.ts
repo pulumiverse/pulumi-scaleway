@@ -85,6 +85,8 @@ export class Volume extends pulumi.CustomResource {
     declare public /*out*/ readonly serverId: pulumi.Output<string>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+     *
+     * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
     declare public readonly sizeInGb: pulumi.Output<number | undefined>;
     /**
@@ -176,6 +178,8 @@ export interface VolumeState {
     serverId?: pulumi.Input<string>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+     *
+     * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
     sizeInGb?: pulumi.Input<number>;
     /**
@@ -214,6 +218,8 @@ export interface VolumeArgs {
     projectId?: pulumi.Input<string>;
     /**
      * The size of the volume. Only one of `sizeInGb` and `fromSnapshotId` should be specified.
+     *
+     * > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
      */
     sizeInGb?: pulumi.Input<number>;
     /**

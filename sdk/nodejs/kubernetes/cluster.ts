@@ -118,7 +118,7 @@ import * as utilities from "../utilities";
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
  *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
  *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
  * }}, {
  *     dependsOn: [pool],
  * });
@@ -152,7 +152,7 @@ import * as utilities from "../utilities";
  * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
  *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
  *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     cluster_ca_certificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
  * }}, {
  *     dependsOn: [pool],
  * });

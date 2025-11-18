@@ -86,6 +86,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
+        /// 
+        /// &gt; **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         /// </summary>
         [Output("sizeInGb")]
         public Output<int?> SizeInGb { get; private set; } = null!;
@@ -181,6 +183,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
+        /// 
+        /// &gt; **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }
@@ -255,6 +259,8 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The size of the volume. Only one of `SizeInGb` and `FromSnapshotId` should be specified.
+        /// 
+        /// &gt; **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         /// </summary>
         [Input("sizeInGb")]
         public Input<int>? SizeInGb { get; set; }

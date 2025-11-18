@@ -35,6 +35,8 @@ class InstanceVolumeArgs:
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+               
+               > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
         """
@@ -119,6 +121,8 @@ class InstanceVolumeArgs:
     def size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+
+        > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -173,6 +177,8 @@ class _InstanceVolumeState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[_builtins.str] server_id: The id of the associated server.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+               
+               > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
@@ -275,6 +281,8 @@ class _InstanceVolumeState:
     def size_in_gb(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
         The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+
+        > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         """
         return pulumi.get(self, "size_in_gb")
 
@@ -372,6 +380,8 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the volume. If not provided it will be randomly generated.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+               
+               > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
@@ -487,6 +497,8 @@ class InstanceVolume(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the volume is associated with.
         :param pulumi.Input[_builtins.str] server_id: The id of the associated server.
         :param pulumi.Input[_builtins.int] size_in_gb: The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+               
+               > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: A list of tags to apply to the volume.
         :param pulumi.Input[_builtins.str] type: The type of the volume. The possible values are: `l_ssd` (Local SSD), `scratch` (Local Scratch SSD).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the volume should be created.
@@ -560,6 +572,8 @@ class InstanceVolume(pulumi.CustomResource):
     def size_in_gb(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         The size of the volume. Only one of `size_in_gb` and `from_snapshot_id` should be specified.
+
+        > **Important:** It is not possible to resize local and scratch volumes. Updates to this field will recreate the resource.
         """
         return pulumi.get(self, "size_in_gb")
 

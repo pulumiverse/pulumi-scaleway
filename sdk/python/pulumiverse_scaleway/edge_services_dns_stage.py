@@ -125,6 +125,7 @@ class _EdgeServicesDnsStageState:
                  backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
+                 default_fqdn: Optional[pulumi.Input[_builtins.str]] = None,
                  fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -136,6 +137,7 @@ class _EdgeServicesDnsStageState:
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the DNS stage.
+        :param pulumi.Input[_builtins.str] default_fqdn: The Default Fully Qualified Domain Name attached to the stage.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
@@ -149,6 +151,8 @@ class _EdgeServicesDnsStageState:
             pulumi.set(__self__, "cache_stage_id", cache_stage_id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if default_fqdn is not None:
+            pulumi.set(__self__, "default_fqdn", default_fqdn)
         if fqdns is not None:
             pulumi.set(__self__, "fqdns", fqdns)
         if pipeline_id is not None:
@@ -197,6 +201,18 @@ class _EdgeServicesDnsStageState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="defaultFqdn")
+    def default_fqdn(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The Default Fully Qualified Domain Name attached to the stage.
+        """
+        return pulumi.get(self, "default_fqdn")
+
+    @default_fqdn.setter
+    def default_fqdn(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "default_fqdn", value)
 
     @_builtins.property
     @pulumi.getter
@@ -390,6 +406,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["tls_stage_id"] = tls_stage_id
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["default_fqdn"] = None
             __props__.__dict__["type"] = None
             __props__.__dict__["updated_at"] = None
         super(EdgeServicesDnsStage, __self__).__init__(
@@ -405,6 +422,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
             backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
             cache_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
+            default_fqdn: Optional[pulumi.Input[_builtins.str]] = None,
             fqdns: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -421,6 +439,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] backend_stage_id: The backend stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] cache_stage_id: The cache stage ID the DNS stage will be linked to. Only one of `backend_stage_id`, `cache_stage_id` and `tls_stage_id` should be specified.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the DNS stage.
+        :param pulumi.Input[_builtins.str] default_fqdn: The Default Fully Qualified Domain Name attached to the stage.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] fqdns: Fully Qualified Domain Name (in the format subdomain.example.com) to attach to the stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the DNS stage is associated with.
@@ -435,6 +454,7 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         __props__.__dict__["backend_stage_id"] = backend_stage_id
         __props__.__dict__["cache_stage_id"] = cache_stage_id
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["default_fqdn"] = default_fqdn
         __props__.__dict__["fqdns"] = fqdns
         __props__.__dict__["pipeline_id"] = pipeline_id
         __props__.__dict__["project_id"] = project_id
@@ -466,6 +486,14 @@ class EdgeServicesDnsStage(pulumi.CustomResource):
         The date and time of the creation of the DNS stage.
         """
         return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="defaultFqdn")
+    def default_fqdn(self) -> pulumi.Output[_builtins.str]:
+        """
+        The Default Fully Qualified Domain Name attached to the stage.
+        """
+        return pulumi.get(self, "default_fqdn")
 
     @_builtins.property
     @pulumi.getter

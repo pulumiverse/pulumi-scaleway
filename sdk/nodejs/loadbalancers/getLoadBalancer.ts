@@ -66,6 +66,7 @@ export interface GetLoadBalancerResult {
     readonly assignFlexibleIp: boolean;
     readonly assignFlexibleIpv6: boolean;
     readonly description: string;
+    readonly externalPrivateNetworks: boolean;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

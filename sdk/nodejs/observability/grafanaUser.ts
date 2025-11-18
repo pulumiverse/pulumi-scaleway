@@ -5,28 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * The `scaleway.observability.GrafanaUser` resource allows you to create and manage [Grafana users](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#grafana-users) in Scaleway Cockpit.
- *
- * Refer to Cockpit's [product documentation](https://www.scaleway.com/en/docs/observability/cockpit/concepts/) and [API documentation](https://www.scaleway.com/en/developers/api/cockpit/regional-api) for more information.
- *
- * ## Example Usage
- *
- * ### Create a Grafana user
- *
- * The following command allows you to create a Grafana user within a specific Scaleway Project.
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const project = new scaleway.account.Project("project", {name: "test project grafana user"});
- * const main = new scaleway.observability.GrafanaUser("main", {
- *     projectId: project.id,
- *     login: "my-awesome-user",
- *     role: "editor",
- * });
- * ```
- *
  * ## Import
  *
  * This section explains how to import Grafana users using the ID of the Project associated with Cockpit, and the Grafana user ID in the `{project_id}/{grafana_user_id}` format.

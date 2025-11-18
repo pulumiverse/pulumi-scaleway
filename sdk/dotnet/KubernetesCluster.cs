@@ -167,7 +167,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
     ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
-    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
     ///         },
     ///     }, new CustomResourceOptions
     ///     {
@@ -220,7 +220,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
     ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
-    ///             { "cluster_ca_certificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
     ///         },
     ///     }, new CustomResourceOptions
     ///     {

@@ -95,6 +95,11 @@ export type LoadBalancer = import("./loadBalancer").LoadBalancer;
 export const LoadBalancer: typeof import("./loadBalancer").LoadBalancer = null as any;
 utilities.lazyLoad(exports, ["LoadBalancer"], () => require("./loadBalancer"));
 
+export { PrivateNetworkArgs, PrivateNetworkState } from "./privateNetwork";
+export type PrivateNetwork = import("./privateNetwork").PrivateNetwork;
+export const PrivateNetwork: typeof import("./privateNetwork").PrivateNetwork = null as any;
+utilities.lazyLoad(exports, ["PrivateNetwork"], () => require("./privateNetwork"));
+
 export { RouteArgs, RouteState } from "./route";
 export type Route = import("./route").Route;
 export const Route: typeof import("./route").Route = null as any;
@@ -117,6 +122,8 @@ const _module = {
                 return new Ip(name, <any>undefined, { urn })
             case "scaleway:loadbalancers/loadBalancer:LoadBalancer":
                 return new LoadBalancer(name, <any>undefined, { urn })
+            case "scaleway:loadbalancers/privateNetwork:PrivateNetwork":
+                return new PrivateNetwork(name, <any>undefined, { urn })
             case "scaleway:loadbalancers/route:Route":
                 return new Route(name, <any>undefined, { urn })
             default:
@@ -130,4 +137,5 @@ pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/certificate", _
 pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/frontend", _module)
 pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/ip", _module)
 pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/loadBalancer", _module)
+pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/privateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "loadbalancers/route", _module)

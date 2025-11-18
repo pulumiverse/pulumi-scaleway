@@ -27,7 +27,7 @@ class GetLoadBalancerResult:
     """
     A collection of values returned by getLoadBalancer.
     """
-    def __init__(__self__, assign_flexible_ip=None, assign_flexible_ipv6=None, description=None, id=None, ip_address=None, ip_id=None, ip_ids=None, ipv6_address=None, lb_id=None, name=None, organization_id=None, private_ips=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
+    def __init__(__self__, assign_flexible_ip=None, assign_flexible_ipv6=None, description=None, external_private_networks=None, id=None, ip_address=None, ip_id=None, ip_ids=None, ipv6_address=None, lb_id=None, name=None, organization_id=None, private_ips=None, private_networks=None, project_id=None, region=None, release_ip=None, ssl_compatibility_level=None, tags=None, type=None, zone=None):
         if assign_flexible_ip and not isinstance(assign_flexible_ip, bool):
             raise TypeError("Expected argument 'assign_flexible_ip' to be a bool")
         pulumi.set(__self__, "assign_flexible_ip", assign_flexible_ip)
@@ -37,6 +37,9 @@ class GetLoadBalancerResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if external_private_networks and not isinstance(external_private_networks, bool):
+            raise TypeError("Expected argument 'external_private_networks' to be a bool")
+        pulumi.set(__self__, "external_private_networks", external_private_networks)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -103,6 +106,11 @@ class GetLoadBalancerResult:
     @pulumi.getter
     def description(self) -> _builtins.str:
         return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter(name="externalPrivateNetworks")
+    def external_private_networks(self) -> _builtins.bool:
+        return pulumi.get(self, "external_private_networks")
 
     @_builtins.property
     @pulumi.getter
@@ -214,6 +222,7 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             assign_flexible_ip=self.assign_flexible_ip,
             assign_flexible_ipv6=self.assign_flexible_ipv6,
             description=self.description,
+            external_private_networks=self.external_private_networks,
             id=self.id,
             ip_address=self.ip_address,
             ip_id=self.ip_id,
@@ -274,6 +283,7 @@ def get_load_balancer(lb_id: Optional[_builtins.str] = None,
         assign_flexible_ip=pulumi.get(__ret__, 'assign_flexible_ip'),
         assign_flexible_ipv6=pulumi.get(__ret__, 'assign_flexible_ipv6'),
         description=pulumi.get(__ret__, 'description'),
+        external_private_networks=pulumi.get(__ret__, 'external_private_networks'),
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
         ip_id=pulumi.get(__ret__, 'ip_id'),
@@ -331,6 +341,7 @@ def get_load_balancer_output(lb_id: Optional[pulumi.Input[Optional[_builtins.str
         assign_flexible_ip=pulumi.get(__response__, 'assign_flexible_ip'),
         assign_flexible_ipv6=pulumi.get(__response__, 'assign_flexible_ipv6'),
         description=pulumi.get(__response__, 'description'),
+        external_private_networks=pulumi.get(__response__, 'external_private_networks'),
         id=pulumi.get(__response__, 'id'),
         ip_address=pulumi.get(__response__, 'ip_address'),
         ip_id=pulumi.get(__response__, 'ip_id'),

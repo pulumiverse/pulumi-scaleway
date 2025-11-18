@@ -23,13 +23,14 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly bool? DeleteOnTermination;
         /// <summary>
-        /// The name of the server.
+        /// Name of the root volume.
         /// </summary>
         public readonly string? Name;
         /// <summary>
         /// Choose IOPS of your sbs volume, has to be used with `SbsVolume` for root volume type.
         /// 
-        /// &gt; **Important:** Updates to `root_volume.size_in_gb` will be ignored after the creation of the server.
+        /// &gt; **Important:** It is not possible to change `root_volume.size_in_gb` for local volumes (`LSsd`). Changes to this field will recreate the server.
+        /// It is possible to increase `root_volume.size_in_gb` for SBS volumes, but they cannot be resized down without recreating the server.
         /// </summary>
         public readonly int? SbsIops;
         /// <summary>

@@ -72,9 +72,10 @@ type LookupLoadBalancerArgs struct {
 
 // A collection of values returned by getLoadBalancer.
 type LookupLoadBalancerResult struct {
-	AssignFlexibleIp   bool   `pulumi:"assignFlexibleIp"`
-	AssignFlexibleIpv6 bool   `pulumi:"assignFlexibleIpv6"`
-	Description        string `pulumi:"description"`
+	AssignFlexibleIp        bool   `pulumi:"assignFlexibleIp"`
+	AssignFlexibleIpv6      bool   `pulumi:"assignFlexibleIpv6"`
+	Description             string `pulumi:"description"`
+	ExternalPrivateNetworks bool   `pulumi:"externalPrivateNetworks"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// The Load Balancer public IP address.
@@ -149,6 +150,10 @@ func (o LookupLoadBalancerResultOutput) AssignFlexibleIpv6() pulumi.BoolOutput {
 
 func (o LookupLoadBalancerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoadBalancerResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o LookupLoadBalancerResultOutput) ExternalPrivateNetworks() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLoadBalancerResult) bool { return v.ExternalPrivateNetworks }).(pulumi.BoolOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

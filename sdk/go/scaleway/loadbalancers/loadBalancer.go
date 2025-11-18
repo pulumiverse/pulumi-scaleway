@@ -218,6 +218,9 @@ type LoadBalancer struct {
 	AssignFlexibleIpv6 pulumi.BoolPtrOutput `pulumi:"assignFlexibleIpv6"`
 	// The description of the Load Balancer.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// A boolean to specify whether to use lb_private_network.
+	// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+	ExternalPrivateNetworks pulumi.BoolPtrOutput `pulumi:"externalPrivateNetworks"`
 	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
@@ -303,6 +306,9 @@ type loadBalancerState struct {
 	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
 	// The description of the Load Balancer.
 	Description *string `pulumi:"description"`
+	// A boolean to specify whether to use lb_private_network.
+	// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+	ExternalPrivateNetworks *bool `pulumi:"externalPrivateNetworks"`
 	// The Load Balancer public IPv4 address.
 	IpAddress *string `pulumi:"ipAddress"`
 	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
@@ -350,6 +356,9 @@ type LoadBalancerState struct {
 	AssignFlexibleIpv6 pulumi.BoolPtrInput
 	// The description of the Load Balancer.
 	Description pulumi.StringPtrInput
+	// A boolean to specify whether to use lb_private_network.
+	// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+	ExternalPrivateNetworks pulumi.BoolPtrInput
 	// The Load Balancer public IPv4 address.
 	IpAddress pulumi.StringPtrInput
 	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
@@ -401,6 +410,9 @@ type loadBalancerArgs struct {
 	AssignFlexibleIpv6 *bool `pulumi:"assignFlexibleIpv6"`
 	// The description of the Load Balancer.
 	Description *string `pulumi:"description"`
+	// A boolean to specify whether to use lb_private_network.
+	// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+	ExternalPrivateNetworks *bool `pulumi:"externalPrivateNetworks"`
 	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
@@ -439,6 +451,9 @@ type LoadBalancerArgs struct {
 	AssignFlexibleIpv6 pulumi.BoolPtrInput
 	// The description of the Load Balancer.
 	Description pulumi.StringPtrInput
+	// A boolean to specify whether to use lb_private_network.
+	// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+	ExternalPrivateNetworks pulumi.BoolPtrInput
 	// Please use `ipIds`. The ID of the associated Load Balancer IP. See below.
 	//
 	// > **Important:** Updates to `ipId` will recreate the Load Balancer.
@@ -569,6 +584,12 @@ func (o LoadBalancerOutput) AssignFlexibleIpv6() pulumi.BoolPtrOutput {
 // The description of the Load Balancer.
 func (o LoadBalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoadBalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// A boolean to specify whether to use lb_private_network.
+// If `externalPrivateNetworks` is set to `true`, `privateNetwork` can not be set directly in the Load Balancer.
+func (o LoadBalancerOutput) ExternalPrivateNetworks() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *LoadBalancer) pulumi.BoolPtrOutput { return v.ExternalPrivateNetworks }).(pulumi.BoolPtrOutput)
 }
 
 // The Load Balancer public IPv4 address.
