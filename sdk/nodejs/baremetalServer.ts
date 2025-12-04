@@ -15,6 +15,68 @@ import * as utilities from "./utilities";
  *
  * ### With option
  *
+ * ### With cloud-init
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const mySshKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-1",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-I220E-NVME",
+ * });
+ * const myServerCi = new scaleway.elasticmetal.Server("my_server_ci", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
+ *     cloudInit: std.index.file({
+ *         input: "userdata.yaml",
+ *     }).result,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const mySshKey = scaleway.iam.getSshKey({
+ *     name: "main",
+ * });
+ * const myOffer = scaleway.elasticmetal.getOffer({
+ *     zone: "fr-par-2",
+ *     name: "EM-I220E-NVME",
+ * });
+ * const myOs = scaleway.elasticmetal.getOs({
+ *     zone: "fr-par-1",
+ *     name: "Ubuntu",
+ *     version: "22.04 LTS (Jammy Jellyfish)",
+ * });
+ * const myServerCi = new scaleway.elasticmetal.Server("my_server_ci", {
+ *     zone: "fr-par-2",
+ *     offer: myOffer.then(myOffer => myOffer.offerId),
+ *     os: myOs.then(myOs => myOs.osId),
+ *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
+ *     cloudInit: `#cloud-config
+ * packages:
+ *   - htop
+ *   - curl
+ *
+ * runcmd:
+ *   - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
+ * `,
+ * });
+ * ```
+ *
  * ### With private network
  *
  * ### With IPAM IP IDs
@@ -161,6 +223,10 @@ export class BaremetalServer extends pulumi.CustomResource {
     }
 
     /**
+     * Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+     */
+    declare public readonly cloudInit: pulumi.Output<string>;
+    /**
      * A description for the server.
      */
     declare public readonly description: pulumi.Output<string | undefined>;
@@ -296,6 +362,7 @@ export class BaremetalServer extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as BaremetalServerState | undefined;
+            resourceInputs["cloudInit"] = state?.cloudInit;
             resourceInputs["description"] = state?.description;
             resourceInputs["domain"] = state?.domain;
             resourceInputs["hostname"] = state?.hostname;
@@ -329,6 +396,7 @@ export class BaremetalServer extends pulumi.CustomResource {
             if (args?.offer === undefined && !opts.urn) {
                 throw new Error("Missing required property 'offer'");
             }
+            resourceInputs["cloudInit"] = args?.cloudInit;
             resourceInputs["description"] = args?.description;
             resourceInputs["hostname"] = args?.hostname;
             resourceInputs["installConfigAfterward"] = args?.installConfigAfterward;
@@ -369,6 +437,10 @@ export class BaremetalServer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering BaremetalServer resources.
  */
 export interface BaremetalServerState {
+    /**
+     * Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+     */
+    cloudInit?: pulumi.Input<string>;
     /**
      * A description for the server.
      */
@@ -494,6 +566,10 @@ export interface BaremetalServerState {
  * The set of arguments for constructing a BaremetalServer resource.
  */
 export interface BaremetalServerArgs {
+    /**
+     * Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+     */
+    cloudInit?: pulumi.Input<string>;
     /**
      * A description for the server.
      */

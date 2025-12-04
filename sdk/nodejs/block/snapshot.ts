@@ -34,7 +34,46 @@ import * as utilities from "../utilities";
  *
  * ### How to import from Object Storage
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const my_import_bucket = new scaleway.object.Bucket("my-import-bucket", {name: "snapshot-bucket-to-import"});
+ * const qcow_object = new scaleway.object.Item("qcow-object", {
+ *     bucket: snapshot_bucket.name,
+ *     key: "my-snapshot.qcow2",
+ *     file: "imported-snapshot/snapshot.qcow2",
+ * });
+ * const imported = new scaleway.block.Volume("imported", {
+ *     iops: 5000,
+ *     name: "imported-from-qcow",
+ *     "import": [{
+ *         bucket: "my-import-bucket",
+ *         key: "imported-snapshot/snapshot.qcow2",
+ *     }],
+ * });
+ * ```
+ *
  * ### How to export to Object Storage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const my_import_bucket = new scaleway.object.Bucket("my-import-bucket", {name: "snapshot-bucket-to-import"});
+ * const qcow_object = new scaleway.object.Item("qcow-object", {
+ *     bucket: snapshot_bucket.name,
+ *     key: "export/my-snapshot.qcow2",
+ * });
+ * const toExport = new scaleway.block.Volume("to_export", {
+ *     iops: 5000,
+ *     name: "to-export",
+ *     "export": [{
+ *         bucket: "snapshot-bucket-to-import",
+ *         key: "exports/my-snapshot.qcow2",
+ *     }],
+ * });
+ * ```
  *
  * ## Import
  *

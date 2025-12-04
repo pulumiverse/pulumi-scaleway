@@ -136,6 +136,7 @@
         "functions/trigger.ts",
         "getAccountProject.ts",
         "getAccountSshKey.ts",
+        "getAuditTrailEvent.ts",
         "getAvailabilityZones.ts",
         "getBaremetalOffer.ts",
         "getBaremetalOption.ts",

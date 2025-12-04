@@ -122,7 +122,7 @@ type Model struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the model
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -192,7 +192,7 @@ type modelState struct {
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the model
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 	Url *string `pulumi:"url"`
 }
 
@@ -223,7 +223,7 @@ type ModelState struct {
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the model
 	UpdatedAt pulumi.StringPtrInput
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 	Url pulumi.StringPtrInput
 }
 
@@ -240,7 +240,7 @@ type modelArgs struct {
 	Region *string `pulumi:"region"`
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
 	Secret *string `pulumi:"secret"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 	Url string `pulumi:"url"`
 }
 
@@ -254,7 +254,7 @@ type ModelArgs struct {
 	Region pulumi.StringPtrInput
 	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
 	Secret pulumi.StringPtrInput
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 	Url pulumi.StringInput
 }
 
@@ -410,7 +410,7 @@ func (o ModelOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
 func (o ModelOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

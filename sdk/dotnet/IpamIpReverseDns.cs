@@ -15,6 +15,73 @@ namespace Pulumiverse.Scaleway
     /// 
     /// For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var ip01 = new Scaleway.Instance.Ip("ip01", new()
+    ///     {
+    ///         Type = "routed_ipv6",
+    ///     });
+    /// 
+    ///     var srv01 = new Scaleway.Instance.Server("srv01", new()
+    ///     {
+    ///         Name = "tf-tests-instance-server-ips",
+    ///         IpIds = new[]
+    ///         {
+    ///             ip01.Id,
+    ///         },
+    ///         Image = "ubuntu_jammy",
+    ///         Type = "PRO2-XXS",
+    ///         State = "stopped",
+    ///     });
+    /// 
+    ///     var ipam01 = Scaleway.Ipam.GetIp.Invoke(new()
+    ///     {
+    ///         Resource = new Scaleway.Ipam.Inputs.GetIpResourceInputArgs
+    ///         {
+    ///             Id = srv01.Id,
+    ///             Type = "instance_server",
+    ///         },
+    ///         Type = "ipv6",
+    ///     });
+    /// 
+    ///     var tfAAAA = new Scaleway.Domain.Record("tf_AAAA", new()
+    ///     {
+    ///         DnsZone = "example.com",
+    ///         Name = "",
+    ///         Type = "AAAA",
+    ///         Data = Std.Index.Cidrhost.Invoke(new()
+    ///         {
+    ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
+    ///             Host = 42,
+    ///         }).Result,
+    ///         Ttl = 3600,
+    ///         Priority = 1,
+    ///     });
+    /// 
+    ///     var @base = new Scaleway.Ipam.IpReverseDns("base", new()
+    ///     {
+    ///         IpamIpId = ipam01.Apply(getIpResult =&gt; getIpResult.Id),
+    ///         Hostname = "example.com",
+    ///         Address = Std.Index.Cidrhost.Invoke(new()
+    ///         {
+    ///             Input = ipam01.Apply(getIpResult =&gt; getIpResult.AddressCidr),
+    ///             Host = 42,
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.

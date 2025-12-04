@@ -18,7 +18,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Use Secret Manager
@@ -31,7 +30,6 @@ namespace Pulumiverse.Scaleway
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
         /// The output blocks display the sensitive data contained in your secret version.
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -96,7 +94,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Use Secret Manager
@@ -109,7 +106,6 @@ namespace Pulumiverse.Scaleway
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
         /// The output blocks display the sensitive data contained in your secret version.
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -174,7 +170,6 @@ namespace Pulumiverse.Scaleway
         /// 
         /// Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/identity-and-access-management/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
         /// 
-        /// 
         /// ## Example Usage
         /// 
         /// ### Use Secret Manager
@@ -187,7 +182,6 @@ namespace Pulumiverse.Scaleway
         /// - retrieve the secret version specified by the secret name and the desired version
         /// 
         /// The output blocks display the sensitive data contained in your secret version.
-        /// 
         /// 
         /// ```csharp
         /// using System.Collections.Generic;

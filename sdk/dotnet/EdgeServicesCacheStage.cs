@@ -36,6 +36,31 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Purge request
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     {
+    ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
+    ///         BackendStageId = mainScalewayEdgeServicesBackendStage.Id,
+    ///         Purge = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "pipelineId", mainScalewayEdgeServicesPipeline.Id },
+    ///                 { "all", true },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Cache stages can be imported using the `{id}`, e.g.

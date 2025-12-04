@@ -16,6 +16,48 @@ import (
 //
 // Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			someBucket, err := object.NewBucket(ctx, "some_bucket", &object.BucketArgs{
+//				Name: pulumi.String("some-unique-name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeFilemd5, err := std.Filemd5(ctx, map[string]interface{}{
+//				"input": "myfile",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = object.NewItem(ctx, "some_file", &object.ItemArgs{
+//				Bucket: someBucket.ID(),
+//				Key:    pulumi.String("object_path"),
+//				File:   pulumi.String("myfile"),
+//				Hash:   invokeFilemd5.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
@@ -46,7 +88,7 @@ type Item struct {
 	//
 	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrOutput `pulumi:"contentBase64"`
-	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 	ContentType pulumi.StringOutput `pulumi:"contentType"`
 	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrOutput `pulumi:"file"`
@@ -127,7 +169,7 @@ type itemState struct {
 	//
 	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 	ContentType *string `pulumi:"contentType"`
 	// The name of the file to upload, defaults to an empty file.
 	File *string `pulumi:"file"`
@@ -160,7 +202,7 @@ type ItemState struct {
 	//
 	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrInput
-	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 	ContentType pulumi.StringPtrInput
 	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrInput
@@ -197,7 +239,7 @@ type itemArgs struct {
 	//
 	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 	ContentType *string `pulumi:"contentType"`
 	// The name of the file to upload, defaults to an empty file.
 	File *string `pulumi:"file"`
@@ -231,7 +273,7 @@ type ItemArgs struct {
 	//
 	// > **Note:** Only one of `file`, `content` or `contentBase64` can be defined.
 	ContentBase64 pulumi.StringPtrInput
-	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+	// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 	ContentType pulumi.StringPtrInput
 	// The name of the file to upload, defaults to an empty file.
 	File pulumi.StringPtrInput
@@ -359,7 +401,7 @@ func (o ItemOutput) ContentBase64() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringPtrOutput { return v.ContentBase64 }).(pulumi.StringPtrOutput)
 }
 
-// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
 func (o ItemOutput) ContentType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Item) pulumi.StringOutput { return v.ContentType }).(pulumi.StringOutput)
 }

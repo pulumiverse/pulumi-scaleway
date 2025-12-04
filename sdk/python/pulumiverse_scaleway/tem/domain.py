@@ -635,6 +635,27 @@ class Domain(pulumi.CustomResource):
             autoconfig=True)
         ```
 
+        ### Configuring GitLab Project Variables
+
+        ```python
+        import pulumi
+        import pulumi_gitlab as gitlab
+        import pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        my_domain = scaleway.tem.get_domain(name=domain_name)
+        smtp_auth_user = gitlab.ProjectVariable("smtp_auth_user",
+            key="SMTP_AUTH_USER",
+            value=my_domain.smtps_auth_user)
+        smtp_port = gitlab.ProjectVariable("smtp_port",
+            key="SMTP_PORT",
+            value=my_domain.smtps_port)
+        smtp_host = gitlab.ProjectVariable("smtp_host",
+            key="SMTP_HOST",
+            value=my_domain.smtps_host)
+        ```
+
         ## Import
 
         Domains can be imported using the `{region}/{id}`, e.g.
@@ -722,6 +743,27 @@ class Domain(pulumi.CustomResource):
             name=domain_name,
             accept_tos=True,
             autoconfig=True)
+        ```
+
+        ### Configuring GitLab Project Variables
+
+        ```python
+        import pulumi
+        import pulumi_gitlab as gitlab
+        import pulumi_scaleway as scaleway
+
+        config = pulumi.Config()
+        domain_name = config.require("domainName")
+        my_domain = scaleway.tem.get_domain(name=domain_name)
+        smtp_auth_user = gitlab.ProjectVariable("smtp_auth_user",
+            key="SMTP_AUTH_USER",
+            value=my_domain.smtps_auth_user)
+        smtp_port = gitlab.ProjectVariable("smtp_port",
+            key="SMTP_PORT",
+            value=my_domain.smtps_port)
+        smtp_host = gitlab.ProjectVariable("smtp_host",
+            key="SMTP_HOST",
+            value=my_domain.smtps_host)
         ```
 
         ## Import

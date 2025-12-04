@@ -52,6 +52,7 @@ from .function_token import *
 from .function_trigger import *
 from .get_account_project import *
 from .get_account_ssh_key import *
+from .get_audit_trail_event import *
 from .get_availability_zones import *
 from .get_baremetal_offer import *
 from .get_baremetal_option import *

@@ -20,6 +20,129 @@ import (
 //
 // ### With option
 //
+// ### With cloud-init
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name: pulumi.StringRef("main"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-1"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-I220E-NVME"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, map[string]interface{}{
+//				"input": "userdata.yaml",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "my_server_ci", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(mySshKey.Id),
+//				},
+//				CloudInit: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
+//				Name: pulumi.StringRef("main"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
+//				Zone: pulumi.StringRef("fr-par-2"),
+//				Name: pulumi.StringRef("EM-I220E-NVME"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
+//				Zone:    pulumi.StringRef("fr-par-1"),
+//				Name:    pulumi.StringRef("Ubuntu"),
+//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = elasticmetal.NewServer(ctx, "my_server_ci", &elasticmetal.ServerArgs{
+//				Zone:  pulumi.String("fr-par-2"),
+//				Offer: pulumi.String(myOffer.OfferId),
+//				Os:    pulumi.String(myOs.OsId),
+//				SshKeyIds: pulumi.StringArray{
+//					pulumi.String(mySshKey.Id),
+//				},
+//				CloudInit: pulumi.String(`#cloud-config
+//
+// packages:
+//   - htop
+//   - curl
+//
+// runcmd:
+//   - echo \"Hello from raw cloud-init!\" > /home/ubuntu/message.txt
+//
+// `),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### With private network
 //
 // ### With IPAM IP IDs
@@ -223,6 +346,8 @@ import (
 type BaremetalServer struct {
 	pulumi.CustomResourceState
 
+	// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+	CloudInit pulumi.StringOutput `pulumi:"cloudInit"`
 	// A description for the server.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The domain of the server.
@@ -332,6 +457,8 @@ func GetBaremetalServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering BaremetalServer resources.
 type baremetalServerState struct {
+	// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+	CloudInit *string `pulumi:"cloudInit"`
 	// A description for the server.
 	Description *string `pulumi:"description"`
 	// The domain of the server.
@@ -398,6 +525,8 @@ type baremetalServerState struct {
 }
 
 type BaremetalServerState struct {
+	// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+	CloudInit pulumi.StringPtrInput
 	// A description for the server.
 	Description pulumi.StringPtrInput
 	// The domain of the server.
@@ -468,6 +597,8 @@ func (BaremetalServerState) ElementType() reflect.Type {
 }
 
 type baremetalServerArgs struct {
+	// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+	CloudInit *string `pulumi:"cloudInit"`
 	// A description for the server.
 	Description *string `pulumi:"description"`
 	// The hostname of the server.
@@ -519,6 +650,8 @@ type baremetalServerArgs struct {
 
 // The set of arguments for constructing a BaremetalServer resource.
 type BaremetalServerArgs struct {
+	// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+	CloudInit pulumi.StringPtrInput
 	// A description for the server.
 	Description pulumi.StringPtrInput
 	// The hostname of the server.
@@ -653,6 +786,11 @@ func (o BaremetalServerOutput) ToBaremetalServerOutput() BaremetalServerOutput {
 
 func (o BaremetalServerOutput) ToBaremetalServerOutputWithContext(ctx context.Context) BaremetalServerOutput {
 	return o
+}
+
+// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+func (o BaremetalServerOutput) CloudInit() pulumi.StringOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.CloudInit }).(pulumi.StringOutput)
 }
 
 // A description for the server.

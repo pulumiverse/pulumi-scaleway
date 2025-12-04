@@ -443,7 +443,7 @@ class GetSourcesSourceResult(dict):
         :param _builtins.str created_at: The date and time of the creation of the cockpit datasource.
         :param _builtins.str id: The ID of the data source.
         :param _builtins.str name: Filter sources by name.
-        :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `custom`.
         :param _builtins.str project_id: The project ID the cockpit sources are associated with.
         :param _builtins.str push_url: The URL endpoint used for pushing data to the cockpit data source.
         :param _builtins.str region: The region in which the cockpit sources are located.
@@ -494,7 +494,7 @@ class GetSourcesSourceResult(dict):
     @pulumi.getter
     def origin(self) -> _builtins.str:
         """
-        Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+        Filter sources by origin. Possible values are: `scaleway`, `custom`.
         """
         return pulumi.get(self, "origin")
 

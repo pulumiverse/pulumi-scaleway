@@ -14,6 +14,39 @@ import * as utilities from "../utilities";
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
  *
  * ## Examples
+ *
+ * ### Let's Encrypt
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const main = new scaleway.loadbalancers.Ip("main", {});
+ * const mainLoadBalancer = new scaleway.loadbalancers.LoadBalancer("main", {
+ *     ipId: main.id,
+ *     name: "data-test-lb-cert",
+ *     type: "LB-S",
+ * });
+ * const mainCertificate = new scaleway.loadbalancers.Certificate("main", {
+ *     lbId: mainLoadBalancer.id,
+ *     name: "data-test-lb-cert",
+ *     letsencrypt: {
+ *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.index.replace({
+ *             text: ipAddress,
+ *             search: ".",
+ *             replace: "-",
+ *         }).result}.lb.${region}.scw.cloud`),
+ *     },
+ * });
+ * const byID = scaleway.loadbalancers.getCertificateOutput({
+ *     certificateId: mainCertificate.id,
+ * });
+ * const byName = scaleway.loadbalancers.getCertificateOutput({
+ *     name: mainCertificate.name,
+ *     lbId: mainLoadBalancer.id,
+ * });
+ * ```
  */
 export function getCertificate(args?: GetCertificateArgs, opts?: pulumi.InvokeOptions): Promise<GetCertificateResult> {
     args = args || {};
@@ -73,6 +106,39 @@ export interface GetCertificateResult {
  * For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
  *
  * ## Examples
+ *
+ * ### Let's Encrypt
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const main = new scaleway.loadbalancers.Ip("main", {});
+ * const mainLoadBalancer = new scaleway.loadbalancers.LoadBalancer("main", {
+ *     ipId: main.id,
+ *     name: "data-test-lb-cert",
+ *     type: "LB-S",
+ * });
+ * const mainCertificate = new scaleway.loadbalancers.Certificate("main", {
+ *     lbId: mainLoadBalancer.id,
+ *     name: "data-test-lb-cert",
+ *     letsencrypt: {
+ *         commonName: pulumi.all([mainLoadBalancer.ipAddress, mainLoadBalancer.region]).apply(([ipAddress, region]) => `${std.index.replace({
+ *             text: ipAddress,
+ *             search: ".",
+ *             replace: "-",
+ *         }).result}.lb.${region}.scw.cloud`),
+ *     },
+ * });
+ * const byID = scaleway.loadbalancers.getCertificateOutput({
+ *     certificateId: mainCertificate.id,
+ * });
+ * const byName = scaleway.loadbalancers.getCertificateOutput({
+ *     name: mainCertificate.name,
+ *     lbId: mainLoadBalancer.id,
+ * });
+ * ```
  */
 export function getCertificateOutput(args?: GetCertificateOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCertificateResult> {
     args = args || {};

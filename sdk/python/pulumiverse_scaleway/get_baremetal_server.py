@@ -29,7 +29,10 @@ class GetBaremetalServerResult:
     """
     A collection of values returned by getBaremetalServer.
     """
-    def __init__(__self__, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, protected=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, cloud_init=None, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, protected=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+        if cloud_init and not isinstance(cloud_init, str):
+            raise TypeError("Expected argument 'cloud_init' to be a str")
+        pulumi.set(__self__, "cloud_init", cloud_init)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -120,6 +123,11 @@ class GetBaremetalServerResult:
         if zone and not isinstance(zone, str):
             raise TypeError("Expected argument 'zone' to be a str")
         pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> _builtins.str:
+        return pulumi.get(self, "cloud_init")
 
     @_builtins.property
     @pulumi.getter
@@ -281,6 +289,7 @@ class AwaitableGetBaremetalServerResult(GetBaremetalServerResult):
         if False:
             yield self
         return GetBaremetalServerResult(
+            cloud_init=self.cloud_init,
             description=self.description,
             domain=self.domain,
             hostname=self.hostname,
@@ -350,6 +359,7 @@ def get_baremetal_server(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult).value
 
     return AwaitableGetBaremetalServerResult(
+        cloud_init=pulumi.get(__ret__, 'cloud_init'),
         description=pulumi.get(__ret__, 'description'),
         domain=pulumi.get(__ret__, 'domain'),
         hostname=pulumi.get(__ret__, 'hostname'),
@@ -416,6 +426,7 @@ def get_baremetal_server_output(name: Optional[pulumi.Input[Optional[_builtins.s
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('scaleway:index/getBaremetalServer:getBaremetalServer', __args__, opts=opts, typ=GetBaremetalServerResult)
     return __ret__.apply(lambda __response__: GetBaremetalServerResult(
+        cloud_init=pulumi.get(__response__, 'cloud_init'),
         description=pulumi.get(__response__, 'description'),
         domain=pulumi.get(__response__, 'domain'),
         hostname=pulumi.get(__response__, 'hostname'),

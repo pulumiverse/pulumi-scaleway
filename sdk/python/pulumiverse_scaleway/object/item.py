@@ -41,7 +41,7 @@ class ItemArgs:
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
                > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         :param pulumi.Input[_builtins.str] file: The name of the file to upload, defaults to an empty file.
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] metadata: Map of metadata used for the object (keys must be lowercase).
@@ -133,7 +133,7 @@ class ItemArgs:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         """
         return pulumi.get(self, "content_type")
 
@@ -274,7 +274,7 @@ class _ItemState:
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
                > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         :param pulumi.Input[_builtins.str] file: The name of the file to upload, defaults to an empty file.
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
@@ -357,7 +357,7 @@ class _ItemState:
     @pulumi.getter(name="contentType")
     def content_type(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         """
         return pulumi.get(self, "content_type")
 
@@ -512,6 +512,21 @@ class Item(pulumi.CustomResource):
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        some_bucket = scaleway.object.Bucket("some_bucket", name="some-unique-name")
+        some_file = scaleway.object.Item("some_file",
+            bucket=some_bucket.id,
+            key="object_path",
+            file="myfile",
+            hash=std.index.filemd5(input="myfile")["result"])
+        ```
+
         ## Import
 
         Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
@@ -539,7 +554,7 @@ class Item(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
                > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         :param pulumi.Input[_builtins.str] file: The name of the file to upload, defaults to an empty file.
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
@@ -561,6 +576,21 @@ class Item(pulumi.CustomResource):
         The `object.Item` resource allows you to create and manage objects for [Scaleway Object storage](https://www.scaleway.com/en/docs/object-storage/).
 
         Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        some_bucket = scaleway.object.Bucket("some_bucket", name="some-unique-name")
+        some_file = scaleway.object.Item("some_file",
+            bucket=some_bucket.id,
+            key="object_path",
+            file="myfile",
+            hash=std.index.filemd5(input="myfile")["result"])
+        ```
 
         ## Import
 
@@ -678,7 +708,7 @@ class Item(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] content_base64: The base64-encoded content of the file to upload. Only one of `file`, `content` or `content_base64` can be defined.
                
                > **Note:** Only one of `file`, `content` or `content_base64` can be defined.
-        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        :param pulumi.Input[_builtins.str] content_type: The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         :param pulumi.Input[_builtins.str] file: The name of the file to upload, defaults to an empty file.
         :param pulumi.Input[_builtins.str] hash: Hash of the file, used to trigger the upload on file change.
         :param pulumi.Input[_builtins.str] key: The path to the object.
@@ -740,7 +770,7 @@ class Item(pulumi.CustomResource):
     @pulumi.getter(name="contentType")
     def content_type(self) -> pulumi.Output[_builtins.str]:
         """
-        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
         """
         return pulumi.get(self, "content_type")
 

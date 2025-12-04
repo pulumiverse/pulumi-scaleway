@@ -18,6 +18,67 @@ import (
 // For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 //
 // ## Examples
+//
+// ### Let's Encrypt
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
+//
+// )
+// func main() {
+// pulumi.Run(func(ctx *pulumi.Context) error {
+// main, err := loadbalancers.NewIp(ctx, "main", nil)
+// if err != nil {
+// return err
+// }
+// mainLoadBalancer, err := loadbalancers.NewLoadBalancer(ctx, "main", &loadbalancers.LoadBalancerArgs{
+// IpId: main.ID(),
+// Name: pulumi.String("data-test-lb-cert"),
+// Type: pulumi.String("LB-S"),
+// })
+// if err != nil {
+// return err
+// }
+// invokeReplace, err := std.Replace(ctx, map[string]interface{}{
+// "text": ipAddress,
+// "search": ".",
+// "replace": "-",
+// }, nil)
+// if err != nil {
+// return err
+// }
+// mainCertificate, err := loadbalancers.NewCertificate(ctx, "main", &loadbalancers.CertificateArgs{
+// LbId: mainLoadBalancer.ID(),
+// Name: pulumi.String("data-test-lb-cert"),
+// Letsencrypt: &loadbalancers.CertificateLetsencryptArgs{
+// CommonName: pulumi.All(mainLoadBalancer.IpAddress,mainLoadBalancer.Region).ApplyT(func(_args []interface{}) (string, error) {
+// ipAddress := _args[0].(string)
+// region := _args[1].(string)
+// %!v(PANIC=Format method: runtime error: invalid memory address or nil pointer dereference),
+// },
+// })
+// if err != nil {
+// return err
+// }
+// _ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
+// CertificateId: mainCertificate.ID(),
+// }, nil);
+// _ = loadbalancers.LookupCertificateOutput(ctx, loadbalancers.GetCertificateOutputArgs{
+// Name: mainCertificate.Name,
+// LbId: mainLoadBalancer.ID(),
+// }, nil);
+// return nil
+// })
+// }
+// ```
 func LookupCertificate(ctx *pulumi.Context, args *LookupCertificateArgs, opts ...pulumi.InvokeOption) (*LookupCertificateResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupCertificateResult

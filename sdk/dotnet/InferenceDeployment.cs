@@ -18,6 +18,35 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### Basic
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myModel = Scaleway.Inference.GetModel.Invoke(new()
+    ///     {
+    ///         Name = "meta/llama-3.1-8b-instruct:fp8",
+    ///     });
+    /// 
+    ///     var deployment = new Scaleway.Inference.Deployment("deployment", new()
+    ///     {
+    ///         Name = "tf-inference-deployment",
+    ///         NodeType = "L4",
+    ///         ModelName = myModel.Apply(getModelResult =&gt; getModelResult.Id),
+    ///         PublicEndpoint = new Scaleway.Inference.Inputs.DeploymentPublicEndpointArgs
+    ///         {
+    ///             IsEnabled = true,
+    ///         },
+    ///         AcceptEula = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Functions can be imported using, `{region}/{id}`, as shown below:

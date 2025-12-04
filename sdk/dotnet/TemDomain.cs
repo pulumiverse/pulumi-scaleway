@@ -108,6 +108,45 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Configuring GitLab Project Variables
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using GitLab = Pulumi.GitLab;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var config = new Config();
+    ///     var domainName = config.Require("domainName");
+    ///     var myDomain = Scaleway.Tem.GetDomain.Invoke(new()
+    ///     {
+    ///         Name = domainName,
+    ///     });
+    /// 
+    ///     var smtpAuthUser = new GitLab.ProjectVariable("smtp_auth_user", new()
+    ///     {
+    ///         Key = "SMTP_AUTH_USER",
+    ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsAuthUser),
+    ///     });
+    /// 
+    ///     var smtpPort = new GitLab.ProjectVariable("smtp_port", new()
+    ///     {
+    ///         Key = "SMTP_PORT",
+    ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsPort),
+    ///     });
+    /// 
+    ///     var smtpHost = new GitLab.ProjectVariable("smtp_host", new()
+    ///     {
+    ///         Key = "SMTP_HOST",
+    ///         Value = myDomain.Apply(getDomainResult =&gt; getDomainResult.SmtpsHost),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Domains can be imported using the `{region}/{id}`, e.g.

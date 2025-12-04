@@ -15,6 +15,36 @@ namespace Pulumiverse.Scaleway.Object
     /// 
     /// Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var someBucket = new Scaleway.Object.Bucket("some_bucket", new()
+    ///     {
+    ///         Name = "some-unique-name",
+    ///     });
+    /// 
+    ///     var someFile = new Scaleway.Object.Item("some_file", new()
+    ///     {
+    ///         Bucket = someBucket.Id,
+    ///         Key = "object_path",
+    ///         File = "myfile",
+    ///         Hash = Std.Index.Filemd5.Invoke(new()
+    ///         {
+    ///             Input = "myfile",
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
@@ -59,7 +89,7 @@ namespace Pulumiverse.Scaleway.Object
         public Output<string?> ContentBase64 { get; private set; } = null!;
 
         /// <summary>
-        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: &lt;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type&gt;
         /// </summary>
         [Output("contentType")]
         public Output<string> ContentType { get; private set; } = null!;
@@ -200,7 +230,7 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? ContentBase64 { get; set; }
 
         /// <summary>
-        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: &lt;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type&gt;
         /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
@@ -316,7 +346,7 @@ namespace Pulumiverse.Scaleway.Object
         public Input<string>? ContentBase64 { get; set; }
 
         /// <summary>
-        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+        /// The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: &lt;https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type&gt;
         /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }

@@ -446,6 +446,8 @@ type InstanceServer struct {
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+	//
+	// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 	Image pulumi.StringPtrOutput `pulumi:"image"`
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrOutput `pulumi:"ipId"`
@@ -457,7 +459,7 @@ type InstanceServer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+	// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrOutput `pulumi:"placementGroupId"`
@@ -564,6 +566,8 @@ type instanceServerState struct {
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+	//
+	// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 	Image *string `pulumi:"image"`
 	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
@@ -575,7 +579,7 @@ type instanceServerState struct {
 	Name *string `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+	// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
@@ -650,6 +654,8 @@ type InstanceServerState struct {
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+	//
+	// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 	Image pulumi.StringPtrInput
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
@@ -661,7 +667,7 @@ type InstanceServerState struct {
 	Name pulumi.StringPtrInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+	// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
@@ -740,6 +746,8 @@ type instanceServerArgs struct {
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+	//
+	// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 	Image *string `pulumi:"image"`
 	// The ID of the reserved IP that is attached to the server.
 	IpId *string `pulumi:"ipId"`
@@ -749,7 +757,7 @@ type instanceServerArgs struct {
 	IpIds []string `pulumi:"ipIds"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+	// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId *string `pulumi:"placementGroupId"`
@@ -823,6 +831,8 @@ type InstanceServerArgs struct {
 	// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 	//
 	// To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+	//
+	// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 	Image pulumi.StringPtrInput
 	// The ID of the reserved IP that is attached to the server.
 	IpId pulumi.StringPtrInput
@@ -832,7 +842,7 @@ type InstanceServerArgs struct {
 	IpIds pulumi.StringArrayInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
-	// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+	// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 	//
 	// > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 	PlacementGroupId pulumi.StringPtrInput
@@ -1012,6 +1022,8 @@ func (o InstanceServerOutput) Filesystems() InstanceServerFilesystemArrayOutput 
 // You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 //
 // To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+//
+// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
 func (o InstanceServerOutput) Image() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringPtrOutput { return v.Image }).(pulumi.StringPtrOutput)
 }
@@ -1038,7 +1050,7 @@ func (o InstanceServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstanceServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
+// The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 //
 // > **Important:** When updating `placementGroupId` the `state` must be set to `stopped`, otherwise it will fail.
 func (o InstanceServerOutput) PlacementGroupId() pulumi.StringPtrOutput {

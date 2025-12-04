@@ -25,6 +25,20 @@ import * as utilities from "./utilities";
  *
  * ### Purge request
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.EdgeServicesCacheStage("main", {
+ *     pipelineId: mainScalewayEdgeServicesPipeline.id,
+ *     backendStageId: mainScalewayEdgeServicesBackendStage.id,
+ *     purge: [{
+ *         pipelineId: mainScalewayEdgeServicesPipeline.id,
+ *         all: true,
+ *     }],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Cache stages can be imported using the `{id}`, e.g.

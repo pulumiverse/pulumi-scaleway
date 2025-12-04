@@ -14,6 +14,24 @@ import * as utilities from "./utilities";
  *
  * ### Basic
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const myModel = scaleway.inference.getModel({
+ *     name: "meta/llama-3.1-8b-instruct:fp8",
+ * });
+ * const deployment = new scaleway.inference.Deployment("deployment", {
+ *     name: "tf-inference-deployment",
+ *     nodeType: "L4",
+ *     modelName: myModel.then(myModel => myModel.id),
+ *     publicEndpoint: {
+ *         isEnabled: true,
+ *     },
+ *     acceptEula: true,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Functions can be imported using, `{region}/{id}`, as shown below:

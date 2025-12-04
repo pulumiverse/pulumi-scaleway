@@ -240,8 +240,8 @@ def get_sources(name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    external = scaleway.observability.get_sources(project_id="11111111-1111-1111-1111-111111111111",
-        origin="external")
+    custom = scaleway.observability.get_sources(project_id="11111111-1111-1111-1111-111111111111",
+        origin="custom")
     ```
 
     ### List default Scaleway sources
@@ -256,7 +256,7 @@ def get_sources(name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str name: Filter sources by name.
-    :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+    :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `custom`.
     :param _builtins.str project_id: The project ID the cockpit sources are associated with.
     :param _builtins.str region: The region in which the cockpit sources are located.
     :param _builtins.str type: Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.
@@ -330,8 +330,8 @@ def get_sources_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
     import pulumi
     import pulumi_scaleway as scaleway
 
-    external = scaleway.observability.get_sources(project_id="11111111-1111-1111-1111-111111111111",
-        origin="external")
+    custom = scaleway.observability.get_sources(project_id="11111111-1111-1111-1111-111111111111",
+        origin="custom")
     ```
 
     ### List default Scaleway sources
@@ -346,7 +346,7 @@ def get_sources_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = N
 
 
     :param _builtins.str name: Filter sources by name.
-    :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+    :param _builtins.str origin: Filter sources by origin. Possible values are: `scaleway`, `custom`.
     :param _builtins.str project_id: The project ID the cockpit sources are associated with.
     :param _builtins.str region: The region in which the cockpit sources are located.
     :param _builtins.str type: Filter sources by type. Possible values are: `metrics`, `logs`, `traces`.

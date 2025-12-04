@@ -140,6 +140,57 @@ import (
 //
 // ```
 //
+// ### Configuring GitLab Project Variables
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-gitlab/sdk/v9/go/gitlab"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/tem"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			cfg := config.New(ctx, "")
+//			domainName := cfg.Require("domainName")
+//			myDomain, err := tem.LookupDomain(ctx, &tem.LookupDomainArgs{
+//				Name: pulumi.StringRef(domainName),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gitlab.NewProjectVariable(ctx, "smtp_auth_user", &gitlab.ProjectVariableArgs{
+//				Key:   pulumi.String("SMTP_AUTH_USER"),
+//				Value: pulumi.String(myDomain.SmtpsAuthUser),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gitlab.NewProjectVariable(ctx, "smtp_port", &gitlab.ProjectVariableArgs{
+//				Key:   pulumi.String("SMTP_PORT"),
+//				Value: pulumi.Int(myDomain.SmtpsPort),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = gitlab.NewProjectVariable(ctx, "smtp_host", &gitlab.ProjectVariableArgs{
+//				Key:   pulumi.String("SMTP_HOST"),
+//				Value: pulumi.Any(myDomain.SmtpsHost),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Domains can be imported using the `{region}/{id}`, e.g.

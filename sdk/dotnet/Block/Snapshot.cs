@@ -47,7 +47,80 @@ namespace Pulumiverse.Scaleway.Block
     /// 
     /// ### How to import from Object Storage
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var my_import_bucket = new Scaleway.Object.Bucket("my-import-bucket", new()
+    ///     {
+    ///         Name = "snapshot-bucket-to-import",
+    ///     });
+    /// 
+    ///     var qcow_object = new Scaleway.Object.Item("qcow-object", new()
+    ///     {
+    ///         Bucket = snapshot_bucket.Name,
+    ///         Key = "my-snapshot.qcow2",
+    ///         File = "imported-snapshot/snapshot.qcow2",
+    ///     });
+    /// 
+    ///     var imported = new Scaleway.Block.Volume("imported", new()
+    ///     {
+    ///         Iops = 5000,
+    ///         Name = "imported-from-qcow",
+    ///         Import = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "bucket", "my-import-bucket" },
+    ///                 { "key", "imported-snapshot/snapshot.qcow2" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### How to export to Object Storage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var my_import_bucket = new Scaleway.Object.Bucket("my-import-bucket", new()
+    ///     {
+    ///         Name = "snapshot-bucket-to-import",
+    ///     });
+    /// 
+    ///     var qcow_object = new Scaleway.Object.Item("qcow-object", new()
+    ///     {
+    ///         Bucket = snapshot_bucket.Name,
+    ///         Key = "export/my-snapshot.qcow2",
+    ///     });
+    /// 
+    ///     var toExport = new Scaleway.Block.Volume("to_export", new()
+    ///     {
+    ///         Iops = 5000,
+    ///         Name = "to-export",
+    ///         Export = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "bucket", "snapshot-bucket-to-import" },
+    ///                 { "key", "exports/my-snapshot.qcow2" },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 

@@ -159,7 +159,7 @@ namespace Pulumiverse.Scaleway.Inference
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -250,7 +250,7 @@ namespace Pulumiverse.Scaleway.Inference
         }
 
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
@@ -364,7 +364,7 @@ namespace Pulumiverse.Scaleway.Inference
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

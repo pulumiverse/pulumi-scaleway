@@ -162,6 +162,36 @@ def get_certificate(certificate_id: Optional[_builtins.str] = None,
 
     ## Examples
 
+    ### Let's Encrypt
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumi_std as std
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.loadbalancers.Ip("main")
+    main_load_balancer = scaleway.loadbalancers.LoadBalancer("main",
+        ip_id=main.id,
+        name="data-test-lb-cert",
+        type="LB-S")
+    main_certificate = scaleway.loadbalancers.Certificate("main",
+        lb_id=main_load_balancer.id,
+        name="data-test-lb-cert",
+        letsencrypt={
+            "common_name": pulumi.Output.all(
+                ip_address=main_load_balancer.ip_address,
+                region=main_load_balancer.region
+    ).apply(lambda resolved_outputs: f"{std.index.replace(text=resolved_outputs['ip_address'],
+                search='.',
+                replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
+    ,
+        })
+    by_id = scaleway.loadbalancers.get_certificate_output(certificate_id=main_certificate.id)
+    by_name = scaleway.loadbalancers.get_certificate_output(name=main_certificate.name,
+        lb_id=main_load_balancer.id)
+    ```
+
 
     :param _builtins.str certificate_id: The certificate ID.
            - Only one of `name` and `certificate_id` should be specified.
@@ -201,6 +231,36 @@ def get_certificate_output(certificate_id: Optional[pulumi.Input[Optional[_built
     For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
 
     ## Examples
+
+    ### Let's Encrypt
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+    import pulumi_std as std
+    import pulumiverse_scaleway as scaleway
+
+    main = scaleway.loadbalancers.Ip("main")
+    main_load_balancer = scaleway.loadbalancers.LoadBalancer("main",
+        ip_id=main.id,
+        name="data-test-lb-cert",
+        type="LB-S")
+    main_certificate = scaleway.loadbalancers.Certificate("main",
+        lb_id=main_load_balancer.id,
+        name="data-test-lb-cert",
+        letsencrypt={
+            "common_name": pulumi.Output.all(
+                ip_address=main_load_balancer.ip_address,
+                region=main_load_balancer.region
+    ).apply(lambda resolved_outputs: f"{std.index.replace(text=resolved_outputs['ip_address'],
+                search='.',
+                replace='-')['result']}.lb.{resolved_outputs['region']}.scw.cloud")
+    ,
+        })
+    by_id = scaleway.loadbalancers.get_certificate_output(certificate_id=main_certificate.id)
+    by_name = scaleway.loadbalancers.get_certificate_output(name=main_certificate.name,
+        lb_id=main_load_balancer.id)
+    ```
 
 
     :param _builtins.str certificate_id: The certificate ID.

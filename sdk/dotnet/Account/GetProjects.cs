@@ -17,7 +17,6 @@ namespace Pulumiverse.Scaleway.Account
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// 
-        /// 
         /// ## Retrieve a Scaleway Projects
         /// 
         /// The following commands allow you to:
@@ -78,7 +77,6 @@ namespace Pulumiverse.Scaleway.Account
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
         /// 
-        /// 
         /// ## Retrieve a Scaleway Projects
         /// 
         /// The following commands allow you to:
@@ -138,7 +136,6 @@ namespace Pulumiverse.Scaleway.Account
         /// The `scaleway.account.getProjects` data source is used to list all Scaleway projects in an Organization.
         /// 
         /// Refer to the Organizations and Projects [documentation](https://www.scaleway.com/en/docs/organizations-and-projects/) and [API documentation](https://www.scaleway.com/en/developers/api/account/project-api/) for more information.
-        /// 
         /// 
         /// ## Retrieve a Scaleway Projects
         /// 

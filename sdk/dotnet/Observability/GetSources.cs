@@ -83,10 +83,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var external = Scaleway.Observability.GetSources.Invoke(new()
+        ///     var custom = Scaleway.Observability.GetSources.Invoke(new()
         ///     {
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///         Origin = "external",
+        ///         Origin = "custom",
         ///     });
         /// 
         /// });
@@ -185,10 +185,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var external = Scaleway.Observability.GetSources.Invoke(new()
+        ///     var custom = Scaleway.Observability.GetSources.Invoke(new()
         ///     {
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///         Origin = "external",
+        ///         Origin = "custom",
         ///     });
         /// 
         /// });
@@ -287,10 +287,10 @@ namespace Pulumiverse.Scaleway.Observability
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var external = Scaleway.Observability.GetSources.Invoke(new()
+        ///     var custom = Scaleway.Observability.GetSources.Invoke(new()
         ///     {
         ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///         Origin = "external",
+        ///         Origin = "custom",
         ///     });
         /// 
         /// });
@@ -329,7 +329,7 @@ namespace Pulumiverse.Scaleway.Observability
         public string? Name { get; set; }
 
         /// <summary>
-        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `Custom`.
         /// </summary>
         [Input("origin")]
         public string? Origin { get; set; }
@@ -367,7 +367,7 @@ namespace Pulumiverse.Scaleway.Observability
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `Custom`.
         /// </summary>
         [Input("origin")]
         public Input<string>? Origin { get; set; }

@@ -16,6 +16,93 @@ import (
 //
 // For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/domain"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/instance"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/ipam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			ip01, err := instance.NewIp(ctx, "ip01", &instance.IpArgs{
+//				Type: pulumi.String("routed_ipv6"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			srv01, err := instance.NewServer(ctx, "srv01", &instance.ServerArgs{
+//				Name: pulumi.String("tf-tests-instance-server-ips"),
+//				IpIds: pulumi.StringArray{
+//					ip01.ID(),
+//				},
+//				Image: pulumi.String("ubuntu_jammy"),
+//				Type:  pulumi.String("PRO2-XXS"),
+//				State: pulumi.String("stopped"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ipam01 := ipam.LookupIpOutput(ctx, ipam.GetIpOutputArgs{
+//				Resource: &ipam.GetIpResourceArgs{
+//					Id:   srv01.ID(),
+//					Type: pulumi.String("instance_server"),
+//				},
+//				Type: pulumi.String("ipv6"),
+//			}, nil)
+//			invokeCidrhost, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
+//					return &ipam01.AddressCidr, nil
+//				}).(pulumi.StringPtrOutput),
+//				"host": 42,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = domain.NewRecord(ctx, "tf_AAAA", &domain.RecordArgs{
+//				DnsZone:  pulumi.String("example.com"),
+//				Name:     pulumi.String(""),
+//				Type:     pulumi.String("AAAA"),
+//				Data:     invokeCidrhost.Result,
+//				Ttl:      pulumi.Int(3600),
+//				Priority: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			invokeCidrhost1, err := std.Cidrhost(ctx, map[string]interface{}{
+//				"input": ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
+//					return &ipam01.AddressCidr, nil
+//				}).(pulumi.StringPtrOutput),
+//				"host": 42,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = ipam.NewIpReverseDns(ctx, "base", &ipam.IpReverseDnsArgs{
+//				IpamIpId: pulumi.String(ipam01.ApplyT(func(ipam01 ipam.GetIpResult) (*string, error) {
+//					return &ipam01.Id, nil
+//				}).(pulumi.StringPtrOutput)),
+//				Hostname: pulumi.String("example.com"),
+//				Address:  invokeCidrhost1.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
