@@ -116,7 +116,7 @@ func Provider() tfbridge.ProviderInfo {
 	p := pfbridge.MuxShimWithPF(
 		context.Background(),
 		shimv2.NewProvider(scaleway.SDKProvider(nil)()),
-		scaleway.NewFrameworkProvider()(),
+		scaleway.NewFrameworkProvider(nil)(),
 	)
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
