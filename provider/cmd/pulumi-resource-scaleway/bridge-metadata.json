@@ -2473,7 +2473,7 @@
                 "majorVersion": 1
             },
             "scaleway_audit_trail_event": {
-                "current": "scaleway:index/getAuditTrailEvent:getAuditTrailEvent",
+                "current": "scaleway:audittrail/getEvent:getEvent",
                 "majorVersion": 1,
                 "fields": {
                     "events": {
@@ -5575,6 +5575,7 @@
             "scaleway:account/getProject:getProject": 0,
             "scaleway:account/getProjects:getProjects": 0,
             "scaleway:account/getSshKey:getSshKey": 0,
+            "scaleway:audittrail/getEvent:getEvent": 0,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,
@@ -5607,7 +5608,6 @@
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,
             "scaleway:index/getAccountSshKey:getAccountSshKey": 0,
-            "scaleway:index/getAuditTrailEvent:getAuditTrailEvent": 0,
             "scaleway:index/getAvailabilityZones:getAvailabilityZones": 0,
             "scaleway:index/getBaremetalOffer:getBaremetalOffer": 0,
             "scaleway:index/getBaremetalOption:getBaremetalOption": 0,

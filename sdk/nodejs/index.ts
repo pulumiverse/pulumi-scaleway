@@ -235,11 +235,6 @@ export const getAccountSshKey: typeof import("./getAccountSshKey").getAccountSsh
 export const getAccountSshKeyOutput: typeof import("./getAccountSshKey").getAccountSshKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getAccountSshKey","getAccountSshKeyOutput"], () => require("./getAccountSshKey"));
 
-export { GetAuditTrailEventArgs, GetAuditTrailEventResult, GetAuditTrailEventOutputArgs } from "./getAuditTrailEvent";
-export const getAuditTrailEvent: typeof import("./getAuditTrailEvent").getAuditTrailEvent = null as any;
-export const getAuditTrailEventOutput: typeof import("./getAuditTrailEvent").getAuditTrailEventOutput = null as any;
-utilities.lazyLoad(exports, ["getAuditTrailEvent","getAuditTrailEventOutput"], () => require("./getAuditTrailEvent"));
-
 export { GetAvailabilityZonesArgs, GetAvailabilityZonesResult, GetAvailabilityZonesOutputArgs } from "./getAvailabilityZones";
 export const getAvailabilityZones: typeof import("./getAvailabilityZones").getAvailabilityZones = null as any;
 export const getAvailabilityZonesOutput: typeof import("./getAvailabilityZones").getAvailabilityZonesOutput = null as any;
@@ -1027,6 +1022,7 @@ utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 // Export sub-modules:
 import * as account from "./account";
 import * as applesilicon from "./applesilicon";
+import * as audittrail from "./audittrail";
 import * as autoscaling from "./autoscaling";
 import * as billing from "./billing";
 import * as block from "./block";
@@ -1060,6 +1056,7 @@ import * as types from "./types";
 export {
     account,
     applesilicon,
+    audittrail,
     autoscaling,
     billing,
     block,

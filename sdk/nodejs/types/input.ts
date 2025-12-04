@@ -2411,6 +2411,9 @@ export namespace applesilicon {
     }
 }
 
+export namespace audittrail {
+}
+
 export namespace autoscaling {
     export interface InstanceGroupCapacity {
         /**
