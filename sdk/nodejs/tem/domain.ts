@@ -75,6 +75,32 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### Configuring GitLab Project Variables
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as gitlab from "@pulumi/gitlab";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const config = new pulumi.Config();
+ * const domainName = config.require("domainName");
+ * const myDomain = scaleway.tem.getDomain({
+ *     name: domainName,
+ * });
+ * const smtpAuthUser = new gitlab.ProjectVariable("smtp_auth_user", {
+ *     key: "SMTP_AUTH_USER",
+ *     value: myDomain.then(myDomain => myDomain.smtpsAuthUser),
+ * });
+ * const smtpPort = new gitlab.ProjectVariable("smtp_port", {
+ *     key: "SMTP_PORT",
+ *     value: myDomain.then(myDomain => myDomain.smtpsPort),
+ * });
+ * const smtpHost = new gitlab.ProjectVariable("smtp_host", {
+ *     key: "SMTP_HOST",
+ *     value: myDomain.then(myDomain => myDomain.smtpsHost),
+ * });
+ * ```
+ *
  * ## Import
  *
  * Domains can be imported using the `{region}/{id}`, e.g.

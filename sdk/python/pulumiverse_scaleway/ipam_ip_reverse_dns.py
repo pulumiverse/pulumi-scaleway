@@ -178,6 +178,41 @@ class IpamIpReverseDns(pulumi.CustomResource):
 
         For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        ip01 = scaleway.instance.Ip("ip01", type="routed_ipv6")
+        srv01 = scaleway.instance.Server("srv01",
+            name="tf-tests-instance-server-ips",
+            ip_ids=[ip01.id],
+            image="ubuntu_jammy",
+            type="PRO2-XXS",
+            state="stopped")
+        ipam01 = scaleway.ipam.get_ip_output(resource={
+                "id": srv01.id,
+                "type": "instance_server",
+            },
+            type="ipv6")
+        tf_aaaa = scaleway.domain.Record("tf_AAAA",
+            dns_zone="example.com",
+            name="",
+            type="AAAA",
+            data=std.index.cidrhost(input=ipam01.address_cidr,
+                host=42)["result"],
+            ttl=3600,
+            priority=1)
+        base = scaleway.ipam.IpReverseDns("base",
+            ipam_ip_id=ipam01.id,
+            hostname="example.com",
+            address=std.index.cidrhost(input=ipam01.address_cidr,
+                host=42)["result"])
+        ```
+
         ## Import
 
         IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.
@@ -205,6 +240,41 @@ class IpamIpReverseDns(pulumi.CustomResource):
         Manage the reverse DNS of IP addresses managed by Scaleway's IP Address Management (IPAM) service.
 
         For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        ip01 = scaleway.instance.Ip("ip01", type="routed_ipv6")
+        srv01 = scaleway.instance.Server("srv01",
+            name="tf-tests-instance-server-ips",
+            ip_ids=[ip01.id],
+            image="ubuntu_jammy",
+            type="PRO2-XXS",
+            state="stopped")
+        ipam01 = scaleway.ipam.get_ip_output(resource={
+                "id": srv01.id,
+                "type": "instance_server",
+            },
+            type="ipv6")
+        tf_aaaa = scaleway.domain.Record("tf_AAAA",
+            dns_zone="example.com",
+            name="",
+            type="AAAA",
+            data=std.index.cidrhost(input=ipam01.address_cidr,
+                host=42)["result"],
+            ttl=3600,
+            priority=1)
+        base = scaleway.ipam.IpReverseDns("base",
+            ipam_ip_id=ipam01.id,
+            hostname="example.com",
+            address=std.index.cidrhost(input=ipam01.address_cidr,
+                host=42)["result"])
+        ```
 
         ## Import
 

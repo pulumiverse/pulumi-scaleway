@@ -338,6 +338,38 @@ import (
 //
 // Before:
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
+//				Name:    pulumi.String("tf-cluster"),
+//				Version: pulumi.String("1.18.0"),
+//				Cni:     pulumi.String("cilium"),
+//				DefaultPool: []map[string]interface{}{
+//					map[string]interface{}{
+//						"nodeType": "DEV1-M",
+//						"size":     1,
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // After:
 //
 // ```go

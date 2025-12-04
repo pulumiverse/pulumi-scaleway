@@ -203,6 +203,12 @@ namespace Pulumiverse.Scaleway
         public Output<string> Address { get; private set; } = null!;
 
         /// <summary>
+        /// the IP address in CIDR notation.
+        /// </summary>
+        [Output("addressCidr")]
+        public Output<string> AddressCidr { get; private set; } = null!;
+
+        /// <summary>
         /// Date and time of IP's creation (RFC 3339 format).
         /// </summary>
         [Output("createdAt")]
@@ -388,6 +394,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
+
+        /// <summary>
+        /// the IP address in CIDR notation.
+        /// </summary>
+        [Input("addressCidr")]
+        public Input<string>? AddressCidr { get; set; }
 
         /// <summary>
         /// Date and time of IP's creation (RFC 3339 format).

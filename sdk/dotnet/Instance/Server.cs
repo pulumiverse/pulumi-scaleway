@@ -403,6 +403,8 @@ namespace Pulumiverse.Scaleway.Instance
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
         /// To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
+        /// 
+        /// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=&lt;LABEL&gt;```
         /// </summary>
         [Output("image")]
         public Output<string?> Image { get; private set; } = null!;
@@ -434,8 +436,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-        /// 
+        /// The [placement group](&lt;https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group&gt; the server is attached to.
         /// 
         /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>
@@ -656,6 +657,8 @@ namespace Pulumiverse.Scaleway.Instance
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
         /// To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
+        /// 
+        /// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=&lt;LABEL&gt;```
         /// </summary>
         [Input("image")]
         public Input<string>? Image { get; set; }
@@ -687,8 +690,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-        /// 
+        /// The [placement group](&lt;https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group&gt; the server is attached to.
         /// 
         /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>
@@ -890,6 +892,8 @@ namespace Pulumiverse.Scaleway.Instance
         /// You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
         /// 
         /// To retrieve more information by label please use: ```scw marketplace image get label=&lt;LABEL&gt;```
+        /// 
+        /// To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=&lt;LABEL&gt;```
         /// </summary>
         [Input("image")]
         public Input<string>? Image { get; set; }
@@ -927,8 +931,7 @@ namespace Pulumiverse.Scaleway.Instance
         public Input<string>? OrganizationId { get; set; }
 
         /// <summary>
-        /// The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-        /// 
+        /// The [placement group](&lt;https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group&gt; the server is attached to.
         /// 
         /// &gt; **Important:** When updating `PlacementGroupId` the `State` must be set to `Stopped`, otherwise it will fail.
         /// </summary>

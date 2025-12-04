@@ -71,6 +71,7 @@ type LookupServerArgs struct {
 
 // A collection of values returned by getServer.
 type LookupServerResult struct {
+	CloudInit   string `pulumi:"cloudInit"`
 	Description string `pulumi:"description"`
 	Domain      string `pulumi:"domain"`
 	Hostname    string `pulumi:"hostname"`
@@ -141,6 +142,10 @@ func (o LookupServerResultOutput) ToLookupServerResultOutput() LookupServerResul
 
 func (o LookupServerResultOutput) ToLookupServerResultOutputWithContext(ctx context.Context) LookupServerResultOutput {
 	return o
+}
+
+func (o LookupServerResultOutput) CloudInit() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
 func (o LookupServerResultOutput) Description() pulumi.StringOutput {

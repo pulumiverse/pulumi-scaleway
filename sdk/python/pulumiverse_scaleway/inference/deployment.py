@@ -556,6 +556,22 @@ class Deployment(pulumi.CustomResource):
 
         ### Basic
 
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_model = scaleway.inference.get_model(name="meta/llama-3.1-8b-instruct:fp8")
+        deployment = scaleway.inference.Deployment("deployment",
+            name="tf-inference-deployment",
+            node_type="L4",
+            model_name=my_model.id,
+            public_endpoint={
+                "is_enabled": True,
+            },
+            accept_eula=True)
+        ```
+
         ## Import
 
         Functions can be imported using, `{region}/{id}`, as shown below:
@@ -595,6 +611,22 @@ class Deployment(pulumi.CustomResource):
         ## Example Usage
 
         ### Basic
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_model = scaleway.inference.get_model(name="meta/llama-3.1-8b-instruct:fp8")
+        deployment = scaleway.inference.Deployment("deployment",
+            name="tf-inference-deployment",
+            node_type="L4",
+            model_name=my_model.id,
+            public_endpoint={
+                "is_enabled": True,
+            },
+            accept_eula=True)
+        ```
 
         ## Import
 

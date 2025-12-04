@@ -20,6 +20,61 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
+        /// 
+        /// ### Let's Encrypt
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.Loadbalancers.Ip("main");
+        /// 
+        ///     var mainLoadBalancer = new Scaleway.Loadbalancers.LoadBalancer("main", new()
+        ///     {
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Type = "LB-S",
+        ///     });
+        /// 
+        ///     var mainCertificate = new Scaleway.Loadbalancers.Certificate("main", new()
+        ///     {
+        ///         LbId = mainLoadBalancer.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
+        ///         {
+        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var ipAddress = values.Item1;
+        ///                 var region = values.Item2;
+        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 {
+        ///                     Text = ipAddress,
+        ///                     Search = ".",
+        ///                     Replace = "-",
+        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///             }),
+        ///         },
+        ///     });
+        /// 
+        ///     var byID = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         CertificateId = mainCertificate.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         Name = mainCertificate.Name,
+        ///         LbId = mainLoadBalancer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetCertificateResult> InvokeAsync(GetCertificateArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetCertificateResult>("scaleway:loadbalancers/getCertificate:getCertificate", args ?? new GetCertificateArgs(), options.WithDefaults());
@@ -32,6 +87,61 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
+        /// 
+        /// ### Let's Encrypt
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.Loadbalancers.Ip("main");
+        /// 
+        ///     var mainLoadBalancer = new Scaleway.Loadbalancers.LoadBalancer("main", new()
+        ///     {
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Type = "LB-S",
+        ///     });
+        /// 
+        ///     var mainCertificate = new Scaleway.Loadbalancers.Certificate("main", new()
+        ///     {
+        ///         LbId = mainLoadBalancer.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
+        ///         {
+        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var ipAddress = values.Item1;
+        ///                 var region = values.Item2;
+        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 {
+        ///                     Text = ipAddress,
+        ///                     Search = ".",
+        ///                     Replace = "-",
+        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///             }),
+        ///         },
+        ///     });
+        /// 
+        ///     var byID = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         CertificateId = mainCertificate.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         Name = mainCertificate.Name,
+        ///         LbId = mainLoadBalancer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCertificateResult> Invoke(GetCertificateInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetCertificateResult>("scaleway:loadbalancers/getCertificate:getCertificate", args ?? new GetCertificateInvokeArgs(), options.WithDefaults());
@@ -44,6 +154,61 @@ namespace Pulumiverse.Scaleway.Loadbalancers
         /// For more information, see the [main documentation](https://www.scaleway.com/en/docs/load-balancer/how-to/add-certificate/) or [API documentation](https://www.scaleway.com/en/developers/api/load-balancer/zoned-api/#path-certificate).
         /// 
         /// ## Examples
+        /// 
+        /// ### Let's Encrypt
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// using Scaleway = Pulumiverse.Scaleway;
+        /// using Std = Pulumi.Std;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var main = new Scaleway.Loadbalancers.Ip("main");
+        /// 
+        ///     var mainLoadBalancer = new Scaleway.Loadbalancers.LoadBalancer("main", new()
+        ///     {
+        ///         IpId = main.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Type = "LB-S",
+        ///     });
+        /// 
+        ///     var mainCertificate = new Scaleway.Loadbalancers.Certificate("main", new()
+        ///     {
+        ///         LbId = mainLoadBalancer.Id,
+        ///         Name = "data-test-lb-cert",
+        ///         Letsencrypt = new Scaleway.Loadbalancers.Inputs.CertificateLetsencryptArgs
+        ///         {
+        ///             CommonName = Output.Tuple(mainLoadBalancer.IpAddress, mainLoadBalancer.Region).Apply(values =&gt;
+        ///             {
+        ///                 var ipAddress = values.Item1;
+        ///                 var region = values.Item2;
+        ///                 return $"{Std.Index.Replace.Invoke(new()
+        ///                 {
+        ///                     Text = ipAddress,
+        ///                     Search = ".",
+        ///                     Replace = "-",
+        ///                 }).Result}.lb.{region}.scw.cloud";
+        ///             }),
+        ///         },
+        ///     });
+        /// 
+        ///     var byID = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         CertificateId = mainCertificate.Id,
+        ///     });
+        /// 
+        ///     var byName = Scaleway.Loadbalancers.GetCertificate.Invoke(new()
+        ///     {
+        ///         Name = mainCertificate.Name,
+        ///         LbId = mainLoadBalancer.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetCertificateResult> Invoke(GetCertificateInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetCertificateResult>("scaleway:loadbalancers/getCertificate:getCertificate", args ?? new GetCertificateInvokeArgs(), options.WithDefaults());

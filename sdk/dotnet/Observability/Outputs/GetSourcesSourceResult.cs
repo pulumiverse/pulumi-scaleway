@@ -27,7 +27,7 @@ namespace Pulumiverse.Scaleway.Observability.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Filter sources by origin. Possible values are: `Scaleway`, `External`, `Custom`.
+        /// Filter sources by origin. Possible values are: `Scaleway`, `Custom`.
         /// </summary>
         public readonly string Origin;
         /// <summary>

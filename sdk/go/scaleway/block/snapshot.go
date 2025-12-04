@@ -56,7 +56,98 @@ import (
 //
 // ### How to import from Object Storage
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := object.NewBucket(ctx, "my-import-bucket", &object.BucketArgs{
+//				Name: pulumi.String("snapshot-bucket-to-import"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = object.NewItem(ctx, "qcow-object", &object.ItemArgs{
+//				Bucket: pulumi.Any(snapshot_bucket.Name),
+//				Key:    pulumi.String("my-snapshot.qcow2"),
+//				File:   pulumi.String("imported-snapshot/snapshot.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = block.NewVolume(ctx, "imported", &block.VolumeArgs{
+//				Iops: pulumi.Int(5000),
+//				Name: pulumi.String("imported-from-qcow"),
+//				Import: []map[string]interface{}{
+//					map[string]interface{}{
+//						"bucket": "my-import-bucket",
+//						"key":    "imported-snapshot/snapshot.qcow2",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### How to export to Object Storage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/block"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := object.NewBucket(ctx, "my-import-bucket", &object.BucketArgs{
+//				Name: pulumi.String("snapshot-bucket-to-import"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = object.NewItem(ctx, "qcow-object", &object.ItemArgs{
+//				Bucket: pulumi.Any(snapshot_bucket.Name),
+//				Key:    pulumi.String("export/my-snapshot.qcow2"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = block.NewVolume(ctx, "to_export", &block.VolumeArgs{
+//				Iops: pulumi.Int(5000),
+//				Name: pulumi.String("to-export"),
+//				Export: []map[string]interface{}{
+//					map[string]interface{}{
+//						"bucket": "snapshot-bucket-to-import",
+//						"key":    "exports/my-snapshot.qcow2",
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //

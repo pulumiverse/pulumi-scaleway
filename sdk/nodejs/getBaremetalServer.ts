@@ -63,6 +63,7 @@ export interface GetBaremetalServerArgs {
  * A collection of values returned by getBaremetalServer.
  */
 export interface GetBaremetalServerResult {
+    readonly cloudInit: string;
     readonly description: string;
     readonly domain: string;
     readonly hostname: string;

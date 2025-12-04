@@ -1022,6 +1022,7 @@ utilities.lazyLoad(exports, ["Webhosting"], () => require("./webhosting"));
 // Export sub-modules:
 import * as account from "./account";
 import * as applesilicon from "./applesilicon";
+import * as audittrail from "./audittrail";
 import * as autoscaling from "./autoscaling";
 import * as billing from "./billing";
 import * as block from "./block";
@@ -1055,6 +1056,7 @@ import * as types from "./types";
 export {
     account,
     applesilicon,
+    audittrail,
     autoscaling,
     billing,
     block,

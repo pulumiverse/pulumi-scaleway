@@ -9,6 +9,49 @@ import * as utilities from "./utilities";
  *
  * For more information about IPAM, see the main [documentation](https://www.scaleway.com/en/docs/vpc/concepts/#ipam).
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const ip01 = new scaleway.instance.Ip("ip01", {type: "routed_ipv6"});
+ * const srv01 = new scaleway.instance.Server("srv01", {
+ *     name: "tf-tests-instance-server-ips",
+ *     ipIds: [ip01.id],
+ *     image: "ubuntu_jammy",
+ *     type: "PRO2-XXS",
+ *     state: "stopped",
+ * });
+ * const ipam01 = scaleway.ipam.getIpOutput({
+ *     resource: {
+ *         id: srv01.id,
+ *         type: "instance_server",
+ *     },
+ *     type: "ipv6",
+ * });
+ * const tfAAAA = new scaleway.domain.Record("tf_AAAA", {
+ *     dnsZone: "example.com",
+ *     name: "",
+ *     type: "AAAA",
+ *     data: std.index.cidrhost({
+ *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
+ *         host: 42,
+ *     }).result,
+ *     ttl: 3600,
+ *     priority: 1,
+ * });
+ * const base = new scaleway.ipam.IpReverseDns("base", {
+ *     ipamIpId: ipam01.apply(ipam01 => ipam01.id),
+ *     hostname: "example.com",
+ *     address: std.index.cidrhost({
+ *         input: ipam01.apply(ipam01 => ipam01.addressCidr),
+ *         host: 42,
+ *     }).result,
+ * });
+ * ```
+ *
  * ## Import
  *
  * IPAM IP reverse DNS can be imported using `{region}/{id}`, e.g.

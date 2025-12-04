@@ -298,7 +298,42 @@ class Snapshot(pulumi.CustomResource):
 
         ### How to import from Object Storage
 
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        my_import_bucket = scaleway.object.Bucket("my-import-bucket", name="snapshot-bucket-to-import")
+        qcow_object = scaleway.object.Item("qcow-object",
+            bucket=snapshot_bucket["name"],
+            key="my-snapshot.qcow2",
+            file="imported-snapshot/snapshot.qcow2")
+        imported = scaleway.block.Volume("imported",
+            iops=5000,
+            name="imported-from-qcow",
+            import_=[{
+                "bucket": "my-import-bucket",
+                "key": "imported-snapshot/snapshot.qcow2",
+            }])
+        ```
+
         ### How to export to Object Storage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        my_import_bucket = scaleway.object.Bucket("my-import-bucket", name="snapshot-bucket-to-import")
+        qcow_object = scaleway.object.Item("qcow-object",
+            bucket=snapshot_bucket["name"],
+            key="export/my-snapshot.qcow2")
+        to_export = scaleway.block.Volume("to_export",
+            iops=5000,
+            name="to-export",
+            export=[{
+                "bucket": "snapshot-bucket-to-import",
+                "key": "exports/my-snapshot.qcow2",
+            }])
+        ```
 
         ## Import
 
@@ -352,7 +387,42 @@ class Snapshot(pulumi.CustomResource):
 
         ### How to import from Object Storage
 
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        my_import_bucket = scaleway.object.Bucket("my-import-bucket", name="snapshot-bucket-to-import")
+        qcow_object = scaleway.object.Item("qcow-object",
+            bucket=snapshot_bucket["name"],
+            key="my-snapshot.qcow2",
+            file="imported-snapshot/snapshot.qcow2")
+        imported = scaleway.block.Volume("imported",
+            iops=5000,
+            name="imported-from-qcow",
+            import_=[{
+                "bucket": "my-import-bucket",
+                "key": "imported-snapshot/snapshot.qcow2",
+            }])
+        ```
+
         ### How to export to Object Storage
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        my_import_bucket = scaleway.object.Bucket("my-import-bucket", name="snapshot-bucket-to-import")
+        qcow_object = scaleway.object.Item("qcow-object",
+            bucket=snapshot_bucket["name"],
+            key="export/my-snapshot.qcow2")
+        to_export = scaleway.block.Volume("to_export",
+            iops=5000,
+            name="to-export",
+            export=[{
+                "bucket": "snapshot-bucket-to-import",
+                "key": "exports/my-snapshot.qcow2",
+            }])
+        ```
 
         ## Import
 

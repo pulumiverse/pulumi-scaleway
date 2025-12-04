@@ -176,6 +176,7 @@ namespace Pulumiverse.Scaleway
     [OutputType]
     public sealed class GetBaremetalServerResult
     {
+        public readonly string CloudInit;
         public readonly string Description;
         public readonly string Domain;
         public readonly string Hostname;
@@ -212,6 +213,8 @@ namespace Pulumiverse.Scaleway
 
         [OutputConstructor]
         private GetBaremetalServerResult(
+            string cloudInit,
+
             string description,
 
             string domain,
@@ -272,6 +275,7 @@ namespace Pulumiverse.Scaleway
 
             string? zone)
         {
+            CloudInit = cloudInit;
             Description = description;
             Domain = domain;
             Hostname = hostname;

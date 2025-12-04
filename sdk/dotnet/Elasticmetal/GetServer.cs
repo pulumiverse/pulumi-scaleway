@@ -175,6 +175,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
     [OutputType]
     public sealed class GetServerResult
     {
+        public readonly string CloudInit;
         public readonly string Description;
         public readonly string Domain;
         public readonly string Hostname;
@@ -211,6 +212,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
         [OutputConstructor]
         private GetServerResult(
+            string cloudInit,
+
             string description,
 
             string domain,
@@ -271,6 +274,7 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string? zone)
         {
+            CloudInit = cloudInit;
             Description = description;
             Domain = domain;
             Hostname = hostname;

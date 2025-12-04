@@ -4853,6 +4853,87 @@ export namespace applesilicon {
 
 }
 
+export namespace audittrail {
+    export interface GetEventEvent {
+        /**
+         * ID of the resource attached to the event. (UUID format)
+         */
+        id: string;
+        /**
+         * Locality of the resource attached to the event.
+         */
+        locality: string;
+        /**
+         * Name of the method of the API call performed.
+         */
+        methodName: string;
+        /**
+         * `organizationId`) ID of the Organization containing the Audit Trail events.
+         */
+        organizationId: string;
+        /**
+         * ID of the User or IAM application at the origin of the event.
+         */
+        principalId: string;
+        /**
+         * Name of the Scaleway product in a hyphenated format.
+         */
+        productName: string;
+        /**
+         * ID of the Project containing the Audit Trail events.
+         */
+        projectId: string;
+        /**
+         * Timestamp of the event. (RFC 3339 format)
+         */
+        recordedAt: string;
+        /**
+         * Request at the origin of the event.
+         */
+        requestBody: string;
+        /**
+         * Unique identifier of the request at the origin of the event. (UUID format)
+         */
+        requestId: string;
+        /**
+         * List of resources attached to the event.
+         */
+        resources: outputs.audittrail.GetEventEventResource[];
+        /**
+         * Name of the service of the API call performed.
+         */
+        serviceName: string;
+        /**
+         * IP address at the origin of the event.
+         */
+        sourceIp: string;
+        /**
+         * HTTP status code resulting of the API call.
+         */
+        statusCode: number;
+        /**
+         * User Agent at the origin of the event.
+         */
+        userAgent: string;
+    }
+
+    export interface GetEventEventResource {
+        /**
+         * ID of the resource attached to the event. (UUID format)
+         */
+        id: string;
+        /**
+         * Name of the Scaleway resource.
+         */
+        name: string;
+        /**
+         * Type of the Scaleway resource.
+         */
+        type: string;
+    }
+
+}
+
 export namespace autoscaling {
     export interface InstanceGroupCapacity {
         /**
@@ -10110,7 +10191,7 @@ export namespace observability {
          */
         name: string;
         /**
-         * Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+         * Filter sources by origin. Possible values are: `scaleway`, `custom`.
          */
         origin: string;
         /**

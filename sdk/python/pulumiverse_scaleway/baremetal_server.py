@@ -22,6 +22,7 @@ __all__ = ['BaremetalServerArgs', 'BaremetalServer']
 class BaremetalServerArgs:
     def __init__(__self__, *,
                  offer: pulumi.Input[_builtins.str],
+                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -47,6 +48,7 @@ class BaremetalServerArgs:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
+        :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
@@ -72,6 +74,8 @@ class BaremetalServerArgs:
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
         """
         pulumi.set(__self__, "offer", offer)
+        if cloud_init is not None:
+            pulumi.set(__self__, "cloud_init", cloud_init)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if hostname is not None:
@@ -125,6 +129,18 @@ class BaremetalServerArgs:
     @offer.setter
     def offer(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "offer", value)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @cloud_init.setter
+    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter
@@ -362,6 +378,7 @@ class BaremetalServerArgs:
 @pulumi.input_type
 class _BaremetalServerState:
     def __init__(__self__, *,
+                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  domain: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
@@ -392,6 +409,7 @@ class _BaremetalServerState:
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BaremetalServer resources.
+        :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] domain: The domain of the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
@@ -428,6 +446,8 @@ class _BaremetalServerState:
         :param pulumi.Input[_builtins.str] user: User used for the installation.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the server should be created.
         """
+        if cloud_init is not None:
+            pulumi.set(__self__, "cloud_init", cloud_init)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -484,6 +504,18 @@ class _BaremetalServerState:
             pulumi.set(__self__, "user", user)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        """
+        return pulumi.get(self, "cloud_init")
+
+    @cloud_init.setter
+    def cloud_init(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "cloud_init", value)
 
     @_builtins.property
     @pulumi.getter
@@ -840,6 +872,7 @@ class BaremetalServer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -869,6 +902,54 @@ class BaremetalServer(pulumi.CustomResource):
         ### Basic
 
         ### With option
+
+        ### With cloud-init
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            cloud_init=std.index.file(input="userdata.yaml")["result"])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            cloud_init=\"\"\"#cloud-config
+        packages:
+          - htop
+          - curl
+
+        runcmd:
+          - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
+        \"\"\")
+        ```
 
         ### With private network
 
@@ -977,6 +1058,7 @@ class BaremetalServer(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
         :param pulumi.Input[_builtins.bool] install_config_afterward: If True, this boolean allows to create a server without the install config if you want to provide it later.
@@ -1019,6 +1101,54 @@ class BaremetalServer(pulumi.CustomResource):
         ### Basic
 
         ### With option
+
+        ### With cloud-init
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumi_std as std
+        import pulumiverse_scaleway as scaleway
+
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            cloud_init=std.index.file(input="userdata.yaml")["result"])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
+        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
+            name="EM-I220E-NVME")
+        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
+            name="Ubuntu",
+            version="22.04 LTS (Jammy Jellyfish)")
+        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
+            zone="fr-par-2",
+            offer=my_offer.offer_id,
+            os=my_os.os_id,
+            ssh_key_ids=[my_ssh_key.id],
+            cloud_init=\"\"\"#cloud-config
+        packages:
+          - htop
+          - curl
+
+        runcmd:
+          - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
+        \"\"\")
+        ```
 
         ### With private network
 
@@ -1140,6 +1270,7 @@ class BaremetalServer(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  hostname: Optional[pulumi.Input[_builtins.str]] = None,
                  install_config_afterward: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -1170,6 +1301,7 @@ class BaremetalServer(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = BaremetalServerArgs.__new__(BaremetalServerArgs)
 
+            __props__.__dict__["cloud_init"] = cloud_init
             __props__.__dict__["description"] = description
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["install_config_afterward"] = install_config_afterward
@@ -1212,6 +1344,7 @@ class BaremetalServer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            cloud_init: Optional[pulumi.Input[_builtins.str]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             domain: Optional[pulumi.Input[_builtins.str]] = None,
             hostname: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1247,6 +1380,7 @@ class BaremetalServer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] domain: The domain of the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
@@ -1287,6 +1421,7 @@ class BaremetalServer(pulumi.CustomResource):
 
         __props__ = _BaremetalServerState.__new__(_BaremetalServerState)
 
+        __props__.__dict__["cloud_init"] = cloud_init
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
         __props__.__dict__["hostname"] = hostname
@@ -1316,6 +1451,14 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["user"] = user
         __props__.__dict__["zone"] = zone
         return BaremetalServer(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudInit")
+    def cloud_init(self) -> pulumi.Output[_builtins.str]:
+        """
+        Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        """
+        return pulumi.get(self, "cloud_init")
 
     @_builtins.property
     @pulumi.getter

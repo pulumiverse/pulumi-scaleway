@@ -1066,6 +1066,20 @@ class KubernetesCluster(pulumi.CustomResource):
 
         Before:
 
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.18.0",
+            cni="cilium",
+            default_pool=[{
+                "nodeType": "DEV1-M",
+                "size": 1,
+            }])
+        ```
+
         After:
 
         ```python
@@ -1323,6 +1337,20 @@ class KubernetesCluster(pulumi.CustomResource):
         `default_pool` is deprecated in favour the `kubernetes.Pool` resource. Here is a migration example.
 
         Before:
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.18.0",
+            cni="cilium",
+            default_pool=[{
+                "nodeType": "DEV1-M",
+                "size": 1,
+            }])
+        ```
 
         After:
 

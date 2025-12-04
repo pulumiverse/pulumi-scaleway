@@ -19,6 +19,103 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ### With option
     /// 
+    /// ### With cloud-init
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-I220E-NVME",
+    ///     });
+    /// 
+    ///     var myServerCi = new Scaleway.Elasticmetal.Server("my_server_ci", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///         CloudInit = Std.Index.File.Invoke(new()
+    ///         {
+    ///             Input = "userdata.yaml",
+    ///         }).Result,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
+    ///     {
+    ///         Name = "main",
+    ///     });
+    /// 
+    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Name = "EM-I220E-NVME",
+    ///     });
+    /// 
+    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
+    ///     {
+    ///         Zone = "fr-par-1",
+    ///         Name = "Ubuntu",
+    ///         Version = "22.04 LTS (Jammy Jellyfish)",
+    ///     });
+    /// 
+    ///     var myServerCi = new Scaleway.Elasticmetal.Server("my_server_ci", new()
+    ///     {
+    ///         Zone = "fr-par-2",
+    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
+    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
+    ///         SshKeyIds = new[]
+    ///         {
+    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
+    ///         },
+    ///         CloudInit = @"#cloud-config
+    /// packages:
+    ///   - htop
+    ///   - curl
+    /// 
+    /// runcmd:
+    ///   - echo \""Hello from raw cloud-init!\"" &gt; /home/ubuntu/message.txt
+    /// ",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### With private network
     /// 
     /// ### With IPAM IP IDs
@@ -185,6 +282,12 @@ namespace Pulumiverse.Scaleway
     [ScalewayResourceType("scaleway:index/baremetalServer:BaremetalServer")]
     public partial class BaremetalServer : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `CloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        /// </summary>
+        [Output("cloudInit")]
+        public Output<string> CloudInit { get; private set; } = null!;
+
         /// <summary>
         /// A description for the server.
         /// </summary>
@@ -413,6 +516,12 @@ namespace Pulumiverse.Scaleway
     public sealed class BaremetalServerArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `CloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        /// </summary>
+        [Input("cloudInit")]
+        public Input<string>? CloudInit { get; set; }
+
+        /// <summary>
         /// A description for the server.
         /// </summary>
         [Input("description")]
@@ -597,6 +706,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class BaremetalServerState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `CloudInit` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
+        /// </summary>
+        [Input("cloudInit")]
+        public Input<string>? CloudInit { get; set; }
+
         /// <summary>
         /// A description for the server.
         /// </summary>

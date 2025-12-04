@@ -218,6 +218,8 @@ if typing.TYPE_CHECKING:
     account = __account
     import pulumiverse_scaleway.applesilicon as __applesilicon
     applesilicon = __applesilicon
+    import pulumiverse_scaleway.audittrail as __audittrail
+    audittrail = __audittrail
     import pulumiverse_scaleway.autoscaling as __autoscaling
     autoscaling = __autoscaling
     import pulumiverse_scaleway.billing as __billing
@@ -277,6 +279,7 @@ if typing.TYPE_CHECKING:
 else:
     account = _utilities.lazy_import('pulumiverse_scaleway.account')
     applesilicon = _utilities.lazy_import('pulumiverse_scaleway.applesilicon')
+    audittrail = _utilities.lazy_import('pulumiverse_scaleway.audittrail')
     autoscaling = _utilities.lazy_import('pulumiverse_scaleway.autoscaling')
     billing = _utilities.lazy_import('pulumiverse_scaleway.billing')
     block = _utilities.lazy_import('pulumiverse_scaleway.block')

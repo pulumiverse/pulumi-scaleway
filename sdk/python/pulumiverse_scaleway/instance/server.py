@@ -74,13 +74,14 @@ class ServerArgs:
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
                
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+               
+               To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         :param pulumi.Input[_builtins.str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[_builtins.str] name: The name of the server.
-        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-               
+        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
@@ -274,6 +275,8 @@ class ServerArgs:
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 
         To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+
+        To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -323,8 +326,7 @@ class ServerArgs:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-
+        The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 
         > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """
@@ -537,14 +539,15 @@ class _ServerState:
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
                
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+               
+               To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         :param pulumi.Input[_builtins.str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
-        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-               
+        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[_builtins.bool] placement_group_policy_respected: (Deprecated) Always false, use instance_placement_group resource to known when the placement group policy is respected.
@@ -733,6 +736,8 @@ class _ServerState:
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 
         To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+
+        To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -794,8 +799,7 @@ class _ServerState:
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-
+        The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 
         > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """
@@ -1249,13 +1253,14 @@ class Server(pulumi.CustomResource):
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
                
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+               
+               To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         :param pulumi.Input[_builtins.str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[_builtins.str] name: The name of the server.
-        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-               
+        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
@@ -1643,14 +1648,15 @@ class Server(pulumi.CustomResource):
                You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
                
                To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+               
+               To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         :param pulumi.Input[_builtins.str] ip_id: The ID of the reserved IP that is attached to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ip_ids: List of ID of reserved IPs that are attached to the server. Cannot be used with `ip_id`.
                
                > `ip_id` to `ip_ids` migration: if moving the ip from the old `ip_id` field to the new `ip_ids`, it should not detach the ip.
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
-        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-               
+        :param pulumi.Input[_builtins.str] placement_group_id: The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
                
                > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         :param pulumi.Input[_builtins.bool] placement_group_policy_respected: (Deprecated) Always false, use instance_placement_group resource to known when the placement group policy is respected.
@@ -1786,6 +1792,8 @@ class Server(pulumi.CustomResource):
         You can check the available labels with our [CLI](https://www.scaleway.com/en/docs/compute/instances/api-cli/creating-managing-instances-with-cliv2/). ```scw marketplace image list```
 
         To retrieve more information by label please use: ```scw marketplace image get label=<LABEL>```
+
+        To obtain a local-image UUID from a label, please use: ```scw marketplace local-image list image-label=<LABEL>```
         """
         return pulumi.get(self, "image")
 
@@ -1827,8 +1835,7 @@ class Server(pulumi.CustomResource):
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The [placement group](https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group the server is attached to.
-
+        The [placement group](<https://www.scaleway.com/en/developers/api/instance/#path-security-groups-update-a-security-group> the server is attached to.
 
         > **Important:** When updating `placement_group_id` the `state` must be set to `stopped`, otherwise it will fail.
         """

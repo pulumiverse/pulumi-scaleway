@@ -226,6 +226,8 @@ type Ip struct {
 
 	// Request a specific IP in the requested source pool
 	Address pulumi.StringOutput `pulumi:"address"`
+	// the IP address in CIDR notation.
+	AddressCidr pulumi.StringOutput `pulumi:"addressCidr"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
@@ -291,6 +293,8 @@ func GetIp(ctx *pulumi.Context,
 type ipState struct {
 	// Request a specific IP in the requested source pool
 	Address *string `pulumi:"address"`
+	// the IP address in CIDR notation.
+	AddressCidr *string `pulumi:"addressCidr"`
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
@@ -318,6 +322,8 @@ type ipState struct {
 type IpState struct {
 	// Request a specific IP in the requested source pool
 	Address pulumi.StringPtrInput
+	// the IP address in CIDR notation.
+	AddressCidr pulumi.StringPtrInput
 	// Date and time of IP's creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
@@ -471,6 +477,11 @@ func (o IpOutput) ToIpOutputWithContext(ctx context.Context) IpOutput {
 // Request a specific IP in the requested source pool
 func (o IpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.Address }).(pulumi.StringOutput)
+}
+
+// the IP address in CIDR notation.
+func (o IpOutput) AddressCidr() pulumi.StringOutput {
+	return o.ApplyT(func(v *Ip) pulumi.StringOutput { return v.AddressCidr }).(pulumi.StringOutput)
 }
 
 // Date and time of IP's creation (RFC 3339 format).

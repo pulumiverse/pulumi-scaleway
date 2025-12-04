@@ -196,6 +196,21 @@ import * as utilities from "../utilities";
  *
  * Before:
  *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
+ *     name: "tf-cluster",
+ *     version: "1.18.0",
+ *     cni: "cilium",
+ *     defaultPool: [{
+ *         nodeType: "DEV1-M",
+ *         size: 1,
+ *     }],
+ * });
+ * ```
+ *
  * After:
  *
  * ```typescript

@@ -143,6 +143,10 @@ export class IpamIp extends pulumi.CustomResource {
      */
     declare public readonly address: pulumi.Output<string>;
     /**
+     * the IP address in CIDR notation.
+     */
+    declare public /*out*/ readonly addressCidr: pulumi.Output<string>;
+    /**
      * Date and time of IP's creation (RFC 3339 format).
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
@@ -204,6 +208,7 @@ export class IpamIp extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IpamIpState | undefined;
             resourceInputs["address"] = state?.address;
+            resourceInputs["addressCidr"] = state?.addressCidr;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["customResources"] = state?.customResources;
             resourceInputs["isIpv6"] = state?.isIpv6;
@@ -227,6 +232,7 @@ export class IpamIp extends pulumi.CustomResource {
             resourceInputs["region"] = args?.region;
             resourceInputs["sources"] = args?.sources;
             resourceInputs["tags"] = args?.tags;
+            resourceInputs["addressCidr"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["resources"] = undefined /*out*/;
             resourceInputs["reverses"] = undefined /*out*/;
@@ -246,6 +252,10 @@ export interface IpamIpState {
      * Request a specific IP in the requested source pool
      */
     address?: pulumi.Input<string>;
+    /**
+     * the IP address in CIDR notation.
+     */
+    addressCidr?: pulumi.Input<string>;
     /**
      * Date and time of IP's creation (RFC 3339 format).
      */

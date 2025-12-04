@@ -19,6 +19,42 @@ import (
 //
 // ### Basic
 //
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/inference"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myModel, err := inference.LookupModel(ctx, &inference.LookupModelArgs{
+//				Name: pulumi.StringRef("meta/llama-3.1-8b-instruct:fp8"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = inference.NewDeployment(ctx, "deployment", &inference.DeploymentArgs{
+//				Name:      pulumi.String("tf-inference-deployment"),
+//				NodeType:  pulumi.String("L4"),
+//				ModelName: myModel.Id,
+//				PublicEndpoint: &inference.DeploymentPublicEndpointArgs{
+//					IsEnabled: pulumi.Bool(true),
+//				},
+//				AcceptEula: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Functions can be imported using, `{region}/{id}`, as shown below:

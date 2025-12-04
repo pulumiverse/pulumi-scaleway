@@ -28,7 +28,7 @@ class ModelArgs:
                  secret: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Model resource.
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
@@ -48,7 +48,7 @@ class ModelArgs:
     @pulumi.getter
     def url(self) -> pulumi.Input[_builtins.str]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         return pulumi.get(self, "url")
 
@@ -137,7 +137,7 @@ class _ModelState:
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the model.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the model
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -328,7 +328,7 @@ class _ModelState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         return pulumi.get(self, "url")
 
@@ -402,7 +402,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
         :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         ...
     @overload
@@ -548,7 +548,7 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the model.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the model
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -678,7 +678,7 @@ class Model(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[_builtins.str]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., https://huggingface.co/agentica-org/DeepCoder-14B-Preview). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
         """
         return pulumi.get(self, "url")
 

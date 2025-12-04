@@ -111,7 +111,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := observability.GetSources(ctx, &observability.GetSourcesArgs{
 //				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//				Origin:    pulumi.StringRef("external"),
+//				Origin:    pulumi.StringRef("custom"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -162,7 +162,7 @@ func GetSources(ctx *pulumi.Context, args *GetSourcesArgs, opts ...pulumi.Invoke
 type GetSourcesArgs struct {
 	// Filter sources by name.
 	Name *string `pulumi:"name"`
-	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	// Filter sources by origin. Possible values are: `scaleway`, `custom`.
 	Origin *string `pulumi:"origin"`
 	// The project ID the cockpit sources are associated with.
 	ProjectId *string `pulumi:"projectId"`
@@ -215,7 +215,7 @@ func GetSourcesOutput(ctx *pulumi.Context, args GetSourcesOutputArgs, opts ...pu
 type GetSourcesOutputArgs struct {
 	// Filter sources by name.
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	// Filter sources by origin. Possible values are: `scaleway`, `custom`.
 	Origin pulumi.StringPtrInput `pulumi:"origin"`
 	// The project ID the cockpit sources are associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`

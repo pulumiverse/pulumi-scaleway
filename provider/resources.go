@@ -43,6 +43,7 @@ const (
 	// further modules follow the grouping of the upstream TF provider
 	// https://registry.terraform.io/providers/scaleway/scaleway/latest/docs
 	accountMod       = "account"
+	auditTrailMod    = "audittrail"
 	appleSiliconMod  = "applesilicon"
 	autoscalingMod   = "autoscaling"
 	billingMod       = "billing"
@@ -116,7 +117,7 @@ func Provider() tfbridge.ProviderInfo {
 	p := pfbridge.MuxShimWithPF(
 		context.Background(),
 		shimv2.NewProvider(scaleway.SDKProvider(nil)()),
-		scaleway.NewFrameworkProvider()(),
+		scaleway.NewFrameworkProvider(nil)(),
 	)
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
@@ -329,6 +330,7 @@ func Provider() tfbridge.ProviderInfo {
 			map[string]string{
 				"account":       accountMod,
 				"apple_silicon": appleSiliconMod,
+				"audit_trail":   auditTrailMod,
 				"autoscaling":   autoscalingMod,
 				"billing":       billingMod,
 				"block":         blockMod,

@@ -61,6 +61,7 @@ export interface GetServerArgs {
  * A collection of values returned by getServer.
  */
 export interface GetServerResult {
+    readonly cloudInit: string;
     readonly description: string;
     readonly domain: string;
     readonly hostname: string;

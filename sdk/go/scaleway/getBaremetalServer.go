@@ -73,6 +73,7 @@ type LookupBaremetalServerArgs struct {
 
 // A collection of values returned by getBaremetalServer.
 type LookupBaremetalServerResult struct {
+	CloudInit   string `pulumi:"cloudInit"`
 	Description string `pulumi:"description"`
 	Domain      string `pulumi:"domain"`
 	Hostname    string `pulumi:"hostname"`
@@ -143,6 +144,10 @@ func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutput()
 
 func (o LookupBaremetalServerResultOutput) ToLookupBaremetalServerResultOutputWithContext(ctx context.Context) LookupBaremetalServerResultOutput {
 	return o
+}
+
+func (o LookupBaremetalServerResultOutput) CloudInit() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.CloudInit }).(pulumi.StringOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) Description() pulumi.StringOutput {

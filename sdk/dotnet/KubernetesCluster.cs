@@ -281,6 +281,32 @@ namespace Pulumiverse.Scaleway
     /// 
     /// Before:
     /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Version = "1.18.0",
+    ///         Cni = "cilium",
+    ///         DefaultPool = new[]
+    ///         {
+    ///             
+    ///             {
+    ///                 { "nodeType", "DEV1-M" },
+    ///                 { "size", 1 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// After:
     /// 
     /// ```csharp

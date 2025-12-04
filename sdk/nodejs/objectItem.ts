@@ -9,6 +9,24 @@ import * as utilities from "./utilities";
  *
  * Refer to the [dedicated documentation](https://www.scaleway.com/en/docs/object-storage/how-to/upload-files-into-a-bucket/) for more information on Object Storage objects.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ * import * as std from "@pulumi/std";
+ *
+ * const someBucket = new scaleway.object.Bucket("some_bucket", {name: "some-unique-name"});
+ * const someFile = new scaleway.object.Item("some_file", {
+ *     bucket: someBucket.id,
+ *     key: "object_path",
+ *     file: "myfile",
+ *     hash: std.index.filemd5({
+ *         input: "myfile",
+ *     }).result,
+ * });
+ * ```
+ *
  * ## Import
  *
  * Objects can be imported using the `{region}/{bucketName}/{objectKey}` identifier, as shown below:
@@ -75,7 +93,7 @@ export class ObjectItem extends pulumi.CustomResource {
      */
     declare public readonly contentBase64: pulumi.Output<string | undefined>;
     /**
-     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
      */
     declare public readonly contentType: pulumi.Output<string>;
     /**
@@ -198,7 +216,7 @@ export interface ObjectItemState {
      */
     contentBase64?: pulumi.Input<string>;
     /**
-     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
      */
     contentType?: pulumi.Input<string>;
     /**
@@ -262,7 +280,7 @@ export interface ObjectItemArgs {
      */
     contentBase64?: pulumi.Input<string>;
     /**
-     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type
+     * The standard MIME type of the object's content (e.g., 'application/json', 'text/plain'). This specifies how the object should be interpreted by clients. See RFC 9110: <https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type>
      */
     contentType?: pulumi.Input<string>;
     /**

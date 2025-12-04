@@ -52,9 +52,9 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const external = scaleway.observability.getSources({
+ * const custom = scaleway.observability.getSources({
  *     projectId: "11111111-1111-1111-1111-111111111111",
- *     origin: "external",
+ *     origin: "custom",
  * });
  * ```
  *
@@ -91,7 +91,7 @@ export interface GetSourcesArgs {
      */
     name?: string;
     /**
-     * Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+     * Filter sources by origin. Possible values are: `scaleway`, `custom`.
      */
     origin?: string;
     /**
@@ -211,9 +211,9 @@ export interface GetSourcesResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const external = scaleway.observability.getSources({
+ * const custom = scaleway.observability.getSources({
  *     projectId: "11111111-1111-1111-1111-111111111111",
- *     origin: "external",
+ *     origin: "custom",
  * });
  * ```
  *
@@ -250,7 +250,7 @@ export interface GetSourcesOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+     * Filter sources by origin. Possible values are: `scaleway`, `custom`.
      */
     origin?: pulumi.Input<string>;
     /**

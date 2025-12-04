@@ -884,7 +884,7 @@ type GetSourcesSource struct {
 	Id string `pulumi:"id"`
 	// Filter sources by name.
 	Name string `pulumi:"name"`
-	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	// Filter sources by origin. Possible values are: `scaleway`, `custom`.
 	Origin string `pulumi:"origin"`
 	// The project ID the cockpit sources are associated with.
 	ProjectId string `pulumi:"projectId"`
@@ -922,7 +922,7 @@ type GetSourcesSourceArgs struct {
 	Id pulumi.StringInput `pulumi:"id"`
 	// Filter sources by name.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+	// Filter sources by origin. Possible values are: `scaleway`, `custom`.
 	Origin pulumi.StringInput `pulumi:"origin"`
 	// The project ID the cockpit sources are associated with.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -1008,7 +1008,7 @@ func (o GetSourcesSourceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourcesSource) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Filter sources by origin. Possible values are: `scaleway`, `external`, `custom`.
+// Filter sources by origin. Possible values are: `scaleway`, `custom`.
 func (o GetSourcesSourceOutput) Origin() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSourcesSource) string { return v.Origin }).(pulumi.StringOutput)
 }

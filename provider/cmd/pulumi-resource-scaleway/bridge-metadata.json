@@ -2472,6 +2472,22 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_audit_trail_event": {
+                "current": "scaleway:audittrail/getEvent:getEvent",
+                "majorVersion": 1,
+                "fields": {
+                    "events": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "resources": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_availability_zones": {
                 "current": "scaleway:account/getAvailabilityZones:getAvailabilityZones",
                 "past": [
@@ -5559,6 +5575,7 @@
             "scaleway:account/getProject:getProject": 0,
             "scaleway:account/getProjects:getProjects": 0,
             "scaleway:account/getSshKey:getSshKey": 0,
+            "scaleway:audittrail/getEvent:getEvent": 0,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,

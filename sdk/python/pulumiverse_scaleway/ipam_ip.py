@@ -141,6 +141,7 @@ class IpamIpArgs:
 class _IpamIpState:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[_builtins.str]] = None,
+                 address_cidr: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]]] = None,
                  is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -155,6 +156,7 @@ class _IpamIpState:
         """
         Input properties used for looking up and filtering IpamIp resources.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
+        :param pulumi.Input[_builtins.str] address_cidr: the IP address in CIDR notation.
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input['IpamIpCustomResourceArgs']]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
@@ -169,6 +171,8 @@ class _IpamIpState:
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if address_cidr is not None:
+            pulumi.set(__self__, "address_cidr", address_cidr)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if custom_resources is not None:
@@ -203,6 +207,18 @@ class _IpamIpState:
     @address.setter
     def address(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "address", value)
+
+    @_builtins.property
+    @pulumi.getter(name="addressCidr")
+    def address_cidr(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        the IP address in CIDR notation.
+        """
+        return pulumi.get(self, "address_cidr")
+
+    @address_cidr.setter
+    def address_cidr(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "address_cidr", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -601,6 +617,7 @@ class IpamIp(pulumi.CustomResource):
                 raise TypeError("Missing required property 'sources'")
             __props__.__dict__["sources"] = sources
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["address_cidr"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["resources"] = None
             __props__.__dict__["reverses"] = None
@@ -617,6 +634,7 @@ class IpamIp(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             address: Optional[pulumi.Input[_builtins.str]] = None,
+            address_cidr: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             custom_resources: Optional[pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]]] = None,
             is_ipv6: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -636,6 +654,7 @@ class IpamIp(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] address: Request a specific IP in the requested source pool
+        :param pulumi.Input[_builtins.str] address_cidr: the IP address in CIDR notation.
         :param pulumi.Input[_builtins.str] created_at: Date and time of IP's creation (RFC 3339 format).
         :param pulumi.Input[Sequence[pulumi.Input[Union['IpamIpCustomResourceArgs', 'IpamIpCustomResourceArgsDict']]]] custom_resources: The custom resource to attach to the IP being reserved. An example of a custom resource is a virtual machine hosted on an Elastic Metal server.
         :param pulumi.Input[_builtins.bool] is_ipv6: Defines whether to request an IPv6 address instead of IPv4.
@@ -653,6 +672,7 @@ class IpamIp(pulumi.CustomResource):
         __props__ = _IpamIpState.__new__(_IpamIpState)
 
         __props__.__dict__["address"] = address
+        __props__.__dict__["address_cidr"] = address_cidr
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["custom_resources"] = custom_resources
         __props__.__dict__["is_ipv6"] = is_ipv6
@@ -673,6 +693,14 @@ class IpamIp(pulumi.CustomResource):
         Request a specific IP in the requested source pool
         """
         return pulumi.get(self, "address")
+
+    @_builtins.property
+    @pulumi.getter(name="addressCidr")
+    def address_cidr(self) -> pulumi.Output[_builtins.str]:
+        """
+        the IP address in CIDR notation.
+        """
+        return pulumi.get(self, "address_cidr")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
