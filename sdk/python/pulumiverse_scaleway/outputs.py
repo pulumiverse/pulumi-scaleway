@@ -134,6 +134,13 @@ __all__ = [
     'RedisClusterPrivateIp',
     'RedisClusterPrivateNetwork',
     'RedisClusterPublicNetwork',
+    'S2sVpnConnectionBgpConfigIpv4',
+    'S2sVpnConnectionBgpConfigIpv6',
+    'S2sVpnConnectionBgpSessionIpv4',
+    'S2sVpnConnectionBgpSessionIpv6',
+    'S2sVpnConnectionEspCipher',
+    'S2sVpnConnectionIkev2Cipher',
+    'S2sVpnGatewayPublicConfig',
     'SecretEphemeralPolicy',
     'SecretVersion',
     'TemDomainReputation',
@@ -197,6 +204,7 @@ __all__ = [
     'GetIpamIpsIpResult',
     'GetIpamIpsIpResourceResult',
     'GetIpamIpsResourceResult',
+    'GetKeyManagerKeyRotationPolicyResult',
     'GetKubernetesClusterAutoUpgradeResult',
     'GetKubernetesClusterAutoscalerConfigResult',
     'GetKubernetesClusterKubeconfigResult',
@@ -7502,6 +7510,428 @@ class RedisClusterPublicNetwork(dict):
 
 
 @pulumi.output_type
+class S2sVpnConnectionBgpConfigIpv4(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routingPolicyId":
+            suggest = "routing_policy_id"
+        elif key == "peerPrivateIp":
+            suggest = "peer_private_ip"
+        elif key == "privateIp":
+            suggest = "private_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionBgpConfigIpv4. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionBgpConfigIpv4.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionBgpConfigIpv4.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 routing_policy_id: _builtins.str,
+                 peer_private_ip: Optional[_builtins.str] = None,
+                 private_ip: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str routing_policy_id: The routing policy ID used for this BGP session.
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side (within the tunnel).
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+        if peer_private_ip is not None:
+            pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        if private_ip is not None:
+            pulumi.set(__self__, "private_ip", private_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The routing policy ID used for this BGP session.
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on customer side (within the tunnel).
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        return pulumi.get(self, "private_ip")
+
+
+@pulumi.output_type
+class S2sVpnConnectionBgpConfigIpv6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routingPolicyId":
+            suggest = "routing_policy_id"
+        elif key == "peerPrivateIp":
+            suggest = "peer_private_ip"
+        elif key == "privateIp":
+            suggest = "private_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionBgpConfigIpv6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionBgpConfigIpv6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionBgpConfigIpv6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 routing_policy_id: _builtins.str,
+                 peer_private_ip: Optional[_builtins.str] = None,
+                 private_ip: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str routing_policy_id: The routing policy ID used for this BGP session.
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side (within the tunnel).
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+        if peer_private_ip is not None:
+            pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        if private_ip is not None:
+            pulumi.set(__self__, "private_ip", private_ip)
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The routing policy ID used for this BGP session.
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on customer side (within the tunnel).
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        return pulumi.get(self, "private_ip")
+
+
+@pulumi.output_type
+class S2sVpnConnectionBgpSessionIpv4(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "peerPrivateIp":
+            suggest = "peer_private_ip"
+        elif key == "privateIp":
+            suggest = "private_ip"
+        elif key == "routingPolicyId":
+            suggest = "routing_policy_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionBgpSessionIpv4. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionBgpSessionIpv4.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionBgpSessionIpv4.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 peer_private_ip: Optional[_builtins.str] = None,
+                 private_ip: Optional[_builtins.str] = None,
+                 routing_policy_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side (within the tunnel).
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side (within the tunnel).
+        :param _builtins.str routing_policy_id: The routing policy ID used for this BGP session.
+        """
+        if peer_private_ip is not None:
+            pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        if private_ip is not None:
+            pulumi.set(__self__, "private_ip", private_ip)
+        if routing_policy_id is not None:
+            pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on customer side (within the tunnel).
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> Optional[_builtins.str]:
+        """
+        The routing policy ID used for this BGP session.
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class S2sVpnConnectionBgpSessionIpv6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "peerPrivateIp":
+            suggest = "peer_private_ip"
+        elif key == "privateIp":
+            suggest = "private_ip"
+        elif key == "routingPolicyId":
+            suggest = "routing_policy_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionBgpSessionIpv6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionBgpSessionIpv6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionBgpSessionIpv6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 peer_private_ip: Optional[_builtins.str] = None,
+                 private_ip: Optional[_builtins.str] = None,
+                 routing_policy_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side (within the tunnel).
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side (within the tunnel).
+        :param _builtins.str routing_policy_id: The routing policy ID used for this BGP session.
+        """
+        if peer_private_ip is not None:
+            pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        if private_ip is not None:
+            pulumi.set(__self__, "private_ip", private_ip)
+        if routing_policy_id is not None:
+            pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on customer side (within the tunnel).
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> Optional[_builtins.str]:
+        """
+        The BGP peer IP on Scaleway side (within the tunnel).
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> Optional[_builtins.str]:
+        """
+        The routing policy ID used for this BGP session.
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class S2sVpnConnectionEspCipher(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dhGroup":
+            suggest = "dh_group"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionEspCipher. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionEspCipher.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionEspCipher.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 encryption: _builtins.str,
+                 dh_group: Optional[_builtins.str] = None,
+                 integrity: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str encryption: The encryption algorithm
+        :param _builtins.str dh_group: The Diffie-Hellman group
+        :param _builtins.str integrity: The integrity/hash algorithm
+        """
+        pulumi.set(__self__, "encryption", encryption)
+        if dh_group is not None:
+            pulumi.set(__self__, "dh_group", dh_group)
+        if integrity is not None:
+            pulumi.set(__self__, "integrity", integrity)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> _builtins.str:
+        """
+        The encryption algorithm
+        """
+        return pulumi.get(self, "encryption")
+
+    @_builtins.property
+    @pulumi.getter(name="dhGroup")
+    def dh_group(self) -> Optional[_builtins.str]:
+        """
+        The Diffie-Hellman group
+        """
+        return pulumi.get(self, "dh_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def integrity(self) -> Optional[_builtins.str]:
+        """
+        The integrity/hash algorithm
+        """
+        return pulumi.get(self, "integrity")
+
+
+@pulumi.output_type
+class S2sVpnConnectionIkev2Cipher(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dhGroup":
+            suggest = "dh_group"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnConnectionIkev2Cipher. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnConnectionIkev2Cipher.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnConnectionIkev2Cipher.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 encryption: _builtins.str,
+                 dh_group: Optional[_builtins.str] = None,
+                 integrity: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str encryption: The encryption algorithm
+        :param _builtins.str dh_group: The Diffie-Hellman group
+        :param _builtins.str integrity: The integrity/hash algorithm
+        """
+        pulumi.set(__self__, "encryption", encryption)
+        if dh_group is not None:
+            pulumi.set(__self__, "dh_group", dh_group)
+        if integrity is not None:
+            pulumi.set(__self__, "integrity", integrity)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> _builtins.str:
+        """
+        The encryption algorithm
+        """
+        return pulumi.get(self, "encryption")
+
+    @_builtins.property
+    @pulumi.getter(name="dhGroup")
+    def dh_group(self) -> Optional[_builtins.str]:
+        """
+        The Diffie-Hellman group
+        """
+        return pulumi.get(self, "dh_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def integrity(self) -> Optional[_builtins.str]:
+        """
+        The integrity/hash algorithm
+        """
+        return pulumi.get(self, "integrity")
+
+
+@pulumi.output_type
+class S2sVpnGatewayPublicConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ipamIpv4Id":
+            suggest = "ipam_ipv4_id"
+        elif key == "ipamIpv6Id":
+            suggest = "ipam_ipv6_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in S2sVpnGatewayPublicConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        S2sVpnGatewayPublicConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        S2sVpnGatewayPublicConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ipam_ipv4_id: Optional[_builtins.str] = None,
+                 ipam_ipv6_id: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str ipam_ipv4_id: The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+        :param _builtins.str ipam_ipv6_id: The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+        """
+        if ipam_ipv4_id is not None:
+            pulumi.set(__self__, "ipam_ipv4_id", ipam_ipv4_id)
+        if ipam_ipv6_id is not None:
+            pulumi.set(__self__, "ipam_ipv6_id", ipam_ipv6_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipamIpv4Id")
+    def ipam_ipv4_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+        """
+        return pulumi.get(self, "ipam_ipv4_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipamIpv6Id")
+    def ipam_ipv6_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+        """
+        return pulumi.get(self, "ipam_ipv6_id")
+
+
+@pulumi.output_type
 class SecretEphemeralPolicy(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -11078,6 +11508,35 @@ class GetIpamIpsResourceResult(dict):
         The name of the attached resource.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetKeyManagerKeyRotationPolicyResult(dict):
+    def __init__(__self__, *,
+                 next_rotation_at: _builtins.str,
+                 rotation_period: _builtins.str):
+        """
+        :param _builtins.str next_rotation_at: Timestamp indicating the next scheduled rotation.
+        :param _builtins.str rotation_period: Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+        """
+        pulumi.set(__self__, "next_rotation_at", next_rotation_at)
+        pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @_builtins.property
+    @pulumi.getter(name="nextRotationAt")
+    def next_rotation_at(self) -> _builtins.str:
+        """
+        Timestamp indicating the next scheduled rotation.
+        """
+        return pulumi.get(self, "next_rotation_at")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> _builtins.str:
+        """
+        Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+        """
+        return pulumi.get(self, "rotation_period")
 
 
 @pulumi.output_type

@@ -455,6 +455,11 @@ export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = nul
 export const getK8sVersionOutput: typeof import("./getK8sVersion").getK8sVersionOutput = null as any;
 utilities.lazyLoad(exports, ["getK8sVersion","getK8sVersionOutput"], () => require("./getK8sVersion"));
 
+export { GetKeyManagerKeyArgs, GetKeyManagerKeyResult, GetKeyManagerKeyOutputArgs } from "./getKeyManagerKey";
+export const getKeyManagerKey: typeof import("./getKeyManagerKey").getKeyManagerKey = null as any;
+export const getKeyManagerKeyOutput: typeof import("./getKeyManagerKey").getKeyManagerKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getKeyManagerKey","getKeyManagerKeyOutput"], () => require("./getKeyManagerKey"));
+
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
@@ -933,6 +938,26 @@ export type RegistryNamespace = import("./registryNamespace").RegistryNamespace;
 export const RegistryNamespace: typeof import("./registryNamespace").RegistryNamespace = null as any;
 utilities.lazyLoad(exports, ["RegistryNamespace"], () => require("./registryNamespace"));
 
+export { S2sVpnConnectionArgs, S2sVpnConnectionState } from "./s2sVpnConnection";
+export type S2sVpnConnection = import("./s2sVpnConnection").S2sVpnConnection;
+export const S2sVpnConnection: typeof import("./s2sVpnConnection").S2sVpnConnection = null as any;
+utilities.lazyLoad(exports, ["S2sVpnConnection"], () => require("./s2sVpnConnection"));
+
+export { S2sVpnCustomerGatewayArgs, S2sVpnCustomerGatewayState } from "./s2sVpnCustomerGateway";
+export type S2sVpnCustomerGateway = import("./s2sVpnCustomerGateway").S2sVpnCustomerGateway;
+export const S2sVpnCustomerGateway: typeof import("./s2sVpnCustomerGateway").S2sVpnCustomerGateway = null as any;
+utilities.lazyLoad(exports, ["S2sVpnCustomerGateway"], () => require("./s2sVpnCustomerGateway"));
+
+export { S2sVpnGatewayArgs, S2sVpnGatewayState } from "./s2sVpnGateway";
+export type S2sVpnGateway = import("./s2sVpnGateway").S2sVpnGateway;
+export const S2sVpnGateway: typeof import("./s2sVpnGateway").S2sVpnGateway = null as any;
+utilities.lazyLoad(exports, ["S2sVpnGateway"], () => require("./s2sVpnGateway"));
+
+export { S2sVpnRoutingPolicyArgs, S2sVpnRoutingPolicyState } from "./s2sVpnRoutingPolicy";
+export type S2sVpnRoutingPolicy = import("./s2sVpnRoutingPolicy").S2sVpnRoutingPolicy;
+export const S2sVpnRoutingPolicy: typeof import("./s2sVpnRoutingPolicy").S2sVpnRoutingPolicy = null as any;
+utilities.lazyLoad(exports, ["S2sVpnRoutingPolicy"], () => require("./s2sVpnRoutingPolicy"));
+
 export { SdbDatabaseArgs, SdbDatabaseState } from "./sdbDatabase";
 export type SdbDatabase = import("./sdbDatabase").SdbDatabase;
 export const SdbDatabase: typeof import("./sdbDatabase").SdbDatabase = null as any;
@@ -1292,6 +1317,14 @@ const _module = {
                 return new RedisCluster(name, <any>undefined, { urn })
             case "scaleway:index/registryNamespace:RegistryNamespace":
                 return new RegistryNamespace(name, <any>undefined, { urn })
+            case "scaleway:index/s2sVpnConnection:S2sVpnConnection":
+                return new S2sVpnConnection(name, <any>undefined, { urn })
+            case "scaleway:index/s2sVpnCustomerGateway:S2sVpnCustomerGateway":
+                return new S2sVpnCustomerGateway(name, <any>undefined, { urn })
+            case "scaleway:index/s2sVpnGateway:S2sVpnGateway":
+                return new S2sVpnGateway(name, <any>undefined, { urn })
+            case "scaleway:index/s2sVpnRoutingPolicy:S2sVpnRoutingPolicy":
+                return new S2sVpnRoutingPolicy(name, <any>undefined, { urn })
             case "scaleway:index/sdbDatabase:SdbDatabase":
                 return new SdbDatabase(name, <any>undefined, { urn })
             case "scaleway:index/secret:Secret":
@@ -1431,6 +1464,10 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/rdbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/s2sVpnConnection", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/s2sVpnCustomerGateway", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/s2sVpnGateway", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/s2sVpnRoutingPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/sdbDatabase", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secret", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/secretVersion", _module)
