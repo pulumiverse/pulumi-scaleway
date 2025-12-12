@@ -2152,6 +2152,107 @@ export interface RedisClusterPublicNetwork {
     port?: pulumi.Input<number>;
 }
 
+export interface S2sVpnConnectionBgpConfigIpv4 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: pulumi.Input<string>;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: pulumi.Input<string>;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: pulumi.Input<string>;
+}
+
+export interface S2sVpnConnectionBgpConfigIpv6 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: pulumi.Input<string>;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: pulumi.Input<string>;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: pulumi.Input<string>;
+}
+
+export interface S2sVpnConnectionBgpSessionIpv4 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: pulumi.Input<string>;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: pulumi.Input<string>;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId?: pulumi.Input<string>;
+}
+
+export interface S2sVpnConnectionBgpSessionIpv6 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: pulumi.Input<string>;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: pulumi.Input<string>;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId?: pulumi.Input<string>;
+}
+
+export interface S2sVpnConnectionEspCipher {
+    /**
+     * The Diffie-Hellman group
+     */
+    dhGroup?: pulumi.Input<string>;
+    /**
+     * The encryption algorithm
+     */
+    encryption: pulumi.Input<string>;
+    /**
+     * The integrity/hash algorithm
+     */
+    integrity?: pulumi.Input<string>;
+}
+
+export interface S2sVpnConnectionIkev2Cipher {
+    /**
+     * The Diffie-Hellman group
+     */
+    dhGroup?: pulumi.Input<string>;
+    /**
+     * The encryption algorithm
+     */
+    encryption: pulumi.Input<string>;
+    /**
+     * The integrity/hash algorithm
+     */
+    integrity?: pulumi.Input<string>;
+}
+
+export interface S2sVpnGatewayPublicConfig {
+    /**
+     * The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+     */
+    ipamIpv4Id?: pulumi.Input<string>;
+    /**
+     * The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+     */
+    ipamIpv6Id?: pulumi.Input<string>;
+}
+
 export interface SecretEphemeralPolicy {
     /**
      * Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).

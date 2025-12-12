@@ -2145,6 +2145,69 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_s2s_vpn_connection": {
+                "current": "scaleway:index/s2sVpnConnection:S2sVpnConnection",
+                "majorVersion": 1,
+                "fields": {
+                    "bgp_config_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_config_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "esp_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "ikev2_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_customer_gateway": {
+                "current": "scaleway:index/s2sVpnCustomerGateway:S2sVpnCustomerGateway",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_gateway": {
+                "current": "scaleway:index/s2sVpnGateway:S2sVpnGateway",
+                "majorVersion": 1,
+                "fields": {
+                    "public_config": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_routing_policy": {
+                "current": "scaleway:index/s2sVpnRoutingPolicy:S2sVpnRoutingPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "prefix_filter_in": {
+                        "maxItemsOne": false
+                    },
+                    "prefix_filter_out": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_sdb_sql_database": {
                 "current": "scaleway:databases/serverlessDatabase:ServerlessDatabase",
                 "past": [
@@ -3452,6 +3515,18 @@
                         "maxItemsOne": false
                     },
                     "available_feature_gates": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_key_manager_key": {
+                "current": "scaleway:index/getKeyManagerKey:getKeyManagerKey",
+                "majorVersion": 1,
+                "fields": {
+                    "rotation_policy": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
                         "maxItemsOne": false
                     }
                 }
@@ -5479,6 +5554,10 @@
             "scaleway:index/rdbSnapshot:RdbSnapshot": 0,
             "scaleway:index/redisCluster:RedisCluster": 0,
             "scaleway:index/registryNamespace:RegistryNamespace": 0,
+            "scaleway:index/s2sVpnConnection:S2sVpnConnection": 0,
+            "scaleway:index/s2sVpnCustomerGateway:S2sVpnCustomerGateway": 0,
+            "scaleway:index/s2sVpnGateway:S2sVpnGateway": 0,
+            "scaleway:index/s2sVpnRoutingPolicy:S2sVpnRoutingPolicy": 0,
             "scaleway:index/sdbDatabase:SdbDatabase": 0,
             "scaleway:index/secret:Secret": 0,
             "scaleway:index/secretVersion:SecretVersion": 0,
@@ -5652,6 +5731,7 @@
             "scaleway:index/getIpamIp:getIpamIp": 0,
             "scaleway:index/getIpamIps:getIpamIps": 0,
             "scaleway:index/getK8sVersion:getK8sVersion": 0,
+            "scaleway:index/getKeyManagerKey:getKeyManagerKey": 0,
             "scaleway:index/getKubernetesCluster:getKubernetesCluster": 0,
             "scaleway:index/getKubernetesNodePool:getKubernetesNodePool": 0,
             "scaleway:index/getLbAcls:getLbAcls": 0,

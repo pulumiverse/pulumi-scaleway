@@ -1786,6 +1786,17 @@ export interface GetIpamIpsResource {
     type: string;
 }
 
+export interface GetKeyManagerKeyRotationPolicy {
+    /**
+     * Timestamp indicating the next scheduled rotation.
+     */
+    nextRotationAt: string;
+    /**
+     * Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+     */
+    rotationPeriod: string;
+}
+
 export interface GetKubernetesClusterAutoUpgrade {
     /**
      * True if Kubernetes patch version auto upgrades is enabled.
@@ -4562,6 +4573,107 @@ export interface RedisClusterPublicNetwork {
      * TCP port of the endpoint.
      */
     port: number;
+}
+
+export interface S2sVpnConnectionBgpConfigIpv4 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: string;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: string;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: string;
+}
+
+export interface S2sVpnConnectionBgpConfigIpv6 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp?: string;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp?: string;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: string;
+}
+
+export interface S2sVpnConnectionBgpSessionIpv4 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp: string;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp: string;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: string;
+}
+
+export interface S2sVpnConnectionBgpSessionIpv6 {
+    /**
+     * The BGP peer IP on customer side (within the tunnel).
+     */
+    peerPrivateIp: string;
+    /**
+     * The BGP peer IP on Scaleway side (within the tunnel).
+     */
+    privateIp: string;
+    /**
+     * The routing policy ID used for this BGP session.
+     */
+    routingPolicyId: string;
+}
+
+export interface S2sVpnConnectionEspCipher {
+    /**
+     * The Diffie-Hellman group
+     */
+    dhGroup?: string;
+    /**
+     * The encryption algorithm
+     */
+    encryption: string;
+    /**
+     * The integrity/hash algorithm
+     */
+    integrity?: string;
+}
+
+export interface S2sVpnConnectionIkev2Cipher {
+    /**
+     * The Diffie-Hellman group
+     */
+    dhGroup?: string;
+    /**
+     * The encryption algorithm
+     */
+    encryption: string;
+    /**
+     * The integrity/hash algorithm
+     */
+    integrity?: string;
+}
+
+export interface S2sVpnGatewayPublicConfig {
+    /**
+     * The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+     */
+    ipamIpv4Id?: string;
+    /**
+     * The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+     */
+    ipamIpv6Id?: string;
 }
 
 export interface SecretEphemeralPolicy {
