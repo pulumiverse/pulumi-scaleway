@@ -221,6 +221,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RedisCluster{}
 	case "scaleway:index/registryNamespace:RegistryNamespace":
 		r = &RegistryNamespace{}
+	case "scaleway:index/s2sVpnConnection:S2sVpnConnection":
+		r = &S2sVpnConnection{}
+	case "scaleway:index/s2sVpnCustomerGateway:S2sVpnCustomerGateway":
+		r = &S2sVpnCustomerGateway{}
+	case "scaleway:index/s2sVpnGateway:S2sVpnGateway":
+		r = &S2sVpnGateway{}
+	case "scaleway:index/s2sVpnRoutingPolicy:S2sVpnRoutingPolicy":
+		r = &S2sVpnRoutingPolicy{}
 	case "scaleway:index/sdbDatabase:SdbDatabase":
 		r = &SdbDatabase{}
 	case "scaleway:index/secret:Secret":
@@ -784,6 +792,26 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/registryNamespace",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/s2sVpnConnection",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/s2sVpnCustomerGateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/s2sVpnGateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"index/s2sVpnRoutingPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

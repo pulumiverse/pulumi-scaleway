@@ -96,6 +96,7 @@ from .get_iot_hub import *
 from .get_ipam_ip import *
 from .get_ipam_ips import *
 from .get_k8s_version import *
+from .get_key_manager_key import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
 from .get_lb_acls import *
@@ -192,6 +193,10 @@ from .provider import *
 from .rdb_snapshot import *
 from .redis_cluster import *
 from .registry_namespace import *
+from .s2s_vpn_connection import *
+from .s2s_vpn_customer_gateway import *
+from .s2s_vpn_gateway import *
+from .s2s_vpn_routing_policy import *
 from .sdb_database import *
 from .secret import *
 from .secret_version import *
@@ -1478,6 +1483,38 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/registryNamespace:RegistryNamespace": "RegistryNamespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/s2sVpnConnection",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/s2sVpnConnection:S2sVpnConnection": "S2sVpnConnection"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/s2sVpnCustomerGateway",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/s2sVpnCustomerGateway:S2sVpnCustomerGateway": "S2sVpnCustomerGateway"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/s2sVpnGateway",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/s2sVpnGateway:S2sVpnGateway": "S2sVpnGateway"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/s2sVpnRoutingPolicy",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/s2sVpnRoutingPolicy:S2sVpnRoutingPolicy": "S2sVpnRoutingPolicy"
   }
  },
  {
