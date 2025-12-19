@@ -2145,6 +2145,69 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_s2s_vpn_connection": {
+                "current": "scaleway:s2svpn/connection:Connection",
+                "majorVersion": 1,
+                "fields": {
+                    "bgp_config_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_config_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "esp_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "ikev2_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_customer_gateway": {
+                "current": "scaleway:s2svpn/customerGateway:CustomerGateway",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_gateway": {
+                "current": "scaleway:s2svpn/gateway:Gateway",
+                "majorVersion": 1,
+                "fields": {
+                    "public_config": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_routing_policy": {
+                "current": "scaleway:s2svpn/routingPolicy:RoutingPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "prefix_filter_in": {
+                        "maxItemsOne": false
+                    },
+                    "prefix_filter_out": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_sdb_sql_database": {
                 "current": "scaleway:databases/serverlessDatabase:ServerlessDatabase",
                 "past": [
@@ -3452,6 +3515,18 @@
                         "maxItemsOne": false
                     },
                     "available_feature_gates": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_key_manager_key": {
+                "current": "scaleway:index/getKeyManagerKey:getKeyManagerKey",
+                "majorVersion": 1,
+                "fields": {
+                    "rotation_policy": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
                         "maxItemsOne": false
                     }
                 }
@@ -5563,6 +5638,10 @@
             "scaleway:observability/token:Token": 0,
             "scaleway:redis/cluster:Cluster": 0,
             "scaleway:registry/namespace:Namespace": 0,
+            "scaleway:s2svpn/connection:Connection": 0,
+            "scaleway:s2svpn/customerGateway:CustomerGateway": 0,
+            "scaleway:s2svpn/gateway:Gateway": 0,
+            "scaleway:s2svpn/routingPolicy:RoutingPolicy": 0,
             "scaleway:secrets/secret:Secret": 0,
             "scaleway:secrets/version:Version": 0,
             "scaleway:tem/blockedList:BlockedList": 0,
@@ -5652,6 +5731,7 @@
             "scaleway:index/getIpamIp:getIpamIp": 0,
             "scaleway:index/getIpamIps:getIpamIps": 0,
             "scaleway:index/getK8sVersion:getK8sVersion": 0,
+            "scaleway:index/getKeyManagerKey:getKeyManagerKey": 0,
             "scaleway:index/getKubernetesCluster:getKubernetesCluster": 0,
             "scaleway:index/getKubernetesNodePool:getKubernetesNodePool": 0,
             "scaleway:index/getLbAcls:getLbAcls": 0,

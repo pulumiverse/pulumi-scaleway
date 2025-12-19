@@ -96,6 +96,7 @@ from .get_iot_hub import *
 from .get_ipam_ip import *
 from .get_ipam_ips import *
 from .get_k8s_version import *
+from .get_key_manager_key import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
 from .get_lb_acls import *
@@ -272,6 +273,8 @@ if typing.TYPE_CHECKING:
     redis = __redis
     import pulumiverse_scaleway.registry as __registry
     registry = __registry
+    import pulumiverse_scaleway.s2svpn as __s2svpn
+    s2svpn = __s2svpn
     import pulumiverse_scaleway.secrets as __secrets
     secrets = __secrets
     import pulumiverse_scaleway.tem as __tem
@@ -306,6 +309,7 @@ else:
     observability = _utilities.lazy_import('pulumiverse_scaleway.observability')
     redis = _utilities.lazy_import('pulumiverse_scaleway.redis')
     registry = _utilities.lazy_import('pulumiverse_scaleway.registry')
+    s2svpn = _utilities.lazy_import('pulumiverse_scaleway.s2svpn')
     secrets = _utilities.lazy_import('pulumiverse_scaleway.secrets')
     tem = _utilities.lazy_import('pulumiverse_scaleway.tem')
 
@@ -2150,6 +2154,38 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.registry",
   "classes": {
    "scaleway:registry/namespace:Namespace": "Namespace"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "s2svpn/connection",
+  "fqn": "pulumiverse_scaleway.s2svpn",
+  "classes": {
+   "scaleway:s2svpn/connection:Connection": "Connection"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "s2svpn/customerGateway",
+  "fqn": "pulumiverse_scaleway.s2svpn",
+  "classes": {
+   "scaleway:s2svpn/customerGateway:CustomerGateway": "CustomerGateway"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "s2svpn/gateway",
+  "fqn": "pulumiverse_scaleway.s2svpn",
+  "classes": {
+   "scaleway:s2svpn/gateway:Gateway": "Gateway"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "s2svpn/routingPolicy",
+  "fqn": "pulumiverse_scaleway.s2svpn",
+  "classes": {
+   "scaleway:s2svpn/routingPolicy:RoutingPolicy": "RoutingPolicy"
   }
  },
  {
