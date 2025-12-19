@@ -197,6 +197,7 @@ __all__ = [
     'GetIpamIpsIpResult',
     'GetIpamIpsIpResourceResult',
     'GetIpamIpsResourceResult',
+    'GetKeyManagerKeyRotationPolicyResult',
     'GetKubernetesClusterAutoUpgradeResult',
     'GetKubernetesClusterAutoscalerConfigResult',
     'GetKubernetesClusterKubeconfigResult',
@@ -11078,6 +11079,35 @@ class GetIpamIpsResourceResult(dict):
         The name of the attached resource.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetKeyManagerKeyRotationPolicyResult(dict):
+    def __init__(__self__, *,
+                 next_rotation_at: _builtins.str,
+                 rotation_period: _builtins.str):
+        """
+        :param _builtins.str next_rotation_at: Timestamp indicating the next scheduled rotation.
+        :param _builtins.str rotation_period: Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+        """
+        pulumi.set(__self__, "next_rotation_at", next_rotation_at)
+        pulumi.set(__self__, "rotation_period", rotation_period)
+
+    @_builtins.property
+    @pulumi.getter(name="nextRotationAt")
+    def next_rotation_at(self) -> _builtins.str:
+        """
+        Timestamp indicating the next scheduled rotation.
+        """
+        return pulumi.get(self, "next_rotation_at")
+
+    @_builtins.property
+    @pulumi.getter(name="rotationPeriod")
+    def rotation_period(self) -> _builtins.str:
+        """
+        Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+        """
+        return pulumi.get(self, "rotation_period")
 
 
 @pulumi.output_type

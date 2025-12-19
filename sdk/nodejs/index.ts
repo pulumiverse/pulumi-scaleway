@@ -455,6 +455,11 @@ export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = nul
 export const getK8sVersionOutput: typeof import("./getK8sVersion").getK8sVersionOutput = null as any;
 utilities.lazyLoad(exports, ["getK8sVersion","getK8sVersionOutput"], () => require("./getK8sVersion"));
 
+export { GetKeyManagerKeyArgs, GetKeyManagerKeyResult, GetKeyManagerKeyOutputArgs } from "./getKeyManagerKey";
+export const getKeyManagerKey: typeof import("./getKeyManagerKey").getKeyManagerKey = null as any;
+export const getKeyManagerKeyOutput: typeof import("./getKeyManagerKey").getKeyManagerKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getKeyManagerKey","getKeyManagerKeyOutput"], () => require("./getKeyManagerKey"));
+
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
@@ -1049,6 +1054,7 @@ import * as object from "./object";
 import * as observability from "./observability";
 import * as redis from "./redis";
 import * as registry from "./registry";
+import * as s2svpn from "./s2svpn";
 import * as secrets from "./secrets";
 import * as tem from "./tem";
 import * as types from "./types";
@@ -1083,6 +1089,7 @@ export {
     observability,
     redis,
     registry,
+    s2svpn,
     secrets,
     tem,
     types,

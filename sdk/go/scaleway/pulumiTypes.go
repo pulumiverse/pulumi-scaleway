@@ -26092,6 +26092,112 @@ func (o GetIpamIpsResourcePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetKeyManagerKeyRotationPolicy struct {
+	// Timestamp indicating the next scheduled rotation.
+	NextRotationAt string `pulumi:"nextRotationAt"`
+	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+	RotationPeriod string `pulumi:"rotationPeriod"`
+}
+
+// GetKeyManagerKeyRotationPolicyInput is an input type that accepts GetKeyManagerKeyRotationPolicyArgs and GetKeyManagerKeyRotationPolicyOutput values.
+// You can construct a concrete instance of `GetKeyManagerKeyRotationPolicyInput` via:
+//
+//	GetKeyManagerKeyRotationPolicyArgs{...}
+type GetKeyManagerKeyRotationPolicyInput interface {
+	pulumi.Input
+
+	ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput
+	ToGetKeyManagerKeyRotationPolicyOutputWithContext(context.Context) GetKeyManagerKeyRotationPolicyOutput
+}
+
+type GetKeyManagerKeyRotationPolicyArgs struct {
+	// Timestamp indicating the next scheduled rotation.
+	NextRotationAt pulumi.StringInput `pulumi:"nextRotationAt"`
+	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+	RotationPeriod pulumi.StringInput `pulumi:"rotationPeriod"`
+}
+
+func (GetKeyManagerKeyRotationPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i GetKeyManagerKeyRotationPolicyArgs) ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput {
+	return i.ToGetKeyManagerKeyRotationPolicyOutputWithContext(context.Background())
+}
+
+func (i GetKeyManagerKeyRotationPolicyArgs) ToGetKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyManagerKeyRotationPolicyOutput)
+}
+
+// GetKeyManagerKeyRotationPolicyArrayInput is an input type that accepts GetKeyManagerKeyRotationPolicyArray and GetKeyManagerKeyRotationPolicyArrayOutput values.
+// You can construct a concrete instance of `GetKeyManagerKeyRotationPolicyArrayInput` via:
+//
+//	GetKeyManagerKeyRotationPolicyArray{ GetKeyManagerKeyRotationPolicyArgs{...} }
+type GetKeyManagerKeyRotationPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput
+	ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(context.Context) GetKeyManagerKeyRotationPolicyArrayOutput
+}
+
+type GetKeyManagerKeyRotationPolicyArray []GetKeyManagerKeyRotationPolicyInput
+
+func (GetKeyManagerKeyRotationPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i GetKeyManagerKeyRotationPolicyArray) ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput {
+	return i.ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeyManagerKeyRotationPolicyArray) ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyManagerKeyRotationPolicyArrayOutput)
+}
+
+type GetKeyManagerKeyRotationPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetKeyManagerKeyRotationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o GetKeyManagerKeyRotationPolicyOutput) ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyOutput) ToGetKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+// Timestamp indicating the next scheduled rotation.
+func (o GetKeyManagerKeyRotationPolicyOutput) NextRotationAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyManagerKeyRotationPolicy) string { return v.NextRotationAt }).(pulumi.StringOutput)
+}
+
+// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+func (o GetKeyManagerKeyRotationPolicyOutput) RotationPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyManagerKeyRotationPolicy) string { return v.RotationPeriod }).(pulumi.StringOutput)
+}
+
+type GetKeyManagerKeyRotationPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeyManagerKeyRotationPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyArrayOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) Index(i pulumi.IntInput) GetKeyManagerKeyRotationPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyManagerKeyRotationPolicy {
+		return vs[0].([]GetKeyManagerKeyRotationPolicy)[vs[1].(int)]
+	}).(GetKeyManagerKeyRotationPolicyOutput)
+}
+
 type GetKubernetesClusterAutoUpgrade struct {
 	// True if Kubernetes patch version auto upgrades is enabled.
 	Enable bool `pulumi:"enable"`
@@ -34379,6 +34485,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsIpResourceArrayInput)(nil)).Elem(), GetIpamIpsIpResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourceInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourcePtrInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyArrayInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeArrayInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoscalerConfigInput)(nil)).Elem(), GetKubernetesClusterAutoscalerConfigArgs{})
@@ -34854,6 +34962,8 @@ func init() {
 	pulumi.RegisterOutputType(GetIpamIpsIpResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourceOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourcePtrOutput{})
+	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyOutput{})
+	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoUpgradeArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoscalerConfigOutput{})
