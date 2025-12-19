@@ -68,6 +68,7 @@ const (
 	objectMod        = "object"
 	redisMod         = "redis"
 	registryMod      = "registry"
+	s2sVpnMod        = "s2svpn"
 	secretsMod       = "secrets"
 	temMod           = "tem"
 	vpcMod           = "network"
@@ -356,6 +357,7 @@ func Provider() tfbridge.ProviderInfo {
 				"redis":         redisMod,
 				"registry":      registryMod,
 				"secret":        secretsMod,
+				"s2s_vpn":       s2sVpnMod,
 				"tem":           temMod,
 				"vpc":           vpcMod,
 				"webhosting":    webhostingMod,
