@@ -17952,6 +17952,802 @@ func (o RedisClusterPublicNetworkPtrOutput) Port() pulumi.IntPtrOutput {
 	}).(pulumi.IntPtrOutput)
 }
 
+type S2sVpnConnectionBgpConfigIpv4 struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp *string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp *string `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// S2sVpnConnectionBgpConfigIpv4Input is an input type that accepts S2sVpnConnectionBgpConfigIpv4Args and S2sVpnConnectionBgpConfigIpv4Output values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpConfigIpv4Input` via:
+//
+//	S2sVpnConnectionBgpConfigIpv4Args{...}
+type S2sVpnConnectionBgpConfigIpv4Input interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpConfigIpv4Output() S2sVpnConnectionBgpConfigIpv4Output
+	ToS2sVpnConnectionBgpConfigIpv4OutputWithContext(context.Context) S2sVpnConnectionBgpConfigIpv4Output
+}
+
+type S2sVpnConnectionBgpConfigIpv4Args struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp pulumi.StringPtrInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (S2sVpnConnectionBgpConfigIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpConfigIpv4Args) ToS2sVpnConnectionBgpConfigIpv4Output() S2sVpnConnectionBgpConfigIpv4Output {
+	return i.ToS2sVpnConnectionBgpConfigIpv4OutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpConfigIpv4Args) ToS2sVpnConnectionBgpConfigIpv4OutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpConfigIpv4Output)
+}
+
+// S2sVpnConnectionBgpConfigIpv4ArrayInput is an input type that accepts S2sVpnConnectionBgpConfigIpv4Array and S2sVpnConnectionBgpConfigIpv4ArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpConfigIpv4ArrayInput` via:
+//
+//	S2sVpnConnectionBgpConfigIpv4Array{ S2sVpnConnectionBgpConfigIpv4Args{...} }
+type S2sVpnConnectionBgpConfigIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpConfigIpv4ArrayOutput() S2sVpnConnectionBgpConfigIpv4ArrayOutput
+	ToS2sVpnConnectionBgpConfigIpv4ArrayOutputWithContext(context.Context) S2sVpnConnectionBgpConfigIpv4ArrayOutput
+}
+
+type S2sVpnConnectionBgpConfigIpv4Array []S2sVpnConnectionBgpConfigIpv4Input
+
+func (S2sVpnConnectionBgpConfigIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpConfigIpv4Array) ToS2sVpnConnectionBgpConfigIpv4ArrayOutput() S2sVpnConnectionBgpConfigIpv4ArrayOutput {
+	return i.ToS2sVpnConnectionBgpConfigIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpConfigIpv4Array) ToS2sVpnConnectionBgpConfigIpv4ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpConfigIpv4ArrayOutput)
+}
+
+type S2sVpnConnectionBgpConfigIpv4Output struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpConfigIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpConfigIpv4Output) ToS2sVpnConnectionBgpConfigIpv4Output() S2sVpnConnectionBgpConfigIpv4Output {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv4Output) ToS2sVpnConnectionBgpConfigIpv4OutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv4Output {
+	return o
+}
+
+// The BGP peer IP on customer side (within the tunnel).
+func (o S2sVpnConnectionBgpConfigIpv4Output) PeerPrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv4) *string { return v.PeerPrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The BGP peer IP on Scaleway side (within the tunnel).
+func (o S2sVpnConnectionBgpConfigIpv4Output) PrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv4) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The routing policy ID used for this BGP session.
+func (o S2sVpnConnectionBgpConfigIpv4Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv4) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type S2sVpnConnectionBgpConfigIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpConfigIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpConfigIpv4ArrayOutput) ToS2sVpnConnectionBgpConfigIpv4ArrayOutput() S2sVpnConnectionBgpConfigIpv4ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv4ArrayOutput) ToS2sVpnConnectionBgpConfigIpv4ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv4ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv4ArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionBgpConfigIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionBgpConfigIpv4 {
+		return vs[0].([]S2sVpnConnectionBgpConfigIpv4)[vs[1].(int)]
+	}).(S2sVpnConnectionBgpConfigIpv4Output)
+}
+
+type S2sVpnConnectionBgpConfigIpv6 struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp *string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp *string `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// S2sVpnConnectionBgpConfigIpv6Input is an input type that accepts S2sVpnConnectionBgpConfigIpv6Args and S2sVpnConnectionBgpConfigIpv6Output values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpConfigIpv6Input` via:
+//
+//	S2sVpnConnectionBgpConfigIpv6Args{...}
+type S2sVpnConnectionBgpConfigIpv6Input interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpConfigIpv6Output() S2sVpnConnectionBgpConfigIpv6Output
+	ToS2sVpnConnectionBgpConfigIpv6OutputWithContext(context.Context) S2sVpnConnectionBgpConfigIpv6Output
+}
+
+type S2sVpnConnectionBgpConfigIpv6Args struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp pulumi.StringPtrInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (S2sVpnConnectionBgpConfigIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpConfigIpv6Args) ToS2sVpnConnectionBgpConfigIpv6Output() S2sVpnConnectionBgpConfigIpv6Output {
+	return i.ToS2sVpnConnectionBgpConfigIpv6OutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpConfigIpv6Args) ToS2sVpnConnectionBgpConfigIpv6OutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpConfigIpv6Output)
+}
+
+// S2sVpnConnectionBgpConfigIpv6ArrayInput is an input type that accepts S2sVpnConnectionBgpConfigIpv6Array and S2sVpnConnectionBgpConfigIpv6ArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpConfigIpv6ArrayInput` via:
+//
+//	S2sVpnConnectionBgpConfigIpv6Array{ S2sVpnConnectionBgpConfigIpv6Args{...} }
+type S2sVpnConnectionBgpConfigIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpConfigIpv6ArrayOutput() S2sVpnConnectionBgpConfigIpv6ArrayOutput
+	ToS2sVpnConnectionBgpConfigIpv6ArrayOutputWithContext(context.Context) S2sVpnConnectionBgpConfigIpv6ArrayOutput
+}
+
+type S2sVpnConnectionBgpConfigIpv6Array []S2sVpnConnectionBgpConfigIpv6Input
+
+func (S2sVpnConnectionBgpConfigIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpConfigIpv6Array) ToS2sVpnConnectionBgpConfigIpv6ArrayOutput() S2sVpnConnectionBgpConfigIpv6ArrayOutput {
+	return i.ToS2sVpnConnectionBgpConfigIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpConfigIpv6Array) ToS2sVpnConnectionBgpConfigIpv6ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpConfigIpv6ArrayOutput)
+}
+
+type S2sVpnConnectionBgpConfigIpv6Output struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpConfigIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpConfigIpv6Output) ToS2sVpnConnectionBgpConfigIpv6Output() S2sVpnConnectionBgpConfigIpv6Output {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv6Output) ToS2sVpnConnectionBgpConfigIpv6OutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv6Output {
+	return o
+}
+
+// The BGP peer IP on customer side (within the tunnel).
+func (o S2sVpnConnectionBgpConfigIpv6Output) PeerPrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv6) *string { return v.PeerPrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The BGP peer IP on Scaleway side (within the tunnel).
+func (o S2sVpnConnectionBgpConfigIpv6Output) PrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv6) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The routing policy ID used for this BGP session.
+func (o S2sVpnConnectionBgpConfigIpv6Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpConfigIpv6) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type S2sVpnConnectionBgpConfigIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpConfigIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpConfigIpv6ArrayOutput) ToS2sVpnConnectionBgpConfigIpv6ArrayOutput() S2sVpnConnectionBgpConfigIpv6ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv6ArrayOutput) ToS2sVpnConnectionBgpConfigIpv6ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpConfigIpv6ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpConfigIpv6ArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionBgpConfigIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionBgpConfigIpv6 {
+		return vs[0].([]S2sVpnConnectionBgpConfigIpv6)[vs[1].(int)]
+	}).(S2sVpnConnectionBgpConfigIpv6Output)
+}
+
+type S2sVpnConnectionBgpSessionIpv4 struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp *string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp *string `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId *string `pulumi:"routingPolicyId"`
+}
+
+// S2sVpnConnectionBgpSessionIpv4Input is an input type that accepts S2sVpnConnectionBgpSessionIpv4Args and S2sVpnConnectionBgpSessionIpv4Output values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpSessionIpv4Input` via:
+//
+//	S2sVpnConnectionBgpSessionIpv4Args{...}
+type S2sVpnConnectionBgpSessionIpv4Input interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpSessionIpv4Output() S2sVpnConnectionBgpSessionIpv4Output
+	ToS2sVpnConnectionBgpSessionIpv4OutputWithContext(context.Context) S2sVpnConnectionBgpSessionIpv4Output
+}
+
+type S2sVpnConnectionBgpSessionIpv4Args struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp pulumi.StringPtrInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId pulumi.StringPtrInput `pulumi:"routingPolicyId"`
+}
+
+func (S2sVpnConnectionBgpSessionIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpSessionIpv4Args) ToS2sVpnConnectionBgpSessionIpv4Output() S2sVpnConnectionBgpSessionIpv4Output {
+	return i.ToS2sVpnConnectionBgpSessionIpv4OutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpSessionIpv4Args) ToS2sVpnConnectionBgpSessionIpv4OutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpSessionIpv4Output)
+}
+
+// S2sVpnConnectionBgpSessionIpv4ArrayInput is an input type that accepts S2sVpnConnectionBgpSessionIpv4Array and S2sVpnConnectionBgpSessionIpv4ArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpSessionIpv4ArrayInput` via:
+//
+//	S2sVpnConnectionBgpSessionIpv4Array{ S2sVpnConnectionBgpSessionIpv4Args{...} }
+type S2sVpnConnectionBgpSessionIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpSessionIpv4ArrayOutput() S2sVpnConnectionBgpSessionIpv4ArrayOutput
+	ToS2sVpnConnectionBgpSessionIpv4ArrayOutputWithContext(context.Context) S2sVpnConnectionBgpSessionIpv4ArrayOutput
+}
+
+type S2sVpnConnectionBgpSessionIpv4Array []S2sVpnConnectionBgpSessionIpv4Input
+
+func (S2sVpnConnectionBgpSessionIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpSessionIpv4Array) ToS2sVpnConnectionBgpSessionIpv4ArrayOutput() S2sVpnConnectionBgpSessionIpv4ArrayOutput {
+	return i.ToS2sVpnConnectionBgpSessionIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpSessionIpv4Array) ToS2sVpnConnectionBgpSessionIpv4ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpSessionIpv4ArrayOutput)
+}
+
+type S2sVpnConnectionBgpSessionIpv4Output struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpSessionIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpSessionIpv4Output) ToS2sVpnConnectionBgpSessionIpv4Output() S2sVpnConnectionBgpSessionIpv4Output {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv4Output) ToS2sVpnConnectionBgpSessionIpv4OutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv4Output {
+	return o
+}
+
+// The BGP peer IP on customer side (within the tunnel).
+func (o S2sVpnConnectionBgpSessionIpv4Output) PeerPrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv4) *string { return v.PeerPrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The BGP peer IP on Scaleway side (within the tunnel).
+func (o S2sVpnConnectionBgpSessionIpv4Output) PrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv4) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The routing policy ID used for this BGP session.
+func (o S2sVpnConnectionBgpSessionIpv4Output) RoutingPolicyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv4) *string { return v.RoutingPolicyId }).(pulumi.StringPtrOutput)
+}
+
+type S2sVpnConnectionBgpSessionIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpSessionIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpSessionIpv4ArrayOutput) ToS2sVpnConnectionBgpSessionIpv4ArrayOutput() S2sVpnConnectionBgpSessionIpv4ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv4ArrayOutput) ToS2sVpnConnectionBgpSessionIpv4ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv4ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv4ArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionBgpSessionIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionBgpSessionIpv4 {
+		return vs[0].([]S2sVpnConnectionBgpSessionIpv4)[vs[1].(int)]
+	}).(S2sVpnConnectionBgpSessionIpv4Output)
+}
+
+type S2sVpnConnectionBgpSessionIpv6 struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp *string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp *string `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId *string `pulumi:"routingPolicyId"`
+}
+
+// S2sVpnConnectionBgpSessionIpv6Input is an input type that accepts S2sVpnConnectionBgpSessionIpv6Args and S2sVpnConnectionBgpSessionIpv6Output values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpSessionIpv6Input` via:
+//
+//	S2sVpnConnectionBgpSessionIpv6Args{...}
+type S2sVpnConnectionBgpSessionIpv6Input interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpSessionIpv6Output() S2sVpnConnectionBgpSessionIpv6Output
+	ToS2sVpnConnectionBgpSessionIpv6OutputWithContext(context.Context) S2sVpnConnectionBgpSessionIpv6Output
+}
+
+type S2sVpnConnectionBgpSessionIpv6Args struct {
+	// The BGP peer IP on customer side (within the tunnel).
+	PeerPrivateIp pulumi.StringPtrInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side (within the tunnel).
+	PrivateIp pulumi.StringPtrInput `pulumi:"privateIp"`
+	// The routing policy ID used for this BGP session.
+	RoutingPolicyId pulumi.StringPtrInput `pulumi:"routingPolicyId"`
+}
+
+func (S2sVpnConnectionBgpSessionIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpSessionIpv6Args) ToS2sVpnConnectionBgpSessionIpv6Output() S2sVpnConnectionBgpSessionIpv6Output {
+	return i.ToS2sVpnConnectionBgpSessionIpv6OutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpSessionIpv6Args) ToS2sVpnConnectionBgpSessionIpv6OutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpSessionIpv6Output)
+}
+
+// S2sVpnConnectionBgpSessionIpv6ArrayInput is an input type that accepts S2sVpnConnectionBgpSessionIpv6Array and S2sVpnConnectionBgpSessionIpv6ArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionBgpSessionIpv6ArrayInput` via:
+//
+//	S2sVpnConnectionBgpSessionIpv6Array{ S2sVpnConnectionBgpSessionIpv6Args{...} }
+type S2sVpnConnectionBgpSessionIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionBgpSessionIpv6ArrayOutput() S2sVpnConnectionBgpSessionIpv6ArrayOutput
+	ToS2sVpnConnectionBgpSessionIpv6ArrayOutputWithContext(context.Context) S2sVpnConnectionBgpSessionIpv6ArrayOutput
+}
+
+type S2sVpnConnectionBgpSessionIpv6Array []S2sVpnConnectionBgpSessionIpv6Input
+
+func (S2sVpnConnectionBgpSessionIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionBgpSessionIpv6Array) ToS2sVpnConnectionBgpSessionIpv6ArrayOutput() S2sVpnConnectionBgpSessionIpv6ArrayOutput {
+	return i.ToS2sVpnConnectionBgpSessionIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionBgpSessionIpv6Array) ToS2sVpnConnectionBgpSessionIpv6ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionBgpSessionIpv6ArrayOutput)
+}
+
+type S2sVpnConnectionBgpSessionIpv6Output struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpSessionIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpSessionIpv6Output) ToS2sVpnConnectionBgpSessionIpv6Output() S2sVpnConnectionBgpSessionIpv6Output {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv6Output) ToS2sVpnConnectionBgpSessionIpv6OutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv6Output {
+	return o
+}
+
+// The BGP peer IP on customer side (within the tunnel).
+func (o S2sVpnConnectionBgpSessionIpv6Output) PeerPrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv6) *string { return v.PeerPrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The BGP peer IP on Scaleway side (within the tunnel).
+func (o S2sVpnConnectionBgpSessionIpv6Output) PrivateIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv6) *string { return v.PrivateIp }).(pulumi.StringPtrOutput)
+}
+
+// The routing policy ID used for this BGP session.
+func (o S2sVpnConnectionBgpSessionIpv6Output) RoutingPolicyId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionBgpSessionIpv6) *string { return v.RoutingPolicyId }).(pulumi.StringPtrOutput)
+}
+
+type S2sVpnConnectionBgpSessionIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionBgpSessionIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionBgpSessionIpv6ArrayOutput) ToS2sVpnConnectionBgpSessionIpv6ArrayOutput() S2sVpnConnectionBgpSessionIpv6ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv6ArrayOutput) ToS2sVpnConnectionBgpSessionIpv6ArrayOutputWithContext(ctx context.Context) S2sVpnConnectionBgpSessionIpv6ArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionBgpSessionIpv6ArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionBgpSessionIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionBgpSessionIpv6 {
+		return vs[0].([]S2sVpnConnectionBgpSessionIpv6)[vs[1].(int)]
+	}).(S2sVpnConnectionBgpSessionIpv6Output)
+}
+
+type S2sVpnConnectionEspCipher struct {
+	// The Diffie-Hellman group
+	DhGroup *string `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption string `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity *string `pulumi:"integrity"`
+}
+
+// S2sVpnConnectionEspCipherInput is an input type that accepts S2sVpnConnectionEspCipherArgs and S2sVpnConnectionEspCipherOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionEspCipherInput` via:
+//
+//	S2sVpnConnectionEspCipherArgs{...}
+type S2sVpnConnectionEspCipherInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionEspCipherOutput() S2sVpnConnectionEspCipherOutput
+	ToS2sVpnConnectionEspCipherOutputWithContext(context.Context) S2sVpnConnectionEspCipherOutput
+}
+
+type S2sVpnConnectionEspCipherArgs struct {
+	// The Diffie-Hellman group
+	DhGroup pulumi.StringPtrInput `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption pulumi.StringInput `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity pulumi.StringPtrInput `pulumi:"integrity"`
+}
+
+func (S2sVpnConnectionEspCipherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionEspCipher)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionEspCipherArgs) ToS2sVpnConnectionEspCipherOutput() S2sVpnConnectionEspCipherOutput {
+	return i.ToS2sVpnConnectionEspCipherOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionEspCipherArgs) ToS2sVpnConnectionEspCipherOutputWithContext(ctx context.Context) S2sVpnConnectionEspCipherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionEspCipherOutput)
+}
+
+// S2sVpnConnectionEspCipherArrayInput is an input type that accepts S2sVpnConnectionEspCipherArray and S2sVpnConnectionEspCipherArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionEspCipherArrayInput` via:
+//
+//	S2sVpnConnectionEspCipherArray{ S2sVpnConnectionEspCipherArgs{...} }
+type S2sVpnConnectionEspCipherArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionEspCipherArrayOutput() S2sVpnConnectionEspCipherArrayOutput
+	ToS2sVpnConnectionEspCipherArrayOutputWithContext(context.Context) S2sVpnConnectionEspCipherArrayOutput
+}
+
+type S2sVpnConnectionEspCipherArray []S2sVpnConnectionEspCipherInput
+
+func (S2sVpnConnectionEspCipherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionEspCipher)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionEspCipherArray) ToS2sVpnConnectionEspCipherArrayOutput() S2sVpnConnectionEspCipherArrayOutput {
+	return i.ToS2sVpnConnectionEspCipherArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionEspCipherArray) ToS2sVpnConnectionEspCipherArrayOutputWithContext(ctx context.Context) S2sVpnConnectionEspCipherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionEspCipherArrayOutput)
+}
+
+type S2sVpnConnectionEspCipherOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionEspCipherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionEspCipher)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionEspCipherOutput) ToS2sVpnConnectionEspCipherOutput() S2sVpnConnectionEspCipherOutput {
+	return o
+}
+
+func (o S2sVpnConnectionEspCipherOutput) ToS2sVpnConnectionEspCipherOutputWithContext(ctx context.Context) S2sVpnConnectionEspCipherOutput {
+	return o
+}
+
+// The Diffie-Hellman group
+func (o S2sVpnConnectionEspCipherOutput) DhGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionEspCipher) *string { return v.DhGroup }).(pulumi.StringPtrOutput)
+}
+
+// The encryption algorithm
+func (o S2sVpnConnectionEspCipherOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v S2sVpnConnectionEspCipher) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// The integrity/hash algorithm
+func (o S2sVpnConnectionEspCipherOutput) Integrity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionEspCipher) *string { return v.Integrity }).(pulumi.StringPtrOutput)
+}
+
+type S2sVpnConnectionEspCipherArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionEspCipherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionEspCipher)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionEspCipherArrayOutput) ToS2sVpnConnectionEspCipherArrayOutput() S2sVpnConnectionEspCipherArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionEspCipherArrayOutput) ToS2sVpnConnectionEspCipherArrayOutputWithContext(ctx context.Context) S2sVpnConnectionEspCipherArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionEspCipherArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionEspCipherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionEspCipher {
+		return vs[0].([]S2sVpnConnectionEspCipher)[vs[1].(int)]
+	}).(S2sVpnConnectionEspCipherOutput)
+}
+
+type S2sVpnConnectionIkev2Cipher struct {
+	// The Diffie-Hellman group
+	DhGroup *string `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption string `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity *string `pulumi:"integrity"`
+}
+
+// S2sVpnConnectionIkev2CipherInput is an input type that accepts S2sVpnConnectionIkev2CipherArgs and S2sVpnConnectionIkev2CipherOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionIkev2CipherInput` via:
+//
+//	S2sVpnConnectionIkev2CipherArgs{...}
+type S2sVpnConnectionIkev2CipherInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionIkev2CipherOutput() S2sVpnConnectionIkev2CipherOutput
+	ToS2sVpnConnectionIkev2CipherOutputWithContext(context.Context) S2sVpnConnectionIkev2CipherOutput
+}
+
+type S2sVpnConnectionIkev2CipherArgs struct {
+	// The Diffie-Hellman group
+	DhGroup pulumi.StringPtrInput `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption pulumi.StringInput `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity pulumi.StringPtrInput `pulumi:"integrity"`
+}
+
+func (S2sVpnConnectionIkev2CipherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionIkev2CipherArgs) ToS2sVpnConnectionIkev2CipherOutput() S2sVpnConnectionIkev2CipherOutput {
+	return i.ToS2sVpnConnectionIkev2CipherOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionIkev2CipherArgs) ToS2sVpnConnectionIkev2CipherOutputWithContext(ctx context.Context) S2sVpnConnectionIkev2CipherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionIkev2CipherOutput)
+}
+
+// S2sVpnConnectionIkev2CipherArrayInput is an input type that accepts S2sVpnConnectionIkev2CipherArray and S2sVpnConnectionIkev2CipherArrayOutput values.
+// You can construct a concrete instance of `S2sVpnConnectionIkev2CipherArrayInput` via:
+//
+//	S2sVpnConnectionIkev2CipherArray{ S2sVpnConnectionIkev2CipherArgs{...} }
+type S2sVpnConnectionIkev2CipherArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnConnectionIkev2CipherArrayOutput() S2sVpnConnectionIkev2CipherArrayOutput
+	ToS2sVpnConnectionIkev2CipherArrayOutputWithContext(context.Context) S2sVpnConnectionIkev2CipherArrayOutput
+}
+
+type S2sVpnConnectionIkev2CipherArray []S2sVpnConnectionIkev2CipherInput
+
+func (S2sVpnConnectionIkev2CipherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (i S2sVpnConnectionIkev2CipherArray) ToS2sVpnConnectionIkev2CipherArrayOutput() S2sVpnConnectionIkev2CipherArrayOutput {
+	return i.ToS2sVpnConnectionIkev2CipherArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnConnectionIkev2CipherArray) ToS2sVpnConnectionIkev2CipherArrayOutputWithContext(ctx context.Context) S2sVpnConnectionIkev2CipherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnConnectionIkev2CipherArrayOutput)
+}
+
+type S2sVpnConnectionIkev2CipherOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionIkev2CipherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionIkev2CipherOutput) ToS2sVpnConnectionIkev2CipherOutput() S2sVpnConnectionIkev2CipherOutput {
+	return o
+}
+
+func (o S2sVpnConnectionIkev2CipherOutput) ToS2sVpnConnectionIkev2CipherOutputWithContext(ctx context.Context) S2sVpnConnectionIkev2CipherOutput {
+	return o
+}
+
+// The Diffie-Hellman group
+func (o S2sVpnConnectionIkev2CipherOutput) DhGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionIkev2Cipher) *string { return v.DhGroup }).(pulumi.StringPtrOutput)
+}
+
+// The encryption algorithm
+func (o S2sVpnConnectionIkev2CipherOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v S2sVpnConnectionIkev2Cipher) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// The integrity/hash algorithm
+func (o S2sVpnConnectionIkev2CipherOutput) Integrity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnConnectionIkev2Cipher) *string { return v.Integrity }).(pulumi.StringPtrOutput)
+}
+
+type S2sVpnConnectionIkev2CipherArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnConnectionIkev2CipherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (o S2sVpnConnectionIkev2CipherArrayOutput) ToS2sVpnConnectionIkev2CipherArrayOutput() S2sVpnConnectionIkev2CipherArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionIkev2CipherArrayOutput) ToS2sVpnConnectionIkev2CipherArrayOutputWithContext(ctx context.Context) S2sVpnConnectionIkev2CipherArrayOutput {
+	return o
+}
+
+func (o S2sVpnConnectionIkev2CipherArrayOutput) Index(i pulumi.IntInput) S2sVpnConnectionIkev2CipherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnConnectionIkev2Cipher {
+		return vs[0].([]S2sVpnConnectionIkev2Cipher)[vs[1].(int)]
+	}).(S2sVpnConnectionIkev2CipherOutput)
+}
+
+type S2sVpnGatewayPublicConfig struct {
+	// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+	IpamIpv4Id *string `pulumi:"ipamIpv4Id"`
+	// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+	IpamIpv6Id *string `pulumi:"ipamIpv6Id"`
+}
+
+// S2sVpnGatewayPublicConfigInput is an input type that accepts S2sVpnGatewayPublicConfigArgs and S2sVpnGatewayPublicConfigOutput values.
+// You can construct a concrete instance of `S2sVpnGatewayPublicConfigInput` via:
+//
+//	S2sVpnGatewayPublicConfigArgs{...}
+type S2sVpnGatewayPublicConfigInput interface {
+	pulumi.Input
+
+	ToS2sVpnGatewayPublicConfigOutput() S2sVpnGatewayPublicConfigOutput
+	ToS2sVpnGatewayPublicConfigOutputWithContext(context.Context) S2sVpnGatewayPublicConfigOutput
+}
+
+type S2sVpnGatewayPublicConfigArgs struct {
+	// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+	IpamIpv4Id pulumi.StringPtrInput `pulumi:"ipamIpv4Id"`
+	// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+	IpamIpv6Id pulumi.StringPtrInput `pulumi:"ipamIpv6Id"`
+}
+
+func (S2sVpnGatewayPublicConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnGatewayPublicConfig)(nil)).Elem()
+}
+
+func (i S2sVpnGatewayPublicConfigArgs) ToS2sVpnGatewayPublicConfigOutput() S2sVpnGatewayPublicConfigOutput {
+	return i.ToS2sVpnGatewayPublicConfigOutputWithContext(context.Background())
+}
+
+func (i S2sVpnGatewayPublicConfigArgs) ToS2sVpnGatewayPublicConfigOutputWithContext(ctx context.Context) S2sVpnGatewayPublicConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnGatewayPublicConfigOutput)
+}
+
+// S2sVpnGatewayPublicConfigArrayInput is an input type that accepts S2sVpnGatewayPublicConfigArray and S2sVpnGatewayPublicConfigArrayOutput values.
+// You can construct a concrete instance of `S2sVpnGatewayPublicConfigArrayInput` via:
+//
+//	S2sVpnGatewayPublicConfigArray{ S2sVpnGatewayPublicConfigArgs{...} }
+type S2sVpnGatewayPublicConfigArrayInput interface {
+	pulumi.Input
+
+	ToS2sVpnGatewayPublicConfigArrayOutput() S2sVpnGatewayPublicConfigArrayOutput
+	ToS2sVpnGatewayPublicConfigArrayOutputWithContext(context.Context) S2sVpnGatewayPublicConfigArrayOutput
+}
+
+type S2sVpnGatewayPublicConfigArray []S2sVpnGatewayPublicConfigInput
+
+func (S2sVpnGatewayPublicConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnGatewayPublicConfig)(nil)).Elem()
+}
+
+func (i S2sVpnGatewayPublicConfigArray) ToS2sVpnGatewayPublicConfigArrayOutput() S2sVpnGatewayPublicConfigArrayOutput {
+	return i.ToS2sVpnGatewayPublicConfigArrayOutputWithContext(context.Background())
+}
+
+func (i S2sVpnGatewayPublicConfigArray) ToS2sVpnGatewayPublicConfigArrayOutputWithContext(ctx context.Context) S2sVpnGatewayPublicConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(S2sVpnGatewayPublicConfigArrayOutput)
+}
+
+type S2sVpnGatewayPublicConfigOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnGatewayPublicConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*S2sVpnGatewayPublicConfig)(nil)).Elem()
+}
+
+func (o S2sVpnGatewayPublicConfigOutput) ToS2sVpnGatewayPublicConfigOutput() S2sVpnGatewayPublicConfigOutput {
+	return o
+}
+
+func (o S2sVpnGatewayPublicConfigOutput) ToS2sVpnGatewayPublicConfigOutputWithContext(ctx context.Context) S2sVpnGatewayPublicConfigOutput {
+	return o
+}
+
+// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway.
+func (o S2sVpnGatewayPublicConfigOutput) IpamIpv4Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnGatewayPublicConfig) *string { return v.IpamIpv4Id }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+func (o S2sVpnGatewayPublicConfigOutput) IpamIpv6Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v S2sVpnGatewayPublicConfig) *string { return v.IpamIpv6Id }).(pulumi.StringPtrOutput)
+}
+
+type S2sVpnGatewayPublicConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (S2sVpnGatewayPublicConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]S2sVpnGatewayPublicConfig)(nil)).Elem()
+}
+
+func (o S2sVpnGatewayPublicConfigArrayOutput) ToS2sVpnGatewayPublicConfigArrayOutput() S2sVpnGatewayPublicConfigArrayOutput {
+	return o
+}
+
+func (o S2sVpnGatewayPublicConfigArrayOutput) ToS2sVpnGatewayPublicConfigArrayOutputWithContext(ctx context.Context) S2sVpnGatewayPublicConfigArrayOutput {
+	return o
+}
+
+func (o S2sVpnGatewayPublicConfigArrayOutput) Index(i pulumi.IntInput) S2sVpnGatewayPublicConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) S2sVpnGatewayPublicConfig {
+		return vs[0].([]S2sVpnGatewayPublicConfig)[vs[1].(int)]
+	}).(S2sVpnGatewayPublicConfigOutput)
+}
+
 type SecretEphemeralPolicy struct {
 	// Action to perform when the version of a secret expires. Available values can be found in [SDK constants](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/secret/v1beta1#pkg-constants).
 	Action string `pulumi:"action"`
@@ -26090,6 +26886,112 @@ func (o GetIpamIpsResourcePtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return &v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+type GetKeyManagerKeyRotationPolicy struct {
+	// Timestamp indicating the next scheduled rotation.
+	NextRotationAt string `pulumi:"nextRotationAt"`
+	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+	RotationPeriod string `pulumi:"rotationPeriod"`
+}
+
+// GetKeyManagerKeyRotationPolicyInput is an input type that accepts GetKeyManagerKeyRotationPolicyArgs and GetKeyManagerKeyRotationPolicyOutput values.
+// You can construct a concrete instance of `GetKeyManagerKeyRotationPolicyInput` via:
+//
+//	GetKeyManagerKeyRotationPolicyArgs{...}
+type GetKeyManagerKeyRotationPolicyInput interface {
+	pulumi.Input
+
+	ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput
+	ToGetKeyManagerKeyRotationPolicyOutputWithContext(context.Context) GetKeyManagerKeyRotationPolicyOutput
+}
+
+type GetKeyManagerKeyRotationPolicyArgs struct {
+	// Timestamp indicating the next scheduled rotation.
+	NextRotationAt pulumi.StringInput `pulumi:"nextRotationAt"`
+	// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+	RotationPeriod pulumi.StringInput `pulumi:"rotationPeriod"`
+}
+
+func (GetKeyManagerKeyRotationPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i GetKeyManagerKeyRotationPolicyArgs) ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput {
+	return i.ToGetKeyManagerKeyRotationPolicyOutputWithContext(context.Background())
+}
+
+func (i GetKeyManagerKeyRotationPolicyArgs) ToGetKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyManagerKeyRotationPolicyOutput)
+}
+
+// GetKeyManagerKeyRotationPolicyArrayInput is an input type that accepts GetKeyManagerKeyRotationPolicyArray and GetKeyManagerKeyRotationPolicyArrayOutput values.
+// You can construct a concrete instance of `GetKeyManagerKeyRotationPolicyArrayInput` via:
+//
+//	GetKeyManagerKeyRotationPolicyArray{ GetKeyManagerKeyRotationPolicyArgs{...} }
+type GetKeyManagerKeyRotationPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput
+	ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(context.Context) GetKeyManagerKeyRotationPolicyArrayOutput
+}
+
+type GetKeyManagerKeyRotationPolicyArray []GetKeyManagerKeyRotationPolicyInput
+
+func (GetKeyManagerKeyRotationPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (i GetKeyManagerKeyRotationPolicyArray) ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput {
+	return i.ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetKeyManagerKeyRotationPolicyArray) ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKeyManagerKeyRotationPolicyArrayOutput)
+}
+
+type GetKeyManagerKeyRotationPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetKeyManagerKeyRotationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o GetKeyManagerKeyRotationPolicyOutput) ToGetKeyManagerKeyRotationPolicyOutput() GetKeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyOutput) ToGetKeyManagerKeyRotationPolicyOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyOutput {
+	return o
+}
+
+// Timestamp indicating the next scheduled rotation.
+func (o GetKeyManagerKeyRotationPolicyOutput) NextRotationAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyManagerKeyRotationPolicy) string { return v.NextRotationAt }).(pulumi.StringOutput)
+}
+
+// Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+func (o GetKeyManagerKeyRotationPolicyOutput) RotationPeriod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKeyManagerKeyRotationPolicy) string { return v.RotationPeriod }).(pulumi.StringOutput)
+}
+
+type GetKeyManagerKeyRotationPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKeyManagerKeyRotationPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKeyManagerKeyRotationPolicy)(nil)).Elem()
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) ToGetKeyManagerKeyRotationPolicyArrayOutput() GetKeyManagerKeyRotationPolicyArrayOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) ToGetKeyManagerKeyRotationPolicyArrayOutputWithContext(ctx context.Context) GetKeyManagerKeyRotationPolicyArrayOutput {
+	return o
+}
+
+func (o GetKeyManagerKeyRotationPolicyArrayOutput) Index(i pulumi.IntInput) GetKeyManagerKeyRotationPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKeyManagerKeyRotationPolicy {
+		return vs[0].([]GetKeyManagerKeyRotationPolicy)[vs[1].(int)]
+	}).(GetKeyManagerKeyRotationPolicyOutput)
 }
 
 type GetKubernetesClusterAutoUpgrade struct {
@@ -34254,6 +35156,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateNetworkArrayInput)(nil)).Elem(), RedisClusterPrivateNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPublicNetworkPtrInput)(nil)).Elem(), RedisClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv4Input)(nil)).Elem(), S2sVpnConnectionBgpConfigIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv4ArrayInput)(nil)).Elem(), S2sVpnConnectionBgpConfigIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv6Input)(nil)).Elem(), S2sVpnConnectionBgpConfigIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpConfigIpv6ArrayInput)(nil)).Elem(), S2sVpnConnectionBgpConfigIpv6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv4Input)(nil)).Elem(), S2sVpnConnectionBgpSessionIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv4ArrayInput)(nil)).Elem(), S2sVpnConnectionBgpSessionIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv6Input)(nil)).Elem(), S2sVpnConnectionBgpSessionIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionBgpSessionIpv6ArrayInput)(nil)).Elem(), S2sVpnConnectionBgpSessionIpv6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionEspCipherInput)(nil)).Elem(), S2sVpnConnectionEspCipherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionEspCipherArrayInput)(nil)).Elem(), S2sVpnConnectionEspCipherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionIkev2CipherInput)(nil)).Elem(), S2sVpnConnectionIkev2CipherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnConnectionIkev2CipherArrayInput)(nil)).Elem(), S2sVpnConnectionIkev2CipherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnGatewayPublicConfigInput)(nil)).Elem(), S2sVpnGatewayPublicConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*S2sVpnGatewayPublicConfigArrayInput)(nil)).Elem(), S2sVpnGatewayPublicConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyInput)(nil)).Elem(), SecretEphemeralPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretEphemeralPolicyArrayInput)(nil)).Elem(), SecretEphemeralPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretVersionTypeInput)(nil)).Elem(), SecretVersionTypeArgs{})
@@ -34379,6 +35295,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsIpResourceArrayInput)(nil)).Elem(), GetIpamIpsIpResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourceInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourcePtrInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyArrayInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeArrayInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoscalerConfigInput)(nil)).Elem(), GetKubernetesClusterAutoscalerConfigArgs{})
@@ -34729,6 +35647,20 @@ func init() {
 	pulumi.RegisterOutputType(RedisClusterPrivateNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkOutput{})
 	pulumi.RegisterOutputType(RedisClusterPublicNetworkPtrOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpConfigIpv4Output{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpConfigIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpConfigIpv6Output{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpConfigIpv6ArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpSessionIpv4Output{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpSessionIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpSessionIpv6Output{})
+	pulumi.RegisterOutputType(S2sVpnConnectionBgpSessionIpv6ArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionEspCipherOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionEspCipherArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionIkev2CipherOutput{})
+	pulumi.RegisterOutputType(S2sVpnConnectionIkev2CipherArrayOutput{})
+	pulumi.RegisterOutputType(S2sVpnGatewayPublicConfigOutput{})
+	pulumi.RegisterOutputType(S2sVpnGatewayPublicConfigArrayOutput{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyOutput{})
 	pulumi.RegisterOutputType(SecretEphemeralPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SecretVersionTypeOutput{})
@@ -34854,6 +35786,8 @@ func init() {
 	pulumi.RegisterOutputType(GetIpamIpsIpResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourceOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourcePtrOutput{})
+	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyOutput{})
+	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoUpgradeOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoUpgradeArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoscalerConfigOutput{})
