@@ -11,11 +11,11 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+    /// The `scaleway.kubernetes.Cluster` resource allows you to create and manage Scaleway Kubernetes clusters.
+    /// 
+    /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -46,41 +46,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// 
-    /// ### Multicloud
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
-    ///     {
-    ///         Name = "tf-cluster",
-    ///         Type = "multicloud",
-    ///         Version = "1.32.3",
-    ///         Cni = "kilo",
-    ///         DeleteAdditionalResources = false,
-    ///     });
-    /// 
-    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
-    ///     {
-    ///         ClusterId = cluster.Id,
-    ///         Name = "tf-pool",
-    ///         NodeType = "external",
-    ///         Size = 0,
-    ///         MinSize = 0,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
-    /// 
-    /// ### With additional configuration
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -131,60 +96,6 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// ### With the kubernetes provider
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Null = Pulumi.Null;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
-    /// 
-    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
-    ///     {
-    ///         Name = "tf-cluster",
-    ///         Version = "1.29.1",
-    ///         Cni = "cilium",
-    ///         PrivateNetworkId = pn.Id,
-    ///         DeleteAdditionalResources = false,
-    ///     });
-    /// 
-    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
-    ///     {
-    ///         ClusterId = cluster.Id,
-    ///         Name = "tf-pool",
-    ///         NodeType = "DEV1-M",
-    ///         Size = 1,
-    ///     });
-    /// 
-    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
-    ///     {
-    ///         Triggers = 
-    ///         {
-    ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
-    ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
-    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             pool,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// The `NullResource` is needed because when the cluster is created, its status is `PoolRequired`, but the kubeconfig can already be downloaded.
-    /// It leads the `Kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-    /// 
-    /// ### With the Helm provider
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -195,6 +106,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Example with an Helm provider
     ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
     /// 
     ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
@@ -270,6 +182,87 @@ namespace Pulumiverse.Scaleway
     ///                 { "value", "Local" },
     ///             },
     ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Null = Pulumi.Null;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Example with the kubernetes provider 
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
+    /// 
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Version = "1.29.1",
+    ///         Cni = "cilium",
+    ///         PrivateNetworkId = pn.Id,
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
+    ///     {
+    ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
+    ///         NodeType = "DEV1-M",
+    ///         Size = 1,
+    ///     });
+    /// 
+    ///     // The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
+    ///     // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+    ///     var kubeconfig = new Null.Resource("kubeconfig", new()
+    ///     {
+    ///         Triggers = 
+    ///         {
+    ///             { "host", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Host) },
+    ///             { "token", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].Token) },
+    ///             { "clusterCaCertificate", cluster.Kubeconfigs.Apply(kubeconfigs =&gt; kubeconfigs[0].ClusterCaCertificate) },
+    ///         },
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn =
+    ///         {
+    ///             pool,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Multicloud Kubernetes Cluster Example
+    ///     // For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
+    ///     var cluster = new Scaleway.Kubernetes.Cluster("cluster", new()
+    ///     {
+    ///         Name = "tf-cluster",
+    ///         Type = "multicloud",
+    ///         Version = "1.32.3",
+    ///         Cni = "kilo",
+    ///         DeleteAdditionalResources = false,
+    ///     });
+    /// 
+    ///     var pool = new Scaleway.Kubernetes.Pool("pool", new()
+    ///     {
+    ///         ClusterId = cluster.Id,
+    ///         Name = "tf-pool",
+    ///         NodeType = "external",
+    ///         Size = 0,
+    ///         MinSize = 0,
     ///     });
     /// 
     /// });

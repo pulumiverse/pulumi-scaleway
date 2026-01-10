@@ -13,13 +13,51 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Enable the alert manager and configure managed alerts
+ * ### Enable preconfigured alerts (Recommended)
  *
- * The following commands allow you to:
+ * Use preconfigured alerts to monitor your Scaleway resources with ready-to-use alert rules:
  *
- * - enable the alert manager in a Project named `tfTestProject`
- * - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
- * - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = new scaleway.account.Project("project", {name: "my-observability-project"});
+ * const main = new scaleway.observability.Cockpit("main", {projectId: project.id});
+ * const all = scaleway.observability.getPreconfiguredAlertOutput({
+ *     projectId: main.projectId,
+ * });
+ * const mainAlertManager = new scaleway.observability.AlertManager("main", {
+ *     projectId: main.projectId,
+ *     preconfiguredAlertIds: all.apply(all => .filter(alert => alert.productName == "instance").map(alert => (alert.preconfiguredRuleId))),
+ *     contactPoints: [{
+ *         email: "alerts@example.com",
+ *     }],
+ * });
+ * ```
+ *
+ * ### Enable the alert manager with contact points
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const project = new scaleway.account.Project("project", {name: "tf_test_project"});
+ * const alertManager = new scaleway.observability.AlertManager("alert_manager", {
+ *     projectId: project.id,
+ *     contactPoints: [
+ *         {
+ *             email: "alert1@example.com",
+ *         },
+ *         {
+ *             email: "alert2@example.com",
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ### Legacy: Enable managed alerts (Deprecated)
+ *
+ * > **Deprecated:** The `enableManagedAlerts` field is deprecated. Use `preconfiguredAlertIds` instead.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -29,14 +67,9 @@ import * as utilities from "../utilities";
  * const alertManager = new scaleway.observability.AlertManager("alert_manager", {
  *     projectId: project.id,
  *     enableManagedAlerts: true,
- *     contactPoints: [
- *         {
- *             email: "alert1@example.com",
- *         },
- *         {
- *             email: "alert2@example.com",
- *         },
- *     ],
+ *     contactPoints: [{
+ *         email: "alert@example.com",
+ *     }],
  * });
  * ```
  *
@@ -83,13 +116,19 @@ export class AlertManager extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly alertManagerUrl: pulumi.Output<string>;
     /**
-     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
      */
     declare public readonly contactPoints: pulumi.Output<outputs.observability.AlertManagerContactPoint[] | undefined>;
     /**
-     * Specifies whether the alert manager should be enabled. Defaults to true.
+     * **Deprecated** (Optional, Boolean) Use `preconfiguredAlertIds` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
+     *
+     * @deprecated Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.
      */
-    declare public readonly enableManagedAlerts: pulumi.Output<boolean | undefined>;
+    declare public readonly enableManagedAlerts: pulumi.Output<boolean>;
+    /**
+     * A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+     */
+    declare public readonly preconfiguredAlertIds: pulumi.Output<string[] | undefined>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
@@ -115,12 +154,14 @@ export class AlertManager extends pulumi.CustomResource {
             resourceInputs["alertManagerUrl"] = state?.alertManagerUrl;
             resourceInputs["contactPoints"] = state?.contactPoints;
             resourceInputs["enableManagedAlerts"] = state?.enableManagedAlerts;
+            resourceInputs["preconfiguredAlertIds"] = state?.preconfiguredAlertIds;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as AlertManagerArgs | undefined;
             resourceInputs["contactPoints"] = args?.contactPoints;
             resourceInputs["enableManagedAlerts"] = args?.enableManagedAlerts;
+            resourceInputs["preconfiguredAlertIds"] = args?.preconfiguredAlertIds;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["alertManagerUrl"] = undefined /*out*/;
@@ -141,13 +182,19 @@ export interface AlertManagerState {
      */
     alertManagerUrl?: pulumi.Input<string>;
     /**
-     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
      */
     contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[]>;
     /**
-     * Specifies whether the alert manager should be enabled. Defaults to true.
+     * **Deprecated** (Optional, Boolean) Use `preconfiguredAlertIds` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
+     *
+     * @deprecated Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.
      */
     enableManagedAlerts?: pulumi.Input<boolean>;
+    /**
+     * A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+     */
+    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */
@@ -163,13 +210,19 @@ export interface AlertManagerState {
  */
 export interface AlertManagerArgs {
     /**
-     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+     * A list of contact points with email addresses that will receive alerts. Each map should contain a single key `email`.
      */
     contactPoints?: pulumi.Input<pulumi.Input<inputs.observability.AlertManagerContactPoint>[]>;
     /**
-     * Specifies whether the alert manager should be enabled. Defaults to true.
+     * **Deprecated** (Optional, Boolean) Use `preconfiguredAlertIds` instead. This field will be removed in a future version. When set to `true`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
+     *
+     * @deprecated Use 'preconfigured_alert_ids' instead. This field will be removed in a future version.
      */
     enableManagedAlerts?: pulumi.Input<boolean>;
+    /**
+     * A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+     */
+    preconfiguredAlertIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * ) The ID of the Project the Cockpit is associated with.
      */

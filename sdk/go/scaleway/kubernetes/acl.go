@@ -14,8 +14,6 @@ import (
 
 // ## Example Usage
 //
-// ### Basic
-//
 // ```go
 // package main
 //
@@ -29,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Basic ACL usage
 //			aclBasic, err := network.NewPrivateNetwork(ctx, "acl_basic", nil)
 //			if err != nil {
 //				return err
@@ -65,8 +64,6 @@ import (
 //
 // ```
 //
-// ### Full-isolation
-//
 // ```go
 // package main
 //
@@ -80,6 +77,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Full isolation example
 //			aclBasic, err := network.NewPrivateNetwork(ctx, "acl_basic", nil)
 //			if err != nil {
 //				return err

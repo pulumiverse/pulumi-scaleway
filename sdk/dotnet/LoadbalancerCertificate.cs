@@ -10,6 +10,17 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    /// $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
+    /// ```
+    /// </summary>
     [Obsolete(@"scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate")]
     [ScalewayResourceType("scaleway:index/loadbalancerCertificate:LoadbalancerCertificate")]
     public partial class LoadbalancerCertificate : global::Pulumi.CustomResource

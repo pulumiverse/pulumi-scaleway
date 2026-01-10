@@ -355,7 +355,27 @@ def get_kubernetes_cluster(cluster_id: Optional[_builtins.str] = None,
                            region: Optional[_builtins.str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
-    Gets information about a Kubernetes Cluster.
+    The `kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by cluster id
+    my_key = scaleway.kubernetes.get_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by cluster name
+    my_key = scaleway.kubernetes.get_cluster(name="my-cluster-name")
+    ```
 
 
     :param _builtins.str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.
@@ -407,7 +427,27 @@ def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[_bu
                                   region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
-    Gets information about a Kubernetes Cluster.
+    The `kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by cluster id
+    my_key = scaleway.kubernetes.get_cluster(cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by cluster name
+    my_key = scaleway.kubernetes.get_cluster(name="my-cluster-name")
+    ```
 
 
     :param _builtins.str cluster_id: The cluster ID. Only one of `name` and `cluster_id` should be specified.

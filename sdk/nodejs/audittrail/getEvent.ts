@@ -7,8 +7,9 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Use this data source to get a list of existing Audit Trail events.
- * For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+ * The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+ *
+ * Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
  *
  * ## Example Usage
  *
@@ -16,28 +17,34 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Retrieve all audit trail events on the default organization
- * const findAll = scaleway.audittrail.getEvent({});
- * // Retrieve audit trail events on a specific organization
- * const findByOrg = scaleway.audittrail.getEvent({
- *     organizationId: "11111111-1111-1111-1111-111111111111",
- * });
- * // Retrieve audit trail events on a specific project
- * const findByProject = scaleway.audittrail.getEvent({
- *     projectId: "11111111-1111-1111-1111-111111111111",
- * });
- * // Retrieve audit trail events for a specific type of resource
- * const findByResourceType = scaleway.audittrail.getEvent({
- *     resourceType: "instance_server",
- * });
  * // Retrieve audit trail for a specific resource
  * const findByResourceId = scaleway.audittrail.getEvent({
  *     resourceId: "11111111-1111-1111-1111-111111111111",
  * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve all audit trail events on the default organization
+ * const findAll = scaleway.audittrail.getEvent({});
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
  * // Retrieve audit trail for a specific Scaleway product
  * const findByProductName = scaleway.audittrail.getEvent({
  *     productName: "secret-manager",
  * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
  * // Retrieve audit trail events with various filtering
  * const findWithFilters = scaleway.audittrail.getEvent({
  *     region: "fr-par",
@@ -49,6 +56,36 @@ import * as utilities from "../utilities";
  *     recordedAfter: "2025-10-01T00:00:00Z",
  *     recordedBefore: "2025-12-31T23:59:59Z",
  *     orderBy: "recorded_at_desc",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events on a specific organization
+ * const findByOrg = scaleway.audittrail.getEvent({
+ *     organizationId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events on a specific project
+ * const findByProject = scaleway.audittrail.getEvent({
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events for a specific type of resource
+ * const findByResourceType = scaleway.audittrail.getEvent({
+ *     resourceType: "instance_server",
  * });
  * ```
  */
@@ -184,8 +221,9 @@ export interface GetEventResult {
     readonly status?: number;
 }
 /**
- * Use this data source to get a list of existing Audit Trail events.
- * For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+ * The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+ *
+ * Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
  *
  * ## Example Usage
  *
@@ -193,28 +231,34 @@ export interface GetEventResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * // Retrieve all audit trail events on the default organization
- * const findAll = scaleway.audittrail.getEvent({});
- * // Retrieve audit trail events on a specific organization
- * const findByOrg = scaleway.audittrail.getEvent({
- *     organizationId: "11111111-1111-1111-1111-111111111111",
- * });
- * // Retrieve audit trail events on a specific project
- * const findByProject = scaleway.audittrail.getEvent({
- *     projectId: "11111111-1111-1111-1111-111111111111",
- * });
- * // Retrieve audit trail events for a specific type of resource
- * const findByResourceType = scaleway.audittrail.getEvent({
- *     resourceType: "instance_server",
- * });
  * // Retrieve audit trail for a specific resource
  * const findByResourceId = scaleway.audittrail.getEvent({
  *     resourceId: "11111111-1111-1111-1111-111111111111",
  * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve all audit trail events on the default organization
+ * const findAll = scaleway.audittrail.getEvent({});
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
  * // Retrieve audit trail for a specific Scaleway product
  * const findByProductName = scaleway.audittrail.getEvent({
  *     productName: "secret-manager",
  * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
  * // Retrieve audit trail events with various filtering
  * const findWithFilters = scaleway.audittrail.getEvent({
  *     region: "fr-par",
@@ -226,6 +270,36 @@ export interface GetEventResult {
  *     recordedAfter: "2025-10-01T00:00:00Z",
  *     recordedBefore: "2025-12-31T23:59:59Z",
  *     orderBy: "recorded_at_desc",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events on a specific organization
+ * const findByOrg = scaleway.audittrail.getEvent({
+ *     organizationId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events on a specific project
+ * const findByProject = scaleway.audittrail.getEvent({
+ *     projectId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Retrieve audit trail events for a specific type of resource
+ * const findByResourceType = scaleway.audittrail.getEvent({
+ *     resourceType: "instance_server",
  * });
  * ```
  */

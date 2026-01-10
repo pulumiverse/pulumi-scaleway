@@ -7,8 +7,9 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Apple silicon. For more information,
- * see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+ * The `scaleway.applesilicon.Server` resource creates and manages Scaleway Apple silicon servers.
+ *
+ * For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
  *
  * ## Example Usage
  *

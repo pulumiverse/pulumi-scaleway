@@ -13,10 +13,29 @@ namespace Pulumiverse.Scaleway.Audittrail
     public static class GetEvent
     {
         /// <summary>
-        /// Use this data source to get a list of existing Audit Trail events.
-        /// For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+        /// The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+        /// 
+        /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
+        /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail for a specific resource
+        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -29,36 +48,34 @@ namespace Pulumiverse.Scaleway.Audittrail
         ///     // Retrieve all audit trail events on the default organization
         ///     var findAll = Scaleway.Audittrail.GetEvent.Invoke();
         /// 
-        ///     // Retrieve audit trail events on a specific organization
-        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// });
+        /// ```
         /// 
-        ///     // Retrieve audit trail events on a specific project
-        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
         /// 
-        ///     // Retrieve audit trail events for a specific type of resource
-        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceType = "instance_server",
-        ///     });
-        /// 
-        ///     // Retrieve audit trail for a specific resource
-        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail for a specific Scaleway product
         ///     var findByProductName = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
         ///         ProductName = "secret-manager",
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail events with various filtering
         ///     var findWithFilters = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
@@ -71,6 +88,57 @@ namespace Pulumiverse.Scaleway.Audittrail
         ///         RecordedAfter = "2025-10-01T00:00:00Z",
         ///         RecordedBefore = "2025-12-31T23:59:59Z",
         ///         OrderBy = "recorded_at_desc",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific organization
+        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific project
+        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events for a specific type of resource
+        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceType = "instance_server",
         ///     });
         /// 
         /// });
@@ -80,10 +148,29 @@ namespace Pulumiverse.Scaleway.Audittrail
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetEventResult>("scaleway:audittrail/getEvent:getEvent", args ?? new GetEventArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to get a list of existing Audit Trail events.
-        /// For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+        /// The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+        /// 
+        /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
+        /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail for a specific resource
+        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -96,36 +183,34 @@ namespace Pulumiverse.Scaleway.Audittrail
         ///     // Retrieve all audit trail events on the default organization
         ///     var findAll = Scaleway.Audittrail.GetEvent.Invoke();
         /// 
-        ///     // Retrieve audit trail events on a specific organization
-        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// });
+        /// ```
         /// 
-        ///     // Retrieve audit trail events on a specific project
-        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
         /// 
-        ///     // Retrieve audit trail events for a specific type of resource
-        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceType = "instance_server",
-        ///     });
-        /// 
-        ///     // Retrieve audit trail for a specific resource
-        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail for a specific Scaleway product
         ///     var findByProductName = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
         ///         ProductName = "secret-manager",
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail events with various filtering
         ///     var findWithFilters = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
@@ -142,15 +227,85 @@ namespace Pulumiverse.Scaleway.Audittrail
         /// 
         /// });
         /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific organization
+        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific project
+        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events for a specific type of resource
+        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceType = "instance_server",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetEventResult> Invoke(GetEventInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetEventResult>("scaleway:audittrail/getEvent:getEvent", args ?? new GetEventInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to get a list of existing Audit Trail events.
-        /// For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+        /// The `scaleway.audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+        /// 
+        /// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
+        /// 
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail for a specific resource
+        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -163,36 +318,34 @@ namespace Pulumiverse.Scaleway.Audittrail
         ///     // Retrieve all audit trail events on the default organization
         ///     var findAll = Scaleway.Audittrail.GetEvent.Invoke();
         /// 
-        ///     // Retrieve audit trail events on a specific organization
-        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// });
+        /// ```
         /// 
-        ///     // Retrieve audit trail events on a specific project
-        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
-        ///     });
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
         /// 
-        ///     // Retrieve audit trail events for a specific type of resource
-        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceType = "instance_server",
-        ///     });
-        /// 
-        ///     // Retrieve audit trail for a specific resource
-        ///     var findByResourceId = Scaleway.Audittrail.GetEvent.Invoke(new()
-        ///     {
-        ///         ResourceId = "11111111-1111-1111-1111-111111111111",
-        ///     });
-        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail for a specific Scaleway product
         ///     var findByProductName = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
         ///         ProductName = "secret-manager",
         ///     });
         /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
         ///     // Retrieve audit trail events with various filtering
         ///     var findWithFilters = Scaleway.Audittrail.GetEvent.Invoke(new()
         ///     {
@@ -205,6 +358,57 @@ namespace Pulumiverse.Scaleway.Audittrail
         ///         RecordedAfter = "2025-10-01T00:00:00Z",
         ///         RecordedBefore = "2025-12-31T23:59:59Z",
         ///         OrderBy = "recorded_at_desc",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific organization
+        ///     var findByOrg = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         OrganizationId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events on a specific project
+        ///     var findByProject = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ProjectId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Retrieve audit trail events for a specific type of resource
+        ///     var findByResourceType = Scaleway.Audittrail.GetEvent.Invoke(new()
+        ///     {
+        ///         ResourceType = "instance_server",
         ///     });
         /// 
         /// });

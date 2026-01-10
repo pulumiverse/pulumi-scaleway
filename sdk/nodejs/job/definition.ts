@@ -128,6 +128,10 @@ export class Definition extends pulumi.CustomResource {
      */
     declare public readonly imageUri: pulumi.Output<string | undefined>;
     /**
+     * The local storage capacity of the job in MiB.
+     */
+    declare public readonly localStorageCapacity: pulumi.Output<number | undefined>;
+    /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
     declare public readonly memoryLimit: pulumi.Output<number>;
@@ -171,6 +175,7 @@ export class Definition extends pulumi.CustomResource {
             resourceInputs["description"] = state?.description;
             resourceInputs["env"] = state?.env;
             resourceInputs["imageUri"] = state?.imageUri;
+            resourceInputs["localStorageCapacity"] = state?.localStorageCapacity;
             resourceInputs["memoryLimit"] = state?.memoryLimit;
             resourceInputs["name"] = state?.name;
             resourceInputs["projectId"] = state?.projectId;
@@ -191,6 +196,7 @@ export class Definition extends pulumi.CustomResource {
             resourceInputs["description"] = args?.description;
             resourceInputs["env"] = args?.env;
             resourceInputs["imageUri"] = args?.imageUri;
+            resourceInputs["localStorageCapacity"] = args?.localStorageCapacity;
             resourceInputs["memoryLimit"] = args?.memoryLimit;
             resourceInputs["name"] = args?.name;
             resourceInputs["projectId"] = args?.projectId;
@@ -233,6 +239,10 @@ export interface DefinitionState {
      * The uri of the container image that will be used for the job run.
      */
     imageUri?: pulumi.Input<string>;
+    /**
+     * The local storage capacity of the job in MiB.
+     */
+    localStorageCapacity?: pulumi.Input<number>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
@@ -287,6 +297,10 @@ export interface DefinitionArgs {
      * The uri of the container image that will be used for the job run.
      */
     imageUri?: pulumi.Input<string>;
+    /**
+     * The local storage capacity of the job in MiB.
+     */
+    localStorageCapacity?: pulumi.Input<number>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */

@@ -11,14 +11,13 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Gets information about a Kubernetes version.
-// For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+// The `kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+//
+// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 //
 // You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 //
 // ## Example Usage
-//
-// ### Use the latest version
 //
 // ```go
 // package main
@@ -32,6 +31,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Use the latest version
 //			_, err := kubernetes.GetVersion(ctx, &kubernetes.GetVersionArgs{
 //				Name: "latest",
 //			}, nil)
@@ -44,8 +44,6 @@ import (
 //
 // ```
 //
-// ### Use a specific version
-//
 // ```go
 // package main
 //
@@ -58,6 +56,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Use a specific version
 //			_, err := kubernetes.GetVersion(ctx, &kubernetes.GetVersionArgs{
 //				Name: "1.26.0",
 //			}, nil)

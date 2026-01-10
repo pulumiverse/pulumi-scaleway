@@ -82,9 +82,17 @@ export class Version extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
      */
-    declare public readonly data: pulumi.Output<string>;
+    declare public readonly data: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly dataWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+     */
+    declare public readonly dataWoVersion: pulumi.Output<number | undefined>;
     /**
      * Description of the secret version (e.g. `my-new-description`).
      */
@@ -125,6 +133,8 @@ export class Version extends pulumi.CustomResource {
             const state = argsOrState as VersionState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["data"] = state?.data;
+            resourceInputs["dataWo"] = state?.dataWo;
+            resourceInputs["dataWoVersion"] = state?.dataWoVersion;
             resourceInputs["description"] = state?.description;
             resourceInputs["region"] = state?.region;
             resourceInputs["revision"] = state?.revision;
@@ -133,13 +143,12 @@ export class Version extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as VersionArgs | undefined;
-            if (args?.data === undefined && !opts.urn) {
-                throw new Error("Missing required property 'data'");
-            }
             if (args?.secretId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'secretId'");
             }
             resourceInputs["data"] = args?.data ? pulumi.secret(args.data) : undefined;
+            resourceInputs["dataWo"] = args?.dataWo ? pulumi.secret(args.dataWo) : undefined;
+            resourceInputs["dataWoVersion"] = args?.dataWoVersion;
             resourceInputs["description"] = args?.description;
             resourceInputs["region"] = args?.region;
             resourceInputs["secretId"] = args?.secretId;
@@ -151,7 +160,7 @@ export class Version extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/secretVersion:SecretVersion" }] };
         opts = pulumi.mergeOptions(opts, aliasOpts);
-        const secretOpts = { additionalSecretOutputs: ["data"] };
+        const secretOpts = { additionalSecretOutputs: ["data", "dataWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Version.__pulumiType, name, resourceInputs, opts);
     }
@@ -166,9 +175,17 @@ export interface VersionState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
      */
     data?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    dataWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+     */
+    dataWoVersion?: pulumi.Input<number>;
     /**
      * Description of the secret version (e.g. `my-new-description`).
      */
@@ -200,9 +217,17 @@ export interface VersionState {
  */
 export interface VersionArgs {
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
      */
-    data: pulumi.Input<string>;
+    data?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    dataWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+     */
+    dataWoVersion?: pulumi.Input<number>;
     /**
      * Description of the secret version (e.g. `my-new-description`).
      */

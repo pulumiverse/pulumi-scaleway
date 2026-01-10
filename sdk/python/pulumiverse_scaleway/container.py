@@ -1101,6 +1101,39 @@ class Container(pulumi.CustomResource):
             })
         ```
 
+        ### Managing authentication of private containers with IAM
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        # Project to be referenced in the IAM policy
+        default = scaleway.account.get_project(name="default")
+        # IAM resources
+        container_auth = scaleway.iam.Application("container_auth", name="container-auth")
+        access_private_containers = scaleway.iam.Policy("access_private_containers",
+            application_id=container_auth.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ContainersPrivateAccess"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=container_auth.id)
+        # Container resources
+        private = scaleway.containers.Namespace("private", name="private-container-namespace")
+        private_container = scaleway.containers.Container("private",
+            namespace_id=private.id,
+            registry_image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+            privacy="private",
+            deploy=True)
+        pulumi.export("secretKey", api_key.secret_key)
+        pulumi.export("containerEndpoint", private_container.domain_name)
+        ```
+
+        Then you can access your private container using the API key:
+
+        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+
         ## Protocols
 
         The following protocols are supported:
@@ -1297,6 +1330,39 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
+
+        ### Managing authentication of private containers with IAM
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        # Project to be referenced in the IAM policy
+        default = scaleway.account.get_project(name="default")
+        # IAM resources
+        container_auth = scaleway.iam.Application("container_auth", name="container-auth")
+        access_private_containers = scaleway.iam.Policy("access_private_containers",
+            application_id=container_auth.id,
+            rules=[{
+                "project_ids": [default.id],
+                "permission_set_names": ["ContainersPrivateAccess"],
+            }])
+        api_key = scaleway.iam.ApiKey("api_key", application_id=container_auth.id)
+        # Container resources
+        private = scaleway.containers.Namespace("private", name="private-container-namespace")
+        private_container = scaleway.containers.Container("private",
+            namespace_id=private.id,
+            registry_image="rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+            privacy="private",
+            deploy=True)
+        pulumi.export("secretKey", api_key.secret_key)
+        pulumi.export("containerEndpoint", private_container.domain_name)
+        ```
+
+        Then you can access your private container using the API key:
+
+        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
 
         ## Protocols
 

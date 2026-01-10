@@ -78,8 +78,12 @@ type Version struct {
 
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
-	Data pulumi.StringOutput `pulumi:"data"`
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+	Data pulumi.StringPtrOutput `pulumi:"data"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	DataWo pulumi.StringPtrOutput `pulumi:"dataWo"`
+	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+	DataWoVersion pulumi.IntPtrOutput `pulumi:"dataWoVersion"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// ). The region where the resource exists.
@@ -101,9 +105,6 @@ func NewVersion(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Data == nil {
-		return nil, errors.New("invalid value for required argument 'Data'")
-	}
 	if args.SecretId == nil {
 		return nil, errors.New("invalid value for required argument 'SecretId'")
 	}
@@ -114,10 +115,14 @@ func NewVersion(ctx *pulumi.Context,
 	})
 	opts = append(opts, aliases)
 	if args.Data != nil {
-		args.Data = pulumi.ToSecret(args.Data).(pulumi.StringInput)
+		args.Data = pulumi.ToSecret(args.Data).(pulumi.StringPtrInput)
+	}
+	if args.DataWo != nil {
+		args.DataWo = pulumi.ToSecret(args.DataWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"data",
+		"dataWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -145,8 +150,12 @@ func GetVersion(ctx *pulumi.Context,
 type versionState struct {
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data *string `pulumi:"data"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	DataWo *string `pulumi:"dataWo"`
+	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+	DataWoVersion *int `pulumi:"dataWoVersion"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
 	// ). The region where the resource exists.
@@ -164,8 +173,12 @@ type versionState struct {
 type VersionState struct {
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
 	Data pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	DataWo pulumi.StringPtrInput
+	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+	DataWoVersion pulumi.IntPtrInput
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
 	// ). The region where the resource exists.
@@ -185,8 +198,12 @@ func (VersionState) ElementType() reflect.Type {
 }
 
 type versionArgs struct {
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
-	Data string `pulumi:"data"`
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+	Data *string `pulumi:"data"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	DataWo *string `pulumi:"dataWo"`
+	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+	DataWoVersion *int `pulumi:"dataWoVersion"`
 	// Description of the secret version (e.g. `my-new-description`).
 	Description *string `pulumi:"description"`
 	// ). The region where the resource exists.
@@ -197,8 +214,12 @@ type versionArgs struct {
 
 // The set of arguments for constructing a Version resource.
 type VersionArgs struct {
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
-	Data pulumi.StringInput
+	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+	Data pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	DataWo pulumi.StringPtrInput
+	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+	DataWoVersion pulumi.IntPtrInput
 	// Description of the secret version (e.g. `my-new-description`).
 	Description pulumi.StringPtrInput
 	// ). The region where the resource exists.
@@ -299,9 +320,19 @@ func (o VersionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Version) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
-func (o VersionOutput) Data() pulumi.StringOutput {
-	return o.ApplyT(func(v *Version) pulumi.StringOutput { return v.Data }).(pulumi.StringOutput)
+// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+func (o VersionOutput) Data() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Version) pulumi.StringPtrOutput { return v.Data }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o VersionOutput) DataWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Version) pulumi.StringPtrOutput { return v.DataWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
+func (o VersionOutput) DataWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Version) pulumi.IntPtrOutput { return v.DataWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Description of the secret version (e.g. `my-new-description`).

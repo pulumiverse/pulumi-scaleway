@@ -7,7 +7,31 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Gets information about a Kubernetes Cluster.
+ * The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by cluster id
+ * const myKey = scaleway.kubernetes.getCluster({
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by cluster name
+ * const myKey = scaleway.kubernetes.getCluster({
+ *     name: "my-cluster-name",
+ * });
+ * ```
  */
 /** @deprecated scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster */
 export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
@@ -135,7 +159,31 @@ export interface GetKubernetesClusterResult {
     readonly wildcardDns: string;
 }
 /**
- * Gets information about a Kubernetes Cluster.
+ * The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by cluster id
+ * const myKey = scaleway.kubernetes.getCluster({
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by cluster name
+ * const myKey = scaleway.kubernetes.getCluster({
+ *     name: "my-cluster-name",
+ * });
+ * ```
  */
 /** @deprecated scaleway.index/getkubernetescluster.getKubernetesCluster has been deprecated in favor of scaleway.kubernetes/getcluster.getCluster */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesClusterResult> {

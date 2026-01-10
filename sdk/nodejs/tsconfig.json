@@ -415,6 +415,7 @@
         "observability/cockpit.ts",
         "observability/getGrafana.ts",
         "observability/getInstance.ts",
+        "observability/getPreconfiguredAlert.ts",
         "observability/getSource.ts",
         "observability/getSources.ts",
         "observability/grafanaUser.ts",

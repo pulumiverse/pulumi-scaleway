@@ -877,6 +877,202 @@ func (o GetInstancePushUrlArrayOutput) Index(i pulumi.IntInput) GetInstancePushU
 	}).(GetInstancePushUrlOutput)
 }
 
+type GetPreconfiguredAlertAlert struct {
+	// Map of annotations attached to the alert.
+	Annotations map[string]string `pulumi:"annotations"`
+	// Filter alerts by data source ID.
+	DataSourceId string `pulumi:"dataSourceId"`
+	// Human-readable description of the alert.
+	DisplayDescription string `pulumi:"displayDescription"`
+	// Human-readable name of the alert.
+	DisplayName string `pulumi:"displayName"`
+	// Duration for which the condition must be true before the alert fires (e.g., "5m").
+	Duration string `pulumi:"duration"`
+	// Name of the alert rule.
+	Name string `pulumi:"name"`
+	// Unique identifier of the preconfigured rule. Use this ID in `observability.AlertManager` resource.
+	PreconfiguredRuleId string `pulumi:"preconfiguredRuleId"`
+	// Family of the product (e.g., "compute", "storage", "network").
+	ProductFamily string `pulumi:"productFamily"`
+	// Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+	ProductName string `pulumi:"productName"`
+	// PromQL expression defining the alert condition.
+	Rule string `pulumi:"rule"`
+	// Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+	RuleStatus string `pulumi:"ruleStatus"`
+	// Current state of the alert (`inactive`, `pending`, `firing`).
+	State string `pulumi:"state"`
+}
+
+// GetPreconfiguredAlertAlertInput is an input type that accepts GetPreconfiguredAlertAlertArgs and GetPreconfiguredAlertAlertOutput values.
+// You can construct a concrete instance of `GetPreconfiguredAlertAlertInput` via:
+//
+//	GetPreconfiguredAlertAlertArgs{...}
+type GetPreconfiguredAlertAlertInput interface {
+	pulumi.Input
+
+	ToGetPreconfiguredAlertAlertOutput() GetPreconfiguredAlertAlertOutput
+	ToGetPreconfiguredAlertAlertOutputWithContext(context.Context) GetPreconfiguredAlertAlertOutput
+}
+
+type GetPreconfiguredAlertAlertArgs struct {
+	// Map of annotations attached to the alert.
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Filter alerts by data source ID.
+	DataSourceId pulumi.StringInput `pulumi:"dataSourceId"`
+	// Human-readable description of the alert.
+	DisplayDescription pulumi.StringInput `pulumi:"displayDescription"`
+	// Human-readable name of the alert.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Duration for which the condition must be true before the alert fires (e.g., "5m").
+	Duration pulumi.StringInput `pulumi:"duration"`
+	// Name of the alert rule.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique identifier of the preconfigured rule. Use this ID in `observability.AlertManager` resource.
+	PreconfiguredRuleId pulumi.StringInput `pulumi:"preconfiguredRuleId"`
+	// Family of the product (e.g., "compute", "storage", "network").
+	ProductFamily pulumi.StringInput `pulumi:"productFamily"`
+	// Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+	ProductName pulumi.StringInput `pulumi:"productName"`
+	// PromQL expression defining the alert condition.
+	Rule pulumi.StringInput `pulumi:"rule"`
+	// Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+	RuleStatus pulumi.StringInput `pulumi:"ruleStatus"`
+	// Current state of the alert (`inactive`, `pending`, `firing`).
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetPreconfiguredAlertAlertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPreconfiguredAlertAlert)(nil)).Elem()
+}
+
+func (i GetPreconfiguredAlertAlertArgs) ToGetPreconfiguredAlertAlertOutput() GetPreconfiguredAlertAlertOutput {
+	return i.ToGetPreconfiguredAlertAlertOutputWithContext(context.Background())
+}
+
+func (i GetPreconfiguredAlertAlertArgs) ToGetPreconfiguredAlertAlertOutputWithContext(ctx context.Context) GetPreconfiguredAlertAlertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPreconfiguredAlertAlertOutput)
+}
+
+// GetPreconfiguredAlertAlertArrayInput is an input type that accepts GetPreconfiguredAlertAlertArray and GetPreconfiguredAlertAlertArrayOutput values.
+// You can construct a concrete instance of `GetPreconfiguredAlertAlertArrayInput` via:
+//
+//	GetPreconfiguredAlertAlertArray{ GetPreconfiguredAlertAlertArgs{...} }
+type GetPreconfiguredAlertAlertArrayInput interface {
+	pulumi.Input
+
+	ToGetPreconfiguredAlertAlertArrayOutput() GetPreconfiguredAlertAlertArrayOutput
+	ToGetPreconfiguredAlertAlertArrayOutputWithContext(context.Context) GetPreconfiguredAlertAlertArrayOutput
+}
+
+type GetPreconfiguredAlertAlertArray []GetPreconfiguredAlertAlertInput
+
+func (GetPreconfiguredAlertAlertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPreconfiguredAlertAlert)(nil)).Elem()
+}
+
+func (i GetPreconfiguredAlertAlertArray) ToGetPreconfiguredAlertAlertArrayOutput() GetPreconfiguredAlertAlertArrayOutput {
+	return i.ToGetPreconfiguredAlertAlertArrayOutputWithContext(context.Background())
+}
+
+func (i GetPreconfiguredAlertAlertArray) ToGetPreconfiguredAlertAlertArrayOutputWithContext(ctx context.Context) GetPreconfiguredAlertAlertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPreconfiguredAlertAlertArrayOutput)
+}
+
+type GetPreconfiguredAlertAlertOutput struct{ *pulumi.OutputState }
+
+func (GetPreconfiguredAlertAlertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPreconfiguredAlertAlert)(nil)).Elem()
+}
+
+func (o GetPreconfiguredAlertAlertOutput) ToGetPreconfiguredAlertAlertOutput() GetPreconfiguredAlertAlertOutput {
+	return o
+}
+
+func (o GetPreconfiguredAlertAlertOutput) ToGetPreconfiguredAlertAlertOutputWithContext(ctx context.Context) GetPreconfiguredAlertAlertOutput {
+	return o
+}
+
+// Map of annotations attached to the alert.
+func (o GetPreconfiguredAlertAlertOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+// Filter alerts by data source ID.
+func (o GetPreconfiguredAlertAlertOutput) DataSourceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.DataSourceId }).(pulumi.StringOutput)
+}
+
+// Human-readable description of the alert.
+func (o GetPreconfiguredAlertAlertOutput) DisplayDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.DisplayDescription }).(pulumi.StringOutput)
+}
+
+// Human-readable name of the alert.
+func (o GetPreconfiguredAlertAlertOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Duration for which the condition must be true before the alert fires (e.g., "5m").
+func (o GetPreconfiguredAlertAlertOutput) Duration() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.Duration }).(pulumi.StringOutput)
+}
+
+// Name of the alert rule.
+func (o GetPreconfiguredAlertAlertOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the preconfigured rule. Use this ID in `observability.AlertManager` resource.
+func (o GetPreconfiguredAlertAlertOutput) PreconfiguredRuleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.PreconfiguredRuleId }).(pulumi.StringOutput)
+}
+
+// Family of the product (e.g., "compute", "storage", "network").
+func (o GetPreconfiguredAlertAlertOutput) ProductFamily() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.ProductFamily }).(pulumi.StringOutput)
+}
+
+// Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+func (o GetPreconfiguredAlertAlertOutput) ProductName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.ProductName }).(pulumi.StringOutput)
+}
+
+// PromQL expression defining the alert condition.
+func (o GetPreconfiguredAlertAlertOutput) Rule() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.Rule }).(pulumi.StringOutput)
+}
+
+// Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+func (o GetPreconfiguredAlertAlertOutput) RuleStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.RuleStatus }).(pulumi.StringOutput)
+}
+
+// Current state of the alert (`inactive`, `pending`, `firing`).
+func (o GetPreconfiguredAlertAlertOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetPreconfiguredAlertAlert) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetPreconfiguredAlertAlertArrayOutput struct{ *pulumi.OutputState }
+
+func (GetPreconfiguredAlertAlertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetPreconfiguredAlertAlert)(nil)).Elem()
+}
+
+func (o GetPreconfiguredAlertAlertArrayOutput) ToGetPreconfiguredAlertAlertArrayOutput() GetPreconfiguredAlertAlertArrayOutput {
+	return o
+}
+
+func (o GetPreconfiguredAlertAlertArrayOutput) ToGetPreconfiguredAlertAlertArrayOutputWithContext(ctx context.Context) GetPreconfiguredAlertAlertArrayOutput {
+	return o
+}
+
+func (o GetPreconfiguredAlertAlertArrayOutput) Index(i pulumi.IntInput) GetPreconfiguredAlertAlertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetPreconfiguredAlertAlert {
+		return vs[0].([]GetPreconfiguredAlertAlert)[vs[1].(int)]
+	}).(GetPreconfiguredAlertAlertOutput)
+}
+
 type GetSourcesSource struct {
 	// The date and time of the creation of the cockpit datasource.
 	CreatedAt string `pulumi:"createdAt"`
@@ -1086,6 +1282,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointArrayInput)(nil)).Elem(), GetInstanceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlInput)(nil)).Elem(), GetInstancePushUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlArrayInput)(nil)).Elem(), GetInstancePushUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPreconfiguredAlertAlertInput)(nil)).Elem(), GetPreconfiguredAlertAlertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPreconfiguredAlertAlertArrayInput)(nil)).Elem(), GetPreconfiguredAlertAlertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceInput)(nil)).Elem(), GetSourcesSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceArrayInput)(nil)).Elem(), GetSourcesSourceArray{})
 	pulumi.RegisterOutputType(AlertManagerContactPointOutput{})
@@ -1100,6 +1298,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlArrayOutput{})
+	pulumi.RegisterOutputType(GetPreconfiguredAlertAlertOutput{})
+	pulumi.RegisterOutputType(GetPreconfiguredAlertAlertArrayOutput{})
 	pulumi.RegisterOutputType(GetSourcesSourceOutput{})
 	pulumi.RegisterOutputType(GetSourcesSourceArrayOutput{})
 }

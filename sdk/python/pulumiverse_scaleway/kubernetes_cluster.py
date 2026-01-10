@@ -891,11 +891,11 @@ class KubernetesCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+        The `kubernetes.Cluster` resource allows you to create and manage Scaleway Kubernetes clusters.
+
+        Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -914,30 +914,6 @@ class KubernetesCluster(pulumi.CustomResource):
             node_type="DEV1-M",
             size=1)
         ```
-
-        ### Multicloud
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        cluster = scaleway.kubernetes.Cluster("cluster",
-            name="tf-cluster",
-            type="multicloud",
-            version="1.32.3",
-            cni="kilo",
-            delete_additional_resources=False)
-        pool = scaleway.kubernetes.Pool("pool",
-            cluster_id=cluster.id,
-            name="tf-pool",
-            node_type="external",
-            size=0,
-            min_size=0)
-        ```
-
-        For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
-
-        ### With additional configuration
 
         ```python
         import pulumi
@@ -972,44 +948,13 @@ class KubernetesCluster(pulumi.CustomResource):
             max_size=5)
         ```
 
-        ### With the kubernetes provider
-
-        ```python
-        import pulumi
-        import pulumi_null as null
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn")
-        cluster = scaleway.kubernetes.Cluster("cluster",
-            name="tf-cluster",
-            version="1.29.1",
-            cni="cilium",
-            private_network_id=pn.id,
-            delete_additional_resources=False)
-        pool = scaleway.kubernetes.Pool("pool",
-            cluster_id=cluster.id,
-            name="tf-pool",
-            node_type="DEV1-M",
-            size=1)
-        kubeconfig = null.Resource("kubeconfig", triggers={
-            "host": cluster.kubeconfigs[0].host,
-            "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
-        },
-        opts = pulumi.ResourceOptions(depends_on=[pool]))
-        ```
-
-        The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
-        It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-
-        ### With the Helm provider
-
         ```python
         import pulumi
         import pulumi_helm as helm
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
+        # Example with an Helm provider
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
@@ -1058,6 +1003,54 @@ class KubernetesCluster(pulumi.CustomResource):
                     value: Local,
                 },
             ])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        # Example with the kubernetes provider 
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            private_network_id=pn.id,
+            delete_additional_resources=False)
+        pool = scaleway.kubernetes.Pool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        # The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
+        # It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Multicloud Kubernetes Cluster Example
+        # For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            type="multicloud",
+            version="1.32.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        pool = scaleway.kubernetes.Pool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="external",
+            size=0,
+            min_size=0)
         ```
 
         ## Deprecation of default_pool
@@ -1163,11 +1156,11 @@ class KubernetesCluster(pulumi.CustomResource):
                  args: KubernetesClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+        The `kubernetes.Cluster` resource allows you to create and manage Scaleway Kubernetes clusters.
+
+        Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
@@ -1186,30 +1179,6 @@ class KubernetesCluster(pulumi.CustomResource):
             node_type="DEV1-M",
             size=1)
         ```
-
-        ### Multicloud
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        cluster = scaleway.kubernetes.Cluster("cluster",
-            name="tf-cluster",
-            type="multicloud",
-            version="1.32.3",
-            cni="kilo",
-            delete_additional_resources=False)
-        pool = scaleway.kubernetes.Pool("pool",
-            cluster_id=cluster.id,
-            name="tf-pool",
-            node_type="external",
-            size=0,
-            min_size=0)
-        ```
-
-        For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
-
-        ### With additional configuration
 
         ```python
         import pulumi
@@ -1244,44 +1213,13 @@ class KubernetesCluster(pulumi.CustomResource):
             max_size=5)
         ```
 
-        ### With the kubernetes provider
-
-        ```python
-        import pulumi
-        import pulumi_null as null
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn")
-        cluster = scaleway.kubernetes.Cluster("cluster",
-            name="tf-cluster",
-            version="1.29.1",
-            cni="cilium",
-            private_network_id=pn.id,
-            delete_additional_resources=False)
-        pool = scaleway.kubernetes.Pool("pool",
-            cluster_id=cluster.id,
-            name="tf-pool",
-            node_type="DEV1-M",
-            size=1)
-        kubeconfig = null.Resource("kubeconfig", triggers={
-            "host": cluster.kubeconfigs[0].host,
-            "token": cluster.kubeconfigs[0].token,
-            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
-        },
-        opts = pulumi.ResourceOptions(depends_on=[pool]))
-        ```
-
-        The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
-        It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-
-        ### With the Helm provider
-
         ```python
         import pulumi
         import pulumi_helm as helm
         import pulumi_null as null
         import pulumiverse_scaleway as scaleway
 
+        # Example with an Helm provider
         pn = scaleway.network.PrivateNetwork("pn")
         cluster = scaleway.kubernetes.Cluster("cluster",
             name="tf-cluster",
@@ -1330,6 +1268,54 @@ class KubernetesCluster(pulumi.CustomResource):
                     value: Local,
                 },
             ])
+        ```
+
+        ```python
+        import pulumi
+        import pulumi_null as null
+        import pulumiverse_scaleway as scaleway
+
+        # Example with the kubernetes provider 
+        pn = scaleway.network.PrivateNetwork("pn")
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            version="1.29.1",
+            cni="cilium",
+            private_network_id=pn.id,
+            delete_additional_resources=False)
+        pool = scaleway.kubernetes.Pool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="DEV1-M",
+            size=1)
+        # The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
+        # It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+        kubeconfig = null.Resource("kubeconfig", triggers={
+            "host": cluster.kubeconfigs[0].host,
+            "token": cluster.kubeconfigs[0].token,
+            "clusterCaCertificate": cluster.kubeconfigs[0].cluster_ca_certificate,
+        },
+        opts = pulumi.ResourceOptions(depends_on=[pool]))
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        # Multicloud Kubernetes Cluster Example
+        # For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
+        cluster = scaleway.kubernetes.Cluster("cluster",
+            name="tf-cluster",
+            type="multicloud",
+            version="1.32.3",
+            cni="kilo",
+            delete_additional_resources=False)
+        pool = scaleway.kubernetes.Pool("pool",
+            cluster_id=cluster.id,
+            name="tf-pool",
+            node_type="external",
+            size=0,
+            min_size=0)
         ```
 
         ## Deprecation of default_pool

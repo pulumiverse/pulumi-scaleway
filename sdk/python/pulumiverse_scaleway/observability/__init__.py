@@ -10,6 +10,7 @@ from .alert_manager import *
 from .cockpit import *
 from .get_grafana import *
 from .get_instance import *
+from .get_preconfigured_alert import *
 from .get_source import *
 from .get_sources import *
 from .grafana_user import *

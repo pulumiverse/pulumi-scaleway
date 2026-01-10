@@ -5,30 +5,29 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Gets information about a Kubernetes version.
- * For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+ * The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
  *
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
  *
  * ## Example Usage
  *
- * ### Use the latest version
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Use the latest version
  * const latest = scaleway.kubernetes.getVersion({
  *     name: "latest",
  * });
  * ```
  *
- * ### Use a specific version
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Use a specific version
  * const byName = scaleway.kubernetes.getVersion({
  *     name: "1.26.0",
  * });
@@ -81,30 +80,29 @@ export interface GetVersionResult {
     readonly region?: string;
 }
 /**
- * Gets information about a Kubernetes version.
- * For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+ * The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
  *
  * You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
  *
  * ## Example Usage
  *
- * ### Use the latest version
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Use the latest version
  * const latest = scaleway.kubernetes.getVersion({
  *     name: "latest",
  * });
  * ```
  *
- * ### Use a specific version
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Use a specific version
  * const byName = scaleway.kubernetes.getVersion({
  *     name: "1.26.0",
  * });

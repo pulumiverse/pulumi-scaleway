@@ -118,28 +118,27 @@ def get_k8s_version(name: Optional[_builtins.str] = None,
                     region: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetK8sVersionResult:
     """
-    Gets information about a Kubernetes version.
-    For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+    The `kubernetes_get_version` data source is used to retrieve information about a Kubernetes version.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
 
-    ### Use the latest version
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Use the latest version
     latest = scaleway.kubernetes.get_version(name="latest")
     ```
 
-    ### Use a specific version
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Use a specific version
     by_name = scaleway.kubernetes.get_version(name="1.26.0")
     ```
 
@@ -166,28 +165,27 @@ def get_k8s_version_output(name: Optional[pulumi.Input[_builtins.str]] = None,
                            region: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetK8sVersionResult]:
     """
-    Gets information about a Kubernetes version.
-    For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+    The `kubernetes_get_version` data source is used to retrieve information about a Kubernetes version.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 
     You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
 
     ## Example Usage
 
-    ### Use the latest version
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Use the latest version
     latest = scaleway.kubernetes.get_version(name="latest")
     ```
 
-    ### Use a specific version
-
     ```python
     import pulumi
     import pulumi_scaleway as scaleway
 
+    # Use a specific version
     by_name = scaleway.kubernetes.get_version(name="1.26.0")
     ```
 

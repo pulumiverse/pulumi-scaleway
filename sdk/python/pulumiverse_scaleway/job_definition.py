@@ -28,6 +28,7 @@ class JobDefinitionArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -42,6 +43,7 @@ class JobDefinitionArgs:
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
+        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
@@ -60,6 +62,8 @@ class JobDefinitionArgs:
             pulumi.set(__self__, "env", env)
         if image_uri is not None:
             pulumi.set(__self__, "image_uri", image_uri)
+        if local_storage_capacity is not None:
+            pulumi.set(__self__, "local_storage_capacity", local_storage_capacity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -156,6 +160,18 @@ class JobDefinitionArgs:
         pulumi.set(self, "image_uri", value)
 
     @_builtins.property
+    @pulumi.getter(name="localStorageCapacity")
+    def local_storage_capacity(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The local storage capacity of the job in MiB.
+        """
+        return pulumi.get(self, "local_storage_capacity")
+
+    @local_storage_capacity.setter
+    def local_storage_capacity(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "local_storage_capacity", value)
+
+    @_builtins.property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -225,6 +241,7 @@ class _JobDefinitionState:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
                  memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -239,6 +256,7 @@ class _JobDefinitionState:
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
+        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.int] memory_limit: The memory computing resources in MB to allocate to each container running the job.
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
@@ -258,6 +276,8 @@ class _JobDefinitionState:
             pulumi.set(__self__, "env", env)
         if image_uri is not None:
             pulumi.set(__self__, "image_uri", image_uri)
+        if local_storage_capacity is not None:
+            pulumi.set(__self__, "local_storage_capacity", local_storage_capacity)
         if memory_limit is not None:
             pulumi.set(__self__, "memory_limit", memory_limit)
         if name is not None:
@@ -342,6 +362,18 @@ class _JobDefinitionState:
     @image_uri.setter
     def image_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "image_uri", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localStorageCapacity")
+    def local_storage_capacity(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The local storage capacity of the job in MiB.
+        """
+        return pulumi.get(self, "local_storage_capacity")
+
+    @local_storage_capacity.setter
+    def local_storage_capacity(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "local_storage_capacity", value)
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")
@@ -433,6 +465,7 @@ class JobDefinition(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
                  memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -515,6 +548,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
+        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.int] memory_limit: The memory computing resources in MB to allocate to each container running the job.
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
@@ -616,6 +650,7 @@ class JobDefinition(pulumi.CustomResource):
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  image_uri: Optional[pulumi.Input[_builtins.str]] = None,
+                 local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
                  memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -640,6 +675,7 @@ class JobDefinition(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["env"] = env
             __props__.__dict__["image_uri"] = image_uri
+            __props__.__dict__["local_storage_capacity"] = local_storage_capacity
             if memory_limit is None and not opts.urn:
                 raise TypeError("Missing required property 'memory_limit'")
             __props__.__dict__["memory_limit"] = memory_limit
@@ -664,6 +700,7 @@ class JobDefinition(pulumi.CustomResource):
             description: Optional[pulumi.Input[_builtins.str]] = None,
             env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             image_uri: Optional[pulumi.Input[_builtins.str]] = None,
+            local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
             memory_limit: Optional[pulumi.Input[_builtins.int]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -683,6 +720,7 @@ class JobDefinition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
         :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
+        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.int] memory_limit: The memory computing resources in MB to allocate to each container running the job.
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
@@ -700,6 +738,7 @@ class JobDefinition(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["env"] = env
         __props__.__dict__["image_uri"] = image_uri
+        __props__.__dict__["local_storage_capacity"] = local_storage_capacity
         __props__.__dict__["memory_limit"] = memory_limit
         __props__.__dict__["name"] = name
         __props__.__dict__["project_id"] = project_id
@@ -755,6 +794,14 @@ class JobDefinition(pulumi.CustomResource):
         The uri of the container image that will be used for the job run.
         """
         return pulumi.get(self, "image_uri")
+
+    @_builtins.property
+    @pulumi.getter(name="localStorageCapacity")
+    def local_storage_capacity(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The local storage capacity of the job in MiB.
+        """
+        return pulumi.get(self, "local_storage_capacity")
 
     @_builtins.property
     @pulumi.getter(name="memoryLimit")

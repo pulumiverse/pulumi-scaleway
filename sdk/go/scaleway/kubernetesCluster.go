@@ -12,11 +12,11 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+// The `kubernetes.Cluster` resource allows you to create and manage Scaleway Kubernetes clusters.
+//
+// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -59,50 +59,6 @@ import (
 //	}
 //
 // ```
-//
-// ### Multicloud
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
-//				Name:                      pulumi.String("tf-cluster"),
-//				Type:                      pulumi.String("multicloud"),
-//				Version:                   pulumi.String("1.32.3"),
-//				Cni:                       pulumi.String("kilo"),
-//				DeleteAdditionalResources: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
-//				Name:      pulumi.String("tf-pool"),
-//				NodeType:  pulumi.String("external"),
-//				Size:      pulumi.Int(0),
-//				MinSize:   pulumi.Int(0),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
-//
-// ### With additional configuration
 //
 // ```go
 // package main
@@ -163,74 +119,6 @@ import (
 //
 // ```
 //
-// ### With the kubernetes provider
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-null/sdk/go/null"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
-//			if err != nil {
-//				return err
-//			}
-//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
-//				Name:                      pulumi.String("tf-cluster"),
-//				Version:                   pulumi.String("1.29.1"),
-//				Cni:                       pulumi.String("cilium"),
-//				PrivateNetworkId:          pn.ID(),
-//				DeleteAdditionalResources: pulumi.Bool(false),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
-//				ClusterId: cluster.ID(),
-//				Name:      pulumi.String("tf-pool"),
-//				NodeType:  pulumi.String("DEV1-M"),
-//				Size:      pulumi.Int(1),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
-//				Triggers: pulumi.StringMap{
-//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Host, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].Token, nil
-//					}).(pulumi.StringPtrOutput)),
-//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
-//						return &kubeconfigs[0].ClusterCaCertificate, nil
-//					}).(pulumi.StringPtrOutput)),
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				pool,
-//			}))
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// The `nullResource` is needed because when the cluster is created, its status is `poolRequired`, but the kubeconfig can already be downloaded.
-// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
-//
-// ### With the Helm provider
-//
 // ```go
 // package main
 //
@@ -247,6 +135,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Example with an Helm provider
 //			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
 //			if err != nil {
 //				return err
@@ -322,6 +211,110 @@ import (
 //						"value": "Local",
 //					},
 //				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-null/sdk/go/null"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Example with the kubernetes provider
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
+//			if err != nil {
+//				return err
+//			}
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
+//				Version:                   pulumi.String("1.29.1"),
+//				Cni:                       pulumi.String("cilium"),
+//				PrivateNetworkId:          pn.ID(),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pool, err := kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
+//				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
+//				NodeType:  pulumi.String("DEV1-M"),
+//				Size:      pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
+//			// It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+//			_, err = null.NewResource(ctx, "kubeconfig", &null.ResourceArgs{
+//				Triggers: pulumi.StringMap{
+//					"host": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Host, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"token": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].Token, nil
+//					}).(pulumi.StringPtrOutput)),
+//					"clusterCaCertificate": pulumi.String(cluster.Kubeconfigs.ApplyT(func(kubeconfigs []kubernetes.ClusterKubeconfig) (*string, error) {
+//						return &kubeconfigs[0].ClusterCaCertificate, nil
+//					}).(pulumi.StringPtrOutput)),
+//				},
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				pool,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/kubernetes"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Multicloud Kubernetes Cluster Example
+//			// For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
+//			cluster, err := kubernetes.NewCluster(ctx, "cluster", &kubernetes.ClusterArgs{
+//				Name:                      pulumi.String("tf-cluster"),
+//				Type:                      pulumi.String("multicloud"),
+//				Version:                   pulumi.String("1.32.3"),
+//				Cni:                       pulumi.String("kilo"),
+//				DeleteAdditionalResources: pulumi.Bool(false),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = kubernetes.NewPool(ctx, "pool", &kubernetes.PoolArgs{
+//				ClusterId: cluster.ID(),
+//				Name:      pulumi.String("tf-pool"),
+//				NodeType:  pulumi.String("external"),
+//				Size:      pulumi.Int(0),
+//				MinSize:   pulumi.Int(0),
 //			})
 //			if err != nil {
 //				return err

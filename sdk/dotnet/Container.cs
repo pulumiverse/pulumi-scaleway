@@ -78,6 +78,79 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Managing authentication of private containers with IAM
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Project to be referenced in the IAM policy
+    ///     var @default = Scaleway.Account.GetProject.Invoke(new()
+    ///     {
+    ///         Name = "default",
+    ///     });
+    /// 
+    ///     // IAM resources
+    ///     var containerAuth = new Scaleway.Iam.Application("container_auth", new()
+    ///     {
+    ///         Name = "container-auth",
+    ///     });
+    /// 
+    ///     var accessPrivateContainers = new Scaleway.Iam.Policy("access_private_containers", new()
+    ///     {
+    ///         ApplicationId = containerAuth.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Iam.Inputs.PolicyRuleArgs
+    ///             {
+    ///                 ProjectIds = new[]
+    ///                 {
+    ///                     @default.Apply(@default =&gt; @default.Apply(getProjectResult =&gt; getProjectResult.Id)),
+    ///                 },
+    ///                 PermissionSetNames = new[]
+    ///                 {
+    ///                     "ContainersPrivateAccess",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var apiKey = new Scaleway.Iam.ApiKey("api_key", new()
+    ///     {
+    ///         ApplicationId = containerAuth.Id,
+    ///     });
+    /// 
+    ///     // Container resources
+    ///     var @private = new Scaleway.Containers.Namespace("private", new()
+    ///     {
+    ///         Name = "private-container-namespace",
+    ///     });
+    /// 
+    ///     var privateContainer = new Scaleway.Containers.Container("private", new()
+    ///     {
+    ///         NamespaceId = @private.Id,
+    ///         RegistryImage = "rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+    ///         Privacy = "private",
+    ///         Deploy = true,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["secretKey"] = apiKey.SecretKey,
+    ///         ["containerEndpoint"] = privateContainer.DomainName,
+    ///     };
+    /// });
+    /// ```
+    /// 
+    /// Then you can access your private container using the API key:
+    /// 
+    /// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+    /// 
     /// ## Protocols
     /// 
     /// The following protocols are supported:

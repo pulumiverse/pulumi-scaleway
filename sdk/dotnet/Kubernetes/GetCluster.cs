@@ -13,19 +13,139 @@ namespace Pulumiverse.Scaleway.Kubernetes
     public static class GetCluster
     {
         /// <summary>
-        /// Gets information about a Kubernetes Cluster.
+        /// The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster id
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster name
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         Name = "my-cluster-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetClusterResult> InvokeAsync(GetClusterArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetClusterResult>("scaleway:kubernetes/getCluster:getCluster", args ?? new GetClusterArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes Cluster.
+        /// The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster id
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster name
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         Name = "my-cluster-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("scaleway:kubernetes/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes Cluster.
+        /// The `scaleway.kubernetes.Cluster` data source is used to retrieve information about a Kubernetes Cluster.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster id
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by cluster name
+        ///     var myKey = Scaleway.Kubernetes.GetCluster.Invoke(new()
+        ///     {
+        ///         Name = "my-cluster-name",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetClusterResult> Invoke(GetClusterInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetClusterResult>("scaleway:kubernetes/getCluster:getCluster", args ?? new GetClusterInvokeArgs(), options.WithDefaults());

@@ -139,6 +139,12 @@ namespace Pulumiverse.Scaleway.Job
         public Output<string?> ImageUri { get; private set; } = null!;
 
         /// <summary>
+        /// The local storage capacity of the job in MiB.
+        /// </summary>
+        [Output("localStorageCapacity")]
+        public Output<int?> LocalStorageCapacity { get; private set; } = null!;
+
+        /// <summary>
         /// The memory computing resources in MB to allocate to each container running the job.
         /// </summary>
         [Output("memoryLimit")]
@@ -268,6 +274,12 @@ namespace Pulumiverse.Scaleway.Job
         public Input<string>? ImageUri { get; set; }
 
         /// <summary>
+        /// The local storage capacity of the job in MiB.
+        /// </summary>
+        [Input("localStorageCapacity")]
+        public Input<int>? LocalStorageCapacity { get; set; }
+
+        /// <summary>
         /// The memory computing resources in MB to allocate to each container running the job.
         /// </summary>
         [Input("memoryLimit", required: true)]
@@ -358,6 +370,12 @@ namespace Pulumiverse.Scaleway.Job
         /// </summary>
         [Input("imageUri")]
         public Input<string>? ImageUri { get; set; }
+
+        /// <summary>
+        /// The local storage capacity of the job in MiB.
+        /// </summary>
+        [Input("localStorageCapacity")]
+        public Input<int>? LocalStorageCapacity { get; set; }
 
         /// <summary>
         /// The memory computing resources in MB to allocate to each container running the job.
