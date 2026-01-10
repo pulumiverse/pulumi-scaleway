@@ -222,6 +222,9 @@
                 "fields": {
                     "contact_points": {
                         "maxItemsOne": false
+                    },
+                    "preconfigured_alert_ids": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2751,6 +2754,15 @@
             "scaleway_cockpit_grafana": {
                 "current": "scaleway:observability/getGrafana:getGrafana",
                 "majorVersion": 1
+            },
+            "scaleway_cockpit_preconfigured_alert": {
+                "current": "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert",
+                "majorVersion": 1,
+                "fields": {
+                    "alerts": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_cockpit_source": {
                 "current": "scaleway:observability/getSource:getSource",
@@ -5819,6 +5831,7 @@
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
             "scaleway:observability/getGrafana:getGrafana": 0,
             "scaleway:observability/getInstance:getInstance": 0,
+            "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert": 0,
             "scaleway:observability/getSource:getSource": 0,
             "scaleway:observability/getSources:getSources": 0,
             "scaleway:redis/getCluster:getCluster": 0,

@@ -12,8 +12,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Apple silicon. For more information,
-// see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+// The `applesilicon.Server` resource creates and manages Scaleway Apple silicon servers.
+//
+// For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 //
 // ## Example Usage
 //

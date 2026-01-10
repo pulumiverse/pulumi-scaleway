@@ -225,8 +225,9 @@ def get_event(method_name: Optional[_builtins.str] = None,
               status: Optional[_builtins.int] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEventResult:
     """
-    Use this data source to get a list of existing Audit Trail events.
-    For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+    The `audittrail_get_event` data source is used to retrieve information about existing Audit Trail events.
+
+    Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
 
     ## Example Usage
 
@@ -234,18 +235,30 @@ def get_event(method_name: Optional[_builtins.str] = None,
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Retrieve all audit trail events on the default organization
-    find_all = scaleway.audittrail.get_event()
-    # Retrieve audit trail events on a specific organization
-    find_by_org = scaleway.audittrail.get_event(organization_id="11111111-1111-1111-1111-111111111111")
-    # Retrieve audit trail events on a specific project
-    find_by_project = scaleway.audittrail.get_event(project_id="11111111-1111-1111-1111-111111111111")
-    # Retrieve audit trail events for a specific type of resource
-    find_by_resource_type = scaleway.audittrail.get_event(resource_type="instance_server")
     # Retrieve audit trail for a specific resource
     find_by_resource_id = scaleway.audittrail.get_event(resource_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve all audit trail events on the default organization
+    find_all = scaleway.audittrail.get_event()
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
     # Retrieve audit trail for a specific Scaleway product
     find_by_product_name = scaleway.audittrail.get_event(product_name="secret-manager")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
     # Retrieve audit trail events with various filtering
     find_with_filters = scaleway.audittrail.get_event(region="fr-par",
         service_name="instance",
@@ -256,6 +269,30 @@ def get_event(method_name: Optional[_builtins.str] = None,
         recorded_after="2025-10-01T00:00:00Z",
         recorded_before="2025-12-31T23:59:59Z",
         order_by="recorded_at_desc")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events on a specific organization
+    find_by_org = scaleway.audittrail.get_event(organization_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events on a specific project
+    find_by_project = scaleway.audittrail.get_event(project_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events for a specific type of resource
+    find_by_resource_type = scaleway.audittrail.get_event(resource_type="instance_server")
     ```
 
 
@@ -325,8 +362,9 @@ def get_event_output(method_name: Optional[pulumi.Input[Optional[_builtins.str]]
                      status: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEventResult]:
     """
-    Use this data source to get a list of existing Audit Trail events.
-    For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+    The `audittrail_get_event` data source is used to retrieve information about existing Audit Trail events.
+
+    Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
 
     ## Example Usage
 
@@ -334,18 +372,30 @@ def get_event_output(method_name: Optional[pulumi.Input[Optional[_builtins.str]]
     import pulumi
     import pulumi_scaleway as scaleway
 
-    # Retrieve all audit trail events on the default organization
-    find_all = scaleway.audittrail.get_event()
-    # Retrieve audit trail events on a specific organization
-    find_by_org = scaleway.audittrail.get_event(organization_id="11111111-1111-1111-1111-111111111111")
-    # Retrieve audit trail events on a specific project
-    find_by_project = scaleway.audittrail.get_event(project_id="11111111-1111-1111-1111-111111111111")
-    # Retrieve audit trail events for a specific type of resource
-    find_by_resource_type = scaleway.audittrail.get_event(resource_type="instance_server")
     # Retrieve audit trail for a specific resource
     find_by_resource_id = scaleway.audittrail.get_event(resource_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve all audit trail events on the default organization
+    find_all = scaleway.audittrail.get_event()
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
     # Retrieve audit trail for a specific Scaleway product
     find_by_product_name = scaleway.audittrail.get_event(product_name="secret-manager")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
     # Retrieve audit trail events with various filtering
     find_with_filters = scaleway.audittrail.get_event(region="fr-par",
         service_name="instance",
@@ -356,6 +406,30 @@ def get_event_output(method_name: Optional[pulumi.Input[Optional[_builtins.str]]
         recorded_after="2025-10-01T00:00:00Z",
         recorded_before="2025-12-31T23:59:59Z",
         order_by="recorded_at_desc")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events on a specific organization
+    find_by_org = scaleway.audittrail.get_event(organization_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events on a specific project
+    find_by_project = scaleway.audittrail.get_event(project_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Retrieve audit trail events for a specific type of resource
+    find_by_resource_type = scaleway.audittrail.get_event(resource_type="instance_server")
     ```
 
 

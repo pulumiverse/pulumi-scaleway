@@ -7,7 +7,32 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Gets information about a Kubernetes Cluster's Pool.
+ * The `scaleway.kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by pool id
+ * const myKey = scaleway.kubernetes.getPool({
+ *     poolId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by pool name (need cluster_id)
+ * const myKey = scaleway.kubernetes.getPool({
+ *     name: "my-pool-name",
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getPool(args?: GetPoolArgs, opts?: pulumi.InvokeOptions): Promise<GetPoolResult> {
     args = args || {};
@@ -129,7 +154,32 @@ export interface GetPoolResult {
     readonly zone: string;
 }
 /**
- * Gets information about a Kubernetes Cluster's Pool.
+ * The `scaleway.kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by pool id
+ * const myKey = scaleway.kubernetes.getPool({
+ *     poolId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Get info by pool name (need cluster_id)
+ * const myKey = scaleway.kubernetes.getPool({
+ *     name: "my-pool-name",
+ *     clusterId: "11111111-1111-1111-1111-111111111111",
+ * });
+ * ```
  */
 export function getPoolOutput(args?: GetPoolOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPoolResult> {
     args = args || {};

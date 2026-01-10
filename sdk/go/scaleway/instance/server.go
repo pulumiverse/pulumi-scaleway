@@ -481,7 +481,7 @@ type Server struct {
 	// The security group the server is attached to
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The state of the server. Possible values are: `started`, `stopped` or `standby`.
-	State pulumi.StringPtrOutput `pulumi:"state"`
+	State pulumi.StringOutput `pulumi:"state"`
 	// The tags associated with the server.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The commercial type of the server.
@@ -1108,8 +1108,8 @@ func (o ServerOutput) SecurityGroupId() pulumi.StringOutput {
 }
 
 // The state of the server. Possible values are: `started`, `stopped` or `standby`.
-func (o ServerOutput) State() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Server) pulumi.StringPtrOutput { return v.State }).(pulumi.StringPtrOutput)
+func (o ServerOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
 
 // The tags associated with the server.

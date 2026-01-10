@@ -75,10 +75,22 @@ namespace Pulumiverse.Scaleway.Secrets
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `Data` or `DataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         [Output("data")]
-        public Output<string> Data { get; private set; } = null!;
+        public Output<string?> Data { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("dataWo")]
+        public Output<string?> DataWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only data. To update the `DataWo`, you must also update the `DataWoVersion`.
+        /// </summary>
+        [Output("dataWoVersion")]
+        public Output<int?> DataWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Description of the secret version (e.g. `my-new-description`).
@@ -147,6 +159,7 @@ namespace Pulumiverse.Scaleway.Secrets
                 AdditionalSecretOutputs =
                 {
                     "data",
+                    "dataWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -171,11 +184,11 @@ namespace Pulumiverse.Scaleway.Secrets
 
     public sealed class VersionArgs : global::Pulumi.ResourceArgs
     {
-        [Input("data", required: true)]
+        [Input("data")]
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `Data` or `DataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public Input<string>? Data
         {
@@ -186,6 +199,28 @@ namespace Pulumiverse.Scaleway.Secrets
                 _data = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("dataWo")]
+        private Input<string>? _dataWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? DataWo
+        {
+            get => _dataWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only data. To update the `DataWo`, you must also update the `DataWoVersion`.
+        /// </summary>
+        [Input("dataWoVersion")]
+        public Input<int>? DataWoVersion { get; set; }
 
         /// <summary>
         /// Description of the secret version (e.g. `my-new-description`).
@@ -223,7 +258,7 @@ namespace Pulumiverse.Scaleway.Secrets
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `Data` or `DataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public Input<string>? Data
         {
@@ -234,6 +269,28 @@ namespace Pulumiverse.Scaleway.Secrets
                 _data = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("dataWo")]
+        private Input<string>? _dataWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? DataWo
+        {
+            get => _dataWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _dataWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only data. To update the `DataWo`, you must also update the `DataWoVersion`.
+        /// </summary>
+        [Input("dataWoVersion")]
+        public Input<int>? DataWoVersion { get; set; }
 
         /// <summary>
         /// Description of the secret version (e.g. `my-new-description`).

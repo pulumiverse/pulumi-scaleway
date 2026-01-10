@@ -25,6 +25,11 @@ export const getInstance: typeof import("./getInstance").getInstance = null as a
 export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
 utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
 
+export { GetPreconfiguredAlertArgs, GetPreconfiguredAlertResult, GetPreconfiguredAlertOutputArgs } from "./getPreconfiguredAlert";
+export const getPreconfiguredAlert: typeof import("./getPreconfiguredAlert").getPreconfiguredAlert = null as any;
+export const getPreconfiguredAlertOutput: typeof import("./getPreconfiguredAlert").getPreconfiguredAlertOutput = null as any;
+utilities.lazyLoad(exports, ["getPreconfiguredAlert","getPreconfiguredAlertOutput"], () => require("./getPreconfiguredAlert"));
+
 export { GetSourceArgs, GetSourceResult, GetSourceOutputArgs } from "./getSource";
 export const getSource: typeof import("./getSource").getSource = null as any;
 export const getSourceOutput: typeof import("./getSource").getSourceOutput = null as any;

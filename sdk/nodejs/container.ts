@@ -60,6 +60,42 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Managing authentication of private containers with IAM
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Project to be referenced in the IAM policy
+ * const _default = scaleway.account.getProject({
+ *     name: "default",
+ * });
+ * // IAM resources
+ * const containerAuth = new scaleway.iam.Application("container_auth", {name: "container-auth"});
+ * const accessPrivateContainers = new scaleway.iam.Policy("access_private_containers", {
+ *     applicationId: containerAuth.id,
+ *     rules: [{
+ *         projectIds: [_default.then(_default => _default.id)],
+ *         permissionSetNames: ["ContainersPrivateAccess"],
+ *     }],
+ * });
+ * const apiKey = new scaleway.iam.ApiKey("api_key", {applicationId: containerAuth.id});
+ * // Container resources
+ * const _private = new scaleway.containers.Namespace("private", {name: "private-container-namespace"});
+ * const privateContainer = new scaleway.containers.Container("private", {
+ *     namespaceId: _private.id,
+ *     registryImage: "rg.fr-par.scw.cloud/my-registry-ns/my-image:latest",
+ *     privacy: "private",
+ *     deploy: true,
+ * });
+ * export const secretKey = apiKey.secretKey;
+ * export const containerEndpoint = privateContainer.domainName;
+ * ```
+ *
+ * Then you can access your private container using the API key:
+ *
+ * Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+ *
  * ## Protocols
  *
  * The following protocols are supported:

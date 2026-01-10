@@ -514,8 +514,9 @@ class Server(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Apple silicon. For more information,
-        see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+        The `applesilicon.Server` resource creates and manages Scaleway Apple silicon servers.
+
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 
@@ -582,8 +583,9 @@ class Server(pulumi.CustomResource):
                  args: ServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Apple silicon. For more information,
-        see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
+        The `applesilicon.Server` resource creates and manages Scaleway Apple silicon servers.
+
+        For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/apple-silicon/).
 
         ## Example Usage
 

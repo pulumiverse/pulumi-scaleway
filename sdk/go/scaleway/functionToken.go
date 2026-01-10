@@ -11,6 +11,9 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
+// > **Important:** The resource `functions.Token` has been deprecated and will no longer be supported in v1 of the API.
+// Please use IAM authentication instead. You will find an implementation example in the IAM authentication section of the Function documentation.
+//
 // The `functions.Token` resource allows you to create and manage authentication tokens for Scaleway [Serverless Functions](https://www.scaleway.com/en/docs/serverless/functions/).
 //
 // Refer to the Functions tokens [documentation](https://www.scaleway.com/en/docs/serverless/functions/how-to/create-auth-token-from-console/) and [API documentation](https://www.scaleway.com/en/developers/api/serverless-functions/#path-tokens-list-all-tokens) for more information.

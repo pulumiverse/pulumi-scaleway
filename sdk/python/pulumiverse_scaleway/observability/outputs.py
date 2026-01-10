@@ -21,6 +21,7 @@ __all__ = [
     'TokenScopes',
     'GetInstanceEndpointResult',
     'GetInstancePushUrlResult',
+    'GetPreconfiguredAlertAlertResult',
     'GetSourcesSourceResult',
 ]
 
@@ -422,6 +423,145 @@ class GetInstancePushUrlResult(dict):
         Push URL for metrics (Grafana Mimir)
         """
         return pulumi.get(self, "push_metrics_url")
+
+
+@pulumi.output_type
+class GetPreconfiguredAlertAlertResult(dict):
+    def __init__(__self__, *,
+                 annotations: Mapping[str, _builtins.str],
+                 data_source_id: _builtins.str,
+                 display_description: _builtins.str,
+                 display_name: _builtins.str,
+                 duration: _builtins.str,
+                 name: _builtins.str,
+                 preconfigured_rule_id: _builtins.str,
+                 product_family: _builtins.str,
+                 product_name: _builtins.str,
+                 rule: _builtins.str,
+                 rule_status: _builtins.str,
+                 state: _builtins.str):
+        """
+        :param Mapping[str, _builtins.str] annotations: Map of annotations attached to the alert.
+        :param _builtins.str data_source_id: Filter alerts by data source ID.
+        :param _builtins.str display_description: Human-readable description of the alert.
+        :param _builtins.str display_name: Human-readable name of the alert.
+        :param _builtins.str duration: Duration for which the condition must be true before the alert fires (e.g., "5m").
+        :param _builtins.str name: Name of the alert rule.
+        :param _builtins.str preconfigured_rule_id: Unique identifier of the preconfigured rule. Use this ID in `observability.AlertManager` resource.
+        :param _builtins.str product_family: Family of the product (e.g., "compute", "storage", "network").
+        :param _builtins.str product_name: Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+        :param _builtins.str rule: PromQL expression defining the alert condition.
+        :param _builtins.str rule_status: Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+        :param _builtins.str state: Current state of the alert (`inactive`, `pending`, `firing`).
+        """
+        pulumi.set(__self__, "annotations", annotations)
+        pulumi.set(__self__, "data_source_id", data_source_id)
+        pulumi.set(__self__, "display_description", display_description)
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "duration", duration)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "preconfigured_rule_id", preconfigured_rule_id)
+        pulumi.set(__self__, "product_family", product_family)
+        pulumi.set(__self__, "product_name", product_name)
+        pulumi.set(__self__, "rule", rule)
+        pulumi.set(__self__, "rule_status", rule_status)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def annotations(self) -> Mapping[str, _builtins.str]:
+        """
+        Map of annotations attached to the alert.
+        """
+        return pulumi.get(self, "annotations")
+
+    @_builtins.property
+    @pulumi.getter(name="dataSourceId")
+    def data_source_id(self) -> _builtins.str:
+        """
+        Filter alerts by data source ID.
+        """
+        return pulumi.get(self, "data_source_id")
+
+    @_builtins.property
+    @pulumi.getter(name="displayDescription")
+    def display_description(self) -> _builtins.str:
+        """
+        Human-readable description of the alert.
+        """
+        return pulumi.get(self, "display_description")
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Human-readable name of the alert.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def duration(self) -> _builtins.str:
+        """
+        Duration for which the condition must be true before the alert fires (e.g., "5m").
+        """
+        return pulumi.get(self, "duration")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Name of the alert rule.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="preconfiguredRuleId")
+    def preconfigured_rule_id(self) -> _builtins.str:
+        """
+        Unique identifier of the preconfigured rule. Use this ID in `observability.AlertManager` resource.
+        """
+        return pulumi.get(self, "preconfigured_rule_id")
+
+    @_builtins.property
+    @pulumi.getter(name="productFamily")
+    def product_family(self) -> _builtins.str:
+        """
+        Family of the product (e.g., "compute", "storage", "network").
+        """
+        return pulumi.get(self, "product_family")
+
+    @_builtins.property
+    @pulumi.getter(name="productName")
+    def product_name(self) -> _builtins.str:
+        """
+        Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+        """
+        return pulumi.get(self, "product_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def rule(self) -> _builtins.str:
+        """
+        PromQL expression defining the alert condition.
+        """
+        return pulumi.get(self, "rule")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleStatus")
+    def rule_status(self) -> _builtins.str:
+        """
+        Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+        """
+        return pulumi.get(self, "rule_status")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Current state of the alert (`inactive`, `pending`, `firing`).
+        """
+        return pulumi.get(self, "state")
 
 
 @pulumi.output_type

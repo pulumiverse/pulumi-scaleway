@@ -333,6 +333,8 @@ namespace Pulumiverse.Scaleway
         /// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
         /// </summary>
         public readonly string Data;
+        public readonly string DataWo;
+        public readonly int DataWoVersion;
         /// <summary>
         /// (Optional) The description of the secret version (e.g. `my-new-description`).
         /// </summary>
@@ -362,6 +364,10 @@ namespace Pulumiverse.Scaleway
 
             string data,
 
+            string dataWo,
+
+            int dataWoVersion,
+
             string description,
 
             string id,
@@ -384,6 +390,8 @@ namespace Pulumiverse.Scaleway
         {
             CreatedAt = createdAt;
             Data = data;
+            DataWo = dataWo;
+            DataWoVersion = dataWoVersion;
             Description = description;
             Id = id;
             OrganizationId = organizationId;

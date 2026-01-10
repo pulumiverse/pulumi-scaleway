@@ -13,8 +13,6 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// <summary>
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -23,6 +21,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Basic ACL usage
     ///     var aclBasic = new Scaleway.Network.PrivateNetwork("acl_basic");
     /// 
     ///     var aclBasicCluster = new Scaleway.Kubernetes.Cluster("acl_basic", new()
@@ -55,8 +54,6 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// });
     /// ```
     /// 
-    /// ### Full-isolation
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,6 +62,7 @@ namespace Pulumiverse.Scaleway.Kubernetes
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Full isolation example
     ///     var aclBasic = new Scaleway.Network.PrivateNetwork("acl_basic");
     /// 
     ///     var aclBasicCluster = new Scaleway.Kubernetes.Cluster("acl_basic", new()

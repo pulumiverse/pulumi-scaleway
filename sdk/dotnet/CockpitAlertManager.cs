@@ -17,13 +17,90 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### Enable the alert manager and configure managed alerts
+    /// ### Enable preconfigured alerts (Recommended)
     /// 
-    /// The following commands allow you to:
+    /// Use preconfigured alerts to monitor your Scaleway resources with ready-to-use alert rules:
     /// 
-    /// - enable the alert manager in a Project named `TfTestProject`
-    /// - enable [managed alerts](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#managed-alerts)
-    /// - set up [contact points](https://www.scaleway.com/en/docs/observability/cockpit/concepts/#contact-points) to receive alert notifications
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "my-observability-project",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Observability.Cockpit("main", new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///     });
+    /// 
+    ///     var all = Scaleway.Observability.GetPreconfiguredAlert.Invoke(new()
+    ///     {
+    ///         ProjectId = main.ProjectId,
+    ///     });
+    /// 
+    ///     var mainAlertManager = new Scaleway.Observability.AlertManager("main", new()
+    ///     {
+    ///         ProjectId = main.ProjectId,
+    ///         PreconfiguredAlertIds = .Where(alert =&gt; alert.ProductName == "instance").Select(alert =&gt; 
+    ///         {
+    ///             return alert.PreconfiguredRuleId;
+    ///         }).ToList(),
+    ///         ContactPoints = new[]
+    ///         {
+    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
+    ///             {
+    ///                 Email = "alerts@example.com",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Enable the alert manager with contact points
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project = new Scaleway.Account.Project("project", new()
+    ///     {
+    ///         Name = "tf_test_project",
+    ///     });
+    /// 
+    ///     var alertManager = new Scaleway.Observability.AlertManager("alert_manager", new()
+    ///     {
+    ///         ProjectId = project.Id,
+    ///         ContactPoints = new[]
+    ///         {
+    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
+    ///             {
+    ///                 Email = "alert1@example.com",
+    ///             },
+    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
+    ///             {
+    ///                 Email = "alert2@example.com",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Legacy: Enable managed alerts (Deprecated)
+    /// 
+    /// &gt; **Deprecated:** The `EnableManagedAlerts` field is deprecated. Use `PreconfiguredAlertIds` instead.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -46,11 +123,7 @@ namespace Pulumiverse.Scaleway
     ///         {
     ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
     ///             {
-    ///                 Email = "alert1@example.com",
-    ///             },
-    ///             new Scaleway.Observability.Inputs.AlertManagerContactPointArgs
-    ///             {
-    ///                 Email = "alert2@example.com",
+    ///                 Email = "alert@example.com",
     ///             },
     ///         },
     ///     });
@@ -79,16 +152,22 @@ namespace Pulumiverse.Scaleway
         public Output<string> AlertManagerUrl { get; private set; } = null!;
 
         /// <summary>
-        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key `Email`.
         /// </summary>
         [Output("contactPoints")]
         public Output<ImmutableArray<Outputs.CockpitAlertManagerContactPoint>> ContactPoints { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies whether the alert manager should be enabled. Defaults to true.
+        /// **Deprecated** (Optional, Boolean) Use `PreconfiguredAlertIds` instead. This field will be removed in a future version. When set to `True`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         /// </summary>
         [Output("enableManagedAlerts")]
-        public Output<bool?> EnableManagedAlerts { get; private set; } = null!;
+        public Output<bool> EnableManagedAlerts { get; private set; } = null!;
+
+        /// <summary>
+        /// A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+        /// </summary>
+        [Output("preconfiguredAlertIds")]
+        public Output<ImmutableArray<string>> PreconfiguredAlertIds { get; private set; } = null!;
 
         /// <summary>
         /// ) The ID of the Project the Cockpit is associated with.
@@ -153,7 +232,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitAlertManagerContactPointArgs>? _contactPoints;
 
         /// <summary>
-        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key `Email`.
         /// </summary>
         public InputList<Inputs.CockpitAlertManagerContactPointArgs> ContactPoints
         {
@@ -162,10 +241,22 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Specifies whether the alert manager should be enabled. Defaults to true.
+        /// **Deprecated** (Optional, Boolean) Use `PreconfiguredAlertIds` instead. This field will be removed in a future version. When set to `True`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         /// </summary>
         [Input("enableManagedAlerts")]
         public Input<bool>? EnableManagedAlerts { get; set; }
+
+        [Input("preconfiguredAlertIds")]
+        private InputList<string>? _preconfiguredAlertIds;
+
+        /// <summary>
+        /// A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+        /// </summary>
+        public InputList<string> PreconfiguredAlertIds
+        {
+            get => _preconfiguredAlertIds ?? (_preconfiguredAlertIds = new InputList<string>());
+            set => _preconfiguredAlertIds = value;
+        }
 
         /// <summary>
         /// ) The ID of the Project the Cockpit is associated with.
@@ -197,7 +288,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.CockpitAlertManagerContactPointGetArgs>? _contactPoints;
 
         /// <summary>
-        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key email.
+        /// A list of contact points with email addresses that will receive alerts. Each map should contain a single key `Email`.
         /// </summary>
         public InputList<Inputs.CockpitAlertManagerContactPointGetArgs> ContactPoints
         {
@@ -206,10 +297,22 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// Specifies whether the alert manager should be enabled. Defaults to true.
+        /// **Deprecated** (Optional, Boolean) Use `PreconfiguredAlertIds` instead. This field will be removed in a future version. When set to `True`, it enables *all* preconfigured alerts for the project. You cannot filter or disable individual alerts with this legacy flag.
         /// </summary>
         [Input("enableManagedAlerts")]
         public Input<bool>? EnableManagedAlerts { get; set; }
+
+        [Input("preconfiguredAlertIds")]
+        private InputList<string>? _preconfiguredAlertIds;
+
+        /// <summary>
+        /// A set of preconfigured alert rule IDs to enable explicitly. Use the `scaleway.observability.getPreconfiguredAlert` data source to list available alerts.
+        /// </summary>
+        public InputList<string> PreconfiguredAlertIds
+        {
+            get => _preconfiguredAlertIds ?? (_preconfiguredAlertIds = new InputList<string>());
+            set => _preconfiguredAlertIds = value;
+        }
 
         /// <summary>
         /// ) The ID of the Project the Cockpit is associated with.

@@ -502,7 +502,7 @@ namespace Pulumiverse.Scaleway.Instance
         /// The state of the server. Possible values are: `Started`, `Stopped` or `Standby`.
         /// </summary>
         [Output("state")]
-        public Output<string?> State { get; private set; } = null!;
+        public Output<string> State { get; private set; } = null!;
 
         /// <summary>
         /// The tags associated with the server.

@@ -7,6 +7,16 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
+ * ## Import
+ *
+ * Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
+ *
+ * bash
+ *
+ * ```sh
+ * $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
+ * ```
+ *
  * @deprecated scaleway.index/loadbalancercertificate.LoadbalancerCertificate has been deprecated in favor of scaleway.loadbalancers/certificate.Certificate
  */
 export class LoadbalancerCertificate extends pulumi.CustomResource {

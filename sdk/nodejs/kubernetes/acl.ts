@@ -9,12 +9,11 @@ import * as utilities from "../utilities";
 /**
  * ## Example Usage
  *
- * ### Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Basic ACL usage
  * const aclBasic = new scaleway.network.PrivateNetwork("acl_basic", {});
  * const aclBasicCluster = new scaleway.kubernetes.Cluster("acl_basic", {
  *     name: "acl-basic",
@@ -38,12 +37,11 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Full-isolation
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Full isolation example
  * const aclBasic = new scaleway.network.PrivateNetwork("acl_basic", {});
  * const aclBasicCluster = new scaleway.kubernetes.Cluster("acl_basic", {
  *     name: "acl-basic",

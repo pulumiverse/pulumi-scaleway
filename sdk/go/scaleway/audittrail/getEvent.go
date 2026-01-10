@@ -11,10 +11,36 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Use this data source to get a list of existing Audit Trail events.
-// For more information refer to the [Audit Trail API documentation](https://www.scaleway.com/en/developers/api/audit-trail/).
+// The `audittrail.getEvent` data source is used to retrieve information about existing Audit Trail events.
+//
+// Refer to the Audit Trail [documentation](https://www.scaleway.com/en/docs/audit-trail/) and [API documentation](https://www.scaleway.com/en/developers/api/audit-trail/) for more information.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Retrieve audit trail for a specific resource
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//				ResourceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ```go
 // package main
@@ -33,43 +59,51 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Retrieve audit trail events on a specific organization
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
-//				OrganizationId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// Retrieve audit trail events on a specific project
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
-//				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// Retrieve audit trail events for a specific type of resource
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
-//				ResourceType: pulumi.StringRef("instance_server"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			// Retrieve audit trail for a specific resource
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
-//				ResourceId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Retrieve audit trail for a specific Scaleway product
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
 //				ProductName: pulumi.StringRef("secret-manager"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Retrieve audit trail events with various filtering
-//			_, err = audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
 //				Region:         pulumi.StringRef("fr-par"),
 //				ServiceName:    pulumi.StringRef("instance"),
 //				MethodName:     pulumi.StringRef("CreateServer"),
@@ -79,6 +113,81 @@ import (
 //				RecordedAfter:  pulumi.StringRef("2025-10-01T00:00:00Z"),
 //				RecordedBefore: pulumi.StringRef("2025-12-31T23:59:59Z"),
 //				OrderBy:        pulumi.StringRef("recorded_at_desc"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Retrieve audit trail events on a specific organization
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//				OrganizationId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Retrieve audit trail events on a specific project
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//				ProjectId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/audittrail"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Retrieve audit trail events for a specific type of resource
+//			_, err := audittrail.GetEvent(ctx, &audittrail.GetEventArgs{
+//				ResourceType: pulumi.StringRef("instance_server"),
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -153,6 +153,8 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// &gt; **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `Engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `&gt;= 2.61.0` before upgrading your Database Instance engine version.
+    /// 
     /// ### Examples of endpoint configuration
     /// 
     /// Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.

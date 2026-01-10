@@ -1920,7 +1920,7 @@ class InstanceServer(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def state(self) -> pulumi.Output[_builtins.str]:
         """
         The state of the server. Possible values are: `started`, `stopped` or `standby`.
         """

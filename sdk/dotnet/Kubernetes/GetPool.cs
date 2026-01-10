@@ -13,19 +13,142 @@ namespace Pulumiverse.Scaleway.Kubernetes
     public static class GetPool
     {
         /// <summary>
-        /// Gets information about a Kubernetes Cluster's Pool.
+        /// The `scaleway.kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool id
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         PoolId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool name (need cluster_id)
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         Name = "my-pool-name",
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetPoolResult> InvokeAsync(GetPoolArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetPoolResult>("scaleway:kubernetes/getPool:getPool", args ?? new GetPoolArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes Cluster's Pool.
+        /// The `scaleway.kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool id
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         PoolId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool name (need cluster_id)
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         Name = "my-pool-name",
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetPoolResult> Invoke(GetPoolInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetPoolResult>("scaleway:kubernetes/getPool:getPool", args ?? new GetPoolInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes Cluster's Pool.
+        /// The `scaleway.kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+        /// 
+        /// 
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool id
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         PoolId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Scaleway = Pulumi.Scaleway;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Get info by pool name (need cluster_id)
+        ///     var myKey = Scaleway.Kubernetes.GetPool.Invoke(new()
+        ///     {
+        ///         Name = "my-pool-name",
+        ///         ClusterId = "11111111-1111-1111-1111-111111111111",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetPoolResult> Invoke(GetPoolInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetPoolResult>("scaleway:kubernetes/getPool:getPool", args ?? new GetPoolInvokeArgs(), options.WithDefaults());

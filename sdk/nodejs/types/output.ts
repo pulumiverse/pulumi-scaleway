@@ -10188,6 +10188,57 @@ export namespace observability {
         pushMetricsUrl: string;
     }
 
+    export interface GetPreconfiguredAlertAlert {
+        /**
+         * Map of annotations attached to the alert.
+         */
+        annotations: {[key: string]: string};
+        /**
+         * Filter alerts by data source ID.
+         */
+        dataSourceId: string;
+        /**
+         * Human-readable description of the alert.
+         */
+        displayDescription: string;
+        /**
+         * Human-readable name of the alert.
+         */
+        displayName: string;
+        /**
+         * Duration for which the condition must be true before the alert fires (e.g., "5m").
+         */
+        duration: string;
+        /**
+         * Name of the alert rule.
+         */
+        name: string;
+        /**
+         * Unique identifier of the preconfigured rule. Use this ID in `scaleway.observability.AlertManager` resource.
+         */
+        preconfiguredRuleId: string;
+        /**
+         * Family of the product (e.g., "compute", "storage", "network").
+         */
+        productFamily: string;
+        /**
+         * Scaleway product associated with the alert (e.g., "instance", "rdb", "kubernetes").
+         */
+        productName: string;
+        /**
+         * PromQL expression defining the alert condition.
+         */
+        rule: string;
+        /**
+         * Filter alerts by rule status. Valid values are `enabled` or `disabled`.
+         */
+        ruleStatus: string;
+        /**
+         * Current state of the alert (`inactive`, `pending`, `firing`).
+         */
+        state: string;
+    }
+
     export interface GetSourcesSource {
         /**
          * The date and time of the creation of the cockpit datasource.

@@ -7,11 +7,11 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway Kubernetes clusters. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/).
+ * The `scaleway.kubernetes.Cluster` resource allows you to create and manage Scaleway Kubernetes clusters.
+ *
+ * Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
  *
  * ## Example Usage
- *
- * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -32,32 +32,6 @@ import * as utilities from "./utilities";
  *     size: 1,
  * });
  * ```
- *
- * ### Multicloud
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const cluster = new scaleway.kubernetes.Cluster("cluster", {
- *     name: "tf-cluster",
- *     type: "multicloud",
- *     version: "1.32.3",
- *     cni: "kilo",
- *     deleteAdditionalResources: false,
- * });
- * const pool = new scaleway.kubernetes.Pool("pool", {
- *     clusterId: cluster.id,
- *     name: "tf-pool",
- *     nodeType: "external",
- *     size: 0,
- *     minSize: 0,
- * });
- * ```
- *
- * For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to this guide.
- *
- * ### With additional configuration
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -94,47 +68,13 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### With the kubernetes provider
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as _null from "@pulumi/null";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn = new scaleway.network.PrivateNetwork("pn", {});
- * const cluster = new scaleway.kubernetes.Cluster("cluster", {
- *     name: "tf-cluster",
- *     version: "1.29.1",
- *     cni: "cilium",
- *     privateNetworkId: pn.id,
- *     deleteAdditionalResources: false,
- * });
- * const pool = new scaleway.kubernetes.Pool("pool", {
- *     clusterId: cluster.id,
- *     name: "tf-pool",
- *     nodeType: "DEV1-M",
- *     size: 1,
- * });
- * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
- *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
- *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
- *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
- * }}, {
- *     dependsOn: [pool],
- * });
- * ```
- *
- * The `nullResource` is needed because when the cluster is created, its status is `poolRequired`, but the kubeconfig can already be downloaded.
- * It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
- *
- * ### With the Helm provider
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as _null from "@pulumi/null";
  * import * as helm from "@pulumi/helm";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * // Example with an Helm provider
  * const pn = new scaleway.network.PrivateNetwork("pn", {});
  * const cluster = new scaleway.kubernetes.Cluster("cluster", {
  *     name: "tf-cluster",
@@ -187,6 +127,59 @@ import * as utilities from "./utilities";
  *             value: "Local",
  *         },
  *     ],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as _null from "@pulumi/null";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Example with the kubernetes provider 
+ * const pn = new scaleway.network.PrivateNetwork("pn", {});
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
+ *     name: "tf-cluster",
+ *     version: "1.29.1",
+ *     cni: "cilium",
+ *     privateNetworkId: pn.id,
+ *     deleteAdditionalResources: false,
+ * });
+ * const pool = new scaleway.kubernetes.Pool("pool", {
+ *     clusterId: cluster.id,
+ *     name: "tf-pool",
+ *     nodeType: "DEV1-M",
+ *     size: 1,
+ * });
+ * // The `null_resource` is needed because when the cluster is created, its status is `pool_required`, but the kubeconfig can already be downloaded.
+ * // It leads the `kubernetes` provider to start creating its objects, but the DNS entry for the Kubernetes master is not yet ready, that's why it's needed to wait for at least a pool.
+ * const kubeconfig = new _null.Resource("kubeconfig", {triggers: {
+ *     host: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].host),
+ *     token: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].token),
+ *     clusterCaCertificate: cluster.kubeconfigs.apply(kubeconfigs => kubeconfigs[0].clusterCaCertificate),
+ * }}, {
+ *     dependsOn: [pool],
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * // Multicloud Kubernetes Cluster Example
+ * // For a detailed example of how to add or run Elastic Metal servers instead of Instances on your cluster, please refer to [this guide](../guides/multicloud_cluster_with_baremetal_servers.md).
+ * const cluster = new scaleway.kubernetes.Cluster("cluster", {
+ *     name: "tf-cluster",
+ *     type: "multicloud",
+ *     version: "1.32.3",
+ *     cni: "kilo",
+ *     deleteAdditionalResources: false,
+ * });
+ * const pool = new scaleway.kubernetes.Pool("pool", {
+ *     clusterId: cluster.id,
+ *     name: "tf-pool",
+ *     nodeType: "external",
+ *     size: 0,
+ *     minSize: 0,
  * });
  * ```
  *

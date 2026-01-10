@@ -345,7 +345,28 @@ def get_pool(cluster_id: Optional[_builtins.str] = None,
              size: Optional[_builtins.int] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPoolResult:
     """
-    Gets information about a Kubernetes Cluster's Pool.
+    The `kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by pool id
+    my_key = scaleway.kubernetes.get_pool(pool_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by pool name (need cluster_id)
+    my_key = scaleway.kubernetes.get_pool(name="my-pool-name",
+        cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
 
 
     :param _builtins.str cluster_id: The cluster ID. Required when `name` is set.
@@ -399,7 +420,28 @@ def get_pool_output(cluster_id: Optional[pulumi.Input[Optional[_builtins.str]]] 
                     size: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPoolResult]:
     """
-    Gets information about a Kubernetes Cluster's Pool.
+    The `kubernetes.Pool` data source is used to retrieve information about a Kubernetes Cluster's Pool.
+
+    Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by pool id
+    my_key = scaleway.kubernetes.get_pool(pool_id="11111111-1111-1111-1111-111111111111")
+    ```
+
+    ```python
+    import pulumi
+    import pulumi_scaleway as scaleway
+
+    # Get info by pool name (need cluster_id)
+    my_key = scaleway.kubernetes.get_pool(name="my-pool-name",
+        cluster_id="11111111-1111-1111-1111-111111111111")
+    ```
 
 
     :param _builtins.str cluster_id: The cluster ID. Required when `name` is set.

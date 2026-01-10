@@ -28,13 +28,19 @@ class GetSecretVersionResult:
     """
     A collection of values returned by getSecretVersion.
     """
-    def __init__(__self__, created_at=None, data=None, description=None, id=None, organization_id=None, project_id=None, region=None, revision=None, secret_id=None, secret_name=None, status=None, updated_at=None):
+    def __init__(__self__, created_at=None, data=None, data_wo=None, data_wo_version=None, description=None, id=None, organization_id=None, project_id=None, region=None, revision=None, secret_id=None, secret_name=None, status=None, updated_at=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
         if data and not isinstance(data, str):
             raise TypeError("Expected argument 'data' to be a str")
         pulumi.set(__self__, "data", data)
+        if data_wo and not isinstance(data_wo, str):
+            raise TypeError("Expected argument 'data_wo' to be a str")
+        pulumi.set(__self__, "data_wo", data_wo)
+        if data_wo_version and not isinstance(data_wo_version, int):
+            raise TypeError("Expected argument 'data_wo_version' to be a int")
+        pulumi.set(__self__, "data_wo_version", data_wo_version)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -81,6 +87,16 @@ class GetSecretVersionResult:
         The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
+
+    @_builtins.property
+    @pulumi.getter(name="dataWo")
+    def data_wo(self) -> _builtins.str:
+        return pulumi.get(self, "data_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="dataWoVersion")
+    def data_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "data_wo_version")
 
     @_builtins.property
     @pulumi.getter
@@ -153,6 +169,8 @@ class AwaitableGetSecretVersionResult(GetSecretVersionResult):
         return GetSecretVersionResult(
             created_at=self.created_at,
             data=self.data,
+            data_wo=self.data_wo,
+            data_wo_version=self.data_wo_version,
             description=self.description,
             id=self.id,
             organization_id=self.organization_id,
@@ -244,6 +262,8 @@ def get_secret_version(organization_id: Optional[_builtins.str] = None,
     return AwaitableGetSecretVersionResult(
         created_at=pulumi.get(__ret__, 'created_at'),
         data=pulumi.get(__ret__, 'data'),
+        data_wo=pulumi.get(__ret__, 'data_wo'),
+        data_wo_version=pulumi.get(__ret__, 'data_wo_version'),
         description=pulumi.get(__ret__, 'description'),
         id=pulumi.get(__ret__, 'id'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
@@ -332,6 +352,8 @@ def get_secret_version_output(organization_id: Optional[pulumi.Input[Optional[_b
     return __ret__.apply(lambda __response__: GetSecretVersionResult(
         created_at=pulumi.get(__response__, 'created_at'),
         data=pulumi.get(__response__, 'data'),
+        data_wo=pulumi.get(__response__, 'data_wo'),
+        data_wo_version=pulumi.get(__response__, 'data_wo_version'),
         description=pulumi.get(__response__, 'description'),
         id=pulumi.get(__response__, 'id'),
         organization_id=pulumi.get(__response__, 'organization_id'),

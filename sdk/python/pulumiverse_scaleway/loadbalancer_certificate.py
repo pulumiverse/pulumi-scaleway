@@ -274,7 +274,16 @@ class LoadbalancerCertificate(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Create a LoadbalancerCertificate resource with the given unique name, props, and options.
+        ## Import
+
+        Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Union['LoadbalancerCertificateCustomCertificateArgs', 'LoadbalancerCertificateCustomCertificateArgsDict']] custom_certificate: The custom type certificate type configuration
@@ -289,7 +298,16 @@ class LoadbalancerCertificate(pulumi.CustomResource):
                  args: LoadbalancerCertificateArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LoadbalancerCertificate resource with the given unique name, props, and options.
+        ## Import
+
+        Load Balancer certificates can be imported using the `{zone}/{id}`, e.g.
+
+        bash
+
+        ```sh
+        $ pulumi import scaleway:index/loadbalancerCertificate:LoadbalancerCertificate cert01 fr-par-1/11111111-1111-1111-1111-111111111111
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoadbalancerCertificateArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.

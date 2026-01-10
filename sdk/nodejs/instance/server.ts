@@ -371,7 +371,7 @@ export class Server extends pulumi.CustomResource {
     /**
      * The state of the server. Possible values are: `started`, `stopped` or `standby`.
      */
-    declare public readonly state: pulumi.Output<string | undefined>;
+    declare public readonly state: pulumi.Output<string>;
     /**
      * The tags associated with the server.
      */

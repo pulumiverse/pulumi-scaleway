@@ -19,35 +19,32 @@ __all__ = ['SecretVersionInitArgs', 'SecretVersion']
 @pulumi.input_type
 class SecretVersionInitArgs:
     def __init__(__self__, *,
-                 data: pulumi.Input[_builtins.str],
                  secret_id: pulumi.Input[_builtins.str],
+                 data: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretVersion resource.
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         """
-        pulumi.set(__self__, "data", data)
         pulumi.set(__self__, "secret_id", secret_id)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if data_wo is not None:
+            pulumi.set(__self__, "data_wo", data_wo)
+        if data_wo_version is not None:
+            pulumi.set(__self__, "data_wo_version", data_wo_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if region is not None:
             pulumi.set(__self__, "region", region)
-
-    @_builtins.property
-    @pulumi.getter
-    def data(self) -> pulumi.Input[_builtins.str]:
-        """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
-        """
-        return pulumi.get(self, "data")
-
-    @data.setter
-    def data(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "data", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
@@ -60,6 +57,42 @@ class SecretVersionInitArgs:
     @secret_id.setter
     def secret_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "secret_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def data(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        """
+        return pulumi.get(self, "data")
+
+    @data.setter
+    def data(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataWo")
+    def data_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "data_wo")
+
+    @data_wo.setter
+    def data_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataWoVersion")
+    def data_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
+        """
+        return pulumi.get(self, "data_wo_version")
+
+    @data_wo_version.setter
+    def data_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "data_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -91,6 +124,8 @@ class _SecretVersionState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  data: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  revision: Optional[pulumi.Input[_builtins.str]] = None,
@@ -100,7 +135,9 @@ class _SecretVersionState:
         """
         Input properties used for looking up and filtering SecretVersion resources.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         :param pulumi.Input[_builtins.str] revision: The revision number of the secret version.
@@ -112,6 +149,10 @@ class _SecretVersionState:
             pulumi.set(__self__, "created_at", created_at)
         if data is not None:
             pulumi.set(__self__, "data", data)
+        if data_wo is not None:
+            pulumi.set(__self__, "data_wo", data_wo)
+        if data_wo_version is not None:
+            pulumi.set(__self__, "data_wo_version", data_wo_version)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if region is not None:
@@ -141,13 +182,37 @@ class _SecretVersionState:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
 
     @data.setter
     def data(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "data", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataWo")
+    def data_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "data_wo")
+
+    @data_wo.setter
+    def data_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "data_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dataWoVersion")
+    def data_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
+        """
+        return pulumi.get(self, "data_wo_version")
+
+    @data_wo_version.setter
+    def data_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "data_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -234,6 +299,8 @@ class SecretVersion(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -283,7 +350,9 @@ class SecretVersion(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
@@ -353,6 +422,8 @@ class SecretVersion(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -366,9 +437,9 @@ class SecretVersion(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SecretVersionInitArgs.__new__(SecretVersionInitArgs)
 
-            if data is None and not opts.urn:
-                raise TypeError("Missing required property 'data'")
             __props__.__dict__["data"] = None if data is None else pulumi.Output.secret(data)
+            __props__.__dict__["data_wo"] = None if data_wo is None else pulumi.Output.secret(data_wo)
+            __props__.__dict__["data_wo_version"] = data_wo_version
             __props__.__dict__["description"] = description
             __props__.__dict__["region"] = region
             if secret_id is None and not opts.urn:
@@ -378,7 +449,7 @@ class SecretVersion(pulumi.CustomResource):
             __props__.__dict__["revision"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["data"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["data", "dataWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(SecretVersion, __self__).__init__(
             'scaleway:index/secretVersion:SecretVersion',
@@ -392,6 +463,8 @@ class SecretVersion(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             data: Optional[pulumi.Input[_builtins.str]] = None,
+            data_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            data_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             description: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             revision: Optional[pulumi.Input[_builtins.str]] = None,
@@ -406,7 +479,9 @@ class SecretVersion(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
         :param pulumi.Input[_builtins.str] revision: The revision number of the secret version.
@@ -420,6 +495,8 @@ class SecretVersion(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["data"] = data
+        __props__.__dict__["data_wo"] = data_wo
+        __props__.__dict__["data_wo_version"] = data_wo_version
         __props__.__dict__["description"] = description
         __props__.__dict__["region"] = region
         __props__.__dict__["revision"] = revision
@@ -438,11 +515,27 @@ class SecretVersion(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def data(self) -> pulumi.Output[_builtins.str]:
+    def data(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
         """
         return pulumi.get(self, "data")
+
+    @_builtins.property
+    @pulumi.getter(name="dataWo")
+    def data_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "data_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="dataWoVersion")
+    def data_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
+        """
+        return pulumi.get(self, "data_wo_version")
 
     @_builtins.property
     @pulumi.getter

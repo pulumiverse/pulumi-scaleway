@@ -87,6 +87,86 @@ import (
 //
 // ```
 //
+// ### Managing authentication of private containers with IAM
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Project to be referenced in the IAM policy
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// IAM resources
+//			containerAuth, err := iam.NewApplication(ctx, "container_auth", &iam.ApplicationArgs{
+//				Name: pulumi.String("container-auth"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = iam.NewPolicy(ctx, "access_private_containers", &iam.PolicyArgs{
+//				ApplicationId: containerAuth.ID(),
+//				Rules: iam.PolicyRuleArray{
+//					&iam.PolicyRuleArgs{
+//						ProjectIds: pulumi.StringArray{
+//							pulumi.String(_default.Id),
+//						},
+//						PermissionSetNames: pulumi.StringArray{
+//							pulumi.String("ContainersPrivateAccess"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			apiKey, err := iam.NewApiKey(ctx, "api_key", &iam.ApiKeyArgs{
+//				ApplicationId: containerAuth.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Container resources
+//			private, err := containers.NewNamespace(ctx, "private", &containers.NamespaceArgs{
+//				Name: pulumi.String("private-container-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			privateContainer, err := containers.NewContainer(ctx, "private", &containers.ContainerArgs{
+//				NamespaceId:   private.ID(),
+//				RegistryImage: pulumi.String("rg.fr-par.scw.cloud/my-registry-ns/my-image:latest"),
+//				Privacy:       pulumi.String("private"),
+//				Deploy:        pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("secretKey", apiKey.SecretKey)
+//			ctx.Export("containerEndpoint", privateContainer.DomainName)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Then you can access your private container using the API key:
+//
+// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+//
 // ## Protocols
 //
 // The following protocols are supported:

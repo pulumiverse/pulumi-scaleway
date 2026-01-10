@@ -14,14 +14,15 @@ namespace Pulumiverse.Scaleway
     public static class GetK8sVersion
     {
         /// <summary>
-        /// Gets information about a Kubernetes version.
-        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+        /// The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
         /// 
         /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
         /// 
-        /// ## Example Usage
         /// 
-        /// ### Use the latest version
+        /// 
+        /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -31,6 +32,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use the latest version
         ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
@@ -39,8 +41,6 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ### Use a specific version
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -49,6 +49,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use a specific version
         ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",
@@ -61,14 +62,15 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes version.
-        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+        /// The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
         /// 
         /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
         /// 
-        /// ## Example Usage
         /// 
-        /// ### Use the latest version
+        /// 
+        /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -78,6 +80,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use the latest version
         ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
@@ -86,8 +89,6 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ### Use a specific version
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -96,6 +97,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use a specific version
         ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",
@@ -108,14 +110,15 @@ namespace Pulumiverse.Scaleway
             => global::Pulumi.Deployment.Instance.Invoke<GetK8sVersionResult>("scaleway:index/getK8sVersion:getK8sVersion", args ?? new GetK8sVersionInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Gets information about a Kubernetes version.
-        /// For more information, see the [API documentation](https://developers.scaleway.com/en/products/k8s/api).
+        /// The `scaleway.kubernetes.getVersion` data source is used to retrieve information about a Kubernetes version.
+        /// 
+        /// Refer to the Kubernetes [documentation](https://www.scaleway.com/en/docs/compute/kubernetes/) and [API documentation](https://www.scaleway.com/en/developers/api/kubernetes/) for more information.
         /// 
         /// You can also use the [scaleway-cli](https://github.com/scaleway/scaleway-cli) with `scw k8s version list` to list all available versions.
         /// 
-        /// ## Example Usage
         /// 
-        /// ### Use the latest version
+        /// 
+        /// ## Example Usage
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
@@ -125,6 +128,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use the latest version
         ///     var latest = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "latest",
@@ -133,8 +137,6 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ### Use a specific version
-        /// 
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -143,6 +145,7 @@ namespace Pulumiverse.Scaleway
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // Use a specific version
         ///     var byName = Scaleway.Kubernetes.GetVersion.Invoke(new()
         ///     {
         ///         Name = "1.26.0",

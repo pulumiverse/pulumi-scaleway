@@ -199,12 +199,11 @@ class Acl(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Basic ACL usage
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
@@ -226,12 +225,11 @@ class Acl(pulumi.CustomResource):
             ])
         ```
 
-        ### Full-isolation
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Full isolation example
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
@@ -276,12 +274,11 @@ class Acl(pulumi.CustomResource):
         """
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Basic ACL usage
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",
@@ -303,12 +300,11 @@ class Acl(pulumi.CustomResource):
             ])
         ```
 
-        ### Full-isolation
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        # Full isolation example
         acl_basic = scaleway.network.PrivateNetwork("acl_basic")
         acl_basic_cluster = scaleway.kubernetes.Cluster("acl_basic",
             name="acl-basic",

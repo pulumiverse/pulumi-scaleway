@@ -124,6 +124,8 @@ type Definition struct {
 	Env pulumi.StringMapOutput `pulumi:"env"`
 	// The uri of the container image that will be used for the job run.
 	ImageUri pulumi.StringPtrOutput `pulumi:"imageUri"`
+	// The local storage capacity of the job in MiB.
+	LocalStorageCapacity pulumi.IntPtrOutput `pulumi:"localStorageCapacity"`
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
 	// The name of the job.
@@ -192,6 +194,8 @@ type definitionState struct {
 	Env map[string]string `pulumi:"env"`
 	// The uri of the container image that will be used for the job run.
 	ImageUri *string `pulumi:"imageUri"`
+	// The local storage capacity of the job in MiB.
+	LocalStorageCapacity *int `pulumi:"localStorageCapacity"`
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit *int `pulumi:"memoryLimit"`
 	// The name of the job.
@@ -219,6 +223,8 @@ type DefinitionState struct {
 	Env pulumi.StringMapInput
 	// The uri of the container image that will be used for the job run.
 	ImageUri pulumi.StringPtrInput
+	// The local storage capacity of the job in MiB.
+	LocalStorageCapacity pulumi.IntPtrInput
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit pulumi.IntPtrInput
 	// The name of the job.
@@ -250,6 +256,8 @@ type definitionArgs struct {
 	Env map[string]string `pulumi:"env"`
 	// The uri of the container image that will be used for the job run.
 	ImageUri *string `pulumi:"imageUri"`
+	// The local storage capacity of the job in MiB.
+	LocalStorageCapacity *int `pulumi:"localStorageCapacity"`
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit int `pulumi:"memoryLimit"`
 	// The name of the job.
@@ -278,6 +286,8 @@ type DefinitionArgs struct {
 	Env pulumi.StringMapInput
 	// The uri of the container image that will be used for the job run.
 	ImageUri pulumi.StringPtrInput
+	// The local storage capacity of the job in MiB.
+	LocalStorageCapacity pulumi.IntPtrInput
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit pulumi.IntInput
 	// The name of the job.
@@ -407,6 +417,11 @@ func (o DefinitionOutput) Env() pulumi.StringMapOutput {
 // The uri of the container image that will be used for the job run.
 func (o DefinitionOutput) ImageUri() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Definition) pulumi.StringPtrOutput { return v.ImageUri }).(pulumi.StringPtrOutput)
+}
+
+// The local storage capacity of the job in MiB.
+func (o DefinitionOutput) LocalStorageCapacity() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Definition) pulumi.IntPtrOutput { return v.LocalStorageCapacity }).(pulumi.IntPtrOutput)
 }
 
 // The memory computing resources in MB to allocate to each container running the job.
