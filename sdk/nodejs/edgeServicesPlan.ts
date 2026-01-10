@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesPlan("main", {name: "starter"});
+ * const main = new scaleway.edgeservices.Plan("main", {name: "starter"});
  * ```
  *
  * ## Import
@@ -27,6 +27,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan
  */
 export class EdgeServicesPlan extends pulumi.CustomResource {
     /**
@@ -39,6 +41,7 @@ export class EdgeServicesPlan extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesPlanState, opts?: pulumi.CustomResourceOptions): EdgeServicesPlan {
+        pulumi.log.warn("EdgeServicesPlan is deprecated: scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan")
         return new EdgeServicesPlan(name, <any>state, { ...opts, id: id });
     }
 
@@ -72,8 +75,11 @@ export class EdgeServicesPlan extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan */
     constructor(name: string, args?: EdgeServicesPlanArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan */
     constructor(name: string, argsOrState?: EdgeServicesPlanArgs | EdgeServicesPlanState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesPlan is deprecated: scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

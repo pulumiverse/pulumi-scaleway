@@ -237,6 +237,8 @@ if typing.TYPE_CHECKING:
     datawarehouse = __datawarehouse
     import pulumiverse_scaleway.domain as __domain
     domain = __domain
+    import pulumiverse_scaleway.edgeservices as __edgeservices
+    edgeservices = __edgeservices
     import pulumiverse_scaleway.elasticmetal as __elasticmetal
     elasticmetal = __elasticmetal
     import pulumiverse_scaleway.functions as __functions
@@ -291,6 +293,7 @@ else:
     databases = _utilities.lazy_import('pulumiverse_scaleway.databases')
     datawarehouse = _utilities.lazy_import('pulumiverse_scaleway.datawarehouse')
     domain = _utilities.lazy_import('pulumiverse_scaleway.domain')
+    edgeservices = _utilities.lazy_import('pulumiverse_scaleway.edgeservices')
     elasticmetal = _utilities.lazy_import('pulumiverse_scaleway.elasticmetal')
     functions = _utilities.lazy_import('pulumiverse_scaleway.functions')
     hosting = _utilities.lazy_import('pulumiverse_scaleway.hosting')
@@ -546,6 +549,78 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.domain",
   "classes": {
    "scaleway:domain/zone:Zone": "Zone"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/backendStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/backendStage:BackendStage": "BackendStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/cacheStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/cacheStage:CacheStage": "CacheStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/dnsStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/dnsStage:DnsStage": "DnsStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/headStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/headStage:HeadStage": "HeadStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/pipeline",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/pipeline:Pipeline": "Pipeline"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/plan",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/plan:Plan": "Plan"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/routeStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/routeStage:RouteStage": "RouteStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/tlsStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/tlsStage:TlsStage": "TlsStage"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "edgeservices/wafStage",
+  "fqn": "pulumiverse_scaleway.edgeservices",
+  "classes": {
+   "scaleway:edgeservices/wafStage:WafStage": "WafStage"
   }
  },
  {

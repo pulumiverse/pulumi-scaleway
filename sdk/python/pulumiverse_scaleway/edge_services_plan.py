@@ -96,8 +96,13 @@ class _EdgeServicesPlanState:
         pulumi.set(self, "project_id", value)
 
 
+warnings.warn("""scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesPlan:EdgeServicesPlan")
 class EdgeServicesPlan(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -116,7 +121,7 @@ class EdgeServicesPlan(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPlan("main", name="starter")
+        main = scaleway.edgeservices.Plan("main", name="starter")
         ```
 
         ## Import
@@ -151,7 +156,7 @@ class EdgeServicesPlan(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPlan("main", name="starter")
+        main = scaleway.edgeservices.Plan("main", name="starter")
         ```
 
         ## Import
@@ -182,6 +187,7 @@ class EdgeServicesPlan(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesPlan is deprecated: scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

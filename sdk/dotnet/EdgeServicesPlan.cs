@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesPlan("main", new()
+    ///     var main = new Scaleway.Edgeservices.Plan("main", new()
     ///     {
     ///         Name = "starter",
     ///     });
@@ -43,6 +43,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan")]
     [ScalewayResourceType("scaleway:index/edgeServicesPlan:EdgeServicesPlan")]
     public partial class EdgeServicesPlan : global::Pulumi.CustomResource
     {

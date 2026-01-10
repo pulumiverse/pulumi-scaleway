@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesCacheStage(ctx, "main", &scaleway.EdgeServicesCacheStageArgs{
+//			_, err := edgeservices.NewCacheStage(ctx, "main", &edgeservices.CacheStageArgs{
 //				PipelineId:     pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
 //				BackendStageId: pulumi.Any(mainScalewayEdgeServicesBackendStage.Id),
 //			})
@@ -51,13 +51,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesCacheStage(ctx, "main", &scaleway.EdgeServicesCacheStageArgs{
+//			_, err := edgeservices.NewCacheStage(ctx, "main", &edgeservices.CacheStageArgs{
 //				PipelineId:     pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
 //				BackendStageId: pulumi.Any(mainScalewayEdgeServicesBackendStage.Id),
 //				Purge: []map[string]interface{}{
@@ -85,6 +85,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage
 type EdgeServicesCacheStage struct {
 	pulumi.CustomResourceState
 

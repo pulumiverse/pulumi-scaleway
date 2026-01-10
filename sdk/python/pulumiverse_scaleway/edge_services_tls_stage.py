@@ -337,8 +337,13 @@ class _EdgeServicesTlsStageState:
         pulumi.set(self, "waf_stage_id", value)
 
 
+warnings.warn("""scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage")
 class EdgeServicesTlsStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -363,7 +368,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesTlsStage("main",
+        main = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             managed_certificate=True)
         ```
@@ -374,7 +379,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesTlsStage("main",
+        main = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             secrets=[{
                 "secret_id": "11111111-1111-1111-1111-111111111111",
@@ -420,7 +425,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesTlsStage("main",
+        main = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             managed_certificate=True)
         ```
@@ -431,7 +436,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesTlsStage("main",
+        main = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             secrets=[{
                 "secret_id": "11111111-1111-1111-1111-111111111111",
@@ -473,6 +478,7 @@ class EdgeServicesTlsStage(pulumi.CustomResource):
                  secrets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesTlsStageSecretArgs', 'EdgeServicesTlsStageSecretArgsDict']]]]] = None,
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesTlsStage is deprecated: scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

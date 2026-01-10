@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesTlsStage("main", {
+ * const main = new scaleway.edgeservices.TlsStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     managedCertificate: true,
  * });
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesTlsStage("main", {
+ * const main = new scaleway.edgeservices.TlsStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     secrets: [{
  *         secretId: "11111111-1111-1111-1111-111111111111",
@@ -47,6 +47,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage
  */
 export class EdgeServicesTlsStage extends pulumi.CustomResource {
     /**
@@ -59,6 +61,7 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesTlsStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesTlsStage {
+        pulumi.log.warn("EdgeServicesTlsStage is deprecated: scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage")
         return new EdgeServicesTlsStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -128,8 +131,11 @@ export class EdgeServicesTlsStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage */
     constructor(name: string, args: EdgeServicesTlsStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage */
     constructor(name: string, argsOrState?: EdgeServicesTlsStageArgs | EdgeServicesTlsStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesTlsStage is deprecated: scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

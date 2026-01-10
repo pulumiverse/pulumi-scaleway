@@ -1036,6 +1036,7 @@ import * as containers from "./containers";
 import * as databases from "./databases";
 import * as datawarehouse from "./datawarehouse";
 import * as domain from "./domain";
+import * as edgeservices from "./edgeservices";
 import * as elasticmetal from "./elasticmetal";
 import * as functions from "./functions";
 import * as hosting from "./hosting";
@@ -1071,6 +1072,7 @@ export {
     databases,
     datawarehouse,
     domain,
+    edgeservices,
     elasticmetal,
     functions,
     hosting,

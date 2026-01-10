@@ -222,8 +222,13 @@ class _EdgeServicesWafStageState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesWafStage:EdgeServicesWafStage")
 class EdgeServicesWafStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -245,7 +250,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesWafStage("main",
+        main = scaleway.edgeservices.WafStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             mode="enable",
             paranoia_level=3)
@@ -286,7 +291,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesWafStage("main",
+        main = scaleway.edgeservices.WafStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             mode="enable",
             paranoia_level=3)
@@ -323,6 +328,7 @@ class EdgeServicesWafStage(pulumi.CustomResource):
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesWafStage is deprecated: scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

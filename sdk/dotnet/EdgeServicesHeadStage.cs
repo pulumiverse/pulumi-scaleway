@@ -25,13 +25,13 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesPipeline("main", new()
+    ///     var main = new Scaleway.Edgeservices.Pipeline("main", new()
     ///     {
     ///         Name = "my-edge_services-pipeline",
     ///         Description = "pipeline description",
     ///     });
     /// 
-    ///     var mainEdgeServicesDnsStage = new Scaleway.EdgeServicesDnsStage("main", new()
+    ///     var mainDnsStage = new Scaleway.Edgeservices.DnsStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
     ///         TlsStageId = mainScalewayEdgeServicesTlsStage.Id,
@@ -41,10 +41,10 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesHeadStage = new Scaleway.EdgeServicesHeadStage("main", new()
+    ///     var mainHeadStage = new Scaleway.Edgeservices.HeadStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         HeadStageId = mainEdgeServicesDnsStage.Id,
+    ///         HeadStageId = mainDnsStage.Id,
     ///     });
     /// 
     /// });
@@ -60,6 +60,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage")]
     public partial class EdgeServicesHeadStage : global::Pulumi.CustomResource
     {

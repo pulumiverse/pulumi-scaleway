@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesTlsStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.TlsStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         ManagedCertificate = true,
@@ -44,12 +44,12 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesTlsStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.TlsStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         Secrets = new[]
     ///         {
-    ///             new Scaleway.Inputs.EdgeServicesTlsStageSecretArgs
+    ///             new Scaleway.Edgeservices.Inputs.TlsStageSecretArgs
     ///             {
     ///                 SecretId = "11111111-1111-1111-1111-111111111111",
     ///                 Region = "fr-par",
@@ -70,6 +70,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage")]
     public partial class EdgeServicesTlsStage : global::Pulumi.CustomResource
     {

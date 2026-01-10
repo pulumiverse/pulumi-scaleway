@@ -23,9 +23,9 @@ import * as utilities from "./utilities";
  *         foo: "bar",
  *     },
  * });
- * const mainEdgeServicesPipeline = new scaleway.EdgeServicesPipeline("main", {name: "my-pipeline"});
- * const mainEdgeServicesBackendStage = new scaleway.EdgeServicesBackendStage("main", {
- *     pipelineId: mainEdgeServicesPipeline.id,
+ * const mainPipeline = new scaleway.edgeservices.Pipeline("main", {name: "my-pipeline"});
+ * const mainBackendStage = new scaleway.edgeservices.BackendStage("main", {
+ *     pipelineId: mainPipeline.id,
  *     s3BackendConfig: {
  *         bucketName: main.name,
  *         bucketRegion: "fr-par",
@@ -51,9 +51,9 @@ import * as utilities from "./utilities";
  *     inboundPort: 443,
  *     certificateIds: [cert01.id],
  * });
- * const mainEdgeServicesPipeline = new scaleway.EdgeServicesPipeline("main", {name: "my-pipeline"});
- * const mainEdgeServicesBackendStage = new scaleway.EdgeServicesBackendStage("main", {
- *     pipelineId: mainEdgeServicesPipeline.id,
+ * const mainPipeline = new scaleway.edgeservices.Pipeline("main", {name: "my-pipeline"});
+ * const mainBackendStage = new scaleway.edgeservices.BackendStage("main", {
+ *     pipelineId: mainPipeline.id,
  *     lbBackendConfigs: [{
  *         lbConfig: {
  *             id: main.id,
@@ -74,6 +74,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage
  */
 export class EdgeServicesBackendStage extends pulumi.CustomResource {
     /**
@@ -86,6 +88,7 @@ export class EdgeServicesBackendStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesBackendStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesBackendStage {
+        pulumi.log.warn("EdgeServicesBackendStage is deprecated: scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage")
         return new EdgeServicesBackendStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -135,8 +138,11 @@ export class EdgeServicesBackendStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage */
     constructor(name: string, args: EdgeServicesBackendStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage */
     constructor(name: string, argsOrState?: EdgeServicesBackendStageArgs | EdgeServicesBackendStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesBackendStage is deprecated: scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

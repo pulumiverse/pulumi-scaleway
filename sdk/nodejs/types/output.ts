@@ -6366,6 +6366,113 @@ export namespace domain {
 
 }
 
+export namespace edgeservices {
+    export interface BackendStageLbBackendConfig {
+        /**
+         * The Load Balancer config.
+         */
+        lbConfig?: outputs.edgeservices.BackendStageLbBackendConfigLbConfig;
+    }
+
+    export interface BackendStageLbBackendConfigLbConfig {
+        /**
+         * The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+         */
+        domainName?: string;
+        /**
+         * The ID of the frontend.
+         */
+        frontendId?: string;
+        /**
+         * The ID of the Load Balancer.
+         */
+        id?: string;
+        /**
+         * Defines whether the Load Balancer's frontend handles SSL connections.
+         */
+        isSsl?: boolean;
+        /**
+         * `zone`) The zone of the Load Balancer.
+         */
+        zone?: string;
+    }
+
+    export interface BackendStageS3BackendConfig {
+        /**
+         * The name of the Bucket.
+         */
+        bucketName?: string;
+        /**
+         * The region of the Bucket.
+         */
+        bucketRegion?: string;
+        /**
+         * Defines whether the bucket website feature is enabled.
+         */
+        isWebsite?: boolean;
+    }
+
+    export interface CacheStagePurgeRequest {
+        /**
+         * Defines whether to purge all content.
+         */
+        all?: boolean;
+        /**
+         * The list of asserts to purge.
+         */
+        assets?: string[];
+        /**
+         * The pipeline ID in which the purge request will be created.
+         */
+        pipelineId?: string;
+    }
+
+    export interface RouteStageRule {
+        /**
+         * The ID of the backend stage that requests matching the rule should be forwarded to.
+         */
+        backendStageId: string;
+        /**
+         * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+         */
+        ruleHttpMatch?: outputs.edgeservices.RouteStageRuleRuleHttpMatch;
+    }
+
+    export interface RouteStageRuleRuleHttpMatch {
+        /**
+         * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+         */
+        methodFilters: string[];
+        /**
+         * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+         */
+        pathFilter?: outputs.edgeservices.RouteStageRuleRuleHttpMatchPathFilter;
+    }
+
+    export interface RouteStageRuleRuleHttpMatchPathFilter {
+        /**
+         * The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+         */
+        pathFilterType: string;
+        /**
+         * The value to be matched for the HTTP URL path.
+         */
+        value: string;
+    }
+
+    export interface TlsStageSecret {
+        /**
+         * The region of the secret.
+         */
+        region?: string;
+        /**
+         * The ID of the Secret
+         */
+        secretId: string;
+    }
+
+}
+
 export namespace elasticmetal {
     export interface GetIpsIp {
         /**

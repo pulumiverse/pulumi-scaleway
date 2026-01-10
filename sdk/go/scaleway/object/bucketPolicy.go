@@ -257,6 +257,80 @@ import (
 //
 // ```
 //
+// ### Example with AWS provider
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-aws/sdk/v7/go/aws/iam"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/account"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Scaleway project ID
+//			_default, err := account.LookupProject(ctx, &account.LookupProjectArgs{
+//				Name: pulumi.StringRef("default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Object storage configuration
+//			bucket, err := object.NewBucket(ctx, "bucket", &object.BucketArgs{
+//				Name: pulumi.String("some-unique-name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// AWS data source
+//			policy := iam.GetPolicyDocumentOutput(ctx, iam.GetPolicyDocumentOutputArgs{
+//				Version: pulumi.String("2012-10-17"),
+//				Statements: iam.GetPolicyDocumentStatementArray{
+//					&iam.GetPolicyDocumentStatementArgs{
+//						Sid:    pulumi.String("Delegate access"),
+//						Effect: pulumi.String("Allow"),
+//						Principals: iam.GetPolicyDocumentStatementPrincipalArray{
+//							&iam.GetPolicyDocumentStatementPrincipalArgs{
+//								Type: pulumi.String("SCW"),
+//								Identifiers: pulumi.StringArray{
+//									pulumi.Sprintf("project_id:%v", _default.Id),
+//								},
+//							},
+//						},
+//						Actions: pulumi.StringArray{
+//							pulumi.String("s3:ListBucket"),
+//						},
+//						Resources: pulumi.StringArray{
+//							bucket.Name,
+//							bucket.Name.ApplyT(func(name string) (string, error) {
+//								return fmt.Sprintf("%v/*", name), nil
+//							}).(pulumi.StringOutput),
+//						},
+//					},
+//				},
+//			}, nil)
+//			_, err = object.NewBucketPolicy(ctx, "main", &object.BucketPolicyArgs{
+//				Bucket: bucket.ID(),
+//				Policy: pulumi.String(policy.ApplyT(func(policy iam.GetPolicyDocumentResult) (*string, error) {
+//					return &policy.Json, nil
+//				}).(pulumi.StringPtrOutput)),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example with deprecated version 2012-10-17
 //
 // ```go

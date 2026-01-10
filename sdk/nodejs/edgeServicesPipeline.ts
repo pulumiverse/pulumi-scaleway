@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesPipeline("main", {
+ * const main = new scaleway.edgeservices.Pipeline("main", {
  *     name: "pipeline-name",
  *     description: "pipeline description",
  * });
@@ -27,28 +27,28 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesPipeline("main", {
+ * const main = new scaleway.edgeservices.Pipeline("main", {
  *     name: "pipeline-name",
  *     description: "pipeline description",
  * });
- * const mainEdgeServicesBackendStage = new scaleway.EdgeServicesBackendStage("main", {
+ * const mainBackendStage = new scaleway.edgeservices.BackendStage("main", {
  *     pipelineId: main.id,
  *     s3BackendConfig: {
  *         bucketName: "my-bucket-name",
  *         bucketRegion: "fr-par",
  *     },
  * });
- * const mainEdgeServicesWafStage = new scaleway.EdgeServicesWafStage("main", {
+ * const mainWafStage = new scaleway.edgeservices.WafStage("main", {
  *     pipelineId: main.id,
- *     backendStageId: mainEdgeServicesBackendStage.id,
+ *     backendStageId: mainBackendStage.id,
  *     mode: "enable",
  *     paranoiaLevel: 3,
  * });
- * const mainEdgeServicesRouteStage = new scaleway.EdgeServicesRouteStage("main", {
+ * const mainRouteStage = new scaleway.edgeservices.RouteStage("main", {
  *     pipelineId: main.id,
- *     wafStageId: mainEdgeServicesWafStage.id,
+ *     wafStageId: mainWafStage.id,
  *     rules: [{
- *         backendStageId: mainEdgeServicesBackendStage.id,
+ *         backendStageId: mainBackendStage.id,
  *         ruleHttpMatch: {
  *             methodFilters: [
  *                 "get",
@@ -61,23 +61,23 @@ import * as utilities from "./utilities";
  *         },
  *     }],
  * });
- * const mainEdgeServicesCacheStage = new scaleway.EdgeServicesCacheStage("main", {
+ * const mainCacheStage = new scaleway.edgeservices.CacheStage("main", {
  *     pipelineId: main.id,
- *     routeStageId: mainEdgeServicesRouteStage.id,
+ *     routeStageId: mainRouteStage.id,
  * });
- * const mainEdgeServicesTlsStage = new scaleway.EdgeServicesTlsStage("main", {
+ * const mainTlsStage = new scaleway.edgeservices.TlsStage("main", {
  *     pipelineId: main.id,
- *     cacheStageId: mainEdgeServicesCacheStage.id,
+ *     cacheStageId: mainCacheStage.id,
  *     managedCertificate: true,
  * });
- * const mainEdgeServicesDnsStage = new scaleway.EdgeServicesDnsStage("main", {
+ * const mainDnsStage = new scaleway.edgeservices.DnsStage("main", {
  *     pipelineId: main.id,
- *     tlsStageId: mainEdgeServicesTlsStage.id,
+ *     tlsStageId: mainTlsStage.id,
  *     fqdns: ["subdomain.example.com"],
  * });
- * const mainEdgeServicesHeadStage = new scaleway.EdgeServicesHeadStage("main", {
+ * const mainHeadStage = new scaleway.edgeservices.HeadStage("main", {
  *     pipelineId: main.id,
- *     headStageId: mainEdgeServicesDnsStage.id,
+ *     headStageId: mainDnsStage.id,
  * });
  * ```
  *
@@ -90,6 +90,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesPipeline:EdgeServicesPipeline basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline
  */
 export class EdgeServicesPipeline extends pulumi.CustomResource {
     /**
@@ -102,6 +104,7 @@ export class EdgeServicesPipeline extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesPipelineState, opts?: pulumi.CustomResourceOptions): EdgeServicesPipeline {
+        pulumi.log.warn("EdgeServicesPipeline is deprecated: scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline")
         return new EdgeServicesPipeline(name, <any>state, { ...opts, id: id });
     }
 
@@ -151,8 +154,11 @@ export class EdgeServicesPipeline extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline */
     constructor(name: string, args?: EdgeServicesPipelineArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline */
     constructor(name: string, argsOrState?: EdgeServicesPipelineArgs | EdgeServicesPipelineState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesPipeline is deprecated: scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

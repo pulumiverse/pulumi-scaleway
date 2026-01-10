@@ -353,8 +353,13 @@ class _EdgeServicesCacheStageState:
         pulumi.set(self, "waf_stage_id", value)
 
 
+warnings.warn("""scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage")
 class EdgeServicesCacheStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -380,7 +385,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesCacheStage("main",
+        main = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"])
         ```
@@ -391,7 +396,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesCacheStage("main",
+        main = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"],
             purge=[{
@@ -439,7 +444,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesCacheStage("main",
+        main = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"])
         ```
@@ -450,7 +455,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesCacheStage("main",
+        main = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             backend_stage_id=main_scaleway_edge_services_backend_stage["id"],
             purge=[{
@@ -494,6 +499,7 @@ class EdgeServicesCacheStage(pulumi.CustomResource):
                  route_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesCacheStage is deprecated: scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

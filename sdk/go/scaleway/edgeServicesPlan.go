@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesPlan(ctx, "main", &scaleway.EdgeServicesPlanArgs{
+//			_, err := edgeservices.NewPlan(ctx, "main", &edgeservices.PlanArgs{
 //				Name: pulumi.String("starter"),
 //			})
 //			if err != nil {
@@ -50,6 +50,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesPlan:EdgeServicesPlan main 11111111-1111-1111-1111-111111111111/starter
 // ```
+//
+// Deprecated: scaleway.index/edgeservicesplan.EdgeServicesPlan has been deprecated in favor of scaleway.edgeservices/plan.Plan
 type EdgeServicesPlan struct {
 	pulumi.CustomResourceState
 

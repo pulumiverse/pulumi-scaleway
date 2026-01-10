@@ -23,13 +23,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesPipeline(ctx, "main", &scaleway.EdgeServicesPipelineArgs{
+//			_, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
 //				Name:        pulumi.String("pipeline-name"),
 //				Description: pulumi.String("pipeline description"),
 //			})
@@ -50,22 +50,22 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewEdgeServicesPipeline(ctx, "main", &scaleway.EdgeServicesPipelineArgs{
+//			main, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
 //				Name:        pulumi.String("pipeline-name"),
 //				Description: pulumi.String("pipeline description"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesBackendStage, err := scaleway.NewEdgeServicesBackendStage(ctx, "main", &scaleway.EdgeServicesBackendStageArgs{
+//			mainBackendStage, err := edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
 //				PipelineId: main.ID(),
-//				S3BackendConfig: &scaleway.EdgeServicesBackendStageS3BackendConfigArgs{
+//				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   pulumi.String("my-bucket-name"),
 //					BucketRegion: pulumi.String("fr-par"),
 //				},
@@ -73,27 +73,27 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesWafStage, err := scaleway.NewEdgeServicesWafStage(ctx, "main", &scaleway.EdgeServicesWafStageArgs{
+//			mainWafStage, err := edgeservices.NewWafStage(ctx, "main", &edgeservices.WafStageArgs{
 //				PipelineId:     main.ID(),
-//				BackendStageId: mainEdgeServicesBackendStage.ID(),
+//				BackendStageId: mainBackendStage.ID(),
 //				Mode:           pulumi.String("enable"),
 //				ParanoiaLevel:  pulumi.Int(3),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesRouteStage, err := scaleway.NewEdgeServicesRouteStage(ctx, "main", &scaleway.EdgeServicesRouteStageArgs{
+//			mainRouteStage, err := edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
 //				PipelineId: main.ID(),
-//				WafStageId: mainEdgeServicesWafStage.ID(),
-//				Rules: scaleway.EdgeServicesRouteStageRuleArray{
-//					&scaleway.EdgeServicesRouteStageRuleArgs{
-//						BackendStageId: mainEdgeServicesBackendStage.ID(),
-//						RuleHttpMatch: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchArgs{
+//				WafStageId: mainWafStage.ID(),
+//				Rules: edgeservices.RouteStageRuleArray{
+//					&edgeservices.RouteStageRuleArgs{
+//						BackendStageId: mainBackendStage.ID(),
+//						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							MethodFilters: pulumi.StringArray{
 //								pulumi.String("get"),
 //								pulumi.String("post"),
 //							},
-//							PathFilter: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{
+//							PathFilter: &edgeservices.RouteStageRuleRuleHttpMatchPathFilterArgs{
 //								PathFilterType: pulumi.String("regex"),
 //								Value:          pulumi.String(".*"),
 //							},
@@ -104,24 +104,24 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesCacheStage, err := scaleway.NewEdgeServicesCacheStage(ctx, "main", &scaleway.EdgeServicesCacheStageArgs{
+//			mainCacheStage, err := edgeservices.NewCacheStage(ctx, "main", &edgeservices.CacheStageArgs{
 //				PipelineId:   main.ID(),
-//				RouteStageId: mainEdgeServicesRouteStage.ID(),
+//				RouteStageId: mainRouteStage.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesTlsStage, err := scaleway.NewEdgeServicesTlsStage(ctx, "main", &scaleway.EdgeServicesTlsStageArgs{
+//			mainTlsStage, err := edgeservices.NewTlsStage(ctx, "main", &edgeservices.TlsStageArgs{
 //				PipelineId:         main.ID(),
-//				CacheStageId:       mainEdgeServicesCacheStage.ID(),
+//				CacheStageId:       mainCacheStage.ID(),
 //				ManagedCertificate: pulumi.Bool(true),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesDnsStage, err := scaleway.NewEdgeServicesDnsStage(ctx, "main", &scaleway.EdgeServicesDnsStageArgs{
+//			mainDnsStage, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
 //				PipelineId: main.ID(),
-//				TlsStageId: mainEdgeServicesTlsStage.ID(),
+//				TlsStageId: mainTlsStage.ID(),
 //				Fqdns: pulumi.StringArray{
 //					pulumi.String("subdomain.example.com"),
 //				},
@@ -129,9 +129,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewEdgeServicesHeadStage(ctx, "main", &scaleway.EdgeServicesHeadStageArgs{
+//			_, err = edgeservices.NewHeadStage(ctx, "main", &edgeservices.HeadStageArgs{
 //				PipelineId:  main.ID(),
-//				HeadStageId: mainEdgeServicesDnsStage.ID(),
+//				HeadStageId: mainDnsStage.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -151,6 +151,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesPipeline:EdgeServicesPipeline basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline
 type EdgeServicesPipeline struct {
 	pulumi.CustomResourceState
 

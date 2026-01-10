@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.CacheStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         BackendStageId = mainScalewayEdgeServicesBackendStage.Id,
@@ -44,7 +44,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.CacheStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         BackendStageId = mainScalewayEdgeServicesBackendStage.Id,
@@ -71,6 +71,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage")]
     public partial class EdgeServicesCacheStage : global::Pulumi.CustomResource
     {
