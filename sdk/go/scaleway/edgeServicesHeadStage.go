@@ -24,20 +24,20 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			main, err := scaleway.NewEdgeServicesPipeline(ctx, "main", &scaleway.EdgeServicesPipelineArgs{
+//			main, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
 //				Name:        pulumi.String("my-edge_services-pipeline"),
 //				Description: pulumi.String("pipeline description"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesDnsStage, err := scaleway.NewEdgeServicesDnsStage(ctx, "main", &scaleway.EdgeServicesDnsStageArgs{
+//			mainDnsStage, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
 //				PipelineId: main.ID(),
 //				TlsStageId: pulumi.Any(mainScalewayEdgeServicesTlsStage.Id),
 //				Fqdns: pulumi.StringArray{
@@ -47,9 +47,9 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewEdgeServicesHeadStage(ctx, "main", &scaleway.EdgeServicesHeadStageArgs{
+//			_, err = edgeservices.NewHeadStage(ctx, "main", &edgeservices.HeadStageArgs{
 //				PipelineId:  main.ID(),
-//				HeadStageId: mainEdgeServicesDnsStage.ID(),
+//				HeadStageId: mainDnsStage.ID(),
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +69,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage
 type EdgeServicesHeadStage struct {
 	pulumi.CustomResourceState
 

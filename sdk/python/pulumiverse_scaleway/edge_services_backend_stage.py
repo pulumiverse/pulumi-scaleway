@@ -193,8 +193,13 @@ class _EdgeServicesBackendStageState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage")
 class EdgeServicesBackendStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -220,9 +225,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             tags={
                 "foo": "bar",
             })
-        main_edge_services_pipeline = scaleway.EdgeServicesPipeline("main", name="my-pipeline")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
-            pipeline_id=main_edge_services_pipeline.id,
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
             s3_backend_config={
                 "bucket_name": main.name,
                 "bucket_region": "fr-par",
@@ -245,9 +250,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             name="frontend01",
             inbound_port=443,
             certificate_ids=[cert01["id"]])
-        main_edge_services_pipeline = scaleway.EdgeServicesPipeline("main", name="my-pipeline")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
-            pipeline_id=main_edge_services_pipeline.id,
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
             lb_backend_configs=[{
                 "lb_config": {
                     "id": main.id,
@@ -297,9 +302,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             tags={
                 "foo": "bar",
             })
-        main_edge_services_pipeline = scaleway.EdgeServicesPipeline("main", name="my-pipeline")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
-            pipeline_id=main_edge_services_pipeline.id,
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
             s3_backend_config={
                 "bucket_name": main.name,
                 "bucket_region": "fr-par",
@@ -322,9 +327,9 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
             name="frontend01",
             inbound_port=443,
             certificate_ids=[cert01["id"]])
-        main_edge_services_pipeline = scaleway.EdgeServicesPipeline("main", name="my-pipeline")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
-            pipeline_id=main_edge_services_pipeline.id,
+        main_pipeline = scaleway.edgeservices.Pipeline("main", name="my-pipeline")
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
+            pipeline_id=main_pipeline.id,
             lb_backend_configs=[{
                 "lb_config": {
                     "id": main.id,
@@ -365,6 +370,7 @@ class EdgeServicesBackendStage(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  s3_backend_config: Optional[pulumi.Input[Union['EdgeServicesBackendStageS3BackendConfigArgs', 'EdgeServicesBackendStageS3BackendConfigArgsDict']]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesBackendStage is deprecated: scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

@@ -193,8 +193,13 @@ class _EdgeServicesRouteStageState:
         pulumi.set(self, "waf_stage_id", value)
 
 
+warnings.warn("""scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage")
 class EdgeServicesRouteStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -215,7 +220,7 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesRouteStage("main",
+        main = scaleway.edgeservices.RouteStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             waf_stage_id=waf["id"],
             rules=[{
@@ -267,7 +272,7 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesRouteStage("main",
+        main = scaleway.edgeservices.RouteStage("main",
             pipeline_id=main_scaleway_edge_services_pipeline["id"],
             waf_stage_id=waf["id"],
             rules=[{
@@ -315,6 +320,7 @@ class EdgeServicesRouteStage(pulumi.CustomResource):
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['EdgeServicesRouteStageRuleArgs', 'EdgeServicesRouteStageRuleArgsDict']]]]] = None,
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesRouteStage is deprecated: scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

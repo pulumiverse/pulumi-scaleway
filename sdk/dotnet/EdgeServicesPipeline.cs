@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesPipeline("main", new()
+    ///     var main = new Scaleway.Edgeservices.Pipeline("main", new()
     ///     {
     ///         Name = "pipeline-name",
     ///         Description = "pipeline description",
@@ -44,47 +44,47 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesPipeline("main", new()
+    ///     var main = new Scaleway.Edgeservices.Pipeline("main", new()
     ///     {
     ///         Name = "pipeline-name",
     ///         Description = "pipeline description",
     ///     });
     /// 
-    ///     var mainEdgeServicesBackendStage = new Scaleway.EdgeServicesBackendStage("main", new()
+    ///     var mainBackendStage = new Scaleway.Edgeservices.BackendStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         S3BackendConfig = new Scaleway.Inputs.EdgeServicesBackendStageS3BackendConfigArgs
+    ///         S3BackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageS3BackendConfigArgs
     ///         {
     ///             BucketName = "my-bucket-name",
     ///             BucketRegion = "fr-par",
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesWafStage = new Scaleway.EdgeServicesWafStage("main", new()
+    ///     var mainWafStage = new Scaleway.Edgeservices.WafStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         BackendStageId = mainEdgeServicesBackendStage.Id,
+    ///         BackendStageId = mainBackendStage.Id,
     ///         Mode = "enable",
     ///         ParanoiaLevel = 3,
     ///     });
     /// 
-    ///     var mainEdgeServicesRouteStage = new Scaleway.EdgeServicesRouteStage("main", new()
+    ///     var mainRouteStage = new Scaleway.Edgeservices.RouteStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         WafStageId = mainEdgeServicesWafStage.Id,
+    ///         WafStageId = mainWafStage.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.EdgeServicesRouteStageRuleArgs
+    ///             new Scaleway.Edgeservices.Inputs.RouteStageRuleArgs
     ///             {
-    ///                 BackendStageId = mainEdgeServicesBackendStage.Id,
-    ///                 RuleHttpMatch = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchArgs
+    ///                 BackendStageId = mainBackendStage.Id,
+    ///                 RuleHttpMatch = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchArgs
     ///                 {
     ///                     MethodFilters = new[]
     ///                     {
     ///                         "get",
     ///                         "post",
     ///                     },
-    ///                     PathFilter = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs
+    ///                     PathFilter = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchPathFilterArgs
     ///                     {
     ///                         PathFilterType = "regex",
     ///                         Value = ".*",
@@ -94,33 +94,33 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesCacheStage = new Scaleway.EdgeServicesCacheStage("main", new()
+    ///     var mainCacheStage = new Scaleway.Edgeservices.CacheStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         RouteStageId = mainEdgeServicesRouteStage.Id,
+    ///         RouteStageId = mainRouteStage.Id,
     ///     });
     /// 
-    ///     var mainEdgeServicesTlsStage = new Scaleway.EdgeServicesTlsStage("main", new()
+    ///     var mainTlsStage = new Scaleway.Edgeservices.TlsStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         CacheStageId = mainEdgeServicesCacheStage.Id,
+    ///         CacheStageId = mainCacheStage.Id,
     ///         ManagedCertificate = true,
     ///     });
     /// 
-    ///     var mainEdgeServicesDnsStage = new Scaleway.EdgeServicesDnsStage("main", new()
+    ///     var mainDnsStage = new Scaleway.Edgeservices.DnsStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         TlsStageId = mainEdgeServicesTlsStage.Id,
+    ///         TlsStageId = mainTlsStage.Id,
     ///         Fqdns = new[]
     ///         {
     ///             "subdomain.example.com",
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesHeadStage = new Scaleway.EdgeServicesHeadStage("main", new()
+    ///     var mainHeadStage = new Scaleway.Edgeservices.HeadStage("main", new()
     ///     {
     ///         PipelineId = main.Id,
-    ///         HeadStageId = mainEdgeServicesDnsStage.Id,
+    ///         HeadStageId = mainDnsStage.Id,
     ///     });
     /// 
     /// });
@@ -136,6 +136,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesPipeline:EdgeServicesPipeline basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline")]
     [ScalewayResourceType("scaleway:index/edgeServicesPipeline:EdgeServicesPipeline")]
     public partial class EdgeServicesPipeline : global::Pulumi.CustomResource
     {

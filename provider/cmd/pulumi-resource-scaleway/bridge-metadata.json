@@ -602,7 +602,14 @@
                 }
             },
             "scaleway_edge_services_backend_stage": {
-                "current": "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage",
+                "current": "scaleway:edgeservices/backendStage:BackendStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "lb_backend_config": {
@@ -621,7 +628,14 @@
                 }
             },
             "scaleway_edge_services_cache_stage": {
-                "current": "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage",
+                "current": "scaleway:edgeservices/cacheStage:CacheStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "purge_requests": {
@@ -637,7 +651,14 @@
                 }
             },
             "scaleway_edge_services_dns_stage": {
-                "current": "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage",
+                "current": "scaleway:edgeservices/dnsStage:DnsStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "fqdns": {
@@ -646,19 +667,47 @@
                 }
             },
             "scaleway_edge_services_head_stage": {
-                "current": "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage",
+                "current": "scaleway:edgeservices/headStage:HeadStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1
             },
             "scaleway_edge_services_pipeline": {
-                "current": "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline",
+                "current": "scaleway:edgeservices/pipeline:Pipeline",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1
             },
             "scaleway_edge_services_plan": {
-                "current": "scaleway:index/edgeServicesPlan:EdgeServicesPlan",
+                "current": "scaleway:edgeservices/plan:Plan",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesPlan:EdgeServicesPlan",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1
             },
             "scaleway_edge_services_route_stage": {
-                "current": "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage",
+                "current": "scaleway:edgeservices/routeStage:RouteStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "rule": {
@@ -684,7 +733,14 @@
                 }
             },
             "scaleway_edge_services_tls_stage": {
-                "current": "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage",
+                "current": "scaleway:edgeservices/tlsStage:TlsStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "secrets": {
@@ -693,7 +749,14 @@
                 }
             },
             "scaleway_edge_services_waf_stage": {
-                "current": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage",
+                "current": "scaleway:edgeservices/wafStage:WafStage",
+                "past": [
+                    {
+                        "name": "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1
             },
             "scaleway_file_filesystem": {
@@ -4564,6 +4627,51 @@
                     "scaleway:index/domainZone:DomainZone"
                 ]
             },
+            "scaleway_edge_services_backend_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage"
+                ]
+            },
+            "scaleway_edge_services_cache_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage"
+                ]
+            },
+            "scaleway_edge_services_dns_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage"
+                ]
+            },
+            "scaleway_edge_services_head_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage"
+                ]
+            },
+            "scaleway_edge_services_pipeline": {
+                "aliases": [
+                    "scaleway:index/edgeServicesPipeline:EdgeServicesPipeline"
+                ]
+            },
+            "scaleway_edge_services_plan": {
+                "aliases": [
+                    "scaleway:index/edgeServicesPlan:EdgeServicesPlan"
+                ]
+            },
+            "scaleway_edge_services_route_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage"
+                ]
+            },
+            "scaleway_edge_services_tls_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage"
+                ]
+            },
+            "scaleway_edge_services_waf_stage": {
+                "aliases": [
+                    "scaleway:index/edgeServicesWafStage:EdgeServicesWafStage"
+                ]
+            },
             "scaleway_flexible_ip": {
                 "aliases": [
                     "scaleway:index/flexibleIp:FlexibleIp"
@@ -5449,6 +5557,15 @@
             "scaleway:domain/record:Record": 0,
             "scaleway:domain/registration:Registration": 0,
             "scaleway:domain/zone:Zone": 0,
+            "scaleway:edgeservices/backendStage:BackendStage": 0,
+            "scaleway:edgeservices/cacheStage:CacheStage": 0,
+            "scaleway:edgeservices/dnsStage:DnsStage": 0,
+            "scaleway:edgeservices/headStage:HeadStage": 0,
+            "scaleway:edgeservices/pipeline:Pipeline": 0,
+            "scaleway:edgeservices/plan:Plan": 0,
+            "scaleway:edgeservices/routeStage:RouteStage": 0,
+            "scaleway:edgeservices/tlsStage:TlsStage": 0,
+            "scaleway:edgeservices/wafStage:WafStage": 0,
             "scaleway:elasticmetal/ip:Ip": 0,
             "scaleway:elasticmetal/ipMacAddress:IpMacAddress": 0,
             "scaleway:elasticmetal/server:Server": 0,

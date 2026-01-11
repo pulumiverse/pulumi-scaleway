@@ -95,8 +95,13 @@ class _EdgeServicesHeadStageState:
         pulumi.set(self, "pipeline_id", value)
 
 
+warnings.warn("""scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage")
 class EdgeServicesHeadStage(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -115,16 +120,16 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="my-edge_services-pipeline",
             description="pipeline description")
-        main_edge_services_dns_stage = scaleway.EdgeServicesDnsStage("main",
+        main_dns_stage = scaleway.edgeservices.DnsStage("main",
             pipeline_id=main.id,
             tls_stage_id=main_scaleway_edge_services_tls_stage["id"],
             fqdns=["subdomain.example.com"])
-        main_edge_services_head_stage = scaleway.EdgeServicesHeadStage("main",
+        main_head_stage = scaleway.edgeservices.HeadStage("main",
             pipeline_id=main.id,
-            head_stage_id=main_edge_services_dns_stage.id)
+            head_stage_id=main_dns_stage.id)
         ```
 
         ## Import
@@ -159,16 +164,16 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="my-edge_services-pipeline",
             description="pipeline description")
-        main_edge_services_dns_stage = scaleway.EdgeServicesDnsStage("main",
+        main_dns_stage = scaleway.edgeservices.DnsStage("main",
             pipeline_id=main.id,
             tls_stage_id=main_scaleway_edge_services_tls_stage["id"],
             fqdns=["subdomain.example.com"])
-        main_edge_services_head_stage = scaleway.EdgeServicesHeadStage("main",
+        main_head_stage = scaleway.edgeservices.HeadStage("main",
             pipeline_id=main.id,
-            head_stage_id=main_edge_services_dns_stage.id)
+            head_stage_id=main_dns_stage.id)
         ```
 
         ## Import
@@ -199,6 +204,7 @@ class EdgeServicesHeadStage(pulumi.CustomResource):
                  head_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesHeadStage is deprecated: scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

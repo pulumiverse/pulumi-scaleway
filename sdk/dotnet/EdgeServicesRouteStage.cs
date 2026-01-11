@@ -25,23 +25,23 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesRouteStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.RouteStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         WafStageId = waf.Id,
     ///         Rules = new[]
     ///         {
-    ///             new Scaleway.Inputs.EdgeServicesRouteStageRuleArgs
+    ///             new Scaleway.Edgeservices.Inputs.RouteStageRuleArgs
     ///             {
     ///                 BackendStageId = backend.Id,
-    ///                 RuleHttpMatch = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchArgs
+    ///                 RuleHttpMatch = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchArgs
     ///                 {
     ///                     MethodFilters = new[]
     ///                     {
     ///                         "get",
     ///                         "post",
     ///                     },
-    ///                     PathFilter = new Scaleway.Inputs.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs
+    ///                     PathFilter = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchPathFilterArgs
     ///                     {
     ///                         PathFilterType = "regex",
     ///                         Value = ".*",
@@ -64,6 +64,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage")]
     public partial class EdgeServicesRouteStage : global::Pulumi.CustomResource
     {

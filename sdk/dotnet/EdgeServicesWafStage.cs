@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesWafStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.WafStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         Mode = "enable",
@@ -45,6 +45,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesWafStage:EdgeServicesWafStage")]
     public partial class EdgeServicesWafStage : global::Pulumi.CustomResource
     {

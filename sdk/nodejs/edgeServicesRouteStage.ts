@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesRouteStage("main", {
+ * const main = new scaleway.edgeservices.RouteStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     wafStageId: waf.id,
  *     rules: [{
@@ -45,6 +45,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage
  */
 export class EdgeServicesRouteStage extends pulumi.CustomResource {
     /**
@@ -57,6 +59,7 @@ export class EdgeServicesRouteStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesRouteStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesRouteStage {
+        pulumi.log.warn("EdgeServicesRouteStage is deprecated: scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage")
         return new EdgeServicesRouteStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -106,8 +109,11 @@ export class EdgeServicesRouteStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage */
     constructor(name: string, args: EdgeServicesRouteStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage */
     constructor(name: string, argsOrState?: EdgeServicesRouteStageArgs | EdgeServicesRouteStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesRouteStage is deprecated: scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

@@ -34,15 +34,15 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesPipeline = new Scaleway.EdgeServicesPipeline("main", new()
+    ///     var mainPipeline = new Scaleway.Edgeservices.Pipeline("main", new()
     ///     {
     ///         Name = "my-pipeline",
     ///     });
     /// 
-    ///     var mainEdgeServicesBackendStage = new Scaleway.EdgeServicesBackendStage("main", new()
+    ///     var mainBackendStage = new Scaleway.Edgeservices.BackendStage("main", new()
     ///     {
-    ///         PipelineId = mainEdgeServicesPipeline.Id,
-    ///         S3BackendConfig = new Scaleway.Inputs.EdgeServicesBackendStageS3BackendConfigArgs
+    ///         PipelineId = mainPipeline.Id,
+    ///         S3BackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageS3BackendConfigArgs
     ///         {
     ///             BucketName = main.Name,
     ///             BucketRegion = "fr-par",
@@ -84,19 +84,19 @@ namespace Pulumiverse.Scaleway
     ///         },
     ///     });
     /// 
-    ///     var mainEdgeServicesPipeline = new Scaleway.EdgeServicesPipeline("main", new()
+    ///     var mainPipeline = new Scaleway.Edgeservices.Pipeline("main", new()
     ///     {
     ///         Name = "my-pipeline",
     ///     });
     /// 
-    ///     var mainEdgeServicesBackendStage = new Scaleway.EdgeServicesBackendStage("main", new()
+    ///     var mainBackendStage = new Scaleway.Edgeservices.BackendStage("main", new()
     ///     {
-    ///         PipelineId = mainEdgeServicesPipeline.Id,
+    ///         PipelineId = mainPipeline.Id,
     ///         LbBackendConfigs = new[]
     ///         {
-    ///             new Scaleway.Inputs.EdgeServicesBackendStageLbBackendConfigArgs
+    ///             new Scaleway.Edgeservices.Inputs.BackendStageLbBackendConfigArgs
     ///             {
-    ///                 LbConfig = new Scaleway.Inputs.EdgeServicesBackendStageLbBackendConfigLbConfigArgs
+    ///                 LbConfig = new Scaleway.Edgeservices.Inputs.BackendStageLbBackendConfigLbConfigArgs
     ///                 {
     ///                     Id = main.Id,
     ///                     FrontendId = id,
@@ -120,6 +120,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage")]
     public partial class EdgeServicesBackendStage : global::Pulumi.CustomResource
     {

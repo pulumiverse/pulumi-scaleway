@@ -24,24 +24,24 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesRouteStage(ctx, "main", &scaleway.EdgeServicesRouteStageArgs{
+//			_, err := edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
 //				PipelineId: pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
 //				WafStageId: pulumi.Any(waf.Id),
-//				Rules: scaleway.EdgeServicesRouteStageRuleArray{
-//					&scaleway.EdgeServicesRouteStageRuleArgs{
+//				Rules: edgeservices.RouteStageRuleArray{
+//					&edgeservices.RouteStageRuleArgs{
 //						BackendStageId: pulumi.Any(backend.Id),
-//						RuleHttpMatch: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchArgs{
+//						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
 //							MethodFilters: pulumi.StringArray{
 //								pulumi.String("get"),
 //								pulumi.String("post"),
 //							},
-//							PathFilter: &scaleway.EdgeServicesRouteStageRuleRuleHttpMatchPathFilterArgs{
+//							PathFilter: &edgeservices.RouteStageRuleRuleHttpMatchPathFilterArgs{
 //								PathFilterType: pulumi.String("regex"),
 //								Value:          pulumi.String(".*"),
 //							},
@@ -67,6 +67,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicesroutestage.EdgeServicesRouteStage has been deprecated in favor of scaleway.edgeservices/routestage.RouteStage
 type EdgeServicesRouteStage struct {
 	pulumi.CustomResourceState
 

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesDnsStage("main", {
+ * const main = new scaleway.edgeservices.DnsStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     fqdns: ["subdomain.example.com"],
  * });
@@ -30,6 +30,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage
  */
 export class EdgeServicesDnsStage extends pulumi.CustomResource {
     /**
@@ -42,6 +44,7 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesDnsStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesDnsStage {
+        pulumi.log.warn("EdgeServicesDnsStage is deprecated: scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage")
         return new EdgeServicesDnsStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -107,8 +110,11 @@ export class EdgeServicesDnsStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage */
     constructor(name: string, args: EdgeServicesDnsStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage */
     constructor(name: string, argsOrState?: EdgeServicesDnsStageArgs | EdgeServicesDnsStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesDnsStage is deprecated: scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

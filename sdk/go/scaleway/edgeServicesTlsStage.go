@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesTlsStage(ctx, "main", &scaleway.EdgeServicesTlsStageArgs{
+//			_, err := edgeservices.NewTlsStage(ctx, "main", &edgeservices.TlsStageArgs{
 //				PipelineId:         pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
 //				ManagedCertificate: pulumi.Bool(true),
 //			})
@@ -51,16 +51,16 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesTlsStage(ctx, "main", &scaleway.EdgeServicesTlsStageArgs{
+//			_, err := edgeservices.NewTlsStage(ctx, "main", &edgeservices.TlsStageArgs{
 //				PipelineId: pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
-//				Secrets: scaleway.EdgeServicesTlsStageSecretArray{
-//					&scaleway.EdgeServicesTlsStageSecretArgs{
+//				Secrets: edgeservices.TlsStageSecretArray{
+//					&edgeservices.TlsStageSecretArgs{
 //						SecretId: pulumi.String("11111111-1111-1111-1111-111111111111"),
 //						Region:   pulumi.String("fr-par"),
 //					},
@@ -84,6 +84,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesTlsStage:EdgeServicesTlsStage basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicestlsstage.EdgeServicesTlsStage has been deprecated in favor of scaleway.edgeservices/tlsstage.TlsStage
 type EdgeServicesTlsStage struct {
 	pulumi.CustomResourceState
 

@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesWafStage("main", {
+ * const main = new scaleway.edgeservices.WafStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     mode: "enable",
  *     paranoiaLevel: 3,
@@ -31,6 +31,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesWafStage:EdgeServicesWafStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage
  */
 export class EdgeServicesWafStage extends pulumi.CustomResource {
     /**
@@ -43,6 +45,7 @@ export class EdgeServicesWafStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesWafStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesWafStage {
+        pulumi.log.warn("EdgeServicesWafStage is deprecated: scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage")
         return new EdgeServicesWafStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -96,8 +99,11 @@ export class EdgeServicesWafStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage */
     constructor(name: string, args: EdgeServicesWafStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage */
     constructor(name: string, argsOrState?: EdgeServicesWafStageArgs | EdgeServicesWafStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesWafStage is deprecated: scaleway.index/edgeserviceswafstage.EdgeServicesWafStage has been deprecated in favor of scaleway.edgeservices/wafstage.WafStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
