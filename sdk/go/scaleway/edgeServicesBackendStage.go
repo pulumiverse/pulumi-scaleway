@@ -24,7 +24,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
 //
 // )
@@ -40,15 +40,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesPipeline, err := scaleway.NewEdgeServicesPipeline(ctx, "main", &scaleway.EdgeServicesPipelineArgs{
+//			mainPipeline, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
 //				Name: pulumi.String("my-pipeline"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewEdgeServicesBackendStage(ctx, "main", &scaleway.EdgeServicesBackendStageArgs{
-//				PipelineId: mainEdgeServicesPipeline.ID(),
-//				S3BackendConfig: &scaleway.EdgeServicesBackendStageS3BackendConfigArgs{
+//			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
+//				PipelineId: mainPipeline.ID(),
+//				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
 //					BucketName:   main.Name,
 //					BucketRegion: pulumi.String("fr-par"),
 //				},
@@ -70,7 +70,7 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/loadbalancers"
 //
 // )
@@ -99,17 +99,17 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			mainEdgeServicesPipeline, err := scaleway.NewEdgeServicesPipeline(ctx, "main", &scaleway.EdgeServicesPipelineArgs{
+//			mainPipeline, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
 //				Name: pulumi.String("my-pipeline"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			_, err = scaleway.NewEdgeServicesBackendStage(ctx, "main", &scaleway.EdgeServicesBackendStageArgs{
-//				PipelineId: mainEdgeServicesPipeline.ID(),
-//				LbBackendConfigs: scaleway.EdgeServicesBackendStageLbBackendConfigArray{
-//					&scaleway.EdgeServicesBackendStageLbBackendConfigArgs{
-//						LbConfig: &scaleway.EdgeServicesBackendStageLbBackendConfigLbConfigArgs{
+//			_, err = edgeservices.NewBackendStage(ctx, "main", &edgeservices.BackendStageArgs{
+//				PipelineId: mainPipeline.ID(),
+//				LbBackendConfigs: edgeservices.BackendStageLbBackendConfigArray{
+//					&edgeservices.BackendStageLbBackendConfigArgs{
+//						LbConfig: &edgeservices.BackendStageLbBackendConfigLbConfigArgs{
 //							Id:         main.ID(),
 //							FrontendId: pulumi.Any(id),
 //							IsSsl:      pulumi.Bool(true),
@@ -136,6 +136,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesBackendStage:EdgeServicesBackendStage basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicesbackendstage.EdgeServicesBackendStage has been deprecated in favor of scaleway.edgeservices/backendstage.BackendStage
 type EdgeServicesBackendStage struct {
 	pulumi.CustomResourceState
 

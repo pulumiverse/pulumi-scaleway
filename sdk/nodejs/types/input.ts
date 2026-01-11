@@ -3476,6 +3476,112 @@ export namespace domain {
     }
 }
 
+export namespace edgeservices {
+    export interface BackendStageLbBackendConfig {
+        /**
+         * The Load Balancer config.
+         */
+        lbConfig?: pulumi.Input<inputs.edgeservices.BackendStageLbBackendConfigLbConfig>;
+    }
+
+    export interface BackendStageLbBackendConfigLbConfig {
+        /**
+         * The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
+         */
+        domainName?: pulumi.Input<string>;
+        /**
+         * The ID of the frontend.
+         */
+        frontendId?: pulumi.Input<string>;
+        /**
+         * The ID of the Load Balancer.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * Defines whether the Load Balancer's frontend handles SSL connections.
+         */
+        isSsl?: pulumi.Input<boolean>;
+        /**
+         * `zone`) The zone of the Load Balancer.
+         */
+        zone?: pulumi.Input<string>;
+    }
+
+    export interface BackendStageS3BackendConfig {
+        /**
+         * The name of the Bucket.
+         */
+        bucketName?: pulumi.Input<string>;
+        /**
+         * The region of the Bucket.
+         */
+        bucketRegion?: pulumi.Input<string>;
+        /**
+         * Defines whether the bucket website feature is enabled.
+         */
+        isWebsite?: pulumi.Input<boolean>;
+    }
+
+    export interface CacheStagePurgeRequest {
+        /**
+         * Defines whether to purge all content.
+         */
+        all?: pulumi.Input<boolean>;
+        /**
+         * The list of asserts to purge.
+         */
+        assets?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The pipeline ID in which the purge request will be created.
+         */
+        pipelineId?: pulumi.Input<string>;
+    }
+
+    export interface RouteStageRule {
+        /**
+         * The ID of the backend stage that requests matching the rule should be forwarded to.
+         */
+        backendStageId: pulumi.Input<string>;
+        /**
+         * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+         */
+        ruleHttpMatch?: pulumi.Input<inputs.edgeservices.RouteStageRuleRuleHttpMatch>;
+    }
+
+    export interface RouteStageRuleRuleHttpMatch {
+        /**
+         * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided.
+         */
+        methodFilters?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided.
+         */
+        pathFilter?: pulumi.Input<inputs.edgeservices.RouteStageRuleRuleHttpMatchPathFilter>;
+    }
+
+    export interface RouteStageRuleRuleHttpMatchPathFilter {
+        /**
+         * The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type.
+         */
+        pathFilterType: pulumi.Input<string>;
+        /**
+         * The value to be matched for the HTTP URL path.
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface TlsStageSecret {
+        /**
+         * The region of the secret.
+         */
+        region?: pulumi.Input<string>;
+        /**
+         * The ID of the Secret
+         */
+        secretId?: pulumi.Input<string>;
+    }
+}
+
 export namespace elasticmetal {
     export interface ServerIp {
         /**

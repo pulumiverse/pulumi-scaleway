@@ -15,18 +15,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesPipeline("main", {
+ * const main = new scaleway.edgeservices.Pipeline("main", {
  *     name: "my-edge_services-pipeline",
  *     description: "pipeline description",
  * });
- * const mainEdgeServicesDnsStage = new scaleway.EdgeServicesDnsStage("main", {
+ * const mainDnsStage = new scaleway.edgeservices.DnsStage("main", {
  *     pipelineId: main.id,
  *     tlsStageId: mainScalewayEdgeServicesTlsStage.id,
  *     fqdns: ["subdomain.example.com"],
  * });
- * const mainEdgeServicesHeadStage = new scaleway.EdgeServicesHeadStage("main", {
+ * const mainHeadStage = new scaleway.edgeservices.HeadStage("main", {
  *     pipelineId: main.id,
- *     headStageId: mainEdgeServicesDnsStage.id,
+ *     headStageId: mainDnsStage.id,
  * });
  * ```
  *
@@ -39,6 +39,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesHeadStage:EdgeServicesHeadStage main 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage
  */
 export class EdgeServicesHeadStage extends pulumi.CustomResource {
     /**
@@ -51,6 +53,7 @@ export class EdgeServicesHeadStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesHeadStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesHeadStage {
+        pulumi.log.warn("EdgeServicesHeadStage is deprecated: scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage")
         return new EdgeServicesHeadStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -84,8 +87,11 @@ export class EdgeServicesHeadStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage */
     constructor(name: string, args: EdgeServicesHeadStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage */
     constructor(name: string, argsOrState?: EdgeServicesHeadStageArgs | EdgeServicesHeadStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesHeadStage is deprecated: scaleway.index/edgeservicesheadstage.EdgeServicesHeadStage has been deprecated in favor of scaleway.edgeservices/headstage.HeadStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

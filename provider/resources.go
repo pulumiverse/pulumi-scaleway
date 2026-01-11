@@ -53,6 +53,7 @@ const (
 	databasesMod     = "databases"
 	datawarehouseMod = "datawarehouse"
 	domainMod        = "domain"
+	edgeservicesMod  = "edgeservices"
 	elasticmetalMod  = "elasticmetal"
 	functionsMod     = "functions"
 	iamMod           = "iam"
@@ -339,6 +340,7 @@ func Provider() tfbridge.ProviderInfo {
 				"container":     containersMod,
 				"datawarehouse": datawarehouseMod,
 				"domain":        domainMod,
+				"edge_services": edgeservicesMod,
 				"baremetal":     elasticmetalMod,
 				"flexible":      elasticmetalMod,
 				"function":      functionsMod,

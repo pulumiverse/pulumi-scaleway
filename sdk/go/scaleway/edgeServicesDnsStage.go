@@ -24,13 +24,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewEdgeServicesDnsStage(ctx, "main", &scaleway.EdgeServicesDnsStageArgs{
+//			_, err := edgeservices.NewDnsStage(ctx, "main", &edgeservices.DnsStageArgs{
 //				PipelineId: pulumi.Any(mainScalewayEdgeServicesPipeline.Id),
 //				Fqdns: pulumi.StringArray{
 //					pulumi.String("subdomain.example.com"),
@@ -54,6 +54,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage basic 11111111-1111-1111-1111-111111111111
 // ```
+//
+// Deprecated: scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage
 type EdgeServicesDnsStage struct {
 	pulumi.CustomResourceState
 

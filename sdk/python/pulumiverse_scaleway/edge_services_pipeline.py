@@ -176,8 +176,13 @@ class _EdgeServicesPipelineState:
         pulumi.set(self, "updated_at", value)
 
 
+warnings.warn("""scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/edgeServicesPipeline:EdgeServicesPipeline")
 class EdgeServicesPipeline(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -197,7 +202,7 @@ class EdgeServicesPipeline(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="pipeline-name",
             description="pipeline description")
         ```
@@ -208,25 +213,25 @@ class EdgeServicesPipeline(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="pipeline-name",
             description="pipeline description")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
             pipeline_id=main.id,
             s3_backend_config={
                 "bucket_name": "my-bucket-name",
                 "bucket_region": "fr-par",
             })
-        main_edge_services_waf_stage = scaleway.EdgeServicesWafStage("main",
+        main_waf_stage = scaleway.edgeservices.WafStage("main",
             pipeline_id=main.id,
-            backend_stage_id=main_edge_services_backend_stage.id,
+            backend_stage_id=main_backend_stage.id,
             mode="enable",
             paranoia_level=3)
-        main_edge_services_route_stage = scaleway.EdgeServicesRouteStage("main",
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
             pipeline_id=main.id,
-            waf_stage_id=main_edge_services_waf_stage.id,
+            waf_stage_id=main_waf_stage.id,
             rules=[{
-                "backend_stage_id": main_edge_services_backend_stage.id,
+                "backend_stage_id": main_backend_stage.id,
                 "rule_http_match": {
                     "method_filters": [
                         "get",
@@ -238,20 +243,20 @@ class EdgeServicesPipeline(pulumi.CustomResource):
                     },
                 },
             }])
-        main_edge_services_cache_stage = scaleway.EdgeServicesCacheStage("main",
+        main_cache_stage = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main.id,
-            route_stage_id=main_edge_services_route_stage.id)
-        main_edge_services_tls_stage = scaleway.EdgeServicesTlsStage("main",
+            route_stage_id=main_route_stage.id)
+        main_tls_stage = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main.id,
-            cache_stage_id=main_edge_services_cache_stage.id,
+            cache_stage_id=main_cache_stage.id,
             managed_certificate=True)
-        main_edge_services_dns_stage = scaleway.EdgeServicesDnsStage("main",
+        main_dns_stage = scaleway.edgeservices.DnsStage("main",
             pipeline_id=main.id,
-            tls_stage_id=main_edge_services_tls_stage.id,
+            tls_stage_id=main_tls_stage.id,
             fqdns=["subdomain.example.com"])
-        main_edge_services_head_stage = scaleway.EdgeServicesHeadStage("main",
+        main_head_stage = scaleway.edgeservices.HeadStage("main",
             pipeline_id=main.id,
-            head_stage_id=main_edge_services_dns_stage.id)
+            head_stage_id=main_dns_stage.id)
         ```
 
         ## Import
@@ -287,7 +292,7 @@ class EdgeServicesPipeline(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="pipeline-name",
             description="pipeline description")
         ```
@@ -298,25 +303,25 @@ class EdgeServicesPipeline(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        main = scaleway.EdgeServicesPipeline("main",
+        main = scaleway.edgeservices.Pipeline("main",
             name="pipeline-name",
             description="pipeline description")
-        main_edge_services_backend_stage = scaleway.EdgeServicesBackendStage("main",
+        main_backend_stage = scaleway.edgeservices.BackendStage("main",
             pipeline_id=main.id,
             s3_backend_config={
                 "bucket_name": "my-bucket-name",
                 "bucket_region": "fr-par",
             })
-        main_edge_services_waf_stage = scaleway.EdgeServicesWafStage("main",
+        main_waf_stage = scaleway.edgeservices.WafStage("main",
             pipeline_id=main.id,
-            backend_stage_id=main_edge_services_backend_stage.id,
+            backend_stage_id=main_backend_stage.id,
             mode="enable",
             paranoia_level=3)
-        main_edge_services_route_stage = scaleway.EdgeServicesRouteStage("main",
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
             pipeline_id=main.id,
-            waf_stage_id=main_edge_services_waf_stage.id,
+            waf_stage_id=main_waf_stage.id,
             rules=[{
-                "backend_stage_id": main_edge_services_backend_stage.id,
+                "backend_stage_id": main_backend_stage.id,
                 "rule_http_match": {
                     "method_filters": [
                         "get",
@@ -328,20 +333,20 @@ class EdgeServicesPipeline(pulumi.CustomResource):
                     },
                 },
             }])
-        main_edge_services_cache_stage = scaleway.EdgeServicesCacheStage("main",
+        main_cache_stage = scaleway.edgeservices.CacheStage("main",
             pipeline_id=main.id,
-            route_stage_id=main_edge_services_route_stage.id)
-        main_edge_services_tls_stage = scaleway.EdgeServicesTlsStage("main",
+            route_stage_id=main_route_stage.id)
+        main_tls_stage = scaleway.edgeservices.TlsStage("main",
             pipeline_id=main.id,
-            cache_stage_id=main_edge_services_cache_stage.id,
+            cache_stage_id=main_cache_stage.id,
             managed_certificate=True)
-        main_edge_services_dns_stage = scaleway.EdgeServicesDnsStage("main",
+        main_dns_stage = scaleway.edgeservices.DnsStage("main",
             pipeline_id=main.id,
-            tls_stage_id=main_edge_services_tls_stage.id,
+            tls_stage_id=main_tls_stage.id,
             fqdns=["subdomain.example.com"])
-        main_edge_services_head_stage = scaleway.EdgeServicesHeadStage("main",
+        main_head_stage = scaleway.edgeservices.HeadStage("main",
             pipeline_id=main.id,
-            head_stage_id=main_edge_services_dns_stage.id)
+            head_stage_id=main_dns_stage.id)
         ```
 
         ## Import
@@ -373,6 +378,7 @@ class EdgeServicesPipeline(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""EdgeServicesPipeline is deprecated: scaleway.index/edgeservicespipeline.EdgeServicesPipeline has been deprecated in favor of scaleway.edgeservices/pipeline.Pipeline""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

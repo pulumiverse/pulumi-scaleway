@@ -17,7 +17,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesCacheStage("main", {
+ * const main = new scaleway.edgeservices.CacheStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     backendStageId: mainScalewayEdgeServicesBackendStage.id,
  * });
@@ -29,7 +29,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.EdgeServicesCacheStage("main", {
+ * const main = new scaleway.edgeservices.CacheStage("main", {
  *     pipelineId: mainScalewayEdgeServicesPipeline.id,
  *     backendStageId: mainScalewayEdgeServicesBackendStage.id,
  *     purge: [{
@@ -48,6 +48,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/edgeServicesCacheStage:EdgeServicesCacheStage basic 11111111-1111-1111-1111-111111111111
  * ```
+ *
+ * @deprecated scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage
  */
 export class EdgeServicesCacheStage extends pulumi.CustomResource {
     /**
@@ -60,6 +62,7 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: EdgeServicesCacheStageState, opts?: pulumi.CustomResourceOptions): EdgeServicesCacheStage {
+        pulumi.log.warn("EdgeServicesCacheStage is deprecated: scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage")
         return new EdgeServicesCacheStage(name, <any>state, { ...opts, id: id });
     }
 
@@ -129,8 +132,11 @@ export class EdgeServicesCacheStage extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage */
     constructor(name: string, args: EdgeServicesCacheStageArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage */
     constructor(name: string, argsOrState?: EdgeServicesCacheStageArgs | EdgeServicesCacheStageState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("EdgeServicesCacheStage is deprecated: scaleway.index/edgeservicescachestage.EdgeServicesCacheStage has been deprecated in favor of scaleway.edgeservices/cachestage.CacheStage")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {

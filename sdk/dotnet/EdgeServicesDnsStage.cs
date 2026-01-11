@@ -25,7 +25,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.EdgeServicesDnsStage("main", new()
+    ///     var main = new Scaleway.Edgeservices.DnsStage("main", new()
     ///     {
     ///         PipelineId = mainScalewayEdgeServicesPipeline.Id,
     ///         Fqdns = new[]
@@ -47,6 +47,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage basic 11111111-1111-1111-1111-111111111111
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/edgeservicesdnsstage.EdgeServicesDnsStage has been deprecated in favor of scaleway.edgeservices/dnsstage.DnsStage")]
     [ScalewayResourceType("scaleway:index/edgeServicesDnsStage:EdgeServicesDnsStage")]
     public partial class EdgeServicesDnsStage : global::Pulumi.CustomResource
     {
