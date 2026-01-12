@@ -38,12 +38,6 @@ jobs:
     - id: esc-secrets
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
-    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-      id: app-auth
-      with:
-        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
-        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
-        owner: ${{ github.repository_owner }}
     - name: Checkout p/examples
       if: matrix.testTarget == 'pulumiExamples'
       uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
@@ -57,7 +51,7 @@ jobs:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.app-auth.outputs.token }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         # also save this cache since we are using a different mise env.
         cache_save: true

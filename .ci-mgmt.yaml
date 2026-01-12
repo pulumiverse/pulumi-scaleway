@@ -18,3 +18,5 @@ license:
         # Don't check for the license of the local shim package
         - github.com/scaleway/terraform-provider-scaleway/v2/shim
 pulumiConvert: 1
+github-app:
+    enabled: false

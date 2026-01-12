@@ -55,19 +55,13 @@ jobs:
     - id: esc-secrets
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
-    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-      id: app-auth
-      with:
-        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
-        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
-        owner: ${{ github.repository_owner }}
     - name: Setup mise
       uses: blampe/mise-action@blampe/plugins
       env:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.app-auth.outputs.token }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         cache_save: false
     - name: Create dist directory
@@ -134,19 +128,13 @@ jobs:
     - id: esc-secrets
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
-    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-      id: app-auth
-      with:
-        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
-        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
-        owner: ${{ github.repository_owner }}
     - name: Setup mise
       uses: blampe/mise-action@blampe/plugins
       env:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.app-auth.outputs.token }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         # only saving the cache in the prerequisites job
         cache_save: false
@@ -227,12 +215,6 @@ jobs:
     - id: esc-secrets
       name: Map environment to ESC outputs
       uses: ./.github/actions/esc-action
-    - uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
-      id: app-auth
-      with:
-        app-id: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_APP_ID }}
-        private-key: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_PRIVATE_KEY }}
-        owner: ${{ github.repository_owner }}
     - name: Clean up release labels
       uses: pulumi/action-release-by-pr-label@main
       with:
