@@ -25,7 +25,6 @@ jobs:
   test:
     permissions:
       contents: read
-      id-token: write
     runs-on: ubuntu-latest
     env:
       PROVIDER_VERSION: ${{ inputs.version }}
@@ -51,7 +50,7 @@ jobs:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         # also save this cache since we are using a different mise env.
         cache_save: true

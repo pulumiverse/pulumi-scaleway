@@ -61,7 +61,7 @@ jobs:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         cache_save: false
     - name: Create dist directory
@@ -134,7 +134,7 @@ jobs:
         MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
       with:
         version: 2026.1.1
-        github_token: ${{ steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
+        github_token: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN }}
         plugin_install: https://github.com/pulumi/vfox-pulumi
         # only saving the cache in the prerequisites job
         cache_save: false
@@ -229,7 +229,6 @@ jobs:
     needs: publish_sdk
     permissions:
       contents: write
-      id-token: write
     uses: ./.github/workflows/verify-release.yml
     secrets: inherit
     with:
