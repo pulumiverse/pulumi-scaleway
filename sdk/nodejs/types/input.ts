@@ -613,6 +613,10 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
      */
     frontendId?: pulumi.Input<string>;
     /**
+     * Defines whether to forward websocket requests to the load balancer.
+     */
+    hasWebsocket?: pulumi.Input<boolean>;
+    /**
      * The ID of the Load Balancer.
      */
     id?: pulumi.Input<string>;
@@ -3493,6 +3497,10 @@ export namespace edgeservices {
          * The ID of the frontend.
          */
         frontendId?: pulumi.Input<string>;
+        /**
+         * Defines whether to forward websocket requests to the load balancer.
+         */
+        hasWebsocket?: pulumi.Input<boolean>;
         /**
          * The ID of the Load Balancer.
          */

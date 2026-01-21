@@ -82,11 +82,12 @@ export class Version extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     declare public readonly data: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     declare public readonly dataWo: pulumi.Output<string | undefined>;
     /**
@@ -175,11 +176,12 @@ export interface VersionState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     data?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     dataWo?: pulumi.Input<string>;
     /**
@@ -217,11 +219,12 @@ export interface VersionState {
  */
 export interface VersionArgs {
     /**
-     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `dataWo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     data?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
      */
     dataWo?: pulumi.Input<string>;
     /**
