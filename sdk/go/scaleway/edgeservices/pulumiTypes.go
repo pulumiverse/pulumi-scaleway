@@ -115,6 +115,8 @@ type BackendStageLbBackendConfigLbConfig struct {
 	DomainName *string `pulumi:"domainName"`
 	// The ID of the frontend.
 	FrontendId *string `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer.
+	HasWebsocket *bool `pulumi:"hasWebsocket"`
 	// The ID of the Load Balancer.
 	Id *string `pulumi:"id"`
 	// Defines whether the Load Balancer's frontend handles SSL connections.
@@ -139,6 +141,8 @@ type BackendStageLbBackendConfigLbConfigArgs struct {
 	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
 	// The ID of the frontend.
 	FrontendId pulumi.StringPtrInput `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer.
+	HasWebsocket pulumi.BoolPtrInput `pulumi:"hasWebsocket"`
 	// The ID of the Load Balancer.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Defines whether the Load Balancer's frontend handles SSL connections.
@@ -234,6 +238,11 @@ func (o BackendStageLbBackendConfigLbConfigOutput) FrontendId() pulumi.StringPtr
 	return o.ApplyT(func(v BackendStageLbBackendConfigLbConfig) *string { return v.FrontendId }).(pulumi.StringPtrOutput)
 }
 
+// Defines whether to forward websocket requests to the load balancer.
+func (o BackendStageLbBackendConfigLbConfigOutput) HasWebsocket() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v BackendStageLbBackendConfigLbConfig) *bool { return v.HasWebsocket }).(pulumi.BoolPtrOutput)
+}
+
 // The ID of the Load Balancer.
 func (o BackendStageLbBackendConfigLbConfigOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v BackendStageLbBackendConfigLbConfig) *string { return v.Id }).(pulumi.StringPtrOutput)
@@ -291,6 +300,16 @@ func (o BackendStageLbBackendConfigLbConfigPtrOutput) FrontendId() pulumi.String
 		}
 		return v.FrontendId
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defines whether to forward websocket requests to the load balancer.
+func (o BackendStageLbBackendConfigLbConfigPtrOutput) HasWebsocket() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *BackendStageLbBackendConfigLbConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.HasWebsocket
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The ID of the Load Balancer.

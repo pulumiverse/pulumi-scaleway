@@ -3143,6 +3143,10 @@ if not MYPY:
         """
         The ID of the frontend.
         """
+        has_websocket: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Defines whether to forward websocket requests to the load balancer.
+        """
         id: NotRequired[pulumi.Input[_builtins.str]]
         """
         The ID of the Load Balancer.
@@ -3163,12 +3167,14 @@ class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
     def __init__(__self__, *,
                  domain_name: Optional[pulumi.Input[_builtins.str]] = None,
                  frontend_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 has_websocket: Optional[pulumi.Input[_builtins.bool]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None,
                  is_ssl: Optional[pulumi.Input[_builtins.bool]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] domain_name: The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
         :param pulumi.Input[_builtins.str] frontend_id: The ID of the frontend.
+        :param pulumi.Input[_builtins.bool] has_websocket: Defines whether to forward websocket requests to the load balancer.
         :param pulumi.Input[_builtins.str] id: The ID of the Load Balancer.
         :param pulumi.Input[_builtins.bool] is_ssl: Defines whether the Load Balancer's frontend handles SSL connections.
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone of the Load Balancer.
@@ -3177,6 +3183,8 @@ class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
             pulumi.set(__self__, "domain_name", domain_name)
         if frontend_id is not None:
             pulumi.set(__self__, "frontend_id", frontend_id)
+        if has_websocket is not None:
+            pulumi.set(__self__, "has_websocket", has_websocket)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if is_ssl is not None:
@@ -3207,6 +3215,18 @@ class EdgeServicesBackendStageLbBackendConfigLbConfigArgs:
     @frontend_id.setter
     def frontend_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "frontend_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="hasWebsocket")
+    def has_websocket(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Defines whether to forward websocket requests to the load balancer.
+        """
+        return pulumi.get(self, "has_websocket")
+
+    @has_websocket.setter
+    def has_websocket(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "has_websocket", value)
 
     @_builtins.property
     @pulumi.getter
