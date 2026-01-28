@@ -27,7 +27,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, backup_same_region=None, backup_schedule_frequency=None, backup_schedule_retention=None, certificate=None, disable_backup=None, encryption_at_rest=None, endpoint_ip=None, endpoint_port=None, engine=None, id=None, init_settings=None, instance_id=None, is_ha_cluster=None, load_balancers=None, logs_policies=None, name=None, node_type=None, organization_id=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, read_replicas=None, region=None, settings=None, snapshot_id=None, tags=None, upgradable_versions=None, user_name=None, volume_size_in_gb=None, volume_type=None):
         if backup_same_region and not isinstance(backup_same_region, bool):
             raise TypeError("Expected argument 'backup_same_region' to be a bool")
         pulumi.set(__self__, "backup_same_region", backup_same_region)
@@ -85,6 +85,12 @@ class GetInstanceResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if password_wo and not isinstance(password_wo, str):
+            raise TypeError("Expected argument 'password_wo' to be a str")
+        pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version and not isinstance(password_wo_version, int):
+            raise TypeError("Expected argument 'password_wo_version' to be a int")
+        pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips and not isinstance(private_ips, list):
             raise TypeError("Expected argument 'private_ips' to be a list")
         pulumi.set(__self__, "private_ips", private_ips)
@@ -221,6 +227,16 @@ class GetInstanceResult:
         return pulumi.get(self, "password")
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> _builtins.str:
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
     @pulumi.getter(name="privateIps")
     def private_ips(self) -> Sequence['outputs.GetInstancePrivateIpResult']:
         return pulumi.get(self, "private_ips")
@@ -306,6 +322,8 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             node_type=self.node_type,
             organization_id=self.organization_id,
             password=self.password,
+            password_wo=self.password_wo,
+            password_wo_version=self.password_wo_version,
             private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
@@ -366,6 +384,8 @@ def get_instance(instance_id: Optional[_builtins.str] = None,
         node_type=pulumi.get(__ret__, 'node_type'),
         organization_id=pulumi.get(__ret__, 'organization_id'),
         password=pulumi.get(__ret__, 'password'),
+        password_wo=pulumi.get(__ret__, 'password_wo'),
+        password_wo_version=pulumi.get(__ret__, 'password_wo_version'),
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -423,6 +443,8 @@ def get_instance_output(instance_id: Optional[pulumi.Input[Optional[_builtins.st
         node_type=pulumi.get(__response__, 'node_type'),
         organization_id=pulumi.get(__response__, 'organization_id'),
         password=pulumi.get(__response__, 'password'),
+        password_wo=pulumi.get(__response__, 'password_wo'),
+        password_wo_version=pulumi.get(__response__, 'password_wo_version'),
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),

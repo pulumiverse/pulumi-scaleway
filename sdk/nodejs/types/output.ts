@@ -613,6 +613,10 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
      */
     frontendId?: string;
     /**
+     * Defines whether to forward websocket requests to the load balancer.
+     */
+    hasWebsocket?: boolean;
+    /**
      * The ID of the Load Balancer.
      */
     id?: string;
@@ -6383,6 +6387,10 @@ export namespace edgeservices {
          * The ID of the frontend.
          */
         frontendId?: string;
+        /**
+         * Defines whether to forward websocket requests to the load balancer.
+         */
+        hasWebsocket?: boolean;
         /**
          * The ID of the Load Balancer.
          */

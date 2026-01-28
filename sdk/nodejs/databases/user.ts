@@ -5,18 +5,17 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Creates and manages database users.
+ * The `scaleway.databases.User` resource creates and manages database users.
  * For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
  *
  * ## Example Usage
- *
- * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as random from "@pulumi/random";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic user creation
  * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
@@ -111,7 +110,15 @@ export class User extends pulumi.CustomResource {
      *
      * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The Scaleway region this resource resides in.
      */
@@ -134,25 +141,26 @@ export class User extends pulumi.CustomResource {
             resourceInputs["isAdmin"] = state?.isAdmin;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["region"] = state?.region;
         } else {
             const args = argsOrState as UserArgs | undefined;
             if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["isAdmin"] = args?.isAdmin;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["region"] = args?.region;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/databaseUser:DatabaseUser" }] };
         opts = pulumi.mergeOptions(opts, aliasOpts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(User.__pulumiType, name, resourceInputs, opts);
     }
@@ -191,6 +199,14 @@ export interface UserState {
      */
     password?: pulumi.Input<string>;
     /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
+    /**
      * The Scaleway region this resource resides in.
      */
     region?: pulumi.Input<string>;
@@ -227,7 +243,15 @@ export interface UserArgs {
      *
      * For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The Scaleway region this resource resides in.
      */

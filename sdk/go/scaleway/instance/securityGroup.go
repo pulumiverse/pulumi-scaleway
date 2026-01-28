@@ -46,7 +46,7 @@ type SecurityGroup struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrOutput `pulumi:"stateful"`
-	// The tags associated with the security group
+	// The tags of the security group.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrOutput `pulumi:"zone"`
@@ -111,7 +111,7 @@ type securityGroupState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful *bool `pulumi:"stateful"`
-	// The tags associated with the security group
+	// The tags of the security group.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
@@ -141,7 +141,7 @@ type SecurityGroupState struct {
 	ProjectId pulumi.StringPtrInput
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrInput
-	// The tags associated with the security group
+	// The tags of the security group.
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
@@ -173,7 +173,7 @@ type securityGroupArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful *bool `pulumi:"stateful"`
-	// The tags associated with the security group
+	// The tags of the security group.
 	Tags []string `pulumi:"tags"`
 	// `zone`) The zone in which the security group should be created.
 	Zone *string `pulumi:"zone"`
@@ -202,7 +202,7 @@ type SecurityGroupArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// A boolean to specify whether the security group should be stateful or not.
 	Stateful pulumi.BoolPtrInput
-	// The tags associated with the security group
+	// The tags of the security group.
 	Tags pulumi.StringArrayInput
 	// `zone`) The zone in which the security group should be created.
 	Zone pulumi.StringPtrInput
@@ -351,7 +351,7 @@ func (o SecurityGroupOutput) Stateful() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *SecurityGroup) pulumi.BoolPtrOutput { return v.Stateful }).(pulumi.BoolPtrOutput)
 }
 
-// The tags associated with the security group
+// The tags of the security group.
 func (o SecurityGroupOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *SecurityGroup) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }

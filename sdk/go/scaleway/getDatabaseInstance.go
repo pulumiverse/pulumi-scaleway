@@ -62,6 +62,8 @@ type LookupDatabaseInstanceResult struct {
 	NodeType           string                                 `pulumi:"nodeType"`
 	OrganizationId     string                                 `pulumi:"organizationId"`
 	Password           string                                 `pulumi:"password"`
+	PasswordWo         string                                 `pulumi:"passwordWo"`
+	PasswordWoVersion  int                                    `pulumi:"passwordWoVersion"`
 	PrivateIps         []GetDatabaseInstancePrivateIp         `pulumi:"privateIps"`
 	PrivateNetworks    []GetDatabaseInstancePrivateNetwork    `pulumi:"privateNetworks"`
 	ProjectId          *string                                `pulumi:"projectId"`
@@ -193,6 +195,14 @@ func (o LookupDatabaseInstanceResultOutput) OrganizationId() pulumi.StringOutput
 
 func (o LookupDatabaseInstanceResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseInstanceResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDatabaseInstanceResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
 }
 
 func (o LookupDatabaseInstanceResultOutput) PrivateIps() GetDatabaseInstancePrivateIpArrayOutput {

@@ -74,6 +74,45 @@ namespace Pulumiverse.Scaleway.Applesilicon
     /// });
     /// ```
     /// 
+    /// ### With `Github` runner
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var byName = Scaleway.Applesilicon.GetOs.Invoke(new()
+    ///     {
+    ///         Name = "devos-sequoia-15.6",
+    ///     });
+    /// 
+    ///     var main = new Scaleway.Applesilicon.Runner("main", new()
+    ///     {
+    ///         Name = "TestAccRunnerGithub",
+    ///         CiProvider = "github",
+    ///         Url = "https://github.com/my-repo-url",
+    ///         Token = "MY_GITHUB_RUNNER_TOKEN",
+    ///     });
+    /// 
+    ///     var mainServer = new Scaleway.Applesilicon.Server("main", new()
+    ///     {
+    ///         Name = "TestAccServerRunner",
+    ///         Type = "M2-L",
+    ///         PublicBandwidth = 1000000000,
+    ///         OsId = byName.Apply(getOsResult =&gt; getOsResult.Id),
+    ///         RunnerIds = new[]
+    ///         {
+    ///             main.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -130,6 +169,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
+        /// The ID of the OS to use for the server.
+        /// </summary>
+        [Output("osId")]
+        public Output<string?> OsId { get; private set; } = null!;
+
+        /// <summary>
         /// The password of the server
         /// </summary>
         [Output("password")]
@@ -159,6 +204,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         /// </summary>
         [Output("publicBandwidth")]
         public Output<int> PublicBandwidth { get; private set; } = null!;
+
+        /// <summary>
+        /// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `Github` and `Gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        /// </summary>
+        [Output("runnerIds")]
+        public Output<ImmutableArray<string>> RunnerIds { get; private set; } = null!;
 
         /// <summary>
         /// The state of the server.
@@ -278,6 +329,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the OS to use for the server.
+        /// </summary>
+        [Input("osId")]
+        public Input<string>? OsId { get; set; }
+
         [Input("privateIps")]
         private InputList<Inputs.ServerPrivateIpArgs>? _privateIps;
 
@@ -314,6 +371,18 @@ namespace Pulumiverse.Scaleway.Applesilicon
         /// </summary>
         [Input("publicBandwidth")]
         public Input<int>? PublicBandwidth { get; set; }
+
+        [Input("runnerIds")]
+        private InputList<string>? _runnerIds;
+
+        /// <summary>
+        /// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `Github` and `Gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        /// </summary>
+        public InputList<string> RunnerIds
+        {
+            get => _runnerIds ?? (_runnerIds = new InputList<string>());
+            set => _runnerIds = value;
+        }
 
         /// <summary>
         /// The commercial type of the server. You find all the available types on
@@ -380,6 +449,12 @@ namespace Pulumiverse.Scaleway.Applesilicon
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
+        /// <summary>
+        /// The ID of the OS to use for the server.
+        /// </summary>
+        [Input("osId")]
+        public Input<string>? OsId { get; set; }
+
         [Input("password")]
         private Input<string>? _password;
 
@@ -432,6 +507,18 @@ namespace Pulumiverse.Scaleway.Applesilicon
         /// </summary>
         [Input("publicBandwidth")]
         public Input<int>? PublicBandwidth { get; set; }
+
+        [Input("runnerIds")]
+        private InputList<string>? _runnerIds;
+
+        /// <summary>
+        /// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `Github` and `Gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        /// </summary>
+        public InputList<string> RunnerIds
+        {
+            get => _runnerIds ?? (_runnerIds = new InputList<string>());
+            set => _runnerIds = value;
+        }
 
         /// <summary>
         /// The state of the server.

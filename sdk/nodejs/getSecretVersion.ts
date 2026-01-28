@@ -51,7 +51,7 @@ import * as utilities from "./utilities";
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
  *
- * ## Data information
+ * ## Data
  *
  * Note: This data source provides you with access to the secret payload, which is encoded in base64.
  *
@@ -109,7 +109,7 @@ export interface GetSecretVersionResult {
      */
     readonly createdAt: string;
     /**
-     * The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
+     * The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
      */
     readonly data: string;
     readonly dataWo: string;
@@ -184,7 +184,7 @@ export interface GetSecretVersionResult {
  * export const scalewaySecretAccessPayloadById = dataBySecretId.apply(dataBySecretId => dataBySecretId.data);
  * ```
  *
- * ## Data information
+ * ## Data
  *
  * Note: This data source provides you with access to the secret payload, which is encoded in base64.
  *
