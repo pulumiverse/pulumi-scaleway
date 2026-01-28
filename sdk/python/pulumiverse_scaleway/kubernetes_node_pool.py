@@ -73,8 +73,6 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
-               
-               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the pool.
                
                > Note: As mentioned in [this document](https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/tags.md#taints), taints of a pool's nodes are applied using tags. (e.g.: `"taint=taintName=taintValue:Effect"`)
@@ -321,8 +319,6 @@ class KubernetesNodePoolArgs:
     def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The ID of the security group
-
-        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -444,8 +440,6 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
-               
-               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -735,8 +729,6 @@ class _KubernetesNodePoolState:
     def security_group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The ID of the security group
-
-        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "security_group_id")
 
@@ -919,8 +911,6 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
-               
-               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -1100,8 +1090,6 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] root_volume_size_in_gb: The size of the system volume of the nodes in gigabyte
         :param pulumi.Input[_builtins.str] root_volume_type: System volume type of the nodes composing the pool
         :param pulumi.Input[_builtins.str] security_group_id: The ID of the security group
-               
-               > **Important:** Updates to this field will recreate a new resource.
         :param pulumi.Input[_builtins.int] size: The size of the pool.
                
                > **Important:** This field will only be used at creation if autoscaling is enabled.
@@ -1302,8 +1290,6 @@ class KubernetesNodePool(pulumi.CustomResource):
     def security_group_id(self) -> pulumi.Output[_builtins.str]:
         """
         The ID of the security group
-
-        > **Important:** Updates to this field will recreate a new resource.
         """
         return pulumi.get(self, "security_group_id")
 

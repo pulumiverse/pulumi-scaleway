@@ -103,7 +103,7 @@ type Gateway struct {
 	// The date and time of the last update of the VPN gateway (RFC 3339 format).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// `zone`) The zone in which the VPN gateway should be created.
-	Zone pulumi.StringOutput `pulumi:"zone"`
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewGateway registers a new resource with the given unique name, arguments, and options.
@@ -416,8 +416,8 @@ func (o GatewayOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // `zone`) The zone in which the VPN gateway should be created.
-func (o GatewayOutput) Zone() pulumi.StringOutput {
-	return o.ApplyT(func(v *Gateway) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
+func (o GatewayOutput) Zone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Gateway) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }
 
 type GatewayArrayOutput struct{ *pulumi.OutputState }

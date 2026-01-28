@@ -34,6 +34,8 @@ class InstanceArgs:
                  logs_policy: Optional[pulumi.Input['InstanceLogsPolicyArgs']] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -65,7 +67,9 @@ class InstanceArgs:
         :param pulumi.Input['InstanceLoadBalancerArgs'] load_balancer: List of Load Balancer endpoints of the Database Instance.
         :param pulumi.Input['InstanceLogsPolicyArgs'] logs_policy: Logs policy configuration
         :param pulumi.Input[_builtins.str] name: The name of the Database Instance.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
@@ -108,6 +112,10 @@ class InstanceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
@@ -284,13 +292,37 @@ class InstanceArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password for the first user of the Database Instance.
+        Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -439,6 +471,8 @@ class _InstanceState:
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['InstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -476,7 +510,9 @@ class _InstanceState:
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
@@ -536,6 +572,10 @@ class _InstanceState:
             pulumi.set(__self__, "organization_id", organization_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
@@ -766,13 +806,37 @@ class _InstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password for the first user of the Database Instance.
+        Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -944,6 +1008,8 @@ class Instance(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -961,12 +1027,11 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Example Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Example Basic
         main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
@@ -978,69 +1043,11 @@ class Instance(pulumi.CustomResource):
             encryption_at_rest=True)
         ```
 
-        ### Example Block Storage Low Latency
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb-sbs",
-            node_type="db-play2-pico",
-            engine="PostgreSQL-15",
-            is_ha_cluster=True,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_type="sbs_15k",
-            volume_size_in_gb=10)
-        ```
-
-        ### Example with Settings
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb",
-            node_type="db-dev-s",
-            disable_backup=True,
-            engine="MySQL-8",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            init_settings={
-                "lower_case_table_names": "1",
-            },
-            settings={
-                "max_connections": "350",
-            })
-        ```
-
-        ### Example with backup schedule
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-15",
-            is_ha_cluster=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            disable_backup=False,
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7)
-        ```
 
         ### Example Engine Upgrade
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
         # Initial creation with PostgreSQL 14
         main = scaleway.databases.Instance("main",
             name="my-database",
@@ -1052,68 +1059,6 @@ class Instance(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         pulumi.export("upgradableVersions", main.upgradable_versions)
         ```
-
-        > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
-
-        ### Examples of endpoint configuration
-
-        Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
-
-        ### 1 static Private Network endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn", ipv4_subnet={
-            "subnet": "172.16.20.0/22",
-        })
-        main = scaleway.databases.Instance("main",
-            node_type="db-dev-s",
-            engine="PostgreSQL-15",
-            private_network={
-                "pn_id": pn.id,
-                "ip_net": "172.16.20.4/22",
-            })
-        ```
-
-        ### 1 IPAM Private Network endpoint + 1 public endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn")
-        main = scaleway.databases.Instance("main",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-15",
-            private_network={
-                "pn_id": pn.id,
-                "enable_ipam": True,
-            },
-            load_balancer={})
-        ```
-
-        ### Default: 1 public endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            node_type="db-dev-s",
-            engine="PostgreSQL-15")
-        ```
-
-        > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
-
-        > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
-
-        ## Limitations
-
-        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
-        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
-        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
         ## Import
 
@@ -1146,7 +1091,9 @@ class Instance(pulumi.CustomResource):
                interruption.
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
@@ -1176,12 +1123,11 @@ class Instance(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Example Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Example Basic
         main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
@@ -1193,69 +1139,11 @@ class Instance(pulumi.CustomResource):
             encryption_at_rest=True)
         ```
 
-        ### Example Block Storage Low Latency
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb-sbs",
-            node_type="db-play2-pico",
-            engine="PostgreSQL-15",
-            is_ha_cluster=True,
-            disable_backup=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_type="sbs_15k",
-            volume_size_in_gb=10)
-        ```
-
-        ### Example with Settings
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb",
-            node_type="db-dev-s",
-            disable_backup=True,
-            engine="MySQL-8",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            init_settings={
-                "lower_case_table_names": "1",
-            },
-            settings={
-                "max_connections": "350",
-            })
-        ```
-
-        ### Example with backup schedule
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            name="test-rdb",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-15",
-            is_ha_cluster=True,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            disable_backup=False,
-            backup_schedule_frequency=24,
-            backup_schedule_retention=7)
-        ```
 
         ### Example Engine Upgrade
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
         # Initial creation with PostgreSQL 14
         main = scaleway.databases.Instance("main",
             name="my-database",
@@ -1267,68 +1155,6 @@ class Instance(pulumi.CustomResource):
             password="thiZ_is_v&ry_s3cret")
         pulumi.export("upgradableVersions", main.upgradable_versions)
         ```
-
-        > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
-
-        ### Examples of endpoint configuration
-
-        Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
-
-        ### 1 static Private Network endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn", ipv4_subnet={
-            "subnet": "172.16.20.0/22",
-        })
-        main = scaleway.databases.Instance("main",
-            node_type="db-dev-s",
-            engine="PostgreSQL-15",
-            private_network={
-                "pn_id": pn.id,
-                "ip_net": "172.16.20.4/22",
-            })
-        ```
-
-        ### 1 IPAM Private Network endpoint + 1 public endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn")
-        main = scaleway.databases.Instance("main",
-            node_type="DB-DEV-S",
-            engine="PostgreSQL-15",
-            private_network={
-                "pn_id": pn.id,
-                "enable_ipam": True,
-            },
-            load_balancer={})
-        ```
-
-        ### Default: 1 public endpoint
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.databases.Instance("main",
-            node_type="db-dev-s",
-            engine="PostgreSQL-15")
-        ```
-
-        > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
-
-        > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
-
-        ## Limitations
-
-        The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
-        i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
-        section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 
         ## Import
 
@@ -1368,6 +1194,8 @@ class Instance(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1402,6 +1230,8 @@ class Instance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
@@ -1420,7 +1250,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["upgradable_versions"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/databaseInstance:DatabaseInstance")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Instance, __self__).__init__(
             'scaleway:databases/instance:Instance',
@@ -1449,6 +1279,8 @@ class Instance(pulumi.CustomResource):
             node_type: Optional[pulumi.Input[_builtins.str]] = None,
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]]] = None,
             private_network: Optional[pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1491,7 +1323,9 @@ class Instance(pulumi.CustomResource):
                
                > **Important** Once your Database Instance reaches `disk_full` status, if you are using `lssd` storage, you should upgrade the `node_type`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the Database Instance is associated with.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the resource.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: List of Private Networks endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Database
@@ -1532,6 +1366,8 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
@@ -1687,9 +1523,25 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password for the first user of the Database Instance.
+        Password for the first user of the Database Instance. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateIps")

@@ -82,7 +82,7 @@ class GetVersionResult:
     @pulumi.getter
     def data(self) -> _builtins.str:
         """
-        The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data")
 
@@ -230,7 +230,7 @@ def get_version(organization_id: Optional[_builtins.str] = None,
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
     ```
 
-    ## Data information
+    ## Data
 
     Note: This data source provides you with access to the secret payload, which is encoded in base64.
 
@@ -320,7 +320,7 @@ def get_version_output(organization_id: Optional[pulumi.Input[Optional[_builtins
     pulumi.export("scalewaySecretAccessPayloadById", data_by_secret_id.data)
     ```
 
-    ## Data information
+    ## Data
 
     Note: This data source provides you with access to the secret payload, which is encoded in base64.
 

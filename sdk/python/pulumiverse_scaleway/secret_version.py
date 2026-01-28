@@ -28,8 +28,9 @@ class SecretVersionInitArgs:
         """
         The set of arguments for constructing a SecretVersion resource.
         :param pulumi.Input[_builtins.str] secret_id: The ID of the secret associated with the version.
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
@@ -62,7 +63,7 @@ class SecretVersionInitArgs:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data")
 
@@ -75,6 +76,7 @@ class SecretVersionInitArgs:
     def data_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data_wo")
 
@@ -135,8 +137,9 @@ class _SecretVersionState:
         """
         Input properties used for looking up and filtering SecretVersion resources.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
@@ -182,7 +185,7 @@ class _SecretVersionState:
     @pulumi.getter
     def data(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data")
 
@@ -195,6 +198,7 @@ class _SecretVersionState:
     def data_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data_wo")
 
@@ -350,8 +354,9 @@ class SecretVersion(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
@@ -479,8 +484,9 @@ class SecretVersion(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the secret version's creation (in RFC 3339 format).
-        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        :param pulumi.Input[_builtins.str] data: The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.str] data_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         :param pulumi.Input[_builtins.int] data_wo_version: The version of the write-only data. To update the `data_wo`, you must also update the `data_wo_version`.
         :param pulumi.Input[_builtins.str] description: Description of the secret version (e.g. `my-new-description`).
         :param pulumi.Input[_builtins.str] region: ). The region where the resource exists.
@@ -517,7 +523,7 @@ class SecretVersion(pulumi.CustomResource):
     @pulumi.getter
     def data(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Only one of `data` or `data_wo` should be specified. Find out more on the [data section](https://www.terraform.io/#data-information).
+        The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data")
 
@@ -526,6 +532,7 @@ class SecretVersion(pulumi.CustomResource):
     def data_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
         """
         return pulumi.get(self, "data_wo")
 

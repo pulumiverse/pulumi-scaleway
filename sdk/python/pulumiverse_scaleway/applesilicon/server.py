@@ -25,10 +25,12 @@ class ServerArgs:
                  commitment: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
+                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Server resource.
@@ -38,11 +40,13 @@ class ServerArgs:
         :param pulumi.Input[_builtins.str] commitment: The commitment period of the server
         :param pulumi.Input[_builtins.bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[_builtins.str] name: The name of the server.
+        :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which
                the server should be created.
         """
@@ -53,6 +57,8 @@ class ServerArgs:
             pulumi.set(__self__, "enable_vpc", enable_vpc)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if os_id is not None:
+            pulumi.set(__self__, "os_id", os_id)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
@@ -61,6 +67,8 @@ class ServerArgs:
             pulumi.set(__self__, "project_id", project_id)
         if public_bandwidth is not None:
             pulumi.set(__self__, "public_bandwidth", public_bandwidth)
+        if runner_ids is not None:
+            pulumi.set(__self__, "runner_ids", runner_ids)
         if zone is not None:
             pulumi.set(__self__, "zone", zone)
 
@@ -115,6 +123,18 @@ class ServerArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="osId")
+    def os_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the OS to use for the server.
+        """
+        return pulumi.get(self, "os_id")
+
+    @os_id.setter
+    def os_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "os_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="privateIps")
     def private_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]]:
         """
@@ -164,6 +184,18 @@ class ServerArgs:
         pulumi.set(self, "public_bandwidth", value)
 
     @_builtins.property
+    @pulumi.getter(name="runnerIds")
+    def runner_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        """
+        return pulumi.get(self, "runner_ids")
+
+    @runner_ids.setter
+    def runner_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "runner_ids", value)
+
+    @_builtins.property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -187,11 +219,13 @@ class _ServerState:
                  ip: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
+                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  state: Optional[pulumi.Input[_builtins.str]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -208,12 +242,14 @@ class _ServerState:
         :param pulumi.Input[_builtins.str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
         :param pulumi.Input[_builtins.str] password: The password of the server
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param pulumi.Input[Sequence[pulumi.Input['ServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         :param pulumi.Input[_builtins.str] state: The state of the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -239,6 +275,8 @@ class _ServerState:
             pulumi.set(__self__, "name", name)
         if organization_id is not None:
             pulumi.set(__self__, "organization_id", organization_id)
+        if os_id is not None:
+            pulumi.set(__self__, "os_id", os_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_ips is not None:
@@ -249,6 +287,8 @@ class _ServerState:
             pulumi.set(__self__, "project_id", project_id)
         if public_bandwidth is not None:
             pulumi.set(__self__, "public_bandwidth", public_bandwidth)
+        if runner_ids is not None:
+            pulumi.set(__self__, "runner_ids", runner_ids)
         if state is not None:
             pulumi.set(__self__, "state", state)
         if type is not None:
@@ -349,6 +389,18 @@ class _ServerState:
         pulumi.set(self, "organization_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="osId")
+    def os_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the OS to use for the server.
+        """
+        return pulumi.get(self, "os_id")
+
+    @os_id.setter
+    def os_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "os_id", value)
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -408,6 +460,18 @@ class _ServerState:
     @public_bandwidth.setter
     def public_bandwidth(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "public_bandwidth", value)
+
+    @_builtins.property
+    @pulumi.getter(name="runnerIds")
+    def runner_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        """
+        return pulumi.get(self, "runner_ids")
+
+    @runner_ids.setter
+    def runner_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "runner_ids", value)
 
     @_builtins.property
     @pulumi.getter
@@ -506,10 +570,12 @@ class Server(pulumi.CustomResource):
                  commitment: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
+                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -550,6 +616,27 @@ class Server(pulumi.CustomResource):
             }])
         ```
 
+        ### With `github` runner
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        by_name = scaleway.applesilicon.get_os(name="devos-sequoia-15.6")
+        main = scaleway.applesilicon.Runner("main",
+            name="TestAccRunnerGithub",
+            ci_provider="github",
+            url="https://github.com/my-repo-url",
+            token="MY_GITHUB_RUNNER_TOKEN")
+        main_server = scaleway.applesilicon.Server("main",
+            name="TestAccServerRunner",
+            type="M2-L",
+            public_bandwidth=1000000000,
+            os_id=by_name.id,
+            runner_ids=[main.id])
+        ```
+
         ## Import
 
         Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -565,11 +652,13 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] commitment: The commitment period of the server
         :param pulumi.Input[_builtins.bool] enable_vpc: : Enables the VPC option when set to true.
         :param pulumi.Input[_builtins.str] name: The name of the server.
+        :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
                resource.
@@ -619,6 +708,27 @@ class Server(pulumi.CustomResource):
             }])
         ```
 
+        ### With `github` runner
+
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
+
+        by_name = scaleway.applesilicon.get_os(name="devos-sequoia-15.6")
+        main = scaleway.applesilicon.Runner("main",
+            name="TestAccRunnerGithub",
+            ci_provider="github",
+            url="https://github.com/my-repo-url",
+            token="MY_GITHUB_RUNNER_TOKEN")
+        main_server = scaleway.applesilicon.Server("main",
+            name="TestAccServerRunner",
+            type="M2-L",
+            public_bandwidth=1000000000,
+            os_id=by_name.id,
+            runner_ids=[main.id])
+        ```
+
         ## Import
 
         Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -647,10 +757,12 @@ class Server(pulumi.CustomResource):
                  commitment: Optional[pulumi.Input[_builtins.str]] = None,
                  enable_vpc: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 os_id: Optional[pulumi.Input[_builtins.str]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
+                 runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  type: Optional[pulumi.Input[_builtins.str]] = None,
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
@@ -665,10 +777,12 @@ class Server(pulumi.CustomResource):
             __props__.__dict__["commitment"] = commitment
             __props__.__dict__["enable_vpc"] = enable_vpc
             __props__.__dict__["name"] = name
+            __props__.__dict__["os_id"] = os_id
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["public_bandwidth"] = public_bandwidth
+            __props__.__dict__["runner_ids"] = runner_ids
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__.__dict__["type"] = type
@@ -704,11 +818,13 @@ class Server(pulumi.CustomResource):
             ip: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
+            os_id: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             public_bandwidth: Optional[pulumi.Input[_builtins.int]] = None,
+            runner_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             state: Optional[pulumi.Input[_builtins.str]] = None,
             type: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None,
@@ -730,12 +846,14 @@ class Server(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] ip: IPv4 address of the server (IPv4 address).
         :param pulumi.Input[_builtins.str] name: The name of the server.
         :param pulumi.Input[_builtins.str] organization_id: The organization ID the server is associated with.
+        :param pulumi.Input[_builtins.str] os_id: The ID of the OS to use for the server.
         :param pulumi.Input[_builtins.str] password: The password of the server
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateIpArgs', 'ServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the server.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServerPrivateNetworkArgs', 'ServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is
                associated with.
         :param pulumi.Input[_builtins.int] public_bandwidth: Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] runner_ids: List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
         :param pulumi.Input[_builtins.str] state: The state of the server.
         :param pulumi.Input[_builtins.str] type: The commercial type of the server. You find all the available types on
                the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
@@ -758,11 +876,13 @@ class Server(pulumi.CustomResource):
         __props__.__dict__["ip"] = ip
         __props__.__dict__["name"] = name
         __props__.__dict__["organization_id"] = organization_id
+        __props__.__dict__["os_id"] = os_id
         __props__.__dict__["password"] = password
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_bandwidth"] = public_bandwidth
+        __props__.__dict__["runner_ids"] = runner_ids
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
         __props__.__dict__["updated_at"] = updated_at
@@ -829,6 +949,14 @@ class Server(pulumi.CustomResource):
         return pulumi.get(self, "organization_id")
 
     @_builtins.property
+    @pulumi.getter(name="osId")
+    def os_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the OS to use for the server.
+        """
+        return pulumi.get(self, "os_id")
+
+    @_builtins.property
     @pulumi.getter
     def password(self) -> pulumi.Output[_builtins.str]:
         """
@@ -868,6 +996,14 @@ class Server(pulumi.CustomResource):
         Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
         """
         return pulumi.get(self, "public_bandwidth")
+
+    @_builtins.property
+    @pulumi.getter(name="runnerIds")
+    def runner_ids(self) -> pulumi.Output[Sequence[_builtins.str]]:
+        """
+        List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+        """
+        return pulumi.get(self, "runner_ids")
 
     @_builtins.property
     @pulumi.getter

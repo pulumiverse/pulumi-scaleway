@@ -71,6 +71,8 @@ class BackendStageLbBackendConfigLbConfig(dict):
             suggest = "domain_name"
         elif key == "frontendId":
             suggest = "frontend_id"
+        elif key == "hasWebsocket":
+            suggest = "has_websocket"
         elif key == "isSsl":
             suggest = "is_ssl"
 
@@ -88,12 +90,14 @@ class BackendStageLbBackendConfigLbConfig(dict):
     def __init__(__self__, *,
                  domain_name: Optional[_builtins.str] = None,
                  frontend_id: Optional[_builtins.str] = None,
+                 has_websocket: Optional[_builtins.bool] = None,
                  id: Optional[_builtins.str] = None,
                  is_ssl: Optional[_builtins.bool] = None,
                  zone: Optional[_builtins.str] = None):
         """
         :param _builtins.str domain_name: The Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer.
         :param _builtins.str frontend_id: The ID of the frontend.
+        :param _builtins.bool has_websocket: Defines whether to forward websocket requests to the load balancer.
         :param _builtins.str id: The ID of the Load Balancer.
         :param _builtins.bool is_ssl: Defines whether the Load Balancer's frontend handles SSL connections.
         :param _builtins.str zone: `zone`) The zone of the Load Balancer.
@@ -102,6 +106,8 @@ class BackendStageLbBackendConfigLbConfig(dict):
             pulumi.set(__self__, "domain_name", domain_name)
         if frontend_id is not None:
             pulumi.set(__self__, "frontend_id", frontend_id)
+        if has_websocket is not None:
+            pulumi.set(__self__, "has_websocket", has_websocket)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if is_ssl is not None:
@@ -124,6 +130,14 @@ class BackendStageLbBackendConfigLbConfig(dict):
         The ID of the frontend.
         """
         return pulumi.get(self, "frontend_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hasWebsocket")
+    def has_websocket(self) -> Optional[_builtins.bool]:
+        """
+        Defines whether to forward websocket requests to the load balancer.
+        """
+        return pulumi.get(self, "has_websocket")
 
     @_builtins.property
     @pulumi.getter

@@ -5065,6 +5065,8 @@ type EdgeServicesBackendStageLbBackendConfigLbConfig struct {
 	DomainName *string `pulumi:"domainName"`
 	// The ID of the frontend.
 	FrontendId *string `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer.
+	HasWebsocket *bool `pulumi:"hasWebsocket"`
 	// The ID of the Load Balancer.
 	Id *string `pulumi:"id"`
 	// Defines whether the Load Balancer's frontend handles SSL connections.
@@ -5089,6 +5091,8 @@ type EdgeServicesBackendStageLbBackendConfigLbConfigArgs struct {
 	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
 	// The ID of the frontend.
 	FrontendId pulumi.StringPtrInput `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer.
+	HasWebsocket pulumi.BoolPtrInput `pulumi:"hasWebsocket"`
 	// The ID of the Load Balancer.
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Defines whether the Load Balancer's frontend handles SSL connections.
@@ -5184,6 +5188,11 @@ func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) FrontendId() pulu
 	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.FrontendId }).(pulumi.StringPtrOutput)
 }
 
+// Defines whether to forward websocket requests to the load balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) HasWebsocket() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *bool { return v.HasWebsocket }).(pulumi.BoolPtrOutput)
+}
+
 // The ID of the Load Balancer.
 func (o EdgeServicesBackendStageLbBackendConfigLbConfigOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v EdgeServicesBackendStageLbBackendConfigLbConfig) *string { return v.Id }).(pulumi.StringPtrOutput)
@@ -5241,6 +5250,16 @@ func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) FrontendId() p
 		}
 		return v.FrontendId
 	}).(pulumi.StringPtrOutput)
+}
+
+// Defines whether to forward websocket requests to the load balancer.
+func (o EdgeServicesBackendStageLbBackendConfigLbConfigPtrOutput) HasWebsocket() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesBackendStageLbBackendConfigLbConfig) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.HasWebsocket
+	}).(pulumi.BoolPtrOutput)
 }
 
 // The ID of the Load Balancer.

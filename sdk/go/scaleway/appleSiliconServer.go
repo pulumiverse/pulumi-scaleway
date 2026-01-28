@@ -92,6 +92,53 @@ import (
 //
 // ```
 //
+// ### With `github` runner
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/applesilicon"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			byName, err := applesilicon.GetOs(ctx, &applesilicon.GetOsArgs{
+//				Name: pulumi.StringRef("devos-sequoia-15.6"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			main, err := applesilicon.NewRunner(ctx, "main", &applesilicon.RunnerArgs{
+//				Name:       pulumi.String("TestAccRunnerGithub"),
+//				CiProvider: pulumi.String("github"),
+//				Url:        pulumi.String("https://github.com/my-repo-url"),
+//				Token:      pulumi.String("MY_GITHUB_RUNNER_TOKEN"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = applesilicon.NewServer(ctx, "main", &applesilicon.ServerArgs{
+//				Name:            pulumi.String("TestAccServerRunner"),
+//				Type:            pulumi.String("M2-L"),
+//				PublicBandwidth: pulumi.Int(1000000000),
+//				OsId:            pulumi.String(byName.Id),
+//				RunnerIds: pulumi.StringArray{
+//					main.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -120,6 +167,8 @@ type AppleSiliconServer struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The ID of the OS to use for the server.
+	OsId pulumi.StringPtrOutput `pulumi:"osId"`
 	// The password of the server
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
@@ -131,6 +180,8 @@ type AppleSiliconServer struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 	PublicBandwidth pulumi.IntOutput `pulumi:"publicBandwidth"`
+	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+	RunnerIds pulumi.StringArrayOutput `pulumi:"runnerIds"`
 	// The state of the server.
 	State pulumi.StringOutput `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -201,6 +252,8 @@ type appleSiliconServerState struct {
 	Name *string `pulumi:"name"`
 	// The organization ID the server is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
+	// The ID of the OS to use for the server.
+	OsId *string `pulumi:"osId"`
 	// The password of the server
 	Password *string `pulumi:"password"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
@@ -212,6 +265,8 @@ type appleSiliconServerState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 	PublicBandwidth *int `pulumi:"publicBandwidth"`
+	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+	RunnerIds []string `pulumi:"runnerIds"`
 	// The state of the server.
 	State *string `pulumi:"state"`
 	// The commercial type of the server. You find all the available types on
@@ -246,6 +301,8 @@ type AppleSiliconServerState struct {
 	Name pulumi.StringPtrInput
 	// The organization ID the server is associated with.
 	OrganizationId pulumi.StringPtrInput
+	// The ID of the OS to use for the server.
+	OsId pulumi.StringPtrInput
 	// The password of the server
 	Password pulumi.StringPtrInput
 	// The list of private IPv4 and IPv6 addresses associated with the server.
@@ -257,6 +314,8 @@ type AppleSiliconServerState struct {
 	ProjectId pulumi.StringPtrInput
 	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 	PublicBandwidth pulumi.IntPtrInput
+	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+	RunnerIds pulumi.StringArrayInput
 	// The state of the server.
 	State pulumi.StringPtrInput
 	// The commercial type of the server. You find all the available types on
@@ -287,6 +346,8 @@ type appleSiliconServerArgs struct {
 	EnableVpc *bool `pulumi:"enableVpc"`
 	// The name of the server.
 	Name *string `pulumi:"name"`
+	// The ID of the OS to use for the server.
+	OsId *string `pulumi:"osId"`
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps []AppleSiliconServerPrivateIp `pulumi:"privateIps"`
 	// The private networks to attach to the server
@@ -296,6 +357,8 @@ type appleSiliconServerArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 	PublicBandwidth *int `pulumi:"publicBandwidth"`
+	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+	RunnerIds []string `pulumi:"runnerIds"`
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
@@ -313,6 +376,8 @@ type AppleSiliconServerArgs struct {
 	EnableVpc pulumi.BoolPtrInput
 	// The name of the server.
 	Name pulumi.StringPtrInput
+	// The ID of the OS to use for the server.
+	OsId pulumi.StringPtrInput
 	// The list of private IPv4 and IPv6 addresses associated with the server.
 	PrivateIps AppleSiliconServerPrivateIpArrayInput
 	// The private networks to attach to the server
@@ -322,6 +387,8 @@ type AppleSiliconServerArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 	PublicBandwidth pulumi.IntPtrInput
+	// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+	RunnerIds pulumi.StringArrayInput
 	// The commercial type of the server. You find all the available types on
 	// the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new
 	// resource.
@@ -453,6 +520,11 @@ func (o AppleSiliconServerOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The ID of the OS to use for the server.
+func (o AppleSiliconServerOutput) OsId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringPtrOutput { return v.OsId }).(pulumi.StringPtrOutput)
+}
+
 // The password of the server
 func (o AppleSiliconServerOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
@@ -477,6 +549,11 @@ func (o AppleSiliconServerOutput) ProjectId() pulumi.StringOutput {
 // Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
 func (o AppleSiliconServerOutput) PublicBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *AppleSiliconServer) pulumi.IntOutput { return v.PublicBandwidth }).(pulumi.IntOutput)
+}
+
+// List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+func (o AppleSiliconServerOutput) RunnerIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *AppleSiliconServer) pulumi.StringArrayOutput { return v.RunnerIds }).(pulumi.StringArrayOutput)
 }
 
 // The state of the server.

@@ -26,6 +26,12 @@ namespace Pulumiverse.Scaleway.Edgeservices.Inputs
         public Input<string>? FrontendId { get; set; }
 
         /// <summary>
+        /// Defines whether to forward websocket requests to the load balancer.
+        /// </summary>
+        [Input("hasWebsocket")]
+        public Input<bool>? HasWebsocket { get; set; }
+
+        /// <summary>
         /// The ID of the Load Balancer.
         /// </summary>
         [Input("id")]

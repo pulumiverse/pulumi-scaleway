@@ -11,12 +11,10 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Databases
 {
     /// <summary>
-    /// Creates and manages database users.
+    /// The `scaleway.databases.User` resource creates and manages database users.
     /// For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -27,6 +25,7 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic user creation
     ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
@@ -110,7 +109,19 @@ namespace Pulumiverse.Scaleway.Databases
         /// For secure password generation, consider using the `RandomPassword` resource with appropriate parameters.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The Scaleway region this resource resides in.
@@ -149,6 +160,7 @@ namespace Pulumiverse.Scaleway.Databases
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -195,7 +207,7 @@ namespace Pulumiverse.Scaleway.Databases
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
@@ -218,6 +230,28 @@ namespace Pulumiverse.Scaleway.Databases
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The Scaleway region this resource resides in.
@@ -278,6 +312,28 @@ namespace Pulumiverse.Scaleway.Databases
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The Scaleway region this resource resides in.

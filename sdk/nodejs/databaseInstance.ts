@@ -12,12 +12,11 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Example Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Example Basic
  * const main = new scaleway.databases.Instance("main", {
  *     name: "test-rdb",
  *     nodeType: "DB-DEV-S",
@@ -30,72 +29,11 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * ### Example Block Storage Low Latency
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const main = new scaleway.databases.Instance("main", {
- *     name: "test-rdb-sbs",
- *     nodeType: "db-play2-pico",
- *     engine: "PostgreSQL-15",
- *     isHaCluster: true,
- *     disableBackup: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     volumeType: "sbs_15k",
- *     volumeSizeInGb: 10,
- * });
- * ```
- *
- * ### Example with Settings
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.databases.Instance("main", {
- *     name: "test-rdb",
- *     nodeType: "db-dev-s",
- *     disableBackup: true,
- *     engine: "MySQL-8",
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     initSettings: {
- *         lower_case_table_names: "1",
- *     },
- *     settings: {
- *         max_connections: "350",
- *     },
- * });
- * ```
- *
- * ### Example with backup schedule
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.databases.Instance("main", {
- *     name: "test-rdb",
- *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-15",
- *     isHaCluster: true,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     disableBackup: false,
- *     backupScheduleFrequency: 24,
- *     backupScheduleRetention: 7,
- * });
- * ```
- *
- * ### Example Engine Upgrade
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
+ * //## Example Engine Upgrade
  * // Initial creation with PostgreSQL 14
  * const main = new scaleway.databases.Instance("main", {
  *     name: "my-database",
@@ -108,71 +46,6 @@ import * as utilities from "./utilities";
  * });
  * export const upgradableVersions = main.upgradableVersions;
  * ```
- *
- * > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
- *
- * ### Examples of endpoint configuration
- *
- * Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
- *
- * ### 1 static Private Network endpoint
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn = new scaleway.network.PrivateNetwork("pn", {ipv4Subnet: {
- *     subnet: "172.16.20.0/22",
- * }});
- * const main = new scaleway.databases.Instance("main", {
- *     nodeType: "db-dev-s",
- *     engine: "PostgreSQL-15",
- *     privateNetwork: {
- *         pnId: pn.id,
- *         ipNet: "172.16.20.4/22",
- *     },
- * });
- * ```
- *
- * ### 1 IPAM Private Network endpoint + 1 public endpoint
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn = new scaleway.network.PrivateNetwork("pn", {});
- * const main = new scaleway.databases.Instance("main", {
- *     nodeType: "DB-DEV-S",
- *     engine: "PostgreSQL-15",
- *     privateNetwork: {
- *         pnId: pn.id,
- *         enableIpam: true,
- *     },
- *     loadBalancer: {},
- * });
- * ```
- *
- * ### Default: 1 public endpoint
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.databases.Instance("main", {
- *     nodeType: "db-dev-s",
- *     engine: "PostgreSQL-15",
- * });
- * ```
- *
- * > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
- *
- * > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
- *
- * ## Limitations
- *
- * The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
- * i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
- * section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
  *
  * ## Import
  *
@@ -291,9 +164,17 @@ export class DatabaseInstance extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
-     * Password for the first user of the Database Instance.
+     * Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The private IPv4 address associated with the resource.
      */
@@ -382,6 +263,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetwork"] = state?.privateNetwork;
             resourceInputs["projectId"] = state?.projectId;
@@ -412,6 +295,8 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetwork"] = args?.privateNetwork;
             resourceInputs["projectId"] = args?.projectId;
@@ -430,7 +315,7 @@ export class DatabaseInstance extends pulumi.CustomResource {
             resourceInputs["upgradableVersions"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabaseInstance.__pulumiType, name, resourceInputs, opts);
     }
@@ -516,9 +401,17 @@ export interface DatabaseInstanceState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * Password for the first user of the Database Instance.
+     * Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the resource.
      */
@@ -635,9 +528,17 @@ export interface DatabaseInstanceArgs {
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password for the first user of the Database Instance.
+     * Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the resource.
      */

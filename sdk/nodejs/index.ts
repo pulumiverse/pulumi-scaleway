@@ -460,6 +460,11 @@ export const getKeyManagerKey: typeof import("./getKeyManagerKey").getKeyManager
 export const getKeyManagerKeyOutput: typeof import("./getKeyManagerKey").getKeyManagerKeyOutput = null as any;
 utilities.lazyLoad(exports, ["getKeyManagerKey","getKeyManagerKeyOutput"], () => require("./getKeyManagerKey"));
 
+export { GetKeyManagerVerifyArgs, GetKeyManagerVerifyResult, GetKeyManagerVerifyOutputArgs } from "./getKeyManagerVerify";
+export const getKeyManagerVerify: typeof import("./getKeyManagerVerify").getKeyManagerVerify = null as any;
+export const getKeyManagerVerifyOutput: typeof import("./getKeyManagerVerify").getKeyManagerVerifyOutput = null as any;
+utilities.lazyLoad(exports, ["getKeyManagerVerify","getKeyManagerVerifyOutput"], () => require("./getKeyManagerVerify"));
+
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
 export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;

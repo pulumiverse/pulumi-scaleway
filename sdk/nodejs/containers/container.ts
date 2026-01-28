@@ -33,8 +33,8 @@ import * as utilities from "../utilities";
  *     namespaceId: main.id,
  *     registryImage: pulumi.interpolate`${main.registryEndpoint}/alpine:test`,
  *     port: 9997,
- *     cpuLimit: 140,
- *     memoryLimit: 256,
+ *     cpuLimit: 1024,
+ *     memoryLimit: 2048,
  *     minScale: 3,
  *     maxScale: 5,
  *     timeout: 600,
@@ -59,8 +59,6 @@ import * as utilities from "../utilities";
  *     },
  * });
  * ```
- *
- * ### Managing authentication of private containers with IAM
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -92,9 +90,34 @@ import * as utilities from "../utilities";
  * export const containerEndpoint = privateContainer.domainName;
  * ```
  *
- * Then you can access your private container using the API key:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
  *
- * Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+ * // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
+ * // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+ * // Ideally, you would create the namespace separately.
+ * // For demonstration purposes, this example assumes the "nginx:latest" image is already available
+ * // in the referenced namespace.
+ * const main = new scaleway.registry.Namespace("main", {name: "some-unique-name"});
+ * const nginx = scaleway.registry.getImageOutput({
+ *     namespaceId: main.id,
+ *     name: "nginx",
+ * });
+ * const nginxLatest = nginx.apply(nginx => scaleway.registry.getImageTagOutput({
+ *     imageId: nginx.id,
+ *     name: "latest",
+ * }));
+ * const mainNamespace = new scaleway.containers.Namespace("main", {name: "my-container-namespace"});
+ * const mainContainer = new scaleway.containers.Container("main", {
+ *     name: "nginx-latest",
+ *     namespaceId: mainNamespace.id,
+ *     registryImage: pulumi.interpolate`${main.endpoint}/nginx:latest`,
+ *     registrySha256: nginxLatest.apply(nginxLatest => nginxLatest.digest),
+ *     port: 80,
+ *     deploy: true,
+ * });
+ * ```
  *
  * ## Protocols
  *

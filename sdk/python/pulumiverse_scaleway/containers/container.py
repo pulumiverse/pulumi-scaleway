@@ -1070,8 +1070,8 @@ class Container(pulumi.CustomResource):
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
             port=9997,
-            cpu_limit=140,
-            memory_limit=256,
+            cpu_limit=1024,
+            memory_limit=2048,
             min_scale=3,
             max_scale=5,
             timeout=600,
@@ -1095,8 +1095,6 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
-
-        ### Managing authentication of private containers with IAM
 
         ```python
         import pulumi
@@ -1125,9 +1123,30 @@ class Container(pulumi.CustomResource):
         pulumi.export("containerEndpoint", private_container.domain_name)
         ```
 
-        Then you can access your private container using the API key:
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
-        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
+        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+        # Ideally, you would create the namespace separately.
+        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
+        # in the referenced namespace.
+        main = scaleway.registry.Namespace("main", name="some-unique-name")
+        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
+            name="nginx")
+        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest"))
+        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
+        main_container = scaleway.containers.Container("main",
+            name="nginx-latest",
+            namespace_id=main_namespace.id,
+            registry_image=main.endpoint.apply(lambda endpoint: f"{endpoint}/nginx:latest"),
+            registry_sha256=nginx_latest.digest,
+            port=80,
+            deploy=True)
+        ```
 
         ## Protocols
 
@@ -1300,8 +1319,8 @@ class Container(pulumi.CustomResource):
             namespace_id=main.id,
             registry_image=main.registry_endpoint.apply(lambda registry_endpoint: f"{registry_endpoint}/alpine:test"),
             port=9997,
-            cpu_limit=140,
-            memory_limit=256,
+            cpu_limit=1024,
+            memory_limit=2048,
             min_scale=3,
             max_scale=5,
             timeout=600,
@@ -1325,8 +1344,6 @@ class Container(pulumi.CustomResource):
                 "key": "secret",
             })
         ```
-
-        ### Managing authentication of private containers with IAM
 
         ```python
         import pulumi
@@ -1355,9 +1372,30 @@ class Container(pulumi.CustomResource):
         pulumi.export("containerEndpoint", private_container.domain_name)
         ```
 
-        Then you can access your private container using the API key:
+        ```python
+        import pulumi
+        import pulumi_scaleway as scaleway
+        import pulumiverse_scaleway as scaleway
 
-        Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+        # When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
+        # with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+        # Ideally, you would create the namespace separately.
+        # For demonstration purposes, this example assumes the "nginx:latest" image is already available
+        # in the referenced namespace.
+        main = scaleway.registry.Namespace("main", name="some-unique-name")
+        nginx = scaleway.registry.get_image_output(namespace_id=main.id,
+            name="nginx")
+        nginx_latest = nginx.apply(lambda nginx: scaleway.registry.get_image_tag_output(image_id=nginx.id,
+            name="latest"))
+        main_namespace = scaleway.containers.Namespace("main", name="my-container-namespace")
+        main_container = scaleway.containers.Container("main",
+            name="nginx-latest",
+            namespace_id=main_namespace.id,
+            registry_image=main.endpoint.apply(lambda endpoint: f"{endpoint}/nginx:latest"),
+            registry_sha256=nginx_latest.digest,
+            port=80,
+            deploy=True)
+        ```
 
         ## Protocols
 

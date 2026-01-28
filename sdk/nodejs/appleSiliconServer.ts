@@ -46,6 +46,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With `github` runner
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const byName = scaleway.applesilicon.getOs({
+ *     name: "devos-sequoia-15.6",
+ * });
+ * const main = new scaleway.applesilicon.Runner("main", {
+ *     name: "TestAccRunnerGithub",
+ *     ciProvider: "github",
+ *     url: "https://github.com/my-repo-url",
+ *     token: "MY_GITHUB_RUNNER_TOKEN",
+ * });
+ * const mainServer = new scaleway.applesilicon.Server("main", {
+ *     name: "TestAccServerRunner",
+ *     type: "M2-L",
+ *     publicBandwidth: 1000000000,
+ *     osId: byName.then(byName => byName.id),
+ *     runnerIds: [main.id],
+ * });
+ * ```
+ *
  * ## Import
  *
  * Instance servers can be imported using the `{zone}/{id}`, e.g.
@@ -116,6 +140,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly organizationId: pulumi.Output<string>;
     /**
+     * The ID of the OS to use for the server.
+     */
+    declare public readonly osId: pulumi.Output<string | undefined>;
+    /**
      * The password of the server
      */
     declare public /*out*/ readonly password: pulumi.Output<string>;
@@ -136,6 +164,10 @@ export class AppleSiliconServer extends pulumi.CustomResource {
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
     declare public readonly publicBandwidth: pulumi.Output<number>;
+    /**
+     * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+     */
+    declare public readonly runnerIds: pulumi.Output<string[]>;
     /**
      * The state of the server.
      */
@@ -191,11 +223,13 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["ip"] = state?.ip;
             resourceInputs["name"] = state?.name;
             resourceInputs["organizationId"] = state?.organizationId;
+            resourceInputs["osId"] = state?.osId;
             resourceInputs["password"] = state?.password;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworks"] = state?.privateNetworks;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicBandwidth"] = state?.publicBandwidth;
+            resourceInputs["runnerIds"] = state?.runnerIds;
             resourceInputs["state"] = state?.state;
             resourceInputs["type"] = state?.type;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -211,10 +245,12 @@ export class AppleSiliconServer extends pulumi.CustomResource {
             resourceInputs["commitment"] = args?.commitment;
             resourceInputs["enableVpc"] = args?.enableVpc;
             resourceInputs["name"] = args?.name;
+            resourceInputs["osId"] = args?.osId;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetworks"] = args?.privateNetworks;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["publicBandwidth"] = args?.publicBandwidth;
+            resourceInputs["runnerIds"] = args?.runnerIds;
             resourceInputs["type"] = args?.type;
             resourceInputs["zone"] = args?.zone;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -268,6 +304,10 @@ export interface AppleSiliconServerState {
      */
     organizationId?: pulumi.Input<string>;
     /**
+     * The ID of the OS to use for the server.
+     */
+    osId?: pulumi.Input<string>;
+    /**
      * The password of the server
      */
     password?: pulumi.Input<string>;
@@ -288,6 +328,10 @@ export interface AppleSiliconServerState {
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
     publicBandwidth?: pulumi.Input<number>;
+    /**
+     * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+     */
+    runnerIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The state of the server.
      */
@@ -338,6 +382,10 @@ export interface AppleSiliconServerArgs {
      */
     name?: pulumi.Input<string>;
     /**
+     * The ID of the OS to use for the server.
+     */
+    osId?: pulumi.Input<string>;
+    /**
      * The list of private IPv4 and IPv6 addresses associated with the server.
      */
     privateIps?: pulumi.Input<pulumi.Input<inputs.AppleSiliconServerPrivateIp>[]>;
@@ -354,6 +402,10 @@ export interface AppleSiliconServerArgs {
      * Configure the available public bandwidth for your server in bits per second. This option may not be available for all offers.
      */
     publicBandwidth?: pulumi.Input<number>;
+    /**
+     * List of runner IDs to assign to the server. At the moment, only a single runner can be attached to a server. Compatible only with runners of type `github` and `gitlab`, with the `devos-sequoia-15.6` offer and `M2-L` server type
+     */
+    runnerIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The commercial type of the server. You find all the available types on
      * the [pricing page](https://www.scaleway.com/en/pricing/apple-silicon/). Updates to this field will recreate a new

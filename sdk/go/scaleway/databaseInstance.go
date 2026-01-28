@@ -17,8 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Example Basic
-//
 // ```go
 // package main
 //
@@ -31,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Example Basic
 //			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:             pulumi.String("test-rdb"),
 //				NodeType:         pulumi.String("DB-DEV-S"),
@@ -50,8 +49,6 @@ import (
 //
 // ```
 //
-// ### Example Block Storage Low Latency
-//
 // ```go
 // package main
 //
@@ -64,111 +61,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				Name:           pulumi.String("test-rdb-sbs"),
-//				NodeType:       pulumi.String("db-play2-pico"),
-//				Engine:         pulumi.String("PostgreSQL-15"),
-//				IsHaCluster:    pulumi.Bool(true),
-//				DisableBackup:  pulumi.Bool(true),
-//				UserName:       pulumi.String("my_initial_user"),
-//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
-//				VolumeType:     pulumi.String("sbs_15k"),
-//				VolumeSizeInGb: pulumi.Int(10),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with Settings
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				Name:          pulumi.String("test-rdb"),
-//				NodeType:      pulumi.String("db-dev-s"),
-//				DisableBackup: pulumi.Bool(true),
-//				Engine:        pulumi.String("MySQL-8"),
-//				UserName:      pulumi.String("my_initial_user"),
-//				Password:      pulumi.String("thiZ_is_v&ry_s3cret"),
-//				InitSettings: pulumi.StringMap{
-//					"lower_case_table_names": pulumi.String("1"),
-//				},
-//				Settings: pulumi.StringMap{
-//					"max_connections": pulumi.String("350"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example with backup schedule
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				Name:                    pulumi.String("test-rdb"),
-//				NodeType:                pulumi.String("DB-DEV-S"),
-//				Engine:                  pulumi.String("PostgreSQL-15"),
-//				IsHaCluster:             pulumi.Bool(true),
-//				UserName:                pulumi.String("my_initial_user"),
-//				Password:                pulumi.String("thiZ_is_v&ry_s3cret"),
-//				DisableBackup:           pulumi.Bool(false),
-//				BackupScheduleFrequency: pulumi.Int(24),
-//				BackupScheduleRetention: pulumi.Int(7),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Example Engine Upgrade
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Example Engine Upgrade
 //			// Initial creation with PostgreSQL 14
 //			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("my-database"),
@@ -188,126 +81,6 @@ import (
 //	}
 //
 // ```
-//
-// > **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `>= 2.61.0` before upgrading your Database Instance engine version.
-//
-// ### Examples of endpoint configuration
-//
-// Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
-//
-// ### 1 static Private Network endpoint
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				Ipv4Subnet: &network.PrivateNetworkIpv4SubnetArgs{
-//					Subnet: pulumi.String("172.16.20.0/22"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				NodeType: pulumi.String("db-dev-s"),
-//				Engine:   pulumi.String("PostgreSQL-15"),
-//				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
-//					PnId:  pn.ID(),
-//					IpNet: pulumi.String("172.16.20.4/22"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### 1 IPAM Private Network endpoint + 1 public endpoint
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := network.NewPrivateNetwork(ctx, "pn", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				NodeType: pulumi.String("DB-DEV-S"),
-//				Engine:   pulumi.String("PostgreSQL-15"),
-//				PrivateNetwork: &databases.InstancePrivateNetworkArgs{
-//					PnId:       pn.ID(),
-//					EnableIpam: pulumi.Bool(true),
-//				},
-//				LoadBalancer: &databases.InstanceLoadBalancerArgs{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Default: 1 public endpoint
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/databases"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
-//				NodeType: pulumi.String("db-dev-s"),
-//				Engine:   pulumi.String("PostgreSQL-15"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// > **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
-//
-// > **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
-//
-// ## Limitations
-//
-// The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
-// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
-// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
 //
 // ## Import
 //
@@ -366,8 +139,12 @@ type DatabaseInstance struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// Password for the first user of the Database Instance.
+	// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the resource.
 	PrivateIps DatabaseInstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
@@ -413,8 +190,12 @@ func NewDatabaseInstance(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -483,8 +264,12 @@ type databaseInstanceState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// The organization ID the Database Instance is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// Password for the first user of the Database Instance.
+	// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the resource.
 	PrivateIps []DatabaseInstancePrivateIp `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
@@ -561,8 +346,12 @@ type DatabaseInstanceState struct {
 	NodeType pulumi.StringPtrInput
 	// The organization ID the Database Instance is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// Password for the first user of the Database Instance.
+	// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the resource.
 	PrivateIps DatabaseInstancePrivateIpArrayInput
 	// List of Private Networks endpoints of the Database Instance.
@@ -631,8 +420,12 @@ type databaseInstanceArgs struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
 	NodeType string `pulumi:"nodeType"`
-	// Password for the first user of the Database Instance.
+	// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the resource.
 	PrivateIps []DatabaseInstancePrivateIp `pulumi:"privateIps"`
 	// List of Private Networks endpoints of the Database Instance.
@@ -694,8 +487,12 @@ type DatabaseInstanceArgs struct {
 	//
 	// > **Important** Once your Database Instance reaches `diskFull` status, if you are using `lssd` storage, you should upgrade the `nodeType`, and if you are using `bssd` storage, you should increase the volume size before making any other changes to your Database Instance.
 	NodeType pulumi.StringInput
-	// Password for the first user of the Database Instance.
+	// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the resource.
 	PrivateIps DatabaseInstancePrivateIpArrayInput
 	// List of Private Networks endpoints of the Database Instance.
@@ -902,9 +699,19 @@ func (o DatabaseInstanceOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// Password for the first user of the Database Instance.
+// Password for the first user of the Database Instance. Only one of `password` or `passwordWo` should be specified.
 func (o DatabaseInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o DatabaseInstanceOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o DatabaseInstanceOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabaseInstance) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The private IPv4 address associated with the resource.

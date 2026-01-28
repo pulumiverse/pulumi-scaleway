@@ -16,8 +16,6 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// ## Example Usage
     /// 
-    /// ### Example Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +24,7 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Example Basic
     ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
     ///         Name = "test-rdb",
@@ -41,8 +40,6 @@ namespace Pulumiverse.Scaleway.Databases
     /// });
     /// ```
     /// 
-    /// ### Example Block Storage Low Latency
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -51,89 +48,7 @@ namespace Pulumiverse.Scaleway.Databases
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         Name = "test-rdb-sbs",
-    ///         NodeType = "db-play2-pico",
-    ///         Engine = "PostgreSQL-15",
-    ///         IsHaCluster = true,
-    ///         DisableBackup = true,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         VolumeType = "sbs_15k",
-    ///         VolumeSizeInGb = 10,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Example with Settings
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         Name = "test-rdb",
-    ///         NodeType = "db-dev-s",
-    ///         DisableBackup = true,
-    ///         Engine = "MySQL-8",
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         InitSettings = 
-    ///         {
-    ///             { "lower_case_table_names", "1" },
-    ///         },
-    ///         Settings = 
-    ///         {
-    ///             { "max_connections", "350" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Example with backup schedule
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         Name = "test-rdb",
-    ///         NodeType = "DB-DEV-S",
-    ///         Engine = "PostgreSQL-15",
-    ///         IsHaCluster = true,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         DisableBackup = false,
-    ///         BackupScheduleFrequency = 24,
-    ///         BackupScheduleRetention = 7,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Example Engine Upgrade
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
+    ///     //## Example Engine Upgrade
     ///     // Initial creation with PostgreSQL 14
     ///     var main = new Scaleway.Databases.Instance("main", new()
     ///     {
@@ -152,100 +67,6 @@ namespace Pulumiverse.Scaleway.Databases
     ///     };
     /// });
     /// ```
-    /// 
-    /// &gt; **Warning** Provider versions prior to `2.61.0` did not support engine upgrades. Changing the `Engine` value in these versions would recreate the Database Instance **empty**, resulting in **data loss**. Ensure you are using provider version `&gt;= 2.61.0` before upgrading your Database Instance engine version.
-    /// 
-    /// ### Examples of endpoint configuration
-    /// 
-    /// Database Instances can have a maximum of 1 public endpoint and 1 private endpoint. They can have both, or none.
-    /// 
-    /// ### 1 static Private Network endpoint
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
-    ///     {
-    ///         Ipv4Subnet = new Scaleway.Network.Inputs.PrivateNetworkIpv4SubnetArgs
-    ///         {
-    ///             Subnet = "172.16.20.0/22",
-    ///         },
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         NodeType = "db-dev-s",
-    ///         Engine = "PostgreSQL-15",
-    ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
-    ///         {
-    ///             PnId = pn.Id,
-    ///             IpNet = "172.16.20.4/22",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### 1 IPAM Private Network endpoint + 1 public endpoint
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn = new Scaleway.Network.PrivateNetwork("pn");
-    /// 
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         NodeType = "DB-DEV-S",
-    ///         Engine = "PostgreSQL-15",
-    ///         PrivateNetwork = new Scaleway.Databases.Inputs.InstancePrivateNetworkArgs
-    ///         {
-    ///             PnId = pn.Id,
-    ///             EnableIpam = true,
-    ///         },
-    ///         LoadBalancer = null,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Default: 1 public endpoint
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Databases.Instance("main", new()
-    ///     {
-    ///         NodeType = "db-dev-s",
-    ///         Engine = "PostgreSQL-15",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// &gt; **Note** If nothing is defined, your Database Instance will have a default public load-balancer endpoint.
-    /// 
-    /// &gt; **Note** Managed PostgreSQL and MySQL Database Instances are compatible with the [VPC routing](https://www.scaleway.com/en/docs/network/vpc/concepts/#routing) feature, which allows you to connect one or more Database Instances in a Private Network to resources in other Private Networks of the same VPC. This feature is automatically enabled when your Database Instance is connected to a Private Network within a VPC that has routing enabled. Refer to the [How to manage routing](https://www.scaleway.com/en/docs/network/vpc/how-to/manage-routing/) documentation page for more information about VPC routing.
-    /// 
-    /// ## Limitations
-    /// 
-    /// The Managed Database product is only compliant with the Private Network in the default availability zone (AZ).
-    /// i.e. `fr-par-1`, `nl-ams-1`, `pl-waw-1`. To learn more, read our
-    /// section [How to connect a PostgreSQL and MySQL Database Instance to a Private Network](https://www.scaleway.com/en/docs/managed-databases/postgresql-and-mysql/how-to/connect-database-private-network/)
     /// 
     /// ## Import
     /// 
@@ -364,10 +185,22 @@ namespace Pulumiverse.Scaleway.Databases
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the Database Instance.
+        /// Password for the first user of the Database Instance. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The private IPv4 address associated with the resource.
@@ -478,6 +311,7 @@ namespace Pulumiverse.Scaleway.Databases
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -591,7 +425,7 @@ namespace Pulumiverse.Scaleway.Databases
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Database Instance.
+        /// Password for the first user of the Database Instance. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -602,6 +436,28 @@ namespace Pulumiverse.Scaleway.Databases
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.InstancePrivateIpArgs>? _privateIps;
@@ -808,7 +664,7 @@ namespace Pulumiverse.Scaleway.Databases
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Database Instance.
+        /// Password for the first user of the Database Instance. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -819,6 +675,28 @@ namespace Pulumiverse.Scaleway.Databases
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.InstancePrivateIpGetArgs>? _privateIps;

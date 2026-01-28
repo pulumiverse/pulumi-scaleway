@@ -97,6 +97,7 @@ from .get_ipam_ip import *
 from .get_ipam_ips import *
 from .get_k8s_version import *
 from .get_key_manager_key import *
+from .get_key_manager_verify import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
 from .get_lb_acls import *
@@ -333,6 +334,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.account",
   "classes": {
    "scaleway:account/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "applesilicon/runner",
+  "fqn": "pulumiverse_scaleway.applesilicon",
+  "classes": {
+   "scaleway:applesilicon/runner:Runner": "Runner"
   }
  },
  {

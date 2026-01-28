@@ -130,7 +130,7 @@ export class Gateway extends pulumi.CustomResource {
     /**
      * `zone`) The zone in which the VPN gateway should be created.
      */
-    declare public readonly zone: pulumi.Output<string>;
+    declare public readonly zone: pulumi.Output<string | undefined>;
 
     /**
      * Create a Gateway resource with the given unique name, arguments, and options.
