@@ -53,8 +53,8 @@ import (
 //					return fmt.Sprintf("%v/alpine:test", registryEndpoint), nil
 //				}).(pulumi.StringOutput),
 //				Port:           pulumi.Int(9997),
-//				CpuLimit:       pulumi.Int(140),
-//				MemoryLimit:    pulumi.Int(256),
+//				CpuLimit:       pulumi.Int(1024),
+//				MemoryLimit:    pulumi.Int(2048),
 //				MinScale:       pulumi.Int(3),
 //				MaxScale:       pulumi.Int(5),
 //				Timeout:        pulumi.Int(600),
@@ -86,8 +86,6 @@ import (
 //	}
 //
 // ```
-//
-// ### Managing authentication of private containers with IAM
 //
 // ```go
 // package main
@@ -163,9 +161,68 @@ import (
 //
 // ```
 //
-// Then you can access your private container using the API key:
+// ```go
+// package main
 //
-// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/containers"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/registry"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along
+//			// with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+//			// Ideally, you would create the namespace separately.
+//			// For demonstration purposes, this example assumes the "nginx:latest" image is already available
+//			// in the referenced namespace.
+//			main, err := registry.NewNamespace(ctx, "main", &registry.NamespaceArgs{
+//				Name: pulumi.String("some-unique-name"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			nginx := registry.GetImageOutput(ctx, registry.GetImageOutputArgs{
+//				NamespaceId: main.ID(),
+//				Name:        pulumi.String("nginx"),
+//			}, nil)
+//			nginxLatest := nginx.ApplyT(func(nginx registry.GetImageResult) (registry.GetImageTagResult, error) {
+//				return registry.GetImageTagResult(interface{}(registry.GetImageTag(ctx, &registry.GetImageTagArgs{
+//					ImageId: nginx.Id,
+//					Name:    pulumi.StringRef(pulumi.StringRef("latest")),
+//				}, nil))), nil
+//			}).(registry.GetImageTagResultOutput)
+//			mainNamespace, err := containers.NewNamespace(ctx, "main", &containers.NamespaceArgs{
+//				Name: pulumi.String("my-container-namespace"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = containers.NewContainer(ctx, "main", &containers.ContainerArgs{
+//				Name:        pulumi.String("nginx-latest"),
+//				NamespaceId: mainNamespace.ID(),
+//				RegistryImage: main.Endpoint.ApplyT(func(endpoint string) (string, error) {
+//					return fmt.Sprintf("%v/nginx:latest", endpoint), nil
+//				}).(pulumi.StringOutput),
+//				RegistrySha256: pulumi.String(nginxLatest.ApplyT(func(nginxLatest registry.GetImageTagResult) (*string, error) {
+//					return &nginxLatest.Digest, nil
+//				}).(pulumi.StringPtrOutput)),
+//				Port:   pulumi.Int(80),
+//				Deploy: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Protocols
 //

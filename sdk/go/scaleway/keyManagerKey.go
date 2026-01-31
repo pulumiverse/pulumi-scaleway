@@ -25,13 +25,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewKeyManagerKey(ctx, "symmetric", &scaleway.KeyManagerKeyArgs{
+//			_, err := keymanager.NewKey(ctx, "symmetric", &keymanager.KeyArgs{
 //				Name:        pulumi.String("my-kms-key"),
 //				Region:      pulumi.String("fr-par"),
 //				ProjectId:   pulumi.String("your-project-id"),
@@ -43,7 +43,7 @@ import (
 //					pulumi.String("kms"),
 //				},
 //				Unprotected: pulumi.Bool(true),
-//				RotationPolicy: &scaleway.KeyManagerKeyRotationPolicyArgs{
+//				RotationPolicy: &keymanager.KeyRotationPolicyArgs{
 //					RotationPeriod: pulumi.String("720h"),
 //				},
 //			})
@@ -64,13 +64,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewKeyManagerKey(ctx, "rsa_4096", &scaleway.KeyManagerKeyArgs{
+//			_, err := keymanager.NewKey(ctx, "rsa_4096", &keymanager.KeyArgs{
 //				Name:        pulumi.String("rsa-4096-key"),
 //				Region:      pulumi.String("fr-par"),
 //				Usage:       pulumi.String("asymmetric_encryption"),
@@ -95,13 +95,13 @@ import (
 // import (
 //
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/keymanager"
 //
 // )
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := scaleway.NewKeyManagerKey(ctx, "signing", &scaleway.KeyManagerKeyArgs{
+//			_, err := keymanager.NewKey(ctx, "signing", &keymanager.KeyArgs{
 //				Name:        pulumi.String("signing-key"),
 //				Region:      pulumi.String("fr-par"),
 //				Usage:       pulumi.String("asymmetric_signing"),
@@ -133,6 +133,8 @@ import (
 // ```sh
 // $ pulumi import scaleway:index/keyManagerKey:KeyManagerKey main fr-par/11111111-2222-3333-4444-555555555555
 // ```
+//
+// Deprecated: scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key
 type KeyManagerKey struct {
 	pulumi.CustomResourceState
 

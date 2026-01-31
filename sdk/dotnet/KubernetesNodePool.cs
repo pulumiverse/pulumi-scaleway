@@ -141,8 +141,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the security group
-        /// 
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Output("securityGroupId")]
         public Output<string> SecurityGroupId { get; private set; } = null!;
@@ -352,8 +350,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the security group
-        /// 
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
@@ -536,8 +532,6 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// The ID of the security group
-        /// 
-        /// &gt; **Important:** Updates to this field will recreate a new resource.
         /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }

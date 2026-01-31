@@ -127,8 +127,6 @@ export class Pool extends pulumi.CustomResource {
     declare public readonly rootVolumeType: pulumi.Output<string>;
     /**
      * The ID of the security group
-     *
-     * > **Important:** Updates to this field will recreate a new resource.
      */
     declare public readonly securityGroupId: pulumi.Output<string>;
     /**
@@ -340,8 +338,6 @@ export interface PoolState {
     rootVolumeType?: pulumi.Input<string>;
     /**
      * The ID of the security group
-     *
-     * > **Important:** Updates to this field will recreate a new resource.
      */
     securityGroupId?: pulumi.Input<string>;
     /**
@@ -458,8 +454,6 @@ export interface PoolArgs {
     rootVolumeType?: pulumi.Input<string>;
     /**
      * The ID of the security group
-     *
-     * > **Important:** Updates to this field will recreate a new resource.
      */
     securityGroupId?: pulumi.Input<string>;
     /**

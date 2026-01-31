@@ -23,6 +23,10 @@ namespace Pulumiverse.Scaleway.Edgeservices.Outputs
         /// </summary>
         public readonly string? FrontendId;
         /// <summary>
+        /// Defines whether to forward websocket requests to the load balancer.
+        /// </summary>
+        public readonly bool? HasWebsocket;
+        /// <summary>
         /// The ID of the Load Balancer.
         /// </summary>
         public readonly string? Id;
@@ -41,6 +45,8 @@ namespace Pulumiverse.Scaleway.Edgeservices.Outputs
 
             string? frontendId,
 
+            bool? hasWebsocket,
+
             string? id,
 
             bool? isSsl,
@@ -49,6 +55,7 @@ namespace Pulumiverse.Scaleway.Edgeservices.Outputs
         {
             DomainName = domainName;
             FrontendId = frontendId;
+            HasWebsocket = hasWebsocket;
             Id = id;
             IsSsl = isSsl;
             Zone = zone;

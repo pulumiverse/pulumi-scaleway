@@ -79,7 +79,7 @@ import (
 //
 // ```
 //
-// ## Data information
+// ## Data
 //
 // Note: This data source provides you with access to the secret payload, which is encoded in base64.
 //
@@ -118,7 +118,7 @@ type LookupSecretVersionArgs struct {
 type LookupSecretVersionResult struct {
 	// The date and time of the secret version's creation in RFC 3339 format.
 	CreatedAt string `pulumi:"createdAt"`
-	// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
+	// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
 	Data          string `pulumi:"data"`
 	DataWo        string `pulumi:"dataWo"`
 	DataWoVersion int    `pulumi:"dataWoVersion"`
@@ -186,7 +186,7 @@ func (o LookupSecretVersionResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
+// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
 func (o LookupSecretVersionResultOutput) Data() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSecretVersionResult) string { return v.Data }).(pulumi.StringOutput)
 }

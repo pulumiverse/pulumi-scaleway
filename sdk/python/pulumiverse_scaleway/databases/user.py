@@ -20,15 +20,21 @@ __all__ = ['UserArgs', 'User']
 class UserArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  is_admin: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a User resource.
         :param pulumi.Input[_builtins.str] instance_id: UUID of the Database Instance.
                
                > **Important:** Updates to `instance_id` will recreate the database user.
+        :param pulumi.Input[_builtins.bool] is_admin: Grant admin permissions to the database user.
+        :param pulumi.Input[_builtins.str] name: database user name.
+               
+               > **Important:** Updates to `name` will recreate the database user.
         :param pulumi.Input[_builtins.str] password: database user password. The password must meet the following requirements based on ISO27001 standards:
                - **Length**: 8-128 characters
                - **Character types required**:
@@ -38,18 +44,21 @@ class UserArgs:
                - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
-        :param pulumi.Input[_builtins.bool] is_admin: Grant admin permissions to the database user.
-        :param pulumi.Input[_builtins.str] name: database user name.
-               
-               > **Important:** Updates to `name` will recreate the database user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
         pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "password", password)
         if is_admin is not None:
             pulumi.set(__self__, "is_admin", is_admin)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -66,26 +75,6 @@ class UserArgs:
     @instance_id.setter
     def instance_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "instance_id", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        database user password. The password must meet the following requirements based on ISO27001 standards:
-        - **Length**: 8-128 characters
-        - **Character types required**:
-        - At least 1 lowercase letter (a-z)
-        - At least 1 uppercase letter (A-Z)
-        - At least 1 digit (0-9)
-        - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
-
-        For secure password generation, consider using the `random_password` resource with appropriate parameters.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="isAdmin")
@@ -115,6 +104,50 @@ class UserArgs:
 
     @_builtins.property
     @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        database user password. The password must meet the following requirements based on ISO27001 standards:
+        - **Length**: 8-128 characters
+        - **Character types required**:
+        - At least 1 lowercase letter (a-z)
+        - At least 1 uppercase letter (A-Z)
+        - At least 1 digit (0-9)
+        - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
+
+        For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The Scaleway region this resource resides in.
@@ -133,6 +166,8 @@ class _UserState:
                  is_admin: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering User resources.
@@ -152,6 +187,8 @@ class _UserState:
                - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
         if instance_id is not None:
@@ -162,6 +199,10 @@ class _UserState:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -226,6 +267,30 @@ class _UserState:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -248,21 +313,22 @@ class User(pulumi.CustomResource):
                  is_admin: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Creates and manages database users.
+        The `databases.User` resource creates and manages database users.
         For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
         import pulumi_random as random
         import pulumiverse_scaleway as scaleway
 
+        ### Basic user creation
         main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
@@ -317,6 +383,8 @@ class User(pulumi.CustomResource):
                - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
         ...
@@ -326,18 +394,17 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages database users.
+        The `databases.User` resource creates and manages database users.
         For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
         import pulumi_random as random
         import pulumiverse_scaleway as scaleway
 
+        ### Basic user creation
         main = scaleway.databases.Instance("main",
             name="test-rdb",
             node_type="DB-DEV-S",
@@ -393,6 +460,8 @@ class User(pulumi.CustomResource):
                  is_admin: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -408,13 +477,13 @@ class User(pulumi.CustomResource):
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["is_admin"] = is_admin
             __props__.__dict__["name"] = name
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["region"] = region
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/databaseUser:DatabaseUser")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
             'scaleway:databases/user:User',
@@ -430,6 +499,8 @@ class User(pulumi.CustomResource):
             is_admin: Optional[pulumi.Input[_builtins.bool]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None) -> 'User':
         """
         Get an existing User resource's state with the given name, id, and optional extra
@@ -454,6 +525,8 @@ class User(pulumi.CustomResource):
                - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
                
                For secure password generation, consider using the `random_password` resource with appropriate parameters.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: The Scaleway region this resource resides in.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -464,6 +537,8 @@ class User(pulumi.CustomResource):
         __props__.__dict__["is_admin"] = is_admin
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["region"] = region
         return User(resource_name, opts=opts, __props__=__props__)
 
@@ -497,7 +572,7 @@ class User(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         database user password. The password must meet the following requirements based on ISO27001 standards:
         - **Length**: 8-128 characters
@@ -510,6 +585,22 @@ class User(pulumi.CustomResource):
         For secure password generation, consider using the `random_password` resource with appropriate parameters.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter

@@ -45,8 +45,8 @@ namespace Pulumiverse.Scaleway
     ///         NamespaceId = main.Id,
     ///         RegistryImage = main.RegistryEndpoint.Apply(registryEndpoint =&gt; $"{registryEndpoint}/alpine:test"),
     ///         Port = 9997,
-    ///         CpuLimit = 140,
-    ///         MemoryLimit = 256,
+    ///         CpuLimit = 1024,
+    ///         MemoryLimit = 2048,
     ///         MinScale = 3,
     ///         MaxScale = 5,
     ///         Timeout = 600,
@@ -77,8 +77,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// 
-    /// ### Managing authentication of private containers with IAM
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -147,9 +145,54 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
-    /// Then you can access your private container using the API key:
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumi.Scaleway;
+    /// using Scaleway = Pulumiverse.Scaleway;
     /// 
-    /// Keep in mind that you should revoke your legacy JWT tokens to ensure maximum security.
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // When using mutable images (e.g., `latest` tag), you can use the `scaleway_registry_image_tag` data source along 
+    ///     // with the `registry_sha256` argument to trigger container redeployments when the image is updated.
+    ///     // Ideally, you would create the namespace separately.
+    ///     // For demonstration purposes, this example assumes the "nginx:latest" image is already available
+    ///     // in the referenced namespace.
+    ///     var main = new Scaleway.Registry.Namespace("main", new()
+    ///     {
+    ///         Name = "some-unique-name",
+    ///     });
+    /// 
+    ///     var nginx = Scaleway.Registry.GetImage.Invoke(new()
+    ///     {
+    ///         NamespaceId = main.Id,
+    ///         Name = "nginx",
+    ///     });
+    /// 
+    ///     var nginxLatest = Scaleway.Registry.GetImageTag.Invoke(new()
+    ///     {
+    ///         ImageId = nginx.Apply(getImageResult =&gt; getImageResult.Id),
+    ///         Name = "latest",
+    ///     });
+    /// 
+    ///     var mainNamespace = new Scaleway.Containers.Namespace("main", new()
+    ///     {
+    ///         Name = "my-container-namespace",
+    ///     });
+    /// 
+    ///     var mainContainer = new Scaleway.Containers.Container("main", new()
+    ///     {
+    ///         Name = "nginx-latest",
+    ///         NamespaceId = mainNamespace.Id,
+    ///         RegistryImage = main.Endpoint.Apply(endpoint =&gt; $"{endpoint}/nginx:latest"),
+    ///         RegistrySha256 = nginxLatest.Apply(getImageTagResult =&gt; getImageTagResult.Digest),
+    ///         Port = 80,
+    ///         Deploy = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// 
     /// ## Protocols
     /// 
