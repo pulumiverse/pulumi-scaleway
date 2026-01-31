@@ -23,6 +23,15 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_apple_silicon_runner": {
+                "current": "scaleway:applesilicon/runner:Runner",
+                "majorVersion": 1,
+                "fields": {
+                    "labels": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_apple_silicon_server": {
                 "current": "scaleway:applesilicon/server:Server",
                 "past": [
@@ -46,6 +55,9 @@
                                 }
                             }
                         }
+                    },
+                    "runner_ids": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -1499,7 +1511,14 @@
                 }
             },
             "scaleway_key_manager_key": {
-                "current": "scaleway:index/keyManagerKey:KeyManagerKey",
+                "current": "scaleway:keymanager/key:Key",
+                "past": [
+                    {
+                        "name": "scaleway:index/keyManagerKey:KeyManagerKey",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "rotation_policy": {
@@ -2601,6 +2620,10 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_apple_silicon_os": {
+                "current": "scaleway:applesilicon/getOs:getOs",
+                "majorVersion": 1
+            },
             "scaleway_audit_trail_event": {
                 "current": "scaleway:audittrail/getEvent:getEvent",
                 "majorVersion": 1,
@@ -3595,7 +3618,14 @@
                 }
             },
             "scaleway_key_manager_key": {
-                "current": "scaleway:index/getKeyManagerKey:getKeyManagerKey",
+                "current": "scaleway:keymanager/getKey:getKey",
+                "past": [
+                    {
+                        "name": "scaleway:index/getKeyManagerKey:getKeyManagerKey",
+                        "inCodegen": true,
+                        "majorVersion": 1
+                    }
+                ],
                 "majorVersion": 1,
                 "fields": {
                     "rotation_policy": {
@@ -3605,6 +3635,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_key_manager_verify": {
+                "current": "scaleway:keymanager/getVerify:getVerify",
+                "majorVersion": 1
             },
             "scaleway_lb": {
                 "current": "scaleway:loadbalancers/getLoadBalancer:getLoadBalancer",
@@ -4852,6 +4886,11 @@
                     "scaleway:index/kubernetesNodePool:KubernetesNodePool"
                 ]
             },
+            "scaleway_key_manager_key": {
+                "aliases": [
+                    "scaleway:index/keyManagerKey:KeyManagerKey"
+                ]
+            },
             "scaleway_lb": {
                 "aliases": [
                     "scaleway:index/loadbalancer:Loadbalancer"
@@ -5319,6 +5358,11 @@
                     "scaleway:index/getK8sVersion:getK8sVersion"
                 ]
             },
+            "scaleway_key_manager_key": {
+                "renames": [
+                    "scaleway:index/getKeyManagerKey:getKeyManagerKey"
+                ]
+            },
             "scaleway_lb": {
                 "renames": [
                     "scaleway:index/getLoadbalancer:getLoadbalancer"
@@ -5530,6 +5574,7 @@
         "resources": {
             "scaleway:account/project:Project": 0,
             "scaleway:account/sshKey:SshKey": 0,
+            "scaleway:applesilicon/runner:Runner": 0,
             "scaleway:applesilicon/server:Server": 0,
             "scaleway:autoscaling/instanceGroup:InstanceGroup": 0,
             "scaleway:autoscaling/instancePolicy:InstancePolicy": 0,
@@ -5720,6 +5765,7 @@
             "scaleway:ipam/ip:Ip": 0,
             "scaleway:ipam/ipReverseDns:IpReverseDns": 0,
             "scaleway:job/definition:Definition": 0,
+            "scaleway:keymanager/key:Key": 0,
             "scaleway:kubernetes/acl:Acl": 0,
             "scaleway:kubernetes/cluster:Cluster": 0,
             "scaleway:kubernetes/pool:Pool": 0,
@@ -5783,6 +5829,7 @@
             "scaleway:account/getProject:getProject": 0,
             "scaleway:account/getProjects:getProjects": 0,
             "scaleway:account/getSshKey:getSshKey": 0,
+            "scaleway:applesilicon/getOs:getOs": 0,
             "scaleway:audittrail/getEvent:getEvent": 0,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
@@ -5915,6 +5962,8 @@
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,
             "scaleway:ipam/getIps:getIps": 0,
+            "scaleway:keymanager/getKey:getKey": 0,
+            "scaleway:keymanager/getVerify:getVerify": 0,
             "scaleway:kubernetes/getCluster:getCluster": 0,
             "scaleway:kubernetes/getPool:getPool": 0,
             "scaleway:kubernetes/getVersion:getVersion": 0,

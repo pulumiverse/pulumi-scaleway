@@ -62,6 +62,7 @@ const (
 	instanceMod      = "instance"
 	iotMod           = "iot"
 	jobMod           = "job"
+	keymanagerMod    = "keymanager"
 	kubernetesMod    = "kubernetes"
 	loadbalancersMod = "loadbalancers"
 	mnqMod           = "mnq"
@@ -350,6 +351,7 @@ func Provider() tfbridge.ProviderInfo {
 				"instance":      instanceMod,
 				"iot":           iotMod,
 				"job":           jobMod,
+				"key_manager":   keymanagerMod,
 				"k8s":           kubernetesMod,
 				"lb":            loadbalancersMod,
 				"mnq":           mnqMod,
