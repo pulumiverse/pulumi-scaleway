@@ -77,7 +77,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Data information
+        /// ## Data
         /// 
         /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
         /// 
@@ -153,7 +153,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Data information
+        /// ## Data
         /// 
         /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
         /// 
@@ -229,7 +229,7 @@ namespace Pulumiverse.Scaleway
         /// });
         /// ```
         /// 
-        /// ## Data information
+        /// ## Data
         /// 
         /// Note: This data source provides you with access to the secret payload, which is encoded in base64.
         /// 
@@ -330,7 +330,7 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data-information).
+        /// The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
         /// </summary>
         public readonly string Data;
         public readonly string DataWo;

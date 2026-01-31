@@ -91,7 +91,7 @@ export class SecurityGroup extends pulumi.CustomResource {
      */
     declare public readonly stateful: pulumi.Output<boolean | undefined>;
     /**
-     * The tags associated with the security group
+     * The tags of the security group.
      */
     declare public readonly tags: pulumi.Output<string[] | undefined>;
     /**
@@ -198,7 +198,7 @@ export interface SecurityGroupState {
      */
     stateful?: pulumi.Input<boolean>;
     /**
-     * The tags associated with the security group
+     * The tags of the security group.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -253,7 +253,7 @@ export interface SecurityGroupArgs {
      */
     stateful?: pulumi.Input<boolean>;
     /**
-     * The tags associated with the security group
+     * The tags of the security group.
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
