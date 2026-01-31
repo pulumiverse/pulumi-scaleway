@@ -26,7 +26,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var symmetric = new Scaleway.KeyManagerKey("symmetric", new()
+    ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
     ///     {
     ///         Name = "my-kms-key",
     ///         Region = "fr-par",
@@ -40,7 +40,7 @@ namespace Pulumiverse.Scaleway
     ///             "kms",
     ///         },
     ///         Unprotected = true,
-    ///         RotationPolicy = new Scaleway.Inputs.KeyManagerKeyRotationPolicyArgs
+    ///         RotationPolicy = new Scaleway.Keymanager.Inputs.KeyRotationPolicyArgs
     ///         {
     ///             RotationPeriod = "720h",
     ///         },
@@ -59,7 +59,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var rsa4096 = new Scaleway.KeyManagerKey("rsa_4096", new()
+    ///     var rsa4096 = new Scaleway.Keymanager.Key("rsa_4096", new()
     ///     {
     ///         Name = "rsa-4096-key",
     ///         Region = "fr-par",
@@ -82,7 +82,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var signing = new Scaleway.KeyManagerKey("signing", new()
+    ///     var signing = new Scaleway.Keymanager.Key("signing", new()
     ///     {
     ///         Name = "signing-key",
     ///         Region = "fr-par",
@@ -111,6 +111,7 @@ namespace Pulumiverse.Scaleway
     /// $ pulumi import scaleway:index/keyManagerKey:KeyManagerKey main fr-par/11111111-2222-3333-4444-555555555555
     /// ```
     /// </summary>
+    [Obsolete(@"scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key")]
     [ScalewayResourceType("scaleway:index/keyManagerKey:KeyManagerKey")]
     public partial class KeyManagerKey : global::Pulumi.CustomResource
     {

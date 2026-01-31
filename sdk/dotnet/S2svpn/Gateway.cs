@@ -152,7 +152,7 @@ namespace Pulumiverse.Scaleway.S2svpn
         /// `Zone`) The zone in which the VPN gateway should be created.
         /// </summary>
         [Output("zone")]
-        public Output<string> Zone { get; private set; } = null!;
+        public Output<string?> Zone { get; private set; } = null!;
 
 
         /// <summary>

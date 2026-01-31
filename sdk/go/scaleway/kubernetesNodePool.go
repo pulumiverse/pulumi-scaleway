@@ -73,8 +73,6 @@ type KubernetesNodePool struct {
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringOutput `pulumi:"rootVolumeType"`
 	// The ID of the security group
-	//
-	// > **Important:** Updates to this field will recreate a new resource.
 	SecurityGroupId pulumi.StringOutput `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
@@ -186,8 +184,6 @@ type kubernetesNodePoolState struct {
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
 	// The ID of the security group
-	//
-	// > **Important:** Updates to this field will recreate a new resource.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
@@ -261,8 +257,6 @@ type KubernetesNodePoolState struct {
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
 	// The ID of the security group
-	//
-	// > **Important:** Updates to this field will recreate a new resource.
 	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
@@ -334,8 +328,6 @@ type kubernetesNodePoolArgs struct {
 	// System volume type of the nodes composing the pool
 	RootVolumeType *string `pulumi:"rootVolumeType"`
 	// The ID of the security group
-	//
-	// > **Important:** Updates to this field will recreate a new resource.
 	SecurityGroupId *string `pulumi:"securityGroupId"`
 	// The size of the pool.
 	//
@@ -398,8 +390,6 @@ type KubernetesNodePoolArgs struct {
 	// System volume type of the nodes composing the pool
 	RootVolumeType pulumi.StringPtrInput
 	// The ID of the security group
-	//
-	// > **Important:** Updates to this field will recreate a new resource.
 	SecurityGroupId pulumi.StringPtrInput
 	// The size of the pool.
 	//
@@ -604,8 +594,6 @@ func (o KubernetesNodePoolOutput) RootVolumeType() pulumi.StringOutput {
 }
 
 // The ID of the security group
-//
-// > **Important:** Updates to this field will recreate a new resource.
 func (o KubernetesNodePoolOutput) SecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.SecurityGroupId }).(pulumi.StringOutput)
 }

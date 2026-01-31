@@ -613,6 +613,10 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
      */
     frontendId?: string;
     /**
+     * Defines whether to forward websocket requests to the load balancer.
+     */
+    hasWebsocket?: boolean;
+    /**
      * The ID of the Load Balancer.
      */
     id?: string;
@@ -6384,6 +6388,10 @@ export namespace edgeservices {
          */
         frontendId?: string;
         /**
+         * Defines whether to forward websocket requests to the load balancer.
+         */
+        hasWebsocket?: boolean;
+        /**
          * The ID of the Load Balancer.
          */
         id?: string;
@@ -8246,6 +8254,31 @@ export namespace job {
          * The secret version.
          */
         secretVersion?: string;
+    }
+
+}
+
+export namespace keymanager {
+    export interface GetKeyRotationPolicy {
+        /**
+         * Timestamp indicating the next scheduled rotation.
+         */
+        nextRotationAt: string;
+        /**
+         * Time interval between two key rotations. The minimum duration is 24 hours and the maximum duration is 1 year (876000 hours).
+         */
+        rotationPeriod: string;
+    }
+
+    export interface KeyRotationPolicy {
+        /**
+         * The date and time of the next scheduled rotation.
+         */
+        nextRotationAt?: string;
+        /**
+         * – The period between key rotations (e.g., `"720h"` for 30 days).
+         */
+        rotationPeriod: string;
     }
 
 }

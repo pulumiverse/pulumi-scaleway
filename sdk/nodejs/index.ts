@@ -1046,6 +1046,7 @@ import * as instance from "./instance";
 import * as iot from "./iot";
 import * as ipam from "./ipam";
 import * as job from "./job";
+import * as keymanager from "./keymanager";
 import * as kubernetes from "./kubernetes";
 import * as loadbalancers from "./loadbalancers";
 import * as mnq from "./mnq";
@@ -1082,6 +1083,7 @@ export {
     iot,
     ipam,
     job,
+    keymanager,
     kubernetes,
     loadbalancers,
     mnq,

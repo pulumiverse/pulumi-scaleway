@@ -10,6 +10,7 @@ using Pulumi;
 
 namespace Pulumiverse.Scaleway
 {
+    [Obsolete(@"scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey")]
     public static class GetKeyManagerKey
     {
         /// <summary>
@@ -34,7 +35,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a key
-        ///     var symmetric = new Scaleway.KeyManagerKey("symmetric", new()
+        ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
         ///         Region = "fr-par",
@@ -48,14 +49,14 @@ namespace Pulumiverse.Scaleway
         ///             "kms",
         ///         },
         ///         Unprotected = true,
-        ///         RotationPolicy = new Scaleway.Inputs.KeyManagerKeyRotationPolicyArgs
+        ///         RotationPolicy = new Scaleway.Keymanager.Inputs.KeyRotationPolicyArgs
         ///         {
         ///             RotationPeriod = "720h",
         ///         },
         ///     });
         /// 
         ///     // Get the key information by its ID
-        ///     var byID = Scaleway.GetKeyManagerKey.Invoke(new()
+        ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -88,7 +89,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a key
-        ///     var symmetric = new Scaleway.KeyManagerKey("symmetric", new()
+        ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
         ///         Region = "fr-par",
@@ -102,14 +103,14 @@ namespace Pulumiverse.Scaleway
         ///             "kms",
         ///         },
         ///         Unprotected = true,
-        ///         RotationPolicy = new Scaleway.Inputs.KeyManagerKeyRotationPolicyArgs
+        ///         RotationPolicy = new Scaleway.Keymanager.Inputs.KeyRotationPolicyArgs
         ///         {
         ///             RotationPeriod = "720h",
         ///         },
         ///     });
         /// 
         ///     // Get the key information by its ID
-        ///     var byID = Scaleway.GetKeyManagerKey.Invoke(new()
+        ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
         ///     });
@@ -142,7 +143,7 @@ namespace Pulumiverse.Scaleway
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
         ///     // Create a key
-        ///     var symmetric = new Scaleway.KeyManagerKey("symmetric", new()
+        ///     var symmetric = new Scaleway.Keymanager.Key("symmetric", new()
         ///     {
         ///         Name = "my-kms-key",
         ///         Region = "fr-par",
@@ -156,14 +157,14 @@ namespace Pulumiverse.Scaleway
         ///             "kms",
         ///         },
         ///         Unprotected = true,
-        ///         RotationPolicy = new Scaleway.Inputs.KeyManagerKeyRotationPolicyArgs
+        ///         RotationPolicy = new Scaleway.Keymanager.Inputs.KeyRotationPolicyArgs
         ///         {
         ///             RotationPeriod = "720h",
         ///         },
         ///     });
         /// 
         ///     // Get the key information by its ID
-        ///     var byID = Scaleway.GetKeyManagerKey.Invoke(new()
+        ///     var byID = Scaleway.Keymanager.GetKey.Invoke(new()
         ///     {
         ///         KeyId = "11111111-1111-1111-1111-111111111111",
         ///     });

@@ -257,6 +257,8 @@ if typing.TYPE_CHECKING:
     ipam = __ipam
     import pulumiverse_scaleway.job as __job
     job = __job
+    import pulumiverse_scaleway.keymanager as __keymanager
+    keymanager = __keymanager
     import pulumiverse_scaleway.kubernetes as __kubernetes
     kubernetes = __kubernetes
     import pulumiverse_scaleway.loadbalancers as __loadbalancers
@@ -303,6 +305,7 @@ else:
     iot = _utilities.lazy_import('pulumiverse_scaleway.iot')
     ipam = _utilities.lazy_import('pulumiverse_scaleway.ipam')
     job = _utilities.lazy_import('pulumiverse_scaleway.job')
+    keymanager = _utilities.lazy_import('pulumiverse_scaleway.keymanager')
     kubernetes = _utilities.lazy_import('pulumiverse_scaleway.kubernetes')
     loadbalancers = _utilities.lazy_import('pulumiverse_scaleway.loadbalancers')
     mnq = _utilities.lazy_import('pulumiverse_scaleway.mnq')
@@ -333,6 +336,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.account",
   "classes": {
    "scaleway:account/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "applesilicon/runner",
+  "fqn": "pulumiverse_scaleway.applesilicon",
+  "classes": {
+   "scaleway:applesilicon/runner:Runner": "Runner"
   }
  },
  {
@@ -1853,6 +1864,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.job",
   "classes": {
    "scaleway:job/definition:Definition": "Definition"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "keymanager/key",
+  "fqn": "pulumiverse_scaleway.keymanager",
+  "classes": {
+   "scaleway:keymanager/key:Key": "Key"
   }
  },
  {

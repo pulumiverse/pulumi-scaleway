@@ -613,6 +613,10 @@ export interface EdgeServicesBackendStageLbBackendConfigLbConfig {
      */
     frontendId?: pulumi.Input<string>;
     /**
+     * Defines whether to forward websocket requests to the load balancer.
+     */
+    hasWebsocket?: pulumi.Input<boolean>;
+    /**
      * The ID of the Load Balancer.
      */
     id?: pulumi.Input<string>;
@@ -3494,6 +3498,10 @@ export namespace edgeservices {
          */
         frontendId?: pulumi.Input<string>;
         /**
+         * Defines whether to forward websocket requests to the load balancer.
+         */
+        hasWebsocket?: pulumi.Input<boolean>;
+        /**
          * The ID of the Load Balancer.
          */
         id?: pulumi.Input<string>;
@@ -4473,6 +4481,19 @@ export namespace job {
          * The secret version.
          */
         secretVersion?: pulumi.Input<string>;
+    }
+}
+
+export namespace keymanager {
+    export interface KeyRotationPolicy {
+        /**
+         * The date and time of the next scheduled rotation.
+         */
+        nextRotationAt?: pulumi.Input<string>;
+        /**
+         * – The period between key rotations (e.g., `"720h"` for 30 days).
+         */
+        rotationPeriod: pulumi.Input<string>;
     }
 }
 

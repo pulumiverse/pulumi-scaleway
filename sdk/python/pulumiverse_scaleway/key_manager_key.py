@@ -476,8 +476,13 @@ class _KeyManagerKeyState:
         pulumi.set(self, "usage", value)
 
 
+warnings.warn("""scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key""", DeprecationWarning)
+
+
 @pulumi.type_token("scaleway:index/keyManagerKey:KeyManagerKey")
 class KeyManagerKey(pulumi.CustomResource):
+    warnings.warn("""scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key""", DeprecationWarning)
+
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -505,7 +510,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        symmetric = scaleway.KeyManagerKey("symmetric",
+        symmetric = scaleway.keymanager.Key("symmetric",
             name="my-kms-key",
             region="fr-par",
             project_id="your-project-id",
@@ -528,7 +533,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        rsa4096 = scaleway.KeyManagerKey("rsa_4096",
+        rsa4096 = scaleway.keymanager.Key("rsa_4096",
             name="rsa-4096-key",
             region="fr-par",
             usage="asymmetric_encryption",
@@ -543,7 +548,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        signing = scaleway.KeyManagerKey("signing",
+        signing = scaleway.keymanager.Key("signing",
             name="signing-key",
             region="fr-par",
             usage="asymmetric_signing",
@@ -602,7 +607,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        symmetric = scaleway.KeyManagerKey("symmetric",
+        symmetric = scaleway.keymanager.Key("symmetric",
             name="my-kms-key",
             region="fr-par",
             project_id="your-project-id",
@@ -625,7 +630,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        rsa4096 = scaleway.KeyManagerKey("rsa_4096",
+        rsa4096 = scaleway.keymanager.Key("rsa_4096",
             name="rsa-4096-key",
             region="fr-par",
             usage="asymmetric_encryption",
@@ -640,7 +645,7 @@ class KeyManagerKey(pulumi.CustomResource):
         import pulumi
         import pulumiverse_scaleway as scaleway
 
-        signing = scaleway.KeyManagerKey("signing",
+        signing = scaleway.keymanager.Key("signing",
             name="signing-key",
             region="fr-par",
             usage="asymmetric_signing",
@@ -691,6 +696,7 @@ class KeyManagerKey(pulumi.CustomResource):
                  unprotected: Optional[pulumi.Input[_builtins.bool]] = None,
                  usage: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
+        pulumi.log.warn("""KeyManagerKey is deprecated: scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key""")
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
             raise TypeError('Expected resource options to be a ResourceOptions instance')

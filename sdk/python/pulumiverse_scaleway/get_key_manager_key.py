@@ -22,6 +22,8 @@ __all__ = [
     'get_key_manager_key_output',
 ]
 
+warnings.warn("""scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey""", DeprecationWarning)
+
 @pulumi.output_type
 class GetKeyManagerKeyResult:
     """
@@ -230,7 +232,7 @@ def get_key_manager_key(key_id: Optional[_builtins.str] = None,
     import pulumiverse_scaleway as scaleway
 
     # Create a key
-    symmetric = scaleway.KeyManagerKey("symmetric",
+    symmetric = scaleway.keymanager.Key("symmetric",
         name="my-kms-key",
         region="fr-par",
         project_id="your-project-id",
@@ -246,13 +248,14 @@ def get_key_manager_key(key_id: Optional[_builtins.str] = None,
             "rotation_period": "720h",
         })
     # Get the key information by its ID
-    by_id = scaleway.get_key_manager_key(key_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.keymanager.get_key(key_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param _builtins.str key_id: ID of the key to target. Can be a plain UUID or a regional ID.
     :param _builtins.str region: `region`) The region in which the key was created.
     """
+    pulumi.log.warn("""get_key_manager_key is deprecated: scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey""")
     __args__ = dict()
     __args__['keyId'] = key_id
     __args__['region'] = region
@@ -300,7 +303,7 @@ def get_key_manager_key_output(key_id: Optional[pulumi.Input[_builtins.str]] = N
     import pulumiverse_scaleway as scaleway
 
     # Create a key
-    symmetric = scaleway.KeyManagerKey("symmetric",
+    symmetric = scaleway.keymanager.Key("symmetric",
         name="my-kms-key",
         region="fr-par",
         project_id="your-project-id",
@@ -316,13 +319,14 @@ def get_key_manager_key_output(key_id: Optional[pulumi.Input[_builtins.str]] = N
             "rotation_period": "720h",
         })
     # Get the key information by its ID
-    by_id = scaleway.get_key_manager_key(key_id="11111111-1111-1111-1111-111111111111")
+    by_id = scaleway.keymanager.get_key(key_id="11111111-1111-1111-1111-111111111111")
     ```
 
 
     :param _builtins.str key_id: ID of the key to target. Can be a plain UUID or a regional ID.
     :param _builtins.str region: `region`) The region in which the key was created.
     """
+    pulumi.log.warn("""get_key_manager_key is deprecated: scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey""")
     __args__ = dict()
     __args__['keyId'] = key_id
     __args__['region'] = region

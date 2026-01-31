@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetOsArgs, GetOsResult, GetOsOutputArgs } from "./getOs";
+export const getOs: typeof import("./getOs").getOs = null as any;
+export const getOsOutput: typeof import("./getOs").getOsOutput = null as any;
+utilities.lazyLoad(exports, ["getOs","getOsOutput"], () => require("./getOs"));
+
+export { RunnerArgs, RunnerState } from "./runner";
+export type Runner = import("./runner").Runner;
+export const Runner: typeof import("./runner").Runner = null as any;
+utilities.lazyLoad(exports, ["Runner"], () => require("./runner"));
+
 export { ServerArgs, ServerState } from "./server";
 export type Server = import("./server").Server;
 export const Server: typeof import("./server").Server = null as any;
@@ -15,6 +25,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "scaleway:applesilicon/runner:Runner":
+                return new Runner(name, <any>undefined, { urn })
             case "scaleway:applesilicon/server:Server":
                 return new Server(name, <any>undefined, { urn })
             default:
@@ -22,4 +34,5 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("scaleway", "applesilicon/runner", _module)
 pulumi.runtime.registerResourceModule("scaleway", "applesilicon/server", _module)

@@ -23,7 +23,7 @@ import * as utilities from "./utilities";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a key
- * const symmetric = new scaleway.KeyManagerKey("symmetric", {
+ * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
  *     projectId: "your-project-id",
@@ -40,12 +40,14 @@ import * as utilities from "./utilities";
  *     },
  * });
  * // Get the key information by its ID
- * const byID = scaleway.getKeyManagerKey({
+ * const byID = scaleway.keymanager.getKey({
  *     keyId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey */
 export function getKeyManagerKey(args: GetKeyManagerKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetKeyManagerKeyResult> {
+    pulumi.log.warn("getKeyManagerKey is deprecated: scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("scaleway:index/getKeyManagerKey:getKeyManagerKey", {
         "keyId": args.keyId,
@@ -108,7 +110,7 @@ export interface GetKeyManagerKeyResult {
  * import * as scaleway from "@pulumiverse/scaleway";
  *
  * // Create a key
- * const symmetric = new scaleway.KeyManagerKey("symmetric", {
+ * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
  *     projectId: "your-project-id",
@@ -125,12 +127,14 @@ export interface GetKeyManagerKeyResult {
  *     },
  * });
  * // Get the key information by its ID
- * const byID = scaleway.getKeyManagerKey({
+ * const byID = scaleway.keymanager.getKey({
  *     keyId: "11111111-1111-1111-1111-111111111111",
  * });
  * ```
  */
+/** @deprecated scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey */
 export function getKeyManagerKeyOutput(args: GetKeyManagerKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKeyManagerKeyResult> {
+    pulumi.log.warn("getKeyManagerKey is deprecated: scaleway.index/getkeymanagerkey.getKeyManagerKey has been deprecated in favor of scaleway.keymanager/getkey.getKey")
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("scaleway:index/getKeyManagerKey:getKeyManagerKey", {
         "keyId": args.keyId,

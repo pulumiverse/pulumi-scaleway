@@ -12,12 +12,10 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages database users.
+// The `databases.User` resource creates and manages database users.
 // For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
 //
 // ## Example Usage
-//
-// ### Basic
 //
 // ```go
 // package main
@@ -32,6 +30,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Basic user creation
 //			main, err := databases.NewInstance(ctx, "main", &databases.InstanceArgs{
 //				Name:          pulumi.String("test-rdb"),
 //				NodeType:      pulumi.String("DB-DEV-S"),
@@ -105,7 +104,11 @@ type User struct {
 	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
 	//
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
-	Password pulumi.StringOutput `pulumi:"password"`
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
@@ -120,9 +123,6 @@ func NewUser(ctx *pulumi.Context,
 	if args.InstanceId == nil {
 		return nil, errors.New("invalid value for required argument 'InstanceId'")
 	}
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
 	aliases := pulumi.Aliases([]pulumi.Alias{
 		{
 			Type: pulumi.String("scaleway:index/databaseUser:DatabaseUser"),
@@ -130,10 +130,14 @@ func NewUser(ctx *pulumi.Context,
 	})
 	opts = append(opts, aliases)
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -179,6 +183,10 @@ type userState struct {
 	//
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
@@ -204,6 +212,10 @@ type UserState struct {
 	//
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
@@ -232,7 +244,11 @@ type userArgs struct {
 	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
 	//
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
-	Password string `pulumi:"password"`
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The Scaleway region this resource resides in.
 	Region *string `pulumi:"region"`
 }
@@ -258,7 +274,11 @@ type UserArgs struct {
 	// - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
 	//
 	// For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
-	Password pulumi.StringInput
+	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The Scaleway region this resource resides in.
 	Region pulumi.StringPtrInput
 }
@@ -378,8 +398,18 @@ func (o UserOutput) Name() pulumi.StringOutput {
 // - At least 1 special character (!@#$%^&*()_+-=[]{}|;:,.<>?)
 //
 // For secure password generation, consider using the `randomPassword` resource with appropriate parameters.
-func (o UserOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+func (o UserOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o UserOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o UserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *User) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The Scaleway region this resource resides in.

@@ -18,7 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const symmetric = new scaleway.KeyManagerKey("symmetric", {
+ * const symmetric = new scaleway.keymanager.Key("symmetric", {
  *     name: "my-kms-key",
  *     region: "fr-par",
  *     projectId: "your-project-id",
@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const rsa4096 = new scaleway.KeyManagerKey("rsa_4096", {
+ * const rsa4096 = new scaleway.keymanager.Key("rsa_4096", {
  *     name: "rsa-4096-key",
  *     region: "fr-par",
  *     usage: "asymmetric_encryption",
@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
- * const signing = new scaleway.KeyManagerKey("signing", {
+ * const signing = new scaleway.keymanager.Key("signing", {
  *     name: "signing-key",
  *     region: "fr-par",
  *     usage: "asymmetric_signing",
@@ -83,6 +83,8 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import scaleway:index/keyManagerKey:KeyManagerKey main fr-par/11111111-2222-3333-4444-555555555555
  * ```
+ *
+ * @deprecated scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key
  */
 export class KeyManagerKey extends pulumi.CustomResource {
     /**
@@ -95,6 +97,7 @@ export class KeyManagerKey extends pulumi.CustomResource {
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
     public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: KeyManagerKeyState, opts?: pulumi.CustomResourceOptions): KeyManagerKey {
+        pulumi.log.warn("KeyManagerKey is deprecated: scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key")
         return new KeyManagerKey(name, <any>state, { ...opts, id: id });
     }
 
@@ -191,8 +194,11 @@ export class KeyManagerKey extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
+    /** @deprecated scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key */
     constructor(name: string, args: KeyManagerKeyArgs, opts?: pulumi.CustomResourceOptions)
+    /** @deprecated scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key */
     constructor(name: string, argsOrState?: KeyManagerKeyArgs | KeyManagerKeyState, opts?: pulumi.CustomResourceOptions) {
+        pulumi.log.warn("KeyManagerKey is deprecated: scaleway.index/keymanagerkey.KeyManagerKey has been deprecated in favor of scaleway.keymanager/key.Key")
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
