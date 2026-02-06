@@ -17,8 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### User
-//
 // ```go
 // package main
 //
@@ -31,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Basic IAM user creation
 //			_, err := iam.NewUser(ctx, "user", &iam.UserArgs{
 //				Email: pulumi.String("foo@test.com"),
 //				Tags: pulumi.StringArray{
@@ -48,8 +47,6 @@ import (
 //	}
 //
 // ```
-//
-// ### Multiple users
 //
 // ```go
 // package main
@@ -128,8 +125,12 @@ type IamUser struct {
 	Mfa pulumi.BoolOutput `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
-	// The password for first access.
+	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The user's phone number.
 	PhoneNumber pulumi.StringPtrOutput `pulumi:"phoneNumber"`
 	// Whether or not to send an email containing the password for first access.
@@ -164,8 +165,12 @@ func NewIamUser(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -213,8 +218,12 @@ type iamUserState struct {
 	Mfa *bool `pulumi:"mfa"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The password for first access.
+	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The user's phone number.
 	PhoneNumber *string `pulumi:"phoneNumber"`
 	// Whether or not to send an email containing the password for first access.
@@ -256,8 +265,12 @@ type IamUserState struct {
 	Mfa pulumi.BoolPtrInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The password for first access.
+	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The user's phone number.
 	PhoneNumber pulumi.StringPtrInput
 	// Whether or not to send an email containing the password for first access.
@@ -291,8 +304,12 @@ type iamUserArgs struct {
 	Locale *string `pulumi:"locale"`
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId *string `pulumi:"organizationId"`
-	// The password for first access.
+	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The user's phone number.
 	PhoneNumber *string `pulumi:"phoneNumber"`
 	// Whether or not to send an email containing the password for first access.
@@ -317,8 +334,12 @@ type IamUserArgs struct {
 	Locale pulumi.StringPtrInput
 	// `organizationId`) The ID of the organization the user is associated with.
 	OrganizationId pulumi.StringPtrInput
-	// The password for first access.
+	// The password for first access. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The user's phone number.
 	PhoneNumber pulumi.StringPtrInput
 	// Whether or not to send an email containing the password for first access.
@@ -473,9 +494,19 @@ func (o IamUserOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
-// The password for first access.
+// The password for first access. Only one of `password` or `passwordWo` should be specified.
 func (o IamUserOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o IamUserOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IamUser) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o IamUserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *IamUser) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The user's phone number.

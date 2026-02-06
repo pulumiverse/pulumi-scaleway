@@ -78,10 +78,10 @@ type Version struct {
 
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	Data pulumi.StringPtrOutput `pulumi:"data"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	DataWo pulumi.StringPtrOutput `pulumi:"dataWo"`
 	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
 	DataWoVersion pulumi.IntPtrOutput `pulumi:"dataWoVersion"`
@@ -151,10 +151,10 @@ func GetVersion(ctx *pulumi.Context,
 type versionState struct {
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	Data *string `pulumi:"data"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	DataWo *string `pulumi:"dataWo"`
 	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
 	DataWoVersion *int `pulumi:"dataWoVersion"`
@@ -175,10 +175,10 @@ type versionState struct {
 type VersionState struct {
 	// The date and time of the secret version's creation (in RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	Data pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	DataWo pulumi.StringPtrInput
 	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
 	DataWoVersion pulumi.IntPtrInput
@@ -201,10 +201,10 @@ func (VersionState) ElementType() reflect.Type {
 }
 
 type versionArgs struct {
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	Data *string `pulumi:"data"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	DataWo *string `pulumi:"dataWo"`
 	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
 	DataWoVersion *int `pulumi:"dataWoVersion"`
@@ -218,10 +218,10 @@ type versionArgs struct {
 
 // The set of arguments for constructing a Version resource.
 type VersionArgs struct {
-	// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	Data pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+	// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 	DataWo pulumi.StringPtrInput
 	// The version of the write-only data. To update the `dataWo`, you must also update the `dataWoVersion`.
 	DataWoVersion pulumi.IntPtrInput
@@ -325,13 +325,13 @@ func (o VersionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Version) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 func (o VersionOutput) Data() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Version) pulumi.StringPtrOutput { return v.Data }).(pulumi.StringPtrOutput)
 }
 
 // **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
 func (o VersionOutput) DataWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Version) pulumi.StringPtrOutput { return v.DataWo }).(pulumi.StringPtrOutput)
 }

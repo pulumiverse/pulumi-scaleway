@@ -82,7 +82,7 @@ class GetVersionResult:
     @pulumi.getter
     def data(self) -> _builtins.str:
         """
-        The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
+        The data payload of the secret version. This is a sensitive attribute containing the secret value, encoded in base64. Learn more in the data section.
         """
         return pulumi.get(self, "data")
 

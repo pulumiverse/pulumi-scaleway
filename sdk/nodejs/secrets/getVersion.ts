@@ -107,7 +107,7 @@ export interface GetVersionResult {
      */
     readonly createdAt: string;
     /**
-     * The data payload of the secret version. This is a sensitive attribute containing the secret value. Learn more in the [data section](https://www.terraform.io/#data).
+     * The data payload of the secret version. This is a sensitive attribute containing the secret value, encoded in base64. Learn more in the data section.
      */
     readonly data: string;
     readonly dataWo: string;

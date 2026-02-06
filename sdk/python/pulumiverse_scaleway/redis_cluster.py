@@ -22,12 +22,14 @@ __all__ = ['RedisClusterArgs', 'RedisCluster']
 class RedisClusterArgs:
     def __init__(__self__, *,
                  node_type: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  user_name: pulumi.Input[_builtins.str],
                  version: pulumi.Input[_builtins.str],
                  acls: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterAclArgs']]]] = None,
                  cluster_size: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -42,7 +44,6 @@ class RedisClusterArgs:
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] user_name: Identifier for the first user of the Redis™ cluster.
         :param pulumi.Input[_builtins.str] version: Redis™ cluster's version (e.g. `6.2.7`).
                
@@ -66,6 +67,9 @@ class RedisClusterArgs:
                > **Important:** If you are using the Standalone mode (1 node), setting a bigger `cluster_size` will destroy and
                recreate your cluster as you will be switching to the cluster mode.
         :param pulumi.Input[_builtins.str] name: The name of the Redis™ cluster.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
@@ -83,7 +87,6 @@ class RedisClusterArgs:
                Redis™ cluster should be created.
         """
         pulumi.set(__self__, "node_type", node_type)
-        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "user_name", user_name)
         pulumi.set(__self__, "version", version)
         if acls is not None:
@@ -92,6 +95,12 @@ class RedisClusterArgs:
             pulumi.set(__self__, "cluster_size", cluster_size)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
@@ -123,18 +132,6 @@ class RedisClusterArgs:
     @node_type.setter
     def node_type(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "node_type", value)
-
-    @_builtins.property
-    @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        Password for the first user of the Redis™ cluster.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
@@ -213,6 +210,42 @@ class RedisClusterArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -328,6 +361,8 @@ class _RedisClusterState:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -365,7 +400,9 @@ class _RedisClusterState:
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateIpArgs']]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['RedisClusterPrivateNetworkArgs']]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
@@ -402,6 +439,10 @@ class _RedisClusterState:
             pulumi.set(__self__, "node_type", node_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
@@ -519,13 +560,37 @@ class _RedisClusterState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password for the first user of the Redis™ cluster.
+        Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -686,6 +751,8 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -703,12 +770,11 @@ class RedisCluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic Redis cluster creation
         main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
@@ -725,45 +791,6 @@ class RedisCluster(pulumi.CustomResource):
                 "ip": "0.0.0.0/0",
                 "description": "Allow all",
             }])
-        ```
-
-        ### With settings
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.redis.Cluster("main",
-            name="test_redis_basic",
-            version="6.2.7",
-            node_type="RED1-MICRO",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            settings={
-                "maxclients": "1000",
-                "tcp-keepalive": "120",
-            })
-        ```
-
-        ### With a Private Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn", name="private-network")
-        main = scaleway.redis.Cluster("main",
-            name="test_redis_endpoints",
-            version="6.2.7",
-            node_type="RED1-MICRO",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            cluster_size=1,
-            private_networks=[{
-                "id": pn.id,
-                "service_ips": ["10.12.1.1/20"],
-            }],
-            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import
@@ -800,7 +827,9 @@ class RedisCluster(pulumi.CustomResource):
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
@@ -834,12 +863,11 @@ class RedisCluster(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic Redis cluster creation
         main = scaleway.redis.Cluster("main",
             name="test_redis_basic",
             version="6.2.7",
@@ -856,45 +884,6 @@ class RedisCluster(pulumi.CustomResource):
                 "ip": "0.0.0.0/0",
                 "description": "Allow all",
             }])
-        ```
-
-        ### With settings
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.redis.Cluster("main",
-            name="test_redis_basic",
-            version="6.2.7",
-            node_type="RED1-MICRO",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            settings={
-                "maxclients": "1000",
-                "tcp-keepalive": "120",
-            })
-        ```
-
-        ### With a Private Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn = scaleway.network.PrivateNetwork("pn", name="private-network")
-        main = scaleway.redis.Cluster("main",
-            name="test_redis_endpoints",
-            version="6.2.7",
-            node_type="RED1-MICRO",
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            cluster_size=1,
-            private_networks=[{
-                "id": pn.id,
-                "service_ips": ["10.12.1.1/20"],
-            }],
-            opts = pulumi.ResourceOptions(depends_on=[pn]))
         ```
 
         ## Import
@@ -927,6 +916,8 @@ class RedisCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -953,9 +944,9 @@ class RedisCluster(pulumi.CustomResource):
             if node_type is None and not opts.urn:
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
@@ -973,7 +964,7 @@ class RedisCluster(pulumi.CustomResource):
             __props__.__dict__["certificate"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["updated_at"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(RedisCluster, __self__).__init__(
             'scaleway:index/redisCluster:RedisCluster',
@@ -992,6 +983,8 @@ class RedisCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[_builtins.str]] = None,
             node_type: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1034,7 +1027,9 @@ class RedisCluster(pulumi.CustomResource):
                
                > **Important:** Updates to `node_type` will migrate the Redis™ cluster to the desired `node_type`. Keep in mind that
                you cannot downgrade a Redis™ cluster.
-        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster.
+        :param pulumi.Input[_builtins.str] password: Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateIpArgs', 'RedisClusterPrivateIpArgsDict']]]] private_ips: The list of private IPv4 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['RedisClusterPrivateNetworkArgs', 'RedisClusterPrivateNetworkArgsDict']]]] private_networks: Describes the Private Network you want to connect to your cluster. If not set, a public
                network will be provided. More details on the Private Network section
@@ -1068,6 +1063,8 @@ class RedisCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
@@ -1149,11 +1146,27 @@ class RedisCluster(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password for the first user of the Redis™ cluster.
+        Password for the first user of the Redis™ cluster. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateIps")

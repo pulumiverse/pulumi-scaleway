@@ -140,6 +140,8 @@ namespace Pulumiverse.Scaleway.Redis
         /// Password of the first user of the Redis Cluster.
         /// </summary>
         public readonly string Password;
+        public readonly string PasswordWo;
+        public readonly int PasswordWoVersion;
         public readonly ImmutableArray<Outputs.GetClusterPrivateIpResult> PrivateIps;
         /// <summary>
         /// List of private networks endpoints of the Redis Cluster.
@@ -196,6 +198,10 @@ namespace Pulumiverse.Scaleway.Redis
 
             string password,
 
+            string passwordWo,
+
+            int passwordWoVersion,
+
             ImmutableArray<Outputs.GetClusterPrivateIpResult> privateIps,
 
             ImmutableArray<Outputs.GetClusterPrivateNetworkResult> privateNetworks,
@@ -227,6 +233,8 @@ namespace Pulumiverse.Scaleway.Redis
             Name = name;
             NodeType = nodeType;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;

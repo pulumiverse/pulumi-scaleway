@@ -10,12 +10,11 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### User
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic IAM user creation
  * const user = new scaleway.iam.User("user", {
  *     email: "foo@test.com",
  *     tags: ["test-tag"],
@@ -24,8 +23,6 @@ import * as utilities from "./utilities";
  *     lastName: "Bar",
  * });
  * ```
- *
- * ### Multiple users
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -136,9 +133,17 @@ export class IamUser extends pulumi.CustomResource {
      */
     declare public readonly organizationId: pulumi.Output<string>;
     /**
-     * The password for first access.
+     * The password for first access. Only one of `password` or `passwordWo` should be specified.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The user's phone number.
      */
@@ -200,6 +205,8 @@ export class IamUser extends pulumi.CustomResource {
             resourceInputs["mfa"] = state?.mfa;
             resourceInputs["organizationId"] = state?.organizationId;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["phoneNumber"] = state?.phoneNumber;
             resourceInputs["sendPasswordEmail"] = state?.sendPasswordEmail;
             resourceInputs["sendWelcomeEmail"] = state?.sendWelcomeEmail;
@@ -222,6 +229,8 @@ export class IamUser extends pulumi.CustomResource {
             resourceInputs["locale"] = args?.locale;
             resourceInputs["organizationId"] = args?.organizationId;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["phoneNumber"] = args?.phoneNumber;
             resourceInputs["sendPasswordEmail"] = args?.sendPasswordEmail;
             resourceInputs["sendWelcomeEmail"] = args?.sendWelcomeEmail;
@@ -238,7 +247,7 @@ export class IamUser extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(IamUser.__pulumiType, name, resourceInputs, opts);
     }
@@ -293,9 +302,17 @@ export interface IamUserState {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The password for first access.
+     * The password for first access. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The user's phone number.
      */
@@ -355,9 +372,17 @@ export interface IamUserArgs {
      */
     organizationId?: pulumi.Input<string>;
     /**
-     * The password for first access.
+     * The password for first access. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The user's phone number.
      */

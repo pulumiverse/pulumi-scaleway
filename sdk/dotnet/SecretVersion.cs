@@ -76,14 +76,14 @@ namespace Pulumiverse.Scaleway
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         [Output("data")]
         public Output<string?> Data { get; private set; } = null!;
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         [Output("dataWo")]
         public Output<string?> DataWo { get; private set; } = null!;
@@ -186,7 +186,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         public Input<string>? Data
         {
@@ -203,7 +203,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         public Input<string>? DataWo
         {
@@ -257,7 +257,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _data;
 
         /// <summary>
-        /// The data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of the secret version. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         public Input<string>? Data
         {
@@ -274,7 +274,7 @@ namespace Pulumiverse.Scaleway
 
         /// <summary>
         /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-        /// The data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the [data section](https://www.terraform.io/#data).
+        /// The raw data payload of your secret version in write-only mode. Must not exceed 64KiB in size (e.g. `my-secret-version-payload`). Find out more on the data section.
         /// </summary>
         public Input<string>? DataWo
         {
