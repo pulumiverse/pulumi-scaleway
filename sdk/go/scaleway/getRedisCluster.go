@@ -57,8 +57,10 @@ type LookupRedisClusterResult struct {
 	// The type of Redis Cluster (e.g. `RED1-M`).
 	NodeType string `pulumi:"nodeType"`
 	// Password of the first user of the Redis Cluster.
-	Password   string                     `pulumi:"password"`
-	PrivateIps []GetRedisClusterPrivateIp `pulumi:"privateIps"`
+	Password          string                     `pulumi:"password"`
+	PasswordWo        string                     `pulumi:"passwordWo"`
+	PasswordWoVersion int                        `pulumi:"passwordWoVersion"`
+	PrivateIps        []GetRedisClusterPrivateIp `pulumi:"privateIps"`
 	// List of private networks endpoints of the Redis Cluster.
 	PrivateNetworks []GetRedisClusterPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId       *string                         `pulumi:"projectId"`
@@ -162,6 +164,14 @@ func (o LookupRedisClusterResultOutput) NodeType() pulumi.StringOutput {
 // Password of the first user of the Redis Cluster.
 func (o LookupRedisClusterResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupRedisClusterResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRedisClusterResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupRedisClusterResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRedisClusterResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
 }
 
 func (o LookupRedisClusterResultOutput) PrivateIps() GetRedisClusterPrivateIpArrayOutput {

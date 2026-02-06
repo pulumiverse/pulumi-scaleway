@@ -16,8 +16,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic Redis cluster creation
     ///     var main = new Scaleway.Redis.Cluster("main", new()
     ///     {
     ///         Name = "test_redis_basic",
@@ -47,78 +46,6 @@ namespace Pulumiverse.Scaleway
     ///                 Ip = "0.0.0.0/0",
     ///                 Description = "Allow all",
     ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### With settings
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Redis.Cluster("main", new()
-    ///     {
-    ///         Name = "test_redis_basic",
-    ///         Version = "6.2.7",
-    ///         NodeType = "RED1-MICRO",
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         Settings = 
-    ///         {
-    ///             { "maxclients", "1000" },
-    ///             { "tcp-keepalive", "120" },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### With a Private Network
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
-    ///     {
-    ///         Name = "private-network",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Redis.Cluster("main", new()
-    ///     {
-    ///         Name = "test_redis_endpoints",
-    ///         Version = "6.2.7",
-    ///         NodeType = "RED1-MICRO",
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         ClusterSize = 1,
-    ///         PrivateNetworks = new[]
-    ///         {
-    ///             new Scaleway.Redis.Inputs.ClusterPrivateNetworkArgs
-    ///             {
-    ///                 Id = pn.Id,
-    ///                 ServiceIps = new[]
-    ///                 {
-    ///                     "10.12.1.1/20",
-    ///                 },
-    ///             },
-    ///         },
-    ///     }, new CustomResourceOptions
-    ///     {
-    ///         DependsOn =
-    ///         {
-    ///             pn,
     ///         },
     ///     });
     /// 
@@ -194,10 +121,22 @@ namespace Pulumiverse.Scaleway
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the Redis™ cluster.
+        /// Password for the first user of the Redis™ cluster. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The list of private IPv4 addresses associated with the resource.
@@ -302,6 +241,7 @@ namespace Pulumiverse.Scaleway
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -374,11 +314,11 @@ namespace Pulumiverse.Scaleway
         [Input("nodeType", required: true)]
         public Input<string> NodeType { get; set; } = null!;
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Redis™ cluster.
+        /// Password for the first user of the Redis™ cluster. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -389,6 +329,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.RedisClusterPrivateIpArgs>? _privateIps;
@@ -556,7 +518,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the Redis™ cluster.
+        /// Password for the first user of the Redis™ cluster. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -567,6 +529,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.RedisClusterPrivateIpGetArgs>? _privateIps;

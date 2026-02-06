@@ -17,8 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
 // ```go
 // package main
 //
@@ -31,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Basic Redis cluster creation
 //			_, err := redis.NewCluster(ctx, "main", &redis.ClusterArgs{
 //				Name:     pulumi.String("test_redis_basic"),
 //				Version:  pulumi.String("6.2.7"),
@@ -50,88 +49,6 @@ import (
 //					},
 //				},
 //			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With settings
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := redis.NewCluster(ctx, "main", &redis.ClusterArgs{
-//				Name:     pulumi.String("test_redis_basic"),
-//				Version:  pulumi.String("6.2.7"),
-//				NodeType: pulumi.String("RED1-MICRO"),
-//				UserName: pulumi.String("my_initial_user"),
-//				Password: pulumi.String("thiZ_is_v&ry_s3cret"),
-//				Settings: pulumi.StringMap{
-//					"maxclients":    pulumi.String("1000"),
-//					"tcp-keepalive": pulumi.String("120"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With a Private Network
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/redis"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
-//				Name: pulumi.String("private-network"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = redis.NewCluster(ctx, "main", &redis.ClusterArgs{
-//				Name:        pulumi.String("test_redis_endpoints"),
-//				Version:     pulumi.String("6.2.7"),
-//				NodeType:    pulumi.String("RED1-MICRO"),
-//				UserName:    pulumi.String("my_initial_user"),
-//				Password:    pulumi.String("thiZ_is_v&ry_s3cret"),
-//				ClusterSize: pulumi.Int(1),
-//				PrivateNetworks: redis.ClusterPrivateNetworkArray{
-//					&redis.ClusterPrivateNetworkArgs{
-//						Id: pn.ID(),
-//						ServiceIps: pulumi.StringArray{
-//							pulumi.String("10.12.1.1/20"),
-//						},
-//					},
-//				},
-//			}, pulumi.DependsOn([]pulumi.Resource{
-//				pn,
-//			}))
 //			if err != nil {
 //				return err
 //			}
@@ -183,8 +100,12 @@ type Cluster struct {
 	// > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
 	// you cannot downgrade a Redis™ cluster.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
-	// Password for the first user of the Redis™ cluster.
-	Password pulumi.StringOutput `pulumi:"password"`
+	// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 addresses associated with the resource.
 	PrivateIps ClusterPrivateIpArrayOutput `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -229,9 +150,6 @@ func NewCluster(ctx *pulumi.Context,
 	if args.NodeType == nil {
 		return nil, errors.New("invalid value for required argument 'NodeType'")
 	}
-	if args.Password == nil {
-		return nil, errors.New("invalid value for required argument 'Password'")
-	}
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
@@ -245,10 +163,14 @@ func NewCluster(ctx *pulumi.Context,
 	})
 	opts = append(opts, aliases)
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
+	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -304,8 +226,12 @@ type clusterState struct {
 	// > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
 	// you cannot downgrade a Redis™ cluster.
 	NodeType *string `pulumi:"nodeType"`
-	// Password for the first user of the Redis™ cluster.
+	// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 addresses associated with the resource.
 	PrivateIps []ClusterPrivateIp `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -371,8 +297,12 @@ type ClusterState struct {
 	// > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
 	// you cannot downgrade a Redis™ cluster.
 	NodeType pulumi.StringPtrInput
-	// Password for the first user of the Redis™ cluster.
+	// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The list of private IPv4 addresses associated with the resource.
 	PrivateIps ClusterPrivateIpArrayInput
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -438,8 +368,12 @@ type clusterArgs struct {
 	// > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
 	// you cannot downgrade a Redis™ cluster.
 	NodeType string `pulumi:"nodeType"`
-	// Password for the first user of the Redis™ cluster.
-	Password string `pulumi:"password"`
+	// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
+	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 addresses associated with the resource.
 	PrivateIps []ClusterPrivateIp `pulumi:"privateIps"`
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -500,8 +434,12 @@ type ClusterArgs struct {
 	// > **Important:** Updates to `nodeType` will migrate the Redis™ cluster to the desired `nodeType`. Keep in mind that
 	// you cannot downgrade a Redis™ cluster.
 	NodeType pulumi.StringInput
-	// Password for the first user of the Redis™ cluster.
-	Password pulumi.StringInput
+	// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
+	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The list of private IPv4 addresses associated with the resource.
 	PrivateIps ClusterPrivateIpArrayInput
 	// Describes the Private Network you want to connect to your cluster. If not set, a public
@@ -669,9 +607,19 @@ func (o ClusterOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
-// Password for the first user of the Redis™ cluster.
-func (o ClusterOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v *Cluster) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+// Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
+func (o ClusterOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o ClusterOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o ClusterOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Cluster) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The list of private IPv4 addresses associated with the resource.

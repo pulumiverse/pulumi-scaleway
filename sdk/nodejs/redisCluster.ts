@@ -12,12 +12,11 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic Redis cluster creation
  * const main = new scaleway.redis.Cluster("main", {
  *     name: "test_redis_basic",
  *     version: "6.2.7",
@@ -34,48 +33,6 @@ import * as utilities from "./utilities";
  *         ip: "0.0.0.0/0",
  *         description: "Allow all",
  *     }],
- * });
- * ```
- *
- * ### With settings
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.redis.Cluster("main", {
- *     name: "test_redis_basic",
- *     version: "6.2.7",
- *     nodeType: "RED1-MICRO",
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     settings: {
- *         maxclients: "1000",
- *         "tcp-keepalive": "120",
- *     },
- * });
- * ```
- *
- * ### With a Private Network
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn = new scaleway.network.PrivateNetwork("pn", {name: "private-network"});
- * const main = new scaleway.redis.Cluster("main", {
- *     name: "test_redis_endpoints",
- *     version: "6.2.7",
- *     nodeType: "RED1-MICRO",
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     clusterSize: 1,
- *     privateNetworks: [{
- *         id: pn.id,
- *         serviceIps: ["10.12.1.1/20"],
- *     }],
- * }, {
- *     dependsOn: [pn],
  * });
  * ```
  *
@@ -163,9 +120,17 @@ export class RedisCluster extends pulumi.CustomResource {
      */
     declare public readonly nodeType: pulumi.Output<string>;
     /**
-     * Password for the first user of the Redis™ cluster.
+     * Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */
@@ -244,6 +209,8 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["name"] = state?.name;
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworks"] = state?.privateNetworks;
             resourceInputs["projectId"] = state?.projectId;
@@ -260,9 +227,6 @@ export class RedisCluster extends pulumi.CustomResource {
             if (args?.nodeType === undefined && !opts.urn) {
                 throw new Error("Missing required property 'nodeType'");
             }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             if (args?.userName === undefined && !opts.urn) {
                 throw new Error("Missing required property 'userName'");
             }
@@ -274,6 +238,8 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetworks"] = args?.privateNetworks;
             resourceInputs["projectId"] = args?.projectId;
@@ -289,7 +255,7 @@ export class RedisCluster extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(RedisCluster.__pulumiType, name, resourceInputs, opts);
     }
@@ -342,9 +308,17 @@ export interface RedisClusterState {
      */
     nodeType?: pulumi.Input<string>;
     /**
-     * Password for the first user of the Redis™ cluster.
+     * Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */
@@ -440,9 +414,17 @@ export interface RedisClusterArgs {
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password for the first user of the Redis™ cluster.
+     * Password for the first user of the Redis™ cluster. Only one of `password` or `passwordWo` should be specified.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The list of private IPv4 addresses associated with the resource.
      */

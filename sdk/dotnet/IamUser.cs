@@ -16,8 +16,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### User
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +24,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic IAM user creation
     ///     var user = new Scaleway.Iam.User("user", new()
     ///     {
     ///         Email = "foo@test.com",
@@ -40,8 +39,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// 
-    /// ### Multiple users
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -159,10 +156,22 @@ namespace Pulumiverse.Scaleway
         public Output<string> OrganizationId { get; private set; } = null!;
 
         /// <summary>
-        /// The password for first access.
+        /// The password for first access. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The user's phone number.
@@ -239,6 +248,7 @@ namespace Pulumiverse.Scaleway
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -297,7 +307,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for first access.
+        /// The password for first access. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -308,6 +318,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The user's phone number.
@@ -423,7 +455,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// The password for first access.
+        /// The password for first access. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -434,6 +466,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The user's phone number.

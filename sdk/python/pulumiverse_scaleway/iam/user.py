@@ -26,6 +26,8 @@ class UserArgs:
                  locale: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  phone_number: Optional[pulumi.Input[_builtins.str]] = None,
                  send_password_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_welcome_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -38,7 +40,9 @@ class UserArgs:
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] locale: The user's locale (e.g., en_US).
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[_builtins.str] password: The password for first access.
+        :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
@@ -56,6 +60,10 @@ class UserArgs:
             pulumi.set(__self__, "organization_id", organization_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if phone_number is not None:
             pulumi.set(__self__, "phone_number", phone_number)
         if send_password_email is not None:
@@ -141,13 +149,37 @@ class UserArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for first access.
+        The password for first access. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="phoneNumber")
@@ -213,6 +245,8 @@ class _UserState:
                  mfa: Optional[pulumi.Input[_builtins.bool]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  phone_number: Optional[pulumi.Input[_builtins.str]] = None,
                  send_password_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_welcome_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -234,7 +268,9 @@ class _UserState:
         :param pulumi.Input[_builtins.bool] locked: Whether the user is locked.
         :param pulumi.Input[_builtins.bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[_builtins.str] password: The password for first access.
+        :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
@@ -268,6 +304,10 @@ class _UserState:
             pulumi.set(__self__, "organization_id", organization_id)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if phone_number is not None:
             pulumi.set(__self__, "phone_number", phone_number)
         if send_password_email is not None:
@@ -421,13 +461,37 @@ class _UserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password for first access.
+        The password for first access. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="phoneNumber")
@@ -538,6 +602,8 @@ class User(pulumi.CustomResource):
                  locale: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  phone_number: Optional[pulumi.Input[_builtins.str]] = None,
                  send_password_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_welcome_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -550,12 +616,11 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### User
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic IAM user creation
         user = scaleway.iam.User("user",
             email="foo@test.com",
             tags=["test-tag"],
@@ -563,8 +628,6 @@ class User(pulumi.CustomResource):
             first_name="Foo",
             last_name="Bar")
         ```
-
-        ### Multiple users
 
         ```python
         import pulumi
@@ -604,7 +667,9 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] last_name: The user's last name.
         :param pulumi.Input[_builtins.str] locale: The user's locale (e.g., en_US).
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[_builtins.str] password: The password for first access.
+        :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
@@ -623,12 +688,11 @@ class User(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### User
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic IAM user creation
         user = scaleway.iam.User("user",
             email="foo@test.com",
             tags=["test-tag"],
@@ -636,8 +700,6 @@ class User(pulumi.CustomResource):
             first_name="Foo",
             last_name="Bar")
         ```
-
-        ### Multiple users
 
         ```python
         import pulumi
@@ -691,6 +753,8 @@ class User(pulumi.CustomResource):
                  locale: Optional[pulumi.Input[_builtins.str]] = None,
                  organization_id: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  phone_number: Optional[pulumi.Input[_builtins.str]] = None,
                  send_password_email: Optional[pulumi.Input[_builtins.bool]] = None,
                  send_welcome_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -713,6 +777,8 @@ class User(pulumi.CustomResource):
             __props__.__dict__["locale"] = locale
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["phone_number"] = phone_number
             __props__.__dict__["send_password_email"] = send_password_email
             __props__.__dict__["send_welcome_email"] = send_welcome_email
@@ -731,7 +797,7 @@ class User(pulumi.CustomResource):
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/iamUser:IamUser")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
             'scaleway:iam/user:User',
@@ -755,6 +821,8 @@ class User(pulumi.CustomResource):
             mfa: Optional[pulumi.Input[_builtins.bool]] = None,
             organization_id: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             phone_number: Optional[pulumi.Input[_builtins.str]] = None,
             send_password_email: Optional[pulumi.Input[_builtins.bool]] = None,
             send_welcome_email: Optional[pulumi.Input[_builtins.bool]] = None,
@@ -781,7 +849,9 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] locked: Whether the user is locked.
         :param pulumi.Input[_builtins.bool] mfa: Whether the MFA is enabled.
         :param pulumi.Input[_builtins.str] organization_id: `organization_id`) The ID of the organization the user is associated with.
-        :param pulumi.Input[_builtins.str] password: The password for first access.
+        :param pulumi.Input[_builtins.str] password: The password for first access. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] phone_number: The user's phone number.
         :param pulumi.Input[_builtins.bool] send_password_email: Whether or not to send an email containing the password for first access.
         :param pulumi.Input[_builtins.bool] send_welcome_email: Whether or not to send a welcome email that includes onboarding information.
@@ -807,6 +877,8 @@ class User(pulumi.CustomResource):
         __props__.__dict__["mfa"] = mfa
         __props__.__dict__["organization_id"] = organization_id
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["phone_number"] = phone_number
         __props__.__dict__["send_password_email"] = send_password_email
         __props__.__dict__["send_welcome_email"] = send_welcome_email
@@ -909,9 +981,25 @@ class User(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The password for first access.
+        The password for first access. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="phoneNumber")
