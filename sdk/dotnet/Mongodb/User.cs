@@ -11,12 +11,9 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Mongodb
 {
     /// <summary>
-    /// Creates and manages Scaleway MongoDB® users.
-    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+    /// Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
     /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -26,6 +23,7 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic user creation
     ///     var main = new Scaleway.Mongodb.Instance("main", new()
     ///     {
     ///         Name = "test-mongodb-user",
@@ -55,8 +53,6 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// });
     /// ```
     /// 
-    /// ### With Multiple Users
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -65,6 +61,7 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Multiple user creation
     ///     var main = new Scaleway.Mongodb.Instance("main", new()
     ///     {
     ///         Name = "test-mongodb-multi-user",
@@ -148,7 +145,16 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// The password of the MongoDB® user.
         /// </summary>
         [Output("password")]
-        public Output<string> Password { get; private set; } = null!;
+        public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// `Region`) The region in which the MongoDB® user should be created.
@@ -189,6 +195,7 @@ namespace Pulumiverse.Scaleway.Mongodb
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -225,7 +232,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        [Input("password", required: true)]
+        [Input("password")]
         private Input<string>? _password;
 
         /// <summary>
@@ -240,6 +247,25 @@ namespace Pulumiverse.Scaleway.Mongodb
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// `Region`) The region in which the MongoDB® user should be created.
@@ -294,6 +320,25 @@ namespace Pulumiverse.Scaleway.Mongodb
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// `Region`) The region in which the MongoDB® user should be created.

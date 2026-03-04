@@ -69,6 +69,45 @@ namespace Pulumiverse.Scaleway.Datawarehouse
     /// });
     /// ```
     /// 
+    /// ### With Private Network
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Network.Vpc("main", new()
+    ///     {
+    ///         Name = "my-vpc",
+    ///     });
+    /// 
+    ///     var pn = new Scaleway.Network.PrivateNetwork("pn", new()
+    ///     {
+    ///         Name = "my-private-network",
+    ///         VpcId = main.Id,
+    ///     });
+    /// 
+    ///     var mainDeployment = new Scaleway.Datawarehouse.Deployment("main", new()
+    ///     {
+    ///         Name = "my-datawarehouse",
+    ///         Version = "v25",
+    ///         ReplicaCount = 1,
+    ///         CpuMin = 2,
+    ///         CpuMax = 4,
+    ///         RamPerCpu = 4,
+    ///         Password = "thiZ_is_v&amp;ry_s3cret",
+    ///         PrivateNetwork = new Scaleway.Datawarehouse.Inputs.DeploymentPrivateNetworkArgs
+    ///         {
+    ///             PnId = pn.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
@@ -113,9 +152,15 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Output<string?> Password { get; private set; } = null!;
 
         /// <summary>
+        /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Output("privateNetwork")]
+        public Output<Outputs.DeploymentPrivateNetwork?> PrivateNetwork { get; private set; } = null!;
+
+        /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// 
         /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>
@@ -256,9 +301,15 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         }
 
         /// <summary>
+        /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Input("privateNetwork")]
+        public Input<Inputs.DeploymentPrivateNetworkArgs>? PrivateNetwork { get; set; }
+
+        /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// 
         /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>
@@ -350,9 +401,15 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         }
 
         /// <summary>
+        /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        /// </summary>
+        [Input("privateNetwork")]
+        public Input<Inputs.DeploymentPrivateNetworkGetArgs>? PrivateNetwork { get; set; }
+
+        /// <summary>
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
-        /// &gt; **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
         /// 
         /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>

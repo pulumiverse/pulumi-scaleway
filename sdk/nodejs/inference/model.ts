@@ -11,12 +11,11 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic creation of an inference model
  * const test = new scaleway.inference.Model("test", {
  *     name: "my-awesome-model",
  *     url: "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
@@ -24,12 +23,11 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### Deploy your own model on your managed inference
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Deploy your own model on your managed inference
  * const myModel = new scaleway.inference.Model("my_model", {
  *     name: "my-awesome-model",
  *     url: "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
@@ -43,6 +41,19 @@ import * as utilities from "../utilities";
  *         isEnabled: true,
  *     },
  *     acceptEula: true,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * //## Create a model using your model's secret token without storing it in the state
+ * const myModelWo = new scaleway.inference.Model("my_model_wo", {
+ *     name: "my-awesome-model-wo",
+ *     url: "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
+ *     secretWo: "my-secret-token",
+ *     secretWoVersion: 1,
  * });
  * ```
  *
@@ -117,9 +128,17 @@ export class Model extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */
     declare public readonly secret: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly secretWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only secret. Required when using `secretWo`.
+     */
+    declare public readonly secretWoVersion: pulumi.Output<number | undefined>;
     /**
      * Total size, in bytes, of the model archive.
      */
@@ -137,7 +156,7 @@ export class Model extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
-     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
      */
     declare public readonly url: pulumi.Output<string>;
 
@@ -163,6 +182,8 @@ export class Model extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
             resourceInputs["secret"] = state?.secret;
+            resourceInputs["secretWo"] = state?.secretWo;
+            resourceInputs["secretWoVersion"] = state?.secretWoVersion;
             resourceInputs["sizeBytes"] = state?.sizeBytes;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -177,6 +198,8 @@ export class Model extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["secret"] = args?.secret ? pulumi.secret(args.secret) : undefined;
+            resourceInputs["secretWo"] = args?.secretWo ? pulumi.secret(args.secretWo) : undefined;
+            resourceInputs["secretWoVersion"] = args?.secretWoVersion;
             resourceInputs["url"] = args?.url;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["description"] = undefined /*out*/;
@@ -189,7 +212,7 @@ export class Model extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["secret"] };
+        const secretOpts = { additionalSecretOutputs: ["secret", "secretWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Model.__pulumiType, name, resourceInputs, opts);
     }
@@ -232,9 +255,17 @@ export interface ModelState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */
     secret?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    secretWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only secret. Required when using `secretWo`.
+     */
+    secretWoVersion?: pulumi.Input<number>;
     /**
      * Total size, in bytes, of the model archive.
      */
@@ -252,7 +283,7 @@ export interface ModelState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
      */
     url?: pulumi.Input<string>;
 }
@@ -274,11 +305,19 @@ export interface ModelArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+     * Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
      */
     secret?: pulumi.Input<string>;
     /**
-     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    secretWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only secret. Required when using `secretWo`.
+     */
+    secretWoVersion?: pulumi.Input<number>;
+    /**
+     * The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
      */
     url: pulumi.Input<string>;
 }

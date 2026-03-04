@@ -114,7 +114,11 @@ import (
 type JobDefinition struct {
 	pulumi.CustomResourceState
 
+	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+	Args pulumi.StringArrayOutput `pulumi:"args"`
 	// The command that will be run in the container if specified.
+	//
+	// Deprecated: Please use startupCommand instead
 	Command pulumi.StringPtrOutput `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntOutput `pulumi:"cpuLimit"`
@@ -125,9 +129,9 @@ type JobDefinition struct {
 	// The environment variables of the container.
 	Env pulumi.StringMapOutput `pulumi:"env"`
 	// The uri of the container image that will be used for the job run.
-	ImageUri pulumi.StringPtrOutput `pulumi:"imageUri"`
+	ImageUri pulumi.StringOutput `pulumi:"imageUri"`
 	// The local storage capacity of the job in MiB.
-	LocalStorageCapacity pulumi.IntPtrOutput `pulumi:"localStorageCapacity"`
+	LocalStorageCapacity pulumi.IntOutput `pulumi:"localStorageCapacity"`
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit pulumi.IntOutput `pulumi:"memoryLimit"`
 	// The name of the job.
@@ -138,6 +142,8 @@ type JobDefinition struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayOutput `pulumi:"secretReferences"`
+	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+	StartupCommands pulumi.StringArrayOutput `pulumi:"startupCommands"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringOutput `pulumi:"timeout"`
 }
@@ -151,6 +157,12 @@ func NewJobDefinition(ctx *pulumi.Context,
 
 	if args.CpuLimit == nil {
 		return nil, errors.New("invalid value for required argument 'CpuLimit'")
+	}
+	if args.ImageUri == nil {
+		return nil, errors.New("invalid value for required argument 'ImageUri'")
+	}
+	if args.LocalStorageCapacity == nil {
+		return nil, errors.New("invalid value for required argument 'LocalStorageCapacity'")
 	}
 	if args.MemoryLimit == nil {
 		return nil, errors.New("invalid value for required argument 'MemoryLimit'")
@@ -178,7 +190,11 @@ func GetJobDefinition(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering JobDefinition resources.
 type jobDefinitionState struct {
+	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+	Args []string `pulumi:"args"`
 	// The command that will be run in the container if specified.
+	//
+	// Deprecated: Please use startupCommand instead
 	Command *string `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit *int `pulumi:"cpuLimit"`
@@ -202,12 +218,18 @@ type jobDefinitionState struct {
 	Region *string `pulumi:"region"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences []JobDefinitionSecretReference `pulumi:"secretReferences"`
+	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+	StartupCommands []string `pulumi:"startupCommands"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout *string `pulumi:"timeout"`
 }
 
 type JobDefinitionState struct {
+	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+	Args pulumi.StringArrayInput
 	// The command that will be run in the container if specified.
+	//
+	// Deprecated: Please use startupCommand instead
 	Command pulumi.StringPtrInput
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntPtrInput
@@ -231,6 +253,8 @@ type JobDefinitionState struct {
 	Region pulumi.StringPtrInput
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayInput
+	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+	StartupCommands pulumi.StringArrayInput
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringPtrInput
 }
@@ -240,7 +264,11 @@ func (JobDefinitionState) ElementType() reflect.Type {
 }
 
 type jobDefinitionArgs struct {
+	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+	Args []string `pulumi:"args"`
 	// The command that will be run in the container if specified.
+	//
+	// Deprecated: Please use startupCommand instead
 	Command *string `pulumi:"command"`
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit int `pulumi:"cpuLimit"`
@@ -251,9 +279,9 @@ type jobDefinitionArgs struct {
 	// The environment variables of the container.
 	Env map[string]string `pulumi:"env"`
 	// The uri of the container image that will be used for the job run.
-	ImageUri *string `pulumi:"imageUri"`
+	ImageUri string `pulumi:"imageUri"`
 	// The local storage capacity of the job in MiB.
-	LocalStorageCapacity *int `pulumi:"localStorageCapacity"`
+	LocalStorageCapacity int `pulumi:"localStorageCapacity"`
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit int `pulumi:"memoryLimit"`
 	// The name of the job.
@@ -264,13 +292,19 @@ type jobDefinitionArgs struct {
 	Region *string `pulumi:"region"`
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences []JobDefinitionSecretReference `pulumi:"secretReferences"`
+	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+	StartupCommands []string `pulumi:"startupCommands"`
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout *string `pulumi:"timeout"`
 }
 
 // The set of arguments for constructing a JobDefinition resource.
 type JobDefinitionArgs struct {
+	// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+	Args pulumi.StringArrayInput
 	// The command that will be run in the container if specified.
+	//
+	// Deprecated: Please use startupCommand instead
 	Command pulumi.StringPtrInput
 	// The amount of vCPU computing resources to allocate to each container running the job.
 	CpuLimit pulumi.IntInput
@@ -281,9 +315,9 @@ type JobDefinitionArgs struct {
 	// The environment variables of the container.
 	Env pulumi.StringMapInput
 	// The uri of the container image that will be used for the job run.
-	ImageUri pulumi.StringPtrInput
+	ImageUri pulumi.StringInput
 	// The local storage capacity of the job in MiB.
-	LocalStorageCapacity pulumi.IntPtrInput
+	LocalStorageCapacity pulumi.IntInput
 	// The memory computing resources in MB to allocate to each container running the job.
 	MemoryLimit pulumi.IntInput
 	// The name of the job.
@@ -294,6 +328,8 @@ type JobDefinitionArgs struct {
 	Region pulumi.StringPtrInput
 	// A reference to a secret stored in Secret Manager.
 	SecretReferences JobDefinitionSecretReferenceArrayInput
+	// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+	StartupCommands pulumi.StringArrayInput
 	// The job run timeout, in Go Time format (ex: `2h30m25s`)
 	Timeout pulumi.StringPtrInput
 }
@@ -385,7 +421,14 @@ func (o JobDefinitionOutput) ToJobDefinitionOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+func (o JobDefinitionOutput) Args() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *JobDefinition) pulumi.StringArrayOutput { return v.Args }).(pulumi.StringArrayOutput)
+}
+
 // The command that will be run in the container if specified.
+//
+// Deprecated: Please use startupCommand instead
 func (o JobDefinitionOutput) Command() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *JobDefinition) pulumi.StringPtrOutput { return v.Command }).(pulumi.StringPtrOutput)
 }
@@ -411,13 +454,13 @@ func (o JobDefinitionOutput) Env() pulumi.StringMapOutput {
 }
 
 // The uri of the container image that will be used for the job run.
-func (o JobDefinitionOutput) ImageUri() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *JobDefinition) pulumi.StringPtrOutput { return v.ImageUri }).(pulumi.StringPtrOutput)
+func (o JobDefinitionOutput) ImageUri() pulumi.StringOutput {
+	return o.ApplyT(func(v *JobDefinition) pulumi.StringOutput { return v.ImageUri }).(pulumi.StringOutput)
 }
 
 // The local storage capacity of the job in MiB.
-func (o JobDefinitionOutput) LocalStorageCapacity() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *JobDefinition) pulumi.IntPtrOutput { return v.LocalStorageCapacity }).(pulumi.IntPtrOutput)
+func (o JobDefinitionOutput) LocalStorageCapacity() pulumi.IntOutput {
+	return o.ApplyT(func(v *JobDefinition) pulumi.IntOutput { return v.LocalStorageCapacity }).(pulumi.IntOutput)
 }
 
 // The memory computing resources in MB to allocate to each container running the job.
@@ -443,6 +486,11 @@ func (o JobDefinitionOutput) Region() pulumi.StringPtrOutput {
 // A reference to a secret stored in Secret Manager.
 func (o JobDefinitionOutput) SecretReferences() JobDefinitionSecretReferenceArrayOutput {
 	return o.ApplyT(func(v *JobDefinition) JobDefinitionSecretReferenceArrayOutput { return v.SecretReferences }).(JobDefinitionSecretReferenceArrayOutput)
+}
+
+// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+func (o JobDefinitionOutput) StartupCommands() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *JobDefinition) pulumi.StringArrayOutput { return v.StartupCommands }).(pulumi.StringArrayOutput)
 }
 
 // The job run timeout, in Go Time format (ex: `2h30m25s`)

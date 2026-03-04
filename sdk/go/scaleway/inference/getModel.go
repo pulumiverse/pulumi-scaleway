@@ -77,6 +77,8 @@ type LookupModelResult struct {
 	ProjectId         string `pulumi:"projectId"`
 	Region            string `pulumi:"region"`
 	Secret            string `pulumi:"secret"`
+	SecretWo          string `pulumi:"secretWo"`
+	SecretWoVersion   int    `pulumi:"secretWoVersion"`
 	// Total size, in bytes, of the model archive.
 	SizeBytes int `pulumi:"sizeBytes"`
 	// The current status of the model (e.g., ready, error, etc.).
@@ -171,6 +173,14 @@ func (o LookupModelResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupModelResultOutput) Secret() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupModelResult) string { return v.Secret }).(pulumi.StringOutput)
+}
+
+func (o LookupModelResultOutput) SecretWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupModelResult) string { return v.SecretWo }).(pulumi.StringOutput)
+}
+
+func (o LookupModelResultOutput) SecretWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupModelResult) int { return v.SecretWoVersion }).(pulumi.IntOutput)
 }
 
 // Total size, in bytes, of the model archive.

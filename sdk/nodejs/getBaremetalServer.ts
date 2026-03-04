@@ -85,6 +85,8 @@ export interface GetBaremetalServerResult {
     readonly osName: string;
     readonly partitioning: string;
     readonly password: string;
+    readonly passwordWo: string;
+    readonly passwordWoVersion: number;
     readonly privateIps: outputs.GetBaremetalServerPrivateIp[];
     readonly privateNetworks: outputs.GetBaremetalServerPrivateNetwork[];
     readonly projectId?: string;
@@ -92,6 +94,8 @@ export interface GetBaremetalServerResult {
     readonly reinstallOnConfigChanges: boolean;
     readonly serverId?: string;
     readonly servicePassword: string;
+    readonly servicePasswordWo: string;
+    readonly servicePasswordWoVersion: number;
     readonly serviceUser: string;
     readonly sshKeyIds: string[];
     readonly tags: string[];

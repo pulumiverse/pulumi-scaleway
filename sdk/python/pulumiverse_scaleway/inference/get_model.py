@@ -27,7 +27,7 @@ class GetModelResult:
     """
     A collection of values returned by getModel.
     """
-    def __init__(__self__, created_at=None, description=None, has_eula=None, id=None, model_id=None, name=None, nodes_supports=None, parameter_size_bits=None, project_id=None, region=None, secret=None, size_bytes=None, status=None, tags=None, updated_at=None, url=None):
+    def __init__(__self__, created_at=None, description=None, has_eula=None, id=None, model_id=None, name=None, nodes_supports=None, parameter_size_bits=None, project_id=None, region=None, secret=None, secret_wo=None, secret_wo_version=None, size_bytes=None, status=None, tags=None, updated_at=None, url=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -61,6 +61,12 @@ class GetModelResult:
         if secret and not isinstance(secret, str):
             raise TypeError("Expected argument 'secret' to be a str")
         pulumi.set(__self__, "secret", secret)
+        if secret_wo and not isinstance(secret_wo, str):
+            raise TypeError("Expected argument 'secret_wo' to be a str")
+        pulumi.set(__self__, "secret_wo", secret_wo)
+        if secret_wo_version and not isinstance(secret_wo_version, int):
+            raise TypeError("Expected argument 'secret_wo_version' to be a int")
+        pulumi.set(__self__, "secret_wo_version", secret_wo_version)
         if size_bytes and not isinstance(size_bytes, int):
             raise TypeError("Expected argument 'size_bytes' to be a int")
         pulumi.set(__self__, "size_bytes", size_bytes)
@@ -148,6 +154,16 @@ class GetModelResult:
         return pulumi.get(self, "secret")
 
     @_builtins.property
+    @pulumi.getter(name="secretWo")
+    def secret_wo(self) -> _builtins.str:
+        return pulumi.get(self, "secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="secretWoVersion")
+    def secret_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "secret_wo_version")
+
+    @_builtins.property
     @pulumi.getter(name="sizeBytes")
     def size_bytes(self) -> _builtins.int:
         """
@@ -199,6 +215,8 @@ class AwaitableGetModelResult(GetModelResult):
             project_id=self.project_id,
             region=self.region,
             secret=self.secret,
+            secret_wo=self.secret_wo,
+            secret_wo_version=self.secret_wo_version,
             size_bytes=self.size_bytes,
             status=self.status,
             tags=self.tags,
@@ -247,6 +265,8 @@ def get_model(model_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
         secret=pulumi.get(__ret__, 'secret'),
+        secret_wo=pulumi.get(__ret__, 'secret_wo'),
+        secret_wo_version=pulumi.get(__ret__, 'secret_wo_version'),
         size_bytes=pulumi.get(__ret__, 'size_bytes'),
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -292,6 +312,8 @@ def get_model_output(model_id: Optional[pulumi.Input[Optional[_builtins.str]]] =
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
         secret=pulumi.get(__response__, 'secret'),
+        secret_wo=pulumi.get(__response__, 'secret_wo'),
+        secret_wo_version=pulumi.get(__response__, 'secret_wo_version'),
         size_bytes=pulumi.get(__response__, 'size_bytes'),
         status=pulumi.get(__response__, 'status'),
         tags=pulumi.get(__response__, 'tags'),

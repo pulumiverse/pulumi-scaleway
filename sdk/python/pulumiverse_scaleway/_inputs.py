@@ -161,6 +161,10 @@ __all__ = [
     'JobDefinitionCronArgsDict',
     'JobDefinitionSecretReferenceArgs',
     'JobDefinitionSecretReferenceArgsDict',
+    'KafkaClusterPrivateNetworkArgs',
+    'KafkaClusterPrivateNetworkArgsDict',
+    'KafkaClusterPublicNetworkArgs',
+    'KafkaClusterPublicNetworkArgsDict',
     'KeyManagerKeyRotationPolicyArgs',
     'KeyManagerKeyRotationPolicyArgsDict',
     'KubernetesClusterAutoUpgradeArgs',
@@ -243,6 +247,14 @@ __all__ = [
     'ObjectBucketWebsiteConfigurationErrorDocumentArgsDict',
     'ObjectBucketWebsiteConfigurationIndexDocumentArgs',
     'ObjectBucketWebsiteConfigurationIndexDocumentArgsDict',
+    'OpensearchDeploymentEndpointArgs',
+    'OpensearchDeploymentEndpointArgsDict',
+    'OpensearchDeploymentEndpointServiceArgs',
+    'OpensearchDeploymentEndpointServiceArgsDict',
+    'OpensearchDeploymentPrivateNetworkArgs',
+    'OpensearchDeploymentPrivateNetworkArgsDict',
+    'OpensearchDeploymentVolumeArgs',
+    'OpensearchDeploymentVolumeArgsDict',
     'RedisClusterAclArgs',
     'RedisClusterAclArgsDict',
     'RedisClusterPrivateIpArgs',
@@ -1864,7 +1876,7 @@ if not MYPY:
     class DatabaseAclAclRuleArgsDict(TypedDict):
         ip: pulumi.Input[_builtins.str]
         """
-        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         description: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -1879,7 +1891,7 @@ class DatabaseAclAclRuleArgs:
                  ip: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ip: The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param pulumi.Input[_builtins.str] ip: The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         :param pulumi.Input[_builtins.str] description: A text describing this rule. Default description: `IP allowed`
         """
         pulumi.set(__self__, "ip", ip)
@@ -1890,7 +1902,7 @@ class DatabaseAclAclRuleArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[_builtins.str]:
         """
-        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         return pulumi.get(self, "ip")
 
@@ -6487,6 +6499,169 @@ class JobDefinitionSecretReferenceArgs:
 
 
 if not MYPY:
+    class KafkaClusterPrivateNetworkArgsDict(TypedDict):
+        pn_id: pulumi.Input[_builtins.str]
+        """
+        The private network ID (same as input).
+        """
+        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        List of DNS records for the private endpoint.
+        """
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The ID of the private endpoint.
+        """
+        port: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        TCP port number.
+        """
+elif False:
+    KafkaClusterPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class KafkaClusterPrivateNetworkArgs:
+    def __init__(__self__, *,
+                 pn_id: pulumi.Input[_builtins.str],
+                 dns_records: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] pn_id: The private network ID (same as input).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_records: List of DNS records for the private endpoint.
+        :param pulumi.Input[_builtins.str] id: The ID of the private endpoint.
+        :param pulumi.Input[_builtins.int] port: TCP port number.
+        """
+        pulumi.set(__self__, "pn_id", pn_id)
+        if dns_records is not None:
+            pulumi.set(__self__, "dns_records", dns_records)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        The private network ID (same as input).
+        """
+        return pulumi.get(self, "pn_id")
+
+    @pn_id.setter
+    def pn_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "pn_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsRecords")
+    def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of DNS records for the private endpoint.
+        """
+        return pulumi.get(self, "dns_records")
+
+    @dns_records.setter
+    def dns_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "dns_records", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the private endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        TCP port number.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+
+if not MYPY:
+    class KafkaClusterPublicNetworkArgsDict(TypedDict):
+        dns_records: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+        """
+        List of DNS records for the private endpoint.
+        """
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The ID of the private endpoint.
+        """
+        port: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        TCP port number.
+        """
+elif False:
+    KafkaClusterPublicNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class KafkaClusterPublicNetworkArgs:
+    def __init__(__self__, *,
+                 dns_records: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] dns_records: List of DNS records for the private endpoint.
+        :param pulumi.Input[_builtins.str] id: The ID of the private endpoint.
+        :param pulumi.Input[_builtins.int] port: TCP port number.
+        """
+        if dns_records is not None:
+            pulumi.set(__self__, "dns_records", dns_records)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+
+    @_builtins.property
+    @pulumi.getter(name="dnsRecords")
+    def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        List of DNS records for the private endpoint.
+        """
+        return pulumi.get(self, "dns_records")
+
+    @dns_records.setter
+    def dns_records(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "dns_records", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the private endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        TCP port number.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+
+if not MYPY:
     class KeyManagerKeyRotationPolicyArgsDict(TypedDict):
         rotation_period: pulumi.Input[_builtins.str]
         """
@@ -9711,11 +9886,255 @@ class ObjectBucketWebsiteConfigurationIndexDocumentArgs:
 
 
 if not MYPY:
+    class OpensearchDeploymentEndpointArgsDict(TypedDict):
+        id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The ID of the endpoint.
+        """
+        private_network_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Private network ID if the endpoint is private.
+        """
+        public: NotRequired[pulumi.Input[_builtins.bool]]
+        """
+        Whether the endpoint is public (true) or private (false).
+        """
+        services: NotRequired[pulumi.Input[Sequence[pulumi.Input['OpensearchDeploymentEndpointServiceArgsDict']]]]
+        """
+        List of services exposed on the endpoint.
+        """
+elif False:
+    OpensearchDeploymentEndpointArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OpensearchDeploymentEndpointArgs:
+    def __init__(__self__, *,
+                 id: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_network_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 public: Optional[pulumi.Input[_builtins.bool]] = None,
+                 services: Optional[pulumi.Input[Sequence[pulumi.Input['OpensearchDeploymentEndpointServiceArgs']]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] id: The ID of the endpoint.
+        :param pulumi.Input[_builtins.str] private_network_id: Private network ID if the endpoint is private.
+        :param pulumi.Input[_builtins.bool] public: Whether the endpoint is public (true) or private (false).
+        :param pulumi.Input[Sequence[pulumi.Input['OpensearchDeploymentEndpointServiceArgs']]] services: List of services exposed on the endpoint.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if private_network_id is not None:
+            pulumi.set(__self__, "private_network_id", private_network_id)
+        if public is not None:
+            pulumi.set(__self__, "public", public)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Private network ID if the endpoint is private.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "private_network_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the endpoint is public (true) or private (false).
+        """
+        return pulumi.get(self, "public")
+
+    @public.setter
+    def public(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "public", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OpensearchDeploymentEndpointServiceArgs']]]]:
+        """
+        List of services exposed on the endpoint.
+        """
+        return pulumi.get(self, "services")
+
+    @services.setter
+    def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OpensearchDeploymentEndpointServiceArgs']]]]):
+        pulumi.set(self, "services", value)
+
+
+if not MYPY:
+    class OpensearchDeploymentEndpointServiceArgsDict(TypedDict):
+        name: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Name of the OpenSearch deployment. If not specified, a random name will be generated.
+        """
+        port: NotRequired[pulumi.Input[_builtins.int]]
+        """
+        Service port number.
+        """
+        url: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        """
+elif False:
+    OpensearchDeploymentEndpointServiceArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OpensearchDeploymentEndpointServiceArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[_builtins.str]] = None,
+                 port: Optional[pulumi.Input[_builtins.int]] = None,
+                 url: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Name of the OpenSearch deployment. If not specified, a random name will be generated.
+        :param pulumi.Input[_builtins.int] port: Service port number.
+        :param pulumi.Input[_builtins.str] url: Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Name of the OpenSearch deployment. If not specified, a random name will be generated.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        Service port number.
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+        """
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+
+if not MYPY:
+    class OpensearchDeploymentPrivateNetworkArgsDict(TypedDict):
+        private_network_id: pulumi.Input[_builtins.str]
+        """
+        Private network ID if the endpoint is private.
+        """
+elif False:
+    OpensearchDeploymentPrivateNetworkArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OpensearchDeploymentPrivateNetworkArgs:
+    def __init__(__self__, *,
+                 private_network_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] private_network_id: Private network ID if the endpoint is private.
+        """
+        pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        Private network ID if the endpoint is private.
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @private_network_id.setter
+    def private_network_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "private_network_id", value)
+
+
+if not MYPY:
+    class OpensearchDeploymentVolumeArgsDict(TypedDict):
+        size_in_gb: pulumi.Input[_builtins.int]
+        """
+        Volume size in GB. Changing this forces recreation of the deployment.
+        """
+        type: pulumi.Input[_builtins.str]
+        """
+        Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+elif False:
+    OpensearchDeploymentVolumeArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class OpensearchDeploymentVolumeArgs:
+    def __init__(__self__, *,
+                 size_in_gb: pulumi.Input[_builtins.int],
+                 type: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.int] size_in_gb: Volume size in GB. Changing this forces recreation of the deployment.
+        :param pulumi.Input[_builtins.str] type: Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> pulumi.Input[_builtins.int]:
+        """
+        Volume size in GB. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @size_in_gb.setter
+    def size_in_gb(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "size_in_gb", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "type", value)
+
+
+if not MYPY:
     class RedisClusterAclArgsDict(TypedDict):
         ip: pulumi.Input[_builtins.str]
         """
-        The IP range to whitelist
-        in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         description: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -9737,8 +10156,7 @@ class RedisClusterAclArgs:
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ip: The IP range to whitelist
-               in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param pulumi.Input[_builtins.str] ip: The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         :param pulumi.Input[_builtins.str] description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
@@ -9754,8 +10172,7 @@ class RedisClusterAclArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[_builtins.str]:
         """
-        The IP range to whitelist
-        in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         return pulumi.get(self, "ip")
 
@@ -9862,7 +10279,7 @@ if not MYPY:
         """
         service_ips: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
         """
-        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -9905,7 +10322,7 @@ class RedisClusterPrivateNetworkArgs:
         :param pulumi.Input[_builtins.str] endpoint_id: The ID of the endpoint.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ips: List of IPv4 addresses of the endpoint.
         :param pulumi.Input[_builtins.int] port: TCP port of the endpoint.
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -9992,7 +10409,7 @@ class RedisClusterPrivateNetworkArgs:
     @pulumi.getter(name="serviceIps")
     def service_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.

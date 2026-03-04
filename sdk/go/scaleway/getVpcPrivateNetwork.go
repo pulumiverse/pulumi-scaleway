@@ -42,7 +42,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			// Get info by IP ID
+//			// Get info by name in a specific region
+//			_, err = network.LookupPrivateNetwork(ctx, &network.LookupPrivateNetworkArgs{
+//				Name:   pulumi.StringRef("foobar"),
+//				Region: pulumi.StringRef("nl-ams"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Get info by Private Network ID
 //			_, err = network.LookupPrivateNetwork(ctx, &network.LookupPrivateNetworkArgs{
 //				PrivateNetworkId: pulumi.StringRef("11111111-1111-1111-1111-111111111111"),
 //			}, nil)
@@ -74,7 +82,8 @@ type LookupVpcPrivateNetworkArgs struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// The ID of the Project the Private Network is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	Region    *string `pulumi:"region"`
+	// `region`) The region in which the Private Network exists.
+	Region *string `pulumi:"region"`
 	// ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -118,7 +127,8 @@ type LookupVpcPrivateNetworkOutputArgs struct {
 	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
 	// The ID of the Project the Private Network is associated with.
 	ProjectId pulumi.StringPtrInput `pulumi:"projectId"`
-	Region    pulumi.StringPtrInput `pulumi:"region"`
+	// `region`) The region in which the Private Network exists.
+	Region pulumi.StringPtrInput `pulumi:"region"`
 	// ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
 	VpcId pulumi.StringPtrInput `pulumi:"vpcId"`
 }

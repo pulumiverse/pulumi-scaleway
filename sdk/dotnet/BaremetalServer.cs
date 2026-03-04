@@ -11,15 +11,7 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
-    /// 
     /// ## Example Usage
-    /// 
-    /// ### Basic
-    /// 
-    /// ### With option
-    /// 
-    /// ### With cloud-init
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -31,6 +23,7 @@ namespace Pulumiverse.Scaleway
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## With cloud-init
     ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
     ///     {
     ///         Name = "main",
@@ -66,207 +59,6 @@ namespace Pulumiverse.Scaleway
     /// 
     /// });
     /// ```
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var mySshKey = Scaleway.Iam.GetSshKey.Invoke(new()
-    ///     {
-    ///         Name = "main",
-    ///     });
-    /// 
-    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-2",
-    ///         Name = "EM-I220E-NVME",
-    ///     });
-    /// 
-    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Name = "Ubuntu",
-    ///         Version = "22.04 LTS (Jammy Jellyfish)",
-    ///     });
-    /// 
-    ///     var myServerCi = new Scaleway.Elasticmetal.Server("my_server_ci", new()
-    ///     {
-    ///         Zone = "fr-par-2",
-    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
-    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
-    ///         SshKeyIds = new[]
-    ///         {
-    ///             mySshKey.Apply(getSshKeyResult =&gt; getSshKeyResult.Id),
-    ///         },
-    ///         CloudInit = @"#cloud-config
-    /// packages:
-    ///   - htop
-    ///   - curl
-    /// 
-    /// runcmd:
-    ///   - echo \""Hello from raw cloud-init!\"" &gt; /home/ubuntu/message.txt
-    /// ",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### With private network
-    /// 
-    /// ### With IPAM IP IDs
-    /// 
-    /// ### Without install config
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-2",
-    ///         Name = "EM-B112X-SSD",
-    ///     });
-    /// 
-    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
-    ///     {
-    ///         Zone = "fr-par-2",
-    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
-    ///         InstallConfigAfterward = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### With custom partitioning
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var config = new Config();
-    ///     var configCustomPartitioning = config.Get("configCustomPartitioning") ?? "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"boot\",\"number\":2,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"root\",\"number\":3,\"size\":1018839433216,\"useAllAvailableSpace\":false}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"boot\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"data\",\"number\":2,\"size\":1018839433216,\"useAllAvailableSpace\":false}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/nvme0n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/nvme0n1p3\",\"format\":\"ext4\",\"mountpoint\":\"/\"},{\"device\":\"/dev/nvme1n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/data\"}],\"raids\":[]}";
-    ///     var myOs = Scaleway.Elasticmetal.GetOs.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Name = "Ubuntu",
-    ///         Version = "22.04 LTS (Jammy Jellyfish)",
-    ///     });
-    /// 
-    ///     var mySshKey = new Scaleway.Iam.SshKey("my_ssh_key", new()
-    ///     {
-    ///         Name = "my_ssh_key",
-    ///         PublicKey = "ssh XXXXXXXXXXX",
-    ///     });
-    /// 
-    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Name = "EM-B220E-NVME",
-    ///         SubscriptionPeriod = "hourly",
-    ///     });
-    /// 
-    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
-    ///     {
-    ///         Name = "my_super_server",
-    ///         Zone = "fr-par-1",
-    ///         Description = "test a description",
-    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
-    ///         Os = myOs.Apply(getOsResult =&gt; getOsResult.OsId),
-    ///         Partitioning = configCustomPartitioning,
-    ///         Tags = new[]
-    ///         {
-    ///             "terraform-test",
-    ///             "scaleway_baremetal_server",
-    ///             "minimal",
-    ///         },
-    ///         SshKeyIds = new[]
-    ///         {
-    ///             mySshKey.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Migrate from hourly to monthly plan
-    /// 
-    /// To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
-    /// You cannot directly modify the SubscriptionPeriod of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
-    /// 
-    /// ### Hourly Plan Example
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Name = "EM-B220E-NVME",
-    ///         SubscriptionPeriod = "hourly",
-    ///     });
-    /// 
-    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
-    ///     {
-    ///         Name = "UpdateSubscriptionPeriod",
-    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
-    ///         Zone = "%s",
-    ///         InstallConfigAfterward = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Monthly Plan Example
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumi.Scaleway;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var myOffer = Scaleway.Elasticmetal.GetOffer.Invoke(new()
-    ///     {
-    ///         Zone = "fr-par-1",
-    ///         Name = "EM-B220E-NVME",
-    ///         SubscriptionPeriod = "monthly",
-    ///     });
-    /// 
-    ///     var myServer = new Scaleway.Elasticmetal.Server("my_server", new()
-    ///     {
-    ///         Name = "UpdateSubscriptionPeriod",
-    ///         Offer = myOffer.Apply(getOfferResult =&gt; getOfferResult.OfferId),
-    ///         Zone = "fr-par-1",
-    ///         InstallConfigAfterward = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
     /// 
     /// ## Import
     /// 
@@ -341,6 +133,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
+        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Output("offer")]
         public Output<string> Offer { get; private set; } = null!;
@@ -391,10 +184,22 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Partitioning { get; private set; } = null!;
 
         /// <summary>
-        /// Password used for the installation. May be required depending on used os.
+        /// Password used for the installation. May be required depending on used os. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The list of private IPv4 and IPv6 addresses associated with the resource.
@@ -428,10 +233,22 @@ namespace Pulumiverse.Scaleway
         public Output<bool?> ReinstallOnConfigChanges { get; private set; } = null!;
 
         /// <summary>
-        /// Password used for the service to install. May be required depending on used os.
+        /// Password used for the service to install. May be required depending on used os. Only one of `ServicePassword` or `ServicePasswordWo` should be specified.
         /// </summary>
         [Output("servicePassword")]
         public Output<string?> ServicePassword { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("servicePasswordWo")]
+        public Output<string?> ServicePasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only service password. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`.
+        /// </summary>
+        [Output("servicePasswordWoVersion")]
+        public Output<int?> ServicePasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// User used for the service to install.
@@ -490,7 +307,9 @@ namespace Pulumiverse.Scaleway
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                     "servicePassword",
+                    "servicePasswordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -550,6 +369,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
+        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer", required: true)]
         public Input<string> Offer { get; set; } = null!;
@@ -585,7 +405,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password used for the installation. May be required depending on used os.
+        /// Password used for the installation. May be required depending on used os. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -596,6 +416,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.BaremetalServerPrivateIpArgs>? _privateIps;
@@ -644,7 +486,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _servicePassword;
 
         /// <summary>
-        /// Password used for the service to install. May be required depending on used os.
+        /// Password used for the service to install. May be required depending on used os. Only one of `ServicePassword` or `ServicePasswordWo` should be specified.
         /// </summary>
         public Input<string>? ServicePassword
         {
@@ -655,6 +497,28 @@ namespace Pulumiverse.Scaleway
                 _servicePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("servicePasswordWo")]
+        private Input<string>? _servicePasswordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? ServicePasswordWo
+        {
+            get => _servicePasswordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _servicePasswordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only service password. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`.
+        /// </summary>
+        [Input("servicePasswordWoVersion")]
+        public Input<int>? ServicePasswordWoVersion { get; set; }
 
         /// <summary>
         /// User used for the service to install.
@@ -783,6 +647,7 @@ namespace Pulumiverse.Scaleway
         /// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
         /// 
         /// &gt; **Important:** Updates to `Offer` will recreate the server.
+        /// &gt; **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         /// </summary>
         [Input("offer")]
         public Input<string>? Offer { get; set; }
@@ -842,7 +707,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password used for the installation. May be required depending on used os.
+        /// Password used for the installation. May be required depending on used os. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -853,6 +718,28 @@ namespace Pulumiverse.Scaleway
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.BaremetalServerPrivateIpGetArgs>? _privateIps;
@@ -901,7 +788,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _servicePassword;
 
         /// <summary>
-        /// Password used for the service to install. May be required depending on used os.
+        /// Password used for the service to install. May be required depending on used os. Only one of `ServicePassword` or `ServicePasswordWo` should be specified.
         /// </summary>
         public Input<string>? ServicePassword
         {
@@ -912,6 +799,28 @@ namespace Pulumiverse.Scaleway
                 _servicePassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("servicePasswordWo")]
+        private Input<string>? _servicePasswordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? ServicePasswordWo
+        {
+            get => _servicePasswordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _servicePasswordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only service password. To update the `ServicePasswordWo`, you must also update the `ServicePasswordWoVersion`.
+        /// </summary>
+        [Input("servicePasswordWoVersion")]
+        public Input<int>? ServicePasswordWoVersion { get; set; }
 
         /// <summary>
         /// User used for the service to install.

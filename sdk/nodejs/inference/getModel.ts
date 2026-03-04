@@ -77,6 +77,8 @@ export interface GetModelResult {
     readonly projectId: string;
     readonly region: string;
     readonly secret: string;
+    readonly secretWo: string;
+    readonly secretWoVersion: number;
     /**
      * Total size, in bytes, of the model archive.
      */

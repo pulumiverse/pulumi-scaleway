@@ -17,8 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
 // ```go
 // package main
 //
@@ -31,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Basic MongoDB instance creation
 //			_, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
 //				Name:           pulumi.String("test-mongodb-basic1"),
 //				Version:        pulumi.String("7.0.12"),
@@ -39,157 +38,6 @@ import (
 //				UserName:       pulumi.String("my_initial_user"),
 //				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
 //				VolumeSizeInGb: pulumi.Int(5),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Private Network
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				Name:   pulumi.String("my_private_network"),
-//				Region: pulumi.String("fr-par"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
-//				Name:           pulumi.String("test-mongodb-basic1"),
-//				Version:        pulumi.String("7.0.12"),
-//				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
-//				NodeNumber:     pulumi.Int(1),
-//				UserName:       pulumi.String("my_initial_user"),
-//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
-//				VolumeSizeInGb: pulumi.Int(5),
-//				PrivateNetwork: &mongodb.InstancePrivateNetworkArgs{
-//					PnId: pulumi.Any(pn02.Id),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Private Network and Public Network
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := network.NewPrivateNetwork(ctx, "pn01", &network.PrivateNetworkArgs{
-//				Name:   pulumi.String("my_private_network"),
-//				Region: pulumi.String("fr-par"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
-//				Name:           pulumi.String("test-mongodb-basic1"),
-//				Version:        pulumi.String("7.0.12"),
-//				NodeType:       pulumi.String("MGDB-PLAY2-NANO"),
-//				NodeNumber:     pulumi.Int(1),
-//				UserName:       pulumi.String("my_initial_user"),
-//				Password:       pulumi.String("thiZ_is_v&ry_s3cret"),
-//				VolumeSizeInGb: pulumi.Int(5),
-//				PrivateNetwork: &mongodb.InstancePrivateNetworkArgs{
-//					PnId: pulumi.Any(pn02.Id),
-//				},
-//				PublicNetwork: &mongodb.InstancePublicNetworkArgs{},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With Snapshot Scheduling
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewInstance(ctx, "main", &mongodb.InstanceArgs{
-//				Name:                           pulumi.String("test-mongodb-with-snapshots"),
-//				Version:                        pulumi.String("7.0.12"),
-//				NodeType:                       pulumi.String("MGDB-PLAY2-NANO"),
-//				NodeNumber:                     pulumi.Int(1),
-//				UserName:                       pulumi.String("my_initial_user"),
-//				Password:                       pulumi.String("thiZ_is_v&ry_s3cret"),
-//				VolumeSizeInGb:                 pulumi.Int(5),
-//				SnapshotScheduleFrequencyHours: pulumi.Int(24),
-//				SnapshotScheduleRetentionDays:  pulumi.Int(7),
-//				IsSnapshotScheduleEnabled:      pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Restore From Snapshot
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/mongodb"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodb.NewInstance(ctx, "restored_instance", &mongodb.InstanceArgs{
-//				SnapshotId: pulumi.Any(pn.IdscalewayMongodbSnapshot.MainSnapshot.Id),
-//				Name:       pulumi.String("restored-mongodb-from-snapshot"),
-//				NodeType:   pulumi.String("MGDB-PLAY2-NANO"),
-//				NodeNumber: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -224,6 +72,9 @@ type Instance struct {
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
 	// Password of the user.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo        pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	PasswordWoVersion pulumi.IntPtrOutput    `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps InstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -280,8 +131,12 @@ func NewInstance(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -319,6 +174,9 @@ type instanceState struct {
 	NodeType *string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo        *string `pulumi:"passwordWo"`
+	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps []InstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -366,6 +224,9 @@ type InstanceState struct {
 	NodeType pulumi.StringPtrInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo        pulumi.StringPtrInput
+	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the instance.
 	PrivateIps InstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
@@ -415,6 +276,9 @@ type instanceArgs struct {
 	NodeType string `pulumi:"nodeType"`
 	// Password of the user.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo        *string `pulumi:"passwordWo"`
+	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps []InstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -457,6 +321,9 @@ type InstanceArgs struct {
 	NodeType pulumi.StringInput
 	// Password of the user.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo        pulumi.StringPtrInput
+	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the instance.
 	PrivateIps InstancePrivateIpArrayInput
 	// Private Network endpoints of the Database Instance.
@@ -602,6 +469,15 @@ func (o InstanceOutput) NodeType() pulumi.StringOutput {
 // Password of the user.
 func (o InstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o InstanceOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+func (o InstanceOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The private IPv4 address associated with the instance.

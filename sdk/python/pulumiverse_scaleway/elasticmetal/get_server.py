@@ -27,7 +27,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, cloud_init=None, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, private_ips=None, private_networks=None, project_id=None, protected=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
+    def __init__(__self__, cloud_init=None, description=None, domain=None, hostname=None, id=None, install_config_afterward=None, ips=None, ipv4s=None, ipv6s=None, name=None, offer=None, offer_id=None, offer_name=None, options=None, organization_id=None, os=None, os_name=None, partitioning=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, protected=None, reinstall_on_config_changes=None, server_id=None, service_password=None, service_password_wo=None, service_password_wo_version=None, service_user=None, ssh_key_ids=None, tags=None, user=None, zone=None):
         if cloud_init and not isinstance(cloud_init, str):
             raise TypeError("Expected argument 'cloud_init' to be a str")
         pulumi.set(__self__, "cloud_init", cloud_init)
@@ -85,6 +85,12 @@ class GetServerResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if password_wo and not isinstance(password_wo, str):
+            raise TypeError("Expected argument 'password_wo' to be a str")
+        pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version and not isinstance(password_wo_version, int):
+            raise TypeError("Expected argument 'password_wo_version' to be a int")
+        pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips and not isinstance(private_ips, list):
             raise TypeError("Expected argument 'private_ips' to be a list")
         pulumi.set(__self__, "private_ips", private_ips)
@@ -106,6 +112,12 @@ class GetServerResult:
         if service_password and not isinstance(service_password, str):
             raise TypeError("Expected argument 'service_password' to be a str")
         pulumi.set(__self__, "service_password", service_password)
+        if service_password_wo and not isinstance(service_password_wo, str):
+            raise TypeError("Expected argument 'service_password_wo' to be a str")
+        pulumi.set(__self__, "service_password_wo", service_password_wo)
+        if service_password_wo_version and not isinstance(service_password_wo_version, int):
+            raise TypeError("Expected argument 'service_password_wo_version' to be a int")
+        pulumi.set(__self__, "service_password_wo_version", service_password_wo_version)
         if service_user and not isinstance(service_user, str):
             raise TypeError("Expected argument 'service_user' to be a str")
         pulumi.set(__self__, "service_user", service_user)
@@ -221,6 +233,16 @@ class GetServerResult:
         return pulumi.get(self, "password")
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> _builtins.str:
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "password_wo_version")
+
+    @_builtins.property
     @pulumi.getter(name="privateIps")
     def private_ips(self) -> Sequence['outputs.GetServerPrivateIpResult']:
         return pulumi.get(self, "private_ips")
@@ -254,6 +276,16 @@ class GetServerResult:
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> _builtins.str:
         return pulumi.get(self, "service_password")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWo")
+    def service_password_wo(self) -> _builtins.str:
+        return pulumi.get(self, "service_password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWoVersion")
+    def service_password_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "service_password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")
@@ -306,6 +338,8 @@ class AwaitableGetServerResult(GetServerResult):
             os_name=self.os_name,
             partitioning=self.partitioning,
             password=self.password,
+            password_wo=self.password_wo,
+            password_wo_version=self.password_wo_version,
             private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
@@ -313,6 +347,8 @@ class AwaitableGetServerResult(GetServerResult):
             reinstall_on_config_changes=self.reinstall_on_config_changes,
             server_id=self.server_id,
             service_password=self.service_password,
+            service_password_wo=self.service_password_wo,
+            service_password_wo_version=self.service_password_wo_version,
             service_user=self.service_user,
             ssh_key_ids=self.ssh_key_ids,
             tags=self.tags,
@@ -375,6 +411,8 @@ def get_server(name: Optional[_builtins.str] = None,
         os_name=pulumi.get(__ret__, 'os_name'),
         partitioning=pulumi.get(__ret__, 'partitioning'),
         password=pulumi.get(__ret__, 'password'),
+        password_wo=pulumi.get(__ret__, 'password_wo'),
+        password_wo_version=pulumi.get(__ret__, 'password_wo_version'),
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -382,6 +420,8 @@ def get_server(name: Optional[_builtins.str] = None,
         reinstall_on_config_changes=pulumi.get(__ret__, 'reinstall_on_config_changes'),
         server_id=pulumi.get(__ret__, 'server_id'),
         service_password=pulumi.get(__ret__, 'service_password'),
+        service_password_wo=pulumi.get(__ret__, 'service_password_wo'),
+        service_password_wo_version=pulumi.get(__ret__, 'service_password_wo_version'),
         service_user=pulumi.get(__ret__, 'service_user'),
         ssh_key_ids=pulumi.get(__ret__, 'ssh_key_ids'),
         tags=pulumi.get(__ret__, 'tags'),
@@ -441,6 +481,8 @@ def get_server_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = No
         os_name=pulumi.get(__response__, 'os_name'),
         partitioning=pulumi.get(__response__, 'partitioning'),
         password=pulumi.get(__response__, 'password'),
+        password_wo=pulumi.get(__response__, 'password_wo'),
+        password_wo_version=pulumi.get(__response__, 'password_wo_version'),
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),
@@ -448,6 +490,8 @@ def get_server_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = No
         reinstall_on_config_changes=pulumi.get(__response__, 'reinstall_on_config_changes'),
         server_id=pulumi.get(__response__, 'server_id'),
         service_password=pulumi.get(__response__, 'service_password'),
+        service_password_wo=pulumi.get(__response__, 'service_password_wo'),
+        service_password_wo_version=pulumi.get(__response__, 'service_password_wo_version'),
         service_user=pulumi.get(__response__, 'service_user'),
         ssh_key_ids=pulumi.get(__response__, 'ssh_key_ids'),
         tags=pulumi.get(__response__, 'tags'),

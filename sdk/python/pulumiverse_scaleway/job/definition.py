@@ -22,36 +22,47 @@ __all__ = ['DefinitionArgs', 'Definition']
 class DefinitionArgs:
     def __init__(__self__, *,
                  cpu_limit: pulumi.Input[_builtins.int],
+                 image_uri: pulumi.Input[_builtins.str],
+                 local_storage_capacity: pulumi.Input[_builtins.int],
                  memory_limit: pulumi.Input[_builtins.int],
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: Optional[pulumi.Input[_builtins.str]] = None,
                  cron: Optional[pulumi.Input['DefinitionCronArgs']] = None,
                  description: Optional[pulumi.Input[_builtins.str]] = None,
                  env: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 image_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 local_storage_capacity: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_references: Optional[pulumi.Input[Sequence[pulumi.Input['DefinitionSecretReferenceArgs']]]] = None,
+                 startup_commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a Definition resource.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
+        :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
+        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.int] memory_limit: The memory computing resources in MB to allocate to each container running the job.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input['DefinitionCronArgs'] cron: The cron configuration
         :param pulumi.Input[_builtins.str] description: The description of the job
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] env: The environment variables of the container.
-        :param pulumi.Input[_builtins.str] image_uri: The uri of the container image that will be used for the job run.
-        :param pulumi.Input[_builtins.int] local_storage_capacity: The local storage capacity of the job in MiB.
         :param pulumi.Input[_builtins.str] name: The name of the job.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
         :param pulumi.Input[Sequence[pulumi.Input['DefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         pulumi.set(__self__, "cpu_limit", cpu_limit)
+        pulumi.set(__self__, "image_uri", image_uri)
+        pulumi.set(__self__, "local_storage_capacity", local_storage_capacity)
         pulumi.set(__self__, "memory_limit", memory_limit)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if command is not None:
+            warnings.warn("""Please use startup_command instead""", DeprecationWarning)
+            pulumi.log.warn("""command is deprecated: Please use startup_command instead""")
         if command is not None:
             pulumi.set(__self__, "command", command)
         if cron is not None:
@@ -60,10 +71,6 @@ class DefinitionArgs:
             pulumi.set(__self__, "description", description)
         if env is not None:
             pulumi.set(__self__, "env", env)
-        if image_uri is not None:
-            pulumi.set(__self__, "image_uri", image_uri)
-        if local_storage_capacity is not None:
-            pulumi.set(__self__, "local_storage_capacity", local_storage_capacity)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if project_id is not None:
@@ -72,6 +79,8 @@ class DefinitionArgs:
             pulumi.set(__self__, "region", region)
         if secret_references is not None:
             pulumi.set(__self__, "secret_references", secret_references)
+        if startup_commands is not None:
+            pulumi.set(__self__, "startup_commands", startup_commands)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
 
@@ -88,6 +97,30 @@ class DefinitionArgs:
         pulumi.set(self, "cpu_limit", value)
 
     @_builtins.property
+    @pulumi.getter(name="imageUri")
+    def image_uri(self) -> pulumi.Input[_builtins.str]:
+        """
+        The uri of the container image that will be used for the job run.
+        """
+        return pulumi.get(self, "image_uri")
+
+    @image_uri.setter
+    def image_uri(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "image_uri", value)
+
+    @_builtins.property
+    @pulumi.getter(name="localStorageCapacity")
+    def local_storage_capacity(self) -> pulumi.Input[_builtins.int]:
+        """
+        The local storage capacity of the job in MiB.
+        """
+        return pulumi.get(self, "local_storage_capacity")
+
+    @local_storage_capacity.setter
+    def local_storage_capacity(self, value: pulumi.Input[_builtins.int]):
+        pulumi.set(self, "local_storage_capacity", value)
+
+    @_builtins.property
     @pulumi.getter(name="memoryLimit")
     def memory_limit(self) -> pulumi.Input[_builtins.int]:
         """
@@ -101,6 +134,19 @@ class DefinitionArgs:
 
     @_builtins.property
     @pulumi.getter
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        """
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "args", value)
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""Please use startup_command instead""")
     def command(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The command that will be run in the container if specified.
@@ -146,30 +192,6 @@ class DefinitionArgs:
     @env.setter
     def env(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "env", value)
-
-    @_builtins.property
-    @pulumi.getter(name="imageUri")
-    def image_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
-        """
-        The uri of the container image that will be used for the job run.
-        """
-        return pulumi.get(self, "image_uri")
-
-    @image_uri.setter
-    def image_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
-        pulumi.set(self, "image_uri", value)
-
-    @_builtins.property
-    @pulumi.getter(name="localStorageCapacity")
-    def local_storage_capacity(self) -> Optional[pulumi.Input[_builtins.int]]:
-        """
-        The local storage capacity of the job in MiB.
-        """
-        return pulumi.get(self, "local_storage_capacity")
-
-    @local_storage_capacity.setter
-    def local_storage_capacity(self, value: Optional[pulumi.Input[_builtins.int]]):
-        pulumi.set(self, "local_storage_capacity", value)
 
     @_builtins.property
     @pulumi.getter
@@ -220,6 +242,18 @@ class DefinitionArgs:
         pulumi.set(self, "secret_references", value)
 
     @_builtins.property
+    @pulumi.getter(name="startupCommands")
+    def startup_commands(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        """
+        return pulumi.get(self, "startup_commands")
+
+    @startup_commands.setter
+    def startup_commands(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "startup_commands", value)
+
+    @_builtins.property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -235,6 +269,7 @@ class DefinitionArgs:
 @pulumi.input_type
 class _DefinitionState:
     def __init__(__self__, *,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  cron: Optional[pulumi.Input['DefinitionCronArgs']] = None,
@@ -247,9 +282,11 @@ class _DefinitionState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_references: Optional[pulumi.Input[Sequence[pulumi.Input['DefinitionSecretReferenceArgs']]]] = None,
+                 startup_commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Definition resources.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
         :param pulumi.Input['DefinitionCronArgs'] cron: The cron configuration
@@ -262,8 +299,14 @@ class _DefinitionState:
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
         :param pulumi.Input[Sequence[pulumi.Input['DefinitionSecretReferenceArgs']]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if command is not None:
+            warnings.warn("""Please use startup_command instead""", DeprecationWarning)
+            pulumi.log.warn("""command is deprecated: Please use startup_command instead""")
         if command is not None:
             pulumi.set(__self__, "command", command)
         if cpu_limit is not None:
@@ -288,11 +331,26 @@ class _DefinitionState:
             pulumi.set(__self__, "region", region)
         if secret_references is not None:
             pulumi.set(__self__, "secret_references", secret_references)
+        if startup_commands is not None:
+            pulumi.set(__self__, "startup_commands", startup_commands)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
 
     @_builtins.property
     @pulumi.getter
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        """
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "args", value)
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""Please use startup_command instead""")
     def command(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The command that will be run in the container if specified.
@@ -436,6 +494,18 @@ class _DefinitionState:
         pulumi.set(self, "secret_references", value)
 
     @_builtins.property
+    @pulumi.getter(name="startupCommands")
+    def startup_commands(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        """
+        return pulumi.get(self, "startup_commands")
+
+    @startup_commands.setter
+    def startup_commands(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "startup_commands", value)
+
+    @_builtins.property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -454,6 +524,7 @@ class Definition(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  cron: Optional[pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
@@ -466,6 +537,7 @@ class Definition(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+                 startup_commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -537,6 +609,7 @@ class Definition(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
         :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']] cron: The cron configuration
@@ -549,6 +622,7 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         ...
@@ -639,6 +713,7 @@ class Definition(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  command: Optional[pulumi.Input[_builtins.str]] = None,
                  cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
                  cron: Optional[pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
@@ -651,6 +726,7 @@ class Definition(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+                 startup_commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  timeout: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -661,6 +737,7 @@ class Definition(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DefinitionArgs.__new__(DefinitionArgs)
 
+            __props__.__dict__["args"] = args
             __props__.__dict__["command"] = command
             if cpu_limit is None and not opts.urn:
                 raise TypeError("Missing required property 'cpu_limit'")
@@ -668,7 +745,11 @@ class Definition(pulumi.CustomResource):
             __props__.__dict__["cron"] = cron
             __props__.__dict__["description"] = description
             __props__.__dict__["env"] = env
+            if image_uri is None and not opts.urn:
+                raise TypeError("Missing required property 'image_uri'")
             __props__.__dict__["image_uri"] = image_uri
+            if local_storage_capacity is None and not opts.urn:
+                raise TypeError("Missing required property 'local_storage_capacity'")
             __props__.__dict__["local_storage_capacity"] = local_storage_capacity
             if memory_limit is None and not opts.urn:
                 raise TypeError("Missing required property 'memory_limit'")
@@ -677,6 +758,7 @@ class Definition(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["secret_references"] = secret_references
+            __props__.__dict__["startup_commands"] = startup_commands
             __props__.__dict__["timeout"] = timeout
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/jobDefinition:JobDefinition")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -690,6 +772,7 @@ class Definition(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            args: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             command: Optional[pulumi.Input[_builtins.str]] = None,
             cpu_limit: Optional[pulumi.Input[_builtins.int]] = None,
             cron: Optional[pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']]] = None,
@@ -702,6 +785,7 @@ class Definition(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             secret_references: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]]] = None,
+            startup_commands: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             timeout: Optional[pulumi.Input[_builtins.str]] = None) -> 'Definition':
         """
         Get an existing Definition resource's state with the given name, id, and optional extra
@@ -710,6 +794,7 @@ class Definition(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] args: The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
         :param pulumi.Input[_builtins.str] command: The command that will be run in the container if specified.
         :param pulumi.Input[_builtins.int] cpu_limit: The amount of vCPU computing resources to allocate to each container running the job.
         :param pulumi.Input[Union['DefinitionCronArgs', 'DefinitionCronArgsDict']] cron: The cron configuration
@@ -722,12 +807,14 @@ class Definition(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the Job is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region of the Job.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DefinitionSecretReferenceArgs', 'DefinitionSecretReferenceArgsDict']]]] secret_references: A reference to a secret stored in Secret Manager.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] startup_commands: The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
         :param pulumi.Input[_builtins.str] timeout: The job run timeout, in Go Time format (ex: `2h30m25s`)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _DefinitionState.__new__(_DefinitionState)
 
+        __props__.__dict__["args"] = args
         __props__.__dict__["command"] = command
         __props__.__dict__["cpu_limit"] = cpu_limit
         __props__.__dict__["cron"] = cron
@@ -740,11 +827,21 @@ class Definition(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["secret_references"] = secret_references
+        __props__.__dict__["startup_commands"] = startup_commands
         __props__.__dict__["timeout"] = timeout
         return Definition(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
     @pulumi.getter
+    def args(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        """
+        return pulumi.get(self, "args")
+
+    @_builtins.property
+    @pulumi.getter
+    @_utilities.deprecated("""Please use startup_command instead""")
     def command(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The command that will be run in the container if specified.
@@ -785,7 +882,7 @@ class Definition(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="imageUri")
-    def image_uri(self) -> pulumi.Output[Optional[_builtins.str]]:
+    def image_uri(self) -> pulumi.Output[_builtins.str]:
         """
         The uri of the container image that will be used for the job run.
         """
@@ -793,7 +890,7 @@ class Definition(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="localStorageCapacity")
-    def local_storage_capacity(self) -> pulumi.Output[Optional[_builtins.int]]:
+    def local_storage_capacity(self) -> pulumi.Output[_builtins.int]:
         """
         The local storage capacity of the job in MiB.
         """
@@ -838,6 +935,14 @@ class Definition(pulumi.CustomResource):
         A reference to a secret stored in Secret Manager.
         """
         return pulumi.get(self, "secret_references")
+
+    @_builtins.property
+    @pulumi.getter(name="startupCommands")
+    def startup_commands(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:
+        """
+        The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        """
+        return pulumi.get(self, "startup_commands")
 
     @_builtins.property
     @pulumi.getter

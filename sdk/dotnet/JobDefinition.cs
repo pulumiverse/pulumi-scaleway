@@ -104,6 +104,12 @@ namespace Pulumiverse.Scaleway
     public partial class JobDefinition : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        /// </summary>
+        [Output("args")]
+        public Output<ImmutableArray<string>> Args { get; private set; } = null!;
+
+        /// <summary>
         /// The command that will be run in the container if specified.
         /// </summary>
         [Output("command")]
@@ -137,13 +143,13 @@ namespace Pulumiverse.Scaleway
         /// The uri of the container image that will be used for the job run.
         /// </summary>
         [Output("imageUri")]
-        public Output<string?> ImageUri { get; private set; } = null!;
+        public Output<string> ImageUri { get; private set; } = null!;
 
         /// <summary>
         /// The local storage capacity of the job in MiB.
         /// </summary>
         [Output("localStorageCapacity")]
-        public Output<int?> LocalStorageCapacity { get; private set; } = null!;
+        public Output<int> LocalStorageCapacity { get; private set; } = null!;
 
         /// <summary>
         /// The memory computing resources in MB to allocate to each container running the job.
@@ -174,6 +180,12 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         [Output("secretReferences")]
         public Output<ImmutableArray<Outputs.JobDefinitionSecretReference>> SecretReferences { get; private set; } = null!;
+
+        /// <summary>
+        /// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        /// </summary>
+        [Output("startupCommands")]
+        public Output<ImmutableArray<string>> StartupCommands { get; private set; } = null!;
 
         /// <summary>
         /// The job run timeout, in Go Time format (ex: `2h30m25s`)
@@ -228,6 +240,18 @@ namespace Pulumiverse.Scaleway
 
     public sealed class JobDefinitionArgs : global::Pulumi.ResourceArgs
     {
+        [Input("args")]
+        private InputList<string>? _args;
+
+        /// <summary>
+        /// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        /// </summary>
+        public InputList<string> Args
+        {
+            get => _args ?? (_args = new InputList<string>());
+            set => _args = value;
+        }
+
         /// <summary>
         /// The command that will be run in the container if specified.
         /// </summary>
@@ -267,14 +291,14 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// The uri of the container image that will be used for the job run.
         /// </summary>
-        [Input("imageUri")]
-        public Input<string>? ImageUri { get; set; }
+        [Input("imageUri", required: true)]
+        public Input<string> ImageUri { get; set; } = null!;
 
         /// <summary>
         /// The local storage capacity of the job in MiB.
         /// </summary>
-        [Input("localStorageCapacity")]
-        public Input<int>? LocalStorageCapacity { get; set; }
+        [Input("localStorageCapacity", required: true)]
+        public Input<int> LocalStorageCapacity { get; set; } = null!;
 
         /// <summary>
         /// The memory computing resources in MB to allocate to each container running the job.
@@ -312,6 +336,18 @@ namespace Pulumiverse.Scaleway
             set => _secretReferences = value;
         }
 
+        [Input("startupCommands")]
+        private InputList<string>? _startupCommands;
+
+        /// <summary>
+        /// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        /// </summary>
+        public InputList<string> StartupCommands
+        {
+            get => _startupCommands ?? (_startupCommands = new InputList<string>());
+            set => _startupCommands = value;
+        }
+
         /// <summary>
         /// The job run timeout, in Go Time format (ex: `2h30m25s`)
         /// </summary>
@@ -326,6 +362,18 @@ namespace Pulumiverse.Scaleway
 
     public sealed class JobDefinitionState : global::Pulumi.ResourceArgs
     {
+        [Input("args")]
+        private InputList<string>? _args;
+
+        /// <summary>
+        /// The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+        /// </summary>
+        public InputList<string> Args
+        {
+            get => _args ?? (_args = new InputList<string>());
+            set => _args = value;
+        }
+
         /// <summary>
         /// The command that will be run in the container if specified.
         /// </summary>
@@ -408,6 +456,18 @@ namespace Pulumiverse.Scaleway
         {
             get => _secretReferences ?? (_secretReferences = new InputList<Inputs.JobDefinitionSecretReferenceGetArgs>());
             set => _secretReferences = value;
+        }
+
+        [Input("startupCommands")]
+        private InputList<string>? _startupCommands;
+
+        /// <summary>
+        /// The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+        /// </summary>
+        public InputList<string> StartupCommands
+        {
+            get => _startupCommands ?? (_startupCommands = new InputList<string>());
+            set => _startupCommands = value;
         }
 
         /// <summary>

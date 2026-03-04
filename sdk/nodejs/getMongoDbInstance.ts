@@ -75,6 +75,8 @@ export interface GetMongoDbInstanceResult {
      */
     readonly nodeType: string;
     readonly password: string;
+    readonly passwordWo: string;
+    readonly passwordWoVersion: number;
     readonly privateIps: outputs.GetMongoDbInstancePrivateIp[];
     readonly privateNetworks: outputs.GetMongoDbInstancePrivateNetwork[];
     /**

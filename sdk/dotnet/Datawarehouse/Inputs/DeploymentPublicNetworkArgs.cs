@@ -14,13 +14,13 @@ namespace Pulumiverse.Scaleway.Datawarehouse.Inputs
     public sealed class DeploymentPublicNetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// DNS record for the public endpoint.
+        /// DNS record for the private endpoint.
         /// </summary>
         [Input("dnsRecord")]
         public Input<string>? DnsRecord { get; set; }
 
         /// <summary>
-        /// The ID of the public endpoint.
+        /// The ID of the private endpoint.
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
@@ -29,7 +29,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse.Inputs
         private InputList<Inputs.DeploymentPublicNetworkServiceArgs>? _services;
 
         /// <summary>
-        /// List of services exposed on the public endpoint.
+        /// List of services exposed on the private endpoint.
         /// </summary>
         public InputList<Inputs.DeploymentPublicNetworkServiceArgs> Services
         {

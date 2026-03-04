@@ -342,7 +342,7 @@ export interface DatabaseAclAclRule {
      */
     description: string;
     /**
-     * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
      */
     ip: string;
 }
@@ -1104,7 +1104,7 @@ export interface GetDatabaseAclAclRule {
      */
     description: string;
     /**
-     * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
      */
     ip: string;
 }
@@ -1788,6 +1788,40 @@ export interface GetIpamIpsResource {
      * The type of the attached resource. [Documentation](https://pkg.go.dev/github.com/scaleway/scaleway-sdk-go@master/api/ipam/v1#pkg-constants) with type list.
      */
     type: string;
+}
+
+export interface GetKafkaClusterPrivateNetwork {
+    /**
+     * DNS records for the private endpoint
+     */
+    dnsRecords: string[];
+    /**
+     * The endpoint ID
+     */
+    id: string;
+    /**
+     * The private network ID
+     */
+    pnId: string;
+    /**
+     * TCP port number
+     */
+    port: number;
+}
+
+export interface GetKafkaClusterPublicNetwork {
+    /**
+     * DNS records for the public endpoint
+     */
+    dnsRecords: string[];
+    /**
+     * ID of the public endpoint
+     */
+    id: string;
+    /**
+     * TCP port number
+     */
+    port: number;
 }
 
 export interface GetKeyManagerKeyRotationPolicy {
@@ -2746,7 +2780,7 @@ export interface GetRedisClusterAcl {
      */
     id: string;
     /**
-     * IPv4 network address of the rule (IP network in a CIDR format).
+     * IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
      */
     ip: string;
 }
@@ -2780,7 +2814,7 @@ export interface GetRedisClusterPrivateNetwork {
      */
     port: number;
     /**
-     * List of IPv4 addresses of the private network with a CIDR notation
+     * List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
      */
     serviceIps: string[];
     /**
@@ -3799,6 +3833,40 @@ export interface JobDefinitionSecretReference {
     secretVersion?: string;
 }
 
+export interface KafkaClusterPrivateNetwork {
+    /**
+     * List of DNS records for the private endpoint.
+     */
+    dnsRecords: string[];
+    /**
+     * The ID of the private endpoint.
+     */
+    id: string;
+    /**
+     * The private network ID (same as input).
+     */
+    pnId: string;
+    /**
+     * TCP port number.
+     */
+    port: number;
+}
+
+export interface KafkaClusterPublicNetwork {
+    /**
+     * List of DNS records for the private endpoint.
+     */
+    dnsRecords: string[];
+    /**
+     * The ID of the private endpoint.
+     */
+    id: string;
+    /**
+     * TCP port number.
+     */
+    port: number;
+}
+
 export interface KeyManagerKeyRotationPolicy {
     /**
      * The date and time of the next scheduled rotation.
@@ -4488,6 +4556,58 @@ export interface ObjectBucketWebsiteConfigurationIndexDocument {
     suffix: string;
 }
 
+export interface OpensearchDeploymentEndpoint {
+    /**
+     * The ID of the endpoint.
+     */
+    id: string;
+    /**
+     * Private network ID if the endpoint is private.
+     */
+    privateNetworkId: string;
+    /**
+     * Whether the endpoint is public (true) or private (false).
+     */
+    public: boolean;
+    /**
+     * List of services exposed on the endpoint.
+     */
+    services: outputs.OpensearchDeploymentEndpointService[];
+}
+
+export interface OpensearchDeploymentEndpointService {
+    /**
+     * Name of the OpenSearch deployment. If not specified, a random name will be generated.
+     */
+    name: string;
+    /**
+     * Service port number.
+     */
+    port: number;
+    /**
+     * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+     */
+    url: string;
+}
+
+export interface OpensearchDeploymentPrivateNetwork {
+    /**
+     * Private network ID if the endpoint is private.
+     */
+    privateNetworkId: string;
+}
+
+export interface OpensearchDeploymentVolume {
+    /**
+     * Volume size in GB. Changing this forces recreation of the deployment.
+     */
+    sizeInGb: number;
+    /**
+     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+     */
+    type: string;
+}
+
 export interface RedisClusterAcl {
     /**
      * A text describing this rule. Default description: `Allow IP`
@@ -4500,8 +4620,7 @@ export interface RedisClusterAcl {
      */
     id: string;
     /**
-     * The IP range to whitelist
-     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
      */
     ip: string;
 }
@@ -4535,7 +4654,7 @@ export interface RedisClusterPrivateNetwork {
      */
     port: number;
     /**
-     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
      * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
      * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
      * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -4950,6 +5069,67 @@ export namespace audittrail {
 }
 
 export namespace autoscaling {
+    export interface GetInstanceGroupCapacity {
+        /**
+         * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+         */
+        cooldownDelay: number;
+        /**
+         * The maximum count of Instances for the Instance group
+         */
+        maxReplicas: number;
+        /**
+         * The minimum count of Instances for the Instance group
+         */
+        minReplicas: number;
+    }
+
+    export interface GetInstanceGroupLoadBalancer {
+        /**
+         * The Load Balancer backend IDs
+         */
+        backendIds: string[];
+        /**
+         * The ID of the load balancer
+         */
+        id: string;
+        /**
+         * The ID of the Private Network attached to the Load Balancer
+         */
+        privateNetworkId: string;
+    }
+
+    export interface GetInstancePolicyMetric {
+        /**
+         * How the values sampled for the `metric` should be aggregated
+         */
+        aggregate: string;
+        /**
+         * Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+         */
+        cockpitMetricName: string;
+        /**
+         * Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+         */
+        managedMetric: string;
+        /**
+         * The name of the Instance policy. Only one of `name` and `instancePolicyId` should be specified. When using `name`, `instanceGroupId` is required.
+         */
+        name: string;
+        /**
+         * Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+         */
+        operator: string;
+        /**
+         * Interval of time, in minutes, during which metric is sampled
+         */
+        samplingRangeMin: number;
+        /**
+         * Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+         */
+        threshold: number;
+    }
+
     export interface InstanceGroupCapacity {
         /**
          * Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied.
@@ -5334,7 +5514,7 @@ export namespace databases {
          */
         description: string;
         /**
-         * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
          */
         ip: string;
     }
@@ -5345,7 +5525,7 @@ export namespace databases {
          */
         description: string;
         /**
-         * The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
          */
         ip: string;
     }
@@ -5653,17 +5833,47 @@ export namespace databases {
 }
 
 export namespace datawarehouse {
-    export interface DeploymentPublicNetwork {
+    export interface DeploymentPrivateNetwork {
         /**
-         * DNS record for the public endpoint.
+         * DNS record for the private endpoint.
          */
         dnsRecord: string;
         /**
-         * The ID of the public endpoint.
+         * The ID of the private endpoint.
          */
         id: string;
         /**
-         * List of services exposed on the public endpoint.
+         * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+         */
+        pnId: string;
+        /**
+         * List of services exposed on the private endpoint.
+         */
+        services: outputs.datawarehouse.DeploymentPrivateNetworkService[];
+    }
+
+    export interface DeploymentPrivateNetworkService {
+        /**
+         * TCP port number.
+         */
+        port: number;
+        /**
+         * Service protocol (e.g., "tcp", "https", "mysql").
+         */
+        protocol: string;
+    }
+
+    export interface DeploymentPublicNetwork {
+        /**
+         * DNS record for the private endpoint.
+         */
+        dnsRecord: string;
+        /**
+         * The ID of the private endpoint.
+         */
+        id: string;
+        /**
+         * List of services exposed on the private endpoint.
          */
         services: outputs.datawarehouse.DeploymentPublicNetworkService[];
     }
@@ -10484,8 +10694,7 @@ export namespace redis {
          */
         id: string;
         /**
-         * The IP range to whitelist
-         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
          */
         ip: string;
     }
@@ -10519,7 +10728,7 @@ export namespace redis {
          */
         port: number;
         /**
-         * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+         * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
          * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
          * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
          * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -10573,7 +10782,7 @@ export namespace redis {
          */
         id: string;
         /**
-         * IPv4 network address of the rule (IP network in a CIDR format).
+         * IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
          */
         ip: string;
     }
@@ -10607,7 +10816,7 @@ export namespace redis {
          */
         port: number;
         /**
-         * List of IPv4 addresses of the private network with a CIDR notation
+         * List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
          */
         serviceIps: string[];
         /**
@@ -10733,6 +10942,107 @@ export namespace s2svpn {
          * The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
          */
         ipamIpv6Id?: string;
+    }
+
+    export interface GetConnectionBgpConfigIpv4 {
+        /**
+         * The BGP peer IP on customer side
+         */
+        peerPrivateIp: string;
+        /**
+         * The BGP peer IP on Scaleway side
+         */
+        privateIp: string;
+        /**
+         * The ID of the routing policy to use for BGP route filtering
+         */
+        routingPolicyId: string;
+    }
+
+    export interface GetConnectionBgpConfigIpv6 {
+        /**
+         * The BGP peer IP on customer side
+         */
+        peerPrivateIp: string;
+        /**
+         * The BGP peer IP on Scaleway side
+         */
+        privateIp: string;
+        /**
+         * The ID of the routing policy to use for BGP route filtering
+         */
+        routingPolicyId: string;
+    }
+
+    export interface GetConnectionBgpSessionIpv4 {
+        /**
+         * The BGP peer IP on customer side
+         */
+        peerPrivateIp: string;
+        /**
+         * The BGP peer IP on Scaleway side
+         */
+        privateIp: string;
+        /**
+         * The routing policy ID
+         */
+        routingPolicyId: string;
+    }
+
+    export interface GetConnectionBgpSessionIpv6 {
+        /**
+         * The BGP peer IP on customer side
+         */
+        peerPrivateIp: string;
+        /**
+         * The BGP peer IP on Scaleway side
+         */
+        privateIp: string;
+        /**
+         * The routing policy ID
+         */
+        routingPolicyId: string;
+    }
+
+    export interface GetConnectionEspCipher {
+        /**
+         * The Diffie-Hellman group
+         */
+        dhGroup: string;
+        /**
+         * The encryption algorithm
+         */
+        encryption: string;
+        /**
+         * The integrity/hash algorithm
+         */
+        integrity: string;
+    }
+
+    export interface GetConnectionIkev2Cipher {
+        /**
+         * The Diffie-Hellman group
+         */
+        dhGroup: string;
+        /**
+         * The encryption algorithm
+         */
+        encryption: string;
+        /**
+         * The integrity/hash algorithm
+         */
+        integrity: string;
+    }
+
+    export interface GetGatewayPublicConfig {
+        /**
+         * The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+         */
+        ipamIpv4Id: string;
+        /**
+         * The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
+         */
+        ipamIpv6Id: string;
     }
 
 }

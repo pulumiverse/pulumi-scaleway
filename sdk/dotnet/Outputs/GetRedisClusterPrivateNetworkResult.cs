@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Outputs
         /// </summary>
         public readonly int Port;
         /// <summary>
-        /// List of IPv4 addresses of the private network with a CIDR notation
+        /// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
         /// </summary>
         public readonly ImmutableArray<string> ServiceIps;
         /// <summary>

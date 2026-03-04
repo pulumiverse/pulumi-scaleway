@@ -5,6 +5,16 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetInstanceGroupArgs, GetInstanceGroupResult, GetInstanceGroupOutputArgs } from "./getInstanceGroup";
+export const getInstanceGroup: typeof import("./getInstanceGroup").getInstanceGroup = null as any;
+export const getInstanceGroupOutput: typeof import("./getInstanceGroup").getInstanceGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getInstanceGroup","getInstanceGroupOutput"], () => require("./getInstanceGroup"));
+
+export { GetInstancePolicyArgs, GetInstancePolicyResult, GetInstancePolicyOutputArgs } from "./getInstancePolicy";
+export const getInstancePolicy: typeof import("./getInstancePolicy").getInstancePolicy = null as any;
+export const getInstancePolicyOutput: typeof import("./getInstancePolicy").getInstancePolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getInstancePolicy","getInstancePolicyOutput"], () => require("./getInstancePolicy"));
+
 export { InstanceGroupArgs, InstanceGroupState } from "./instanceGroup";
 export type InstanceGroup = import("./instanceGroup").InstanceGroup;
 export const InstanceGroup: typeof import("./instanceGroup").InstanceGroup = null as any;

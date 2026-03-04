@@ -96,6 +96,7 @@ from .get_iot_hub import *
 from .get_ipam_ip import *
 from .get_ipam_ips import *
 from .get_k8s_version import *
+from .get_kafka_cluster import *
 from .get_key_manager_key import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_pool import *
@@ -162,6 +163,7 @@ from .iot_route import *
 from .ipam_ip import *
 from .ipam_ip_reverse_dns import *
 from .job_definition import *
+from .kafka_cluster import *
 from .key_manager_key import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
@@ -189,6 +191,7 @@ from .object_bucket_lock_configuration import *
 from .object_bucket_policy import *
 from .object_bucket_website_configuration import *
 from .object_item import *
+from .opensearch_deployment import *
 from .provider import *
 from .rdb_snapshot import *
 from .redis_cluster import *
@@ -1332,6 +1335,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "index/kafkaCluster",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/kafkaCluster:KafkaCluster": "KafkaCluster"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "index/keyManagerKey",
   "fqn": "pulumiverse_scaleway",
   "classes": {
@@ -1544,6 +1555,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway",
   "classes": {
    "scaleway:index/objectItem:ObjectItem": "ObjectItem"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "index/opensearchDeployment",
+  "fqn": "pulumiverse_scaleway",
+  "classes": {
+   "scaleway:index/opensearchDeployment:OpensearchDeployment": "OpensearchDeployment"
   }
  },
  {

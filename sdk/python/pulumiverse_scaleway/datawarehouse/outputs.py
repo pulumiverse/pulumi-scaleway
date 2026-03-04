@@ -16,9 +16,115 @@ from .. import _utilities
 from . import outputs
 
 __all__ = [
+    'DeploymentPrivateNetwork',
+    'DeploymentPrivateNetworkService',
     'DeploymentPublicNetwork',
     'DeploymentPublicNetworkService',
 ]
+
+@pulumi.output_type
+class DeploymentPrivateNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "pnId":
+            suggest = "pn_id"
+        elif key == "dnsRecord":
+            suggest = "dns_record"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DeploymentPrivateNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DeploymentPrivateNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DeploymentPrivateNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pn_id: _builtins.str,
+                 dns_record: Optional[_builtins.str] = None,
+                 id: Optional[_builtins.str] = None,
+                 services: Optional[Sequence['outputs.DeploymentPrivateNetworkService']] = None):
+        """
+        :param _builtins.str pn_id: The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+        :param _builtins.str dns_record: DNS record for the private endpoint.
+        :param _builtins.str id: The ID of the private endpoint.
+        :param Sequence['DeploymentPrivateNetworkServiceArgs'] services: List of services exposed on the private endpoint.
+        """
+        pulumi.set(__self__, "pn_id", pn_id)
+        if dns_record is not None:
+            pulumi.set(__self__, "dns_record", dns_record)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if services is not None:
+            pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter(name="pnId")
+    def pn_id(self) -> _builtins.str:
+        """
+        The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+        """
+        return pulumi.get(self, "pn_id")
+
+    @_builtins.property
+    @pulumi.getter(name="dnsRecord")
+    def dns_record(self) -> Optional[_builtins.str]:
+        """
+        DNS record for the private endpoint.
+        """
+        return pulumi.get(self, "dns_record")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the private endpoint.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Optional[Sequence['outputs.DeploymentPrivateNetworkService']]:
+        """
+        List of services exposed on the private endpoint.
+        """
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class DeploymentPrivateNetworkService(dict):
+    def __init__(__self__, *,
+                 port: Optional[_builtins.int] = None,
+                 protocol: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int port: TCP port number.
+        :param _builtins.str protocol: Service protocol (e.g., "tcp", "https", "mysql").
+        """
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> Optional[_builtins.int]:
+        """
+        TCP port number.
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Service protocol (e.g., "tcp", "https", "mysql").
+        """
+        return pulumi.get(self, "protocol")
+
 
 @pulumi.output_type
 class DeploymentPublicNetwork(dict):
@@ -44,9 +150,9 @@ class DeploymentPublicNetwork(dict):
                  id: Optional[_builtins.str] = None,
                  services: Optional[Sequence['outputs.DeploymentPublicNetworkService']] = None):
         """
-        :param _builtins.str dns_record: DNS record for the public endpoint.
-        :param _builtins.str id: The ID of the public endpoint.
-        :param Sequence['DeploymentPublicNetworkServiceArgs'] services: List of services exposed on the public endpoint.
+        :param _builtins.str dns_record: DNS record for the private endpoint.
+        :param _builtins.str id: The ID of the private endpoint.
+        :param Sequence['DeploymentPublicNetworkServiceArgs'] services: List of services exposed on the private endpoint.
         """
         if dns_record is not None:
             pulumi.set(__self__, "dns_record", dns_record)
@@ -59,7 +165,7 @@ class DeploymentPublicNetwork(dict):
     @pulumi.getter(name="dnsRecord")
     def dns_record(self) -> Optional[_builtins.str]:
         """
-        DNS record for the public endpoint.
+        DNS record for the private endpoint.
         """
         return pulumi.get(self, "dns_record")
 
@@ -67,7 +173,7 @@ class DeploymentPublicNetwork(dict):
     @pulumi.getter
     def id(self) -> Optional[_builtins.str]:
         """
-        The ID of the public endpoint.
+        The ID of the private endpoint.
         """
         return pulumi.get(self, "id")
 
@@ -75,7 +181,7 @@ class DeploymentPublicNetwork(dict):
     @pulumi.getter
     def services(self) -> Optional[Sequence['outputs.DeploymentPublicNetworkService']]:
         """
-        List of services exposed on the public endpoint.
+        List of services exposed on the private endpoint.
         """
         return pulumi.get(self, "services")
 

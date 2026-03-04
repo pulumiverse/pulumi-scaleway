@@ -455,6 +455,11 @@ export const getK8sVersion: typeof import("./getK8sVersion").getK8sVersion = nul
 export const getK8sVersionOutput: typeof import("./getK8sVersion").getK8sVersionOutput = null as any;
 utilities.lazyLoad(exports, ["getK8sVersion","getK8sVersionOutput"], () => require("./getK8sVersion"));
 
+export { GetKafkaClusterArgs, GetKafkaClusterResult, GetKafkaClusterOutputArgs } from "./getKafkaCluster";
+export const getKafkaCluster: typeof import("./getKafkaCluster").getKafkaCluster = null as any;
+export const getKafkaClusterOutput: typeof import("./getKafkaCluster").getKafkaClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getKafkaCluster","getKafkaClusterOutput"], () => require("./getKafkaCluster"));
+
 export { GetKeyManagerKeyArgs, GetKeyManagerKeyResult, GetKeyManagerKeyOutputArgs } from "./getKeyManagerKey";
 export const getKeyManagerKey: typeof import("./getKeyManagerKey").getKeyManagerKey = null as any;
 export const getKeyManagerKeyOutput: typeof import("./getKeyManagerKey").getKeyManagerKeyOutput = null as any;
@@ -785,6 +790,11 @@ export type JobDefinition = import("./jobDefinition").JobDefinition;
 export const JobDefinition: typeof import("./jobDefinition").JobDefinition = null as any;
 utilities.lazyLoad(exports, ["JobDefinition"], () => require("./jobDefinition"));
 
+export { KafkaClusterArgs, KafkaClusterState } from "./kafkaCluster";
+export type KafkaCluster = import("./kafkaCluster").KafkaCluster;
+export const KafkaCluster: typeof import("./kafkaCluster").KafkaCluster = null as any;
+utilities.lazyLoad(exports, ["KafkaCluster"], () => require("./kafkaCluster"));
+
 export { KeyManagerKeyArgs, KeyManagerKeyState } from "./keyManagerKey";
 export type KeyManagerKey = import("./keyManagerKey").KeyManagerKey;
 export const KeyManagerKey: typeof import("./keyManagerKey").KeyManagerKey = null as any;
@@ -919,6 +929,11 @@ export { ObjectItemArgs, ObjectItemState } from "./objectItem";
 export type ObjectItem = import("./objectItem").ObjectItem;
 export const ObjectItem: typeof import("./objectItem").ObjectItem = null as any;
 utilities.lazyLoad(exports, ["ObjectItem"], () => require("./objectItem"));
+
+export { OpensearchDeploymentArgs, OpensearchDeploymentState } from "./opensearchDeployment";
+export type OpensearchDeployment = import("./opensearchDeployment").OpensearchDeployment;
+export const OpensearchDeployment: typeof import("./opensearchDeployment").OpensearchDeployment = null as any;
+utilities.lazyLoad(exports, ["OpensearchDeployment"], () => require("./opensearchDeployment"));
 
 export * from "./provider";
 import { Provider } from "./provider";
@@ -1243,6 +1258,8 @@ const _module = {
                 return new IpamIpReverseDns(name, <any>undefined, { urn })
             case "scaleway:index/jobDefinition:JobDefinition":
                 return new JobDefinition(name, <any>undefined, { urn })
+            case "scaleway:index/kafkaCluster:KafkaCluster":
+                return new KafkaCluster(name, <any>undefined, { urn })
             case "scaleway:index/keyManagerKey:KeyManagerKey":
                 return new KeyManagerKey(name, <any>undefined, { urn })
             case "scaleway:index/kubernetesCluster:KubernetesCluster":
@@ -1297,6 +1314,8 @@ const _module = {
                 return new ObjectBucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:index/objectItem:ObjectItem":
                 return new ObjectItem(name, <any>undefined, { urn })
+            case "scaleway:index/opensearchDeployment:OpensearchDeployment":
+                return new OpensearchDeployment(name, <any>undefined, { urn })
             case "scaleway:index/rdbSnapshot:RdbSnapshot":
                 return new RdbSnapshot(name, <any>undefined, { urn })
             case "scaleway:index/redisCluster:RedisCluster":
@@ -1412,6 +1431,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/iotRoute", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIp", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/ipamIpReverseDns", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/jobDefinition", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/kafkaCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/keyManagerKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/kubernetesNodePool", _module)
@@ -1439,6 +1459,7 @@ pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketLockConfigu
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketPolicy", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectBucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/objectItem", _module)
+pulumi.runtime.registerResourceModule("scaleway", "index/opensearchDeployment", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/rdbSnapshot", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/redisCluster", _module)
 pulumi.runtime.registerResourceModule("scaleway", "index/registryNamespace", _module)

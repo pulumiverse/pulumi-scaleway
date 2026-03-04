@@ -53,10 +53,12 @@ type LookupMongoDbInstanceResult struct {
 	// The number of nodes in the MongoDB® cluster.
 	NodeNumber int `pulumi:"nodeNumber"`
 	// The type of MongoDB® node.
-	NodeType        string                             `pulumi:"nodeType"`
-	Password        string                             `pulumi:"password"`
-	PrivateIps      []GetMongoDbInstancePrivateIp      `pulumi:"privateIps"`
-	PrivateNetworks []GetMongoDbInstancePrivateNetwork `pulumi:"privateNetworks"`
+	NodeType          string                             `pulumi:"nodeType"`
+	Password          string                             `pulumi:"password"`
+	PasswordWo        string                             `pulumi:"passwordWo"`
+	PasswordWoVersion int                                `pulumi:"passwordWoVersion"`
+	PrivateIps        []GetMongoDbInstancePrivateIp      `pulumi:"privateIps"`
+	PrivateNetworks   []GetMongoDbInstancePrivateNetwork `pulumi:"privateNetworks"`
 	// The ID of the project the instance belongs to.
 	ProjectId *string `pulumi:"projectId"`
 	// The details of the public network configuration, if applicable.
@@ -156,6 +158,14 @@ func (o LookupMongoDbInstanceResultOutput) NodeType() pulumi.StringOutput {
 
 func (o LookupMongoDbInstanceResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongoDbInstanceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+func (o LookupMongoDbInstanceResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMongoDbInstanceResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupMongoDbInstanceResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMongoDbInstanceResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
 }
 
 func (o LookupMongoDbInstanceResultOutput) PrivateIps() GetMongoDbInstancePrivateIpArrayOutput {

@@ -73,6 +73,8 @@ export interface GetInstanceResult {
      */
     readonly nodeType: string;
     readonly password: string;
+    readonly passwordWo: string;
+    readonly passwordWoVersion: number;
     readonly privateIps: outputs.mongodb.GetInstancePrivateIp[];
     readonly privateNetworks: outputs.mongodb.GetInstancePrivateNetwork[];
     /**

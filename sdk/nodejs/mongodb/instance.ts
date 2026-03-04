@@ -12,12 +12,11 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic MongoDB instance creation
  * const main = new scaleway.mongodb.Instance("main", {
  *     name: "test-mongodb-basic1",
  *     version: "7.0.12",
@@ -26,89 +25,6 @@ import * as utilities from "../utilities";
  *     userName: "my_initial_user",
  *     password: "thiZ_is_v&ry_s3cret",
  *     volumeSizeInGb: 5,
- * });
- * ```
- *
- * ### Private Network
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
- *     name: "my_private_network",
- *     region: "fr-par",
- * });
- * const main = new scaleway.mongodb.Instance("main", {
- *     name: "test-mongodb-basic1",
- *     version: "7.0.12",
- *     nodeType: "MGDB-PLAY2-NANO",
- *     nodeNumber: 1,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     volumeSizeInGb: 5,
- *     privateNetwork: {
- *         pnId: pn02.id,
- *     },
- * });
- * ```
- *
- * ### Private Network and Public Network
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const pn01 = new scaleway.network.PrivateNetwork("pn01", {
- *     name: "my_private_network",
- *     region: "fr-par",
- * });
- * const main = new scaleway.mongodb.Instance("main", {
- *     name: "test-mongodb-basic1",
- *     version: "7.0.12",
- *     nodeType: "MGDB-PLAY2-NANO",
- *     nodeNumber: 1,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     volumeSizeInGb: 5,
- *     privateNetwork: {
- *         pnId: pn02.id,
- *     },
- *     publicNetwork: {},
- * });
- * ```
- *
- * ### With Snapshot Scheduling
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const main = new scaleway.mongodb.Instance("main", {
- *     name: "test-mongodb-with-snapshots",
- *     version: "7.0.12",
- *     nodeType: "MGDB-PLAY2-NANO",
- *     nodeNumber: 1,
- *     userName: "my_initial_user",
- *     password: "thiZ_is_v&ry_s3cret",
- *     volumeSizeInGb: 5,
- *     snapshotScheduleFrequencyHours: 24,
- *     snapshotScheduleRetentionDays: 7,
- *     isSnapshotScheduleEnabled: true,
- * });
- * ```
- *
- * ### Restore From Snapshot
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const restoredInstance = new scaleway.mongodb.Instance("restored_instance", {
- *     snapshotId: pn.idscalewayMongodbSnapshot.mainSnapshot.id,
- *     name: "restored-mongodb-from-snapshot",
- *     nodeType: "MGDB-PLAY2-NANO",
- *     nodeNumber: 1,
  * });
  * ```
  *
@@ -174,6 +90,11 @@ export class Instance extends pulumi.CustomResource {
      * Password of the user.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The private IPv4 address associated with the instance.
      */
@@ -258,6 +179,8 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = state?.nodeNumber;
             resourceInputs["nodeType"] = state?.nodeType;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetwork"] = state?.privateNetwork;
             resourceInputs["projectId"] = state?.projectId;
@@ -287,6 +210,8 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["nodeNumber"] = args?.nodeNumber;
             resourceInputs["nodeType"] = args?.nodeType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetwork"] = args?.privateNetwork;
             resourceInputs["projectId"] = args?.projectId;
@@ -308,7 +233,7 @@ export class Instance extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/mongoDbInstance:MongoDbInstance" }] };
         opts = pulumi.mergeOptions(opts, aliasOpts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Instance.__pulumiType, name, resourceInputs, opts);
     }
@@ -342,6 +267,11 @@ export interface InstanceState {
      * Password of the user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the instance.
      */
@@ -432,6 +362,11 @@ export interface InstanceArgs {
      * Password of the user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the instance.
      */

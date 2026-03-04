@@ -22,6 +22,9 @@ __all__ = [
     'InstanceTemplateVolume',
     'InstanceTemplateVolumeFromEmpty',
     'InstanceTemplateVolumeFromSnapshot',
+    'GetInstanceGroupCapacityResult',
+    'GetInstanceGroupLoadBalancerResult',
+    'GetInstancePolicyMetricResult',
 ]
 
 @pulumi.output_type
@@ -434,5 +437,169 @@ class InstanceTemplateVolumeFromSnapshot(dict):
         Override size (in GB) of the cloned volume
         """
         return pulumi.get(self, "size")
+
+
+@pulumi.output_type
+class GetInstanceGroupCapacityResult(dict):
+    def __init__(__self__, *,
+                 cooldown_delay: _builtins.int,
+                 max_replicas: _builtins.int,
+                 min_replicas: _builtins.int):
+        """
+        :param _builtins.int cooldown_delay: Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+        :param _builtins.int max_replicas: The maximum count of Instances for the Instance group
+        :param _builtins.int min_replicas: The minimum count of Instances for the Instance group
+        """
+        pulumi.set(__self__, "cooldown_delay", cooldown_delay)
+        pulumi.set(__self__, "max_replicas", max_replicas)
+        pulumi.set(__self__, "min_replicas", min_replicas)
+
+    @_builtins.property
+    @pulumi.getter(name="cooldownDelay")
+    def cooldown_delay(self) -> _builtins.int:
+        """
+        Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+        """
+        return pulumi.get(self, "cooldown_delay")
+
+    @_builtins.property
+    @pulumi.getter(name="maxReplicas")
+    def max_replicas(self) -> _builtins.int:
+        """
+        The maximum count of Instances for the Instance group
+        """
+        return pulumi.get(self, "max_replicas")
+
+    @_builtins.property
+    @pulumi.getter(name="minReplicas")
+    def min_replicas(self) -> _builtins.int:
+        """
+        The minimum count of Instances for the Instance group
+        """
+        return pulumi.get(self, "min_replicas")
+
+
+@pulumi.output_type
+class GetInstanceGroupLoadBalancerResult(dict):
+    def __init__(__self__, *,
+                 backend_ids: Sequence[_builtins.str],
+                 id: _builtins.str,
+                 private_network_id: _builtins.str):
+        """
+        :param Sequence[_builtins.str] backend_ids: The Load Balancer backend IDs
+        :param _builtins.str id: The ID of the load balancer
+        :param _builtins.str private_network_id: The ID of the Private Network attached to the Load Balancer
+        """
+        pulumi.set(__self__, "backend_ids", backend_ids)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="backendIds")
+    def backend_ids(self) -> Sequence[_builtins.str]:
+        """
+        The Load Balancer backend IDs
+        """
+        return pulumi.get(self, "backend_ids")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        The ID of the load balancer
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        """
+        The ID of the Private Network attached to the Load Balancer
+        """
+        return pulumi.get(self, "private_network_id")
+
+
+@pulumi.output_type
+class GetInstancePolicyMetricResult(dict):
+    def __init__(__self__, *,
+                 aggregate: _builtins.str,
+                 cockpit_metric_name: _builtins.str,
+                 managed_metric: _builtins.str,
+                 name: _builtins.str,
+                 operator: _builtins.str,
+                 sampling_range_min: _builtins.int,
+                 threshold: _builtins.int):
+        """
+        :param _builtins.str aggregate: How the values sampled for the `metric` should be aggregated
+        :param _builtins.str cockpit_metric_name: Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        :param _builtins.str managed_metric: Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        :param _builtins.str name: The name of the Instance policy. Only one of `name` and `instance_policy_id` should be specified. When using `name`, `instance_group_id` is required.
+        :param _builtins.str operator: Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+        :param _builtins.int sampling_range_min: Interval of time, in minutes, during which metric is sampled
+        :param _builtins.int threshold: Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+        """
+        pulumi.set(__self__, "aggregate", aggregate)
+        pulumi.set(__self__, "cockpit_metric_name", cockpit_metric_name)
+        pulumi.set(__self__, "managed_metric", managed_metric)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operator", operator)
+        pulumi.set(__self__, "sampling_range_min", sampling_range_min)
+        pulumi.set(__self__, "threshold", threshold)
+
+    @_builtins.property
+    @pulumi.getter
+    def aggregate(self) -> _builtins.str:
+        """
+        How the values sampled for the `metric` should be aggregated
+        """
+        return pulumi.get(self, "aggregate")
+
+    @_builtins.property
+    @pulumi.getter(name="cockpitMetricName")
+    def cockpit_metric_name(self) -> _builtins.str:
+        """
+        Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        """
+        return pulumi.get(self, "cockpit_metric_name")
+
+    @_builtins.property
+    @pulumi.getter(name="managedMetric")
+    def managed_metric(self) -> _builtins.str:
+        """
+        Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `node_exporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+        """
+        return pulumi.get(self, "managed_metric")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the Instance policy. Only one of `name` and `instance_policy_id` should be specified. When using `name`, `instance_group_id` is required.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def operator(self) -> _builtins.str:
+        """
+        Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+        """
+        return pulumi.get(self, "operator")
+
+    @_builtins.property
+    @pulumi.getter(name="samplingRangeMin")
+    def sampling_range_min(self) -> _builtins.int:
+        """
+        Interval of time, in minutes, during which metric is sampled
+        """
+        return pulumi.get(self, "sampling_range_min")
+
+    @_builtins.property
+    @pulumi.getter
+    def threshold(self) -> _builtins.int:
+        """
+        Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+        """
+        return pulumi.get(self, "threshold")
 
 

@@ -23,7 +23,7 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// IPv4 network address of the rule (IP network in a CIDR format).
+        /// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
         /// </summary>
         public readonly string Ip;
 
