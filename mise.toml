@@ -5,3 +5,4 @@
 "vfox-pulumi:pulumi/pulumi-gitlab" = "latest"
 "vfox-pulumi:pulumi/pulumi-local" = "latest"
 "vfox-pulumi:pulumi/pulumi-null" = "latest"
+golangci-lint = "2.10.1"
