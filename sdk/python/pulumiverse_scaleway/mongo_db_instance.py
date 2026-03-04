@@ -26,6 +26,8 @@ class MongoDbInstanceArgs:
                  is_snapshot_schedule_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['MongoDbInstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -47,6 +49,7 @@ class MongoDbInstanceArgs:
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[Sequence[pulumi.Input['MongoDbInstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['MongoDbInstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -70,6 +73,10 @@ class MongoDbInstanceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
@@ -158,6 +165,27 @@ class MongoDbInstanceArgs:
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -337,6 +365,8 @@ class _MongoDbInstanceState:
                  node_number: Optional[pulumi.Input[_builtins.int]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['MongoDbInstancePrivateIpArgs']]]] = None,
                  private_network: Optional[pulumi.Input['MongoDbInstancePrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -361,6 +391,7 @@ class _MongoDbInstanceState:
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[Sequence[pulumi.Input['MongoDbInstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['MongoDbInstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -390,6 +421,10 @@ class _MongoDbInstanceState:
             pulumi.set(__self__, "node_type", node_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_network is not None:
@@ -494,6 +529,27 @@ class _MongoDbInstanceState:
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -704,6 +760,8 @@ class MongoDbInstance(pulumi.CustomResource):
                  node_number: Optional[pulumi.Input[_builtins.int]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -725,12 +783,11 @@ class MongoDbInstance(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic MongoDB instance creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
@@ -739,83 +796,6 @@ class MongoDbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=5)
-        ```
-
-        ### Private Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="my_private_network",
-            region="fr-par")
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-basic1",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            private_network={
-                "pn_id": pn02["id"],
-            })
-        ```
-
-        ### Private Network and Public Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="my_private_network",
-            region="fr-par")
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-basic1",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            private_network={
-                "pn_id": pn02["id"],
-            },
-            public_network={})
-        ```
-
-        ### With Snapshot Scheduling
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-with-snapshots",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            snapshot_schedule_frequency_hours=24,
-            snapshot_schedule_retention_days=7,
-            is_snapshot_schedule_enabled=True)
-        ```
-
-        ### Restore From Snapshot
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        restored_instance = scaleway.mongodb.Instance("restored_instance",
-            snapshot_id=pn["idscalewayMongodbSnapshot"]["mainSnapshot"]["id"],
-            name="restored-mongodb-from-snapshot",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1)
         ```
 
         ## Import
@@ -835,6 +815,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -862,12 +843,11 @@ class MongoDbInstance(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic MongoDB instance creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-basic1",
             version="7.0.12",
@@ -876,83 +856,6 @@ class MongoDbInstance(pulumi.CustomResource):
             user_name="my_initial_user",
             password="thiZ_is_v&ry_s3cret",
             volume_size_in_gb=5)
-        ```
-
-        ### Private Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="my_private_network",
-            region="fr-par")
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-basic1",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            private_network={
-                "pn_id": pn02["id"],
-            })
-        ```
-
-        ### Private Network and Public Network
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        pn01 = scaleway.network.PrivateNetwork("pn01",
-            name="my_private_network",
-            region="fr-par")
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-basic1",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            private_network={
-                "pn_id": pn02["id"],
-            },
-            public_network={})
-        ```
-
-        ### With Snapshot Scheduling
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        main = scaleway.mongodb.Instance("main",
-            name="test-mongodb-with-snapshots",
-            version="7.0.12",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1,
-            user_name="my_initial_user",
-            password="thiZ_is_v&ry_s3cret",
-            volume_size_in_gb=5,
-            snapshot_schedule_frequency_hours=24,
-            snapshot_schedule_retention_days=7,
-            is_snapshot_schedule_enabled=True)
-        ```
-
-        ### Restore From Snapshot
-
-        ```python
-        import pulumi
-        import pulumiverse_scaleway as scaleway
-
-        restored_instance = scaleway.mongodb.Instance("restored_instance",
-            snapshot_id=pn["idscalewayMongodbSnapshot"]["mainSnapshot"]["id"],
-            name="restored-mongodb-from-snapshot",
-            node_type="MGDB-PLAY2-NANO",
-            node_number=1)
         ```
 
         ## Import
@@ -985,6 +888,8 @@ class MongoDbInstance(pulumi.CustomResource):
                  node_number: Optional[pulumi.Input[_builtins.int]] = None,
                  node_type: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]]] = None,
                  private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1018,6 +923,8 @@ class MongoDbInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'node_type'")
             __props__.__dict__["node_type"] = node_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
@@ -1035,7 +942,7 @@ class MongoDbInstance(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["tls_certificate"] = None
             __props__.__dict__["updated_at"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MongoDbInstance, __self__).__init__(
             'scaleway:index/mongoDbInstance:MongoDbInstance',
@@ -1053,6 +960,8 @@ class MongoDbInstance(pulumi.CustomResource):
             node_number: Optional[pulumi.Input[_builtins.int]] = None,
             node_type: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]]] = None,
             private_network: Optional[pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -1082,6 +991,7 @@ class MongoDbInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MongoDbInstancePrivateIpArgs', 'MongoDbInstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['MongoDbInstancePrivateNetworkArgs', 'MongoDbInstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -1109,6 +1019,8 @@ class MongoDbInstance(pulumi.CustomResource):
         __props__.__dict__["node_number"] = node_number
         __props__.__dict__["node_type"] = node_type
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
@@ -1174,6 +1086,19 @@ class MongoDbInstance(pulumi.CustomResource):
         Password of the user.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateIps")

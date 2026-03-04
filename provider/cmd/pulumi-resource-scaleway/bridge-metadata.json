@@ -389,6 +389,16 @@
                 "current": "scaleway:datawarehouse/deployment:Deployment",
                 "majorVersion": 1,
                 "fields": {
+                    "private_network": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
                     "public_network": {
                         "maxItemsOne": false,
                         "elem": {
@@ -1417,10 +1427,16 @@
                 ],
                 "majorVersion": 1,
                 "fields": {
+                    "args": {
+                        "maxItemsOne": false
+                    },
                     "cron": {
                         "maxItemsOne": true
                     },
                     "secret_reference": {
+                        "maxItemsOne": false
+                    },
+                    "startup_command": {
                         "maxItemsOne": false
                     }
                 }
@@ -1507,6 +1523,35 @@
                     },
                     "upgrade_policy": {
                         "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_kafka_cluster": {
+                "current": "scaleway:kafka/cluster:Cluster",
+                "majorVersion": 1,
+                "fields": {
+                    "private_network": {
+                        "maxItemsOne": true,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "public_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -2046,6 +2091,31 @@
                         "maxItemsOne": true
                     },
                     "index_document": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
+            "scaleway_opensearch_deployment": {
+                "current": "scaleway:opensearch/deployment:Deployment",
+                "majorVersion": 1,
+                "fields": {
+                    "endpoints": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "private_network": {
+                        "maxItemsOne": true
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "volume": {
                         "maxItemsOne": true
                     }
                 }
@@ -2637,6 +2707,37 @@
                                 }
                             }
                         }
+                    }
+                }
+            },
+            "scaleway_autoscaling_instance_group": {
+                "current": "scaleway:autoscaling/getInstanceGroup:getInstanceGroup",
+                "majorVersion": 1,
+                "fields": {
+                    "capacity": {
+                        "maxItemsOne": false
+                    },
+                    "load_balancer": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "backend_ids": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_autoscaling_instance_policy": {
+                "current": "scaleway:autoscaling/getInstancePolicy:getInstancePolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "metric": {
+                        "maxItemsOne": false
                     }
                 }
             },
@@ -3617,6 +3718,35 @@
                     }
                 }
             },
+            "scaleway_kafka_cluster": {
+                "current": "scaleway:kafka/getCluster:getCluster",
+                "majorVersion": 1,
+                "fields": {
+                    "private_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "public_network": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "dns_records": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_key_manager_key": {
                 "current": "scaleway:keymanager/getKey:getKey",
                 "past": [
@@ -4263,6 +4393,69 @@
                     }
                 ],
                 "majorVersion": 1
+            },
+            "scaleway_s2s_vpn_connection": {
+                "current": "scaleway:s2svpn/getConnection:getConnection",
+                "majorVersion": 1,
+                "fields": {
+                    "bgp_config_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_config_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv4": {
+                        "maxItemsOne": false
+                    },
+                    "bgp_session_ipv6": {
+                        "maxItemsOne": false
+                    },
+                    "esp_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "ikev2_ciphers": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_customer_gateway": {
+                "current": "scaleway:s2svpn/getCustomerGateway:getCustomerGateway",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_gateway": {
+                "current": "scaleway:s2svpn/getGateway:getGateway",
+                "majorVersion": 1,
+                "fields": {
+                    "public_config": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_s2s_vpn_routing_policy": {
+                "current": "scaleway:s2svpn/getRoutingPolicy:getRoutingPolicy",
+                "majorVersion": 1,
+                "fields": {
+                    "prefix_filter_in": {
+                        "maxItemsOne": false
+                    },
+                    "prefix_filter_out": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_secret": {
                 "current": "scaleway:secrets/getSecret:getSecret",
@@ -5765,6 +5958,7 @@
             "scaleway:ipam/ip:Ip": 0,
             "scaleway:ipam/ipReverseDns:IpReverseDns": 0,
             "scaleway:job/definition:Definition": 0,
+            "scaleway:kafka/cluster:Cluster": 0,
             "scaleway:keymanager/key:Key": 0,
             "scaleway:kubernetes/acl:Acl": 0,
             "scaleway:kubernetes/cluster:Cluster": 0,
@@ -5811,6 +6005,7 @@
             "scaleway:observability/grafanaUser:GrafanaUser": 0,
             "scaleway:observability/source:Source": 0,
             "scaleway:observability/token:Token": 0,
+            "scaleway:opensearch/deployment:Deployment": 0,
             "scaleway:redis/cluster:Cluster": 0,
             "scaleway:registry/namespace:Namespace": 0,
             "scaleway:s2svpn/connection:Connection": 0,
@@ -5831,6 +6026,8 @@
             "scaleway:account/getSshKey:getSshKey": 0,
             "scaleway:applesilicon/getOs:getOs": 0,
             "scaleway:audittrail/getEvent:getEvent": 0,
+            "scaleway:autoscaling/getInstanceGroup:getInstanceGroup": 0,
+            "scaleway:autoscaling/getInstancePolicy:getInstancePolicy": 0,
             "scaleway:billing/getConsumptions:getConsumptions": 0,
             "scaleway:billing/getInvoices:getInvoices": 0,
             "scaleway:block/getSnapshot:getSnapshot": 0,
@@ -5962,6 +6159,7 @@
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,
             "scaleway:ipam/getIps:getIps": 0,
+            "scaleway:kafka/getCluster:getCluster": 0,
             "scaleway:keymanager/getKey:getKey": 0,
             "scaleway:keymanager/getVerify:getVerify": 0,
             "scaleway:kubernetes/getCluster:getCluster": 0,
@@ -6004,6 +6202,10 @@
             "scaleway:registry/getImage:getImage": 0,
             "scaleway:registry/getImageTag:getImageTag": 0,
             "scaleway:registry/getNamespace:getNamespace": 0,
+            "scaleway:s2svpn/getConnection:getConnection": 0,
+            "scaleway:s2svpn/getCustomerGateway:getCustomerGateway": 0,
+            "scaleway:s2svpn/getGateway:getGateway": 0,
+            "scaleway:s2svpn/getRoutingPolicy:getRoutingPolicy": 0,
             "scaleway:secrets/getSecret:getSecret": 0,
             "scaleway:secrets/getVersion:getVersion": 0,
             "scaleway:tem/getDomain:getDomain": 0,

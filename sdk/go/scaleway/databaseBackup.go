@@ -109,6 +109,10 @@ type DatabaseBackup struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Name of the database of this backup.
 	DatabaseName pulumi.StringOutput `pulumi:"databaseName"`
+	// URL you can download the backup from (when exporting).
+	DownloadUrl pulumi.StringOutput `pulumi:"downloadUrl"`
+	// Expiration date of the download link (Format ISO 8601).
+	DownloadUrlExpiresAt pulumi.StringOutput `pulumi:"downloadUrlExpiresAt"`
 	// Expiration date (Format ISO 8601).
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
@@ -123,8 +127,12 @@ type DatabaseBackup struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Whether the backup is stored in the same region as the source instance.
+	SameRegion pulumi.BoolOutput `pulumi:"sameRegion"`
 	// Size of the backup (in bytes).
 	Size pulumi.IntOutput `pulumi:"size"`
+	// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+	Status pulumi.StringOutput `pulumi:"status"`
 	// Updated date (Format ISO 8601).
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 }
@@ -169,6 +177,10 @@ type databaseBackupState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Name of the database of this backup.
 	DatabaseName *string `pulumi:"databaseName"`
+	// URL you can download the backup from (when exporting).
+	DownloadUrl *string `pulumi:"downloadUrl"`
+	// Expiration date of the download link (Format ISO 8601).
+	DownloadUrlExpiresAt *string `pulumi:"downloadUrlExpiresAt"`
 	// Expiration date (Format ISO 8601).
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
@@ -183,8 +195,12 @@ type databaseBackupState struct {
 	Name *string `pulumi:"name"`
 	// `region`) The region in which the resource exists.
 	Region *string `pulumi:"region"`
+	// Whether the backup is stored in the same region as the source instance.
+	SameRegion *bool `pulumi:"sameRegion"`
 	// Size of the backup (in bytes).
 	Size *int `pulumi:"size"`
+	// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+	Status *string `pulumi:"status"`
 	// Updated date (Format ISO 8601).
 	UpdatedAt *string `pulumi:"updatedAt"`
 }
@@ -194,6 +210,10 @@ type DatabaseBackupState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Name of the database of this backup.
 	DatabaseName pulumi.StringPtrInput
+	// URL you can download the backup from (when exporting).
+	DownloadUrl pulumi.StringPtrInput
+	// Expiration date of the download link (Format ISO 8601).
+	DownloadUrlExpiresAt pulumi.StringPtrInput
 	// Expiration date (Format ISO 8601).
 	//
 	// > **Important:** `expiresAt` cannot be removed after being set.
@@ -208,8 +228,12 @@ type DatabaseBackupState struct {
 	Name pulumi.StringPtrInput
 	// `region`) The region in which the resource exists.
 	Region pulumi.StringPtrInput
+	// Whether the backup is stored in the same region as the source instance.
+	SameRegion pulumi.BoolPtrInput
 	// Size of the backup (in bytes).
 	Size pulumi.IntPtrInput
+	// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+	Status pulumi.StringPtrInput
 	// Updated date (Format ISO 8601).
 	UpdatedAt pulumi.StringPtrInput
 }
@@ -350,6 +374,16 @@ func (o DatabaseBackupOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+// URL you can download the backup from (when exporting).
+func (o DatabaseBackupOutput) DownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.DownloadUrl }).(pulumi.StringOutput)
+}
+
+// Expiration date of the download link (Format ISO 8601).
+func (o DatabaseBackupOutput) DownloadUrlExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.DownloadUrlExpiresAt }).(pulumi.StringOutput)
+}
+
 // Expiration date (Format ISO 8601).
 //
 // > **Important:** `expiresAt` cannot be removed after being set.
@@ -379,9 +413,19 @@ func (o DatabaseBackupOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// Whether the backup is stored in the same region as the source instance.
+func (o DatabaseBackupOutput) SameRegion() pulumi.BoolOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.BoolOutput { return v.SameRegion }).(pulumi.BoolOutput)
+}
+
 // Size of the backup (in bytes).
 func (o DatabaseBackupOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *DatabaseBackup) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
+}
+
+// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+func (o DatabaseBackupOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *DatabaseBackup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 // Updated date (Format ISO 8601).

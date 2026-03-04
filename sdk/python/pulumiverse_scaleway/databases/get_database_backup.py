@@ -26,7 +26,7 @@ class GetDatabaseBackupResult:
     """
     A collection of values returned by getDatabaseBackup.
     """
-    def __init__(__self__, backup_id=None, created_at=None, database_name=None, expires_at=None, id=None, instance_id=None, instance_name=None, name=None, project_id=None, region=None, size=None, updated_at=None):
+    def __init__(__self__, backup_id=None, created_at=None, database_name=None, download_url=None, download_url_expires_at=None, expires_at=None, id=None, instance_id=None, instance_name=None, name=None, project_id=None, region=None, same_region=None, size=None, status=None, updated_at=None):
         if backup_id and not isinstance(backup_id, str):
             raise TypeError("Expected argument 'backup_id' to be a str")
         pulumi.set(__self__, "backup_id", backup_id)
@@ -36,6 +36,12 @@ class GetDatabaseBackupResult:
         if database_name and not isinstance(database_name, str):
             raise TypeError("Expected argument 'database_name' to be a str")
         pulumi.set(__self__, "database_name", database_name)
+        if download_url and not isinstance(download_url, str):
+            raise TypeError("Expected argument 'download_url' to be a str")
+        pulumi.set(__self__, "download_url", download_url)
+        if download_url_expires_at and not isinstance(download_url_expires_at, str):
+            raise TypeError("Expected argument 'download_url_expires_at' to be a str")
+        pulumi.set(__self__, "download_url_expires_at", download_url_expires_at)
         if expires_at and not isinstance(expires_at, str):
             raise TypeError("Expected argument 'expires_at' to be a str")
         pulumi.set(__self__, "expires_at", expires_at)
@@ -57,9 +63,15 @@ class GetDatabaseBackupResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
+        if same_region and not isinstance(same_region, bool):
+            raise TypeError("Expected argument 'same_region' to be a bool")
+        pulumi.set(__self__, "same_region", same_region)
         if size and not isinstance(size, int):
             raise TypeError("Expected argument 'size' to be a int")
         pulumi.set(__self__, "size", size)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
@@ -78,6 +90,16 @@ class GetDatabaseBackupResult:
     @pulumi.getter(name="databaseName")
     def database_name(self) -> _builtins.str:
         return pulumi.get(self, "database_name")
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> _builtins.str:
+        return pulumi.get(self, "download_url")
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrlExpiresAt")
+    def download_url_expires_at(self) -> _builtins.str:
+        return pulumi.get(self, "download_url_expires_at")
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
@@ -118,9 +140,19 @@ class GetDatabaseBackupResult:
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="sameRegion")
+    def same_region(self) -> _builtins.bool:
+        return pulumi.get(self, "same_region")
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> _builtins.int:
         return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -137,6 +169,8 @@ class AwaitableGetDatabaseBackupResult(GetDatabaseBackupResult):
             backup_id=self.backup_id,
             created_at=self.created_at,
             database_name=self.database_name,
+            download_url=self.download_url,
+            download_url_expires_at=self.download_url_expires_at,
             expires_at=self.expires_at,
             id=self.id,
             instance_id=self.instance_id,
@@ -144,7 +178,9 @@ class AwaitableGetDatabaseBackupResult(GetDatabaseBackupResult):
             name=self.name,
             project_id=self.project_id,
             region=self.region,
+            same_region=self.same_region,
             size=self.size,
+            status=self.status,
             updated_at=self.updated_at)
 
 
@@ -191,6 +227,8 @@ def get_database_backup(backup_id: Optional[_builtins.str] = None,
         backup_id=pulumi.get(__ret__, 'backup_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
         database_name=pulumi.get(__ret__, 'database_name'),
+        download_url=pulumi.get(__ret__, 'download_url'),
+        download_url_expires_at=pulumi.get(__ret__, 'download_url_expires_at'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
         id=pulumi.get(__ret__, 'id'),
         instance_id=pulumi.get(__ret__, 'instance_id'),
@@ -198,7 +236,9 @@ def get_database_backup(backup_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
+        same_region=pulumi.get(__ret__, 'same_region'),
         size=pulumi.get(__ret__, 'size'),
+        status=pulumi.get(__ret__, 'status'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
                                instance_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
@@ -242,6 +282,8 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[_builti
         backup_id=pulumi.get(__response__, 'backup_id'),
         created_at=pulumi.get(__response__, 'created_at'),
         database_name=pulumi.get(__response__, 'database_name'),
+        download_url=pulumi.get(__response__, 'download_url'),
+        download_url_expires_at=pulumi.get(__response__, 'download_url_expires_at'),
         expires_at=pulumi.get(__response__, 'expires_at'),
         id=pulumi.get(__response__, 'id'),
         instance_id=pulumi.get(__response__, 'instance_id'),
@@ -249,5 +291,7 @@ def get_database_backup_output(backup_id: Optional[pulumi.Input[Optional[_builti
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),
+        same_region=pulumi.get(__response__, 'same_region'),
         size=pulumi.get(__response__, 'size'),
+        status=pulumi.get(__response__, 'status'),
         updated_at=pulumi.get(__response__, 'updated_at')))

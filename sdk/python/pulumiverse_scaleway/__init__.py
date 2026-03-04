@@ -257,6 +257,8 @@ if typing.TYPE_CHECKING:
     ipam = __ipam
     import pulumiverse_scaleway.job as __job
     job = __job
+    import pulumiverse_scaleway.kafka as __kafka
+    kafka = __kafka
     import pulumiverse_scaleway.keymanager as __keymanager
     keymanager = __keymanager
     import pulumiverse_scaleway.kubernetes as __kubernetes
@@ -273,6 +275,8 @@ if typing.TYPE_CHECKING:
     object = __object
     import pulumiverse_scaleway.observability as __observability
     observability = __observability
+    import pulumiverse_scaleway.opensearch as __opensearch
+    opensearch = __opensearch
     import pulumiverse_scaleway.redis as __redis
     redis = __redis
     import pulumiverse_scaleway.registry as __registry
@@ -305,6 +309,7 @@ else:
     iot = _utilities.lazy_import('pulumiverse_scaleway.iot')
     ipam = _utilities.lazy_import('pulumiverse_scaleway.ipam')
     job = _utilities.lazy_import('pulumiverse_scaleway.job')
+    kafka = _utilities.lazy_import('pulumiverse_scaleway.kafka')
     keymanager = _utilities.lazy_import('pulumiverse_scaleway.keymanager')
     kubernetes = _utilities.lazy_import('pulumiverse_scaleway.kubernetes')
     loadbalancers = _utilities.lazy_import('pulumiverse_scaleway.loadbalancers')
@@ -313,6 +318,7 @@ else:
     network = _utilities.lazy_import('pulumiverse_scaleway.network')
     object = _utilities.lazy_import('pulumiverse_scaleway.object')
     observability = _utilities.lazy_import('pulumiverse_scaleway.observability')
+    opensearch = _utilities.lazy_import('pulumiverse_scaleway.opensearch')
     redis = _utilities.lazy_import('pulumiverse_scaleway.redis')
     registry = _utilities.lazy_import('pulumiverse_scaleway.registry')
     s2svpn = _utilities.lazy_import('pulumiverse_scaleway.s2svpn')
@@ -1868,6 +1874,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "kafka/cluster",
+  "fqn": "pulumiverse_scaleway.kafka",
+  "classes": {
+   "scaleway:kafka/cluster:Cluster": "Cluster"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "keymanager/key",
   "fqn": "pulumiverse_scaleway.keymanager",
   "classes": {
@@ -2232,6 +2246,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.observability",
   "classes": {
    "scaleway:observability/token:Token": "Token"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "opensearch/deployment",
+  "fqn": "pulumiverse_scaleway.opensearch",
+  "classes": {
+   "scaleway:opensearch/deployment:Deployment": "Deployment"
   }
  },
  {

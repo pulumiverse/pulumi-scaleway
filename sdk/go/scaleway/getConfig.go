@@ -52,15 +52,17 @@ type GetConfigResult struct {
 	AccessKey       string `pulumi:"accessKey"`
 	AccessKeySource string `pulumi:"accessKeySource"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string `pulumi:"id"`
-	ProjectId       string `pulumi:"projectId"`
-	ProjectIdSource string `pulumi:"projectIdSource"`
-	Region          string `pulumi:"region"`
-	RegionSource    string `pulumi:"regionSource"`
-	SecretKey       string `pulumi:"secretKey"`
-	SecretKeySource string `pulumi:"secretKeySource"`
-	Zone            string `pulumi:"zone"`
-	ZoneSource      string `pulumi:"zoneSource"`
+	Id                   string `pulumi:"id"`
+	OrganizationId       string `pulumi:"organizationId"`
+	OrganizationIdSource string `pulumi:"organizationIdSource"`
+	ProjectId            string `pulumi:"projectId"`
+	ProjectIdSource      string `pulumi:"projectIdSource"`
+	Region               string `pulumi:"region"`
+	RegionSource         string `pulumi:"regionSource"`
+	SecretKey            string `pulumi:"secretKey"`
+	SecretKeySource      string `pulumi:"secretKeySource"`
+	Zone                 string `pulumi:"zone"`
+	ZoneSource           string `pulumi:"zoneSource"`
 }
 
 func GetConfigOutput(ctx *pulumi.Context, opts ...pulumi.InvokeOption) GetConfigResultOutput {
@@ -96,6 +98,14 @@ func (o GetConfigResultOutput) AccessKeySource() pulumi.StringOutput {
 // The provider-assigned unique ID for this managed resource.
 func (o GetConfigResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetConfigResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetConfigResultOutput) OrganizationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigResult) string { return v.OrganizationId }).(pulumi.StringOutput)
+}
+
+func (o GetConfigResultOutput) OrganizationIdSource() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConfigResult) string { return v.OrganizationIdSource }).(pulumi.StringOutput)
 }
 
 func (o GetConfigResultOutput) ProjectId() pulumi.StringOutput {

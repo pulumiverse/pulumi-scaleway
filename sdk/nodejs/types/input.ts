@@ -342,7 +342,7 @@ export interface DatabaseAclAclRule {
      */
     description?: pulumi.Input<string>;
     /**
-     * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
      */
     ip: pulumi.Input<string>;
 }
@@ -2077,8 +2077,7 @@ export interface RedisClusterAcl {
      */
     id?: pulumi.Input<string>;
     /**
-     * The IP range to whitelist
-     * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+     * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
      */
     ip: pulumi.Input<string>;
 }
@@ -2112,7 +2111,7 @@ export interface RedisClusterPrivateNetwork {
      */
     port?: pulumi.Input<number>;
     /**
-     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+     * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
      * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
      * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
      * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -2643,7 +2642,7 @@ export namespace databases {
          */
         description?: pulumi.Input<string>;
         /**
-         * The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
          */
         ip: pulumi.Input<string>;
     }
@@ -2832,17 +2831,47 @@ export namespace databases {
 }
 
 export namespace datawarehouse {
-    export interface DeploymentPublicNetwork {
+    export interface DeploymentPrivateNetwork {
         /**
-         * DNS record for the public endpoint.
+         * DNS record for the private endpoint.
          */
         dnsRecord?: pulumi.Input<string>;
         /**
-         * The ID of the public endpoint.
+         * The ID of the private endpoint.
          */
         id?: pulumi.Input<string>;
         /**
-         * List of services exposed on the public endpoint.
+         * The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+         */
+        pnId: pulumi.Input<string>;
+        /**
+         * List of services exposed on the private endpoint.
+         */
+        services?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetworkService>[]>;
+    }
+
+    export interface DeploymentPrivateNetworkService {
+        /**
+         * TCP port number.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * Service protocol (e.g., "tcp", "https", "mysql").
+         */
+        protocol?: pulumi.Input<string>;
+    }
+
+    export interface DeploymentPublicNetwork {
+        /**
+         * DNS record for the private endpoint.
+         */
+        dnsRecord?: pulumi.Input<string>;
+        /**
+         * The ID of the private endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * List of services exposed on the private endpoint.
          */
         services?: pulumi.Input<pulumi.Input<inputs.datawarehouse.DeploymentPublicNetworkService>[]>;
     }
@@ -4484,6 +4513,43 @@ export namespace job {
     }
 }
 
+export namespace kafka {
+    export interface ClusterPrivateNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the private endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The private network ID (same as input).
+         */
+        pnId: pulumi.Input<string>;
+        /**
+         * TCP port number.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+    export interface ClusterPublicNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the private endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * TCP port number.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+}
+
 export namespace keymanager {
     export interface KeyRotationPolicy {
         /**
@@ -5432,6 +5498,60 @@ export namespace observability {
     }
 }
 
+export namespace opensearch {
+    export interface DeploymentEndpoint {
+        /**
+         * The ID of the endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId?: pulumi.Input<string>;
+        /**
+         * Whether the endpoint is public (true) or private (false).
+         */
+        public?: pulumi.Input<boolean>;
+        /**
+         * List of services exposed on the endpoint.
+         */
+        services?: pulumi.Input<pulumi.Input<inputs.opensearch.DeploymentEndpointService>[]>;
+    }
+
+    export interface DeploymentEndpointService {
+        /**
+         * Name of the OpenSearch deployment. If not specified, a random name will be generated.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Service port number.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface DeploymentPrivateNetwork {
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: pulumi.Input<string>;
+    }
+
+    export interface DeploymentVolume {
+        /**
+         * Volume size in GB. Changing this forces recreation of the deployment.
+         */
+        sizeInGb: pulumi.Input<number>;
+        /**
+         * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+         */
+        type: pulumi.Input<string>;
+    }
+}
+
 export namespace redis {
     export interface ClusterAcl {
         /**
@@ -5445,8 +5565,7 @@ export namespace redis {
          */
         id?: pulumi.Input<string>;
         /**
-         * The IP range to whitelist
-         * in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+         * The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
          */
         ip: pulumi.Input<string>;
     }
@@ -5480,7 +5599,7 @@ export namespace redis {
          */
         port?: pulumi.Input<number>;
         /**
-         * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+         * Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
          * Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
          * scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
          * If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -5627,6 +5746,7 @@ export namespace s2svpn {
          */
         ipamIpv6Id?: pulumi.Input<string>;
     }
+
 }
 
 export namespace secrets {

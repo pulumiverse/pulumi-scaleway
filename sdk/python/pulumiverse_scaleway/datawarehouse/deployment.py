@@ -28,6 +28,7 @@ class DeploymentArgs:
                  version: pulumi.Input[_builtins.str],
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_network: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
@@ -40,9 +41,10 @@ class DeploymentArgs:
         :param pulumi.Input[_builtins.str] version: ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
                
                > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
@@ -57,6 +59,8 @@ class DeploymentArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if region is not None:
@@ -149,12 +153,24 @@ class DeploymentArgs:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]:
+        """
+        Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "private_network")
+
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 
         > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         """
@@ -197,6 +213,7 @@ class _DeploymentState:
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_network: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  public_networks: Optional[pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]]] = None,
                  ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
@@ -213,9 +230,10 @@ class _DeploymentState:
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        :param pulumi.Input['DeploymentPrivateNetworkArgs'] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
                
                > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         :param pulumi.Input[Sequence[pulumi.Input['DeploymentPublicNetworkArgs']]] public_networks: Public endpoint information (always created automatically).
@@ -237,6 +255,8 @@ class _DeploymentState:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if private_network is not None:
+            pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if public_networks is not None:
@@ -317,12 +337,24 @@ class _DeploymentState:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]:
+        """
+        Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "private_network")
+
+    @private_network.setter
+    def private_network(self, value: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']]):
+        pulumi.set(self, "private_network", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 
         > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         """
@@ -439,6 +471,7 @@ class Deployment(pulumi.CustomResource):
                  cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -488,6 +521,29 @@ class Deployment(pulumi.CustomResource):
             ])
         ```
 
+        ### With Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main", name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            vpc_id=main.id)
+        main_deployment = scaleway.datawarehouse.Deployment("main",
+            name="my-datawarehouse",
+            version="v25",
+            replica_count=1,
+            cpu_min=2,
+            cpu_max=4,
+            ram_per_cpu=4,
+            password="thiZ_is_v&ry_s3cret",
+            private_network={
+                "pn_id": pn.id,
+            })
+        ```
+
         ## Import
 
         Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
@@ -504,9 +560,10 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] cpu_min: Minimum CPU count. Must be less than or equal to `cpu_max`.
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
                
                > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         :param pulumi.Input[_builtins.int] ram_per_cpu: RAM per CPU in GB.
@@ -563,6 +620,29 @@ class Deployment(pulumi.CustomResource):
             ])
         ```
 
+        ### With Private Network
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.network.Vpc("main", name="my-vpc")
+        pn = scaleway.network.PrivateNetwork("pn",
+            name="my-private-network",
+            vpc_id=main.id)
+        main_deployment = scaleway.datawarehouse.Deployment("main",
+            name="my-datawarehouse",
+            version="v25",
+            replica_count=1,
+            cpu_min=2,
+            cpu_max=4,
+            ram_per_cpu=4,
+            password="thiZ_is_v&ry_s3cret",
+            private_network={
+                "pn_id": pn.id,
+            })
+        ```
+
         ## Import
 
         Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
@@ -592,6 +672,7 @@ class Deployment(pulumi.CustomResource):
                  cpu_min: Optional[pulumi.Input[_builtins.int]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
@@ -615,6 +696,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["cpu_min"] = cpu_min
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["private_network"] = private_network
             __props__.__dict__["project_id"] = project_id
             if ram_per_cpu is None and not opts.urn:
                 raise TypeError("Missing required property 'ram_per_cpu'")
@@ -648,6 +730,7 @@ class Deployment(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             public_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]]] = None,
             ram_per_cpu: Optional[pulumi.Input[_builtins.int]] = None,
@@ -669,9 +752,10 @@ class Deployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] created_at: Date and time of deployment creation (RFC 3339 format).
         :param pulumi.Input[_builtins.str] name: Name of the Data Warehouse deployment.
         :param pulumi.Input[_builtins.str] password: Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        :param pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']] private_network: Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
                
-               > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+               > **Note:** A public endpoint is always created automatically alongside any private network configuration.
                
                > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DeploymentPublicNetworkArgs', 'DeploymentPublicNetworkArgsDict']]]] public_networks: Public endpoint information (always created automatically).
@@ -692,6 +776,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
+        __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["public_networks"] = public_networks
         __props__.__dict__["ram_per_cpu"] = ram_per_cpu
@@ -744,12 +829,20 @@ class Deployment(pulumi.CustomResource):
         return pulumi.get(self, "password")
 
     @_builtins.property
+    @pulumi.getter(name="privateNetwork")
+    def private_network(self) -> pulumi.Output[Optional['outputs.DeploymentPrivateNetwork']]:
+        """
+        Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "private_network")
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Output[_builtins.str]:
         """
         `project_id`) The ID of the project the deployment is associated with.
 
-        > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+        > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 
         > **Note:** During the private beta phase, modifying `cpu_min`, `cpu_max`, and `replica_count` has no effect until the feature is launched in general availability.
         """

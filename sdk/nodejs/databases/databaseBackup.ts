@@ -95,6 +95,14 @@ export class DatabaseBackup extends pulumi.CustomResource {
      */
     declare public readonly databaseName: pulumi.Output<string>;
     /**
+     * URL you can download the backup from (when exporting).
+     */
+    declare public /*out*/ readonly downloadUrl: pulumi.Output<string>;
+    /**
+     * Expiration date of the download link (Format ISO 8601).
+     */
+    declare public /*out*/ readonly downloadUrlExpiresAt: pulumi.Output<string>;
+    /**
      * Expiration date (Format ISO 8601).
      *
      * > **Important:** `expiresAt` cannot be removed after being set.
@@ -119,9 +127,17 @@ export class DatabaseBackup extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
+     * Whether the backup is stored in the same region as the source instance.
+     */
+    declare public /*out*/ readonly sameRegion: pulumi.Output<boolean>;
+    /**
      * Size of the backup (in bytes).
      */
     declare public /*out*/ readonly size: pulumi.Output<number>;
+    /**
+     * Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+     */
+    declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
      * Updated date (Format ISO 8601).
      */
@@ -142,12 +158,16 @@ export class DatabaseBackup extends pulumi.CustomResource {
             const state = argsOrState as DatabaseBackupState | undefined;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["databaseName"] = state?.databaseName;
+            resourceInputs["downloadUrl"] = state?.downloadUrl;
+            resourceInputs["downloadUrlExpiresAt"] = state?.downloadUrlExpiresAt;
             resourceInputs["expiresAt"] = state?.expiresAt;
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["name"] = state?.name;
             resourceInputs["region"] = state?.region;
+            resourceInputs["sameRegion"] = state?.sameRegion;
             resourceInputs["size"] = state?.size;
+            resourceInputs["status"] = state?.status;
             resourceInputs["updatedAt"] = state?.updatedAt;
         } else {
             const args = argsOrState as DatabaseBackupArgs | undefined;
@@ -163,8 +183,12 @@ export class DatabaseBackup extends pulumi.CustomResource {
             resourceInputs["name"] = args?.name;
             resourceInputs["region"] = args?.region;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["downloadUrl"] = undefined /*out*/;
+            resourceInputs["downloadUrlExpiresAt"] = undefined /*out*/;
             resourceInputs["instanceName"] = undefined /*out*/;
+            resourceInputs["sameRegion"] = undefined /*out*/;
             resourceInputs["size"] = undefined /*out*/;
+            resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -186,6 +210,14 @@ export interface DatabaseBackupState {
      * Name of the database of this backup.
      */
     databaseName?: pulumi.Input<string>;
+    /**
+     * URL you can download the backup from (when exporting).
+     */
+    downloadUrl?: pulumi.Input<string>;
+    /**
+     * Expiration date of the download link (Format ISO 8601).
+     */
+    downloadUrlExpiresAt?: pulumi.Input<string>;
     /**
      * Expiration date (Format ISO 8601).
      *
@@ -211,9 +243,17 @@ export interface DatabaseBackupState {
      */
     region?: pulumi.Input<string>;
     /**
+     * Whether the backup is stored in the same region as the source instance.
+     */
+    sameRegion?: pulumi.Input<boolean>;
+    /**
      * Size of the backup (in bytes).
      */
     size?: pulumi.Input<number>;
+    /**
+     * Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+     */
+    status?: pulumi.Input<string>;
     /**
      * Updated date (Format ISO 8601).
      */

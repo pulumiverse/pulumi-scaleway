@@ -20,8 +20,7 @@ type ClusterAcl struct {
 	Description *string `pulumi:"description"`
 	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
-	// The IP range to whitelist
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -43,8 +42,7 @@ type ClusterAclArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The IP range to whitelist
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -111,8 +109,7 @@ func (o ClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The IP range to whitelist
-// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o ClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -252,7 +249,7 @@ type ClusterPrivateNetwork struct {
 	Ips []string `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port *int `pulumi:"port"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -298,7 +295,7 @@ type ClusterPrivateNetworkArgs struct {
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -395,7 +392,7 @@ func (o ClusterPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ClusterPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 // Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 // scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 // If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -625,7 +622,7 @@ type GetClusterAcl struct {
 	Description string `pulumi:"description"`
 	// The ID of the Redis cluster.
 	Id string `pulumi:"id"`
-	// IPv4 network address of the rule (IP network in a CIDR format).
+	// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 	Ip string `pulumi:"ip"`
 }
 
@@ -645,7 +642,7 @@ type GetClusterAclArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the Redis cluster.
 	Id pulumi.StringInput `pulumi:"id"`
-	// IPv4 network address of the rule (IP network in a CIDR format).
+	// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -710,7 +707,7 @@ func (o GetClusterAclOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAcl) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IPv4 network address of the rule (IP network in a CIDR format).
+// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 func (o GetClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -850,7 +847,7 @@ type GetClusterPrivateNetwork struct {
 	Ips []string `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port int `pulumi:"port"`
-	// List of IPv4 addresses of the private network with a CIDR notation
+	// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
 	Zone string `pulumi:"zone"`
@@ -876,7 +873,7 @@ type GetClusterPrivateNetworkArgs struct {
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port pulumi.IntInput `pulumi:"port"`
-	// List of IPv4 addresses of the private network with a CIDR notation
+	// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
 	Zone pulumi.StringInput `pulumi:"zone"`
@@ -953,7 +950,7 @@ func (o GetClusterPrivateNetworkOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetClusterPrivateNetwork) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// List of IPv4 addresses of the private network with a CIDR notation
+// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 func (o GetClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }

@@ -7,21 +7,14 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
- *
  * ## Example Usage
- *
- * ### Basic
- *
- * ### With option
- *
- * ### With cloud-init
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  * import * as std from "@pulumi/std";
  *
+ * //## With cloud-init
  * const mySshKey = scaleway.iam.getSshKey({
  *     name: "main",
  * });
@@ -44,142 +37,6 @@ import * as utilities from "../utilities";
  *     }).result,
  * });
  * ```
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const mySshKey = scaleway.iam.getSshKey({
- *     name: "main",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-2",
- *     name: "EM-I220E-NVME",
- * });
- * const myOs = scaleway.elasticmetal.getOs({
- *     zone: "fr-par-1",
- *     name: "Ubuntu",
- *     version: "22.04 LTS (Jammy Jellyfish)",
- * });
- * const myServerCi = new scaleway.elasticmetal.Server("my_server_ci", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: myOs.then(myOs => myOs.osId),
- *     sshKeyIds: [mySshKey.then(mySshKey => mySshKey.id)],
- *     cloudInit: `#cloud-config
- * packages:
- *   - htop
- *   - curl
- *
- * runcmd:
- *   - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
- * `,
- * });
- * ```
- *
- * ### With private network
- *
- * ### With IPAM IP IDs
- *
- * ### Without install config
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-2",
- *     name: "EM-B112X-SSD",
- * });
- * const myServer = new scaleway.elasticmetal.Server("my_server", {
- *     zone: "fr-par-2",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     installConfigAfterward: true,
- * });
- * ```
- *
- * ### With custom partitioning
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const config = new pulumi.Config();
- * const configCustomPartitioning = config.get("configCustomPartitioning") || "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"boot\",\"number\":2,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"root\",\"number\":3,\"size\":1018839433216,\"useAllAvailableSpace\":false}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"boot\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"data\",\"number\":2,\"size\":1018839433216,\"useAllAvailableSpace\":false}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/nvme0n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/nvme0n1p3\",\"format\":\"ext4\",\"mountpoint\":\"/\"},{\"device\":\"/dev/nvme1n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/data\"}],\"raids\":[]}";
- * const myOs = scaleway.elasticmetal.getOs({
- *     zone: "fr-par-1",
- *     name: "Ubuntu",
- *     version: "22.04 LTS (Jammy Jellyfish)",
- * });
- * const mySshKey = new scaleway.iam.SshKey("my_ssh_key", {
- *     name: "my_ssh_key",
- *     publicKey: "ssh XXXXXXXXXXX",
- * });
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-1",
- *     name: "EM-B220E-NVME",
- *     subscriptionPeriod: "hourly",
- * });
- * const myServer = new scaleway.elasticmetal.Server("my_server", {
- *     name: "my_super_server",
- *     zone: "fr-par-1",
- *     description: "test a description",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     os: myOs.then(myOs => myOs.osId),
- *     partitioning: configCustomPartitioning,
- *     tags: [
- *         "terraform-test",
- *         "scaleway_baremetal_server",
- *         "minimal",
- *     ],
- *     sshKeyIds: [mySshKey.id],
- * });
- * ```
- *
- * ### Migrate from hourly to monthly plan
- *
- * To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
- * You cannot directly modify the subscriptionPeriod of an existing scaleway.elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
- *
- * ### Hourly Plan Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-1",
- *     name: "EM-B220E-NVME",
- *     subscriptionPeriod: "hourly",
- * });
- * const myServer = new scaleway.elasticmetal.Server("my_server", {
- *     name: "UpdateSubscriptionPeriod",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     zone: "%s",
- *     installConfigAfterward: true,
- * });
- * ```
- *
- * ### Monthly Plan Example
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as scaleway from "@pulumiverse/scaleway";
- *
- * const myOffer = scaleway.elasticmetal.getOffer({
- *     zone: "fr-par-1",
- *     name: "EM-B220E-NVME",
- *     subscriptionPeriod: "monthly",
- * });
- * const myServer = new scaleway.elasticmetal.Server("my_server", {
- *     name: "UpdateSubscriptionPeriod",
- *     offer: myOffer.then(myOffer => myOffer.offerId),
- *     zone: "fr-par-1",
- *     installConfigAfterward: true,
- * });
- * ```
- *
- * **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
  *
  * ## Import
  *
@@ -260,6 +117,7 @@ export class Server extends pulumi.CustomResource {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
+     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     declare public readonly offer: pulumi.Output<string>;
     /**
@@ -294,9 +152,17 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly partitioning: pulumi.Output<string | undefined>;
     /**
-     * Password used for the installation. May be required depending on used os.
+     * Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
@@ -319,9 +185,17 @@ export class Server extends pulumi.CustomResource {
      */
     declare public readonly reinstallOnConfigChanges: pulumi.Output<boolean | undefined>;
     /**
-     * Password used for the service to install. May be required depending on used os.
+     * Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
      */
     declare public readonly servicePassword: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly servicePasswordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+     */
+    declare public readonly servicePasswordWoVersion: pulumi.Output<number | undefined>;
     /**
      * User used for the service to install.
      */
@@ -374,12 +248,16 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["osName"] = state?.osName;
             resourceInputs["partitioning"] = state?.partitioning;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["privateIps"] = state?.privateIps;
             resourceInputs["privateNetworks"] = state?.privateNetworks;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["protected"] = state?.protected;
             resourceInputs["reinstallOnConfigChanges"] = state?.reinstallOnConfigChanges;
             resourceInputs["servicePassword"] = state?.servicePassword;
+            resourceInputs["servicePasswordWo"] = state?.servicePasswordWo;
+            resourceInputs["servicePasswordWoVersion"] = state?.servicePasswordWoVersion;
             resourceInputs["serviceUser"] = state?.serviceUser;
             resourceInputs["sshKeyIds"] = state?.sshKeyIds;
             resourceInputs["tags"] = state?.tags;
@@ -400,12 +278,16 @@ export class Server extends pulumi.CustomResource {
             resourceInputs["os"] = args?.os;
             resourceInputs["partitioning"] = args?.partitioning;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateIps"] = args?.privateIps;
             resourceInputs["privateNetworks"] = args?.privateNetworks;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["protected"] = args?.protected;
             resourceInputs["reinstallOnConfigChanges"] = args?.reinstallOnConfigChanges;
             resourceInputs["servicePassword"] = args?.servicePassword ? pulumi.secret(args.servicePassword) : undefined;
+            resourceInputs["servicePasswordWo"] = args?.servicePasswordWo ? pulumi.secret(args.servicePasswordWo) : undefined;
+            resourceInputs["servicePasswordWoVersion"] = args?.servicePasswordWoVersion;
             resourceInputs["serviceUser"] = args?.serviceUser;
             resourceInputs["sshKeyIds"] = args?.sshKeyIds;
             resourceInputs["tags"] = args?.tags;
@@ -423,7 +305,7 @@ export class Server extends pulumi.CustomResource {
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const aliasOpts = { aliases: [{ type: "scaleway:index/baremetalServer:BaremetalServer" }] };
         opts = pulumi.mergeOptions(opts, aliasOpts);
-        const secretOpts = { additionalSecretOutputs: ["password", "servicePassword"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo", "servicePassword", "servicePasswordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Server.__pulumiType, name, resourceInputs, opts);
     }
@@ -474,6 +356,7 @@ export interface ServerState {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
+     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     offer?: pulumi.Input<string>;
     /**
@@ -508,9 +391,17 @@ export interface ServerState {
      */
     partitioning?: pulumi.Input<string>;
     /**
-     * Password used for the installation. May be required depending on used os.
+     * Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
@@ -533,9 +424,17 @@ export interface ServerState {
      */
     reinstallOnConfigChanges?: pulumi.Input<boolean>;
     /**
-     * Password used for the service to install. May be required depending on used os.
+     * Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
      */
     servicePassword?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    servicePasswordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+     */
+    servicePasswordWoVersion?: pulumi.Input<number>;
     /**
      * User used for the service to install.
      */
@@ -587,6 +486,7 @@ export interface ServerArgs {
      * Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
      *
      * > **Important:** Updates to `offer` will recreate the server.
+     * > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
      */
     offer: pulumi.Input<string>;
     /**
@@ -605,9 +505,17 @@ export interface ServerArgs {
      */
     partitioning?: pulumi.Input<string>;
     /**
-     * Password used for the installation. May be required depending on used os.
+     * Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * The list of private IPv4 and IPv6 addresses associated with the resource.
      */
@@ -630,9 +538,17 @@ export interface ServerArgs {
      */
     reinstallOnConfigChanges?: pulumi.Input<boolean>;
     /**
-     * Password used for the service to install. May be required depending on used os.
+     * Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
      */
     servicePassword?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    servicePasswordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+     */
+    servicePasswordWoVersion?: pulumi.Input<number>;
     /**
      * User used for the service to install.
      */

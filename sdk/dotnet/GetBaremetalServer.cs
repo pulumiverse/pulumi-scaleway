@@ -198,6 +198,8 @@ namespace Pulumiverse.Scaleway
         public readonly string OsName;
         public readonly string Partitioning;
         public readonly string Password;
+        public readonly string PasswordWo;
+        public readonly int PasswordWoVersion;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
@@ -205,6 +207,8 @@ namespace Pulumiverse.Scaleway
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
         public readonly string ServicePassword;
+        public readonly string ServicePasswordWo;
+        public readonly int ServicePasswordWoVersion;
         public readonly string ServiceUser;
         public readonly ImmutableArray<string> SshKeyIds;
         public readonly ImmutableArray<string> Tags;
@@ -251,6 +255,10 @@ namespace Pulumiverse.Scaleway
 
             string password,
 
+            string passwordWo,
+
+            int passwordWoVersion,
+
             ImmutableArray<Outputs.GetBaremetalServerPrivateIpResult> privateIps,
 
             ImmutableArray<Outputs.GetBaremetalServerPrivateNetworkResult> privateNetworks,
@@ -264,6 +272,10 @@ namespace Pulumiverse.Scaleway
             string? serverId,
 
             string servicePassword,
+
+            string servicePasswordWo,
+
+            int servicePasswordWoVersion,
 
             string serviceUser,
 
@@ -294,6 +306,8 @@ namespace Pulumiverse.Scaleway
             OsName = osName;
             Partitioning = partitioning;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
@@ -301,6 +315,8 @@ namespace Pulumiverse.Scaleway
             ReinstallOnConfigChanges = reinstallOnConfigChanges;
             ServerId = serverId;
             ServicePassword = servicePassword;
+            ServicePasswordWo = servicePasswordWo;
+            ServicePasswordWoVersion = servicePasswordWoVersion;
             ServiceUser = serviceUser;
             SshKeyIds = sshKeyIds;
             Tags = tags;

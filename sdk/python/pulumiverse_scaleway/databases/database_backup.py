@@ -115,17 +115,23 @@ class _DatabaseBackupState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  database_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 download_url: Optional[pulumi.Input[_builtins.str]] = None,
+                 download_url_expires_at: Optional[pulumi.Input[_builtins.str]] = None,
                  expires_at: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  instance_name: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
+                 same_region: Optional[pulumi.Input[_builtins.bool]] = None,
                  size: Optional[pulumi.Input[_builtins.int]] = None,
+                 status: Optional[pulumi.Input[_builtins.str]] = None,
                  updated_at: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabaseBackup resources.
         :param pulumi.Input[_builtins.str] created_at: Creation date (Format ISO 8601).
         :param pulumi.Input[_builtins.str] database_name: Name of the database of this backup.
+        :param pulumi.Input[_builtins.str] download_url: URL you can download the backup from (when exporting).
+        :param pulumi.Input[_builtins.str] download_url_expires_at: Expiration date of the download link (Format ISO 8601).
         :param pulumi.Input[_builtins.str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
@@ -135,13 +141,19 @@ class _DatabaseBackupState:
         :param pulumi.Input[_builtins.str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[_builtins.str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.bool] same_region: Whether the backup is stored in the same region as the source instance.
         :param pulumi.Input[_builtins.int] size: Size of the backup (in bytes).
+        :param pulumi.Input[_builtins.str] status: Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
         :param pulumi.Input[_builtins.str] updated_at: Updated date (Format ISO 8601).
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if database_name is not None:
             pulumi.set(__self__, "database_name", database_name)
+        if download_url is not None:
+            pulumi.set(__self__, "download_url", download_url)
+        if download_url_expires_at is not None:
+            pulumi.set(__self__, "download_url_expires_at", download_url_expires_at)
         if expires_at is not None:
             pulumi.set(__self__, "expires_at", expires_at)
         if instance_id is not None:
@@ -152,8 +164,12 @@ class _DatabaseBackupState:
             pulumi.set(__self__, "name", name)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if same_region is not None:
+            pulumi.set(__self__, "same_region", same_region)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
 
@@ -180,6 +196,30 @@ class _DatabaseBackupState:
     @database_name.setter
     def database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "database_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        URL you can download the backup from (when exporting).
+        """
+        return pulumi.get(self, "download_url")
+
+    @download_url.setter
+    def download_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "download_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrlExpiresAt")
+    def download_url_expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Expiration date of the download link (Format ISO 8601).
+        """
+        return pulumi.get(self, "download_url_expires_at")
+
+    @download_url_expires_at.setter
+    def download_url_expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "download_url_expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
@@ -246,6 +286,18 @@ class _DatabaseBackupState:
         pulumi.set(self, "region", value)
 
     @_builtins.property
+    @pulumi.getter(name="sameRegion")
+    def same_region(self) -> Optional[pulumi.Input[_builtins.bool]]:
+        """
+        Whether the backup is stored in the same region as the source instance.
+        """
+        return pulumi.get(self, "same_region")
+
+    @same_region.setter
+    def same_region(self, value: Optional[pulumi.Input[_builtins.bool]]):
+        pulumi.set(self, "same_region", value)
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[_builtins.int]]:
         """
@@ -256,6 +308,18 @@ class _DatabaseBackupState:
     @size.setter
     def size(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")
@@ -439,8 +503,12 @@ class DatabaseBackup(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["region"] = region
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["download_url"] = None
+            __props__.__dict__["download_url_expires_at"] = None
             __props__.__dict__["instance_name"] = None
+            __props__.__dict__["same_region"] = None
             __props__.__dict__["size"] = None
+            __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         alias_opts = pulumi.ResourceOptions(aliases=[pulumi.Alias(type_="scaleway:index/databaseBackup:DatabaseBackup")])
         opts = pulumi.ResourceOptions.merge(opts, alias_opts)
@@ -456,12 +524,16 @@ class DatabaseBackup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             database_name: Optional[pulumi.Input[_builtins.str]] = None,
+            download_url: Optional[pulumi.Input[_builtins.str]] = None,
+            download_url_expires_at: Optional[pulumi.Input[_builtins.str]] = None,
             expires_at: Optional[pulumi.Input[_builtins.str]] = None,
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             instance_name: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
+            same_region: Optional[pulumi.Input[_builtins.bool]] = None,
             size: Optional[pulumi.Input[_builtins.int]] = None,
+            status: Optional[pulumi.Input[_builtins.str]] = None,
             updated_at: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatabaseBackup':
         """
         Get an existing DatabaseBackup resource's state with the given name, id, and optional extra
@@ -472,6 +544,8 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] created_at: Creation date (Format ISO 8601).
         :param pulumi.Input[_builtins.str] database_name: Name of the database of this backup.
+        :param pulumi.Input[_builtins.str] download_url: URL you can download the backup from (when exporting).
+        :param pulumi.Input[_builtins.str] download_url_expires_at: Expiration date of the download link (Format ISO 8601).
         :param pulumi.Input[_builtins.str] expires_at: Expiration date (Format ISO 8601).
                
                > **Important:** `expires_at` cannot be removed after being set.
@@ -481,7 +555,9 @@ class DatabaseBackup(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] instance_name: Name of the instance of the backup.
         :param pulumi.Input[_builtins.str] name: Name of the database (e.g. `my-database`).
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the resource exists.
+        :param pulumi.Input[_builtins.bool] same_region: Whether the backup is stored in the same region as the source instance.
         :param pulumi.Input[_builtins.int] size: Size of the backup (in bytes).
+        :param pulumi.Input[_builtins.str] status: Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
         :param pulumi.Input[_builtins.str] updated_at: Updated date (Format ISO 8601).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -490,12 +566,16 @@ class DatabaseBackup(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["database_name"] = database_name
+        __props__.__dict__["download_url"] = download_url
+        __props__.__dict__["download_url_expires_at"] = download_url_expires_at
         __props__.__dict__["expires_at"] = expires_at
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
+        __props__.__dict__["same_region"] = same_region
         __props__.__dict__["size"] = size
+        __props__.__dict__["status"] = status
         __props__.__dict__["updated_at"] = updated_at
         return DatabaseBackup(resource_name, opts=opts, __props__=__props__)
 
@@ -514,6 +594,22 @@ class DatabaseBackup(pulumi.CustomResource):
         Name of the database of this backup.
         """
         return pulumi.get(self, "database_name")
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrl")
+    def download_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        URL you can download the backup from (when exporting).
+        """
+        return pulumi.get(self, "download_url")
+
+    @_builtins.property
+    @pulumi.getter(name="downloadUrlExpiresAt")
+    def download_url_expires_at(self) -> pulumi.Output[_builtins.str]:
+        """
+        Expiration date of the download link (Format ISO 8601).
+        """
+        return pulumi.get(self, "download_url_expires_at")
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
@@ -560,12 +656,28 @@ class DatabaseBackup(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @_builtins.property
+    @pulumi.getter(name="sameRegion")
+    def same_region(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Whether the backup is stored in the same region as the source instance.
+        """
+        return pulumi.get(self, "same_region")
+
+    @_builtins.property
     @pulumi.getter
     def size(self) -> pulumi.Output[_builtins.int]:
         """
         Size of the backup (in bytes).
         """
         return pulumi.get(self, "size")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[_builtins.str]:
+        """
+        Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+        """
+        return pulumi.get(self, "status")
 
     @_builtins.property
     @pulumi.getter(name="updatedAt")

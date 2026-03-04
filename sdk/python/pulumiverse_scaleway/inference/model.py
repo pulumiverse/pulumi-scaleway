@@ -25,14 +25,18 @@ class ModelArgs:
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None):
+                 secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None):
         """
         The set of arguments for constructing a Model resource.
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
-        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
+        :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         """
         pulumi.set(__self__, "url", url)
         if name is not None:
@@ -43,12 +47,16 @@ class ModelArgs:
             pulumi.set(__self__, "region", region)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if secret_wo is not None:
+            pulumi.set(__self__, "secret_wo", secret_wo)
+        if secret_wo_version is not None:
+            pulumi.set(__self__, "secret_wo_version", secret_wo_version)
 
     @_builtins.property
     @pulumi.getter
     def url(self) -> pulumi.Input[_builtins.str]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         return pulumi.get(self, "url")
 
@@ -96,13 +104,37 @@ class ModelArgs:
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
     def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretWo")
+    def secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "secret_wo")
+
+    @secret_wo.setter
+    def secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretWoVersion")
+    def secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only secret. Required when using `secret_wo`.
+        """
+        return pulumi.get(self, "secret_wo_version")
+
+    @secret_wo_version.setter
+    def secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_wo_version", value)
 
 
 @pulumi.input_type
@@ -117,6 +149,8 @@ class _ModelState:
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  size_bytes: Optional[pulumi.Input[_builtins.int]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -132,12 +166,14 @@ class _ModelState:
         :param pulumi.Input[_builtins.int] parameter_size_bits: Size, in bits, of the model parameters.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
-        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
+        :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         :param pulumi.Input[_builtins.int] size_bytes: Total size, in bytes, of the model archive.
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the model.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the model
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -157,6 +193,10 @@ class _ModelState:
             pulumi.set(__self__, "region", region)
         if secret is not None:
             pulumi.set(__self__, "secret", secret)
+        if secret_wo is not None:
+            pulumi.set(__self__, "secret_wo", secret_wo)
+        if secret_wo_version is not None:
+            pulumi.set(__self__, "secret_wo_version", secret_wo_version)
         if size_bytes is not None:
             pulumi.set(__self__, "size_bytes", size_bytes)
         if status is not None:
@@ -268,13 +308,37 @@ class _ModelState:
     @pulumi.getter
     def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
     def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "secret", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretWo")
+    def secret_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "secret_wo")
+
+    @secret_wo.setter
+    def secret_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "secret_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="secretWoVersion")
+    def secret_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only secret. Required when using `secret_wo`.
+        """
+        return pulumi.get(self, "secret_wo_version")
+
+    @secret_wo_version.setter
+    def secret_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "secret_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="sizeBytes")
@@ -328,7 +392,7 @@ class _ModelState:
     @pulumi.getter
     def url(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         return pulumi.get(self, "url")
 
@@ -347,6 +411,8 @@ class Model(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
@@ -354,24 +420,22 @@ class Model(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic creation of an inference model
         test = scaleway.inference.Model("test",
             name="my-awesome-model",
             url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
             secret="my-secret-token")
         ```
 
-        ### Deploy your own model on your managed inference
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Deploy your own model on your managed inference
         my_model = scaleway.inference.Model("my_model",
             name="my-awesome-model",
             url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
@@ -384,6 +448,18 @@ class Model(pulumi.CustomResource):
                 "is_enabled": True,
             },
             accept_eula=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Create a model using your model's secret token without storing it in the state
+        my_model_wo = scaleway.inference.Model("my_model_wo",
+            name="my-awesome-model-wo",
+            url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
+            secret_wo="my-secret-token",
+            secret_wo_version=1)
         ```
 
         ## Import
@@ -401,8 +477,10 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the model. This must be unique within the project.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
-        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
+        :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         ...
     @overload
@@ -415,24 +493,22 @@ class Model(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic creation of an inference model
         test = scaleway.inference.Model("test",
             name="my-awesome-model",
             url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
             secret="my-secret-token")
         ```
 
-        ### Deploy your own model on your managed inference
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Deploy your own model on your managed inference
         my_model = scaleway.inference.Model("my_model",
             name="my-awesome-model",
             url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
@@ -445,6 +521,18 @@ class Model(pulumi.CustomResource):
                 "is_enabled": True,
             },
             accept_eula=True)
+        ```
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        ### Create a model using your model's secret token without storing it in the state
+        my_model_wo = scaleway.inference.Model("my_model_wo",
+            name="my-awesome-model-wo",
+            url="https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
+            secret_wo="my-secret-token",
+            secret_wo_version=1)
         ```
 
         ## Import
@@ -476,6 +564,8 @@ class Model(pulumi.CustomResource):
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  secret: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -490,6 +580,8 @@ class Model(pulumi.CustomResource):
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["region"] = region
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
+            __props__.__dict__["secret_wo"] = None if secret_wo is None else pulumi.Output.secret(secret_wo)
+            __props__.__dict__["secret_wo_version"] = secret_wo_version
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
@@ -502,7 +594,7 @@ class Model(pulumi.CustomResource):
             __props__.__dict__["status"] = None
             __props__.__dict__["tags"] = None
             __props__.__dict__["updated_at"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secret"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secret", "secretWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Model, __self__).__init__(
             'scaleway:inference/model:Model',
@@ -523,6 +615,8 @@ class Model(pulumi.CustomResource):
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             secret: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            secret_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             size_bytes: Optional[pulumi.Input[_builtins.int]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -543,12 +637,14 @@ class Model(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] parameter_size_bits: Size, in bits, of the model parameters.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the deployment is associated with.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment is created.
-        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        :param pulumi.Input[_builtins.str] secret: Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
+        :param pulumi.Input[_builtins.str] secret_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] secret_wo_version: The version of the write-only secret. Required when using `secret_wo`.
         :param pulumi.Input[_builtins.int] size_bytes: Total size, in bytes, of the model archive.
         :param pulumi.Input[_builtins.str] status: The current status of the model (e.g., ready, error, etc.).
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: Tags associated with the model.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the model
-        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        :param pulumi.Input[_builtins.str] url: The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -563,6 +659,8 @@ class Model(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["region"] = region
         __props__.__dict__["secret"] = secret
+        __props__.__dict__["secret_wo"] = secret_wo
+        __props__.__dict__["secret_wo_version"] = secret_wo_version
         __props__.__dict__["size_bytes"] = size_bytes
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -638,9 +736,25 @@ class Model(pulumi.CustomResource):
     @pulumi.getter
     def secret(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secret_wo`.
         """
         return pulumi.get(self, "secret")
+
+    @_builtins.property
+    @pulumi.getter(name="secretWo")
+    def secret_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "secret_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="secretWoVersion")
+    def secret_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only secret. Required when using `secret_wo`.
+        """
+        return pulumi.get(self, "secret_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="sizeBytes")
@@ -678,7 +792,7 @@ class Model(pulumi.CustomResource):
     @pulumi.getter
     def url(self) -> pulumi.Output[_builtins.str]:
         """
-        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+        The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secret_wo`
         """
         return pulumi.get(self, "url")
 

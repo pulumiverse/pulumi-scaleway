@@ -50,6 +50,31 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
+ * ### With Private Network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.network.Vpc("main", {name: "my-vpc"});
+ * const pn = new scaleway.network.PrivateNetwork("pn", {
+ *     name: "my-private-network",
+ *     vpcId: main.id,
+ * });
+ * const mainDeployment = new scaleway.datawarehouse.Deployment("main", {
+ *     name: "my-datawarehouse",
+ *     version: "v25",
+ *     replicaCount: 1,
+ *     cpuMin: 2,
+ *     cpuMax: 4,
+ *     ramPerCpu: 4,
+ *     password: "thiZ_is_v&ry_s3cret",
+ *     privateNetwork: {
+ *         pnId: pn.id,
+ *     },
+ * });
+ * ```
+ *
  * ## Import
  *
  * Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
@@ -109,9 +134,13 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
+     * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+     */
+    declare public readonly privateNetwork: pulumi.Output<outputs.datawarehouse.DeploymentPrivateNetwork | undefined>;
+    /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      *
      * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */
@@ -167,6 +196,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
+            resourceInputs["privateNetwork"] = state?.privateNetwork;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicNetworks"] = state?.publicNetworks;
             resourceInputs["ramPerCpu"] = state?.ramPerCpu;
@@ -197,6 +227,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["cpuMin"] = args?.cpuMin;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["privateNetwork"] = args?.privateNetwork;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["ramPerCpu"] = args?.ramPerCpu;
             resourceInputs["region"] = args?.region;
@@ -240,9 +271,13 @@ export interface DeploymentState {
      */
     password?: pulumi.Input<string>;
     /**
+     * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+     */
+    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork>;
+    /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      *
      * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */
@@ -302,9 +337,13 @@ export interface DeploymentArgs {
      */
     password?: pulumi.Input<string>;
     /**
+     * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+     */
+    privateNetwork?: pulumi.Input<inputs.datawarehouse.DeploymentPrivateNetwork>;
+    /**
      * `projectId`) The ID of the project the deployment is associated with.
      *
-     * > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+     * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
      *
      * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */

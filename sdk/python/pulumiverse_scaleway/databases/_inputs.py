@@ -41,7 +41,7 @@ if not MYPY:
     class AclAclRuleArgsDict(TypedDict):
         ip: pulumi.Input[_builtins.str]
         """
-        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         description: NotRequired[pulumi.Input[_builtins.str]]
         """
@@ -56,7 +56,7 @@ class AclAclRuleArgs:
                  ip: pulumi.Input[_builtins.str],
                  description: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] ip: The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param pulumi.Input[_builtins.str] ip: The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         :param pulumi.Input[_builtins.str] description: A text describing this rule. Default description: `IP allowed`
         """
         pulumi.set(__self__, "ip", ip)
@@ -67,7 +67,7 @@ class AclAclRuleArgs:
     @pulumi.getter
     def ip(self) -> pulumi.Input[_builtins.str]:
         """
-        The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         return pulumi.get(self, "ip")
 

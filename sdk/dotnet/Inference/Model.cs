@@ -15,8 +15,6 @@ namespace Pulumiverse.Scaleway.Inference
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -25,6 +23,7 @@ namespace Pulumiverse.Scaleway.Inference
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic creation of an inference model
     ///     var test = new Scaleway.Inference.Model("test", new()
     ///     {
     ///         Name = "my-awesome-model",
@@ -35,8 +34,6 @@ namespace Pulumiverse.Scaleway.Inference
     /// });
     /// ```
     /// 
-    /// ### Deploy your own model on your managed inference
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -45,6 +42,7 @@ namespace Pulumiverse.Scaleway.Inference
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Deploy your own model on your managed inference
     ///     var myModel = new Scaleway.Inference.Model("my_model", new()
     ///     {
     ///         Name = "my-awesome-model",
@@ -62,6 +60,26 @@ namespace Pulumiverse.Scaleway.Inference
     ///             IsEnabled = true,
     ///         },
     ///         AcceptEula = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     //## Create a model using your model's secret token without storing it in the state
+    ///     var myModelWo = new Scaleway.Inference.Model("my_model_wo", new()
+    ///     {
+    ///         Name = "my-awesome-model-wo",
+    ///         Url = "https://huggingface.co/agentica-org/DeepCoder-14B-Preview",
+    ///         SecretWo = "my-secret-token",
+    ///         SecretWoVersion = 1,
     ///     });
     /// 
     /// });
@@ -129,10 +147,22 @@ namespace Pulumiverse.Scaleway.Inference
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `SecretWo`.
         /// </summary>
         [Output("secret")]
         public Output<string?> Secret { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("secretWo")]
+        public Output<string?> SecretWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only secret. Required when using `SecretWo`.
+        /// </summary>
+        [Output("secretWoVersion")]
+        public Output<int?> SecretWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Total size, in bytes, of the model archive.
@@ -159,7 +189,7 @@ namespace Pulumiverse.Scaleway.Inference
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret` or `SecretWo`
         /// </summary>
         [Output("url")]
         public Output<string> Url { get; private set; } = null!;
@@ -191,6 +221,7 @@ namespace Pulumiverse.Scaleway.Inference
                 AdditionalSecretOutputs =
                 {
                     "secret",
+                    "secretWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -237,7 +268,7 @@ namespace Pulumiverse.Scaleway.Inference
         private Input<string>? _secret;
 
         /// <summary>
-        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `SecretWo`.
         /// </summary>
         public Input<string>? Secret
         {
@@ -249,8 +280,30 @@ namespace Pulumiverse.Scaleway.Inference
             }
         }
 
+        [Input("secretWo")]
+        private Input<string>? _secretWo;
+
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? SecretWo
+        {
+            get => _secretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only secret. Required when using `SecretWo`.
+        /// </summary>
+        [Input("secretWoVersion")]
+        public Input<int>? SecretWoVersion { get; set; }
+
+        /// <summary>
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret` or `SecretWo`
         /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
@@ -321,7 +374,7 @@ namespace Pulumiverse.Scaleway.Inference
         private Input<string>? _secret;
 
         /// <summary>
-        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+        /// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `SecretWo`.
         /// </summary>
         public Input<string>? Secret
         {
@@ -332,6 +385,28 @@ namespace Pulumiverse.Scaleway.Inference
                 _secret = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("secretWo")]
+        private Input<string>? _secretWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? SecretWo
+        {
+            get => _secretWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only secret. Required when using `SecretWo`.
+        /// </summary>
+        [Input("secretWoVersion")]
+        public Input<int>? SecretWoVersion { get; set; }
 
         /// <summary>
         /// Total size, in bytes, of the model archive.
@@ -364,7 +439,7 @@ namespace Pulumiverse.Scaleway.Inference
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret`
+        /// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., &lt;https://huggingface.co/agentica-org/DeepCoder-14B-Preview&gt;). The URL must be publicly accessible or require valid credentials via `Secret` or `SecretWo`
         /// </summary>
         [Input("url")]
         public Input<string>? Url { get; set; }

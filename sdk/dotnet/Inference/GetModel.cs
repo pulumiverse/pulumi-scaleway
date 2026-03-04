@@ -168,6 +168,8 @@ namespace Pulumiverse.Scaleway.Inference
         public readonly string ProjectId;
         public readonly string Region;
         public readonly string Secret;
+        public readonly string SecretWo;
+        public readonly int SecretWoVersion;
         /// <summary>
         /// Total size, in bytes, of the model archive.
         /// </summary>
@@ -207,6 +209,10 @@ namespace Pulumiverse.Scaleway.Inference
 
             string secret,
 
+            string secretWo,
+
+            int secretWoVersion,
+
             int sizeBytes,
 
             string status,
@@ -228,6 +234,8 @@ namespace Pulumiverse.Scaleway.Inference
             ProjectId = projectId;
             Region = region;
             Secret = secret;
+            SecretWo = secretWo;
+            SecretWoVersion = secretWoVersion;
             SizeBytes = sizeBytes;
             Status = status;
             Tags = tags;

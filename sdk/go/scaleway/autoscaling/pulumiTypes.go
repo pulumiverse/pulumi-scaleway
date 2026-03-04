@@ -838,6 +838,387 @@ func (o InstanceTemplateVolumeFromSnapshotPtrOutput) SnapshotId() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetInstanceGroupCapacity struct {
+	// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+	CooldownDelay int `pulumi:"cooldownDelay"`
+	// The maximum count of Instances for the Instance group
+	MaxReplicas int `pulumi:"maxReplicas"`
+	// The minimum count of Instances for the Instance group
+	MinReplicas int `pulumi:"minReplicas"`
+}
+
+// GetInstanceGroupCapacityInput is an input type that accepts GetInstanceGroupCapacityArgs and GetInstanceGroupCapacityOutput values.
+// You can construct a concrete instance of `GetInstanceGroupCapacityInput` via:
+//
+//	GetInstanceGroupCapacityArgs{...}
+type GetInstanceGroupCapacityInput interface {
+	pulumi.Input
+
+	ToGetInstanceGroupCapacityOutput() GetInstanceGroupCapacityOutput
+	ToGetInstanceGroupCapacityOutputWithContext(context.Context) GetInstanceGroupCapacityOutput
+}
+
+type GetInstanceGroupCapacityArgs struct {
+	// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+	CooldownDelay pulumi.IntInput `pulumi:"cooldownDelay"`
+	// The maximum count of Instances for the Instance group
+	MaxReplicas pulumi.IntInput `pulumi:"maxReplicas"`
+	// The minimum count of Instances for the Instance group
+	MinReplicas pulumi.IntInput `pulumi:"minReplicas"`
+}
+
+func (GetInstanceGroupCapacityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (i GetInstanceGroupCapacityArgs) ToGetInstanceGroupCapacityOutput() GetInstanceGroupCapacityOutput {
+	return i.ToGetInstanceGroupCapacityOutputWithContext(context.Background())
+}
+
+func (i GetInstanceGroupCapacityArgs) ToGetInstanceGroupCapacityOutputWithContext(ctx context.Context) GetInstanceGroupCapacityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceGroupCapacityOutput)
+}
+
+// GetInstanceGroupCapacityArrayInput is an input type that accepts GetInstanceGroupCapacityArray and GetInstanceGroupCapacityArrayOutput values.
+// You can construct a concrete instance of `GetInstanceGroupCapacityArrayInput` via:
+//
+//	GetInstanceGroupCapacityArray{ GetInstanceGroupCapacityArgs{...} }
+type GetInstanceGroupCapacityArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceGroupCapacityArrayOutput() GetInstanceGroupCapacityArrayOutput
+	ToGetInstanceGroupCapacityArrayOutputWithContext(context.Context) GetInstanceGroupCapacityArrayOutput
+}
+
+type GetInstanceGroupCapacityArray []GetInstanceGroupCapacityInput
+
+func (GetInstanceGroupCapacityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (i GetInstanceGroupCapacityArray) ToGetInstanceGroupCapacityArrayOutput() GetInstanceGroupCapacityArrayOutput {
+	return i.ToGetInstanceGroupCapacityArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceGroupCapacityArray) ToGetInstanceGroupCapacityArrayOutputWithContext(ctx context.Context) GetInstanceGroupCapacityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceGroupCapacityArrayOutput)
+}
+
+type GetInstanceGroupCapacityOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceGroupCapacityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (o GetInstanceGroupCapacityOutput) ToGetInstanceGroupCapacityOutput() GetInstanceGroupCapacityOutput {
+	return o
+}
+
+func (o GetInstanceGroupCapacityOutput) ToGetInstanceGroupCapacityOutputWithContext(ctx context.Context) GetInstanceGroupCapacityOutput {
+	return o
+}
+
+// Time (in seconds) after a scaling action during which requests to carry out a new scaling action will be denied
+func (o GetInstanceGroupCapacityOutput) CooldownDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceGroupCapacity) int { return v.CooldownDelay }).(pulumi.IntOutput)
+}
+
+// The maximum count of Instances for the Instance group
+func (o GetInstanceGroupCapacityOutput) MaxReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceGroupCapacity) int { return v.MaxReplicas }).(pulumi.IntOutput)
+}
+
+// The minimum count of Instances for the Instance group
+func (o GetInstanceGroupCapacityOutput) MinReplicas() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstanceGroupCapacity) int { return v.MinReplicas }).(pulumi.IntOutput)
+}
+
+type GetInstanceGroupCapacityArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceGroupCapacityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceGroupCapacity)(nil)).Elem()
+}
+
+func (o GetInstanceGroupCapacityArrayOutput) ToGetInstanceGroupCapacityArrayOutput() GetInstanceGroupCapacityArrayOutput {
+	return o
+}
+
+func (o GetInstanceGroupCapacityArrayOutput) ToGetInstanceGroupCapacityArrayOutputWithContext(ctx context.Context) GetInstanceGroupCapacityArrayOutput {
+	return o
+}
+
+func (o GetInstanceGroupCapacityArrayOutput) Index(i pulumi.IntInput) GetInstanceGroupCapacityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceGroupCapacity {
+		return vs[0].([]GetInstanceGroupCapacity)[vs[1].(int)]
+	}).(GetInstanceGroupCapacityOutput)
+}
+
+type GetInstanceGroupLoadBalancer struct {
+	// The Load Balancer backend IDs
+	BackendIds []string `pulumi:"backendIds"`
+	// The ID of the load balancer
+	Id string `pulumi:"id"`
+	// The ID of the Private Network attached to the Load Balancer
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+}
+
+// GetInstanceGroupLoadBalancerInput is an input type that accepts GetInstanceGroupLoadBalancerArgs and GetInstanceGroupLoadBalancerOutput values.
+// You can construct a concrete instance of `GetInstanceGroupLoadBalancerInput` via:
+//
+//	GetInstanceGroupLoadBalancerArgs{...}
+type GetInstanceGroupLoadBalancerInput interface {
+	pulumi.Input
+
+	ToGetInstanceGroupLoadBalancerOutput() GetInstanceGroupLoadBalancerOutput
+	ToGetInstanceGroupLoadBalancerOutputWithContext(context.Context) GetInstanceGroupLoadBalancerOutput
+}
+
+type GetInstanceGroupLoadBalancerArgs struct {
+	// The Load Balancer backend IDs
+	BackendIds pulumi.StringArrayInput `pulumi:"backendIds"`
+	// The ID of the load balancer
+	Id pulumi.StringInput `pulumi:"id"`
+	// The ID of the Private Network attached to the Load Balancer
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+}
+
+func (GetInstanceGroupLoadBalancerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (i GetInstanceGroupLoadBalancerArgs) ToGetInstanceGroupLoadBalancerOutput() GetInstanceGroupLoadBalancerOutput {
+	return i.ToGetInstanceGroupLoadBalancerOutputWithContext(context.Background())
+}
+
+func (i GetInstanceGroupLoadBalancerArgs) ToGetInstanceGroupLoadBalancerOutputWithContext(ctx context.Context) GetInstanceGroupLoadBalancerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceGroupLoadBalancerOutput)
+}
+
+// GetInstanceGroupLoadBalancerArrayInput is an input type that accepts GetInstanceGroupLoadBalancerArray and GetInstanceGroupLoadBalancerArrayOutput values.
+// You can construct a concrete instance of `GetInstanceGroupLoadBalancerArrayInput` via:
+//
+//	GetInstanceGroupLoadBalancerArray{ GetInstanceGroupLoadBalancerArgs{...} }
+type GetInstanceGroupLoadBalancerArrayInput interface {
+	pulumi.Input
+
+	ToGetInstanceGroupLoadBalancerArrayOutput() GetInstanceGroupLoadBalancerArrayOutput
+	ToGetInstanceGroupLoadBalancerArrayOutputWithContext(context.Context) GetInstanceGroupLoadBalancerArrayOutput
+}
+
+type GetInstanceGroupLoadBalancerArray []GetInstanceGroupLoadBalancerInput
+
+func (GetInstanceGroupLoadBalancerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (i GetInstanceGroupLoadBalancerArray) ToGetInstanceGroupLoadBalancerArrayOutput() GetInstanceGroupLoadBalancerArrayOutput {
+	return i.ToGetInstanceGroupLoadBalancerArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstanceGroupLoadBalancerArray) ToGetInstanceGroupLoadBalancerArrayOutputWithContext(ctx context.Context) GetInstanceGroupLoadBalancerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstanceGroupLoadBalancerArrayOutput)
+}
+
+type GetInstanceGroupLoadBalancerOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceGroupLoadBalancerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (o GetInstanceGroupLoadBalancerOutput) ToGetInstanceGroupLoadBalancerOutput() GetInstanceGroupLoadBalancerOutput {
+	return o
+}
+
+func (o GetInstanceGroupLoadBalancerOutput) ToGetInstanceGroupLoadBalancerOutputWithContext(ctx context.Context) GetInstanceGroupLoadBalancerOutput {
+	return o
+}
+
+// The Load Balancer backend IDs
+func (o GetInstanceGroupLoadBalancerOutput) BackendIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetInstanceGroupLoadBalancer) []string { return v.BackendIds }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the load balancer
+func (o GetInstanceGroupLoadBalancerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceGroupLoadBalancer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The ID of the Private Network attached to the Load Balancer
+func (o GetInstanceGroupLoadBalancerOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceGroupLoadBalancer) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+type GetInstanceGroupLoadBalancerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstanceGroupLoadBalancerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstanceGroupLoadBalancer)(nil)).Elem()
+}
+
+func (o GetInstanceGroupLoadBalancerArrayOutput) ToGetInstanceGroupLoadBalancerArrayOutput() GetInstanceGroupLoadBalancerArrayOutput {
+	return o
+}
+
+func (o GetInstanceGroupLoadBalancerArrayOutput) ToGetInstanceGroupLoadBalancerArrayOutputWithContext(ctx context.Context) GetInstanceGroupLoadBalancerArrayOutput {
+	return o
+}
+
+func (o GetInstanceGroupLoadBalancerArrayOutput) Index(i pulumi.IntInput) GetInstanceGroupLoadBalancerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceGroupLoadBalancer {
+		return vs[0].([]GetInstanceGroupLoadBalancer)[vs[1].(int)]
+	}).(GetInstanceGroupLoadBalancerOutput)
+}
+
+type GetInstancePolicyMetric struct {
+	// How the values sampled for the `metric` should be aggregated
+	Aggregate string `pulumi:"aggregate"`
+	// Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	CockpitMetricName string `pulumi:"cockpitMetricName"`
+	// Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	ManagedMetric string `pulumi:"managedMetric"`
+	// The name of the Instance policy. Only one of `name` and `instancePolicyId` should be specified. When using `name`, `instanceGroupId` is required.
+	Name string `pulumi:"name"`
+	// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+	Operator string `pulumi:"operator"`
+	// Interval of time, in minutes, during which metric is sampled
+	SamplingRangeMin int `pulumi:"samplingRangeMin"`
+	// Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+	Threshold int `pulumi:"threshold"`
+}
+
+// GetInstancePolicyMetricInput is an input type that accepts GetInstancePolicyMetricArgs and GetInstancePolicyMetricOutput values.
+// You can construct a concrete instance of `GetInstancePolicyMetricInput` via:
+//
+//	GetInstancePolicyMetricArgs{...}
+type GetInstancePolicyMetricInput interface {
+	pulumi.Input
+
+	ToGetInstancePolicyMetricOutput() GetInstancePolicyMetricOutput
+	ToGetInstancePolicyMetricOutputWithContext(context.Context) GetInstancePolicyMetricOutput
+}
+
+type GetInstancePolicyMetricArgs struct {
+	// How the values sampled for the `metric` should be aggregated
+	Aggregate pulumi.StringInput `pulumi:"aggregate"`
+	// Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	CockpitMetricName pulumi.StringInput `pulumi:"cockpitMetricName"`
+	// Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+	ManagedMetric pulumi.StringInput `pulumi:"managedMetric"`
+	// The name of the Instance policy. Only one of `name` and `instancePolicyId` should be specified. When using `name`, `instanceGroupId` is required.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+	Operator pulumi.StringInput `pulumi:"operator"`
+	// Interval of time, in minutes, during which metric is sampled
+	SamplingRangeMin pulumi.IntInput `pulumi:"samplingRangeMin"`
+	// Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+	Threshold pulumi.IntInput `pulumi:"threshold"`
+}
+
+func (GetInstancePolicyMetricArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePolicyMetric)(nil)).Elem()
+}
+
+func (i GetInstancePolicyMetricArgs) ToGetInstancePolicyMetricOutput() GetInstancePolicyMetricOutput {
+	return i.ToGetInstancePolicyMetricOutputWithContext(context.Background())
+}
+
+func (i GetInstancePolicyMetricArgs) ToGetInstancePolicyMetricOutputWithContext(ctx context.Context) GetInstancePolicyMetricOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePolicyMetricOutput)
+}
+
+// GetInstancePolicyMetricArrayInput is an input type that accepts GetInstancePolicyMetricArray and GetInstancePolicyMetricArrayOutput values.
+// You can construct a concrete instance of `GetInstancePolicyMetricArrayInput` via:
+//
+//	GetInstancePolicyMetricArray{ GetInstancePolicyMetricArgs{...} }
+type GetInstancePolicyMetricArrayInput interface {
+	pulumi.Input
+
+	ToGetInstancePolicyMetricArrayOutput() GetInstancePolicyMetricArrayOutput
+	ToGetInstancePolicyMetricArrayOutputWithContext(context.Context) GetInstancePolicyMetricArrayOutput
+}
+
+type GetInstancePolicyMetricArray []GetInstancePolicyMetricInput
+
+func (GetInstancePolicyMetricArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePolicyMetric)(nil)).Elem()
+}
+
+func (i GetInstancePolicyMetricArray) ToGetInstancePolicyMetricArrayOutput() GetInstancePolicyMetricArrayOutput {
+	return i.ToGetInstancePolicyMetricArrayOutputWithContext(context.Background())
+}
+
+func (i GetInstancePolicyMetricArray) ToGetInstancePolicyMetricArrayOutputWithContext(ctx context.Context) GetInstancePolicyMetricArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInstancePolicyMetricArrayOutput)
+}
+
+type GetInstancePolicyMetricOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePolicyMetricOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancePolicyMetric)(nil)).Elem()
+}
+
+func (o GetInstancePolicyMetricOutput) ToGetInstancePolicyMetricOutput() GetInstancePolicyMetricOutput {
+	return o
+}
+
+func (o GetInstancePolicyMetricOutput) ToGetInstancePolicyMetricOutputWithContext(ctx context.Context) GetInstancePolicyMetricOutput {
+	return o
+}
+
+// How the values sampled for the `metric` should be aggregated
+func (o GetInstancePolicyMetricOutput) Aggregate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) string { return v.Aggregate }).(pulumi.StringOutput)
+}
+
+// Custom metric to use for this policy. This must be stored in Scaleway Cockpit. The metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+func (o GetInstancePolicyMetricOutput) CockpitMetricName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) string { return v.CockpitMetricName }).(pulumi.StringOutput)
+}
+
+// Managed metric to use for this policy. These are available by default in Cockpit without any configuration or `nodeExporter`. The chosen metric forms the basis of the condition that will be checked to determine whether a scaling action should be triggered
+func (o GetInstancePolicyMetricOutput) ManagedMetric() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) string { return v.ManagedMetric }).(pulumi.StringOutput)
+}
+
+// The name of the Instance policy. Only one of `name` and `instancePolicyId` should be specified. When using `name`, `instanceGroupId` is required.
+func (o GetInstancePolicyMetricOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Operator used when comparing the threshold value of the chosen `metric` to the actual sampled and aggregated value
+func (o GetInstancePolicyMetricOutput) Operator() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) string { return v.Operator }).(pulumi.StringOutput)
+}
+
+// Interval of time, in minutes, during which metric is sampled
+func (o GetInstancePolicyMetricOutput) SamplingRangeMin() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) int { return v.SamplingRangeMin }).(pulumi.IntOutput)
+}
+
+// Threshold value to measure the aggregated sampled `metric` value against. Combined with the `operator` field, determines whether a scaling action should be triggered
+func (o GetInstancePolicyMetricOutput) Threshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancePolicyMetric) int { return v.Threshold }).(pulumi.IntOutput)
+}
+
+type GetInstancePolicyMetricArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInstancePolicyMetricArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInstancePolicyMetric)(nil)).Elem()
+}
+
+func (o GetInstancePolicyMetricArrayOutput) ToGetInstancePolicyMetricArrayOutput() GetInstancePolicyMetricArrayOutput {
+	return o
+}
+
+func (o GetInstancePolicyMetricArrayOutput) ToGetInstancePolicyMetricArrayOutputWithContext(ctx context.Context) GetInstancePolicyMetricArrayOutput {
+	return o
+}
+
+func (o GetInstancePolicyMetricArrayOutput) Index(i pulumi.IntInput) GetInstancePolicyMetricOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancePolicyMetric {
+		return vs[0].([]GetInstancePolicyMetric)[vs[1].(int)]
+	}).(GetInstancePolicyMetricOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGroupCapacityInput)(nil)).Elem(), InstanceGroupCapacityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceGroupCapacityArrayInput)(nil)).Elem(), InstanceGroupCapacityArray{})
@@ -851,6 +1232,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTemplateVolumeFromEmptyPtrInput)(nil)).Elem(), InstanceTemplateVolumeFromEmptyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTemplateVolumeFromSnapshotInput)(nil)).Elem(), InstanceTemplateVolumeFromSnapshotArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*InstanceTemplateVolumeFromSnapshotPtrInput)(nil)).Elem(), InstanceTemplateVolumeFromSnapshotArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceGroupCapacityInput)(nil)).Elem(), GetInstanceGroupCapacityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceGroupCapacityArrayInput)(nil)).Elem(), GetInstanceGroupCapacityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceGroupLoadBalancerInput)(nil)).Elem(), GetInstanceGroupLoadBalancerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceGroupLoadBalancerArrayInput)(nil)).Elem(), GetInstanceGroupLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePolicyMetricInput)(nil)).Elem(), GetInstancePolicyMetricArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePolicyMetricArrayInput)(nil)).Elem(), GetInstancePolicyMetricArray{})
 	pulumi.RegisterOutputType(InstanceGroupCapacityOutput{})
 	pulumi.RegisterOutputType(InstanceGroupCapacityArrayOutput{})
 	pulumi.RegisterOutputType(InstanceGroupLoadBalancerOutput{})
@@ -863,4 +1250,10 @@ func init() {
 	pulumi.RegisterOutputType(InstanceTemplateVolumeFromEmptyPtrOutput{})
 	pulumi.RegisterOutputType(InstanceTemplateVolumeFromSnapshotOutput{})
 	pulumi.RegisterOutputType(InstanceTemplateVolumeFromSnapshotPtrOutput{})
+	pulumi.RegisterOutputType(GetInstanceGroupCapacityOutput{})
+	pulumi.RegisterOutputType(GetInstanceGroupCapacityArrayOutput{})
+	pulumi.RegisterOutputType(GetInstanceGroupLoadBalancerOutput{})
+	pulumi.RegisterOutputType(GetInstanceGroupLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetInstancePolicyMetricOutput{})
+	pulumi.RegisterOutputType(GetInstancePolicyMetricArrayOutput{})
 }

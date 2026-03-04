@@ -1046,6 +1046,7 @@ import * as instance from "./instance";
 import * as iot from "./iot";
 import * as ipam from "./ipam";
 import * as job from "./job";
+import * as kafka from "./kafka";
 import * as keymanager from "./keymanager";
 import * as kubernetes from "./kubernetes";
 import * as loadbalancers from "./loadbalancers";
@@ -1054,6 +1055,7 @@ import * as mongodb from "./mongodb";
 import * as network from "./network";
 import * as object from "./object";
 import * as observability from "./observability";
+import * as opensearch from "./opensearch";
 import * as redis from "./redis";
 import * as registry from "./registry";
 import * as s2svpn from "./s2svpn";
@@ -1083,6 +1085,7 @@ export {
     iot,
     ipam,
     job,
+    kafka,
     keymanager,
     kubernetes,
     loadbalancers,
@@ -1091,6 +1094,7 @@ export {
     network,
     object,
     observability,
+    opensearch,
     redis,
     registry,
     s2svpn,

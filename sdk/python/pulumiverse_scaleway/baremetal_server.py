@@ -31,12 +31,16 @@ class BaremetalServerArgs:
                  os: Optional[pulumi.Input[_builtins.str]] = None,
                  partitioning: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected: Optional[pulumi.Input[_builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  service_user: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -48,6 +52,7 @@ class BaremetalServerArgs:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
+               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] cloud_init: Configuration data to pass to cloud-init such as a YAML cloud config or a user-data script. Accepts either a string containing the content or a path to a file (for example `file("cloud-init.yml")`). Max length: 127998 characters. Updates to `cloud_init` will update the server user-data via the API and do not trigger a reinstall; however, a reboot of the server is required for the OS to re-run cloud-init and apply the changes. Only supported for Offers that have cloud-init enabled. You can check available offers with `scw baremetal list offers` command.
         :param pulumi.Input[_builtins.str] description: A description for the server.
         :param pulumi.Input[_builtins.str] hostname: The hostname of the server.
@@ -59,14 +64,18 @@ class BaremetalServerArgs:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
-        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
-        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
@@ -92,6 +101,10 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
@@ -104,6 +117,10 @@ class BaremetalServerArgs:
             pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
             pulumi.set(__self__, "service_password", service_password)
+        if service_password_wo is not None:
+            pulumi.set(__self__, "service_password_wo", service_password_wo)
+        if service_password_wo_version is not None:
+            pulumi.set(__self__, "service_password_wo_version", service_password_wo_version)
         if service_user is not None:
             pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids is not None:
@@ -123,6 +140,7 @@ class BaremetalServerArgs:
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
+        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 
@@ -233,13 +251,37 @@ class BaremetalServerArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password used for the installation. May be required depending on used os.
+        Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -306,13 +348,37 @@ class BaremetalServerArgs:
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password used for the service to install. May be required depending on used os.
+        Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         """
         return pulumi.get(self, "service_password")
 
     @service_password.setter
     def service_password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWo")
+    def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "service_password_wo")
+
+    @service_password_wo.setter
+    def service_password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWoVersion")
+    def service_password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
+        """
+        return pulumi.get(self, "service_password_wo_version")
+
+    @service_password_wo_version.setter
+    def service_password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "service_password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")
@@ -396,12 +462,16 @@ class _BaremetalServerState:
                  os_name: Optional[pulumi.Input[_builtins.str]] = None,
                  partitioning: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected: Optional[pulumi.Input[_builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  service_user: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -422,6 +492,7 @@ class _BaremetalServerState:
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
+               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the offer.
         :param pulumi.Input[_builtins.str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerOptionArgs']]] options: The options to enable on the server.
@@ -432,14 +503,18 @@ class _BaremetalServerState:
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[_builtins.str] os_name: The name of the os.
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
-        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateIpArgs']]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input['BaremetalServerPrivateNetworkArgs']]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
-        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
@@ -482,6 +557,10 @@ class _BaremetalServerState:
             pulumi.set(__self__, "partitioning", partitioning)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if private_networks is not None:
@@ -494,6 +573,10 @@ class _BaremetalServerState:
             pulumi.set(__self__, "reinstall_on_config_changes", reinstall_on_config_changes)
         if service_password is not None:
             pulumi.set(__self__, "service_password", service_password)
+        if service_password_wo is not None:
+            pulumi.set(__self__, "service_password_wo", service_password_wo)
+        if service_password_wo_version is not None:
+            pulumi.set(__self__, "service_password_wo_version", service_password_wo_version)
         if service_user is not None:
             pulumi.set(__self__, "service_user", service_user)
         if ssh_key_ids is not None:
@@ -621,6 +704,7 @@ class _BaremetalServerState:
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
+        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 
@@ -719,13 +803,37 @@ class _BaremetalServerState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password used for the installation. May be required depending on used os.
+        Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -792,13 +900,37 @@ class _BaremetalServerState:
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password used for the service to install. May be required depending on used os.
+        Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         """
         return pulumi.get(self, "service_password")
 
     @service_password.setter
     def service_password(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "service_password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWo")
+    def service_password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "service_password_wo")
+
+    @service_password_wo.setter
+    def service_password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "service_password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWoVersion")
+    def service_password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
+        """
+        return pulumi.get(self, "service_password_wo_version")
+
+    @service_password_wo_version.setter
+    def service_password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "service_password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")
@@ -882,12 +1014,16 @@ class BaremetalServer(pulumi.CustomResource):
                  os: Optional[pulumi.Input[_builtins.str]] = None,
                  partitioning: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected: Optional[pulumi.Input[_builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  service_user: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -895,15 +1031,7 @@ class BaremetalServer(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
-
         ## Example Usage
-
-        ### Basic
-
-        ### With option
-
-        ### With cloud-init
 
         ```python
         import pulumi
@@ -911,6 +1039,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_std as std
         import pulumiverse_scaleway as scaleway
 
+        ### With cloud-init
         my_ssh_key = scaleway.iam.get_ssh_key(name="main")
         my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
             name="Ubuntu",
@@ -924,127 +1053,6 @@ class BaremetalServer(pulumi.CustomResource):
             ssh_key_ids=[my_ssh_key.id],
             cloud_init=std.index.file(input="userdata.yaml")["result"])
         ```
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-I220E-NVME")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[my_ssh_key.id],
-            cloud_init=\"\"\"#cloud-config
-        packages:
-          - htop
-          - curl
-
-        runcmd:
-          - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
-        \"\"\")
-        ```
-
-        ### With private network
-
-        ### With IPAM IP IDs
-
-        ### Without install config
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            install_config_afterward=True)
-        ```
-
-        ### With custom partitioning
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        config = pulumi.Config()
-        config_custom_partitioning = config.get("configCustomPartitioning")
-        if config_custom_partitioning is None:
-            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"boot\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"data\\",\\"number\\":2,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/nvme0n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/nvme0n1p3\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"},{\\"device\\":\\"/dev/nvme1n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/data\\"}],\\"raids\\":[]}"
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_ssh_key = scaleway.iam.SshKey("my_ssh_key",
-            name="my_ssh_key",
-            public_key="ssh XXXXXXXXXXX")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="hourly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="my_super_server",
-            zone="fr-par-1",
-            description="test a description",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            partitioning=config_custom_partitioning,
-            tags=[
-                "terraform-test",
-                "scaleway_baremetal_server",
-                "minimal",
-            ],
-            ssh_key_ids=[my_ssh_key.id])
-        ```
-
-        ### Migrate from hourly to monthly plan
-
-        To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
-        You cannot directly modify the subscription_period of an existing elasticmetal_get_offer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
-
-        ### Hourly Plan Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="hourly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="UpdateSubscriptionPeriod",
-            offer=my_offer.offer_id,
-            zone="%s",
-            install_config_afterward=True)
-        ```
-
-        ### Monthly Plan Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="monthly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="UpdateSubscriptionPeriod",
-            offer=my_offer.offer_id,
-            zone="fr-par-1",
-            install_config_afterward=True)
-        ```
-
-        **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 
         ## Import
 
@@ -1067,20 +1075,25 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
+               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]] options: The options to enable on the server.
                > The `options` block supports:
         :param pulumi.Input[_builtins.str] os: The UUID of the os to install on the server.
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-os-list-available-oses) to find the right OS ID.
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
-        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
-        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
@@ -1094,15 +1107,7 @@ class BaremetalServer(pulumi.CustomResource):
                  args: BaremetalServerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
-
         ## Example Usage
-
-        ### Basic
-
-        ### With option
-
-        ### With cloud-init
 
         ```python
         import pulumi
@@ -1110,6 +1115,7 @@ class BaremetalServer(pulumi.CustomResource):
         import pulumi_std as std
         import pulumiverse_scaleway as scaleway
 
+        ### With cloud-init
         my_ssh_key = scaleway.iam.get_ssh_key(name="main")
         my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
             name="Ubuntu",
@@ -1123,127 +1129,6 @@ class BaremetalServer(pulumi.CustomResource):
             ssh_key_ids=[my_ssh_key.id],
             cloud_init=std.index.file(input="userdata.yaml")["result"])
         ```
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_ssh_key = scaleway.iam.get_ssh_key(name="main")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-I220E-NVME")
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_server_ci = scaleway.elasticmetal.Server("my_server_ci",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            ssh_key_ids=[my_ssh_key.id],
-            cloud_init=\"\"\"#cloud-config
-        packages:
-          - htop
-          - curl
-
-        runcmd:
-          - echo \\"Hello from raw cloud-init!\\" > /home/ubuntu/message.txt
-        \"\"\")
-        ```
-
-        ### With private network
-
-        ### With IPAM IP IDs
-
-        ### Without install config
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-2",
-            name="EM-B112X-SSD")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            zone="fr-par-2",
-            offer=my_offer.offer_id,
-            install_config_afterward=True)
-        ```
-
-        ### With custom partitioning
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        config = pulumi.Config()
-        config_custom_partitioning = config.get("configCustomPartitioning")
-        if config_custom_partitioning is None:
-            config_custom_partitioning = "{\\"disks\\":[{\\"device\\":\\"/dev/nvme0n1\\",\\"partitions\\":[{\\"label\\":\\"uefi\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"boot\\",\\"number\\":2,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"root\\",\\"number\\":3,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]},{\\"device\\":\\"/dev/nvme1n1\\",\\"partitions\\":[{\\"label\\":\\"boot\\",\\"number\\":1,\\"size\\":536870912,\\"useAllAvailableSpace\\":false},{\\"label\\":\\"data\\",\\"number\\":2,\\"size\\":1018839433216,\\"useAllAvailableSpace\\":false}]}],\\"filesystems\\":[{\\"device\\":\\"/dev/nvme0n1p1\\",\\"format\\":\\"fat32\\",\\"mountpoint\\":\\"/boot/efi\\"},{\\"device\\":\\"/dev/nvme0n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/boot\\"},{\\"device\\":\\"/dev/nvme0n1p3\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/\\"},{\\"device\\":\\"/dev/nvme1n1p2\\",\\"format\\":\\"ext4\\",\\"mountpoint\\":\\"/data\\"}],\\"raids\\":[]}"
-        my_os = scaleway.elasticmetal.get_os(zone="fr-par-1",
-            name="Ubuntu",
-            version="22.04 LTS (Jammy Jellyfish)")
-        my_ssh_key = scaleway.iam.SshKey("my_ssh_key",
-            name="my_ssh_key",
-            public_key="ssh XXXXXXXXXXX")
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="hourly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="my_super_server",
-            zone="fr-par-1",
-            description="test a description",
-            offer=my_offer.offer_id,
-            os=my_os.os_id,
-            partitioning=config_custom_partitioning,
-            tags=[
-                "terraform-test",
-                "scaleway_baremetal_server",
-                "minimal",
-            ],
-            ssh_key_ids=[my_ssh_key.id])
-        ```
-
-        ### Migrate from hourly to monthly plan
-
-        To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
-        You cannot directly modify the subscription_period of an existing elasticmetal_get_offer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
-
-        ### Hourly Plan Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="hourly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="UpdateSubscriptionPeriod",
-            offer=my_offer.offer_id,
-            zone="%s",
-            install_config_afterward=True)
-        ```
-
-        ### Monthly Plan Example
-
-        ```python
-        import pulumi
-        import pulumi_scaleway as scaleway
-        import pulumiverse_scaleway as scaleway
-
-        my_offer = scaleway.elasticmetal.get_offer(zone="fr-par-1",
-            name="EM-B220E-NVME",
-            subscription_period="monthly")
-        my_server = scaleway.elasticmetal.Server("my_server",
-            name="UpdateSubscriptionPeriod",
-            offer=my_offer.offer_id,
-            zone="fr-par-1",
-            install_config_afterward=True)
-        ```
-
-        **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 
         ## Import
 
@@ -1280,12 +1165,16 @@ class BaremetalServer(pulumi.CustomResource):
                  os: Optional[pulumi.Input[_builtins.str]] = None,
                  partitioning: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
                  private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  protected: Optional[pulumi.Input[_builtins.bool]] = None,
                  reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
                  service_password: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  service_user: Optional[pulumi.Input[_builtins.str]] = None,
                  ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1313,12 +1202,16 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["os"] = os
             __props__.__dict__["partitioning"] = partitioning
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["private_ips"] = private_ips
             __props__.__dict__["private_networks"] = private_networks
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["protected"] = protected
             __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
             __props__.__dict__["service_password"] = None if service_password is None else pulumi.Output.secret(service_password)
+            __props__.__dict__["service_password_wo"] = None if service_password_wo is None else pulumi.Output.secret(service_password_wo)
+            __props__.__dict__["service_password_wo_version"] = service_password_wo_version
             __props__.__dict__["service_user"] = service_user
             __props__.__dict__["ssh_key_ids"] = ssh_key_ids
             __props__.__dict__["tags"] = tags
@@ -1332,7 +1225,7 @@ class BaremetalServer(pulumi.CustomResource):
             __props__.__dict__["offer_name"] = None
             __props__.__dict__["organization_id"] = None
             __props__.__dict__["os_name"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "servicePassword"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo", "servicePassword", "servicePasswordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(BaremetalServer, __self__).__init__(
             'scaleway:index/baremetalServer:BaremetalServer',
@@ -1362,12 +1255,16 @@ class BaremetalServer(pulumi.CustomResource):
             os_name: Optional[pulumi.Input[_builtins.str]] = None,
             partitioning: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             private_ips: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]]] = None,
             private_networks: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
             protected: Optional[pulumi.Input[_builtins.bool]] = None,
             reinstall_on_config_changes: Optional[pulumi.Input[_builtins.bool]] = None,
             service_password: Optional[pulumi.Input[_builtins.str]] = None,
+            service_password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            service_password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             service_user: Optional[pulumi.Input[_builtins.str]] = None,
             ssh_key_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -1393,6 +1290,7 @@ class BaremetalServer(pulumi.CustomResource):
                Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
                
                > **Important:** Updates to `offer` will recreate the server.
+               > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         :param pulumi.Input[_builtins.str] offer_id: The ID of the offer.
         :param pulumi.Input[_builtins.str] offer_name: The name of the offer.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerOptionArgs', 'BaremetalServerOptionArgsDict']]]] options: The options to enable on the server.
@@ -1403,14 +1301,18 @@ class BaremetalServer(pulumi.CustomResource):
                > **Important:** Updates to `os` will reinstall the server.
         :param pulumi.Input[_builtins.str] os_name: The name of the os.
         :param pulumi.Input[_builtins.str] partitioning: The partitioning schema in JSON format
-        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] password: Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateIpArgs', 'BaremetalServerPrivateIpArgsDict']]]] private_ips: The list of private IPv4 and IPv6 addresses associated with the resource.
         :param pulumi.Input[Sequence[pulumi.Input[Union['BaremetalServerPrivateNetworkArgs', 'BaremetalServerPrivateNetworkArgsDict']]]] private_networks: The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the server is associated with.
         :param pulumi.Input[_builtins.bool] protected: Set to true to activate server protection option.
         :param pulumi.Input[_builtins.bool] reinstall_on_config_changes: If True, this boolean allows to reinstall the server on install config changes.
                > **Important:** Updates to `ssh_key_ids`, `user`, `password`, `service_user` or `service_password` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
-        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os.
+        :param pulumi.Input[_builtins.str] service_password: Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
+        :param pulumi.Input[_builtins.str] service_password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] service_password_wo_version: The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
         :param pulumi.Input[_builtins.str] service_user: User used for the service to install.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] ssh_key_ids: List of SSH keys allowed to connect to the server.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: The tags associated with the server.
@@ -1439,12 +1341,16 @@ class BaremetalServer(pulumi.CustomResource):
         __props__.__dict__["os_name"] = os_name
         __props__.__dict__["partitioning"] = partitioning
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["private_ips"] = private_ips
         __props__.__dict__["private_networks"] = private_networks
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["protected"] = protected
         __props__.__dict__["reinstall_on_config_changes"] = reinstall_on_config_changes
         __props__.__dict__["service_password"] = service_password
+        __props__.__dict__["service_password_wo"] = service_password_wo
+        __props__.__dict__["service_password_wo_version"] = service_password_wo_version
         __props__.__dict__["service_user"] = service_user
         __props__.__dict__["ssh_key_ids"] = ssh_key_ids
         __props__.__dict__["tags"] = tags
@@ -1532,6 +1438,7 @@ class BaremetalServer(pulumi.CustomResource):
         Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 
         > **Important:** Updates to `offer` will recreate the server.
+        > **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
         """
         return pulumi.get(self, "offer")
 
@@ -1598,9 +1505,25 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password used for the installation. May be required depending on used os.
+        Password used for the installation. May be required depending on used os. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -1647,9 +1570,25 @@ class BaremetalServer(pulumi.CustomResource):
     @pulumi.getter(name="servicePassword")
     def service_password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password used for the service to install. May be required depending on used os.
+        Password used for the service to install. May be required depending on used os. Only one of `service_password` or `service_password_wo` should be specified.
         """
         return pulumi.get(self, "service_password")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWo")
+    def service_password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "service_password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="servicePasswordWoVersion")
+    def service_password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only service password. To update the `service_password_wo`, you must also update the `service_password_wo_version`.
+        """
+        return pulumi.get(self, "service_password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="serviceUser")

@@ -15,15 +15,15 @@ namespace Pulumiverse.Scaleway.Datawarehouse.Outputs
     public sealed class DeploymentPublicNetwork
     {
         /// <summary>
-        /// DNS record for the public endpoint.
+        /// DNS record for the private endpoint.
         /// </summary>
         public readonly string? DnsRecord;
         /// <summary>
-        /// The ID of the public endpoint.
+        /// The ID of the private endpoint.
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// List of services exposed on the public endpoint.
+        /// List of services exposed on the private endpoint.
         /// </summary>
         public readonly ImmutableArray<Outputs.DeploymentPublicNetworkService> Services;
 

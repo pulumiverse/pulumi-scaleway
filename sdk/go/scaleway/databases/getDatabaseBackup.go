@@ -79,10 +79,12 @@ type LookupDatabaseBackupArgs struct {
 
 // A collection of values returned by getDatabaseBackup.
 type LookupDatabaseBackupResult struct {
-	BackupId     *string `pulumi:"backupId"`
-	CreatedAt    string  `pulumi:"createdAt"`
-	DatabaseName string  `pulumi:"databaseName"`
-	ExpiresAt    string  `pulumi:"expiresAt"`
+	BackupId             *string `pulumi:"backupId"`
+	CreatedAt            string  `pulumi:"createdAt"`
+	DatabaseName         string  `pulumi:"databaseName"`
+	DownloadUrl          string  `pulumi:"downloadUrl"`
+	DownloadUrlExpiresAt string  `pulumi:"downloadUrlExpiresAt"`
+	ExpiresAt            string  `pulumi:"expiresAt"`
 	// The provider-assigned unique ID for this managed resource.
 	Id           string  `pulumi:"id"`
 	InstanceId   *string `pulumi:"instanceId"`
@@ -90,7 +92,9 @@ type LookupDatabaseBackupResult struct {
 	Name         *string `pulumi:"name"`
 	ProjectId    *string `pulumi:"projectId"`
 	Region       *string `pulumi:"region"`
+	SameRegion   bool    `pulumi:"sameRegion"`
 	Size         int     `pulumi:"size"`
+	Status       string  `pulumi:"status"`
 	UpdatedAt    string  `pulumi:"updatedAt"`
 }
 
@@ -150,6 +154,14 @@ func (o LookupDatabaseBackupResultOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseBackupResult) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+func (o LookupDatabaseBackupResultOutput) DownloadUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseBackupResult) string { return v.DownloadUrl }).(pulumi.StringOutput)
+}
+
+func (o LookupDatabaseBackupResultOutput) DownloadUrlExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseBackupResult) string { return v.DownloadUrlExpiresAt }).(pulumi.StringOutput)
+}
+
 func (o LookupDatabaseBackupResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseBackupResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
 }
@@ -179,8 +191,16 @@ func (o LookupDatabaseBackupResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDatabaseBackupResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupDatabaseBackupResultOutput) SameRegion() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupDatabaseBackupResult) bool { return v.SameRegion }).(pulumi.BoolOutput)
+}
+
 func (o LookupDatabaseBackupResultOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDatabaseBackupResult) int { return v.Size }).(pulumi.IntOutput)
+}
+
+func (o LookupDatabaseBackupResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseBackupResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o LookupDatabaseBackupResultOutput) UpdatedAt() pulumi.StringOutput {

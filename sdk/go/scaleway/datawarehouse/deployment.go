@@ -85,6 +85,55 @@ import (
 //
 // ```
 //
+// ### With Private Network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/datawarehouse"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/network"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := network.NewVpc(ctx, "main", &network.VpcArgs{
+//				Name: pulumi.String("my-vpc"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pn, err := network.NewPrivateNetwork(ctx, "pn", &network.PrivateNetworkArgs{
+//				Name:  pulumi.String("my-private-network"),
+//				VpcId: main.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = datawarehouse.NewDeployment(ctx, "main", &datawarehouse.DeploymentArgs{
+//				Name:         pulumi.String("my-datawarehouse"),
+//				Version:      pulumi.String("v25"),
+//				ReplicaCount: pulumi.Int(1),
+//				CpuMin:       pulumi.Int(2),
+//				CpuMax:       pulumi.Int(4),
+//				RamPerCpu:    pulumi.Int(4),
+//				Password:     pulumi.String("thiZ_is_v&ry_s3cret"),
+//				PrivateNetwork: &datawarehouse.DeploymentPrivateNetworkArgs{
+//					PnId: pn.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Data Warehouse deployments can be imported using the `{region}/{id}`, e.g.
@@ -107,9 +156,11 @@ type Deployment struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+	PrivateNetwork DeploymentPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	//
 	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -193,9 +244,11 @@ type deploymentState struct {
 	Name *string `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
 	Password *string `pulumi:"password"`
+	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	//
 	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId *string `pulumi:"projectId"`
@@ -228,9 +281,11 @@ type DeploymentState struct {
 	Name pulumi.StringPtrInput
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
 	Password pulumi.StringPtrInput
+	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	//
 	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringPtrInput
@@ -265,9 +320,11 @@ type deploymentArgs struct {
 	Name *string `pulumi:"name"`
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
 	Password *string `pulumi:"password"`
+	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	//
 	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId *string `pulumi:"projectId"`
@@ -293,9 +350,11 @@ type DeploymentArgs struct {
 	Name pulumi.StringPtrInput
 	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
 	Password pulumi.StringPtrInput
+	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
-	// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 	//
 	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringPtrInput
@@ -423,9 +482,14 @@ func (o DeploymentOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
 
+// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
+func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
+	return o.ApplyT(func(v *Deployment) DeploymentPrivateNetworkPtrOutput { return v.PrivateNetwork }).(DeploymentPrivateNetworkPtrOutput)
+}
+
 // `projectId`) The ID of the project the deployment is associated with.
 //
-// > **Important:** Private endpoints are not yet supported by the API. A public endpoint is always created automatically.
+// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
 //
 // > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {
