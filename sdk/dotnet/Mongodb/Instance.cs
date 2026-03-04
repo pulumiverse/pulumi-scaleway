@@ -16,8 +16,6 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
-    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
@@ -26,6 +24,7 @@ namespace Pulumiverse.Scaleway.Mongodb
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     //## Basic MongoDB instance creation
     ///     var main = new Scaleway.Mongodb.Instance("main", new()
     ///     {
     ///         Name = "test-mongodb-basic1",
@@ -35,123 +34,6 @@ namespace Pulumiverse.Scaleway.Mongodb
     ///         UserName = "my_initial_user",
     ///         Password = "thiZ_is_v&amp;ry_s3cret",
     ///         VolumeSizeInGb = 5,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Private Network
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
-    ///     {
-    ///         Name = "my_private_network",
-    ///         Region = "fr-par",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Mongodb.Instance("main", new()
-    ///     {
-    ///         Name = "test-mongodb-basic1",
-    ///         Version = "7.0.12",
-    ///         NodeType = "MGDB-PLAY2-NANO",
-    ///         NodeNumber = 1,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         VolumeSizeInGb = 5,
-    ///         PrivateNetwork = new Scaleway.Mongodb.Inputs.InstancePrivateNetworkArgs
-    ///         {
-    ///             PnId = pn02.Id,
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Private Network and Public Network
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var pn01 = new Scaleway.Network.PrivateNetwork("pn01", new()
-    ///     {
-    ///         Name = "my_private_network",
-    ///         Region = "fr-par",
-    ///     });
-    /// 
-    ///     var main = new Scaleway.Mongodb.Instance("main", new()
-    ///     {
-    ///         Name = "test-mongodb-basic1",
-    ///         Version = "7.0.12",
-    ///         NodeType = "MGDB-PLAY2-NANO",
-    ///         NodeNumber = 1,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         VolumeSizeInGb = 5,
-    ///         PrivateNetwork = new Scaleway.Mongodb.Inputs.InstancePrivateNetworkArgs
-    ///         {
-    ///             PnId = pn02.Id,
-    ///         },
-    ///         PublicNetwork = null,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### With Snapshot Scheduling
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var main = new Scaleway.Mongodb.Instance("main", new()
-    ///     {
-    ///         Name = "test-mongodb-with-snapshots",
-    ///         Version = "7.0.12",
-    ///         NodeType = "MGDB-PLAY2-NANO",
-    ///         NodeNumber = 1,
-    ///         UserName = "my_initial_user",
-    ///         Password = "thiZ_is_v&amp;ry_s3cret",
-    ///         VolumeSizeInGb = 5,
-    ///         SnapshotScheduleFrequencyHours = 24,
-    ///         SnapshotScheduleRetentionDays = 7,
-    ///         IsSnapshotScheduleEnabled = true,
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// ### Restore From Snapshot
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Scaleway = Pulumiverse.Scaleway;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var restoredInstance = new Scaleway.Mongodb.Instance("restored_instance", new()
-    ///     {
-    ///         SnapshotId = pn.IdscalewayMongodbSnapshot.MainSnapshot.Id,
-    ///         Name = "restored-mongodb-from-snapshot",
-    ///         NodeType = "MGDB-PLAY2-NANO",
-    ///         NodeNumber = 1,
     ///     });
     /// 
     /// });
@@ -205,6 +87,15 @@ namespace Pulumiverse.Scaleway.Mongodb
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The private IPv4 address associated with the instance.
@@ -333,6 +224,7 @@ namespace Pulumiverse.Scaleway.Mongodb
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -396,6 +288,25 @@ namespace Pulumiverse.Scaleway.Mongodb
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.InstancePrivateIpArgs>? _privateIps;
@@ -552,6 +463,25 @@ namespace Pulumiverse.Scaleway.Mongodb
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         [Input("privateIps")]
         private InputList<Inputs.InstancePrivateIpGetArgs>? _privateIps;

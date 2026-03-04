@@ -24,7 +24,12 @@ import * as utilities from "./utilities";
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
- * // Get info by IP ID
+ * // Get info by name in a specific region
+ * const myNameAndRegion = scaleway.network.getPrivateNetwork({
+ *     name: "foobar",
+ *     region: "nl-ams",
+ * });
+ * // Get info by Private Network ID
  * const myId = scaleway.network.getPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -60,6 +65,9 @@ export interface GetVpcPrivateNetworkArgs {
      * The ID of the Project the Private Network is associated with.
      */
     projectId?: string;
+    /**
+     * `region`) The region in which the Private Network exists.
+     */
     region?: string;
     /**
      * ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.
@@ -114,7 +122,12 @@ export interface GetVpcPrivateNetworkResult {
  *     name: "foobar",
  *     vpcId: "11111111-1111-1111-1111-111111111111",
  * });
- * // Get info by IP ID
+ * // Get info by name in a specific region
+ * const myNameAndRegion = scaleway.network.getPrivateNetwork({
+ *     name: "foobar",
+ *     region: "nl-ams",
+ * });
+ * // Get info by Private Network ID
  * const myId = scaleway.network.getPrivateNetwork({
  *     privateNetworkId: "11111111-1111-1111-1111-111111111111",
  * });
@@ -150,6 +163,9 @@ export interface GetVpcPrivateNetworkOutputArgs {
      * The ID of the Project the Private Network is associated with.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * `region`) The region in which the Private Network exists.
+     */
     region?: pulumi.Input<string>;
     /**
      * ID of the VPC the Private Network is in. Cannot be used with `privateNetworkId`.

@@ -20,7 +20,7 @@ namespace Pulumiverse.Scaleway.Inputs
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        /// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         /// </summary>
         [Input("ip", required: true)]
         public Input<string> Ip { get; set; } = null!;

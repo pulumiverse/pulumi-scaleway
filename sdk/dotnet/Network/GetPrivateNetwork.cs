@@ -38,7 +38,14 @@ namespace Pulumiverse.Scaleway.Network
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     // Get info by IP ID
+        ///     // Get info by name in a specific region
+        ///     var myNameAndRegion = Scaleway.Network.GetPrivateNetwork.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Region = "nl-ams",
+        ///     });
+        /// 
+        ///     // Get info by Private Network ID
         ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
@@ -76,7 +83,14 @@ namespace Pulumiverse.Scaleway.Network
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     // Get info by IP ID
+        ///     // Get info by name in a specific region
+        ///     var myNameAndRegion = Scaleway.Network.GetPrivateNetwork.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Region = "nl-ams",
+        ///     });
+        /// 
+        ///     // Get info by Private Network ID
         ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
@@ -114,7 +128,14 @@ namespace Pulumiverse.Scaleway.Network
         ///         VpcId = "11111111-1111-1111-1111-111111111111",
         ///     });
         /// 
-        ///     // Get info by IP ID
+        ///     // Get info by name in a specific region
+        ///     var myNameAndRegion = Scaleway.Network.GetPrivateNetwork.Invoke(new()
+        ///     {
+        ///         Name = "foobar",
+        ///         Region = "nl-ams",
+        ///     });
+        /// 
+        ///     // Get info by Private Network ID
         ///     var myId = Scaleway.Network.GetPrivateNetwork.Invoke(new()
         ///     {
         ///         PrivateNetworkId = "11111111-1111-1111-1111-111111111111",
@@ -148,6 +169,9 @@ namespace Pulumiverse.Scaleway.Network
         [Input("projectId")]
         public string? ProjectId { get; set; }
 
+        /// <summary>
+        /// `Region`) The region in which the Private Network exists.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -183,6 +207,9 @@ namespace Pulumiverse.Scaleway.Network
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
 
+        /// <summary>
+        /// `Region`) The region in which the Private Network exists.
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

@@ -16,7 +16,7 @@ var _ = internal.GetEnvOrDefault
 type AclAclRule struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description *string `pulumi:"description"`
-	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -34,7 +34,7 @@ type AclAclRuleInput interface {
 type AclAclRuleArgs struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -94,7 +94,7 @@ func (o AclAclRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AclAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o AclAclRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v AclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -1635,7 +1635,7 @@ func (o ReadReplicaPrivateNetworkPtrOutput) Zone() pulumi.StringPtrOutput {
 type GetAclAclRule struct {
 	// A simple text describing this rule
 	Description string `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -1653,7 +1653,7 @@ type GetAclAclRuleInput interface {
 type GetAclAclRuleArgs struct {
 	// A simple text describing this rule
 	Description pulumi.StringInput `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -1713,7 +1713,7 @@ func (o GetAclAclRuleOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclAclRule) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o GetAclAclRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }

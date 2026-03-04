@@ -26,7 +26,7 @@ class GetConfigResult:
     """
     A collection of values returned by getConfig.
     """
-    def __init__(__self__, access_key=None, access_key_source=None, id=None, project_id=None, project_id_source=None, region=None, region_source=None, secret_key=None, secret_key_source=None, zone=None, zone_source=None):
+    def __init__(__self__, access_key=None, access_key_source=None, id=None, organization_id=None, organization_id_source=None, project_id=None, project_id_source=None, region=None, region_source=None, secret_key=None, secret_key_source=None, zone=None, zone_source=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -36,6 +36,12 @@ class GetConfigResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if organization_id and not isinstance(organization_id, str):
+            raise TypeError("Expected argument 'organization_id' to be a str")
+        pulumi.set(__self__, "organization_id", organization_id)
+        if organization_id_source and not isinstance(organization_id_source, str):
+            raise TypeError("Expected argument 'organization_id_source' to be a str")
+        pulumi.set(__self__, "organization_id_source", organization_id_source)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -78,6 +84,16 @@ class GetConfigResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationId")
+    def organization_id(self) -> _builtins.str:
+        return pulumi.get(self, "organization_id")
+
+    @_builtins.property
+    @pulumi.getter(name="organizationIdSource")
+    def organization_id_source(self) -> _builtins.str:
+        return pulumi.get(self, "organization_id_source")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -129,6 +145,8 @@ class AwaitableGetConfigResult(GetConfigResult):
             access_key=self.access_key,
             access_key_source=self.access_key_source,
             id=self.id,
+            organization_id=self.organization_id,
+            organization_id_source=self.organization_id_source,
             project_id=self.project_id,
             project_id_source=self.project_id_source,
             region=self.region,
@@ -161,6 +179,8 @@ def get_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetConfi
         access_key=pulumi.get(__ret__, 'access_key'),
         access_key_source=pulumi.get(__ret__, 'access_key_source'),
         id=pulumi.get(__ret__, 'id'),
+        organization_id=pulumi.get(__ret__, 'organization_id'),
+        organization_id_source=pulumi.get(__ret__, 'organization_id_source'),
         project_id=pulumi.get(__ret__, 'project_id'),
         project_id_source=pulumi.get(__ret__, 'project_id_source'),
         region=pulumi.get(__ret__, 'region'),
@@ -190,6 +210,8 @@ def get_config_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOu
         access_key=pulumi.get(__response__, 'access_key'),
         access_key_source=pulumi.get(__response__, 'access_key_source'),
         id=pulumi.get(__response__, 'id'),
+        organization_id=pulumi.get(__response__, 'organization_id'),
+        organization_id_source=pulumi.get(__response__, 'organization_id_source'),
         project_id=pulumi.get(__response__, 'project_id'),
         project_id_source=pulumi.get(__response__, 'project_id_source'),
         region=pulumi.get(__response__, 'region'),

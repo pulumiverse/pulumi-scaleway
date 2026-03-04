@@ -93,6 +93,8 @@ type LookupBaremetalServerResult struct {
 	OsName                   string                             `pulumi:"osName"`
 	Partitioning             string                             `pulumi:"partitioning"`
 	Password                 string                             `pulumi:"password"`
+	PasswordWo               string                             `pulumi:"passwordWo"`
+	PasswordWoVersion        int                                `pulumi:"passwordWoVersion"`
 	PrivateIps               []GetBaremetalServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks          []GetBaremetalServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                            `pulumi:"projectId"`
@@ -100,6 +102,8 @@ type LookupBaremetalServerResult struct {
 	ReinstallOnConfigChanges bool                               `pulumi:"reinstallOnConfigChanges"`
 	ServerId                 *string                            `pulumi:"serverId"`
 	ServicePassword          string                             `pulumi:"servicePassword"`
+	ServicePasswordWo        string                             `pulumi:"servicePasswordWo"`
+	ServicePasswordWoVersion int                                `pulumi:"servicePasswordWoVersion"`
 	ServiceUser              string                             `pulumi:"serviceUser"`
 	SshKeyIds                []string                           `pulumi:"sshKeyIds"`
 	Tags                     []string                           `pulumi:"tags"`
@@ -223,6 +227,14 @@ func (o LookupBaremetalServerResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
+func (o LookupBaremetalServerResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
+}
+
 func (o LookupBaremetalServerResultOutput) PrivateIps() GetBaremetalServerPrivateIpArrayOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) []GetBaremetalServerPrivateIp { return v.PrivateIps }).(GetBaremetalServerPrivateIpArrayOutput)
 }
@@ -249,6 +261,14 @@ func (o LookupBaremetalServerResultOutput) ServerId() pulumi.StringPtrOutput {
 
 func (o LookupBaremetalServerResultOutput) ServicePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.ServicePassword }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) ServicePasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) string { return v.ServicePasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupBaremetalServerResultOutput) ServicePasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupBaremetalServerResult) int { return v.ServicePasswordWoVersion }).(pulumi.IntOutput)
 }
 
 func (o LookupBaremetalServerResultOutput) ServiceUser() pulumi.StringOutput {

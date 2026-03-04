@@ -89,6 +89,8 @@ namespace Pulumiverse.Scaleway
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string OrganizationId;
+        public readonly string OrganizationIdSource;
         public readonly string ProjectId;
         public readonly string ProjectIdSource;
         public readonly string Region;
@@ -105,6 +107,10 @@ namespace Pulumiverse.Scaleway
             string accessKeySource,
 
             string id,
+
+            string organizationId,
+
+            string organizationIdSource,
 
             string projectId,
 
@@ -125,6 +131,8 @@ namespace Pulumiverse.Scaleway
             AccessKey = accessKey;
             AccessKeySource = accessKeySource;
             Id = id;
+            OrganizationId = organizationId;
+            OrganizationIdSource = organizationIdSource;
             ProjectId = projectId;
             ProjectIdSource = projectIdSource;
             Region = region;

@@ -32,8 +32,7 @@ class ClusterAcl(dict):
                  description: Optional[_builtins.str] = None,
                  id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str ip: The IP range to whitelist
-               in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        :param _builtins.str ip: The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         :param _builtins.str description: A text describing this rule. Default description: `Allow IP`
                
                > The `acl` conflict with `private_network`. Only one should be specified.
@@ -49,8 +48,7 @@ class ClusterAcl(dict):
     @pulumi.getter
     def ip(self) -> _builtins.str:
         """
-        The IP range to whitelist
-        in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+        The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
         """
         return pulumi.get(self, "ip")
 
@@ -137,7 +135,7 @@ class ClusterPrivateNetwork(dict):
         :param _builtins.str endpoint_id: The ID of the endpoint.
         :param Sequence[_builtins.str] ips: List of IPv4 addresses of the endpoint.
         :param _builtins.int port: TCP port of the endpoint.
-        :param Sequence[_builtins.str] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        :param Sequence[_builtins.str] service_ips: Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
                Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
                scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
                If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -208,7 +206,7 @@ class ClusterPrivateNetwork(dict):
     @pulumi.getter(name="serviceIps")
     def service_ips(self) -> Optional[Sequence[_builtins.str]]:
         """
-        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
         Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -293,7 +291,7 @@ class GetClusterAclResult(dict):
         """
         :param _builtins.str description: Description of the rule.
         :param _builtins.str id: The ID of the Redis cluster.
-        :param _builtins.str ip: IPv4 network address of the rule (IP network in a CIDR format).
+        :param _builtins.str ip: IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "id", id)
@@ -319,7 +317,7 @@ class GetClusterAclResult(dict):
     @pulumi.getter
     def ip(self) -> _builtins.str:
         """
-        IPv4 network address of the rule (IP network in a CIDR format).
+        IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
         """
         return pulumi.get(self, "ip")
 
@@ -367,7 +365,7 @@ class GetClusterPrivateNetworkResult(dict):
         :param _builtins.str id: The ID of the Redis cluster.
         :param Sequence[_builtins.str] ips: List of IPv4 addresses of the endpoint.
         :param _builtins.int port: TCP port of the endpoint.
-        :param Sequence[_builtins.str] service_ips: List of IPv4 addresses of the private network with a CIDR notation
+        :param Sequence[_builtins.str] service_ips: List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
         :param _builtins.str zone: `region`) The zone in which the server exists.
         """
         pulumi.set(__self__, "endpoint_id", endpoint_id)
@@ -413,7 +411,7 @@ class GetClusterPrivateNetworkResult(dict):
     @pulumi.getter(name="serviceIps")
     def service_ips(self) -> Sequence[_builtins.str]:
         """
-        List of IPv4 addresses of the private network with a CIDR notation
+        List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
         """
         return pulumi.get(self, "service_ips")
 

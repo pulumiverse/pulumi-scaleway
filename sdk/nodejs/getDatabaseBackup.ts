@@ -74,6 +74,8 @@ export interface GetDatabaseBackupResult {
     readonly backupId?: string;
     readonly createdAt: string;
     readonly databaseName: string;
+    readonly downloadUrl: string;
+    readonly downloadUrlExpiresAt: string;
     readonly expiresAt: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -84,7 +86,9 @@ export interface GetDatabaseBackupResult {
     readonly name?: string;
     readonly projectId?: string;
     readonly region?: string;
+    readonly sameRegion: boolean;
     readonly size: number;
+    readonly status: string;
     readonly updatedAt: string;
 }
 /**

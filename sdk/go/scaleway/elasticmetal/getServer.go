@@ -91,6 +91,8 @@ type LookupServerResult struct {
 	OsName                   string                    `pulumi:"osName"`
 	Partitioning             string                    `pulumi:"partitioning"`
 	Password                 string                    `pulumi:"password"`
+	PasswordWo               string                    `pulumi:"passwordWo"`
+	PasswordWoVersion        int                       `pulumi:"passwordWoVersion"`
 	PrivateIps               []GetServerPrivateIp      `pulumi:"privateIps"`
 	PrivateNetworks          []GetServerPrivateNetwork `pulumi:"privateNetworks"`
 	ProjectId                *string                   `pulumi:"projectId"`
@@ -98,6 +100,8 @@ type LookupServerResult struct {
 	ReinstallOnConfigChanges bool                      `pulumi:"reinstallOnConfigChanges"`
 	ServerId                 *string                   `pulumi:"serverId"`
 	ServicePassword          string                    `pulumi:"servicePassword"`
+	ServicePasswordWo        string                    `pulumi:"servicePasswordWo"`
+	ServicePasswordWoVersion int                       `pulumi:"servicePasswordWoVersion"`
 	ServiceUser              string                    `pulumi:"serviceUser"`
 	SshKeyIds                []string                  `pulumi:"sshKeyIds"`
 	Tags                     []string                  `pulumi:"tags"`
@@ -221,6 +225,14 @@ func (o LookupServerResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.Password }).(pulumi.StringOutput)
 }
 
+func (o LookupServerResultOutput) PasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.PasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) PasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupServerResult) int { return v.PasswordWoVersion }).(pulumi.IntOutput)
+}
+
 func (o LookupServerResultOutput) PrivateIps() GetServerPrivateIpArrayOutput {
 	return o.ApplyT(func(v LookupServerResult) []GetServerPrivateIp { return v.PrivateIps }).(GetServerPrivateIpArrayOutput)
 }
@@ -247,6 +259,14 @@ func (o LookupServerResultOutput) ServerId() pulumi.StringPtrOutput {
 
 func (o LookupServerResultOutput) ServicePassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.ServicePassword }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) ServicePasswordWo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.ServicePasswordWo }).(pulumi.StringOutput)
+}
+
+func (o LookupServerResultOutput) ServicePasswordWoVersion() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupServerResult) int { return v.ServicePasswordWoVersion }).(pulumi.IntOutput)
 }
 
 func (o LookupServerResultOutput) ServiceUser() pulumi.StringOutput {

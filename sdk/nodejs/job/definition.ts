@@ -104,7 +104,13 @@ export class Definition extends pulumi.CustomResource {
     }
 
     /**
+     * The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+     */
+    declare public readonly args: pulumi.Output<string[] | undefined>;
+    /**
      * The command that will be run in the container if specified.
+     *
+     * @deprecated Please use startupCommand instead
      */
     declare public readonly command: pulumi.Output<string | undefined>;
     /**
@@ -126,11 +132,11 @@ export class Definition extends pulumi.CustomResource {
     /**
      * The uri of the container image that will be used for the job run.
      */
-    declare public readonly imageUri: pulumi.Output<string | undefined>;
+    declare public readonly imageUri: pulumi.Output<string>;
     /**
      * The local storage capacity of the job in MiB.
      */
-    declare public readonly localStorageCapacity: pulumi.Output<number | undefined>;
+    declare public readonly localStorageCapacity: pulumi.Output<number>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
@@ -152,6 +158,10 @@ export class Definition extends pulumi.CustomResource {
      */
     declare public readonly secretReferences: pulumi.Output<outputs.job.DefinitionSecretReference[] | undefined>;
     /**
+     * The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+     */
+    declare public readonly startupCommands: pulumi.Output<string[] | undefined>;
+    /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
     declare public readonly timeout: pulumi.Output<string>;
@@ -169,6 +179,7 @@ export class Definition extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DefinitionState | undefined;
+            resourceInputs["args"] = state?.args;
             resourceInputs["command"] = state?.command;
             resourceInputs["cpuLimit"] = state?.cpuLimit;
             resourceInputs["cron"] = state?.cron;
@@ -181,15 +192,23 @@ export class Definition extends pulumi.CustomResource {
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["region"] = state?.region;
             resourceInputs["secretReferences"] = state?.secretReferences;
+            resourceInputs["startupCommands"] = state?.startupCommands;
             resourceInputs["timeout"] = state?.timeout;
         } else {
             const args = argsOrState as DefinitionArgs | undefined;
             if (args?.cpuLimit === undefined && !opts.urn) {
                 throw new Error("Missing required property 'cpuLimit'");
             }
+            if (args?.imageUri === undefined && !opts.urn) {
+                throw new Error("Missing required property 'imageUri'");
+            }
+            if (args?.localStorageCapacity === undefined && !opts.urn) {
+                throw new Error("Missing required property 'localStorageCapacity'");
+            }
             if (args?.memoryLimit === undefined && !opts.urn) {
                 throw new Error("Missing required property 'memoryLimit'");
             }
+            resourceInputs["args"] = args?.args;
             resourceInputs["command"] = args?.command;
             resourceInputs["cpuLimit"] = args?.cpuLimit;
             resourceInputs["cron"] = args?.cron;
@@ -202,6 +221,7 @@ export class Definition extends pulumi.CustomResource {
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["region"] = args?.region;
             resourceInputs["secretReferences"] = args?.secretReferences;
+            resourceInputs["startupCommands"] = args?.startupCommands;
             resourceInputs["timeout"] = args?.timeout;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -216,7 +236,13 @@ export class Definition extends pulumi.CustomResource {
  */
 export interface DefinitionState {
     /**
+     * The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+     */
+    args?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The command that will be run in the container if specified.
+     *
+     * @deprecated Please use startupCommand instead
      */
     command?: pulumi.Input<string>;
     /**
@@ -264,6 +290,10 @@ export interface DefinitionState {
      */
     secretReferences?: pulumi.Input<pulumi.Input<inputs.job.DefinitionSecretReference>[]>;
     /**
+     * The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+     */
+    startupCommands?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */
     timeout?: pulumi.Input<string>;
@@ -274,7 +304,13 @@ export interface DefinitionState {
  */
 export interface DefinitionArgs {
     /**
+     * The arguments that will be passed to the startup command at runtime (in list of string format). Overrides the default arguments defined in the job image. Environment variables and secrets can be included, and will be expanded before the arguments are used.
+     */
+    args?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The command that will be run in the container if specified.
+     *
+     * @deprecated Please use startupCommand instead
      */
     command?: pulumi.Input<string>;
     /**
@@ -296,11 +332,11 @@ export interface DefinitionArgs {
     /**
      * The uri of the container image that will be used for the job run.
      */
-    imageUri?: pulumi.Input<string>;
+    imageUri: pulumi.Input<string>;
     /**
      * The local storage capacity of the job in MiB.
      */
-    localStorageCapacity?: pulumi.Input<number>;
+    localStorageCapacity: pulumi.Input<number>;
     /**
      * The memory computing resources in MB to allocate to each container running the job.
      */
@@ -321,6 +357,10 @@ export interface DefinitionArgs {
      * A reference to a secret stored in Secret Manager.
      */
     secretReferences?: pulumi.Input<pulumi.Input<inputs.job.DefinitionSecretReference>[]>;
+    /**
+     * The command (main executable or entrypoint script) that will be run in the container (in list of string format). Overrides the default command defined in the job image.
+     */
+    startupCommands?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The job run timeout, in Go Time format (ex: `2h30m25s`)
      */

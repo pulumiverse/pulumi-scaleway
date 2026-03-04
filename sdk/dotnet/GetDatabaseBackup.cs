@@ -207,6 +207,8 @@ namespace Pulumiverse.Scaleway
         public readonly string? BackupId;
         public readonly string CreatedAt;
         public readonly string DatabaseName;
+        public readonly string DownloadUrl;
+        public readonly string DownloadUrlExpiresAt;
         public readonly string ExpiresAt;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -217,7 +219,9 @@ namespace Pulumiverse.Scaleway
         public readonly string? Name;
         public readonly string? ProjectId;
         public readonly string? Region;
+        public readonly bool SameRegion;
         public readonly int Size;
+        public readonly string Status;
         public readonly string UpdatedAt;
 
         [OutputConstructor]
@@ -227,6 +231,10 @@ namespace Pulumiverse.Scaleway
             string createdAt,
 
             string databaseName,
+
+            string downloadUrl,
+
+            string downloadUrlExpiresAt,
 
             string expiresAt,
 
@@ -242,13 +250,19 @@ namespace Pulumiverse.Scaleway
 
             string? region,
 
+            bool sameRegion,
+
             int size,
+
+            string status,
 
             string updatedAt)
         {
             BackupId = backupId;
             CreatedAt = createdAt;
             DatabaseName = databaseName;
+            DownloadUrl = downloadUrl;
+            DownloadUrlExpiresAt = downloadUrlExpiresAt;
             ExpiresAt = expiresAt;
             Id = id;
             InstanceId = instanceId;
@@ -256,7 +270,9 @@ namespace Pulumiverse.Scaleway
             Name = name;
             ProjectId = projectId;
             Region = region;
+            SameRegion = sameRegion;
             Size = size;
+            Status = status;
             UpdatedAt = updatedAt;
         }
     }

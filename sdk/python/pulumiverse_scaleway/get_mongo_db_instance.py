@@ -29,7 +29,7 @@ class GetMongoDbInstanceResult:
     """
     A collection of values returned by getMongoDbInstance.
     """
-    def __init__(__self__, created_at=None, id=None, instance_id=None, is_snapshot_schedule_enabled=None, name=None, node_number=None, node_type=None, password=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, snapshot_schedule_frequency_hours=None, snapshot_schedule_retention_days=None, tags=None, tls_certificate=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
+    def __init__(__self__, created_at=None, id=None, instance_id=None, is_snapshot_schedule_enabled=None, name=None, node_number=None, node_type=None, password=None, password_wo=None, password_wo_version=None, private_ips=None, private_networks=None, project_id=None, public_networks=None, region=None, settings=None, snapshot_id=None, snapshot_schedule_frequency_hours=None, snapshot_schedule_retention_days=None, tags=None, tls_certificate=None, updated_at=None, user_name=None, version=None, volume_size_in_gb=None, volume_type=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -54,6 +54,12 @@ class GetMongoDbInstanceResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if password_wo and not isinstance(password_wo, str):
+            raise TypeError("Expected argument 'password_wo' to be a str")
+        pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version and not isinstance(password_wo_version, int):
+            raise TypeError("Expected argument 'password_wo_version' to be a int")
+        pulumi.set(__self__, "password_wo_version", password_wo_version)
         if private_ips and not isinstance(private_ips, list):
             raise TypeError("Expected argument 'private_ips' to be a list")
         pulumi.set(__self__, "private_ips", private_ips)
@@ -157,6 +163,16 @@ class GetMongoDbInstanceResult:
     @pulumi.getter
     def password(self) -> _builtins.str:
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> _builtins.str:
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> _builtins.int:
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="privateIps")
@@ -271,6 +287,8 @@ class AwaitableGetMongoDbInstanceResult(GetMongoDbInstanceResult):
             node_number=self.node_number,
             node_type=self.node_type,
             password=self.password,
+            password_wo=self.password_wo,
+            password_wo_version=self.password_wo_version,
             private_ips=self.private_ips,
             private_networks=self.private_networks,
             project_id=self.project_id,
@@ -325,6 +343,8 @@ def get_mongo_db_instance(instance_id: Optional[_builtins.str] = None,
         node_number=pulumi.get(__ret__, 'node_number'),
         node_type=pulumi.get(__ret__, 'node_type'),
         password=pulumi.get(__ret__, 'password'),
+        password_wo=pulumi.get(__ret__, 'password_wo'),
+        password_wo_version=pulumi.get(__ret__, 'password_wo_version'),
         private_ips=pulumi.get(__ret__, 'private_ips'),
         private_networks=pulumi.get(__ret__, 'private_networks'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -376,6 +396,8 @@ def get_mongo_db_instance_output(instance_id: Optional[pulumi.Input[Optional[_bu
         node_number=pulumi.get(__response__, 'node_number'),
         node_type=pulumi.get(__response__, 'node_type'),
         password=pulumi.get(__response__, 'password'),
+        password_wo=pulumi.get(__response__, 'password_wo'),
+        password_wo_version=pulumi.get(__response__, 'password_wo_version'),
         private_ips=pulumi.get(__response__, 'private_ips'),
         private_networks=pulumi.get(__response__, 'private_networks'),
         project_id=pulumi.get(__response__, 'project_id'),

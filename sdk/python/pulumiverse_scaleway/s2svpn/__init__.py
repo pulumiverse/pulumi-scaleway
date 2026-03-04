@@ -9,6 +9,10 @@ import typing
 from .connection import *
 from .customer_gateway import *
 from .gateway import *
+from .get_connection import *
+from .get_customer_gateway import *
+from .get_gateway import *
+from .get_routing_policy import *
 from .routing_policy import *
 from ._inputs import *
 from . import outputs

@@ -22,6 +22,13 @@ __all__ = [
     'ConnectionEspCipher',
     'ConnectionIkev2Cipher',
     'GatewayPublicConfig',
+    'GetConnectionBgpConfigIpv4Result',
+    'GetConnectionBgpConfigIpv6Result',
+    'GetConnectionBgpSessionIpv4Result',
+    'GetConnectionBgpSessionIpv6Result',
+    'GetConnectionEspCipherResult',
+    'GetConnectionIkev2CipherResult',
+    'GetGatewayPublicConfigResult',
 ]
 
 @pulumi.output_type
@@ -442,6 +449,275 @@ class GatewayPublicConfig(dict):
     def ipam_ipv6_id(self) -> Optional[_builtins.str]:
         """
         The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway.
+        """
+        return pulumi.get(self, "ipam_ipv6_id")
+
+
+@pulumi.output_type
+class GetConnectionBgpConfigIpv4Result(dict):
+    def __init__(__self__, *,
+                 peer_private_ip: _builtins.str,
+                 private_ip: _builtins.str,
+                 routing_policy_id: _builtins.str):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side
+        :param _builtins.str routing_policy_id: The ID of the routing policy to use for BGP route filtering
+        """
+        pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on customer side
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on Scaleway side
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The ID of the routing policy to use for BGP route filtering
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class GetConnectionBgpConfigIpv6Result(dict):
+    def __init__(__self__, *,
+                 peer_private_ip: _builtins.str,
+                 private_ip: _builtins.str,
+                 routing_policy_id: _builtins.str):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side
+        :param _builtins.str routing_policy_id: The ID of the routing policy to use for BGP route filtering
+        """
+        pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on customer side
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on Scaleway side
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The ID of the routing policy to use for BGP route filtering
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class GetConnectionBgpSessionIpv4Result(dict):
+    def __init__(__self__, *,
+                 peer_private_ip: _builtins.str,
+                 private_ip: _builtins.str,
+                 routing_policy_id: _builtins.str):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side
+        :param _builtins.str routing_policy_id: The routing policy ID
+        """
+        pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on customer side
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on Scaleway side
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The routing policy ID
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class GetConnectionBgpSessionIpv6Result(dict):
+    def __init__(__self__, *,
+                 peer_private_ip: _builtins.str,
+                 private_ip: _builtins.str,
+                 routing_policy_id: _builtins.str):
+        """
+        :param _builtins.str peer_private_ip: The BGP peer IP on customer side
+        :param _builtins.str private_ip: The BGP peer IP on Scaleway side
+        :param _builtins.str routing_policy_id: The routing policy ID
+        """
+        pulumi.set(__self__, "peer_private_ip", peer_private_ip)
+        pulumi.set(__self__, "private_ip", private_ip)
+        pulumi.set(__self__, "routing_policy_id", routing_policy_id)
+
+    @_builtins.property
+    @pulumi.getter(name="peerPrivateIp")
+    def peer_private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on customer side
+        """
+        return pulumi.get(self, "peer_private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="privateIp")
+    def private_ip(self) -> _builtins.str:
+        """
+        The BGP peer IP on Scaleway side
+        """
+        return pulumi.get(self, "private_ip")
+
+    @_builtins.property
+    @pulumi.getter(name="routingPolicyId")
+    def routing_policy_id(self) -> _builtins.str:
+        """
+        The routing policy ID
+        """
+        return pulumi.get(self, "routing_policy_id")
+
+
+@pulumi.output_type
+class GetConnectionEspCipherResult(dict):
+    def __init__(__self__, *,
+                 dh_group: _builtins.str,
+                 encryption: _builtins.str,
+                 integrity: _builtins.str):
+        """
+        :param _builtins.str dh_group: The Diffie-Hellman group
+        :param _builtins.str encryption: The encryption algorithm
+        :param _builtins.str integrity: The integrity/hash algorithm
+        """
+        pulumi.set(__self__, "dh_group", dh_group)
+        pulumi.set(__self__, "encryption", encryption)
+        pulumi.set(__self__, "integrity", integrity)
+
+    @_builtins.property
+    @pulumi.getter(name="dhGroup")
+    def dh_group(self) -> _builtins.str:
+        """
+        The Diffie-Hellman group
+        """
+        return pulumi.get(self, "dh_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> _builtins.str:
+        """
+        The encryption algorithm
+        """
+        return pulumi.get(self, "encryption")
+
+    @_builtins.property
+    @pulumi.getter
+    def integrity(self) -> _builtins.str:
+        """
+        The integrity/hash algorithm
+        """
+        return pulumi.get(self, "integrity")
+
+
+@pulumi.output_type
+class GetConnectionIkev2CipherResult(dict):
+    def __init__(__self__, *,
+                 dh_group: _builtins.str,
+                 encryption: _builtins.str,
+                 integrity: _builtins.str):
+        """
+        :param _builtins.str dh_group: The Diffie-Hellman group
+        :param _builtins.str encryption: The encryption algorithm
+        :param _builtins.str integrity: The integrity/hash algorithm
+        """
+        pulumi.set(__self__, "dh_group", dh_group)
+        pulumi.set(__self__, "encryption", encryption)
+        pulumi.set(__self__, "integrity", integrity)
+
+    @_builtins.property
+    @pulumi.getter(name="dhGroup")
+    def dh_group(self) -> _builtins.str:
+        """
+        The Diffie-Hellman group
+        """
+        return pulumi.get(self, "dh_group")
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> _builtins.str:
+        """
+        The encryption algorithm
+        """
+        return pulumi.get(self, "encryption")
+
+    @_builtins.property
+    @pulumi.getter
+    def integrity(self) -> _builtins.str:
+        """
+        The integrity/hash algorithm
+        """
+        return pulumi.get(self, "integrity")
+
+
+@pulumi.output_type
+class GetGatewayPublicConfigResult(dict):
+    def __init__(__self__, *,
+                 ipam_ipv4_id: _builtins.str,
+                 ipam_ipv6_id: _builtins.str):
+        """
+        :param _builtins.str ipam_ipv4_id: The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+        :param _builtins.str ipam_ipv6_id: The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
+        """
+        pulumi.set(__self__, "ipam_ipv4_id", ipam_ipv4_id)
+        pulumi.set(__self__, "ipam_ipv6_id", ipam_ipv6_id)
+
+    @_builtins.property
+    @pulumi.getter(name="ipamIpv4Id")
+    def ipam_ipv4_id(self) -> _builtins.str:
+        """
+        The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+        """
+        return pulumi.get(self, "ipam_ipv4_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipamIpv6Id")
+    def ipam_ipv6_id(self) -> _builtins.str:
+        """
+        The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
         """
         return pulumi.get(self, "ipam_ipv6_id")
 

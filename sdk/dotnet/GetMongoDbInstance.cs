@@ -134,6 +134,8 @@ namespace Pulumiverse.Scaleway
         /// </summary>
         public readonly string NodeType;
         public readonly string Password;
+        public readonly string PasswordWo;
+        public readonly int PasswordWoVersion;
         public readonly ImmutableArray<Outputs.GetMongoDbInstancePrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetMongoDbInstancePrivateNetworkResult> PrivateNetworks;
         /// <summary>
@@ -187,6 +189,10 @@ namespace Pulumiverse.Scaleway
 
             string password,
 
+            string passwordWo,
+
+            int passwordWoVersion,
+
             ImmutableArray<Outputs.GetMongoDbInstancePrivateIpResult> privateIps,
 
             ImmutableArray<Outputs.GetMongoDbInstancePrivateNetworkResult> privateNetworks,
@@ -227,6 +233,8 @@ namespace Pulumiverse.Scaleway
             NodeNumber = nodeNumber;
             NodeType = nodeType;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;

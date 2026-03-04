@@ -16,8 +16,6 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
-//
 // ```go
 // package main
 //
@@ -30,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Basic creation of an inference model
 //			_, err := inference.NewModel(ctx, "test", &inference.ModelArgs{
 //				Name:   pulumi.String("my-awesome-model"),
 //				Url:    pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),
@@ -44,8 +43,6 @@ import (
 //
 // ```
 //
-// ### Deploy your own model on your managed inference
-//
 // ```go
 // package main
 //
@@ -58,6 +55,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Deploy your own model on your managed inference
 //			myModel, err := inference.NewModel(ctx, "my_model", &inference.ModelArgs{
 //				Name:   pulumi.String("my-awesome-model"),
 //				Url:    pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),
@@ -74,6 +72,34 @@ import (
 //					IsEnabled: pulumi.Bool(true),
 //				},
 //				AcceptEula: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/inference"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## Create a model using your model's secret token without storing it in the state
+//			_, err := inference.NewModel(ctx, "my_model_wo", &inference.ModelArgs{
+//				Name:            pulumi.String("my-awesome-model-wo"),
+//				Url:             pulumi.String("https://huggingface.co/agentica-org/DeepCoder-14B-Preview"),
+//				SecretWo:        pulumi.String("my-secret-token"),
+//				SecretWoVersion: pulumi.Int(1),
 //			})
 //			if err != nil {
 //				return err
@@ -112,8 +138,12 @@ type Model struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrOutput `pulumi:"secret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	SecretWo pulumi.StringPtrOutput `pulumi:"secretWo"`
+	// The version of the write-only secret. Required when using `secretWo`.
+	SecretWoVersion pulumi.IntPtrOutput `pulumi:"secretWoVersion"`
 	// Total size, in bytes, of the model archive.
 	SizeBytes pulumi.IntOutput `pulumi:"sizeBytes"`
 	// The current status of the model (e.g., ready, error, etc.).
@@ -122,7 +152,7 @@ type Model struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The date and time of the last update of the model
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 	Url pulumi.StringOutput `pulumi:"url"`
 }
 
@@ -139,8 +169,12 @@ func NewModel(ctx *pulumi.Context,
 	if args.Secret != nil {
 		args.Secret = pulumi.ToSecret(args.Secret).(pulumi.StringPtrInput)
 	}
+	if args.SecretWo != nil {
+		args.SecretWo = pulumi.ToSecret(args.SecretWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"secret",
+		"secretWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -182,8 +216,12 @@ type modelState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the deployment is created.
 	Region *string `pulumi:"region"`
-	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret *string `pulumi:"secret"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	SecretWo *string `pulumi:"secretWo"`
+	// The version of the write-only secret. Required when using `secretWo`.
+	SecretWoVersion *int `pulumi:"secretWoVersion"`
 	// Total size, in bytes, of the model archive.
 	SizeBytes *int `pulumi:"sizeBytes"`
 	// The current status of the model (e.g., ready, error, etc.).
@@ -192,7 +230,7 @@ type modelState struct {
 	Tags []string `pulumi:"tags"`
 	// The date and time of the last update of the model
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 	Url *string `pulumi:"url"`
 }
 
@@ -213,8 +251,12 @@ type ModelState struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringPtrInput
-	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	SecretWo pulumi.StringPtrInput
+	// The version of the write-only secret. Required when using `secretWo`.
+	SecretWoVersion pulumi.IntPtrInput
 	// Total size, in bytes, of the model archive.
 	SizeBytes pulumi.IntPtrInput
 	// The current status of the model (e.g., ready, error, etc.).
@@ -223,7 +265,7 @@ type ModelState struct {
 	Tags pulumi.StringArrayInput
 	// The date and time of the last update of the model
 	UpdatedAt pulumi.StringPtrInput
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 	Url pulumi.StringPtrInput
 }
 
@@ -238,9 +280,13 @@ type modelArgs struct {
 	ProjectId *string `pulumi:"projectId"`
 	// `region`) The region in which the deployment is created.
 	Region *string `pulumi:"region"`
-	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret *string `pulumi:"secret"`
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	SecretWo *string `pulumi:"secretWo"`
+	// The version of the write-only secret. Required when using `secretWo`.
+	SecretWoVersion *int `pulumi:"secretWoVersion"`
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 	Url string `pulumi:"url"`
 }
 
@@ -252,9 +298,13 @@ type ModelArgs struct {
 	ProjectId pulumi.StringPtrInput
 	// `region`) The region in which the deployment is created.
 	Region pulumi.StringPtrInput
-	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+	// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 	Secret pulumi.StringPtrInput
-	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	SecretWo pulumi.StringPtrInput
+	// The version of the write-only secret. Required when using `secretWo`.
+	SecretWoVersion pulumi.IntPtrInput
+	// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 	Url pulumi.StringInput
 }
 
@@ -385,9 +435,19 @@ func (o ModelOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission).
+// Authentication token used to pull the model from a private or gated URL (e.g., a Hugging Face access token with read permission). Conflicts with `secretWo`.
 func (o ModelOutput) Secret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o ModelOutput) SecretWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Model) pulumi.StringPtrOutput { return v.SecretWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only secret. Required when using `secretWo`.
+func (o ModelOutput) SecretWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Model) pulumi.IntPtrOutput { return v.SecretWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Total size, in bytes, of the model archive.
@@ -410,7 +470,7 @@ func (o ModelOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret`
+// The HTTPS source URL from which the model will be downloaded. This is typically a Hugging Face repository URL (e.g., <https://huggingface.co/agentica-org/DeepCoder-14B-Preview>). The URL must be publicly accessible or require valid credentials via `secret` or `secretWo`
 func (o ModelOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *Model) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

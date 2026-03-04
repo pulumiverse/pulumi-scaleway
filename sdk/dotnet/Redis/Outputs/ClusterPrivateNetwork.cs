@@ -31,7 +31,7 @@ namespace Pulumiverse.Scaleway.Redis.Outputs
         /// </summary>
         public readonly int? Port;
         /// <summary>
-        /// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+        /// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
         /// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
         /// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
         /// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.

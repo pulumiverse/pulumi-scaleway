@@ -33,6 +33,8 @@ export interface GetConfigResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly organizationId: string;
+    readonly organizationIdSource: string;
     readonly projectId: string;
     readonly projectIdSource: string;
     readonly region: string;

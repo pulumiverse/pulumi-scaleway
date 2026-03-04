@@ -99,6 +99,18 @@ namespace Pulumiverse.Scaleway
         public Output<string> DatabaseName { get; private set; } = null!;
 
         /// <summary>
+        /// URL you can download the backup from (when exporting).
+        /// </summary>
+        [Output("downloadUrl")]
+        public Output<string> DownloadUrl { get; private set; } = null!;
+
+        /// <summary>
+        /// Expiration date of the download link (Format ISO 8601).
+        /// </summary>
+        [Output("downloadUrlExpiresAt")]
+        public Output<string> DownloadUrlExpiresAt { get; private set; } = null!;
+
+        /// <summary>
         /// Expiration date (Format ISO 8601).
         /// 
         /// &gt; **Important:** `ExpiresAt` cannot be removed after being set.
@@ -133,10 +145,22 @@ namespace Pulumiverse.Scaleway
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// Whether the backup is stored in the same region as the source instance.
+        /// </summary>
+        [Output("sameRegion")]
+        public Output<bool> SameRegion { get; private set; } = null!;
+
+        /// <summary>
         /// Size of the backup (in bytes).
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
+
+        /// <summary>
+        /// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+        /// </summary>
+        [Output("status")]
+        public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
         /// Updated date (Format ISO 8601).
@@ -246,6 +270,18 @@ namespace Pulumiverse.Scaleway
         public Input<string>? DatabaseName { get; set; }
 
         /// <summary>
+        /// URL you can download the backup from (when exporting).
+        /// </summary>
+        [Input("downloadUrl")]
+        public Input<string>? DownloadUrl { get; set; }
+
+        /// <summary>
+        /// Expiration date of the download link (Format ISO 8601).
+        /// </summary>
+        [Input("downloadUrlExpiresAt")]
+        public Input<string>? DownloadUrlExpiresAt { get; set; }
+
+        /// <summary>
         /// Expiration date (Format ISO 8601).
         /// 
         /// &gt; **Important:** `ExpiresAt` cannot be removed after being set.
@@ -280,10 +316,22 @@ namespace Pulumiverse.Scaleway
         public Input<string>? Region { get; set; }
 
         /// <summary>
+        /// Whether the backup is stored in the same region as the source instance.
+        /// </summary>
+        [Input("sameRegion")]
+        public Input<bool>? SameRegion { get; set; }
+
+        /// <summary>
         /// Size of the backup (in bytes).
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
+
+        /// <summary>
+        /// Status of the backup (creating, ready, restoring, deleting, error, exporting, locked).
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
 
         /// <summary>
         /// Updated date (Format ISO 8601).

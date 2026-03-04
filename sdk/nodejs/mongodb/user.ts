@@ -7,17 +7,15 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Creates and manages Scaleway MongoDB® users.
- * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+ * Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
  *
  * ## Example Usage
- *
- * ### Basic
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Basic user creation
  * const main = new scaleway.mongodb.Instance("main", {
  *     name: "test-mongodb-user",
  *     version: "7.0.12",
@@ -38,12 +36,11 @@ import * as utilities from "../utilities";
  * });
  * ```
  *
- * ### With Multiple Users
- *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as scaleway from "@pulumiverse/scaleway";
  *
+ * //## Multiple user creation
  * const main = new scaleway.mongodb.Instance("main", {
  *     name: "test-mongodb-multi-user",
  *     version: "7.0.12",
@@ -134,7 +131,12 @@ export class User extends pulumi.CustomResource {
     /**
      * The password of the MongoDB® user.
      */
-    declare public readonly password: pulumi.Output<string>;
+    declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * `region`) The region in which the MongoDB® user should be created.
      */
@@ -160,6 +162,8 @@ export class User extends pulumi.CustomResource {
             resourceInputs["instanceId"] = state?.instanceId;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["region"] = state?.region;
             resourceInputs["roles"] = state?.roles;
         } else {
@@ -167,17 +171,16 @@ export class User extends pulumi.CustomResource {
             if (args?.instanceId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
-            if (args?.password === undefined && !opts.urn) {
-                throw new Error("Missing required property 'password'");
-            }
             resourceInputs["instanceId"] = args?.instanceId;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["region"] = args?.region;
             resourceInputs["roles"] = args?.roles;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(User.__pulumiType, name, resourceInputs, opts);
     }
@@ -199,6 +202,11 @@ export interface UserState {
      * The password of the MongoDB® user.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * `region`) The region in which the MongoDB® user should be created.
      */
@@ -224,7 +232,12 @@ export interface UserArgs {
     /**
      * The password of the MongoDB® user.
      */
-    password: pulumi.Input<string>;
+    password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * `region`) The region in which the MongoDB® user should be created.
      */

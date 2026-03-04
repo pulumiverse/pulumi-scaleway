@@ -20,6 +20,26 @@ export type Gateway = import("./gateway").Gateway;
 export const Gateway: typeof import("./gateway").Gateway = null as any;
 utilities.lazyLoad(exports, ["Gateway"], () => require("./gateway"));
 
+export { GetConnectionArgs, GetConnectionResult, GetConnectionOutputArgs } from "./getConnection";
+export const getConnection: typeof import("./getConnection").getConnection = null as any;
+export const getConnectionOutput: typeof import("./getConnection").getConnectionOutput = null as any;
+utilities.lazyLoad(exports, ["getConnection","getConnectionOutput"], () => require("./getConnection"));
+
+export { GetCustomerGatewayArgs, GetCustomerGatewayResult, GetCustomerGatewayOutputArgs } from "./getCustomerGateway";
+export const getCustomerGateway: typeof import("./getCustomerGateway").getCustomerGateway = null as any;
+export const getCustomerGatewayOutput: typeof import("./getCustomerGateway").getCustomerGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getCustomerGateway","getCustomerGatewayOutput"], () => require("./getCustomerGateway"));
+
+export { GetGatewayArgs, GetGatewayResult, GetGatewayOutputArgs } from "./getGateway";
+export const getGateway: typeof import("./getGateway").getGateway = null as any;
+export const getGatewayOutput: typeof import("./getGateway").getGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getGateway","getGatewayOutput"], () => require("./getGateway"));
+
+export { GetRoutingPolicyArgs, GetRoutingPolicyResult, GetRoutingPolicyOutputArgs } from "./getRoutingPolicy";
+export const getRoutingPolicy: typeof import("./getRoutingPolicy").getRoutingPolicy = null as any;
+export const getRoutingPolicyOutput: typeof import("./getRoutingPolicy").getRoutingPolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getRoutingPolicy","getRoutingPolicyOutput"], () => require("./getRoutingPolicy"));
+
 export { RoutingPolicyArgs, RoutingPolicyState } from "./routingPolicy";
 export type RoutingPolicy = import("./routingPolicy").RoutingPolicy;
 export const RoutingPolicy: typeof import("./routingPolicy").RoutingPolicy = null as any;

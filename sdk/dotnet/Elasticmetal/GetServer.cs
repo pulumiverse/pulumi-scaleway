@@ -197,6 +197,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public readonly string OsName;
         public readonly string Partitioning;
         public readonly string Password;
+        public readonly string PasswordWo;
+        public readonly int PasswordWoVersion;
         public readonly ImmutableArray<Outputs.GetServerPrivateIpResult> PrivateIps;
         public readonly ImmutableArray<Outputs.GetServerPrivateNetworkResult> PrivateNetworks;
         public readonly string? ProjectId;
@@ -204,6 +206,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
         public readonly bool ReinstallOnConfigChanges;
         public readonly string? ServerId;
         public readonly string ServicePassword;
+        public readonly string ServicePasswordWo;
+        public readonly int ServicePasswordWoVersion;
         public readonly string ServiceUser;
         public readonly ImmutableArray<string> SshKeyIds;
         public readonly ImmutableArray<string> Tags;
@@ -250,6 +254,10 @@ namespace Pulumiverse.Scaleway.Elasticmetal
 
             string password,
 
+            string passwordWo,
+
+            int passwordWoVersion,
+
             ImmutableArray<Outputs.GetServerPrivateIpResult> privateIps,
 
             ImmutableArray<Outputs.GetServerPrivateNetworkResult> privateNetworks,
@@ -263,6 +271,10 @@ namespace Pulumiverse.Scaleway.Elasticmetal
             string? serverId,
 
             string servicePassword,
+
+            string servicePasswordWo,
+
+            int servicePasswordWoVersion,
 
             string serviceUser,
 
@@ -293,6 +305,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
             OsName = osName;
             Partitioning = partitioning;
             Password = password;
+            PasswordWo = passwordWo;
+            PasswordWoVersion = passwordWoVersion;
             PrivateIps = privateIps;
             PrivateNetworks = privateNetworks;
             ProjectId = projectId;
@@ -300,6 +314,8 @@ namespace Pulumiverse.Scaleway.Elasticmetal
             ReinstallOnConfigChanges = reinstallOnConfigChanges;
             ServerId = serverId;
             ServicePassword = servicePassword;
+            ServicePasswordWo = servicePasswordWo;
+            ServicePasswordWoVersion = servicePasswordWoVersion;
             ServiceUser = serviceUser;
             SshKeyIds = sshKeyIds;
             Tags = tags;

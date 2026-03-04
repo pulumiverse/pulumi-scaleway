@@ -2668,7 +2668,7 @@ func (o ContainerTriggerSqsPtrOutput) Region() pulumi.StringPtrOutput {
 type DatabaseAclAclRule struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description *string `pulumi:"description"`
-	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -2686,7 +2686,7 @@ type DatabaseAclAclRuleInput interface {
 type DatabaseAclAclRuleArgs struct {
 	// A text describing this rule. Default description: `IP allowed`
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -2746,7 +2746,7 @@ func (o DatabaseAclAclRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DatabaseAclAclRule) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
-// The IP range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o DatabaseAclAclRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -11006,6 +11006,315 @@ func (o JobDefinitionSecretReferenceArrayOutput) Index(i pulumi.IntInput) JobDef
 	}).(JobDefinitionSecretReferenceOutput)
 }
 
+type KafkaClusterPrivateNetwork struct {
+	// List of DNS records for the private endpoint.
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// The ID of the private endpoint.
+	Id *string `pulumi:"id"`
+	// The private network ID (same as input).
+	PnId string `pulumi:"pnId"`
+	// TCP port number.
+	Port *int `pulumi:"port"`
+}
+
+// KafkaClusterPrivateNetworkInput is an input type that accepts KafkaClusterPrivateNetworkArgs and KafkaClusterPrivateNetworkOutput values.
+// You can construct a concrete instance of `KafkaClusterPrivateNetworkInput` via:
+//
+//	KafkaClusterPrivateNetworkArgs{...}
+type KafkaClusterPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToKafkaClusterPrivateNetworkOutput() KafkaClusterPrivateNetworkOutput
+	ToKafkaClusterPrivateNetworkOutputWithContext(context.Context) KafkaClusterPrivateNetworkOutput
+}
+
+type KafkaClusterPrivateNetworkArgs struct {
+	// List of DNS records for the private endpoint.
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// The ID of the private endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The private network ID (same as input).
+	PnId pulumi.StringInput `pulumi:"pnId"`
+	// TCP port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (KafkaClusterPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (i KafkaClusterPrivateNetworkArgs) ToKafkaClusterPrivateNetworkOutput() KafkaClusterPrivateNetworkOutput {
+	return i.ToKafkaClusterPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i KafkaClusterPrivateNetworkArgs) ToKafkaClusterPrivateNetworkOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KafkaClusterPrivateNetworkOutput)
+}
+
+func (i KafkaClusterPrivateNetworkArgs) ToKafkaClusterPrivateNetworkPtrOutput() KafkaClusterPrivateNetworkPtrOutput {
+	return i.ToKafkaClusterPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i KafkaClusterPrivateNetworkArgs) ToKafkaClusterPrivateNetworkPtrOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KafkaClusterPrivateNetworkOutput).ToKafkaClusterPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// KafkaClusterPrivateNetworkPtrInput is an input type that accepts KafkaClusterPrivateNetworkArgs, KafkaClusterPrivateNetworkPtr and KafkaClusterPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `KafkaClusterPrivateNetworkPtrInput` via:
+//
+//	        KafkaClusterPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type KafkaClusterPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToKafkaClusterPrivateNetworkPtrOutput() KafkaClusterPrivateNetworkPtrOutput
+	ToKafkaClusterPrivateNetworkPtrOutputWithContext(context.Context) KafkaClusterPrivateNetworkPtrOutput
+}
+
+type kafkaClusterPrivateNetworkPtrType KafkaClusterPrivateNetworkArgs
+
+func KafkaClusterPrivateNetworkPtr(v *KafkaClusterPrivateNetworkArgs) KafkaClusterPrivateNetworkPtrInput {
+	return (*kafkaClusterPrivateNetworkPtrType)(v)
+}
+
+func (*kafkaClusterPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (i *kafkaClusterPrivateNetworkPtrType) ToKafkaClusterPrivateNetworkPtrOutput() KafkaClusterPrivateNetworkPtrOutput {
+	return i.ToKafkaClusterPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *kafkaClusterPrivateNetworkPtrType) ToKafkaClusterPrivateNetworkPtrOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KafkaClusterPrivateNetworkPtrOutput)
+}
+
+type KafkaClusterPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (KafkaClusterPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (o KafkaClusterPrivateNetworkOutput) ToKafkaClusterPrivateNetworkOutput() KafkaClusterPrivateNetworkOutput {
+	return o
+}
+
+func (o KafkaClusterPrivateNetworkOutput) ToKafkaClusterPrivateNetworkOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkOutput {
+	return o
+}
+
+func (o KafkaClusterPrivateNetworkOutput) ToKafkaClusterPrivateNetworkPtrOutput() KafkaClusterPrivateNetworkPtrOutput {
+	return o.ToKafkaClusterPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o KafkaClusterPrivateNetworkOutput) ToKafkaClusterPrivateNetworkPtrOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KafkaClusterPrivateNetwork) *KafkaClusterPrivateNetwork {
+		return &v
+	}).(KafkaClusterPrivateNetworkPtrOutput)
+}
+
+// List of DNS records for the private endpoint.
+func (o KafkaClusterPrivateNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KafkaClusterPrivateNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the private endpoint.
+func (o KafkaClusterPrivateNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KafkaClusterPrivateNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The private network ID (same as input).
+func (o KafkaClusterPrivateNetworkOutput) PnId() pulumi.StringOutput {
+	return o.ApplyT(func(v KafkaClusterPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// TCP port number.
+func (o KafkaClusterPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KafkaClusterPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type KafkaClusterPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (KafkaClusterPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (o KafkaClusterPrivateNetworkPtrOutput) ToKafkaClusterPrivateNetworkPtrOutput() KafkaClusterPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o KafkaClusterPrivateNetworkPtrOutput) ToKafkaClusterPrivateNetworkPtrOutputWithContext(ctx context.Context) KafkaClusterPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o KafkaClusterPrivateNetworkPtrOutput) Elem() KafkaClusterPrivateNetworkOutput {
+	return o.ApplyT(func(v *KafkaClusterPrivateNetwork) KafkaClusterPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret KafkaClusterPrivateNetwork
+		return ret
+	}).(KafkaClusterPrivateNetworkOutput)
+}
+
+// List of DNS records for the private endpoint.
+func (o KafkaClusterPrivateNetworkPtrOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *KafkaClusterPrivateNetwork) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DnsRecords
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the private endpoint.
+func (o KafkaClusterPrivateNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KafkaClusterPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The private network ID (same as input).
+func (o KafkaClusterPrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KafkaClusterPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PnId
+	}).(pulumi.StringPtrOutput)
+}
+
+// TCP port number.
+func (o KafkaClusterPrivateNetworkPtrOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KafkaClusterPrivateNetwork) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Port
+	}).(pulumi.IntPtrOutput)
+}
+
+type KafkaClusterPublicNetwork struct {
+	// List of DNS records for the private endpoint.
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// The ID of the private endpoint.
+	Id *string `pulumi:"id"`
+	// TCP port number.
+	Port *int `pulumi:"port"`
+}
+
+// KafkaClusterPublicNetworkInput is an input type that accepts KafkaClusterPublicNetworkArgs and KafkaClusterPublicNetworkOutput values.
+// You can construct a concrete instance of `KafkaClusterPublicNetworkInput` via:
+//
+//	KafkaClusterPublicNetworkArgs{...}
+type KafkaClusterPublicNetworkInput interface {
+	pulumi.Input
+
+	ToKafkaClusterPublicNetworkOutput() KafkaClusterPublicNetworkOutput
+	ToKafkaClusterPublicNetworkOutputWithContext(context.Context) KafkaClusterPublicNetworkOutput
+}
+
+type KafkaClusterPublicNetworkArgs struct {
+	// List of DNS records for the private endpoint.
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// The ID of the private endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// TCP port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+}
+
+func (KafkaClusterPublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (i KafkaClusterPublicNetworkArgs) ToKafkaClusterPublicNetworkOutput() KafkaClusterPublicNetworkOutput {
+	return i.ToKafkaClusterPublicNetworkOutputWithContext(context.Background())
+}
+
+func (i KafkaClusterPublicNetworkArgs) ToKafkaClusterPublicNetworkOutputWithContext(ctx context.Context) KafkaClusterPublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KafkaClusterPublicNetworkOutput)
+}
+
+// KafkaClusterPublicNetworkArrayInput is an input type that accepts KafkaClusterPublicNetworkArray and KafkaClusterPublicNetworkArrayOutput values.
+// You can construct a concrete instance of `KafkaClusterPublicNetworkArrayInput` via:
+//
+//	KafkaClusterPublicNetworkArray{ KafkaClusterPublicNetworkArgs{...} }
+type KafkaClusterPublicNetworkArrayInput interface {
+	pulumi.Input
+
+	ToKafkaClusterPublicNetworkArrayOutput() KafkaClusterPublicNetworkArrayOutput
+	ToKafkaClusterPublicNetworkArrayOutputWithContext(context.Context) KafkaClusterPublicNetworkArrayOutput
+}
+
+type KafkaClusterPublicNetworkArray []KafkaClusterPublicNetworkInput
+
+func (KafkaClusterPublicNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (i KafkaClusterPublicNetworkArray) ToKafkaClusterPublicNetworkArrayOutput() KafkaClusterPublicNetworkArrayOutput {
+	return i.ToKafkaClusterPublicNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i KafkaClusterPublicNetworkArray) ToKafkaClusterPublicNetworkArrayOutputWithContext(ctx context.Context) KafkaClusterPublicNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KafkaClusterPublicNetworkArrayOutput)
+}
+
+type KafkaClusterPublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (KafkaClusterPublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (o KafkaClusterPublicNetworkOutput) ToKafkaClusterPublicNetworkOutput() KafkaClusterPublicNetworkOutput {
+	return o
+}
+
+func (o KafkaClusterPublicNetworkOutput) ToKafkaClusterPublicNetworkOutputWithContext(ctx context.Context) KafkaClusterPublicNetworkOutput {
+	return o
+}
+
+// List of DNS records for the private endpoint.
+func (o KafkaClusterPublicNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KafkaClusterPublicNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the private endpoint.
+func (o KafkaClusterPublicNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KafkaClusterPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// TCP port number.
+func (o KafkaClusterPublicNetworkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KafkaClusterPublicNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+type KafkaClusterPublicNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (KafkaClusterPublicNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (o KafkaClusterPublicNetworkArrayOutput) ToKafkaClusterPublicNetworkArrayOutput() KafkaClusterPublicNetworkArrayOutput {
+	return o
+}
+
+func (o KafkaClusterPublicNetworkArrayOutput) ToKafkaClusterPublicNetworkArrayOutputWithContext(ctx context.Context) KafkaClusterPublicNetworkArrayOutput {
+	return o
+}
+
+func (o KafkaClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) KafkaClusterPublicNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KafkaClusterPublicNetwork {
+		return vs[0].([]KafkaClusterPublicNetwork)[vs[1].(int)]
+	}).(KafkaClusterPublicNetworkOutput)
+}
+
 type KeyManagerKeyRotationPolicy struct {
 	// The date and time of the next scheduled rotation.
 	NextRotationAt *string `pulumi:"nextRotationAt"`
@@ -17364,6 +17673,538 @@ func (o ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput) Suffix() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+type OpensearchDeploymentEndpoint struct {
+	// The ID of the endpoint.
+	Id *string `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId *string `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (true) or private (false).
+	Public *bool `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services []OpensearchDeploymentEndpointService `pulumi:"services"`
+}
+
+// OpensearchDeploymentEndpointInput is an input type that accepts OpensearchDeploymentEndpointArgs and OpensearchDeploymentEndpointOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentEndpointInput` via:
+//
+//	OpensearchDeploymentEndpointArgs{...}
+type OpensearchDeploymentEndpointInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentEndpointOutput() OpensearchDeploymentEndpointOutput
+	ToOpensearchDeploymentEndpointOutputWithContext(context.Context) OpensearchDeploymentEndpointOutput
+}
+
+type OpensearchDeploymentEndpointArgs struct {
+	// The ID of the endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId pulumi.StringPtrInput `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public (true) or private (false).
+	Public pulumi.BoolPtrInput `pulumi:"public"`
+	// List of services exposed on the endpoint.
+	Services OpensearchDeploymentEndpointServiceArrayInput `pulumi:"services"`
+}
+
+func (OpensearchDeploymentEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentEndpointArgs) ToOpensearchDeploymentEndpointOutput() OpensearchDeploymentEndpointOutput {
+	return i.ToOpensearchDeploymentEndpointOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentEndpointArgs) ToOpensearchDeploymentEndpointOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentEndpointOutput)
+}
+
+// OpensearchDeploymentEndpointArrayInput is an input type that accepts OpensearchDeploymentEndpointArray and OpensearchDeploymentEndpointArrayOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentEndpointArrayInput` via:
+//
+//	OpensearchDeploymentEndpointArray{ OpensearchDeploymentEndpointArgs{...} }
+type OpensearchDeploymentEndpointArrayInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentEndpointArrayOutput() OpensearchDeploymentEndpointArrayOutput
+	ToOpensearchDeploymentEndpointArrayOutputWithContext(context.Context) OpensearchDeploymentEndpointArrayOutput
+}
+
+type OpensearchDeploymentEndpointArray []OpensearchDeploymentEndpointInput
+
+func (OpensearchDeploymentEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpensearchDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentEndpointArray) ToOpensearchDeploymentEndpointArrayOutput() OpensearchDeploymentEndpointArrayOutput {
+	return i.ToOpensearchDeploymentEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentEndpointArray) ToOpensearchDeploymentEndpointArrayOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentEndpointArrayOutput)
+}
+
+type OpensearchDeploymentEndpointOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentEndpointOutput) ToOpensearchDeploymentEndpointOutput() OpensearchDeploymentEndpointOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointOutput) ToOpensearchDeploymentEndpointOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointOutput {
+	return o
+}
+
+// The ID of the endpoint.
+func (o OpensearchDeploymentEndpointOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpoint) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Private network ID if the endpoint is private.
+func (o OpensearchDeploymentEndpointOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpoint) *string { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
+}
+
+// Whether the endpoint is public (true) or private (false).
+func (o OpensearchDeploymentEndpointOutput) Public() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpoint) *bool { return v.Public }).(pulumi.BoolPtrOutput)
+}
+
+// List of services exposed on the endpoint.
+func (o OpensearchDeploymentEndpointOutput) Services() OpensearchDeploymentEndpointServiceArrayOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpoint) []OpensearchDeploymentEndpointService { return v.Services }).(OpensearchDeploymentEndpointServiceArrayOutput)
+}
+
+type OpensearchDeploymentEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpensearchDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentEndpointArrayOutput) ToOpensearchDeploymentEndpointArrayOutput() OpensearchDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointArrayOutput) ToOpensearchDeploymentEndpointArrayOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointArrayOutput) Index(i pulumi.IntInput) OpensearchDeploymentEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OpensearchDeploymentEndpoint {
+		return vs[0].([]OpensearchDeploymentEndpoint)[vs[1].(int)]
+	}).(OpensearchDeploymentEndpointOutput)
+}
+
+type OpensearchDeploymentEndpointService struct {
+	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
+	Name *string `pulumi:"name"`
+	// Service port number.
+	Port *int `pulumi:"port"`
+	// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+	Url *string `pulumi:"url"`
+}
+
+// OpensearchDeploymentEndpointServiceInput is an input type that accepts OpensearchDeploymentEndpointServiceArgs and OpensearchDeploymentEndpointServiceOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentEndpointServiceInput` via:
+//
+//	OpensearchDeploymentEndpointServiceArgs{...}
+type OpensearchDeploymentEndpointServiceInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentEndpointServiceOutput() OpensearchDeploymentEndpointServiceOutput
+	ToOpensearchDeploymentEndpointServiceOutputWithContext(context.Context) OpensearchDeploymentEndpointServiceOutput
+}
+
+type OpensearchDeploymentEndpointServiceArgs struct {
+	// Name of the OpenSearch deployment. If not specified, a random name will be generated.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Service port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+	Url pulumi.StringPtrInput `pulumi:"url"`
+}
+
+func (OpensearchDeploymentEndpointServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentEndpointServiceArgs) ToOpensearchDeploymentEndpointServiceOutput() OpensearchDeploymentEndpointServiceOutput {
+	return i.ToOpensearchDeploymentEndpointServiceOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentEndpointServiceArgs) ToOpensearchDeploymentEndpointServiceOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentEndpointServiceOutput)
+}
+
+// OpensearchDeploymentEndpointServiceArrayInput is an input type that accepts OpensearchDeploymentEndpointServiceArray and OpensearchDeploymentEndpointServiceArrayOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentEndpointServiceArrayInput` via:
+//
+//	OpensearchDeploymentEndpointServiceArray{ OpensearchDeploymentEndpointServiceArgs{...} }
+type OpensearchDeploymentEndpointServiceArrayInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentEndpointServiceArrayOutput() OpensearchDeploymentEndpointServiceArrayOutput
+	ToOpensearchDeploymentEndpointServiceArrayOutputWithContext(context.Context) OpensearchDeploymentEndpointServiceArrayOutput
+}
+
+type OpensearchDeploymentEndpointServiceArray []OpensearchDeploymentEndpointServiceInput
+
+func (OpensearchDeploymentEndpointServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpensearchDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentEndpointServiceArray) ToOpensearchDeploymentEndpointServiceArrayOutput() OpensearchDeploymentEndpointServiceArrayOutput {
+	return i.ToOpensearchDeploymentEndpointServiceArrayOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentEndpointServiceArray) ToOpensearchDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentEndpointServiceArrayOutput)
+}
+
+type OpensearchDeploymentEndpointServiceOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentEndpointServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentEndpointServiceOutput) ToOpensearchDeploymentEndpointServiceOutput() OpensearchDeploymentEndpointServiceOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointServiceOutput) ToOpensearchDeploymentEndpointServiceOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointServiceOutput {
+	return o
+}
+
+// Name of the OpenSearch deployment. If not specified, a random name will be generated.
+func (o OpensearchDeploymentEndpointServiceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpointService) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Service port number.
+func (o OpensearchDeploymentEndpointServiceOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpointService) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+func (o OpensearchDeploymentEndpointServiceOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v OpensearchDeploymentEndpointService) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type OpensearchDeploymentEndpointServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentEndpointServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OpensearchDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentEndpointServiceArrayOutput) ToOpensearchDeploymentEndpointServiceArrayOutput() OpensearchDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointServiceArrayOutput) ToOpensearchDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) OpensearchDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o OpensearchDeploymentEndpointServiceArrayOutput) Index(i pulumi.IntInput) OpensearchDeploymentEndpointServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OpensearchDeploymentEndpointService {
+		return vs[0].([]OpensearchDeploymentEndpointService)[vs[1].(int)]
+	}).(OpensearchDeploymentEndpointServiceOutput)
+}
+
+type OpensearchDeploymentPrivateNetwork struct {
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+}
+
+// OpensearchDeploymentPrivateNetworkInput is an input type that accepts OpensearchDeploymentPrivateNetworkArgs and OpensearchDeploymentPrivateNetworkOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentPrivateNetworkInput` via:
+//
+//	OpensearchDeploymentPrivateNetworkArgs{...}
+type OpensearchDeploymentPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentPrivateNetworkOutput() OpensearchDeploymentPrivateNetworkOutput
+	ToOpensearchDeploymentPrivateNetworkOutputWithContext(context.Context) OpensearchDeploymentPrivateNetworkOutput
+}
+
+type OpensearchDeploymentPrivateNetworkArgs struct {
+	// Private network ID if the endpoint is private.
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+}
+
+func (OpensearchDeploymentPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentPrivateNetworkArgs) ToOpensearchDeploymentPrivateNetworkOutput() OpensearchDeploymentPrivateNetworkOutput {
+	return i.ToOpensearchDeploymentPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentPrivateNetworkArgs) ToOpensearchDeploymentPrivateNetworkOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentPrivateNetworkOutput)
+}
+
+func (i OpensearchDeploymentPrivateNetworkArgs) ToOpensearchDeploymentPrivateNetworkPtrOutput() OpensearchDeploymentPrivateNetworkPtrOutput {
+	return i.ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentPrivateNetworkArgs) ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentPrivateNetworkOutput).ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// OpensearchDeploymentPrivateNetworkPtrInput is an input type that accepts OpensearchDeploymentPrivateNetworkArgs, OpensearchDeploymentPrivateNetworkPtr and OpensearchDeploymentPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentPrivateNetworkPtrInput` via:
+//
+//	        OpensearchDeploymentPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type OpensearchDeploymentPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentPrivateNetworkPtrOutput() OpensearchDeploymentPrivateNetworkPtrOutput
+	ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(context.Context) OpensearchDeploymentPrivateNetworkPtrOutput
+}
+
+type opensearchDeploymentPrivateNetworkPtrType OpensearchDeploymentPrivateNetworkArgs
+
+func OpensearchDeploymentPrivateNetworkPtr(v *OpensearchDeploymentPrivateNetworkArgs) OpensearchDeploymentPrivateNetworkPtrInput {
+	return (*opensearchDeploymentPrivateNetworkPtrType)(v)
+}
+
+func (*opensearchDeploymentPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OpensearchDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i *opensearchDeploymentPrivateNetworkPtrType) ToOpensearchDeploymentPrivateNetworkPtrOutput() OpensearchDeploymentPrivateNetworkPtrOutput {
+	return i.ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *opensearchDeploymentPrivateNetworkPtrType) ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentPrivateNetworkPtrOutput)
+}
+
+type OpensearchDeploymentPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentPrivateNetworkOutput) ToOpensearchDeploymentPrivateNetworkOutput() OpensearchDeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o OpensearchDeploymentPrivateNetworkOutput) ToOpensearchDeploymentPrivateNetworkOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o OpensearchDeploymentPrivateNetworkOutput) ToOpensearchDeploymentPrivateNetworkPtrOutput() OpensearchDeploymentPrivateNetworkPtrOutput {
+	return o.ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o OpensearchDeploymentPrivateNetworkOutput) ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OpensearchDeploymentPrivateNetwork) *OpensearchDeploymentPrivateNetwork {
+		return &v
+	}).(OpensearchDeploymentPrivateNetworkPtrOutput)
+}
+
+// Private network ID if the endpoint is private.
+func (o OpensearchDeploymentPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v OpensearchDeploymentPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+type OpensearchDeploymentPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OpensearchDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentPrivateNetworkPtrOutput) ToOpensearchDeploymentPrivateNetworkPtrOutput() OpensearchDeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o OpensearchDeploymentPrivateNetworkPtrOutput) ToOpensearchDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) OpensearchDeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o OpensearchDeploymentPrivateNetworkPtrOutput) Elem() OpensearchDeploymentPrivateNetworkOutput {
+	return o.ApplyT(func(v *OpensearchDeploymentPrivateNetwork) OpensearchDeploymentPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret OpensearchDeploymentPrivateNetwork
+		return ret
+	}).(OpensearchDeploymentPrivateNetworkOutput)
+}
+
+// Private network ID if the endpoint is private.
+func (o OpensearchDeploymentPrivateNetworkPtrOutput) PrivateNetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OpensearchDeploymentPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PrivateNetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
+type OpensearchDeploymentVolume struct {
+	// Volume size in GB. Changing this forces recreation of the deployment.
+	SizeInGb int `pulumi:"sizeInGb"`
+	// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+	Type string `pulumi:"type"`
+}
+
+// OpensearchDeploymentVolumeInput is an input type that accepts OpensearchDeploymentVolumeArgs and OpensearchDeploymentVolumeOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentVolumeInput` via:
+//
+//	OpensearchDeploymentVolumeArgs{...}
+type OpensearchDeploymentVolumeInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentVolumeOutput() OpensearchDeploymentVolumeOutput
+	ToOpensearchDeploymentVolumeOutputWithContext(context.Context) OpensearchDeploymentVolumeOutput
+}
+
+type OpensearchDeploymentVolumeArgs struct {
+	// Volume size in GB. Changing this forces recreation of the deployment.
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (OpensearchDeploymentVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentVolume)(nil)).Elem()
+}
+
+func (i OpensearchDeploymentVolumeArgs) ToOpensearchDeploymentVolumeOutput() OpensearchDeploymentVolumeOutput {
+	return i.ToOpensearchDeploymentVolumeOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentVolumeArgs) ToOpensearchDeploymentVolumeOutputWithContext(ctx context.Context) OpensearchDeploymentVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentVolumeOutput)
+}
+
+func (i OpensearchDeploymentVolumeArgs) ToOpensearchDeploymentVolumePtrOutput() OpensearchDeploymentVolumePtrOutput {
+	return i.ToOpensearchDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (i OpensearchDeploymentVolumeArgs) ToOpensearchDeploymentVolumePtrOutputWithContext(ctx context.Context) OpensearchDeploymentVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentVolumeOutput).ToOpensearchDeploymentVolumePtrOutputWithContext(ctx)
+}
+
+// OpensearchDeploymentVolumePtrInput is an input type that accepts OpensearchDeploymentVolumeArgs, OpensearchDeploymentVolumePtr and OpensearchDeploymentVolumePtrOutput values.
+// You can construct a concrete instance of `OpensearchDeploymentVolumePtrInput` via:
+//
+//	        OpensearchDeploymentVolumeArgs{...}
+//
+//	or:
+//
+//	        nil
+type OpensearchDeploymentVolumePtrInput interface {
+	pulumi.Input
+
+	ToOpensearchDeploymentVolumePtrOutput() OpensearchDeploymentVolumePtrOutput
+	ToOpensearchDeploymentVolumePtrOutputWithContext(context.Context) OpensearchDeploymentVolumePtrOutput
+}
+
+type opensearchDeploymentVolumePtrType OpensearchDeploymentVolumeArgs
+
+func OpensearchDeploymentVolumePtr(v *OpensearchDeploymentVolumeArgs) OpensearchDeploymentVolumePtrInput {
+	return (*opensearchDeploymentVolumePtrType)(v)
+}
+
+func (*opensearchDeploymentVolumePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OpensearchDeploymentVolume)(nil)).Elem()
+}
+
+func (i *opensearchDeploymentVolumePtrType) ToOpensearchDeploymentVolumePtrOutput() OpensearchDeploymentVolumePtrOutput {
+	return i.ToOpensearchDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (i *opensearchDeploymentVolumePtrType) ToOpensearchDeploymentVolumePtrOutputWithContext(ctx context.Context) OpensearchDeploymentVolumePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OpensearchDeploymentVolumePtrOutput)
+}
+
+type OpensearchDeploymentVolumeOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OpensearchDeploymentVolume)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentVolumeOutput) ToOpensearchDeploymentVolumeOutput() OpensearchDeploymentVolumeOutput {
+	return o
+}
+
+func (o OpensearchDeploymentVolumeOutput) ToOpensearchDeploymentVolumeOutputWithContext(ctx context.Context) OpensearchDeploymentVolumeOutput {
+	return o
+}
+
+func (o OpensearchDeploymentVolumeOutput) ToOpensearchDeploymentVolumePtrOutput() OpensearchDeploymentVolumePtrOutput {
+	return o.ToOpensearchDeploymentVolumePtrOutputWithContext(context.Background())
+}
+
+func (o OpensearchDeploymentVolumeOutput) ToOpensearchDeploymentVolumePtrOutputWithContext(ctx context.Context) OpensearchDeploymentVolumePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OpensearchDeploymentVolume) *OpensearchDeploymentVolume {
+		return &v
+	}).(OpensearchDeploymentVolumePtrOutput)
+}
+
+// Volume size in GB. Changing this forces recreation of the deployment.
+func (o OpensearchDeploymentVolumeOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v OpensearchDeploymentVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+func (o OpensearchDeploymentVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v OpensearchDeploymentVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type OpensearchDeploymentVolumePtrOutput struct{ *pulumi.OutputState }
+
+func (OpensearchDeploymentVolumePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OpensearchDeploymentVolume)(nil)).Elem()
+}
+
+func (o OpensearchDeploymentVolumePtrOutput) ToOpensearchDeploymentVolumePtrOutput() OpensearchDeploymentVolumePtrOutput {
+	return o
+}
+
+func (o OpensearchDeploymentVolumePtrOutput) ToOpensearchDeploymentVolumePtrOutputWithContext(ctx context.Context) OpensearchDeploymentVolumePtrOutput {
+	return o
+}
+
+func (o OpensearchDeploymentVolumePtrOutput) Elem() OpensearchDeploymentVolumeOutput {
+	return o.ApplyT(func(v *OpensearchDeploymentVolume) OpensearchDeploymentVolume {
+		if v != nil {
+			return *v
+		}
+		var ret OpensearchDeploymentVolume
+		return ret
+	}).(OpensearchDeploymentVolumeOutput)
+}
+
+// Volume size in GB. Changing this forces recreation of the deployment.
+func (o OpensearchDeploymentVolumePtrOutput) SizeInGb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OpensearchDeploymentVolume) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.SizeInGb
+	}).(pulumi.IntPtrOutput)
+}
+
+// Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+func (o OpensearchDeploymentVolumePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *OpensearchDeploymentVolume) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
 type RedisClusterAcl struct {
 	// A text describing this rule. Default description: `Allow IP`
 	//
@@ -17371,8 +18212,7 @@ type RedisClusterAcl struct {
 	Description *string `pulumi:"description"`
 	// The ID of the IPv4 address resource.
 	Id *string `pulumi:"id"`
-	// The IP range to whitelist
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -17394,8 +18234,7 @@ type RedisClusterAclArgs struct {
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// The ID of the IPv4 address resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The IP range to whitelist
-	// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -17462,8 +18301,7 @@ func (o RedisClusterAclOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisClusterAcl) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The IP range to whitelist
-// in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o RedisClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v RedisClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -17603,7 +18441,7 @@ type RedisClusterPrivateNetwork struct {
 	Ips []string `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port *int `pulumi:"port"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -17649,7 +18487,7 @@ type RedisClusterPrivateNetworkArgs struct {
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port pulumi.IntPtrInput `pulumi:"port"`
-	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+	// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 	// Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 	// scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 	// If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -17746,7 +18584,7 @@ func (o RedisClusterPrivateNetworkOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v RedisClusterPrivateNetwork) *int { return v.Port }).(pulumi.IntPtrOutput)
 }
 
-// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). You must provide at least one IP per node.
+// Endpoint IPv4 addresses in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation) (IPv6 is not supported by the Scaleway API). You must provide at least one IP per node.
 // Keep in mind that in cluster mode you cannot edit your Private Network after its creation so if you want to be able to
 // scale your cluster horizontally (adding nodes) later, you should provide more IPs than nodes.
 // If not set, the IP network address within the private subnet is determined by the IP Address Management (IPAM) service.
@@ -21670,7 +22508,7 @@ func (o GetContainerScalingOptionArrayOutput) Index(i pulumi.IntInput) GetContai
 type GetDatabaseAclAclRule struct {
 	// A simple text describing this rule
 	Description string `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip string `pulumi:"ip"`
 }
 
@@ -21688,7 +22526,7 @@ type GetDatabaseAclAclRuleInput interface {
 type GetDatabaseAclAclRuleArgs struct {
 	// A simple text describing this rule
 	Description pulumi.StringInput `pulumi:"description"`
-	// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+	// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -21748,7 +22586,7 @@ func (o GetDatabaseAclAclRuleOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseAclAclRule) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The ip range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation)
+// The IPv4 address or range to whitelist in [CIDR notation](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#CIDR_notation). IPv6 is not supported by the Scaleway API.
 func (o GetDatabaseAclAclRuleOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseAclAclRule) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -26109,6 +26947,245 @@ func (o GetIpamIpsResourcePtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return &v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+type GetKafkaClusterPrivateNetwork struct {
+	// DNS records for the private endpoint
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// The endpoint ID
+	Id string `pulumi:"id"`
+	// The private network ID
+	PnId string `pulumi:"pnId"`
+	// TCP port number
+	Port int `pulumi:"port"`
+}
+
+// GetKafkaClusterPrivateNetworkInput is an input type that accepts GetKafkaClusterPrivateNetworkArgs and GetKafkaClusterPrivateNetworkOutput values.
+// You can construct a concrete instance of `GetKafkaClusterPrivateNetworkInput` via:
+//
+//	GetKafkaClusterPrivateNetworkArgs{...}
+type GetKafkaClusterPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetKafkaClusterPrivateNetworkOutput() GetKafkaClusterPrivateNetworkOutput
+	ToGetKafkaClusterPrivateNetworkOutputWithContext(context.Context) GetKafkaClusterPrivateNetworkOutput
+}
+
+type GetKafkaClusterPrivateNetworkArgs struct {
+	// DNS records for the private endpoint
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// The endpoint ID
+	Id pulumi.StringInput `pulumi:"id"`
+	// The private network ID
+	PnId pulumi.StringInput `pulumi:"pnId"`
+	// TCP port number
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetKafkaClusterPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetKafkaClusterPrivateNetworkArgs) ToGetKafkaClusterPrivateNetworkOutput() GetKafkaClusterPrivateNetworkOutput {
+	return i.ToGetKafkaClusterPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetKafkaClusterPrivateNetworkArgs) ToGetKafkaClusterPrivateNetworkOutputWithContext(ctx context.Context) GetKafkaClusterPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaClusterPrivateNetworkOutput)
+}
+
+// GetKafkaClusterPrivateNetworkArrayInput is an input type that accepts GetKafkaClusterPrivateNetworkArray and GetKafkaClusterPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetKafkaClusterPrivateNetworkArrayInput` via:
+//
+//	GetKafkaClusterPrivateNetworkArray{ GetKafkaClusterPrivateNetworkArgs{...} }
+type GetKafkaClusterPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetKafkaClusterPrivateNetworkArrayOutput() GetKafkaClusterPrivateNetworkArrayOutput
+	ToGetKafkaClusterPrivateNetworkArrayOutputWithContext(context.Context) GetKafkaClusterPrivateNetworkArrayOutput
+}
+
+type GetKafkaClusterPrivateNetworkArray []GetKafkaClusterPrivateNetworkInput
+
+func (GetKafkaClusterPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetKafkaClusterPrivateNetworkArray) ToGetKafkaClusterPrivateNetworkArrayOutput() GetKafkaClusterPrivateNetworkArrayOutput {
+	return i.ToGetKafkaClusterPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetKafkaClusterPrivateNetworkArray) ToGetKafkaClusterPrivateNetworkArrayOutputWithContext(ctx context.Context) GetKafkaClusterPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaClusterPrivateNetworkArrayOutput)
+}
+
+type GetKafkaClusterPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaClusterPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (o GetKafkaClusterPrivateNetworkOutput) ToGetKafkaClusterPrivateNetworkOutput() GetKafkaClusterPrivateNetworkOutput {
+	return o
+}
+
+func (o GetKafkaClusterPrivateNetworkOutput) ToGetKafkaClusterPrivateNetworkOutputWithContext(ctx context.Context) GetKafkaClusterPrivateNetworkOutput {
+	return o
+}
+
+// DNS records for the private endpoint
+func (o GetKafkaClusterPrivateNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKafkaClusterPrivateNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// The endpoint ID
+func (o GetKafkaClusterPrivateNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterPrivateNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The private network ID
+func (o GetKafkaClusterPrivateNetworkOutput) PnId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// TCP port number
+func (o GetKafkaClusterPrivateNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterPrivateNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetKafkaClusterPrivateNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaClusterPrivateNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaClusterPrivateNetwork)(nil)).Elem()
+}
+
+func (o GetKafkaClusterPrivateNetworkArrayOutput) ToGetKafkaClusterPrivateNetworkArrayOutput() GetKafkaClusterPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetKafkaClusterPrivateNetworkArrayOutput) ToGetKafkaClusterPrivateNetworkArrayOutputWithContext(ctx context.Context) GetKafkaClusterPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetKafkaClusterPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetKafkaClusterPrivateNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKafkaClusterPrivateNetwork {
+		return vs[0].([]GetKafkaClusterPrivateNetwork)[vs[1].(int)]
+	}).(GetKafkaClusterPrivateNetworkOutput)
+}
+
+type GetKafkaClusterPublicNetwork struct {
+	// DNS records for the public endpoint
+	DnsRecords []string `pulumi:"dnsRecords"`
+	// ID of the public endpoint
+	Id string `pulumi:"id"`
+	// TCP port number
+	Port int `pulumi:"port"`
+}
+
+// GetKafkaClusterPublicNetworkInput is an input type that accepts GetKafkaClusterPublicNetworkArgs and GetKafkaClusterPublicNetworkOutput values.
+// You can construct a concrete instance of `GetKafkaClusterPublicNetworkInput` via:
+//
+//	GetKafkaClusterPublicNetworkArgs{...}
+type GetKafkaClusterPublicNetworkInput interface {
+	pulumi.Input
+
+	ToGetKafkaClusterPublicNetworkOutput() GetKafkaClusterPublicNetworkOutput
+	ToGetKafkaClusterPublicNetworkOutputWithContext(context.Context) GetKafkaClusterPublicNetworkOutput
+}
+
+type GetKafkaClusterPublicNetworkArgs struct {
+	// DNS records for the public endpoint
+	DnsRecords pulumi.StringArrayInput `pulumi:"dnsRecords"`
+	// ID of the public endpoint
+	Id pulumi.StringInput `pulumi:"id"`
+	// TCP port number
+	Port pulumi.IntInput `pulumi:"port"`
+}
+
+func (GetKafkaClusterPublicNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (i GetKafkaClusterPublicNetworkArgs) ToGetKafkaClusterPublicNetworkOutput() GetKafkaClusterPublicNetworkOutput {
+	return i.ToGetKafkaClusterPublicNetworkOutputWithContext(context.Background())
+}
+
+func (i GetKafkaClusterPublicNetworkArgs) ToGetKafkaClusterPublicNetworkOutputWithContext(ctx context.Context) GetKafkaClusterPublicNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaClusterPublicNetworkOutput)
+}
+
+// GetKafkaClusterPublicNetworkArrayInput is an input type that accepts GetKafkaClusterPublicNetworkArray and GetKafkaClusterPublicNetworkArrayOutput values.
+// You can construct a concrete instance of `GetKafkaClusterPublicNetworkArrayInput` via:
+//
+//	GetKafkaClusterPublicNetworkArray{ GetKafkaClusterPublicNetworkArgs{...} }
+type GetKafkaClusterPublicNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetKafkaClusterPublicNetworkArrayOutput() GetKafkaClusterPublicNetworkArrayOutput
+	ToGetKafkaClusterPublicNetworkArrayOutputWithContext(context.Context) GetKafkaClusterPublicNetworkArrayOutput
+}
+
+type GetKafkaClusterPublicNetworkArray []GetKafkaClusterPublicNetworkInput
+
+func (GetKafkaClusterPublicNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (i GetKafkaClusterPublicNetworkArray) ToGetKafkaClusterPublicNetworkArrayOutput() GetKafkaClusterPublicNetworkArrayOutput {
+	return i.ToGetKafkaClusterPublicNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetKafkaClusterPublicNetworkArray) ToGetKafkaClusterPublicNetworkArrayOutputWithContext(ctx context.Context) GetKafkaClusterPublicNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKafkaClusterPublicNetworkArrayOutput)
+}
+
+type GetKafkaClusterPublicNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaClusterPublicNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (o GetKafkaClusterPublicNetworkOutput) ToGetKafkaClusterPublicNetworkOutput() GetKafkaClusterPublicNetworkOutput {
+	return o
+}
+
+func (o GetKafkaClusterPublicNetworkOutput) ToGetKafkaClusterPublicNetworkOutputWithContext(ctx context.Context) GetKafkaClusterPublicNetworkOutput {
+	return o
+}
+
+// DNS records for the public endpoint
+func (o GetKafkaClusterPublicNetworkOutput) DnsRecords() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKafkaClusterPublicNetwork) []string { return v.DnsRecords }).(pulumi.StringArrayOutput)
+}
+
+// ID of the public endpoint
+func (o GetKafkaClusterPublicNetworkOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKafkaClusterPublicNetwork) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// TCP port number
+func (o GetKafkaClusterPublicNetworkOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKafkaClusterPublicNetwork) int { return v.Port }).(pulumi.IntOutput)
+}
+
+type GetKafkaClusterPublicNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKafkaClusterPublicNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKafkaClusterPublicNetwork)(nil)).Elem()
+}
+
+func (o GetKafkaClusterPublicNetworkArrayOutput) ToGetKafkaClusterPublicNetworkArrayOutput() GetKafkaClusterPublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetKafkaClusterPublicNetworkArrayOutput) ToGetKafkaClusterPublicNetworkArrayOutputWithContext(ctx context.Context) GetKafkaClusterPublicNetworkArrayOutput {
+	return o
+}
+
+func (o GetKafkaClusterPublicNetworkArrayOutput) Index(i pulumi.IntInput) GetKafkaClusterPublicNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKafkaClusterPublicNetwork {
+		return vs[0].([]GetKafkaClusterPublicNetwork)[vs[1].(int)]
+	}).(GetKafkaClusterPublicNetworkOutput)
 }
 
 type GetKeyManagerKeyRotationPolicy struct {
@@ -31417,7 +32494,7 @@ type GetRedisClusterAcl struct {
 	Description string `pulumi:"description"`
 	// The ID of the Redis cluster.
 	Id string `pulumi:"id"`
-	// IPv4 network address of the rule (IP network in a CIDR format).
+	// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 	Ip string `pulumi:"ip"`
 }
 
@@ -31437,7 +32514,7 @@ type GetRedisClusterAclArgs struct {
 	Description pulumi.StringInput `pulumi:"description"`
 	// The ID of the Redis cluster.
 	Id pulumi.StringInput `pulumi:"id"`
-	// IPv4 network address of the rule (IP network in a CIDR format).
+	// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 	Ip pulumi.StringInput `pulumi:"ip"`
 }
 
@@ -31502,7 +32579,7 @@ func (o GetRedisClusterAclOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterAcl) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// IPv4 network address of the rule (IP network in a CIDR format).
+// IPv4 network address of the rule in CIDR notation (IPv6 is not supported by the Scaleway API).
 func (o GetRedisClusterAclOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRedisClusterAcl) string { return v.Ip }).(pulumi.StringOutput)
 }
@@ -31642,7 +32719,7 @@ type GetRedisClusterPrivateNetwork struct {
 	Ips []string `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port int `pulumi:"port"`
-	// List of IPv4 addresses of the private network with a CIDR notation
+	// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 	ServiceIps []string `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
 	Zone string `pulumi:"zone"`
@@ -31668,7 +32745,7 @@ type GetRedisClusterPrivateNetworkArgs struct {
 	Ips pulumi.StringArrayInput `pulumi:"ips"`
 	// TCP port of the endpoint.
 	Port pulumi.IntInput `pulumi:"port"`
-	// List of IPv4 addresses of the private network with a CIDR notation
+	// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 	ServiceIps pulumi.StringArrayInput `pulumi:"serviceIps"`
 	// `region`) The zone in which the server exists.
 	Zone pulumi.StringInput `pulumi:"zone"`
@@ -31745,7 +32822,7 @@ func (o GetRedisClusterPrivateNetworkOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetRedisClusterPrivateNetwork) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// List of IPv4 addresses of the private network with a CIDR notation
+// List of IPv4 addresses of the private network in CIDR notation (IPv6 is not supported by the Scaleway API)
 func (o GetRedisClusterPrivateNetworkOutput) ServiceIps() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRedisClusterPrivateNetwork) []string { return v.ServiceIps }).(pulumi.StringArrayOutput)
 }
@@ -34291,6 +35368,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionCronPtrInput)(nil)).Elem(), JobDefinitionCronArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceInput)(nil)).Elem(), JobDefinitionSecretReferenceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*JobDefinitionSecretReferenceArrayInput)(nil)).Elem(), JobDefinitionSecretReferenceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KafkaClusterPrivateNetworkInput)(nil)).Elem(), KafkaClusterPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KafkaClusterPrivateNetworkPtrInput)(nil)).Elem(), KafkaClusterPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KafkaClusterPublicNetworkInput)(nil)).Elem(), KafkaClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KafkaClusterPublicNetworkArrayInput)(nil)).Elem(), KafkaClusterPublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyManagerKeyRotationPolicyInput)(nil)).Elem(), KeyManagerKeyRotationPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KeyManagerKeyRotationPolicyPtrInput)(nil)).Elem(), KeyManagerKeyRotationPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterAutoUpgradeInput)(nil)).Elem(), KubernetesClusterAutoUpgradeArgs{})
@@ -34371,6 +35452,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationErrorDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationErrorDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ObjectBucketWebsiteConfigurationIndexDocumentPtrInput)(nil)).Elem(), ObjectBucketWebsiteConfigurationIndexDocumentArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentEndpointInput)(nil)).Elem(), OpensearchDeploymentEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentEndpointArrayInput)(nil)).Elem(), OpensearchDeploymentEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentEndpointServiceInput)(nil)).Elem(), OpensearchDeploymentEndpointServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentEndpointServiceArrayInput)(nil)).Elem(), OpensearchDeploymentEndpointServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentPrivateNetworkInput)(nil)).Elem(), OpensearchDeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentPrivateNetworkPtrInput)(nil)).Elem(), OpensearchDeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentVolumeInput)(nil)).Elem(), OpensearchDeploymentVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OpensearchDeploymentVolumePtrInput)(nil)).Elem(), OpensearchDeploymentVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclInput)(nil)).Elem(), RedisClusterAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterAclArrayInput)(nil)).Elem(), RedisClusterAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RedisClusterPrivateIpInput)(nil)).Elem(), RedisClusterPrivateIpArgs{})
@@ -34504,6 +35593,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsIpResourceArrayInput)(nil)).Elem(), GetIpamIpsIpResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourceInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIpamIpsResourcePtrInput)(nil)).Elem(), GetIpamIpsResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterPrivateNetworkInput)(nil)).Elem(), GetKafkaClusterPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterPrivateNetworkArrayInput)(nil)).Elem(), GetKafkaClusterPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterPublicNetworkInput)(nil)).Elem(), GetKafkaClusterPublicNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKafkaClusterPublicNetworkArrayInput)(nil)).Elem(), GetKafkaClusterPublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKeyManagerKeyRotationPolicyArrayInput)(nil)).Elem(), GetKeyManagerKeyRotationPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterAutoUpgradeInput)(nil)).Elem(), GetKubernetesClusterAutoUpgradeArgs{})
@@ -34768,6 +35861,10 @@ func init() {
 	pulumi.RegisterOutputType(JobDefinitionCronPtrOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceOutput{})
 	pulumi.RegisterOutputType(JobDefinitionSecretReferenceArrayOutput{})
+	pulumi.RegisterOutputType(KafkaClusterPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(KafkaClusterPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(KafkaClusterPublicNetworkOutput{})
+	pulumi.RegisterOutputType(KafkaClusterPublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(KeyManagerKeyRotationPolicyOutput{})
 	pulumi.RegisterOutputType(KeyManagerKeyRotationPolicyPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterAutoUpgradeOutput{})
@@ -34848,6 +35945,14 @@ func init() {
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationErrorDocumentPtrOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentOutput{})
 	pulumi.RegisterOutputType(ObjectBucketWebsiteConfigurationIndexDocumentPtrOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentEndpointOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentEndpointArrayOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentEndpointServiceOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentEndpointServiceArrayOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentVolumeOutput{})
+	pulumi.RegisterOutputType(OpensearchDeploymentVolumePtrOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclOutput{})
 	pulumi.RegisterOutputType(RedisClusterAclArrayOutput{})
 	pulumi.RegisterOutputType(RedisClusterPrivateIpOutput{})
@@ -34981,6 +36086,10 @@ func init() {
 	pulumi.RegisterOutputType(GetIpamIpsIpResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourceOutput{})
 	pulumi.RegisterOutputType(GetIpamIpsResourcePtrOutput{})
+	pulumi.RegisterOutputType(GetKafkaClusterPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(GetKafkaClusterPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetKafkaClusterPublicNetworkOutput{})
+	pulumi.RegisterOutputType(GetKafkaClusterPublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyOutput{})
 	pulumi.RegisterOutputType(GetKeyManagerKeyRotationPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterAutoUpgradeOutput{})

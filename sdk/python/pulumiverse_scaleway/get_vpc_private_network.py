@@ -204,7 +204,10 @@ def get_vpc_private_network(name: Optional[_builtins.str] = None,
     # Get info by name and VPC ID
     my_name_and_vpc_id = scaleway.network.get_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
-    # Get info by IP ID
+    # Get info by name in a specific region
+    my_name_and_region = scaleway.network.get_private_network(name="foobar",
+        region="nl-ams")
+    # Get info by Private Network ID
     my_id = scaleway.network.get_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -212,6 +215,7 @@ def get_vpc_private_network(name: Optional[_builtins.str] = None,
     :param _builtins.str name: Name of the Private Network. Cannot be used with `private_network_id`.
     :param _builtins.str private_network_id: ID of the Private Network. Cannot be used with `name` or `vpc_id`.
     :param _builtins.str project_id: The ID of the Project the Private Network is associated with.
+    :param _builtins.str region: `region`) The region in which the Private Network exists.
     :param _builtins.str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
     pulumi.log.warn("""get_vpc_private_network is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork""")
@@ -260,7 +264,10 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[_builtin
     # Get info by name and VPC ID
     my_name_and_vpc_id = scaleway.network.get_private_network(name="foobar",
         vpc_id="11111111-1111-1111-1111-111111111111")
-    # Get info by IP ID
+    # Get info by name in a specific region
+    my_name_and_region = scaleway.network.get_private_network(name="foobar",
+        region="nl-ams")
+    # Get info by Private Network ID
     my_id = scaleway.network.get_private_network(private_network_id="11111111-1111-1111-1111-111111111111")
     ```
 
@@ -268,6 +275,7 @@ def get_vpc_private_network_output(name: Optional[pulumi.Input[Optional[_builtin
     :param _builtins.str name: Name of the Private Network. Cannot be used with `private_network_id`.
     :param _builtins.str private_network_id: ID of the Private Network. Cannot be used with `name` or `vpc_id`.
     :param _builtins.str project_id: The ID of the Project the Private Network is associated with.
+    :param _builtins.str region: `region`) The region in which the Private Network exists.
     :param _builtins.str vpc_id: ID of the VPC the Private Network is in. Cannot be used with `private_network_id`.
     """
     pulumi.log.warn("""get_vpc_private_network is deprecated: scaleway.index/getvpcprivatenetwork.getVpcPrivateNetwork has been deprecated in favor of scaleway.network/getprivatenetwork.getPrivateNetwork""")

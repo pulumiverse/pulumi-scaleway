@@ -12,15 +12,7 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway Compute Baremetal servers. For more information, see the [API documentation](https://www.scaleway.com/en/developers/api/elastic-metal/).
-//
 // ## Example Usage
-//
-// ### Basic
-//
-// ### With option
-//
-// ### With cloud-init
 //
 // ```go
 // package main
@@ -36,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ## With cloud-init
 //			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
 //				Name: pulumi.StringRef("main"),
 //			}, nil)
@@ -81,257 +74,6 @@ import (
 //
 // ```
 //
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			mySshKey, err := iam.LookupSshKey(ctx, &iam.LookupSshKeyArgs{
-//				Name: pulumi.StringRef("main"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("EM-I220E-NVME"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
-//				Zone:    pulumi.StringRef("fr-par-1"),
-//				Name:    pulumi.StringRef("Ubuntu"),
-//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "my_server_ci", &elasticmetal.ServerArgs{
-//				Zone:  pulumi.String("fr-par-2"),
-//				Offer: pulumi.String(myOffer.OfferId),
-//				Os:    pulumi.String(myOs.OsId),
-//				SshKeyIds: pulumi.StringArray{
-//					pulumi.String(mySshKey.Id),
-//				},
-//				CloudInit: pulumi.String(`#cloud-config
-//
-// packages:
-//   - htop
-//   - curl
-//
-// runcmd:
-//   - echo \"Hello from raw cloud-init!\" > /home/ubuntu/message.txt
-//
-// `),
-//
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With private network
-//
-// ### With IPAM IP IDs
-//
-// ### Without install config
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone: pulumi.StringRef("fr-par-2"),
-//				Name: pulumi.StringRef("EM-B112X-SSD"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
-//				Zone:                   pulumi.String("fr-par-2"),
-//				Offer:                  pulumi.String(myOffer.OfferId),
-//				InstallConfigAfterward: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### With custom partitioning
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/iam"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			cfg := config.New(ctx, "")
-//			configCustomPartitioning := "{\"disks\":[{\"device\":\"/dev/nvme0n1\",\"partitions\":[{\"label\":\"uefi\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"boot\",\"number\":2,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"root\",\"number\":3,\"size\":1018839433216,\"useAllAvailableSpace\":false}]},{\"device\":\"/dev/nvme1n1\",\"partitions\":[{\"label\":\"boot\",\"number\":1,\"size\":536870912,\"useAllAvailableSpace\":false},{\"label\":\"data\",\"number\":2,\"size\":1018839433216,\"useAllAvailableSpace\":false}]}],\"filesystems\":[{\"device\":\"/dev/nvme0n1p1\",\"format\":\"fat32\",\"mountpoint\":\"/boot/efi\"},{\"device\":\"/dev/nvme0n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/boot\"},{\"device\":\"/dev/nvme0n1p3\",\"format\":\"ext4\",\"mountpoint\":\"/\"},{\"device\":\"/dev/nvme1n1p2\",\"format\":\"ext4\",\"mountpoint\":\"/data\"}],\"raids\":[]}"
-//			if param := cfg.Get("configCustomPartitioning"); param != "" {
-//				configCustomPartitioning = param
-//			}
-//			myOs, err := elasticmetal.GetOs(ctx, &elasticmetal.GetOsArgs{
-//				Zone:    pulumi.StringRef("fr-par-1"),
-//				Name:    pulumi.StringRef("Ubuntu"),
-//				Version: pulumi.StringRef("22.04 LTS (Jammy Jellyfish)"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			mySshKey, err := iam.NewSshKey(ctx, "my_ssh_key", &iam.SshKeyArgs{
-//				Name:      pulumi.String("my_ssh_key"),
-//				PublicKey: pulumi.String("ssh XXXXXXXXXXX"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone:               pulumi.StringRef("fr-par-1"),
-//				Name:               pulumi.StringRef("EM-B220E-NVME"),
-//				SubscriptionPeriod: pulumi.StringRef("hourly"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
-//				Name:         pulumi.String("my_super_server"),
-//				Zone:         pulumi.String("fr-par-1"),
-//				Description:  pulumi.String("test a description"),
-//				Offer:        pulumi.String(myOffer.OfferId),
-//				Os:           pulumi.String(myOs.OsId),
-//				Partitioning: pulumi.String(configCustomPartitioning),
-//				Tags: pulumi.StringArray{
-//					pulumi.String("terraform-test"),
-//					pulumi.String("scaleway_baremetal_server"),
-//					pulumi.String("minimal"),
-//				},
-//				SshKeyIds: pulumi.StringArray{
-//					mySshKey.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Migrate from hourly to monthly plan
-//
-// To migrate from an hourly to a monthly subscription for a Scaleway Baremetal server, it is important to understand that the migration can only be done by using the data source.
-// You cannot directly modify the subscriptionPeriod of an existing elasticmetal.getOffer resource. Instead, you must define the monthly offer using the data source and then update the server configuration accordingly.
-//
-// ### Hourly Plan Example
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone:               pulumi.StringRef("fr-par-1"),
-//				Name:               pulumi.StringRef("EM-B220E-NVME"),
-//				SubscriptionPeriod: pulumi.StringRef("hourly"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
-//				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
-//				Offer:                  pulumi.String(myOffer.OfferId),
-//				Zone:                   pulumi.String("%s"),
-//				InstallConfigAfterward: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// ### Monthly Plan Example
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/elasticmetal"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myOffer, err := elasticmetal.GetOffer(ctx, &elasticmetal.GetOfferArgs{
-//				Zone:               pulumi.StringRef("fr-par-1"),
-//				Name:               pulumi.StringRef("EM-B220E-NVME"),
-//				SubscriptionPeriod: pulumi.StringRef("monthly"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = elasticmetal.NewServer(ctx, "my_server", &elasticmetal.ServerArgs{
-//				Name:                   pulumi.String("UpdateSubscriptionPeriod"),
-//				Offer:                  pulumi.String(myOffer.OfferId),
-//				Zone:                   pulumi.String("fr-par-1"),
-//				InstallConfigAfterward: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
-// **Important**  Once you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
-//
 // ## Import
 //
 // Baremetal servers can be imported using the `{zone}/{id}`, e.g.
@@ -368,6 +110,7 @@ type BaremetalServer struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
+	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringOutput `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId pulumi.StringOutput `pulumi:"offerId"`
@@ -386,8 +129,12 @@ type BaremetalServer struct {
 	OsName pulumi.StringOutput `pulumi:"osName"`
 	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrOutput `pulumi:"partitioning"`
-	// Password used for the installation. May be required depending on used os.
+	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 and IPv6 addresses associated with the resource.
 	PrivateIps BaremetalServerPrivateIpArrayOutput `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -399,8 +146,12 @@ type BaremetalServer struct {
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrOutput `pulumi:"reinstallOnConfigChanges"`
-	// Password used for the service to install. May be required depending on used os.
+	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrOutput `pulumi:"servicePassword"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	ServicePasswordWo pulumi.StringPtrOutput `pulumi:"servicePasswordWo"`
+	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+	ServicePasswordWoVersion pulumi.IntPtrOutput `pulumi:"servicePasswordWoVersion"`
 	// User used for the service to install.
 	ServiceUser pulumi.StringOutput `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
@@ -426,12 +177,20 @@ func NewBaremetalServer(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	if args.ServicePassword != nil {
 		args.ServicePassword = pulumi.ToSecret(args.ServicePassword).(pulumi.StringPtrInput)
 	}
+	if args.ServicePasswordWo != nil {
+		args.ServicePasswordWo = pulumi.ToSecret(args.ServicePasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 		"servicePassword",
+		"servicePasswordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -479,6 +238,7 @@ type baremetalServerState struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
+	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer *string `pulumi:"offer"`
 	// The ID of the offer.
 	OfferId *string `pulumi:"offerId"`
@@ -497,8 +257,12 @@ type baremetalServerState struct {
 	OsName *string `pulumi:"osName"`
 	// The partitioning schema in JSON format
 	Partitioning *string `pulumi:"partitioning"`
-	// Password used for the installation. May be required depending on used os.
+	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 and IPv6 addresses associated with the resource.
 	PrivateIps []BaremetalServerPrivateIp `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -510,8 +274,12 @@ type baremetalServerState struct {
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
-	// Password used for the service to install. May be required depending on used os.
+	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword *string `pulumi:"servicePassword"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	ServicePasswordWo *string `pulumi:"servicePasswordWo"`
+	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+	ServicePasswordWoVersion *int `pulumi:"servicePasswordWoVersion"`
 	// User used for the service to install.
 	ServiceUser *string `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
@@ -547,6 +315,7 @@ type BaremetalServerState struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
+	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringPtrInput
 	// The ID of the offer.
 	OfferId pulumi.StringPtrInput
@@ -565,8 +334,12 @@ type BaremetalServerState struct {
 	OsName pulumi.StringPtrInput
 	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrInput
-	// Password used for the installation. May be required depending on used os.
+	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The list of private IPv4 and IPv6 addresses associated with the resource.
 	PrivateIps BaremetalServerPrivateIpArrayInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -578,8 +351,12 @@ type BaremetalServerState struct {
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
-	// Password used for the service to install. May be required depending on used os.
+	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	ServicePasswordWo pulumi.StringPtrInput
+	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+	ServicePasswordWoVersion pulumi.IntPtrInput
 	// User used for the service to install.
 	ServiceUser pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
@@ -611,6 +388,7 @@ type baremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
+	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer string `pulumi:"offer"`
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -621,8 +399,12 @@ type baremetalServerArgs struct {
 	Os *string `pulumi:"os"`
 	// The partitioning schema in JSON format
 	Partitioning *string `pulumi:"partitioning"`
-	// Password used for the installation. May be required depending on used os.
+	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The list of private IPv4 and IPv6 addresses associated with the resource.
 	PrivateIps []BaremetalServerPrivateIp `pulumi:"privateIps"`
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -634,8 +416,12 @@ type baremetalServerArgs struct {
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges *bool `pulumi:"reinstallOnConfigChanges"`
-	// Password used for the service to install. May be required depending on used os.
+	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword *string `pulumi:"servicePassword"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	ServicePasswordWo *string `pulumi:"servicePasswordWo"`
+	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+	ServicePasswordWoVersion *int `pulumi:"servicePasswordWoVersion"`
 	// User used for the service to install.
 	ServiceUser *string `pulumi:"serviceUser"`
 	// List of SSH keys allowed to connect to the server.
@@ -664,6 +450,7 @@ type BaremetalServerArgs struct {
 	// Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 	//
 	// > **Important:** Updates to `offer` will recreate the server.
+	// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 	Offer pulumi.StringInput
 	// The options to enable on the server.
 	// > The `options` block supports:
@@ -674,8 +461,12 @@ type BaremetalServerArgs struct {
 	Os pulumi.StringPtrInput
 	// The partitioning schema in JSON format
 	Partitioning pulumi.StringPtrInput
-	// Password used for the installation. May be required depending on used os.
+	// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The list of private IPv4 and IPv6 addresses associated with the resource.
 	PrivateIps BaremetalServerPrivateIpArrayInput
 	// The private networks to attach to the server. For more information, see [the documentation](https://www.scaleway.com/en/docs/compute/elastic-metal/how-to/use-private-networks/)
@@ -687,8 +478,12 @@ type BaremetalServerArgs struct {
 	// If True, this boolean allows to reinstall the server on install config changes.
 	// > **Important:** Updates to `sshKeyIds`, `user`, `password`, `serviceUser` or `servicePassword` will not take effect on the server, it requires to reinstall it. To do so please set 'reinstall_on_config_changes' argument to true.
 	ReinstallOnConfigChanges pulumi.BoolPtrInput
-	// Password used for the service to install. May be required depending on used os.
+	// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 	ServicePassword pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	ServicePasswordWo pulumi.StringPtrInput
+	// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+	ServicePasswordWoVersion pulumi.IntPtrInput
 	// User used for the service to install.
 	ServiceUser pulumi.StringPtrInput
 	// List of SSH keys allowed to connect to the server.
@@ -837,6 +632,7 @@ func (o BaremetalServerOutput) Name() pulumi.StringOutput {
 // Use [this endpoint](https://www.scaleway.com/en/developers/api/elastic-metal/#path-servers-get-a-specific-elastic-metal-server) to find the right offer.
 //
 // > **Important:** Updates to `offer` will recreate the server.
+// **Important**  If you migrate to a monthly subscription, you cannot downgrade back to an hourly plan. Ensure that the monthly plan meets your needs before making the switch.
 func (o BaremetalServerOutput) Offer() pulumi.StringOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringOutput { return v.Offer }).(pulumi.StringOutput)
 }
@@ -879,9 +675,19 @@ func (o BaremetalServerOutput) Partitioning() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Partitioning }).(pulumi.StringPtrOutput)
 }
 
-// Password used for the installation. May be required depending on used os.
+// Password used for the installation. May be required depending on used os. Only one of `password` or `passwordWo` should be specified.
 func (o BaremetalServerOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o BaremetalServerOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o BaremetalServerOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The list of private IPv4 and IPv6 addresses associated with the resource.
@@ -910,9 +716,19 @@ func (o BaremetalServerOutput) ReinstallOnConfigChanges() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.BoolPtrOutput { return v.ReinstallOnConfigChanges }).(pulumi.BoolPtrOutput)
 }
 
-// Password used for the service to install. May be required depending on used os.
+// Password used for the service to install. May be required depending on used os. Only one of `servicePassword` or `servicePasswordWo` should be specified.
 func (o BaremetalServerOutput) ServicePassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.ServicePassword }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o BaremetalServerOutput) ServicePasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.StringPtrOutput { return v.ServicePasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only service password. To update the `servicePasswordWo`, you must also update the `servicePasswordWoVersion`.
+func (o BaremetalServerOutput) ServicePasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *BaremetalServer) pulumi.IntPtrOutput { return v.ServicePasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // User used for the service to install.

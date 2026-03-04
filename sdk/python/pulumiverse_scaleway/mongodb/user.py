@@ -22,22 +22,30 @@ __all__ = ['UserArgs', 'User']
 class UserArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[_builtins.str],
-                 password: pulumi.Input[_builtins.str],
                  name: Optional[pulumi.Input[_builtins.str]] = None,
+                 password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]]] = None):
         """
         The set of arguments for constructing a User resource.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
         """
         pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "password", password)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if roles is not None:
@@ -57,18 +65,6 @@ class UserArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Input[_builtins.str]:
-        """
-        The password of the MongoDB® user.
-        """
-        return pulumi.get(self, "password")
-
-    @password.setter
-    def password(self, value: pulumi.Input[_builtins.str]):
-        pulumi.set(self, "password", value)
-
-    @_builtins.property
-    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The name of the MongoDB® user.
@@ -78,6 +74,39 @@ class UserArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The password of the MongoDB® user.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -110,6 +139,8 @@ class _UserState:
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]]] = None):
         """
@@ -117,6 +148,7 @@ class _UserState:
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -126,6 +158,10 @@ class _UserState:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if roles is not None:
@@ -168,6 +204,27 @@ class _UserState:
         pulumi.set(self, "password", value)
 
     @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: Optional[pulumi.Input[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
+
+    @_builtins.property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -201,21 +258,21 @@ class User(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway MongoDB® users.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+        Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic user creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-user",
             version="7.0.12",
@@ -234,12 +291,11 @@ class User(pulumi.CustomResource):
             }])
         ```
 
-        ### With Multiple Users
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Multiple user creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-multi-user",
             version="7.0.12",
@@ -293,6 +349,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -303,17 +360,15 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway MongoDB® users.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
+        Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
 
         ## Example Usage
-
-        ### Basic
 
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Basic user creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-user",
             version="7.0.12",
@@ -332,12 +387,11 @@ class User(pulumi.CustomResource):
             }])
         ```
 
-        ### With Multiple Users
-
         ```python
         import pulumi
         import pulumiverse_scaleway as scaleway
 
+        ### Multiple user creation
         main = scaleway.mongodb.Instance("main",
             name="test-mongodb-multi-user",
             version="7.0.12",
@@ -404,6 +458,8 @@ class User(pulumi.CustomResource):
                  instance_id: Optional[pulumi.Input[_builtins.str]] = None,
                  name: Optional[pulumi.Input[_builtins.str]] = None,
                  password: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+                 password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
                  __props__=None):
@@ -419,12 +475,12 @@ class User(pulumi.CustomResource):
                 raise TypeError("Missing required property 'instance_id'")
             __props__.__dict__["instance_id"] = instance_id
             __props__.__dict__["name"] = name
-            if password is None and not opts.urn:
-                raise TypeError("Missing required property 'password'")
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             __props__.__dict__["region"] = region
             __props__.__dict__["roles"] = roles
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(User, __self__).__init__(
             'scaleway:mongodb/user:User',
@@ -439,6 +495,8 @@ class User(pulumi.CustomResource):
             instance_id: Optional[pulumi.Input[_builtins.str]] = None,
             name: Optional[pulumi.Input[_builtins.str]] = None,
             password: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo: Optional[pulumi.Input[_builtins.str]] = None,
+            password_wo_version: Optional[pulumi.Input[_builtins.int]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None) -> 'User':
         """
@@ -451,6 +509,7 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
         :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -461,6 +520,8 @@ class User(pulumi.CustomResource):
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["region"] = region
         __props__.__dict__["roles"] = roles
         return User(resource_name, opts=opts, __props__=__props__)
@@ -483,11 +544,24 @@ class User(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> pulumi.Output[_builtins.str]:
+    def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         The password of the MongoDB® user.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter

@@ -13,12 +13,312 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
-type DeploymentPublicNetwork struct {
-	// DNS record for the public endpoint.
+type DeploymentPrivateNetwork struct {
+	// DNS record for the private endpoint.
 	DnsRecord *string `pulumi:"dnsRecord"`
-	// The ID of the public endpoint.
+	// The ID of the private endpoint.
 	Id *string `pulumi:"id"`
-	// List of services exposed on the public endpoint.
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+	PnId string `pulumi:"pnId"`
+	// List of services exposed on the private endpoint.
+	Services []DeploymentPrivateNetworkService `pulumi:"services"`
+}
+
+// DeploymentPrivateNetworkInput is an input type that accepts DeploymentPrivateNetworkArgs and DeploymentPrivateNetworkOutput values.
+// You can construct a concrete instance of `DeploymentPrivateNetworkInput` via:
+//
+//	DeploymentPrivateNetworkArgs{...}
+type DeploymentPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToDeploymentPrivateNetworkOutput() DeploymentPrivateNetworkOutput
+	ToDeploymentPrivateNetworkOutputWithContext(context.Context) DeploymentPrivateNetworkOutput
+}
+
+type DeploymentPrivateNetworkArgs struct {
+	// DNS record for the private endpoint.
+	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
+	// The ID of the private endpoint.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+	PnId pulumi.StringInput `pulumi:"pnId"`
+	// List of services exposed on the private endpoint.
+	Services DeploymentPrivateNetworkServiceArrayInput `pulumi:"services"`
+}
+
+func (DeploymentPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i DeploymentPrivateNetworkArgs) ToDeploymentPrivateNetworkOutput() DeploymentPrivateNetworkOutput {
+	return i.ToDeploymentPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i DeploymentPrivateNetworkArgs) ToDeploymentPrivateNetworkOutputWithContext(ctx context.Context) DeploymentPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPrivateNetworkOutput)
+}
+
+func (i DeploymentPrivateNetworkArgs) ToDeploymentPrivateNetworkPtrOutput() DeploymentPrivateNetworkPtrOutput {
+	return i.ToDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i DeploymentPrivateNetworkArgs) ToDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) DeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPrivateNetworkOutput).ToDeploymentPrivateNetworkPtrOutputWithContext(ctx)
+}
+
+// DeploymentPrivateNetworkPtrInput is an input type that accepts DeploymentPrivateNetworkArgs, DeploymentPrivateNetworkPtr and DeploymentPrivateNetworkPtrOutput values.
+// You can construct a concrete instance of `DeploymentPrivateNetworkPtrInput` via:
+//
+//	        DeploymentPrivateNetworkArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeploymentPrivateNetworkPtrInput interface {
+	pulumi.Input
+
+	ToDeploymentPrivateNetworkPtrOutput() DeploymentPrivateNetworkPtrOutput
+	ToDeploymentPrivateNetworkPtrOutputWithContext(context.Context) DeploymentPrivateNetworkPtrOutput
+}
+
+type deploymentPrivateNetworkPtrType DeploymentPrivateNetworkArgs
+
+func DeploymentPrivateNetworkPtr(v *DeploymentPrivateNetworkArgs) DeploymentPrivateNetworkPtrInput {
+	return (*deploymentPrivateNetworkPtrType)(v)
+}
+
+func (*deploymentPrivateNetworkPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i *deploymentPrivateNetworkPtrType) ToDeploymentPrivateNetworkPtrOutput() DeploymentPrivateNetworkPtrOutput {
+	return i.ToDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (i *deploymentPrivateNetworkPtrType) ToDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) DeploymentPrivateNetworkPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPrivateNetworkPtrOutput)
+}
+
+type DeploymentPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (DeploymentPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o DeploymentPrivateNetworkOutput) ToDeploymentPrivateNetworkOutput() DeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkOutput) ToDeploymentPrivateNetworkOutputWithContext(ctx context.Context) DeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkOutput) ToDeploymentPrivateNetworkPtrOutput() DeploymentPrivateNetworkPtrOutput {
+	return o.ToDeploymentPrivateNetworkPtrOutputWithContext(context.Background())
+}
+
+func (o DeploymentPrivateNetworkOutput) ToDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) DeploymentPrivateNetworkPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeploymentPrivateNetwork) *DeploymentPrivateNetwork {
+		return &v
+	}).(DeploymentPrivateNetworkPtrOutput)
+}
+
+// DNS record for the private endpoint.
+func (o DeploymentPrivateNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private endpoint.
+func (o DeploymentPrivateNetworkOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+func (o DeploymentPrivateNetworkOutput) PnId() pulumi.StringOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetwork) string { return v.PnId }).(pulumi.StringOutput)
+}
+
+// List of services exposed on the private endpoint.
+func (o DeploymentPrivateNetworkOutput) Services() DeploymentPrivateNetworkServiceArrayOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetwork) []DeploymentPrivateNetworkService { return v.Services }).(DeploymentPrivateNetworkServiceArrayOutput)
+}
+
+type DeploymentPrivateNetworkPtrOutput struct{ *pulumi.OutputState }
+
+func (DeploymentPrivateNetworkPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o DeploymentPrivateNetworkPtrOutput) ToDeploymentPrivateNetworkPtrOutput() DeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkPtrOutput) ToDeploymentPrivateNetworkPtrOutputWithContext(ctx context.Context) DeploymentPrivateNetworkPtrOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkPtrOutput) Elem() DeploymentPrivateNetworkOutput {
+	return o.ApplyT(func(v *DeploymentPrivateNetwork) DeploymentPrivateNetwork {
+		if v != nil {
+			return *v
+		}
+		var ret DeploymentPrivateNetwork
+		return ret
+	}).(DeploymentPrivateNetworkOutput)
+}
+
+// DNS record for the private endpoint.
+func (o DeploymentPrivateNetworkPtrOutput) DnsRecord() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.DnsRecord
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private endpoint.
+func (o DeploymentPrivateNetworkPtrOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Id
+	}).(pulumi.StringPtrOutput)
+}
+
+// The ID of the private network. Format: `{region}/{id}` or just `{id}`.
+func (o DeploymentPrivateNetworkPtrOutput) PnId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DeploymentPrivateNetwork) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PnId
+	}).(pulumi.StringPtrOutput)
+}
+
+// List of services exposed on the private endpoint.
+func (o DeploymentPrivateNetworkPtrOutput) Services() DeploymentPrivateNetworkServiceArrayOutput {
+	return o.ApplyT(func(v *DeploymentPrivateNetwork) []DeploymentPrivateNetworkService {
+		if v == nil {
+			return nil
+		}
+		return v.Services
+	}).(DeploymentPrivateNetworkServiceArrayOutput)
+}
+
+type DeploymentPrivateNetworkService struct {
+	// TCP port number.
+	Port *int `pulumi:"port"`
+	// Service protocol (e.g., "tcp", "https", "mysql").
+	Protocol *string `pulumi:"protocol"`
+}
+
+// DeploymentPrivateNetworkServiceInput is an input type that accepts DeploymentPrivateNetworkServiceArgs and DeploymentPrivateNetworkServiceOutput values.
+// You can construct a concrete instance of `DeploymentPrivateNetworkServiceInput` via:
+//
+//	DeploymentPrivateNetworkServiceArgs{...}
+type DeploymentPrivateNetworkServiceInput interface {
+	pulumi.Input
+
+	ToDeploymentPrivateNetworkServiceOutput() DeploymentPrivateNetworkServiceOutput
+	ToDeploymentPrivateNetworkServiceOutputWithContext(context.Context) DeploymentPrivateNetworkServiceOutput
+}
+
+type DeploymentPrivateNetworkServiceArgs struct {
+	// TCP port number.
+	Port pulumi.IntPtrInput `pulumi:"port"`
+	// Service protocol (e.g., "tcp", "https", "mysql").
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (DeploymentPrivateNetworkServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentPrivateNetworkService)(nil)).Elem()
+}
+
+func (i DeploymentPrivateNetworkServiceArgs) ToDeploymentPrivateNetworkServiceOutput() DeploymentPrivateNetworkServiceOutput {
+	return i.ToDeploymentPrivateNetworkServiceOutputWithContext(context.Background())
+}
+
+func (i DeploymentPrivateNetworkServiceArgs) ToDeploymentPrivateNetworkServiceOutputWithContext(ctx context.Context) DeploymentPrivateNetworkServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPrivateNetworkServiceOutput)
+}
+
+// DeploymentPrivateNetworkServiceArrayInput is an input type that accepts DeploymentPrivateNetworkServiceArray and DeploymentPrivateNetworkServiceArrayOutput values.
+// You can construct a concrete instance of `DeploymentPrivateNetworkServiceArrayInput` via:
+//
+//	DeploymentPrivateNetworkServiceArray{ DeploymentPrivateNetworkServiceArgs{...} }
+type DeploymentPrivateNetworkServiceArrayInput interface {
+	pulumi.Input
+
+	ToDeploymentPrivateNetworkServiceArrayOutput() DeploymentPrivateNetworkServiceArrayOutput
+	ToDeploymentPrivateNetworkServiceArrayOutputWithContext(context.Context) DeploymentPrivateNetworkServiceArrayOutput
+}
+
+type DeploymentPrivateNetworkServiceArray []DeploymentPrivateNetworkServiceInput
+
+func (DeploymentPrivateNetworkServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentPrivateNetworkService)(nil)).Elem()
+}
+
+func (i DeploymentPrivateNetworkServiceArray) ToDeploymentPrivateNetworkServiceArrayOutput() DeploymentPrivateNetworkServiceArrayOutput {
+	return i.ToDeploymentPrivateNetworkServiceArrayOutputWithContext(context.Background())
+}
+
+func (i DeploymentPrivateNetworkServiceArray) ToDeploymentPrivateNetworkServiceArrayOutputWithContext(ctx context.Context) DeploymentPrivateNetworkServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeploymentPrivateNetworkServiceArrayOutput)
+}
+
+type DeploymentPrivateNetworkServiceOutput struct{ *pulumi.OutputState }
+
+func (DeploymentPrivateNetworkServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeploymentPrivateNetworkService)(nil)).Elem()
+}
+
+func (o DeploymentPrivateNetworkServiceOutput) ToDeploymentPrivateNetworkServiceOutput() DeploymentPrivateNetworkServiceOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkServiceOutput) ToDeploymentPrivateNetworkServiceOutputWithContext(ctx context.Context) DeploymentPrivateNetworkServiceOutput {
+	return o
+}
+
+// TCP port number.
+func (o DeploymentPrivateNetworkServiceOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetworkService) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+// Service protocol (e.g., "tcp", "https", "mysql").
+func (o DeploymentPrivateNetworkServiceOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v DeploymentPrivateNetworkService) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type DeploymentPrivateNetworkServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (DeploymentPrivateNetworkServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DeploymentPrivateNetworkService)(nil)).Elem()
+}
+
+func (o DeploymentPrivateNetworkServiceArrayOutput) ToDeploymentPrivateNetworkServiceArrayOutput() DeploymentPrivateNetworkServiceArrayOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkServiceArrayOutput) ToDeploymentPrivateNetworkServiceArrayOutputWithContext(ctx context.Context) DeploymentPrivateNetworkServiceArrayOutput {
+	return o
+}
+
+func (o DeploymentPrivateNetworkServiceArrayOutput) Index(i pulumi.IntInput) DeploymentPrivateNetworkServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DeploymentPrivateNetworkService {
+		return vs[0].([]DeploymentPrivateNetworkService)[vs[1].(int)]
+	}).(DeploymentPrivateNetworkServiceOutput)
+}
+
+type DeploymentPublicNetwork struct {
+	// DNS record for the private endpoint.
+	DnsRecord *string `pulumi:"dnsRecord"`
+	// The ID of the private endpoint.
+	Id *string `pulumi:"id"`
+	// List of services exposed on the private endpoint.
 	Services []DeploymentPublicNetworkService `pulumi:"services"`
 }
 
@@ -34,11 +334,11 @@ type DeploymentPublicNetworkInput interface {
 }
 
 type DeploymentPublicNetworkArgs struct {
-	// DNS record for the public endpoint.
+	// DNS record for the private endpoint.
 	DnsRecord pulumi.StringPtrInput `pulumi:"dnsRecord"`
-	// The ID of the public endpoint.
+	// The ID of the private endpoint.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// List of services exposed on the public endpoint.
+	// List of services exposed on the private endpoint.
 	Services DeploymentPublicNetworkServiceArrayInput `pulumi:"services"`
 }
 
@@ -93,17 +393,17 @@ func (o DeploymentPublicNetworkOutput) ToDeploymentPublicNetworkOutputWithContex
 	return o
 }
 
-// DNS record for the public endpoint.
+// DNS record for the private endpoint.
 func (o DeploymentPublicNetworkOutput) DnsRecord() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentPublicNetwork) *string { return v.DnsRecord }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the public endpoint.
+// The ID of the private endpoint.
 func (o DeploymentPublicNetworkOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v DeploymentPublicNetwork) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// List of services exposed on the public endpoint.
+// List of services exposed on the private endpoint.
 func (o DeploymentPublicNetworkOutput) Services() DeploymentPublicNetworkServiceArrayOutput {
 	return o.ApplyT(func(v DeploymentPublicNetwork) []DeploymentPublicNetworkService { return v.Services }).(DeploymentPublicNetworkServiceArrayOutput)
 }
@@ -235,10 +535,18 @@ func (o DeploymentPublicNetworkServiceArrayOutput) Index(i pulumi.IntInput) Depl
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateNetworkInput)(nil)).Elem(), DeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateNetworkPtrInput)(nil)).Elem(), DeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateNetworkServiceInput)(nil)).Elem(), DeploymentPrivateNetworkServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateNetworkServiceArrayInput)(nil)).Elem(), DeploymentPrivateNetworkServiceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicNetworkInput)(nil)).Elem(), DeploymentPublicNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicNetworkArrayInput)(nil)).Elem(), DeploymentPublicNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicNetworkServiceInput)(nil)).Elem(), DeploymentPublicNetworkServiceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPublicNetworkServiceArrayInput)(nil)).Elem(), DeploymentPublicNetworkServiceArray{})
+	pulumi.RegisterOutputType(DeploymentPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(DeploymentPrivateNetworkPtrOutput{})
+	pulumi.RegisterOutputType(DeploymentPrivateNetworkServiceOutput{})
+	pulumi.RegisterOutputType(DeploymentPrivateNetworkServiceArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentPublicNetworkOutput{})
 	pulumi.RegisterOutputType(DeploymentPublicNetworkArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentPublicNetworkServiceOutput{})

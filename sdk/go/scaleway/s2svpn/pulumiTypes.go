@@ -809,6 +809,802 @@ func (o GatewayPublicConfigArrayOutput) Index(i pulumi.IntInput) GatewayPublicCo
 	}).(GatewayPublicConfigOutput)
 }
 
+type GetConnectionBgpConfigIpv4 struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp string `pulumi:"privateIp"`
+	// The ID of the routing policy to use for BGP route filtering
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// GetConnectionBgpConfigIpv4Input is an input type that accepts GetConnectionBgpConfigIpv4Args and GetConnectionBgpConfigIpv4Output values.
+// You can construct a concrete instance of `GetConnectionBgpConfigIpv4Input` via:
+//
+//	GetConnectionBgpConfigIpv4Args{...}
+type GetConnectionBgpConfigIpv4Input interface {
+	pulumi.Input
+
+	ToGetConnectionBgpConfigIpv4Output() GetConnectionBgpConfigIpv4Output
+	ToGetConnectionBgpConfigIpv4OutputWithContext(context.Context) GetConnectionBgpConfigIpv4Output
+}
+
+type GetConnectionBgpConfigIpv4Args struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp pulumi.StringInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The ID of the routing policy to use for BGP route filtering
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (GetConnectionBgpConfigIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (i GetConnectionBgpConfigIpv4Args) ToGetConnectionBgpConfigIpv4Output() GetConnectionBgpConfigIpv4Output {
+	return i.ToGetConnectionBgpConfigIpv4OutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpConfigIpv4Args) ToGetConnectionBgpConfigIpv4OutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpConfigIpv4Output)
+}
+
+// GetConnectionBgpConfigIpv4ArrayInput is an input type that accepts GetConnectionBgpConfigIpv4Array and GetConnectionBgpConfigIpv4ArrayOutput values.
+// You can construct a concrete instance of `GetConnectionBgpConfigIpv4ArrayInput` via:
+//
+//	GetConnectionBgpConfigIpv4Array{ GetConnectionBgpConfigIpv4Args{...} }
+type GetConnectionBgpConfigIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionBgpConfigIpv4ArrayOutput() GetConnectionBgpConfigIpv4ArrayOutput
+	ToGetConnectionBgpConfigIpv4ArrayOutputWithContext(context.Context) GetConnectionBgpConfigIpv4ArrayOutput
+}
+
+type GetConnectionBgpConfigIpv4Array []GetConnectionBgpConfigIpv4Input
+
+func (GetConnectionBgpConfigIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (i GetConnectionBgpConfigIpv4Array) ToGetConnectionBgpConfigIpv4ArrayOutput() GetConnectionBgpConfigIpv4ArrayOutput {
+	return i.ToGetConnectionBgpConfigIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpConfigIpv4Array) ToGetConnectionBgpConfigIpv4ArrayOutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpConfigIpv4ArrayOutput)
+}
+
+type GetConnectionBgpConfigIpv4Output struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpConfigIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (o GetConnectionBgpConfigIpv4Output) ToGetConnectionBgpConfigIpv4Output() GetConnectionBgpConfigIpv4Output {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv4Output) ToGetConnectionBgpConfigIpv4OutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv4Output {
+	return o
+}
+
+// The BGP peer IP on customer side
+func (o GetConnectionBgpConfigIpv4Output) PeerPrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv4) string { return v.PeerPrivateIp }).(pulumi.StringOutput)
+}
+
+// The BGP peer IP on Scaleway side
+func (o GetConnectionBgpConfigIpv4Output) PrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv4) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The ID of the routing policy to use for BGP route filtering
+func (o GetConnectionBgpConfigIpv4Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv4) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type GetConnectionBgpConfigIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpConfigIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpConfigIpv4)(nil)).Elem()
+}
+
+func (o GetConnectionBgpConfigIpv4ArrayOutput) ToGetConnectionBgpConfigIpv4ArrayOutput() GetConnectionBgpConfigIpv4ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv4ArrayOutput) ToGetConnectionBgpConfigIpv4ArrayOutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv4ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv4ArrayOutput) Index(i pulumi.IntInput) GetConnectionBgpConfigIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionBgpConfigIpv4 {
+		return vs[0].([]GetConnectionBgpConfigIpv4)[vs[1].(int)]
+	}).(GetConnectionBgpConfigIpv4Output)
+}
+
+type GetConnectionBgpConfigIpv6 struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp string `pulumi:"privateIp"`
+	// The ID of the routing policy to use for BGP route filtering
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// GetConnectionBgpConfigIpv6Input is an input type that accepts GetConnectionBgpConfigIpv6Args and GetConnectionBgpConfigIpv6Output values.
+// You can construct a concrete instance of `GetConnectionBgpConfigIpv6Input` via:
+//
+//	GetConnectionBgpConfigIpv6Args{...}
+type GetConnectionBgpConfigIpv6Input interface {
+	pulumi.Input
+
+	ToGetConnectionBgpConfigIpv6Output() GetConnectionBgpConfigIpv6Output
+	ToGetConnectionBgpConfigIpv6OutputWithContext(context.Context) GetConnectionBgpConfigIpv6Output
+}
+
+type GetConnectionBgpConfigIpv6Args struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp pulumi.StringInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The ID of the routing policy to use for BGP route filtering
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (GetConnectionBgpConfigIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (i GetConnectionBgpConfigIpv6Args) ToGetConnectionBgpConfigIpv6Output() GetConnectionBgpConfigIpv6Output {
+	return i.ToGetConnectionBgpConfigIpv6OutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpConfigIpv6Args) ToGetConnectionBgpConfigIpv6OutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpConfigIpv6Output)
+}
+
+// GetConnectionBgpConfigIpv6ArrayInput is an input type that accepts GetConnectionBgpConfigIpv6Array and GetConnectionBgpConfigIpv6ArrayOutput values.
+// You can construct a concrete instance of `GetConnectionBgpConfigIpv6ArrayInput` via:
+//
+//	GetConnectionBgpConfigIpv6Array{ GetConnectionBgpConfigIpv6Args{...} }
+type GetConnectionBgpConfigIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionBgpConfigIpv6ArrayOutput() GetConnectionBgpConfigIpv6ArrayOutput
+	ToGetConnectionBgpConfigIpv6ArrayOutputWithContext(context.Context) GetConnectionBgpConfigIpv6ArrayOutput
+}
+
+type GetConnectionBgpConfigIpv6Array []GetConnectionBgpConfigIpv6Input
+
+func (GetConnectionBgpConfigIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (i GetConnectionBgpConfigIpv6Array) ToGetConnectionBgpConfigIpv6ArrayOutput() GetConnectionBgpConfigIpv6ArrayOutput {
+	return i.ToGetConnectionBgpConfigIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpConfigIpv6Array) ToGetConnectionBgpConfigIpv6ArrayOutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpConfigIpv6ArrayOutput)
+}
+
+type GetConnectionBgpConfigIpv6Output struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpConfigIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (o GetConnectionBgpConfigIpv6Output) ToGetConnectionBgpConfigIpv6Output() GetConnectionBgpConfigIpv6Output {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv6Output) ToGetConnectionBgpConfigIpv6OutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv6Output {
+	return o
+}
+
+// The BGP peer IP on customer side
+func (o GetConnectionBgpConfigIpv6Output) PeerPrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv6) string { return v.PeerPrivateIp }).(pulumi.StringOutput)
+}
+
+// The BGP peer IP on Scaleway side
+func (o GetConnectionBgpConfigIpv6Output) PrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv6) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The ID of the routing policy to use for BGP route filtering
+func (o GetConnectionBgpConfigIpv6Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpConfigIpv6) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type GetConnectionBgpConfigIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpConfigIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpConfigIpv6)(nil)).Elem()
+}
+
+func (o GetConnectionBgpConfigIpv6ArrayOutput) ToGetConnectionBgpConfigIpv6ArrayOutput() GetConnectionBgpConfigIpv6ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv6ArrayOutput) ToGetConnectionBgpConfigIpv6ArrayOutputWithContext(ctx context.Context) GetConnectionBgpConfigIpv6ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpConfigIpv6ArrayOutput) Index(i pulumi.IntInput) GetConnectionBgpConfigIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionBgpConfigIpv6 {
+		return vs[0].([]GetConnectionBgpConfigIpv6)[vs[1].(int)]
+	}).(GetConnectionBgpConfigIpv6Output)
+}
+
+type GetConnectionBgpSessionIpv4 struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp string `pulumi:"privateIp"`
+	// The routing policy ID
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// GetConnectionBgpSessionIpv4Input is an input type that accepts GetConnectionBgpSessionIpv4Args and GetConnectionBgpSessionIpv4Output values.
+// You can construct a concrete instance of `GetConnectionBgpSessionIpv4Input` via:
+//
+//	GetConnectionBgpSessionIpv4Args{...}
+type GetConnectionBgpSessionIpv4Input interface {
+	pulumi.Input
+
+	ToGetConnectionBgpSessionIpv4Output() GetConnectionBgpSessionIpv4Output
+	ToGetConnectionBgpSessionIpv4OutputWithContext(context.Context) GetConnectionBgpSessionIpv4Output
+}
+
+type GetConnectionBgpSessionIpv4Args struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp pulumi.StringInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The routing policy ID
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (GetConnectionBgpSessionIpv4Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (i GetConnectionBgpSessionIpv4Args) ToGetConnectionBgpSessionIpv4Output() GetConnectionBgpSessionIpv4Output {
+	return i.ToGetConnectionBgpSessionIpv4OutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpSessionIpv4Args) ToGetConnectionBgpSessionIpv4OutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv4Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpSessionIpv4Output)
+}
+
+// GetConnectionBgpSessionIpv4ArrayInput is an input type that accepts GetConnectionBgpSessionIpv4Array and GetConnectionBgpSessionIpv4ArrayOutput values.
+// You can construct a concrete instance of `GetConnectionBgpSessionIpv4ArrayInput` via:
+//
+//	GetConnectionBgpSessionIpv4Array{ GetConnectionBgpSessionIpv4Args{...} }
+type GetConnectionBgpSessionIpv4ArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionBgpSessionIpv4ArrayOutput() GetConnectionBgpSessionIpv4ArrayOutput
+	ToGetConnectionBgpSessionIpv4ArrayOutputWithContext(context.Context) GetConnectionBgpSessionIpv4ArrayOutput
+}
+
+type GetConnectionBgpSessionIpv4Array []GetConnectionBgpSessionIpv4Input
+
+func (GetConnectionBgpSessionIpv4Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (i GetConnectionBgpSessionIpv4Array) ToGetConnectionBgpSessionIpv4ArrayOutput() GetConnectionBgpSessionIpv4ArrayOutput {
+	return i.ToGetConnectionBgpSessionIpv4ArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpSessionIpv4Array) ToGetConnectionBgpSessionIpv4ArrayOutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv4ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpSessionIpv4ArrayOutput)
+}
+
+type GetConnectionBgpSessionIpv4Output struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpSessionIpv4Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (o GetConnectionBgpSessionIpv4Output) ToGetConnectionBgpSessionIpv4Output() GetConnectionBgpSessionIpv4Output {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv4Output) ToGetConnectionBgpSessionIpv4OutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv4Output {
+	return o
+}
+
+// The BGP peer IP on customer side
+func (o GetConnectionBgpSessionIpv4Output) PeerPrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv4) string { return v.PeerPrivateIp }).(pulumi.StringOutput)
+}
+
+// The BGP peer IP on Scaleway side
+func (o GetConnectionBgpSessionIpv4Output) PrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv4) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The routing policy ID
+func (o GetConnectionBgpSessionIpv4Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv4) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type GetConnectionBgpSessionIpv4ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpSessionIpv4ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpSessionIpv4)(nil)).Elem()
+}
+
+func (o GetConnectionBgpSessionIpv4ArrayOutput) ToGetConnectionBgpSessionIpv4ArrayOutput() GetConnectionBgpSessionIpv4ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv4ArrayOutput) ToGetConnectionBgpSessionIpv4ArrayOutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv4ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv4ArrayOutput) Index(i pulumi.IntInput) GetConnectionBgpSessionIpv4Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionBgpSessionIpv4 {
+		return vs[0].([]GetConnectionBgpSessionIpv4)[vs[1].(int)]
+	}).(GetConnectionBgpSessionIpv4Output)
+}
+
+type GetConnectionBgpSessionIpv6 struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp string `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp string `pulumi:"privateIp"`
+	// The routing policy ID
+	RoutingPolicyId string `pulumi:"routingPolicyId"`
+}
+
+// GetConnectionBgpSessionIpv6Input is an input type that accepts GetConnectionBgpSessionIpv6Args and GetConnectionBgpSessionIpv6Output values.
+// You can construct a concrete instance of `GetConnectionBgpSessionIpv6Input` via:
+//
+//	GetConnectionBgpSessionIpv6Args{...}
+type GetConnectionBgpSessionIpv6Input interface {
+	pulumi.Input
+
+	ToGetConnectionBgpSessionIpv6Output() GetConnectionBgpSessionIpv6Output
+	ToGetConnectionBgpSessionIpv6OutputWithContext(context.Context) GetConnectionBgpSessionIpv6Output
+}
+
+type GetConnectionBgpSessionIpv6Args struct {
+	// The BGP peer IP on customer side
+	PeerPrivateIp pulumi.StringInput `pulumi:"peerPrivateIp"`
+	// The BGP peer IP on Scaleway side
+	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
+	// The routing policy ID
+	RoutingPolicyId pulumi.StringInput `pulumi:"routingPolicyId"`
+}
+
+func (GetConnectionBgpSessionIpv6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (i GetConnectionBgpSessionIpv6Args) ToGetConnectionBgpSessionIpv6Output() GetConnectionBgpSessionIpv6Output {
+	return i.ToGetConnectionBgpSessionIpv6OutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpSessionIpv6Args) ToGetConnectionBgpSessionIpv6OutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpSessionIpv6Output)
+}
+
+// GetConnectionBgpSessionIpv6ArrayInput is an input type that accepts GetConnectionBgpSessionIpv6Array and GetConnectionBgpSessionIpv6ArrayOutput values.
+// You can construct a concrete instance of `GetConnectionBgpSessionIpv6ArrayInput` via:
+//
+//	GetConnectionBgpSessionIpv6Array{ GetConnectionBgpSessionIpv6Args{...} }
+type GetConnectionBgpSessionIpv6ArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionBgpSessionIpv6ArrayOutput() GetConnectionBgpSessionIpv6ArrayOutput
+	ToGetConnectionBgpSessionIpv6ArrayOutputWithContext(context.Context) GetConnectionBgpSessionIpv6ArrayOutput
+}
+
+type GetConnectionBgpSessionIpv6Array []GetConnectionBgpSessionIpv6Input
+
+func (GetConnectionBgpSessionIpv6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (i GetConnectionBgpSessionIpv6Array) ToGetConnectionBgpSessionIpv6ArrayOutput() GetConnectionBgpSessionIpv6ArrayOutput {
+	return i.ToGetConnectionBgpSessionIpv6ArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionBgpSessionIpv6Array) ToGetConnectionBgpSessionIpv6ArrayOutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionBgpSessionIpv6ArrayOutput)
+}
+
+type GetConnectionBgpSessionIpv6Output struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpSessionIpv6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (o GetConnectionBgpSessionIpv6Output) ToGetConnectionBgpSessionIpv6Output() GetConnectionBgpSessionIpv6Output {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv6Output) ToGetConnectionBgpSessionIpv6OutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv6Output {
+	return o
+}
+
+// The BGP peer IP on customer side
+func (o GetConnectionBgpSessionIpv6Output) PeerPrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv6) string { return v.PeerPrivateIp }).(pulumi.StringOutput)
+}
+
+// The BGP peer IP on Scaleway side
+func (o GetConnectionBgpSessionIpv6Output) PrivateIp() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv6) string { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The routing policy ID
+func (o GetConnectionBgpSessionIpv6Output) RoutingPolicyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionBgpSessionIpv6) string { return v.RoutingPolicyId }).(pulumi.StringOutput)
+}
+
+type GetConnectionBgpSessionIpv6ArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionBgpSessionIpv6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionBgpSessionIpv6)(nil)).Elem()
+}
+
+func (o GetConnectionBgpSessionIpv6ArrayOutput) ToGetConnectionBgpSessionIpv6ArrayOutput() GetConnectionBgpSessionIpv6ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv6ArrayOutput) ToGetConnectionBgpSessionIpv6ArrayOutputWithContext(ctx context.Context) GetConnectionBgpSessionIpv6ArrayOutput {
+	return o
+}
+
+func (o GetConnectionBgpSessionIpv6ArrayOutput) Index(i pulumi.IntInput) GetConnectionBgpSessionIpv6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionBgpSessionIpv6 {
+		return vs[0].([]GetConnectionBgpSessionIpv6)[vs[1].(int)]
+	}).(GetConnectionBgpSessionIpv6Output)
+}
+
+type GetConnectionEspCipher struct {
+	// The Diffie-Hellman group
+	DhGroup string `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption string `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity string `pulumi:"integrity"`
+}
+
+// GetConnectionEspCipherInput is an input type that accepts GetConnectionEspCipherArgs and GetConnectionEspCipherOutput values.
+// You can construct a concrete instance of `GetConnectionEspCipherInput` via:
+//
+//	GetConnectionEspCipherArgs{...}
+type GetConnectionEspCipherInput interface {
+	pulumi.Input
+
+	ToGetConnectionEspCipherOutput() GetConnectionEspCipherOutput
+	ToGetConnectionEspCipherOutputWithContext(context.Context) GetConnectionEspCipherOutput
+}
+
+type GetConnectionEspCipherArgs struct {
+	// The Diffie-Hellman group
+	DhGroup pulumi.StringInput `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption pulumi.StringInput `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity pulumi.StringInput `pulumi:"integrity"`
+}
+
+func (GetConnectionEspCipherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionEspCipher)(nil)).Elem()
+}
+
+func (i GetConnectionEspCipherArgs) ToGetConnectionEspCipherOutput() GetConnectionEspCipherOutput {
+	return i.ToGetConnectionEspCipherOutputWithContext(context.Background())
+}
+
+func (i GetConnectionEspCipherArgs) ToGetConnectionEspCipherOutputWithContext(ctx context.Context) GetConnectionEspCipherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionEspCipherOutput)
+}
+
+// GetConnectionEspCipherArrayInput is an input type that accepts GetConnectionEspCipherArray and GetConnectionEspCipherArrayOutput values.
+// You can construct a concrete instance of `GetConnectionEspCipherArrayInput` via:
+//
+//	GetConnectionEspCipherArray{ GetConnectionEspCipherArgs{...} }
+type GetConnectionEspCipherArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionEspCipherArrayOutput() GetConnectionEspCipherArrayOutput
+	ToGetConnectionEspCipherArrayOutputWithContext(context.Context) GetConnectionEspCipherArrayOutput
+}
+
+type GetConnectionEspCipherArray []GetConnectionEspCipherInput
+
+func (GetConnectionEspCipherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionEspCipher)(nil)).Elem()
+}
+
+func (i GetConnectionEspCipherArray) ToGetConnectionEspCipherArrayOutput() GetConnectionEspCipherArrayOutput {
+	return i.ToGetConnectionEspCipherArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionEspCipherArray) ToGetConnectionEspCipherArrayOutputWithContext(ctx context.Context) GetConnectionEspCipherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionEspCipherArrayOutput)
+}
+
+type GetConnectionEspCipherOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionEspCipherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionEspCipher)(nil)).Elem()
+}
+
+func (o GetConnectionEspCipherOutput) ToGetConnectionEspCipherOutput() GetConnectionEspCipherOutput {
+	return o
+}
+
+func (o GetConnectionEspCipherOutput) ToGetConnectionEspCipherOutputWithContext(ctx context.Context) GetConnectionEspCipherOutput {
+	return o
+}
+
+// The Diffie-Hellman group
+func (o GetConnectionEspCipherOutput) DhGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionEspCipher) string { return v.DhGroup }).(pulumi.StringOutput)
+}
+
+// The encryption algorithm
+func (o GetConnectionEspCipherOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionEspCipher) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// The integrity/hash algorithm
+func (o GetConnectionEspCipherOutput) Integrity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionEspCipher) string { return v.Integrity }).(pulumi.StringOutput)
+}
+
+type GetConnectionEspCipherArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionEspCipherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionEspCipher)(nil)).Elem()
+}
+
+func (o GetConnectionEspCipherArrayOutput) ToGetConnectionEspCipherArrayOutput() GetConnectionEspCipherArrayOutput {
+	return o
+}
+
+func (o GetConnectionEspCipherArrayOutput) ToGetConnectionEspCipherArrayOutputWithContext(ctx context.Context) GetConnectionEspCipherArrayOutput {
+	return o
+}
+
+func (o GetConnectionEspCipherArrayOutput) Index(i pulumi.IntInput) GetConnectionEspCipherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionEspCipher {
+		return vs[0].([]GetConnectionEspCipher)[vs[1].(int)]
+	}).(GetConnectionEspCipherOutput)
+}
+
+type GetConnectionIkev2Cipher struct {
+	// The Diffie-Hellman group
+	DhGroup string `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption string `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity string `pulumi:"integrity"`
+}
+
+// GetConnectionIkev2CipherInput is an input type that accepts GetConnectionIkev2CipherArgs and GetConnectionIkev2CipherOutput values.
+// You can construct a concrete instance of `GetConnectionIkev2CipherInput` via:
+//
+//	GetConnectionIkev2CipherArgs{...}
+type GetConnectionIkev2CipherInput interface {
+	pulumi.Input
+
+	ToGetConnectionIkev2CipherOutput() GetConnectionIkev2CipherOutput
+	ToGetConnectionIkev2CipherOutputWithContext(context.Context) GetConnectionIkev2CipherOutput
+}
+
+type GetConnectionIkev2CipherArgs struct {
+	// The Diffie-Hellman group
+	DhGroup pulumi.StringInput `pulumi:"dhGroup"`
+	// The encryption algorithm
+	Encryption pulumi.StringInput `pulumi:"encryption"`
+	// The integrity/hash algorithm
+	Integrity pulumi.StringInput `pulumi:"integrity"`
+}
+
+func (GetConnectionIkev2CipherArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (i GetConnectionIkev2CipherArgs) ToGetConnectionIkev2CipherOutput() GetConnectionIkev2CipherOutput {
+	return i.ToGetConnectionIkev2CipherOutputWithContext(context.Background())
+}
+
+func (i GetConnectionIkev2CipherArgs) ToGetConnectionIkev2CipherOutputWithContext(ctx context.Context) GetConnectionIkev2CipherOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionIkev2CipherOutput)
+}
+
+// GetConnectionIkev2CipherArrayInput is an input type that accepts GetConnectionIkev2CipherArray and GetConnectionIkev2CipherArrayOutput values.
+// You can construct a concrete instance of `GetConnectionIkev2CipherArrayInput` via:
+//
+//	GetConnectionIkev2CipherArray{ GetConnectionIkev2CipherArgs{...} }
+type GetConnectionIkev2CipherArrayInput interface {
+	pulumi.Input
+
+	ToGetConnectionIkev2CipherArrayOutput() GetConnectionIkev2CipherArrayOutput
+	ToGetConnectionIkev2CipherArrayOutputWithContext(context.Context) GetConnectionIkev2CipherArrayOutput
+}
+
+type GetConnectionIkev2CipherArray []GetConnectionIkev2CipherInput
+
+func (GetConnectionIkev2CipherArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (i GetConnectionIkev2CipherArray) ToGetConnectionIkev2CipherArrayOutput() GetConnectionIkev2CipherArrayOutput {
+	return i.ToGetConnectionIkev2CipherArrayOutputWithContext(context.Background())
+}
+
+func (i GetConnectionIkev2CipherArray) ToGetConnectionIkev2CipherArrayOutputWithContext(ctx context.Context) GetConnectionIkev2CipherArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetConnectionIkev2CipherArrayOutput)
+}
+
+type GetConnectionIkev2CipherOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionIkev2CipherOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (o GetConnectionIkev2CipherOutput) ToGetConnectionIkev2CipherOutput() GetConnectionIkev2CipherOutput {
+	return o
+}
+
+func (o GetConnectionIkev2CipherOutput) ToGetConnectionIkev2CipherOutputWithContext(ctx context.Context) GetConnectionIkev2CipherOutput {
+	return o
+}
+
+// The Diffie-Hellman group
+func (o GetConnectionIkev2CipherOutput) DhGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionIkev2Cipher) string { return v.DhGroup }).(pulumi.StringOutput)
+}
+
+// The encryption algorithm
+func (o GetConnectionIkev2CipherOutput) Encryption() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionIkev2Cipher) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+// The integrity/hash algorithm
+func (o GetConnectionIkev2CipherOutput) Integrity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetConnectionIkev2Cipher) string { return v.Integrity }).(pulumi.StringOutput)
+}
+
+type GetConnectionIkev2CipherArrayOutput struct{ *pulumi.OutputState }
+
+func (GetConnectionIkev2CipherArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetConnectionIkev2Cipher)(nil)).Elem()
+}
+
+func (o GetConnectionIkev2CipherArrayOutput) ToGetConnectionIkev2CipherArrayOutput() GetConnectionIkev2CipherArrayOutput {
+	return o
+}
+
+func (o GetConnectionIkev2CipherArrayOutput) ToGetConnectionIkev2CipherArrayOutputWithContext(ctx context.Context) GetConnectionIkev2CipherArrayOutput {
+	return o
+}
+
+func (o GetConnectionIkev2CipherArrayOutput) Index(i pulumi.IntInput) GetConnectionIkev2CipherOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetConnectionIkev2Cipher {
+		return vs[0].([]GetConnectionIkev2Cipher)[vs[1].(int)]
+	}).(GetConnectionIkev2CipherOutput)
+}
+
+type GetGatewayPublicConfig struct {
+	// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+	IpamIpv4Id string `pulumi:"ipamIpv4Id"`
+	// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
+	IpamIpv6Id string `pulumi:"ipamIpv6Id"`
+}
+
+// GetGatewayPublicConfigInput is an input type that accepts GetGatewayPublicConfigArgs and GetGatewayPublicConfigOutput values.
+// You can construct a concrete instance of `GetGatewayPublicConfigInput` via:
+//
+//	GetGatewayPublicConfigArgs{...}
+type GetGatewayPublicConfigInput interface {
+	pulumi.Input
+
+	ToGetGatewayPublicConfigOutput() GetGatewayPublicConfigOutput
+	ToGetGatewayPublicConfigOutputWithContext(context.Context) GetGatewayPublicConfigOutput
+}
+
+type GetGatewayPublicConfigArgs struct {
+	// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+	IpamIpv4Id pulumi.StringInput `pulumi:"ipamIpv4Id"`
+	// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
+	IpamIpv6Id pulumi.StringInput `pulumi:"ipamIpv6Id"`
+}
+
+func (GetGatewayPublicConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayPublicConfig)(nil)).Elem()
+}
+
+func (i GetGatewayPublicConfigArgs) ToGetGatewayPublicConfigOutput() GetGatewayPublicConfigOutput {
+	return i.ToGetGatewayPublicConfigOutputWithContext(context.Background())
+}
+
+func (i GetGatewayPublicConfigArgs) ToGetGatewayPublicConfigOutputWithContext(ctx context.Context) GetGatewayPublicConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayPublicConfigOutput)
+}
+
+// GetGatewayPublicConfigArrayInput is an input type that accepts GetGatewayPublicConfigArray and GetGatewayPublicConfigArrayOutput values.
+// You can construct a concrete instance of `GetGatewayPublicConfigArrayInput` via:
+//
+//	GetGatewayPublicConfigArray{ GetGatewayPublicConfigArgs{...} }
+type GetGatewayPublicConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetGatewayPublicConfigArrayOutput() GetGatewayPublicConfigArrayOutput
+	ToGetGatewayPublicConfigArrayOutputWithContext(context.Context) GetGatewayPublicConfigArrayOutput
+}
+
+type GetGatewayPublicConfigArray []GetGatewayPublicConfigInput
+
+func (GetGatewayPublicConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayPublicConfig)(nil)).Elem()
+}
+
+func (i GetGatewayPublicConfigArray) ToGetGatewayPublicConfigArrayOutput() GetGatewayPublicConfigArrayOutput {
+	return i.ToGetGatewayPublicConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetGatewayPublicConfigArray) ToGetGatewayPublicConfigArrayOutputWithContext(ctx context.Context) GetGatewayPublicConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGatewayPublicConfigArrayOutput)
+}
+
+type GetGatewayPublicConfigOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayPublicConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGatewayPublicConfig)(nil)).Elem()
+}
+
+func (o GetGatewayPublicConfigOutput) ToGetGatewayPublicConfigOutput() GetGatewayPublicConfigOutput {
+	return o
+}
+
+func (o GetGatewayPublicConfigOutput) ToGetGatewayPublicConfigOutputWithContext(ctx context.Context) GetGatewayPublicConfigOutput {
+	return o
+}
+
+// The ID of the IPAM IPv4 address to use as the public IP for the VPN gateway
+func (o GetGatewayPublicConfigOutput) IpamIpv4Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayPublicConfig) string { return v.IpamIpv4Id }).(pulumi.StringOutput)
+}
+
+// The ID of the IPAM IPv6 address to use as the public IP for the VPN gateway
+func (o GetGatewayPublicConfigOutput) IpamIpv6Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGatewayPublicConfig) string { return v.IpamIpv6Id }).(pulumi.StringOutput)
+}
+
+type GetGatewayPublicConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGatewayPublicConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGatewayPublicConfig)(nil)).Elem()
+}
+
+func (o GetGatewayPublicConfigArrayOutput) ToGetGatewayPublicConfigArrayOutput() GetGatewayPublicConfigArrayOutput {
+	return o
+}
+
+func (o GetGatewayPublicConfigArrayOutput) ToGetGatewayPublicConfigArrayOutputWithContext(ctx context.Context) GetGatewayPublicConfigArrayOutput {
+	return o
+}
+
+func (o GetGatewayPublicConfigArrayOutput) Index(i pulumi.IntInput) GetGatewayPublicConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGatewayPublicConfig {
+		return vs[0].([]GetGatewayPublicConfig)[vs[1].(int)]
+	}).(GetGatewayPublicConfigOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionBgpConfigIpv4Input)(nil)).Elem(), ConnectionBgpConfigIpv4Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionBgpConfigIpv4ArrayInput)(nil)).Elem(), ConnectionBgpConfigIpv4Array{})
@@ -824,6 +1620,20 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ConnectionIkev2CipherArrayInput)(nil)).Elem(), ConnectionIkev2CipherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayPublicConfigInput)(nil)).Elem(), GatewayPublicConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GatewayPublicConfigArrayInput)(nil)).Elem(), GatewayPublicConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpConfigIpv4Input)(nil)).Elem(), GetConnectionBgpConfigIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpConfigIpv4ArrayInput)(nil)).Elem(), GetConnectionBgpConfigIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpConfigIpv6Input)(nil)).Elem(), GetConnectionBgpConfigIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpConfigIpv6ArrayInput)(nil)).Elem(), GetConnectionBgpConfigIpv6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpSessionIpv4Input)(nil)).Elem(), GetConnectionBgpSessionIpv4Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpSessionIpv4ArrayInput)(nil)).Elem(), GetConnectionBgpSessionIpv4Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpSessionIpv6Input)(nil)).Elem(), GetConnectionBgpSessionIpv6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionBgpSessionIpv6ArrayInput)(nil)).Elem(), GetConnectionBgpSessionIpv6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionEspCipherInput)(nil)).Elem(), GetConnectionEspCipherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionEspCipherArrayInput)(nil)).Elem(), GetConnectionEspCipherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionIkev2CipherInput)(nil)).Elem(), GetConnectionIkev2CipherArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetConnectionIkev2CipherArrayInput)(nil)).Elem(), GetConnectionIkev2CipherArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayPublicConfigInput)(nil)).Elem(), GetGatewayPublicConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGatewayPublicConfigArrayInput)(nil)).Elem(), GetGatewayPublicConfigArray{})
 	pulumi.RegisterOutputType(ConnectionBgpConfigIpv4Output{})
 	pulumi.RegisterOutputType(ConnectionBgpConfigIpv4ArrayOutput{})
 	pulumi.RegisterOutputType(ConnectionBgpConfigIpv6Output{})
@@ -838,4 +1648,18 @@ func init() {
 	pulumi.RegisterOutputType(ConnectionIkev2CipherArrayOutput{})
 	pulumi.RegisterOutputType(GatewayPublicConfigOutput{})
 	pulumi.RegisterOutputType(GatewayPublicConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionBgpConfigIpv4Output{})
+	pulumi.RegisterOutputType(GetConnectionBgpConfigIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionBgpConfigIpv6Output{})
+	pulumi.RegisterOutputType(GetConnectionBgpConfigIpv6ArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionBgpSessionIpv4Output{})
+	pulumi.RegisterOutputType(GetConnectionBgpSessionIpv4ArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionBgpSessionIpv6Output{})
+	pulumi.RegisterOutputType(GetConnectionBgpSessionIpv6ArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionEspCipherOutput{})
+	pulumi.RegisterOutputType(GetConnectionEspCipherArrayOutput{})
+	pulumi.RegisterOutputType(GetConnectionIkev2CipherOutput{})
+	pulumi.RegisterOutputType(GetConnectionIkev2CipherArrayOutput{})
+	pulumi.RegisterOutputType(GetGatewayPublicConfigOutput{})
+	pulumi.RegisterOutputType(GetGatewayPublicConfigArrayOutput{})
 }
