@@ -1790,40 +1790,6 @@ export interface GetIpamIpsResource {
     type: string;
 }
 
-export interface GetKafkaClusterPrivateNetwork {
-    /**
-     * DNS records for the private endpoint
-     */
-    dnsRecords: string[];
-    /**
-     * The endpoint ID
-     */
-    id: string;
-    /**
-     * The private network ID
-     */
-    pnId: string;
-    /**
-     * TCP port number
-     */
-    port: number;
-}
-
-export interface GetKafkaClusterPublicNetwork {
-    /**
-     * DNS records for the public endpoint
-     */
-    dnsRecords: string[];
-    /**
-     * ID of the public endpoint
-     */
-    id: string;
-    /**
-     * TCP port number
-     */
-    port: number;
-}
-
 export interface GetKeyManagerKeyRotationPolicy {
     /**
      * Timestamp indicating the next scheduled rotation.
@@ -3833,40 +3799,6 @@ export interface JobDefinitionSecretReference {
     secretVersion?: string;
 }
 
-export interface KafkaClusterPrivateNetwork {
-    /**
-     * List of DNS records for the private endpoint.
-     */
-    dnsRecords: string[];
-    /**
-     * The ID of the private endpoint.
-     */
-    id: string;
-    /**
-     * The private network ID (same as input).
-     */
-    pnId: string;
-    /**
-     * TCP port number.
-     */
-    port: number;
-}
-
-export interface KafkaClusterPublicNetwork {
-    /**
-     * List of DNS records for the private endpoint.
-     */
-    dnsRecords: string[];
-    /**
-     * The ID of the private endpoint.
-     */
-    id: string;
-    /**
-     * TCP port number.
-     */
-    port: number;
-}
-
 export interface KeyManagerKeyRotationPolicy {
     /**
      * The date and time of the next scheduled rotation.
@@ -4554,58 +4486,6 @@ export interface ObjectBucketWebsiteConfigurationIndexDocument {
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */
     suffix: string;
-}
-
-export interface OpensearchDeploymentEndpoint {
-    /**
-     * The ID of the endpoint.
-     */
-    id: string;
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId: string;
-    /**
-     * Whether the endpoint is public (true) or private (false).
-     */
-    public: boolean;
-    /**
-     * List of services exposed on the endpoint.
-     */
-    services: outputs.OpensearchDeploymentEndpointService[];
-}
-
-export interface OpensearchDeploymentEndpointService {
-    /**
-     * Name of the OpenSearch deployment. If not specified, a random name will be generated.
-     */
-    name: string;
-    /**
-     * Service port number.
-     */
-    port: number;
-    /**
-     * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
-     */
-    url: string;
-}
-
-export interface OpensearchDeploymentPrivateNetwork {
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId: string;
-}
-
-export interface OpensearchDeploymentVolume {
-    /**
-     * Volume size in GB. Changing this forces recreation of the deployment.
-     */
-    sizeInGb: number;
-    /**
-     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
-     */
-    type: string;
 }
 
 export interface RedisClusterAcl {
@@ -8468,6 +8348,77 @@ export namespace job {
 
 }
 
+export namespace kafka {
+    export interface ClusterPrivateNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords: string[];
+        /**
+         * The ID of the private endpoint.
+         */
+        id: string;
+        /**
+         * The private network ID (same as input).
+         */
+        pnId: string;
+        /**
+         * TCP port number.
+         */
+        port: number;
+    }
+
+    export interface ClusterPublicNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords: string[];
+        /**
+         * The ID of the private endpoint.
+         */
+        id: string;
+        /**
+         * TCP port number.
+         */
+        port: number;
+    }
+
+    export interface GetClusterPrivateNetwork {
+        /**
+         * DNS records for the private endpoint
+         */
+        dnsRecords: string[];
+        /**
+         * The endpoint ID
+         */
+        id: string;
+        /**
+         * The private network ID
+         */
+        pnId: string;
+        /**
+         * TCP port number
+         */
+        port: number;
+    }
+
+    export interface GetClusterPublicNetwork {
+        /**
+         * DNS records for the public endpoint
+         */
+        dnsRecords: string[];
+        /**
+         * ID of the public endpoint
+         */
+        id: string;
+        /**
+         * TCP port number
+         */
+        port: number;
+    }
+
+}
+
 export namespace keymanager {
     export interface GetKeyRotationPolicy {
         /**
@@ -10677,6 +10628,61 @@ export namespace observability {
          * Permission to write traces.
          */
         writeTraces?: boolean;
+    }
+
+}
+
+export namespace opensearch {
+    export interface DeploymentEndpoint {
+        /**
+         * The ID of the endpoint.
+         */
+        id: string;
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: string;
+        /**
+         * Whether the endpoint is public (true) or private (false).
+         */
+        public: boolean;
+        /**
+         * List of services exposed on the endpoint.
+         */
+        services: outputs.opensearch.DeploymentEndpointService[];
+    }
+
+    export interface DeploymentEndpointService {
+        /**
+         * Name of the OpenSearch deployment. If not specified, a random name will be generated.
+         */
+        name: string;
+        /**
+         * Service port number.
+         */
+        port: number;
+        /**
+         * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+         */
+        url: string;
+    }
+
+    export interface DeploymentPrivateNetwork {
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: string;
+    }
+
+    export interface DeploymentVolume {
+        /**
+         * Volume size in GB. Changing this forces recreation of the deployment.
+         */
+        sizeInGb: number;
+        /**
+         * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+         */
+        type: string;
     }
 
 }

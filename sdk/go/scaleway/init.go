@@ -161,8 +161,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IpamIpReverseDns{}
 	case "scaleway:index/jobDefinition:JobDefinition":
 		r = &JobDefinition{}
-	case "scaleway:index/kafkaCluster:KafkaCluster":
-		r = &KafkaCluster{}
 	case "scaleway:index/keyManagerKey:KeyManagerKey":
 		r = &KeyManagerKey{}
 	case "scaleway:index/kubernetesCluster:KubernetesCluster":
@@ -217,8 +215,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ObjectBucketWebsiteConfiguration{}
 	case "scaleway:index/objectItem:ObjectItem":
 		r = &ObjectItem{}
-	case "scaleway:index/opensearchDeployment:OpensearchDeployment":
-		r = &OpensearchDeployment{}
 	case "scaleway:index/rdbSnapshot:RdbSnapshot":
 		r = &RdbSnapshot{}
 	case "scaleway:index/redisCluster:RedisCluster":
@@ -642,11 +638,6 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"scaleway",
-		"index/kafkaCluster",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
 		"index/keyManagerKey",
 		&module{version},
 	)
@@ -778,11 +769,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"index/objectItem",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"scaleway",
-		"index/opensearchDeployment",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

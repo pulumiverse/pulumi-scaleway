@@ -1376,40 +1376,6 @@ export interface JobDefinitionSecretReference {
     secretVersion?: pulumi.Input<string>;
 }
 
-export interface KafkaClusterPrivateNetwork {
-    /**
-     * List of DNS records for the private endpoint.
-     */
-    dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID of the private endpoint.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * The private network ID (same as input).
-     */
-    pnId: pulumi.Input<string>;
-    /**
-     * TCP port number.
-     */
-    port?: pulumi.Input<number>;
-}
-
-export interface KafkaClusterPublicNetwork {
-    /**
-     * List of DNS records for the private endpoint.
-     */
-    dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID of the private endpoint.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * TCP port number.
-     */
-    port?: pulumi.Input<number>;
-}
-
 export interface KeyManagerKeyRotationPolicy {
     /**
      * The date and time of the next scheduled rotation.
@@ -2097,58 +2063,6 @@ export interface ObjectBucketWebsiteConfigurationIndexDocument {
      * > **Important:** The suffix must not be empty and must not include a slash character. The routing is not supported.
      */
     suffix: pulumi.Input<string>;
-}
-
-export interface OpensearchDeploymentEndpoint {
-    /**
-     * The ID of the endpoint.
-     */
-    id?: pulumi.Input<string>;
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId?: pulumi.Input<string>;
-    /**
-     * Whether the endpoint is public (true) or private (false).
-     */
-    public?: pulumi.Input<boolean>;
-    /**
-     * List of services exposed on the endpoint.
-     */
-    services?: pulumi.Input<pulumi.Input<inputs.OpensearchDeploymentEndpointService>[]>;
-}
-
-export interface OpensearchDeploymentEndpointService {
-    /**
-     * Name of the OpenSearch deployment. If not specified, a random name will be generated.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Service port number.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
-     */
-    url?: pulumi.Input<string>;
-}
-
-export interface OpensearchDeploymentPrivateNetwork {
-    /**
-     * Private network ID if the endpoint is private.
-     */
-    privateNetworkId: pulumi.Input<string>;
-}
-
-export interface OpensearchDeploymentVolume {
-    /**
-     * Volume size in GB. Changing this forces recreation of the deployment.
-     */
-    sizeInGb: pulumi.Input<number>;
-    /**
-     * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
-     */
-    type: pulumi.Input<string>;
 }
 
 export interface RedisClusterAcl {
@@ -4599,6 +4513,43 @@ export namespace job {
     }
 }
 
+export namespace kafka {
+    export interface ClusterPrivateNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the private endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * The private network ID (same as input).
+         */
+        pnId: pulumi.Input<string>;
+        /**
+         * TCP port number.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+    export interface ClusterPublicNetwork {
+        /**
+         * List of DNS records for the private endpoint.
+         */
+        dnsRecords?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * The ID of the private endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * TCP port number.
+         */
+        port?: pulumi.Input<number>;
+    }
+
+}
+
 export namespace keymanager {
     export interface KeyRotationPolicy {
         /**
@@ -5544,6 +5495,60 @@ export namespace observability {
          * Permission to write traces.
          */
         writeTraces?: pulumi.Input<boolean>;
+    }
+}
+
+export namespace opensearch {
+    export interface DeploymentEndpoint {
+        /**
+         * The ID of the endpoint.
+         */
+        id?: pulumi.Input<string>;
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId?: pulumi.Input<string>;
+        /**
+         * Whether the endpoint is public (true) or private (false).
+         */
+        public?: pulumi.Input<boolean>;
+        /**
+         * List of services exposed on the endpoint.
+         */
+        services?: pulumi.Input<pulumi.Input<inputs.opensearch.DeploymentEndpointService>[]>;
+    }
+
+    export interface DeploymentEndpointService {
+        /**
+         * Name of the OpenSearch deployment. If not specified, a random name will be generated.
+         */
+        name?: pulumi.Input<string>;
+        /**
+         * Service port number.
+         */
+        port?: pulumi.Input<number>;
+        /**
+         * Full URL to access the service (e.g., "https://abc-123.searchdb.fr-par.scw.cloud:9200").
+         */
+        url?: pulumi.Input<string>;
+    }
+
+    export interface DeploymentPrivateNetwork {
+        /**
+         * Private network ID if the endpoint is private.
+         */
+        privateNetworkId: pulumi.Input<string>;
+    }
+
+    export interface DeploymentVolume {
+        /**
+         * Volume size in GB. Changing this forces recreation of the deployment.
+         */
+        sizeInGb: pulumi.Input<number>;
+        /**
+         * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+         */
+        type: pulumi.Input<string>;
     }
 }
 

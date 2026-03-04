@@ -1527,7 +1527,7 @@
                 }
             },
             "scaleway_kafka_cluster": {
-                "current": "scaleway:index/kafkaCluster:KafkaCluster",
+                "current": "scaleway:kafka/cluster:Cluster",
                 "majorVersion": 1,
                 "fields": {
                     "private_network": {
@@ -2096,7 +2096,7 @@
                 }
             },
             "scaleway_opensearch_deployment": {
-                "current": "scaleway:index/opensearchDeployment:OpensearchDeployment",
+                "current": "scaleway:opensearch/deployment:Deployment",
                 "majorVersion": 1,
                 "fields": {
                     "endpoints": {
@@ -3719,7 +3719,7 @@
                 }
             },
             "scaleway_kafka_cluster": {
-                "current": "scaleway:index/getKafkaCluster:getKafkaCluster",
+                "current": "scaleway:kafka/getCluster:getCluster",
                 "majorVersion": 1,
                 "fields": {
                     "private_network": {
@@ -5891,7 +5891,6 @@
             "scaleway:index/ipamIp:IpamIp": 0,
             "scaleway:index/ipamIpReverseDns:IpamIpReverseDns": 0,
             "scaleway:index/jobDefinition:JobDefinition": 0,
-            "scaleway:index/kafkaCluster:KafkaCluster": 0,
             "scaleway:index/keyManagerKey:KeyManagerKey": 0,
             "scaleway:index/kubernetesCluster:KubernetesCluster": 0,
             "scaleway:index/kubernetesNodePool:KubernetesNodePool": 0,
@@ -5919,7 +5918,6 @@
             "scaleway:index/objectBucketPolicy:ObjectBucketPolicy": 0,
             "scaleway:index/objectBucketWebsiteConfiguration:ObjectBucketWebsiteConfiguration": 0,
             "scaleway:index/objectItem:ObjectItem": 0,
-            "scaleway:index/opensearchDeployment:OpensearchDeployment": 0,
             "scaleway:index/rdbSnapshot:RdbSnapshot": 0,
             "scaleway:index/redisCluster:RedisCluster": 0,
             "scaleway:index/registryNamespace:RegistryNamespace": 0,
@@ -5960,6 +5958,7 @@
             "scaleway:ipam/ip:Ip": 0,
             "scaleway:ipam/ipReverseDns:IpReverseDns": 0,
             "scaleway:job/definition:Definition": 0,
+            "scaleway:kafka/cluster:Cluster": 0,
             "scaleway:keymanager/key:Key": 0,
             "scaleway:kubernetes/acl:Acl": 0,
             "scaleway:kubernetes/cluster:Cluster": 0,
@@ -6006,6 +6005,7 @@
             "scaleway:observability/grafanaUser:GrafanaUser": 0,
             "scaleway:observability/source:Source": 0,
             "scaleway:observability/token:Token": 0,
+            "scaleway:opensearch/deployment:Deployment": 0,
             "scaleway:redis/cluster:Cluster": 0,
             "scaleway:registry/namespace:Namespace": 0,
             "scaleway:s2svpn/connection:Connection": 0,
@@ -6104,7 +6104,6 @@
             "scaleway:index/getIpamIp:getIpamIp": 0,
             "scaleway:index/getIpamIps:getIpamIps": 0,
             "scaleway:index/getK8sVersion:getK8sVersion": 0,
-            "scaleway:index/getKafkaCluster:getKafkaCluster": 0,
             "scaleway:index/getKeyManagerKey:getKeyManagerKey": 0,
             "scaleway:index/getKubernetesCluster:getKubernetesCluster": 0,
             "scaleway:index/getKubernetesNodePool:getKubernetesNodePool": 0,
@@ -6160,6 +6159,7 @@
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,
             "scaleway:ipam/getIps:getIps": 0,
+            "scaleway:kafka/getCluster:getCluster": 0,
             "scaleway:keymanager/getKey:getKey": 0,
             "scaleway:keymanager/getVerify:getVerify": 0,
             "scaleway:kubernetes/getCluster:getCluster": 0,

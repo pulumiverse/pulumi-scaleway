@@ -62,12 +62,14 @@ const (
 	instanceMod      = "instance"
 	iotMod           = "iot"
 	jobMod           = "job"
+	kafkaMod         = "kafka"
 	keymanagerMod    = "keymanager"
 	kubernetesMod    = "kubernetes"
 	loadbalancersMod = "loadbalancers"
 	mnqMod           = "mnq"
 	mongodbMod       = "mongodb"
 	objectMod        = "object"
+	opensearchMod    = "opensearch"
 	redisMod         = "redis"
 	registryMod      = "registry"
 	s2sVpnMod        = "s2svpn"
@@ -351,12 +353,14 @@ func Provider() tfbridge.ProviderInfo {
 				"instance":      instanceMod,
 				"iot":           iotMod,
 				"job":           jobMod,
+				"kafka":         kafkaMod,
 				"key_manager":   keymanagerMod,
 				"k8s":           kubernetesMod,
 				"lb":            loadbalancersMod,
 				"mnq":           mnqMod,
 				"mongodb":       mongodbMod,
 				"object":        objectMod,
+				"opensearch":    opensearchMod,
 				"rdb":           databasesMod,
 				"redis":         redisMod,
 				"registry":      registryMod,
