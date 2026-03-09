@@ -2,6 +2,9 @@
 name: "Resync Build Workflows"
 
 on:
+  schedule:
+    # Once a month on the 5th
+    - cron: 0 0 5 * *
   workflow_dispatch:
 
 permissions:
@@ -19,13 +22,12 @@ jobs:
           # Persist credentials so pull-workflow-changes can push a new branch.
           persist-credentials: true
       - name: Setup mise
-        uses: blampe/mise-action@blampe/plugins
+        uses: jdx/mise-action@c1a019b8d2586943b4dbebc456323b516910e310
         env:
           MISE_FETCH_REMOTE_VERSIONS_TIMEOUT: 30s
         with:
-          version: 2026.1.1
+          version: 2026.2.20
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          plugin_install: https://github.com/pulumi/vfox-pulumi
           # only saving the cache in the prerequisites job
           cache_save: false
       - name: Regenerate the workflow files via https://github.com/pulumi-labs/ci-mgmt
@@ -36,7 +38,8 @@ jobs:
         with:
           author: pulumi-bot <bot@pulumi.com>
           base: main
-          body: This pull request was generated automatically by the resync-build workflow
+          body:
+            This pull request was generated automatically by the resync-build workflow
             in this repository.
           branch: chore/resync-${{ github.run_id }}
           commit-message: Regenerate workflows for pulumi-scaleway

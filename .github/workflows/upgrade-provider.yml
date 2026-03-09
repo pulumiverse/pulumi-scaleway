@@ -43,7 +43,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
-          persist-credentials: false # Conflicts with app auth token.
+          persist-credentials: false # Conflicts with app auth token.      
       - id: esc-secrets
         name: Map environment to ESC outputs
         uses: ./.github/actions/esc-action
@@ -71,7 +71,7 @@ jobs:
         run: upgrade-provider "$REPO" --kind=check-upstream-version
         env:
           REPO: ${{ github.repository }}
-          GH_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
+          GH_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
         shell: bash
       - name: Calculate target version
         id: target_version
@@ -82,13 +82,13 @@ jobs:
       - name: Call upgrade provider action
         id: upgrade_provider
         if: steps.target_version.outputs.version != ''
-        uses: pulumi/pulumi-upgrade-provider-action@e247104aede3eb4641f48c8ad0ea9de9346f2457 # v0.0.18
+        uses: pulumi/pulumi-upgrade-provider-action@12996503de2aaddd72c7426efc43331a8970894f # v0.0.19
         with:
           kind: provider
-          email: bot@pulumiverse.com
-          username: pulumiverse-bot
+          email: bot@pulumi.com
+          username: pulumi-bot
           automerge: true
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
         env:
-          GH_TOKEN: ${{ secrets.PULUMI_PROVIDER_AUTOMATION_TOKEN }}
+          GH_TOKEN: ${{ steps.esc-secrets.outputs.PULUMI_PROVIDER_AUTOMATION_TOKEN || steps.esc-secrets.outputs.PULUMI_BOT_TOKEN || secrets.GITHUB_TOKEN }}
