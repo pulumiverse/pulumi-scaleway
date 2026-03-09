@@ -85,8 +85,8 @@ jobs:
         uses: pulumi/pulumi-upgrade-provider-action@12996503de2aaddd72c7426efc43331a8970894f # v0.0.19
         with:
           kind: provider
-          email: bot@pulumi.com
-          username: pulumi-bot
+          email: bot@pulumiverse.com
+          username: pulumiverse-bot
           automerge: true
           target-version: ${{ steps.target_version.outputs.version }}
           allow-missing-docs: true
