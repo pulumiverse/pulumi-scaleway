@@ -75,6 +75,8 @@ type PublicGateway struct {
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringOutput `pulumi:"ipId"`
 	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	//
+	// Deprecated: All gateways now use IPAM. This field is no longer needed
 	MoveToIpam pulumi.BoolPtrOutput `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -93,6 +95,8 @@ type PublicGateway struct {
 	// The date and time of the last update of the Public Gateway.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
+	//
+	// Deprecated: This field is no longer supported in the v2 API
 	UpstreamDnsServers pulumi.StringArrayOutput `pulumi:"upstreamDnsServers"`
 	// `zone`) The zone in which the Public Gateway should be created.
 	Zone pulumi.StringPtrOutput `pulumi:"zone"`
@@ -152,6 +156,8 @@ type publicGatewayState struct {
 	// Attach an existing flexible IP to the gateway.
 	IpId *string `pulumi:"ipId"`
 	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	//
+	// Deprecated: All gateways now use IPAM. This field is no longer needed
 	MoveToIpam *bool `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -170,6 +176,8 @@ type publicGatewayState struct {
 	// The date and time of the last update of the Public Gateway.
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
+	//
+	// Deprecated: This field is no longer supported in the v2 API
 	UpstreamDnsServers []string `pulumi:"upstreamDnsServers"`
 	// `zone`) The zone in which the Public Gateway should be created.
 	Zone *string `pulumi:"zone"`
@@ -191,6 +199,8 @@ type PublicGatewayState struct {
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringPtrInput
 	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	//
+	// Deprecated: All gateways now use IPAM. This field is no longer needed
 	MoveToIpam pulumi.BoolPtrInput
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -209,6 +219,8 @@ type PublicGatewayState struct {
 	// The date and time of the last update of the Public Gateway.
 	UpdatedAt pulumi.StringPtrInput
 	// Override the gateway's default recursive DNS servers, if DNS features are enabled.
+	//
+	// Deprecated: This field is no longer supported in the v2 API
 	UpstreamDnsServers pulumi.StringArrayInput
 	// `zone`) The zone in which the Public Gateway should be created.
 	Zone pulumi.StringPtrInput
@@ -230,6 +242,8 @@ type publicGatewayArgs struct {
 	// Attach an existing flexible IP to the gateway.
 	IpId *string `pulumi:"ipId"`
 	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	//
+	// Deprecated: All gateways now use IPAM. This field is no longer needed
 	MoveToIpam *bool `pulumi:"moveToIpam"`
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name *string `pulumi:"name"`
@@ -258,6 +272,8 @@ type PublicGatewayArgs struct {
 	// Attach an existing flexible IP to the gateway.
 	IpId pulumi.StringPtrInput
 	// Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+	//
+	// Deprecated: All gateways now use IPAM. This field is no longer needed
 	MoveToIpam pulumi.BoolPtrInput
 	// The name for the Public Gateway. If not provided it will be randomly generated.
 	Name pulumi.StringPtrInput
@@ -396,6 +412,8 @@ func (o PublicGatewayOutput) IpId() pulumi.StringOutput {
 }
 
 // Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+//
+// Deprecated: All gateways now use IPAM. This field is no longer needed
 func (o PublicGatewayOutput) MoveToIpam() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.BoolPtrOutput { return v.MoveToIpam }).(pulumi.BoolPtrOutput)
 }
@@ -441,6 +459,8 @@ func (o PublicGatewayOutput) UpdatedAt() pulumi.StringOutput {
 }
 
 // Override the gateway's default recursive DNS servers, if DNS features are enabled.
+//
+// Deprecated: This field is no longer supported in the v2 API
 func (o PublicGatewayOutput) UpstreamDnsServers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *PublicGateway) pulumi.StringArrayOutput { return v.UpstreamDnsServers }).(pulumi.StringArrayOutput)
 }

@@ -3411,13 +3411,17 @@ class EdgeServicesCacheStagePurgeRequestArgs:
 
 if not MYPY:
     class EdgeServicesRouteStageRuleArgsDict(TypedDict):
-        backend_stage_id: pulumi.Input[_builtins.str]
+        backend_stage_id: NotRequired[pulumi.Input[_builtins.str]]
         """
-        The ID of the backend stage that requests matching the rule should be forwarded to.
+        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         """
         rule_http_match: NotRequired[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgsDict']]
         """
-        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+        """
+        waf_stage_id: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
         """
 elif False:
     EdgeServicesRouteStageRuleArgsDict: TypeAlias = Mapping[str, Any]
@@ -3425,39 +3429,56 @@ elif False:
 @pulumi.input_type
 class EdgeServicesRouteStageRuleArgs:
     def __init__(__self__, *,
-                 backend_stage_id: pulumi.Input[_builtins.str],
-                 rule_http_match: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']] = None):
+                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 rule_http_match: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']] = None,
+                 waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
-        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to.
-        :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs'] rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
+        :param pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs'] rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
         """
-        pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        if backend_stage_id is not None:
+            pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if rule_http_match is not None:
             pulumi.set(__self__, "rule_http_match", rule_http_match)
+        if waf_stage_id is not None:
+            pulumi.set(__self__, "waf_stage_id", waf_stage_id)
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> pulumi.Input[_builtins.str]:
+    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the backend stage that requests matching the rule should be forwarded to.
+        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         """
         return pulumi.get(self, "backend_stage_id")
 
     @backend_stage_id.setter
-    def backend_stage_id(self, value: pulumi.Input[_builtins.str]):
+    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="ruleHttpMatch")
     def rule_http_match(self) -> Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']]:
         """
-        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
         """
         return pulumi.get(self, "rule_http_match")
 
     @rule_http_match.setter
     def rule_http_match(self, value: Optional[pulumi.Input['EdgeServicesRouteStageRuleRuleHttpMatchArgs']]):
         pulumi.set(self, "rule_http_match", value)
+
+    @_builtins.property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
+        """
+        return pulumi.get(self, "waf_stage_id")
+
+    @waf_stage_id.setter
+    def waf_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "waf_stage_id", value)
 
 
 if not MYPY:

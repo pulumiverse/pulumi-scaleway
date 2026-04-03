@@ -21,6 +21,10 @@ __all__ = [
     'CockpitEndpointArgsDict',
     'CockpitPushUrlArgs',
     'CockpitPushUrlArgsDict',
+    'ExporterDatadogDestinationArgs',
+    'ExporterDatadogDestinationArgsDict',
+    'ExporterOtlpDestinationArgs',
+    'ExporterOtlpDestinationArgsDict',
     'TokenScopesArgs',
     'TokenScopesArgsDict',
 ]
@@ -221,6 +225,108 @@ class CockpitPushUrlArgs:
     @push_metrics_url.setter
     def push_metrics_url(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "push_metrics_url", value)
+
+
+if not MYPY:
+    class ExporterDatadogDestinationArgsDict(TypedDict):
+        api_key: pulumi.Input[_builtins.str]
+        """
+        Datadog API key. Sensitive.
+        """
+        endpoint: NotRequired[pulumi.Input[_builtins.str]]
+        """
+        Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+        """
+elif False:
+    ExporterDatadogDestinationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ExporterDatadogDestinationArgs:
+    def __init__(__self__, *,
+                 api_key: pulumi.Input[_builtins.str],
+                 endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] api_key: Datadog API key. Sensitive.
+        :param pulumi.Input[_builtins.str] endpoint: Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> pulumi.Input[_builtins.str]:
+        """
+        Datadog API key. Sensitive.
+        """
+        return pulumi.get(self, "api_key")
+
+    @api_key.setter
+    def api_key(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "api_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "endpoint", value)
+
+
+if not MYPY:
+    class ExporterOtlpDestinationArgsDict(TypedDict):
+        endpoint: pulumi.Input[_builtins.str]
+        """
+        OTLP endpoint URL.
+        """
+        headers: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+        """
+        Headers to include in requests.
+        """
+elif False:
+    ExporterOtlpDestinationArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class ExporterOtlpDestinationArgs:
+    def __init__(__self__, *,
+                 endpoint: pulumi.Input[_builtins.str],
+                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] endpoint: OTLP endpoint URL.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] headers: Headers to include in requests.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[_builtins.str]:
+        """
+        OTLP endpoint URL.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Headers to include in requests.
+        """
+        return pulumi.get(self, "headers")
+
+    @headers.setter
+    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "headers", value)
 
 
 if not MYPY:

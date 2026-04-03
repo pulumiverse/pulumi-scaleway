@@ -44,6 +44,8 @@ type Deployment struct {
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
+	// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+	PublicDashboardUrl pulumi.StringOutput `pulumi:"publicDashboardUrl"`
 	// `region`) The region in which the deployment should be created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The status of the deployment (e.g., "ready", "creating", "upgrading").
@@ -126,6 +128,8 @@ type deploymentState struct {
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId *string `pulumi:"projectId"`
+	// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+	PublicDashboardUrl *string `pulumi:"publicDashboardUrl"`
 	// `region`) The region in which the deployment should be created.
 	Region *string `pulumi:"region"`
 	// The status of the deployment (e.g., "ready", "creating", "upgrading").
@@ -163,6 +167,8 @@ type DeploymentState struct {
 	//
 	// > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 	ProjectId pulumi.StringPtrInput
+	// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+	PublicDashboardUrl pulumi.StringPtrInput
 	// `region`) The region in which the deployment should be created.
 	Region pulumi.StringPtrInput
 	// The status of the deployment (e.g., "ready", "creating", "upgrading").
@@ -371,6 +377,11 @@ func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
 // > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+func (o DeploymentOutput) PublicDashboardUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.PublicDashboardUrl }).(pulumi.StringOutput)
 }
 
 // `region`) The region in which the deployment should be created.

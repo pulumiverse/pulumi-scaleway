@@ -60,6 +60,7 @@ const (
 	ipamMod          = "ipam"
 	inferenceMod     = "inference"
 	instanceMod      = "instance"
+	interlinkMod     = "interlink"
 	iotMod           = "iot"
 	jobMod           = "job"
 	kafkaMod         = "kafka"
@@ -351,6 +352,7 @@ func Provider() tfbridge.ProviderInfo {
 				"ipam":          ipamMod,
 				"inference":     inferenceMod,
 				"instance":      instanceMod,
+				"interlink":     interlinkMod,
 				"iot":           iotMod,
 				"job":           jobMod,
 				"kafka":         kafkaMod,

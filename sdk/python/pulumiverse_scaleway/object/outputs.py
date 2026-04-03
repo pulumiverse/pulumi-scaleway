@@ -26,6 +26,8 @@ __all__ = [
     'BucketLifecycleRuleTransition',
     'BucketLockConfigurationRule',
     'BucketLockConfigurationRuleDefaultRetention',
+    'BucketServerSideEncryptionConfigurationRule',
+    'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault',
     'BucketVersioning',
     'BucketWebsiteConfigurationErrorDocument',
     'BucketWebsiteConfigurationIndexDocument',
@@ -33,6 +35,8 @@ __all__ = [
     'GetBucketLifecycleRuleResult',
     'GetBucketLifecycleRuleExpirationResult',
     'GetBucketLifecycleRuleTransitionResult',
+    'GetBucketServerSideEncryptionConfigurationRuleResult',
+    'GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult',
     'GetBucketVersioningResult',
 ]
 
@@ -575,6 +579,77 @@ class BucketLockConfigurationRuleDefaultRetention(dict):
 
 
 @pulumi.output_type
+class BucketServerSideEncryptionConfigurationRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "applyServerSideEncryptionByDefault":
+            suggest = "apply_server_side_encryption_by_default"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketServerSideEncryptionConfigurationRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketServerSideEncryptionConfigurationRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketServerSideEncryptionConfigurationRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 apply_server_side_encryption_by_default: Optional['outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault'] = None):
+        """
+        :param 'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs' apply_server_side_encryption_by_default: Single object for setting server-side encryption by default.
+        """
+        if apply_server_side_encryption_by_default is not None:
+            pulumi.set(__self__, "apply_server_side_encryption_by_default", apply_server_side_encryption_by_default)
+
+    @_builtins.property
+    @pulumi.getter(name="applyServerSideEncryptionByDefault")
+    def apply_server_side_encryption_by_default(self) -> Optional['outputs.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault']:
+        """
+        Single object for setting server-side encryption by default.
+        """
+        return pulumi.get(self, "apply_server_side_encryption_by_default")
+
+
+@pulumi.output_type
+class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sseAlgorithm":
+            suggest = "sse_algorithm"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 sse_algorithm: _builtins.str):
+        """
+        :param _builtins.str sse_algorithm: Server-side encryption algorithm to use. Valid values are `AES256`.
+        """
+        pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+
+    @_builtins.property
+    @pulumi.getter(name="sseAlgorithm")
+    def sse_algorithm(self) -> _builtins.str:
+        """
+        Server-side encryption algorithm to use. Valid values are `AES256`.
+        """
+        return pulumi.get(self, "sse_algorithm")
+
+
+@pulumi.output_type
 class BucketVersioning(dict):
     def __init__(__self__, *,
                  enabled: Optional[_builtins.bool] = None):
@@ -824,6 +899,42 @@ class GetBucketLifecycleRuleTransitionResult(dict):
         Specifies the Scaleway Object Storage class to which you want the object to transition
         """
         return pulumi.get(self, "storage_class")
+
+
+@pulumi.output_type
+class GetBucketServerSideEncryptionConfigurationRuleResult(dict):
+    def __init__(__self__, *,
+                 apply_server_side_encryption_by_defaults: Sequence['outputs.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult']):
+        """
+        :param Sequence['GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_defaults: (List of Object) Single object for setting server-side encryption by default.
+        """
+        pulumi.set(__self__, "apply_server_side_encryption_by_defaults", apply_server_side_encryption_by_defaults)
+
+    @_builtins.property
+    @pulumi.getter(name="applyServerSideEncryptionByDefaults")
+    def apply_server_side_encryption_by_defaults(self) -> Sequence['outputs.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult']:
+        """
+        (List of Object) Single object for setting server-side encryption by default.
+        """
+        return pulumi.get(self, "apply_server_side_encryption_by_defaults")
+
+
+@pulumi.output_type
+class GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultResult(dict):
+    def __init__(__self__, *,
+                 sse_algorithm: _builtins.str):
+        """
+        :param _builtins.str sse_algorithm: (String) Server-side encryption algorithm to use. Valid values are AES256.
+        """
+        pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+
+    @_builtins.property
+    @pulumi.getter(name="sseAlgorithm")
+    def sse_algorithm(self) -> _builtins.str:
+        """
+        (String) Server-side encryption algorithm to use. Valid values are AES256.
+        """
+        return pulumi.get(self, "sse_algorithm")
 
 
 @pulumi.output_type

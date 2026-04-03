@@ -5583,10 +5583,12 @@ func (o EdgeServicesCacheStagePurgeRequestArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type EdgeServicesRouteStageRule struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId string `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId *string `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch *EdgeServicesRouteStageRuleRuleHttpMatch `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // EdgeServicesRouteStageRuleInput is an input type that accepts EdgeServicesRouteStageRuleArgs and EdgeServicesRouteStageRuleOutput values.
@@ -5601,10 +5603,12 @@ type EdgeServicesRouteStageRuleInput interface {
 }
 
 type EdgeServicesRouteStageRuleArgs struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId pulumi.StringInput `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId pulumi.StringPtrInput `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch EdgeServicesRouteStageRuleRuleHttpMatchPtrInput `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId pulumi.StringPtrInput `pulumi:"wafStageId"`
 }
 
 func (EdgeServicesRouteStageRuleArgs) ElementType() reflect.Type {
@@ -5658,14 +5662,19 @@ func (o EdgeServicesRouteStageRuleOutput) ToEdgeServicesRouteStageRuleOutputWith
 	return o
 }
 
-// The ID of the backend stage that requests matching the rule should be forwarded to.
-func (o EdgeServicesRouteStageRuleOutput) BackendStageId() pulumi.StringOutput {
-	return o.ApplyT(func(v EdgeServicesRouteStageRule) string { return v.BackendStageId }).(pulumi.StringOutput)
+// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+func (o EdgeServicesRouteStageRuleOutput) BackendStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) *string { return v.BackendStageId }).(pulumi.StringPtrOutput)
 }
 
-// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 func (o EdgeServicesRouteStageRuleOutput) RuleHttpMatch() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
 	return o.ApplyT(func(v EdgeServicesRouteStageRule) *EdgeServicesRouteStageRuleRuleHttpMatch { return v.RuleHttpMatch }).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+func (o EdgeServicesRouteStageRuleOutput) WafStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) *string { return v.WafStageId }).(pulumi.StringPtrOutput)
 }
 
 type EdgeServicesRouteStageRuleArrayOutput struct{ *pulumi.OutputState }
@@ -24832,8 +24841,18 @@ func (o GetInstanceServersServerPrivateIpArrayOutput) Index(i pulumi.IntInput) G
 type GetInstanceServersServerPublicIp struct {
 	// The address of the IP
 	Address string `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic bool `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family string `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway string `pulumi:"gateway"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
+	// CIDR netmask.
+	Netmask string `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode string `pulumi:"provisioningMode"`
 }
 
 // GetInstanceServersServerPublicIpInput is an input type that accepts GetInstanceServersServerPublicIpArgs and GetInstanceServersServerPublicIpOutput values.
@@ -24850,8 +24869,18 @@ type GetInstanceServersServerPublicIpInput interface {
 type GetInstanceServersServerPublicIpArgs struct {
 	// The address of the IP
 	Address pulumi.StringInput `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family pulumi.StringInput `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway pulumi.StringInput `pulumi:"gateway"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
+	// CIDR netmask.
+	Netmask pulumi.StringInput `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode pulumi.StringInput `pulumi:"provisioningMode"`
 }
 
 func (GetInstanceServersServerPublicIpArgs) ElementType() reflect.Type {
@@ -24910,9 +24939,34 @@ func (o GetInstanceServersServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Whether the IP is dynamic.
+func (o GetInstanceServersServerPublicIpOutput) Dynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) bool { return v.Dynamic }).(pulumi.BoolOutput)
+}
+
+// IP address family (inet or inet6).
+func (o GetInstanceServersServerPublicIpOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// Gateway's IP address.
+func (o GetInstanceServersServerPublicIpOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
 // The ID of the IP
 func (o GetInstanceServersServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// CIDR netmask.
+func (o GetInstanceServersServerPublicIpOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Netmask }).(pulumi.StringOutput)
+}
+
+// Provisioning mode of the IP address.
+func (o GetInstanceServersServerPublicIpOutput) ProvisioningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.ProvisioningMode }).(pulumi.StringOutput)
 }
 
 type GetInstanceServersServerPublicIpArrayOutput struct{ *pulumi.OutputState }

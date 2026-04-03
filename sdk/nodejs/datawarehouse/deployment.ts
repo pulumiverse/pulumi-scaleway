@@ -114,11 +114,11 @@ export class Deployment extends pulumi.CustomResource {
     }
 
     /**
-     * Maximum CPU count. Must be greater than or equal to `cpuMin`.
+     * Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
      */
     declare public readonly cpuMax: pulumi.Output<number>;
     /**
-     * Minimum CPU count. Must be less than or equal to `cpuMax`.
+     * Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
      */
     declare public readonly cpuMin: pulumi.Output<number>;
     /**
@@ -130,9 +130,17 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+     * Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
      */
@@ -141,8 +149,6 @@ export class Deployment extends pulumi.CustomResource {
      * `projectId`) The ID of the project the deployment is associated with.
      *
      * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-     *
-     * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
@@ -158,9 +164,13 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly region: pulumi.Output<string | undefined>;
     /**
-     * Number of replicas.
+     * Number of replicas. Can be updated in place via the deployment configuration API.
      */
     declare public readonly replicaCount: pulumi.Output<number>;
+    /**
+     * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+     */
+    declare public readonly started: pulumi.Output<boolean | undefined>;
     /**
      * The status of the deployment (e.g., "ready", "provisioning").
      */
@@ -196,12 +206,15 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["name"] = state?.name;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["privateNetwork"] = state?.privateNetwork;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["publicNetworks"] = state?.publicNetworks;
             resourceInputs["ramPerCpu"] = state?.ramPerCpu;
             resourceInputs["region"] = state?.region;
             resourceInputs["replicaCount"] = state?.replicaCount;
+            resourceInputs["started"] = state?.started;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
             resourceInputs["updatedAt"] = state?.updatedAt;
@@ -227,11 +240,14 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["cpuMin"] = args?.cpuMin;
             resourceInputs["name"] = args?.name;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["privateNetwork"] = args?.privateNetwork;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["ramPerCpu"] = args?.ramPerCpu;
             resourceInputs["region"] = args?.region;
             resourceInputs["replicaCount"] = args?.replicaCount;
+            resourceInputs["started"] = args?.started;
             resourceInputs["tags"] = args?.tags;
             resourceInputs["version"] = args?.version;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -240,7 +256,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Deployment.__pulumiType, name, resourceInputs, opts);
     }
@@ -251,11 +267,11 @@ export class Deployment extends pulumi.CustomResource {
  */
 export interface DeploymentState {
     /**
-     * Maximum CPU count. Must be greater than or equal to `cpuMin`.
+     * Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
      */
     cpuMax?: pulumi.Input<number>;
     /**
-     * Minimum CPU count. Must be less than or equal to `cpuMax`.
+     * Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
      */
     cpuMin?: pulumi.Input<number>;
     /**
@@ -267,9 +283,17 @@ export interface DeploymentState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+     * Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
      */
@@ -278,8 +302,6 @@ export interface DeploymentState {
      * `projectId`) The ID of the project the deployment is associated with.
      *
      * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-     *
-     * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -295,9 +317,13 @@ export interface DeploymentState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Number of replicas.
+     * Number of replicas. Can be updated in place via the deployment configuration API.
      */
     replicaCount?: pulumi.Input<number>;
+    /**
+     * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+     */
+    started?: pulumi.Input<boolean>;
     /**
      * The status of the deployment (e.g., "ready", "provisioning").
      */
@@ -321,11 +347,11 @@ export interface DeploymentState {
  */
 export interface DeploymentArgs {
     /**
-     * Maximum CPU count. Must be greater than or equal to `cpuMin`.
+     * Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
      */
     cpuMax: pulumi.Input<number>;
     /**
-     * Minimum CPU count. Must be less than or equal to `cpuMax`.
+     * Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
      */
     cpuMin: pulumi.Input<number>;
     /**
@@ -333,9 +359,17 @@ export interface DeploymentArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+     * Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
      */
     password?: pulumi.Input<string>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     */
+    passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
+    passwordWoVersion?: pulumi.Input<number>;
     /**
      * Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
      */
@@ -344,8 +378,6 @@ export interface DeploymentArgs {
      * `projectId`) The ID of the project the deployment is associated with.
      *
      * > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-     *
-     * > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
      */
     projectId?: pulumi.Input<string>;
     /**
@@ -357,9 +389,13 @@ export interface DeploymentArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * Number of replicas.
+     * Number of replicas. Can be updated in place via the deployment configuration API.
      */
     replicaCount: pulumi.Input<number>;
+    /**
+     * Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+     */
+    started?: pulumi.Input<boolean>;
     /**
      * List of tags to apply to the deployment.
      */

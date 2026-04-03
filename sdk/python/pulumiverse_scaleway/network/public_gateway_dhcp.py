@@ -54,6 +54,9 @@ class PublicGatewayDhcpArgs:
         :param pulumi.Input[_builtins.int] valid_lifetime: How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
         :param pulumi.Input[_builtins.str] zone: `zone`) The zone in which the Public Gateway DHCP configuration should be created.
         """
+        if subnet is not None:
+            warnings.warn("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""subnet is deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
         pulumi.set(__self__, "subnet", subnet)
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -86,6 +89,7 @@ class PublicGatewayDhcpArgs:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def subnet(self) -> pulumi.Input[_builtins.str]:
         """
         The subnet to associate with the Public Gateway DHCP configuration.
@@ -340,6 +344,9 @@ class _PublicGatewayDhcpState:
         if renew_timer is not None:
             pulumi.set(__self__, "renew_timer", renew_timer)
         if subnet is not None:
+            warnings.warn("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
+            pulumi.log.warn("""subnet is deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+        if subnet is not None:
             pulumi.set(__self__, "subnet", subnet)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
@@ -520,6 +527,7 @@ class _PublicGatewayDhcpState:
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def subnet(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         The subnet to associate with the Public Gateway DHCP configuration.
@@ -926,6 +934,7 @@ class PublicGatewayDhcp(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
     def subnet(self) -> pulumi.Output[_builtins.str]:
         """
         The subnet to associate with the Public Gateway DHCP configuration.

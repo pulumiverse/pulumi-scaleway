@@ -633,10 +633,12 @@ func (o CacheStagePurgeRequestArrayOutput) Index(i pulumi.IntInput) CacheStagePu
 }
 
 type RouteStageRule struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId string `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId *string `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch *RouteStageRuleRuleHttpMatch `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // RouteStageRuleInput is an input type that accepts RouteStageRuleArgs and RouteStageRuleOutput values.
@@ -651,10 +653,12 @@ type RouteStageRuleInput interface {
 }
 
 type RouteStageRuleArgs struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId pulumi.StringInput `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId pulumi.StringPtrInput `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch RouteStageRuleRuleHttpMatchPtrInput `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId pulumi.StringPtrInput `pulumi:"wafStageId"`
 }
 
 func (RouteStageRuleArgs) ElementType() reflect.Type {
@@ -708,14 +712,19 @@ func (o RouteStageRuleOutput) ToRouteStageRuleOutputWithContext(ctx context.Cont
 	return o
 }
 
-// The ID of the backend stage that requests matching the rule should be forwarded to.
-func (o RouteStageRuleOutput) BackendStageId() pulumi.StringOutput {
-	return o.ApplyT(func(v RouteStageRule) string { return v.BackendStageId }).(pulumi.StringOutput)
+// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+func (o RouteStageRuleOutput) BackendStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RouteStageRule) *string { return v.BackendStageId }).(pulumi.StringPtrOutput)
 }
 
-// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 func (o RouteStageRuleOutput) RuleHttpMatch() RouteStageRuleRuleHttpMatchPtrOutput {
 	return o.ApplyT(func(v RouteStageRule) *RouteStageRuleRuleHttpMatch { return v.RuleHttpMatch }).(RouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+func (o RouteStageRuleOutput) WafStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v RouteStageRule) *string { return v.WafStageId }).(pulumi.StringPtrOutput)
 }
 
 type RouteStageRuleArrayOutput struct{ *pulumi.OutputState }
@@ -1156,6 +1165,910 @@ func (o TlsStageSecretArrayOutput) Index(i pulumi.IntInput) TlsStageSecretOutput
 	}).(TlsStageSecretOutput)
 }
 
+type GetBackendStageLbBackendConfig struct {
+	// The Load Balancer configuration
+	LbConfigs []GetBackendStageLbBackendConfigLbConfig `pulumi:"lbConfigs"`
+}
+
+// GetBackendStageLbBackendConfigInput is an input type that accepts GetBackendStageLbBackendConfigArgs and GetBackendStageLbBackendConfigOutput values.
+// You can construct a concrete instance of `GetBackendStageLbBackendConfigInput` via:
+//
+//	GetBackendStageLbBackendConfigArgs{...}
+type GetBackendStageLbBackendConfigInput interface {
+	pulumi.Input
+
+	ToGetBackendStageLbBackendConfigOutput() GetBackendStageLbBackendConfigOutput
+	ToGetBackendStageLbBackendConfigOutputWithContext(context.Context) GetBackendStageLbBackendConfigOutput
+}
+
+type GetBackendStageLbBackendConfigArgs struct {
+	// The Load Balancer configuration
+	LbConfigs GetBackendStageLbBackendConfigLbConfigArrayInput `pulumi:"lbConfigs"`
+}
+
+func (GetBackendStageLbBackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageLbBackendConfigArgs) ToGetBackendStageLbBackendConfigOutput() GetBackendStageLbBackendConfigOutput {
+	return i.ToGetBackendStageLbBackendConfigOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageLbBackendConfigArgs) ToGetBackendStageLbBackendConfigOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageLbBackendConfigOutput)
+}
+
+// GetBackendStageLbBackendConfigArrayInput is an input type that accepts GetBackendStageLbBackendConfigArray and GetBackendStageLbBackendConfigArrayOutput values.
+// You can construct a concrete instance of `GetBackendStageLbBackendConfigArrayInput` via:
+//
+//	GetBackendStageLbBackendConfigArray{ GetBackendStageLbBackendConfigArgs{...} }
+type GetBackendStageLbBackendConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendStageLbBackendConfigArrayOutput() GetBackendStageLbBackendConfigArrayOutput
+	ToGetBackendStageLbBackendConfigArrayOutputWithContext(context.Context) GetBackendStageLbBackendConfigArrayOutput
+}
+
+type GetBackendStageLbBackendConfigArray []GetBackendStageLbBackendConfigInput
+
+func (GetBackendStageLbBackendConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageLbBackendConfigArray) ToGetBackendStageLbBackendConfigArrayOutput() GetBackendStageLbBackendConfigArrayOutput {
+	return i.ToGetBackendStageLbBackendConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageLbBackendConfigArray) ToGetBackendStageLbBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageLbBackendConfigArrayOutput)
+}
+
+type GetBackendStageLbBackendConfigOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageLbBackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageLbBackendConfigOutput) ToGetBackendStageLbBackendConfigOutput() GetBackendStageLbBackendConfigOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigOutput) ToGetBackendStageLbBackendConfigOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigOutput {
+	return o
+}
+
+// The Load Balancer configuration
+func (o GetBackendStageLbBackendConfigOutput) LbConfigs() GetBackendStageLbBackendConfigLbConfigArrayOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfig) []GetBackendStageLbBackendConfigLbConfig { return v.LbConfigs }).(GetBackendStageLbBackendConfigLbConfigArrayOutput)
+}
+
+type GetBackendStageLbBackendConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageLbBackendConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageLbBackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageLbBackendConfigArrayOutput) ToGetBackendStageLbBackendConfigArrayOutput() GetBackendStageLbBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigArrayOutput) ToGetBackendStageLbBackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigArrayOutput) Index(i pulumi.IntInput) GetBackendStageLbBackendConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendStageLbBackendConfig {
+		return vs[0].([]GetBackendStageLbBackendConfig)[vs[1].(int)]
+	}).(GetBackendStageLbBackendConfigOutput)
+}
+
+type GetBackendStageLbBackendConfigLbConfig struct {
+	// Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+	DomainName string `pulumi:"domainName"`
+	// ID of the frontend linked to the Load Balancer
+	FrontendId string `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer
+	HasWebsocket bool `pulumi:"hasWebsocket"`
+	// ID of the Load Balancer
+	Id string `pulumi:"id"`
+	// Defines whether the Load Balancer's frontend handles SSL connections
+	IsSsl bool `pulumi:"isSsl"`
+	// The zone you want to attach the resource to
+	Zone string `pulumi:"zone"`
+}
+
+// GetBackendStageLbBackendConfigLbConfigInput is an input type that accepts GetBackendStageLbBackendConfigLbConfigArgs and GetBackendStageLbBackendConfigLbConfigOutput values.
+// You can construct a concrete instance of `GetBackendStageLbBackendConfigLbConfigInput` via:
+//
+//	GetBackendStageLbBackendConfigLbConfigArgs{...}
+type GetBackendStageLbBackendConfigLbConfigInput interface {
+	pulumi.Input
+
+	ToGetBackendStageLbBackendConfigLbConfigOutput() GetBackendStageLbBackendConfigLbConfigOutput
+	ToGetBackendStageLbBackendConfigLbConfigOutputWithContext(context.Context) GetBackendStageLbBackendConfigLbConfigOutput
+}
+
+type GetBackendStageLbBackendConfigLbConfigArgs struct {
+	// Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+	DomainName pulumi.StringInput `pulumi:"domainName"`
+	// ID of the frontend linked to the Load Balancer
+	FrontendId pulumi.StringInput `pulumi:"frontendId"`
+	// Defines whether to forward websocket requests to the load balancer
+	HasWebsocket pulumi.BoolInput `pulumi:"hasWebsocket"`
+	// ID of the Load Balancer
+	Id pulumi.StringInput `pulumi:"id"`
+	// Defines whether the Load Balancer's frontend handles SSL connections
+	IsSsl pulumi.BoolInput `pulumi:"isSsl"`
+	// The zone you want to attach the resource to
+	Zone pulumi.StringInput `pulumi:"zone"`
+}
+
+func (GetBackendStageLbBackendConfigLbConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageLbBackendConfigLbConfigArgs) ToGetBackendStageLbBackendConfigLbConfigOutput() GetBackendStageLbBackendConfigLbConfigOutput {
+	return i.ToGetBackendStageLbBackendConfigLbConfigOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageLbBackendConfigLbConfigArgs) ToGetBackendStageLbBackendConfigLbConfigOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigLbConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageLbBackendConfigLbConfigOutput)
+}
+
+// GetBackendStageLbBackendConfigLbConfigArrayInput is an input type that accepts GetBackendStageLbBackendConfigLbConfigArray and GetBackendStageLbBackendConfigLbConfigArrayOutput values.
+// You can construct a concrete instance of `GetBackendStageLbBackendConfigLbConfigArrayInput` via:
+//
+//	GetBackendStageLbBackendConfigLbConfigArray{ GetBackendStageLbBackendConfigLbConfigArgs{...} }
+type GetBackendStageLbBackendConfigLbConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendStageLbBackendConfigLbConfigArrayOutput() GetBackendStageLbBackendConfigLbConfigArrayOutput
+	ToGetBackendStageLbBackendConfigLbConfigArrayOutputWithContext(context.Context) GetBackendStageLbBackendConfigLbConfigArrayOutput
+}
+
+type GetBackendStageLbBackendConfigLbConfigArray []GetBackendStageLbBackendConfigLbConfigInput
+
+func (GetBackendStageLbBackendConfigLbConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageLbBackendConfigLbConfigArray) ToGetBackendStageLbBackendConfigLbConfigArrayOutput() GetBackendStageLbBackendConfigLbConfigArrayOutput {
+	return i.ToGetBackendStageLbBackendConfigLbConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageLbBackendConfigLbConfigArray) ToGetBackendStageLbBackendConfigLbConfigArrayOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigLbConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageLbBackendConfigLbConfigArrayOutput)
+}
+
+type GetBackendStageLbBackendConfigLbConfigOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageLbBackendConfigLbConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageLbBackendConfigLbConfigOutput) ToGetBackendStageLbBackendConfigLbConfigOutput() GetBackendStageLbBackendConfigLbConfigOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigLbConfigOutput) ToGetBackendStageLbBackendConfigLbConfigOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigLbConfigOutput {
+	return o
+}
+
+// Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+func (o GetBackendStageLbBackendConfigLbConfigOutput) DomainName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) string { return v.DomainName }).(pulumi.StringOutput)
+}
+
+// ID of the frontend linked to the Load Balancer
+func (o GetBackendStageLbBackendConfigLbConfigOutput) FrontendId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) string { return v.FrontendId }).(pulumi.StringOutput)
+}
+
+// Defines whether to forward websocket requests to the load balancer
+func (o GetBackendStageLbBackendConfigLbConfigOutput) HasWebsocket() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) bool { return v.HasWebsocket }).(pulumi.BoolOutput)
+}
+
+// ID of the Load Balancer
+func (o GetBackendStageLbBackendConfigLbConfigOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Defines whether the Load Balancer's frontend handles SSL connections
+func (o GetBackendStageLbBackendConfigLbConfigOutput) IsSsl() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) bool { return v.IsSsl }).(pulumi.BoolOutput)
+}
+
+// The zone you want to attach the resource to
+func (o GetBackendStageLbBackendConfigLbConfigOutput) Zone() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageLbBackendConfigLbConfig) string { return v.Zone }).(pulumi.StringOutput)
+}
+
+type GetBackendStageLbBackendConfigLbConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageLbBackendConfigLbConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageLbBackendConfigLbConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageLbBackendConfigLbConfigArrayOutput) ToGetBackendStageLbBackendConfigLbConfigArrayOutput() GetBackendStageLbBackendConfigLbConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigLbConfigArrayOutput) ToGetBackendStageLbBackendConfigLbConfigArrayOutputWithContext(ctx context.Context) GetBackendStageLbBackendConfigLbConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageLbBackendConfigLbConfigArrayOutput) Index(i pulumi.IntInput) GetBackendStageLbBackendConfigLbConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendStageLbBackendConfigLbConfig {
+		return vs[0].([]GetBackendStageLbBackendConfigLbConfig)[vs[1].(int)]
+	}).(GetBackendStageLbBackendConfigLbConfigOutput)
+}
+
+type GetBackendStageS3BackendConfig struct {
+	// Filter by S3 bucket name.
+	BucketName string `pulumi:"bucketName"`
+	// Filter by S3 bucket region.
+	BucketRegion string `pulumi:"bucketRegion"`
+	// Defines whether the bucket website feature is enabled.
+	IsWebsite bool `pulumi:"isWebsite"`
+}
+
+// GetBackendStageS3BackendConfigInput is an input type that accepts GetBackendStageS3BackendConfigArgs and GetBackendStageS3BackendConfigOutput values.
+// You can construct a concrete instance of `GetBackendStageS3BackendConfigInput` via:
+//
+//	GetBackendStageS3BackendConfigArgs{...}
+type GetBackendStageS3BackendConfigInput interface {
+	pulumi.Input
+
+	ToGetBackendStageS3BackendConfigOutput() GetBackendStageS3BackendConfigOutput
+	ToGetBackendStageS3BackendConfigOutputWithContext(context.Context) GetBackendStageS3BackendConfigOutput
+}
+
+type GetBackendStageS3BackendConfigArgs struct {
+	// Filter by S3 bucket name.
+	BucketName pulumi.StringInput `pulumi:"bucketName"`
+	// Filter by S3 bucket region.
+	BucketRegion pulumi.StringInput `pulumi:"bucketRegion"`
+	// Defines whether the bucket website feature is enabled.
+	IsWebsite pulumi.BoolInput `pulumi:"isWebsite"`
+}
+
+func (GetBackendStageS3BackendConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageS3BackendConfigArgs) ToGetBackendStageS3BackendConfigOutput() GetBackendStageS3BackendConfigOutput {
+	return i.ToGetBackendStageS3BackendConfigOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageS3BackendConfigArgs) ToGetBackendStageS3BackendConfigOutputWithContext(ctx context.Context) GetBackendStageS3BackendConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageS3BackendConfigOutput)
+}
+
+// GetBackendStageS3BackendConfigArrayInput is an input type that accepts GetBackendStageS3BackendConfigArray and GetBackendStageS3BackendConfigArrayOutput values.
+// You can construct a concrete instance of `GetBackendStageS3BackendConfigArrayInput` via:
+//
+//	GetBackendStageS3BackendConfigArray{ GetBackendStageS3BackendConfigArgs{...} }
+type GetBackendStageS3BackendConfigArrayInput interface {
+	pulumi.Input
+
+	ToGetBackendStageS3BackendConfigArrayOutput() GetBackendStageS3BackendConfigArrayOutput
+	ToGetBackendStageS3BackendConfigArrayOutputWithContext(context.Context) GetBackendStageS3BackendConfigArrayOutput
+}
+
+type GetBackendStageS3BackendConfigArray []GetBackendStageS3BackendConfigInput
+
+func (GetBackendStageS3BackendConfigArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (i GetBackendStageS3BackendConfigArray) ToGetBackendStageS3BackendConfigArrayOutput() GetBackendStageS3BackendConfigArrayOutput {
+	return i.ToGetBackendStageS3BackendConfigArrayOutputWithContext(context.Background())
+}
+
+func (i GetBackendStageS3BackendConfigArray) ToGetBackendStageS3BackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageS3BackendConfigArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackendStageS3BackendConfigArrayOutput)
+}
+
+type GetBackendStageS3BackendConfigOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageS3BackendConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageS3BackendConfigOutput) ToGetBackendStageS3BackendConfigOutput() GetBackendStageS3BackendConfigOutput {
+	return o
+}
+
+func (o GetBackendStageS3BackendConfigOutput) ToGetBackendStageS3BackendConfigOutputWithContext(ctx context.Context) GetBackendStageS3BackendConfigOutput {
+	return o
+}
+
+// Filter by S3 bucket name.
+func (o GetBackendStageS3BackendConfigOutput) BucketName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageS3BackendConfig) string { return v.BucketName }).(pulumi.StringOutput)
+}
+
+// Filter by S3 bucket region.
+func (o GetBackendStageS3BackendConfigOutput) BucketRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBackendStageS3BackendConfig) string { return v.BucketRegion }).(pulumi.StringOutput)
+}
+
+// Defines whether the bucket website feature is enabled.
+func (o GetBackendStageS3BackendConfigOutput) IsWebsite() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetBackendStageS3BackendConfig) bool { return v.IsWebsite }).(pulumi.BoolOutput)
+}
+
+type GetBackendStageS3BackendConfigArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBackendStageS3BackendConfigArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBackendStageS3BackendConfig)(nil)).Elem()
+}
+
+func (o GetBackendStageS3BackendConfigArrayOutput) ToGetBackendStageS3BackendConfigArrayOutput() GetBackendStageS3BackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageS3BackendConfigArrayOutput) ToGetBackendStageS3BackendConfigArrayOutputWithContext(ctx context.Context) GetBackendStageS3BackendConfigArrayOutput {
+	return o
+}
+
+func (o GetBackendStageS3BackendConfigArrayOutput) Index(i pulumi.IntInput) GetBackendStageS3BackendConfigOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBackendStageS3BackendConfig {
+		return vs[0].([]GetBackendStageS3BackendConfig)[vs[1].(int)]
+	}).(GetBackendStageS3BackendConfigOutput)
+}
+
+type GetCacheStagePurgeRequest struct {
+	// Defines whether to purge all content
+	All bool `pulumi:"all"`
+	// The list of asserts to purge
+	Assets []string `pulumi:"assets"`
+	// The ID of the pipeline.
+	PipelineId string `pulumi:"pipelineId"`
+}
+
+// GetCacheStagePurgeRequestInput is an input type that accepts GetCacheStagePurgeRequestArgs and GetCacheStagePurgeRequestOutput values.
+// You can construct a concrete instance of `GetCacheStagePurgeRequestInput` via:
+//
+//	GetCacheStagePurgeRequestArgs{...}
+type GetCacheStagePurgeRequestInput interface {
+	pulumi.Input
+
+	ToGetCacheStagePurgeRequestOutput() GetCacheStagePurgeRequestOutput
+	ToGetCacheStagePurgeRequestOutputWithContext(context.Context) GetCacheStagePurgeRequestOutput
+}
+
+type GetCacheStagePurgeRequestArgs struct {
+	// Defines whether to purge all content
+	All pulumi.BoolInput `pulumi:"all"`
+	// The list of asserts to purge
+	Assets pulumi.StringArrayInput `pulumi:"assets"`
+	// The ID of the pipeline.
+	PipelineId pulumi.StringInput `pulumi:"pipelineId"`
+}
+
+func (GetCacheStagePurgeRequestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (i GetCacheStagePurgeRequestArgs) ToGetCacheStagePurgeRequestOutput() GetCacheStagePurgeRequestOutput {
+	return i.ToGetCacheStagePurgeRequestOutputWithContext(context.Background())
+}
+
+func (i GetCacheStagePurgeRequestArgs) ToGetCacheStagePurgeRequestOutputWithContext(ctx context.Context) GetCacheStagePurgeRequestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCacheStagePurgeRequestOutput)
+}
+
+// GetCacheStagePurgeRequestArrayInput is an input type that accepts GetCacheStagePurgeRequestArray and GetCacheStagePurgeRequestArrayOutput values.
+// You can construct a concrete instance of `GetCacheStagePurgeRequestArrayInput` via:
+//
+//	GetCacheStagePurgeRequestArray{ GetCacheStagePurgeRequestArgs{...} }
+type GetCacheStagePurgeRequestArrayInput interface {
+	pulumi.Input
+
+	ToGetCacheStagePurgeRequestArrayOutput() GetCacheStagePurgeRequestArrayOutput
+	ToGetCacheStagePurgeRequestArrayOutputWithContext(context.Context) GetCacheStagePurgeRequestArrayOutput
+}
+
+type GetCacheStagePurgeRequestArray []GetCacheStagePurgeRequestInput
+
+func (GetCacheStagePurgeRequestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (i GetCacheStagePurgeRequestArray) ToGetCacheStagePurgeRequestArrayOutput() GetCacheStagePurgeRequestArrayOutput {
+	return i.ToGetCacheStagePurgeRequestArrayOutputWithContext(context.Background())
+}
+
+func (i GetCacheStagePurgeRequestArray) ToGetCacheStagePurgeRequestArrayOutputWithContext(ctx context.Context) GetCacheStagePurgeRequestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCacheStagePurgeRequestArrayOutput)
+}
+
+type GetCacheStagePurgeRequestOutput struct{ *pulumi.OutputState }
+
+func (GetCacheStagePurgeRequestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (o GetCacheStagePurgeRequestOutput) ToGetCacheStagePurgeRequestOutput() GetCacheStagePurgeRequestOutput {
+	return o
+}
+
+func (o GetCacheStagePurgeRequestOutput) ToGetCacheStagePurgeRequestOutputWithContext(ctx context.Context) GetCacheStagePurgeRequestOutput {
+	return o
+}
+
+// Defines whether to purge all content
+func (o GetCacheStagePurgeRequestOutput) All() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCacheStagePurgeRequest) bool { return v.All }).(pulumi.BoolOutput)
+}
+
+// The list of asserts to purge
+func (o GetCacheStagePurgeRequestOutput) Assets() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCacheStagePurgeRequest) []string { return v.Assets }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the pipeline.
+func (o GetCacheStagePurgeRequestOutput) PipelineId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCacheStagePurgeRequest) string { return v.PipelineId }).(pulumi.StringOutput)
+}
+
+type GetCacheStagePurgeRequestArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCacheStagePurgeRequestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCacheStagePurgeRequest)(nil)).Elem()
+}
+
+func (o GetCacheStagePurgeRequestArrayOutput) ToGetCacheStagePurgeRequestArrayOutput() GetCacheStagePurgeRequestArrayOutput {
+	return o
+}
+
+func (o GetCacheStagePurgeRequestArrayOutput) ToGetCacheStagePurgeRequestArrayOutputWithContext(ctx context.Context) GetCacheStagePurgeRequestArrayOutput {
+	return o
+}
+
+func (o GetCacheStagePurgeRequestArrayOutput) Index(i pulumi.IntInput) GetCacheStagePurgeRequestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCacheStagePurgeRequest {
+		return vs[0].([]GetCacheStagePurgeRequest)[vs[1].(int)]
+	}).(GetCacheStagePurgeRequestOutput)
+}
+
+type GetRouteStageRule struct {
+	// ID of the backend stage that requests matching the rule should be forwarded to
+	BackendStageId string `pulumi:"backendStageId"`
+	// Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition
+	RuleHttpMatches []GetRouteStageRuleRuleHttpMatch `pulumi:"ruleHttpMatches"`
+	// ID of the WAF stage that requests matching the rule should be forwarded to
+	WafStageId string `pulumi:"wafStageId"`
+}
+
+// GetRouteStageRuleInput is an input type that accepts GetRouteStageRuleArgs and GetRouteStageRuleOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleInput` via:
+//
+//	GetRouteStageRuleArgs{...}
+type GetRouteStageRuleInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleOutput() GetRouteStageRuleOutput
+	ToGetRouteStageRuleOutputWithContext(context.Context) GetRouteStageRuleOutput
+}
+
+type GetRouteStageRuleArgs struct {
+	// ID of the backend stage that requests matching the rule should be forwarded to
+	BackendStageId pulumi.StringInput `pulumi:"backendStageId"`
+	// Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition
+	RuleHttpMatches GetRouteStageRuleRuleHttpMatchArrayInput `pulumi:"ruleHttpMatches"`
+	// ID of the WAF stage that requests matching the rule should be forwarded to
+	WafStageId pulumi.StringInput `pulumi:"wafStageId"`
+}
+
+func (GetRouteStageRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRule)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleArgs) ToGetRouteStageRuleOutput() GetRouteStageRuleOutput {
+	return i.ToGetRouteStageRuleOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleArgs) ToGetRouteStageRuleOutputWithContext(ctx context.Context) GetRouteStageRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleOutput)
+}
+
+// GetRouteStageRuleArrayInput is an input type that accepts GetRouteStageRuleArray and GetRouteStageRuleArrayOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleArrayInput` via:
+//
+//	GetRouteStageRuleArray{ GetRouteStageRuleArgs{...} }
+type GetRouteStageRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleArrayOutput() GetRouteStageRuleArrayOutput
+	ToGetRouteStageRuleArrayOutputWithContext(context.Context) GetRouteStageRuleArrayOutput
+}
+
+type GetRouteStageRuleArray []GetRouteStageRuleInput
+
+func (GetRouteStageRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRule)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleArray) ToGetRouteStageRuleArrayOutput() GetRouteStageRuleArrayOutput {
+	return i.ToGetRouteStageRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleArray) ToGetRouteStageRuleArrayOutputWithContext(ctx context.Context) GetRouteStageRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleArrayOutput)
+}
+
+type GetRouteStageRuleOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRule)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleOutput) ToGetRouteStageRuleOutput() GetRouteStageRuleOutput {
+	return o
+}
+
+func (o GetRouteStageRuleOutput) ToGetRouteStageRuleOutputWithContext(ctx context.Context) GetRouteStageRuleOutput {
+	return o
+}
+
+// ID of the backend stage that requests matching the rule should be forwarded to
+func (o GetRouteStageRuleOutput) BackendStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRule) string { return v.BackendStageId }).(pulumi.StringOutput)
+}
+
+// Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition
+func (o GetRouteStageRuleOutput) RuleHttpMatches() GetRouteStageRuleRuleHttpMatchArrayOutput {
+	return o.ApplyT(func(v GetRouteStageRule) []GetRouteStageRuleRuleHttpMatch { return v.RuleHttpMatches }).(GetRouteStageRuleRuleHttpMatchArrayOutput)
+}
+
+// ID of the WAF stage that requests matching the rule should be forwarded to
+func (o GetRouteStageRuleOutput) WafStageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRule) string { return v.WafStageId }).(pulumi.StringOutput)
+}
+
+type GetRouteStageRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRule)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleArrayOutput) ToGetRouteStageRuleArrayOutput() GetRouteStageRuleArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleArrayOutput) ToGetRouteStageRuleArrayOutputWithContext(ctx context.Context) GetRouteStageRuleArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleArrayOutput) Index(i pulumi.IntInput) GetRouteStageRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteStageRule {
+		return vs[0].([]GetRouteStageRule)[vs[1].(int)]
+	}).(GetRouteStageRuleOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatch struct {
+	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+	MethodFilters []string `pulumi:"methodFilters"`
+	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+	PathFilters []GetRouteStageRuleRuleHttpMatchPathFilter `pulumi:"pathFilters"`
+}
+
+// GetRouteStageRuleRuleHttpMatchInput is an input type that accepts GetRouteStageRuleRuleHttpMatchArgs and GetRouteStageRuleRuleHttpMatchOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchArgs{...}
+type GetRouteStageRuleRuleHttpMatchInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchOutput() GetRouteStageRuleRuleHttpMatchOutput
+	ToGetRouteStageRuleRuleHttpMatchOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchArgs struct {
+	// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+	MethodFilters pulumi.StringArrayInput `pulumi:"methodFilters"`
+	// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+	PathFilters GetRouteStageRuleRuleHttpMatchPathFilterArrayInput `pulumi:"pathFilters"`
+}
+
+func (GetRouteStageRuleRuleHttpMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchArgs) ToGetRouteStageRuleRuleHttpMatchOutput() GetRouteStageRuleRuleHttpMatchOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchArgs) ToGetRouteStageRuleRuleHttpMatchOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchOutput)
+}
+
+// GetRouteStageRuleRuleHttpMatchArrayInput is an input type that accepts GetRouteStageRuleRuleHttpMatchArray and GetRouteStageRuleRuleHttpMatchArrayOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchArrayInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchArray{ GetRouteStageRuleRuleHttpMatchArgs{...} }
+type GetRouteStageRuleRuleHttpMatchArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchArrayOutput() GetRouteStageRuleRuleHttpMatchArrayOutput
+	ToGetRouteStageRuleRuleHttpMatchArrayOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchArrayOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchArray []GetRouteStageRuleRuleHttpMatchInput
+
+func (GetRouteStageRuleRuleHttpMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchArray) ToGetRouteStageRuleRuleHttpMatchArrayOutput() GetRouteStageRuleRuleHttpMatchArrayOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchArray) ToGetRouteStageRuleRuleHttpMatchArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchArrayOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchOutput) ToGetRouteStageRuleRuleHttpMatchOutput() GetRouteStageRuleRuleHttpMatchOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchOutput) ToGetRouteStageRuleRuleHttpMatchOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchOutput {
+	return o
+}
+
+// HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+func (o GetRouteStageRuleRuleHttpMatchOutput) MethodFilters() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatch) []string { return v.MethodFilters }).(pulumi.StringArrayOutput)
+}
+
+// HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+func (o GetRouteStageRuleRuleHttpMatchOutput) PathFilters() GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatch) []GetRouteStageRuleRuleHttpMatchPathFilter {
+		return v.PathFilters
+	}).(GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatch)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchArrayOutput) ToGetRouteStageRuleRuleHttpMatchArrayOutput() GetRouteStageRuleRuleHttpMatchArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchArrayOutput) ToGetRouteStageRuleRuleHttpMatchArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchArrayOutput) Index(i pulumi.IntInput) GetRouteStageRuleRuleHttpMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteStageRuleRuleHttpMatch {
+		return vs[0].([]GetRouteStageRuleRuleHttpMatch)[vs[1].(int)]
+	}).(GetRouteStageRuleRuleHttpMatchOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchPathFilter struct {
+	// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+	PathFilterType string `pulumi:"pathFilterType"`
+	// The value to be matched for the HTTP URL path
+	Value string `pulumi:"value"`
+}
+
+// GetRouteStageRuleRuleHttpMatchPathFilterInput is an input type that accepts GetRouteStageRuleRuleHttpMatchPathFilterArgs and GetRouteStageRuleRuleHttpMatchPathFilterOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchPathFilterInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchPathFilterArgs{...}
+type GetRouteStageRuleRuleHttpMatchPathFilterInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchPathFilterOutput() GetRouteStageRuleRuleHttpMatchPathFilterOutput
+	ToGetRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchPathFilterOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchPathFilterArgs struct {
+	// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+	PathFilterType pulumi.StringInput `pulumi:"pathFilterType"`
+	// The value to be matched for the HTTP URL path
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetRouteStageRuleRuleHttpMatchPathFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchPathFilterArgs) ToGetRouteStageRuleRuleHttpMatchPathFilterOutput() GetRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchPathFilterArgs) ToGetRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchPathFilterOutput)
+}
+
+// GetRouteStageRuleRuleHttpMatchPathFilterArrayInput is an input type that accepts GetRouteStageRuleRuleHttpMatchPathFilterArray and GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput values.
+// You can construct a concrete instance of `GetRouteStageRuleRuleHttpMatchPathFilterArrayInput` via:
+//
+//	GetRouteStageRuleRuleHttpMatchPathFilterArray{ GetRouteStageRuleRuleHttpMatchPathFilterArgs{...} }
+type GetRouteStageRuleRuleHttpMatchPathFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutput() GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput
+	ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutputWithContext(context.Context) GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput
+}
+
+type GetRouteStageRuleRuleHttpMatchPathFilterArray []GetRouteStageRuleRuleHttpMatchPathFilterInput
+
+func (GetRouteStageRuleRuleHttpMatchPathFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (i GetRouteStageRuleRuleHttpMatchPathFilterArray) ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutput() GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput {
+	return i.ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetRouteStageRuleRuleHttpMatchPathFilterArray) ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchPathFilterOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchPathFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchPathFilterOutput) ToGetRouteStageRuleRuleHttpMatchPathFilterOutput() GetRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchPathFilterOutput) ToGetRouteStageRuleRuleHttpMatchPathFilterOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return o
+}
+
+// The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+func (o GetRouteStageRuleRuleHttpMatchPathFilterOutput) PathFilterType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatchPathFilter) string { return v.PathFilterType }).(pulumi.StringOutput)
+}
+
+// The value to be matched for the HTTP URL path
+func (o GetRouteStageRuleRuleHttpMatchPathFilterOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouteStageRuleRuleHttpMatchPathFilter) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRouteStageRuleRuleHttpMatchPathFilter)(nil)).Elem()
+}
+
+func (o GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput) ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutput() GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput) ToGetRouteStageRuleRuleHttpMatchPathFilterArrayOutputWithContext(ctx context.Context) GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput {
+	return o
+}
+
+func (o GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput) Index(i pulumi.IntInput) GetRouteStageRuleRuleHttpMatchPathFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRouteStageRuleRuleHttpMatchPathFilter {
+		return vs[0].([]GetRouteStageRuleRuleHttpMatchPathFilter)[vs[1].(int)]
+	}).(GetRouteStageRuleRuleHttpMatchPathFilterOutput)
+}
+
+type GetTlsStageSecret struct {
+	// The region you want to attach the resource to
+	Region string `pulumi:"region"`
+	// Secret ID to filter for.
+	SecretId string `pulumi:"secretId"`
+}
+
+// GetTlsStageSecretInput is an input type that accepts GetTlsStageSecretArgs and GetTlsStageSecretOutput values.
+// You can construct a concrete instance of `GetTlsStageSecretInput` via:
+//
+//	GetTlsStageSecretArgs{...}
+type GetTlsStageSecretInput interface {
+	pulumi.Input
+
+	ToGetTlsStageSecretOutput() GetTlsStageSecretOutput
+	ToGetTlsStageSecretOutputWithContext(context.Context) GetTlsStageSecretOutput
+}
+
+type GetTlsStageSecretArgs struct {
+	// The region you want to attach the resource to
+	Region pulumi.StringInput `pulumi:"region"`
+	// Secret ID to filter for.
+	SecretId pulumi.StringInput `pulumi:"secretId"`
+}
+
+func (GetTlsStageSecretArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsStageSecret)(nil)).Elem()
+}
+
+func (i GetTlsStageSecretArgs) ToGetTlsStageSecretOutput() GetTlsStageSecretOutput {
+	return i.ToGetTlsStageSecretOutputWithContext(context.Background())
+}
+
+func (i GetTlsStageSecretArgs) ToGetTlsStageSecretOutputWithContext(ctx context.Context) GetTlsStageSecretOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTlsStageSecretOutput)
+}
+
+// GetTlsStageSecretArrayInput is an input type that accepts GetTlsStageSecretArray and GetTlsStageSecretArrayOutput values.
+// You can construct a concrete instance of `GetTlsStageSecretArrayInput` via:
+//
+//	GetTlsStageSecretArray{ GetTlsStageSecretArgs{...} }
+type GetTlsStageSecretArrayInput interface {
+	pulumi.Input
+
+	ToGetTlsStageSecretArrayOutput() GetTlsStageSecretArrayOutput
+	ToGetTlsStageSecretArrayOutputWithContext(context.Context) GetTlsStageSecretArrayOutput
+}
+
+type GetTlsStageSecretArray []GetTlsStageSecretInput
+
+func (GetTlsStageSecretArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTlsStageSecret)(nil)).Elem()
+}
+
+func (i GetTlsStageSecretArray) ToGetTlsStageSecretArrayOutput() GetTlsStageSecretArrayOutput {
+	return i.ToGetTlsStageSecretArrayOutputWithContext(context.Background())
+}
+
+func (i GetTlsStageSecretArray) ToGetTlsStageSecretArrayOutputWithContext(ctx context.Context) GetTlsStageSecretArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTlsStageSecretArrayOutput)
+}
+
+type GetTlsStageSecretOutput struct{ *pulumi.OutputState }
+
+func (GetTlsStageSecretOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTlsStageSecret)(nil)).Elem()
+}
+
+func (o GetTlsStageSecretOutput) ToGetTlsStageSecretOutput() GetTlsStageSecretOutput {
+	return o
+}
+
+func (o GetTlsStageSecretOutput) ToGetTlsStageSecretOutputWithContext(ctx context.Context) GetTlsStageSecretOutput {
+	return o
+}
+
+// The region you want to attach the resource to
+func (o GetTlsStageSecretOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsStageSecret) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Secret ID to filter for.
+func (o GetTlsStageSecretOutput) SecretId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTlsStageSecret) string { return v.SecretId }).(pulumi.StringOutput)
+}
+
+type GetTlsStageSecretArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTlsStageSecretArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTlsStageSecret)(nil)).Elem()
+}
+
+func (o GetTlsStageSecretArrayOutput) ToGetTlsStageSecretArrayOutput() GetTlsStageSecretArrayOutput {
+	return o
+}
+
+func (o GetTlsStageSecretArrayOutput) ToGetTlsStageSecretArrayOutputWithContext(ctx context.Context) GetTlsStageSecretArrayOutput {
+	return o
+}
+
+func (o GetTlsStageSecretArrayOutput) Index(i pulumi.IntInput) GetTlsStageSecretOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTlsStageSecret {
+		return vs[0].([]GetTlsStageSecret)[vs[1].(int)]
+	}).(GetTlsStageSecretOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageLbBackendConfigInput)(nil)).Elem(), BackendStageLbBackendConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackendStageLbBackendConfigArrayInput)(nil)).Elem(), BackendStageLbBackendConfigArray{})
@@ -1173,6 +2086,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteStageRuleRuleHttpMatchPathFilterPtrInput)(nil)).Elem(), RouteStageRuleRuleHttpMatchPathFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretInput)(nil)).Elem(), TlsStageSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TlsStageSecretArrayInput)(nil)).Elem(), TlsStageSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigInput)(nil)).Elem(), GetBackendStageLbBackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigArrayInput)(nil)).Elem(), GetBackendStageLbBackendConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigLbConfigInput)(nil)).Elem(), GetBackendStageLbBackendConfigLbConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageLbBackendConfigLbConfigArrayInput)(nil)).Elem(), GetBackendStageLbBackendConfigLbConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageS3BackendConfigInput)(nil)).Elem(), GetBackendStageS3BackendConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackendStageS3BackendConfigArrayInput)(nil)).Elem(), GetBackendStageS3BackendConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCacheStagePurgeRequestInput)(nil)).Elem(), GetCacheStagePurgeRequestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCacheStagePurgeRequestArrayInput)(nil)).Elem(), GetCacheStagePurgeRequestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleInput)(nil)).Elem(), GetRouteStageRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleArrayInput)(nil)).Elem(), GetRouteStageRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRouteStageRuleRuleHttpMatchPathFilterArrayInput)(nil)).Elem(), GetRouteStageRuleRuleHttpMatchPathFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretInput)(nil)).Elem(), GetTlsStageSecretArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTlsStageSecretArrayInput)(nil)).Elem(), GetTlsStageSecretArray{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigOutput{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigArrayOutput{})
 	pulumi.RegisterOutputType(BackendStageLbBackendConfigLbConfigOutput{})
@@ -1189,4 +2118,20 @@ func init() {
 	pulumi.RegisterOutputType(RouteStageRuleRuleHttpMatchPathFilterPtrOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretOutput{})
 	pulumi.RegisterOutputType(TlsStageSecretArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigOutput{})
+	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigLbConfigOutput{})
+	pulumi.RegisterOutputType(GetBackendStageLbBackendConfigLbConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetBackendStageS3BackendConfigOutput{})
+	pulumi.RegisterOutputType(GetBackendStageS3BackendConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetCacheStagePurgeRequestOutput{})
+	pulumi.RegisterOutputType(GetCacheStagePurgeRequestArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchArrayOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchPathFilterOutput{})
+	pulumi.RegisterOutputType(GetRouteStageRuleRuleHttpMatchPathFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetTlsStageSecretOutput{})
+	pulumi.RegisterOutputType(GetTlsStageSecretArrayOutput{})
 }

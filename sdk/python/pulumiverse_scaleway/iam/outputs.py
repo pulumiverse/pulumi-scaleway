@@ -16,7 +16,9 @@ from .. import _utilities
 
 __all__ = [
     'PolicyRule',
+    'SamlServiceProvider',
     'GetPolicyRuleResult',
+    'GetSamlServiceProviderResult',
 ]
 
 @pulumi.output_type
@@ -111,6 +113,54 @@ class PolicyRule(dict):
 
 
 @pulumi.output_type
+class SamlServiceProvider(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "assertionConsumerServiceUrl":
+            suggest = "assertion_consumer_service_url"
+        elif key == "entityId":
+            suggest = "entity_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SamlServiceProvider. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SamlServiceProvider.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SamlServiceProvider.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 assertion_consumer_service_url: _builtins.str,
+                 entity_id: _builtins.str):
+        """
+        :param _builtins.str assertion_consumer_service_url: (Computed) The assertion consumer service URL of the Service Provider.
+        :param _builtins.str entity_id: (Computed) The entity ID of the Service Provider.
+        """
+        pulumi.set(__self__, "assertion_consumer_service_url", assertion_consumer_service_url)
+        pulumi.set(__self__, "entity_id", entity_id)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionConsumerServiceUrl")
+    def assertion_consumer_service_url(self) -> _builtins.str:
+        """
+        (Computed) The assertion consumer service URL of the Service Provider.
+        """
+        return pulumi.get(self, "assertion_consumer_service_url")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        """
+        (Computed) The entity ID of the Service Provider.
+        """
+        return pulumi.get(self, "entity_id")
+
+
+@pulumi.output_type
 class GetPolicyRuleResult(dict):
     def __init__(__self__, *,
                  condition: _builtins.str,
@@ -159,5 +209,24 @@ class GetPolicyRuleResult(dict):
         List of project IDs scoped to the rule.
         """
         return pulumi.get(self, "project_ids")
+
+
+@pulumi.output_type
+class GetSamlServiceProviderResult(dict):
+    def __init__(__self__, *,
+                 assertion_consumer_service_url: _builtins.str,
+                 entity_id: _builtins.str):
+        pulumi.set(__self__, "assertion_consumer_service_url", assertion_consumer_service_url)
+        pulumi.set(__self__, "entity_id", entity_id)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionConsumerServiceUrl")
+    def assertion_consumer_service_url(self) -> _builtins.str:
+        return pulumi.get(self, "assertion_consumer_service_url")
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> _builtins.str:
+        return pulumi.get(self, "entity_id")
 
 

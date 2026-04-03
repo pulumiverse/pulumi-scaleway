@@ -453,6 +453,8 @@ class Registration(pulumi.CustomResource):
         $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
         ```
 
+        You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_renew: : Enables or disables auto-renewal.
@@ -586,6 +588,8 @@ class Registration(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:domain/registration:Registration test <project_id>/<task_id>
         ```
+
+        You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
 
         :param str resource_name: The name of the resource.
         :param RegistrationArgs args: The arguments to use to populate this resource's properties.

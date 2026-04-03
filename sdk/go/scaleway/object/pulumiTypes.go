@@ -1490,6 +1490,244 @@ func (o BucketLockConfigurationRuleDefaultRetentionPtrOutput) Years() pulumi.Int
 	}).(pulumi.IntPtrOutput)
 }
 
+type BucketServerSideEncryptionConfigurationRule struct {
+	// Single object for setting server-side encryption by default.
+	ApplyServerSideEncryptionByDefault *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefault"`
+}
+
+// BucketServerSideEncryptionConfigurationRuleInput is an input type that accepts BucketServerSideEncryptionConfigurationRuleArgs and BucketServerSideEncryptionConfigurationRuleOutput values.
+// You can construct a concrete instance of `BucketServerSideEncryptionConfigurationRuleInput` via:
+//
+//	BucketServerSideEncryptionConfigurationRuleArgs{...}
+type BucketServerSideEncryptionConfigurationRuleInput interface {
+	pulumi.Input
+
+	ToBucketServerSideEncryptionConfigurationRuleOutput() BucketServerSideEncryptionConfigurationRuleOutput
+	ToBucketServerSideEncryptionConfigurationRuleOutputWithContext(context.Context) BucketServerSideEncryptionConfigurationRuleOutput
+}
+
+type BucketServerSideEncryptionConfigurationRuleArgs struct {
+	// Single object for setting server-side encryption by default.
+	ApplyServerSideEncryptionByDefault BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput `pulumi:"applyServerSideEncryptionByDefault"`
+}
+
+func (BucketServerSideEncryptionConfigurationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleArgs) ToBucketServerSideEncryptionConfigurationRuleOutput() BucketServerSideEncryptionConfigurationRuleOutput {
+	return i.ToBucketServerSideEncryptionConfigurationRuleOutputWithContext(context.Background())
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleArgs) ToBucketServerSideEncryptionConfigurationRuleOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketServerSideEncryptionConfigurationRuleOutput)
+}
+
+// BucketServerSideEncryptionConfigurationRuleArrayInput is an input type that accepts BucketServerSideEncryptionConfigurationRuleArray and BucketServerSideEncryptionConfigurationRuleArrayOutput values.
+// You can construct a concrete instance of `BucketServerSideEncryptionConfigurationRuleArrayInput` via:
+//
+//	BucketServerSideEncryptionConfigurationRuleArray{ BucketServerSideEncryptionConfigurationRuleArgs{...} }
+type BucketServerSideEncryptionConfigurationRuleArrayInput interface {
+	pulumi.Input
+
+	ToBucketServerSideEncryptionConfigurationRuleArrayOutput() BucketServerSideEncryptionConfigurationRuleArrayOutput
+	ToBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(context.Context) BucketServerSideEncryptionConfigurationRuleArrayOutput
+}
+
+type BucketServerSideEncryptionConfigurationRuleArray []BucketServerSideEncryptionConfigurationRuleInput
+
+func (BucketServerSideEncryptionConfigurationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleArray) ToBucketServerSideEncryptionConfigurationRuleArrayOutput() BucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return i.ToBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleArray) ToBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketServerSideEncryptionConfigurationRuleArrayOutput)
+}
+
+type BucketServerSideEncryptionConfigurationRuleOutput struct{ *pulumi.OutputState }
+
+func (BucketServerSideEncryptionConfigurationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleOutput) ToBucketServerSideEncryptionConfigurationRuleOutput() BucketServerSideEncryptionConfigurationRuleOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleOutput) ToBucketServerSideEncryptionConfigurationRuleOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleOutput {
+	return o
+}
+
+// Single object for setting server-side encryption by default.
+func (o BucketServerSideEncryptionConfigurationRuleOutput) ApplyServerSideEncryptionByDefault() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ApplyT(func(v BucketServerSideEncryptionConfigurationRule) *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+		return v.ApplyServerSideEncryptionByDefault
+	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+type BucketServerSideEncryptionConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (BucketServerSideEncryptionConfigurationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]BucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleArrayOutput) ToBucketServerSideEncryptionConfigurationRuleArrayOutput() BucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleArrayOutput) ToBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleArrayOutput) Index(i pulumi.IntInput) BucketServerSideEncryptionConfigurationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) BucketServerSideEncryptionConfigurationRule {
+		return vs[0].([]BucketServerSideEncryptionConfigurationRule)[vs[1].(int)]
+	}).(BucketServerSideEncryptionConfigurationRuleOutput)
+}
+
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault struct {
+	// Server-side encryption algorithm to use. Valid values are `AES256`.
+	SseAlgorithm string `pulumi:"sseAlgorithm"`
+}
+
+// BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput is an input type that accepts BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs and BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput values.
+// You can construct a concrete instance of `BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput` via:
+//
+//	BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{...}
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput interface {
+	pulumi.Input
+
+	ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput
+	ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput
+}
+
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs struct {
+	// Server-side encryption algorithm to use. Valid values are `AES256`.
+	SseAlgorithm pulumi.StringInput `pulumi:"sseAlgorithm"`
+}
+
+func (BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return i.ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Background())
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return i.ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (i BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput).ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx)
+}
+
+// BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput is an input type that accepts BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs, BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtr and BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput values.
+// You can construct a concrete instance of `BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput` via:
+//
+//	        BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{...}
+//
+//	or:
+//
+//	        nil
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput interface {
+	pulumi.Input
+
+	ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput
+	ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput
+}
+
+type bucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrType BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+
+func BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtr(v *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput {
+	return (*bucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrType)(v)
+}
+
+func (*bucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i *bucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrType) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return i.ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (i *bucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrType) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput struct{ *pulumi.OutputState }
+
+func (BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(context.Background())
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+		return &v
+	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput)
+}
+
+// Server-side encryption algorithm to use. Valid values are `AES256`.
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) SseAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) string {
+		return v.SseAlgorithm
+	}).(pulumi.StringOutput)
+}
+
+type BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput struct{ *pulumi.OutputState }
+
+func (BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) ToBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutputWithContext(ctx context.Context) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput {
+	return o
+}
+
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) Elem() BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+		if v != nil {
+			return *v
+		}
+		var ret BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault
+		return ret
+	}).(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+// Server-side encryption algorithm to use. Valid values are `AES256`.
+func (o BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput) SseAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.SseAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
 type BucketVersioning struct {
 	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
 	Enabled *bool `pulumi:"enabled"`
@@ -2396,6 +2634,204 @@ func (o GetBucketLifecycleRuleTransitionArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetBucketLifecycleRuleTransitionOutput)
 }
 
+type GetBucketServerSideEncryptionConfigurationRule struct {
+	// (List of Object) Single object for setting server-side encryption by default.
+	ApplyServerSideEncryptionByDefaults []GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault `pulumi:"applyServerSideEncryptionByDefaults"`
+}
+
+// GetBucketServerSideEncryptionConfigurationRuleInput is an input type that accepts GetBucketServerSideEncryptionConfigurationRuleArgs and GetBucketServerSideEncryptionConfigurationRuleOutput values.
+// You can construct a concrete instance of `GetBucketServerSideEncryptionConfigurationRuleInput` via:
+//
+//	GetBucketServerSideEncryptionConfigurationRuleArgs{...}
+type GetBucketServerSideEncryptionConfigurationRuleInput interface {
+	pulumi.Input
+
+	ToGetBucketServerSideEncryptionConfigurationRuleOutput() GetBucketServerSideEncryptionConfigurationRuleOutput
+	ToGetBucketServerSideEncryptionConfigurationRuleOutputWithContext(context.Context) GetBucketServerSideEncryptionConfigurationRuleOutput
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleArgs struct {
+	// (List of Object) Single object for setting server-side encryption by default.
+	ApplyServerSideEncryptionByDefaults GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput `pulumi:"applyServerSideEncryptionByDefaults"`
+}
+
+func (GetBucketServerSideEncryptionConfigurationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleArgs) ToGetBucketServerSideEncryptionConfigurationRuleOutput() GetBucketServerSideEncryptionConfigurationRuleOutput {
+	return i.ToGetBucketServerSideEncryptionConfigurationRuleOutputWithContext(context.Background())
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleArgs) ToGetBucketServerSideEncryptionConfigurationRuleOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketServerSideEncryptionConfigurationRuleOutput)
+}
+
+// GetBucketServerSideEncryptionConfigurationRuleArrayInput is an input type that accepts GetBucketServerSideEncryptionConfigurationRuleArray and GetBucketServerSideEncryptionConfigurationRuleArrayOutput values.
+// You can construct a concrete instance of `GetBucketServerSideEncryptionConfigurationRuleArrayInput` via:
+//
+//	GetBucketServerSideEncryptionConfigurationRuleArray{ GetBucketServerSideEncryptionConfigurationRuleArgs{...} }
+type GetBucketServerSideEncryptionConfigurationRuleArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketServerSideEncryptionConfigurationRuleArrayOutput() GetBucketServerSideEncryptionConfigurationRuleArrayOutput
+	ToGetBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(context.Context) GetBucketServerSideEncryptionConfigurationRuleArrayOutput
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleArray []GetBucketServerSideEncryptionConfigurationRuleInput
+
+func (GetBucketServerSideEncryptionConfigurationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleArray) ToGetBucketServerSideEncryptionConfigurationRuleArrayOutput() GetBucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return i.ToGetBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleArray) ToGetBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketServerSideEncryptionConfigurationRuleArrayOutput)
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleOutput struct{ *pulumi.OutputState }
+
+func (GetBucketServerSideEncryptionConfigurationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleOutput) ToGetBucketServerSideEncryptionConfigurationRuleOutput() GetBucketServerSideEncryptionConfigurationRuleOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleOutput) ToGetBucketServerSideEncryptionConfigurationRuleOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleOutput {
+	return o
+}
+
+// (List of Object) Single object for setting server-side encryption by default.
+func (o GetBucketServerSideEncryptionConfigurationRuleOutput) ApplyServerSideEncryptionByDefaults() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput {
+	return o.ApplyT(func(v GetBucketServerSideEncryptionConfigurationRule) []GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+		return v.ApplyServerSideEncryptionByDefaults
+	}).(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput)
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketServerSideEncryptionConfigurationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketServerSideEncryptionConfigurationRule)(nil)).Elem()
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleArrayOutput) ToGetBucketServerSideEncryptionConfigurationRuleArrayOutput() GetBucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleArrayOutput) ToGetBucketServerSideEncryptionConfigurationRuleArrayOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleArrayOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleArrayOutput) Index(i pulumi.IntInput) GetBucketServerSideEncryptionConfigurationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketServerSideEncryptionConfigurationRule {
+		return vs[0].([]GetBucketServerSideEncryptionConfigurationRule)[vs[1].(int)]
+	}).(GetBucketServerSideEncryptionConfigurationRuleOutput)
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault struct {
+	// (String) Server-side encryption algorithm to use. Valid values are AES256.
+	SseAlgorithm string `pulumi:"sseAlgorithm"`
+}
+
+// GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput is an input type that accepts GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs and GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput values.
+// You can construct a concrete instance of `GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput` via:
+//
+//	GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{...}
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput interface {
+	pulumi.Input
+
+	ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput
+	ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs struct {
+	// (String) Server-side encryption algorithm to use. Valid values are AES256.
+	SseAlgorithm pulumi.StringInput `pulumi:"sseAlgorithm"`
+}
+
+func (GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return i.ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(context.Background())
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
+// GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput is an input type that accepts GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray and GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput values.
+// You can construct a concrete instance of `GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput` via:
+//
+//	GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray{ GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{...} }
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput interface {
+	pulumi.Input
+
+	ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput
+	ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutputWithContext(context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray []GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput
+
+func (GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput {
+	return i.ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutputWithContext(context.Background())
+}
+
+func (i GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput)
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput struct{ *pulumi.OutputState }
+
+func (GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return o
+}
+
+// (String) Server-side encryption algorithm to use. Valid values are AES256.
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput) SseAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault) string {
+		return v.SseAlgorithm
+	}).(pulumi.StringOutput)
+}
+
+type GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)(nil)).Elem()
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput() GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput) ToGetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutputWithContext(ctx context.Context) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput {
+	return o
+}
+
+func (o GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput) Index(i pulumi.IntInput) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+		return vs[0].([]GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault)[vs[1].(int)]
+	}).(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput)
+}
+
 type GetBucketVersioning struct {
 	// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state
 	Enabled bool `pulumi:"enabled"`
@@ -2514,6 +2950,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLockConfigurationRulePtrInput)(nil)).Elem(), BucketLockConfigurationRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLockConfigurationRuleDefaultRetentionInput)(nil)).Elem(), BucketLockConfigurationRuleDefaultRetentionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketLockConfigurationRuleDefaultRetentionPtrInput)(nil)).Elem(), BucketLockConfigurationRuleDefaultRetentionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleInput)(nil)).Elem(), BucketServerSideEncryptionConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleArrayInput)(nil)).Elem(), BucketServerSideEncryptionConfigurationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput)(nil)).Elem(), BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrInput)(nil)).Elem(), BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketVersioningInput)(nil)).Elem(), BucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketVersioningPtrInput)(nil)).Elem(), BucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BucketWebsiteConfigurationErrorDocumentInput)(nil)).Elem(), BucketWebsiteConfigurationErrorDocumentArgs{})
@@ -2528,6 +2968,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleExpirationArrayInput)(nil)).Elem(), GetBucketLifecycleRuleExpirationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleTransitionInput)(nil)).Elem(), GetBucketLifecycleRuleTransitionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketLifecycleRuleTransitionArrayInput)(nil)).Elem(), GetBucketLifecycleRuleTransitionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleInput)(nil)).Elem(), GetBucketServerSideEncryptionConfigurationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleArrayInput)(nil)).Elem(), GetBucketServerSideEncryptionConfigurationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultInput)(nil)).Elem(), GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayInput)(nil)).Elem(), GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketVersioningInput)(nil)).Elem(), GetBucketVersioningArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBucketVersioningArrayInput)(nil)).Elem(), GetBucketVersioningArray{})
 	pulumi.RegisterOutputType(BucketAclAccessControlPolicyOutput{})
@@ -2550,6 +2994,10 @@ func init() {
 	pulumi.RegisterOutputType(BucketLockConfigurationRulePtrOutput{})
 	pulumi.RegisterOutputType(BucketLockConfigurationRuleDefaultRetentionOutput{})
 	pulumi.RegisterOutputType(BucketLockConfigurationRuleDefaultRetentionPtrOutput{})
+	pulumi.RegisterOutputType(BucketServerSideEncryptionConfigurationRuleOutput{})
+	pulumi.RegisterOutputType(BucketServerSideEncryptionConfigurationRuleArrayOutput{})
+	pulumi.RegisterOutputType(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput{})
+	pulumi.RegisterOutputType(BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultPtrOutput{})
 	pulumi.RegisterOutputType(BucketVersioningOutput{})
 	pulumi.RegisterOutputType(BucketVersioningPtrOutput{})
 	pulumi.RegisterOutputType(BucketWebsiteConfigurationErrorDocumentOutput{})
@@ -2564,6 +3012,10 @@ func init() {
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleExpirationArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleTransitionOutput{})
 	pulumi.RegisterOutputType(GetBucketLifecycleRuleTransitionArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketServerSideEncryptionConfigurationRuleOutput{})
+	pulumi.RegisterOutputType(GetBucketServerSideEncryptionConfigurationRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultOutput{})
+	pulumi.RegisterOutputType(GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArrayOutput{})
 	pulumi.RegisterOutputType(GetBucketVersioningOutput{})
 	pulumi.RegisterOutputType(GetBucketVersioningArrayOutput{})
 }

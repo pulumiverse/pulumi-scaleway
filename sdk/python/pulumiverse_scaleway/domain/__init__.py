@@ -7,6 +7,7 @@ from .. import _utilities
 import typing
 # Export this package's modules as members:
 from .get_record import *
+from .get_registration import *
 from .get_zone import *
 from .record import *
 from .registration import *

@@ -6098,6 +6098,3563 @@ func (o GetRecordWeightedArrayOutput) Index(i pulumi.IntInput) GetRecordWeighted
 	}).(GetRecordWeightedOutput)
 }
 
+type GetRegistrationAdministrativeContact struct {
+	// Primary address line for the contact.
+	AddressLine1 string `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 string `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City string `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName string `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country string `pulumi:"country"`
+	// Primary email address of the contact.
+	Email string `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt string `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus []GetRegistrationAdministrativeContactExtensionEus `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs []GetRegistrationAdministrativeContactExtensionFr `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls []string `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber string `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname string `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang string `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname string `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm string `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber string `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale bool `pulumi:"resale"`
+	// State or region of the contact.
+	State string `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip string `pulumi:"zip"`
+}
+
+// GetRegistrationAdministrativeContactInput is an input type that accepts GetRegistrationAdministrativeContactArgs and GetRegistrationAdministrativeContactOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactInput` via:
+//
+//	GetRegistrationAdministrativeContactArgs{...}
+type GetRegistrationAdministrativeContactInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactOutput() GetRegistrationAdministrativeContactOutput
+	ToGetRegistrationAdministrativeContactOutputWithContext(context.Context) GetRegistrationAdministrativeContactOutput
+}
+
+type GetRegistrationAdministrativeContactArgs struct {
+	// Primary address line for the contact.
+	AddressLine1 pulumi.StringInput `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 pulumi.StringInput `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City pulumi.StringInput `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName pulumi.StringInput `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country pulumi.StringInput `pulumi:"country"`
+	// Primary email address of the contact.
+	Email pulumi.StringInput `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt pulumi.StringInput `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus GetRegistrationAdministrativeContactExtensionEusArrayInput `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs GetRegistrationAdministrativeContactExtensionFrArrayInput `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname pulumi.StringInput `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang pulumi.StringInput `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname pulumi.StringInput `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale pulumi.BoolInput `pulumi:"resale"`
+	// State or region of the contact.
+	State pulumi.StringInput `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip pulumi.StringInput `pulumi:"zip"`
+}
+
+func (GetRegistrationAdministrativeContactArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContact)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactArgs) ToGetRegistrationAdministrativeContactOutput() GetRegistrationAdministrativeContactOutput {
+	return i.ToGetRegistrationAdministrativeContactOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactArgs) ToGetRegistrationAdministrativeContactOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactOutput)
+}
+
+// GetRegistrationAdministrativeContactArrayInput is an input type that accepts GetRegistrationAdministrativeContactArray and GetRegistrationAdministrativeContactArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactArray{ GetRegistrationAdministrativeContactArgs{...} }
+type GetRegistrationAdministrativeContactArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactArrayOutput() GetRegistrationAdministrativeContactArrayOutput
+	ToGetRegistrationAdministrativeContactArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactArrayOutput
+}
+
+type GetRegistrationAdministrativeContactArray []GetRegistrationAdministrativeContactInput
+
+func (GetRegistrationAdministrativeContactArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContact)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactArray) ToGetRegistrationAdministrativeContactArrayOutput() GetRegistrationAdministrativeContactArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactArray) ToGetRegistrationAdministrativeContactArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContact)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactOutput) ToGetRegistrationAdministrativeContactOutput() GetRegistrationAdministrativeContactOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactOutput) ToGetRegistrationAdministrativeContactOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactOutput {
+	return o
+}
+
+// Primary address line for the contact.
+func (o GetRegistrationAdministrativeContactOutput) AddressLine1() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.AddressLine1 }).(pulumi.StringOutput)
+}
+
+// Secondary address line for the contact (optional).
+func (o GetRegistrationAdministrativeContactOutput) AddressLine2() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.AddressLine2 }).(pulumi.StringOutput)
+}
+
+// City of the contact's address.
+func (o GetRegistrationAdministrativeContactOutput) City() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.City }).(pulumi.StringOutput)
+}
+
+// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+func (o GetRegistrationAdministrativeContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Name of the company associated with the contact (if applicable).
+func (o GetRegistrationAdministrativeContactOutput) CompanyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.CompanyName }).(pulumi.StringOutput)
+}
+
+// Country code of the contact's address (ISO format).
+func (o GetRegistrationAdministrativeContactOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Country }).(pulumi.StringOutput)
+}
+
+// Primary email address of the contact.
+func (o GetRegistrationAdministrativeContactOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// Alternative email address for the contact.
+func (o GetRegistrationAdministrativeContactOutput) EmailAlt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.EmailAlt }).(pulumi.StringOutput)
+}
+
+// Details specific to European domain extensions.
+func (o GetRegistrationAdministrativeContactOutput) ExtensionEus() GetRegistrationAdministrativeContactExtensionEusArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) []GetRegistrationAdministrativeContactExtensionEus {
+		return v.ExtensionEus
+	}).(GetRegistrationAdministrativeContactExtensionEusArrayOutput)
+}
+
+// Details specific to French domain extensions.
+func (o GetRegistrationAdministrativeContactOutput) ExtensionFrs() GetRegistrationAdministrativeContactExtensionFrArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) []GetRegistrationAdministrativeContactExtensionFr {
+		return v.ExtensionFrs
+	}).(GetRegistrationAdministrativeContactExtensionFrArrayOutput)
+}
+
+// Extension details specific to Dutch domain registrations.
+func (o GetRegistrationAdministrativeContactOutput) ExtensionNls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+}
+
+// Fax number for the contact (if available).
+func (o GetRegistrationAdministrativeContactOutput) FaxNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.FaxNumber }).(pulumi.StringOutput)
+}
+
+// First name of the contact.
+func (o GetRegistrationAdministrativeContactOutput) Firstname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Firstname }).(pulumi.StringOutput)
+}
+
+// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+func (o GetRegistrationAdministrativeContactOutput) Lang() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Lang }).(pulumi.StringOutput)
+}
+
+// Last name of the contact.
+func (o GetRegistrationAdministrativeContactOutput) Lastname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Lastname }).(pulumi.StringOutput)
+}
+
+// Legal form of the contact (e.g., 'individual' or 'organization').
+func (o GetRegistrationAdministrativeContactOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// Primary phone number of the contact.
+func (o GetRegistrationAdministrativeContactOutput) PhoneNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+// Indicates if the contact is used for resale purposes.
+func (o GetRegistrationAdministrativeContactOutput) Resale() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) bool { return v.Resale }).(pulumi.BoolOutput)
+}
+
+// State or region of the contact.
+func (o GetRegistrationAdministrativeContactOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.State }).(pulumi.StringOutput)
+}
+
+// VAT identification code of the contact, if applicable.
+func (o GetRegistrationAdministrativeContactOutput) VatIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Indicates whether the contact has opted into WHOIS publishing.
+func (o GetRegistrationAdministrativeContactOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+// Postal code of the contact's address.
+func (o GetRegistrationAdministrativeContactOutput) Zip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContact) string { return v.Zip }).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContact)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactArrayOutput) ToGetRegistrationAdministrativeContactArrayOutput() GetRegistrationAdministrativeContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactArrayOutput) ToGetRegistrationAdministrativeContactArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContact {
+		return vs[0].([]GetRegistrationAdministrativeContact)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionEus struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship string `pulumi:"europeanCitizenship"`
+}
+
+// GetRegistrationAdministrativeContactExtensionEusInput is an input type that accepts GetRegistrationAdministrativeContactExtensionEusArgs and GetRegistrationAdministrativeContactExtensionEusOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionEusInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionEusArgs{...}
+type GetRegistrationAdministrativeContactExtensionEusInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionEusOutput() GetRegistrationAdministrativeContactExtensionEusOutput
+	ToGetRegistrationAdministrativeContactExtensionEusOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionEusOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionEusArgs struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship pulumi.StringInput `pulumi:"europeanCitizenship"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionEusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionEusArgs) ToGetRegistrationAdministrativeContactExtensionEusOutput() GetRegistrationAdministrativeContactExtensionEusOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionEusOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionEusArgs) ToGetRegistrationAdministrativeContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionEusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionEusOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionEusArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionEusArray and GetRegistrationAdministrativeContactExtensionEusArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionEusArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionEusArray{ GetRegistrationAdministrativeContactExtensionEusArgs{...} }
+type GetRegistrationAdministrativeContactExtensionEusArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionEusArrayOutput() GetRegistrationAdministrativeContactExtensionEusArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionEusArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionEusArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionEusArray []GetRegistrationAdministrativeContactExtensionEusInput
+
+func (GetRegistrationAdministrativeContactExtensionEusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionEusArray) ToGetRegistrationAdministrativeContactExtensionEusArrayOutput() GetRegistrationAdministrativeContactExtensionEusArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionEusArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionEusArray) ToGetRegistrationAdministrativeContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionEusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionEusArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionEusOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionEusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionEusOutput) ToGetRegistrationAdministrativeContactExtensionEusOutput() GetRegistrationAdministrativeContactExtensionEusOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionEusOutput) ToGetRegistrationAdministrativeContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionEusOutput {
+	return o
+}
+
+// Indicates the European citizenship of the contact.
+func (o GetRegistrationAdministrativeContactExtensionEusOutput) EuropeanCitizenship() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionEus) string { return v.EuropeanCitizenship }).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionEusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionEusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionEusArrayOutput) ToGetRegistrationAdministrativeContactExtensionEusArrayOutput() GetRegistrationAdministrativeContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionEusArrayOutput) ToGetRegistrationAdministrativeContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionEusArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionEusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionEus {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionEus)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionEusOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFr struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos []GetRegistrationAdministrativeContactExtensionFrAssociationInfo `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos []GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos []GetRegistrationAdministrativeContactExtensionFrDunsInfo `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos []GetRegistrationAdministrativeContactExtensionFrIndividualInfo `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode string `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos []GetRegistrationAdministrativeContactExtensionFrTrademarkInfo `pulumi:"trademarkInfos"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrArgs and GetRegistrationAdministrativeContactExtensionFrOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrOutput() GetRegistrationAdministrativeContactExtensionFrOutput
+	ToGetRegistrationAdministrativeContactExtensionFrOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrArgs struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayInput `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayInput `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayInput `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput `pulumi:"trademarkInfos"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrArgs) ToGetRegistrationAdministrativeContactExtensionFrOutput() GetRegistrationAdministrativeContactExtensionFrOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrArgs) ToGetRegistrationAdministrativeContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrArray and GetRegistrationAdministrativeContactExtensionFrArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrArray{ GetRegistrationAdministrativeContactExtensionFrArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrArrayOutput() GetRegistrationAdministrativeContactExtensionFrArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrArray []GetRegistrationAdministrativeContactExtensionFrInput
+
+func (GetRegistrationAdministrativeContactExtensionFrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrArray) ToGetRegistrationAdministrativeContactExtensionFrArrayOutput() GetRegistrationAdministrativeContactExtensionFrArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrArray) ToGetRegistrationAdministrativeContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) ToGetRegistrationAdministrativeContactExtensionFrOutput() GetRegistrationAdministrativeContactExtensionFrOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) ToGetRegistrationAdministrativeContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrOutput {
+	return o
+}
+
+// Association-specific information for the domain (French extension).
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) AssociationInfos() GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) []GetRegistrationAdministrativeContactExtensionFrAssociationInfo {
+		return v.AssociationInfos
+	}).(GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput)
+}
+
+// AFNIC authorization information for the contact (French extension).
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) CodeAuthAfnicInfos() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) []GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo {
+		return v.CodeAuthAfnicInfos
+	}).(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+// DUNS information for the domain owner (specific to French domains).
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) DunsInfos() GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) []GetRegistrationAdministrativeContactExtensionFrDunsInfo {
+		return v.DunsInfos
+	}).(GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput)
+}
+
+// Information about the individual registration for French domains.
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) IndividualInfos() GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) []GetRegistrationAdministrativeContactExtensionFrIndividualInfo {
+		return v.IndividualInfos
+	}).(GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput)
+}
+
+// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Trademark-related information for the domain (French extension).
+func (o GetRegistrationAdministrativeContactExtensionFrOutput) TrademarkInfos() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFr) []GetRegistrationAdministrativeContactExtensionFrTrademarkInfo {
+		return v.TrademarkInfos
+	}).(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrArrayOutput() GetRegistrationAdministrativeContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFr {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFr)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfo struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo string `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage int `pulumi:"publicationJoPage"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrAssociationInfoInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs and GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrAssociationInfoInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput
+	ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo pulumi.StringInput `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage pulumi.IntInput `pulumi:"publicationJoPage"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray and GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray{ GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray []GetRegistrationAdministrativeContactExtensionFrAssociationInfoInput
+
+func (GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+// Publication date in the Official Journal (RFC3339 format) for association information.
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput) PublicationJo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrAssociationInfo) string { return v.PublicationJo }).(pulumi.StringOutput)
+}
+
+// Page number of the publication in the Official Journal for association information.
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput) PublicationJoPage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrAssociationInfo) int { return v.PublicationJoPage }).(pulumi.IntOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFrAssociationInfo {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFrAssociationInfo)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic string `pulumi:"codeAuthAfnic"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs and GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput
+	ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic pulumi.StringInput `pulumi:"codeAuthAfnic"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray and GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray{ GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray []GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoInput
+
+func (GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+// AFNIC authorization code for the contact (specific to French domains).
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput) CodeAuthAfnic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo) string {
+		return v.CodeAuthAfnic
+	}).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrDunsInfo struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId string `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId string `pulumi:"localId"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrDunsInfoInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs and GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrDunsInfoInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput
+	ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId pulumi.StringInput `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId pulumi.StringInput `pulumi:"localId"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrDunsInfoArray and GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrDunsInfoArray{ GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoArray []GetRegistrationAdministrativeContactExtensionFrDunsInfoInput
+
+func (GetRegistrationAdministrativeContactExtensionFrDunsInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrDunsInfoArray) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrDunsInfoArray) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+// DUNS ID associated with the domain owner (for French domains).
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput) DunsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrDunsInfo) string { return v.DunsId }).(pulumi.StringOutput)
+}
+
+// Local identifier of the domain owner (for French domains).
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput) LocalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrDunsInfo) string { return v.LocalId }).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFrDunsInfo {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFrDunsInfo)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfo struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrIndividualInfoInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs and GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrIndividualInfoInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput
+	ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray and GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray{ GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray []GetRegistrationAdministrativeContactExtensionFrIndividualInfoInput
+
+func (GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+// Whether the individual contact has opted into WHOIS publishing.
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrIndividualInfo) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFrIndividualInfo {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFrIndividualInfo)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfo struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi string `pulumi:"trademarkInpi"`
+}
+
+// GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs and GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{...}
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput
+	ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi pulumi.StringInput `pulumi:"trademarkInpi"`
+}
+
+func (GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput)
+}
+
+// GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput is an input type that accepts GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray and GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput` via:
+//
+//	GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray{ GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{...} }
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput
+	ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput
+}
+
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray []GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput
+
+func (GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput {
+	return i.ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+// Trademark information from INPI (French extension).
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput) TrademarkInpi() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationAdministrativeContactExtensionFrTrademarkInfo) string { return v.TrademarkInpi }).(pulumi.StringOutput)
+}
+
+type GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationAdministrativeContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationAdministrativeContactExtensionFrTrademarkInfo {
+		return vs[0].([]GetRegistrationAdministrativeContactExtensionFrTrademarkInfo)[vs[1].(int)]
+	}).(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput)
+}
+
+type GetRegistrationDsRecord struct {
+	// The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+	Algorithm string `pulumi:"algorithm"`
+	// Details about the digest.
+	Digests []GetRegistrationDsRecordDigest `pulumi:"digests"`
+	// The identifier for the dnssec key.
+	KeyId int `pulumi:"keyId"`
+	// Public key associated with the dnssec record.
+	PublicKeys []GetRegistrationDsRecordPublicKey `pulumi:"publicKeys"`
+}
+
+// GetRegistrationDsRecordInput is an input type that accepts GetRegistrationDsRecordArgs and GetRegistrationDsRecordOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordInput` via:
+//
+//	GetRegistrationDsRecordArgs{...}
+type GetRegistrationDsRecordInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordOutput() GetRegistrationDsRecordOutput
+	ToGetRegistrationDsRecordOutputWithContext(context.Context) GetRegistrationDsRecordOutput
+}
+
+type GetRegistrationDsRecordArgs struct {
+	// The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// Details about the digest.
+	Digests GetRegistrationDsRecordDigestArrayInput `pulumi:"digests"`
+	// The identifier for the dnssec key.
+	KeyId pulumi.IntInput `pulumi:"keyId"`
+	// Public key associated with the dnssec record.
+	PublicKeys GetRegistrationDsRecordPublicKeyArrayInput `pulumi:"publicKeys"`
+}
+
+func (GetRegistrationDsRecordArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecord)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordArgs) ToGetRegistrationDsRecordOutput() GetRegistrationDsRecordOutput {
+	return i.ToGetRegistrationDsRecordOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordArgs) ToGetRegistrationDsRecordOutputWithContext(ctx context.Context) GetRegistrationDsRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordOutput)
+}
+
+// GetRegistrationDsRecordArrayInput is an input type that accepts GetRegistrationDsRecordArray and GetRegistrationDsRecordArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordArrayInput` via:
+//
+//	GetRegistrationDsRecordArray{ GetRegistrationDsRecordArgs{...} }
+type GetRegistrationDsRecordArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordArrayOutput() GetRegistrationDsRecordArrayOutput
+	ToGetRegistrationDsRecordArrayOutputWithContext(context.Context) GetRegistrationDsRecordArrayOutput
+}
+
+type GetRegistrationDsRecordArray []GetRegistrationDsRecordInput
+
+func (GetRegistrationDsRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecord)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordArray) ToGetRegistrationDsRecordArrayOutput() GetRegistrationDsRecordArrayOutput {
+	return i.ToGetRegistrationDsRecordArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordArray) ToGetRegistrationDsRecordArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordArrayOutput)
+}
+
+type GetRegistrationDsRecordOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecord)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordOutput) ToGetRegistrationDsRecordOutput() GetRegistrationDsRecordOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordOutput) ToGetRegistrationDsRecordOutputWithContext(ctx context.Context) GetRegistrationDsRecordOutput {
+	return o
+}
+
+// The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+func (o GetRegistrationDsRecordOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecord) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// Details about the digest.
+func (o GetRegistrationDsRecordOutput) Digests() GetRegistrationDsRecordDigestArrayOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecord) []GetRegistrationDsRecordDigest { return v.Digests }).(GetRegistrationDsRecordDigestArrayOutput)
+}
+
+// The identifier for the dnssec key.
+func (o GetRegistrationDsRecordOutput) KeyId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecord) int { return v.KeyId }).(pulumi.IntOutput)
+}
+
+// Public key associated with the dnssec record.
+func (o GetRegistrationDsRecordOutput) PublicKeys() GetRegistrationDsRecordPublicKeyArrayOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecord) []GetRegistrationDsRecordPublicKey { return v.PublicKeys }).(GetRegistrationDsRecordPublicKeyArrayOutput)
+}
+
+type GetRegistrationDsRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecord)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordArrayOutput) ToGetRegistrationDsRecordArrayOutput() GetRegistrationDsRecordArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordArrayOutput) ToGetRegistrationDsRecordArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordArrayOutput) Index(i pulumi.IntInput) GetRegistrationDsRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationDsRecord {
+		return vs[0].([]GetRegistrationDsRecord)[vs[1].(int)]
+	}).(GetRegistrationDsRecordOutput)
+}
+
+type GetRegistrationDsRecordDigest struct {
+	// The digest value.
+	Digest string `pulumi:"digest"`
+	// The public key associated with the digest.
+	PublicKeys []GetRegistrationDsRecordDigestPublicKey `pulumi:"publicKeys"`
+	// The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+	Type string `pulumi:"type"`
+}
+
+// GetRegistrationDsRecordDigestInput is an input type that accepts GetRegistrationDsRecordDigestArgs and GetRegistrationDsRecordDigestOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordDigestInput` via:
+//
+//	GetRegistrationDsRecordDigestArgs{...}
+type GetRegistrationDsRecordDigestInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordDigestOutput() GetRegistrationDsRecordDigestOutput
+	ToGetRegistrationDsRecordDigestOutputWithContext(context.Context) GetRegistrationDsRecordDigestOutput
+}
+
+type GetRegistrationDsRecordDigestArgs struct {
+	// The digest value.
+	Digest pulumi.StringInput `pulumi:"digest"`
+	// The public key associated with the digest.
+	PublicKeys GetRegistrationDsRecordDigestPublicKeyArrayInput `pulumi:"publicKeys"`
+	// The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetRegistrationDsRecordDigestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordDigest)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordDigestArgs) ToGetRegistrationDsRecordDigestOutput() GetRegistrationDsRecordDigestOutput {
+	return i.ToGetRegistrationDsRecordDigestOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordDigestArgs) ToGetRegistrationDsRecordDigestOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordDigestOutput)
+}
+
+// GetRegistrationDsRecordDigestArrayInput is an input type that accepts GetRegistrationDsRecordDigestArray and GetRegistrationDsRecordDigestArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordDigestArrayInput` via:
+//
+//	GetRegistrationDsRecordDigestArray{ GetRegistrationDsRecordDigestArgs{...} }
+type GetRegistrationDsRecordDigestArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordDigestArrayOutput() GetRegistrationDsRecordDigestArrayOutput
+	ToGetRegistrationDsRecordDigestArrayOutputWithContext(context.Context) GetRegistrationDsRecordDigestArrayOutput
+}
+
+type GetRegistrationDsRecordDigestArray []GetRegistrationDsRecordDigestInput
+
+func (GetRegistrationDsRecordDigestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordDigest)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordDigestArray) ToGetRegistrationDsRecordDigestArrayOutput() GetRegistrationDsRecordDigestArrayOutput {
+	return i.ToGetRegistrationDsRecordDigestArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordDigestArray) ToGetRegistrationDsRecordDigestArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordDigestArrayOutput)
+}
+
+type GetRegistrationDsRecordDigestOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordDigestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordDigest)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordDigestOutput) ToGetRegistrationDsRecordDigestOutput() GetRegistrationDsRecordDigestOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestOutput) ToGetRegistrationDsRecordDigestOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestOutput {
+	return o
+}
+
+// The digest value.
+func (o GetRegistrationDsRecordDigestOutput) Digest() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecordDigest) string { return v.Digest }).(pulumi.StringOutput)
+}
+
+// The public key associated with the digest.
+func (o GetRegistrationDsRecordDigestOutput) PublicKeys() GetRegistrationDsRecordDigestPublicKeyArrayOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecordDigest) []GetRegistrationDsRecordDigestPublicKey { return v.PublicKeys }).(GetRegistrationDsRecordDigestPublicKeyArrayOutput)
+}
+
+// The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+func (o GetRegistrationDsRecordDigestOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecordDigest) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetRegistrationDsRecordDigestArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordDigestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordDigest)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordDigestArrayOutput) ToGetRegistrationDsRecordDigestArrayOutput() GetRegistrationDsRecordDigestArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestArrayOutput) ToGetRegistrationDsRecordDigestArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestArrayOutput) Index(i pulumi.IntInput) GetRegistrationDsRecordDigestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationDsRecordDigest {
+		return vs[0].([]GetRegistrationDsRecordDigest)[vs[1].(int)]
+	}).(GetRegistrationDsRecordDigestOutput)
+}
+
+type GetRegistrationDsRecordDigestPublicKey struct {
+	// The public key value.
+	Key string `pulumi:"key"`
+}
+
+// GetRegistrationDsRecordDigestPublicKeyInput is an input type that accepts GetRegistrationDsRecordDigestPublicKeyArgs and GetRegistrationDsRecordDigestPublicKeyOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordDigestPublicKeyInput` via:
+//
+//	GetRegistrationDsRecordDigestPublicKeyArgs{...}
+type GetRegistrationDsRecordDigestPublicKeyInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordDigestPublicKeyOutput() GetRegistrationDsRecordDigestPublicKeyOutput
+	ToGetRegistrationDsRecordDigestPublicKeyOutputWithContext(context.Context) GetRegistrationDsRecordDigestPublicKeyOutput
+}
+
+type GetRegistrationDsRecordDigestPublicKeyArgs struct {
+	// The public key value.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetRegistrationDsRecordDigestPublicKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordDigestPublicKey)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordDigestPublicKeyArgs) ToGetRegistrationDsRecordDigestPublicKeyOutput() GetRegistrationDsRecordDigestPublicKeyOutput {
+	return i.ToGetRegistrationDsRecordDigestPublicKeyOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordDigestPublicKeyArgs) ToGetRegistrationDsRecordDigestPublicKeyOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestPublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordDigestPublicKeyOutput)
+}
+
+// GetRegistrationDsRecordDigestPublicKeyArrayInput is an input type that accepts GetRegistrationDsRecordDigestPublicKeyArray and GetRegistrationDsRecordDigestPublicKeyArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordDigestPublicKeyArrayInput` via:
+//
+//	GetRegistrationDsRecordDigestPublicKeyArray{ GetRegistrationDsRecordDigestPublicKeyArgs{...} }
+type GetRegistrationDsRecordDigestPublicKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordDigestPublicKeyArrayOutput() GetRegistrationDsRecordDigestPublicKeyArrayOutput
+	ToGetRegistrationDsRecordDigestPublicKeyArrayOutputWithContext(context.Context) GetRegistrationDsRecordDigestPublicKeyArrayOutput
+}
+
+type GetRegistrationDsRecordDigestPublicKeyArray []GetRegistrationDsRecordDigestPublicKeyInput
+
+func (GetRegistrationDsRecordDigestPublicKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordDigestPublicKey)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordDigestPublicKeyArray) ToGetRegistrationDsRecordDigestPublicKeyArrayOutput() GetRegistrationDsRecordDigestPublicKeyArrayOutput {
+	return i.ToGetRegistrationDsRecordDigestPublicKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordDigestPublicKeyArray) ToGetRegistrationDsRecordDigestPublicKeyArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestPublicKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordDigestPublicKeyArrayOutput)
+}
+
+type GetRegistrationDsRecordDigestPublicKeyOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordDigestPublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordDigestPublicKey)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordDigestPublicKeyOutput) ToGetRegistrationDsRecordDigestPublicKeyOutput() GetRegistrationDsRecordDigestPublicKeyOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestPublicKeyOutput) ToGetRegistrationDsRecordDigestPublicKeyOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestPublicKeyOutput {
+	return o
+}
+
+// The public key value.
+func (o GetRegistrationDsRecordDigestPublicKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecordDigestPublicKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetRegistrationDsRecordDigestPublicKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordDigestPublicKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordDigestPublicKey)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordDigestPublicKeyArrayOutput) ToGetRegistrationDsRecordDigestPublicKeyArrayOutput() GetRegistrationDsRecordDigestPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestPublicKeyArrayOutput) ToGetRegistrationDsRecordDigestPublicKeyArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordDigestPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordDigestPublicKeyArrayOutput) Index(i pulumi.IntInput) GetRegistrationDsRecordDigestPublicKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationDsRecordDigestPublicKey {
+		return vs[0].([]GetRegistrationDsRecordDigestPublicKey)[vs[1].(int)]
+	}).(GetRegistrationDsRecordDigestPublicKeyOutput)
+}
+
+type GetRegistrationDsRecordPublicKey struct {
+	// The public key value.
+	Key string `pulumi:"key"`
+}
+
+// GetRegistrationDsRecordPublicKeyInput is an input type that accepts GetRegistrationDsRecordPublicKeyArgs and GetRegistrationDsRecordPublicKeyOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordPublicKeyInput` via:
+//
+//	GetRegistrationDsRecordPublicKeyArgs{...}
+type GetRegistrationDsRecordPublicKeyInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordPublicKeyOutput() GetRegistrationDsRecordPublicKeyOutput
+	ToGetRegistrationDsRecordPublicKeyOutputWithContext(context.Context) GetRegistrationDsRecordPublicKeyOutput
+}
+
+type GetRegistrationDsRecordPublicKeyArgs struct {
+	// The public key value.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetRegistrationDsRecordPublicKeyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordPublicKey)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordPublicKeyArgs) ToGetRegistrationDsRecordPublicKeyOutput() GetRegistrationDsRecordPublicKeyOutput {
+	return i.ToGetRegistrationDsRecordPublicKeyOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordPublicKeyArgs) ToGetRegistrationDsRecordPublicKeyOutputWithContext(ctx context.Context) GetRegistrationDsRecordPublicKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordPublicKeyOutput)
+}
+
+// GetRegistrationDsRecordPublicKeyArrayInput is an input type that accepts GetRegistrationDsRecordPublicKeyArray and GetRegistrationDsRecordPublicKeyArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationDsRecordPublicKeyArrayInput` via:
+//
+//	GetRegistrationDsRecordPublicKeyArray{ GetRegistrationDsRecordPublicKeyArgs{...} }
+type GetRegistrationDsRecordPublicKeyArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationDsRecordPublicKeyArrayOutput() GetRegistrationDsRecordPublicKeyArrayOutput
+	ToGetRegistrationDsRecordPublicKeyArrayOutputWithContext(context.Context) GetRegistrationDsRecordPublicKeyArrayOutput
+}
+
+type GetRegistrationDsRecordPublicKeyArray []GetRegistrationDsRecordPublicKeyInput
+
+func (GetRegistrationDsRecordPublicKeyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordPublicKey)(nil)).Elem()
+}
+
+func (i GetRegistrationDsRecordPublicKeyArray) ToGetRegistrationDsRecordPublicKeyArrayOutput() GetRegistrationDsRecordPublicKeyArrayOutput {
+	return i.ToGetRegistrationDsRecordPublicKeyArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationDsRecordPublicKeyArray) ToGetRegistrationDsRecordPublicKeyArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordPublicKeyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationDsRecordPublicKeyArrayOutput)
+}
+
+type GetRegistrationDsRecordPublicKeyOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordPublicKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationDsRecordPublicKey)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordPublicKeyOutput) ToGetRegistrationDsRecordPublicKeyOutput() GetRegistrationDsRecordPublicKeyOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordPublicKeyOutput) ToGetRegistrationDsRecordPublicKeyOutputWithContext(ctx context.Context) GetRegistrationDsRecordPublicKeyOutput {
+	return o
+}
+
+// The public key value.
+func (o GetRegistrationDsRecordPublicKeyOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationDsRecordPublicKey) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetRegistrationDsRecordPublicKeyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationDsRecordPublicKeyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationDsRecordPublicKey)(nil)).Elem()
+}
+
+func (o GetRegistrationDsRecordPublicKeyArrayOutput) ToGetRegistrationDsRecordPublicKeyArrayOutput() GetRegistrationDsRecordPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordPublicKeyArrayOutput) ToGetRegistrationDsRecordPublicKeyArrayOutputWithContext(ctx context.Context) GetRegistrationDsRecordPublicKeyArrayOutput {
+	return o
+}
+
+func (o GetRegistrationDsRecordPublicKeyArrayOutput) Index(i pulumi.IntInput) GetRegistrationDsRecordPublicKeyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationDsRecordPublicKey {
+		return vs[0].([]GetRegistrationDsRecordPublicKey)[vs[1].(int)]
+	}).(GetRegistrationDsRecordPublicKeyOutput)
+}
+
+type GetRegistrationOwnerContact struct {
+	// Primary address line for the contact.
+	AddressLine1 string `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 string `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City string `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName string `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country string `pulumi:"country"`
+	// Primary email address of the contact.
+	Email string `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt string `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus []GetRegistrationOwnerContactExtensionEus `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs []GetRegistrationOwnerContactExtensionFr `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls []string `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber string `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname string `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang string `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname string `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm string `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber string `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale bool `pulumi:"resale"`
+	// State or region of the contact.
+	State string `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip string `pulumi:"zip"`
+}
+
+// GetRegistrationOwnerContactInput is an input type that accepts GetRegistrationOwnerContactArgs and GetRegistrationOwnerContactOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactInput` via:
+//
+//	GetRegistrationOwnerContactArgs{...}
+type GetRegistrationOwnerContactInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactOutput() GetRegistrationOwnerContactOutput
+	ToGetRegistrationOwnerContactOutputWithContext(context.Context) GetRegistrationOwnerContactOutput
+}
+
+type GetRegistrationOwnerContactArgs struct {
+	// Primary address line for the contact.
+	AddressLine1 pulumi.StringInput `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 pulumi.StringInput `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City pulumi.StringInput `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName pulumi.StringInput `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country pulumi.StringInput `pulumi:"country"`
+	// Primary email address of the contact.
+	Email pulumi.StringInput `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt pulumi.StringInput `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus GetRegistrationOwnerContactExtensionEusArrayInput `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs GetRegistrationOwnerContactExtensionFrArrayInput `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname pulumi.StringInput `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang pulumi.StringInput `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname pulumi.StringInput `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale pulumi.BoolInput `pulumi:"resale"`
+	// State or region of the contact.
+	State pulumi.StringInput `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip pulumi.StringInput `pulumi:"zip"`
+}
+
+func (GetRegistrationOwnerContactArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContact)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactArgs) ToGetRegistrationOwnerContactOutput() GetRegistrationOwnerContactOutput {
+	return i.ToGetRegistrationOwnerContactOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactArgs) ToGetRegistrationOwnerContactOutputWithContext(ctx context.Context) GetRegistrationOwnerContactOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactOutput)
+}
+
+// GetRegistrationOwnerContactArrayInput is an input type that accepts GetRegistrationOwnerContactArray and GetRegistrationOwnerContactArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactArrayInput` via:
+//
+//	GetRegistrationOwnerContactArray{ GetRegistrationOwnerContactArgs{...} }
+type GetRegistrationOwnerContactArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactArrayOutput() GetRegistrationOwnerContactArrayOutput
+	ToGetRegistrationOwnerContactArrayOutputWithContext(context.Context) GetRegistrationOwnerContactArrayOutput
+}
+
+type GetRegistrationOwnerContactArray []GetRegistrationOwnerContactInput
+
+func (GetRegistrationOwnerContactArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContact)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactArray) ToGetRegistrationOwnerContactArrayOutput() GetRegistrationOwnerContactArrayOutput {
+	return i.ToGetRegistrationOwnerContactArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactArray) ToGetRegistrationOwnerContactArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactArrayOutput)
+}
+
+type GetRegistrationOwnerContactOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContact)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactOutput) ToGetRegistrationOwnerContactOutput() GetRegistrationOwnerContactOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactOutput) ToGetRegistrationOwnerContactOutputWithContext(ctx context.Context) GetRegistrationOwnerContactOutput {
+	return o
+}
+
+// Primary address line for the contact.
+func (o GetRegistrationOwnerContactOutput) AddressLine1() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.AddressLine1 }).(pulumi.StringOutput)
+}
+
+// Secondary address line for the contact (optional).
+func (o GetRegistrationOwnerContactOutput) AddressLine2() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.AddressLine2 }).(pulumi.StringOutput)
+}
+
+// City of the contact's address.
+func (o GetRegistrationOwnerContactOutput) City() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.City }).(pulumi.StringOutput)
+}
+
+// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+func (o GetRegistrationOwnerContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Name of the company associated with the contact (if applicable).
+func (o GetRegistrationOwnerContactOutput) CompanyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.CompanyName }).(pulumi.StringOutput)
+}
+
+// Country code of the contact's address (ISO format).
+func (o GetRegistrationOwnerContactOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Country }).(pulumi.StringOutput)
+}
+
+// Primary email address of the contact.
+func (o GetRegistrationOwnerContactOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// Alternative email address for the contact.
+func (o GetRegistrationOwnerContactOutput) EmailAlt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.EmailAlt }).(pulumi.StringOutput)
+}
+
+// Details specific to European domain extensions.
+func (o GetRegistrationOwnerContactOutput) ExtensionEus() GetRegistrationOwnerContactExtensionEusArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) []GetRegistrationOwnerContactExtensionEus { return v.ExtensionEus }).(GetRegistrationOwnerContactExtensionEusArrayOutput)
+}
+
+// Details specific to French domain extensions.
+func (o GetRegistrationOwnerContactOutput) ExtensionFrs() GetRegistrationOwnerContactExtensionFrArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) []GetRegistrationOwnerContactExtensionFr { return v.ExtensionFrs }).(GetRegistrationOwnerContactExtensionFrArrayOutput)
+}
+
+// Extension details specific to Dutch domain registrations.
+func (o GetRegistrationOwnerContactOutput) ExtensionNls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+}
+
+// Fax number for the contact (if available).
+func (o GetRegistrationOwnerContactOutput) FaxNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.FaxNumber }).(pulumi.StringOutput)
+}
+
+// First name of the contact.
+func (o GetRegistrationOwnerContactOutput) Firstname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Firstname }).(pulumi.StringOutput)
+}
+
+// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+func (o GetRegistrationOwnerContactOutput) Lang() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Lang }).(pulumi.StringOutput)
+}
+
+// Last name of the contact.
+func (o GetRegistrationOwnerContactOutput) Lastname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Lastname }).(pulumi.StringOutput)
+}
+
+// Legal form of the contact (e.g., 'individual' or 'organization').
+func (o GetRegistrationOwnerContactOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// Primary phone number of the contact.
+func (o GetRegistrationOwnerContactOutput) PhoneNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+// Indicates if the contact is used for resale purposes.
+func (o GetRegistrationOwnerContactOutput) Resale() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) bool { return v.Resale }).(pulumi.BoolOutput)
+}
+
+// State or region of the contact.
+func (o GetRegistrationOwnerContactOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.State }).(pulumi.StringOutput)
+}
+
+// VAT identification code of the contact, if applicable.
+func (o GetRegistrationOwnerContactOutput) VatIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Indicates whether the contact has opted into WHOIS publishing.
+func (o GetRegistrationOwnerContactOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+// Postal code of the contact's address.
+func (o GetRegistrationOwnerContactOutput) Zip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContact) string { return v.Zip }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContact)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactArrayOutput) ToGetRegistrationOwnerContactArrayOutput() GetRegistrationOwnerContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactArrayOutput) ToGetRegistrationOwnerContactArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContact {
+		return vs[0].([]GetRegistrationOwnerContact)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactOutput)
+}
+
+type GetRegistrationOwnerContactExtensionEus struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship string `pulumi:"europeanCitizenship"`
+}
+
+// GetRegistrationOwnerContactExtensionEusInput is an input type that accepts GetRegistrationOwnerContactExtensionEusArgs and GetRegistrationOwnerContactExtensionEusOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionEusInput` via:
+//
+//	GetRegistrationOwnerContactExtensionEusArgs{...}
+type GetRegistrationOwnerContactExtensionEusInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionEusOutput() GetRegistrationOwnerContactExtensionEusOutput
+	ToGetRegistrationOwnerContactExtensionEusOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionEusOutput
+}
+
+type GetRegistrationOwnerContactExtensionEusArgs struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship pulumi.StringInput `pulumi:"europeanCitizenship"`
+}
+
+func (GetRegistrationOwnerContactExtensionEusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionEusArgs) ToGetRegistrationOwnerContactExtensionEusOutput() GetRegistrationOwnerContactExtensionEusOutput {
+	return i.ToGetRegistrationOwnerContactExtensionEusOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionEusArgs) ToGetRegistrationOwnerContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionEusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionEusOutput)
+}
+
+// GetRegistrationOwnerContactExtensionEusArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionEusArray and GetRegistrationOwnerContactExtensionEusArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionEusArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionEusArray{ GetRegistrationOwnerContactExtensionEusArgs{...} }
+type GetRegistrationOwnerContactExtensionEusArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionEusArrayOutput() GetRegistrationOwnerContactExtensionEusArrayOutput
+	ToGetRegistrationOwnerContactExtensionEusArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionEusArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionEusArray []GetRegistrationOwnerContactExtensionEusInput
+
+func (GetRegistrationOwnerContactExtensionEusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionEusArray) ToGetRegistrationOwnerContactExtensionEusArrayOutput() GetRegistrationOwnerContactExtensionEusArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionEusArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionEusArray) ToGetRegistrationOwnerContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionEusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionEusArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionEusOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionEusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionEusOutput) ToGetRegistrationOwnerContactExtensionEusOutput() GetRegistrationOwnerContactExtensionEusOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionEusOutput) ToGetRegistrationOwnerContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionEusOutput {
+	return o
+}
+
+// Indicates the European citizenship of the contact.
+func (o GetRegistrationOwnerContactExtensionEusOutput) EuropeanCitizenship() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionEus) string { return v.EuropeanCitizenship }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactExtensionEusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionEusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionEusArrayOutput) ToGetRegistrationOwnerContactExtensionEusArrayOutput() GetRegistrationOwnerContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionEusArrayOutput) ToGetRegistrationOwnerContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionEusArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionEusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionEus {
+		return vs[0].([]GetRegistrationOwnerContactExtensionEus)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionEusOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFr struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos []GetRegistrationOwnerContactExtensionFrAssociationInfo `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos []GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos []GetRegistrationOwnerContactExtensionFrDunsInfo `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos []GetRegistrationOwnerContactExtensionFrIndividualInfo `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode string `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos []GetRegistrationOwnerContactExtensionFrTrademarkInfo `pulumi:"trademarkInfos"`
+}
+
+// GetRegistrationOwnerContactExtensionFrInput is an input type that accepts GetRegistrationOwnerContactExtensionFrArgs and GetRegistrationOwnerContactExtensionFrOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrArgs{...}
+type GetRegistrationOwnerContactExtensionFrInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrOutput() GetRegistrationOwnerContactExtensionFrOutput
+	ToGetRegistrationOwnerContactExtensionFrOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrArgs struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos GetRegistrationOwnerContactExtensionFrAssociationInfoArrayInput `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayInput `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos GetRegistrationOwnerContactExtensionFrDunsInfoArrayInput `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput `pulumi:"trademarkInfos"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrArgs) ToGetRegistrationOwnerContactExtensionFrOutput() GetRegistrationOwnerContactExtensionFrOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrArgs) ToGetRegistrationOwnerContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrArray and GetRegistrationOwnerContactExtensionFrArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrArray{ GetRegistrationOwnerContactExtensionFrArgs{...} }
+type GetRegistrationOwnerContactExtensionFrArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrArrayOutput() GetRegistrationOwnerContactExtensionFrArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrArray []GetRegistrationOwnerContactExtensionFrInput
+
+func (GetRegistrationOwnerContactExtensionFrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrArray) ToGetRegistrationOwnerContactExtensionFrArrayOutput() GetRegistrationOwnerContactExtensionFrArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrArray) ToGetRegistrationOwnerContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrOutput) ToGetRegistrationOwnerContactExtensionFrOutput() GetRegistrationOwnerContactExtensionFrOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrOutput) ToGetRegistrationOwnerContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrOutput {
+	return o
+}
+
+// Association-specific information for the domain (French extension).
+func (o GetRegistrationOwnerContactExtensionFrOutput) AssociationInfos() GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) []GetRegistrationOwnerContactExtensionFrAssociationInfo {
+		return v.AssociationInfos
+	}).(GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput)
+}
+
+// AFNIC authorization information for the contact (French extension).
+func (o GetRegistrationOwnerContactExtensionFrOutput) CodeAuthAfnicInfos() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) []GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo {
+		return v.CodeAuthAfnicInfos
+	}).(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+// DUNS information for the domain owner (specific to French domains).
+func (o GetRegistrationOwnerContactExtensionFrOutput) DunsInfos() GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) []GetRegistrationOwnerContactExtensionFrDunsInfo {
+		return v.DunsInfos
+	}).(GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput)
+}
+
+// Information about the individual registration for French domains.
+func (o GetRegistrationOwnerContactExtensionFrOutput) IndividualInfos() GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) []GetRegistrationOwnerContactExtensionFrIndividualInfo {
+		return v.IndividualInfos
+	}).(GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput)
+}
+
+// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+func (o GetRegistrationOwnerContactExtensionFrOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Trademark-related information for the domain (French extension).
+func (o GetRegistrationOwnerContactExtensionFrOutput) TrademarkInfos() GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFr) []GetRegistrationOwnerContactExtensionFrTrademarkInfo {
+		return v.TrademarkInfos
+	}).(GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrArrayOutput) ToGetRegistrationOwnerContactExtensionFrArrayOutput() GetRegistrationOwnerContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrArrayOutput) ToGetRegistrationOwnerContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFr {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFr)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrAssociationInfo struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo string `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage int `pulumi:"publicationJoPage"`
+}
+
+// GetRegistrationOwnerContactExtensionFrAssociationInfoInput is an input type that accepts GetRegistrationOwnerContactExtensionFrAssociationInfoArgs and GetRegistrationOwnerContactExtensionFrAssociationInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrAssociationInfoInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrAssociationInfoArgs{...}
+type GetRegistrationOwnerContactExtensionFrAssociationInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoOutput
+	ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrAssociationInfoArgs struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo pulumi.StringInput `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage pulumi.IntInput `pulumi:"publicationJoPage"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrAssociationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrAssociationInfoArgs) ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrAssociationInfoArgs) ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrAssociationInfoOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrAssociationInfoArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrAssociationInfoArray and GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrAssociationInfoArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrAssociationInfoArray{ GetRegistrationOwnerContactExtensionFrAssociationInfoArgs{...} }
+type GetRegistrationOwnerContactExtensionFrAssociationInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrAssociationInfoArray []GetRegistrationOwnerContactExtensionFrAssociationInfoInput
+
+func (GetRegistrationOwnerContactExtensionFrAssociationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrAssociationInfoArray) ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrAssociationInfoArray) ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrAssociationInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrAssociationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoOutput) ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoOutput) ToGetRegistrationOwnerContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+// Publication date in the Official Journal (RFC3339 format) for association information.
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoOutput) PublicationJo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrAssociationInfo) string { return v.PublicationJo }).(pulumi.StringOutput)
+}
+
+// Page number of the publication in the Official Journal for association information.
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoOutput) PublicationJoPage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrAssociationInfo) int { return v.PublicationJoPage }).(pulumi.IntOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput() GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrAssociationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFrAssociationInfo {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFrAssociationInfo)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrAssociationInfoOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic string `pulumi:"codeAuthAfnic"`
+}
+
+// GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoInput is an input type that accepts GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs and GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs{...}
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput
+	ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic pulumi.StringInput `pulumi:"codeAuthAfnic"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray and GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray{ GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs{...} }
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray []GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoInput
+
+func (GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+// AFNIC authorization code for the contact (specific to French domains).
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput) CodeAuthAfnic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo) string { return v.CodeAuthAfnic }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrDunsInfo struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId string `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId string `pulumi:"localId"`
+}
+
+// GetRegistrationOwnerContactExtensionFrDunsInfoInput is an input type that accepts GetRegistrationOwnerContactExtensionFrDunsInfoArgs and GetRegistrationOwnerContactExtensionFrDunsInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrDunsInfoInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrDunsInfoArgs{...}
+type GetRegistrationOwnerContactExtensionFrDunsInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrDunsInfoOutput() GetRegistrationOwnerContactExtensionFrDunsInfoOutput
+	ToGetRegistrationOwnerContactExtensionFrDunsInfoOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrDunsInfoArgs struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId pulumi.StringInput `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId pulumi.StringInput `pulumi:"localId"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrDunsInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrDunsInfoArgs) ToGetRegistrationOwnerContactExtensionFrDunsInfoOutput() GetRegistrationOwnerContactExtensionFrDunsInfoOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrDunsInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrDunsInfoArgs) ToGetRegistrationOwnerContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrDunsInfoOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrDunsInfoArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrDunsInfoArray and GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrDunsInfoArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrDunsInfoArray{ GetRegistrationOwnerContactExtensionFrDunsInfoArgs{...} }
+type GetRegistrationOwnerContactExtensionFrDunsInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput() GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrDunsInfoArray []GetRegistrationOwnerContactExtensionFrDunsInfoInput
+
+func (GetRegistrationOwnerContactExtensionFrDunsInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrDunsInfoArray) ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput() GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrDunsInfoArray) ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrDunsInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrDunsInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoOutput) ToGetRegistrationOwnerContactExtensionFrDunsInfoOutput() GetRegistrationOwnerContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoOutput) ToGetRegistrationOwnerContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+// DUNS ID associated with the domain owner (for French domains).
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoOutput) DunsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrDunsInfo) string { return v.DunsId }).(pulumi.StringOutput)
+}
+
+// Local identifier of the domain owner (for French domains).
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoOutput) LocalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrDunsInfo) string { return v.LocalId }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput() GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrDunsInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFrDunsInfo {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFrDunsInfo)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrDunsInfoOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrIndividualInfo struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+}
+
+// GetRegistrationOwnerContactExtensionFrIndividualInfoInput is an input type that accepts GetRegistrationOwnerContactExtensionFrIndividualInfoArgs and GetRegistrationOwnerContactExtensionFrIndividualInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrIndividualInfoInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrIndividualInfoArgs{...}
+type GetRegistrationOwnerContactExtensionFrIndividualInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoOutput
+	ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrIndividualInfoArgs struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrIndividualInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrIndividualInfoArgs) ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrIndividualInfoArgs) ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrIndividualInfoOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrIndividualInfoArray and GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrIndividualInfoArray{ GetRegistrationOwnerContactExtensionFrIndividualInfoArgs{...} }
+type GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrIndividualInfoArray []GetRegistrationOwnerContactExtensionFrIndividualInfoInput
+
+func (GetRegistrationOwnerContactExtensionFrIndividualInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrIndividualInfoArray) ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrIndividualInfoArray) ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrIndividualInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrIndividualInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoOutput) ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoOutput) ToGetRegistrationOwnerContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+// Whether the individual contact has opted into WHOIS publishing.
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrIndividualInfo) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput() GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrIndividualInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFrIndividualInfo {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFrIndividualInfo)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrIndividualInfoOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrTrademarkInfo struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi string `pulumi:"trademarkInpi"`
+}
+
+// GetRegistrationOwnerContactExtensionFrTrademarkInfoInput is an input type that accepts GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs and GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrTrademarkInfoInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs{...}
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput
+	ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi pulumi.StringInput `pulumi:"trademarkInpi"`
+}
+
+func (GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput)
+}
+
+// GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput is an input type that accepts GetRegistrationOwnerContactExtensionFrTrademarkInfoArray and GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput` via:
+//
+//	GetRegistrationOwnerContactExtensionFrTrademarkInfoArray{ GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs{...} }
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput
+	ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput
+}
+
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoArray []GetRegistrationOwnerContactExtensionFrTrademarkInfoInput
+
+func (GetRegistrationOwnerContactExtensionFrTrademarkInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationOwnerContactExtensionFrTrademarkInfoArray) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput {
+	return i.ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationOwnerContactExtensionFrTrademarkInfoArray) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+// Trademark information from INPI (French extension).
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput) TrademarkInpi() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationOwnerContactExtensionFrTrademarkInfo) string { return v.TrademarkInpi }).(pulumi.StringOutput)
+}
+
+type GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationOwnerContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationOwnerContactExtensionFrTrademarkInfo {
+		return vs[0].([]GetRegistrationOwnerContactExtensionFrTrademarkInfo)[vs[1].(int)]
+	}).(GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput)
+}
+
+type GetRegistrationTechnicalContact struct {
+	// Primary address line for the contact.
+	AddressLine1 string `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 string `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City string `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode string `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName string `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country string `pulumi:"country"`
+	// Primary email address of the contact.
+	Email string `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt string `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus []GetRegistrationTechnicalContactExtensionEus `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs []GetRegistrationTechnicalContactExtensionFr `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls []string `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber string `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname string `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang string `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname string `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm string `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber string `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale bool `pulumi:"resale"`
+	// State or region of the contact.
+	State string `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode string `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip string `pulumi:"zip"`
+}
+
+// GetRegistrationTechnicalContactInput is an input type that accepts GetRegistrationTechnicalContactArgs and GetRegistrationTechnicalContactOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactInput` via:
+//
+//	GetRegistrationTechnicalContactArgs{...}
+type GetRegistrationTechnicalContactInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactOutput() GetRegistrationTechnicalContactOutput
+	ToGetRegistrationTechnicalContactOutputWithContext(context.Context) GetRegistrationTechnicalContactOutput
+}
+
+type GetRegistrationTechnicalContactArgs struct {
+	// Primary address line for the contact.
+	AddressLine1 pulumi.StringInput `pulumi:"addressLine1"`
+	// Secondary address line for the contact (optional).
+	AddressLine2 pulumi.StringInput `pulumi:"addressLine2"`
+	// City of the contact's address.
+	City pulumi.StringInput `pulumi:"city"`
+	// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+	CompanyIdentificationCode pulumi.StringInput `pulumi:"companyIdentificationCode"`
+	// Name of the company associated with the contact (if applicable).
+	CompanyName pulumi.StringInput `pulumi:"companyName"`
+	// Country code of the contact's address (ISO format).
+	Country pulumi.StringInput `pulumi:"country"`
+	// Primary email address of the contact.
+	Email pulumi.StringInput `pulumi:"email"`
+	// Alternative email address for the contact.
+	EmailAlt pulumi.StringInput `pulumi:"emailAlt"`
+	// Details specific to European domain extensions.
+	ExtensionEus GetRegistrationTechnicalContactExtensionEusArrayInput `pulumi:"extensionEus"`
+	// Details specific to French domain extensions.
+	ExtensionFrs GetRegistrationTechnicalContactExtensionFrArrayInput `pulumi:"extensionFrs"`
+	// Extension details specific to Dutch domain registrations.
+	ExtensionNls pulumi.StringArrayInput `pulumi:"extensionNls"`
+	// Fax number for the contact (if available).
+	FaxNumber pulumi.StringInput `pulumi:"faxNumber"`
+	// First name of the contact.
+	Firstname pulumi.StringInput `pulumi:"firstname"`
+	// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+	Lang pulumi.StringInput `pulumi:"lang"`
+	// Last name of the contact.
+	Lastname pulumi.StringInput `pulumi:"lastname"`
+	// Legal form of the contact (e.g., 'individual' or 'organization').
+	LegalForm pulumi.StringInput `pulumi:"legalForm"`
+	// Primary phone number of the contact.
+	PhoneNumber pulumi.StringInput `pulumi:"phoneNumber"`
+	// Indicates if the contact is used for resale purposes.
+	Resale pulumi.BoolInput `pulumi:"resale"`
+	// State or region of the contact.
+	State pulumi.StringInput `pulumi:"state"`
+	// VAT identification code of the contact, if applicable.
+	VatIdentificationCode pulumi.StringInput `pulumi:"vatIdentificationCode"`
+	// Indicates whether the contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+	// Postal code of the contact's address.
+	Zip pulumi.StringInput `pulumi:"zip"`
+}
+
+func (GetRegistrationTechnicalContactArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContact)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactArgs) ToGetRegistrationTechnicalContactOutput() GetRegistrationTechnicalContactOutput {
+	return i.ToGetRegistrationTechnicalContactOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactArgs) ToGetRegistrationTechnicalContactOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactOutput)
+}
+
+// GetRegistrationTechnicalContactArrayInput is an input type that accepts GetRegistrationTechnicalContactArray and GetRegistrationTechnicalContactArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactArrayInput` via:
+//
+//	GetRegistrationTechnicalContactArray{ GetRegistrationTechnicalContactArgs{...} }
+type GetRegistrationTechnicalContactArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactArrayOutput() GetRegistrationTechnicalContactArrayOutput
+	ToGetRegistrationTechnicalContactArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactArrayOutput
+}
+
+type GetRegistrationTechnicalContactArray []GetRegistrationTechnicalContactInput
+
+func (GetRegistrationTechnicalContactArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContact)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactArray) ToGetRegistrationTechnicalContactArrayOutput() GetRegistrationTechnicalContactArrayOutput {
+	return i.ToGetRegistrationTechnicalContactArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactArray) ToGetRegistrationTechnicalContactArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactArrayOutput)
+}
+
+type GetRegistrationTechnicalContactOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContact)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactOutput) ToGetRegistrationTechnicalContactOutput() GetRegistrationTechnicalContactOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactOutput) ToGetRegistrationTechnicalContactOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactOutput {
+	return o
+}
+
+// Primary address line for the contact.
+func (o GetRegistrationTechnicalContactOutput) AddressLine1() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.AddressLine1 }).(pulumi.StringOutput)
+}
+
+// Secondary address line for the contact (optional).
+func (o GetRegistrationTechnicalContactOutput) AddressLine2() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.AddressLine2 }).(pulumi.StringOutput)
+}
+
+// City of the contact's address.
+func (o GetRegistrationTechnicalContactOutput) City() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.City }).(pulumi.StringOutput)
+}
+
+// Company identification code (e.g., SIREN/SIRET in France) for the contact.
+func (o GetRegistrationTechnicalContactOutput) CompanyIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.CompanyIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Name of the company associated with the contact (if applicable).
+func (o GetRegistrationTechnicalContactOutput) CompanyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.CompanyName }).(pulumi.StringOutput)
+}
+
+// Country code of the contact's address (ISO format).
+func (o GetRegistrationTechnicalContactOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Country }).(pulumi.StringOutput)
+}
+
+// Primary email address of the contact.
+func (o GetRegistrationTechnicalContactOutput) Email() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Email }).(pulumi.StringOutput)
+}
+
+// Alternative email address for the contact.
+func (o GetRegistrationTechnicalContactOutput) EmailAlt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.EmailAlt }).(pulumi.StringOutput)
+}
+
+// Details specific to European domain extensions.
+func (o GetRegistrationTechnicalContactOutput) ExtensionEus() GetRegistrationTechnicalContactExtensionEusArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) []GetRegistrationTechnicalContactExtensionEus {
+		return v.ExtensionEus
+	}).(GetRegistrationTechnicalContactExtensionEusArrayOutput)
+}
+
+// Details specific to French domain extensions.
+func (o GetRegistrationTechnicalContactOutput) ExtensionFrs() GetRegistrationTechnicalContactExtensionFrArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) []GetRegistrationTechnicalContactExtensionFr {
+		return v.ExtensionFrs
+	}).(GetRegistrationTechnicalContactExtensionFrArrayOutput)
+}
+
+// Extension details specific to Dutch domain registrations.
+func (o GetRegistrationTechnicalContactOutput) ExtensionNls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) []string { return v.ExtensionNls }).(pulumi.StringArrayOutput)
+}
+
+// Fax number for the contact (if available).
+func (o GetRegistrationTechnicalContactOutput) FaxNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.FaxNumber }).(pulumi.StringOutput)
+}
+
+// First name of the contact.
+func (o GetRegistrationTechnicalContactOutput) Firstname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Firstname }).(pulumi.StringOutput)
+}
+
+// Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+func (o GetRegistrationTechnicalContactOutput) Lang() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Lang }).(pulumi.StringOutput)
+}
+
+// Last name of the contact.
+func (o GetRegistrationTechnicalContactOutput) Lastname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Lastname }).(pulumi.StringOutput)
+}
+
+// Legal form of the contact (e.g., 'individual' or 'organization').
+func (o GetRegistrationTechnicalContactOutput) LegalForm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.LegalForm }).(pulumi.StringOutput)
+}
+
+// Primary phone number of the contact.
+func (o GetRegistrationTechnicalContactOutput) PhoneNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.PhoneNumber }).(pulumi.StringOutput)
+}
+
+// Indicates if the contact is used for resale purposes.
+func (o GetRegistrationTechnicalContactOutput) Resale() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) bool { return v.Resale }).(pulumi.BoolOutput)
+}
+
+// State or region of the contact.
+func (o GetRegistrationTechnicalContactOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.State }).(pulumi.StringOutput)
+}
+
+// VAT identification code of the contact, if applicable.
+func (o GetRegistrationTechnicalContactOutput) VatIdentificationCode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.VatIdentificationCode }).(pulumi.StringOutput)
+}
+
+// Indicates whether the contact has opted into WHOIS publishing.
+func (o GetRegistrationTechnicalContactOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+// Postal code of the contact's address.
+func (o GetRegistrationTechnicalContactOutput) Zip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContact) string { return v.Zip }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContact)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactArrayOutput) ToGetRegistrationTechnicalContactArrayOutput() GetRegistrationTechnicalContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactArrayOutput) ToGetRegistrationTechnicalContactArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContact {
+		return vs[0].([]GetRegistrationTechnicalContact)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionEus struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship string `pulumi:"europeanCitizenship"`
+}
+
+// GetRegistrationTechnicalContactExtensionEusInput is an input type that accepts GetRegistrationTechnicalContactExtensionEusArgs and GetRegistrationTechnicalContactExtensionEusOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionEusInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionEusArgs{...}
+type GetRegistrationTechnicalContactExtensionEusInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionEusOutput() GetRegistrationTechnicalContactExtensionEusOutput
+	ToGetRegistrationTechnicalContactExtensionEusOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionEusOutput
+}
+
+type GetRegistrationTechnicalContactExtensionEusArgs struct {
+	// Indicates the European citizenship of the contact.
+	EuropeanCitizenship pulumi.StringInput `pulumi:"europeanCitizenship"`
+}
+
+func (GetRegistrationTechnicalContactExtensionEusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionEusArgs) ToGetRegistrationTechnicalContactExtensionEusOutput() GetRegistrationTechnicalContactExtensionEusOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionEusOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionEusArgs) ToGetRegistrationTechnicalContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionEusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionEusOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionEusArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionEusArray and GetRegistrationTechnicalContactExtensionEusArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionEusArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionEusArray{ GetRegistrationTechnicalContactExtensionEusArgs{...} }
+type GetRegistrationTechnicalContactExtensionEusArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionEusArrayOutput() GetRegistrationTechnicalContactExtensionEusArrayOutput
+	ToGetRegistrationTechnicalContactExtensionEusArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionEusArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionEusArray []GetRegistrationTechnicalContactExtensionEusInput
+
+func (GetRegistrationTechnicalContactExtensionEusArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionEus)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionEusArray) ToGetRegistrationTechnicalContactExtensionEusArrayOutput() GetRegistrationTechnicalContactExtensionEusArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionEusArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionEusArray) ToGetRegistrationTechnicalContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionEusArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionEusArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionEusOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionEusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionEusOutput) ToGetRegistrationTechnicalContactExtensionEusOutput() GetRegistrationTechnicalContactExtensionEusOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionEusOutput) ToGetRegistrationTechnicalContactExtensionEusOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionEusOutput {
+	return o
+}
+
+// Indicates the European citizenship of the contact.
+func (o GetRegistrationTechnicalContactExtensionEusOutput) EuropeanCitizenship() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionEus) string { return v.EuropeanCitizenship }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionEusArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionEusArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionEus)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionEusArrayOutput) ToGetRegistrationTechnicalContactExtensionEusArrayOutput() GetRegistrationTechnicalContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionEusArrayOutput) ToGetRegistrationTechnicalContactExtensionEusArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionEusArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionEusArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionEusOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionEus {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionEus)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionEusOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFr struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos []GetRegistrationTechnicalContactExtensionFrAssociationInfo `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos []GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos []GetRegistrationTechnicalContactExtensionFrDunsInfo `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos []GetRegistrationTechnicalContactExtensionFrIndividualInfo `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode string `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos []GetRegistrationTechnicalContactExtensionFrTrademarkInfo `pulumi:"trademarkInfos"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrArgs and GetRegistrationTechnicalContactExtensionFrOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrArgs{...}
+type GetRegistrationTechnicalContactExtensionFrInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrOutput() GetRegistrationTechnicalContactExtensionFrOutput
+	ToGetRegistrationTechnicalContactExtensionFrOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrArgs struct {
+	// Association-specific information for the domain (French extension).
+	AssociationInfos GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayInput `pulumi:"associationInfos"`
+	// AFNIC authorization information for the contact (French extension).
+	CodeAuthAfnicInfos GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayInput `pulumi:"codeAuthAfnicInfos"`
+	// DUNS information for the domain owner (specific to French domains).
+	DunsInfos GetRegistrationTechnicalContactExtensionFrDunsInfoArrayInput `pulumi:"dunsInfos"`
+	// Information about the individual registration for French domains.
+	IndividualInfos GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput `pulumi:"individualInfos"`
+	// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// Trademark-related information for the domain (French extension).
+	TrademarkInfos GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput `pulumi:"trademarkInfos"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrArgs) ToGetRegistrationTechnicalContactExtensionFrOutput() GetRegistrationTechnicalContactExtensionFrOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrArgs) ToGetRegistrationTechnicalContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrArray and GetRegistrationTechnicalContactExtensionFrArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrArray{ GetRegistrationTechnicalContactExtensionFrArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrArrayOutput() GetRegistrationTechnicalContactExtensionFrArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrArray []GetRegistrationTechnicalContactExtensionFrInput
+
+func (GetRegistrationTechnicalContactExtensionFrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFr)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrArray) ToGetRegistrationTechnicalContactExtensionFrArrayOutput() GetRegistrationTechnicalContactExtensionFrArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrArray) ToGetRegistrationTechnicalContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrOutput) ToGetRegistrationTechnicalContactExtensionFrOutput() GetRegistrationTechnicalContactExtensionFrOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrOutput) ToGetRegistrationTechnicalContactExtensionFrOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrOutput {
+	return o
+}
+
+// Association-specific information for the domain (French extension).
+func (o GetRegistrationTechnicalContactExtensionFrOutput) AssociationInfos() GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) []GetRegistrationTechnicalContactExtensionFrAssociationInfo {
+		return v.AssociationInfos
+	}).(GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput)
+}
+
+// AFNIC authorization information for the contact (French extension).
+func (o GetRegistrationTechnicalContactExtensionFrOutput) CodeAuthAfnicInfos() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) []GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo {
+		return v.CodeAuthAfnicInfos
+	}).(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+// DUNS information for the domain owner (specific to French domains).
+func (o GetRegistrationTechnicalContactExtensionFrOutput) DunsInfos() GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) []GetRegistrationTechnicalContactExtensionFrDunsInfo {
+		return v.DunsInfos
+	}).(GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput)
+}
+
+// Information about the individual registration for French domains.
+func (o GetRegistrationTechnicalContactExtensionFrOutput) IndividualInfos() GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) []GetRegistrationTechnicalContactExtensionFrIndividualInfo {
+		return v.IndividualInfos
+	}).(GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput)
+}
+
+// Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+func (o GetRegistrationTechnicalContactExtensionFrOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Trademark-related information for the domain (French extension).
+func (o GetRegistrationTechnicalContactExtensionFrOutput) TrademarkInfos() GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFr) []GetRegistrationTechnicalContactExtensionFrTrademarkInfo {
+		return v.TrademarkInfos
+	}).(GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFr)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrArrayOutput) ToGetRegistrationTechnicalContactExtensionFrArrayOutput() GetRegistrationTechnicalContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrArrayOutput) ToGetRegistrationTechnicalContactExtensionFrArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFr {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFr)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrAssociationInfo struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo string `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage int `pulumi:"publicationJoPage"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrAssociationInfoInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs and GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrAssociationInfoInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs{...}
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput
+	ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs struct {
+	// Publication date in the Official Journal (RFC3339 format) for association information.
+	PublicationJo pulumi.StringInput `pulumi:"publicationJo"`
+	// Page number of the publication in the Official Journal for association information.
+	PublicationJoPage pulumi.IntInput `pulumi:"publicationJoPage"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrAssociationInfoArray and GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrAssociationInfoArray{ GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoArray []GetRegistrationTechnicalContactExtensionFrAssociationInfoInput
+
+func (GetRegistrationTechnicalContactExtensionFrAssociationInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrAssociationInfoArray) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrAssociationInfoArray) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput {
+	return o
+}
+
+// Publication date in the Official Journal (RFC3339 format) for association information.
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput) PublicationJo() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrAssociationInfo) string { return v.PublicationJo }).(pulumi.StringOutput)
+}
+
+// Page number of the publication in the Official Journal for association information.
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput) PublicationJoPage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrAssociationInfo) int { return v.PublicationJoPage }).(pulumi.IntOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrAssociationInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFrAssociationInfo {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFrAssociationInfo)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic string `pulumi:"codeAuthAfnic"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs and GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs{...}
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput
+	ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs struct {
+	// AFNIC authorization code for the contact (specific to French domains).
+	CodeAuthAfnic pulumi.StringInput `pulumi:"codeAuthAfnic"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray and GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray{ GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray []GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoInput
+
+func (GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput {
+	return o
+}
+
+// AFNIC authorization code for the contact (specific to French domains).
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput) CodeAuthAfnic() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo) string { return v.CodeAuthAfnic }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrDunsInfo struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId string `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId string `pulumi:"localId"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrDunsInfoInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrDunsInfoArgs and GetRegistrationTechnicalContactExtensionFrDunsInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrDunsInfoInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrDunsInfoArgs{...}
+type GetRegistrationTechnicalContactExtensionFrDunsInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoOutput
+	ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrDunsInfoArgs struct {
+	// DUNS ID associated with the domain owner (for French domains).
+	DunsId pulumi.StringInput `pulumi:"dunsId"`
+	// Local identifier of the domain owner (for French domains).
+	LocalId pulumi.StringInput `pulumi:"localId"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrDunsInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrDunsInfoArgs) ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrDunsInfoArgs) ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrDunsInfoOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrDunsInfoArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrDunsInfoArray and GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrDunsInfoArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrDunsInfoArray{ GetRegistrationTechnicalContactExtensionFrDunsInfoArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrDunsInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrDunsInfoArray []GetRegistrationTechnicalContactExtensionFrDunsInfoInput
+
+func (GetRegistrationTechnicalContactExtensionFrDunsInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrDunsInfoArray) ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrDunsInfoArray) ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrDunsInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrDunsInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoOutput) ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoOutput) ToGetRegistrationTechnicalContactExtensionFrDunsInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoOutput {
+	return o
+}
+
+// DUNS ID associated with the domain owner (for French domains).
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoOutput) DunsId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrDunsInfo) string { return v.DunsId }).(pulumi.StringOutput)
+}
+
+// Local identifier of the domain owner (for French domains).
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoOutput) LocalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrDunsInfo) string { return v.LocalId }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrDunsInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrDunsInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFrDunsInfo {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFrDunsInfo)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrDunsInfoOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrIndividualInfo struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn bool `pulumi:"whoisOptIn"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrIndividualInfoInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs and GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrIndividualInfoInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs{...}
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput
+	ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs struct {
+	// Whether the individual contact has opted into WHOIS publishing.
+	WhoisOptIn pulumi.BoolInput `pulumi:"whoisOptIn"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrIndividualInfoArray and GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrIndividualInfoArray{ GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoArray []GetRegistrationTechnicalContactExtensionFrIndividualInfoInput
+
+func (GetRegistrationTechnicalContactExtensionFrIndividualInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrIndividualInfoArray) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrIndividualInfoArray) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput {
+	return o
+}
+
+// Whether the individual contact has opted into WHOIS publishing.
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput) WhoisOptIn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrIndividualInfo) bool { return v.WhoisOptIn }).(pulumi.BoolOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrIndividualInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFrIndividualInfo {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFrIndividualInfo)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfo struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi string `pulumi:"trademarkInpi"`
+}
+
+// GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs and GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs{...}
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput
+	ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs struct {
+	// Trademark information from INPI (French extension).
+	TrademarkInpi pulumi.StringInput `pulumi:"trademarkInpi"`
+}
+
+func (GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput)
+}
+
+// GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput is an input type that accepts GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray and GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput values.
+// You can construct a concrete instance of `GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput` via:
+//
+//	GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray{ GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs{...} }
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput interface {
+	pulumi.Input
+
+	ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput
+	ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput
+}
+
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray []GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput
+
+func (GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput {
+	return i.ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput {
+	return o
+}
+
+// Trademark information from INPI (French extension).
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput) TrademarkInpi() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegistrationTechnicalContactExtensionFrTrademarkInfo) string { return v.TrademarkInpi }).(pulumi.StringOutput)
+}
+
+type GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegistrationTechnicalContactExtensionFrTrademarkInfo)(nil)).Elem()
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput() GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput) ToGetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutputWithContext(ctx context.Context) GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput {
+	return o
+}
+
+func (o GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput) Index(i pulumi.IntInput) GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegistrationTechnicalContactExtensionFrTrademarkInfo {
+		return vs[0].([]GetRegistrationTechnicalContactExtensionFrTrademarkInfo)[vs[1].(int)]
+	}).(GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordGeoIpInput)(nil)).Elem(), RecordGeoIpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RecordGeoIpPtrInput)(nil)).Elem(), RecordGeoIpArgs{})
@@ -6175,6 +9732,62 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordViewArrayInput)(nil)).Elem(), GetRecordViewArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordWeightedInput)(nil)).Elem(), GetRecordWeightedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRecordWeightedArrayInput)(nil)).Elem(), GetRecordWeightedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactInput)(nil)).Elem(), GetRegistrationAdministrativeContactArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionEusInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionEusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionEusArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionEusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrAssociationInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrAssociationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrDunsInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrDunsInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrIndividualInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrIndividualInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordInput)(nil)).Elem(), GetRegistrationDsRecordArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordArrayInput)(nil)).Elem(), GetRegistrationDsRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordDigestInput)(nil)).Elem(), GetRegistrationDsRecordDigestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordDigestArrayInput)(nil)).Elem(), GetRegistrationDsRecordDigestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordDigestPublicKeyInput)(nil)).Elem(), GetRegistrationDsRecordDigestPublicKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordDigestPublicKeyArrayInput)(nil)).Elem(), GetRegistrationDsRecordDigestPublicKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordPublicKeyInput)(nil)).Elem(), GetRegistrationDsRecordPublicKeyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationDsRecordPublicKeyArrayInput)(nil)).Elem(), GetRegistrationDsRecordPublicKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactInput)(nil)).Elem(), GetRegistrationOwnerContactArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactArrayInput)(nil)).Elem(), GetRegistrationOwnerContactArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionEusInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionEusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionEusArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionEusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrAssociationInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrAssociationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrAssociationInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrAssociationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrDunsInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrDunsInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrDunsInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrDunsInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrIndividualInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrIndividualInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrIndividualInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationOwnerContactExtensionFrTrademarkInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactInput)(nil)).Elem(), GetRegistrationTechnicalContactArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionEusInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionEusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionEusArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionEusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrAssociationInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrAssociationInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrDunsInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrDunsInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrDunsInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrDunsInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrIndividualInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrIndividualInfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfoInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayInput)(nil)).Elem(), GetRegistrationTechnicalContactExtensionFrTrademarkInfoArray{})
 	pulumi.RegisterOutputType(RecordGeoIpOutput{})
 	pulumi.RegisterOutputType(RecordGeoIpPtrOutput{})
 	pulumi.RegisterOutputType(RecordGeoIpMatchOutput{})
@@ -6251,4 +9864,60 @@ func init() {
 	pulumi.RegisterOutputType(GetRecordViewArrayOutput{})
 	pulumi.RegisterOutputType(GetRecordWeightedOutput{})
 	pulumi.RegisterOutputType(GetRecordWeightedArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionEusOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionEusArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrAssociationInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrAssociationInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrDunsInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrDunsInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrIndividualInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrIndividualInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordDigestOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordDigestArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordDigestPublicKeyOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordDigestPublicKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordPublicKeyOutput{})
+	pulumi.RegisterOutputType(GetRegistrationDsRecordPublicKeyArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionEusOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionEusArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrAssociationInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrAssociationInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrDunsInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrDunsInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrIndividualInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrIndividualInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrTrademarkInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationOwnerContactExtensionFrTrademarkInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionEusOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionEusArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrAssociationInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrAssociationInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrDunsInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrDunsInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrIndividualInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrIndividualInfoArrayOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrTrademarkInfoOutput{})
+	pulumi.RegisterOutputType(GetRegistrationTechnicalContactExtensionFrTrademarkInfoArrayOutput{})
 }

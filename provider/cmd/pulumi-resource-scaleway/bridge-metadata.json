@@ -240,6 +240,21 @@
                     }
                 }
             },
+            "scaleway_cockpit_exporter": {
+                "current": "scaleway:observability/exporter:Exporter",
+                "majorVersion": 1,
+                "fields": {
+                    "datadog_destination": {
+                        "maxItemsOne": true
+                    },
+                    "exported_products": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_destination": {
+                        "maxItemsOne": true
+                    }
+                }
+            },
             "scaleway_cockpit_grafana_user": {
                 "current": "scaleway:observability/grafanaUser:GrafanaUser",
                 "past": [
@@ -994,6 +1009,14 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_iam_saml": {
+                "current": "scaleway:iam/saml:Saml",
+                "majorVersion": 1
+            },
+            "scaleway_iam_saml_certificate": {
+                "current": "scaleway:iam/samlCertificate:SamlCertificate",
+                "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
                 "current": "scaleway:iam/sshKey:SshKey",
@@ -2076,6 +2099,22 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_object_bucket_server_side_encryption_configuration": {
+                "current": "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration",
+                "majorVersion": 1,
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "apply_server_side_encryption_by_default": {
+                                    "maxItemsOne": true
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_object_bucket_website_configuration": {
                 "current": "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration",
                 "past": [
@@ -2475,6 +2514,15 @@
                 "majorVersion": 1,
                 "fields": {
                     "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_vpc_connector": {
+                "current": "scaleway:network/connector:Connector",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
                         "maxItemsOne": false
                     }
                 }
@@ -2938,6 +2986,21 @@
                     }
                 }
             },
+            "scaleway_cockpit_exporter": {
+                "current": "scaleway:observability/getExporter:getExporter",
+                "majorVersion": 1,
+                "fields": {
+                    "datadog_destination": {
+                        "maxItemsOne": false
+                    },
+                    "exported_products": {
+                        "maxItemsOne": false
+                    },
+                    "otlp_destination": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_cockpit_grafana": {
                 "current": "scaleway:observability/getGrafana:getGrafana",
                 "majorVersion": 1
@@ -2947,6 +3010,18 @@
                 "majorVersion": 1,
                 "fields": {
                     "alerts": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_cockpit_products": {
+                "current": "scaleway:observability/getProducts:getProducts",
+                "majorVersion": 1,
+                "fields": {
+                    "names": {
+                        "maxItemsOne": false
+                    },
+                    "products": {
                         "maxItemsOne": false
                     }
                 }
@@ -3075,6 +3150,140 @@
                     }
                 }
             },
+            "scaleway_domain_registration": {
+                "current": "scaleway:domain/getRegistration:getRegistration",
+                "majorVersion": 1,
+                "fields": {
+                    "administrative_contact": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": false
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "domain_names": {
+                        "maxItemsOne": false
+                    },
+                    "ds_record": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "digest": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "public_key": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "public_key": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "owner_contact": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": false
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "technical_contact": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "extension_eu": {
+                                    "maxItemsOne": false
+                                },
+                                "extension_fr": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "association_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "code_auth_afnic_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "duns_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "individual_info": {
+                                                "maxItemsOne": false
+                                            },
+                                            "trademark_info": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                },
+                                "extension_nl": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "scaleway_domain_zone": {
                 "current": "scaleway:domain/getZone:getZone",
                 "past": [
@@ -3096,6 +3305,93 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_edge_services_backend_stage": {
+                "current": "scaleway:edgeservices/getBackendStage:getBackendStage",
+                "majorVersion": 1,
+                "fields": {
+                    "lb_backend_config": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "lb_config": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "s3_backend_config": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_edge_services_cache_stage": {
+                "current": "scaleway:edgeservices/getCacheStage:getCacheStage",
+                "majorVersion": 1,
+                "fields": {
+                    "purge_requests": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "assets": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "scaleway_edge_services_dns_stage": {
+                "current": "scaleway:edgeservices/getDnsStage:getDnsStage",
+                "majorVersion": 1,
+                "fields": {
+                    "fqdns": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_edge_services_pipeline": {
+                "current": "scaleway:edgeservices/getPipeline:getPipeline",
+                "majorVersion": 1
+            },
+            "scaleway_edge_services_route_stage": {
+                "current": "scaleway:edgeservices/getRouteStage:getRouteStage",
+                "majorVersion": 1,
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "rule_http_match": {
+                                    "maxItemsOne": false,
+                                    "elem": {
+                                        "fields": {
+                                            "method_filters": {
+                                                "maxItemsOne": false
+                                            },
+                                            "path_filter": {
+                                                "maxItemsOne": false
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "scaleway_edge_services_tls_stage": {
+                "current": "scaleway:edgeservices/getTlsStage:getTlsStage",
+                "majorVersion": 1,
+                "fields": {
+                    "secrets": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_edge_services_waf_stage": {
+                "current": "scaleway:edgeservices/getWafStage:getWafStage",
+                "majorVersion": 1
             },
             "scaleway_flexible_ip": {
                 "current": "scaleway:elasticmetal/getIp:getIp",
@@ -3247,6 +3543,14 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "scaleway_iam_saml": {
+                "current": "scaleway:iam/getSaml:getSaml",
+                "majorVersion": 1
+            },
+            "scaleway_iam_saml_certificate": {
+                "current": "scaleway:iam/getSamlCertificate:getSamlCertificate",
+                "majorVersion": 1
             },
             "scaleway_iam_ssh_key": {
                 "current": "scaleway:iam/getSshKey:getSshKey",
@@ -3511,6 +3815,22 @@
                 "majorVersion": 1,
                 "fields": {
                     "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_interlink_partner": {
+                "current": "scaleway:interlink/getPartner:getPartner",
+                "majorVersion": 1
+            },
+            "scaleway_interlink_partners": {
+                "current": "scaleway:interlink/getPartners:getPartners",
+                "majorVersion": 1,
+                "fields": {
+                    "partners": {
+                        "maxItemsOne": false
+                    },
+                    "pop_ids": {
                         "maxItemsOne": false
                     }
                 }
@@ -4228,6 +4548,47 @@
                 ],
                 "majorVersion": 1
             },
+            "scaleway_object_bucket_server_side_encryption_configuration": {
+                "current": "scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration",
+                "majorVersion": 1,
+                "fields": {
+                    "rule": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "apply_server_side_encryption_by_default": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "scaleway_opensearch_deployment": {
+                "current": "scaleway:opensearch/getDeployment:getDeployment",
+                "majorVersion": 1,
+                "fields": {
+                    "endpoints": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "services": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "private_network": {
+                        "maxItemsOne": false
+                    },
+                    "tags": {
+                        "maxItemsOne": false
+                    },
+                    "volume": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_rdb_acl": {
                 "current": "scaleway:databases/getAcl:getAcl",
                 "past": [
@@ -4526,6 +4887,24 @@
                     }
                 }
             },
+            "scaleway_vpc_acl": {
+                "current": "scaleway:network/getAcl:getAcl",
+                "majorVersion": 1,
+                "fields": {
+                    "rules": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "scaleway_vpc_connector": {
+                "current": "scaleway:network/getConnector:getConnector",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "scaleway_vpc_gateway_network": {
                 "current": "scaleway:network/getGatewayNetwork:getGatewayNetwork",
                 "past": [
@@ -4645,6 +5024,15 @@
                     }
                 ],
                 "majorVersion": 1
+            },
+            "scaleway_vpc_route": {
+                "current": "scaleway:network/getRoute:getRoute",
+                "majorVersion": 1,
+                "fields": {
+                    "tags": {
+                        "maxItemsOne": false
+                    }
+                }
             },
             "scaleway_vpc_routes": {
                 "current": "scaleway:network/getRoutes:getRoutes",
@@ -5819,6 +6207,8 @@
             "scaleway:iam/group:Group": 0,
             "scaleway:iam/groupMembership:GroupMembership": 0,
             "scaleway:iam/policy:Policy": 0,
+            "scaleway:iam/saml:Saml": 1,
+            "scaleway:iam/samlCertificate:SamlCertificate": 1,
             "scaleway:iam/sshKey:SshKey": 0,
             "scaleway:iam/user:User": 0,
             "scaleway:index/accountProject:AccountProject": 0,
@@ -5984,6 +6374,7 @@
             "scaleway:mongodb/snapshot:Snapshot": 0,
             "scaleway:mongodb/user:User": 0,
             "scaleway:network/acl:Acl": 0,
+            "scaleway:network/connector:Connector": 0,
             "scaleway:network/gatewayNetwork:GatewayNetwork": 0,
             "scaleway:network/privateNetwork:PrivateNetwork": 0,
             "scaleway:network/publicGateway:PublicGateway": 0,
@@ -5998,10 +6389,12 @@
             "scaleway:object/bucketAcl:BucketAcl": 0,
             "scaleway:object/bucketLockConfiguration:BucketLockConfiguration": 0,
             "scaleway:object/bucketPolicy:BucketPolicy": 0,
+            "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": 0,
             "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration": 0,
             "scaleway:object/item:Item": 0,
             "scaleway:observability/alertManager:AlertManager": 0,
             "scaleway:observability/cockpit:Cockpit": 0,
+            "scaleway:observability/exporter:Exporter": 0,
             "scaleway:observability/grafanaUser:GrafanaUser": 0,
             "scaleway:observability/source:Source": 0,
             "scaleway:observability/token:Token": 0,
@@ -6040,7 +6433,15 @@
             "scaleway:databases/getInstance:getInstance": 0,
             "scaleway:databases/getPrivilege:getPrivilege": 0,
             "scaleway:domain/getRecord:getRecord": 0,
+            "scaleway:domain/getRegistration:getRegistration": 0,
             "scaleway:domain/getZone:getZone": 0,
+            "scaleway:edgeservices/getBackendStage:getBackendStage": 0,
+            "scaleway:edgeservices/getCacheStage:getCacheStage": 0,
+            "scaleway:edgeservices/getDnsStage:getDnsStage": 0,
+            "scaleway:edgeservices/getPipeline:getPipeline": 0,
+            "scaleway:edgeservices/getRouteStage:getRouteStage": 0,
+            "scaleway:edgeservices/getTlsStage:getTlsStage": 0,
+            "scaleway:edgeservices/getWafStage:getWafStage": 0,
             "scaleway:elasticmetal/getIp:getIp": 0,
             "scaleway:elasticmetal/getIps:getIps": 0,
             "scaleway:elasticmetal/getOffer:getOffer": 0,
@@ -6056,6 +6457,8 @@
             "scaleway:iam/getApplication:getApplication": 0,
             "scaleway:iam/getGroup:getGroup": 0,
             "scaleway:iam/getPolicy:getPolicy": 0,
+            "scaleway:iam/getSaml:getSaml": 1,
+            "scaleway:iam/getSamlCertificate:getSamlCertificate": 1,
             "scaleway:iam/getSshKey:getSshKey": 0,
             "scaleway:iam/getUser:getUser": 0,
             "scaleway:index/getAccountProject:getAccountProject": 0,
@@ -6155,6 +6558,8 @@
             "scaleway:instance/getServers:getServers": 0,
             "scaleway:instance/getSnapshot:getSnapshot": 0,
             "scaleway:instance/getVolume:getVolume": 0,
+            "scaleway:interlink/getPartner:getPartner": 0,
+            "scaleway:interlink/getPartners:getPartners": 0,
             "scaleway:iot/getDevice:getDevice": 0,
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,
@@ -6180,6 +6585,8 @@
             "scaleway:mnq/getSns:getSns": 0,
             "scaleway:mnq/getSqs:getSqs": 0,
             "scaleway:mongodb/getInstance:getInstance": 0,
+            "scaleway:network/getAcl:getAcl": 0,
+            "scaleway:network/getConnector:getConnector": 0,
             "scaleway:network/getGatewayNetwork:getGatewayNetwork": 0,
             "scaleway:network/getPrivateNetwork:getPrivateNetwork": 0,
             "scaleway:network/getPublicGateway:getPublicGateway": 0,
@@ -6187,17 +6594,22 @@
             "scaleway:network/getPublicGatewayDhcpReservation:getPublicGatewayDhcpReservation": 0,
             "scaleway:network/getPublicGatewayIp:getPublicGatewayIp": 0,
             "scaleway:network/getPublicGatewayPatRule:getPublicGatewayPatRule": 0,
+            "scaleway:network/getRoute:getRoute": 0,
             "scaleway:network/getRoutes:getRoutes": 0,
             "scaleway:network/getVpc:getVpc": 0,
             "scaleway:network/getVpcs:getVpcs": 0,
             "scaleway:object/get:get": 0,
             "scaleway:object/getBucket:getBucket": 0,
             "scaleway:object/getBucketPolicy:getBucketPolicy": 0,
+            "scaleway:object/getBucketServerSideEncryptionConfiguration:getBucketServerSideEncryptionConfiguration": 0,
+            "scaleway:observability/getExporter:getExporter": 0,
             "scaleway:observability/getGrafana:getGrafana": 0,
             "scaleway:observability/getInstance:getInstance": 0,
             "scaleway:observability/getPreconfiguredAlert:getPreconfiguredAlert": 0,
+            "scaleway:observability/getProducts:getProducts": 0,
             "scaleway:observability/getSource:getSource": 0,
             "scaleway:observability/getSources:getSources": 0,
+            "scaleway:opensearch/getDeployment:getDeployment": 0,
             "scaleway:redis/getCluster:getCluster": 0,
             "scaleway:registry/getImage:getImage": 0,
             "scaleway:registry/getImageTag:getImageTag": 0,

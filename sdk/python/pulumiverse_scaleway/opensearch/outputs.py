@@ -20,6 +20,10 @@ __all__ = [
     'DeploymentEndpointService',
     'DeploymentPrivateNetwork',
     'DeploymentVolume',
+    'GetDeploymentEndpointResult',
+    'GetDeploymentEndpointServiceResult',
+    'GetDeploymentPrivateNetworkResult',
+    'GetDeploymentVolumeResult',
 ]
 
 @pulumi.output_type
@@ -214,6 +218,144 @@ class DeploymentVolume(dict):
     def type(self) -> _builtins.str:
         """
         Volume type. Valid values are `sbs_5k` (5K IOPS) or `sbs_15k` (15K IOPS). Changing this forces recreation of the deployment.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetDeploymentEndpointResult(dict):
+    def __init__(__self__, *,
+                 id: _builtins.str,
+                 private_network_id: _builtins.str,
+                 public: _builtins.bool,
+                 services: Sequence['outputs.GetDeploymentEndpointServiceResult']):
+        """
+        :param _builtins.str id: Endpoint ID
+        :param _builtins.str private_network_id: Private network ID if applicable
+        :param _builtins.bool public: Whether the endpoint is public
+        :param Sequence['GetDeploymentEndpointServiceArgs'] services: List of services
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "private_network_id", private_network_id)
+        pulumi.set(__self__, "public", public)
+        pulumi.set(__self__, "services", services)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Endpoint ID
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        """
+        Private network ID if applicable
+        """
+        return pulumi.get(self, "private_network_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def public(self) -> _builtins.bool:
+        """
+        Whether the endpoint is public
+        """
+        return pulumi.get(self, "public")
+
+    @_builtins.property
+    @pulumi.getter
+    def services(self) -> Sequence['outputs.GetDeploymentEndpointServiceResult']:
+        """
+        List of services
+        """
+        return pulumi.get(self, "services")
+
+
+@pulumi.output_type
+class GetDeploymentEndpointServiceResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 port: _builtins.int,
+                 url: _builtins.str):
+        """
+        :param _builtins.str name: The name of the OpenSearch deployment. Only one of `name` and `deployment_id` should be specified.
+        :param _builtins.int port: Service port
+        :param _builtins.str url: Service URL
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        The name of the OpenSearch deployment. Only one of `name` and `deployment_id` should be specified.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def port(self) -> _builtins.int:
+        """
+        Service port
+        """
+        return pulumi.get(self, "port")
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> _builtins.str:
+        """
+        Service URL
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class GetDeploymentPrivateNetworkResult(dict):
+    def __init__(__self__, *,
+                 private_network_id: _builtins.str):
+        """
+        :param _builtins.str private_network_id: UUID of the Private Network
+        """
+        pulumi.set(__self__, "private_network_id", private_network_id)
+
+    @_builtins.property
+    @pulumi.getter(name="privateNetworkId")
+    def private_network_id(self) -> _builtins.str:
+        """
+        UUID of the Private Network
+        """
+        return pulumi.get(self, "private_network_id")
+
+
+@pulumi.output_type
+class GetDeploymentVolumeResult(dict):
+    def __init__(__self__, *,
+                 size_in_gb: _builtins.int,
+                 type: _builtins.str):
+        """
+        :param _builtins.int size_in_gb: Volume size in GB
+        :param _builtins.str type: Volume type (sbs_5k, sbs_15k)
+        """
+        pulumi.set(__self__, "size_in_gb", size_in_gb)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="sizeInGb")
+    def size_in_gb(self) -> _builtins.int:
+        """
+        Volume size in GB
+        """
+        return pulumi.get(self, "size_in_gb")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Volume type (sbs_5k, sbs_15k)
         """
         return pulumi.get(self, "type")
 

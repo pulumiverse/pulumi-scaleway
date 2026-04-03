@@ -161,6 +161,8 @@ namespace Pulumiverse.Scaleway.Domain
     /// ```sh
     /// $ pulumi import scaleway:domain/registration:Registration test &lt;project_id&gt;/&lt;task_id&gt;
     /// ```
+    /// 
+    /// You can use the [scaleway_domain_registration](../data-sources/domain_registration.md) data source to look up the `task_id` and `project_id` by domain name.
     /// </summary>
     [ScalewayResourceType("scaleway:domain/registration:Registration")]
     public partial class Registration : global::Pulumi.CustomResource

@@ -24,6 +24,14 @@ __all__ = [
     'RouteStageRuleRuleHttpMatch',
     'RouteStageRuleRuleHttpMatchPathFilter',
     'TlsStageSecret',
+    'GetBackendStageLbBackendConfigResult',
+    'GetBackendStageLbBackendConfigLbConfigResult',
+    'GetBackendStageS3BackendConfigResult',
+    'GetCacheStagePurgeRequestResult',
+    'GetRouteStageRuleResult',
+    'GetRouteStageRuleRuleHttpMatchResult',
+    'GetRouteStageRuleRuleHttpMatchPathFilterResult',
+    'GetTlsStageSecretResult',
 ]
 
 @pulumi.output_type
@@ -297,6 +305,8 @@ class RouteStageRule(dict):
             suggest = "backend_stage_id"
         elif key == "ruleHttpMatch":
             suggest = "rule_http_match"
+        elif key == "wafStageId":
+            suggest = "waf_stage_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in RouteStageRule. Access the value via the '{suggest}' property getter instead.")
@@ -310,21 +320,26 @@ class RouteStageRule(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 backend_stage_id: _builtins.str,
-                 rule_http_match: Optional['outputs.RouteStageRuleRuleHttpMatch'] = None):
+                 backend_stage_id: Optional[_builtins.str] = None,
+                 rule_http_match: Optional['outputs.RouteStageRuleRuleHttpMatch'] = None,
+                 waf_stage_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to.
-        :param 'RouteStageRuleRuleHttpMatchArgs' rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        :param _builtins.str backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
+        :param 'RouteStageRuleRuleHttpMatchArgs' rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+        :param _builtins.str waf_stage_id: The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
         """
-        pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        if backend_stage_id is not None:
+            pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if rule_http_match is not None:
             pulumi.set(__self__, "rule_http_match", rule_http_match)
+        if waf_stage_id is not None:
+            pulumi.set(__self__, "waf_stage_id", waf_stage_id)
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> _builtins.str:
+    def backend_stage_id(self) -> Optional[_builtins.str]:
         """
-        The ID of the backend stage that requests matching the rule should be forwarded to.
+        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -332,9 +347,17 @@ class RouteStageRule(dict):
     @pulumi.getter(name="ruleHttpMatch")
     def rule_http_match(self) -> Optional['outputs.RouteStageRuleRuleHttpMatch']:
         """
-        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
         """
         return pulumi.get(self, "rule_http_match")
+
+    @_builtins.property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
+        """
+        return pulumi.get(self, "waf_stage_id")
 
 
 @pulumi.output_type
@@ -477,6 +500,304 @@ class TlsStageSecret(dict):
     def secret_id(self) -> Optional[_builtins.str]:
         """
         The ID of the Secret
+        """
+        return pulumi.get(self, "secret_id")
+
+
+@pulumi.output_type
+class GetBackendStageLbBackendConfigResult(dict):
+    def __init__(__self__, *,
+                 lb_configs: Sequence['outputs.GetBackendStageLbBackendConfigLbConfigResult']):
+        """
+        :param Sequence['GetBackendStageLbBackendConfigLbConfigArgs'] lb_configs: The Load Balancer configuration
+        """
+        pulumi.set(__self__, "lb_configs", lb_configs)
+
+    @_builtins.property
+    @pulumi.getter(name="lbConfigs")
+    def lb_configs(self) -> Sequence['outputs.GetBackendStageLbBackendConfigLbConfigResult']:
+        """
+        The Load Balancer configuration
+        """
+        return pulumi.get(self, "lb_configs")
+
+
+@pulumi.output_type
+class GetBackendStageLbBackendConfigLbConfigResult(dict):
+    def __init__(__self__, *,
+                 domain_name: _builtins.str,
+                 frontend_id: _builtins.str,
+                 has_websocket: _builtins.bool,
+                 id: _builtins.str,
+                 is_ssl: _builtins.bool,
+                 zone: _builtins.str):
+        """
+        :param _builtins.str domain_name: Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+        :param _builtins.str frontend_id: ID of the frontend linked to the Load Balancer
+        :param _builtins.bool has_websocket: Defines whether to forward websocket requests to the load balancer
+        :param _builtins.str id: ID of the Load Balancer
+        :param _builtins.bool is_ssl: Defines whether the Load Balancer's frontend handles SSL connections
+        :param _builtins.str zone: The zone you want to attach the resource to
+        """
+        pulumi.set(__self__, "domain_name", domain_name)
+        pulumi.set(__self__, "frontend_id", frontend_id)
+        pulumi.set(__self__, "has_websocket", has_websocket)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "is_ssl", is_ssl)
+        pulumi.set(__self__, "zone", zone)
+
+    @_builtins.property
+    @pulumi.getter(name="domainName")
+    def domain_name(self) -> _builtins.str:
+        """
+        Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+        """
+        return pulumi.get(self, "domain_name")
+
+    @_builtins.property
+    @pulumi.getter(name="frontendId")
+    def frontend_id(self) -> _builtins.str:
+        """
+        ID of the frontend linked to the Load Balancer
+        """
+        return pulumi.get(self, "frontend_id")
+
+    @_builtins.property
+    @pulumi.getter(name="hasWebsocket")
+    def has_websocket(self) -> _builtins.bool:
+        """
+        Defines whether to forward websocket requests to the load balancer
+        """
+        return pulumi.get(self, "has_websocket")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        ID of the Load Balancer
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="isSsl")
+    def is_ssl(self) -> _builtins.bool:
+        """
+        Defines whether the Load Balancer's frontend handles SSL connections
+        """
+        return pulumi.get(self, "is_ssl")
+
+    @_builtins.property
+    @pulumi.getter
+    def zone(self) -> _builtins.str:
+        """
+        The zone you want to attach the resource to
+        """
+        return pulumi.get(self, "zone")
+
+
+@pulumi.output_type
+class GetBackendStageS3BackendConfigResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: _builtins.str,
+                 bucket_region: _builtins.str,
+                 is_website: _builtins.bool):
+        """
+        :param _builtins.str bucket_name: Filter by S3 bucket name.
+        :param _builtins.str bucket_region: Filter by S3 bucket region.
+        :param _builtins.bool is_website: Defines whether the bucket website feature is enabled.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "bucket_region", bucket_region)
+        pulumi.set(__self__, "is_website", is_website)
+
+    @_builtins.property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> _builtins.str:
+        """
+        Filter by S3 bucket name.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @_builtins.property
+    @pulumi.getter(name="bucketRegion")
+    def bucket_region(self) -> _builtins.str:
+        """
+        Filter by S3 bucket region.
+        """
+        return pulumi.get(self, "bucket_region")
+
+    @_builtins.property
+    @pulumi.getter(name="isWebsite")
+    def is_website(self) -> _builtins.bool:
+        """
+        Defines whether the bucket website feature is enabled.
+        """
+        return pulumi.get(self, "is_website")
+
+
+@pulumi.output_type
+class GetCacheStagePurgeRequestResult(dict):
+    def __init__(__self__, *,
+                 all: _builtins.bool,
+                 assets: Sequence[_builtins.str],
+                 pipeline_id: _builtins.str):
+        """
+        :param _builtins.bool all: Defines whether to purge all content
+        :param Sequence[_builtins.str] assets: The list of asserts to purge
+        :param _builtins.str pipeline_id: The ID of the pipeline.
+        """
+        pulumi.set(__self__, "all", all)
+        pulumi.set(__self__, "assets", assets)
+        pulumi.set(__self__, "pipeline_id", pipeline_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def all(self) -> _builtins.bool:
+        """
+        Defines whether to purge all content
+        """
+        return pulumi.get(self, "all")
+
+    @_builtins.property
+    @pulumi.getter
+    def assets(self) -> Sequence[_builtins.str]:
+        """
+        The list of asserts to purge
+        """
+        return pulumi.get(self, "assets")
+
+    @_builtins.property
+    @pulumi.getter(name="pipelineId")
+    def pipeline_id(self) -> _builtins.str:
+        """
+        The ID of the pipeline.
+        """
+        return pulumi.get(self, "pipeline_id")
+
+
+@pulumi.output_type
+class GetRouteStageRuleResult(dict):
+    def __init__(__self__, *,
+                 backend_stage_id: _builtins.str,
+                 rule_http_matches: Sequence['outputs.GetRouteStageRuleRuleHttpMatchResult'],
+                 waf_stage_id: _builtins.str):
+        """
+        :param _builtins.str backend_stage_id: ID of the backend stage that requests matching the rule should be forwarded to
+        :param Sequence['GetRouteStageRuleRuleHttpMatchArgs'] rule_http_matches: Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition
+        :param _builtins.str waf_stage_id: ID of the WAF stage that requests matching the rule should be forwarded to
+        """
+        pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        pulumi.set(__self__, "rule_http_matches", rule_http_matches)
+        pulumi.set(__self__, "waf_stage_id", waf_stage_id)
+
+    @_builtins.property
+    @pulumi.getter(name="backendStageId")
+    def backend_stage_id(self) -> _builtins.str:
+        """
+        ID of the backend stage that requests matching the rule should be forwarded to
+        """
+        return pulumi.get(self, "backend_stage_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ruleHttpMatches")
+    def rule_http_matches(self) -> Sequence['outputs.GetRouteStageRuleRuleHttpMatchResult']:
+        """
+        Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition
+        """
+        return pulumi.get(self, "rule_http_matches")
+
+    @_builtins.property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> _builtins.str:
+        """
+        ID of the WAF stage that requests matching the rule should be forwarded to
+        """
+        return pulumi.get(self, "waf_stage_id")
+
+
+@pulumi.output_type
+class GetRouteStageRuleRuleHttpMatchResult(dict):
+    def __init__(__self__, *,
+                 method_filters: Sequence[_builtins.str],
+                 path_filters: Sequence['outputs.GetRouteStageRuleRuleHttpMatchPathFilterResult']):
+        """
+        :param Sequence[_builtins.str] method_filters: HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+        :param Sequence['GetRouteStageRuleRuleHttpMatchPathFilterArgs'] path_filters: HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+        """
+        pulumi.set(__self__, "method_filters", method_filters)
+        pulumi.set(__self__, "path_filters", path_filters)
+
+    @_builtins.property
+    @pulumi.getter(name="methodFilters")
+    def method_filters(self) -> Sequence[_builtins.str]:
+        """
+        HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+        """
+        return pulumi.get(self, "method_filters")
+
+    @_builtins.property
+    @pulumi.getter(name="pathFilters")
+    def path_filters(self) -> Sequence['outputs.GetRouteStageRuleRuleHttpMatchPathFilterResult']:
+        """
+        HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+        """
+        return pulumi.get(self, "path_filters")
+
+
+@pulumi.output_type
+class GetRouteStageRuleRuleHttpMatchPathFilterResult(dict):
+    def __init__(__self__, *,
+                 path_filter_type: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str path_filter_type: The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+        :param _builtins.str value: The value to be matched for the HTTP URL path
+        """
+        pulumi.set(__self__, "path_filter_type", path_filter_type)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="pathFilterType")
+    def path_filter_type(self) -> _builtins.str:
+        """
+        The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+        """
+        return pulumi.get(self, "path_filter_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        The value to be matched for the HTTP URL path
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetTlsStageSecretResult(dict):
+    def __init__(__self__, *,
+                 region: _builtins.str,
+                 secret_id: _builtins.str):
+        """
+        :param _builtins.str region: The region you want to attach the resource to
+        :param _builtins.str secret_id: Secret ID to filter for.
+        """
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "secret_id", secret_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The region you want to attach the resource to
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> _builtins.str:
+        """
+        Secret ID to filter for.
         """
         return pulumi.get(self, "secret_id")
 

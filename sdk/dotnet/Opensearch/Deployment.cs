@@ -77,6 +77,12 @@ namespace Pulumiverse.Scaleway.Opensearch
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
+        /// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+        /// </summary>
+        [Output("publicDashboardUrl")]
+        public Output<string> PublicDashboardUrl { get; private set; } = null!;
+
+        /// <summary>
         /// `Region`) The region in which the deployment should be created.
         /// </summary>
         [Output("region")]
@@ -330,6 +336,12 @@ namespace Pulumiverse.Scaleway.Opensearch
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
+
+        /// <summary>
+        /// URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+        /// </summary>
+        [Input("publicDashboardUrl")]
+        public Input<string>? PublicDashboardUrl { get; set; }
 
         /// <summary>
         /// `Region`) The region in which the deployment should be created.

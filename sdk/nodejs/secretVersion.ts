@@ -5,10 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * The `scaleway.secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
- *
- * Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
- *
  * ## Example Usage
  *
  * ### Create a secret and a version

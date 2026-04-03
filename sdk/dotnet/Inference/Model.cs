@@ -11,8 +11,6 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Inference
 {
     /// <summary>
-    /// The scaleway.inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any scaleway.inference.Deployment resource.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

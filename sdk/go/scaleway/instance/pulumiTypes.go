@@ -3672,8 +3672,18 @@ func (o GetServersServerPrivateIpArrayOutput) Index(i pulumi.IntInput) GetServer
 type GetServersServerPublicIp struct {
 	// The address of the IP
 	Address string `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic bool `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family string `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway string `pulumi:"gateway"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
+	// CIDR netmask.
+	Netmask string `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode string `pulumi:"provisioningMode"`
 }
 
 // GetServersServerPublicIpInput is an input type that accepts GetServersServerPublicIpArgs and GetServersServerPublicIpOutput values.
@@ -3690,8 +3700,18 @@ type GetServersServerPublicIpInput interface {
 type GetServersServerPublicIpArgs struct {
 	// The address of the IP
 	Address pulumi.StringInput `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family pulumi.StringInput `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway pulumi.StringInput `pulumi:"gateway"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
+	// CIDR netmask.
+	Netmask pulumi.StringInput `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode pulumi.StringInput `pulumi:"provisioningMode"`
 }
 
 func (GetServersServerPublicIpArgs) ElementType() reflect.Type {
@@ -3750,9 +3770,34 @@ func (o GetServersServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Whether the IP is dynamic.
+func (o GetServersServerPublicIpOutput) Dynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServersServerPublicIp) bool { return v.Dynamic }).(pulumi.BoolOutput)
+}
+
+// IP address family (inet or inet6).
+func (o GetServersServerPublicIpOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// Gateway's IP address.
+func (o GetServersServerPublicIpOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
 // The ID of the IP
 func (o GetServersServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// CIDR netmask.
+func (o GetServersServerPublicIpOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.Netmask }).(pulumi.StringOutput)
+}
+
+// Provisioning mode of the IP address.
+func (o GetServersServerPublicIpOutput) ProvisioningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServerPublicIp) string { return v.ProvisioningMode }).(pulumi.StringOutput)
 }
 
 type GetServersServerPublicIpArrayOutput struct{ *pulumi.OutputState }

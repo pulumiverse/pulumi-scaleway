@@ -1043,6 +1043,7 @@ import * as hosting from "./hosting";
 import * as iam from "./iam";
 import * as inference from "./inference";
 import * as instance from "./instance";
+import * as interlink from "./interlink";
 import * as iot from "./iot";
 import * as ipam from "./ipam";
 import * as job from "./job";
@@ -1082,6 +1083,7 @@ export {
     iam,
     inference,
     instance,
+    interlink,
     iot,
     ipam,
     job,

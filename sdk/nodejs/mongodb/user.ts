@@ -7,8 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
- *
  * ## Example Usage
  *
  * ```typescript
@@ -129,13 +127,16 @@ export class User extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * The password of the MongoDB® user.
+     * The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * `region`) The region in which the MongoDB® user should be created.
@@ -199,13 +200,16 @@ export interface UserState {
      */
     name?: pulumi.Input<string>;
     /**
-     * The password of the MongoDB® user.
+     * The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     passwordWoVersion?: pulumi.Input<number>;
     /**
      * `region`) The region in which the MongoDB® user should be created.
@@ -230,13 +234,16 @@ export interface UserArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The password of the MongoDB® user.
+     * The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     passwordWoVersion?: pulumi.Input<number>;
     /**
      * `region`) The region in which the MongoDB® user should be created.

@@ -32,8 +32,9 @@ class UserArgs:
         The set of arguments for constructing a User resource.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
-        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -79,7 +80,7 @@ class UserArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password of the MongoDB® user.
+        The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -102,6 +103,9 @@ class UserArgs:
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
@@ -147,8 +151,9 @@ class _UserState:
         Input properties used for looking up and filtering User resources.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
-        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input['UserRoleArgs']]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -195,7 +200,7 @@ class _UserState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The password of the MongoDB® user.
+        The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -218,6 +223,9 @@ class _UserState:
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
@@ -264,8 +272,6 @@ class User(pulumi.CustomResource):
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]]] = None,
                  __props__=None):
         """
-        Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
-
         ## Example Usage
 
         ```python
@@ -348,8 +354,9 @@ class User(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
-        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -360,8 +367,6 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
-
         ## Example Usage
 
         ```python
@@ -508,8 +513,9 @@ class User(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] instance_id: The ID of the MongoDB® instance.
         :param pulumi.Input[_builtins.str] name: The name of the MongoDB® user.
-        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user.
+        :param pulumi.Input[_builtins.str] password: The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the MongoDB® user should be created.
         :param pulumi.Input[Sequence[pulumi.Input[Union['UserRoleArgs', 'UserRoleArgsDict']]]] roles: List of roles assigned to the user. Each role block supports:
         """
@@ -546,7 +552,7 @@ class User(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The password of the MongoDB® user.
+        The password of the MongoDB® user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -561,6 +567,9 @@ class User(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @_builtins.property

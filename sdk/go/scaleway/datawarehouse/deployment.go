@@ -146,23 +146,25 @@ import (
 type Deployment struct {
 	pulumi.CustomResourceState
 
-	// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+	// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 	CpuMax pulumi.IntOutput `pulumi:"cpuMax"`
-	// Minimum CPU count. Must be less than or equal to `cpuMax`.
+	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin pulumi.IntOutput `pulumi:"cpuMin"`
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrOutput `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
 	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-	//
-	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Public endpoint information (always created automatically).
 	PublicNetworks DeploymentPublicNetworkArrayOutput `pulumi:"publicNetworks"`
@@ -170,8 +172,10 @@ type Deployment struct {
 	RamPerCpu pulumi.IntOutput `pulumi:"ramPerCpu"`
 	// `region`) The region in which the deployment should be created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// Number of replicas.
+	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount pulumi.IntOutput `pulumi:"replicaCount"`
+	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+	Started pulumi.BoolPtrOutput `pulumi:"started"`
 	// The status of the deployment (e.g., "ready", "provisioning").
 	Status pulumi.StringOutput `pulumi:"status"`
 	// List of tags to apply to the deployment.
@@ -207,8 +211,12 @@ func NewDeployment(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -234,23 +242,25 @@ func GetDeployment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Deployment resources.
 type deploymentState struct {
-	// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+	// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 	CpuMax *int `pulumi:"cpuMax"`
-	// Minimum CPU count. Must be less than or equal to `cpuMax`.
+	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin *int `pulumi:"cpuMin"`
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt *string `pulumi:"createdAt"`
 	// Name of the Data Warehouse deployment.
 	Name *string `pulumi:"name"`
-	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
 	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-	//
-	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId *string `pulumi:"projectId"`
 	// Public endpoint information (always created automatically).
 	PublicNetworks []DeploymentPublicNetwork `pulumi:"publicNetworks"`
@@ -258,8 +268,10 @@ type deploymentState struct {
 	RamPerCpu *int `pulumi:"ramPerCpu"`
 	// `region`) The region in which the deployment should be created.
 	Region *string `pulumi:"region"`
-	// Number of replicas.
+	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount *int `pulumi:"replicaCount"`
+	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+	Started *bool `pulumi:"started"`
 	// The status of the deployment (e.g., "ready", "provisioning").
 	Status *string `pulumi:"status"`
 	// List of tags to apply to the deployment.
@@ -271,23 +283,25 @@ type deploymentState struct {
 }
 
 type DeploymentState struct {
-	// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+	// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 	CpuMax pulumi.IntPtrInput
-	// Minimum CPU count. Must be less than or equal to `cpuMax`.
+	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin pulumi.IntPtrInput
 	// Date and time of deployment creation (RFC 3339 format).
 	CreatedAt pulumi.StringPtrInput
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringPtrInput
-	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
 	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-	//
-	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringPtrInput
 	// Public endpoint information (always created automatically).
 	PublicNetworks DeploymentPublicNetworkArrayInput
@@ -295,8 +309,10 @@ type DeploymentState struct {
 	RamPerCpu pulumi.IntPtrInput
 	// `region`) The region in which the deployment should be created.
 	Region pulumi.StringPtrInput
-	// Number of replicas.
+	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount pulumi.IntPtrInput
+	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+	Started pulumi.BoolPtrInput
 	// The status of the deployment (e.g., "ready", "provisioning").
 	Status pulumi.StringPtrInput
 	// List of tags to apply to the deployment.
@@ -312,28 +328,32 @@ func (DeploymentState) ElementType() reflect.Type {
 }
 
 type deploymentArgs struct {
-	// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+	// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 	CpuMax int `pulumi:"cpuMax"`
-	// Minimum CPU count. Must be less than or equal to `cpuMax`.
+	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin int `pulumi:"cpuMin"`
 	// Name of the Data Warehouse deployment.
 	Name *string `pulumi:"name"`
-	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork *DeploymentPrivateNetwork `pulumi:"privateNetwork"`
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
 	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-	//
-	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId *string `pulumi:"projectId"`
 	// RAM per CPU in GB.
 	RamPerCpu int `pulumi:"ramPerCpu"`
 	// `region`) The region in which the deployment should be created.
 	Region *string `pulumi:"region"`
-	// Number of replicas.
+	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount int `pulumi:"replicaCount"`
+	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+	Started *bool `pulumi:"started"`
 	// List of tags to apply to the deployment.
 	Tags []string `pulumi:"tags"`
 	// ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
@@ -342,28 +362,32 @@ type deploymentArgs struct {
 
 // The set of arguments for constructing a Deployment resource.
 type DeploymentArgs struct {
-	// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+	// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 	CpuMax pulumi.IntInput
-	// Minimum CPU count. Must be less than or equal to `cpuMax`.
+	// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 	CpuMin pulumi.IntInput
 	// Name of the Data Warehouse deployment.
 	Name pulumi.StringPtrInput
-	// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+	// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrInput
 	// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
 	PrivateNetwork DeploymentPrivateNetworkPtrInput
 	// `projectId`) The ID of the project the deployment is associated with.
 	//
 	// > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-	//
-	// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 	ProjectId pulumi.StringPtrInput
 	// RAM per CPU in GB.
 	RamPerCpu pulumi.IntInput
 	// `region`) The region in which the deployment should be created.
 	Region pulumi.StringPtrInput
-	// Number of replicas.
+	// Number of replicas. Can be updated in place via the deployment configuration API.
 	ReplicaCount pulumi.IntInput
+	// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+	Started pulumi.BoolPtrInput
 	// List of tags to apply to the deployment.
 	Tags pulumi.StringArrayInput
 	// ClickHouse version to use (e.g., "v25"). Changing this forces recreation of the deployment.
@@ -457,12 +481,12 @@ func (o DeploymentOutput) ToDeploymentOutputWithContext(ctx context.Context) Dep
 	return o
 }
 
-// Maximum CPU count. Must be greater than or equal to `cpuMin`.
+// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `cpuMin`. Can be updated in place.
 func (o DeploymentOutput) CpuMax() pulumi.IntOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.CpuMax }).(pulumi.IntOutput)
 }
 
-// Minimum CPU count. Must be less than or equal to `cpuMax`.
+// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `cpuMax`. Can be updated in place.
 func (o DeploymentOutput) CpuMin() pulumi.IntOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.CpuMin }).(pulumi.IntOutput)
 }
@@ -477,9 +501,19 @@ func (o DeploymentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `password` or `passwordWo` should be specified. Note: plain `password` is only used during deployment creation; it is not rotated on update.
 func (o DeploymentOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+func (o DeploymentOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+func (o DeploymentOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
@@ -490,8 +524,6 @@ func (o DeploymentOutput) PrivateNetwork() DeploymentPrivateNetworkPtrOutput {
 // `projectId`) The ID of the project the deployment is associated with.
 //
 // > **Note:** A public endpoint is always created automatically alongside any private network configuration.
-//
-// > **Note:** During the private beta phase, modifying `cpuMin`, `cpuMax`, and `replicaCount` has no effect until the feature is launched in general availability.
 func (o DeploymentOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -511,9 +543,14 @@ func (o DeploymentOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// Number of replicas.
+// Number of replicas. Can be updated in place via the deployment configuration API.
 func (o DeploymentOutput) ReplicaCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *Deployment) pulumi.IntOutput { return v.ReplicaCount }).(pulumi.IntOutput)
+}
+
+// Whether the deployment should be running. When set to `false`, the provider calls the Stop deployment API after create or update; when set to `true`, it calls Start deployment if the deployment is stopped. Scaling fields (`replicaCount`, `cpuMin`, `cpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `started` is `false`.
+func (o DeploymentOutput) Started() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Deployment) pulumi.BoolPtrOutput { return v.Started }).(pulumi.BoolPtrOutput)
 }
 
 // The status of the deployment (e.g., "ready", "provisioning").

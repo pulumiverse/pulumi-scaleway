@@ -365,6 +365,8 @@ class IamApiKey(pulumi.CustomResource):
         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
 
+        ~> **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] application_id: ID of the application attached to the API key.
@@ -432,6 +434,8 @@ class IamApiKey(pulumi.CustomResource):
         ```sh
         $ pulumi import scaleway:index/iamApiKey:IamApiKey main 11111111111111111111
         ```
+
+        ~> **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
 
         :param str resource_name: The name of the resource.
         :param IamApiKeyArgs args: The arguments to use to populate this resource's properties.

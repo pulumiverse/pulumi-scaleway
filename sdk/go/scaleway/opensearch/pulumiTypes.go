@@ -545,6 +545,448 @@ func (o DeploymentVolumePtrOutput) Type() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetDeploymentEndpoint struct {
+	// Endpoint ID
+	Id string `pulumi:"id"`
+	// Private network ID if applicable
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public
+	Public bool `pulumi:"public"`
+	// List of services
+	Services []GetDeploymentEndpointService `pulumi:"services"`
+}
+
+// GetDeploymentEndpointInput is an input type that accepts GetDeploymentEndpointArgs and GetDeploymentEndpointOutput values.
+// You can construct a concrete instance of `GetDeploymentEndpointInput` via:
+//
+//	GetDeploymentEndpointArgs{...}
+type GetDeploymentEndpointInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEndpointOutput() GetDeploymentEndpointOutput
+	ToGetDeploymentEndpointOutputWithContext(context.Context) GetDeploymentEndpointOutput
+}
+
+type GetDeploymentEndpointArgs struct {
+	// Endpoint ID
+	Id pulumi.StringInput `pulumi:"id"`
+	// Private network ID if applicable
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+	// Whether the endpoint is public
+	Public pulumi.BoolInput `pulumi:"public"`
+	// List of services
+	Services GetDeploymentEndpointServiceArrayInput `pulumi:"services"`
+}
+
+func (GetDeploymentEndpointArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i GetDeploymentEndpointArgs) ToGetDeploymentEndpointOutput() GetDeploymentEndpointOutput {
+	return i.ToGetDeploymentEndpointOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEndpointArgs) ToGetDeploymentEndpointOutputWithContext(ctx context.Context) GetDeploymentEndpointOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEndpointOutput)
+}
+
+// GetDeploymentEndpointArrayInput is an input type that accepts GetDeploymentEndpointArray and GetDeploymentEndpointArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentEndpointArrayInput` via:
+//
+//	GetDeploymentEndpointArray{ GetDeploymentEndpointArgs{...} }
+type GetDeploymentEndpointArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEndpointArrayOutput() GetDeploymentEndpointArrayOutput
+	ToGetDeploymentEndpointArrayOutputWithContext(context.Context) GetDeploymentEndpointArrayOutput
+}
+
+type GetDeploymentEndpointArray []GetDeploymentEndpointInput
+
+func (GetDeploymentEndpointArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEndpoint)(nil)).Elem()
+}
+
+func (i GetDeploymentEndpointArray) ToGetDeploymentEndpointArrayOutput() GetDeploymentEndpointArrayOutput {
+	return i.ToGetDeploymentEndpointArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEndpointArray) ToGetDeploymentEndpointArrayOutputWithContext(ctx context.Context) GetDeploymentEndpointArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEndpointArrayOutput)
+}
+
+type GetDeploymentEndpointOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEndpointOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o GetDeploymentEndpointOutput) ToGetDeploymentEndpointOutput() GetDeploymentEndpointOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointOutput) ToGetDeploymentEndpointOutputWithContext(ctx context.Context) GetDeploymentEndpointOutput {
+	return o
+}
+
+// Endpoint ID
+func (o GetDeploymentEndpointOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEndpoint) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Private network ID if applicable
+func (o GetDeploymentEndpointOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEndpoint) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+// Whether the endpoint is public
+func (o GetDeploymentEndpointOutput) Public() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDeploymentEndpoint) bool { return v.Public }).(pulumi.BoolOutput)
+}
+
+// List of services
+func (o GetDeploymentEndpointOutput) Services() GetDeploymentEndpointServiceArrayOutput {
+	return o.ApplyT(func(v GetDeploymentEndpoint) []GetDeploymentEndpointService { return v.Services }).(GetDeploymentEndpointServiceArrayOutput)
+}
+
+type GetDeploymentEndpointArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEndpointArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEndpoint)(nil)).Elem()
+}
+
+func (o GetDeploymentEndpointArrayOutput) ToGetDeploymentEndpointArrayOutput() GetDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointArrayOutput) ToGetDeploymentEndpointArrayOutputWithContext(ctx context.Context) GetDeploymentEndpointArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointArrayOutput) Index(i pulumi.IntInput) GetDeploymentEndpointOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentEndpoint {
+		return vs[0].([]GetDeploymentEndpoint)[vs[1].(int)]
+	}).(GetDeploymentEndpointOutput)
+}
+
+type GetDeploymentEndpointService struct {
+	// The name of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
+	Name string `pulumi:"name"`
+	// Service port
+	Port int `pulumi:"port"`
+	// Service URL
+	Url string `pulumi:"url"`
+}
+
+// GetDeploymentEndpointServiceInput is an input type that accepts GetDeploymentEndpointServiceArgs and GetDeploymentEndpointServiceOutput values.
+// You can construct a concrete instance of `GetDeploymentEndpointServiceInput` via:
+//
+//	GetDeploymentEndpointServiceArgs{...}
+type GetDeploymentEndpointServiceInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEndpointServiceOutput() GetDeploymentEndpointServiceOutput
+	ToGetDeploymentEndpointServiceOutputWithContext(context.Context) GetDeploymentEndpointServiceOutput
+}
+
+type GetDeploymentEndpointServiceArgs struct {
+	// The name of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Service port
+	Port pulumi.IntInput `pulumi:"port"`
+	// Service URL
+	Url pulumi.StringInput `pulumi:"url"`
+}
+
+func (GetDeploymentEndpointServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i GetDeploymentEndpointServiceArgs) ToGetDeploymentEndpointServiceOutput() GetDeploymentEndpointServiceOutput {
+	return i.ToGetDeploymentEndpointServiceOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEndpointServiceArgs) ToGetDeploymentEndpointServiceOutputWithContext(ctx context.Context) GetDeploymentEndpointServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEndpointServiceOutput)
+}
+
+// GetDeploymentEndpointServiceArrayInput is an input type that accepts GetDeploymentEndpointServiceArray and GetDeploymentEndpointServiceArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentEndpointServiceArrayInput` via:
+//
+//	GetDeploymentEndpointServiceArray{ GetDeploymentEndpointServiceArgs{...} }
+type GetDeploymentEndpointServiceArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentEndpointServiceArrayOutput() GetDeploymentEndpointServiceArrayOutput
+	ToGetDeploymentEndpointServiceArrayOutputWithContext(context.Context) GetDeploymentEndpointServiceArrayOutput
+}
+
+type GetDeploymentEndpointServiceArray []GetDeploymentEndpointServiceInput
+
+func (GetDeploymentEndpointServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEndpointService)(nil)).Elem()
+}
+
+func (i GetDeploymentEndpointServiceArray) ToGetDeploymentEndpointServiceArrayOutput() GetDeploymentEndpointServiceArrayOutput {
+	return i.ToGetDeploymentEndpointServiceArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentEndpointServiceArray) ToGetDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) GetDeploymentEndpointServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentEndpointServiceArrayOutput)
+}
+
+type GetDeploymentEndpointServiceOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEndpointServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o GetDeploymentEndpointServiceOutput) ToGetDeploymentEndpointServiceOutput() GetDeploymentEndpointServiceOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointServiceOutput) ToGetDeploymentEndpointServiceOutputWithContext(ctx context.Context) GetDeploymentEndpointServiceOutput {
+	return o
+}
+
+// The name of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
+func (o GetDeploymentEndpointServiceOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEndpointService) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Service port
+func (o GetDeploymentEndpointServiceOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentEndpointService) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Service URL
+func (o GetDeploymentEndpointServiceOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentEndpointService) string { return v.Url }).(pulumi.StringOutput)
+}
+
+type GetDeploymentEndpointServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentEndpointServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentEndpointService)(nil)).Elem()
+}
+
+func (o GetDeploymentEndpointServiceArrayOutput) ToGetDeploymentEndpointServiceArrayOutput() GetDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointServiceArrayOutput) ToGetDeploymentEndpointServiceArrayOutputWithContext(ctx context.Context) GetDeploymentEndpointServiceArrayOutput {
+	return o
+}
+
+func (o GetDeploymentEndpointServiceArrayOutput) Index(i pulumi.IntInput) GetDeploymentEndpointServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentEndpointService {
+		return vs[0].([]GetDeploymentEndpointService)[vs[1].(int)]
+	}).(GetDeploymentEndpointServiceOutput)
+}
+
+type GetDeploymentPrivateNetwork struct {
+	// UUID of the Private Network
+	PrivateNetworkId string `pulumi:"privateNetworkId"`
+}
+
+// GetDeploymentPrivateNetworkInput is an input type that accepts GetDeploymentPrivateNetworkArgs and GetDeploymentPrivateNetworkOutput values.
+// You can construct a concrete instance of `GetDeploymentPrivateNetworkInput` via:
+//
+//	GetDeploymentPrivateNetworkArgs{...}
+type GetDeploymentPrivateNetworkInput interface {
+	pulumi.Input
+
+	ToGetDeploymentPrivateNetworkOutput() GetDeploymentPrivateNetworkOutput
+	ToGetDeploymentPrivateNetworkOutputWithContext(context.Context) GetDeploymentPrivateNetworkOutput
+}
+
+type GetDeploymentPrivateNetworkArgs struct {
+	// UUID of the Private Network
+	PrivateNetworkId pulumi.StringInput `pulumi:"privateNetworkId"`
+}
+
+func (GetDeploymentPrivateNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetDeploymentPrivateNetworkArgs) ToGetDeploymentPrivateNetworkOutput() GetDeploymentPrivateNetworkOutput {
+	return i.ToGetDeploymentPrivateNetworkOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentPrivateNetworkArgs) ToGetDeploymentPrivateNetworkOutputWithContext(ctx context.Context) GetDeploymentPrivateNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentPrivateNetworkOutput)
+}
+
+// GetDeploymentPrivateNetworkArrayInput is an input type that accepts GetDeploymentPrivateNetworkArray and GetDeploymentPrivateNetworkArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentPrivateNetworkArrayInput` via:
+//
+//	GetDeploymentPrivateNetworkArray{ GetDeploymentPrivateNetworkArgs{...} }
+type GetDeploymentPrivateNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentPrivateNetworkArrayOutput() GetDeploymentPrivateNetworkArrayOutput
+	ToGetDeploymentPrivateNetworkArrayOutputWithContext(context.Context) GetDeploymentPrivateNetworkArrayOutput
+}
+
+type GetDeploymentPrivateNetworkArray []GetDeploymentPrivateNetworkInput
+
+func (GetDeploymentPrivateNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (i GetDeploymentPrivateNetworkArray) ToGetDeploymentPrivateNetworkArrayOutput() GetDeploymentPrivateNetworkArrayOutput {
+	return i.ToGetDeploymentPrivateNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentPrivateNetworkArray) ToGetDeploymentPrivateNetworkArrayOutputWithContext(ctx context.Context) GetDeploymentPrivateNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentPrivateNetworkArrayOutput)
+}
+
+type GetDeploymentPrivateNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentPrivateNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o GetDeploymentPrivateNetworkOutput) ToGetDeploymentPrivateNetworkOutput() GetDeploymentPrivateNetworkOutput {
+	return o
+}
+
+func (o GetDeploymentPrivateNetworkOutput) ToGetDeploymentPrivateNetworkOutputWithContext(ctx context.Context) GetDeploymentPrivateNetworkOutput {
+	return o
+}
+
+// UUID of the Private Network
+func (o GetDeploymentPrivateNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentPrivateNetwork) string { return v.PrivateNetworkId }).(pulumi.StringOutput)
+}
+
+type GetDeploymentPrivateNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentPrivateNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentPrivateNetwork)(nil)).Elem()
+}
+
+func (o GetDeploymentPrivateNetworkArrayOutput) ToGetDeploymentPrivateNetworkArrayOutput() GetDeploymentPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetDeploymentPrivateNetworkArrayOutput) ToGetDeploymentPrivateNetworkArrayOutputWithContext(ctx context.Context) GetDeploymentPrivateNetworkArrayOutput {
+	return o
+}
+
+func (o GetDeploymentPrivateNetworkArrayOutput) Index(i pulumi.IntInput) GetDeploymentPrivateNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentPrivateNetwork {
+		return vs[0].([]GetDeploymentPrivateNetwork)[vs[1].(int)]
+	}).(GetDeploymentPrivateNetworkOutput)
+}
+
+type GetDeploymentVolume struct {
+	// Volume size in GB
+	SizeInGb int `pulumi:"sizeInGb"`
+	// Volume type (sbs_5k, sbs_15k)
+	Type string `pulumi:"type"`
+}
+
+// GetDeploymentVolumeInput is an input type that accepts GetDeploymentVolumeArgs and GetDeploymentVolumeOutput values.
+// You can construct a concrete instance of `GetDeploymentVolumeInput` via:
+//
+//	GetDeploymentVolumeArgs{...}
+type GetDeploymentVolumeInput interface {
+	pulumi.Input
+
+	ToGetDeploymentVolumeOutput() GetDeploymentVolumeOutput
+	ToGetDeploymentVolumeOutputWithContext(context.Context) GetDeploymentVolumeOutput
+}
+
+type GetDeploymentVolumeArgs struct {
+	// Volume size in GB
+	SizeInGb pulumi.IntInput `pulumi:"sizeInGb"`
+	// Volume type (sbs_5k, sbs_15k)
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetDeploymentVolumeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentVolume)(nil)).Elem()
+}
+
+func (i GetDeploymentVolumeArgs) ToGetDeploymentVolumeOutput() GetDeploymentVolumeOutput {
+	return i.ToGetDeploymentVolumeOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentVolumeArgs) ToGetDeploymentVolumeOutputWithContext(ctx context.Context) GetDeploymentVolumeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentVolumeOutput)
+}
+
+// GetDeploymentVolumeArrayInput is an input type that accepts GetDeploymentVolumeArray and GetDeploymentVolumeArrayOutput values.
+// You can construct a concrete instance of `GetDeploymentVolumeArrayInput` via:
+//
+//	GetDeploymentVolumeArray{ GetDeploymentVolumeArgs{...} }
+type GetDeploymentVolumeArrayInput interface {
+	pulumi.Input
+
+	ToGetDeploymentVolumeArrayOutput() GetDeploymentVolumeArrayOutput
+	ToGetDeploymentVolumeArrayOutputWithContext(context.Context) GetDeploymentVolumeArrayOutput
+}
+
+type GetDeploymentVolumeArray []GetDeploymentVolumeInput
+
+func (GetDeploymentVolumeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentVolume)(nil)).Elem()
+}
+
+func (i GetDeploymentVolumeArray) ToGetDeploymentVolumeArrayOutput() GetDeploymentVolumeArrayOutput {
+	return i.ToGetDeploymentVolumeArrayOutputWithContext(context.Background())
+}
+
+func (i GetDeploymentVolumeArray) ToGetDeploymentVolumeArrayOutputWithContext(ctx context.Context) GetDeploymentVolumeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeploymentVolumeArrayOutput)
+}
+
+type GetDeploymentVolumeOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentVolumeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeploymentVolume)(nil)).Elem()
+}
+
+func (o GetDeploymentVolumeOutput) ToGetDeploymentVolumeOutput() GetDeploymentVolumeOutput {
+	return o
+}
+
+func (o GetDeploymentVolumeOutput) ToGetDeploymentVolumeOutputWithContext(ctx context.Context) GetDeploymentVolumeOutput {
+	return o
+}
+
+// Volume size in GB
+func (o GetDeploymentVolumeOutput) SizeInGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDeploymentVolume) int { return v.SizeInGb }).(pulumi.IntOutput)
+}
+
+// Volume type (sbs_5k, sbs_15k)
+func (o GetDeploymentVolumeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDeploymentVolume) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetDeploymentVolumeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDeploymentVolumeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDeploymentVolume)(nil)).Elem()
+}
+
+func (o GetDeploymentVolumeArrayOutput) ToGetDeploymentVolumeArrayOutput() GetDeploymentVolumeArrayOutput {
+	return o
+}
+
+func (o GetDeploymentVolumeArrayOutput) ToGetDeploymentVolumeArrayOutputWithContext(ctx context.Context) GetDeploymentVolumeArrayOutput {
+	return o
+}
+
+func (o GetDeploymentVolumeArrayOutput) Index(i pulumi.IntInput) GetDeploymentVolumeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDeploymentVolume {
+		return vs[0].([]GetDeploymentVolume)[vs[1].(int)]
+	}).(GetDeploymentVolumeOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEndpointInput)(nil)).Elem(), DeploymentEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentEndpointArrayInput)(nil)).Elem(), DeploymentEndpointArray{})
@@ -554,6 +996,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentPrivateNetworkPtrInput)(nil)).Elem(), DeploymentPrivateNetworkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentVolumeInput)(nil)).Elem(), DeploymentVolumeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DeploymentVolumePtrInput)(nil)).Elem(), DeploymentVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEndpointInput)(nil)).Elem(), GetDeploymentEndpointArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEndpointArrayInput)(nil)).Elem(), GetDeploymentEndpointArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEndpointServiceInput)(nil)).Elem(), GetDeploymentEndpointServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentEndpointServiceArrayInput)(nil)).Elem(), GetDeploymentEndpointServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentPrivateNetworkInput)(nil)).Elem(), GetDeploymentPrivateNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentPrivateNetworkArrayInput)(nil)).Elem(), GetDeploymentPrivateNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentVolumeInput)(nil)).Elem(), GetDeploymentVolumeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeploymentVolumeArrayInput)(nil)).Elem(), GetDeploymentVolumeArray{})
 	pulumi.RegisterOutputType(DeploymentEndpointOutput{})
 	pulumi.RegisterOutputType(DeploymentEndpointArrayOutput{})
 	pulumi.RegisterOutputType(DeploymentEndpointServiceOutput{})
@@ -562,4 +1012,12 @@ func init() {
 	pulumi.RegisterOutputType(DeploymentPrivateNetworkPtrOutput{})
 	pulumi.RegisterOutputType(DeploymentVolumeOutput{})
 	pulumi.RegisterOutputType(DeploymentVolumePtrOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEndpointOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEndpointArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEndpointServiceOutput{})
+	pulumi.RegisterOutputType(GetDeploymentEndpointServiceArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentPrivateNetworkOutput{})
+	pulumi.RegisterOutputType(GetDeploymentPrivateNetworkArrayOutput{})
+	pulumi.RegisterOutputType(GetDeploymentVolumeOutput{})
+	pulumi.RegisterOutputType(GetDeploymentVolumeArrayOutput{})
 }

@@ -82,6 +82,10 @@ export class Deployment extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
+     * URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+     */
+    declare public /*out*/ readonly publicDashboardUrl: pulumi.Output<string>;
+    /**
      * `region`) The region in which the deployment should be created.
      */
     declare public readonly region: pulumi.Output<string | undefined>;
@@ -131,6 +135,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["password"] = state?.password;
             resourceInputs["privateNetwork"] = state?.privateNetwork;
             resourceInputs["projectId"] = state?.projectId;
+            resourceInputs["publicDashboardUrl"] = state?.publicDashboardUrl;
             resourceInputs["region"] = state?.region;
             resourceInputs["status"] = state?.status;
             resourceInputs["tags"] = state?.tags;
@@ -162,6 +167,7 @@ export class Deployment extends pulumi.CustomResource {
             resourceInputs["volume"] = args?.volume;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
+            resourceInputs["publicDashboardUrl"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
@@ -212,6 +218,10 @@ export interface DeploymentState {
      * > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
      */
     projectId?: pulumi.Input<string>;
+    /**
+     * URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+     */
+    publicDashboardUrl?: pulumi.Input<string>;
     /**
      * `region`) The region in which the deployment should be created.
      */

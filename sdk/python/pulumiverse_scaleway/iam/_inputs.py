@@ -17,6 +17,8 @@ from .. import _utilities
 __all__ = [
     'PolicyRuleArgs',
     'PolicyRuleArgsDict',
+    'SamlServiceProviderArgs',
+    'SamlServiceProviderArgsDict',
 ]
 
 MYPY = False
@@ -134,5 +136,55 @@ class PolicyRuleArgs:
     @project_ids.setter
     def project_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_ids", value)
+
+
+if not MYPY:
+    class SamlServiceProviderArgsDict(TypedDict):
+        assertion_consumer_service_url: pulumi.Input[_builtins.str]
+        """
+        (Computed) The assertion consumer service URL of the Service Provider.
+        """
+        entity_id: pulumi.Input[_builtins.str]
+        """
+        (Computed) The entity ID of the Service Provider.
+        """
+elif False:
+    SamlServiceProviderArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class SamlServiceProviderArgs:
+    def __init__(__self__, *,
+                 assertion_consumer_service_url: pulumi.Input[_builtins.str],
+                 entity_id: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] assertion_consumer_service_url: (Computed) The assertion consumer service URL of the Service Provider.
+        :param pulumi.Input[_builtins.str] entity_id: (Computed) The entity ID of the Service Provider.
+        """
+        pulumi.set(__self__, "assertion_consumer_service_url", assertion_consumer_service_url)
+        pulumi.set(__self__, "entity_id", entity_id)
+
+    @_builtins.property
+    @pulumi.getter(name="assertionConsumerServiceUrl")
+    def assertion_consumer_service_url(self) -> pulumi.Input[_builtins.str]:
+        """
+        (Computed) The assertion consumer service URL of the Service Provider.
+        """
+        return pulumi.get(self, "assertion_consumer_service_url")
+
+    @assertion_consumer_service_url.setter
+    def assertion_consumer_service_url(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "assertion_consumer_service_url", value)
+
+    @_builtins.property
+    @pulumi.getter(name="entityId")
+    def entity_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        (Computed) The entity ID of the Service Provider.
+        """
+        return pulumi.get(self, "entity_id")
+
+    @entity_id.setter
+    def entity_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "entity_id", value)
 
 

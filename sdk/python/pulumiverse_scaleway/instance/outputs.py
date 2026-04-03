@@ -1910,13 +1910,28 @@ class GetServersServerPrivateIpResult(dict):
 class GetServersServerPublicIpResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
-                 id: _builtins.str):
+                 dynamic: _builtins.bool,
+                 family: _builtins.str,
+                 gateway: _builtins.str,
+                 id: _builtins.str,
+                 netmask: _builtins.str,
+                 provisioning_mode: _builtins.str):
         """
         :param _builtins.str address: The address of the IP
+        :param _builtins.bool dynamic: Whether the IP is dynamic.
+        :param _builtins.str family: IP address family (inet or inet6).
+        :param _builtins.str gateway: Gateway's IP address.
         :param _builtins.str id: The ID of the IP
+        :param _builtins.str netmask: CIDR netmask.
+        :param _builtins.str provisioning_mode: Provisioning mode of the IP address.
         """
         pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "dynamic", dynamic)
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "netmask", netmask)
+        pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @_builtins.property
     @pulumi.getter
@@ -1928,11 +1943,51 @@ class GetServersServerPublicIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def dynamic(self) -> _builtins.bool:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> _builtins.str:
+        """
+        IP address family (inet or inet6).
+        """
+        return pulumi.get(self, "family")
+
+    @_builtins.property
+    @pulumi.getter
+    def gateway(self) -> _builtins.str:
+        """
+        Gateway's IP address.
+        """
+        return pulumi.get(self, "gateway")
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> _builtins.str:
         """
         The ID of the IP
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def netmask(self) -> _builtins.str:
+        """
+        CIDR netmask.
+        """
+        return pulumi.get(self, "netmask")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> _builtins.str:
+        """
+        Provisioning mode of the IP address.
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type

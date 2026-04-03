@@ -11,7 +11,9 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
- * ### Basic
+ * ### Default to WAF with backend rules
+ *
+ * Routes all unmatched traffic through a WAF stage, while requests matching specific patterns are sent directly to a backend stage.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -30,6 +32,54 @@ import * as utilities from "../utilities";
  *             pathFilter: {
  *                 pathFilterType: "regex",
  *                 value: ".*",
+ *             },
+ *         },
+ *     }],
+ * });
+ * ```
+ *
+ * ### Default to backend with selective WAF protection
+ *
+ * Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as scaleway from "@pulumiverse/scaleway";
+ *
+ * const main = new scaleway.edgeservices.Pipeline("main", {
+ *     name: "my-pipeline",
+ *     description: "Static site with WAF-protected API",
+ * });
+ * const mainBucket = new scaleway.object.Bucket("main", {name: "my-static-site"});
+ * const static = new scaleway.edgeservices.BackendStage("static", {
+ *     pipelineId: main.id,
+ *     s3BackendConfig: {
+ *         bucketName: mainBucket.name,
+ *         bucketRegion: "fr-par",
+ *     },
+ * });
+ * const api = new scaleway.edgeservices.WafStage("api", {
+ *     pipelineId: main.id,
+ *     backendStageId: static.id,
+ *     mode: "enable",
+ *     paranoiaLevel: 2,
+ * });
+ * const mainRouteStage = new scaleway.edgeservices.RouteStage("main", {
+ *     pipelineId: main.id,
+ *     backendStageId: static.id,
+ *     rules: [{
+ *         wafStageId: api.id,
+ *         ruleHttpMatch: {
+ *             methodFilters: [
+ *                 "get",
+ *                 "post",
+ *                 "put",
+ *                 "patch",
+ *                 "delete",
+ *             ],
+ *             pathFilter: {
+ *                 pathFilterType: "regex",
+ *                 value: "/api/.*",
  *             },
  *         },
  *     }],
@@ -75,6 +125,10 @@ export class RouteStage extends pulumi.CustomResource {
     }
 
     /**
+     * The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+     */
+    declare public readonly backendStageId: pulumi.Output<string | undefined>;
+    /**
      * The date and time of the creation of the route stage.
      */
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
@@ -87,7 +141,7 @@ export class RouteStage extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+     * List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
      */
     declare public readonly rules: pulumi.Output<outputs.edgeservices.RouteStageRule[] | undefined>;
     /**
@@ -95,7 +149,7 @@ export class RouteStage extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
-     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
      */
     declare public readonly wafStageId: pulumi.Output<string | undefined>;
 
@@ -112,6 +166,7 @@ export class RouteStage extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouteStageState | undefined;
+            resourceInputs["backendStageId"] = state?.backendStageId;
             resourceInputs["createdAt"] = state?.createdAt;
             resourceInputs["pipelineId"] = state?.pipelineId;
             resourceInputs["projectId"] = state?.projectId;
@@ -123,6 +178,7 @@ export class RouteStage extends pulumi.CustomResource {
             if (args?.pipelineId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'pipelineId'");
             }
+            resourceInputs["backendStageId"] = args?.backendStageId;
             resourceInputs["pipelineId"] = args?.pipelineId;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["rules"] = args?.rules;
@@ -142,6 +198,10 @@ export class RouteStage extends pulumi.CustomResource {
  */
 export interface RouteStageState {
     /**
+     * The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+     */
+    backendStageId?: pulumi.Input<string>;
+    /**
      * The date and time of the creation of the route stage.
      */
     createdAt?: pulumi.Input<string>;
@@ -154,7 +214,7 @@ export interface RouteStageState {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+     * List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.edgeservices.RouteStageRule>[]>;
     /**
@@ -162,7 +222,7 @@ export interface RouteStageState {
      */
     updatedAt?: pulumi.Input<string>;
     /**
-     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
      */
     wafStageId?: pulumi.Input<string>;
 }
@@ -172,6 +232,10 @@ export interface RouteStageState {
  */
 export interface RouteStageArgs {
     /**
+     * The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+     */
+    backendStageId?: pulumi.Input<string>;
+    /**
      * The ID of the pipeline.
      */
     pipelineId: pulumi.Input<string>;
@@ -180,11 +244,11 @@ export interface RouteStageArgs {
      */
     projectId?: pulumi.Input<string>;
     /**
-     * The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+     * List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
      */
     rules?: pulumi.Input<pulumi.Input<inputs.edgeservices.RouteStageRule>[]>;
     /**
-     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+     * The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
      */
     wafStageId?: pulumi.Input<string>;
 }

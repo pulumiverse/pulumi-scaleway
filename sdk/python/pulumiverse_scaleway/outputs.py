@@ -2552,6 +2552,8 @@ class EdgeServicesRouteStageRule(dict):
             suggest = "backend_stage_id"
         elif key == "ruleHttpMatch":
             suggest = "rule_http_match"
+        elif key == "wafStageId":
+            suggest = "waf_stage_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in EdgeServicesRouteStageRule. Access the value via the '{suggest}' property getter instead.")
@@ -2565,21 +2567,26 @@ class EdgeServicesRouteStageRule(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 backend_stage_id: _builtins.str,
-                 rule_http_match: Optional['outputs.EdgeServicesRouteStageRuleRuleHttpMatch'] = None):
+                 backend_stage_id: Optional[_builtins.str] = None,
+                 rule_http_match: Optional['outputs.EdgeServicesRouteStageRuleRuleHttpMatch'] = None,
+                 waf_stage_id: Optional[_builtins.str] = None):
         """
-        :param _builtins.str backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to.
-        :param 'EdgeServicesRouteStageRuleRuleHttpMatchArgs' rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        :param _builtins.str backend_stage_id: The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
+        :param 'EdgeServicesRouteStageRuleRuleHttpMatchArgs' rule_http_match: The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
+        :param _builtins.str waf_stage_id: The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
         """
-        pulumi.set(__self__, "backend_stage_id", backend_stage_id)
+        if backend_stage_id is not None:
+            pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if rule_http_match is not None:
             pulumi.set(__self__, "rule_http_match", rule_http_match)
+        if waf_stage_id is not None:
+            pulumi.set(__self__, "waf_stage_id", waf_stage_id)
 
     @_builtins.property
     @pulumi.getter(name="backendStageId")
-    def backend_stage_id(self) -> _builtins.str:
+    def backend_stage_id(self) -> Optional[_builtins.str]:
         """
-        The ID of the backend stage that requests matching the rule should be forwarded to.
+        The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `waf_stage_id` within the same rule.
         """
         return pulumi.get(self, "backend_stage_id")
 
@@ -2587,9 +2594,17 @@ class EdgeServicesRouteStageRule(dict):
     @pulumi.getter(name="ruleHttpMatch")
     def rule_http_match(self) -> Optional['outputs.EdgeServicesRouteStageRuleRuleHttpMatch']:
         """
-        The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backend_stage_id` field. Requests that do not match will be checked by the next rule's condition.
+        The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backend_stage_id` or `waf_stage_id`. Requests that do not match will be checked by the next rule's condition.
         """
         return pulumi.get(self, "rule_http_match")
+
+    @_builtins.property
+    @pulumi.getter(name="wafStageId")
+    def waf_stage_id(self) -> Optional[_builtins.str]:
+        """
+        The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backend_stage_id` within the same rule.
+        """
+        return pulumi.get(self, "waf_stage_id")
 
 
 @pulumi.output_type
@@ -10682,13 +10697,28 @@ class GetInstanceServersServerPrivateIpResult(dict):
 class GetInstanceServersServerPublicIpResult(dict):
     def __init__(__self__, *,
                  address: _builtins.str,
-                 id: _builtins.str):
+                 dynamic: _builtins.bool,
+                 family: _builtins.str,
+                 gateway: _builtins.str,
+                 id: _builtins.str,
+                 netmask: _builtins.str,
+                 provisioning_mode: _builtins.str):
         """
         :param _builtins.str address: The address of the IP
+        :param _builtins.bool dynamic: Whether the IP is dynamic.
+        :param _builtins.str family: IP address family (inet or inet6).
+        :param _builtins.str gateway: Gateway's IP address.
         :param _builtins.str id: The ID of the IP
+        :param _builtins.str netmask: CIDR netmask.
+        :param _builtins.str provisioning_mode: Provisioning mode of the IP address.
         """
         pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "dynamic", dynamic)
+        pulumi.set(__self__, "family", family)
+        pulumi.set(__self__, "gateway", gateway)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "netmask", netmask)
+        pulumi.set(__self__, "provisioning_mode", provisioning_mode)
 
     @_builtins.property
     @pulumi.getter
@@ -10700,11 +10730,51 @@ class GetInstanceServersServerPublicIpResult(dict):
 
     @_builtins.property
     @pulumi.getter
+    def dynamic(self) -> _builtins.bool:
+        """
+        Whether the IP is dynamic.
+        """
+        return pulumi.get(self, "dynamic")
+
+    @_builtins.property
+    @pulumi.getter
+    def family(self) -> _builtins.str:
+        """
+        IP address family (inet or inet6).
+        """
+        return pulumi.get(self, "family")
+
+    @_builtins.property
+    @pulumi.getter
+    def gateway(self) -> _builtins.str:
+        """
+        Gateway's IP address.
+        """
+        return pulumi.get(self, "gateway")
+
+    @_builtins.property
+    @pulumi.getter
     def id(self) -> _builtins.str:
         """
         The ID of the IP
         """
         return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter
+    def netmask(self) -> _builtins.str:
+        """
+        CIDR netmask.
+        """
+        return pulumi.get(self, "netmask")
+
+    @_builtins.property
+    @pulumi.getter(name="provisioningMode")
+    def provisioning_mode(self) -> _builtins.str:
+        """
+        Provisioning mode of the IP address.
+        """
+        return pulumi.get(self, "provisioning_mode")
 
 
 @pulumi.output_type

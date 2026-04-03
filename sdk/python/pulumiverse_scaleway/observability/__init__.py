@@ -8,9 +8,12 @@ import typing
 # Export this package's modules as members:
 from .alert_manager import *
 from .cockpit import *
+from .exporter import *
+from .get_exporter import *
 from .get_grafana import *
 from .get_instance import *
 from .get_preconfigured_alert import *
+from .get_products import *
 from .get_source import *
 from .get_sources import *
 from .grafana_user import *

@@ -20,6 +20,41 @@ export type DnsStage = import("./dnsStage").DnsStage;
 export const DnsStage: typeof import("./dnsStage").DnsStage = null as any;
 utilities.lazyLoad(exports, ["DnsStage"], () => require("./dnsStage"));
 
+export { GetBackendStageArgs, GetBackendStageResult, GetBackendStageOutputArgs } from "./getBackendStage";
+export const getBackendStage: typeof import("./getBackendStage").getBackendStage = null as any;
+export const getBackendStageOutput: typeof import("./getBackendStage").getBackendStageOutput = null as any;
+utilities.lazyLoad(exports, ["getBackendStage","getBackendStageOutput"], () => require("./getBackendStage"));
+
+export { GetCacheStageArgs, GetCacheStageResult, GetCacheStageOutputArgs } from "./getCacheStage";
+export const getCacheStage: typeof import("./getCacheStage").getCacheStage = null as any;
+export const getCacheStageOutput: typeof import("./getCacheStage").getCacheStageOutput = null as any;
+utilities.lazyLoad(exports, ["getCacheStage","getCacheStageOutput"], () => require("./getCacheStage"));
+
+export { GetDnsStageArgs, GetDnsStageResult, GetDnsStageOutputArgs } from "./getDnsStage";
+export const getDnsStage: typeof import("./getDnsStage").getDnsStage = null as any;
+export const getDnsStageOutput: typeof import("./getDnsStage").getDnsStageOutput = null as any;
+utilities.lazyLoad(exports, ["getDnsStage","getDnsStageOutput"], () => require("./getDnsStage"));
+
+export { GetPipelineArgs, GetPipelineResult, GetPipelineOutputArgs } from "./getPipeline";
+export const getPipeline: typeof import("./getPipeline").getPipeline = null as any;
+export const getPipelineOutput: typeof import("./getPipeline").getPipelineOutput = null as any;
+utilities.lazyLoad(exports, ["getPipeline","getPipelineOutput"], () => require("./getPipeline"));
+
+export { GetRouteStageArgs, GetRouteStageResult, GetRouteStageOutputArgs } from "./getRouteStage";
+export const getRouteStage: typeof import("./getRouteStage").getRouteStage = null as any;
+export const getRouteStageOutput: typeof import("./getRouteStage").getRouteStageOutput = null as any;
+utilities.lazyLoad(exports, ["getRouteStage","getRouteStageOutput"], () => require("./getRouteStage"));
+
+export { GetTlsStageArgs, GetTlsStageResult, GetTlsStageOutputArgs } from "./getTlsStage";
+export const getTlsStage: typeof import("./getTlsStage").getTlsStage = null as any;
+export const getTlsStageOutput: typeof import("./getTlsStage").getTlsStageOutput = null as any;
+utilities.lazyLoad(exports, ["getTlsStage","getTlsStageOutput"], () => require("./getTlsStage"));
+
+export { GetWafStageArgs, GetWafStageResult, GetWafStageOutputArgs } from "./getWafStage";
+export const getWafStage: typeof import("./getWafStage").getWafStage = null as any;
+export const getWafStageOutput: typeof import("./getWafStage").getWafStageOutput = null as any;
+utilities.lazyLoad(exports, ["getWafStage","getWafStageOutput"], () => require("./getWafStage"));
+
 export { HeadStageArgs, HeadStageState } from "./headStage";
 export type HeadStage = import("./headStage").HeadStage;
 export const HeadStage: typeof import("./headStage").HeadStage = null as any;

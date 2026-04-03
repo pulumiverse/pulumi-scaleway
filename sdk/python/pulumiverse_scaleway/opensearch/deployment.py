@@ -218,6 +218,7 @@ class _DeploymentState:
                  password: Optional[pulumi.Input[_builtins.str]] = None,
                  private_network: Optional[pulumi.Input['DeploymentPrivateNetworkArgs']] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 public_dashboard_url: Optional[pulumi.Input[_builtins.str]] = None,
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  status: Optional[pulumi.Input[_builtins.str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -239,6 +240,7 @@ class _DeploymentState:
                > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
+        :param pulumi.Input[_builtins.str] public_dashboard_url: URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "creating", "upgrading").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -263,6 +265,8 @@ class _DeploymentState:
             pulumi.set(__self__, "private_network", private_network)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
+        if public_dashboard_url is not None:
+            pulumi.set(__self__, "public_dashboard_url", public_dashboard_url)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if status is not None:
@@ -377,6 +381,18 @@ class _DeploymentState:
     @project_id.setter
     def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="publicDashboardUrl")
+    def public_dashboard_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+        """
+        return pulumi.get(self, "public_dashboard_url")
+
+    @public_dashboard_url.setter
+    def public_dashboard_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "public_dashboard_url", value)
 
     @_builtins.property
     @pulumi.getter
@@ -581,6 +597,7 @@ class Deployment(pulumi.CustomResource):
             __props__.__dict__["volume"] = volume
             __props__.__dict__["created_at"] = None
             __props__.__dict__["endpoints"] = None
+            __props__.__dict__["public_dashboard_url"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["updated_at"] = None
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
@@ -603,6 +620,7 @@ class Deployment(pulumi.CustomResource):
             password: Optional[pulumi.Input[_builtins.str]] = None,
             private_network: Optional[pulumi.Input[Union['DeploymentPrivateNetworkArgs', 'DeploymentPrivateNetworkArgsDict']]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+            public_dashboard_url: Optional[pulumi.Input[_builtins.str]] = None,
             region: Optional[pulumi.Input[_builtins.str]] = None,
             status: Optional[pulumi.Input[_builtins.str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -629,6 +647,7 @@ class Deployment(pulumi.CustomResource):
                > **Important:** A public endpoint is automatically created by default. Private network endpoints can be added using a separate endpoint resource (coming soon).
                
                > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
+        :param pulumi.Input[_builtins.str] public_dashboard_url: URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
         :param pulumi.Input[_builtins.str] region: `region`) The region in which the deployment should be created.
         :param pulumi.Input[_builtins.str] status: The status of the deployment (e.g., "ready", "creating", "upgrading").
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] tags: List of tags to apply to the deployment.
@@ -649,6 +668,7 @@ class Deployment(pulumi.CustomResource):
         __props__.__dict__["password"] = password
         __props__.__dict__["private_network"] = private_network
         __props__.__dict__["project_id"] = project_id
+        __props__.__dict__["public_dashboard_url"] = public_dashboard_url
         __props__.__dict__["region"] = region
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -725,6 +745,14 @@ class Deployment(pulumi.CustomResource):
         > **Important:** The password must be at least 12 characters long. If not provided, you will need to reset it through the Scaleway console or API.
         """
         return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicDashboardUrl")
+    def public_dashboard_url(self) -> pulumi.Output[_builtins.str]:
+        """
+        URL of OpenSearch Dashboards when served on a **public** endpoint. With a private network for the API, the API endpoint is private but the dashboard may still be reachable at this public URL.
+        """
+        return pulumi.get(self, "public_dashboard_url")
 
     @_builtins.property
     @pulumi.getter

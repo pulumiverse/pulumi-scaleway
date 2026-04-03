@@ -11,8 +11,6 @@ using Pulumi;
 namespace Pulumiverse.Scaleway.Mongodb
 {
     /// <summary>
-    /// Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -142,7 +140,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The password of the MongoDB® user.
+        /// The password of the MongoDB® user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -153,6 +151,9 @@ namespace Pulumiverse.Scaleway.Mongodb
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Output("passwordWoVersion")]
         public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
@@ -236,7 +237,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         private Input<string>? _password;
 
         /// <summary>
-        /// The password of the MongoDB® user.
+        /// The password of the MongoDB® user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -264,6 +265,9 @@ namespace Pulumiverse.Scaleway.Mongodb
             }
         }
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Input("passwordWoVersion")]
         public Input<int>? PasswordWoVersion { get; set; }
 
@@ -309,7 +313,7 @@ namespace Pulumiverse.Scaleway.Mongodb
         private Input<string>? _password;
 
         /// <summary>
-        /// The password of the MongoDB® user.
+        /// The password of the MongoDB® user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -337,6 +341,9 @@ namespace Pulumiverse.Scaleway.Mongodb
             }
         }
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Input("passwordWoVersion")]
         public Input<int>? PasswordWoVersion { get; set; }
 

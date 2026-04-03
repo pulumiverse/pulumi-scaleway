@@ -35,6 +35,10 @@ __all__ = [
     'BucketLockConfigurationRuleArgsDict',
     'BucketLockConfigurationRuleDefaultRetentionArgs',
     'BucketLockConfigurationRuleDefaultRetentionArgsDict',
+    'BucketServerSideEncryptionConfigurationRuleArgs',
+    'BucketServerSideEncryptionConfigurationRuleArgsDict',
+    'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs',
+    'BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict',
     'BucketVersioningArgs',
     'BucketVersioningArgsDict',
     'BucketWebsiteConfigurationErrorDocumentArgs',
@@ -763,6 +767,69 @@ class BucketLockConfigurationRuleDefaultRetentionArgs:
     @years.setter
     def years(self, value: Optional[pulumi.Input[_builtins.int]]):
         pulumi.set(self, "years", value)
+
+
+if not MYPY:
+    class BucketServerSideEncryptionConfigurationRuleArgsDict(TypedDict):
+        apply_server_side_encryption_by_default: NotRequired[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict']]
+        """
+        Single object for setting server-side encryption by default.
+        """
+elif False:
+    BucketServerSideEncryptionConfigurationRuleArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BucketServerSideEncryptionConfigurationRuleArgs:
+    def __init__(__self__, *,
+                 apply_server_side_encryption_by_default: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']] = None):
+        """
+        :param pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_default: Single object for setting server-side encryption by default.
+        """
+        if apply_server_side_encryption_by_default is not None:
+            pulumi.set(__self__, "apply_server_side_encryption_by_default", apply_server_side_encryption_by_default)
+
+    @_builtins.property
+    @pulumi.getter(name="applyServerSideEncryptionByDefault")
+    def apply_server_side_encryption_by_default(self) -> Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]:
+        """
+        Single object for setting server-side encryption by default.
+        """
+        return pulumi.get(self, "apply_server_side_encryption_by_default")
+
+    @apply_server_side_encryption_by_default.setter
+    def apply_server_side_encryption_by_default(self, value: Optional[pulumi.Input['BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']]):
+        pulumi.set(self, "apply_server_side_encryption_by_default", value)
+
+
+if not MYPY:
+    class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict(TypedDict):
+        sse_algorithm: pulumi.Input[_builtins.str]
+        """
+        Server-side encryption algorithm to use. Valid values are `AES256`.
+        """
+elif False:
+    BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgsDict: TypeAlias = Mapping[str, Any]
+
+@pulumi.input_type
+class BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs:
+    def __init__(__self__, *,
+                 sse_algorithm: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] sse_algorithm: Server-side encryption algorithm to use. Valid values are `AES256`.
+        """
+        pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+
+    @_builtins.property
+    @pulumi.getter(name="sseAlgorithm")
+    def sse_algorithm(self) -> pulumi.Input[_builtins.str]:
+        """
+        Server-side encryption algorithm to use. Valid values are `AES256`.
+        """
+        return pulumi.get(self, "sse_algorithm")
+
+    @sse_algorithm.setter
+    def sse_algorithm(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "sse_algorithm", value)
 
 
 if not MYPY:

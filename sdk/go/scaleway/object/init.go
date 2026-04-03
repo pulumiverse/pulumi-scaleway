@@ -29,6 +29,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &BucketLockConfiguration{}
 	case "scaleway:object/bucketPolicy:BucketPolicy":
 		r = &BucketPolicy{}
+	case "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration":
+		r = &BucketServerSideEncryptionConfiguration{}
 	case "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration":
 		r = &BucketWebsiteConfiguration{}
 	case "scaleway:object/item:Item":
@@ -64,6 +66,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"object/bucketPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"object/bucketServerSideEncryptionConfiguration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
