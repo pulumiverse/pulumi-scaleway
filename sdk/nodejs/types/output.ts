@@ -662,13 +662,17 @@ export interface EdgeServicesCacheStagePurgeRequest {
 
 export interface EdgeServicesRouteStageRule {
     /**
-     * The ID of the backend stage that requests matching the rule should be forwarded to.
+     * The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
      */
-    backendStageId: string;
+    backendStageId?: string;
     /**
-     * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+     * The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
      */
     ruleHttpMatch?: outputs.EdgeServicesRouteStageRuleRuleHttpMatch;
+    /**
+     * The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+     */
+    wafStageId?: string;
 }
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatch {
@@ -1642,9 +1646,29 @@ export interface GetInstanceServersServerPublicIp {
      */
     address: string;
     /**
+     * Whether the IP is dynamic.
+     */
+    dynamic: boolean;
+    /**
+     * IP address family (inet or inet6).
+     */
+    family: string;
+    /**
+     * Gateway's IP address.
+     */
+    gateway: string;
+    /**
      * The ID of the IP
      */
     id: string;
+    /**
+     * CIDR netmask.
+     */
+    netmask: string;
+    /**
+     * Provisioning mode of the IP address.
+     */
+    provisioningMode: string;
 }
 
 export interface GetInstanceSnapshotImport {
@@ -1656,6 +1680,37 @@ export interface GetInstanceSnapshotImport {
      * Key of the qcow file in the specified bucket
      */
     key: string;
+}
+
+export interface GetInterlinkPartnersPartner {
+    /**
+     * Contact email address.
+     */
+    contactEmail: string;
+    /**
+     * Creation date.
+     */
+    createdAt: string;
+    /**
+     * ID of the partner.
+     */
+    id: string;
+    /**
+     * URL of the partner's logo.
+     */
+    logoUrl: string;
+    /**
+     * Name of the partner.
+     */
+    name: string;
+    /**
+     * URL of the partner's portal.
+     */
+    portalUrl: string;
+    /**
+     * Last update date.
+     */
+    updatedAt: string;
 }
 
 export interface GetIotDeviceCertificate {
@@ -5839,6 +5894,558 @@ export namespace domain {
         weight: number;
     }
 
+    export interface GetRegistrationAdministrativeContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEus: outputs.domain.GetRegistrationAdministrativeContactExtensionEus[];
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFrs: outputs.domain.GetRegistrationAdministrativeContactExtensionFr[];
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionEus {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship: string;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfos: outputs.domain.GetRegistrationAdministrativeContactExtensionFrAssociationInfo[];
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfos: outputs.domain.GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo[];
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfos: outputs.domain.GetRegistrationAdministrativeContactExtensionFrDunsInfo[];
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfos: outputs.domain.GetRegistrationAdministrativeContactExtensionFrIndividualInfo[];
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfos: outputs.domain.GetRegistrationAdministrativeContactExtensionFrTrademarkInfo[];
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage: number;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic: string;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId: string;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+    }
+
+    export interface GetRegistrationAdministrativeContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi: string;
+    }
+
+    export interface GetRegistrationDsRecord {
+        /**
+         * The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+         */
+        algorithm: string;
+        /**
+         * Details about the digest.
+         */
+        digests: outputs.domain.GetRegistrationDsRecordDigest[];
+        /**
+         * The identifier for the dnssec key.
+         */
+        keyId: number;
+        /**
+         * Public key associated with the dnssec record.
+         */
+        publicKeys: outputs.domain.GetRegistrationDsRecordPublicKey[];
+    }
+
+    export interface GetRegistrationDsRecordDigest {
+        /**
+         * The digest value.
+         */
+        digest: string;
+        /**
+         * The public key associated with the digest.
+         */
+        publicKeys: outputs.domain.GetRegistrationDsRecordDigestPublicKey[];
+        /**
+         * The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+         */
+        type: string;
+    }
+
+    export interface GetRegistrationDsRecordDigestPublicKey {
+        /**
+         * The public key value.
+         */
+        key: string;
+    }
+
+    export interface GetRegistrationDsRecordPublicKey {
+        /**
+         * The public key value.
+         */
+        key: string;
+    }
+
+    export interface GetRegistrationOwnerContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEus: outputs.domain.GetRegistrationOwnerContactExtensionEus[];
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFrs: outputs.domain.GetRegistrationOwnerContactExtensionFr[];
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionEus {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship: string;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfos: outputs.domain.GetRegistrationOwnerContactExtensionFrAssociationInfo[];
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfos: outputs.domain.GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo[];
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfos: outputs.domain.GetRegistrationOwnerContactExtensionFrDunsInfo[];
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfos: outputs.domain.GetRegistrationOwnerContactExtensionFrIndividualInfo[];
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfos: outputs.domain.GetRegistrationOwnerContactExtensionFrTrademarkInfo[];
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage: number;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic: string;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId: string;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+    }
+
+    export interface GetRegistrationOwnerContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi: string;
+    }
+
+    export interface GetRegistrationTechnicalContact {
+        /**
+         * Primary address line for the contact.
+         */
+        addressLine1: string;
+        /**
+         * Secondary address line for the contact (optional).
+         */
+        addressLine2: string;
+        /**
+         * City of the contact's address.
+         */
+        city: string;
+        /**
+         * Company identification code (e.g., SIREN/SIRET in France) for the contact.
+         */
+        companyIdentificationCode: string;
+        /**
+         * Name of the company associated with the contact (if applicable).
+         */
+        companyName: string;
+        /**
+         * Country code of the contact's address (ISO format).
+         */
+        country: string;
+        /**
+         * Primary email address of the contact.
+         */
+        email: string;
+        /**
+         * Alternative email address for the contact.
+         */
+        emailAlt: string;
+        /**
+         * Details specific to European domain extensions.
+         */
+        extensionEus: outputs.domain.GetRegistrationTechnicalContactExtensionEus[];
+        /**
+         * Details specific to French domain extensions.
+         */
+        extensionFrs: outputs.domain.GetRegistrationTechnicalContactExtensionFr[];
+        /**
+         * Extension details specific to Dutch domain registrations.
+         */
+        extensionNls: string[];
+        /**
+         * Fax number for the contact (if available).
+         */
+        faxNumber: string;
+        /**
+         * First name of the contact.
+         */
+        firstname: string;
+        /**
+         * Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+         */
+        lang: string;
+        /**
+         * Last name of the contact.
+         */
+        lastname: string;
+        /**
+         * Legal form of the contact (e.g., 'individual' or 'organization').
+         */
+        legalForm: string;
+        /**
+         * Primary phone number of the contact.
+         */
+        phoneNumber: string;
+        /**
+         * Indicates if the contact is used for resale purposes.
+         */
+        resale: boolean;
+        /**
+         * State or region of the contact.
+         */
+        state: string;
+        /**
+         * VAT identification code of the contact, if applicable.
+         */
+        vatIdentificationCode: string;
+        /**
+         * Indicates whether the contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+        /**
+         * Postal code of the contact's address.
+         */
+        zip: string;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionEus {
+        /**
+         * Indicates the European citizenship of the contact.
+         */
+        europeanCitizenship: string;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFr {
+        /**
+         * Association-specific information for the domain (French extension).
+         */
+        associationInfos: outputs.domain.GetRegistrationTechnicalContactExtensionFrAssociationInfo[];
+        /**
+         * AFNIC authorization information for the contact (French extension).
+         */
+        codeAuthAfnicInfos: outputs.domain.GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo[];
+        /**
+         * DUNS information for the domain owner (specific to French domains).
+         */
+        dunsInfos: outputs.domain.GetRegistrationTechnicalContactExtensionFrDunsInfo[];
+        /**
+         * Information about the individual registration for French domains.
+         */
+        individualInfos: outputs.domain.GetRegistrationTechnicalContactExtensionFrIndividualInfo[];
+        /**
+         * Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+         */
+        mode: string;
+        /**
+         * Trademark-related information for the domain (French extension).
+         */
+        trademarkInfos: outputs.domain.GetRegistrationTechnicalContactExtensionFrTrademarkInfo[];
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFrAssociationInfo {
+        /**
+         * Publication date in the Official Journal (RFC3339 format) for association information.
+         */
+        publicationJo: string;
+        /**
+         * Page number of the publication in the Official Journal for association information.
+         */
+        publicationJoPage: number;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfo {
+        /**
+         * AFNIC authorization code for the contact (specific to French domains).
+         */
+        codeAuthAfnic: string;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFrDunsInfo {
+        /**
+         * DUNS ID associated with the domain owner (for French domains).
+         */
+        dunsId: string;
+        /**
+         * Local identifier of the domain owner (for French domains).
+         */
+        localId: string;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFrIndividualInfo {
+        /**
+         * Whether the individual contact has opted into WHOIS publishing.
+         */
+        whoisOptIn: boolean;
+    }
+
+    export interface GetRegistrationTechnicalContactExtensionFrTrademarkInfo {
+        /**
+         * Trademark information from INPI (French extension).
+         */
+        trademarkInpi: string;
+    }
+
     export interface RecordGeoIp {
         /**
          * The list of matches
@@ -6525,15 +7132,131 @@ export namespace edgeservices {
         pipelineId?: string;
     }
 
-    export interface RouteStageRule {
+    export interface GetBackendStageLbBackendConfig {
         /**
-         * The ID of the backend stage that requests matching the rule should be forwarded to.
+         * The Load Balancer configuration
+         */
+        lbConfigs: outputs.edgeservices.GetBackendStageLbBackendConfigLbConfig[];
+    }
+
+    export interface GetBackendStageLbBackendConfigLbConfig {
+        /**
+         * Fully Qualified Domain Name (in the format subdomain.example.com) to use in HTTP requests sent towards your Load Balancer
+         */
+        domainName: string;
+        /**
+         * ID of the frontend linked to the Load Balancer
+         */
+        frontendId: string;
+        /**
+         * Defines whether to forward websocket requests to the load balancer
+         */
+        hasWebsocket: boolean;
+        /**
+         * ID of the Load Balancer
+         */
+        id: string;
+        /**
+         * Defines whether the Load Balancer's frontend handles SSL connections
+         */
+        isSsl: boolean;
+        /**
+         * The zone you want to attach the resource to
+         */
+        zone: string;
+    }
+
+    export interface GetBackendStageS3BackendConfig {
+        /**
+         * Filter by S3 bucket name.
+         */
+        bucketName: string;
+        /**
+         * Filter by S3 bucket region.
+         */
+        bucketRegion: string;
+        /**
+         * Defines whether the bucket website feature is enabled.
+         */
+        isWebsite: boolean;
+    }
+
+    export interface GetCacheStagePurgeRequest {
+        /**
+         * Defines whether to purge all content
+         */
+        all: boolean;
+        /**
+         * The list of asserts to purge
+         */
+        assets: string[];
+        /**
+         * The ID of the pipeline.
+         */
+        pipelineId: string;
+    }
+
+    export interface GetRouteStageRule {
+        /**
+         * ID of the backend stage that requests matching the rule should be forwarded to
          */
         backendStageId: string;
         /**
-         * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+         * Rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition
+         */
+        ruleHttpMatches: outputs.edgeservices.GetRouteStageRuleRuleHttpMatch[];
+        /**
+         * ID of the WAF stage that requests matching the rule should be forwarded to
+         */
+        wafStageId: string;
+    }
+
+    export interface GetRouteStageRuleRuleHttpMatch {
+        /**
+         * HTTP methods to filter for. A request using any of these methods will be considered to match the rule. Possible values are `get`, `post`, `put`, `patch`, `delete`, `head`, `options`. All methods will match if none is provided
+         */
+        methodFilters: string[];
+        /**
+         * HTTP URL path to filter for. A request whose path matches the given filter will be considered to match the rule. All paths will match if none is provided
+         */
+        pathFilters: outputs.edgeservices.GetRouteStageRuleRuleHttpMatchPathFilter[];
+    }
+
+    export interface GetRouteStageRuleRuleHttpMatchPathFilter {
+        /**
+         * The type of filter to match for the HTTP URL path. For now, all path filters must be written in regex and use the `regex` type
+         */
+        pathFilterType: string;
+        /**
+         * The value to be matched for the HTTP URL path
+         */
+        value: string;
+    }
+
+    export interface GetTlsStageSecret {
+        /**
+         * The region you want to attach the resource to
+         */
+        region: string;
+        /**
+         * Secret ID to filter for.
+         */
+        secretId: string;
+    }
+
+    export interface RouteStageRule {
+        /**
+         * The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+         */
+        backendStageId?: string;
+        /**
+         * The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
          */
         ruleHttpMatch?: outputs.edgeservices.RouteStageRuleRuleHttpMatch;
+        /**
+         * The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+         */
+        wafStageId?: string;
     }
 
     export interface RouteStageRuleRuleHttpMatch {
@@ -7240,6 +7963,11 @@ export namespace iam {
         projectIds: string[];
     }
 
+    export interface GetSamlServiceProvider {
+        assertionConsumerServiceUrl: string;
+        entityId: string;
+    }
+
     export interface PolicyRule {
         /**
          * The condition of the rule.
@@ -7265,6 +7993,17 @@ export namespace iam {
          * > **Important** One `organizationId` or `projectIds` must be set per rule.
          */
         projectIds?: string[];
+    }
+
+    export interface SamlServiceProvider {
+        /**
+         * (Computed) The assertion consumer service URL of the Service Provider.
+         */
+        assertionConsumerServiceUrl: string;
+        /**
+         * (Computed) The entity ID of the Service Provider.
+         */
+        entityId: string;
     }
 
 }
@@ -7693,9 +8432,29 @@ export namespace instance {
          */
         address: string;
         /**
+         * Whether the IP is dynamic.
+         */
+        dynamic: boolean;
+        /**
+         * IP address family (inet or inet6).
+         */
+        family: string;
+        /**
+         * Gateway's IP address.
+         */
+        gateway: string;
+        /**
          * The ID of the IP
          */
         id: string;
+        /**
+         * CIDR netmask.
+         */
+        netmask: string;
+        /**
+         * Provisioning mode of the IP address.
+         */
+        provisioningMode: string;
     }
 
     export interface GetSnapshotImport {
@@ -9912,6 +10671,45 @@ export namespace network {
         id: string;
     }
 
+    export interface GetAclRule {
+        /**
+         * The policy to apply to the packet
+         */
+        action: string;
+        /**
+         * The rule description
+         */
+        description: string;
+        /**
+         * Destination IP range to which this rule applies (CIDR notation with subnet mask)
+         */
+        destination: string;
+        /**
+         * Ending port of the destination port range to which this rule applies (inclusive)
+         */
+        dstPortHigh: number;
+        /**
+         * Starting port of the destination port range to which this rule applies (inclusive)
+         */
+        dstPortLow: number;
+        /**
+         * The protocol to which this rule applies. Default value: ANY
+         */
+        protocol: string;
+        /**
+         * Source IP range to which this rule applies (CIDR notation with subnet mask)
+         */
+        source: string;
+        /**
+         * Ending port of the source port range to which this rule applies (inclusive)
+         */
+        srcPortHigh: number;
+        /**
+         * Starting port of the source port range to which this rule applies (inclusive)
+         */
+        srcPortLow: number;
+    }
+
     export interface GetGatewayNetworkIpamConfig {
         /**
          * Use this IPAM-booked IP ID as the Gateway's IP in this Private Network
@@ -10309,6 +11107,20 @@ export namespace object {
         years?: number;
     }
 
+    export interface BucketServerSideEncryptionConfigurationRule {
+        /**
+         * Single object for setting server-side encryption by default.
+         */
+        applyServerSideEncryptionByDefault?: outputs.object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault;
+    }
+
+    export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * Server-side encryption algorithm to use. Valid values are `AES256`.
+         */
+        sseAlgorithm: string;
+    }
+
     export interface BucketVersioning {
         /**
          * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
@@ -10404,6 +11216,20 @@ export namespace object {
         storageClass: string;
     }
 
+    export interface GetBucketServerSideEncryptionConfigurationRule {
+        /**
+         * (List of Object) Single object for setting server-side encryption by default.
+         */
+        applyServerSideEncryptionByDefaults: outputs.object.GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault[];
+    }
+
+    export interface GetBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * (String) Server-side encryption algorithm to use. Valid values are AES256.
+         */
+        sseAlgorithm: string;
+    }
+
     export interface GetBucketVersioning {
         /**
          * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state
@@ -10453,6 +11279,50 @@ export namespace observability {
          * Push URL for metrics (Grafana Mimir)
          */
         pushMetricsUrl: string;
+    }
+
+    export interface ExporterDatadogDestination {
+        /**
+         * Datadog API key. Sensitive.
+         */
+        apiKey: string;
+        /**
+         * Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+         */
+        endpoint?: string;
+    }
+
+    export interface ExporterOtlpDestination {
+        /**
+         * OTLP endpoint URL.
+         */
+        endpoint: string;
+        /**
+         * Headers to include in requests.
+         */
+        headers?: {[key: string]: string};
+    }
+
+    export interface GetExporterDatadogDestination {
+        /**
+         * Datadog API key
+         */
+        apiKey: string;
+        /**
+         * Datadog endpoint URL
+         */
+        endpoint: string;
+    }
+
+    export interface GetExporterOtlpDestination {
+        /**
+         * OTLP endpoint URL
+         */
+        endpoint: string;
+        /**
+         * Headers to include in requests
+         */
+        headers: {[key: string]: string};
     }
 
     export interface GetInstanceEndpoint {
@@ -10538,6 +11408,21 @@ export namespace observability {
          * Current state of the alert (`inactive`, `pending`, `firing`).
          */
         state: string;
+    }
+
+    export interface GetProductsProduct {
+        /**
+         * Human-readable display name of the product.
+         */
+        displayName: string;
+        /**
+         * Product family name.
+         */
+        familyName: string;
+        /**
+         * Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+         */
+        name: string;
     }
 
     export interface GetSourcesSource {
@@ -10681,6 +11566,58 @@ export namespace opensearch {
         sizeInGb: number;
         /**
          * Volume type. Valid values are `sbs5k` (5K IOPS) or `sbs15k` (15K IOPS). Changing this forces recreation of the deployment.
+         */
+        type: string;
+    }
+
+    export interface GetDeploymentEndpoint {
+        /**
+         * Endpoint ID
+         */
+        id: string;
+        /**
+         * Private network ID if applicable
+         */
+        privateNetworkId: string;
+        /**
+         * Whether the endpoint is public
+         */
+        public: boolean;
+        /**
+         * List of services
+         */
+        services: outputs.opensearch.GetDeploymentEndpointService[];
+    }
+
+    export interface GetDeploymentEndpointService {
+        /**
+         * The name of the OpenSearch deployment. Only one of `name` and `deploymentId` should be specified.
+         */
+        name: string;
+        /**
+         * Service port
+         */
+        port: number;
+        /**
+         * Service URL
+         */
+        url: string;
+    }
+
+    export interface GetDeploymentPrivateNetwork {
+        /**
+         * UUID of the Private Network
+         */
+        privateNetworkId: string;
+    }
+
+    export interface GetDeploymentVolume {
+        /**
+         * Volume size in GB
+         */
+        sizeInGb: number;
+        /**
+         * Volume type (sbs_5k, sbs_15k)
          */
         type: string;
     }

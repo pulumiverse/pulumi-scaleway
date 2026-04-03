@@ -7,9 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Creates and manages Scaleway MongoDB® instance.
- * For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
- *
  * ## Example Usage
  *
  * ```typescript
@@ -90,13 +87,16 @@ export class MongoDbInstance extends pulumi.CustomResource {
      */
     declare public readonly nodeType: pulumi.Output<string>;
     /**
-     * Password of the user.
+     * Password of the user. Only one of `password` or `passwordWo` should be specified.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The private IPv4 address associated with the instance.
@@ -268,13 +268,16 @@ export interface MongoDbInstanceState {
      */
     nodeType?: pulumi.Input<string>;
     /**
-     * Password of the user.
+     * Password of the user. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the instance.
@@ -363,13 +366,16 @@ export interface MongoDbInstanceArgs {
      */
     nodeType: pulumi.Input<string>;
     /**
-     * Password of the user.
+     * Password of the user. Only one of `password` or `passwordWo` should be specified.
      */
     password?: pulumi.Input<string>;
     /**
      * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
      */
     passwordWo?: pulumi.Input<string>;
+    /**
+     * The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+     */
     passwordWoVersion?: pulumi.Input<number>;
     /**
      * The private IPv4 address associated with the instance.

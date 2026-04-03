@@ -91,6 +91,8 @@ from .get_instance_server import *
 from .get_instance_servers import *
 from .get_instance_snapshot import *
 from .get_instance_volume import *
+from .get_interlink_partner import *
+from .get_interlink_partners import *
 from .get_iot_device import *
 from .get_iot_hub import *
 from .get_ipam_ip import *
@@ -758,6 +760,22 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.iam",
   "classes": {
    "scaleway:iam/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/saml",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/saml:Saml": "Saml"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "iam/samlCertificate",
+  "fqn": "pulumiverse_scaleway.iam",
+  "classes": {
+   "scaleway:iam/samlCertificate:SamlCertificate": "SamlCertificate"
   }
  },
  {
@@ -2082,6 +2100,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "network/connector",
+  "fqn": "pulumiverse_scaleway.network",
+  "classes": {
+   "scaleway:network/connector:Connector": "Connector"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "network/gatewayNetwork",
   "fqn": "pulumiverse_scaleway.network",
   "classes": {
@@ -2194,6 +2220,14 @@ _utilities.register(
  },
  {
   "pkg": "scaleway",
+  "mod": "object/bucketServerSideEncryptionConfiguration",
+  "fqn": "pulumiverse_scaleway.object",
+  "classes": {
+   "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration": "BucketServerSideEncryptionConfiguration"
+  }
+ },
+ {
+  "pkg": "scaleway",
   "mod": "object/bucketWebsiteConfiguration",
   "fqn": "pulumiverse_scaleway.object",
   "classes": {
@@ -2222,6 +2256,14 @@ _utilities.register(
   "fqn": "pulumiverse_scaleway.observability",
   "classes": {
    "scaleway:observability/cockpit:Cockpit": "Cockpit"
+  }
+ },
+ {
+  "pkg": "scaleway",
+  "mod": "observability/exporter",
+  "fqn": "pulumiverse_scaleway.observability",
+  "classes": {
+   "scaleway:observability/exporter:Exporter": "Exporter"
   }
  },
  {

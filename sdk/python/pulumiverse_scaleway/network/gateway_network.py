@@ -51,18 +51,18 @@ class GatewayNetworkArgs:
         pulumi.set(__self__, "gateway_id", gateway_id)
         pulumi.set(__self__, "private_network_id", private_network_id)
         if cleanup_dhcp is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""cleanup_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP cleanup is no longer needed. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""cleanup_dhcp is deprecated: DHCP cleanup is no longer needed. Please use ipam_config instead.""")
         if cleanup_dhcp is not None:
             pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if dhcp_id is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""dhcp_id is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""dhcp_id is deprecated: DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
         if dhcp_id is not None:
             pulumi.set(__self__, "dhcp_id", dhcp_id)
         if enable_dhcp is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""enable_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP is now managed automatically. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""enable_dhcp is deprecated: DHCP is now managed automatically. Please use ipam_config instead.""")
         if enable_dhcp is not None:
             pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
@@ -72,8 +72,8 @@ class GatewayNetworkArgs:
         if private_ips is not None:
             pulumi.set(__self__, "private_ips", private_ips)
         if static_address is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""static_address is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""static_address is deprecated: Please use ipam_config instead.""")
         if static_address is not None:
             pulumi.set(__self__, "static_address", static_address)
         if zone is not None:
@@ -105,7 +105,7 @@ class GatewayNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="cleanupDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP cleanup is no longer needed. Please use ipam_config instead.""")
     def cleanup_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
@@ -118,7 +118,7 @@ class GatewayNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="dhcpId")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
     def dhcp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -131,7 +131,7 @@ class GatewayNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="enableDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP is now managed automatically. Please use ipam_config instead.""")
     def enable_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
@@ -180,7 +180,7 @@ class GatewayNetworkArgs:
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""Please use ipam_config instead.""")
     def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -247,20 +247,20 @@ class _GatewayNetworkState:
                For more information, please refer to the dedicated guide.
         """
         if cleanup_dhcp is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""cleanup_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP cleanup is no longer needed. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""cleanup_dhcp is deprecated: DHCP cleanup is no longer needed. Please use ipam_config instead.""")
         if cleanup_dhcp is not None:
             pulumi.set(__self__, "cleanup_dhcp", cleanup_dhcp)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dhcp_id is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""dhcp_id is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""dhcp_id is deprecated: DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
         if dhcp_id is not None:
             pulumi.set(__self__, "dhcp_id", dhcp_id)
         if enable_dhcp is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""enable_dhcp is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""DHCP is now managed automatically. Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""enable_dhcp is deprecated: DHCP is now managed automatically. Please use ipam_config instead.""")
         if enable_dhcp is not None:
             pulumi.set(__self__, "enable_dhcp", enable_dhcp)
         if enable_masquerade is not None:
@@ -276,8 +276,8 @@ class _GatewayNetworkState:
         if private_network_id is not None:
             pulumi.set(__self__, "private_network_id", private_network_id)
         if static_address is not None:
-            warnings.warn("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""", DeprecationWarning)
-            pulumi.log.warn("""static_address is deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+            warnings.warn("""Please use ipam_config instead.""", DeprecationWarning)
+            pulumi.log.warn("""static_address is deprecated: Please use ipam_config instead.""")
         if static_address is not None:
             pulumi.set(__self__, "static_address", static_address)
         if status is not None:
@@ -289,7 +289,7 @@ class _GatewayNetworkState:
 
     @_builtins.property
     @pulumi.getter(name="cleanupDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP cleanup is no longer needed. Please use ipam_config instead.""")
     def cleanup_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
@@ -314,7 +314,7 @@ class _GatewayNetworkState:
 
     @_builtins.property
     @pulumi.getter(name="dhcpId")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
     def dhcp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -327,7 +327,7 @@ class _GatewayNetworkState:
 
     @_builtins.property
     @pulumi.getter(name="enableDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP is now managed automatically. Please use ipam_config instead.""")
     def enable_dhcp(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
@@ -412,7 +412,7 @@ class _GatewayNetworkState:
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""Please use ipam_config instead.""")
     def static_address(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
         Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -778,7 +778,7 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="cleanupDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP cleanup is no longer needed. Please use ipam_config instead.""")
     def cleanup_dhcp(self) -> pulumi.Output[_builtins.bool]:
         """
         Please use `ipam_config`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
@@ -795,7 +795,7 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="dhcpId")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP configuration is no longer managed separately. Please use ipam_config instead.""")
     def dhcp_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
         Please use `ipam_config`. The ID of the Public Gateway DHCP configuration. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.
@@ -804,7 +804,7 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="enableDhcp")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""DHCP is now managed automatically. Please use ipam_config instead.""")
     def enable_dhcp(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Please use `ipam_config`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
@@ -861,7 +861,7 @@ class GatewayNetwork(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="staticAddress")
-    @_utilities.deprecated("""Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md""")
+    @_utilities.deprecated("""Please use ipam_config instead.""")
     def static_address(self) -> pulumi.Output[_builtins.str]:
         """
         Please use `ipam_config`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcp_id`, `static_address` and `ipam_config` should be specified.

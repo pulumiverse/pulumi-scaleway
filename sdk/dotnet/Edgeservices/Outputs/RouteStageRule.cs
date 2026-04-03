@@ -15,22 +15,29 @@ namespace Pulumiverse.Scaleway.Edgeservices.Outputs
     public sealed class RouteStageRule
     {
         /// <summary>
-        /// The ID of the backend stage that requests matching the rule should be forwarded to.
+        /// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `WafStageId` within the same rule.
         /// </summary>
-        public readonly string BackendStageId;
+        public readonly string? BackendStageId;
         /// <summary>
-        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `BackendStageId` field. Requests that do not match will be checked by the next rule's condition.
+        /// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `BackendStageId` or `WafStageId`. Requests that do not match will be checked by the next rule's condition.
         /// </summary>
         public readonly Outputs.RouteStageRuleRuleHttpMatch? RuleHttpMatch;
+        /// <summary>
+        /// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `BackendStageId` within the same rule.
+        /// </summary>
+        public readonly string? WafStageId;
 
         [OutputConstructor]
         private RouteStageRule(
-            string backendStageId,
+            string? backendStageId,
 
-            Outputs.RouteStageRuleRuleHttpMatch? ruleHttpMatch)
+            Outputs.RouteStageRuleRuleHttpMatch? ruleHttpMatch,
+
+            string? wafStageId)
         {
             BackendStageId = backendStageId;
             RuleHttpMatch = ruleHttpMatch;
+            WafStageId = wafStageId;
         }
     }
 }

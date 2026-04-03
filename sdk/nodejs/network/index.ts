@@ -10,10 +10,25 @@ export type Acl = import("./acl").Acl;
 export const Acl: typeof import("./acl").Acl = null as any;
 utilities.lazyLoad(exports, ["Acl"], () => require("./acl"));
 
+export { ConnectorArgs, ConnectorState } from "./connector";
+export type Connector = import("./connector").Connector;
+export const Connector: typeof import("./connector").Connector = null as any;
+utilities.lazyLoad(exports, ["Connector"], () => require("./connector"));
+
 export { GatewayNetworkArgs, GatewayNetworkState } from "./gatewayNetwork";
 export type GatewayNetwork = import("./gatewayNetwork").GatewayNetwork;
 export const GatewayNetwork: typeof import("./gatewayNetwork").GatewayNetwork = null as any;
 utilities.lazyLoad(exports, ["GatewayNetwork"], () => require("./gatewayNetwork"));
+
+export { GetAclArgs, GetAclResult, GetAclOutputArgs } from "./getAcl";
+export const getAcl: typeof import("./getAcl").getAcl = null as any;
+export const getAclOutput: typeof import("./getAcl").getAclOutput = null as any;
+utilities.lazyLoad(exports, ["getAcl","getAclOutput"], () => require("./getAcl"));
+
+export { GetConnectorArgs, GetConnectorResult, GetConnectorOutputArgs } from "./getConnector";
+export const getConnector: typeof import("./getConnector").getConnector = null as any;
+export const getConnectorOutput: typeof import("./getConnector").getConnectorOutput = null as any;
+utilities.lazyLoad(exports, ["getConnector","getConnectorOutput"], () => require("./getConnector"));
 
 export { GetGatewayNetworkArgs, GetGatewayNetworkResult, GetGatewayNetworkOutputArgs } from "./getGatewayNetwork";
 export const getGatewayNetwork: typeof import("./getGatewayNetwork").getGatewayNetwork = null as any;
@@ -49,6 +64,11 @@ export { GetPublicGatewayPatRuleArgs, GetPublicGatewayPatRuleResult, GetPublicGa
 export const getPublicGatewayPatRule: typeof import("./getPublicGatewayPatRule").getPublicGatewayPatRule = null as any;
 export const getPublicGatewayPatRuleOutput: typeof import("./getPublicGatewayPatRule").getPublicGatewayPatRuleOutput = null as any;
 utilities.lazyLoad(exports, ["getPublicGatewayPatRule","getPublicGatewayPatRuleOutput"], () => require("./getPublicGatewayPatRule"));
+
+export { GetRouteArgs, GetRouteResult, GetRouteOutputArgs } from "./getRoute";
+export const getRoute: typeof import("./getRoute").getRoute = null as any;
+export const getRouteOutput: typeof import("./getRoute").getRouteOutput = null as any;
+utilities.lazyLoad(exports, ["getRoute","getRouteOutput"], () => require("./getRoute"));
 
 export { GetRoutesArgs, GetRoutesResult, GetRoutesOutputArgs } from "./getRoutes";
 export const getRoutes: typeof import("./getRoutes").getRoutes = null as any;
@@ -117,6 +137,8 @@ const _module = {
         switch (type) {
             case "scaleway:network/acl:Acl":
                 return new Acl(name, <any>undefined, { urn })
+            case "scaleway:network/connector:Connector":
+                return new Connector(name, <any>undefined, { urn })
             case "scaleway:network/gatewayNetwork:GatewayNetwork":
                 return new GatewayNetwork(name, <any>undefined, { urn })
             case "scaleway:network/privateNetwork:PrivateNetwork":
@@ -143,6 +165,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("scaleway", "network/acl", _module)
+pulumi.runtime.registerResourceModule("scaleway", "network/connector", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/gatewayNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/privateNetwork", _module)
 pulumi.runtime.registerResourceModule("scaleway", "network/publicGateway", _module)

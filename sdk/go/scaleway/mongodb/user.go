@@ -12,8 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Manages MongoDB users. For more information, see [the documentation](https://developers.scaleway.com/products/mongodb/api/).
-//
 // ## Example Usage
 //
 // ```go
@@ -144,11 +142,12 @@ type User struct {
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The name of the MongoDB® user.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The password of the MongoDB® user.
+	// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrOutput `pulumi:"passwordWo"`
-	PasswordWoVersion pulumi.IntPtrOutput    `pulumi:"passwordWoVersion"`
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// `region`) The region in which the MongoDB® user should be created.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// List of roles assigned to the user. Each role block supports:
@@ -203,11 +202,12 @@ type userState struct {
 	InstanceId *string `pulumi:"instanceId"`
 	// The name of the MongoDB® user.
 	Name *string `pulumi:"name"`
-	// The password of the MongoDB® user.
+	// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        *string `pulumi:"passwordWo"`
-	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// `region`) The region in which the MongoDB® user should be created.
 	Region *string `pulumi:"region"`
 	// List of roles assigned to the user. Each role block supports:
@@ -219,10 +219,11 @@ type UserState struct {
 	InstanceId pulumi.StringPtrInput
 	// The name of the MongoDB® user.
 	Name pulumi.StringPtrInput
-	// The password of the MongoDB® user.
+	// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrInput
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
 	// `region`) The region in which the MongoDB® user should be created.
 	Region pulumi.StringPtrInput
@@ -239,11 +240,12 @@ type userArgs struct {
 	InstanceId string `pulumi:"instanceId"`
 	// The name of the MongoDB® user.
 	Name *string `pulumi:"name"`
-	// The password of the MongoDB® user.
+	// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        *string `pulumi:"passwordWo"`
-	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// `region`) The region in which the MongoDB® user should be created.
 	Region *string `pulumi:"region"`
 	// List of roles assigned to the user. Each role block supports:
@@ -256,10 +258,11 @@ type UserArgs struct {
 	InstanceId pulumi.StringInput
 	// The name of the MongoDB® user.
 	Name pulumi.StringPtrInput
-	// The password of the MongoDB® user.
+	// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrInput
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
 	// `region`) The region in which the MongoDB® user should be created.
 	Region pulumi.StringPtrInput
@@ -364,7 +367,7 @@ func (o UserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// The password of the MongoDB® user.
+// The password of the MongoDB® user. Only one of `password` or `passwordWo` should be specified.
 func (o UserOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -374,6 +377,7 @@ func (o UserOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 func (o UserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *User) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }

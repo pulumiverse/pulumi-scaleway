@@ -54,6 +54,34 @@ __all__ = [
     'GetRecordHttpServiceResult',
     'GetRecordViewResult',
     'GetRecordWeightedResult',
+    'GetRegistrationAdministrativeContactResult',
+    'GetRegistrationAdministrativeContactExtensionEusResult',
+    'GetRegistrationAdministrativeContactExtensionFrResult',
+    'GetRegistrationAdministrativeContactExtensionFrAssociationInfoResult',
+    'GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoResult',
+    'GetRegistrationAdministrativeContactExtensionFrDunsInfoResult',
+    'GetRegistrationAdministrativeContactExtensionFrIndividualInfoResult',
+    'GetRegistrationAdministrativeContactExtensionFrTrademarkInfoResult',
+    'GetRegistrationDsRecordResult',
+    'GetRegistrationDsRecordDigestResult',
+    'GetRegistrationDsRecordDigestPublicKeyResult',
+    'GetRegistrationDsRecordPublicKeyResult',
+    'GetRegistrationOwnerContactResult',
+    'GetRegistrationOwnerContactExtensionEusResult',
+    'GetRegistrationOwnerContactExtensionFrResult',
+    'GetRegistrationOwnerContactExtensionFrAssociationInfoResult',
+    'GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoResult',
+    'GetRegistrationOwnerContactExtensionFrDunsInfoResult',
+    'GetRegistrationOwnerContactExtensionFrIndividualInfoResult',
+    'GetRegistrationOwnerContactExtensionFrTrademarkInfoResult',
+    'GetRegistrationTechnicalContactResult',
+    'GetRegistrationTechnicalContactExtensionEusResult',
+    'GetRegistrationTechnicalContactExtensionFrResult',
+    'GetRegistrationTechnicalContactExtensionFrAssociationInfoResult',
+    'GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoResult',
+    'GetRegistrationTechnicalContactExtensionFrDunsInfoResult',
+    'GetRegistrationTechnicalContactExtensionFrIndividualInfoResult',
+    'GetRegistrationTechnicalContactExtensionFrTrademarkInfoResult',
 ]
 
 @pulumi.output_type
@@ -2549,5 +2577,1488 @@ class GetRecordWeightedResult(dict):
         The weight of the IP
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactResult(dict):
+    def __init__(__self__, *,
+                 address_line1: _builtins.str,
+                 address_line2: _builtins.str,
+                 city: _builtins.str,
+                 company_identification_code: _builtins.str,
+                 company_name: _builtins.str,
+                 country: _builtins.str,
+                 email: _builtins.str,
+                 email_alt: _builtins.str,
+                 extension_eus: Sequence['outputs.GetRegistrationAdministrativeContactExtensionEusResult'],
+                 extension_frs: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrResult'],
+                 extension_nls: Sequence[_builtins.str],
+                 fax_number: _builtins.str,
+                 firstname: _builtins.str,
+                 lang: _builtins.str,
+                 lastname: _builtins.str,
+                 legal_form: _builtins.str,
+                 phone_number: _builtins.str,
+                 resale: _builtins.bool,
+                 state: _builtins.str,
+                 vat_identification_code: _builtins.str,
+                 whois_opt_in: _builtins.bool,
+                 zip: _builtins.str):
+        """
+        :param _builtins.str address_line1: Primary address line for the contact.
+        :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str city: City of the contact's address.
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
+        :param _builtins.str country: Country code of the contact's address (ISO format).
+        :param _builtins.str email: Primary email address of the contact.
+        :param _builtins.str email_alt: Alternative email address for the contact.
+        :param Sequence['GetRegistrationAdministrativeContactExtensionEusArgs'] extension_eus: Details specific to European domain extensions.
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrArgs'] extension_frs: Details specific to French domain extensions.
+        :param Sequence[_builtins.str] extension_nls: Extension details specific to Dutch domain registrations.
+        :param _builtins.str fax_number: Fax number for the contact (if available).
+        :param _builtins.str firstname: First name of the contact.
+        :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param _builtins.str lastname: Last name of the contact.
+        :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param _builtins.str phone_number: Primary phone number of the contact.
+        :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
+        :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
+        :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        :param _builtins.str zip: Postal code of the contact's address.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "address_line2", address_line2)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "company_name", company_name)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "email_alt", email_alt)
+        pulumi.set(__self__, "extension_eus", extension_eus)
+        pulumi.set(__self__, "extension_frs", extension_frs)
+        pulumi.set(__self__, "extension_nls", extension_nls)
+        pulumi.set(__self__, "fax_number", fax_number)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lang", lang)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "resale", resale)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+        pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> _builtins.str:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> _builtins.str:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> _builtins.str:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> _builtins.str:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> _builtins.str:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> _builtins.str:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionEus")
+    def extension_eus(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionEusResult']:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eus")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionFrs")
+    def extension_frs(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrResult']:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_frs")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Sequence[_builtins.str]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @_builtins.property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> _builtins.str:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def firstname(self) -> _builtins.str:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @_builtins.property
+    @pulumi.getter
+    def lang(self) -> _builtins.str:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @_builtins.property
+    @pulumi.getter
+    def lastname(self) -> _builtins.str:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> _builtins.str:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> _builtins.str:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def resale(self) -> _builtins.bool:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> _builtins.str:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> _builtins.str:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionEusResult(dict):
+    def __init__(__self__, *,
+                 european_citizenship: _builtins.str):
+        """
+        :param _builtins.str european_citizenship: Indicates the European citizenship of the contact.
+        """
+        pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @_builtins.property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> _builtins.str:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrResult(dict):
+    def __init__(__self__, *,
+                 association_infos: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrAssociationInfoResult'],
+                 code_auth_afnic_infos: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoResult'],
+                 duns_infos: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrDunsInfoResult'],
+                 individual_infos: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrIndividualInfoResult'],
+                 mode: _builtins.str,
+                 trademark_infos: Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrTrademarkInfoResult']):
+        """
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrAssociationInfoArgs'] association_infos: Association-specific information for the domain (French extension).
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_infos: AFNIC authorization information for the contact (French extension).
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrDunsInfoArgs'] duns_infos: DUNS information for the domain owner (specific to French domains).
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrIndividualInfoArgs'] individual_infos: Information about the individual registration for French domains.
+        :param _builtins.str mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param Sequence['GetRegistrationAdministrativeContactExtensionFrTrademarkInfoArgs'] trademark_infos: Trademark-related information for the domain (French extension).
+        """
+        pulumi.set(__self__, "association_infos", association_infos)
+        pulumi.set(__self__, "code_auth_afnic_infos", code_auth_afnic_infos)
+        pulumi.set(__self__, "duns_infos", duns_infos)
+        pulumi.set(__self__, "individual_infos", individual_infos)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "trademark_infos", trademark_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="associationInfos")
+    def association_infos(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrAssociationInfoResult']:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnicInfos")
+    def code_auth_afnic_infos(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoResult']:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="dunsInfos")
+    def duns_infos(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrDunsInfoResult']:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="individualInfos")
+    def individual_infos(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrIndividualInfoResult']:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInfos")
+    def trademark_infos(self) -> Sequence['outputs.GetRegistrationAdministrativeContactExtensionFrTrademarkInfoResult']:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_infos")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrAssociationInfoResult(dict):
+    def __init__(__self__, *,
+                 publication_jo: _builtins.str,
+                 publication_jo_page: _builtins.int):
+        """
+        :param _builtins.str publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param _builtins.int publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        pulumi.set(__self__, "publication_jo", publication_jo)
+        pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> _builtins.str:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> _builtins.int:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrCodeAuthAfnicInfoResult(dict):
+    def __init__(__self__, *,
+                 code_auth_afnic: _builtins.str):
+        """
+        :param _builtins.str code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> _builtins.str:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrDunsInfoResult(dict):
+    def __init__(__self__, *,
+                 duns_id: _builtins.str,
+                 local_id: _builtins.str):
+        """
+        :param _builtins.str duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param _builtins.str local_id: Local identifier of the domain owner (for French domains).
+        """
+        pulumi.set(__self__, "duns_id", duns_id)
+        pulumi.set(__self__, "local_id", local_id)
+
+    @_builtins.property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> _builtins.str:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @_builtins.property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> _builtins.str:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrIndividualInfoResult(dict):
+    def __init__(__self__, *,
+                 whois_opt_in: _builtins.bool):
+        """
+        :param _builtins.bool whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+
+@pulumi.output_type
+class GetRegistrationAdministrativeContactExtensionFrTrademarkInfoResult(dict):
+    def __init__(__self__, *,
+                 trademark_inpi: _builtins.str):
+        """
+        :param _builtins.str trademark_inpi: Trademark information from INPI (French extension).
+        """
+        pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> _builtins.str:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
+
+
+@pulumi.output_type
+class GetRegistrationDsRecordResult(dict):
+    def __init__(__self__, *,
+                 algorithm: _builtins.str,
+                 digests: Sequence['outputs.GetRegistrationDsRecordDigestResult'],
+                 key_id: _builtins.int,
+                 public_keys: Sequence['outputs.GetRegistrationDsRecordPublicKeyResult']):
+        """
+        :param _builtins.str algorithm: The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+        :param Sequence['GetRegistrationDsRecordDigestArgs'] digests: Details about the digest.
+        :param _builtins.int key_id: The identifier for the dnssec key.
+        :param Sequence['GetRegistrationDsRecordPublicKeyArgs'] public_keys: Public key associated with the dnssec record.
+        """
+        pulumi.set(__self__, "algorithm", algorithm)
+        pulumi.set(__self__, "digests", digests)
+        pulumi.set(__self__, "key_id", key_id)
+        pulumi.set(__self__, "public_keys", public_keys)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> _builtins.str:
+        """
+        The algorithm used for dnssec (e.g., rsasha256, ecdsap256sha256).
+        """
+        return pulumi.get(self, "algorithm")
+
+    @_builtins.property
+    @pulumi.getter
+    def digests(self) -> Sequence['outputs.GetRegistrationDsRecordDigestResult']:
+        """
+        Details about the digest.
+        """
+        return pulumi.get(self, "digests")
+
+    @_builtins.property
+    @pulumi.getter(name="keyId")
+    def key_id(self) -> _builtins.int:
+        """
+        The identifier for the dnssec key.
+        """
+        return pulumi.get(self, "key_id")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKeys")
+    def public_keys(self) -> Sequence['outputs.GetRegistrationDsRecordPublicKeyResult']:
+        """
+        Public key associated with the dnssec record.
+        """
+        return pulumi.get(self, "public_keys")
+
+
+@pulumi.output_type
+class GetRegistrationDsRecordDigestResult(dict):
+    def __init__(__self__, *,
+                 digest: _builtins.str,
+                 public_keys: Sequence['outputs.GetRegistrationDsRecordDigestPublicKeyResult'],
+                 type: _builtins.str):
+        """
+        :param _builtins.str digest: The digest value.
+        :param Sequence['GetRegistrationDsRecordDigestPublicKeyArgs'] public_keys: The public key associated with the digest.
+        :param _builtins.str type: The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+        """
+        pulumi.set(__self__, "digest", digest)
+        pulumi.set(__self__, "public_keys", public_keys)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def digest(self) -> _builtins.str:
+        """
+        The digest value.
+        """
+        return pulumi.get(self, "digest")
+
+    @_builtins.property
+    @pulumi.getter(name="publicKeys")
+    def public_keys(self) -> Sequence['outputs.GetRegistrationDsRecordDigestPublicKeyResult']:
+        """
+        The public key associated with the digest.
+        """
+        return pulumi.get(self, "public_keys")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        The digest type for the DS record (e.g., sha_1, sha_256, gost_r_34_11_94, sha_384).
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetRegistrationDsRecordDigestPublicKeyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str):
+        """
+        :param _builtins.str key: The public key value.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The public key value.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class GetRegistrationDsRecordPublicKeyResult(dict):
+    def __init__(__self__, *,
+                 key: _builtins.str):
+        """
+        :param _builtins.str key: The public key value.
+        """
+        pulumi.set(__self__, "key", key)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> _builtins.str:
+        """
+        The public key value.
+        """
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactResult(dict):
+    def __init__(__self__, *,
+                 address_line1: _builtins.str,
+                 address_line2: _builtins.str,
+                 city: _builtins.str,
+                 company_identification_code: _builtins.str,
+                 company_name: _builtins.str,
+                 country: _builtins.str,
+                 email: _builtins.str,
+                 email_alt: _builtins.str,
+                 extension_eus: Sequence['outputs.GetRegistrationOwnerContactExtensionEusResult'],
+                 extension_frs: Sequence['outputs.GetRegistrationOwnerContactExtensionFrResult'],
+                 extension_nls: Sequence[_builtins.str],
+                 fax_number: _builtins.str,
+                 firstname: _builtins.str,
+                 lang: _builtins.str,
+                 lastname: _builtins.str,
+                 legal_form: _builtins.str,
+                 phone_number: _builtins.str,
+                 resale: _builtins.bool,
+                 state: _builtins.str,
+                 vat_identification_code: _builtins.str,
+                 whois_opt_in: _builtins.bool,
+                 zip: _builtins.str):
+        """
+        :param _builtins.str address_line1: Primary address line for the contact.
+        :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str city: City of the contact's address.
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
+        :param _builtins.str country: Country code of the contact's address (ISO format).
+        :param _builtins.str email: Primary email address of the contact.
+        :param _builtins.str email_alt: Alternative email address for the contact.
+        :param Sequence['GetRegistrationOwnerContactExtensionEusArgs'] extension_eus: Details specific to European domain extensions.
+        :param Sequence['GetRegistrationOwnerContactExtensionFrArgs'] extension_frs: Details specific to French domain extensions.
+        :param Sequence[_builtins.str] extension_nls: Extension details specific to Dutch domain registrations.
+        :param _builtins.str fax_number: Fax number for the contact (if available).
+        :param _builtins.str firstname: First name of the contact.
+        :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param _builtins.str lastname: Last name of the contact.
+        :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param _builtins.str phone_number: Primary phone number of the contact.
+        :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
+        :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
+        :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        :param _builtins.str zip: Postal code of the contact's address.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "address_line2", address_line2)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "company_name", company_name)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "email_alt", email_alt)
+        pulumi.set(__self__, "extension_eus", extension_eus)
+        pulumi.set(__self__, "extension_frs", extension_frs)
+        pulumi.set(__self__, "extension_nls", extension_nls)
+        pulumi.set(__self__, "fax_number", fax_number)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lang", lang)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "resale", resale)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+        pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> _builtins.str:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> _builtins.str:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> _builtins.str:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> _builtins.str:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> _builtins.str:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> _builtins.str:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionEus")
+    def extension_eus(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionEusResult']:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eus")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionFrs")
+    def extension_frs(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrResult']:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_frs")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Sequence[_builtins.str]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @_builtins.property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> _builtins.str:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def firstname(self) -> _builtins.str:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @_builtins.property
+    @pulumi.getter
+    def lang(self) -> _builtins.str:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @_builtins.property
+    @pulumi.getter
+    def lastname(self) -> _builtins.str:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> _builtins.str:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> _builtins.str:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def resale(self) -> _builtins.bool:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> _builtins.str:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> _builtins.str:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionEusResult(dict):
+    def __init__(__self__, *,
+                 european_citizenship: _builtins.str):
+        """
+        :param _builtins.str european_citizenship: Indicates the European citizenship of the contact.
+        """
+        pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @_builtins.property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> _builtins.str:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrResult(dict):
+    def __init__(__self__, *,
+                 association_infos: Sequence['outputs.GetRegistrationOwnerContactExtensionFrAssociationInfoResult'],
+                 code_auth_afnic_infos: Sequence['outputs.GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoResult'],
+                 duns_infos: Sequence['outputs.GetRegistrationOwnerContactExtensionFrDunsInfoResult'],
+                 individual_infos: Sequence['outputs.GetRegistrationOwnerContactExtensionFrIndividualInfoResult'],
+                 mode: _builtins.str,
+                 trademark_infos: Sequence['outputs.GetRegistrationOwnerContactExtensionFrTrademarkInfoResult']):
+        """
+        :param Sequence['GetRegistrationOwnerContactExtensionFrAssociationInfoArgs'] association_infos: Association-specific information for the domain (French extension).
+        :param Sequence['GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_infos: AFNIC authorization information for the contact (French extension).
+        :param Sequence['GetRegistrationOwnerContactExtensionFrDunsInfoArgs'] duns_infos: DUNS information for the domain owner (specific to French domains).
+        :param Sequence['GetRegistrationOwnerContactExtensionFrIndividualInfoArgs'] individual_infos: Information about the individual registration for French domains.
+        :param _builtins.str mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param Sequence['GetRegistrationOwnerContactExtensionFrTrademarkInfoArgs'] trademark_infos: Trademark-related information for the domain (French extension).
+        """
+        pulumi.set(__self__, "association_infos", association_infos)
+        pulumi.set(__self__, "code_auth_afnic_infos", code_auth_afnic_infos)
+        pulumi.set(__self__, "duns_infos", duns_infos)
+        pulumi.set(__self__, "individual_infos", individual_infos)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "trademark_infos", trademark_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="associationInfos")
+    def association_infos(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrAssociationInfoResult']:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnicInfos")
+    def code_auth_afnic_infos(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoResult']:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="dunsInfos")
+    def duns_infos(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrDunsInfoResult']:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="individualInfos")
+    def individual_infos(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrIndividualInfoResult']:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInfos")
+    def trademark_infos(self) -> Sequence['outputs.GetRegistrationOwnerContactExtensionFrTrademarkInfoResult']:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_infos")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrAssociationInfoResult(dict):
+    def __init__(__self__, *,
+                 publication_jo: _builtins.str,
+                 publication_jo_page: _builtins.int):
+        """
+        :param _builtins.str publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param _builtins.int publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        pulumi.set(__self__, "publication_jo", publication_jo)
+        pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> _builtins.str:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> _builtins.int:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrCodeAuthAfnicInfoResult(dict):
+    def __init__(__self__, *,
+                 code_auth_afnic: _builtins.str):
+        """
+        :param _builtins.str code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> _builtins.str:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrDunsInfoResult(dict):
+    def __init__(__self__, *,
+                 duns_id: _builtins.str,
+                 local_id: _builtins.str):
+        """
+        :param _builtins.str duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param _builtins.str local_id: Local identifier of the domain owner (for French domains).
+        """
+        pulumi.set(__self__, "duns_id", duns_id)
+        pulumi.set(__self__, "local_id", local_id)
+
+    @_builtins.property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> _builtins.str:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @_builtins.property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> _builtins.str:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrIndividualInfoResult(dict):
+    def __init__(__self__, *,
+                 whois_opt_in: _builtins.bool):
+        """
+        :param _builtins.bool whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+
+@pulumi.output_type
+class GetRegistrationOwnerContactExtensionFrTrademarkInfoResult(dict):
+    def __init__(__self__, *,
+                 trademark_inpi: _builtins.str):
+        """
+        :param _builtins.str trademark_inpi: Trademark information from INPI (French extension).
+        """
+        pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> _builtins.str:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactResult(dict):
+    def __init__(__self__, *,
+                 address_line1: _builtins.str,
+                 address_line2: _builtins.str,
+                 city: _builtins.str,
+                 company_identification_code: _builtins.str,
+                 company_name: _builtins.str,
+                 country: _builtins.str,
+                 email: _builtins.str,
+                 email_alt: _builtins.str,
+                 extension_eus: Sequence['outputs.GetRegistrationTechnicalContactExtensionEusResult'],
+                 extension_frs: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrResult'],
+                 extension_nls: Sequence[_builtins.str],
+                 fax_number: _builtins.str,
+                 firstname: _builtins.str,
+                 lang: _builtins.str,
+                 lastname: _builtins.str,
+                 legal_form: _builtins.str,
+                 phone_number: _builtins.str,
+                 resale: _builtins.bool,
+                 state: _builtins.str,
+                 vat_identification_code: _builtins.str,
+                 whois_opt_in: _builtins.bool,
+                 zip: _builtins.str):
+        """
+        :param _builtins.str address_line1: Primary address line for the contact.
+        :param _builtins.str address_line2: Secondary address line for the contact (optional).
+        :param _builtins.str city: City of the contact's address.
+        :param _builtins.str company_identification_code: Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        :param _builtins.str company_name: Name of the company associated with the contact (if applicable).
+        :param _builtins.str country: Country code of the contact's address (ISO format).
+        :param _builtins.str email: Primary email address of the contact.
+        :param _builtins.str email_alt: Alternative email address for the contact.
+        :param Sequence['GetRegistrationTechnicalContactExtensionEusArgs'] extension_eus: Details specific to European domain extensions.
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrArgs'] extension_frs: Details specific to French domain extensions.
+        :param Sequence[_builtins.str] extension_nls: Extension details specific to Dutch domain registrations.
+        :param _builtins.str fax_number: Fax number for the contact (if available).
+        :param _builtins.str firstname: First name of the contact.
+        :param _builtins.str lang: Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        :param _builtins.str lastname: Last name of the contact.
+        :param _builtins.str legal_form: Legal form of the contact (e.g., 'individual' or 'organization').
+        :param _builtins.str phone_number: Primary phone number of the contact.
+        :param _builtins.bool resale: Indicates if the contact is used for resale purposes.
+        :param _builtins.str state: State or region of the contact.
+        :param _builtins.str vat_identification_code: VAT identification code of the contact, if applicable.
+        :param _builtins.bool whois_opt_in: Indicates whether the contact has opted into WHOIS publishing.
+        :param _builtins.str zip: Postal code of the contact's address.
+        """
+        pulumi.set(__self__, "address_line1", address_line1)
+        pulumi.set(__self__, "address_line2", address_line2)
+        pulumi.set(__self__, "city", city)
+        pulumi.set(__self__, "company_identification_code", company_identification_code)
+        pulumi.set(__self__, "company_name", company_name)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "email", email)
+        pulumi.set(__self__, "email_alt", email_alt)
+        pulumi.set(__self__, "extension_eus", extension_eus)
+        pulumi.set(__self__, "extension_frs", extension_frs)
+        pulumi.set(__self__, "extension_nls", extension_nls)
+        pulumi.set(__self__, "fax_number", fax_number)
+        pulumi.set(__self__, "firstname", firstname)
+        pulumi.set(__self__, "lang", lang)
+        pulumi.set(__self__, "lastname", lastname)
+        pulumi.set(__self__, "legal_form", legal_form)
+        pulumi.set(__self__, "phone_number", phone_number)
+        pulumi.set(__self__, "resale", resale)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "vat_identification_code", vat_identification_code)
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+        pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine1")
+    def address_line1(self) -> _builtins.str:
+        """
+        Primary address line for the contact.
+        """
+        return pulumi.get(self, "address_line1")
+
+    @_builtins.property
+    @pulumi.getter(name="addressLine2")
+    def address_line2(self) -> _builtins.str:
+        """
+        Secondary address line for the contact (optional).
+        """
+        return pulumi.get(self, "address_line2")
+
+    @_builtins.property
+    @pulumi.getter
+    def city(self) -> _builtins.str:
+        """
+        City of the contact's address.
+        """
+        return pulumi.get(self, "city")
+
+    @_builtins.property
+    @pulumi.getter(name="companyIdentificationCode")
+    def company_identification_code(self) -> _builtins.str:
+        """
+        Company identification code (e.g., SIREN/SIRET in France) for the contact.
+        """
+        return pulumi.get(self, "company_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="companyName")
+    def company_name(self) -> _builtins.str:
+        """
+        Name of the company associated with the contact (if applicable).
+        """
+        return pulumi.get(self, "company_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def country(self) -> _builtins.str:
+        """
+        Country code of the contact's address (ISO format).
+        """
+        return pulumi.get(self, "country")
+
+    @_builtins.property
+    @pulumi.getter
+    def email(self) -> _builtins.str:
+        """
+        Primary email address of the contact.
+        """
+        return pulumi.get(self, "email")
+
+    @_builtins.property
+    @pulumi.getter(name="emailAlt")
+    def email_alt(self) -> _builtins.str:
+        """
+        Alternative email address for the contact.
+        """
+        return pulumi.get(self, "email_alt")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionEus")
+    def extension_eus(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionEusResult']:
+        """
+        Details specific to European domain extensions.
+        """
+        return pulumi.get(self, "extension_eus")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionFrs")
+    def extension_frs(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrResult']:
+        """
+        Details specific to French domain extensions.
+        """
+        return pulumi.get(self, "extension_frs")
+
+    @_builtins.property
+    @pulumi.getter(name="extensionNls")
+    def extension_nls(self) -> Sequence[_builtins.str]:
+        """
+        Extension details specific to Dutch domain registrations.
+        """
+        return pulumi.get(self, "extension_nls")
+
+    @_builtins.property
+    @pulumi.getter(name="faxNumber")
+    def fax_number(self) -> _builtins.str:
+        """
+        Fax number for the contact (if available).
+        """
+        return pulumi.get(self, "fax_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def firstname(self) -> _builtins.str:
+        """
+        First name of the contact.
+        """
+        return pulumi.get(self, "firstname")
+
+    @_builtins.property
+    @pulumi.getter
+    def lang(self) -> _builtins.str:
+        """
+        Preferred language of the contact (e.g., 'en_US', 'fr_FR').
+        """
+        return pulumi.get(self, "lang")
+
+    @_builtins.property
+    @pulumi.getter
+    def lastname(self) -> _builtins.str:
+        """
+        Last name of the contact.
+        """
+        return pulumi.get(self, "lastname")
+
+    @_builtins.property
+    @pulumi.getter(name="legalForm")
+    def legal_form(self) -> _builtins.str:
+        """
+        Legal form of the contact (e.g., 'individual' or 'organization').
+        """
+        return pulumi.get(self, "legal_form")
+
+    @_builtins.property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> _builtins.str:
+        """
+        Primary phone number of the contact.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @_builtins.property
+    @pulumi.getter
+    def resale(self) -> _builtins.bool:
+        """
+        Indicates if the contact is used for resale purposes.
+        """
+        return pulumi.get(self, "resale")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        State or region of the contact.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="vatIdentificationCode")
+    def vat_identification_code(self) -> _builtins.str:
+        """
+        VAT identification code of the contact, if applicable.
+        """
+        return pulumi.get(self, "vat_identification_code")
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Indicates whether the contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> _builtins.str:
+        """
+        Postal code of the contact's address.
+        """
+        return pulumi.get(self, "zip")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionEusResult(dict):
+    def __init__(__self__, *,
+                 european_citizenship: _builtins.str):
+        """
+        :param _builtins.str european_citizenship: Indicates the European citizenship of the contact.
+        """
+        pulumi.set(__self__, "european_citizenship", european_citizenship)
+
+    @_builtins.property
+    @pulumi.getter(name="europeanCitizenship")
+    def european_citizenship(self) -> _builtins.str:
+        """
+        Indicates the European citizenship of the contact.
+        """
+        return pulumi.get(self, "european_citizenship")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrResult(dict):
+    def __init__(__self__, *,
+                 association_infos: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrAssociationInfoResult'],
+                 code_auth_afnic_infos: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoResult'],
+                 duns_infos: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrDunsInfoResult'],
+                 individual_infos: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrIndividualInfoResult'],
+                 mode: _builtins.str,
+                 trademark_infos: Sequence['outputs.GetRegistrationTechnicalContactExtensionFrTrademarkInfoResult']):
+        """
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrAssociationInfoArgs'] association_infos: Association-specific information for the domain (French extension).
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoArgs'] code_auth_afnic_infos: AFNIC authorization information for the contact (French extension).
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrDunsInfoArgs'] duns_infos: DUNS information for the domain owner (specific to French domains).
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrIndividualInfoArgs'] individual_infos: Information about the individual registration for French domains.
+        :param _builtins.str mode: Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        :param Sequence['GetRegistrationTechnicalContactExtensionFrTrademarkInfoArgs'] trademark_infos: Trademark-related information for the domain (French extension).
+        """
+        pulumi.set(__self__, "association_infos", association_infos)
+        pulumi.set(__self__, "code_auth_afnic_infos", code_auth_afnic_infos)
+        pulumi.set(__self__, "duns_infos", duns_infos)
+        pulumi.set(__self__, "individual_infos", individual_infos)
+        pulumi.set(__self__, "mode", mode)
+        pulumi.set(__self__, "trademark_infos", trademark_infos)
+
+    @_builtins.property
+    @pulumi.getter(name="associationInfos")
+    def association_infos(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrAssociationInfoResult']:
+        """
+        Association-specific information for the domain (French extension).
+        """
+        return pulumi.get(self, "association_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnicInfos")
+    def code_auth_afnic_infos(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoResult']:
+        """
+        AFNIC authorization information for the contact (French extension).
+        """
+        return pulumi.get(self, "code_auth_afnic_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="dunsInfos")
+    def duns_infos(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrDunsInfoResult']:
+        """
+        DUNS information for the domain owner (specific to French domains).
+        """
+        return pulumi.get(self, "duns_infos")
+
+    @_builtins.property
+    @pulumi.getter(name="individualInfos")
+    def individual_infos(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrIndividualInfoResult']:
+        """
+        Information about the individual registration for French domains.
+        """
+        return pulumi.get(self, "individual_infos")
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> _builtins.str:
+        """
+        Mode of the French extension (e.g., 'individual', 'duns', 'association', etc.).
+        """
+        return pulumi.get(self, "mode")
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInfos")
+    def trademark_infos(self) -> Sequence['outputs.GetRegistrationTechnicalContactExtensionFrTrademarkInfoResult']:
+        """
+        Trademark-related information for the domain (French extension).
+        """
+        return pulumi.get(self, "trademark_infos")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrAssociationInfoResult(dict):
+    def __init__(__self__, *,
+                 publication_jo: _builtins.str,
+                 publication_jo_page: _builtins.int):
+        """
+        :param _builtins.str publication_jo: Publication date in the Official Journal (RFC3339 format) for association information.
+        :param _builtins.int publication_jo_page: Page number of the publication in the Official Journal for association information.
+        """
+        pulumi.set(__self__, "publication_jo", publication_jo)
+        pulumi.set(__self__, "publication_jo_page", publication_jo_page)
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJo")
+    def publication_jo(self) -> _builtins.str:
+        """
+        Publication date in the Official Journal (RFC3339 format) for association information.
+        """
+        return pulumi.get(self, "publication_jo")
+
+    @_builtins.property
+    @pulumi.getter(name="publicationJoPage")
+    def publication_jo_page(self) -> _builtins.int:
+        """
+        Page number of the publication in the Official Journal for association information.
+        """
+        return pulumi.get(self, "publication_jo_page")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrCodeAuthAfnicInfoResult(dict):
+    def __init__(__self__, *,
+                 code_auth_afnic: _builtins.str):
+        """
+        :param _builtins.str code_auth_afnic: AFNIC authorization code for the contact (specific to French domains).
+        """
+        pulumi.set(__self__, "code_auth_afnic", code_auth_afnic)
+
+    @_builtins.property
+    @pulumi.getter(name="codeAuthAfnic")
+    def code_auth_afnic(self) -> _builtins.str:
+        """
+        AFNIC authorization code for the contact (specific to French domains).
+        """
+        return pulumi.get(self, "code_auth_afnic")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrDunsInfoResult(dict):
+    def __init__(__self__, *,
+                 duns_id: _builtins.str,
+                 local_id: _builtins.str):
+        """
+        :param _builtins.str duns_id: DUNS ID associated with the domain owner (for French domains).
+        :param _builtins.str local_id: Local identifier of the domain owner (for French domains).
+        """
+        pulumi.set(__self__, "duns_id", duns_id)
+        pulumi.set(__self__, "local_id", local_id)
+
+    @_builtins.property
+    @pulumi.getter(name="dunsId")
+    def duns_id(self) -> _builtins.str:
+        """
+        DUNS ID associated with the domain owner (for French domains).
+        """
+        return pulumi.get(self, "duns_id")
+
+    @_builtins.property
+    @pulumi.getter(name="localId")
+    def local_id(self) -> _builtins.str:
+        """
+        Local identifier of the domain owner (for French domains).
+        """
+        return pulumi.get(self, "local_id")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrIndividualInfoResult(dict):
+    def __init__(__self__, *,
+                 whois_opt_in: _builtins.bool):
+        """
+        :param _builtins.bool whois_opt_in: Whether the individual contact has opted into WHOIS publishing.
+        """
+        pulumi.set(__self__, "whois_opt_in", whois_opt_in)
+
+    @_builtins.property
+    @pulumi.getter(name="whoisOptIn")
+    def whois_opt_in(self) -> _builtins.bool:
+        """
+        Whether the individual contact has opted into WHOIS publishing.
+        """
+        return pulumi.get(self, "whois_opt_in")
+
+
+@pulumi.output_type
+class GetRegistrationTechnicalContactExtensionFrTrademarkInfoResult(dict):
+    def __init__(__self__, *,
+                 trademark_inpi: _builtins.str):
+        """
+        :param _builtins.str trademark_inpi: Trademark information from INPI (French extension).
+        """
+        pulumi.set(__self__, "trademark_inpi", trademark_inpi)
+
+    @_builtins.property
+    @pulumi.getter(name="trademarkInpi")
+    def trademark_inpi(self) -> _builtins.str:
+        """
+        Trademark information from INPI (French extension).
+        """
+        return pulumi.get(self, "trademark_inpi")
 
 

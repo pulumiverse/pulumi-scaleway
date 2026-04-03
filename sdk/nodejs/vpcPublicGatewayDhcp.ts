@@ -122,6 +122,8 @@ export class VpcPublicGatewayDhcp extends pulumi.CustomResource {
     declare public readonly renewTimer: pulumi.Output<number>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
+     *
+     * @deprecated The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
     declare public readonly subnet: pulumi.Output<string>;
     /**
@@ -264,6 +266,8 @@ export interface VpcPublicGatewayDhcpState {
     renewTimer?: pulumi.Input<number>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
+     *
+     * @deprecated The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
     subnet?: pulumi.Input<string>;
     /**
@@ -336,6 +340,8 @@ export interface VpcPublicGatewayDhcpArgs {
     renewTimer?: pulumi.Input<number>;
     /**
      * The subnet to associate with the Public Gateway DHCP configuration.
+     *
+     * @deprecated The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
      */
     subnet: pulumi.Input<string>;
     /**

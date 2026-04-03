@@ -20,6 +20,7 @@ __all__ = [
     'GatewayNetworkPrivateIp',
     'PrivateNetworkIpv4Subnet',
     'PrivateNetworkIpv6Subnet',
+    'GetAclRuleResult',
     'GetGatewayNetworkIpamConfigResult',
     'GetGatewayNetworkPrivateIpResult',
     'GetPrivateNetworkIpv4SubnetResult',
@@ -473,6 +474,112 @@ class PrivateNetworkIpv6Subnet(dict):
         The date and time of the last update of the subnet.
         """
         return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class GetAclRuleResult(dict):
+    def __init__(__self__, *,
+                 action: _builtins.str,
+                 description: _builtins.str,
+                 destination: _builtins.str,
+                 dst_port_high: _builtins.int,
+                 dst_port_low: _builtins.int,
+                 protocol: _builtins.str,
+                 source: _builtins.str,
+                 src_port_high: _builtins.int,
+                 src_port_low: _builtins.int):
+        """
+        :param _builtins.str action: The policy to apply to the packet
+        :param _builtins.str description: The rule description
+        :param _builtins.str destination: Destination IP range to which this rule applies (CIDR notation with subnet mask)
+        :param _builtins.int dst_port_high: Ending port of the destination port range to which this rule applies (inclusive)
+        :param _builtins.int dst_port_low: Starting port of the destination port range to which this rule applies (inclusive)
+        :param _builtins.str protocol: The protocol to which this rule applies. Default value: ANY
+        :param _builtins.str source: Source IP range to which this rule applies (CIDR notation with subnet mask)
+        :param _builtins.int src_port_high: Ending port of the source port range to which this rule applies (inclusive)
+        :param _builtins.int src_port_low: Starting port of the source port range to which this rule applies (inclusive)
+        """
+        pulumi.set(__self__, "action", action)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destination", destination)
+        pulumi.set(__self__, "dst_port_high", dst_port_high)
+        pulumi.set(__self__, "dst_port_low", dst_port_low)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source", source)
+        pulumi.set(__self__, "src_port_high", src_port_high)
+        pulumi.set(__self__, "src_port_low", src_port_low)
+
+    @_builtins.property
+    @pulumi.getter
+    def action(self) -> _builtins.str:
+        """
+        The policy to apply to the packet
+        """
+        return pulumi.get(self, "action")
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> _builtins.str:
+        """
+        The rule description
+        """
+        return pulumi.get(self, "description")
+
+    @_builtins.property
+    @pulumi.getter
+    def destination(self) -> _builtins.str:
+        """
+        Destination IP range to which this rule applies (CIDR notation with subnet mask)
+        """
+        return pulumi.get(self, "destination")
+
+    @_builtins.property
+    @pulumi.getter(name="dstPortHigh")
+    def dst_port_high(self) -> _builtins.int:
+        """
+        Ending port of the destination port range to which this rule applies (inclusive)
+        """
+        return pulumi.get(self, "dst_port_high")
+
+    @_builtins.property
+    @pulumi.getter(name="dstPortLow")
+    def dst_port_low(self) -> _builtins.int:
+        """
+        Starting port of the destination port range to which this rule applies (inclusive)
+        """
+        return pulumi.get(self, "dst_port_low")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        The protocol to which this rule applies. Default value: ANY
+        """
+        return pulumi.get(self, "protocol")
+
+    @_builtins.property
+    @pulumi.getter
+    def source(self) -> _builtins.str:
+        """
+        Source IP range to which this rule applies (CIDR notation with subnet mask)
+        """
+        return pulumi.get(self, "source")
+
+    @_builtins.property
+    @pulumi.getter(name="srcPortHigh")
+    def src_port_high(self) -> _builtins.int:
+        """
+        Ending port of the source port range to which this rule applies (inclusive)
+        """
+        return pulumi.get(self, "src_port_high")
+
+    @_builtins.property
+    @pulumi.getter(name="srcPortLow")
+    def src_port_low(self) -> _builtins.int:
+        """
+        Starting port of the source port range to which this rule applies (inclusive)
+        """
+        return pulumi.get(self, "src_port_low")
 
 
 @pulumi.output_type

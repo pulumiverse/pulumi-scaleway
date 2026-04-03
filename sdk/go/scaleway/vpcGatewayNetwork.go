@@ -160,17 +160,17 @@ type VpcGatewayNetwork struct {
 
 	// Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 	CleanupDhcp pulumi.BoolOutput `pulumi:"cleanupDhcp"`
 	// The date and time of the creation of the GatewayNetwork.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 	DhcpId pulumi.StringPtrOutput `pulumi:"dhcpId"`
 	// Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 	EnableDhcp pulumi.BoolPtrOutput `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
 	EnableMasquerade pulumi.BoolPtrOutput `pulumi:"enableMasquerade"`
@@ -186,7 +186,7 @@ type VpcGatewayNetwork struct {
 	PrivateNetworkId pulumi.StringOutput `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: Please use ipamConfig instead.
 	StaticAddress pulumi.StringOutput `pulumi:"staticAddress"`
 	// The status of the Public Gateway's connection to the Private Network.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -238,17 +238,17 @@ func GetVpcGatewayNetwork(ctx *pulumi.Context,
 type vpcGatewayNetworkState struct {
 	// Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
 	// The date and time of the creation of the GatewayNetwork.
 	CreatedAt *string `pulumi:"createdAt"`
 	// Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 	DhcpId *string `pulumi:"dhcpId"`
 	// Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
@@ -264,7 +264,7 @@ type vpcGatewayNetworkState struct {
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: Please use ipamConfig instead.
 	StaticAddress *string `pulumi:"staticAddress"`
 	// The status of the Public Gateway's connection to the Private Network.
 	Status *string `pulumi:"status"`
@@ -281,17 +281,17 @@ type vpcGatewayNetworkState struct {
 type VpcGatewayNetworkState struct {
 	// Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 	CleanupDhcp pulumi.BoolPtrInput
 	// The date and time of the creation of the GatewayNetwork.
 	CreatedAt pulumi.StringPtrInput
 	// Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 	DhcpId pulumi.StringPtrInput
 	// Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 	EnableDhcp pulumi.BoolPtrInput
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
 	EnableMasquerade pulumi.BoolPtrInput
@@ -307,7 +307,7 @@ type VpcGatewayNetworkState struct {
 	PrivateNetworkId pulumi.StringPtrInput
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: Please use ipamConfig instead.
 	StaticAddress pulumi.StringPtrInput
 	// The status of the Public Gateway's connection to the Private Network.
 	Status pulumi.StringPtrInput
@@ -328,15 +328,15 @@ func (VpcGatewayNetworkState) ElementType() reflect.Type {
 type vpcGatewayNetworkArgs struct {
 	// Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 	CleanupDhcp *bool `pulumi:"cleanupDhcp"`
 	// Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 	DhcpId *string `pulumi:"dhcpId"`
 	// Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 	EnableDhcp *bool `pulumi:"enableDhcp"`
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
 	EnableMasquerade *bool `pulumi:"enableMasquerade"`
@@ -350,7 +350,7 @@ type vpcGatewayNetworkArgs struct {
 	PrivateNetworkId string `pulumi:"privateNetworkId"`
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: Please use ipamConfig instead.
 	StaticAddress *string `pulumi:"staticAddress"`
 	// `zone`) The zone in which the gateway network should be created.
 	//
@@ -364,15 +364,15 @@ type vpcGatewayNetworkArgs struct {
 type VpcGatewayNetworkArgs struct {
 	// Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 	CleanupDhcp pulumi.BoolPtrInput
 	// Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 	DhcpId pulumi.StringPtrInput
 	// Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 	EnableDhcp pulumi.BoolPtrInput
 	// Whether masquerade (dynamic NAT) should be enabled on this GatewayNetwork.
 	EnableMasquerade pulumi.BoolPtrInput
@@ -386,7 +386,7 @@ type VpcGatewayNetworkArgs struct {
 	PrivateNetworkId pulumi.StringInput
 	// Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 	//
-	// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+	// Deprecated: Please use ipamConfig instead.
 	StaticAddress pulumi.StringPtrInput
 	// `zone`) The zone in which the gateway network should be created.
 	//
@@ -485,7 +485,7 @@ func (o VpcGatewayNetworkOutput) ToVpcGatewayNetworkOutputWithContext(ctx contex
 
 // Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
 //
-// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+// Deprecated: DHCP cleanup is no longer needed. Please use ipamConfig instead.
 func (o VpcGatewayNetworkOutput) CleanupDhcp() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.BoolOutput { return v.CleanupDhcp }).(pulumi.BoolOutput)
 }
@@ -497,14 +497,14 @@ func (o VpcGatewayNetworkOutput) CreatedAt() pulumi.StringOutput {
 
 // Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 //
-// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+// Deprecated: DHCP configuration is no longer managed separately. Please use ipamConfig instead.
 func (o VpcGatewayNetworkOutput) DhcpId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringPtrOutput { return v.DhcpId }).(pulumi.StringPtrOutput)
 }
 
 // Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
 //
-// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+// Deprecated: DHCP is now managed automatically. Please use ipamConfig instead.
 func (o VpcGatewayNetworkOutput) EnableDhcp() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.BoolPtrOutput { return v.EnableDhcp }).(pulumi.BoolPtrOutput)
 }
@@ -541,7 +541,7 @@ func (o VpcGatewayNetworkOutput) PrivateNetworkId() pulumi.StringOutput {
 
 // Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
 //
-// Deprecated: Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+// Deprecated: Please use ipamConfig instead.
 func (o VpcGatewayNetworkOutput) StaticAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcGatewayNetwork) pulumi.StringOutput { return v.StaticAddress }).(pulumi.StringOutput)
 }

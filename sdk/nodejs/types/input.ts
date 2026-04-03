@@ -662,13 +662,17 @@ export interface EdgeServicesCacheStagePurgeRequest {
 
 export interface EdgeServicesRouteStageRule {
     /**
-     * The ID of the backend stage that requests matching the rule should be forwarded to.
+     * The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
      */
-    backendStageId: pulumi.Input<string>;
+    backendStageId?: pulumi.Input<string>;
     /**
-     * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+     * The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
      */
     ruleHttpMatch?: pulumi.Input<inputs.EdgeServicesRouteStageRuleRuleHttpMatch>;
+    /**
+     * The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+     */
+    wafStageId?: pulumi.Input<string>;
 }
 
 export interface EdgeServicesRouteStageRuleRuleHttpMatch {
@@ -3576,13 +3580,17 @@ export namespace edgeservices {
 
     export interface RouteStageRule {
         /**
-         * The ID of the backend stage that requests matching the rule should be forwarded to.
+         * The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
          */
-        backendStageId: pulumi.Input<string>;
+        backendStageId?: pulumi.Input<string>;
         /**
-         * The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+         * The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
          */
         ruleHttpMatch?: pulumi.Input<inputs.edgeservices.RouteStageRuleRuleHttpMatch>;
+        /**
+         * The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+         */
+        wafStageId?: pulumi.Input<string>;
     }
 
     export interface RouteStageRuleRuleHttpMatch {
@@ -3869,6 +3877,17 @@ export namespace iam {
          * > **Important** One `organizationId` or `projectIds` must be set per rule.
          */
         projectIds?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface SamlServiceProvider {
+        /**
+         * (Computed) The assertion consumer service URL of the Service Provider.
+         */
+        assertionConsumerServiceUrl: pulumi.Input<string>;
+        /**
+         * (Computed) The entity ID of the Service Provider.
+         */
+        entityId: pulumi.Input<string>;
     }
 }
 
@@ -5391,6 +5410,20 @@ export namespace object {
         years?: pulumi.Input<number>;
     }
 
+    export interface BucketServerSideEncryptionConfigurationRule {
+        /**
+         * Single object for setting server-side encryption by default.
+         */
+        applyServerSideEncryptionByDefault?: pulumi.Input<inputs.object.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault>;
+    }
+
+    export interface BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+        /**
+         * Server-side encryption algorithm to use. Valid values are `AES256`.
+         */
+        sseAlgorithm: pulumi.Input<string>;
+    }
+
     export interface BucketVersioning {
         /**
          * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
@@ -5456,6 +5489,28 @@ export namespace observability {
          * Push URL for metrics (Grafana Mimir)
          */
         pushMetricsUrl?: pulumi.Input<string>;
+    }
+
+    export interface ExporterDatadogDestination {
+        /**
+         * Datadog API key. Sensitive.
+         */
+        apiKey: pulumi.Input<string>;
+        /**
+         * Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+         */
+        endpoint?: pulumi.Input<string>;
+    }
+
+    export interface ExporterOtlpDestination {
+        /**
+         * OTLP endpoint URL.
+         */
+        endpoint: pulumi.Input<string>;
+        /**
+         * Headers to include in requests.
+         */
+        headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface TokenScopes {
@@ -5550,6 +5605,7 @@ export namespace opensearch {
          */
         type: pulumi.Input<string>;
     }
+
 }
 
 export namespace redis {

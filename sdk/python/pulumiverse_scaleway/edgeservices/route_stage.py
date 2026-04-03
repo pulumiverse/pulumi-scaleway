@@ -22,17 +22,21 @@ __all__ = ['RouteStageArgs', 'RouteStage']
 class RouteStageArgs:
     def __init__(__self__, *,
                  pipeline_id: pulumi.Input[_builtins.str],
+                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]]] = None,
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         The set of arguments for constructing a RouteStage resource.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
+        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]] rules: The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
-        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        :param pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
+        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         pulumi.set(__self__, "pipeline_id", pipeline_id)
+        if backend_stage_id is not None:
+            pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if rules is not None:
@@ -53,6 +57,18 @@ class RouteStageArgs:
         pulumi.set(self, "pipeline_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="backendStageId")
+    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
+        """
+        return pulumi.get(self, "backend_stage_id")
+
+    @backend_stage_id.setter
+    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "backend_stage_id", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
@@ -68,7 +84,7 @@ class RouteStageArgs:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]]]:
         """
-        The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         """
         return pulumi.get(self, "rules")
 
@@ -80,7 +96,7 @@ class RouteStageArgs:
     @pulumi.getter(name="wafStageId")
     def waf_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         return pulumi.get(self, "waf_stage_id")
 
@@ -92,6 +108,7 @@ class RouteStageArgs:
 @pulumi.input_type
 class _RouteStageState:
     def __init__(__self__, *,
+                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  created_at: Optional[pulumi.Input[_builtins.str]] = None,
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -100,13 +117,16 @@ class _RouteStageState:
                  waf_stage_id: Optional[pulumi.Input[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering RouteStage resources.
+        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]] rules: The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the route stage.
-        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
+        if backend_stage_id is not None:
+            pulumi.set(__self__, "backend_stage_id", backend_stage_id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if pipeline_id is not None:
@@ -119,6 +139,18 @@ class _RouteStageState:
             pulumi.set(__self__, "updated_at", updated_at)
         if waf_stage_id is not None:
             pulumi.set(__self__, "waf_stage_id", waf_stage_id)
+
+    @_builtins.property
+    @pulumi.getter(name="backendStageId")
+    def backend_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+        """
+        The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
+        """
+        return pulumi.get(self, "backend_stage_id")
+
+    @backend_stage_id.setter
+    def backend_stage_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+        pulumi.set(self, "backend_stage_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -160,7 +192,7 @@ class _RouteStageState:
     @pulumi.getter
     def rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouteStageRuleArgs']]]]:
         """
-        The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         """
         return pulumi.get(self, "rules")
 
@@ -184,7 +216,7 @@ class _RouteStageState:
     @pulumi.getter(name="wafStageId")
     def waf_stage_id(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         return pulumi.get(self, "waf_stage_id")
 
@@ -199,6 +231,7 @@ class RouteStage(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]]] = None,
@@ -209,7 +242,9 @@ class RouteStage(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Default to WAF with backend rules
+
+        Routes all unmatched traffic through a WAF stage, while requests matching specific patterns are sent directly to a backend stage.
 
         ```python
         import pulumi
@@ -233,6 +268,50 @@ class RouteStage(pulumi.CustomResource):
             }])
         ```
 
+        ### Default to backend with selective WAF protection
+
+        Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Static site with WAF-protected API")
+        main_bucket = scaleway.object.Bucket("main", name="my-static-site")
+        static = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": main_bucket.name,
+                "bucket_region": "fr-par",
+            })
+        api = scaleway.edgeservices.WafStage("api",
+            pipeline_id=main.id,
+            backend_stage_id=static.id,
+            mode="enable",
+            paranoia_level=2)
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static.id,
+            rules=[{
+                "waf_stage_id": api.id,
+                "rule_http_match": {
+                    "method_filters": [
+                        "get",
+                        "post",
+                        "put",
+                        "patch",
+                        "delete",
+                    ],
+                    "path_filter": {
+                        "path_filter_type": "regex",
+                        "value": "/api/.*",
+                    },
+                },
+            }])
+        ```
+
         ## Import
 
         Route stages can be imported using the `{id}`, e.g.
@@ -245,10 +324,11 @@ class RouteStage(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
-        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
+        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         ...
     @overload
@@ -261,7 +341,9 @@ class RouteStage(pulumi.CustomResource):
 
         ## Example Usage
 
-        ### Basic
+        ### Default to WAF with backend rules
+
+        Routes all unmatched traffic through a WAF stage, while requests matching specific patterns are sent directly to a backend stage.
 
         ```python
         import pulumi
@@ -280,6 +362,50 @@ class RouteStage(pulumi.CustomResource):
                     "path_filter": {
                         "path_filter_type": "regex",
                         "value": ".*",
+                    },
+                },
+            }])
+        ```
+
+        ### Default to backend with selective WAF protection
+
+        Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
+
+        ```python
+        import pulumi
+        import pulumiverse_scaleway as scaleway
+
+        main = scaleway.edgeservices.Pipeline("main",
+            name="my-pipeline",
+            description="Static site with WAF-protected API")
+        main_bucket = scaleway.object.Bucket("main", name="my-static-site")
+        static = scaleway.edgeservices.BackendStage("static",
+            pipeline_id=main.id,
+            s3_backend_config={
+                "bucket_name": main_bucket.name,
+                "bucket_region": "fr-par",
+            })
+        api = scaleway.edgeservices.WafStage("api",
+            pipeline_id=main.id,
+            backend_stage_id=static.id,
+            mode="enable",
+            paranoia_level=2)
+        main_route_stage = scaleway.edgeservices.RouteStage("main",
+            pipeline_id=main.id,
+            backend_stage_id=static.id,
+            rules=[{
+                "waf_stage_id": api.id,
+                "rule_http_match": {
+                    "method_filters": [
+                        "get",
+                        "post",
+                        "put",
+                        "patch",
+                        "delete",
+                    ],
+                    "path_filter": {
+                        "path_filter_type": "regex",
+                        "value": "/api/.*",
                     },
                 },
             }])
@@ -310,6 +436,7 @@ class RouteStage(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
                  pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]]] = None,
@@ -323,6 +450,7 @@ class RouteStage(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RouteStageArgs.__new__(RouteStageArgs)
 
+            __props__.__dict__["backend_stage_id"] = backend_stage_id
             if pipeline_id is None and not opts.urn:
                 raise TypeError("Missing required property 'pipeline_id'")
             __props__.__dict__["pipeline_id"] = pipeline_id
@@ -343,6 +471,7 @@ class RouteStage(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            backend_stage_id: Optional[pulumi.Input[_builtins.str]] = None,
             created_at: Optional[pulumi.Input[_builtins.str]] = None,
             pipeline_id: Optional[pulumi.Input[_builtins.str]] = None,
             project_id: Optional[pulumi.Input[_builtins.str]] = None,
@@ -356,17 +485,19 @@ class RouteStage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] backend_stage_id: The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
         :param pulumi.Input[_builtins.str] created_at: The date and time of the creation of the route stage.
         :param pulumi.Input[_builtins.str] pipeline_id: The ID of the pipeline.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the route stage is associated with.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['RouteStageRuleArgs', 'RouteStageRuleArgsDict']]]] rules: List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         :param pulumi.Input[_builtins.str] updated_at: The date and time of the last update of the route stage.
-        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        :param pulumi.Input[_builtins.str] waf_stage_id: The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _RouteStageState.__new__(_RouteStageState)
 
+        __props__.__dict__["backend_stage_id"] = backend_stage_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["pipeline_id"] = pipeline_id
         __props__.__dict__["project_id"] = project_id
@@ -374,6 +505,14 @@ class RouteStage(pulumi.CustomResource):
         __props__.__dict__["updated_at"] = updated_at
         __props__.__dict__["waf_stage_id"] = waf_stage_id
         return RouteStage(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="backendStageId")
+    def backend_stage_id(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `waf_stage_id`.
+        """
+        return pulumi.get(self, "backend_stage_id")
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
@@ -403,7 +542,7 @@ class RouteStage(pulumi.CustomResource):
     @pulumi.getter
     def rules(self) -> pulumi.Output[Optional[Sequence['outputs.RouteStageRule']]]:
         """
-        The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `waf_stage_id`.
+        List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `waf_stage_id` or `backend_stage_id`.
         """
         return pulumi.get(self, "rules")
 
@@ -419,7 +558,7 @@ class RouteStage(pulumi.CustomResource):
     @pulumi.getter(name="wafStageId")
     def waf_stage_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backend_stage_id`.
         """
         return pulumi.get(self, "waf_stage_id")
 

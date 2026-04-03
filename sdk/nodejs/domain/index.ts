@@ -10,6 +10,11 @@ export const getRecord: typeof import("./getRecord").getRecord = null as any;
 export const getRecordOutput: typeof import("./getRecord").getRecordOutput = null as any;
 utilities.lazyLoad(exports, ["getRecord","getRecordOutput"], () => require("./getRecord"));
 
+export { GetRegistrationArgs, GetRegistrationResult, GetRegistrationOutputArgs } from "./getRegistration";
+export const getRegistration: typeof import("./getRegistration").getRegistration = null as any;
+export const getRegistrationOutput: typeof import("./getRegistration").getRegistrationOutput = null as any;
+utilities.lazyLoad(exports, ["getRegistration","getRegistrationOutput"], () => require("./getRegistration"));
+
 export { GetZoneArgs, GetZoneResult, GetZoneOutputArgs } from "./getZone";
 export const getZone: typeof import("./getZone").getZone = null as any;
 export const getZoneOutput: typeof import("./getZone").getZoneOutput = null as any;

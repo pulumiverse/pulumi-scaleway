@@ -15,6 +15,16 @@ export type Cockpit = import("./cockpit").Cockpit;
 export const Cockpit: typeof import("./cockpit").Cockpit = null as any;
 utilities.lazyLoad(exports, ["Cockpit"], () => require("./cockpit"));
 
+export { ExporterArgs, ExporterState } from "./exporter";
+export type Exporter = import("./exporter").Exporter;
+export const Exporter: typeof import("./exporter").Exporter = null as any;
+utilities.lazyLoad(exports, ["Exporter"], () => require("./exporter"));
+
+export { GetExporterArgs, GetExporterResult, GetExporterOutputArgs } from "./getExporter";
+export const getExporter: typeof import("./getExporter").getExporter = null as any;
+export const getExporterOutput: typeof import("./getExporter").getExporterOutput = null as any;
+utilities.lazyLoad(exports, ["getExporter","getExporterOutput"], () => require("./getExporter"));
+
 export { GetGrafanaArgs, GetGrafanaResult, GetGrafanaOutputArgs } from "./getGrafana";
 export const getGrafana: typeof import("./getGrafana").getGrafana = null as any;
 export const getGrafanaOutput: typeof import("./getGrafana").getGrafanaOutput = null as any;
@@ -29,6 +39,11 @@ export { GetPreconfiguredAlertArgs, GetPreconfiguredAlertResult, GetPreconfigure
 export const getPreconfiguredAlert: typeof import("./getPreconfiguredAlert").getPreconfiguredAlert = null as any;
 export const getPreconfiguredAlertOutput: typeof import("./getPreconfiguredAlert").getPreconfiguredAlertOutput = null as any;
 utilities.lazyLoad(exports, ["getPreconfiguredAlert","getPreconfiguredAlertOutput"], () => require("./getPreconfiguredAlert"));
+
+export { GetProductsArgs, GetProductsResult, GetProductsOutputArgs } from "./getProducts";
+export const getProducts: typeof import("./getProducts").getProducts = null as any;
+export const getProductsOutput: typeof import("./getProducts").getProductsOutput = null as any;
+utilities.lazyLoad(exports, ["getProducts","getProductsOutput"], () => require("./getProducts"));
 
 export { GetSourceArgs, GetSourceResult, GetSourceOutputArgs } from "./getSource";
 export const getSource: typeof import("./getSource").getSource = null as any;
@@ -64,6 +79,8 @@ const _module = {
                 return new AlertManager(name, <any>undefined, { urn })
             case "scaleway:observability/cockpit:Cockpit":
                 return new Cockpit(name, <any>undefined, { urn })
+            case "scaleway:observability/exporter:Exporter":
+                return new Exporter(name, <any>undefined, { urn })
             case "scaleway:observability/grafanaUser:GrafanaUser":
                 return new GrafanaUser(name, <any>undefined, { urn })
             case "scaleway:observability/source:Source":
@@ -77,6 +94,7 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("scaleway", "observability/alertManager", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/cockpit", _module)
+pulumi.runtime.registerResourceModule("scaleway", "observability/exporter", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/grafanaUser", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/source", _module)
 pulumi.runtime.registerResourceModule("scaleway", "observability/token", _module)

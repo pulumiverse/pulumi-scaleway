@@ -12,8 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
-//
 // ## Example Usage
 //
 // ```go

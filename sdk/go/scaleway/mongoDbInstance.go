@@ -12,9 +12,6 @@ import (
 	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/internal"
 )
 
-// Creates and manages Scaleway MongoDB® instance.
-// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
-//
 // ## Example Usage
 //
 // ```go
@@ -72,11 +69,12 @@ type MongoDbInstance struct {
 	NodeNumber pulumi.IntOutput `pulumi:"nodeNumber"`
 	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringOutput `pulumi:"nodeType"`
-	// Password of the user.
+	// Password of the user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrOutput `pulumi:"passwordWo"`
-	PasswordWoVersion pulumi.IntPtrOutput    `pulumi:"passwordWoVersion"`
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps MongoDbInstancePrivateIpArrayOutput `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -168,11 +166,12 @@ type mongoDbInstanceState struct {
 	NodeNumber *int `pulumi:"nodeNumber"`
 	// The type of MongoDB® instance to create.
 	NodeType *string `pulumi:"nodeType"`
-	// Password of the user.
+	// Password of the user. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        *string `pulumi:"passwordWo"`
-	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps []MongoDbInstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -218,10 +217,11 @@ type MongoDbInstanceState struct {
 	NodeNumber pulumi.IntPtrInput
 	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringPtrInput
-	// Password of the user.
+	// Password of the user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrInput
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the instance.
 	PrivateIps MongoDbInstancePrivateIpArrayInput
@@ -270,11 +270,12 @@ type mongoDbInstanceArgs struct {
 	NodeNumber int `pulumi:"nodeNumber"`
 	// The type of MongoDB® instance to create.
 	NodeType string `pulumi:"nodeType"`
-	// Password of the user.
+	// Password of the user. Only one of `password` or `passwordWo` should be specified.
 	Password *string `pulumi:"password"`
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        *string `pulumi:"passwordWo"`
-	PasswordWoVersion *int    `pulumi:"passwordWoVersion"`
+	PasswordWo *string `pulumi:"passwordWo"`
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The private IPv4 address associated with the instance.
 	PrivateIps []MongoDbInstancePrivateIp `pulumi:"privateIps"`
 	// Private Network endpoints of the Database Instance.
@@ -315,10 +316,11 @@ type MongoDbInstanceArgs struct {
 	NodeNumber pulumi.IntInput
 	// The type of MongoDB® instance to create.
 	NodeType pulumi.StringInput
-	// Password of the user.
+	// Password of the user. Only one of `password` or `passwordWo` should be specified.
 	Password pulumi.StringPtrInput
 	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
-	PasswordWo        pulumi.StringPtrInput
+	PasswordWo pulumi.StringPtrInput
+	// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 	PasswordWoVersion pulumi.IntPtrInput
 	// The private IPv4 address associated with the instance.
 	PrivateIps MongoDbInstancePrivateIpArrayInput
@@ -462,7 +464,7 @@ func (o MongoDbInstanceOutput) NodeType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringOutput { return v.NodeType }).(pulumi.StringOutput)
 }
 
-// Password of the user.
+// Password of the user. Only one of `password` or `passwordWo` should be specified.
 func (o MongoDbInstanceOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }
@@ -472,6 +474,7 @@ func (o MongoDbInstanceOutput) PasswordWo() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
 }
 
+// The version of the write-only password. To update the `passwordWo`, you must also update the `passwordWoVersion`.
 func (o MongoDbInstanceOutput) PasswordWoVersion() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MongoDbInstance) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }

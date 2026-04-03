@@ -305,10 +305,6 @@ class Version(pulumi.CustomResource):
                  secret_id: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
-
-        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
-
         ## Example Usage
 
         ### Create a secret and a version
@@ -364,10 +360,6 @@ class Version(pulumi.CustomResource):
                  args: VersionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `secrets.Version` resource allows you to create and manage secret versions in Scaleway Secret Manager.
-
-        Refer to the Secret Manager [product documentation](https://www.scaleway.com/en/docs/secret-manager/) and [API documentation](https://www.scaleway.com/en/developers/api/secret-manager/) for more information.
-
         ## Example Usage
 
         ### Create a secret and a version

@@ -430,6 +430,16 @@ export const getInstanceVolume: typeof import("./getInstanceVolume").getInstance
 export const getInstanceVolumeOutput: typeof import("./getInstanceVolume").getInstanceVolumeOutput = null as any;
 utilities.lazyLoad(exports, ["getInstanceVolume","getInstanceVolumeOutput"], () => require("./getInstanceVolume"));
 
+export { GetInterlinkPartnerArgs, GetInterlinkPartnerResult, GetInterlinkPartnerOutputArgs } from "./getInterlinkPartner";
+export const getInterlinkPartner: typeof import("./getInterlinkPartner").getInterlinkPartner = null as any;
+export const getInterlinkPartnerOutput: typeof import("./getInterlinkPartner").getInterlinkPartnerOutput = null as any;
+utilities.lazyLoad(exports, ["getInterlinkPartner","getInterlinkPartnerOutput"], () => require("./getInterlinkPartner"));
+
+export { GetInterlinkPartnersArgs, GetInterlinkPartnersResult, GetInterlinkPartnersOutputArgs } from "./getInterlinkPartners";
+export const getInterlinkPartners: typeof import("./getInterlinkPartners").getInterlinkPartners = null as any;
+export const getInterlinkPartnersOutput: typeof import("./getInterlinkPartners").getInterlinkPartnersOutput = null as any;
+utilities.lazyLoad(exports, ["getInterlinkPartners","getInterlinkPartnersOutput"], () => require("./getInterlinkPartners"));
+
 export { GetIotDeviceArgs, GetIotDeviceResult, GetIotDeviceOutputArgs } from "./getIotDevice";
 export const getIotDevice: typeof import("./getIotDevice").getIotDevice = null as any;
 export const getIotDeviceOutput: typeof import("./getIotDevice").getIotDeviceOutput = null as any;

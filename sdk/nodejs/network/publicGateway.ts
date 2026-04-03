@@ -94,6 +94,8 @@ export class PublicGateway extends pulumi.CustomResource {
     declare public readonly ipId: pulumi.Output<string>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     *
+     * @deprecated All gateways now use IPAM. This field is no longer needed
      */
     declare public readonly moveToIpam: pulumi.Output<boolean | undefined>;
     /**
@@ -130,6 +132,8 @@ export class PublicGateway extends pulumi.CustomResource {
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
     /**
      * Override the gateway's default recursive DNS servers, if DNS features are enabled.
+     *
+     * @deprecated This field is no longer supported in the v2 API
      */
     declare public /*out*/ readonly upstreamDnsServers: pulumi.Output<string[]>;
     /**
@@ -233,6 +237,8 @@ export interface PublicGatewayState {
     ipId?: pulumi.Input<string>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     *
+     * @deprecated All gateways now use IPAM. This field is no longer needed
      */
     moveToIpam?: pulumi.Input<boolean>;
     /**
@@ -269,6 +275,8 @@ export interface PublicGatewayState {
     updatedAt?: pulumi.Input<string>;
     /**
      * Override the gateway's default recursive DNS servers, if DNS features are enabled.
+     *
+     * @deprecated This field is no longer supported in the v2 API
      */
     upstreamDnsServers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -303,6 +311,8 @@ export interface PublicGatewayArgs {
     ipId?: pulumi.Input<string>;
     /**
      * Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
+     *
+     * @deprecated All gateways now use IPAM. This field is no longer needed
      */
     moveToIpam?: pulumi.Input<boolean>;
     /**

@@ -149,6 +149,162 @@ func (o PolicyRuleArrayOutput) Index(i pulumi.IntInput) PolicyRuleOutput {
 	}).(PolicyRuleOutput)
 }
 
+type SamlServiceProvider struct {
+	// (Computed) The assertion consumer service URL of the Service Provider.
+	AssertionConsumerServiceUrl string `pulumi:"assertionConsumerServiceUrl"`
+	// (Computed) The entity ID of the Service Provider.
+	EntityId string `pulumi:"entityId"`
+}
+
+// SamlServiceProviderInput is an input type that accepts SamlServiceProviderArgs and SamlServiceProviderOutput values.
+// You can construct a concrete instance of `SamlServiceProviderInput` via:
+//
+//	SamlServiceProviderArgs{...}
+type SamlServiceProviderInput interface {
+	pulumi.Input
+
+	ToSamlServiceProviderOutput() SamlServiceProviderOutput
+	ToSamlServiceProviderOutputWithContext(context.Context) SamlServiceProviderOutput
+}
+
+type SamlServiceProviderArgs struct {
+	// (Computed) The assertion consumer service URL of the Service Provider.
+	AssertionConsumerServiceUrl pulumi.StringInput `pulumi:"assertionConsumerServiceUrl"`
+	// (Computed) The entity ID of the Service Provider.
+	EntityId pulumi.StringInput `pulumi:"entityId"`
+}
+
+func (SamlServiceProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SamlServiceProvider)(nil)).Elem()
+}
+
+func (i SamlServiceProviderArgs) ToSamlServiceProviderOutput() SamlServiceProviderOutput {
+	return i.ToSamlServiceProviderOutputWithContext(context.Background())
+}
+
+func (i SamlServiceProviderArgs) ToSamlServiceProviderOutputWithContext(ctx context.Context) SamlServiceProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SamlServiceProviderOutput)
+}
+
+func (i SamlServiceProviderArgs) ToSamlServiceProviderPtrOutput() SamlServiceProviderPtrOutput {
+	return i.ToSamlServiceProviderPtrOutputWithContext(context.Background())
+}
+
+func (i SamlServiceProviderArgs) ToSamlServiceProviderPtrOutputWithContext(ctx context.Context) SamlServiceProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SamlServiceProviderOutput).ToSamlServiceProviderPtrOutputWithContext(ctx)
+}
+
+// SamlServiceProviderPtrInput is an input type that accepts SamlServiceProviderArgs, SamlServiceProviderPtr and SamlServiceProviderPtrOutput values.
+// You can construct a concrete instance of `SamlServiceProviderPtrInput` via:
+//
+//	        SamlServiceProviderArgs{...}
+//
+//	or:
+//
+//	        nil
+type SamlServiceProviderPtrInput interface {
+	pulumi.Input
+
+	ToSamlServiceProviderPtrOutput() SamlServiceProviderPtrOutput
+	ToSamlServiceProviderPtrOutputWithContext(context.Context) SamlServiceProviderPtrOutput
+}
+
+type samlServiceProviderPtrType SamlServiceProviderArgs
+
+func SamlServiceProviderPtr(v *SamlServiceProviderArgs) SamlServiceProviderPtrInput {
+	return (*samlServiceProviderPtrType)(v)
+}
+
+func (*samlServiceProviderPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SamlServiceProvider)(nil)).Elem()
+}
+
+func (i *samlServiceProviderPtrType) ToSamlServiceProviderPtrOutput() SamlServiceProviderPtrOutput {
+	return i.ToSamlServiceProviderPtrOutputWithContext(context.Background())
+}
+
+func (i *samlServiceProviderPtrType) ToSamlServiceProviderPtrOutputWithContext(ctx context.Context) SamlServiceProviderPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SamlServiceProviderPtrOutput)
+}
+
+type SamlServiceProviderOutput struct{ *pulumi.OutputState }
+
+func (SamlServiceProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SamlServiceProvider)(nil)).Elem()
+}
+
+func (o SamlServiceProviderOutput) ToSamlServiceProviderOutput() SamlServiceProviderOutput {
+	return o
+}
+
+func (o SamlServiceProviderOutput) ToSamlServiceProviderOutputWithContext(ctx context.Context) SamlServiceProviderOutput {
+	return o
+}
+
+func (o SamlServiceProviderOutput) ToSamlServiceProviderPtrOutput() SamlServiceProviderPtrOutput {
+	return o.ToSamlServiceProviderPtrOutputWithContext(context.Background())
+}
+
+func (o SamlServiceProviderOutput) ToSamlServiceProviderPtrOutputWithContext(ctx context.Context) SamlServiceProviderPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SamlServiceProvider) *SamlServiceProvider {
+		return &v
+	}).(SamlServiceProviderPtrOutput)
+}
+
+// (Computed) The assertion consumer service URL of the Service Provider.
+func (o SamlServiceProviderOutput) AssertionConsumerServiceUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlServiceProvider) string { return v.AssertionConsumerServiceUrl }).(pulumi.StringOutput)
+}
+
+// (Computed) The entity ID of the Service Provider.
+func (o SamlServiceProviderOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v SamlServiceProvider) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
+type SamlServiceProviderPtrOutput struct{ *pulumi.OutputState }
+
+func (SamlServiceProviderPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SamlServiceProvider)(nil)).Elem()
+}
+
+func (o SamlServiceProviderPtrOutput) ToSamlServiceProviderPtrOutput() SamlServiceProviderPtrOutput {
+	return o
+}
+
+func (o SamlServiceProviderPtrOutput) ToSamlServiceProviderPtrOutputWithContext(ctx context.Context) SamlServiceProviderPtrOutput {
+	return o
+}
+
+func (o SamlServiceProviderPtrOutput) Elem() SamlServiceProviderOutput {
+	return o.ApplyT(func(v *SamlServiceProvider) SamlServiceProvider {
+		if v != nil {
+			return *v
+		}
+		var ret SamlServiceProvider
+		return ret
+	}).(SamlServiceProviderOutput)
+}
+
+// (Computed) The assertion consumer service URL of the Service Provider.
+func (o SamlServiceProviderPtrOutput) AssertionConsumerServiceUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SamlServiceProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.AssertionConsumerServiceUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// (Computed) The entity ID of the Service Provider.
+func (o SamlServiceProviderPtrOutput) EntityId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SamlServiceProvider) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.EntityId
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetPolicyRule struct {
 	// The condition of the rule.
 	Condition string `pulumi:"condition"`
@@ -273,13 +429,74 @@ func (o GetPolicyRuleArrayOutput) Index(i pulumi.IntInput) GetPolicyRuleOutput {
 	}).(GetPolicyRuleOutput)
 }
 
+type GetSamlServiceProvider struct {
+	AssertionConsumerServiceUrl string `pulumi:"assertionConsumerServiceUrl"`
+	EntityId                    string `pulumi:"entityId"`
+}
+
+// GetSamlServiceProviderInput is an input type that accepts GetSamlServiceProviderArgs and GetSamlServiceProviderOutput values.
+// You can construct a concrete instance of `GetSamlServiceProviderInput` via:
+//
+//	GetSamlServiceProviderArgs{...}
+type GetSamlServiceProviderInput interface {
+	pulumi.Input
+
+	ToGetSamlServiceProviderOutput() GetSamlServiceProviderOutput
+	ToGetSamlServiceProviderOutputWithContext(context.Context) GetSamlServiceProviderOutput
+}
+
+type GetSamlServiceProviderArgs struct {
+	AssertionConsumerServiceUrl pulumi.StringInput `pulumi:"assertionConsumerServiceUrl"`
+	EntityId                    pulumi.StringInput `pulumi:"entityId"`
+}
+
+func (GetSamlServiceProviderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSamlServiceProvider)(nil)).Elem()
+}
+
+func (i GetSamlServiceProviderArgs) ToGetSamlServiceProviderOutput() GetSamlServiceProviderOutput {
+	return i.ToGetSamlServiceProviderOutputWithContext(context.Background())
+}
+
+func (i GetSamlServiceProviderArgs) ToGetSamlServiceProviderOutputWithContext(ctx context.Context) GetSamlServiceProviderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSamlServiceProviderOutput)
+}
+
+type GetSamlServiceProviderOutput struct{ *pulumi.OutputState }
+
+func (GetSamlServiceProviderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSamlServiceProvider)(nil)).Elem()
+}
+
+func (o GetSamlServiceProviderOutput) ToGetSamlServiceProviderOutput() GetSamlServiceProviderOutput {
+	return o
+}
+
+func (o GetSamlServiceProviderOutput) ToGetSamlServiceProviderOutputWithContext(ctx context.Context) GetSamlServiceProviderOutput {
+	return o
+}
+
+func (o GetSamlServiceProviderOutput) AssertionConsumerServiceUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlServiceProvider) string { return v.AssertionConsumerServiceUrl }).(pulumi.StringOutput)
+}
+
+func (o GetSamlServiceProviderOutput) EntityId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSamlServiceProvider) string { return v.EntityId }).(pulumi.StringOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyRuleInput)(nil)).Elem(), PolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PolicyRuleArrayInput)(nil)).Elem(), PolicyRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SamlServiceProviderInput)(nil)).Elem(), SamlServiceProviderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SamlServiceProviderPtrInput)(nil)).Elem(), SamlServiceProviderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyRuleInput)(nil)).Elem(), GetPolicyRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPolicyRuleArrayInput)(nil)).Elem(), GetPolicyRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSamlServiceProviderInput)(nil)).Elem(), GetSamlServiceProviderArgs{})
 	pulumi.RegisterOutputType(PolicyRuleOutput{})
 	pulumi.RegisterOutputType(PolicyRuleArrayOutput{})
+	pulumi.RegisterOutputType(SamlServiceProviderOutput{})
+	pulumi.RegisterOutputType(SamlServiceProviderPtrOutput{})
 	pulumi.RegisterOutputType(GetPolicyRuleOutput{})
 	pulumi.RegisterOutputType(GetPolicyRuleArrayOutput{})
+	pulumi.RegisterOutputType(GetSamlServiceProviderOutput{})
 }

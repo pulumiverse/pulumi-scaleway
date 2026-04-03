@@ -15,7 +15,9 @@ namespace Pulumiverse.Scaleway
     /// 
     /// ## Example Usage
     /// 
-    /// ### Basic
+    /// ### Default to WAF with backend rules
+    /// 
+    /// Routes all unmatched traffic through a WAF stage, while requests matching specific patterns are sent directly to a backend stage.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -54,6 +56,79 @@ namespace Pulumiverse.Scaleway
     /// });
     /// ```
     /// 
+    /// ### Default to backend with selective WAF protection
+    /// 
+    /// Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Scaleway = Pulumiverse.Scaleway;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var main = new Scaleway.Edgeservices.Pipeline("main", new()
+    ///     {
+    ///         Name = "my-pipeline",
+    ///         Description = "Static site with WAF-protected API",
+    ///     });
+    /// 
+    ///     var mainBucket = new Scaleway.Object.Bucket("main", new()
+    ///     {
+    ///         Name = "my-static-site",
+    ///     });
+    /// 
+    ///     var @static = new Scaleway.Edgeservices.BackendStage("static", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         S3BackendConfig = new Scaleway.Edgeservices.Inputs.BackendStageS3BackendConfigArgs
+    ///         {
+    ///             BucketName = mainBucket.Name,
+    ///             BucketRegion = "fr-par",
+    ///         },
+    ///     });
+    /// 
+    ///     var api = new Scaleway.Edgeservices.WafStage("api", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         BackendStageId = @static.Id,
+    ///         Mode = "enable",
+    ///         ParanoiaLevel = 2,
+    ///     });
+    /// 
+    ///     var mainRouteStage = new Scaleway.Edgeservices.RouteStage("main", new()
+    ///     {
+    ///         PipelineId = main.Id,
+    ///         BackendStageId = @static.Id,
+    ///         Rules = new[]
+    ///         {
+    ///             new Scaleway.Edgeservices.Inputs.RouteStageRuleArgs
+    ///             {
+    ///                 WafStageId = api.Id,
+    ///                 RuleHttpMatch = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchArgs
+    ///                 {
+    ///                     MethodFilters = new[]
+    ///                     {
+    ///                         "get",
+    ///                         "post",
+    ///                         "put",
+    ///                         "patch",
+    ///                         "delete",
+    ///                     },
+    ///                     PathFilter = new Scaleway.Edgeservices.Inputs.RouteStageRuleRuleHttpMatchPathFilterArgs
+    ///                     {
+    ///                         PathFilterType = "regex",
+    ///                         Value = "/api/.*",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// Route stages can be imported using the `{id}`, e.g.
@@ -68,6 +143,12 @@ namespace Pulumiverse.Scaleway
     [ScalewayResourceType("scaleway:index/edgeServicesRouteStage:EdgeServicesRouteStage")]
     public partial class EdgeServicesRouteStage : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `WafStageId`.
+        /// </summary>
+        [Output("backendStageId")]
+        public Output<string?> BackendStageId { get; private set; } = null!;
+
         /// <summary>
         /// The date and time of the creation of the route stage.
         /// </summary>
@@ -87,7 +168,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
+        /// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `WafStageId` or `BackendStageId`.
         /// </summary>
         [Output("rules")]
         public Output<ImmutableArray<Outputs.EdgeServicesRouteStageRule>> Rules { get; private set; } = null!;
@@ -99,7 +180,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> UpdatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `BackendStageId`.
         /// </summary>
         [Output("wafStageId")]
         public Output<string?> WafStageId { get; private set; } = null!;
@@ -152,6 +233,12 @@ namespace Pulumiverse.Scaleway
     public sealed class EdgeServicesRouteStageArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `WafStageId`.
+        /// </summary>
+        [Input("backendStageId")]
+        public Input<string>? BackendStageId { get; set; }
+
+        /// <summary>
         /// The ID of the pipeline.
         /// </summary>
         [Input("pipelineId", required: true)]
@@ -167,7 +254,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.EdgeServicesRouteStageRuleArgs>? _rules;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
+        /// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `WafStageId` or `BackendStageId`.
         /// </summary>
         public InputList<Inputs.EdgeServicesRouteStageRuleArgs> Rules
         {
@@ -176,7 +263,7 @@ namespace Pulumiverse.Scaleway
         }
 
         /// <summary>
-        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `BackendStageId`.
         /// </summary>
         [Input("wafStageId")]
         public Input<string>? WafStageId { get; set; }
@@ -189,6 +276,12 @@ namespace Pulumiverse.Scaleway
 
     public sealed class EdgeServicesRouteStageState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `WafStageId`.
+        /// </summary>
+        [Input("backendStageId")]
+        public Input<string>? BackendStageId { get; set; }
+
         /// <summary>
         /// The date and time of the creation of the route stage.
         /// </summary>
@@ -211,7 +304,7 @@ namespace Pulumiverse.Scaleway
         private InputList<Inputs.EdgeServicesRouteStageRuleGetArgs>? _rules;
 
         /// <summary>
-        /// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `WafStageId`.
+        /// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `WafStageId` or `BackendStageId`.
         /// </summary>
         public InputList<Inputs.EdgeServicesRouteStageRuleGetArgs> Rules
         {
@@ -226,7 +319,7 @@ namespace Pulumiverse.Scaleway
         public Input<string>? UpdatedAt { get; set; }
 
         /// <summary>
-        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+        /// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `BackendStageId`.
         /// </summary>
         [Input("wafStageId")]
         public Input<string>? WafStageId { get; set; }

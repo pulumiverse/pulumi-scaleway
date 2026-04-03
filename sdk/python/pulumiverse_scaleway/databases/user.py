@@ -318,9 +318,6 @@ class User(pulumi.CustomResource):
                  region: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        The `databases.User` resource creates and manages database users.
-        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
-
         ## Example Usage
 
         ```python
@@ -394,9 +391,6 @@ class User(pulumi.CustomResource):
                  args: UserArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The `databases.User` resource creates and manages database users.
-        For more information refer to the [API documentation](https://www.scaleway.com/en/developers/api/managed-database-postgre-mysql/).
-
         ## Example Usage
 
         ```python

@@ -5583,10 +5583,12 @@ func (o EdgeServicesCacheStagePurgeRequestArrayOutput) Index(i pulumi.IntInput) 
 }
 
 type EdgeServicesRouteStageRule struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId string `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId *string `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch *EdgeServicesRouteStageRuleRuleHttpMatch `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // EdgeServicesRouteStageRuleInput is an input type that accepts EdgeServicesRouteStageRuleArgs and EdgeServicesRouteStageRuleOutput values.
@@ -5601,10 +5603,12 @@ type EdgeServicesRouteStageRuleInput interface {
 }
 
 type EdgeServicesRouteStageRuleArgs struct {
-	// The ID of the backend stage that requests matching the rule should be forwarded to.
-	BackendStageId pulumi.StringInput `pulumi:"backendStageId"`
-	// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+	// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+	BackendStageId pulumi.StringPtrInput `pulumi:"backendStageId"`
+	// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 	RuleHttpMatch EdgeServicesRouteStageRuleRuleHttpMatchPtrInput `pulumi:"ruleHttpMatch"`
+	// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+	WafStageId pulumi.StringPtrInput `pulumi:"wafStageId"`
 }
 
 func (EdgeServicesRouteStageRuleArgs) ElementType() reflect.Type {
@@ -5658,14 +5662,19 @@ func (o EdgeServicesRouteStageRuleOutput) ToEdgeServicesRouteStageRuleOutputWith
 	return o
 }
 
-// The ID of the backend stage that requests matching the rule should be forwarded to.
-func (o EdgeServicesRouteStageRuleOutput) BackendStageId() pulumi.StringOutput {
-	return o.ApplyT(func(v EdgeServicesRouteStageRule) string { return v.BackendStageId }).(pulumi.StringOutput)
+// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `wafStageId` within the same rule.
+func (o EdgeServicesRouteStageRuleOutput) BackendStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) *string { return v.BackendStageId }).(pulumi.StringPtrOutput)
 }
 
-// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `backendStageId` field. Requests that do not match will be checked by the next rule's condition.
+// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `backendStageId` or `wafStageId`. Requests that do not match will be checked by the next rule's condition.
 func (o EdgeServicesRouteStageRuleOutput) RuleHttpMatch() EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput {
 	return o.ApplyT(func(v EdgeServicesRouteStageRule) *EdgeServicesRouteStageRuleRuleHttpMatch { return v.RuleHttpMatch }).(EdgeServicesRouteStageRuleRuleHttpMatchPtrOutput)
+}
+
+// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `backendStageId` within the same rule.
+func (o EdgeServicesRouteStageRuleOutput) WafStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v EdgeServicesRouteStageRule) *string { return v.WafStageId }).(pulumi.StringPtrOutput)
 }
 
 type EdgeServicesRouteStageRuleArrayOutput struct{ *pulumi.OutputState }
@@ -24832,8 +24841,18 @@ func (o GetInstanceServersServerPrivateIpArrayOutput) Index(i pulumi.IntInput) G
 type GetInstanceServersServerPublicIp struct {
 	// The address of the IP
 	Address string `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic bool `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family string `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway string `pulumi:"gateway"`
 	// The ID of the IP
 	Id string `pulumi:"id"`
+	// CIDR netmask.
+	Netmask string `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode string `pulumi:"provisioningMode"`
 }
 
 // GetInstanceServersServerPublicIpInput is an input type that accepts GetInstanceServersServerPublicIpArgs and GetInstanceServersServerPublicIpOutput values.
@@ -24850,8 +24869,18 @@ type GetInstanceServersServerPublicIpInput interface {
 type GetInstanceServersServerPublicIpArgs struct {
 	// The address of the IP
 	Address pulumi.StringInput `pulumi:"address"`
+	// Whether the IP is dynamic.
+	Dynamic pulumi.BoolInput `pulumi:"dynamic"`
+	// IP address family (inet or inet6).
+	Family pulumi.StringInput `pulumi:"family"`
+	// Gateway's IP address.
+	Gateway pulumi.StringInput `pulumi:"gateway"`
 	// The ID of the IP
 	Id pulumi.StringInput `pulumi:"id"`
+	// CIDR netmask.
+	Netmask pulumi.StringInput `pulumi:"netmask"`
+	// Provisioning mode of the IP address.
+	ProvisioningMode pulumi.StringInput `pulumi:"provisioningMode"`
 }
 
 func (GetInstanceServersServerPublicIpArgs) ElementType() reflect.Type {
@@ -24910,9 +24939,34 @@ func (o GetInstanceServersServerPublicIpOutput) Address() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Address }).(pulumi.StringOutput)
 }
 
+// Whether the IP is dynamic.
+func (o GetInstanceServersServerPublicIpOutput) Dynamic() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) bool { return v.Dynamic }).(pulumi.BoolOutput)
+}
+
+// IP address family (inet or inet6).
+func (o GetInstanceServersServerPublicIpOutput) Family() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Family }).(pulumi.StringOutput)
+}
+
+// Gateway's IP address.
+func (o GetInstanceServersServerPublicIpOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
 // The ID of the IP
 func (o GetInstanceServersServerPublicIpOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// CIDR netmask.
+func (o GetInstanceServersServerPublicIpOutput) Netmask() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.Netmask }).(pulumi.StringOutput)
+}
+
+// Provisioning mode of the IP address.
+func (o GetInstanceServersServerPublicIpOutput) ProvisioningMode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstanceServersServerPublicIp) string { return v.ProvisioningMode }).(pulumi.StringOutput)
 }
 
 type GetInstanceServersServerPublicIpArrayOutput struct{ *pulumi.OutputState }
@@ -25039,6 +25093,157 @@ func (o GetInstanceSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetInstan
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstanceSnapshotImport {
 		return vs[0].([]GetInstanceSnapshotImport)[vs[1].(int)]
 	}).(GetInstanceSnapshotImportOutput)
+}
+
+type GetInterlinkPartnersPartner struct {
+	// Contact email address.
+	ContactEmail string `pulumi:"contactEmail"`
+	// Creation date.
+	CreatedAt string `pulumi:"createdAt"`
+	// ID of the partner.
+	Id string `pulumi:"id"`
+	// URL of the partner's logo.
+	LogoUrl string `pulumi:"logoUrl"`
+	// Name of the partner.
+	Name string `pulumi:"name"`
+	// URL of the partner's portal.
+	PortalUrl string `pulumi:"portalUrl"`
+	// Last update date.
+	UpdatedAt string `pulumi:"updatedAt"`
+}
+
+// GetInterlinkPartnersPartnerInput is an input type that accepts GetInterlinkPartnersPartnerArgs and GetInterlinkPartnersPartnerOutput values.
+// You can construct a concrete instance of `GetInterlinkPartnersPartnerInput` via:
+//
+//	GetInterlinkPartnersPartnerArgs{...}
+type GetInterlinkPartnersPartnerInput interface {
+	pulumi.Input
+
+	ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput
+	ToGetInterlinkPartnersPartnerOutputWithContext(context.Context) GetInterlinkPartnersPartnerOutput
+}
+
+type GetInterlinkPartnersPartnerArgs struct {
+	// Contact email address.
+	ContactEmail pulumi.StringInput `pulumi:"contactEmail"`
+	// Creation date.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// ID of the partner.
+	Id pulumi.StringInput `pulumi:"id"`
+	// URL of the partner's logo.
+	LogoUrl pulumi.StringInput `pulumi:"logoUrl"`
+	// Name of the partner.
+	Name pulumi.StringInput `pulumi:"name"`
+	// URL of the partner's portal.
+	PortalUrl pulumi.StringInput `pulumi:"portalUrl"`
+	// Last update date.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetInterlinkPartnersPartnerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInterlinkPartnersPartner)(nil)).Elem()
+}
+
+func (i GetInterlinkPartnersPartnerArgs) ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput {
+	return i.ToGetInterlinkPartnersPartnerOutputWithContext(context.Background())
+}
+
+func (i GetInterlinkPartnersPartnerArgs) ToGetInterlinkPartnersPartnerOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInterlinkPartnersPartnerOutput)
+}
+
+// GetInterlinkPartnersPartnerArrayInput is an input type that accepts GetInterlinkPartnersPartnerArray and GetInterlinkPartnersPartnerArrayOutput values.
+// You can construct a concrete instance of `GetInterlinkPartnersPartnerArrayInput` via:
+//
+//	GetInterlinkPartnersPartnerArray{ GetInterlinkPartnersPartnerArgs{...} }
+type GetInterlinkPartnersPartnerArrayInput interface {
+	pulumi.Input
+
+	ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput
+	ToGetInterlinkPartnersPartnerArrayOutputWithContext(context.Context) GetInterlinkPartnersPartnerArrayOutput
+}
+
+type GetInterlinkPartnersPartnerArray []GetInterlinkPartnersPartnerInput
+
+func (GetInterlinkPartnersPartnerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInterlinkPartnersPartner)(nil)).Elem()
+}
+
+func (i GetInterlinkPartnersPartnerArray) ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput {
+	return i.ToGetInterlinkPartnersPartnerArrayOutputWithContext(context.Background())
+}
+
+func (i GetInterlinkPartnersPartnerArray) ToGetInterlinkPartnersPartnerArrayOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetInterlinkPartnersPartnerArrayOutput)
+}
+
+type GetInterlinkPartnersPartnerOutput struct{ *pulumi.OutputState }
+
+func (GetInterlinkPartnersPartnerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInterlinkPartnersPartner)(nil)).Elem()
+}
+
+func (o GetInterlinkPartnersPartnerOutput) ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput {
+	return o
+}
+
+func (o GetInterlinkPartnersPartnerOutput) ToGetInterlinkPartnersPartnerOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerOutput {
+	return o
+}
+
+// Contact email address.
+func (o GetInterlinkPartnersPartnerOutput) ContactEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.ContactEmail }).(pulumi.StringOutput)
+}
+
+// Creation date.
+func (o GetInterlinkPartnersPartnerOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// ID of the partner.
+func (o GetInterlinkPartnersPartnerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// URL of the partner's logo.
+func (o GetInterlinkPartnersPartnerOutput) LogoUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.LogoUrl }).(pulumi.StringOutput)
+}
+
+// Name of the partner.
+func (o GetInterlinkPartnersPartnerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// URL of the partner's portal.
+func (o GetInterlinkPartnersPartnerOutput) PortalUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.PortalUrl }).(pulumi.StringOutput)
+}
+
+// Last update date.
+func (o GetInterlinkPartnersPartnerOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetInterlinkPartnersPartnerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetInterlinkPartnersPartnerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetInterlinkPartnersPartner)(nil)).Elem()
+}
+
+func (o GetInterlinkPartnersPartnerArrayOutput) ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput {
+	return o
+}
+
+func (o GetInterlinkPartnersPartnerArrayOutput) ToGetInterlinkPartnersPartnerArrayOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerArrayOutput {
+	return o
+}
+
+func (o GetInterlinkPartnersPartnerArrayOutput) Index(i pulumi.IntInput) GetInterlinkPartnersPartnerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInterlinkPartnersPartner {
+		return vs[0].([]GetInterlinkPartnersPartner)[vs[1].(int)]
+	}).(GetInterlinkPartnersPartnerOutput)
 }
 
 type GetIotDeviceCertificate struct {
@@ -34485,6 +34690,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPublicIpArrayInput)(nil)).Elem(), GetInstanceServersServerPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportInput)(nil)).Elem(), GetInstanceSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportArrayInput)(nil)).Elem(), GetInstanceSnapshotImportArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInterlinkPartnersPartnerInput)(nil)).Elem(), GetInterlinkPartnersPartnerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInterlinkPartnersPartnerArrayInput)(nil)).Elem(), GetInterlinkPartnersPartnerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateInput)(nil)).Elem(), GetIotDeviceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateArrayInput)(nil)).Elem(), GetIotDeviceCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterInput)(nil)).Elem(), GetIotDeviceMessageFilterArgs{})
@@ -34962,6 +35169,8 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceServersServerPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetInstanceSnapshotImportArrayOutput{})
+	pulumi.RegisterOutputType(GetInterlinkPartnersPartnerOutput{})
+	pulumi.RegisterOutputType(GetInterlinkPartnersPartnerArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterOutput{})

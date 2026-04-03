@@ -48,8 +48,9 @@ class InstanceArgs:
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
         :param pulumi.Input[_builtins.bool] is_snapshot_schedule_enabled: Whether automatic snapshot scheduling is enabled.
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
-        :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -158,7 +159,7 @@ class InstanceArgs:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password of the user.
+        Password of the user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -181,6 +182,9 @@ class InstanceArgs:
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
@@ -390,8 +394,9 @@ class _InstanceState:
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
-        :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input['InstancePrivateIpArgs']]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input['InstancePrivateNetworkArgs'] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -522,7 +527,7 @@ class _InstanceState:
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[_builtins.str]]:
         """
-        Password of the user.
+        Password of the user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -545,6 +550,9 @@ class _InstanceState:
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> Optional[pulumi.Input[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @password_wo_version.setter
@@ -773,9 +781,6 @@ class Instance(pulumi.CustomResource):
                  volume_type: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        Creates and manages Scaleway MongoDB® instance.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
-
         ## Example Usage
 
         ```python
@@ -809,8 +814,9 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
-        :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -833,9 +839,6 @@ class Instance(pulumi.CustomResource):
                  args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates and manages Scaleway MongoDB® instance.
-        For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
-
         ## Example Usage
 
         ```python
@@ -986,8 +989,9 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Name of the MongoDB® instance.
         :param pulumi.Input[_builtins.int] node_number: Number of nodes in the instance
         :param pulumi.Input[_builtins.str] node_type: The type of MongoDB® instance to create.
-        :param pulumi.Input[_builtins.str] password: Password of the user.
+        :param pulumi.Input[_builtins.str] password: Password of the user. Only one of `password` or `password_wo` should be specified.
         :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        :param pulumi.Input[_builtins.int] password_wo_version: The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
         :param pulumi.Input[Sequence[pulumi.Input[Union['InstancePrivateIpArgs', 'InstancePrivateIpArgsDict']]]] private_ips: The private IPv4 address associated with the instance.
         :param pulumi.Input[Union['InstancePrivateNetworkArgs', 'InstancePrivateNetworkArgsDict']] private_network: Private Network endpoints of the Database Instance.
         :param pulumi.Input[_builtins.str] project_id: `project_id`) The ID of the project the MongoDB® instance is associated with.
@@ -1079,7 +1083,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Password of the user.
+        Password of the user. Only one of `password` or `password_wo` should be specified.
         """
         return pulumi.get(self, "password")
 
@@ -1094,6 +1098,9 @@ class Instance(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="passwordWoVersion")
     def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        The version of the write-only password. To update the `password_wo`, you must also update the `password_wo_version`.
+        """
         return pulumi.get(self, "password_wo_version")
 
     @_builtins.property

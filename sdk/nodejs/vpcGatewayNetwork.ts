@@ -121,7 +121,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
     /**
      * Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP cleanup is no longer needed. Please use ipamConfig instead.
      */
     declare public readonly cleanupDhcp: pulumi.Output<boolean>;
     /**
@@ -131,13 +131,13 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP configuration is no longer managed separately. Please use ipamConfig instead.
      */
     declare public readonly dhcpId: pulumi.Output<string | undefined>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP is now managed automatically. Please use ipamConfig instead.
      */
     declare public readonly enableDhcp: pulumi.Output<boolean | undefined>;
     /**
@@ -167,7 +167,7 @@ export class VpcGatewayNetwork extends pulumi.CustomResource {
     /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated Please use ipamConfig instead.
      */
     declare public readonly staticAddress: pulumi.Output<string>;
     /**
@@ -252,7 +252,7 @@ export interface VpcGatewayNetworkState {
     /**
      * Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP cleanup is no longer needed. Please use ipamConfig instead.
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
@@ -262,13 +262,13 @@ export interface VpcGatewayNetworkState {
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP configuration is no longer managed separately. Please use ipamConfig instead.
      */
     dhcpId?: pulumi.Input<string>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP is now managed automatically. Please use ipamConfig instead.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**
@@ -298,7 +298,7 @@ export interface VpcGatewayNetworkState {
     /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated Please use ipamConfig instead.
      */
     staticAddress?: pulumi.Input<string>;
     /**
@@ -326,19 +326,19 @@ export interface VpcGatewayNetworkArgs {
     /**
      * Please use `ipamConfig`. Whether to remove DHCP configuration on this GatewayNetwork upon destroy. Requires DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP cleanup is no longer needed. Please use ipamConfig instead.
      */
     cleanupDhcp?: pulumi.Input<boolean>;
     /**
      * Please use `ipamConfig`. The ID of the Public Gateway DHCP configuration. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP configuration is no longer managed separately. Please use ipamConfig instead.
      */
     dhcpId?: pulumi.Input<string>;
     /**
      * Please use `ipamConfig`. Whether a DHCP configuration should be enabled on this GatewayNetwork. Requires a DHCP ID.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated DHCP is now managed automatically. Please use ipamConfig instead.
      */
     enableDhcp?: pulumi.Input<boolean>;
     /**
@@ -364,7 +364,7 @@ export interface VpcGatewayNetworkArgs {
     /**
      * Please use `ipamConfig`. Enable DHCP configuration on this GatewayNetwork. Only one of `dhcpId`, `staticAddress` and `ipamConfig` should be specified.
      *
-     * @deprecated Please use ipam_config. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
+     * @deprecated Please use ipamConfig instead.
      */
     staticAddress?: pulumi.Input<string>;
     /**

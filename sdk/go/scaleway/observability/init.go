@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AlertManager{}
 	case "scaleway:observability/cockpit:Cockpit":
 		r = &Cockpit{}
+	case "scaleway:observability/exporter:Exporter":
+		r = &Exporter{}
 	case "scaleway:observability/grafanaUser:GrafanaUser":
 		r = &GrafanaUser{}
 	case "scaleway:observability/source:Source":
@@ -52,6 +54,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"observability/cockpit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"observability/exporter",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

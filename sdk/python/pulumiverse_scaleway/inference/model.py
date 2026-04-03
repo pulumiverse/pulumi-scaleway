@@ -416,8 +416,6 @@ class Model(pulumi.CustomResource):
                  url: Optional[pulumi.Input[_builtins.str]] = None,
                  __props__=None):
         """
-        The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
-
         ## Example Usage
 
         ```python
@@ -489,8 +487,6 @@ class Model(pulumi.CustomResource):
                  args: ModelArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        The inference.Model resource allows you to upload and manage inference models in the Scaleway Inference ecosystem. Once registered, a model can be used in any inference.Deployment resource.
-
         ## Example Usage
 
         ```python

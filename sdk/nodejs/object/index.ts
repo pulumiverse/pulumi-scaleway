@@ -25,6 +25,11 @@ export type BucketPolicy = import("./bucketPolicy").BucketPolicy;
 export const BucketPolicy: typeof import("./bucketPolicy").BucketPolicy = null as any;
 utilities.lazyLoad(exports, ["BucketPolicy"], () => require("./bucketPolicy"));
 
+export { BucketServerSideEncryptionConfigurationArgs, BucketServerSideEncryptionConfigurationState } from "./bucketServerSideEncryptionConfiguration";
+export type BucketServerSideEncryptionConfiguration = import("./bucketServerSideEncryptionConfiguration").BucketServerSideEncryptionConfiguration;
+export const BucketServerSideEncryptionConfiguration: typeof import("./bucketServerSideEncryptionConfiguration").BucketServerSideEncryptionConfiguration = null as any;
+utilities.lazyLoad(exports, ["BucketServerSideEncryptionConfiguration"], () => require("./bucketServerSideEncryptionConfiguration"));
+
 export { BucketWebsiteConfigurationArgs, BucketWebsiteConfigurationState } from "./bucketWebsiteConfiguration";
 export type BucketWebsiteConfiguration = import("./bucketWebsiteConfiguration").BucketWebsiteConfiguration;
 export const BucketWebsiteConfiguration: typeof import("./bucketWebsiteConfiguration").BucketWebsiteConfiguration = null as any;
@@ -45,6 +50,11 @@ export const getBucketPolicy: typeof import("./getBucketPolicy").getBucketPolicy
 export const getBucketPolicyOutput: typeof import("./getBucketPolicy").getBucketPolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getBucketPolicy","getBucketPolicyOutput"], () => require("./getBucketPolicy"));
 
+export { GetBucketServerSideEncryptionConfigurationArgs, GetBucketServerSideEncryptionConfigurationResult, GetBucketServerSideEncryptionConfigurationOutputArgs } from "./getBucketServerSideEncryptionConfiguration";
+export const getBucketServerSideEncryptionConfiguration: typeof import("./getBucketServerSideEncryptionConfiguration").getBucketServerSideEncryptionConfiguration = null as any;
+export const getBucketServerSideEncryptionConfigurationOutput: typeof import("./getBucketServerSideEncryptionConfiguration").getBucketServerSideEncryptionConfigurationOutput = null as any;
+utilities.lazyLoad(exports, ["getBucketServerSideEncryptionConfiguration","getBucketServerSideEncryptionConfigurationOutput"], () => require("./getBucketServerSideEncryptionConfiguration"));
+
 export { ItemArgs, ItemState } from "./item";
 export type Item = import("./item").Item;
 export const Item: typeof import("./item").Item = null as any;
@@ -63,6 +73,8 @@ const _module = {
                 return new BucketLockConfiguration(name, <any>undefined, { urn })
             case "scaleway:object/bucketPolicy:BucketPolicy":
                 return new BucketPolicy(name, <any>undefined, { urn })
+            case "scaleway:object/bucketServerSideEncryptionConfiguration:BucketServerSideEncryptionConfiguration":
+                return new BucketServerSideEncryptionConfiguration(name, <any>undefined, { urn })
             case "scaleway:object/bucketWebsiteConfiguration:BucketWebsiteConfiguration":
                 return new BucketWebsiteConfiguration(name, <any>undefined, { urn })
             case "scaleway:object/item:Item":
@@ -76,5 +88,6 @@ pulumi.runtime.registerResourceModule("scaleway", "object/bucket", _module)
 pulumi.runtime.registerResourceModule("scaleway", "object/bucketAcl", _module)
 pulumi.runtime.registerResourceModule("scaleway", "object/bucketLockConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "object/bucketPolicy", _module)
+pulumi.runtime.registerResourceModule("scaleway", "object/bucketServerSideEncryptionConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "object/bucketWebsiteConfiguration", _module)
 pulumi.runtime.registerResourceModule("scaleway", "object/item", _module)

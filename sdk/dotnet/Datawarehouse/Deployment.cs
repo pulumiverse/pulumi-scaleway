@@ -122,13 +122,13 @@ namespace Pulumiverse.Scaleway.Datawarehouse
     public partial class Deployment : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Maximum CPU count. Must be greater than or equal to `CpuMin`.
+        /// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `CpuMin`. Can be updated in place.
         /// </summary>
         [Output("cpuMax")]
         public Output<int> CpuMax { get; private set; } = null!;
 
         /// <summary>
-        /// Minimum CPU count. Must be less than or equal to `CpuMax`.
+        /// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `CpuMax`. Can be updated in place.
         /// </summary>
         [Output("cpuMin")]
         public Output<int> CpuMin { get; private set; } = null!;
@@ -146,10 +146,22 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        /// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `Password` or `PasswordWo` should be specified. Note: plain `Password` is only used during deployment creation; it is not rotated on update.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
@@ -161,8 +173,6 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
         /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
-        /// 
-        /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>
         [Output("projectId")]
         public Output<string> ProjectId { get; private set; } = null!;
@@ -186,10 +196,16 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Number of replicas.
+        /// Number of replicas. Can be updated in place via the deployment configuration API.
         /// </summary>
         [Output("replicaCount")]
         public Output<int> ReplicaCount { get; private set; } = null!;
+
+        /// <summary>
+        /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
+        /// </summary>
+        [Output("started")]
+        public Output<bool?> Started { get; private set; } = null!;
 
         /// <summary>
         /// The status of the deployment (e.g., "ready", "provisioning").
@@ -242,6 +258,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -267,13 +284,13 @@ namespace Pulumiverse.Scaleway.Datawarehouse
     public sealed class DeploymentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum CPU count. Must be greater than or equal to `CpuMin`.
+        /// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `CpuMin`. Can be updated in place.
         /// </summary>
         [Input("cpuMax", required: true)]
         public Input<int> CpuMax { get; set; } = null!;
 
         /// <summary>
-        /// Minimum CPU count. Must be less than or equal to `CpuMax`.
+        /// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `CpuMax`. Can be updated in place.
         /// </summary>
         [Input("cpuMin", required: true)]
         public Input<int> CpuMin { get; set; } = null!;
@@ -288,7 +305,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        /// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `Password` or `PasswordWo` should be specified. Note: plain `Password` is only used during deployment creation; it is not rotated on update.
         /// </summary>
         public Input<string>? Password
         {
@@ -300,6 +317,28 @@ namespace Pulumiverse.Scaleway.Datawarehouse
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         /// </summary>
@@ -310,8 +349,6 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
         /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
-        /// 
-        /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -329,10 +366,16 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Number of replicas.
+        /// Number of replicas. Can be updated in place via the deployment configuration API.
         /// </summary>
         [Input("replicaCount", required: true)]
         public Input<int> ReplicaCount { get; set; } = null!;
+
+        /// <summary>
+        /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
+        /// </summary>
+        [Input("started")]
+        public Input<bool>? Started { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
@@ -361,13 +404,13 @@ namespace Pulumiverse.Scaleway.Datawarehouse
     public sealed class DeploymentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Maximum CPU count. Must be greater than or equal to `CpuMin`.
+        /// Maximum CPU count (autoscaling upper bound). Must be greater than or equal to `CpuMin`. Can be updated in place.
         /// </summary>
         [Input("cpuMax")]
         public Input<int>? CpuMax { get; set; }
 
         /// <summary>
-        /// Minimum CPU count. Must be less than or equal to `CpuMax`.
+        /// Minimum CPU count (autoscaling lower bound). Must be less than or equal to `CpuMax`. Can be updated in place.
         /// </summary>
         [Input("cpuMin")]
         public Input<int>? CpuMin { get; set; }
@@ -388,7 +431,7 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         private Input<string>? _password;
 
         /// <summary>
-        /// Password for the first user of the deployment. If not specified, a random password will be generated. Note: password is only used during deployment creation.
+        /// Password for the first user of the deployment. If not specified, a random password will be generated. Only one of `Password` or `PasswordWo` should be specified. Note: plain `Password` is only used during deployment creation; it is not rotated on update.
         /// </summary>
         public Input<string>? Password
         {
@@ -400,6 +443,28 @@ namespace Pulumiverse.Scaleway.Datawarehouse
             }
         }
 
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
+
         /// <summary>
         /// Private network configuration to expose your deployment. Changing this forces recreation of the deployment.
         /// </summary>
@@ -410,8 +475,6 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         /// `ProjectId`) The ID of the project the deployment is associated with.
         /// 
         /// &gt; **Note:** A public endpoint is always created automatically alongside any private network configuration.
-        /// 
-        /// &gt; **Note:** During the private beta phase, modifying `CpuMin`, `CpuMax`, and `ReplicaCount` has no effect until the feature is launched in general availability.
         /// </summary>
         [Input("projectId")]
         public Input<string>? ProjectId { get; set; }
@@ -441,10 +504,16 @@ namespace Pulumiverse.Scaleway.Datawarehouse
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Number of replicas.
+        /// Number of replicas. Can be updated in place via the deployment configuration API.
         /// </summary>
         [Input("replicaCount")]
         public Input<int>? ReplicaCount { get; set; }
+
+        /// <summary>
+        /// Whether the deployment should be running. When set to `False`, the provider calls the Stop deployment API after create or update; when set to `True`, it calls Start deployment if the deployment is stopped. Scaling fields (`ReplicaCount`, `CpuMin`, `CpuMax`) require the deployment to be running; if it is stopped, the provider starts it to apply the change, then stops it again when `Started` is `False`.
+        /// </summary>
+        [Input("started")]
+        public Input<bool>? Started { get; set; }
 
         /// <summary>
         /// The status of the deployment (e.g., "ready", "provisioning").

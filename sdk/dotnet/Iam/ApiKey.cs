@@ -97,6 +97,8 @@ namespace Pulumiverse.Scaleway.Iam
     /// ```sh
     /// $ pulumi import scaleway:iam/apiKey:ApiKey main 11111111111111111111
     /// ```
+    /// 
+    /// ~&gt; **Warning**: While an `iam_api_key` can be imported, its `secret_key` is a secret that is not exposed. An imported API key will have `null` as its secret key.
     /// </summary>
     [ScalewayResourceType("scaleway:iam/apiKey:ApiKey")]
     public partial class ApiKey : global::Pulumi.CustomResource

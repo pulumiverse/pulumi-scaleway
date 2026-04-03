@@ -349,6 +349,318 @@ func (o CockpitPushUrlArrayOutput) Index(i pulumi.IntInput) CockpitPushUrlOutput
 	}).(CockpitPushUrlOutput)
 }
 
+type ExporterDatadogDestination struct {
+	// Datadog API key. Sensitive.
+	ApiKey string `pulumi:"apiKey"`
+	// Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+	Endpoint *string `pulumi:"endpoint"`
+}
+
+// ExporterDatadogDestinationInput is an input type that accepts ExporterDatadogDestinationArgs and ExporterDatadogDestinationOutput values.
+// You can construct a concrete instance of `ExporterDatadogDestinationInput` via:
+//
+//	ExporterDatadogDestinationArgs{...}
+type ExporterDatadogDestinationInput interface {
+	pulumi.Input
+
+	ToExporterDatadogDestinationOutput() ExporterDatadogDestinationOutput
+	ToExporterDatadogDestinationOutputWithContext(context.Context) ExporterDatadogDestinationOutput
+}
+
+type ExporterDatadogDestinationArgs struct {
+	// Datadog API key. Sensitive.
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+	Endpoint pulumi.StringPtrInput `pulumi:"endpoint"`
+}
+
+func (ExporterDatadogDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExporterDatadogDestination)(nil)).Elem()
+}
+
+func (i ExporterDatadogDestinationArgs) ToExporterDatadogDestinationOutput() ExporterDatadogDestinationOutput {
+	return i.ToExporterDatadogDestinationOutputWithContext(context.Background())
+}
+
+func (i ExporterDatadogDestinationArgs) ToExporterDatadogDestinationOutputWithContext(ctx context.Context) ExporterDatadogDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterDatadogDestinationOutput)
+}
+
+func (i ExporterDatadogDestinationArgs) ToExporterDatadogDestinationPtrOutput() ExporterDatadogDestinationPtrOutput {
+	return i.ToExporterDatadogDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i ExporterDatadogDestinationArgs) ToExporterDatadogDestinationPtrOutputWithContext(ctx context.Context) ExporterDatadogDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterDatadogDestinationOutput).ToExporterDatadogDestinationPtrOutputWithContext(ctx)
+}
+
+// ExporterDatadogDestinationPtrInput is an input type that accepts ExporterDatadogDestinationArgs, ExporterDatadogDestinationPtr and ExporterDatadogDestinationPtrOutput values.
+// You can construct a concrete instance of `ExporterDatadogDestinationPtrInput` via:
+//
+//	        ExporterDatadogDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExporterDatadogDestinationPtrInput interface {
+	pulumi.Input
+
+	ToExporterDatadogDestinationPtrOutput() ExporterDatadogDestinationPtrOutput
+	ToExporterDatadogDestinationPtrOutputWithContext(context.Context) ExporterDatadogDestinationPtrOutput
+}
+
+type exporterDatadogDestinationPtrType ExporterDatadogDestinationArgs
+
+func ExporterDatadogDestinationPtr(v *ExporterDatadogDestinationArgs) ExporterDatadogDestinationPtrInput {
+	return (*exporterDatadogDestinationPtrType)(v)
+}
+
+func (*exporterDatadogDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExporterDatadogDestination)(nil)).Elem()
+}
+
+func (i *exporterDatadogDestinationPtrType) ToExporterDatadogDestinationPtrOutput() ExporterDatadogDestinationPtrOutput {
+	return i.ToExporterDatadogDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *exporterDatadogDestinationPtrType) ToExporterDatadogDestinationPtrOutputWithContext(ctx context.Context) ExporterDatadogDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterDatadogDestinationPtrOutput)
+}
+
+type ExporterDatadogDestinationOutput struct{ *pulumi.OutputState }
+
+func (ExporterDatadogDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExporterDatadogDestination)(nil)).Elem()
+}
+
+func (o ExporterDatadogDestinationOutput) ToExporterDatadogDestinationOutput() ExporterDatadogDestinationOutput {
+	return o
+}
+
+func (o ExporterDatadogDestinationOutput) ToExporterDatadogDestinationOutputWithContext(ctx context.Context) ExporterDatadogDestinationOutput {
+	return o
+}
+
+func (o ExporterDatadogDestinationOutput) ToExporterDatadogDestinationPtrOutput() ExporterDatadogDestinationPtrOutput {
+	return o.ToExporterDatadogDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o ExporterDatadogDestinationOutput) ToExporterDatadogDestinationPtrOutputWithContext(ctx context.Context) ExporterDatadogDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExporterDatadogDestination) *ExporterDatadogDestination {
+		return &v
+	}).(ExporterDatadogDestinationPtrOutput)
+}
+
+// Datadog API key. Sensitive.
+func (o ExporterDatadogDestinationOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v ExporterDatadogDestination) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+func (o ExporterDatadogDestinationOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ExporterDatadogDestination) *string { return v.Endpoint }).(pulumi.StringPtrOutput)
+}
+
+type ExporterDatadogDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (ExporterDatadogDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExporterDatadogDestination)(nil)).Elem()
+}
+
+func (o ExporterDatadogDestinationPtrOutput) ToExporterDatadogDestinationPtrOutput() ExporterDatadogDestinationPtrOutput {
+	return o
+}
+
+func (o ExporterDatadogDestinationPtrOutput) ToExporterDatadogDestinationPtrOutputWithContext(ctx context.Context) ExporterDatadogDestinationPtrOutput {
+	return o
+}
+
+func (o ExporterDatadogDestinationPtrOutput) Elem() ExporterDatadogDestinationOutput {
+	return o.ApplyT(func(v *ExporterDatadogDestination) ExporterDatadogDestination {
+		if v != nil {
+			return *v
+		}
+		var ret ExporterDatadogDestination
+		return ret
+	}).(ExporterDatadogDestinationOutput)
+}
+
+// Datadog API key. Sensitive.
+func (o ExporterDatadogDestinationPtrOutput) ApiKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExporterDatadogDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ApiKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+func (o ExporterDatadogDestinationPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExporterDatadogDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+type ExporterOtlpDestination struct {
+	// OTLP endpoint URL.
+	Endpoint string `pulumi:"endpoint"`
+	// Headers to include in requests.
+	Headers map[string]string `pulumi:"headers"`
+}
+
+// ExporterOtlpDestinationInput is an input type that accepts ExporterOtlpDestinationArgs and ExporterOtlpDestinationOutput values.
+// You can construct a concrete instance of `ExporterOtlpDestinationInput` via:
+//
+//	ExporterOtlpDestinationArgs{...}
+type ExporterOtlpDestinationInput interface {
+	pulumi.Input
+
+	ToExporterOtlpDestinationOutput() ExporterOtlpDestinationOutput
+	ToExporterOtlpDestinationOutputWithContext(context.Context) ExporterOtlpDestinationOutput
+}
+
+type ExporterOtlpDestinationArgs struct {
+	// OTLP endpoint URL.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Headers to include in requests.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+}
+
+func (ExporterOtlpDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExporterOtlpDestination)(nil)).Elem()
+}
+
+func (i ExporterOtlpDestinationArgs) ToExporterOtlpDestinationOutput() ExporterOtlpDestinationOutput {
+	return i.ToExporterOtlpDestinationOutputWithContext(context.Background())
+}
+
+func (i ExporterOtlpDestinationArgs) ToExporterOtlpDestinationOutputWithContext(ctx context.Context) ExporterOtlpDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterOtlpDestinationOutput)
+}
+
+func (i ExporterOtlpDestinationArgs) ToExporterOtlpDestinationPtrOutput() ExporterOtlpDestinationPtrOutput {
+	return i.ToExporterOtlpDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i ExporterOtlpDestinationArgs) ToExporterOtlpDestinationPtrOutputWithContext(ctx context.Context) ExporterOtlpDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterOtlpDestinationOutput).ToExporterOtlpDestinationPtrOutputWithContext(ctx)
+}
+
+// ExporterOtlpDestinationPtrInput is an input type that accepts ExporterOtlpDestinationArgs, ExporterOtlpDestinationPtr and ExporterOtlpDestinationPtrOutput values.
+// You can construct a concrete instance of `ExporterOtlpDestinationPtrInput` via:
+//
+//	        ExporterOtlpDestinationArgs{...}
+//
+//	or:
+//
+//	        nil
+type ExporterOtlpDestinationPtrInput interface {
+	pulumi.Input
+
+	ToExporterOtlpDestinationPtrOutput() ExporterOtlpDestinationPtrOutput
+	ToExporterOtlpDestinationPtrOutputWithContext(context.Context) ExporterOtlpDestinationPtrOutput
+}
+
+type exporterOtlpDestinationPtrType ExporterOtlpDestinationArgs
+
+func ExporterOtlpDestinationPtr(v *ExporterOtlpDestinationArgs) ExporterOtlpDestinationPtrInput {
+	return (*exporterOtlpDestinationPtrType)(v)
+}
+
+func (*exporterOtlpDestinationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExporterOtlpDestination)(nil)).Elem()
+}
+
+func (i *exporterOtlpDestinationPtrType) ToExporterOtlpDestinationPtrOutput() ExporterOtlpDestinationPtrOutput {
+	return i.ToExporterOtlpDestinationPtrOutputWithContext(context.Background())
+}
+
+func (i *exporterOtlpDestinationPtrType) ToExporterOtlpDestinationPtrOutputWithContext(ctx context.Context) ExporterOtlpDestinationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ExporterOtlpDestinationPtrOutput)
+}
+
+type ExporterOtlpDestinationOutput struct{ *pulumi.OutputState }
+
+func (ExporterOtlpDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ExporterOtlpDestination)(nil)).Elem()
+}
+
+func (o ExporterOtlpDestinationOutput) ToExporterOtlpDestinationOutput() ExporterOtlpDestinationOutput {
+	return o
+}
+
+func (o ExporterOtlpDestinationOutput) ToExporterOtlpDestinationOutputWithContext(ctx context.Context) ExporterOtlpDestinationOutput {
+	return o
+}
+
+func (o ExporterOtlpDestinationOutput) ToExporterOtlpDestinationPtrOutput() ExporterOtlpDestinationPtrOutput {
+	return o.ToExporterOtlpDestinationPtrOutputWithContext(context.Background())
+}
+
+func (o ExporterOtlpDestinationOutput) ToExporterOtlpDestinationPtrOutputWithContext(ctx context.Context) ExporterOtlpDestinationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ExporterOtlpDestination) *ExporterOtlpDestination {
+		return &v
+	}).(ExporterOtlpDestinationPtrOutput)
+}
+
+// OTLP endpoint URL.
+func (o ExporterOtlpDestinationOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v ExporterOtlpDestination) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Headers to include in requests.
+func (o ExporterOtlpDestinationOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ExporterOtlpDestination) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+type ExporterOtlpDestinationPtrOutput struct{ *pulumi.OutputState }
+
+func (ExporterOtlpDestinationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ExporterOtlpDestination)(nil)).Elem()
+}
+
+func (o ExporterOtlpDestinationPtrOutput) ToExporterOtlpDestinationPtrOutput() ExporterOtlpDestinationPtrOutput {
+	return o
+}
+
+func (o ExporterOtlpDestinationPtrOutput) ToExporterOtlpDestinationPtrOutputWithContext(ctx context.Context) ExporterOtlpDestinationPtrOutput {
+	return o
+}
+
+func (o ExporterOtlpDestinationPtrOutput) Elem() ExporterOtlpDestinationOutput {
+	return o.ApplyT(func(v *ExporterOtlpDestination) ExporterOtlpDestination {
+		if v != nil {
+			return *v
+		}
+		var ret ExporterOtlpDestination
+		return ret
+	}).(ExporterOtlpDestinationOutput)
+}
+
+// OTLP endpoint URL.
+func (o ExporterOtlpDestinationPtrOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExporterOtlpDestination) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Endpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Headers to include in requests.
+func (o ExporterOtlpDestinationPtrOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ExporterOtlpDestination) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Headers
+	}).(pulumi.StringMapOutput)
+}
+
 type TokenScopes struct {
 	// Permission to query logs.
 	QueryLogs *bool `pulumi:"queryLogs"`
@@ -636,6 +948,218 @@ func (o TokenScopesPtrOutput) WriteTraces() pulumi.BoolPtrOutput {
 		}
 		return v.WriteTraces
 	}).(pulumi.BoolPtrOutput)
+}
+
+type GetExporterDatadogDestination struct {
+	// Datadog API key
+	ApiKey string `pulumi:"apiKey"`
+	// Datadog endpoint URL
+	Endpoint string `pulumi:"endpoint"`
+}
+
+// GetExporterDatadogDestinationInput is an input type that accepts GetExporterDatadogDestinationArgs and GetExporterDatadogDestinationOutput values.
+// You can construct a concrete instance of `GetExporterDatadogDestinationInput` via:
+//
+//	GetExporterDatadogDestinationArgs{...}
+type GetExporterDatadogDestinationInput interface {
+	pulumi.Input
+
+	ToGetExporterDatadogDestinationOutput() GetExporterDatadogDestinationOutput
+	ToGetExporterDatadogDestinationOutputWithContext(context.Context) GetExporterDatadogDestinationOutput
+}
+
+type GetExporterDatadogDestinationArgs struct {
+	// Datadog API key
+	ApiKey pulumi.StringInput `pulumi:"apiKey"`
+	// Datadog endpoint URL
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+}
+
+func (GetExporterDatadogDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExporterDatadogDestination)(nil)).Elem()
+}
+
+func (i GetExporterDatadogDestinationArgs) ToGetExporterDatadogDestinationOutput() GetExporterDatadogDestinationOutput {
+	return i.ToGetExporterDatadogDestinationOutputWithContext(context.Background())
+}
+
+func (i GetExporterDatadogDestinationArgs) ToGetExporterDatadogDestinationOutputWithContext(ctx context.Context) GetExporterDatadogDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExporterDatadogDestinationOutput)
+}
+
+// GetExporterDatadogDestinationArrayInput is an input type that accepts GetExporterDatadogDestinationArray and GetExporterDatadogDestinationArrayOutput values.
+// You can construct a concrete instance of `GetExporterDatadogDestinationArrayInput` via:
+//
+//	GetExporterDatadogDestinationArray{ GetExporterDatadogDestinationArgs{...} }
+type GetExporterDatadogDestinationArrayInput interface {
+	pulumi.Input
+
+	ToGetExporterDatadogDestinationArrayOutput() GetExporterDatadogDestinationArrayOutput
+	ToGetExporterDatadogDestinationArrayOutputWithContext(context.Context) GetExporterDatadogDestinationArrayOutput
+}
+
+type GetExporterDatadogDestinationArray []GetExporterDatadogDestinationInput
+
+func (GetExporterDatadogDestinationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExporterDatadogDestination)(nil)).Elem()
+}
+
+func (i GetExporterDatadogDestinationArray) ToGetExporterDatadogDestinationArrayOutput() GetExporterDatadogDestinationArrayOutput {
+	return i.ToGetExporterDatadogDestinationArrayOutputWithContext(context.Background())
+}
+
+func (i GetExporterDatadogDestinationArray) ToGetExporterDatadogDestinationArrayOutputWithContext(ctx context.Context) GetExporterDatadogDestinationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExporterDatadogDestinationArrayOutput)
+}
+
+type GetExporterDatadogDestinationOutput struct{ *pulumi.OutputState }
+
+func (GetExporterDatadogDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExporterDatadogDestination)(nil)).Elem()
+}
+
+func (o GetExporterDatadogDestinationOutput) ToGetExporterDatadogDestinationOutput() GetExporterDatadogDestinationOutput {
+	return o
+}
+
+func (o GetExporterDatadogDestinationOutput) ToGetExporterDatadogDestinationOutputWithContext(ctx context.Context) GetExporterDatadogDestinationOutput {
+	return o
+}
+
+// Datadog API key
+func (o GetExporterDatadogDestinationOutput) ApiKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetExporterDatadogDestination) string { return v.ApiKey }).(pulumi.StringOutput)
+}
+
+// Datadog endpoint URL
+func (o GetExporterDatadogDestinationOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetExporterDatadogDestination) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+type GetExporterDatadogDestinationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetExporterDatadogDestinationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExporterDatadogDestination)(nil)).Elem()
+}
+
+func (o GetExporterDatadogDestinationArrayOutput) ToGetExporterDatadogDestinationArrayOutput() GetExporterDatadogDestinationArrayOutput {
+	return o
+}
+
+func (o GetExporterDatadogDestinationArrayOutput) ToGetExporterDatadogDestinationArrayOutputWithContext(ctx context.Context) GetExporterDatadogDestinationArrayOutput {
+	return o
+}
+
+func (o GetExporterDatadogDestinationArrayOutput) Index(i pulumi.IntInput) GetExporterDatadogDestinationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetExporterDatadogDestination {
+		return vs[0].([]GetExporterDatadogDestination)[vs[1].(int)]
+	}).(GetExporterDatadogDestinationOutput)
+}
+
+type GetExporterOtlpDestination struct {
+	// OTLP endpoint URL
+	Endpoint string `pulumi:"endpoint"`
+	// Headers to include in requests
+	Headers map[string]string `pulumi:"headers"`
+}
+
+// GetExporterOtlpDestinationInput is an input type that accepts GetExporterOtlpDestinationArgs and GetExporterOtlpDestinationOutput values.
+// You can construct a concrete instance of `GetExporterOtlpDestinationInput` via:
+//
+//	GetExporterOtlpDestinationArgs{...}
+type GetExporterOtlpDestinationInput interface {
+	pulumi.Input
+
+	ToGetExporterOtlpDestinationOutput() GetExporterOtlpDestinationOutput
+	ToGetExporterOtlpDestinationOutputWithContext(context.Context) GetExporterOtlpDestinationOutput
+}
+
+type GetExporterOtlpDestinationArgs struct {
+	// OTLP endpoint URL
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Headers to include in requests
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+}
+
+func (GetExporterOtlpDestinationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExporterOtlpDestination)(nil)).Elem()
+}
+
+func (i GetExporterOtlpDestinationArgs) ToGetExporterOtlpDestinationOutput() GetExporterOtlpDestinationOutput {
+	return i.ToGetExporterOtlpDestinationOutputWithContext(context.Background())
+}
+
+func (i GetExporterOtlpDestinationArgs) ToGetExporterOtlpDestinationOutputWithContext(ctx context.Context) GetExporterOtlpDestinationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExporterOtlpDestinationOutput)
+}
+
+// GetExporterOtlpDestinationArrayInput is an input type that accepts GetExporterOtlpDestinationArray and GetExporterOtlpDestinationArrayOutput values.
+// You can construct a concrete instance of `GetExporterOtlpDestinationArrayInput` via:
+//
+//	GetExporterOtlpDestinationArray{ GetExporterOtlpDestinationArgs{...} }
+type GetExporterOtlpDestinationArrayInput interface {
+	pulumi.Input
+
+	ToGetExporterOtlpDestinationArrayOutput() GetExporterOtlpDestinationArrayOutput
+	ToGetExporterOtlpDestinationArrayOutputWithContext(context.Context) GetExporterOtlpDestinationArrayOutput
+}
+
+type GetExporterOtlpDestinationArray []GetExporterOtlpDestinationInput
+
+func (GetExporterOtlpDestinationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExporterOtlpDestination)(nil)).Elem()
+}
+
+func (i GetExporterOtlpDestinationArray) ToGetExporterOtlpDestinationArrayOutput() GetExporterOtlpDestinationArrayOutput {
+	return i.ToGetExporterOtlpDestinationArrayOutputWithContext(context.Background())
+}
+
+func (i GetExporterOtlpDestinationArray) ToGetExporterOtlpDestinationArrayOutputWithContext(ctx context.Context) GetExporterOtlpDestinationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetExporterOtlpDestinationArrayOutput)
+}
+
+type GetExporterOtlpDestinationOutput struct{ *pulumi.OutputState }
+
+func (GetExporterOtlpDestinationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetExporterOtlpDestination)(nil)).Elem()
+}
+
+func (o GetExporterOtlpDestinationOutput) ToGetExporterOtlpDestinationOutput() GetExporterOtlpDestinationOutput {
+	return o
+}
+
+func (o GetExporterOtlpDestinationOutput) ToGetExporterOtlpDestinationOutputWithContext(ctx context.Context) GetExporterOtlpDestinationOutput {
+	return o
+}
+
+// OTLP endpoint URL
+func (o GetExporterOtlpDestinationOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetExporterOtlpDestination) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Headers to include in requests
+func (o GetExporterOtlpDestinationOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetExporterOtlpDestination) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+type GetExporterOtlpDestinationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetExporterOtlpDestinationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetExporterOtlpDestination)(nil)).Elem()
+}
+
+func (o GetExporterOtlpDestinationArrayOutput) ToGetExporterOtlpDestinationArrayOutput() GetExporterOtlpDestinationArrayOutput {
+	return o
+}
+
+func (o GetExporterOtlpDestinationArrayOutput) ToGetExporterOtlpDestinationArrayOutputWithContext(ctx context.Context) GetExporterOtlpDestinationArrayOutput {
+	return o
+}
+
+func (o GetExporterOtlpDestinationArrayOutput) Index(i pulumi.IntInput) GetExporterOtlpDestinationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetExporterOtlpDestination {
+		return vs[0].([]GetExporterOtlpDestination)[vs[1].(int)]
+	}).(GetExporterOtlpDestinationOutput)
 }
 
 type GetInstanceEndpoint struct {
@@ -1073,6 +1597,121 @@ func (o GetPreconfiguredAlertAlertArrayOutput) Index(i pulumi.IntInput) GetPreco
 	}).(GetPreconfiguredAlertAlertOutput)
 }
 
+type GetProductsProduct struct {
+	// Human-readable display name of the product.
+	DisplayName string `pulumi:"displayName"`
+	// Product family name.
+	FamilyName string `pulumi:"familyName"`
+	// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+	Name string `pulumi:"name"`
+}
+
+// GetProductsProductInput is an input type that accepts GetProductsProductArgs and GetProductsProductOutput values.
+// You can construct a concrete instance of `GetProductsProductInput` via:
+//
+//	GetProductsProductArgs{...}
+type GetProductsProductInput interface {
+	pulumi.Input
+
+	ToGetProductsProductOutput() GetProductsProductOutput
+	ToGetProductsProductOutputWithContext(context.Context) GetProductsProductOutput
+}
+
+type GetProductsProductArgs struct {
+	// Human-readable display name of the product.
+	DisplayName pulumi.StringInput `pulumi:"displayName"`
+	// Product family name.
+	FamilyName pulumi.StringInput `pulumi:"familyName"`
+	// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetProductsProductArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProductsProduct)(nil)).Elem()
+}
+
+func (i GetProductsProductArgs) ToGetProductsProductOutput() GetProductsProductOutput {
+	return i.ToGetProductsProductOutputWithContext(context.Background())
+}
+
+func (i GetProductsProductArgs) ToGetProductsProductOutputWithContext(ctx context.Context) GetProductsProductOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProductsProductOutput)
+}
+
+// GetProductsProductArrayInput is an input type that accepts GetProductsProductArray and GetProductsProductArrayOutput values.
+// You can construct a concrete instance of `GetProductsProductArrayInput` via:
+//
+//	GetProductsProductArray{ GetProductsProductArgs{...} }
+type GetProductsProductArrayInput interface {
+	pulumi.Input
+
+	ToGetProductsProductArrayOutput() GetProductsProductArrayOutput
+	ToGetProductsProductArrayOutputWithContext(context.Context) GetProductsProductArrayOutput
+}
+
+type GetProductsProductArray []GetProductsProductInput
+
+func (GetProductsProductArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProductsProduct)(nil)).Elem()
+}
+
+func (i GetProductsProductArray) ToGetProductsProductArrayOutput() GetProductsProductArrayOutput {
+	return i.ToGetProductsProductArrayOutputWithContext(context.Background())
+}
+
+func (i GetProductsProductArray) ToGetProductsProductArrayOutputWithContext(ctx context.Context) GetProductsProductArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProductsProductArrayOutput)
+}
+
+type GetProductsProductOutput struct{ *pulumi.OutputState }
+
+func (GetProductsProductOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProductsProduct)(nil)).Elem()
+}
+
+func (o GetProductsProductOutput) ToGetProductsProductOutput() GetProductsProductOutput {
+	return o
+}
+
+func (o GetProductsProductOutput) ToGetProductsProductOutputWithContext(ctx context.Context) GetProductsProductOutput {
+	return o
+}
+
+// Human-readable display name of the product.
+func (o GetProductsProductOutput) DisplayName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProductsProduct) string { return v.DisplayName }).(pulumi.StringOutput)
+}
+
+// Product family name.
+func (o GetProductsProductOutput) FamilyName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProductsProduct) string { return v.FamilyName }).(pulumi.StringOutput)
+}
+
+// Product name to use in exportedProducts (e.g. cockpit, LB, object-storage).
+func (o GetProductsProductOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProductsProduct) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetProductsProductArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProductsProductArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProductsProduct)(nil)).Elem()
+}
+
+func (o GetProductsProductArrayOutput) ToGetProductsProductArrayOutput() GetProductsProductArrayOutput {
+	return o
+}
+
+func (o GetProductsProductArrayOutput) ToGetProductsProductArrayOutputWithContext(ctx context.Context) GetProductsProductArrayOutput {
+	return o
+}
+
+func (o GetProductsProductArrayOutput) Index(i pulumi.IntInput) GetProductsProductOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProductsProduct {
+		return vs[0].([]GetProductsProduct)[vs[1].(int)]
+	}).(GetProductsProductOutput)
+}
+
 type GetSourcesSource struct {
 	// The date and time of the creation of the cockpit datasource.
 	CreatedAt string `pulumi:"createdAt"`
@@ -1276,14 +1915,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitEndpointArrayInput)(nil)).Elem(), CockpitEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlInput)(nil)).Elem(), CockpitPushUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CockpitPushUrlArrayInput)(nil)).Elem(), CockpitPushUrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExporterDatadogDestinationInput)(nil)).Elem(), ExporterDatadogDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExporterDatadogDestinationPtrInput)(nil)).Elem(), ExporterDatadogDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExporterOtlpDestinationInput)(nil)).Elem(), ExporterOtlpDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExporterOtlpDestinationPtrInput)(nil)).Elem(), ExporterOtlpDestinationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TokenScopesInput)(nil)).Elem(), TokenScopesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*TokenScopesPtrInput)(nil)).Elem(), TokenScopesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterDatadogDestinationInput)(nil)).Elem(), GetExporterDatadogDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterDatadogDestinationArrayInput)(nil)).Elem(), GetExporterDatadogDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterOtlpDestinationInput)(nil)).Elem(), GetExporterOtlpDestinationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetExporterOtlpDestinationArrayInput)(nil)).Elem(), GetExporterOtlpDestinationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointInput)(nil)).Elem(), GetInstanceEndpointArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceEndpointArrayInput)(nil)).Elem(), GetInstanceEndpointArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlInput)(nil)).Elem(), GetInstancePushUrlArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancePushUrlArrayInput)(nil)).Elem(), GetInstancePushUrlArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPreconfiguredAlertAlertInput)(nil)).Elem(), GetPreconfiguredAlertAlertArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetPreconfiguredAlertAlertArrayInput)(nil)).Elem(), GetPreconfiguredAlertAlertArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProductsProductInput)(nil)).Elem(), GetProductsProductArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProductsProductArrayInput)(nil)).Elem(), GetProductsProductArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceInput)(nil)).Elem(), GetSourcesSourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSourcesSourceArrayInput)(nil)).Elem(), GetSourcesSourceArray{})
 	pulumi.RegisterOutputType(AlertManagerContactPointOutput{})
@@ -1292,14 +1941,24 @@ func init() {
 	pulumi.RegisterOutputType(CockpitEndpointArrayOutput{})
 	pulumi.RegisterOutputType(CockpitPushUrlOutput{})
 	pulumi.RegisterOutputType(CockpitPushUrlArrayOutput{})
+	pulumi.RegisterOutputType(ExporterDatadogDestinationOutput{})
+	pulumi.RegisterOutputType(ExporterDatadogDestinationPtrOutput{})
+	pulumi.RegisterOutputType(ExporterOtlpDestinationOutput{})
+	pulumi.RegisterOutputType(ExporterOtlpDestinationPtrOutput{})
 	pulumi.RegisterOutputType(TokenScopesOutput{})
 	pulumi.RegisterOutputType(TokenScopesPtrOutput{})
+	pulumi.RegisterOutputType(GetExporterDatadogDestinationOutput{})
+	pulumi.RegisterOutputType(GetExporterDatadogDestinationArrayOutput{})
+	pulumi.RegisterOutputType(GetExporterOtlpDestinationOutput{})
+	pulumi.RegisterOutputType(GetExporterOtlpDestinationArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceEndpointOutput{})
 	pulumi.RegisterOutputType(GetInstanceEndpointArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlOutput{})
 	pulumi.RegisterOutputType(GetInstancePushUrlArrayOutput{})
 	pulumi.RegisterOutputType(GetPreconfiguredAlertAlertOutput{})
 	pulumi.RegisterOutputType(GetPreconfiguredAlertAlertArrayOutput{})
+	pulumi.RegisterOutputType(GetProductsProductOutput{})
+	pulumi.RegisterOutputType(GetProductsProductArrayOutput{})
 	pulumi.RegisterOutputType(GetSourcesSourceOutput{})
 	pulumi.RegisterOutputType(GetSourcesSourceArrayOutput{})
 }

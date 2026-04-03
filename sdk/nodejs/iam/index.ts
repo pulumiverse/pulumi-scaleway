@@ -35,6 +35,16 @@ export const getPolicy: typeof import("./getPolicy").getPolicy = null as any;
 export const getPolicyOutput: typeof import("./getPolicy").getPolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getPolicy","getPolicyOutput"], () => require("./getPolicy"));
 
+export { GetSamlArgs, GetSamlResult, GetSamlOutputArgs } from "./getSaml";
+export const getSaml: typeof import("./getSaml").getSaml = null as any;
+export const getSamlOutput: typeof import("./getSaml").getSamlOutput = null as any;
+utilities.lazyLoad(exports, ["getSaml","getSamlOutput"], () => require("./getSaml"));
+
+export { GetSamlCertificateArgs, GetSamlCertificateResult, GetSamlCertificateOutputArgs } from "./getSamlCertificate";
+export const getSamlCertificate: typeof import("./getSamlCertificate").getSamlCertificate = null as any;
+export const getSamlCertificateOutput: typeof import("./getSamlCertificate").getSamlCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getSamlCertificate","getSamlCertificateOutput"], () => require("./getSamlCertificate"));
+
 export { GetSshKeyArgs, GetSshKeyResult, GetSshKeyOutputArgs } from "./getSshKey";
 export const getSshKey: typeof import("./getSshKey").getSshKey = null as any;
 export const getSshKeyOutput: typeof import("./getSshKey").getSshKeyOutput = null as any;
@@ -59,6 +69,16 @@ export { PolicyArgs, PolicyState } from "./policy";
 export type Policy = import("./policy").Policy;
 export const Policy: typeof import("./policy").Policy = null as any;
 utilities.lazyLoad(exports, ["Policy"], () => require("./policy"));
+
+export { SamlArgs, SamlState } from "./saml";
+export type Saml = import("./saml").Saml;
+export const Saml: typeof import("./saml").Saml = null as any;
+utilities.lazyLoad(exports, ["Saml"], () => require("./saml"));
+
+export { SamlCertificateArgs, SamlCertificateState } from "./samlCertificate";
+export type SamlCertificate = import("./samlCertificate").SamlCertificate;
+export const SamlCertificate: typeof import("./samlCertificate").SamlCertificate = null as any;
+utilities.lazyLoad(exports, ["SamlCertificate"], () => require("./samlCertificate"));
 
 export { SshKeyArgs, SshKeyState } from "./sshKey";
 export type SshKey = import("./sshKey").SshKey;
@@ -85,6 +105,10 @@ const _module = {
                 return new GroupMembership(name, <any>undefined, { urn })
             case "scaleway:iam/policy:Policy":
                 return new Policy(name, <any>undefined, { urn })
+            case "scaleway:iam/saml:Saml":
+                return new Saml(name, <any>undefined, { urn })
+            case "scaleway:iam/samlCertificate:SamlCertificate":
+                return new SamlCertificate(name, <any>undefined, { urn })
             case "scaleway:iam/sshKey:SshKey":
                 return new SshKey(name, <any>undefined, { urn })
             case "scaleway:iam/user:User":
@@ -99,5 +123,7 @@ pulumi.runtime.registerResourceModule("scaleway", "iam/application", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/group", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/groupMembership", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/policy", _module)
+pulumi.runtime.registerResourceModule("scaleway", "iam/saml", _module)
+pulumi.runtime.registerResourceModule("scaleway", "iam/samlCertificate", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/sshKey", _module)
 pulumi.runtime.registerResourceModule("scaleway", "iam/user", _module)

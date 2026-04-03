@@ -14,16 +14,22 @@ namespace Pulumiverse.Scaleway.Inputs
     public sealed class EdgeServicesRouteStageRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the backend stage that requests matching the rule should be forwarded to.
+        /// The ID of the backend stage that requests matching the rule should be forwarded to. Conflicts with `WafStageId` within the same rule.
         /// </summary>
-        [Input("backendStageId", required: true)]
-        public Input<string> BackendStageId { get; set; } = null!;
+        [Input("backendStageId")]
+        public Input<string>? BackendStageId { get; set; }
 
         /// <summary>
-        /// The rule condition to be matched. Requests matching the condition defined here will be directly forwarded to the backend specified by the `BackendStageId` field. Requests that do not match will be checked by the next rule's condition.
+        /// The rule condition to be matched. Requests matching the condition defined here will be forwarded to the stage specified by `BackendStageId` or `WafStageId`. Requests that do not match will be checked by the next rule's condition.
         /// </summary>
         [Input("ruleHttpMatch")]
         public Input<Inputs.EdgeServicesRouteStageRuleRuleHttpMatchArgs>? RuleHttpMatch { get; set; }
+
+        /// <summary>
+        /// The ID of the WAF stage that requests matching the rule should be forwarded to. Conflicts with `BackendStageId` within the same rule.
+        /// </summary>
+        [Input("wafStageId")]
+        public Input<string>? WafStageId { get; set; }
 
         public EdgeServicesRouteStageRuleArgs()
         {

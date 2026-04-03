@@ -88,6 +88,8 @@ type PublicGatewayDhcp struct {
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntOutput `pulumi:"renewTimer"`
 	// The subnet to associate with the Public Gateway DHCP configuration.
+	//
+	// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 	Subnet pulumi.StringOutput `pulumi:"subnet"`
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -167,6 +169,8 @@ type publicGatewayDhcpState struct {
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer *int `pulumi:"renewTimer"`
 	// The subnet to associate with the Public Gateway DHCP configuration.
+	//
+	// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 	Subnet *string `pulumi:"subnet"`
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -208,6 +212,8 @@ type PublicGatewayDhcpState struct {
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntPtrInput
 	// The subnet to associate with the Public Gateway DHCP configuration.
+	//
+	// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 	Subnet pulumi.StringPtrInput
 	// The date and time of the last update of the Public Gateway DHCP configuration.
 	UpdatedAt pulumi.StringPtrInput
@@ -249,6 +255,8 @@ type publicGatewayDhcpArgs struct {
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer *int `pulumi:"renewTimer"`
 	// The subnet to associate with the Public Gateway DHCP configuration.
+	//
+	// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 	Subnet string `pulumi:"subnet"`
 	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime *int `pulumi:"validLifetime"`
@@ -285,6 +293,8 @@ type PublicGatewayDhcpArgs struct {
 	// After how long, in seconds, a renewal will be attempted. Must be 30s lower than `rebindTimer`. Defaults to 50m (3000s).
 	RenewTimer pulumi.IntPtrInput
 	// The subnet to associate with the Public Gateway DHCP configuration.
+	//
+	// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 	Subnet pulumi.StringInput
 	// How long, in seconds, DHCP entries will be valid. Defaults to 1h (3600s).
 	ValidLifetime pulumi.IntPtrInput
@@ -452,6 +462,8 @@ func (o PublicGatewayDhcpOutput) RenewTimer() pulumi.IntOutput {
 }
 
 // The subnet to associate with the Public Gateway DHCP configuration.
+//
+// Deprecated: The 'dhcp' resource is deprecated and no longer functional. DHCP functionality was moved from Public Gateways to Private Networks, DHCP resources are now no longer needed. Please remove this resource from your configuration. For more information, please refer to the dedicated guide: https://github.com/scaleway/terraform-provider-scaleway/blob/master/docs/guides/migration_guide_vpcgw_v2.md
 func (o PublicGatewayDhcpOutput) Subnet() pulumi.StringOutput {
 	return o.ApplyT(func(v *PublicGatewayDhcp) pulumi.StringOutput { return v.Subnet }).(pulumi.StringOutput)
 }

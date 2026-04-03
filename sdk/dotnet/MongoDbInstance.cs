@@ -11,9 +11,6 @@ using Pulumi;
 namespace Pulumiverse.Scaleway
 {
     /// <summary>
-    /// Creates and manages Scaleway MongoDB® instance.
-    /// For more information refer to the [product documentation](https://www.scaleway.com/en/docs/managed-mongodb-databases/).
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
@@ -84,7 +81,7 @@ namespace Pulumiverse.Scaleway
         public Output<string> NodeType { get; private set; } = null!;
 
         /// <summary>
-        /// Password of the user.
+        /// Password of the user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
@@ -95,6 +92,9 @@ namespace Pulumiverse.Scaleway
         [Output("passwordWo")]
         public Output<string?> PasswordWo { get; private set; } = null!;
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Output("passwordWoVersion")]
         public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
@@ -274,7 +274,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password of the user.
+        /// Password of the user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -302,6 +302,9 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Input("passwordWoVersion")]
         public Input<int>? PasswordWoVersion { get; set; }
 
@@ -449,7 +452,7 @@ namespace Pulumiverse.Scaleway
         private Input<string>? _password;
 
         /// <summary>
-        /// Password of the user.
+        /// Password of the user. Only one of `Password` or `PasswordWo` should be specified.
         /// </summary>
         public Input<string>? Password
         {
@@ -477,6 +480,9 @@ namespace Pulumiverse.Scaleway
             }
         }
 
+        /// <summary>
+        /// The version of the write-only password. To update the `PasswordWo`, you must also update the `PasswordWoVersion`.
+        /// </summary>
         [Input("passwordWoVersion")]
         public Input<int>? PasswordWoVersion { get; set; }
 

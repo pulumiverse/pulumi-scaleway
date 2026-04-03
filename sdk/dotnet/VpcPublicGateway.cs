@@ -415,6 +415,7 @@ namespace Pulumiverse.Scaleway
         /// <summary>
         /// Override the gateway's default recursive DNS servers, if DNS features are enabled.
         /// </summary>
+        [Obsolete(@"This field is no longer supported in the v2 API")]
         public InputList<string> UpstreamDnsServers
         {
             get => _upstreamDnsServers ?? (_upstreamDnsServers = new InputList<string>());

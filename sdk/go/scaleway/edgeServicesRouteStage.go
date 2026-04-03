@@ -16,7 +16,9 @@ import (
 //
 // ## Example Usage
 //
-// ### Basic
+// ### Default to WAF with backend rules
+//
+// Routes all unmatched traffic through a WAF stage, while requests matching specific patterns are sent directly to a backend stage.
 //
 // ```go
 // package main
@@ -58,6 +60,86 @@ import (
 //
 // ```
 //
+// ### Default to backend with selective WAF protection
+//
+// Serves static content directly from a backend by default, while routing API traffic through a WAF stage for protection against common web attacks.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/edgeservices"
+//	"github.com/pulumiverse/pulumi-scaleway/sdk/go/scaleway/object"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			main, err := edgeservices.NewPipeline(ctx, "main", &edgeservices.PipelineArgs{
+//				Name:        pulumi.String("my-pipeline"),
+//				Description: pulumi.String("Static site with WAF-protected API"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			mainBucket, err := object.NewBucket(ctx, "main", &object.BucketArgs{
+//				Name: pulumi.String("my-static-site"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			static, err := edgeservices.NewBackendStage(ctx, "static", &edgeservices.BackendStageArgs{
+//				PipelineId: main.ID(),
+//				S3BackendConfig: &edgeservices.BackendStageS3BackendConfigArgs{
+//					BucketName:   mainBucket.Name,
+//					BucketRegion: pulumi.String("fr-par"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			api, err := edgeservices.NewWafStage(ctx, "api", &edgeservices.WafStageArgs{
+//				PipelineId:     main.ID(),
+//				BackendStageId: static.ID(),
+//				Mode:           pulumi.String("enable"),
+//				ParanoiaLevel:  pulumi.Int(2),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = edgeservices.NewRouteStage(ctx, "main", &edgeservices.RouteStageArgs{
+//				PipelineId:     main.ID(),
+//				BackendStageId: static.ID(),
+//				Rules: edgeservices.RouteStageRuleArray{
+//					&edgeservices.RouteStageRuleArgs{
+//						WafStageId: api.ID(),
+//						RuleHttpMatch: &edgeservices.RouteStageRuleRuleHttpMatchArgs{
+//							MethodFilters: pulumi.StringArray{
+//								pulumi.String("get"),
+//								pulumi.String("post"),
+//								pulumi.String("put"),
+//								pulumi.String("patch"),
+//								pulumi.String("delete"),
+//							},
+//							PathFilter: &edgeservices.RouteStageRuleRuleHttpMatchPathFilterArgs{
+//								PathFilterType: pulumi.String("regex"),
+//								Value:          pulumi.String("/api/.*"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // Route stages can be imported using the `{id}`, e.g.
@@ -72,17 +154,19 @@ import (
 type EdgeServicesRouteStage struct {
 	pulumi.CustomResourceState
 
+	// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+	BackendStageId pulumi.StringPtrOutput `pulumi:"backendStageId"`
 	// The date and time of the creation of the route stage.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The ID of the pipeline.
 	PipelineId pulumi.StringOutput `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the route stage is associated with.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+	// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 	Rules EdgeServicesRouteStageRuleArrayOutput `pulumi:"rules"`
 	// The date and time of the last update of the route stage.
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
-	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 	WafStageId pulumi.StringPtrOutput `pulumi:"wafStageId"`
 }
 
@@ -119,32 +203,36 @@ func GetEdgeServicesRouteStage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering EdgeServicesRouteStage resources.
 type edgeServicesRouteStageState struct {
+	// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+	BackendStageId *string `pulumi:"backendStageId"`
 	// The date and time of the creation of the route stage.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The ID of the pipeline.
 	PipelineId *string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the route stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+	// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 	Rules []EdgeServicesRouteStageRule `pulumi:"rules"`
 	// The date and time of the last update of the route stage.
 	UpdatedAt *string `pulumi:"updatedAt"`
-	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 	WafStageId *string `pulumi:"wafStageId"`
 }
 
 type EdgeServicesRouteStageState struct {
+	// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+	BackendStageId pulumi.StringPtrInput
 	// The date and time of the creation of the route stage.
 	CreatedAt pulumi.StringPtrInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringPtrInput
 	// `projectId`) The ID of the project the route stage is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+	// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 	Rules EdgeServicesRouteStageRuleArrayInput
 	// The date and time of the last update of the route stage.
 	UpdatedAt pulumi.StringPtrInput
-	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 	WafStageId pulumi.StringPtrInput
 }
 
@@ -153,25 +241,29 @@ func (EdgeServicesRouteStageState) ElementType() reflect.Type {
 }
 
 type edgeServicesRouteStageArgs struct {
+	// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+	BackendStageId *string `pulumi:"backendStageId"`
 	// The ID of the pipeline.
 	PipelineId string `pulumi:"pipelineId"`
 	// `projectId`) The ID of the project the route stage is associated with.
 	ProjectId *string `pulumi:"projectId"`
-	// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+	// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 	Rules []EdgeServicesRouteStageRule `pulumi:"rules"`
-	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 	WafStageId *string `pulumi:"wafStageId"`
 }
 
 // The set of arguments for constructing a EdgeServicesRouteStage resource.
 type EdgeServicesRouteStageArgs struct {
+	// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+	BackendStageId pulumi.StringPtrInput
 	// The ID of the pipeline.
 	PipelineId pulumi.StringInput
 	// `projectId`) The ID of the project the route stage is associated with.
 	ProjectId pulumi.StringPtrInput
-	// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+	// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 	Rules EdgeServicesRouteStageRuleArrayInput
-	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+	// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 	WafStageId pulumi.StringPtrInput
 }
 
@@ -262,6 +354,11 @@ func (o EdgeServicesRouteStageOutput) ToEdgeServicesRouteStageOutputWithContext(
 	return o
 }
 
+// The ID of the backend stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `wafStageId`.
+func (o EdgeServicesRouteStageOutput) BackendStageId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EdgeServicesRouteStage) pulumi.StringPtrOutput { return v.BackendStageId }).(pulumi.StringPtrOutput)
+}
+
 // The date and time of the creation of the route stage.
 func (o EdgeServicesRouteStageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStage) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -277,7 +374,7 @@ func (o EdgeServicesRouteStageOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStage) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The list of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified backend stage. If no rules are matched, the request is forwarded to the WAF stage defined by `wafStageId`.
+// List of rules to be checked against every HTTP request. The first matching rule will forward the request to its specified target stage. If no rules are matched, the request is forwarded to the default stage defined by `wafStageId` or `backendStageId`.
 func (o EdgeServicesRouteStageOutput) Rules() EdgeServicesRouteStageRuleArrayOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStage) EdgeServicesRouteStageRuleArrayOutput { return v.Rules }).(EdgeServicesRouteStageRuleArrayOutput)
 }
@@ -287,7 +384,7 @@ func (o EdgeServicesRouteStageOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStage) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
-// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched.
+// The ID of the WAF stage HTTP requests should be forwarded to when no rules are matched. Conflicts with `backendStageId`.
 func (o EdgeServicesRouteStageOutput) WafStageId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *EdgeServicesRouteStage) pulumi.StringPtrOutput { return v.WafStageId }).(pulumi.StringPtrOutput)
 }

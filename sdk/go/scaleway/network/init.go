@@ -23,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "scaleway:network/acl:Acl":
 		r = &Acl{}
+	case "scaleway:network/connector:Connector":
+		r = &Connector{}
 	case "scaleway:network/gatewayNetwork:GatewayNetwork":
 		r = &GatewayNetwork{}
 	case "scaleway:network/privateNetwork:PrivateNetwork":
@@ -59,6 +61,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"scaleway",
 		"network/acl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"scaleway",
+		"network/connector",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

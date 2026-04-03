@@ -58,6 +58,9 @@ class PublicGatewayArgs:
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
         if move_to_ipam is not None:
+            warnings.warn("""All gateways now use IPAM. This field is no longer needed""", DeprecationWarning)
+            pulumi.log.warn("""move_to_ipam is deprecated: All gateways now use IPAM. This field is no longer needed""")
+        if move_to_ipam is not None:
             pulumi.set(__self__, "move_to_ipam", move_to_ipam)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -144,6 +147,7 @@ class PublicGatewayArgs:
 
     @_builtins.property
     @pulumi.getter(name="moveToIpam")
+    @_utilities.deprecated("""All gateways now use IPAM. This field is no longer needed""")
     def move_to_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
@@ -272,6 +276,9 @@ class _PublicGatewayState:
         if ip_id is not None:
             pulumi.set(__self__, "ip_id", ip_id)
         if move_to_ipam is not None:
+            warnings.warn("""All gateways now use IPAM. This field is no longer needed""", DeprecationWarning)
+            pulumi.log.warn("""move_to_ipam is deprecated: All gateways now use IPAM. This field is no longer needed""")
+        if move_to_ipam is not None:
             pulumi.set(__self__, "move_to_ipam", move_to_ipam)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -289,6 +296,9 @@ class _PublicGatewayState:
             pulumi.set(__self__, "type", type)
         if updated_at is not None:
             pulumi.set(__self__, "updated_at", updated_at)
+        if upstream_dns_servers is not None:
+            warnings.warn("""This field is no longer supported in the v2 API""", DeprecationWarning)
+            pulumi.log.warn("""upstream_dns_servers is deprecated: This field is no longer supported in the v2 API""")
         if upstream_dns_servers is not None:
             pulumi.set(__self__, "upstream_dns_servers", upstream_dns_servers)
         if zone is not None:
@@ -380,6 +390,7 @@ class _PublicGatewayState:
 
     @_builtins.property
     @pulumi.getter(name="moveToIpam")
+    @_utilities.deprecated("""All gateways now use IPAM. This field is no longer needed""")
     def move_to_ipam(self) -> Optional[pulumi.Input[_builtins.bool]]:
         """
         Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
@@ -488,6 +499,7 @@ class _PublicGatewayState:
 
     @_builtins.property
     @pulumi.getter(name="upstreamDnsServers")
+    @_utilities.deprecated("""This field is no longer supported in the v2 API""")
     def upstream_dns_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Override the gateway's default recursive DNS servers, if DNS features are enabled.
@@ -807,6 +819,7 @@ class PublicGateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="moveToIpam")
+    @_utilities.deprecated("""All gateways now use IPAM. This field is no longer needed""")
     def move_to_ipam(self) -> pulumi.Output[Optional[_builtins.bool]]:
         """
         Put a Public Gateway in IPAM mode, so that it can be used with the Public Gateways API v2
@@ -879,6 +892,7 @@ class PublicGateway(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="upstreamDnsServers")
+    @_utilities.deprecated("""This field is no longer supported in the v2 API""")
     def upstream_dns_servers(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
         Override the gateway's default recursive DNS servers, if DNS features are enabled.

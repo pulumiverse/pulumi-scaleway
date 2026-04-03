@@ -18,10 +18,15 @@ __all__ = [
     'AlertManagerContactPoint',
     'CockpitEndpoint',
     'CockpitPushUrl',
+    'ExporterDatadogDestination',
+    'ExporterOtlpDestination',
     'TokenScopes',
+    'GetExporterDatadogDestinationResult',
+    'GetExporterOtlpDestinationResult',
     'GetInstanceEndpointResult',
     'GetInstancePushUrlResult',
     'GetPreconfiguredAlertAlertResult',
+    'GetProductsProductResult',
     'GetSourcesSourceResult',
 ]
 
@@ -187,6 +192,83 @@ class CockpitPushUrl(dict):
 
 
 @pulumi.output_type
+class ExporterDatadogDestination(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apiKey":
+            suggest = "api_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExporterDatadogDestination. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExporterDatadogDestination.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExporterDatadogDestination.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 endpoint: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str api_key: Datadog API key. Sensitive.
+        :param _builtins.str endpoint: Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        Datadog API key. Sensitive.
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> Optional[_builtins.str]:
+        """
+        Datadog endpoint URL. Defaults to `https://api.datadoghq.com`.
+        """
+        return pulumi.get(self, "endpoint")
+
+
+@pulumi.output_type
+class ExporterOtlpDestination(dict):
+    def __init__(__self__, *,
+                 endpoint: _builtins.str,
+                 headers: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        :param _builtins.str endpoint: OTLP endpoint URL.
+        :param Mapping[str, _builtins.str] headers: Headers to include in requests.
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        if headers is not None:
+            pulumi.set(__self__, "headers", headers)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        OTLP endpoint URL.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Headers to include in requests.
+        """
+        return pulumi.get(self, "headers")
+
+
+@pulumi.output_type
 class TokenScopes(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -332,6 +414,64 @@ class TokenScopes(dict):
         Permission to write traces.
         """
         return pulumi.get(self, "write_traces")
+
+
+@pulumi.output_type
+class GetExporterDatadogDestinationResult(dict):
+    def __init__(__self__, *,
+                 api_key: _builtins.str,
+                 endpoint: _builtins.str):
+        """
+        :param _builtins.str api_key: Datadog API key
+        :param _builtins.str endpoint: Datadog endpoint URL
+        """
+        pulumi.set(__self__, "api_key", api_key)
+        pulumi.set(__self__, "endpoint", endpoint)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKey")
+    def api_key(self) -> _builtins.str:
+        """
+        Datadog API key
+        """
+        return pulumi.get(self, "api_key")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Datadog endpoint URL
+        """
+        return pulumi.get(self, "endpoint")
+
+
+@pulumi.output_type
+class GetExporterOtlpDestinationResult(dict):
+    def __init__(__self__, *,
+                 endpoint: _builtins.str,
+                 headers: Mapping[str, _builtins.str]):
+        """
+        :param _builtins.str endpoint: OTLP endpoint URL
+        :param Mapping[str, _builtins.str] headers: Headers to include in requests
+        """
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "headers", headers)
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        OTLP endpoint URL
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def headers(self) -> Mapping[str, _builtins.str]:
+        """
+        Headers to include in requests
+        """
+        return pulumi.get(self, "headers")
 
 
 @pulumi.output_type
@@ -562,6 +702,46 @@ class GetPreconfiguredAlertAlertResult(dict):
         Current state of the alert (`inactive`, `pending`, `firing`).
         """
         return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetProductsProductResult(dict):
+    def __init__(__self__, *,
+                 display_name: _builtins.str,
+                 family_name: _builtins.str,
+                 name: _builtins.str):
+        """
+        :param _builtins.str display_name: Human-readable display name of the product.
+        :param _builtins.str family_name: Product family name.
+        :param _builtins.str name: Product name to use in exported_products (e.g. cockpit, LB, object-storage).
+        """
+        pulumi.set(__self__, "display_name", display_name)
+        pulumi.set(__self__, "family_name", family_name)
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter(name="displayName")
+    def display_name(self) -> _builtins.str:
+        """
+        Human-readable display name of the product.
+        """
+        return pulumi.get(self, "display_name")
+
+    @_builtins.property
+    @pulumi.getter(name="familyName")
+    def family_name(self) -> _builtins.str:
+        """
+        Product family name.
+        """
+        return pulumi.get(self, "family_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Product name to use in exported_products (e.g. cockpit, LB, object-storage).
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
