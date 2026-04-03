@@ -189,7 +189,6 @@ __all__ = [
     'GetInstanceServersServerPrivateIpResult',
     'GetInstanceServersServerPublicIpResult',
     'GetInstanceSnapshotImportResult',
-    'GetInterlinkPartnersPartnerResult',
     'GetIotDeviceCertificateResult',
     'GetIotDeviceMessageFilterResult',
     'GetIotDeviceMessageFilterPublishResult',
@@ -10805,90 +10804,6 @@ class GetInstanceSnapshotImportResult(dict):
         Key of the qcow file in the specified bucket
         """
         return pulumi.get(self, "key")
-
-
-@pulumi.output_type
-class GetInterlinkPartnersPartnerResult(dict):
-    def __init__(__self__, *,
-                 contact_email: _builtins.str,
-                 created_at: _builtins.str,
-                 id: _builtins.str,
-                 logo_url: _builtins.str,
-                 name: _builtins.str,
-                 portal_url: _builtins.str,
-                 updated_at: _builtins.str):
-        """
-        :param _builtins.str contact_email: Contact email address.
-        :param _builtins.str created_at: Creation date.
-        :param _builtins.str id: ID of the partner.
-        :param _builtins.str logo_url: URL of the partner's logo.
-        :param _builtins.str name: Name of the partner.
-        :param _builtins.str portal_url: URL of the partner's portal.
-        :param _builtins.str updated_at: Last update date.
-        """
-        pulumi.set(__self__, "contact_email", contact_email)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "logo_url", logo_url)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "portal_url", portal_url)
-        pulumi.set(__self__, "updated_at", updated_at)
-
-    @_builtins.property
-    @pulumi.getter(name="contactEmail")
-    def contact_email(self) -> _builtins.str:
-        """
-        Contact email address.
-        """
-        return pulumi.get(self, "contact_email")
-
-    @_builtins.property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> _builtins.str:
-        """
-        Creation date.
-        """
-        return pulumi.get(self, "created_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        ID of the partner.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter(name="logoUrl")
-    def logo_url(self) -> _builtins.str:
-        """
-        URL of the partner's logo.
-        """
-        return pulumi.get(self, "logo_url")
-
-    @_builtins.property
-    @pulumi.getter
-    def name(self) -> _builtins.str:
-        """
-        Name of the partner.
-        """
-        return pulumi.get(self, "name")
-
-    @_builtins.property
-    @pulumi.getter(name="portalUrl")
-    def portal_url(self) -> _builtins.str:
-        """
-        URL of the partner's portal.
-        """
-        return pulumi.get(self, "portal_url")
-
-    @_builtins.property
-    @pulumi.getter(name="updatedAt")
-    def updated_at(self) -> _builtins.str:
-        """
-        Last update date.
-        """
-        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type

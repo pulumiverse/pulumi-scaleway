@@ -1682,37 +1682,6 @@ export interface GetInstanceSnapshotImport {
     key: string;
 }
 
-export interface GetInterlinkPartnersPartner {
-    /**
-     * Contact email address.
-     */
-    contactEmail: string;
-    /**
-     * Creation date.
-     */
-    createdAt: string;
-    /**
-     * ID of the partner.
-     */
-    id: string;
-    /**
-     * URL of the partner's logo.
-     */
-    logoUrl: string;
-    /**
-     * Name of the partner.
-     */
-    name: string;
-    /**
-     * URL of the partner's portal.
-     */
-    portalUrl: string;
-    /**
-     * Last update date.
-     */
-    updatedAt: string;
-}
-
 export interface GetIotDeviceCertificate {
     /**
      * X509 PEM encoded certificate of the device
@@ -8763,6 +8732,40 @@ export namespace instance {
          * Key of the object to import
          */
         key: string;
+    }
+
+}
+
+export namespace interlink {
+    export interface GetPartnersPartner {
+        /**
+         * Contact email address.
+         */
+        contactEmail: string;
+        /**
+         * Creation date.
+         */
+        createdAt: string;
+        /**
+         * ID of the partner.
+         */
+        id: string;
+        /**
+         * URL of the partner's logo.
+         */
+        logoUrl: string;
+        /**
+         * Name of the partner.
+         */
+        name: string;
+        /**
+         * URL of the partner's portal.
+         */
+        portalUrl: string;
+        /**
+         * Last update date.
+         */
+        updatedAt: string;
     }
 
 }

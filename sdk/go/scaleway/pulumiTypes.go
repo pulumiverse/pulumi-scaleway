@@ -25095,157 +25095,6 @@ func (o GetInstanceSnapshotImportArrayOutput) Index(i pulumi.IntInput) GetInstan
 	}).(GetInstanceSnapshotImportOutput)
 }
 
-type GetInterlinkPartnersPartner struct {
-	// Contact email address.
-	ContactEmail string `pulumi:"contactEmail"`
-	// Creation date.
-	CreatedAt string `pulumi:"createdAt"`
-	// ID of the partner.
-	Id string `pulumi:"id"`
-	// URL of the partner's logo.
-	LogoUrl string `pulumi:"logoUrl"`
-	// Name of the partner.
-	Name string `pulumi:"name"`
-	// URL of the partner's portal.
-	PortalUrl string `pulumi:"portalUrl"`
-	// Last update date.
-	UpdatedAt string `pulumi:"updatedAt"`
-}
-
-// GetInterlinkPartnersPartnerInput is an input type that accepts GetInterlinkPartnersPartnerArgs and GetInterlinkPartnersPartnerOutput values.
-// You can construct a concrete instance of `GetInterlinkPartnersPartnerInput` via:
-//
-//	GetInterlinkPartnersPartnerArgs{...}
-type GetInterlinkPartnersPartnerInput interface {
-	pulumi.Input
-
-	ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput
-	ToGetInterlinkPartnersPartnerOutputWithContext(context.Context) GetInterlinkPartnersPartnerOutput
-}
-
-type GetInterlinkPartnersPartnerArgs struct {
-	// Contact email address.
-	ContactEmail pulumi.StringInput `pulumi:"contactEmail"`
-	// Creation date.
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// ID of the partner.
-	Id pulumi.StringInput `pulumi:"id"`
-	// URL of the partner's logo.
-	LogoUrl pulumi.StringInput `pulumi:"logoUrl"`
-	// Name of the partner.
-	Name pulumi.StringInput `pulumi:"name"`
-	// URL of the partner's portal.
-	PortalUrl pulumi.StringInput `pulumi:"portalUrl"`
-	// Last update date.
-	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
-}
-
-func (GetInterlinkPartnersPartnerArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInterlinkPartnersPartner)(nil)).Elem()
-}
-
-func (i GetInterlinkPartnersPartnerArgs) ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput {
-	return i.ToGetInterlinkPartnersPartnerOutputWithContext(context.Background())
-}
-
-func (i GetInterlinkPartnersPartnerArgs) ToGetInterlinkPartnersPartnerOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInterlinkPartnersPartnerOutput)
-}
-
-// GetInterlinkPartnersPartnerArrayInput is an input type that accepts GetInterlinkPartnersPartnerArray and GetInterlinkPartnersPartnerArrayOutput values.
-// You can construct a concrete instance of `GetInterlinkPartnersPartnerArrayInput` via:
-//
-//	GetInterlinkPartnersPartnerArray{ GetInterlinkPartnersPartnerArgs{...} }
-type GetInterlinkPartnersPartnerArrayInput interface {
-	pulumi.Input
-
-	ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput
-	ToGetInterlinkPartnersPartnerArrayOutputWithContext(context.Context) GetInterlinkPartnersPartnerArrayOutput
-}
-
-type GetInterlinkPartnersPartnerArray []GetInterlinkPartnersPartnerInput
-
-func (GetInterlinkPartnersPartnerArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInterlinkPartnersPartner)(nil)).Elem()
-}
-
-func (i GetInterlinkPartnersPartnerArray) ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput {
-	return i.ToGetInterlinkPartnersPartnerArrayOutputWithContext(context.Background())
-}
-
-func (i GetInterlinkPartnersPartnerArray) ToGetInterlinkPartnersPartnerArrayOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInterlinkPartnersPartnerArrayOutput)
-}
-
-type GetInterlinkPartnersPartnerOutput struct{ *pulumi.OutputState }
-
-func (GetInterlinkPartnersPartnerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInterlinkPartnersPartner)(nil)).Elem()
-}
-
-func (o GetInterlinkPartnersPartnerOutput) ToGetInterlinkPartnersPartnerOutput() GetInterlinkPartnersPartnerOutput {
-	return o
-}
-
-func (o GetInterlinkPartnersPartnerOutput) ToGetInterlinkPartnersPartnerOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerOutput {
-	return o
-}
-
-// Contact email address.
-func (o GetInterlinkPartnersPartnerOutput) ContactEmail() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.ContactEmail }).(pulumi.StringOutput)
-}
-
-// Creation date.
-func (o GetInterlinkPartnersPartnerOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-// ID of the partner.
-func (o GetInterlinkPartnersPartnerOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// URL of the partner's logo.
-func (o GetInterlinkPartnersPartnerOutput) LogoUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.LogoUrl }).(pulumi.StringOutput)
-}
-
-// Name of the partner.
-func (o GetInterlinkPartnersPartnerOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// URL of the partner's portal.
-func (o GetInterlinkPartnersPartnerOutput) PortalUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.PortalUrl }).(pulumi.StringOutput)
-}
-
-// Last update date.
-func (o GetInterlinkPartnersPartnerOutput) UpdatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInterlinkPartnersPartner) string { return v.UpdatedAt }).(pulumi.StringOutput)
-}
-
-type GetInterlinkPartnersPartnerArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInterlinkPartnersPartnerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInterlinkPartnersPartner)(nil)).Elem()
-}
-
-func (o GetInterlinkPartnersPartnerArrayOutput) ToGetInterlinkPartnersPartnerArrayOutput() GetInterlinkPartnersPartnerArrayOutput {
-	return o
-}
-
-func (o GetInterlinkPartnersPartnerArrayOutput) ToGetInterlinkPartnersPartnerArrayOutputWithContext(ctx context.Context) GetInterlinkPartnersPartnerArrayOutput {
-	return o
-}
-
-func (o GetInterlinkPartnersPartnerArrayOutput) Index(i pulumi.IntInput) GetInterlinkPartnersPartnerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInterlinkPartnersPartner {
-		return vs[0].([]GetInterlinkPartnersPartner)[vs[1].(int)]
-	}).(GetInterlinkPartnersPartnerOutput)
-}
-
 type GetIotDeviceCertificate struct {
 	// X509 PEM encoded certificate of the device
 	Crt string `pulumi:"crt"`
@@ -34690,8 +34539,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceServersServerPublicIpArrayInput)(nil)).Elem(), GetInstanceServersServerPublicIpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportInput)(nil)).Elem(), GetInstanceSnapshotImportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstanceSnapshotImportArrayInput)(nil)).Elem(), GetInstanceSnapshotImportArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInterlinkPartnersPartnerInput)(nil)).Elem(), GetInterlinkPartnersPartnerArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInterlinkPartnersPartnerArrayInput)(nil)).Elem(), GetInterlinkPartnersPartnerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateInput)(nil)).Elem(), GetIotDeviceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceCertificateArrayInput)(nil)).Elem(), GetIotDeviceCertificateArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetIotDeviceMessageFilterInput)(nil)).Elem(), GetIotDeviceMessageFilterArgs{})
@@ -35169,8 +35016,6 @@ func init() {
 	pulumi.RegisterOutputType(GetInstanceServersServerPublicIpArrayOutput{})
 	pulumi.RegisterOutputType(GetInstanceSnapshotImportOutput{})
 	pulumi.RegisterOutputType(GetInstanceSnapshotImportArrayOutput{})
-	pulumi.RegisterOutputType(GetInterlinkPartnersPartnerOutput{})
-	pulumi.RegisterOutputType(GetInterlinkPartnersPartnerArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceCertificateArrayOutput{})
 	pulumi.RegisterOutputType(GetIotDeviceMessageFilterOutput{})

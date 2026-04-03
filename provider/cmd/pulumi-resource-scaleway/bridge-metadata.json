@@ -3820,11 +3820,11 @@
                 }
             },
             "scaleway_interlink_partner": {
-                "current": "scaleway:index/getInterlinkPartner:getInterlinkPartner",
+                "current": "scaleway:interlink/getPartner:getPartner",
                 "majorVersion": 1
             },
             "scaleway_interlink_partners": {
-                "current": "scaleway:index/getInterlinkPartners:getInterlinkPartners",
+                "current": "scaleway:interlink/getPartners:getPartners",
                 "majorVersion": 1,
                 "fields": {
                     "partners": {
@@ -6502,8 +6502,6 @@
             "scaleway:index/getInstanceServers:getInstanceServers": 0,
             "scaleway:index/getInstanceSnapshot:getInstanceSnapshot": 0,
             "scaleway:index/getInstanceVolume:getInstanceVolume": 0,
-            "scaleway:index/getInterlinkPartner:getInterlinkPartner": 0,
-            "scaleway:index/getInterlinkPartners:getInterlinkPartners": 0,
             "scaleway:index/getIotDevice:getIotDevice": 0,
             "scaleway:index/getIotHub:getIotHub": 0,
             "scaleway:index/getIpamIp:getIpamIp": 0,
@@ -6560,6 +6558,8 @@
             "scaleway:instance/getServers:getServers": 0,
             "scaleway:instance/getSnapshot:getSnapshot": 0,
             "scaleway:instance/getVolume:getVolume": 0,
+            "scaleway:interlink/getPartner:getPartner": 0,
+            "scaleway:interlink/getPartners:getPartners": 0,
             "scaleway:iot/getDevice:getDevice": 0,
             "scaleway:iot/getHub:getHub": 0,
             "scaleway:ipam/getIp:getIp": 0,

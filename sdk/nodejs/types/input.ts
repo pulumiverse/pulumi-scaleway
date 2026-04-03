@@ -4267,6 +4267,9 @@ export namespace instance {
     }
 }
 
+export namespace interlink {
+}
+
 export namespace iot {
     export interface DeviceCertificate {
         /**

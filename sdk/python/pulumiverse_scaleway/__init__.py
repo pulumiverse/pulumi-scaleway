@@ -91,8 +91,6 @@ from .get_instance_server import *
 from .get_instance_servers import *
 from .get_instance_snapshot import *
 from .get_instance_volume import *
-from .get_interlink_partner import *
-from .get_interlink_partners import *
 from .get_iot_device import *
 from .get_iot_hub import *
 from .get_ipam_ip import *
@@ -253,6 +251,8 @@ if typing.TYPE_CHECKING:
     inference = __inference
     import pulumiverse_scaleway.instance as __instance
     instance = __instance
+    import pulumiverse_scaleway.interlink as __interlink
+    interlink = __interlink
     import pulumiverse_scaleway.iot as __iot
     iot = __iot
     import pulumiverse_scaleway.ipam as __ipam
@@ -308,6 +308,7 @@ else:
     iam = _utilities.lazy_import('pulumiverse_scaleway.iam')
     inference = _utilities.lazy_import('pulumiverse_scaleway.inference')
     instance = _utilities.lazy_import('pulumiverse_scaleway.instance')
+    interlink = _utilities.lazy_import('pulumiverse_scaleway.interlink')
     iot = _utilities.lazy_import('pulumiverse_scaleway.iot')
     ipam = _utilities.lazy_import('pulumiverse_scaleway.ipam')
     job = _utilities.lazy_import('pulumiverse_scaleway.job')
