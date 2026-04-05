@@ -20,7 +20,6 @@ linters:
       - schema.go
       - pulumiManifest.go
       - pkg/vendored
-      - pkg/version
       - third_party$
       - builtin$
       - examples$
